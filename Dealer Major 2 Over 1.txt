@@ -1,0 +1,11 @@
+Script,Major21
+setDealerCode(
+`
+# Major 2/1
+hcp(south) > 11 && hcp(north) > 13 &&
+shape(south,5xxx+6xxx+x5xx+x6xx-xxx5-xxx6-any 5332) &&
+(shape(north, xxx5+xx5x+x5xx-5xxx-4xxx-x5xx-x4xx) || shape(north, 33xx))
+`
+)
+Script
+Button,Major 2/1,Major 2/1\n%Major21%
