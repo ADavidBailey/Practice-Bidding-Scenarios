@@ -1,25 +1,17 @@
-Script,DealingWithOvercallsWeak
+Script,Dougs2C
 setDealerCode(
 `
-# Dealing with overcalls -- strong opener
 
-# Define good suits west
-GoodS = spades(west)>4 and top5(west,spades)>2
-GoodH = hearts(west)>4 and top5(west,hearts)>2
-GoodD = diamonds(west)>4 and top5(west,diamonds)>2
-GoodC = clubs(west)>4 and top5(west,clubs)>2
+# Doug’s 2N
 
-hcp(west)>11 and hcp(west)<15 and 
-(GoodS or GoodH or GoodD or GoodC or shape(west, any 5440+4441+4432)) and
+# North opens 2N
+hcp(north)>17 and hcp(north)<20 and
+shape(north,4333+4432+5332+5422) 
 
-hcp(south)>10 and hcp(south)<16 and shape(south,any 0xxx+1xxx+22xx) and
-
-hcp(east)<5
-
-# North passes, doubles or bids at the 1 level, bids at the two level
-
-`, "S", true);
+`, "N", true);
 Script
-Button,Comp over <16 opener,Competition over  minimum opener\n%DealingWithOvercallsWeak%
-
-
+Button,Doug’s 2C,Doug’s 2!C = 18-19 Semi-Balanced (may be any 5422)\n\
+2!D/!H → !H/!S w/4+，2!S → 2N，2N → !D w/5+\n\
+3!C = Puppet Stayman，3!D = 4!H&4!S，3!H = 3-1(45)，3!S = 1-3(45)，3N = 5!H & 5!S\n\
+4!C = Gerber (14 30 3min 2max)，4!D → !H，4!H → !S，4S = 11(65)\n\ 
+%Dougs2C%
