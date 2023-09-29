@@ -1,0 +1,14 @@
+Script,BalancedPower
+setDealerCode(
+`
+# Balanced Power
+
+# East opens
+hcp(east)>11 and hcp(east)<15 and
+
+# South has a powerful balanced hand
+hcp(south)>19 and shape(south, any 4333+4432+5332)
+
+`, "E", true);
+Script
+Button,Power X Bal (19+),Balanced Power Double\n%BalancedPower%
