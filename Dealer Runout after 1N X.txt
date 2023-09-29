@@ -1,0 +1,13 @@
+Script,Runout
+setDealerCode(
+`
+# Runout after 1N Doubled
+shape(south, any 4333+4432+5332) and hcp(south)>14 and hcp(south)<18
+and
+shape(west, any 5332+4432+4333) and hcp(west)>15
+and
+shape(north,xxx1+xxx0+any 6xxx+5xxx) and hcp(north)<6
+`
+)
+Script
+Button,Runout after 1NX,Runout after 1NX\n%Runout%
