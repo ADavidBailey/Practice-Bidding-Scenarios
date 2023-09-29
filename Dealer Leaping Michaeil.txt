@@ -1,0 +1,38 @@
+Script,LeapingMichaels
+setDealerCode(
+`
+# Leaping Michaels
+
+# Define good suits south
+GoodS = spades(south)>4 and top5(south,spades)>2
+GoodH = hearts(south)>4 and top5(south,hearts)>2
+GoodD = diamonds(south)>4 and top5(south,diamonds)>2
+GoodC = clubs(south)>4 and top5(south,clubs)>2
+
+# Define East Weak 2 suits
+sE = top3(east,spades)>1 and spades(east)==6 and hearts(east)<4
+hE = top3(east,hearts)>1 and hearts(east)==6 and spades(east)<4
+dE = top3(east,diamonds)>1 and diamonds(east)==6 and spades(east)>4 and hearts(east)<4
+
+# East opens a Weak Two
+hcp(east)>5 and hcp(east)<10
+
+# South has <7 losers
+losers(south)<7
+
+# West has 2 other good suits
+and 
+(
+   (sE and ((GoodH and GoodD) or (GoodH and GoodC) or (GoodD and GoodC)))
+or 
+   (hE and ((GoodS and GoodD) or (GoodS and GoodC) or (GoodD and GoodC)))
+or 
+   (dE and ((GoodS and GoodH) or (GoodS and GoodC) or (GoodH and GoodC)))
+)
+
+`, "E", true);
+Script
+Button,Leaping Michaels,Leaping Michaels\n\
+https://www.bridgebum.com/leaping_michaels.php\n\
+%LeapingMichaels%
+
