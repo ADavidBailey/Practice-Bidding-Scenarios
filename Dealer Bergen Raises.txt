@@ -1,0 +1,51 @@
+Script,BergenRaises
+setDealerCode(
+`
+
+# Bergen Raises
+
+# Calculate Total Points for south (tp) for south
+v1 = shape(south, any 0xxx) ? 5 : 0  // allow for 2 voids
+v2 = shape(south, any 00xx) ? 5 : 0
+s1 = shape(south, any 1xxx) ? 3 : 0 // allow for 2 singletons
+s2 = shape(south, any 11xx) ? 3 : 0
+d1 = shape(south, any 2xxx) ? 1 : 0 // allow for 3 doubletons
+d2 = shape(south, any 22xx) ? 1 : 0
+d3 = shape(south, any 222x) ? 1 : 0
+tp = v1+v2+s1+s2+d1+d2+d3 + hcp(south)
+
+# Define openers
+sOpener = spades(north) >= hearts(north) and spades(north) >=5 and spades(north) >= diamonds(north) and spades(north) >= clubs(north)
+hOpener = not sOpener and hearts(north) >=5 and hearts(north) >= diamonds(north) and hearts(north) >= clubs(north)
+
+# Define suit fit w/4-card support
+Fs = sOpener and spades(south)==4
+Fh = hOpener and hearts(south)==4
+
+hcp(north)>10 and hcp(north)<15 and ((sOpener and Fs) or (hOpener and Fh))
+and
+(
+   // 3C = Constructive 7-10 TP
+   tp>6 and tp<11
+
+or
+   // 3D = Limit Raise 10-12 TP
+   tp>9 and tp<13
+
+or
+   // 3OM = Ambiguous Splinter 12+ TP
+   tp >11 and shape(south, any 14xx)
+
+or
+   // 3M = Preemptive Raise 0-6 TP
+   tp<7
+) 
+`, "N", true);
+Script
+Button,Bergen Raises,Bergen Raises\n\
+3!C = Constructive (7-10) TP\n\
+3!D = Limit Raise (10-12) TP\n\
+3M = Preemptive Raise (0-6) TP\n\
+3OM = Ambiguous Splinter (12+) TP\n\
+https://www.bridgebum.com/bergen_raises.php\n\
+%BergenRaises%
