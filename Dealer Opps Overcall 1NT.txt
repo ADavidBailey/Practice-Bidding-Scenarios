@@ -1,0 +1,16 @@
+Script,OppsOvercall1NT
+setDealerCode(
+`
+# Opponents Overcall 1NT
+
+# South opens
+hcp(south)>11 and hcp(south)<15 and
+
+# West bids 1N
+shape(west, any 4333+4432+5332) and
+hcp(west)>14 && hcp(west)<18
+
+`
+, "S", true);
+Script
+Button,Opps 1NT Overcall,Opps 1NT Overcall\n%OppsOvercall1NT%
