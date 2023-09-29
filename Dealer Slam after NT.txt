@@ -1,0 +1,12 @@
+Script,StrongAfterNT
+setDealerCode(
+`
+# Slam after Notrump
+hcp(south)>14 and hcp(south)<18 and shape(south,any 4333+4432+5332)
+and
+hcp(north)>15 and shape(north,6xxx+x6xx+5xxx+x5xx+any 4333+4432+5332)
+`
+)
+Script
+Button,Slam after Notrump,Slam after Notrump\n%StrongAfterNT%
+
