@@ -1,0 +1,13 @@
+Script,SlamAfterStaymanOrJacoby
+setDealerCode(
+`
+# Slam after Stayman or Jacoby
+
+shape(south,4333+4432) &&
+hcp(south) >=15 && hcp(south)<=17 &&
+shape(north, any 54xx+45xx) &&
+hcp(north) > 15
+`
+)
+Script
+Button,Slam after Sta/Jac,Slam after Sta/Jac\n%SlamAfterStaymanOrJacoby%
