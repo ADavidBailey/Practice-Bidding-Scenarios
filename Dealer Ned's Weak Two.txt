@@ -1,0 +1,27 @@
+Script,NedWeakTwoBid
+setDealerCode(
+`
+/* Ned's Weak Two
+
+5- chunky or any 6-card suit & 8-11 HCP
+Raise is invitational
+New suit is not forcing
+2N is Game Force and asks about shape
+
+*/
+
+(hcp(south)>7 and hcp(south)<12) and
+(
+  ((top5(south,spades)>2 and spades(south)==5) or spades(south)>5)
+  or
+  ((top5(south,hearts)>2 and hearts(south)==5) or hearts(south)>5)
+  or
+  ((top5(south,diamonds)>2 and diamonds(south)==5) or diamonds(south)>5)
+)
+
+and hcp(north)>9
+
+`
+)
+Script
+Button,Ned’s Weak Two,Ned’s Weak Two\n%NedWeakTwoBid%
