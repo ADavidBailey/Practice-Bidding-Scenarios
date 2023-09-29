@@ -1,0 +1,24 @@
+Script,TakeoutDoubles
+setDealerCode(
+`
+# Takeout Doubles
+
+# East opens and South is short in opener’s suit
+Ce = clubs(east)>2 and clubs(east)>diamonds(east) and hearts(east)<5 and spades(east)<5 and clubs(west)<4 and  clubs(south)<3
+De = diamonds(east)>2 and hearts(east)<5 and spades(east)<5 and diamonds(west)<4 and diamonds(south)<3 
+He = hearts(east)>4 and hearts(west)<3 and hearts(south)<3 
+Se = spades(east)>4 and spades(west)<3 and spades(south)<3 
+
+# East opens
+hcp(east)>11 and hcp(east)<15 and
+(Ce or De or He or Se) and
+
+# South has two or three suits
+shape(south, any 4432+4441) and 
+
+# South has an opening hand
+((hcp(south)>11 and hcp(south)<15) or hcp(south)>17) 
+
+`, "E", true);
+Script
+Button,Takeout Doubles,Takeout Doubles\n%TakeoutDoubles%
