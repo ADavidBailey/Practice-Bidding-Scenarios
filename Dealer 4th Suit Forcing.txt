@@ -1,0 +1,11 @@
+Script,FourthSuitForcing
+setDealerCode(
+`
+# 4th Suit Forcing
+shape(south, 4xx5) && hcp(south) > 11 && hcp(south) < 15
+&&
+shape(north, x4xx+x5xx) && hcp(north) > 13
+`
+)
+Script
+Button,4th Suit Forcing,4th Suit Forcing\n%FourthSuitForcing%
