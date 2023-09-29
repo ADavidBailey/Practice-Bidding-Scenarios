@@ -1,0 +1,11 @@
+Script,MajorOpener
+setDealerCode(
+`
+# Major Suit Opener
+
+((spades(south)>4) or (hearts(south)>4))
+and shape(south,xxxx - any 5332) and hcp(south)>11 and hcp(south)<23
+`
+)
+Script
+Button,Major Opener,Major Opener\n%MajorOpener%
