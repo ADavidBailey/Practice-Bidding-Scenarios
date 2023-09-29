@@ -1,0 +1,46 @@
+Script,SpiralRaise3only
+setDealerCode(
+`
+
+# Spiral Raises
+
+# Define minimum minor opening
+minorOpening=
+hcp(south)>11 and hcp(south)<15
+and spades(south)<5
+and hearts(south)<5
+
+# Define Shapley 3-card major any 3-card support with a doubleton, singleton, or void
+s3s = shape(south, 3xxx-x5xx + any 5332+5431) and shape(north, any 32xx+31xx+30xx)
+s3h = shape(south, x3xx-5xxx + any 5332+5431) and shape(north, any 32xx+31xx+30xx)
+
+# Define Major fit with opener and shapely 3- or any 4-card support for north’s 4- or 5-card major
+# just 3-card
+# SpadeFit = (spades(south)==4 or s3s) and spades(north)>3 and spades(north)<6
+SpadeFit = s3s and spades(north)>3 and spades(north)<6
+# HeartFit = (hearts(south)==4 or s3h) and hearts(north)>3 and hearts(north)<6
+HeartFit = s3h and hearts(north)>3 and hearts(north)<6
+
+MajorFit = SpadeFit or HeartFit
+
+# Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
+calmEast = shape(east,any xxxx-8xxx-7xxx-6xxx-5xxx) and hcp(east)<9
+calmWest = shape(west,any xxxx-8xxx-7xxx-6xxx-5xxx) and hcp(west)<9
+calmOpps= calmEast and calmWest
+
+# Define northInvites
+northInvites = hcp(north)>9 and hcp(north)<13
+
+# Now do it…
+minorOpening and MajorFit and northInvites and calmOpps
+
+
+
+`, "S", true);
+Script
+
+Button,Spiral Raise w/3,Spiral Raise w/3\n\
+After 1m 1M 2M，2N is Spiral asking bid\n\
+In the simplest version Opener shows 3- or 4-card support and min/max HCP\n\
+Some use a step-bid instead of 2N as the asking bid\n\
+%SpiralRaise3only%
