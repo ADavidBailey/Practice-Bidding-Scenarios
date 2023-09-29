@@ -1,0 +1,18 @@
+Script,DirectSplinter
+setDealerCode(
+`
+# Strong Splinter (12-15 HCP)
+
+# Defining Major Fit
+SpadeFit = ((spades(north)>4 and hearts(north)<5) and spades(south)==4)
+HeartFit = ((hearts(north)>4 and spades(north)<5) and hearts(south)==4)
+MajorFit =(SpadeFit or HeartFit)
+
+hcp(north)>10 and hcp(north)<15 and
+MajorFit and
+shape(south,any 1xxx+0xxx) and
+hcp(south)>11 and hcp(south)<16
+
+`, "N", true);
+Script
+Button,Strong Splinter (12-15 HCP),Strong Splinter (12-15 HCP)\n%DirectSplinter%,width=100%
