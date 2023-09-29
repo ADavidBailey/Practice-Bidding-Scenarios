@@ -1,0 +1,37 @@
+Script,TwoSuitedOvercalls
+setDealerCode(
+`
+# 2-Suited Overcalls
+
+# Define good suits
+GoodS = spades(south)>4 and top5(south,spades)>2
+GoodH = hearts(south)>4 and top5(south,hearts)>2
+GoodD = diamonds(south)>4 and top5(south,diamonds)>2
+GoodC = clubs(south)>4 and top5(south,clubs)>2
+
+# East opens
+hcp(east)>11 and hcp(east)<15 and shape(east,any xxxx-8xxx-7xxx-6xxx) and
+
+# South is 2-suited
+(
+(GoodS and GoodH)
+or
+(GoodS and GoodD)
+or
+(GoodS and GoodC)
+or
+(GoodH and GoodD)
+or
+(GoodH and GoodC)
+or
+(GoodD and GoodC)
+)
+and 
+
+# South is weak or strong
+(losers(south)<7 or losers(south)<4)
+and
+(hcp(south)>7 and hcp(south)<15)
+`, "E", true);
+Script
+Button,2-Suit Overcalls,2-Suit Overcalls\n%TwoSuitedOvercalls%
