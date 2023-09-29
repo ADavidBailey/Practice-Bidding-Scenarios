@@ -1,0 +1,19 @@
+Script,AmbiguousSplinter
+setDealerCode(
+`
+# Weak Splinter (9-11 HCP)
+
+# Defining Major Fit
+SpadeFit = ((spades(north)>4 and hearts(north)<5) and spades(south)==4)
+HeartFit = ((hearts(north)>4 and spades(north)<5) and hearts(south)==4)
+MajorFit =(SpadeFit or HeartFit)
+
+hcp(north)>10 and hcp(north)<15 and
+MajorFit and
+shape(south,any 1xxx+0xxx) and
+hcp(south)>8 and hcp(south)<12
+
+`, "N", true);
+Script
+Button,Weak Splinter (9-11 HCP),Weak Splinter (9-11 HCP)\n%AmbiguousSplinter%,width=100%
+
