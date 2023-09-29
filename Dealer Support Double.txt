@@ -1,0 +1,21 @@
+Script,SupportDouble
+setDealerCode(
+`
+# Support Double
+shape(south,33xx+35xx) && hcp(south) > 11 && hcp(south) <15
+&&
+shape(north,53xx+43xx+35xx+34xx) && hcp(north) > 8
+&&
+hcp(east) > 8 && hcp(east) < 12 &&
+(
+((top3(east,spades) == 2) && (spades(east) ==5)) 
+||
+((top3(east,hearts) == 2) && (hearts(east) == 5))
+||
+((top3(east,diamonds) == 2) && (diamonds(east) == 5))
+)
+
+`
+)
+Script
+Button,Support Double,Support Double\n%SupportDouble%
