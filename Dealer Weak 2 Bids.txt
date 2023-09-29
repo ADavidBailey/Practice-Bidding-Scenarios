@@ -1,0 +1,20 @@
+Script,WeakTwoBids
+setDealerCode(
+`
+# Weak Two Bids
+(
+(hcp(south)>5 and hcp(south)<10) and hcp(south, spades) >= hcp(south)/2
+and
+(
+(top3(south,spades)>1 and (spades(south)==6 and hearts(south)<4)) 
+or
+(top3(south,hearts)>1 and (hearts(south)==6 and spades(south)<4))
+or
+(top3(south,diamonds)>1 and (diamonds(south)==6 and hearts(south)<4 and spades(south)<4))
+)
+)
+and hcp(north) > 9
+`
+)
+Script
+Button,Weak Two Bids,Weak Two Bids\n%WeakTwoBids%
