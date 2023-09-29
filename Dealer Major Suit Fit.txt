@@ -1,0 +1,12 @@
+Script,MajorSuitFit
+setDealerCode(
+`
+# Major Suit Fit
+((spades(south)>5 and shape(south, xxxx - any 5332) and spades(north)>3)
+or
+(hearts(south)>5 and shape(south, xxxx - any 5332) and hearts(north)>3))
+and hcp(south)>11 and hcp(north)>5
+`
+)
+Script
+Button,Major Suit Fit,Major Suit Fit\n%MajorSuitFit%
