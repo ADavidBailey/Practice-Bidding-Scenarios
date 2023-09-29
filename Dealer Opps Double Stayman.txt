@@ -1,0 +1,21 @@
+Script,StaymanX
+setDealerCode(
+`
+# Opponents double Stayman
+
+# South opens 1NT
+shape(south, any 4333 + 4432 + 5332) and
+hcp(south)>14 and hcp(south)<18 and
+
+# North responds 2C
+shape(north, 54xx+45xx+44xx+43xx+34xx+42xx+24xx) and
+hcp(north)>8 and
+
+# East doubles 
+shape(east, xxx6) and top4(east,clubs)==2
+and hcp(east)>6 and hcp(east)<10
+
+`
+)
+Script
+Button,Opps X Stayman,Opps X Stayman\n%StaymanX%
