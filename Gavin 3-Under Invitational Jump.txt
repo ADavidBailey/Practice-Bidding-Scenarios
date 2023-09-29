@@ -1,0 +1,29 @@
+Script,InvitationalJump
+setDealerCode(
+`
+# 3 Under Invitational Jump (11-12 HCP)
+
+# Define NoMajorFit
+NoSpadeFit = ((spades(north)>4 and hearts(north)<5) and spades(south)<3)
+NoHeartFit = ((hearts(north)>4 and spades(north)<5) and hearts(south)<3)
+
+# Define openers
+sOpener = spades(north) >= hearts(north) >= 5
+hOpener = hearts(north) > 5 and hearts(north) >= diamonds(north) and hearts(north) >=clubs(north) and not sOpener
+dOpener = diamonds(north) >= clubs(north) and not (sOpener or hOpener)
+cOpener = not sOpener and not hOpener and not dOpener
+
+# Define good suits
+GoodH = hearts(south)>5 and top5(south,hearts)>2 and sOpener
+GoodC = clubs(south)>5 and top5(south,clubs)>2 and (sOpener or hOpener or dOpener)
+
+hcp(north)>10 and hcp(north)<15 and
+(NoSpadeFit or NoHeartFit or diamonds(north)>3) and
+hcp(south)>10 and hcp(south)<13 and
+(GoodC or GoodH)
+
+`, "N", true);
+Script
+Button,Gavin’s 3-Under Invitational Jump (11-12 HCP),Gavin’s 3 Under Invitational Jump (11-12 HCP)\n\
+This does not include jumps to 3D which is a 4-card Limit Raise.\n\
+%InvitationalJump%,width=100%
