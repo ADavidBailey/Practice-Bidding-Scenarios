@@ -1,0 +1,22 @@
+Script,JumpOvercalls
+setDealerCode(
+`
+# Jump Overcalls
+
+# Define good suits
+GoodS = spades(south)>5 and top5(south,spades)>2
+GoodH = hearts(south)>5 and top5(south,hearts)>2
+GoodD = diamonds(south)>5 and top5(south,diamonds)>2
+GoodC = clubs(south)>5 and top5(south,clubs)>2
+
+# East opens
+hcp(east)>11 and hcp(east)<15 and
+
+# South has a decent suit
+(GoodS or GoodH or GoodD or GoodC) and 
+
+# South has preemptive values
+hcp(south)>5 and hcp(south)<11
+`, "E", true);
+Script
+Button,Jump Overcalls,Jump Overcalls\n%JumpOvercalls%
