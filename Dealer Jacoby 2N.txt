@@ -1,0 +1,15 @@
+Script,Jacoby2N
+setDealerCode(
+`
+# Jacoby 2N
+(
+(shape(south,5xxx+6xxx-x5xx-any 5332) && shape(north,4xxx))
+||
+(shape(south,x5xx+x6xx-5xxx-any 5332) && shape(north,x4xx))
+)
+&& 
+hcp(south)>11&&hcp(north)>13
+`
+)
+Script
+Button,Jacoby 2N,Jacoby 2N\n%Jacoby2N%
