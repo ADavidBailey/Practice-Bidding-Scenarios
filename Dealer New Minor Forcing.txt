@@ -1,18 +1,14 @@
 Script,NMFandSD
 setDealerCode(
 `
-# New Minor Forcing/Support Double
-(
-(shape(south,35xx) && shape(north,5332))
- ||
-(shape(south,43xx+34xx+33xx) && shape(north,5xxx+4xxx+x5xx+x4xx))
-)
-&&
-hcp(south)>11 && hcp(south)<15
-&&
-hcp(north) >11 && hcp(north)<16
-&&
-hcp(east) == 11 && shape(east, 5xxx)
+# New Minor Forcing & Support Double
+hcp(south)>11 and hcp(south)<15
+and shape(south, 3352+3325+3343+3334)
+and hcp(north)>9 and hcp(north)<15
+and shape(north, 5xxx+x5xx-any 55xx)
+and hcp(west)<9
+and hcp(east)>8
+
 `
 )
 Script
