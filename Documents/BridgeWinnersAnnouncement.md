@@ -22,7 +22,7 @@ I use Google Chrome.  Many common browsers, including Microsoft Edge, are chromi
 At this time, it does not work on IOS devices like iPads and iPhones.  But, if you set up a table on your computer, your partner, using an iPad/iPhone, can join the table and practice bidding with you.
 
 
-With the extension installed, when you log in to BBO, you'll see a new tab on the right (BBOalert) that will be selected.  (At the top, note the dark blue Data tab and the gray Shortcuts tab.  On the lower right note the green BBOalert tab.)
+With the extension installed, when you log in to BBO, you'll see a new tab on the right (BBOalert) that will be selected.  (At the top, note the dark blue Data tab with a light blue Data drop-down menu, the gray Shortcuts tab, and on the lower right, the green BBOalert tab.)
 
 <center><img src="./images/BBOalertTab.png" width=30%></center>
 
@@ -33,7 +33,7 @@ You'll need to right-click the following <a href="https://github.com/ADavidBaile
 This should be done only once. When you paste the URL, it is saved by BBOalert, and each time you restart BBO, the saved URL is used to re-import the file contents, including any updates; so, you’ll always be up to date.  You'll see this each time you start BBO:
 
 <center><img src="./images/BBOalertReadingData.png" width=30%></center>
-And, you'll note that the light blue Data tab has changed.  At the bottom you'll see 'Bidding Scenarios' Url has been added.
+And, you'll note that the light blue Data drop-down has changed.  At the bottom you'll see the 'Bidding Scenarios' Url has been added to the list.
 
 <center><img src"./images/BBOalertDataURL.png" width=30%></center>
 
