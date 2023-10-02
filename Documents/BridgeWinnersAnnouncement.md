@@ -1,11 +1,8 @@
 ## Better Bidding Practice on BBO
 
 BBO Practice tables are a fantastic resource for practicing bidding, either with a partner or with a robot. But to make the most of it one must know how to program the dealer generator that BBO uses. I have created a new tool called Practice Bidding Scenarios that simplifies this process, providing dozens of canned bidding scenarios, for example. Jacoby Transfers, Smolen, slam bidding after a Stayman response, etc. Practice Bidding Scenarios piggybacks on the BBOalert browser extension to load the necessary dealer code, allowing many bidding scenarios to be selected with the press of a button.  
-<img src="image.png" width="200" height="100">
 
-<img src=" ![](./images/PBS-Shortcuts.png) " width=400 height=500>
-
-![](./images/PBS-Shortcuts.png)
+<img src="./images/BPSShortcuts.png" width=40%>
 
 Each of the buttons with light blue background are section headers that you may click to expand/collapse the groups of related scenarios.  Clicking a button with a white background will automatically load the dealer constraints for that scenario.
 Most of the Scenarios work OK with robots.  Those that don’t, I’ve grouped at the bottom.
@@ -29,23 +26,11 @@ At this time, it does not work on IOS devices like iPads and iPhones.  But, if y
 
 With the extension installed, when you log in to BBO, you'll see a new tab on the right (BBOalert) that will be selected.  (Note the dark blue Data tab and the gray Shortcuts tab)
 
-![](https://i.imgur.com/4viOEnj)
+<img src="./images/BBOalertTab.png" width=40%>
 
+You'll need to right-click the following <a href="[https://chrome.google.com/webstore/detail/bboalert/bjgihidachainhhhilkeemegdhehnlcf](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-PBS.txt)">Bidding Scenarios</a> link and select the popup menu command "Copy link URL", Bidding Scenarios.  Then, go to the BBOalert Data tab and click the light blue Data/Paste New to import the URL into BBOalert.
 
-<img src="https://i.imgur.com/4viOEnj" width="600" height="300">
-
-
-
-
-
-You'll need to right-click the following Bidding Scenarios link and select the popup menu command "Copy link URL", Bidding Scenarios.  Then, go to the BBOalert Data tab and click the light blue Data/Paste New to import the URL into BBOalert.
-https://i.imgur.com/m4afaNU
-
-
-
-
-
-
+<img src="./images/BBOalertPasteNew.png" width=40%>
 
 This should be done only once. When you paste the URL, it is saved by BBOalert, and each time you restart BBO, the saved URL is used to re-import the file contents, including any updates; so, you’ll always be up to date.
 
@@ -72,7 +57,9 @@ This will configure the Deal source/Advanced Dealer constraints to match your se
 Then you should click Redeal.  Voilà
 
 
-BBO Helper, another browser extension, adds double-dummy, par, and par contracts to your BBO History panel.  This is a significant help in assessing your final contract.  There are a couple of options on how the hands are displayed in the BBO history panel.  It should look like this: https://i.imgur.com/VjG22AY
+BBO Helper, another browser extension, adds double-dummy, par, and par contracts to your BBO History panel.  This is a significant help in assessing your final contract.  There are a couple of options on how the hands are displayed in the BBO history panel.  It should look like this: 
+
+https://i.imgur.com/VjG22AY
 
 
 
