@@ -95,8 +95,7 @@ The ‘hamburger’ (☰) in the upper right allows you to toggle between Pictur
 
 The [Facebook Group -- Practice Bidding Scenarios](https://www.facebook.com/groups/598917089100836), is the place to talk about this, ask your questions, and give me your feedback.   You __DO NOT have to join Facebook__ to use it.  That said, I wish you would.
 
-
 You may also contact me via email: adavidbailey@gmail.com.  I expect to create more bidding scenarios and, perhaps, incorporate some of yours.
 
 
-**Stanislaw Mazur**, the creator of BBOalert, and **Matthew Kidd**, the creator of BBO Helper, were extremely helpful to me.  I really, really appreciate them.
+**Stanislaw Mazur**, the creator of BBOalert, and **Matthew Kidd**, the creator of BBO Helper, were extremely helpful to me.  I really, really appreciate them.  You should too!
