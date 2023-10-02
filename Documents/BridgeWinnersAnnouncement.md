@@ -30,10 +30,13 @@ You'll need to right-click this <a href="https://github.com/ADavidBailey/Practic
 
 <center><img src="./images/BBOalertPasteNew.png" width=30%></center>
 
-This should be done only once. When you paste the URL, it is saved by BBOalert, and each time you restart BBO, the saved URL is used to re-import the file contents, including any updates; so, you’ll always be up to date.  You'll see this each time you start BBO:
+This should be done only once. When you paste the URL, it is saved by BBOalert, and each time you restart BBO, the saved URL is used to re-import the file contents, including any updates; so, you’ll always be up to date.  You'll see something like this each time you start BBO:
 
 <center><img src="./images/BBOalertReadingData.png" width=30%></center>
-And, you'll note that the light blue Data drop-down has changed.  At the bottom you'll see the 'Bidding Scenarios' Url has been added to the list.
+
+As scenarios are added or changed, the records read will change.  Each time you start BBO you'll get the latest updates.
+
+And, you'll note that the light blue Data drop-down has changed, too.  At the bottom you'll see the 'Bidding Scenarios' Url has been added to the list.
 
 <center><img src"./images/BBOalertDataURL.png" width=30%></center>
 
