@@ -24,7 +24,7 @@ _I'm 81 years old; I don’t have time to wait!_
 
 ### Installing Practice Bidding Scenarios
 
-I use Google Chrome.  Many common browsers, including Microsoft Edge, are chromium-based. If you use a Chromium-based browser, it's really easy to install and/or remove the BBOalert extension. This one link will let you do either with one click. <a href="(https://chrome.google.com/webstore/detail/bboalert/bjgihidachainhhhilkeemegdhehnlcf)">Click here to install or remove the BBOalert extension</a> on Chrome. If you use a non-chromium browser, you can <a href="(https://github.com/stanmaz/BBOalert/blob/master/README.md#installation)">check here</a> for how to install BBOalert.
+I use Google Chrome.  Many common browsers, including Microsoft Edge, are chromium-based. If you use a Chromium-based browser, it's really easy to install and/or remove the BBOalert extension. This one link will let you do either with one click. [Click here to install or remove the BBOalert extension]https://chrome.google.com/webstore/detail/bboalert/bjgihidachainhhhilkeemegdhehnlcf) on Chrome. If you use a non-chromium browser, you can [click here to find out how to install BBOalert](https://github.com/stanmaz/BBOalert/blob/master/README.md#installation).
 
 
 At this time, it does not work on IOS devices like iPads and iPhones.  But, if you set up a table on your computer, your partner, using an iPad/iPhone, can join the table and practice bidding with you.
@@ -38,7 +38,7 @@ With the BBOalert extension installed, when you log in to BBO, you'll see a new 
   </div>
 </div> 
 
-You'll need to right-click this [Bidding Scenarios](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-PBS.txt). link and select the popup menu command "Copy link URL" or "Copy Link Address".  Then, go to the BBOalert Data tab and click the light blue Data/Paste (New) to import the URL into BBOalert.
+You'll need to right-click this link, [Bidding Scenarios](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-PBS.txt) and select the popup menu command "Copy link URL" or "Copy Link Address".  Then, go to the BBOalert Data tab and click the light blue Data/Paste (New) to import the URL into BBOalert.
 
 <div align="center">
   <div style="display: flex;">
@@ -96,7 +96,7 @@ Enjoy!
 
 ## Postscript
 
-The <a href="(https://www.facebook.com/groups/598917089100836)">Facebook Group -- Practice Bidding Scenarios</a>, is the place to talk about this, ask your questions, and give me your feedback.   You __DO NOT have to join Facebook__ to use it.  That said, I wish you would.
+The [Facebook Group -- Practice Bidding Scenarios](https://www.facebook.com/groups/598917089100836)", is the place to talk about this, ask your questions, and give me your feedback.   You __DO NOT have to join Facebook__ to use it.  That said, I wish you would.
 
 
 You may also contact me via email: adavidbailey@gmail.com.  I expect to create more bidding scenarios and, perhaps, incorporate some of yours.
