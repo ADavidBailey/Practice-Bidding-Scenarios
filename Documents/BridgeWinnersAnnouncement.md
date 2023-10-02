@@ -4,7 +4,7 @@ BBO Practice tables are a fantastic resource for bidding practice, either with a
 
 <center><img src="./images/BPSShortcuts.png" width=30%></center>
 
-Each of the buttons with light blue background are section headers that you may click to expand/collapse the groups of related scenarios.  Clicking a button with a white background will automatically load the dealer constraints for that scenario.
+Each of the buttons with light blue background are section headers.  You may click to expand/collapse the groups of related scenarios.  Clicking a button with a white background will automatically load the dealer constraints for that scenario.
 Most of the Scenarios work OK with robots.  Those that don’t, I’ve grouped at the bottom.
 I'm excited about the response I’ve received AND, even more so, about this project’s potential. For a while, I struggled with what I wanted from this.  Here’s what I decided:
 
