@@ -38,7 +38,7 @@ With the BBOalert extension installed, when you log in to BBO, you'll see a new 
   </div>
 </div> 
 
-You'll need to right-click this <a href="(https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-PBS.txt)">Bidding Scenarios</a> link and select the popup menu command "Copy link URL" or "Copy Link Address".  Then, go to the BBOalert Data tab and click the light blue Data/Paste (New) to import the URL into BBOalert.
+You'll need to right-click this [Bidding Scenarios](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-PBS.txt). link and select the popup menu command "Copy link URL" or "Copy Link Address".  Then, go to the BBOalert Data tab and click the light blue Data/Paste (New) to import the URL into BBOalert.
 
 <div align="center">
   <div style="display: flex;">
