@@ -30,7 +30,7 @@ I use Google Chrome.  Many common browsers, including Microsoft Edge, are chromi
 At this time, it does not work on IOS devices like iPads and iPhones.  But, if you set up a table on your computer, your partner, using an iPad/iPhone, can join the table and practice bidding with you.
 
 
-With the extension installed, when you log in to BBO, you'll see a new tab on the right (BBOalert) that will be selected.  (At the top, note the dark blue Data tab with a light blue Data drop-down menu, the gray Shortcuts tab, and on the lower right, the green BBOalert tab.)  The green BBOalert tab, toggles between the BBOalert panel and the usual BBO side panels.
+With the BBOalert extension installed, when you log in to BBO, you'll see a new tab on the right is selected.  (At the top, note the dark blue Data tab with a light blue Data drop-down menu, the gray Shortcuts tab, and on the lower right, the green BBOalert tab.)  The green BBOalert tab, toggles between the BBOalert panel and the usual BBO side panels.
 
 <div align="center">
   <div style="display: flex;">
@@ -95,7 +95,6 @@ The ‘hamburger’ (☰) in the upper right allows you to toggle between Pictur
 Enjoy!
 
 ## Postscript
-<a href="(https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-PBS.txt)">Bidding Scenarios</a>
 
 The <a href="(https://www.facebook.com/groups/598917089100836)">Facebook Group -- Practice Bidding Scenarios</a>, is the place to talk about this, ask your questions, and give me your feedback.   You __DO NOT have to join Facebook__ to use it.  That said, I wish you would.
 
