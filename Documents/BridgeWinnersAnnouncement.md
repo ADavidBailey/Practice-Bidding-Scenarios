@@ -15,3 +15,70 @@ I'm excited about the response I’ve received AND, even more so, about this pro
 - I want people to enjoy learning to play better bridge.
 
 I'm 81 years old; I don’t have time to wait!
+
+I use Google Chrome.  Many common browsers, including Microsoft Edge, are chromium-based. If you use a Chromium-based browser, it's really easy to install and/or remove the extension. This one link will let you do either with one click. <a href="https://chrome.google.com/webstore/detail/bboalert/bjgihidachainhhhilkeemegdhehnlcf">Click here to install or remove the BBOalert extension</a> on Chrome. If you use a non-chromium browser, you can <a href="https://github.com/stanmaz/BBOalert/blob/master/README.md#installation">check here</a> for how to install BBOalert.
+
+
+
+
+At this time, it does not work on IOS devices like iPads and iPhones.  But, if you set up a table on your computer, your partner, using an iPad/iPhone, can join the table and practice bidding with you.
+
+
+With the extension installed, when you log in to BBO, you'll see a new tab on the right (BBOalert) that will be selected.  (Note the dark blue Data tab and the gray Shortcuts tab)
+https://i.imgur.com/4viOEnj
+
+
+
+
+
+You'll need to right-click the following Bidding Scenarios link and select the popup menu command "Copy link URL", Bidding Scenarios.  Then, go to the BBOalert Data tab and click the light blue Data/Paste New to import the URL into BBOalert.
+https://i.imgur.com/m4afaNU
+
+
+
+
+
+
+
+This should be done only once. When you paste the URL, it is saved by BBOalert, and each time you restart BBO, the saved URL is used to re-import the file contents, including any updates; so, you’ll always be up to date.
+
+
+Once you’ve done this, switch to the BBOalert Shortcuts tab and you’ll see the sections and buttons as shown above.
+
+
+But, before you start clicking the buttons, START a Practice Table.  (Right now, clicking the buttons when you’re not at a Practice Table will send BBO Chat to the Lobby.  Oops!  I hope to get that fixed soon.)
+
+
+
+
+
+
+You may use any BBO Practice table, either a Bidding table or a Teaching table.
+
+
+I usually use a Bidding table.  Once you start your Practice table, you should sit in the South seat.  You should seat your partner or a Robot in the North seat.  You may seat Robots in the East/West seats.  Then, open the BBOalert Shortcuts tab and click on a bidding scenario that you want to practice.
+
+
+This will configure the Deal source/Advanced Dealer constraints to match your selected scenario.
+
+
+Then you should click Redeal.  Voilà
+
+
+BBO Helper, another browser extension, adds double-dummy, par, and par contracts to your BBO History panel.  This is a significant help in assessing your final contract.  There are a couple of options on how the hands are displayed in the BBO history panel.  It should look like this: https://i.imgur.com/VjG22AY
+
+
+
+The ‘hamburger’ (☰) in the upper right allows you to toggle between Pictures of Cards and Hand Diagrams -- you want Hand Diagrams; BBO Helper will not insert the double dummy table for Pictures of Cards mode.  NOTE: It starts to work when you finish a hand AND the BBO history panel is open.
+
+
+Enjoy!
+
+
+The Facebook Group, Practice Bidding Scenarios, is the place to talk about this and give me your feedback.   You DO NOT have to join Facebook to use it.  That said, I wish you would.
+
+
+You may also contact me via email: adavidbailey@gmail.com or Bridge Winners,  I expect to create more bidding scenarios and, perhaps, incorporate some of yours.
+
+
+Stanislaw Mazur, the creator of BBOalert, and Matthew Kidd, the creator of BBO Helper, were extremely helpful to me.  I really, really appreciate them.
