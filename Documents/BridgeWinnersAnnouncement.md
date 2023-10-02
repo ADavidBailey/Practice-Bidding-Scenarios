@@ -79,7 +79,7 @@ When you're seated at the table, you can use the Undo button.  I often like to t
 
 ## BBO Helper -- Double-Dummy, Par, and Par Contracts
 
-[BBO Helper]([https://chrome.google.com/webstore/detail/bbo-helper/jlhdaeggmepllmioeamkmnmemmfiogj], another browser extension, adds double-dummy, par, and par contracts to your BBO History panel.  This is a ** really significant** help in assessing your final contract.  There are a couple of options on how the hands are displayed in the BBO history panel.  It should look like this: 
+[BBO Helper](https://chrome.google.com/webstore/detail/bbo-helper/jlhdaeggmepllmioeamkmnmemmfiogj), another browser extension, adds double-dummy, par, and par contracts to your BBO History panel.  This is a ** really significant** help in assessing your final contract.  There are a couple of options on how the hands are displayed in the BBO history panel.  It should look like this: 
 
 <div align="center">
   <div style="display: flex;">
