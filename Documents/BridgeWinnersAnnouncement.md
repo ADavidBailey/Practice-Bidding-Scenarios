@@ -6,6 +6,7 @@ BBO Practice tables are a fantastic resource for bidding practice, either with a
 
 Each of the buttons with light blue background are section headers.  You may click to expand/collapse the groups of related scenarios.  Clicking a button with a white background will automatically load the dealer constraints for that scenario.
 Most of the Scenarios work OK with robots.  Those that don’t, I’ve grouped at the bottom.
+
 I'm excited about the response I’ve received AND, even more so, about this project’s potential. For a while, I struggled with what I wanted from this.  Here’s what I decided:
 
 - I want to make this available as broadly as possible, as soon as possible.  
@@ -14,7 +15,7 @@ I'm excited about the response I’ve received AND, even more so, about this pro
 - I want people to enjoy this.
 - I want people to enjoy learning to play better bridge.
 
-I'm 81 years old; I don’t have time to wait!
+_I'm 81 years old; I don’t have time to wait!_
 
 I use Google Chrome.  Many common browsers, including Microsoft Edge, are chromium-based. If you use a Chromium-based browser, it's really easy to install and/or remove the BBOalert extension. This one link will let you do either with one click. <a href="https://chrome.google.com/webstore/detail/bboalert/bjgihidachainhhhilkeemegdhehnlcf">Click here to install or remove the BBOalert extension</a> on Chrome. If you use a non-chromium browser, you can <a href="https://github.com/stanmaz/BBOalert/blob/master/README.md#installation">check here</a> for how to install BBOalert.
 
