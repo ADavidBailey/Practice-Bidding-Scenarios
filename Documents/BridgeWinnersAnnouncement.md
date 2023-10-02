@@ -1,6 +1,9 @@
 ## Better Bidding Practice on BBO
 
 BBO Practice tables are a fantastic resource for practicing bidding, either with a partner or with a robot. But to make the most of it one must know how to program the dealer generator that BBO uses. I have created a new tool called Practice Bidding Scenarios that simplifies this process, providing dozens of canned bidding scenarios, for example. Jacoby Transfers, Smolen, slam bidding after a Stayman response, etc. Practice Bidding Scenarios piggybacks on the BBOalert browser extension to load the necessary dealer code, allowing many bidding scenarios to be selected with the press of a button.  
+<img src="image.png" width="200" height="100">
+
+<img src="![](/images/PBS-Shortcuts.png)" width=400 height=600>
 
 ![](/images/PBS-Shortcuts.png)
 
@@ -16,7 +19,7 @@ I'm excited about the response I’ve received AND, even more so, about this pro
 
 I'm 81 years old; I don’t have time to wait!
 
-I use Google Chrome.  Many common browsers, including Microsoft Edge, are chromium-based. If you use a Chromium-based browser, it's really easy to install and/or remove the extension. This one link will let you do either with one click. <a href="https://chrome.google.com/webstore/detail/bboalert/bjgihidachainhhhilkeemegdhehnlcf">Click here to install or remove the BBOalert extension</a> on Chrome. If you use a non-chromium browser, you can <a href="https://github.com/stanmaz/BBOalert/blob/master/README.md#installation">check here</a> for how to install BBOalert.
+I use Google Chrome.  Many common browsers, including Microsoft Edge, are chromium-based. If you use a Chromium-based browser, it's really easy to install and/or remove the BBOalert extension. This one link will let you do either with one click. <a href="https://chrome.google.com/webstore/detail/bboalert/bjgihidachainhhhilkeemegdhehnlcf">Click here to install or remove the BBOalert extension</a> on Chrome. If you use a non-chromium browser, you can <a href="https://github.com/stanmaz/BBOalert/blob/master/README.md#installation">check here</a> for how to install BBOalert.
 
 
 
@@ -26,6 +29,9 @@ At this time, it does not work on IOS devices like iPads and iPhones.  But, if y
 
 With the extension installed, when you log in to BBO, you'll see a new tab on the right (BBOalert) that will be selected.  (Note the dark blue Data tab and the gray Shortcuts tab)
 https://i.imgur.com/4viOEnj
+
+
+<img src="(https://i.imgur.com/4viOEnj)" width="600" height="300">
 
 
 
