@@ -1,6 +1,6 @@
 ## Better Bidding Practice on BBO
 
-BBO Practice tables are a fantastic resource for practicing bidding, either with a partner or with a robot. But to make the most of it one needs to know how to program the deal generator that BBO uses. I have created a new tool called Practice Bidding Scenarios that simplifies this process, providing dozens of canned bidding scenarios, for example. Jacoby Transfers, Smolen, slam bidding after a Stayman response, etc. Practice Bidding Scenarios piggybacks on the BBOalert browser extension to create buttons to load the pre-configured dealer code, allowing many bidding scenarios to be selected with just a click.  
+BBO Practice tables are a fantastic resource for bidding practice, either with a partner or with a robot. But to make the most of it one needs to know how to program the deal generator that BBO uses. I have created a new tool called Practice Bidding Scenarios that automates this for you, providing dozens of canned bidding scenarios, for example. Jacoby Transfers, Smolen, slam bidding after a Stayman response, etc. Practice Bidding Scenarios piggybacks on the BBOalert browser extension to create buttons to load the pre-configured dealer code, allowing many bidding scenarios to be selected with just a click.  
 
 <center><img src="./images/BPSShortcuts.png" width=30%></center>
 
@@ -22,7 +22,7 @@ I use Google Chrome.  Many common browsers, including Microsoft Edge, are chromi
 At this time, it does not work on IOS devices like iPads and iPhones.  But, if you set up a table on your computer, your partner, using an iPad/iPhone, can join the table and practice bidding with you.
 
 
-With the extension installed, when you log in to BBO, you'll see a new tab on the right (BBOalert) that will be selected.  (Note the dark blue Data tab and the gray Shortcuts tab)
+With the extension installed, when you log in to BBO, you'll see a new tab on the right (BBOalert) that will be selected.  (At the top, note the dark blue Data tab and the gray Shortcuts tab.  On the lower right note the green BBOalert tab.)
 
 <center><img src="./images/BBOalertTab.png" width=30%></center>
 
@@ -52,7 +52,6 @@ Then you should click Redeal.  Voilà
 BBO Helper, another browser extension, adds double-dummy, par, and par contracts to your BBO History panel.  This is a significant help in assessing your final contract.  There are a couple of options on how the hands are displayed in the BBO history panel.  It should look like this: 
 
 <center><img src="./images/BBOalertHistory.png" width=30%></center>
-
 
 
 The ‘hamburger’ (☰) in the upper right allows you to toggle between Pictures of Cards and Hand Diagrams -- you want Hand Diagrams; BBO Helper will not insert the double dummy table for Pictures of Cards mode.  NOTE: It starts to work when you finish a hand AND the BBO history panel is open.
