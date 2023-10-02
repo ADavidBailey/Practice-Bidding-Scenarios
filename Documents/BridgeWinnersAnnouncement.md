@@ -50,7 +50,14 @@ As scenarios are added or changed, the records read will change.  Each time you 
 
 And, you'll note that the light blue Data drop-down has changed, too.  At the bottom you'll see the 'Bidding Scenarios' Url has been added to the list.
 
-<center> <img src="./images/BBOalertDataURL.png" width=30%> </center>
+
+   
+<div align="center">
+  <div style="display: flex;">
+    <img src="./images/BBOalertDataURL.png" width=30%>
+  </div>
+</div>
+
 
 Once you’ve done this, switch to the BBOalert Shortcuts tab and you’ll see the sections and buttons as shown in the initial graphic above.
 
@@ -71,7 +78,11 @@ When you're seated at the table, you can use the Undo button.  I often like to t
 
 BBO Helper, another browser extension, adds double-dummy, par, and par contracts to your BBO History panel.  This is a significant help in assessing your final contract.  There are a couple of options on how the hands are displayed in the BBO history panel.  It should look like this: 
 
-<center> <img src="./images/BBOalertHistory.png" width=30%> </center>
+<div align="center">
+  <div style="display: flex;">
+    <img src="./images/BBOalertHistory.png" width=30%>
+  </div>
+</div> 
 
 The ‘hamburger’ (☰) in the upper right allows you to toggle between Pictures of Cards and Hand Diagrams -- you want Hand Diagrams; BBO Helper will not insert the double dummy table for Pictures of Cards mode.  NOTE: It starts to work when you finish a hand AND the BBO history panel is open.  Once it's working, you can go back to earlier boards in the history and see it.
 
