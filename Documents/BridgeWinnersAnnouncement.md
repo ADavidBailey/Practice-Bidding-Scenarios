@@ -2,14 +2,6 @@
 
 BBO Practice tables are a fantastic resource for bidding practice, either with a partner or with a robot. But to make the most of it one needs to know how to program the deal generator that BBO uses. I have created a new tool called Practice Bidding Scenarios that automates this for you, providing dozens of canned bidding scenarios, for example. Jacoby Transfers, Smolen, slam bidding after a Stayman response, etc. Practice Bidding Scenarios piggybacks on the BBOalert browser extension to create buttons to load the pre-configured dealer code, allowing many bidding scenarios to be selected with just a click.  
 
-<img src="/images/BBOalertOk.png">
-<div align="center">
-  <div style="display: flex;">
-     <img src="/images/BBOalertOk.png" width=50%>
-  </div>
-</div> 
-
-
 <div align="center">
   <div style="display: flex;">
     <img src="./images/BPSShortcuts.png" width=30%>
@@ -40,7 +32,11 @@ At this time, it does not work on IOS devices like iPads and iPhones.  But, if y
 
 With the extension installed, when you log in to BBO, you'll see a new tab on the right (BBOalert) that will be selected.  (At the top, note the dark blue Data tab with a light blue Data drop-down menu, the gray Shortcuts tab, and on the lower right, the green BBOalert tab.)  The green BBOalert tab, toggles between the BBOalert panel and the usual BBO side panels.
 
-<center> <img src="./images/BBOalertTab.png" width=30%> </center>
+<div align="center">
+  <div style="display: flex;">
+    <img src="./images/BBOalertTab.png" width=30%>
+  </div>
+</div> 
 
 You'll need to right-click this <a href="(https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-PBS.txt)">Bidding Scenarios</a> link and select the popup menu command "Copy link URL" or "Copy Link Address".  Then, go to the BBOalert Data tab and click the light blue Data/Paste (New) to import the URL into BBOalert.
 
