@@ -86,7 +86,7 @@ BBO Helper, another browser extension, adds double-dummy, par, and par contracts
 
 <div align="center">
   <div style="display: flex;">
-    <img src="./images/BBOalertHistory.png" width=30%>
+    <img src="./images/BBOHistory.png" width=30%>
   </div>
 </div> 
 
