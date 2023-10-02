@@ -2,7 +2,7 @@
 
 BBO Practice tables are a fantastic resource for practicing bidding, either with a partner or with a robot. But to make the most of it one must know how to program the dealer generator that BBO uses. I have created a new tool called Practice Bidding Scenarios that simplifies this process, providing dozens of canned bidding scenarios, for example. Jacoby Transfers, Smolen, slam bidding after a Stayman response, etc. Practice Bidding Scenarios piggybacks on the BBOalert browser extension to load the necessary dealer code, allowing many bidding scenarios to be selected with the press of a button.  
 
-<img src="./images/BPSShortcuts.png" width=30%>
+<center><img src="./images/BPSShortcuts.png" width=30%></center>
 
 Each of the buttons with light blue background are section headers that you may click to expand/collapse the groups of related scenarios.  Clicking a button with a white background will automatically load the dealer constraints for that scenario.
 Most of the Scenarios work OK with robots.  Those that don’t, I’ve grouped at the bottom.
@@ -26,14 +26,15 @@ At this time, it does not work on IOS devices like iPads and iPhones.  But, if y
 
 With the extension installed, when you log in to BBO, you'll see a new tab on the right (BBOalert) that will be selected.  (Note the dark blue Data tab and the gray Shortcuts tab)
 
-<img src="./images/BBOalertTab.png" width=30%>
+<center><img src="./images/BBOalertTab.png" width=30%></center>
 
 You'll need to right-click the following <a href="[https://chrome.google.com/webstore/detail/bboalert/bjgihidachainhhhilkeemegdhehnlcf](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-PBS.txt)">Bidding Scenarios</a> link and select the popup menu command "Copy link URL", Bidding Scenarios.  Then, go to the BBOalert Data tab and click the light blue Data/Paste New to import the URL into BBOalert.
 
-<img src="./images/BBOalertPasteNew.png" width=30%>
+<center><img src="./images/BBOalertPasteNew.png" width=30%></center>
 
 This should be done only once. When you paste the URL, it is saved by BBOalert, and each time you restart BBO, the saved URL is used to re-import the file contents, including any updates; so, you’ll always be up to date.  You'll see this each time you start BBO:
-<img src="./images/BBOalertReadingData.png" width=30%>
+
+<center><img src="./images/BBOalertReadingData.png" width=30%></center>
 
 
 Once you’ve done this, switch to the BBOalert Shortcuts tab and you’ll see the sections and buttons as shown above.
