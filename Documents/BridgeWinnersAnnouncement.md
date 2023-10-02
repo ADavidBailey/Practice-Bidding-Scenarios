@@ -63,7 +63,7 @@ Enjoy!
 The Facebook Group, Practice Bidding Scenarios, is the place to talk about this and give me your feedback.   You DO NOT have to join Facebook to use it.  That said, I wish you would.
 
 
-You may also contact me via email: adavidbailey@gmail.com or Bridge Winners,  I expect to create more bidding scenarios and, perhaps, incorporate some of yours.
+You may also contact me via email: adavidbailey@gmail.com.  I expect to create more bidding scenarios and, perhaps, incorporate some of yours.
 
 
 Stanislaw Mazur, the creator of BBOalert, and Matthew Kidd, the creator of BBO Helper, were extremely helpful to me.  I really, really appreciate them.
