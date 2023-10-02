@@ -68,8 +68,9 @@ The ‘hamburger’ (☰) in the upper right allows you to toggle between Pictur
 
 
 Enjoy!
+<a href="(https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-PBS.txt)">Bidding Scenarios</a>
 
-The <a href="(https://www.facebook.com/groups/598917089100836)">Facebook Group, Practice Bidding Scenarios</a>, is the place to talk about this, ask your questions, and give me your feedback.   You DO NOT have to join Facebook to use it.  That said, I wish you would.
+The <a href="(https://www.facebook.com/groups/598917089100836)">Facebook Group -- Practice Bidding Scenarios</a>, is the place to talk about this, ask your questions, and give me your feedback.   You DO NOT have to join Facebook to use it.  That said, I wish you would.
 
 
 You may also contact me via email: adavidbailey@gmail.com.  I expect to create more bidding scenarios and, perhaps, incorporate some of yours.
