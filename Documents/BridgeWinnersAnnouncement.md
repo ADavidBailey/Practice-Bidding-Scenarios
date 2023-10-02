@@ -1,5 +1,9 @@
 ## Now is the time...
 
+
+![](github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/images/PBS-Shortcuts.png)
+
+
 ![](AdavidBailey./images/PBS-Shortcuts.png)
 
 ![](./images/PBS-Shortcuts.png)
