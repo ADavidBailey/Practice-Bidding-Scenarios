@@ -66,11 +66,12 @@ BBO Helper, another browser extension, adds double-dummy, par, and par contracts
 
 The ‘hamburger’ (☰) in the upper right allows you to toggle between Pictures of Cards and Hand Diagrams -- you want Hand Diagrams; BBO Helper will not insert the double dummy table for Pictures of Cards mode.  NOTE: It starts to work when you finish a hand AND the BBO history panel is open.  Once it's working, you can go back to earlier boards in the history and see it.
 
-
 Enjoy!
+
+## Postscript
 <a href="(https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-PBS.txt)">Bidding Scenarios</a>
 
-The <a href="(https://www.facebook.com/groups/598917089100836)">Facebook Group -- Practice Bidding Scenarios</a>, is the place to talk about this, ask your questions, and give me your feedback.   You DO NOT have to join Facebook to use it.  That said, I wish you would.
+The <a href="(https://www.facebook.com/groups/598917089100836)">Facebook Group -- Practice Bidding Scenarios</a>, is the place to talk about this, ask your questions, and give me your feedback.   You __DO NOT have to join Facebook__ to use it.  That said, I wish you would.
 
 
 You may also contact me via email: adavidbailey@gmail.com.  I expect to create more bidding scenarios and, perhaps, incorporate some of yours.
