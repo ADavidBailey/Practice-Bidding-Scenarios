@@ -17,13 +17,15 @@ I'm excited about the response I’ve received AND, even more so, about this pro
 
 _I'm 81 years old; I don’t have time to wait!_
 
+### Installing Practice Bidding Scenarios
+
 I use Google Chrome.  Many common browsers, including Microsoft Edge, are chromium-based. If you use a Chromium-based browser, it's really easy to install and/or remove the BBOalert extension. This one link will let you do either with one click. <a href="https://chrome.google.com/webstore/detail/bboalert/bjgihidachainhhhilkeemegdhehnlcf">Click here to install or remove the BBOalert extension</a> on Chrome. If you use a non-chromium browser, you can <a href="https://github.com/stanmaz/BBOalert/blob/master/README.md#installation">check here</a> for how to install BBOalert.
 
 
 At this time, it does not work on IOS devices like iPads and iPhones.  But, if you set up a table on your computer, your partner, using an iPad/iPhone, can join the table and practice bidding with you.
 
 
-With the extension installed, when you log in to BBO, you'll see a new tab on the right (BBOalert) that will be selected.  (At the top, note the dark blue Data tab with a light blue Data drop-down menu, the gray Shortcuts tab, and on the lower right, the green BBOalert tab.)
+With the extension installed, when you log in to BBO, you'll see a new tab on the right (BBOalert) that will be selected.  (At the top, note the dark blue Data tab with a light blue Data drop-down menu, the gray Shortcuts tab, and on the lower right, the green BBOalert tab.)  The green BBOalert tab, toggles between the BBOalert panel and the usual BBO side panels.
 
 <center><img src="./images/BBOalertTab.png" width=30%></center>
 
@@ -43,20 +45,22 @@ And, you'll note that the light blue Data drop-down has changed, too.  At the bo
 
 Once you’ve done this, switch to the BBOalert Shortcuts tab and you’ll see the sections and buttons as shown in the initial graphic above.
 
+## Using Practice Bidding Scenarios
 
-Now, you need to start a Practice Table.  You may use either a Bidding table or a Teaching table.  I usually use a Bidding table.  Once you start your Bidding table.  If you just want to watch, put robots in all four seats, click on the bidding scenario, then click Redeal.  If want to bid, you should sit in the South seat.  You should seat your partner or a Robot in the North seat.  You may seat Robots in the East/West seats.  Then, open the BBOalert Shortcuts tab and click on a bidding scenario that you want to practice.
+The Practice Bidding Scenarios are designed to work at a Practice table.  They do almost nothing if you're not at a practice table.  The one thing they do is create some chat.  Some merely chat the Name of the Scenario.  Others spit out several lines of chat and even links to an article about the convention.  To avoid unintentionally sending chat to the Lobby, the chat is initially directed to you.  If you're practicing with a partner, you should chat to the table.  If you are practicing with a student, you might want to keep the chat private.  It's your choice.
+
+So start your Practice Table.  You may use either a Bidding table or a Teaching table.  I usually use a Bidding table (the Robots are free).  Once you start your Bidding table.  I suggest that to get started, you just watch the robots bid a few hands.  So, put robots in all four seats, open the BBOalert shortcuts tab (the gray one), click on the bidding scenario you want to see, then click Redeal.  The Robots bid a little faster than I do.  So you can fly through a lot hands in a hurry.  Then, switch to another scenario and Redeal to bid a few more.
+
+The scenarios are designed for the user to sit in the south seat.  And, the Randomly rotate deals 180 degrees is selected; so, you'll get to see the scenarios from both opener's and responder's chair.  So, if want to bid, you should sit in the South seat.  You should seat your partner or a Robot in the North seat.  You may seat Robots in the East/West seats.  Then, open the BBOalert Shortcuts tab and click on a bidding scenario that you want to practice.
+
+When you're seated at the table, you can use the Undo button.  I often like to try a different bidding approach -- this lets you do that.  If you've already clicked Redeal and want to go back to the previous board, you can go the the BBO History, select the board, then click the 'hamburger' (☰) in the upper right, and click Export/Upload deal to table.
 
 
-This will configure the Deal source/Advanced Dealer constraints to match your selected scenario.
-
-
-Then you should click Redeal.  Voilà
-
+## BBO Helper -- Double-Dummy, Par, and Par Contracts
 
 BBO Helper, another browser extension, adds double-dummy, par, and par contracts to your BBO History panel.  This is a significant help in assessing your final contract.  There are a couple of options on how the hands are displayed in the BBO history panel.  It should look like this: 
 
 <center><img src="./images/BBOalertHistory.png" width=30%></center>
-
 
 The ‘hamburger’ (☰) in the upper right allows you to toggle between Pictures of Cards and Hand Diagrams -- you want Hand Diagrams; BBO Helper will not insert the double dummy table for Pictures of Cards mode.  NOTE: It starts to work when you finish a hand AND the BBO history panel is open.
 
