@@ -1,6 +1,6 @@
 ## Better Bidding Practice on BBO
 
-BBO Practice tables are a fantastic resource for bidding practice, either with a partner or with a robot. But to make the most of it one needs to know how to program the deal generator that BBO uses. I have created a new tool called Practice Bidding Scenarios that automates this for you, providing dozens of canned bidding scenarios, for example. Jacoby Transfers, Smolen, slam bidding after a Stayman response, etc. Practice Bidding Scenarios piggybacks on the BBOalert browser extension to create buttons to load the pre-configured dealer code, allowing many bidding scenarios to be selected with just a click.  
+BBO Practice tables are a fantastic resource for bidding practice, either with a partner or with a robot. But to make the most of it one needs to know how to program the deal generator that BBO uses. I have created a new tool called **Practice Bidding Scenarios** that automates this for you, providing dozens of canned bidding scenarios, for example. Jacoby Transfers, Smolen, slam bidding after a Stayman response, etc. Practice Bidding Scenarios piggybacks on the BBOalert browser extension to create buttons to load the pre-configured dealer code, allowing many bidding scenarios to be selected with just a click.  
 
 <div align="center">
   <div style="display: flex;">
