@@ -19,8 +19,6 @@ I'm 81 years old; I don’t have time to wait!
 I use Google Chrome.  Many common browsers, including Microsoft Edge, are chromium-based. If you use a Chromium-based browser, it's really easy to install and/or remove the BBOalert extension. This one link will let you do either with one click. <a href="https://chrome.google.com/webstore/detail/bboalert/bjgihidachainhhhilkeemegdhehnlcf">Click here to install or remove the BBOalert extension</a> on Chrome. If you use a non-chromium browser, you can <a href="https://github.com/stanmaz/BBOalert/blob/master/README.md#installation">check here</a> for how to install BBOalert.
 
 
-
-
 At this time, it does not work on IOS devices like iPads and iPhones.  But, if you set up a table on your computer, your partner, using an iPad/iPhone, can join the table and practice bidding with you.
 
 
@@ -28,29 +26,21 @@ With the extension installed, when you log in to BBO, you'll see a new tab on th
 
 <center><img src="./images/BBOalertTab.png" width=30%></center>
 
-You'll need to right-click the following <a href="[https://chrome.google.com/webstore/detail/bboalert/bjgihidachainhhhilkeemegdhehnlcf](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-PBS.txt)">Bidding Scenarios</a> link and select the popup menu command "Copy link URL", Bidding Scenarios.  Then, go to the BBOalert Data tab and click the light blue Data/Paste New to import the URL into BBOalert.
+You'll need to right-click the following <a href="https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-PBS.txt)">Bidding Scenarios</a> link and select the popup menu command "Copy link URL", Bidding Scenarios.  Then, go to the BBOalert Data tab and click the light blue Data/Paste (New) to import the URL into BBOalert.
 
 <center><img src="./images/BBOalertPasteNew.png" width=30%></center>
 
 This should be done only once. When you paste the URL, it is saved by BBOalert, and each time you restart BBO, the saved URL is used to re-import the file contents, including any updates; so, you’ll always be up to date.  You'll see this each time you start BBO:
 
 <center><img src="./images/BBOalertReadingData.png" width=30%></center>
+And, you'll note that the light blue Data tab has changed.  At the bottom you'll see 'Bidding Scenarios' Url has been added.
+
+<center><img src"./images/BBOalertDataURL.png" width=30%></center>
+
+Once you’ve done this, switch to the BBOalert Shortcuts tab and you’ll see the sections and buttons as shown in the initial graphic above.
 
 
-Once you’ve done this, switch to the BBOalert Shortcuts tab and you’ll see the sections and buttons as shown above.
-
-
-But, before you start clicking the buttons, START a Practice Table.
-
-
-
-
-
-
-You may use any BBO Practice table, either a Bidding table or a Teaching table.
-
-
-I usually use a Bidding table.  Once you start your Practice table, you should sit in the South seat.  You should seat your partner or a Robot in the North seat.  You may seat Robots in the East/West seats.  Then, open the BBOalert Shortcuts tab and click on a bidding scenario that you want to practice.
+Now, you need to start a Practice Table.  You may use either a Bidding table or a Teaching table.  I usually use a Bidding table.  Once you start your Bidding table.  If you just want to watch, put robots in all four seats, click on the bidding scenario, then click Redeal.  If want to bid, you should sit in the South seat.  You should seat your partner or a Robot in the North seat.  You may seat Robots in the East/West seats.  Then, open the BBOalert Shortcuts tab and click on a bidding scenario that you want to practice.
 
 
 This will configure the Deal source/Advanced Dealer constraints to match your selected scenario.
@@ -61,7 +51,7 @@ Then you should click Redeal.  Voilà
 
 BBO Helper, another browser extension, adds double-dummy, par, and par contracts to your BBO History panel.  This is a significant help in assessing your final contract.  There are a couple of options on how the hands are displayed in the BBO history panel.  It should look like this: 
 
-https://i.imgur.com/VjG22AY
+<center><img src="./images/BBOalertHistory.png" width=30%></center>
 
 
 
