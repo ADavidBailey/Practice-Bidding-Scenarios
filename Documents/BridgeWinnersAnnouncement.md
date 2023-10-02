@@ -39,7 +39,7 @@ As scenarios are added or changed, the records read will change.  Each time you 
 
 And, you'll note that the light blue Data drop-down has changed, too.  At the bottom you'll see the 'Bidding Scenarios' Url has been added to the list.
 
-<center><img src"./images/BBOalertDataURL.png" width=30%></center>
+<center><img src="./images/BBOalertDataURL.png" width=30%></center>
 
 Once you’ve done this, switch to the BBOalert Shortcuts tab and you’ll see the sections and buttons as shown in the initial graphic above.
 
