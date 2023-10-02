@@ -64,7 +64,7 @@ And, you'll note that the light blue Data drop-down has changed, too.  At the bo
 
 Once you’ve done this, switch to the BBOalert Shortcuts tab (the gray one) and you’ll see the sections and buttons as shown in the initial graphic above.
 
-## Using Practice Bidding Scenarios
+### Using Practice Bidding Scenarios
 
 The Practice Bidding Scenarios are designed to work at a Practice table.  They do almost nothing if you're not at a practice table.  The one thing they do is create some chat.  Some merely chat the Name of the Scenario.  Others spit out several lines of chat and even links to an article about the convention.  To avoid unintentionally sending chat to the Lobby, the chat is initially directed to you.  If you're practicing with a partner, you should chat to the table.  If you are practicing with a student, you might want to keep the chat private.  It's your choice.
 
@@ -77,7 +77,7 @@ When you're ready to bid, you should sit in the South seat.  You should seat you
 When you're seated at the table, you can use the Undo button.  I often like to try a different bidding approach -- this lets you do that.  Before you click the Redeal button, just click Undo and redo the bidding.  (The Robots won't fuss at you.)  If you've already clicked Redeal and want to go back to the previous board, you can go the the BBO History, select the board, then click the 'hamburger' (☰) in the upper right, and click Export/Upload deal to table.
 
 
-## BBO Helper -- Double-Dummy, Par, and Par Contracts
+### BBO Helper -- Double-Dummy, Par, and Par Contracts
 
 [BBO Helper](https://chrome.google.com/webstore/detail/bbo-helper/jlhdaeggmepllmioeamkmnmemmfiogj), another browser extension, adds double-dummy, par, and par contracts to your BBO History panel.  This is a **really significant** help in assessing your final contract.  There are a couple of options on how the hands are displayed in the BBO history panel.  It should look like this: 
 
@@ -91,7 +91,7 @@ The ‘hamburger’ (☰) in the upper right allows you to toggle between Pictur
 
 **Enjoy!**
 
-## Postscript
+### Postscript
 
 The [Facebook Group -- Practice Bidding Scenarios](https://www.facebook.com/groups/598917089100836), is the place to talk about this, ask your questions, and give me your feedback.   You __DO NOT have to join Facebook__ to use it.  That said, I wish you would.
 
