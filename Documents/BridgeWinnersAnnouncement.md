@@ -28,10 +28,11 @@ At this time, it does not work on IOS devices like iPads and iPhones.  But, if y
 
 
 With the extension installed, when you log in to BBO, you'll see a new tab on the right (BBOalert) that will be selected.  (Note the dark blue Data tab and the gray Shortcuts tab)
-https://i.imgur.com/4viOEnj
+
+![](https://i.imgur.com/4viOEnj)
 
 
-<img src="(https://i.imgur.com/4viOEnj)" width="600" height="300">
+<img src="https://i.imgur.com/4viOEnj" width="600" height="300">
 
 
 
