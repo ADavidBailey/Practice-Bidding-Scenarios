@@ -6,7 +6,7 @@
 
 ![](AdavidBailey./images/PBS-Shortcuts.png)
 
-![](./images/PBS-Shortcuts.png)
+![](/images/PBS-Shortcuts.png)
 
 
 for all good men.
