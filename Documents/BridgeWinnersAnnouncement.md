@@ -74,7 +74,7 @@ The scenarios are designed for the user to sit in the south seat.  And, the deal
 
 When you're ready to bid, you should sit in the South seat.  You should seat your partner or a Robot in the North seat.  You may seat Robots in the East/West seats; it's your choice; but, keep in mind that some scenarios require the opponents to bid.  Then, open the BBOalert Shortcuts tab and click on a bidding scenario that you want to practice.
 
-When you're seated at the table, you can use the Undo button.  I often like to try a different bidding approach -- this lets you do that.  Before you click the Redeal button, just click Undo and redo the bidding.  (The Robots won't fuss at you.)  If you've already clicked Redeal and want to go back to the previous board, you can go the the BBO History, select the board, then click the 'hamburger' (☰) in the upper right, and click Export/Upload deal to table.
+When you're seated at the table, you can use the Undo button.  I often like to try a different bidding approach -- this lets you do that.  Before you click the Redeal button, just click Undo and bid the it another way.  (The Robots won't fuss at you.)  If you've already clicked Redeal and want to go back to the previous board, you can go the the BBO History, select the board, then click the 'hamburger' (☰) in the upper right, and click Export/Upload deal to table.
 
 
 ### BBO Helper -- Double-Dummy, Par, and Par Contracts
