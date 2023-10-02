@@ -51,7 +51,9 @@ The Practice Bidding Scenarios are designed to work at a Practice table.  They d
 
 So start your Practice Table.  You may use either a Bidding table or a Teaching table.  I usually use a Bidding table (the Robots are free).  Once you start your Bidding table.  I suggest that to get started, you just watch the robots bid a few hands.  So, put robots in all four seats, open the BBOalert shortcuts tab (the gray one), click on the bidding scenario you want to see, then click Redeal.  The Robots bid a little faster than I do.  So you can fly through a lot hands in a hurry.  Then, switch to another scenario and Redeal to bid a few more.
 
-The scenarios are designed for the user to sit in the south seat.  And, the Randomly rotate deals 180 degrees is selected; so, you'll get to see the scenarios from both opener's and responder's chair.  So, if want to bid, you should sit in the South seat.  You should seat your partner or a Robot in the North seat.  You may seat Robots in the East/West seats.  Then, open the BBOalert Shortcuts tab and click on a bidding scenario that you want to practice.
+The scenarios are designed for the user to sit in the south seat.  And, the deals are randomly rotated 180 degrees; so, you'll get to see the scenarios from both opener's and responder's chair.  (This 'randomly rotate' is an option in the Deal source/Advanced; so, you can change it if you want.)
+
+When you're to bid, you should sit in the South seat.  You should seat your partner or a Robot in the North seat.  You may seat Robots in the East/West seats.  Then, open the BBOalert Shortcuts tab and click on a bidding scenario that you want to practice.
 
 When you're seated at the table, you can use the Undo button.  I often like to try a different bidding approach -- this lets you do that.  If you've already clicked Redeal and want to go back to the previous board, you can go the the BBO History, select the board, then click the 'hamburger' (☰) in the upper right, and click Export/Upload deal to table.
 
