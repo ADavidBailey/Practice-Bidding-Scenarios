@@ -3,9 +3,9 @@
 BBO Practice tables are a fantastic resource for practicing bidding, either with a partner or with a robot. But to make the most of it one must know how to program the dealer generator that BBO uses. I have created a new tool called Practice Bidding Scenarios that simplifies this process, providing dozens of canned bidding scenarios, for example. Jacoby Transfers, Smolen, slam bidding after a Stayman response, etc. Practice Bidding Scenarios piggybacks on the BBOalert browser extension to load the necessary dealer code, allowing many bidding scenarios to be selected with the press of a button.  
 <img src="image.png" width="200" height="100">
 
-<img src=" ![](/images/PBS-Shortcuts.png) " width=400 height=500>
+<img src=" ![](./images/PBS-Shortcuts.png) " width=400 height=500>
 
-![](/images/PBS-Shortcuts.png)
+![](./images/PBS-Shortcuts.png)
 
 Each of the buttons with light blue background are section headers that you may click to expand/collapse the groups of related scenarios.  Clicking a button with a white background will automatically load the dealer constraints for that scenario.
 Most of the Scenarios work OK with robots.  Those that don’t, I’ve grouped at the bottom.
