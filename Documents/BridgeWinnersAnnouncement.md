@@ -38,11 +38,17 @@ With the BBOalert extension installed, when you log in to BBO, you'll see a new 
   </div>
 </div> 
 
-##### 2. Copy and Paste the Practice Bidding Scenarios URL
+##### 2. Copy the Practice Bidding Scenarios URL
 
 You'll need to copy this link, 
 
-<center>https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-PBS.txt</center>
+<div align="center">
+  <div style="display: flex;">
+      https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-PBS.txt
+  </div>
+</div>
+
+##### 3. And, Paste it into BBOalert
 
 Then, go to the BBOalert Data tab and click the light blue Data/Paste (New) to import the URL into BBOalert.
 
@@ -71,6 +77,8 @@ And, you'll note that the light blue Data drop-down has changed, too.  At the bo
 </div>
 
 Once you’ve done this, switch to the BBOalert Shortcuts tab (the gray one) and you’ll see the sections and buttons as shown in the initial graphic above.
+
+Voilà
 
 ### Using Practice Bidding Scenarios
 
@@ -106,4 +114,6 @@ The [Facebook Group -- Practice Bidding Scenarios](https://www.facebook.com/grou
 You may also contact me via email: adavidbailey@gmail.com.  I expect to create more bidding scenarios and, perhaps, incorporate some of yours.
 
 
-**Stanislaw Mazur**, the creator of BBOalert, and **Matthew Kidd**, the creator of BBO Helper, were extremely helpful to me.  And I sincerely appreciate the encouragement I got from Gavin Wolpert.  Thank you guys so very much!
+**Stanislaw Mazur**, the creator of BBOalert, and **Matthew Kidd**, the creator of BBO Helper, were extremely helpful to me.  I sincerely appreciate the encouragement I got from Gavin Wolpert.  Thank you guys so very much!  
+
+If you enjoy using Practice Bidding Scenarios be sure to thank them, too.
