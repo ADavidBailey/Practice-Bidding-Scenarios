@@ -6,7 +6,7 @@ BBO Practice tables are a fantastic resource for bidding practice, either with a
   <div style="display: flex;">
     <img src="./images/BPSShortcuts.png" width=30%>
   </div>
-</div>
+</div>  
 
 Each of the buttons with light blue background are section headers.  You may click to expand/collapse the groups of related scenarios.  Clicking a button with a white background will automatically load the dealer constraints for that scenario.
 Most of the Scenarios work OK with robots.  Those that don’t, I’ve grouped at the bottom.
@@ -56,7 +56,7 @@ Then, go to the BBOalert Data tab and click the light blue Data/Paste (New) to i
   <div style="display: flex;">
       <img src="./images/BBOalertPasteNew.png" width=30%>
   </div>
-</div>
+</div>  
 
 This should be done only once. When you paste the URL, it is saved by BBOalert, and each time you restart BBO, the saved URL is used to re-import the file contents, including any updates; so, you’ll always be up to date.  You'll see something like this each time you start BBO:
 
@@ -64,7 +64,7 @@ This should be done only once. When you paste the URL, it is saved by BBOalert, 
   <div style="display: flex;">
     <img src="./images/BBOalertReadingData.png" width=30%>
   </div>
-</div>
+</div>  
 
 As scenarios are added or changed, the number of records read will change.  Each time you start BBO you'll get the latest updates.
 
@@ -74,7 +74,7 @@ And, you'll note that the light blue Data drop-down has changed, too.  At the bo
   <div style="display: flex;">
     <img src="./images/BBOalertDataURL.png" width=30%>
   </div>
-</div>
+</div>  
 
 Once you’ve done this, switch to the BBOalert Shortcuts tab (the gray one) and you’ll see the sections and buttons as shown in the initial graphic above.
 
