@@ -1,6 +1,7 @@
 Script,BergenRaises
 setDealerCode(
 `
+
 # Bergen Raises
 
 # Calculate Total Points for south (tp) for south
@@ -43,9 +44,10 @@ or
    // 3M = Preemptive Raise 0-6 TP
    tp<6
 or
-  // 3N = 4333 13-15 HCP
+   // 3N = 4333 13-15 HCP
    tp>12 and tp<16 and shape(south, any 4333)
-) 
+)
+
 `, "N", true);
 Script
 Button,Bergen Raises,\n\
