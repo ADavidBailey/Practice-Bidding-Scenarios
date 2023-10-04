@@ -18,15 +18,15 @@ NT = shape(north, any 4333+4432+5332)
 GF = hcp(north)>21
 
 # Define openers
-sOpener = spades(north) >= hearts(north) and spades(north) >=5 and spades(north) >= diamonds(north) and spades(north) >= clubs(north)
-hOpener = not sOpener and hearts(north) >=5 and hearts(north) >= diamonds(north) and hearts(north) >= clubs(north)
+sOpener = spades(north) >= hearts(north) and spades(north) >=5 and spades(north) >= diamonds(north) and spades(north) >= clubs(north) and not (NT or GF)
+hOpener = not sOpener and hearts(north) >=5 and hearts(north) >= diamonds(north) and hearts(north) >= clubs(north) and not (NT or GF)
 
 # Define suit fit w/4-card support
 sFit = sOpener and spades(south)==4
 hFit = hOpener and hearts(south)==4
 
 # Now do it
-hcp(north)>11 and hcp(east)<9 and hcp(west)<9 and (sFit or hFit) and not NT and not GF
+hcp(north)>11 and hcp(east)<9 and hcp(west)<9 and (sFit or hFit)
 and
 (
    // 3C = Constructive 7-10 TP
