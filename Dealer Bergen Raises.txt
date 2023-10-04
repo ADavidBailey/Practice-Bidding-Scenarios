@@ -29,27 +29,27 @@ hcp(north)>11 and hcp(east)<9 and hcp(west)<9 and (sFit or hFit)
 and
 (
    // 3C = Constructive 7-10 TP
-   tp>6 and tp<11
+   tp>5 and tp<11
 
 or
    // 3D = Limit Raise 10-12 TP
-   tp>9 and tp<13
+   tp>10 and tp<13
 
 or
-   // 3OM = Ambiguous Splinter 12+ TP
-   tp >11 and shape(south, any 14xx)
+   // 3OM = Ambiguous Splinter 11-13 TP
+   tp>10 and tp<14and shape(south, any 14xx)
 
 or
    // 3M = Preemptive Raise 0-6 TP
-   tp<7
+   tp<6
 ) 
 `, "N", true);
 Script
 Button,Bergen Raises,\n\
 --- Bergen Raises\n\
-3!C = Constructive (7-10) TP\n\
-3!D = Limit Raise (10-12) TP\n\
-3M = Preemptive Raise (0-6) TP\n\
+3!C = Constructive (6-10) TP\n\
+3!D = Limit Raise (11-12) TP\n\
+3M = Preemptive Raise (0-5) TP\n\
 3OM = Ambiguous Splinter (12+) TP\n\
-https://www.bridgebum.com/bergen_raises.php\n\
+https://www.larryco.com/bridge-articles/bergen-raises\n\
 %BergenRaises%
