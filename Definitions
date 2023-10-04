@@ -1,0 +1,17 @@
+# Definitions
+
+NT = shape(south, any 4333+4432+5332)
+
+S_ = spades(south)>=hearts(south) and spades(south)>4 and diamonds(south)<5 and clubs(south)<5
+H_ = hearts(south)>spades(south) and hearts(south)>4 and diamonds(south)<5 and clubs(south)<5
+D_ = diamonds(south)>3 and diamonds(south)>=clubs(south) and not (H_ or S_)
+C_ = clubs(south)>diamonds(south) and not (H_ or S_)
+
+WeakNT = NT and hcp(south)>11 and hcp(south)<15
+OneNT = NT and hcp(south)>14 and hcp(south)<18
+TwoNT = NT and hcp(south)>19 and hcp(south)<22
+
+GF = hcp(south)>21
+
+OneMajor = (S_ or H_) and not (NT or GF)
+OneMinor = (C_ or D_) and not (NT or GF)
