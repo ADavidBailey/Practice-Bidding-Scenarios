@@ -14,15 +14,37 @@ d2 = shape(south, any 22xx) ? 1 : 0
 d3 = shape(south, any 222x) ? 1 : 0
 tp = v1+v2+s1+s2+d1+d2+d3 + hcp(south)
 
+# Definitions
+
+# NT = shape(south, any 4333+4432+5332)
+
+# S_ = spades(south)>=hearts(south) and spades(south)>4 and spades(south)>diamonds(south) and spades(south)>clubs(south)
+# H_ = hearts(south)>spades(south) and hearts(south)>4 and hearts(south)>diamonds(south) and hearts(south)>clubs(south)
+# D_ = diamonds(south)>3 and diamonds(south)>=clubs(south) and not (H_ or S_)
+# C_ = clubs(south)>diamonds(south) and not (H_ or S_)
+
+# WeakNT = NT and hcp(south)>11 and hcp(south)<15
+# OneNT = NT and hcp(south)>14 and hcp(south)<18
+# TwoNT = NT and hcp(south)>19 and hcp(south)<22
+
+NT = shape(north, any 4333+4432+5332)
+GF = hcp(north)>21
+
+# OneMajor = (S_ or H_) and not (NT or GF)
+# OneMinor = (C_ or D_) and not (NT or GF)
+
+
 # Define openers
 sOpener = spades(north) >= hearts(north) and spades(north) >=5 and spades(north) >= diamonds(north) and spades(north) >= clubs(north)
 hOpener = not sOpener and hearts(north) >=5 and hearts(north) >= diamonds(north) and hearts(north) >= clubs(north)
 
 # Define suit fit w/4-card support
-Fs = sOpener and spades(south)==4
-Fh = hOpener and hearts(south)==4
+sFit = sOpener and spades(south)==4
+hFit = hOpener and hearts(south)==4
 
-hcp(north)>10 and hcp(north)<15 and ((sOpener and Fs) or (hOpener and Fh))
+# hcp(north)>10 and hcp(north)<15 and ((sOpener and Fs) or (hOpener and Fh))
+
+hcp(north)>11 and hcp(east)<9 and hcp(west)<9 and (sFit or hFit) and not (NT or GF)
 and
 (
    // 3C = Constructive 7-10 TP
