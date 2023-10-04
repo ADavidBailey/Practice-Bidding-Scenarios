@@ -23,6 +23,8 @@ _I'm 81 years old; I don’t have time to wait!_
 
 ### Installing Practice Bidding Scenarios
 
+##### 1. Install BBOalert
+
 I use Google Chrome.  Many common browsers, including Microsoft Edge, are chromium-based. If you use a Chromium-based browser, it's really easy to install and/or remove the BBOalert extension. This one link will let you do either with two clicks. [Click here to install or remove the BBOalert extension](https://chrome.google.com/webstore/detail/bboalert/bjgihidachainhhhilkeemegdhehnlcf) on Chrome. If you use a non-chromium browser, you can [click here to find out how to install BBOalert](https://github.com/stanmaz/BBOalert/blob/master/README.md#installation).
 
 
@@ -36,7 +38,13 @@ With the BBOalert extension installed, when you log in to BBO, you'll see a new 
   </div>
 </div> 
 
-You'll need to **right-click** this link, [Bidding Scenarios](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-PBS.txt) and select from the popup menu command "Copy link URL" or "Copy Link Address".  Then, go to the BBOalert Data tab and click the light blue Data/Paste (New) to import the URL into BBOalert.
+##### 2. Copy and Paste the Practice Bidding Scenarios URL
+
+You'll need to copy this link, 
+
+<center>https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-PBS.txt</center>
+
+Then, go to the BBOalert Data tab and click the light blue Data/Paste (New) to import the URL into BBOalert.
 
 <div align="center">
   <div style="display: flex;">
@@ -74,7 +82,7 @@ The scenarios are designed for the user to sit in the south seat.  And, the deal
 
 When you're ready to bid, you should sit in the South seat.  You should seat your partner or a Robot in the North seat.  You may seat Robots in the East/West seats; it's your choice; but, keep in mind that some scenarios require the opponents to bid.  Then, open the BBOalert Shortcuts tab and click on a bidding scenario that you want to practice.
 
-When you're seated at the table, you can use the Undo button.  I often like to try a different bidding approach -- this lets you do that.  Before you click the Redeal button, just click Undo and bid the it another way.  (The Robots won't fuss at you.)  If you've already clicked Redeal and want to go back to the previous board, you can go the the BBO History, select the board, then click the 'hamburger' (☰) in the upper right, and click Export/Upload deal to table.
+When you're seated at the table, you can use the Undo button.  I often like to try a different bidding approach -- this lets you do that.  Before you click the Redeal button, just click Undo and bid the hand another way.  (The Robots won't fuss at you.)  If you've already clicked Redeal and want to go back to the previous board, go to the BBO History, select the board, then click the 'hamburger' (☰) in the upper right, and click Export/Upload deal to table.
 
 
 ### BBO Helper -- Double-Dummy, Par, and Par Contracts
@@ -93,9 +101,9 @@ The ‘hamburger’ (☰) in the upper right allows you to toggle between Pictur
 
 ### Postscript
 
-The [Facebook Group -- Practice Bidding Scenarios](https://www.facebook.com/groups/598917089100836), is the place to talk about this, ask your questions, and give me your feedback.   You __DO NOT have to join Facebook__ to use it.  That said, I wish you would.
+The [Facebook Group -- Practice Bidding Scenarios](https://www.facebook.com/groups/598917089100836), is the place to talk about this, ask your questions, and give me your feedback.   You __DO NOT have to join Facebook__ to use it.  That said, I wish you would.  I will try to watch for posts on Bridge Winners, too.
 
 You may also contact me via email: adavidbailey@gmail.com.  I expect to create more bidding scenarios and, perhaps, incorporate some of yours.
 
 
-**Stanislaw Mazur**, the creator of BBOalert, and **Matthew Kidd**, the creator of BBO Helper, were extremely helpful to me.  I really, really appreciate them.  You should too!
+**Stanislaw Mazur**, the creator of BBOalert, and **Matthew Kidd**, the creator of BBO Helper, were extremely helpful to me.  And I sincerely appreciate the encouragement I got from Gavin Wolpert.  Thank you guys so very much!
