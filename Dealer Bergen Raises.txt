@@ -26,7 +26,7 @@ sFit = sOpener and spades(south)==4
 hFit = hOpener and hearts(south)==4
 
 # Now do it
-hcp(north)>11 and hcp(east)<9 and hcp(west)<9 and (sFit or hFit) and not (NT or GF)
+hcp(north)>11 and hcp(east)<9 and hcp(west)<9 and (sFit or hFit) and not NT and not GF
 and
 (
    // 3C = Constructive 7-10 TP
