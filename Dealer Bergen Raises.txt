@@ -1,7 +1,6 @@
 Script,BergenRaises
 setDealerCode(
 `
-
 # Bergen Raises
 
 # Calculate Total Points for south (tp) for south
@@ -18,8 +17,8 @@ NT = shape(north, any 4333+4432+5332)
 GF = hcp(north)>21
 
 # Define openers
-sOpener = spades(north) >= hearts(north) and spades(north) >=5 and spades(north) >= diamonds(north) and spades(north) >= clubs(north) and not (NT or GF)
-hOpener = not sOpener and hearts(north) >=5 and hearts(north) >= diamonds(north) and hearts(north) >= clubs(north) and not (NT or GF)
+sOpener = spades(north) >= hearts(north) and spades(north) >=5 and spades(north) >= diamonds(north) and spades(north) > clubs(north) and not (NT or GF)
+hOpener = not sOpener and hearts(north) >=5 and hearts(north) >= diamonds(north) and hearts(north) > clubs(north) and not (NT or GF)
 
 # Define suit fit w/4-card support
 sFit = sOpener and spades(south)==4
