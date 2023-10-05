@@ -1,1 +1,30 @@
+Script,ResponsiveDouble
+setDealerCode(
+`
+# Responsive Double
 
+sW = spades(west) >4 and spades(west)>= hearts(west)  
+
+
+
+
+
+
+# West opens
+
+# North makes a take-out double
+
+# East Raises
+
+# South Makes a Responsive Double
+hcp(south) >11 and hcp(south)<15 and shape(south, 44xx+43xx+34xx) and
+hcp(west)>8 and shape(west,any 5332+5431) and
+hcp(north)>6 and shape(north, any 4432)
+
+
+
+
+`
+)
+Script
+Button,Responsive Double,Responsive Double\n%NegativeDouble%
