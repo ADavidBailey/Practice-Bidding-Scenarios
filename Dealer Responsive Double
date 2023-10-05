@@ -15,9 +15,9 @@ hFit = hW and hearts(east) > 2
 dFit = dW and diamonds(east) > 3
 cFit = cW and clubs(east) > 3
 
-ewFit = (sFit or hFit or dFit or cFit) and hcp(west) > 11 and hcp(west) < 13 and hcp(east) > 5 and hcp(east) < 8
+ewFit = (sFit or hFit or dFit or cFit) and hcp(west) > 11 and hcp(west) < 14 and hcp(east) > 5 and hcp(east) < 8
 
-# North is short in E/W's fit
+# North is short in West's opening suit
 sN = sFit ? 1 : 5
 hN = hFit ? 1 : 5
 dN = dFit ? 1 : 4
