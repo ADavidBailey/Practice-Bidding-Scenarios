@@ -6,6 +6,12 @@ setDealerCode(
 sW = spades(west) >4 and spades(west)>= hearts(west)  
 
 
+sOpener = not NT and spades(north) >= hearts(north) and spades(north) >=5 and spades(north) >= diamonds(north) and spades(north) > clubs(north)
+hOpener = not NT and not sOpener and hearts(north) >=5 and hearts(north) >= diamonds(north) and hearts(north) > clubs(north)
+
+# Define suit fit w/4-card support
+sFit = sOpener and spades(south)==4
+hFit = hOpener and hearts(south)==4
 
 
 
