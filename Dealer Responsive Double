@@ -18,9 +18,9 @@ cFit = cW and clubs(east) > 4
 ewFit = (sFit or hFit or dFit or cFit) and hcp(west) > 11 and hcp(west) < 14 and hcp(east) > 5 and hcp(east) < 8
 
 # North is short in West's opening suit
-sN = sFit ? spades(north) <2 : spades(north)>3 and spades(north)<6 and spade(south)>3
-hN = hFit ? hearts(north)<2 : hearts(north)>3 and hearts(north)<6 and hearts(south)>3
-dN = dFit ? diamonds(north)<2 : diamonds(north)>3 and diamonds(north)<6 and diamonds(south)>3
+sN = sFit ? spades(north) <2 : spades(north)==4 and spade(south)>3
+hN = hFit ? hearts(north)<2 : hearts(north)==4 and hearts(south)>3
+dN = dFit ? diamonds(north)<2 : diamonds(north)>2 and diamonds(south)>3
 cN = cFit ? clubs(north)<2 : clubs(north)>2 and clubs(south)>3
 
 
