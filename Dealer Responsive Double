@@ -2,30 +2,32 @@ Script,ResponsiveDouble
 setDealerCode(
 `
 # Responsive Double
+NT = shape(west, any 4333+4432+5332) and hcp(west)>14 and hcp(west)<18 and hcp(west)>19 and hcp(west)<22
 
-sW = spades(west) >4 and spades(west)>= hearts(west)  
+sW = spades(west) >= hearts(west) > spades(west) > 4 and spades(west) > diamonds(west) and spades(west) > clubs(west) 
+hW = not sW and hearts(west) > hearts(west) > 4 and hearts(west) > diamonds(west) and hearts(west) > clubs(west)
+dW = not sW and not hW and diamonds(west) >= clubs(west)
+cW = not sW and not hW and not dW
+
+sFit = sW and spades(east) > 2
+hFit = hW and hearts(east) > 2
+dFit = dW and diamonds(east) > 2
+cFit = cW and clubs(east) > 3
+
+ewFit = (sFit or hFit or dFit or cFit) and hcp(west) > 7 and hcp(west) < 13 and hcp(west) + hcp(east) < 20
+
+sN = sFit ? 1 : 5
+hN = hFit ? 1 : 5
+dN = dFit ? 1 : 4
+cN = cFit ? 1 : 3
+
+shapeN = spades(north) == (sN or sN - 1) and hearts(north) == (hN or hN - 1) and diamonds(north) == (dN or dN - 1)
+
+nX = shapeN and hcp(north) > 11 and hcp(north) < 15
+
+ewFit and nX
 
 
-sOpener = not NT and spades(north) >= hearts(north) and spades(north) >=5 and spades(north) >= diamonds(north) and spades(north) > clubs(north)
-hOpener = not NT and not sOpener and hearts(north) >=5 and hearts(north) >= diamonds(north) and hearts(north) > clubs(north)
-
-# Define suit fit w/4-card support
-sFit = sOpener and spades(south)==4
-hFit = hOpener and hearts(south)==4
-
-
-
-
-# West opens
-
-# North makes a take-out double
-
-# East Raises
-
-# South Makes a Responsive Double
-hcp(south) >11 and hcp(south)<15 and shape(south, 44xx+43xx+34xx) and
-hcp(west)>8 and shape(west,any 5332+5431) and
-hcp(north)>6 and shape(north, any 4432)
 
 
 
