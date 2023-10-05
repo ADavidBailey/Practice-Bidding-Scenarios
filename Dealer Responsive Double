@@ -21,7 +21,12 @@ hN = hFit ? 1 : 5
 dN = dFit ? 1 : 4
 cN = cFit ? 1 : 3
 
-shapeN = spades(north) == (sN or sN - 1) and hearts(north) == (hN or hN - 1) and diamonds(north) == (dN or dN - 1)
+spadesN = ((spades(north) = sN - 1) or (spades(north) = sN))
+heartsN = ((hearts(north) = hN - 1) or (hearts(north) = hN))
+diamondsN = ((diamonds(north) = dN - 1) or (diamonds(north) = dN))
+
+
+shapeN = spadesN and heartsN and diamondsN
 
 nX = shapeN and hcp(north) > 11 and hcp(north) < 15
 
