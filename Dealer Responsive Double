@@ -21,7 +21,7 @@ ewFit = (sFit or hFit or dFit or cFit) and hcp(west) > 11 and hcp(west) < 14 and
 sN = sFit ? spades(north) <2 : spades(north)>3 and spades(north)<6
 hN = hFit ? hearts(north)<2 : hearts(north)>3 and hearts(north)<6
 dN = dFit ? diamonds(north)<2 : diamonds(north)>3 and diamonds(north)<6
-cN = cFit ? clubs(north)<2 : clubs(north)==4
+cN = cFit ? clubs(north)<2 : clubs(north)>2
 
 
 
