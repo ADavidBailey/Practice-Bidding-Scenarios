@@ -2,40 +2,36 @@ Script,ResponsiveDouble
 setDealerCode(
 `
 # Responsive Double
-NT = shape(west, any 4333+4432+5332) and hcp(west)>14 and hcp(west)<18 and hcp(west)>19 and hcp(west)<22
 
-sW = spades(west) >= hearts(west) > spades(west) > 4 and spades(west) > diamonds(west) and spades(west) > clubs(west) 
-hW = not sW and hearts(west) > hearts(west) > 4 and hearts(west) > diamonds(west) and hearts(west) > clubs(west)
+# West opens in a suit
+sW = spades(west) >= hearts(west) and spades(west) > 4 and spades(west) >= diamonds(west) and spades(west) >= clubs(west) 
+hW = not sW and hearts(west) > 4 and hearts(west) >= diamonds(west) and hearts(west) >= clubs(west)
 dW = not sW and not hW and diamonds(west) >= clubs(west)
 cW = not sW and not hW and not dW
 
+# East has a fit
 sFit = sW and spades(east) > 2
 hFit = hW and hearts(east) > 2
-dFit = dW and diamonds(east) > 2
+dFit = dW and diamonds(east) > 3
 cFit = cW and clubs(east) > 3
 
-ewFit = (sFit or hFit or dFit or cFit) and hcp(west) > 7 and hcp(west) < 13 and hcp(west) + hcp(east) < 20
+ewFit = (sFit or hFit or dFit or cFit) and hcp(west) > 11 and hcp(west) < 13 and hcp(east) > 5 and hcp(east) < 8
 
+# North is short in E/W's fit
 sN = sFit ? 1 : 5
 hN = hFit ? 1 : 5
 dN = dFit ? 1 : 4
 cN = cFit ? 1 : 3
 
-spadesN = ((spades(north) = sN - 1) or (spades(north) = sN))
-heartsN = ((hearts(north) = hN - 1) or (hearts(north) = hN))
-diamondsN = ((diamonds(north) = dN - 1) or (diamonds(north) = dN))
-
+spadesN = spades(north) == sN or sN - 1
+heartsN = hearts(north) == hN or hN - 1
+diamondsN = diamonds(north) == dN or dN - 1
 
 shapeN = spadesN and heartsN and diamondsN
 
 nX = shapeN and hcp(north) > 11 and hcp(north) < 15
 
 ewFit and nX
-
-
-
-
-
 
 `
 )
