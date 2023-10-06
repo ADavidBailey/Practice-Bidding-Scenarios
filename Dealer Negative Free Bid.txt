@@ -6,18 +6,18 @@ setDealerCode(
 
 # North opens in a suit
 sN = spades(north) >4 and spades(north) >= hearts(north) and spades(north) >= diamonds(north) and spades(north) >= clubs(north) 
-hN = not sW and hearts(north)>4 and hearts(north) >= diamonds(north) and hearts(north) >= clubs(north)
+hN = not sN and hearts(north)>4 and hearts(north) >= diamonds(north) and hearts(north) >= clubs(north)
 
 # Define no suit fit
-sNoFit = sN and spades(south)<3
-hNoFit = hN and hearts(south)<3
-NoFit = sNoFit and hNoFit
+sFit = sN and spades(south)<3
+hFit = hN and hearts(south)<3
+noFit = not (sFit or hFit)
 
 # North opens
-nO = hcp(north)>11 and hcp(north)<15
+nO = hcp(north)>11 and hcp(north)<15 and noFit
 
 # East overcalls
-eOC = hcp(east)>8 and shape(east, 5xxx - any 6xxx-55xx)
+eOC = hcp(east)>8 and shape(east, 5xxx+x5xx - any 6xxx-55xx)
 
 # South has NO fit
 
@@ -25,7 +25,7 @@ eOC = hcp(east)>8 and shape(east, 5xxx - any 6xxx-55xx)
 g5 = top4(south,diamonds)>3 or top4(south,clubs)>3 or top4(south,hearts)>3 or top4(south,spades)>3 or shape(south,any 7xxx+6xxx-65xx-55xx)
 sG5A6 = hcp(south)>4 and hcp(south)<12 and (shape(south, any 7xxx+6xxx) or g5)
 
-nO and NoFit and eOC and sG5A6
+nO and eOC and sG5A6
 
 `
 , "N", true);
