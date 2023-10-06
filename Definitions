@@ -33,17 +33,7 @@ sRD = sD ? 2 : 0
 sRC = sC ? 1 : 0
 southRank = sRS + sRH + sRD + sRC
 
-# East's longest suit
-eS = spades(east)>=hearts(east)>4>=diamonds(east)>=clubs(east)
-eH = not eS and hearts(east)>4>=diamonds(east)>=clubs(east)
-eD = not eS and not eH and diamonds(east)>=clubs(east)
-eC = not eS and not eH and not eD
 
-eRS = eS ? 4 : 0
-eRH = eH ? 3 : 0
-eRD = eD ? 2 : 0
-eRC = eC ? 1 : 0
-eastsRank = eRS+eRH+eED+eRC
 
 # North's opening suit
 nS = spades(north)>=hearts(north)>4>=diamonds(north)>=clubs(north)
@@ -57,7 +47,17 @@ nRD = nD ? 2 : 0
 nRC = nC ? 1 : 0
 northRank = nRS+nRH+nRD+nRC
 
+# East's longest suit
+eS = spades(east)>=hearts(east)>4>=diamonds(east)>=clubs(east)
+eH = not eS and hearts(east)>4>=diamonds(east)>=clubs(east)
+eD = not eS and not eH and diamonds(east)>=clubs(east)
+eC = not eS and not eH and not eD
 
+eRS = eS ? 4 : 0
+eRH = eH ? 3 : 0
+eRD = eD ? 2 : 0
+eRC = eC ? 1 : 0
+eastsRank = eRS+eRH+eED+eRC
 
 # South's longest suit
 sS = spades(south)>=hearts(south) and spades(south)>4 and diamonds(south)<5 and clubs(south)<5
@@ -71,7 +71,7 @@ sRD = sD ? 2 : 0
 sRC = sC ? 1 : 0
 southRank = sRS + sRH + sRD + sRC
 
-
+northRank > eastRank > southRank
 
 
 
