@@ -3,6 +3,44 @@ setDealerCode(
 `
 # Negative Free Bid
 
+# North's opening suit
+nS = spades(north)>=hearts(north)>4>=diamonds(north)>=clubs(north)
+nH = not nS and hearts(north)>4>=diamonds(north)>=clubs(north)
+nD = not nS and not nH and diamonds(north)>=clubs(north)
+nC = not nS and not nH and notNd
+
+nRS = nS ? 4 : 0
+nRH = hS ? 3 : 0
+nRD = nD ? 2 : 0
+nRC = nC ? 1 : 0
+northRank = nRS+nRH+nRD+nRC
+
+# East's longest suit
+eS = spades(east)>=hearts(east)>4>=diamonds(east)>=clubs(east)
+eH = not eS and hearts(east)>4>=diamonds(east)>=clubs(east)
+eD = not eS and not eH and diamonds(east)>=clubs(east)
+eC = not eS and not eH and not eD
+
+eRS = eS ? 4 : 0
+eRH = eH ? 3 : 0
+eRD = eD ? 2 : 0
+eRC = eC ? 1 : 0
+eastsRank = eRS+eRH+eED+eRC
+
+# South's longest suit
+sS = spades(south)>=hearts(south) and spades(south)>4 and diamonds(south)<5 and clubs(south)<5
+sH = hearts(south)>spades(south) and hearts(south)>4 and diamonds(south)<5 and clubs(south)<5
+sD = diamonds(south)>3 and diamonds(south)>=clubs(south) and not (H_ or S_)
+sC = clubs(south)>diamonds(south) and not (H_ or S_)
+
+sRS = sS ? 4 : 0
+sRH = sH ? 3 : 0
+sRD = sD ? 2 : 0
+sRC = sC ? 1 : 0
+southRank = sRS + sRH + sRD + sRC
+
+northRank > eastRank > southRank
+
 # North opens in a suit
 sN = spades(north) >4 and spades(north) >= hearts(north) and spades(north) >= diamonds(north) and spades(north) >= clubs(north) 
 hN = not sN and hearts(north)>4 and hearts(north) >= diamonds(north) and hearts(north) >= clubs(north)
@@ -30,7 +68,7 @@ or
    (top3(south,spades)>1 and spades(south)==5)
 )
 a6 = shape(south, any 7xxx+6xxx-65xx-55xx)
-sR = hcp(south)>4 and hcp(south)<12 and (g5 or a6)
+sR = hcp(south)>4 and hcp(south)<12 and (g5 or a6) and northRank > eastRank > southRank
 
 nO and eOC and sR
 
