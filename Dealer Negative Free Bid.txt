@@ -4,14 +4,14 @@ setDealerCode(
 # Negative Free Bid
 
 # North opens a minor
-nO = hcp(north)>11 and hcp(north)<15 and shape(north, 44xx+34xx+33xx+32xx+23xx+22xx)
+nO = hcp(north)>11 and hcp(north)<15
 
 # East overcalls
-eOC = hcp(east)>8 and shape(east, any 5xxx)
+eOC = hcp(east)>8 and shape(east, 5xxx+x5xx)
 
 # South has a non-forcing hand with a good 5-card or any 6-card suit
 g5 = (top3(south,diamonds)>2 or top3(south,clubs)>2) and shape(south, any xxx6+xx6x-any 55xx+65xx)
-sG5A6 = hcp(south)>4 and hcp(south)<11 and (shape(south, any 6xxx) or g5)
+sG5A6 = hcp(south)>4 and hcp(south)<12 and (shape(south, any 6xxx) or g5)
 
 nO and eOC and sG5A6
 
