@@ -10,8 +10,8 @@ nO = hcp(north)>11 and hcp(north)<15
 eOC = hcp(east)>8 and shape(east, 5xxx - any 6xxx-55xx)
 
 # South has a non-forcing hand with a good 5-card or any 6-card suit
-g5 = (top3(south,diamonds)>2 or top3(south,clubs)>2) and shape(south, any xxx6+xx6x-any 55xx+65xx)
-sG5A6 = hcp(south)>4 and hcp(south)<12 and (shape(south, any 6xxx) or g5)
+g5 = (top4(south,diamonds)>3 or top4(south,clubs)>3 or top4(south,hearts)>3 or top4(south,spades)>3) and shape(south, any 7xxx+6xxx-65xx-55xx)
+sG5A6 = hcp(south)>4 and hcp(south)<12 and (shape(south, any 7xxx+6xxx) or g5)
 
 nO and eOC and sG5A6
 
@@ -21,6 +21,6 @@ Script
 Button,Negative Free Bid,\n\
 --- Negative Free Bid\n\
 N opens (E overcalls)\n\
-S has no support and 5-11 HCP with a good 5- or any 6-card suit\n\
+S no M support & 5-11 HCP with a good 5- or any 6-card suit\n\
 any non-jump bid from 2!C thru 3!D is non-forcing\n\
 %NegativeFreeBid%
