@@ -36,17 +36,19 @@ OneMajor = (S_ or H_) and not (NT or GF)
 OneMinor = (C_ or D_) and not (NT or GF)
 
 
+
+
 # East's longest suit
 eS = spades(east)>=hearts(east)>4>=diamonds(east)>=clubs(east)
 eH = not eS and hearts(east)>4>=diamonds(east)>=clubs(east)
 eD = not eS and not eH and diamonds(east)>=clubs(east)
 eC = not eS and not eH and not eD
 
-rS = eS ? 4 : 0
-rH = eH ? 3 : 0
-rD = eD ? 2 : 0
-rC = eC ? 1 : 0
-eastsRank = rS+rH+rD+rC
+eRS = eS ? 4 : 0
+eRH = eH ? 3 : 0
+eRD = eD ? 2 : 0
+eRC = eC ? 1 : 0
+eastsRank = eRS+eRH+eED+eRC
 
 # North's opening suit
 nS = spades(north)>=hearts(north)>4>=diamonds(north)>=clubs(north)
@@ -58,8 +60,7 @@ nRS = nS ? 4 : 0
 nRH = hS ? 3 : 0
 nRD = nD ? 2 : 0
 nRC = nC ? 1 : 0
-
-
+northRank = nRS+nRH+nRD+nRC
 
 
 
