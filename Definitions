@@ -15,3 +15,12 @@ GF = hcp(south)>21
 
 OneMajor = (S_ or H_) and not (NT or GF)
 OneMinor = (C_ or D_) and not (NT or GF)
+
+
+# East's longest suit
+eS = spades(east)>=hearts(east)>4>=diamonds(east)>=clubs(east)
+eH = not eS and hearts(east)>4>=diamonds(east)>=clubs(east)
+eD = not eS and not eH and diamonds(east)>=clubs(east)
+eC = not eS and not eH and not eD
+
+rS = eS ? 4 : 0
