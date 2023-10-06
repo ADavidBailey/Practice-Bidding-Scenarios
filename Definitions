@@ -10,7 +10,14 @@ d2 = shape(south, any 22xx) ? 1 : 0
 d3 = shape(south, any 222x) ? 1 : 0
 tp = v1+v2+s1+s2+d1+d2+d3 + hcp(south)
 
+WeakNT = NT and hcp(south)>11 and hcp(south)<15
+OneNT = NT and hcp(south)>14 and hcp(south)<18
+TwoNT = NT and hcp(south)>19 and hcp(south)<22
 
+GF = hcp(south)>21
+
+OneMajor = (S_ or H_) and not (NT or GF)
+OneMinor = (C_ or D_) and not (NT or GF)
 
 NT = shape(south, any 4333+4432+5332)
 
@@ -25,18 +32,6 @@ sRH = sH ? 3 : 0
 sRD = sD ? 2 : 0
 sRC = sC ? 1 : 0
 southRank = sRS + sRH + sRD + sRC
-
-WeakNT = NT and hcp(south)>11 and hcp(south)<15
-OneNT = NT and hcp(south)>14 and hcp(south)<18
-TwoNT = NT and hcp(south)>19 and hcp(south)<22
-
-GF = hcp(south)>21
-
-OneMajor = (S_ or H_) and not (NT or GF)
-OneMinor = (C_ or D_) and not (NT or GF)
-
-
-
 
 # East's longest suit
 eS = spades(east)>=hearts(east)>4>=diamonds(east)>=clubs(east)
@@ -61,6 +56,20 @@ nRH = hS ? 3 : 0
 nRD = nD ? 2 : 0
 nRC = nC ? 1 : 0
 northRank = nRS+nRH+nRD+nRC
+
+
+
+# South's longest suit
+sS = spades(south)>=hearts(south) and spades(south)>4 and diamonds(south)<5 and clubs(south)<5
+sH = hearts(south)>spades(south) and hearts(south)>4 and diamonds(south)<5 and clubs(south)<5
+sD = diamonds(south)>3 and diamonds(south)>=clubs(south) and not (H_ or S_)
+sC = clubs(south)>diamonds(south) and not (H_ or S_)
+
+sRS = sS ? 4 : 0
+sRH = sH ? 3 : 0
+sRD = sD ? 2 : 0
+sRC = sC ? 1 : 0
+southRank = sRS + sRH + sRD + sRC
 
 
 
