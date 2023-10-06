@@ -19,8 +19,9 @@ nO = hcp(north)>11 and hcp(north)<15 and NoFit
 eOC = hcp(east)>8 and shape(east, 5xxx+x5xx - any 6xxx+55xx)
 
 # South has a non-forcing hand with a good 5-card or any 6-card suit
-g5 = top4(south,diamonds)>3 or top4(south,clubs)>3 or top4(south,hearts)>3 or top4(south,spades)>3 or shape(south,any 7xxx+6xxx-65xx-55xx)
-sG5A6 = hcp(south)>4 and hcp(south)<12 and (shape(south, any 7xxx+6xxx) or g5)
+g5 = top4(south,diamonds)>3 or top4(south,clubs)>3 or top4(south,hearts)>3 or top4(south,spades)>3
+a6 = shape(south, any 7xxx+6xxx-65xx-55xx)
+sG5A6 = hcp(south)>4 and hcp(south)<12 and (g5 or a6)
 
 nO and eOC and sG5A6
 
