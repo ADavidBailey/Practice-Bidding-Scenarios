@@ -3,8 +3,22 @@ setDealerCode(
 `
 # Negative Free Bid
 
+
+# North opens in a suit
+sN = spades(north) >4 and spades(north) >= hearts(north) and spades(north) >= diamonds(north) and spades(north) >= clubs(north) 
+hN = not sW and hearts(north)>4 and hearts(north) >= diamonds(north) and hearts(north) >= clubs(north)
+dN = not sW and not hW and diamonds(north) >= clubs(north)
+cN = not sW and not hW and not dW
+
+
+
 # North opens
 nO = hcp(north)>11 and hcp(north)<15
+
+
+
+
+
 
 # East overcalls
 eOC = hcp(east)>8 and shape(east, 5xxx - any 6xxx-55xx)
