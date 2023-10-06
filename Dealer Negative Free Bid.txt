@@ -7,7 +7,7 @@ setDealerCode(
 nO = hcp(north)>11 and hcp(north)<15
 
 # East overcalls
-eOC = hcp(east)>8 and shape(east, xx5x+x5xx)
+eOC = hcp(east)>8 and shape(east, 5xxx+x5xx+xx5x)
 
 # South has a non-forcing hand with a good 5-card or any 6-card suit
 g5 = (top3(south,diamonds)>2 or top3(south,clubs)>2) and shape(south, any xxx6+xx6x-any 55xx+65xx)
