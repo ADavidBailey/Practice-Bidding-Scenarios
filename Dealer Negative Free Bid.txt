@@ -44,7 +44,7 @@ southRank = sRS + sRH + sRD + sRC
 northOpens = hcp(north)>11 and hcp(north)<15
 
 # East overcalls
-gSE = (
+gSE = (                 // Good Suit East
    top4(east,clubs)>1
 or
    top4(east,diamonds)>1
@@ -57,8 +57,7 @@ eastOvercalls = gSE and hcp(east)>10 and shape(east, any 6xxx+5xxx - any 65xx+55
 
 # South responds -- a non-forcing hand with a good 5-card or any 6-card suit and 5-11 HCP
 
-# Good suit South -- KQJxx or better
-gSS = (
+gSS = (                 // Good Suit South
    top4(south,clubs)>2
 or
    top4(south,diamonds)>2
