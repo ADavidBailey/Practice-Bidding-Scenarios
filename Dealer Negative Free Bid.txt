@@ -39,11 +39,12 @@ sRH = sH ? 3 : 0
 sRD = sD ? 2 : 0
 sRC = sC ? 1 : 0
 southRank = sRS + sRH + sRD + sRC
+rankOK = (northRank > eastRank or eastRank > southRank) // eliminate 1-level bids for south
 
 # Define no Major suit fit
 sFit = nS and spades(south)>2
 hFit = nH and hearts(south)>2
-NoFit = not(sFit or hFit)
+NoFit = not(sFit or hFit) //  eliminate hands where South has support for North's major
 
 # North opens
 nO = hcp(north)>11 and hcp(north)<15 and NoFit
@@ -61,10 +62,10 @@ or
 or
    top4(south,spades)>2
 )
-a6 = shape(south, any 7xxx+6xxx) and shape(south, xxxx - 76xx-75xx-66xx-65xx-55xx)
+a6 = shape(south, any 7xxx+6xxx - 76xx-75xx-66xx-65xx-55xx)
 g6 = a6 and gSS
-g5 = gSS and shape(south, any 5xxx) and shape(south, xxxx -7xxx-6xxx-55xx)
-sR = ((a6 or g5) and (hcp(south) > 4 and hcp(south) < 10)) or (g6 and (hcp(south) > 9 and hcp(south) < 12)) and (northRank > eastRank or eastRank > southRank)
+g5 = gSS and shape(south, any 5xxx -7xxx-6xxx-55xx)
+sR = rankOK and (((a6 or g5) and (hcp(south) > 4 and hcp(south) < 10)) or (g6 and (hcp(south) > 9 and hcp(south) < 12)))
 
 nO and eOC and sR
 
