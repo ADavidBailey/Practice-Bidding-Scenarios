@@ -44,7 +44,16 @@ southRank = sRS + sRH + sRD + sRC
 northOpens = hcp(north)>11 and hcp(north)<15
 
 # East overcalls
-eastOvercalls = hcp(east)>10 and shape(east, any 6xxx+5xxx - any 65xx+55xx)
+gSE = (
+   top4(east,clubs)>1
+or
+   top4(east,diamonds)>1
+or
+   top4(east,hearts)>1
+or
+   top4(east,spades)>1
+)
+eastOvercalls = gSE and hcp(east)>10 and shape(east, any 6xxx+5xxx - any 65xx+55xx)
 
 # South responds -- a non-forcing hand with a good 5-card or any 6-card suit and 5-11 HCP
 
