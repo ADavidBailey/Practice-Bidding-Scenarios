@@ -62,9 +62,9 @@ or
 or
    top4(south,spades)>2
 )
-a6 = shape(south, any 7xxx+6xxx - 76xx-75xx-66xx-65xx-55xx)
+a6 = shape(south, any 7xxx+6xxx -any 76xx-75xx-66xx-65xx-55xx)
 g6 = a6 and gSS
-g5 = gSS and shape(south, any 5xxx -7xxx-6xxx-55xx)
+g5 = gSS and shape(south, any 5xxx -any 7xxx-6xxx-55xx)
 sR = rankOK and (((a6 or g5) and (hcp(south) > 4 and hcp(south) < 10)) or (g6 and (hcp(south) > 9 and hcp(south) < 12)))
 
 nO and eOC and sR
