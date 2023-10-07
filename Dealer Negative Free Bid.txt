@@ -62,16 +62,16 @@ a6 = shape(south, any 7xxx+6xxx - any 76xx-75xx-66xx-65xx-55xx)  // any 6+
 a5 = shape(south, any 5xxx - any 7xxx-6xxx-55xx)
 g5 = a5 and gSS                                                  // good 5       
 
-a6g5 = (a6 or g5) and (hcp(south) > 4 and hcp(south) < 10)       // any 6+ or good 5
-g6 = a6 and gSS and hcp(south) > 9 and hcp(south) < 12           // good 6+
+a6g5 = (a6 or g5) and (hcp(south) > 4 and hcp(south) < 10)  // (any 6+ or good 5) and 5-9
+g6 = a6 and gSS and hcp(south) > 9 and hcp(south) < 12      // good 6+ and 10-12
 
-rankOK = (northRank > eastRank) or (eastRank > southRank)        // eliminate 1-level bids for south
+rankOK = (northRank > eastRank) or (eastRank > southRank)   // eliminate 1-level bids for south
 
 sFit = nS and spades(south)>2
 hFit = nH and hearts(south)>2
-noFit = not(sFit or hFit)                                        //  eliminate hands where South has support for North's major
+noFit = not(sFit or hFit)                                   //  eliminate hands where South has support for North's major
 
-southResponds = noFit and rankOK and (a6g5 or g6) 
+southResponds = (noFit and rankOK) and (a6g5 or g6) 
 
 # Now do it
 northOpens and eastOvercalls and southResponds
