@@ -1,3 +1,7 @@
+Script,NegativeFreeBid
+setDealerCode(
+`
+
 # Negative Free Bid
 
 # North's opening suit
@@ -63,3 +67,20 @@ g5 = shape(south, any 5xxx-7xxx-6xxx-55xx) and gSS
 sR = ((a6 or g5) and hcp(south)>4 and hcp(south)<10) or (g6 and hcp(south)>9 and hcp(south)<12) and (northRank>eastRank or eastRank>southRank)
 #64
 nO and eOC and sR
+
+
+`
+)
+Script
+Button,Negative Free Bid,
+--- Negative Free Bid\n\
+North Opens & East Overcalls and South has\n\
+5-9 HCP with a good 5- or any 6-card suit or\n\
+10-11 HCP with a good 6+ card suit\n\
+https://kwbridge.com/bb/nfb-1.htm\n\
+%NegativeFreeBid%
+
+
+
+
+
