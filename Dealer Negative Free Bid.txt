@@ -44,7 +44,7 @@ rankOK = (northRank > eastRank) or (eastRank > southRank) // eliminate 1-level b
 # Define no Major suit fit
 sFit = nS and spades(south)>2
 hFit = nH and hearts(south)>2
-NoFit = not(sFit or hFit) //  eliminate hands where South has support for North's major
+noFit = not(sFit or hFit) //  eliminate hands where South has support for North's major
 
 # North opens
 nO = hcp(north)>11 and hcp(north)<15
