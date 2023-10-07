@@ -7,7 +7,7 @@ setDealerCode(
 # North's opening suit
 nS = spades(north)>=hearts(north)>4>=diamonds(north)>=clubs(north)
 nH = not nS and hearts(north)>4>=diamonds(north)>=clubs(north)
-nD = not nS and not nH and diamonds(north)>3>clubs(north)      // 4432 will open 1D
+nD = not nS and not nH and diamonds(north)>clubs(north)        // 4432 will open 1D
 nC = not nS and not nH and not nD
 
 nRS = nS ? 4 : 0
@@ -29,9 +29,9 @@ eRC = eC ? 1 : 0
 eastRank = eRS+eRH+eRD+eRC
 
 # South's longest suit
-sS = spades(south) >= hearts(south)> 4 >= diamonds(south) >= clubs(south)
-sH = not sS and hearts(south) > 4 >= diamonds(south) >= clubs(south)
-sD = not sS and not sH and diamonds(south) >= clubs(south)
+sS = spades(south)>=hearts(south)>4>=diamonds(south)>=clubs(south)
+sH = not sS and hearts(south)>4>=diamonds(south)>=clubs(south)
+sD = not sS and not sH and diamonds(south)>=clubs(south)
 sC = not sS and not sH and not sD
 
 sRS = sS ? 4 : 0
@@ -44,20 +44,19 @@ southRank = sRS + sRH + sRD + sRC
 northOpens = hcp(north)>11 and hcp(north)<15
 
 # East overcalls
-gSE = (                 // Good Suit East
-   top4(east,clubs)>1
+gSE = (                 // Good Suit East -- KQ or better
+   top3(east,clubs)>2
 or
-   top4(east,diamonds)>1
+   top3(east,diamonds)>2
 or
-   top4(east,hearts)>1
+   top3(east,hearts)>2
 or
-   top4(east,spades)>1
+   top3(east,spades)>2
 )
 eastOvercalls = gSE and hcp(east)>10 and shape(east, any 6xxx+5xxx - any 65xx+55xx)
 
 # South responds -- a non-forcing hand with a good 5-card or any 6-card suit and 5-11 HCP
-
-gSS = (                 // Good Suit South
+gSS = (                 // Good Suit South -- KQJ or better
    top4(south,clubs)>2
 or
    top4(south,diamonds)>2
