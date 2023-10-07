@@ -53,7 +53,7 @@ or
 or
    top3(east,spades)>2
 )
-eastOvercalls = gSE and hcp(east)>10 and shape(east, any 6xxx+5xxx - any 65xx+55xx)
+eastOvercalls = gSE and hcp(east)>10 and shape(east, any 6xxx+5xxx -65xx-55xx)
 
 # South responds -- a non-forcing hand with a good 5-card or any 6-card suit and 5-11 HCP
 gSS = (                 // Good Suit South -- KQJ or better
@@ -65,8 +65,8 @@ or
 or
    top4(south,spades)>2
 )
-a6 = shape(south, any 7xxx+6xxx - any 76xx+75xx+66xx+65xx+55xx)  // any 6+
-g5 = gSS and shape(south, any 5xxx - any 7xxx+6xxx+55xx)         // good 5     
+a6 = shape(south, any 7xxx+6xxx -76xx-75xx-66xx-65xx-55xx)  // any 6+
+g5 = gSS and shape(south, any 5xxx -7xxx-6xxx-55xx)         // good 5     
 
 a6g5 = (a6 or g5) and (hcp(south) > 4 and hcp(south) < 10)  // (any 6+ or good 5) and 5-9
 g6 = a6 and gSS and hcp(south) > 9 and hcp(south) < 12      // good 6+ and 10-12
