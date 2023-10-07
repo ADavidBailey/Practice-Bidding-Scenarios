@@ -71,7 +71,7 @@ g5 = gSS and shape(south, any 5xxx -7xxx-6xxx-55xx)         // good 5
 a6g5 = (a6 or g5) and (hcp(south) > 4 and hcp(south) < 10)  // (any 6+ or good 5) and 5-9
 g6 = a6 and gSS and hcp(south) > 9 and hcp(south) < 12      // good 6+ and 10-12
 
-rankOK = (northRank > eastRank) or (eastRank > southRank)   // eliminate 1-level bids for south
+rankOK = (northRank > eastRank) or (northRank > southRank) or (eastRank > southRank)   // eliminate 1-level bids for south
 
 sFit = nS and spades(south)>2
 hFit = nH and hearts(south)>2
