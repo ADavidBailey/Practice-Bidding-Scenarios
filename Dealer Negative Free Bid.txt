@@ -7,7 +7,7 @@ setDealerCode(
 # North's opening suit
 nS = spades(north)>=hearts(north)>4>=diamonds(north)>=clubs(north)
 nH = not nS and hearts(north)>4>=diamonds(north)>=clubs(north)
-nD = not nS and not nH and diamonds(north)>=clubs(north)
+nD = not nS and not nH and diamonds(north)>3>clubs(north)      // 4432 will open 1D
 nC = not nS and not nH and not nD
 
 nRS = nS ? 4 : 0
@@ -39,12 +39,6 @@ sRH = sH ? 3 : 0
 sRD = sD ? 2 : 0
 sRC = sC ? 1 : 0
 southRank = sRS + sRH + sRD + sRC
-rankOK = (northRank > eastRank) or (eastRank > southRank) // eliminate 1-level bids for south
-
-# Define no Major suit fit
-sFit = nS and spades(south)>2
-hFit = nH and hearts(south)>2
-noFit = not(sFit or hFit) //  eliminate hands where South has support for North's major
 
 # North opens
 northOpens = hcp(north)>11 and hcp(north)<15
@@ -54,7 +48,7 @@ eastOvercalls = hcp(east)>10 and shape(east, any 6xxx+5xxx - any 65xx-55xx)
 
 # South responds -- a non-forcing hand with a good 5-card or any 6-card suit and 5-11 HCP
 
-# Good suit
+# Good suit South -- KQJxx or better
 gSS = (
    top4(south,clubs)>2
 or
@@ -65,10 +59,19 @@ or
    top4(south,spades)>2
 )
 a6 = shape(south, any 7xxx+6xxx - any 76xx-75xx-66xx-65xx-55xx)  // any 6+
-g6 = a6 and gSS //any 6 with a good suit                         // good 6+
-g5 = gSS and shape(south, any 5xxx - any 7xxx-6xxx-55xx)         // good 5
+a5 = shape(south, any 5xxx - any 7xxx-6xxx-55xx)
+g5 = a5 and gSS                                                  // good 5       
 
-southResponds = noFit and rankOK and (((a6 or g5) and (hcp(south) > 4 and hcp(south) < 10)) or (g6 and hcp(south) > 9 and hcp(south) < 12))
+a6g5 = (a6 or g5) and (hcp(south) > 4 and hcp(south) < 10
+g6 = a6 and gSS and hcp(south) > 9 and hcp(south) < 12
+
+rankOK = (northRank > eastRank) or (eastRank > southRank)        // eliminate 1-level bids for south
+
+sFit = nS and spades(south)>2
+hFit = nH and hearts(south)>2
+noFit = not(sFit or hFit)                                        //  eliminate hands where South has support for North's major
+
+southResponds = noFit and rankOK and (a6g5 or g6) 
 
 # Now do it
 northOpens and eastOvercalls and southResponds
