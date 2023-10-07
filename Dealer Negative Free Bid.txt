@@ -7,7 +7,7 @@ setDealerCode(
 # North's opening suit
 nS = spades(north)>=hearts(north)>4>=diamonds(north)>=clubs(north)
 nH = not nS and hearts(north)>4>=diamonds(north)>=clubs(north)
-nD = not nS and not nH and diamonds(north)>clubs(north)        // 4432 will open 1D
+nD = not nS and not nH and diamonds(north)>=clubs(north)        // 4432 will open 1D
 nC = not nS and not nH and not nD
 
 nRS = nS ? 4 : 0
@@ -45,13 +45,13 @@ northOpens = hcp(north)>11 and hcp(north)<15
 
 # East overcalls
 gSE = (                 // Good Suit East -- KQ or better
-   top3(east,clubs)>2
+   top3(east,clubs)>1
 or
-   top3(east,diamonds)>2
+   top3(east,diamonds)>1
 or
-   top3(east,hearts)>2
+   top3(east,hearts)>1
 or
-   top3(east,spades)>2
+   top3(east,spades)>1
 )
 eastOvercalls = gSE and hcp(east)>10 and shape(east, any 6xxx+5xxx -65xx-55xx)
 
@@ -73,11 +73,11 @@ g6 = a6 and gSS and hcp(south) > 9 and hcp(south) < 12      // good 6+ and 10-12
 
 rankOK = (northRank > eastRank) or (northRank > southRank) or (eastRank > southRank)   // eliminate 1-level bids for south
 
-sFit = nS and spades(south)>2
-hFit = nH and hearts(south)>2
-noFit = not(sFit or hFit)                                   //  eliminate hands where South has support for North's major
+sNoFit = nS and spades(south)<3
+hNoFit = nH and hearts(south)<3
+noFit = sNoFit and hNoFit                                   //  eliminate hands where South has support for North's major
 
-southResponds = (noFit and rankOK) and (a6g5 or g6) 
+southResponds = noFit and rankOK and (a6g5 or g6) 
 
 # Now do it
 northOpens and eastOvercalls and southResponds
