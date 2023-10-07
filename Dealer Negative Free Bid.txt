@@ -64,8 +64,8 @@ or
 a6 = shape(south, any 7xxx+6xxx) and shape(south, xxxx - 65xx-55xx)
 g6 = a6 and gSS
 g5 = gSS and shape(south, any 5xxx) and shape(south, xxxx -7xxx-6xxx-55xx)
-sR = (((a6 or g5) and hcp(south)>4 and hcp(south)<10) or (g6 and hcp(south)>9 and hcp(south)<12) and (northRank>eastRank or eastRank>southRank)
-#64
+sR = ((a6 or g5) and (hcp(south) > 4 and hcp(south) < 10)) or (g6 and (hcp(south) > 9 and hcp(south) < 12)) and (northRank > eastRank or eastRank > southRank)
+
 nO and eOC and sR
 
 `, "N", true);
