@@ -69,7 +69,7 @@ g6 = a6 and gSS //any 6 with a good suit                         // good 6+
 g5 = gSS and shape(south, any 5xxx - any 7xxx-6xxx-55xx)         // good 5
 
 # South responds
-sR = noFit and rankOK and ((a6 or g5) and (hcp(south) > 4 and hcp(south) < 10) or (g6 and (hcp(south) > 9 and hcp(south) < 12))
+sR = noFit and rankOK and ((a6 or g5) and (hcp(south) > 4 and hcp(south) < 10)) or (g6 and (hcp(south) > 9 and hcp(south) < 12))
 
 # Now do it
 nO and eOC and sR
