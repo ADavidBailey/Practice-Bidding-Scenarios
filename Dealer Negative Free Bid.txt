@@ -73,14 +73,15 @@ g6 = a6 and gSS and hcp(south) > 9 and hcp(south) < 12      // good 6+ and 10-12
 
 rankOK = (northRank > eastRank) or (northRank > southRank) or (eastRank > southRank)   // eliminate 1-level bids for south
 
-sNoFit = nS and spades(south)<3
-hNoFit = nH and hearts(south)<3
-noFit = sNoFit and hNoFit                                   //  eliminate hands where South has support for North's major
+sFit = nS and spades(south)>2        //  eliminate hands where South has support for North's major
+hFit = nH and hearts(south)>2
+noFit = not (sFit or hFit)
 
 southResponds = noFit and rankOK and (a6g5 or g6) 
 
 # Now do it
 northOpens and eastOvercalls and southResponds
+
 
 `, "N", true);
 Script
