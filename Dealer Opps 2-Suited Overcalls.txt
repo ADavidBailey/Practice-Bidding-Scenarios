@@ -1,1 +1,54 @@
+Script,OppsTwoSuitedOvercalls
+setDealerCode(
+`
+
 # Opponents 2-suited overcalls
+
+# Define good suits
+GoodS = spades(west)>4 and top5(west,spades)>2
+GoodH = hearts(west)>4 and top5(west,hearts)>2
+GoodD = diamonds(west)>4 and top5(west,diamonds)>2
+GoodC = clubs(west)>4 and top5(west,clubs)>2
+
+# South opens
+hcp(south)>11 and hcp(south)<15 and shape(south,any xxxx-8xxx-7xxx-6xxx) and
+
+# West is 2-suited
+(
+(GoodS and GoodH)
+or
+(GoodS and GoodD)
+or
+(GoodS and GoodC)
+or
+(GoodH and GoodD)
+or
+(GoodH and GoodC)
+or
+(GoodD and GoodC)
+)
+and 
+
+# West is weak or strong
+(losers(west)<7 or losers(west)<4)
+and
+(hcp(west)>7 and hcp(west)<15)
+
+# It's North's turn to bid
+
+
+`, "W", true);
+Script
+Button,Opps 2-Suit Overcalls,\n\
+--- Opps 2-Suit Overcalls\n\
+double is penalty oriented\n\
+raise is natural (about 7-10)\n\
+bidding the one known suit limit+ raise\n\
+with two known suits\n\
+lower cue bid is for lower suit\n\
+higher cue bid is for higher suit\n\
+https://tinyurl.com/3vwnvwka\n\
+%OppsTwoSuitedOvercalls%
+
+
+
