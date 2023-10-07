@@ -50,7 +50,7 @@ NoFit = not(sFit or hFit) //  eliminate hands where South has support for North'
 nO = hcp(north)>11 and hcp(north)<15 and NoFit
 
 # East overcalls
-eOC = hcp(east)>10 and shape(east, any 6xxx+5xxx - 65xx-55xx)
+eOC = hcp(east)>10 and shape(east, any 6xxx+5xxx - any 65xx-55xx)
 
 # South responds -- a non-forcing hand with a good 5-card or any 6-card suit and 5-11 HCP
 gSS = (
