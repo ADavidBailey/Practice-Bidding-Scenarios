@@ -1,6 +1,8 @@
 # North's opening suit
-nS = (spades(north)>=hearts(north) and spades(north)>4) or (hearts(north)>4) or diamonds(north)>=clubs(north)
-nH = not nS and hearts(north)>4 or diamonds(north)>=clubs(north)
+nS = spades(north)>=hearts(north) and spades(north)>4
+and spades(north)>diamonds(north) and spades(north)>clubs(north)
+nH = not nS and hearts(north)>4 
+and hearts(north)> diamonds(north) hearts(north)>clubs(north)
 nD = not nS and not nH and (diamonds(north)>clubs(north) and diamonds(north)>3)
 nC = not nS and not nH and not nD
 
