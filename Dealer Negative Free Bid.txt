@@ -17,8 +17,8 @@ nRC = nC ? 1 : 0
 northRank = nRS+nRH+nRD+nRC
 
 # East's longest suit
-eS = spades(east)>=hearts(east)>4>=diamonds(east)>=clubs(east)
-eH = not eS and hearts(east)>4>=diamonds(east)>=clubs(east)
+eS = spades(east)>=hearts(east)>=diamonds(east)>=clubs(east)
+eH = not eS and hearts(east)>=diamonds(east)>=clubs(east)
 eD = not eS and not eH and diamonds(east)>=clubs(east)
 eC = not eS and not eH and not eD
 
@@ -29,8 +29,8 @@ eRC = eC ? 1 : 0
 eastRank = eRS+eRH+eRD+eRC
 
 # South's longest suit
-sS = spades(south)>=hearts(south)>4>=diamonds(south)>=clubs(south)
-sH = not sS and hearts(south)>4>=diamonds(south)>=clubs(south)
+sS = spades(south)>=hearts(south)>=diamonds(south)>=clubs(south)
+sH = not sS and hearts(south)>=diamonds(south)>=clubs(south)
 sD = not sS and not sH and diamonds(south)>=clubs(south)
 sC = not sS and not sH and not sD
 
