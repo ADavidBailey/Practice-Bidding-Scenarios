@@ -5,9 +5,9 @@ setDealerCode(
 # Negative Free Bid
 
 # North's opening suit
-nS = spades(north)>=hearts(north)>4>=diamonds(north)>=clubs(north)
-nH = not nS and hearts(north)>4>=diamonds(north)>=clubs(north)
-nD = not nS and not nH and diamonds(north)>clubs(north)==clubs(north)>3       // 4432 will open 1D
+nS = (spades(north)>=hearts(north) and spades(north)>4) or (hearts(north)>4) or diamonds(north)>=clubs(north)
+nH = not nS and hearts(north)>4 or diamonds(north)>=clubs(north)
+nD = not nS and not nH and (diamonds(north)>clubs(north) and diamonds(north)>3)
 nC = not nS and not nH and not nD
 
 nRS = nS ? 4 : 0
@@ -39,7 +39,6 @@ sRH = sH ? 3 : 0
 sRD = sD ? 2 : 0
 sRC = sC ? 1 : 0
 southRank = sRS + sRH + sRD + sRC
-
 # North opens
 northOpens = hcp(north)>11 and hcp(north)<15
 
