@@ -45,13 +45,13 @@ northOpens = hcp(north)>11 and hcp(north)<15
 
 # East overcalls
 gSE = (                 // Good Suit East -- KQ or better
-   top3(east,clubs)>1
+   eC and top3(east,clubs)>1
 or
-   top3(east,diamonds)>1
+   eD and top3(east,diamonds)>1
 or
-   top3(east,hearts)>1
+   eH and top3(east,hearts)>1
 or
-   top3(east,spades)>1
+   eS and top3(east,spades)>1
 )
 
 # Kill east's takeout double and NT
@@ -65,13 +65,13 @@ eastOvercalls = hcp(east)>10 and hcp(east)<15 and eShape and gSE
 
 # South responds -- a non-forcing hand with a good 5-card or any 6-card suit and 5-11 HCP
 gSS = (                 // Good Suit South -- KQJ or better
-   top4(south,clubs)>2
+   sC and top4(south,clubs)>2
 or
-   top4(south,diamonds)>2
+   sD and top4(south,diamonds)>2
 or
-   top4(south,hearts)>2
+   sH and top4(south,hearts)>2
 or
-   top4(south,spades)>2
+   sS and top4(south,spades)>2
 )
 a6 = shape(south, any 7xxx+6xxx -76xx-75xx-66xx-65xx-55xx)  // any 6+
 g5 = gSS and shape(south, any 5xxx -7xxx-6xxx-55xx)         // good 5     
