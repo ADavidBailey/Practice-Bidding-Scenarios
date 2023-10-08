@@ -82,9 +82,9 @@ rankOK = (northRank > eastRank) or (northRank > southRank) or (eastRank > southR
 
 sFit = nS and spades(south)>2        //  eliminate hands where South has support for North's major
 hFit = nH and hearts(south)>2
-noFit = not (sFit or hFit)
+fitOK = not sFit and not hFit
 
-southResponds = noFit and rankOK and (a6g5 or g6) 
+southResponds = fitOK and rankOK and (a6g5 or g6) 
 
 # Now do it
 northOpens and eastOvercalls and southResponds
