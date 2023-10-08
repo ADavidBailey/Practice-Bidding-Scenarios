@@ -54,13 +54,14 @@ or
    top3(east,spades)>1
 )
 
-# Kill east's NT and takeout double
-eSfit = nS and east(spades)==3        // east has 3 or north's opening suit
-eHfit = nH and east(hearts)==3
-eDfit = nD and east(diamonds)==3
-eCfit = nC and east(clubs)==3
-eShape =(eSfit or eHfit or eDfit or eCfit) and shape(east, any 5431+5432+6331)
-eastOvercalls = hcp(east)>9 and eShape and gSE
+# Kill east's takeout double
+eSfit = nS and spades(east)==3        // east has 3 or north's opening suit
+eHfit = nH and hearts(east)==3
+eDfit = nD and diamonds(east)==3
+eCfit = nC and clubs(east)==3
+eShape =(eSfit or eHfit or eDfit or eCfit) and shape(east, any 5332+5431+6331)
+eastOvercalls = hcp(east)>10 and eShape and gSE
+
 
 # South responds -- a non-forcing hand with a good 5-card or any 6-card suit and 5-11 HCP
 gSS = (                 // Good Suit South -- KQJ or better
