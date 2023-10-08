@@ -1,18 +1,18 @@
 # North's opening suit
-nS = spades(north)>=hearts(north)>4>diamonds(north)>clubs(north)
-nH = not nS and hearts(north)>4>diamonds(north)>clubs(north)
-nD = not nS and not nH and diamonds(north)>clubs(north)
+nS = spades(north)>=hearts(north) and spades(north)>4 and spades(north)>diamonds(north) and spades(north)>clubs(north)
+nH = not nS and hearts(north)>4 and hearts(north)>diamonds(north)and hearts(north)>clubs(north)
+nD = not nS and not nH and diamonds(north)>clubs(north) and diamonds(north)>2
 nC = not nS and not nH and not nD
 
 nRS = nS ? 4 : 0
 nRH = nH ? 3 : 0
 nRD = nD ? 2 : 0
 nRC = nC ? 1 : 0
-northRank = nRS+nRH+nRD+nRC
+northRank = nRS+nRH+nRD+nRC   // all except one are zero
 
 # East's longest suit
-eS = spades(east)>=hearts(east)>=diamonds(east)>=clubs(east)
-eH = not eS and hearts(east)>=diamonds(east)>=clubs(east)
+eS = spades(east)>=hearts(east) and spades(east)>=diamonds(east) and spades(east)>=clubs(east)
+eH = not eS and hearts(east)>=diamonds(east) and hearts(east)>=clubs(east)
 eD = not eS and not eH and diamonds(east)>=clubs(east)
 eC = not eS and not eH and not eD
 
@@ -23,8 +23,8 @@ eRC = eC ? 1 : 0
 eastRank = eRS+eRH+eRD+eRC
 
 # South's longest suit
-sS = spades(south)>=hearts(south)>=diamonds(south)>=clubs(south)
-sH = not sS and hearts(south)>=diamonds(south)>=clubs(south)
+sS = spades(south)>=hearts(south) and spades(south)>=diamonds(south) and spades(south)>=clubs(south)
+sH = not sS and hearts(south)>=diamonds(south) and hearts(south) >=clubs(south)
 sD = not sS and not sH and diamonds(south)>=clubs(south)
 sC = not sS and not sH and not sD
 
