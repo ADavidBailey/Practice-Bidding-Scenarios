@@ -7,7 +7,7 @@ setDealerCode(
 # North's opening suit
 nS = spades(north)>=hearts(north)>4>=diamonds(north)>=clubs(north)
 nH = not nS and hearts(north)>4>=diamonds(north)>=clubs(north)
-nD = not nS and not nH and diamonds(north)>=clubs(north)        // 4432 will open 1D
+nD = not nS and not nH and diamonds(north)>clubs(north)==clubs(north)>3       // 4432 will open 1D
 nC = not nS and not nH and not nD
 
 nRS = nS ? 4 : 0
