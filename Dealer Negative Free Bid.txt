@@ -55,11 +55,11 @@ or
 )
 
 # Kill east's takeout double and NT
-eSfit = nS and spades(east)==3        // east has 3 or north's opening suit
-eHfit = nH and hearts(east)==3
-eDfit = nD and diamonds(east)==3
-eCfit = nC and clubs(east)==3
-eShape =(eSfit or eHfit or eDfit or eCfit) and shape(east, any 5332+5431+6331)
+eSfit = nS and spades(east)==2        // east has 2 or north's opening suit
+eHfit = nH and hearts(east)==2
+eDfit = nD and diamonds(east)==2
+eCfit = nC and clubs(east)==2
+eShape = eSfit and eHfit and eDfit and eCfit and shape(east, any 5332+5431+6331)
 eastOvercalls = hcp(east)>10 and hcp(east)<15 and eShape and gSE
 
 
