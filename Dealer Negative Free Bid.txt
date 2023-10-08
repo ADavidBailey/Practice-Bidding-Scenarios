@@ -53,7 +53,14 @@ or
 or
    top3(east,spades)>1
 )
-eastOvercalls = hcp(east)>9 and shape(east, any 6xxx+5xxx -65xx-55xx) and gSE
+
+# Kill the NT and takeout double
+eSfit = nS and east(spades) ==3
+eHfit = nH and east(hearts)==3
+eDfit = nD and east(diamonds)==3
+eCfit = nC and east(clubs)==3
+eShape =(eSfit or eHfit or eDfit or eCfit) and shape(east, any 5431+5432+6331)
+eastOvercalls = hcp(east)>9 and eShape and gSE
 
 # South responds -- a non-forcing hand with a good 5-card or any 6-card suit and 5-11 HCP
 gSS = (                 // Good Suit South -- KQJ or better
