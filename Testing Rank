@@ -1,3 +1,5 @@
+# Negative Free Bid
+
 # North's opening suit
 nS = spades(north)>=hearts(north)>4>diamonds(north)>clubs(north)
 nH = not nS and hearts(north)>4>diamonds(north)>clubs(north)
@@ -33,6 +35,7 @@ sRH = sH ? 3 : 0
 sRD = sD ? 2 : 0
 sRC = sC ? 1 : 0
 southRank = sRS + sRH + sRD + sRC
+
 hcp(north)>12
 and hearts(west) == northRank
 and diamonds(west) == eastRank
