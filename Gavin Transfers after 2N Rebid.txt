@@ -1,0 +1,9 @@
+Script,TransferAfter2NRebid
+setDealerCode(
+`
+
+# Transfers after 2N Rebid
+nO = hcp(north)>17 and hcp(north)<20 and shape(north, any 4333+4432+5334+5422)
+
+# South responds
+sR = hcp(south)>5
