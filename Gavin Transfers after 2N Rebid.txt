@@ -7,3 +7,14 @@ nO = hcp(north)>17 and hcp(north)<20 and shape(north, any 4333+4432+5334+5422)
 
 # South responds
 sR = hcp(south)>5
+
+# Now do it
+nO and sR
+
+`, "N", false);
+Script
+Button,Transfers after 2N Rebid,Transfers after 2N Rebid\n\
+In an uncontested 1x - 1y - 2N，2!C，2!D，2!H，and 2!S are Transfers/Relays.\n\
+They Transfer into a suit that might be weak (such as opener's first suit).\n\
+They Relay to a suit that can't be weak.  Accepting a relay shows support.\n\
+%TransferAfter2NRebid%,width=100%
