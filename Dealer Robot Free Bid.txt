@@ -83,7 +83,7 @@ or
 or
    sS and top4(south,spades)>2
 )
-g6 = gSS and shape(south, any 7xxx+6xxx -76xx-75xx-66xx-65xx-55xx) tp>9 and tp<14
+g6 = gSS and shape(south, any 7xxx+6xxx -76xx-75xx-66xx-65xx-55xx) tp>9 and tp<16
 
 rankOK = (northRank > eastRank) or (northRank > southRank) or (eastRank > southRank)   // eliminate 1-level bids for south
 
@@ -102,5 +102,5 @@ Script
 Button,Robot Free Bid,\n\
 --- Robot Free Bid\n\
 North Opens & East Overcalls and South has no Major suit fit w/North and\n\
-10-13 TP with a good 6-card suit\n\
+10-15 TP with a good 6-card suit\n\
 %RobotFreeBid%
