@@ -73,7 +73,7 @@ eShape = (eSfit or eHfit or eDfit or eCfit) and shape(east, any 5332+5431+6331)
 eastOvercalls = hcp(east)>10 and hcp(east)<15 and eShape and gSE
 
 
-# South responds -- a non-forcing hand with a good 6-card suit and 10-11 HCP
+# South responds -- a non-forcing hand with a good 6-card suit and 10-13 TP
 gSS = (                 // Good Suit South -- KQJ or better
    sC and top4(south,clubs)>2
 or
@@ -83,7 +83,7 @@ or
 or
    sS and top4(south,spades)>2
 )
-g6 = gSS and shape(south, any 7xxx+6xxx -76xx-75xx-66xx-65xx-55xx) tp>9 and tp<12
+g6 = gSS and shape(south, any 7xxx+6xxx -76xx-75xx-66xx-65xx-55xx) tp>9 and tp<14
 
 rankOK = (northRank > eastRank) or (northRank > southRank) or (eastRank > southRank)   // eliminate 1-level bids for south
 
@@ -102,5 +102,5 @@ Script
 Button,Robot Free Bid,\n\
 --- Robot Free Bid\n\
 North Opens & East Overcalls and South has no Major suit fit w/North and\n\
-10-11 TP with a good 5- or any 6-card suit\n\
+10-13 TP with a good 6-card suit\n\
 %RobotFreeBid%
