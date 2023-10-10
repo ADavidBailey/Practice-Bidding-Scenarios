@@ -6,15 +6,15 @@ setDealerCode(
 nO = hcp(north)>17 and hcp(north)<20 and shape(north, any 4333+4432+5332+5422)
 
 # South responds
-sR = hcp(south)>5
+sR = hcp(south)>5 and not shape(south, 4333+4432+5332)
 
 # Now do it
 nO and sR
 
 `, "N", true);
 Script
-Button,Transfers after 2N Rebid,\n\
---- Transfers after 2N Rebid\n\
+Button,Transfers after 2N Rebid UnBal,\n\
+--- Transfers after 2N Rebid Unbalanced\n\
 In an uncontested 1x - 1y - 2N，2!C，2!D，2!H，and 2!S are Transfers/Relays.\n\
 They Transfer into a suit that might be weak (such as opener's first suit).\n\
 They Relay to a suit that can't be weak.  Accepting a relay shows support.\n\
