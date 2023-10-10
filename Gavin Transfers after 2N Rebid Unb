@@ -6,7 +6,7 @@ setDealerCode(
 nO = hcp(north)>17 and hcp(north)<20 and shape(north, any 4333+4432+5332+5422)
 
 # South responds
-sR = hcp(south)>5 and not shape(south, 4333+4432+5332)
+sR = hcp(south)>5 and hcp(south)<13 and not shape(south, 4333+4432+5332)
 
 # Now do it
 nO and sR
