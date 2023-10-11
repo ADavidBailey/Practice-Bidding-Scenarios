@@ -1,5 +1,6 @@
-
-
+Script,Ned2Spade
+setDealerCode(
+`
 # Ned's 2S
 
 # North opens 1N
@@ -9,3 +10,13 @@ nO = hcp(north)>14 and hcp(north)<18 and shape(north, 4333+4432+5332)
 sR = hcp(south)>5 and shape(south, xxx7+xxx6+xx7x+xx6x+xx66+xx65+xx56+xx55+xx54+xx45)
 
 nO and sR
+
+`
+)
+Script
+Button,Ned’s 2 Spade,\n\
+--- Ned’s 2 Spade\n\
+6+ !C or 6+ !D or (!C and !D)\n\
+Opener responds 3!C if !C are longer than !D\n\
+https://rb.gy/kaqcb\n\
+%Ned2Spade%
