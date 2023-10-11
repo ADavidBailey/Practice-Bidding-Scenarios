@@ -10,10 +10,10 @@ nO = hcp(north) >14 and hcp(north)<18 and shape(north, 4333+4432+5332)
 # West passes
 
 # South has 5-4 or better in the minors
-sR = hcp(south)>9 snd shape(south, xx66+xx65+xx56+xx55+xx54+xx45)
+sR = hcp(south)>9 and shape(south, xx66+xx65+xx56+xx55+xx54+xx45)
 
 # Now do it
-No and sR
+nO and sR
 
 `, "N", true);
 Script
