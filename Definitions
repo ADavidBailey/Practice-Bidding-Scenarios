@@ -17,6 +17,11 @@ TwoNT = NT and hcp(south)>19 and hcp(south)<22
 
 GF = hcp(south)>21
 
+# Negative shape that works...
+shape(south, xxxx -any 5332) and shape(south, xxxx -any 4432) and shape(south, xxxx -any 4333)
+
+
+
 OneMajor = (S_ or H_) and not (NT or GF)
 OneMinor = (C_ or D_) and not (NT or GF)
 
