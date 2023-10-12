@@ -20,7 +20,10 @@ GF = hcp(south)>21
 # Negative shape that works...
 shape(south, xxxx -any 5332) and shape(south, xxxx -any 4432) and shape(south, xxxx -any 4333)
 
-
+# Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
+calmEast = shape(east,any 5431+5422+5332+4441+4432+4333)
+calmWest = shape(west,any 5431+5422+5332+4441+4432+4333)
+calmOpps= calmEast and calmWest
 
 OneMajor = (S_ or H_) and not (NT or GF)
 OneMinor = (C_ or D_) and not (NT or GF)
