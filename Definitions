@@ -10,6 +10,7 @@ d2 = shape(south, any 22xx) ? 1 : 0
 d3 = shape(south, any 222x) ? 1 : 0
 tp = v1+v2+s1+s2+d1+d2+d3 + hcp(south)
 
+NT = shape(south, any 4333+4432+5332)
 WeakNT = NT and hcp(south)>11 and hcp(south)<15
 OneNT = NT and hcp(south)>14 and hcp(south)<18
 TwoNT = NT and hcp(south)>19 and hcp(south)<22
@@ -18,8 +19,6 @@ GF = hcp(south)>21
 
 OneMajor = (S_ or H_) and not (NT or GF)
 OneMinor = (C_ or D_) and not (NT or GF)
-
-NT = shape(south, any 4333+4432+5332)
 
 # South's longest suit
 sS = spades(south)>=hearts(south) and spades(south)>4 and diamonds(south)<5 and clubs(south)<5
