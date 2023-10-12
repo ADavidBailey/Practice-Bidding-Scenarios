@@ -2,10 +2,12 @@ Script,MajorSuitFit
 setDealerCode(
 `
 # Major Suit Fit
-((spades(south)>5 and shape(south, xxxx - any 5332) and spades(north)>3)
-or
-(hearts(south)>5 and shape(south, xxxx - any 5332) and hearts(north)>3))
-and hcp(south)>11 and hcp(north)>5
+spadeFit = spades(south)>4 and shape(south, xxxx - any 5332) and spades(north)>2
+heartFit = hearts(south)>4 and shape(south, xxxx - any 5332) and hearts(north)>2
+majorFit = spadeFit or heartFit
+
+majorFit and hcp(south)>11 and hcp(north)>5
+
 `
 )
 Script
