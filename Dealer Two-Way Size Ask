@@ -9,15 +9,18 @@ nO = hcp(north)> 14 and hcp(north)<18 and shape(north, 4333+4432+5332)
 # No major suit interest
 noMajor = spades(south)<4 and hearts(south)<4
 
+# With 5-5 minors weak???
+
 # South asks about size
 cA = shape(south, xxx6+xxx7+xxx8)             // long clubs w/any strength
 dA = shape(south, xx6x+xx7x+xx8x)             // long diamonds w/any strength
-iG = (hcp(south)>7 and hcp(south)<10)         // 8-9 -- invite game
-                                              // 10-15 -- bid game
-iSS = (hcp(south)>15 and hcp(south)<18)       // 16-17 -- invite small slam
-                                              // 18-19 -- bid small slam
-iGS = (hcp(south)>19 and hcp(south)<22)       // 20-21 -- invite grand slam
-                                              // 22+ -- bid grand slam
+iG = (hcp(south)>7 and hcp(south)<10)         // 8-9 ask for 15 and pass 2 or bid 3
+                                              // 10-15  bid 3
+iSS = (hcp(south)>15 and hcp(south)<18)       // 16 ask for 17 and bid 3 or 6
+                                              // 17 ask for 15 and bid 3 or invite 6
+                                              // 18-19 bid 6
+iGS = (hcp(south)>19 and hcp(south)<22)       // 20 ask for 17 and bid 6 or 7
+                                              // 21 ask for 15 and bid 6 invite 7
 
 sA = noMajor and (iG or iSS or iGS or cA or dA)
 
