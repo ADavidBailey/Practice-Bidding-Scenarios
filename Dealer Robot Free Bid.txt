@@ -83,7 +83,8 @@ or
 or
    sS and top4(south,spades)>2
 )
-g6 = gSS and shape(south, any 7xxx+6xxx -76xx-75xx-66xx-65xx-55xx) tp>10 and tp<17
+calm = shape(south, xxxx - any 76xx+75xx+66xx+65xx+55xx)
+g6 = gSS and shape(south, any 7xxx+6xxx) and calm and tp>10 and tp<17
 
 rankOK = (northRank > eastRank) or (northRank > southRank) or (eastRank > southRank)   // eliminate 1-level bids for south
 
