@@ -1,0 +1,36 @@
+Script,TwoSpade17Ask
+setDealerCode(
+`
+
+# Two Spade Size Ask
+# North opens 1N
+nO = hcp(north)> 14 and hcp(north)<18 and shape(north, 4333+4432+5332)
+
+# No major suit interest
+noMajor = spades(south)<4 and hearts(south)<4
+
+# With 5-5 minors - diamond ask then pass 2C
+bothMinors = shape(south, xx55+xx65+xx56+xx66+xx76+xx67) and hcp(south)>8
+
+# South asks about 17
+cA = shape(south, xxx6+xxx7+xxx8)    // long clubs w/any strength
+dA = shape(south, xx6x+xx7x+xx8x)    // long diamonds w/any strength
+b8 = hcp(south)==8                   // with  8 ask for 17 and pass 2N or bid 3N
+b16 = hcp(south)==16                 // with 16 ask for 17 and bid 3N or 6N
+b17 = hcp(south)==17                 // with 17 ask for 17 and bid 4N inv to 6N or 6N
+b20 = hcp(south)==20                 // with 20 ask for 17 and bid 6N or 7N
+b21 = hcp(south)==21                 // with 21 ask for 17 and bid 5N inv to 7N or 7N
+
+sA = bothMinors or (noMajor and (b8 or b16 or b17 or b20 or b21 or cA or dA))
+
+# North opens 1N and south asks for 17
+nO and sA
+
+`, "N", false);
+Script
+Button,2!s 17-Ask or !C,\n\
+--- 2!S 17-Ask or !C\n\
+2!S asks for 17 HCP - !C or balanced\n\
+2N shows !D or both (!C and !D)，bid your longer minor\n\
+https://tinyurl.com/54s4c36a\n\
+%TwoSpade17Ask%
