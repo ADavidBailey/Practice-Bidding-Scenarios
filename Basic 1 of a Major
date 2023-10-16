@@ -1,0 +1,17 @@
+Script,OneMajor
+setDealerCode(
+`
+# What to open
+hcp(south)>11 and hcp(south)<15
+and shape(south, 6xxx+x6xx+5xxx+x5xx+56xx+65xx+55xx)
+and diamonds(south)<5 and clubs(south)<5
+
+`
+)
+Script
+
+Button,One Major,---  1 Notrump Opening\n\
+When considering which suit to open your first choice is 1!H or 1!S.\n\
+A major suit opening bid requires 5 or more cards in that major.\n\
+If you have two major suits open the longer or higher ranking.\n\
+%OneMajor%
