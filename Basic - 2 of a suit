@@ -1,0 +1,16 @@
+Script,OneOfAnySuit
+setDealerCode(
+`
+# What to open -- pick the suit
+hcp(south)>11 and hcp(south)<15
+
+`
+)
+Script
+
+Button,1 of A Suit,---  1 of a Suit\n\
+You always prefer to open in your longest suit.\n\
+So if you have a 6-card !C or !D suit and a 5-card !H or !S suit\n\
+You will usually open in the minor.\n\
+If you have two long suits of equal length open in the higher ranking.\n\
+%OneOfAnySuit%
