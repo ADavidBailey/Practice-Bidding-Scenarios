@@ -1,0 +1,17 @@
+Script,OneMinor
+setDealerCode(
+`
+# What to open 1 Minor
+hcp(south)>11 and hcp(south)<15
+and spades(south)<5 and hearts(south)<5
+
+`
+)
+Script
+
+Button,One Major,---  1 Notrump Opening\n\
+When you don't have a 5+ card major.  You open 1!C or 1!D.\n\
+In general, open your longer minor or higher ranking minor.\n\
+Exception:  You only open 1!D with 3 when your distribution is 4=4=3=2.\n\
+This means exactly 4!S 4!H 3!D and 2!C. So, when you're 3-3 in the minors, open 1C\n\
+%OneMajor%
