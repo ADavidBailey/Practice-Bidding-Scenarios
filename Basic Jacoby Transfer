@@ -1,1 +1,22 @@
+Script,BasicJacoby
+setDealerCode(
+`
+# 1 Notrump Opening
+NT = shape(north, any 4333 + 4432 + 5332) and hcp(north) >=15 && hcp(north)<=17
 
+jacoby = shape(south, 7xxx+6xxx+5xxx+-x7xx+x6xx+x5xx- any 66xx+65xx+55xx)
+
+NT and jacoby
+
+`, "N", false);
+Script
+
+Button,Basic Jacoby Transfer,\n\
+--- A Jacoby Transfer is used to force the NT opener to bid 2!H or 2!S.  The responder bids\n\
+the suit directly below the suit he holds.\n\
+  • 21D - shows 5+!H\n\
+  • 2!H - shows 5+!S\n\
+Since transfers do not promise any points，the 1NT opener MUST accept the transfer (by bidding the suit responder has shown)\n\
+Responder is in charge and opener does as told.\n\ 
+https://www.larryco.com/bridge-articles/jacoby-transfer\n\
+%BasicJacoby%
