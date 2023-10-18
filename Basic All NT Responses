@@ -1,0 +1,14 @@
+Script,AllNTResp
+setDealerCode(
+`
+# 1 Notrump Opening
+NT = shape(north, any 4333 + 4432 + 5332) and hcp(north) >=15 && hcp(north)<=17
+
+NT
+
+`, "N", false);
+Script
+
+Button,All Notrump Responses,\n\
+--- Stayman, Jacoby, or Balanced NT Responses.\n\
+%AllNTResp%
