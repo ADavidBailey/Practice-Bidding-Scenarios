@@ -1,0 +1,22 @@
+Script,BalNTResp
+setDealerCode(
+`
+# 1 Notrump Opening
+NT = shape(north, any 4333 + 4432 + 5332) and hcp(north) >=15 && hcp(north)<=17
+
+notStaymanOrJacoby = shape(south, 33xx+32xx+23xx) and hcp(south)>7
+
+NT and jacoby
+
+`, "N", false);
+Script
+
+Button,Without Sta or Jac\n\
+Without a Stayman or Jacoby response，pass，or raise NT.\n\
+  • 2N - shows 8-9 HCP\n\
+  • 3N - shows 10-1S HCP\n\
+  • 4N - shows 16-17 HCP - invitational to 6\n\
+  • 5N - shows 20-21 HCP - forcing to 6 and invitational to 7\n\
+  • 6N - shows 18-19 HCP -- Slam Try\n\
+  • 7N - shows 22+ HCP -- Grand Slam Try\n\
+%BalNTResp%
