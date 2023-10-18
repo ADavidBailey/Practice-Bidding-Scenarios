@@ -1,0 +1,22 @@
+Script,BasicStayman
+setDealerCode(
+`
+# 1 Notrump Opening
+NT = shape(north, any 4333 + 4432 + 5332) and hcp(north) >=15 && hcp(north)<=17
+
+stayman = shape(south, 54xx+44xx+43xx+34xx) and hcp(south)>7
+dropDeadStayman = shape(south, 4441+4450)
+
+NT and (stayman or dropDeadStayman)
+
+`, "N", false);
+Script
+
+Button,Basic Stayman,\n\
+--- Stayman is used after a notrump bid to look for an 8-card major suit fit. After partner's 1NT opening，2!C asks opener\n\
+if he has a 4-card major. Opener responds as follows:\n\
+  • 21D - No 4-card major\n\
+  • 2!H - 4+!H，may also have 4!S\n\
+  • 2!S - 4+!S and less than 4!H\n\
+https://www.larryco.com/bridge-articles/stayman\n\
+%BasicStayman%
