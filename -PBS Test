@@ -1,5 +1,5 @@
 //BBOalert, Bidding Scenarios
-//BBOalert, Bidding Scenarios - version 1.4
+//BBOalert, Bidding Scenarios - version 1.5
 Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/setDealerCode.js
 Script,onDataLoad,$("#adpanel2 button:lt(3)").hide();
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS.txt
@@ -229,7 +229,7 @@ Option,Practice Table
 Button,Bidding Scenarios (click headers to open/close),,width=100% backgroundColor=lightyellow
 Button,Stay Tuned,,width=33% backgroundColor=lightgreen
 Button,Stay Tuned,,width=33% backgroundColor=lightgreen
-Button,Review current code,%reviewCurrentCode%,width=34% backgroundColor=lightgreen
+Button,Review code,%reviewCurrentCode%,width=34% backgroundColor=lightgreen
 Script,reviewCurrentCode,setDealerCode("");
 
 Button,Basic Bridge,,width=100% backgroundColor=lightblue
