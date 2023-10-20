@@ -1,0 +1,20 @@
+Script,BasicMajorSuitFit
+setDealerCode(
+`
+# Major Suit Fit
+spadeFit = spades(north)>4 and shape(north, xxxx -55xx - any 5332) and spades(south)>2
+heartFit = hearts(north)>4 and shape(north, xxxx -55xx - any 5332) and hearts(south)>2
+majorFit = spadeFit or heartFit
+
+majorFit and hcp(south)>11 and hcp(north)>5
+
+`, "N", false);
+Script
+
+Button,Major Suit Fit,Major Suit Fit\n\
+  • 2M = 6-10 HCP and 3+ card support\n\
+  • 3M = 11-12 HCP and 3+ card support\n\
+  • 4M = 0-7 HCP and 5+ card support\n\
+Check the link below for more information\n\
+https://www.larryco.com/bridge-articles/major-openings-part-1\n\
+%BasicMajorSuitFit%
