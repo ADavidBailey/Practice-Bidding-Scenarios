@@ -15,12 +15,6 @@ bothMinors = shape(south, xx55+xx65+xx56+xx66+xx76+xx67) and hcp(south)>8
 # South asks about 17
 cA = shape(south, xxx6+xxx7+xxx8)    // long clubs w/any strength
 dA = shape(south, xx6x+xx7x+xx8x)    // long diamonds w/any strength
-# b8 = hcp(south)==8                   // with  8 ask for 17 and pass 2N or bid 3N
-# b16 = hcp(south)==16                 // with 16 ask for 17 and bid 3N or 6N
-# b17 = hcp(south)==17                 // with 17 ask for 17 and bid 4N inv to 6N or 6N
-# b20 = hcp(south)==20                 // with 20 ask for 17 and bid 6N or 7N
-# b21 = hcp(south)==21                 // with 21 ask for 17 and bid 5N inv to 7N or 7N
-# sA = bothMinors or (noMajor and (b8 or b16 or b17 or b20 or b21 or cA or dA))
 
 bHCP = (hcp(south)>7 and hcp(south)<10) or (hcp(south)>14 and hcp(south)<23)
 sA = bothMinors or cA or dA or (noMajor and bHCP)
