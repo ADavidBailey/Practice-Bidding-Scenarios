@@ -1,14 +1,16 @@
 Script,Jacoby2N
 setDealerCode(
 `
+
 # Jacoby 2N
+nSemiBal = shape(north, xxxx -any 1xxx+0xxx)
 (
-(shape(south,5xxx+6xxx-x5xx-any 5332) && shape(north,4xxx))
-||
-(shape(south,x5xx+x6xx-5xxx-any 5332) && shape(north,x4xx))
+(shape(south,5xxx+6xxx-x5xx-x6xx) and shape(north,4xxx) and nSemiBal)
+or
+(shape(south,x5xx+x6xx-5xxx-6xxx) and shape(north,x4xx) and nSemiBal)
 )
-&& 
-hcp(south)>11&&hcp(north)>13
+and hcp(south)>11 and hcp(north)>12
+
 `
 )
 Script
