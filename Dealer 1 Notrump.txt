@@ -1,11 +1,26 @@
 Script,Notrump
 setDealerCode(
 `
+# 1 Notrump
+
+gS = spades(south)==5 and top5(south,spades)>2
+gH = hearts(south)==5 and top5(south,hearts)>2
+gD = diamonds(south)==5 and top5(south,diamonds)>2
+gC = clubs(south)==5 and top5(south,clubs)>2
+
+sTP = (gS or gH or gD or gC) ? hcp(south) + 1 : hcp(south)    // +1 if we have a 'good' 5-card suit
+
+shape(south, 4333+4432+5332) and sTP>14 and sTP<18
+
 # 1 Notrump Opening
 shape(south, any 4333 + 4432 + 5332) and
-hcp(south) >=15 && hcp(south)<=17
+hcp(south)>14 and hcp(south)<18
+
 `
 )
 Script
-Button,1 Notrump Opening,---  1 Notrump Opening\n%Notrump%
+Button,1 Notrump Opening,\n\
+---  1 Notrump Opening\n\
+HCP adjusted for a good 5-card suit (3 or the top 5)\n\
+%Notrump%
 
