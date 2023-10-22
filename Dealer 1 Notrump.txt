@@ -3,6 +3,7 @@ setDealerCode(
 `
 # 1 Notrump Opening
 
+# Define good suits
 gS = spades(south)==5 and top5(south,spades)>2
 gH = hearts(south)==5 and top5(south,hearts)>2
 gD = diamonds(south)==5 and top5(south,diamonds)>2
