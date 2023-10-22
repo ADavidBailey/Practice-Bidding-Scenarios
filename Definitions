@@ -10,12 +10,6 @@ d2 = shape(south, any 22xx) ? 1 : 0
 d3 = shape(south, any 222x) ? 1 : 0
 tp = v1+v2+s1+s2+d1+d2+d3 + hcp(south)
 
-NT = shape(south, any 4333+4432+5332)
-WeakNT = NT and hcp(south)>11 and hcp(south)<15
-OneNT = NT and hcp(south)>14 and hcp(south)<18
-TwoNT = NT and hcp(south)>19 and hcp(south)<22
-
-GF = hcp(south)>21
 
 # Negative shape that works...
 shape(south, xxxx -any 5332) and shape(south, xxxx -any 4432) and shape(south, xxxx -any 4333)
@@ -25,22 +19,18 @@ calmEast = shape(east,any 5431+5422+5332+4441+4432+4333)
 calmWest = shape(west,any 5431+5422+5332+4441+4432+4333)
 calmOpps= calmEast and calmWest
 
+
+NT = shape(south, any 4333+4432+5332)
+WeakNT = NT and hcp(south)>10 and hcp(south)<15
+OneNT = NT and hcp(south)>14 and hcp(south)<18
+TwoNT = NT and hcp(south)>19 and hcp(south)<22
+
+GF = hcp(south)>21
+
 OneMajor = (S_ or H_) and not (NT or GF)
 OneMinor = (C_ or D_) and not (NT or GF)
 
-# South's longest suit
-sS = spades(south)>=hearts(south) and spades(south)>4 and diamonds(south)<5 and clubs(south)<5
-sH = hearts(south)>spades(south) and hearts(south)>4 and diamonds(south)<5 and clubs(south)<5
-sD = diamonds(south)>3 and diamonds(south)>=clubs(south) and not (H_ or S_)
-sC = clubs(south)>diamonds(south) and not (H_ or S_)
-
-sRS = sS ? 4 : 0
-sRH = sH ? 3 : 0
-sRD = sD ? 2 : 0
-sRC = sC ? 1 : 0
-southRank = sRS + sRH + sRD + sRC
-
-
+# Tightening up a Free Bid
 
 # North's opening suit
 nS = spades(north)>=hearts(north)>4>=diamonds(north)>=clubs(north)
@@ -54,18 +44,6 @@ nRD = nD ? 2 : 0
 nRC = nC ? 1 : 0
 northRank = nRS+nRH+nRD+nRC
 
-# East's longest suit
-eS = spades(east)>=hearts(east)>4>=diamonds(east)>=clubs(east)
-eH = not eS and hearts(east)>4>=diamonds(east)>=clubs(east)
-eD = not eS and not eH and diamonds(east)>=clubs(east)
-eC = not eS and not eH and not eD
-
-eRS = eS ? 4 : 0
-eRH = eH ? 3 : 0
-eRD = eD ? 2 : 0
-eRC = eC ? 1 : 0
-eastsRank = eRS+eRH+eED+eRC
-
 # South's longest suit
 sS = spades(south)>=hearts(south) and spades(south)>4 and diamonds(south)<5 and clubs(south)<5
 sH = hearts(south)>spades(south) and hearts(south)>4 and diamonds(south)<5 and clubs(south)<5
@@ -78,7 +56,20 @@ sRD = sD ? 2 : 0
 sRC = sC ? 1 : 0
 southRank = sRS + sRH + sRD + sRC
 
-northRank > eastRank > southRank
+# East's longest suit
+eS = spades(east)>=hearts(east)>4>=diamonds(east)>=clubs(east)
+eH = not eS and hearts(east)>4>=diamonds(east)>=clubs(east)
+eD = not eS and not eH and diamonds(east)>=clubs(east)
+eC = not eS and not eH and not eD
+
+eRS = eS ? 4 : 0
+eRH = eH ? 3 : 0
+eRD = eD ? 2 : 0
+eRC = eC ? 1 : 0
+eastsRank = eRS+eRH+eED+eRC
+
+# Requirement for a Free Bid, Negative or Otherwise
+(northRank > eastRank) or (eastRank > southRank)
 
 
 
