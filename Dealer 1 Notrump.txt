@@ -11,7 +11,7 @@ gC = clubs(south)==5 and top5(south,clubs)>2
 
 sTP = (gS or gH or gD or gC) ? hcp(south) + 1 : hcp(south)    // +1 if we have a 'good' 5-card suit
 
-shape(south, 4333+4432+5332) and sTP>14 and sTP<18
+shape(south, any 4333+4432+5332) and sTP>14 and sTP<18
 
 `
 )
