@@ -8,8 +8,10 @@ calmEast = shape(east,any 5431+5422+5332+4441+4432+4333) and hcp(east)<9
 calmWest = shape(west,any 5431+5422+5332+4441+4432+4333) and hcp(west)<9
 calmOpps= calmEast and calmWest
 
-calmOpps and
-hcp(south)>7 and hcp(south)<12 and hcp(north)>11 and hcp(north)<15
+NT = shape(south, 4333+4432+5332)
+
+calmOpps and not NT and
+hcp(south)>7 and hcp(south)<12 and hcp(north)>11 and hcp(north)<20
 and
 (
 (spades(north)>4 and spades(south)>2 and hearts(south)<5)
