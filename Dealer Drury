@@ -1,0 +1,23 @@
+Script,Drury
+setDealerCode(
+`
+# Reverse Drury
+
+# Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
+calmEast = shape(east,any 5431+5422+5332+4441+4432+4333) and hcp(east)<9
+calmWest = shape(west,any 5431+5422+5332+4441+4432+4333) and hcp(west)<9
+calmOpps= calmEast and calmWest
+
+calmOpps and
+hcp(south)>7 and hcp(south)<12 and hcp(north)>11 and hcp(north)<15
+and
+(
+(spades(north)>4 and spades(south)>2 and hearts(south)<5)
+or
+(hearts(north)>4 and hearts(south)>2 and spades(north)<5)
+)
+
+`)
+Script
+Button,Drury,Drury\n\
+%Drury%
