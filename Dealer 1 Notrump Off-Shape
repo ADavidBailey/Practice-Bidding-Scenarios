@@ -23,18 +23,18 @@ tC = clubs(south)==2 and top2(south,clubs)==1
 
 sTP = (gS or gH or gD or gC) ? hcp(south) + 1 : hcp(south)    // +1 if we have a 'good' 5-card suit
 
-s5422 = and (tS or tH or tD or tC)     // at least one doubleton honor
+s4522 = shape(south, 4522) and (tS or tH or tD or tC)     // at least one doubleton honor
 
 sxxx1 = shape(south, 3451+4351+3415+4315 + any 4441) and (oS or oH or oD or oC)     // one singleton honor
 
-(s5422 or sxxx1) and sTP>14 and sTP<18
+(s4522 or sxxx1) and sTP>14 and sTP<18
 
 `
 )
 Script
 Button,1 Notrump Off-Shape,\n\
 ---  1 Notrump Off-Shape Opening\n\
-  • 5422 with at least 1 doubleton honor\n\
-  • 4441 or 5431 with a singleton A，K，or Q\n\
+  • 4522 with at least 1 doubleton honor\n\
+  • 3451, 4351, 3415, 4315, or any 4441 with a singleton A，K，or Q\n\
 HCP adjusted for 'good' 5-card suit (3 or the top 5)\n\
 %NotrumpOffShape%
