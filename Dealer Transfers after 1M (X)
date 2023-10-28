@@ -3,12 +3,17 @@ setDealerCode(
 `
 # Major Suit Opener
 
-((spades(south)>4) or (hearts(south)>4))
-and shape(south,xxxx - any 5332) and hcp(south)>11 and hcp(south)<23
+NT = shape(south, any 4333+4432+5332) and hcp(south)>14 and hcp(south)<18
+S_ = spades(south)>4 and spades(south)>=diamonds(south) and spades(south)>=clubs(south)
+H_ = hearts(south)>4 and hearts(south)>=diamonds(south) and hearts(south)>=clubs(south)
 
-hcp(south)>11 and hcp(south)<15
-and shape(south, 6xxx+x6xx+5xxx+x5xx+56xx+65xx+55xx)
-and diamonds(south)<5 and clubs(south)<5
+oneS = S_ and hcp(south)>11 and hcp(south)<20 and not NT
+oneH = H_ and hcp(south)>11 and hcp(south)<20 and not NT
+
+XoneS = hcp(west)>11 and shape(west, 04xx+14xx+24xx) 
+XoneH = hcp(west)>11 and shape(west, 40xx+41xx+42xx)
+
+(oneS and XoneS) or (oneH and XoneH)
 
 `
 )
