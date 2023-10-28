@@ -1,6 +1,15 @@
+Script,XferAfter1MajorX
+setDealerCode(
+`
+# Major Suit Opener
 
-# 1 Major Opening
+((spades(south)>4) or (hearts(south)>4))
+and shape(south,xxxx - any 5332) and hcp(south)>11 and hcp(south)<23
 
-# Opps Takeout Double
 
-#
+
+`
+)
+Script
+Button,Xfer after 1M (X),Transfer after 1M (X)\n\
+%XferAfter1MajorX%
