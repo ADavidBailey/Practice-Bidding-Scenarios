@@ -13,8 +13,8 @@ oneH = H_ and hcp(north)>11 and hcp(north)<20 and not NT
 
 # East makes a takeout double
 
-XoneS = hcp(east)>11 and shape(east, 04xx+14xx+24xx) 
-XoneH = hcp(east)>11 and shape(east, 40xx+41xx+42xx)
+XoneS = hcp(east)>11 and shape(east, 0445+14xx+24xx -any 7xxx -any 6xxx) 
+XoneH = hcp(east)>11 and shape(east, 40xx+41xx+42xx -any 7xxx -any 6xxx)
 
 (oneS and XoneS) or (oneH and XoneH)
 
