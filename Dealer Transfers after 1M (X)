@@ -1,17 +1,20 @@
 Script,XferAfter1MajorX
 setDealerCode(
 `
-# Major Suit Opener
 
-NT = shape(south, any 4333+4432+5332) and hcp(south)>14 and hcp(south)<18
-S_ = spades(south)>4 and spades(south)>=diamonds(south) and spades(south)>=clubs(south)
-H_ = hearts(south)>4 and hearts(south)>=diamonds(south) and hearts(south)>=clubs(south)
+# North opens 1 Major
 
-oneS = S_ and hcp(south)>11 and hcp(south)<20 and not NT
-oneH = H_ and hcp(south)>11 and hcp(south)<20 and not NT
+NT = shape(north, any 4333+4432+5332) and hcp(north)>14 and hcp(north)<18
+S_ = spades(north)>4 and spades(north)>=diamonds(north) and spades(north)>=clubs(north)
+H_ = hearts(north)>4 and hearts(north)>=diamonds(north) and hearts(north)>=clubs(north)
 
-XoneS = hcp(west)>11 and shape(west, 04xx+14xx+24xx) 
-XoneH = hcp(west)>11 and shape(west, 40xx+41xx+42xx)
+oneS = S_ and hcp(north)>11 and hcp(north)<20 and not NT
+oneH = H_ and hcp(north)>11 and hcp(north)<20 and not NT
+
+# East makes a takeout double
+
+XoneS = hcp(east)>11 and shape(east, 04xx+14xx+24xx) 
+XoneH = hcp(east)>11 and shape(east, 40xx+41xx+42xx)
 
 (oneS and XoneS) or (oneH and XoneH)
 
