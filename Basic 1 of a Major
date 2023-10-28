@@ -10,7 +10,7 @@ H_ = hearts(south)>4 and hearts(south)>=diamonds(south) and hearts(south)>=clubs
 oneS = S_ and hcp(south)>11 and hcp(south)<20 and not NT
 oneH = H_ and hcp(south)>11 and hcp(south)<20 and not NT
 
-oneS or 1H
+oneS or oneH
 
 `, "S", false);
 Script
