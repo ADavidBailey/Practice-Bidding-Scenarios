@@ -1,10 +1,18 @@
 Script,MajorOpener
 setDealerCode(
 `
-# Major Suit Opener
 
-((spades(south)>4) or (hearts(south)>4))
-and shape(south,xxxx - any 5332) and hcp(south)>11 and hcp(south)<23
+# South opens 1 Major
+
+NT = shape(south, any 4333+4432+5332) and hcp(south)>14 and hcp(south)<18
+S_ = spades(south)>4 and spades(south)>=diamonds(south) and spades(south)>=clubs(south)
+H_ = hearts(south)>4 and hearts(south)>=diamonds(south) and hearts(south)>=clubs(south)
+
+oneS = S_ and hcp(south)>11 and hcp(south)<20 and not NT
+oneH = H_ and hcp(south)>11 and hcp(south)<20 and not NT
+
+oneS or 1H
+
 `
 )
 Script
