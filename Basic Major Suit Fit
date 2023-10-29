@@ -1,10 +1,16 @@
 Script,BasicMajorSuitFit
 setDealerCode(
 `
-# Major Suit Fit
-spadeFit = spades(north)>4 and shape(north, xxxx -55xx - any 5332) and spades(south)>2
-heartFit = hearts(north)>4 and shape(north, xxxx -55xx - any 5332) and hearts(south)>2
-majorFit = spadeFit or heartFit
+# North opens 1 Major and South has a fit
+
+NT = shape(north, any 4333+4432+5332) and hcp(north)>14 and hcp(north)<18
+S_ = spades(north)>4 and spades(north)>=diamonds(north) and spades(north)>=clubs(north)
+H_ = hearts(north)>4 and hearts(north)>=diamonds(north) and hearts(north)>=clubs(north)
+
+oneSfit = S_ and hcp(north)>11 and hcp(north)<20 and not NT and spades(south)>2
+oneHfit = H_ and hcp(north)>11 and hcp(north)<20 and not NT and hearts(south)>2
+
+majorFit = oneSfit or oneHfit
 
 majorFit and hcp(north)>11 and hcp(south)>5 and hcp(south)<12
 
