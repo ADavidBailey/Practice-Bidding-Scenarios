@@ -4,10 +4,10 @@ setDealerCode(
 # 1 Notrump Opening
 
 # Define good suits
-gS = spades(south)==5 and top5(south,spades)>2
-gH = hearts(south)==5 and top5(south,hearts)>2
-gD = diamonds(south)==5 and top5(south,diamonds)>2
-gC = clubs(south)==5 and top5(south,clubs)>2
+gS = spades(south)==5 and top5(south,spades)==2 and hascard(south,9S)
+gH = hearts(south)==5 and top5(south,hearts)==2 and hascard(south,9H)
+gD = diamonds(south)==5 and top5(south,diamonds)==2 and hascard(south,9D)
+gC = clubs(south)==5 and top5(south,clubs)==2 and hascard(south,9C)
 
 sTP = (gS or gH or gD or gC) ? hcp(south) + 1 : hcp(south)    // +1 if we have a 'good' 5-card suit
 
