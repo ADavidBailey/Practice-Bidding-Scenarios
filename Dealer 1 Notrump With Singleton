@@ -9,7 +9,7 @@ oH = hearts(south)==1 and top3(south,hearts)==1
 oD = diamonds(south)==1 and top3(south,diamonds)==1
 oC = clubs(south)==1 and top3(south,clubs)==1
 
-sTP = shape(south, any 5431) ? hcp(south) + 1 : hcp(south)    // +1 if we have a 'good' 5-card suit
+sTP = shape(south, any 5431) ? hcp(south) + 1 : hcp(south)    // +1 if we have a 5-card suit
 
 sxxx1 = shape(south, any 5431+4441) and (oS or oH or oD or oC)     // one singleton honor
 
@@ -18,8 +18,8 @@ sxxx1 and sTP>14 and sTP<18
 `
 )
 Script
-Button,1 Notrump Off-Shape,\n\
----  1 Notrump Off-Shape Opening\n\
-South has any 5431+4441 with a singleton A，K，or Q.\n\
+Button,1 Notrump w/Singleton,\n\
+---  1 Notrump With Singleton\n\
+South has (any 5431 or any 4441) with a singleton A，K，or Q.\n\
 HCP adjusted +1 for 5-card suit.\n\
 %NotrumpWith1%
