@@ -1,13 +1,7 @@
-Script,NotrumpOffShape
+Script,NotrumpWith1
 setDealerCode(
 `
 # 1 Notrump Off-Shape
-
-# good suits
-gS = spades(south)==5 and top5(south,spades)>2        // QJT or better  
-gH = hearts(south)==5 and top5(south,hearts)>2
-gD = diamonds(south)==5 and top5(south,diamonds)>2
-gC = clubs(south)==5 and top5(south,clubs)>2
 
 # Singleton A, K or Q
 oS = spades(south)==1 and top3(south,spades)==1
@@ -15,26 +9,17 @@ oH = hearts(south)==1 and top3(south,hearts)==1
 oD = diamonds(south)==1 and top3(south,diamonds)==1
 oC = clubs(south)==1 and top3(south,clubs)==1
 
-# Doubleton Ax or Kx
-tS = spades(south)==2 and top2(south,spades)==1
-tH = hearts(south)==2 and top2(south,hearts)==1
-tD = diamonds(south)==2 and top2(south,diamonds)==1
-tC = clubs(south)==2 and top2(south,clubs)==1
+sTP = shape(south, any 5431) ? hcp(south) + 1 : hcp(south)    // +1 if we have a 'good' 5-card suit
 
-sTP = (gS or gH or gD or gC) ? hcp(south) + 1 : hcp(south)    // +1 if we have a 'good' 5-card suit
+sxxx1 = shape(south, any 5431+4441) and (oS or oH or oD or oC)     // one singleton honor
 
-s4522 = shape(south, 4522) and (tS or tH or tD or tC)     // at least one doubleton honor
-
-sxxx1 = shape(south, 3451+4351+3415+4315 + any 4441) and (oS or oH or oD or oC)     // one singleton honor
-
-(s4522 or sxxx1) and sTP>14 and sTP<18
+sxxx1 and sTP>14 and sTP<18
 
 `
 )
 Script
 Button,1 Notrump Off-Shape,\n\
 ---  1 Notrump Off-Shape Opening\n\
-  • 4522 with at least 1 doubleton honor\n\
-  • 3451，4351，3415，4315，or any 4441 with a singleton A，K，or Q\n\
-HCP adjusted for 'good' 5-card suit (3 or the top 5)\n\
-%NotrumpOffShape%
+South has any 5431+4441 with a singleton A，K，or Q.\n\
+HCP adjusted +1 for 5-card suit.\n\
+%NotrumpWith1%
