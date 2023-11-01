@@ -11,7 +11,7 @@ oC = clubs(south)==1 and top3(south,clubs)==1
 
 sTP = shape(south, any 5431) ? hcp(south) + 1 : hcp(south)    // +1 if we have a 5-card suit
 
-sxxx1 = shape(south, any 5431+4441) and (oS or oH or oD or oC)     // one singleton honor
+sxxx1 = shape(south, 3451+4351+3415+4315 any 4441) and (oS or oH or oD or oC)     // one singleton honor
 
 sxxx1 and sTP>14 and sTP<18
 
