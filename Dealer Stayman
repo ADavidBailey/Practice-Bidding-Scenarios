@@ -1,0 +1,27 @@
+ Script,Stayman
+setDealerCode(
+`
+# 1 Notrump Opening
+NT = shape(north, any 4333 + 4432 + 5332) and hcp(north) >=15 && hcp(north)<=17
+
+stayman = shape(south, 54xx+45xx+44xx+43xx+34xx) and hcp(south)>7
+dropDeadStayman = shape(south, 4441+4450) and hcp(south)<8
+crawlingStayman = shape(south, 4432+4423) and hcp(south)<8
+spadeInvite = shape(south, 5xxx - any 55xx - any 54xx - any 56xx) and hcp(south)>7 and hcp(south)<10
+
+NT and (stayman or dropDeadStayman or crawlingStayman or spadeInvite)
+
+`, "N", false);
+Script
+
+Button,Stayman,\n\
+--- Stayman is used after a notrump bid to look for an 8-card major suit fit or show an invite with 5!S.\n\
+After partner's 1NT opening，2!C asks for a 4-card major. Opener responds as follows:\n\
+  • 2!D - No 4-card major\n\
+  • 2!H - 4+!H，may also have 4!S\n\
+  • 2!S - 4+!S and less than 4!H\n\
+A Stayman 2!C bid normally shows 8+ points; but if the responder is prepared to pass any response，\n\
+(drop dead stayman) or correct 2!D to 2!H showing 4!H AND 4!S (Crawling Stayman)，then responder may have 0 points.\n\
+Correcting 2!D or 2!H to 2!S shows an invitational hand (8 or 9 HCP) with 5!S.\n\
+https://docs.google.com/document/d/e/2PACX-1vTDYJl5WGV_3j5TbdAaYdQOE3O8CVFj1KpBYH8U32zsG7ySAEKWItjpON_nS1JLj5ddiXCfaZ0_gloo/pub\n\
+%Stayman%
