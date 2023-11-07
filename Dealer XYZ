@@ -4,15 +4,13 @@ setDealerCode(
 
 # Dealer Opens 1C, 1D, or 1H
 hFit = hearts(south)>4 and hearts(north)>2
-sFit = spades(south)>4 and spades(south)>2
-majorFit = hFit or sFit
 
-shape(south, any 4333+4432) and not majorFit
+shape(south, any 5332+4333+4432 - 5xxx) and not hFit
 and hcp(south)>11 and hcp(south)<15
 and shape(north,any 6322+5332+4333+4432)
 and hcp(north)>5
 
-`);
+`,"S",true);
 Script
 Button,XYZ,\n\
 ---  XYZ.  After 1X，1Y，1Z，responder may bid\n\
