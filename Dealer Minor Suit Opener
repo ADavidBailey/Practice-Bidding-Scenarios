@@ -5,7 +5,7 @@ setDealerCode(
 notNT = hcp(south)>11 and hcp(south)<15 or hcp(south)>17 and hcp(south)>18 and hcp(south)<20 or hcp(south)>19 and hcp(south)<22)
 notMajor = spades(south)<5 and hearts(south)<5
 hcpRange = hcp(south)>11 and hcp(south)<22
-hcpRange and notNT and not Major
+hcpRange and notNT and notMajor
 
 `, "S", true);
 Script
