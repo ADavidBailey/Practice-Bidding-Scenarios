@@ -1,12 +1,32 @@
 Script,XYZ
 setDealerCode(
 `
+# Open 1C and rebid...
+oneCrHorSorN = spades(south)<5 and hearts(south)<4 and clubs(south)>diamonds(south)
+oneCrSorN = spades(south)<5 and hearts(south)<4 and clubs(south)>diamonds(south)
+oneCrN = spades(south)<4 and hearts(south)<4 and clubs(south)>diamonds(south)
 
-# Dealer Opens 1C, 1D, or 1H
+# Open 1D and rebid...
+oneDrSorN = spades(south)<5 and hearts(south)<4 and clubs(south)<diamonds(south)
+oneDrN = spades(south)<4 and hearts(south)<4 and clubs(south)<diamonds(south)
 
-shape(south, 4xxx-x6xx-x5xx-x4xx)
+# Open 1H and rebid 1N
+oneHrN = spades(south)<4 and hearts(south)>4
+
+# Responses
+oneDn = spades(north)<4 and hearts(north)<4 and diamonds(north)>3
+oneHn = spades(north)<5 and hearts(north)==4 and diamonds(north)<4
+oneSn = spades(north)>3
+
+c1 = oneCrHorSorN and oneDn
+c2 = oneCrSorN and oneHn
+c3 = oneCrN and oneSn
+c4 = oneDrSorN and oneHn
+c5 = oneDrN and oneSn
+c6 = oneHrN and oneSn
+
+(c1 or c2 or c3 or c4 or c5 or c6)
 and hcp(south)>11 and hcp(south)<15
-and shape(north,any 6322+5332+4333+4432 - 6xxx-5xxx-4xxx-x6xx)
 and hcp(north)>5 and hcp(north)<12
 and hcp(east)<10 and hcp(west)<10
 and shape(east, xxxx -any 8xxx -any 7xxx -any 6xxx) and shape(west, xxxx -any 8xxx -any 7xxx -any 6xxx)
