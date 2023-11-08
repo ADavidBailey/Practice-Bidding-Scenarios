@@ -12,14 +12,12 @@ shape(south,any 4333+4432+5332) and
 hcp(south)>14 and hcp(south)<18 and
 (
 # North has 5 or 6 Spades
-shape(north,6xxx+5xxx -any 66xx+65xx+55xx) and
-hearts(east)>6 and Gh
+shape(north,6xxx+5xxx -any 66xx+65xx+55xx) and Gh
 )
 or
 (
 # North has 5 or 6 Hearts
-shape(north,x6xx+x5xx -any 66xx+65xx+55xx) and
-diamonds(east)>6 and Gd
+shape(north,x6xx+x5xx -any 66xx+65xx+55xx) and Gd
 )
 and
 # repeating myself -- if I leave out either, it doesn’t work
