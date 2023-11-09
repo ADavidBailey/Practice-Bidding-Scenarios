@@ -1,0 +1,36 @@
+Script,BergenThrumpX
+setDealerCode(
+`
+
+# Opponents preempt our Major
+
+# Preemptive Suits East without control by South
+PSE = spades(east)>6 and top4(east,spades)==2 and top3(south, spades)==0 and spades(south)>1
+PHE = hearts(east)>6 and top4(east,hearts)==2 and top3(south, hearts)==0 and hearts(south)>1
+PDE = diamonds(east)>6 and top4(east,diamonds)==2 and top3(south, diamonds)==0 and diamonds(south)>1
+PCE = clubs(east)>6 and top4(east,clubs)==2 and top3(south, clubs)==0 and clubs(south)>1
+
+sFit = spades(north)>4 and spades(south)>2
+hFit = hearts(north)>4 and hearts(south)>2
+sNoFit = spades(north)>4 and spades(south)<3
+hNoFit = hearts(north)>4 and hearts(south)<3
+
+nOpens = hcp(north)>11 and hcp(north)<15
+
+ePreempts = (PCE or PDE or PHE or PSE) and hcp(east)>5 and hcp(east)<10
+
+sFitWith14Plus = (sFit or hFit) and hcp(south)>13
+
+sNoFitWith10Plus = (sNoFit or hNoFit) and hcp(south)>9
+
+nOpens and ePreempts and (sFitWith14Plus or sNoFitWith10Plus)
+
+`
+, "N", false);
+Script
+Button,Opps Preempt/Thrump X,\n\
+--- Opps Preempt/Bergen Thrump X\n\
+North open 1!H or 1!S，East Preempts，and South has no stop in East's suit and\n\
+  • 10+ HCP without support for North's suit\n\
+by special request from Sten Mullervig.\n\
+%BergenThrumpX%
