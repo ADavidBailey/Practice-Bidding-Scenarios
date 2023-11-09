@@ -19,11 +19,9 @@ nOpens = hcp(north)>11 and hcp(north)<15
 
 ePreempts = (PCE or PDE or PHE or PSE) and hcp(east)>5 and hcp(east)<10
 
-sFitWith14Plus = (sFit or hFit) and hcp(south)>13
-
 sNoFitWith10Plus = (sNoFit or hNoFit) and hcp(south)>9
 
-nOpens and ePreempts and (sFitWith14Plus or sNoFitWith10Plus)
+nOpens and ePreempts and sNoFitWith10Plus
 
 `
 , "N", false);
