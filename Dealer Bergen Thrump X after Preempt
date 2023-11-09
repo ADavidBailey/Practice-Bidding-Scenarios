@@ -10,8 +10,6 @@ PHE = hearts(east)>6 and top4(east,hearts)==2 and top3(south, hearts)==0 and hea
 PDE = diamonds(east)>6 and top4(east,diamonds)==2 and top3(south, diamonds)==0 and diamonds(south)>1
 PCE = clubs(east)>6 and top4(east,clubs)==2 and top3(south, clubs)==0 and clubs(south)>1
 
-sFit = spades(north)>4 and spades(south)>2
-hFit = hearts(north)>4 and hearts(south)>2
 sNoFit = spades(north)>4 and spades(south)<3
 hNoFit = hearts(north)>4 and hearts(south)<3
 
@@ -19,9 +17,9 @@ nOpens = hcp(north)>11 and hcp(north)<15
 
 ePreempts = (PCE or PDE or PHE or PSE) and hcp(east)>5 and hcp(east)<10
 
-sNoFitWith10Plus = (sNoFit or hNoFit) and hcp(south)>9
+NoFitWith10Plus = (sNoFit or hNoFit) and hcp(south)>9
 
-nOpens and ePreempts and sNoFitWith10Plus
+nOpens and ePreempts and NoFitWith10Plus
 
 `
 , "N", false);
