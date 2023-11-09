@@ -1,3 +1,7 @@
+Script,OppsPreemptOurMajor
+setDealerCode(
+`
+
 # Opponents preempt our Major
 
 # Preemptive Suits East without control by South
@@ -11,7 +15,6 @@ hFit = hearts(north)>4 and hearts(south)>2
 sNoFit = spades(north)>4 and spades(south)<3
 hNoFit = hearts(north)>4 and hearts(south)<3
 
-
 nOpens = hcp(north)>11 and hcp(north)<15
 
 ePreempts = (PCE or PDE or PHE or PSE) and hcp(east)>5 and hcp(east)<10
@@ -21,3 +24,8 @@ sFitWith14Plus = (sFit or hFit) and hcp(south)>13
 sNoFitWith10Plus = (sNoFit or hNoFit) and hcp(south)>9
 
 nOpens and ePreempts and (sFitWith14Plus or sNoFitWith10Plus)
+
+`
+, "N", false);
+Script
+Button,Opps Preempt Our Major,Opps Preempt Our Major\n%OppsPreemptOurMajor%
