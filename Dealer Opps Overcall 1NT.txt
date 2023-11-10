@@ -1,7 +1,11 @@
 Script,OppsOvercall1NT
 setDealerCode(
 `
-# Opponents Overcall 1NT
+# West has a stop in South's opening suit
+sS = spades(south)>=hearts(south)>4>=diamonds(south)>=clubs(south) and top2(west,spades)==1
+sH = not sS and hearts(south)>4>=diamonds(south)>=clubs(south) and top2(west,hearts)==1
+sD = not sS and not sH and diamonds(south)>=clubs(south) and top2(west,diamonds)==1
+sC = not sS and not sH and not sD and top2(west,clubs)==1
 
 # South opens
 hcp(south)>11 and hcp(south)<15 and
