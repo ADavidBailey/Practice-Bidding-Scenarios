@@ -3,12 +3,14 @@ setDealerCode(
 `
 # Opps Weak Two Bid
 hcp(east)>5 and hcp(east)<11
-and 
+and
+(
 (hcp(east,spades) >= hcp(east)/2 and hascard(east,TS) and hascard(east,9S) and spades(east)==6 and hearts(east)<4) 
 or
 (hcp(east,hearts) >= hcp(east)/2 and hascard(east,TH) and hascard(east,9H) and hearts(east)==6 and spades(east)<4)
 or
 (hcp(east,diamonds) >= hcp(east)/2 and hascard(east,TD) and hascard(east,9D) and diamonds(east)==6 and spades(east)<4 and hearts(east)<4)
+)
 
 `
 ,"E",true)
