@@ -4,12 +4,14 @@ setDealerCode(
 
 # Weak Two Bids
 hcp(south)>5 and hcp(south)<11
-and 
+and
+(
 (hcp(south,spades) >= hcp(south)/2 and hascard(south,TS) and hascard(south,9S) and spades(south)==6 and hearts(south)<4) 
 or
 (hcp(south,hearts) >= hcp(south)/2 and hascard(south,TH) and hascard(south,9H) and hearts(south)==6 and spades(south)<4)
 or
 (hcp(south,diamonds) >= hcp(south)/2 and hascard(south,TD) and hascard(south,9D) and diamonds(south)==6 and spades(south)<4 and hearts(south)<4)
+)
 
 `
 )
