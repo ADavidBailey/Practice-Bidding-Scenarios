@@ -1,19 +1,16 @@
 Script,WeakTwoBids
 setDealerCode(
 `
+
 # Weak Two Bids
-(
-(hcp(south)>5 and hcp(south)<10) and hcp(south, spades) >= hcp(south)/2
-and
-(
-(top3(south,spades)>1 and (spades(south)==6 and hearts(south)<4)) 
+hcp(south)>5 and hcp(south)<11
+and 
+(hcp(south,spades) >= hcp(south)/2 and hascard(south,TS) and hascard(south,9S) and spades(south)==6 and hearts(south)<4) 
 or
-(top3(south,hearts)>1 and (hearts(south)==6 and spades(south)<4))
+(hcp(south,hearts) >= hcp(south)/2 and hascard(south,TH) and hascard(south,9H) and hearts(south)==6 and spades(south)<4)
 or
-(top3(south,diamonds)>1 and (diamonds(south)==6 and hearts(south)<4 and spades(south)<4))
-)
-)
-and hcp(north) > 9
+(hcp(south,diamonds) >= hcp(south)/2 and hascard(south,TD) and hascard(south,9D) and diamonds(south)==6 and spades(south)<4 and hearts(south)<4)
+
 `
 )
 Script
