@@ -6,7 +6,7 @@ setDealerCode(
 w2S = hcp(east,spades) >= hcp(east)/2 and hascard(east,TS) and hascard(east,9S) and spades(east)==6 and hearts(east)<4 and spades(south)<3 and spades(west)<3
 w2H = hcp(east,hearts) >= hcp(east)/2 and hascard(east,TH) and hascard(east,9H) and hearts(east)==6 and spades(east)<4 and hearts(south)<3 and hearts(west)<3
 w2D = hcp(east,diamonds) >= hcp(east)/2 and hascard(east,TD) and hascard(east,9D) and diamonds(east)==6 and spades(east)<4 and hearts(east)<4 and diamonds(south)<3 and diamonds(west)<3
-eOpensWeak2 = (w2S or w2H or w2D) and hcp(east)>5 and hcp(east)<11
+eOpensWeak2 = (w2S or w2H or w2D) and hcp(east)>5 and hcp(east)<11 and shape(east,any 6430+6421+6331+6322)
 
 # Define South Double
 sDouble = hcp(south)>12 and hcp(south)<16 and shape(south, any 5431+4441+4432)
