@@ -1,10 +1,15 @@
 Script,MinorOpener
 setDealerCode(
 `
-# What to open 1 Minor
-notNT = hcp(south)>11 and hcp(south)<15 or hcp(south)>17 and hcp(south)>18 and hcp(south)<20 or hcp(south)>19 and hcp(south)<22)
+# Open 1 or a Minor
+
+ntShape = shape(south, any 4333+4432+5332)
+oneNT = ntShape and hcp(south)>14 and hcp(south)<18
+twoNT = ntShape and hcp(south)>19 and hcp(south)<22
+notNT = not (oneNT or twoNT)
 notMajor = spades(south)<5 and hearts(south)<5
 hcpRange = hcp(south)>11 and hcp(south)<22
+
 hcpRange and notNT and notMajor
 
 `, "S", true);
