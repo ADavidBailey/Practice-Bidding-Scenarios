@@ -4,10 +4,7 @@ setDealerCode(
 # Spiral Raises (All Flavors
 
 # Define minimum minor opening
-minorOpening=
-hcp(south)>11 and hcp(south)<15
-and spades(south)<5
-and hearts(south)<5
+minorOpening = hcp(south)>11 and hcp(south)<15 and spades(south)<5 and hearts(south)<5
 
 # Define Shapley 3-card major any 3-card support with a doubleton, singleton, or void
 s3s = shape(south, 3xxx-x5xx + any 5332+5431) and shape(north, any 32xx+31xx+30xx)
@@ -21,7 +18,7 @@ MajorFit = SpadeFit or HeartFit
 # Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
 calmEast = shape(east,any 5431+5422+5332+4441+4432+4333) and hcp(east)<9
 calmWest = shape(west,any 5431+5422+5332+4441+4432+4333) and hcp(west)<9
-calmOpps= calmEast and calmWest
+calmOpps = calmEast and calmWest
 
 # Define northInvites
 northInvites = hcp(north)>9 and hcp(north)<13
