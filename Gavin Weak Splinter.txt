@@ -6,7 +6,7 @@ setDealerCode(
 # Defining Major Fit
 SpadeFit = ((spades(north)>4 and hearts(north)<5) and spades(south)==4)
 HeartFit = ((hearts(north)>4 and spades(north)<5) and hearts(south)==4)
-MajorFit =(SpadeFit or HeartFit)
+MajorFit = (SpadeFit or HeartFit)
 
 hcp(north)>10 and hcp(north)<15 and
 MajorFit and
