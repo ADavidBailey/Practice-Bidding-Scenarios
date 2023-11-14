@@ -22,8 +22,7 @@ MajorFit = (SpadeFit or HeartFit)
 nO = hcp(north)>17 and hcp(north)<20 and shape(north, any 4333+4432+5332+5422)
 
 # South responds
-sR = (MajorFit  and tp>4 and tp<8) or (hcp(south)>5 and hcp(south)<7)
-and shape(south, any 41xx+40xx+31xx+30xx+22xx+21xx+20xx)
+sR = (MajorFit  and tp>4 and tp<8) or (hcp(south)>5 and hcp(south)<7) and shape(south, any 41xx+40xx+31xx+30xx+22xx+21xx+20xx)
 
 # Now do it
 nO and sR
