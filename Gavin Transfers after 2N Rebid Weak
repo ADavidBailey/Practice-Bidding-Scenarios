@@ -17,7 +17,7 @@ tp = v1+v2+s1+s2+d1+d2+d3 + hcp(south)
 # Defining Major Fit
 SpadeFit = ((spades(north)>4 and hearts(north)<5) and spades(south)==3)
 HeartFit = ((hearts(north)>4 and spades(north)<5) and hearts(south)==3)
-MajorFit =(SpadeFit or HeartFit)
+MajorFit = (SpadeFit or HeartFit)
 
 nO = hcp(north)>17 and hcp(north)<20 and shape(north, any 4333+4432+5332+5422)
 
