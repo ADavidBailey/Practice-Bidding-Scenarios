@@ -14,7 +14,7 @@ akC = top2(south,clubs)>0 and clubs(south)>1
 Gs = spades(south)>6 and top5(south,spades)>3 and (akH or akD or akC)
 Gh = hearts(south)>6 and top5(south,hearts)>3 and (akS or akD or akC)
 
-(Gs or Gh) and loser(south)<5 and hcp(south)<18
+(Gs or Gh) and loser(south)<5 and hcp(south)<20
 
 `
 , "S", true);
