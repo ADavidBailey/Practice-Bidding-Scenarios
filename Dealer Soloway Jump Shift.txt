@@ -39,7 +39,7 @@ Rs = spades(north)>4 and top4(north,spades)>2
 Rh = hearts(north)>4 and top4(north,hearts)>2
 Rd = diamonds(north)>4 and top4(north,diamonds)>2
 rebidAndShape = (Rs or Rh or Rd) and shape(north, any 5332+6322) and hcp(north)>18
-rebidAndSupport=(Rs or Rh or Rd) and supportedSuit and tp>17
+rebidAndSupport = (Rs or Rh or Rd) and supportedSuit and tp>17
 
 # These are possible Soloway Jump Shifts
 # 1C - 2D
