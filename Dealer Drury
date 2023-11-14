@@ -6,7 +6,7 @@ setDealerCode(
 # Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
 calmEast = shape(east,any 5431+5422+5332+4441+4432+4333) and hcp(east)<9
 calmWest = shape(west,any 5431+5422+5332+4441+4432+4333) and hcp(west)<9
-calmOpps= calmEast and calmWest
+calmOpps = calmEast and calmWest
 
 NT = shape(south, 4333+4432+5332) and hcp(south)>14 and hcp(south)<18
 
