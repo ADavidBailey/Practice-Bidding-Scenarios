@@ -7,7 +7,7 @@ ntShape = shape(south, any 4333+4432+5332)
 oneNT = ntShape and hcp(south)>14 and hcp(south)<18
 twoNT = ntShape and hcp(south)>19 and hcp(south)<22
 
-notNT = not (oneNT or twoNT)
+notNT = not oneNT and not twoNT
 notMajor = spades(south)<5 and hearts(south)<5
 hcpRange = hcp(south)>11 and hcp(south)<22
 
