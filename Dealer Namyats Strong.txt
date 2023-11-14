@@ -3,31 +3,18 @@ setDealerCode(
 `
 
 # namyatS
-#  Thanks to Gabor Nagyivan for enhancements 
 
-# Define H & S suits suitable for 4-level preempt
-Gs = spades(south) >6 and top5(south,spades)>3
-Gh = hearts(south)>6 and top5(south,hearts)>3
+# Define A/K/AK
+akS = top2(south,spades)>0 and spades(south)>1
+akH = top2(south,hearts)>0 and hearts(south)>1
+akD = top2(south,diamonds)>0 and diamonds(south)>1
+akC = top2(south,clubs)>0 and clubs(south)>1
 
-# Define outside A or K and spades are tumps
-sTrumpsoutsideAorK = 
-(
-(top2(south,hearts)==1 and hearts(south)>1 and hearts(south)<5 and top2(south,diamonds)==0 and top2(south,clubs)==0)
-or (top2(south,diamonds)==1 and diamonds(south)>1 and diamonds(south)<5 and top2(south,hearts)==0 and top2(south,clubs)==0)
-or (top2(south,clubs)==1 and clubs(south)>1 and clubs(south)<5 and top2(south,hearts)==0 and top2(south,diamonds)==0)
-)
+# Define H & S suits suitable for 4-level preempt with As/Ks outside
+Gs = spades(south)>6 and top5(south,spades)>3 and (akH or akD or akC)
+Gh = hearts(south)>6 and top5(south,hearts)>3 and (akS or akD or akC)
 
-# Define outside A or K and hearts are tumps
-hTrumpsoutsideAorK = 
-(
-(top2(south,spades)==1 and spades(south)>1 and spades(south)<5 and top2(south,diamonds)==0 and top2(south,clubs)==0)
-or (top2(south,diamonds)==1 and diamonds(south)>1 and diamonds(south)<5 and top2(south,spades)==0 and top2(south,clubs)==0)
-or (top2(south,clubs)==1 and clubs(south)>1 and clubs(south)<5 and top2(south,spades)==0 and top2(south,diamonds)==0)
-)
-
-((Gs and sTrumpsoutsideAorK) or (Gh and hTrumpsoutsideAorK))
-and loser(south)<5 and hcp(south)<18
-
+(Gs or Gh) and loser(south)<5 and hcp(south)<18
 
 `
 , "S", true);
