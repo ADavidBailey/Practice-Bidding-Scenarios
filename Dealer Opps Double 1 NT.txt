@@ -4,14 +4,10 @@ setDealerCode(
 # Opponent doubles 1NT
 
 # Define good suits with a likely outside entry
-GS = spades(west)>4 and top5(west,spades)>3 and 
-(top2(west,hearts)==1 or top2(west,diamonds)==1 or top2(west,clubs)==1)
-GH = hearts(west)>4 and top5(west,hearts)>3 and
-(top2(west,diamonds)==1 or top2(west,clubs)==1 or top2(west,spades)==1)
-GD = diamonds(west)>4 and top5(west,diamonds)>3 and
-(top2(west,spades)==1 or top2(west,hearts)==1 or top2(west,clubs)==1)
-GC = clubs(west)>4 and top5(west,clubs)>3
-(top2(west,spades)==1 or top2(west,hearts)==1 or top2(west,diamonds)==1) 
+GS = spades(west)>4 and top5(west,spades)>3 and (top2(west,hearts)==1 or top2(west,diamonds)==1 or top2(west,clubs)==1)
+GH = hearts(west)>4 and top5(west,hearts)>3 and (top2(west,diamonds)==1 or top2(west,clubs)==1 or top2(west,spades)==1)
+GD = diamonds(west)>4 and top5(west,diamonds)>3 and (top2(west,spades)==1 or top2(west,hearts)==1 or top2(west,clubs)==1)
+GC = clubs(west)>4 and top5(west,clubs)>3 (top2(west,spades)==1 or top2(west,hearts)==1 or top2(west,diamonds)==1) 
 
 # South opens 1NT
 shape(south, any 4333 + 4432 + 5332) and
