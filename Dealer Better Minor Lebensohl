@@ -9,7 +9,7 @@ w2D = hcp(east,diamonds) >= hcp(east)/2 and hascard(east,TD) and hascard(east,9D
 eOpensWeak2 = (w2S or w2H or w2D) and hcp(east)>5 and hcp(east)<11 and shape(east,any 6430+6421+6331+6322)
 
 # Define South Double
-sDouble = hcp(south)>12 and hcp(south)<16 and shape(south, any 5440+5431+5422+4441+4432)
+sDouble = hcp(south)>12 and hcp(south)<16 and shape(south, any 5440+any 5431+any 5422+any 4441+any 4432)
 
 # West Passes
 wPass = hcp(west)<10
