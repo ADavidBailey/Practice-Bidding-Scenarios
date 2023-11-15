@@ -8,15 +8,13 @@ setDealerCode(
 # New suit is not forcing
 # 2N is Game Force and asks about shape
 
-(hcp(south)>7 and hcp(south)<12) and
-(
-  ((top5(south,spades)>2 and spades(south)==5) or spades(south)>5)
-  or
-  ((top5(south,hearts)>2 and hearts(south)==5) or hearts(south)>5)
-  or
-  ((top5(south,diamonds)>2 and diamonds(south)==5) or diamonds(south)>5)
-)
+# Define South weak 2 bids
+w2S = spades(south)>4 and spades(south)<7 and top5(south,spades)>2 and hcp(south,spades)>4 and hearts(south)<4
+w2H = hearts(south)>4 and hearts(south)<7 and top5(south,hearts)>2 and hcp(south,hearts)>4 and spades(south)<4
+w2D = diamonds(south)>4 and diamonds(south)<7 and top5(south,diamonds)>2 and hcp(south,diamonds)>4 and spades(south)<4 and hearts(south)<4
+sOpensWeak2 = (w2S or w2H or w2D) and hcp(south)>7 and hcp(south)<12 and shape(south,any 6430 +any 6421 +any 6331 +any 6322)
 
+sOpensWeak2
 and hcp(north)>9
 
 `
