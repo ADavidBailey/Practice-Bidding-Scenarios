@@ -12,7 +12,7 @@ C2H = clubs(south)==2 and (hascard(south,KC) + hascard(south,QC) + hascard(south
 downgrade = (S2H or H2H or D2H or C2H) ? 1 : 0
 adjustedTP = shape(south, 2452+2425+2245+2254+4522 any 5332) ? hcp(south) + 1 - downgrade : hcp(south)  // +1 unless we also have a doubleton honor
 
-shape(south, 2452+2425+2245+2254+4522 +any 4333+4432+5332) and adjustedTP>14 and adjustedTP<18
+shape(south, 2452+2425+2245+2254+4522 +any 4333+any 4432+any 5332) and adjustedTP>14 and adjustedTP<18
 
 `
 )
