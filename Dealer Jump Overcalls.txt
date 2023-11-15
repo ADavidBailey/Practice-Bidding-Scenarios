@@ -1,22 +1,19 @@
 Script,JumpOvercalls
 setDealerCode(
 `
-# Jump Overcalls
 
-# Define good suits
-GoodS = spades(south)>5 and top5(south,spades)>2
-GoodH = hearts(south)>5 and top5(south,hearts)>2
-GoodD = diamonds(south)>5 and top5(south,diamonds)>2
-GoodC = clubs(south)>5 and top5(south,clubs)>2
+# Define South Weak Jump Overcalls
+w2S = spades(south)>5 and top5(south,spades)>2 and hcp(south,spades)>4
+w2H = hearts(south)>5 and top5(south,hearts)>2 and hcp(south,hearts)>4
+w2D = diamonds(south)>5 and top5(south,diamonds)>2 and hcp(south,diamonds)>4
+w2C = clubs(south)>5 and top5(south,clubs)>2 and hcp(south,clubs)>4
+sWeakJumpOvercall = (w2S or w2H or w2D or w2C) and hcp(south)>5 and hcp(south)<11
 
 # East opens
-hcp(east)>11 and hcp(east)<15 and
+hcp(east)>11 and hcp(east)<15
 
-# South has a decent suit
-(GoodS or GoodH or GoodD or GoodC) and 
-
-# South has preemptive values
-hcp(south)>5 and hcp(south)<11
+# South makes a Weak Jump Overcall
+and sWeakJumpOvercall
 
 `, "E", true);
 Script
