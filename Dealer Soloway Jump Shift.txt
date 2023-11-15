@@ -38,7 +38,7 @@ supportedSuit = (Fs or Fh or Fd or Fc)
 Rs = spades(north)>4 and top4(north,spades)>2
 Rh = hearts(north)>4 and top4(north,hearts)>2
 Rd = diamonds(north)>4 and top4(north,diamonds)>2
-rebidAndShape = (Rs or Rh or Rd) and shape(north, any 5332+6322) and hcp(north)>18
+rebidAndShape = (Rs or Rh or Rd) and shape(north, any 5332 +any 6322) and hcp(north)>18
 rebidAndSupport = (Rs or Rh or Rd) and supportedSuit and tp>17
 
 # These are possible Soloway Jump Shifts
@@ -54,7 +54,7 @@ rebidAndSupport = (Rs or Rh or Rd) and supportedSuit and tp>17
 hcp(south)>11 and hcp(south)<15 and spades(south)<5
 # West passes
 and hcp(west)<8
-and shape(west, xxxx - any 7xxx+6xxx+5xxx)
+and shape(west, xxxx - any 7xxx +any 6xxx +any 5xxx)
 and controls(north)>3
 and
 (
