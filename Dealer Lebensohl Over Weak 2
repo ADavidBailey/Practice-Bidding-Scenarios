@@ -5,7 +5,7 @@ setDealerCode(
 # Define East weak 2 bids
 w2S = hcp(east,spades) >= hcp(east)/2 and spades(east)==6 and top5(east,spades)>2 and hearts(east)<4 and spades(south)<3 and spades(west)<3 and spades(south)<3
 w2H = hcp(east,hearts) >= hcp(east)/2 and hearts(east)==6 and top5(east,hearts)>2 and spades(east)<4 and hearts(south)<3 and hearts(west)<3 and hearts(south)<3
-w2D = hcp(east,diamonds) >= hcp(east)/2 and diamonds(east)==6 top5(east,diamonds)>2 and spades(east)<4 and hearts(east)<4 and diamonds(south)<3 and diamonds(south)<3
+w2D = hcp(east,diamonds) >= hcp(east)/2 and diamonds(east)==6 and top5(east,diamonds)>2 and spades(east)<4 and hearts(east)<4 and diamonds(south)<3 and diamonds(south)<3
 eOpensWeak2 = (w2S or w2H or w2D) and hcp(east)>5 and hcp(east)<10 and shape(east,any 6430 +any 6421 +any 6331 +any 6322)
 
 # Define South Double
