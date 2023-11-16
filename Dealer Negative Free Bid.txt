@@ -38,7 +38,7 @@ sRS = sS ? 4 : 0
 sRH = sH ? 3 : 0
 sRD = sD ? 2 : 0
 sRC = sC ? 1 : 0
-southRank = sRS + sRH + sRD + sRC
+southRank = sRS+sRH+sRD+sRC
 
 # East's Good Suits -- the 'not's in definitions above are problematic
 eGS = eS and top3(east,spades)>1
@@ -47,7 +47,7 @@ eGD = eD and top3(east,diamonds)>1
 eGC = eC and top3(east,clubs)>1
 
 # East's Good Suit
-gSE = (eGs or eGH or eGD or eGC)
+gSE = (eGS or eGH or eGD or eGC)
 
 # North opens
 northOpens = hcp(north)>11 and hcp(north)<15
