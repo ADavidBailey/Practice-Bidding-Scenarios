@@ -69,7 +69,7 @@ sGC = sC and top4(south,clubs)>2
 # South's Good Suit
 gSS = (sGS or sGH or sGD or sGC)
 
-calm = shape(south, xxxx - any 76xx +any 75xx +any 66xx +any 65xx +any 55xx)
+calm = shape(south, xxxx -any 76xx -any 75xx -any 66xx -any 65xx -any 55xx)
 a6 = shape(south, any 7xxx +any 6xxx) and calm              // any 6+
 g5 = gSS and shape(south, any 5xxx) and calm                // good 5
 
