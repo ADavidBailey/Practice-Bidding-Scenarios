@@ -4,10 +4,10 @@ setDealerCode(
 # 1 Notrump Opening
 
 # Define Doubleton Honors
-S2H = spades(south)==2 and (hascard(south,KS) + hascard(south,QS) + hascard(south,JS)) == 2
-H2H = hearts(south)==2 and (hascard(south,KH) + hascard(south,QH) + hascard(south,JH)) == 2
-D2H = diamonds(south)==2 and (hascard(south,KD) + hascard(south,QD) + hascard(south,JD)) == 2
-C2H = clubs(south)==2 and (hascard(south,KC) + hascard(south,QC) + hascard(south,JC)) == 2
+S2H = spades(south)==2 and top3(south,spades)==1 and hcp(north,spades)<4
+H2H = hearts(south)==2 and top3(south,hearts)==1 and hcp(north,hearts)<4
+D2H = diamonds(south)==2 and top3(south,diamonds)==1 and hcp(north,diamonds)<4
+C2H = clubs(south)==2 and top3(south,clubs)==1 and hcp(north,clubs)<4
 
 downgrade = (S2H or H2H or D2H or C2H) ? 1 : 0
 adjustedTP = shape(south, 2452+2425+2245+2254+4522 any 5332) ? hcp(south) + 1 - downgrade : hcp(south)  // +1 unless we also have a doubleton honor
