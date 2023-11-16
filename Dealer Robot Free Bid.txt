@@ -82,7 +82,7 @@ sGS = sS and top4(south,spades)>2
 gSS = (sGC or sGD or sGH or sGS)
 
 calm = shape(south, xxxx - any 76xx -any 75xx -any 66xx -any 65xx -any 55xx)
-g6 = gSS and shape(south, -any 7xxx -any 6xxx) and calm and tp>10 and tp<17
+g6 = gSS and shape(south, any 7xxx +any 6xxx) and calm and tp>10 and tp<17
 
 rankOK = (northRank > eastRank) or (northRank > southRank) or (eastRank > southRank)   // eliminate 1-level bids for south
 
