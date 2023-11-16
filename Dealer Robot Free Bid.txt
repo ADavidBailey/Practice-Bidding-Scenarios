@@ -53,38 +53,36 @@ tp = v1+v2+s1+s2+d1+d2+d3 + hcp(south)
 # North opens
 northOpens = hcp(north)>11 and hcp(north)<15
 
-# East overcalls
-gSE = (                 // Good Suit East -- KQ or better
-   eC and top3(east,clubs)>1
-or
-   eD and top3(east,diamonds)>1
-or
-   eH and top3(east,hearts)>1
-or
-   eS and top3(east,spades)>1
-)
+# East's Good Suits  // Good Suit East -- KQ or better
+eGC = eC and top3(east,clubs)>1
+eGD = eD and top3(east,diamonds)>1
+eGH = eH and top3(east,hearts)>1
+eGS = eS and top3(east,spades)>1
+
+# East's Good Suit
+gSE = (eGC or eGD or eGH or eGS)
 
 # Kill east's takeout double and NT
 eSfit = nS and spades(east)>1        // east has 2 or more of north's opening suit
 eHfit = nH and hearts(east)>1
 eDfit = nD and diamonds(east)>1
 eCfit = nC and clubs(east)>1
-eShape = (eSfit or eHfit or eDfit or eCfit) and shape(east, any 5332+5431+6331)
+eShape = (eSfit or eHfit or eDfit or eCfit) and shape(east, any 5332 +any 5431 +any 6331)
 eastOvercalls = hcp(east)>10 and hcp(east)<15 and eShape and gSE
 
 
 # South responds -- a non-forcing hand with a good 6-card suit and 10-13 TP
-gSS = (                 // Good Suit South -- KQJ or better
-   sC and top4(south,clubs)>2
-or
-   sD and top4(south,diamonds)>2
-or
-   sH and top4(south,hearts)>2
-or
-   sS and top4(south,spades)>2
-)
-calm = shape(south, xxxx - any 76xx+75xx+66xx+65xx+55xx)
-g6 = gSS and shape(south, any 7xxx+6xxx) and calm and tp>10 and tp<17
+# South's Good Suits     // Good Suit South -- KQJ or better
+sGC = sC and top4(south,clubs)>2
+sGD = sD and top4(south,diamonds)>2
+sGH = sH and top4(south,hearts)>2
+sGS = sS and top4(south,spades)>2
+
+# South's Good Suit
+gSS = (sGC or sGD or sGH or sGS)
+
+calm = shape(south, xxxx - any 76xx -any 75xx -any 66xx -any 65xx -any 55xx)
+g6 = gSS and shape(south, -any 7xxx -any 6xxx) and calm and tp>10 and tp<17
 
 rankOK = (northRank > eastRank) or (northRank > southRank) or (eastRank > southRank)   // eliminate 1-level bids for south
 
