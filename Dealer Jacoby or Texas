@@ -6,7 +6,7 @@ setDealerCode(
 # Define Doubleton Honors
 S2H = spades(south)==2 and top4(south,spades)==2
 H2H = hearts(south)==2 and top4(south,hearts)==2
-D2H = diamonds(south)==2 and top4(south,diamondss)==2
+D2H = diamonds(south)==2 and top4(south,diamonds)==2
 C2H = clubs(south)==2 and top4(south,clubs)==2
 
 downgrade = (S2H or H2H or D2H or C2H) ? 1 : 0
