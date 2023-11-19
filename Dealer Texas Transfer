@@ -12,7 +12,7 @@ sM = (sS or sH)
 sMwShort = sM and shape(south, any 0xxx + any 1xxx)
 sMwoShort = sM and shape(south, xxxx -any 0xxx -any 1xxx)
 
-sT1 = sMwoShort and hcp(south)>9 
+sT1 = sMwoShort and hcp(south)>9
 sT2 = sMwShort and hcp(south)>9 and hcp(south)<14  // Slam interest (small/grand) due to shortness
 
 n1N and (sT1 or sT2)
