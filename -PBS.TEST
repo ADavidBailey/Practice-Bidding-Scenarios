@@ -1,0 +1,364 @@
+//BBOalert, Bidding Scenarios
+//BBOalert, Bidding Scenarios - version 1.5
+Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/setDealerCode.js
+Script,onDataLoad,$("#adpanel2 button:lt(3)").hide();
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS.txt
+
+// Redirect chat so it doesn't go to Lobby
+Script,onDataLoad
+sendPrivateChat(whoAmI(),"");
+setTimeout(function() {
+   setChatDestination(whoAmI());
+   },1000);
+Script
+
+//Script,onDataLoad
+$("#adpanel2 button").filter(function () { return (this.style.backgroundColor == "lightblue") })
+// add click handlers to all leghtblue buttons
+.each(function () {
+this.onclick = function () {
+try {
+// toggle all white buttons until a non-white button found
+var e = $(this).next();
+while (e[0].style.backgroundColor == "white") {
+$(e).toggle();
+e = $(e).next();
+}
+} catch {
+return;
+}
+}
+}
+)
+$("#adpanel2 button")[3].show = true;
+$("#adpanel2 button")[3].onclick = function () {
+this.show = !this.show;
+var toShow = this.show;
+$("#adpanel2 button").filter(function () { return (this.style.backgroundColor == "white") })
+// add click handlers to all leghtblue buttons
+.each(function (idx) {
+if (idx > 2)
+if (toShow) $(this).show()
+else $(this).hide();
+}
+)
+// $("#adpanel2 button").filter(function () { return (this.style.backgroundColor == "lightblue") }).click()
+};
+// initially hide all white buttons
+$("#adpanel2 button")[3].click()
+//Script
+
+//Script,onDataLoad
+displayHCP = function () {
+    var HCP = [0,0,0,0];
+    var player = ["S", "W", "N", "E"];
+    $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", parent.window.document).each(function() {
+        if (!isVisible(this)) return;
+        var z = Math.trunc($(this).parent().parent().parent().css("zIndex") / 100) - 1;
+        var v = "JQKA".indexOf($(this).text().charAt(0)) + 1;
+        HCP[z]+=v;
+    })
+    var txt = "";
+    HCP.forEach(function(hcp, idx) {
+        if (HCP[idx] > 0) txt = txt + player[idx] + ":" + HCP[idx] + " ";
+    })
+    $(".navBarClass .titleClass", window.parent.document).text(txt);
+}
+//Script,onAuctionBoxDisplayed,displayHCP();
+//Script,onNewAuction
+if (getContext().endsWith("------")) {
+    displayHCP();
+}
+//Script
+
+For each individual doc file where the code is defined you should :
+- add BBOalert code to define the script and the button
+- publish the files as web page
+- add the Import statements with the URL od published web pages
+
+Import,Smolen,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Smolen.txt
+Import,FourthSuitForcing,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%204th%20Suit%20Forcing.txt
+Import,Jacoby2N,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Jacoby%202N.txt
+Import,SupportDouble,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Support%20Double.txt
+Import,Splinters,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Splinters.txt
+Import,InvertedMinors,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Inverted%20Minors.txt
+Import,Drury,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Drury
+Import,Runout,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Runout%20after%201N%20X.txt
+Import,NMFandSD,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20New%20Minor%20Forcing.txt
+Import,StrongAfterNT,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Slam%20after%20NT.txt
+Import,Major21,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Major%202%20Over%201.txt
+Import,Minor21,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Minor%202%20Over%201.txt
+Import,WeakTwoBids,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Weak%202%20Bids.txt
+Import,MajorSuitFit,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Major%20Suit%20Fit.txt
+Import,Reverses,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Reverses.txt
+Import,Notrump,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%201%20Notrump.txt
+Import,TwoNotrump,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20TwoNotrump.txt
+Import,Preempts,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Preempts.txt
+Import,NegativeDouble,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Negative%20Double.txt
+Import,MajorOpener,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Major%20Opener.txt
+Import,SlamAfterStaJac,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Slam%20after%20Stay%20or%20Jaco.txt
+Import,TwoSuitedOvercalls,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20TwoSuitedOvercalls.txt
+Import,TakeoutDoubles,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Takeout%20Double.txt
+Import,Overcalls,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Overcalls
+Import,JumpOvercalls,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Jump%20Overcalls.txt
+Import,Lebensohl,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Lebensohl.txt
+Import,UnbalPowerDoubles,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Power%20Double%20Unbalanced.txt
+Import,BalancedPower,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Power%20Double%20Balanced.txt
+Import,DealingWithOvercallsWeak,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Dealing%20with%20Overcalls%20Weak.txt
+Import,DealingWithOvercallsStrong,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Dealing%20with%20Ovecalls%20Strong.txt
+Import,OppsOvercall1NT,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Opps%20Overcall%201NT.txt
+Import,MitchellStayman,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Mitchell%20Stayman.txt
+Import,OppsPremptOvercall,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Opps%20Preemptive%20Overcall.txt
+Import,GoingForBlood,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Going%20for%20Blood.txt
+Import,OppsXNotrump,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Opps%20Double%201%20NT.txt
+Import,OppsXStayman,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Opps%20Double%20Stayman.txt
+Import,OppsXJacoby,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Opps%20Double%20Jacoby.txt
+Import,OppsOvercallStaJac,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Opps%20Overcall%20StaymanJacoby.txt
+Import,Jordan2N,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Jordan%202N.txt
+Import,SpiralRaise,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Spiral%20Raise.txt
+Import,SpiralRaise3only,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Spiral%20Raises%20with%203.txt
+Import,namyatSWeak,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Namyats%20Weak.txt
+Import,namyatSStrong,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Namyats%20Strong.txt
+Import,KokishRelay,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Kokish%20Relay.txt
+Import,RuleOf2,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Rule%20of%202.txt
+Import,LeapingMichaels,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Leaping%20Michael.txt
+Import,SolowayJumpShift,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Soloway%20Jump%20Shift.txt
+Import,SolowayJumpShiftType1,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Soloway%20Jump%20Shift%20Type%201.txt
+Import,SolowayJumpShiftType2,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Soloway%20Jump%20Shift%20Type%202.txt
+Import,SolowayJumpShiftType3,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Soloway%20Jump%20Shift%20Type%203.txt
+Import,SolowayJumpShiftType4,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Soloway%20Jump%20Shift%20Type%204.txt
+Import,InvJump3Under,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%203%20Under%20Invitational%20Jump.txt
+Import,SemiForcingNT,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Gavin%20Semi-Forcing%20NT%20with%20Fit.txt
+Import,SemiConstructiveRaise,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Gavin%20Semi-Constructive%20Raise.txt
+Import,LimitRaise3Card,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Gavin%203-card%20Limit%20Raise.txt
+Import,MixedRaise,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Gavin%20Mixed%20Raise.txt
+Import,StrongSplinter,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Gavin%20Strong%20Splinter.txt
+Import,WeakSplinter,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Gavin%20Weak%20Splinter.txt
+Import,InvitationalJump,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Gavin%203-Under%20Invitational%20Jump.txt
+Import,LimitRaise4Card,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Gavin%204-card%20Limit%20Raise.txt
+Import,DealingWithOvercallsWeak,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Dealing%20with%20Overcalls%20Weak.txt
+Import,DealingWithOvercallsStrong,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Dealing%20with%20Ovecalls%20Strong.txt
+Import,NedWeakTwo,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Ned%20Weak%20Two.txt
+Import,TwoWayGameTry,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Two-Way%20Game%20Try.txt
+Import,BergenRaises,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Bergen%20Raises.txt
+Import,Doug2C,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Doug%202C.txt
+Import,ResponsiveDouble,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Responsive%20Double.txt
+Import,NegativeFreeBid,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Negative%20Free%20Bid.txt
+Import,Opps2-suitedOvercalls,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Opps%202-Suited%20Overcalls.txt
+Import,RobotFreeBid,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Robot%20Free%20Bid.txt
+Import,TransfersAfter2NRebidUnb,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Gavin%20Transfers%20after%202N%20Rebid%20Unb
+Import,TransfersAfter2NRebidBal,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Gavin%20Transfers%20after%202N%20Rebid%20Bal
+Import,TransfersAfter2NRebidWeak,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Gavin%20Transfers%20after%202N%20Rebid%20Weak
+Import,MinorSuitStayman,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Minor%20Suit%20Stayman
+Import,Ned2Spades,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Ned%202S
+Import,SizeAskingMSS,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Size%20Asking%20Minor%20Suit%20Stayman
+Import,MinorOpener,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Minor%20Suit%20Opener
+Import,NotrumpWithSingleton,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%201%20Notrump%20With%20Singleton
+Import,XferAfter1MX,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Transfers%20after%201M-X
+Import,Stayman,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Stayman
+Import,Dougs2Cwith5S,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Doug%202C%20with%205S
+Import,XYZ,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20XYZ
+Import,BergenThrumpX,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Bergen%20Thrump%20X%20after%20Preempt
+Import,TislevollAfterOppsPreempt,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Tislevoll%20after%20Opps%20Preempt
+Import,Gambling3N,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Gambling%203N
+Import,OppsGambling3N,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Opps%20Gambling%203N
+Import,OppsWeakTwo,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Opps%20Weak%20Two
+Import,OppsPreempt,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Opps%20Preempt
+Import,Multi2D,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Multi%202D
+Import,OppsMulti2D,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Opps%20Multi%202D
+Import,BetterMinorLebensohl,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Better%20Minor%20Lebensohl
+Import,LebensohlOverWeak2,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Lebensohl%20Over%20Weak%202
+Import,TexasOrJacoby,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Texas%20or%20Jacoby
+Import,Texas,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Texas%20Transfer
+Import,MinorSlams,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Minor%20Slams
+
+# Basic
+Import,OneMajor,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Basic%201%20of%20a%20Major
+Import,BasicMajorSuitFit,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Basic%20Major%20Suit%20Fit
+Import,OneMinor,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Basic%201%20of%20a%20Minor
+Import,OneOfAnySuit,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Basic%201%20of%20Any%20Suit
+Import,OneNT,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Basic%201%20Notrump%20Opening
+Import,BasicStayman,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Basic%20Stayman
+Import,BasicJacoby,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Basic%20Jacoby%20Transfer
+Import,OtherNTResp,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Basic%20Other%20NT%20Response
+Import,AllNTResp,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Basic%20All%20NT%20Responses
+Import,RespTo1Minor,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Basic%20Responding%20to%201%20Minor
+
+
+Option,Practice Table
+
+Button,Bidding Scenarios (click headers to open/close),,width=100% backgroundColor=lightyellow
+# Button,Stay Tuned,,width=33% backgroundColor=lightgreen
+# Button,Stay Tuned,,width=33% backgroundColor=lightgreen
+# Button,Review code,%reviewCurrentCode%,width=34% backgroundColor=lightgreen
+Button,Review code,%reviewCurrentCode%,width=100% backgroundColor=lightgreen
+Script,reviewCurrentCode,setDealerCode("");
+
+Button,Basic Bridge,,width=100% backgroundColor=lightblue
+Import,OneMajor
+Import,BasicMajorSuitFit
+Import,OneMinor
+Import,RespTo1Minor
+Import,OneOfAnySuit
+Import,OneNT
+Import,BasicStayman
+Import,BasicJacoby
+Import,OtherNTResp
+Import,AllNTResp
+
+
+Button,Minor Suit Sequences,,width=100% backgroundColor=lightblue
+
+Import,MinorOpener
+Import,InvertedMinors
+Import,MinorSlams
+
+Button,Minor/Major Sequences,,width=100% backgroundColor=lightblue
+
+Import,FourthSuitForcing
+Button,---
+Import,NMFandSD
+Import,XYZ
+Import,InvJump3Under
+Import,Reverses
+
+Button,Major Suit Sequences,,width=100% backgroundColor=lightblue
+
+Import,MajorOpener
+Import,MajorSuitFit
+Import,SpiralRaise
+Import,SpiralRaise3only
+Import,TwoWayGameTry
+Import,BergenRaises
+Import,XferAfter1MX
+Import,Drury
+
+
+Button,Game Forcing Sequences,,width=100% backgroundColor=lightblue
+
+Import,Major21
+Import,Minor21
+Import,Jacoby2N
+Import,Splinters
+Import,SolowayJumpShift
+Button,---
+Import,SolowayJumpShiftType1
+Import,SolowayJumpShiftType2
+Import,SolowayJumpShiftType3
+Import,SolowayJumpShiftType4
+
+Button,Notrump Sequences,,width=100% backgroundColor=lightblue
+
+Import,Notrump
+Import,NotrumpWithSingleton
+Import,Stayman
+Import,Smolen
+Import,StrongAfterNT
+Import,SlamAfterStaJac
+Import,Texas
+Import,TexasOrJacoby
+# Button,---
+Import,MinorSuitStayman
+Import,SizeAskingMSS
+Import,Runout
+Import,TwoNotrump
+
+Button,Preempts,,width=100% backgroundColor=lightblue
+
+Import,WeakTwoBids
+Import,Multi2D
+Import,Preempts
+Import,Gambling3N
+
+Import,OppsWeakTwo
+Import,OppsMulti2D
+Import,OppsPreempt
+Import,OppsGambling3N
+
+
+Button,We Compete in Opponents Auctions,,width=100% backgroundColor=lightblue
+Import,Overcalls
+Import,JumpOvercalls
+Import,TwoSuitedOvercalls
+Import,LeapingMichaels
+Import,TakeoutDoubles
+Button,---
+Import,BalancedPower
+Import,UnbalPowerDoubles
+Import,LebensohlOverWeak2
+Import,BetterMinorLebensohl
+Import,RuleOf2
+
+Button,Opponents Compete in Our Auctions,,width=100% backgroundColor=lightblue
+
+Import,SupportDouble
+Import,NegativeDouble
+Import,XferAfter1MX
+Import,DealingWithOvercallsWeak
+Import,DealingWithOvercallsStrong
+Import,OppsOvercall1NT
+Import,MitchellStayman
+Import,Opps2-suitedOvercalls
+Import,BergenThrumpX
+Import,TislevollAfterOppsPreempt
+Import,OppsPremptOvercall
+
+Import,GoingForBlood  // after ?? (X) XX
+Import,Jordan2N       // after 1M (X) 2N
+
+Import,OppsXNotrump
+Import,OppsXStayman
+Import,OppsXJacoby
+Import,OppsOvercallStaJac
+Import,Lebensohl      // after 1N (?)
+
+Button,Bidding with BBO Robots,,width=100% backgroundColor=lightblue
+Import,Drury
+Import,TwoWayGameTry
+Import,InvJump3Under
+Import,SolowayJumpShift
+Import,RobotFreeBid
+Import,MinorSuitStayman
+Import,BalancedPower
+Import,UnbalPowerDoubles
+
+
+Button,Robots won’t understand - Partner Needed,,width=100% backgroundColor=lightyellow
+Button,Gavin’s Major Suit Response Structure,,width=100% backgroundColor=lightblue
+
+Import,SemiForcingNT
+Import,SemiConstructiveRaise
+Import,LimitRaise3Card
+Import,MixedRaise
+Import,LimitRaise4Card
+Import,WeakSplinter
+Import,StrongSplinter
+Import,InvitationalJump
+
+Button,Gavin’s Transfer After 2N Rebid,,width=100% backgroundColor=lightblue
+Import,TransfersAfter2NRebidBal
+Import,TransfersAfter2NRebidUnb
+Import,TransfersAfter2NRebidWeak
+
+Button,Gavin's Power Doubles,,width=100% backgroundColor=lightblue
+Import,BalancedPower
+Import,UnbalPowerDoubles
+
+Button,Beyond BBO Robots,,width=100% backgroundColor=lightblue
+
+Import,NedWeakTwo
+Import,Ned2Spades
+Import,namyatSWeak
+Import,namyatSStrong
+Import,KokishRelay
+Button,---
+Import,Doug2C
+Import,Dougs2Cwith5S
+Import,ResponsiveDouble
+Import,NegativeFreeBid
+
+
+
+Button,-- Facebook: Practice Bidding Scenarios --,,width=100% backgroundColor=lightyellow
+
+Option
