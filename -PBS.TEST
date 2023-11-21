@@ -71,8 +71,6 @@ if (getContext().endsWith("------")) {
 }
 //Script
 
-//Script,displayHCP,displayHCP();
-
 For each individual doc file where the code is defined you should :
 - add BBOalert code to define the script and the button
 - publish the files as web page
@@ -196,6 +194,7 @@ Button,Bidding Scenarios (click headers to open/close),,width=100% backgroundCol
 Button,Review code,%reviewCurrentCode%,width=50% backgroundColor=lightgreen
 Button,Display HCP,%displayHCP%,width=50%,backgroundColor=lightgreen
 Script,reviewCurrentCode,setDealerCode("");
+Script,displayHCP,displayHCP();
 
 Button,Basic Bridge,,width=100% backgroundColor=lightblue
 Import,OneMajor
