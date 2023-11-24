@@ -64,11 +64,9 @@ displayHCP = function () {
     })
     $(".navBarClass .titleClass", window.parent.document).text(txt);
 }
-//Script,onAuctionBoxDisplayed,displayHCP();
-//Script,onNewAuction
-if (getContext().endsWith("------")) {
-    displayHCP();
-}
+//Script,onAnyMutation
+var l = $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", parent.window.document).length;
+if((l%13) == 0) displayHCP();
 //Script
 
 //Script,displayHCP,displayHCP();
