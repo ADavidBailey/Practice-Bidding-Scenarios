@@ -1,6 +1,21 @@
+Script,StrongClub
+setDealerCode(
+`
+
 # South has 15+
 hcp(South)>14
+
 # North has 8+
 and hcp(North)>7
+
 # North has specific shapes
 and shape(north, any 4441 + any 5440 + any 55xx +any 65xx)
+
+`, "S", true);
+Script
+Button,Strong Club,\n\
+--- Strong Club\n\
+1!C is 15+ HCP，artificial and forcing.\n\
+Is there anything you want here.  I often include a link to a description.\n\
+http://clairebridge.com/textes/karensrules.pdf
+%StrongClub%
