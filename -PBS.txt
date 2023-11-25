@@ -1,5 +1,5 @@
 //BBOalert, Bidding Scenarios
-//BBOalert, Bidding Scenarios - version 1.5
+//BBOalert, Bidding Scenarios - version 1.6
 Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/setDealerCode.js
 Script,onDataLoad,$("#adpanel2 button:lt(3)").hide();
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS.txt
@@ -47,6 +47,30 @@ else $(this).hide();
 // initially hide all white buttons
 $("#adpanel2 button")[3].click()
 //Script
+
+//Script,onDataLoad
+displayHCP = function () {
+    var HCP = [0,0,0,0];
+    var player = ["S", "W", "N", "E"];
+    $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", parent.window.document).each(function() {
+        if (!isVisible(this)) return;
+        var z = Math.trunc($(this).parent().parent().parent().css("zIndex") / 100) - 1;
+        var v = "JQKA".indexOf($(this).text().charAt(0)) + 1;
+        HCP[z]+=v;
+    })
+    var txt = "";
+    HCP.forEach(function(hcp, idx) {
+        if (HCP[idx] > 0) txt = txt + player[idx] + ":" + HCP[idx] + " ";
+    })
+    $(".navBarClass .titleClass", window.parent.document).text(txt);
+}
+//Script,onAnyMutation
+var l = $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", parent.window.document).length;
+if((l%13) == 0) displayHCP();
+//Script
+
+//Script,displayHCP,displayHCP();
+Shortcut,hcp,%displayHCP%
 
 For each individual doc file where the code is defined you should :
 - add BBOalert code to define the script and the button
@@ -148,6 +172,7 @@ Import,LebensohlOverWeak2,https://github.com/ADavidBailey/Practice-Bidding-Scena
 Import,TexasOrJacoby,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Texas%20or%20Jacoby
 Import,Texas,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Texas%20Transfer
 Import,MinorSlams,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Minor%20Slams
+Import,StrongClub,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Strong%20Club
 
 # Basic
 Import,OneMajor,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Basic%201%20of%20a%20Major
@@ -333,10 +358,10 @@ Import,Doug2C
 Import,Dougs2Cwith5S
 Import,ResponsiveDouble
 Import,NegativeFreeBid
+Import,StrongClub
 
 
 
 Button,-- Facebook: Practice Bidding Scenarios --,,width=100% backgroundColor=lightyellow
 
 Option
-
