@@ -6,7 +6,6 @@ s = spades(east)
 h = hearts(east)
 d = diamonds(east)
 c = clubs(east)
-
 eS = s>4 and s>=h and s>=d and s>=c
 eH = not eS and h>4 and h>=d and h>=c
 eD = not eS and not eH and ((d>3 and d>=c) or c<3)
