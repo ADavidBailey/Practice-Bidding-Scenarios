@@ -16,7 +16,7 @@ ntShape = shape(east, any 4333 +any 4432 +any 5332 +any 5422 -5xxx-x5xx)
 notEastNT = not (hcp(east)>14 and hcp(east)<18 and ntShape)
 
 # South has a stop in East's opening suit -- at least Axx, Kxx or QJx
-eSws = es and hcp(south,spades)>2 and spades(south)>2
+eSws = eS and hcp(south,spades)>2 and spades(south)>2
 eHws = eH and hcp(south,hearts)>2 and hearts(south)>2
 eDws = eD and hcp(south,diamonds)>2 and diamonds(south)>2
 eCws = eC and hcp(south,clubs)>2 and clubs(south)>2
