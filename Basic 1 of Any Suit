@@ -2,7 +2,10 @@ Script,OneOfAnySuit
 setDealerCode(
 `
 # What to open -- pick the suit
-hcp(south)>11 and hcp(south)<15
+
+NT = shape(south, any 4333+any 4432+any 5332+any 5422 -5xxx-x5xx) and hcp(south)>14 and hcp(south)<18
+
+not NT and hcp(south)>11 and hcp(south)<20
 
 `, "S", false);
 Script
