@@ -3,12 +3,13 @@ setDealerCode(
 `
 
 # Jacoby 2N
-nSemiBal = shape(north, xxxx -any 1xxx) and shape(north, xxxx -any 0xxx)
+nSemiBal = shape(north, xxxx -any 1xxx -any 0xxx)
 (
-(shape(south,5xxx+6xxx-x5xx-x6xx -any 5332) and shape(north,4xxx) and nSemiBal)
+(shape(south,5xxx+6xxx-x5xx-x6xx -any 5332) and shape(north,4xxx))
 or
-(shape(south,x5xx+x6xx-5xxx-6xxx -any 5332) and shape(north,x4xx) and nSemiBal)
+(shape(south,x5xx+x6xx-5xxx-6xxx -any 5332) and shape(north,x4xx))
 )
+and nSemiBal
 and hcp(south)>11 and hcp(north)>12
 
 `
