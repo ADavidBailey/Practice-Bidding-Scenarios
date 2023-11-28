@@ -21,7 +21,6 @@ nRD = nD ? 2 : 0
 nRC = nC ? 1 : 0
 northRank = nRS+nRH+nRD+nRC   // all except one are zero
 
-# 17
 # East's longest suit
 sE = spades(east)
 hE = hearts(east)
@@ -76,7 +75,7 @@ eCfit = nC and clubs(east)>1
 eShape = (eSfit or eHfit or eDfit or eCfit) and shape(east, any 5332 +any 5431 +any 6331)
 eastOvercalls = hcp(east)>10 and hcp(east)<15 and eShape and gSE
 
-# South's Good Suits -- the 'not's in definitions above are problematic
+# South's Good Suits
 sGS = sS and top4(south,spades)>2
 sGH = sH and top4(south,hearts)>2
 sGD = sD and top4(south,diamonds)>2
