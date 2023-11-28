@@ -4,24 +4,35 @@ setDealerCode(
 
 # Negative Free Bid
 
-# North's opening suit
-nS = spades(north)>=hearts(north) and spades(north)>4 and spades(north)>diamonds(north) and spades(north)>clubs(north)
-nH = not nS and hearts(north)>4 and hearts(north)>diamonds(north)and hearts(north)>clubs(north)
-nD = not nS and not nH and diamonds(north)>clubs(north) and diamonds(north)>2
+# Predict North's opening suit
+sN = spades(north)
+hN = hearts(north)
+dN = diamonds(north)
+cN = clubs(north)
+nS = sN>4 and sN>=hN and sN>=dN and sN>=cN
+nH = not nS and hN>4 and hN>=dN and hN>=cN
+nD = not nS and not nH and ((dN>3 and dN>=cN) or cN<3)
 nC = not nS and not nH and not nD
 
+# Calculate North's Rank
 nRS = nS ? 4 : 0
 nRH = nH ? 3 : 0
 nRD = nD ? 2 : 0
 nRC = nC ? 1 : 0
 northRank = nRS+nRH+nRD+nRC   // all except one are zero
 
+# 17
 # East's longest suit
-eS = spades(east)>=hearts(east) and spades(east)>=diamonds(east) and spades(east)>=clubs(east)
-eH = not eS and hearts(east)>=diamonds(east) and hearts(east)>=clubs(east)
-eD = not eS and not eH and diamonds(east)>=clubs(east)
+sE = spades(east)
+hE = hearts(east)
+dE = diamonds(east)
+cE = clubs(east)
+eS = sE>=hE and sE>=dE and sE>=cE
+eH = not eS and hE>=dE and hE>=cE
+eD = not eS and not eH and dE>=cE
 eC = not eS and not eH and not eD
 
+# Calculate East's Rank
 eRS = eS ? 4 : 0
 eRH = eH ? 3 : 0
 eRD = eD ? 2 : 0
@@ -29,18 +40,23 @@ eRC = eC ? 1 : 0
 eastRank = eRS+eRH+eRD+eRC
 
 # South's longest suit
-sS = spades(south)>=hearts(south) and spades(south)>=diamonds(south) and spades(south)>=clubs(south)
-sH = not sS and hearts(south)>=diamonds(south) and hearts(south) >=clubs(south)
-sD = not sS and not sH and diamonds(south)>=clubs(south)
+s = spades(south)
+h = hearts(south)
+d = diamonds(south)
+c = clubs(south)
+sS = s>=h and s>=d and s>=c
+sH = not sS and h>=d and h>=c
+sD = not sS and not sH and d>=c
 sC = not sS and not sH and not sD
 
+# Calculate South's Rank
 sRS = sS ? 4 : 0
 sRH = sH ? 3 : 0
 sRD = sD ? 2 : 0
 sRC = sC ? 1 : 0
-southRank = sRS+sRH+sRD+sRC
+southRank = sRS + sRH + sRD + sRC
 
-# East's Good Suits -- the 'not's in definitions above are problematic
+# East's Good Suits
 eGS = eS and top3(east,spades)>1
 eGH = eH and top3(east,hearts)>1
 eGD = eD and top3(east,diamonds)>1
