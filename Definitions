@@ -31,45 +31,69 @@ GF = hcp(south)>21
 OneMajor = (S_ or H_) and not (NT or GF)
 OneMinor = (C_ or D_) and not (NT or GF)
 
-# Tightening up a Free Bid
+# Predice Opening Suit
+opener = "north"
+s = spades(opener)
+h = hearts(opener)
+d = diamonds(opener)
+c = clubs(opener)
+oS = s>4 and s>=h and s>=d and s>=c
+oH = not oS and h>4 and h>=d and h>=c
+oD = not (oS or oH) and h>=d and h>=c
+oc = not (oS or oH or oD)
 
-# North's opening suit
 
 
-nS = spades(north)>=hearts(north)>4>=diamonds(north)>=clubs(north)
-nH = not nS and hearts(north)>4>=diamonds(north)>=clubs(north)
-nD = not nS and not nH and diamonds(north)>=clubs(north)
-nC = not nS and not nH and notNd
+# Predict North's opening suit
+sN = spades(north)
+hN = hearts(north)
+dN = diamonds(north)
+cN = clubs(north)
+nS = sN>4 and sN>=hN and sN>=dN and sN>=cN
+nH = not nS and hN>4 and hN>=dN and hN>=cN
+nD = not nS and not nH and ((dN>3 and dN>=cN) or cN<3)
+nC = not nS and not nH and not nD
 
+# Calculate North's Rank
 nRS = nS ? 4 : 0
-nRH = hS ? 3 : 0
+nRH = nH ? 3 : 0
 nRD = nD ? 2 : 0
 nRC = nC ? 1 : 0
-northRank = nRS+nRH+nRD+nRC
+northRank = nRS+nRH+nRD+nRC   // all except one are zero
+
+# East's longest suit
+sE = spades(east)
+hE = hearts(east)
+dE = diamonds(east)
+cE = clubs(east)
+eS = sE>=hE and sE>=dE and sE>=cE
+eH = not eS and hE>=dE and hE>=cE
+eD = not eS and not eH and dE>=cE
+eC = not eS and not eH and not eD
+
+# Calculate East's Rank
+eRS = eS ? 4 : 0
+eRH = eH ? 3 : 0
+eRD = eD ? 2 : 0
+eRC = eC ? 1 : 0
+eastRank = eRS+eRH+eRD+eRC
 
 # South's longest suit
-sS = spades(south)>=hearts(south) and spades(south)>4 and diamonds(south)<5 and clubs(south)<5
-sH = hearts(south)>spades(south) and hearts(south)>4 and diamonds(south)<5 and clubs(south)<5
-sD = diamonds(south)>3 and diamonds(south)>=clubs(south) and not (H_ or S_)
-sC = clubs(south)>diamonds(south) and not (H_ or S_)
+s = spades(south)
+h = hearts(south)
+d = diamonds(south)
+c = clubs(south)
+sS = s>=h and s>=d and s>=c
+sH = not sS and h>=d and h>=c
+sD = not sS and not sH and d>=c
+sC = not sS and not sH and not sD
 
+# Calculate South's Rank
 sRS = sS ? 4 : 0
 sRH = sH ? 3 : 0
 sRD = sD ? 2 : 0
 sRC = sC ? 1 : 0
 southRank = sRS + sRH + sRD + sRC
-
-# East's longest suit
-eS = spades(east)>=hearts(east)>4>=diamonds(east)>=clubs(east)
-eH = not eS and hearts(east)>4>=diamonds(east)>=clubs(east)
-eD = not eS and not eH and diamonds(east)>=clubs(east)
-eC = not eS and not eH and not eD
-
-eRS = eS ? 4 : 0
-eRH = eH ? 3 : 0
-eRD = eD ? 2 : 0
-eRC = eC ? 1 : 0
-eastsRank = eRS+eRH+eED+eRC
 
 # Requirement for a Free Bid, Negative or Otherwise
 (northRank > eastRank) or (eastRank > southRank)
@@ -79,22 +103,4 @@ w2S = spades(east)==6 and top5(east,spades)>2 and hcp(east,spades)>4 and hearts(
 w2H = hearts(east)==6 and top5(east,hearts)>2 and hcp(east,hearts)>4 and spades(east)<4 and hearts(south)<3 and hearts(west)<3
 w2D = diamonds(east)==6 and top5(east,diamonds)>2 and hcp(east,diamonds)>4 and spades(east)<4 and hearts(east)<4 and diamonds(south)<3
 eOpensWeak2 = (w2S or w2H or w2D) and hcp(east)>5 and hcp(east)<10 and shape(east,any 6430 +any 6421 +any 6331 +any 6322)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
