@@ -1,18 +1,23 @@
 Script,BasicMajorSuitFit
 setDealerCode(
 `
+# Predict North's opening suit
+sN = spades(north)
+hN = hearts(north)
+dN = diamonds(north)
+cN = clubs(north)
+nS = sN>4 and sN>=hN and sN>=dN and sN>=cN
+nH = not nS and hN>4 and hN>=dN and hN>=cN
+nD = not nS and not nH and ((dN>3 and dN>=cN) or cN<3)
+nC = not nS and not nH and not nD
+
+NT = shape(north, any 4333 +any 4432 + any 5332 +any 5442 -5xxx-x5xx) and hcp(north)>14 and hcp(north)<18
+
 # North opens 1 Major and South has a fit
+sFit = nS and spades(south)>2
+hFit = nH and hearts(south)>2
 
-NT = shape(north, any 4333 +any 4432 + any 5332) and hcp(north)>14 and hcp(north)<18
-S_ = spades(north)>4 and spades(north)>=diamonds(north) and spades(north)>=clubs(north)
-H_ = hearts(north)>4 and hearts(north)>=diamonds(north) and hearts(north)>=clubs(north)
-
-oneSfit = S_ and hcp(north)>11 and hcp(north)<20 and not NT and spades(south)>2
-oneHfit = H_ and hcp(north)>11 and hcp(north)<20 and not NT and hearts(south)>2
-
-majorFit = oneSfit or oneHfit
-
-majorFit and hcp(north)>11 and hcp(south)>5 and hcp(south)<12
+not NT and (sFit or hFit) and hcp(north)>11 and hcp(north)<20 and hcp(south)>5
 
 `, "N", false);
 Script
