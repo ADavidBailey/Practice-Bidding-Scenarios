@@ -1,7 +1,7 @@
 //BBOalert, Bidding Scenarios
 //BBOalert, Bidding Scenarios - version 1.6
 Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/setDealerCode.js
-Script,onDataLoad,$("#adpanel2 button:lt(3)").hide();
+
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS.txt
 
 // Redirect chat so it doesn't go to Lobby
@@ -68,9 +68,6 @@ displayHCP = function () {
 var l = $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", parent.window.document).length;
 if((l%13) == 0) displayHCP();
 //Script
-
-//Script,displayHCP,displayHCP();
-Shortcut,hcp,%displayHCP%
 
 For each individual doc file where the code is defined you should :
 - add BBOalert code to define the script and the button
@@ -191,15 +188,14 @@ Import,RespTo1Minor,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/b
 
 
 Option,Practice Table
-
-# Button,Stay Tuned,,width=33% backgroundColor=lightgreen
-# Button,Stay Tuned,,width=33% backgroundColor=lightgreen
-# Button,Review code,%reviewCurrentCode%,width=34% backgroundColor=lightgreen
-Button,Review code,%reviewCurrentCode%,width=100% backgroundColor=lightgreen
+Script,onDataLoad,$("#adpanel2 button:lt(3)").hide();
 Script,reviewCurrentCode,setDealerCode("");
 
-Button,Bidding Scenarios (click headers to open/close),,width=100% backgroundColor=lightyellow
+# Button,Start Bidding Table,,width=50% backgroundColor=lightgreen
+# Button,Review code,%reviewCurrentCode%,width=50% backgroundColor=lightgreen
+Button,Review code,%reviewCurrentCode%,width=100% backgroundColor=lightgreen
 
+Button,Bidding Scenarios (click headers to open/close),,width=100% backgroundColor=lightyellow
 
 Button,Basic Bridge,,width=100% backgroundColor=lightblue
 Import,OneMajor
