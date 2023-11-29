@@ -2,7 +2,11 @@
 //BBOalert, Bidding Scenarios - version 1.6
 Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/setDealerCode.js
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS.txt
+// Hide the Char, Word, All backspace buttons
+Script,onDataLoad,$("#adpanel2 button:lt(3)").hide();
+
+// Import the dummy PBS marker file
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS
 
 // Redirect chat so it doesn't go to Lobby
 Script,onDataLoad
@@ -12,6 +16,7 @@ setTimeout(function() {
    },1000);
 Script
 
+// Expand & Collapse Sections
 //Script,onDataLoad
 $("#adpanel2 button").filter(function () { return (this.style.backgroundColor == "lightblue") })
 // add click handlers to all leghtblue buttons
@@ -48,6 +53,7 @@ else $(this).hide();
 $("#adpanel2 button")[3].click()
 //Script
 
+// Display HCP for visible hands
 //Script,onDataLoad
 displayHCP = function () {
     var HCP = [0,0,0,0];
@@ -68,6 +74,9 @@ displayHCP = function () {
 var l = $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", parent.window.document).length;
 if((l%13) == 0) displayHCP();
 //Script
+
+// Open Dealer source/Advanced
+Script,reviewCurrentCode,setDealerCode("");
 
 For each individual doc file where the code is defined you should :
 - add BBOalert code to define the script and the button
@@ -188,8 +197,6 @@ Import,RespTo1Minor,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/b
 
 
 Option,Practice Table
-Script,onDataLoad,$("#adpanel2 button:lt(3)").hide();
-Script,reviewCurrentCode,setDealerCode("");
 
 # Button,Start Bidding Table,,width=50% backgroundColor=lightgreen
 # Button,Review code,%reviewCurrentCode%,width=50% backgroundColor=lightgreen
