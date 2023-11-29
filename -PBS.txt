@@ -75,9 +75,6 @@ var l = $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", pa
 if((l%13) == 0) displayHCP();
 //Script
 
-// Open Dealer source/Advanced
-Script,reviewCurrentCode,setDealerCode("");
-
 For each individual doc file where the code is defined you should :
 - add BBOalert code to define the script and the button
 - publish the files as web page
@@ -201,6 +198,7 @@ Option,Practice Table
 # Button,Start Bidding Table,,width=50% backgroundColor=lightgreen
 # Button,Review code,%reviewCurrentCode%,width=50% backgroundColor=lightgreen
 Button,Review code,%reviewCurrentCode%,width=100% backgroundColor=lightgreen
+Script,reviewCurrentCode,setDealerCode("");
 
 Button,Bidding Scenarios (click headers to open/close),,width=100% backgroundColor=lightyellow
 
