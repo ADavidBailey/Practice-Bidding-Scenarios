@@ -1,0 +1,23 @@
+Script,Major2SuitResp
+setDealerCode(
+`
+
+
+
+# South has 11-14
+hcp(south)>10 and hcp(south)<15
+
+# North has 7+
+and hcp(north)>6
+
+# North has specific shapes
+and shape(north, any 54xx+ any 55xx +any 65xx)
+
+`, "S", true);
+Script
+Button,Strong Club 2-Suit,\n\
+--- Strong Club with 2-Suit Response\n\
+1!C is 15+ HCP，artificial and forcing.\n\
+Is there anything you want here.  I often include a link to a description.\n\
+http://clairebridge.com/textes/karensrules.pdf\n\
+%Major2SuitResp%
