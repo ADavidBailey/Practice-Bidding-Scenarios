@@ -1,0 +1,16 @@
+Script,WeakTwoBidWith14Resp
+setDealerCode(
+`
+
+# Define South weak 2 bids
+w2S = spades(south)==6 and (top5(south,spades)>2 or top3(south,spades)>1) and hearts(south)<4
+w2H = hearts(south)==6 and (top5(south,hearts)>2 or top3(south,hearts)>1) and spades(south)<4
+w2D = diamonds(south)==6 and (top5(south,diamonds)>2 or top3(south,diamonds)>1) and spades(south)<4 and hearts(south)<4
+sOpensWeak2 = (w2S or w2H or w2D) and hcp(south)>5 and hcp(south)<11 and shape(south,any 6430 +any 6421 +any 6331 +any 6322)
+
+sOpensWeak2 and hcp(north)>13
+
+`
+)
+Script
+Button,Weak 2 w/14+ Resp,Weak Two Bid w/14+ Response\n%WeakTwoBidWith14Resp%
