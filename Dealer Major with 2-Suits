@@ -1,18 +1,27 @@
-Script,MajorWith2Suits
+Script,GrammyRelay
 setDealerCode(
 `
+# Predict South's Opening Suit
+s = spades(south)
+h = hearts(south)
+d = diamonds(south)
+c = clubs(south)
+oS = s>4 and s>=h and s>=d and s>=c
+oH = not oS and h>4 and h>=d and h>=c
 
-hcp(south)>8 and hcp(south)<16 
+# South opens 1H or 1S with a second suit of at least 5-cards
+(oS or oH)
+and hcp(south)>8 and hcp(south)<16 
 and shape(south, any 85xx +any 76xx +any 65xx +any 65xx)
 
+# and North has 12+
 and hcp(north)>11
-
 
 `, "S", true);
 Script
-Button,Major with 2-Suits,\n\
---- Major with 2-Suits\n\
-\n\
-Is there anything you want here.  I often include a link to a description.\n\
+Button,Relay after Major,\n\
+--- Relay after Major (Grammy)\n\
+South opens 1!H or 1!S with a second suit of at least 5-cards and North has 12+.\n\
+We use game-forcing relay after major opening (GRAMMY)\n\
 http://clairebridge.com/textes/karensrules.pdf\n\
-%StrongClub55Plus%
+%GrammyRelay%
