@@ -14,7 +14,7 @@ I decided what I want and don’t want:
 
 I'm 81 years old; I don’t have time to wait!
 
-I would like your help in promoting this and encouraging users to use it.  This has real potential for helping bridge players learn infrequently bidding problems.
+I would like your help in promoting this and encouraging users to use it.  This has real potential for helping bridge players learn how to bid hands that occur infrequently.
 
 
 Attachment(s)
