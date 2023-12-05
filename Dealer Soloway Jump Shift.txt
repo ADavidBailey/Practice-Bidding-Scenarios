@@ -2,6 +2,9 @@ Script,SolowayJumpShift
 setDealerCode(
 `
 # Soloway Jump Shift
+
+produce 100
+
 # Calculate Total Points for North (tp) for North
 v1 = shape(north, any 0xxx) ? 5 : 0  // allow for 2 voids
 v2 = shape(north, any 00xx) ? 5 : 0
@@ -11,6 +14,7 @@ d1 = shape(north, any 2xxx) ? 1 : 0 // allow for 3 doubletons
 d2 = shape(north, any 22xx) ? 1 : 0
 d3 = shape(north, any 222x) ? 1 : 0
 tp = v1+v2+s1+s2+d1+d2+d3 + hcp(north)
+
 # Define openers
 sOpener = spades(south) >= hearts(south) and spades(south) >=5 and spades(south) >= diamonds(south) and spades(south) >= clubs(south)
 hOpener = not sOpener and hearts(south) >=5 and hearts(south) >= diamonds(south) and hearts(south) >= clubs(south)
@@ -18,28 +22,35 @@ MOpener = sOpener or hOpener
 mOpener = not (sOpener or hOpener)
 dOpener = mOpener and (diamonds(south) >= clubs(south) or shape(south, xx32))
 cOpener = mOpener and not dOpener
-# Define responder’s Good suits (strong rebiddable)
+
+
+# Define strong rebiddable suit
 Gs = spades(north)>5 and top5(north,spades)>3 and not sOpener
-Gh = hearts(north)>5 and top5(north,hearts)>3 and not hOpener
-Gd = diamonds(north)>5 and top5(north,diamonds)>3 and not dOpener
-goodSuit = (Gs or Gh or Gd) and hcp(north)>16
-# Define responder’s Solid suits
+Gh = hearts(north)>5 and top5(north,hearts)>3 and (dOpener or cOpener)
+Gd = diamonds(north)>5 and top5(north,diamonds)>3 and cOpener
+strongRebiddableSuit = (Gs or Gh or Gd) and hcp(north)>16 and shape(north, xxxx -any 5xxx -any 4xxx)    // no 4-card side suit
+
+# Define solid suits
 Ss = spades(north)>5 and top4(north,spades)==4 and not sOpener
-Sh = hearts(north)>5 and top4(north,hearts)==4 and not hOpener
-Sd = diamonds(north)>5 and top4(north,diamonds)==4 and not dOpener
+Sh = hearts(north)>5 and top4(north,hearts)==4 and (dOpener or cOpener)
+Sd = diamonds(north)>5 and top4(north,diamonds)==4 and cOpener
 solidSuit = (Ss or Sh or Sd) and hcp(north)>16
-# Define suit fit - 4+ card support
+
+# Define hasFit
 Fs = sOpener and spades(north)>3
 Fh = hOpener and hearts(north)>3
 Fd = dOpener and diamonds(north)>3
 Fc = cOpener and clubs(north)>3
-supportedSuit = (Fs or Fh or Fd or Fc)
+hasFit = (Fs or Fh or Fd or Fc)
+
 # Define rebidbidable suits
-Rs = spades(north)>4 and top4(north,spades)>2
-Rh = hearts(north)>4 and top4(north,hearts)>2
-Rd = diamonds(north)>4 and top4(north,diamonds)>2
-rebidAndShape = (Rs or Rh or Rd) and shape(north, any 5332 +any 6322) and hcp(north)>18
-rebidAndSupport = (Rs or Rh or Rd) and supportedSuit and tp>17
+Rs = spades(north)>4 and top4(north,spades)>2 and not sOpener
+Rh = hearts(north)>4 and top4(north,hearts)>2 and (dOpener or cOpener)
+Rd = diamonds(north)>4 and top4(north,diamonds)>2 and cOpener
+rebiddableSuit = (Rs or Rh or Rd) and not strongRebiddableSuit
+
+rebidAndShape = rebiddableSuit and not hasFit and shape(north, any 5332 +any 6322) and hcp(north)>18
+rebidAndFit = rebiddableSuit and hasFit and tp>17
 
 # These are possible Soloway Jump Shifts
 # 1C - 2D
@@ -49,27 +60,29 @@ rebidAndSupport = (Rs or Rh or Rd) and supportedSuit and tp>17
 # 1D - 2S
 # 1H - 2S
 
-# Now do it
-# South Opens 1C, 1D, or 1H
-hcp(south)>11 and hcp(south)<15 and spades(south)<5
-# West passes
-and hcp(west)<8
-and shape(west, xxxx - any 7xxx +any 6xxx +any 5xxx)
-and controls(north)>3
-and
-(
-# Type 1
-(goodSuit and shape(north, xxxx -any 4xxx))
-or
-# Type 2
-(solidSuit)
-or
-# Type 3
-(rebidAndShape and hcp(north)>17)
-or
-# Type 4
-(rebidAndSupport and hcp(north)>16 and supportedSuit)
-)
+southOpens = hcp(south)>11 and hcp(south)<15 and spades(south)<5
+westPasses = hcp(west)<8 and shape(west, xxxx -any 7xxx -any 6xxx -any 5xxx) 
+
+# North has a Soloway Jump Shift
+type_1 = strongRebiddableSuit and not solidSuit not hasFit and shape(north, xxxx -any 4xxx)
+type_2 = solidSuit and not hasFit
+type_3 = rebidAndShape and hcp(north)>17
+type_4 = rebidAndFit and hcp(north)>16 and hasFit
+solowayJumpShift = (type_1 or type_2 or type_3 or type_4) and controls(north)>3
+
+southOpens and westPasses and solowayJumpShift
+
+// condition type_1 || type_2 || type_3 || type_4
+
+action
+average "Type 1" 100 * type_1,
+average "Type 2" 100 * type_2,
+average "Type 3" 100 * type_3,
+average "Type 4" 100 * type_4,
+average "Type 1 & 2" 100 * ( type_1 && type_2 ),
+average "Type 1 & 3" 100 * ( type_1 && type_3 ),
+average "Type 1 & 4" 100 * ( type_1 && type_4 ),
+
 `, "S", true);
 Script
 Button,Soloway Jump Shift,\n\
