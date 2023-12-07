@@ -1,6 +1,8 @@
 Script,InvitationalJump3Under
 setDealerCode(
 `
+dealer south
+
 # 3 Under Invitational Jump (11-12 HCP)
 
 # Define NoMajorFit
@@ -9,7 +11,7 @@ NoHeartFit = ((hearts(south)>4 and spades(south)<5) and hearts(north)<3)
 
 # Define openers
 sOpener = spades(south) >= hearts(south) >= 5
-hOpener = hearts(south) > 5 and hearts(south) >= diamonds(south) and hearts(south) >=clubs(south) and not sOpener
+hOpener = hearts(south) > 4 and hearts(south) >= diamonds(south) and hearts(south) >=clubs(south) and not sOpener
 dOpener = diamonds(south) >= clubs(south) and not (sOpener or hOpener)
 cOpener = not sOpener and not hOpener and not dOpener
 
