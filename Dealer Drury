@@ -1,6 +1,8 @@
 Script,Drury
 setDealerCode(
 `
+dealer south
+
 # Reverse Drury
 
 # Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
@@ -8,9 +10,9 @@ calmEast = shape(east,any 5431 +any 5422 +any 5332 +any 4441 +any 4432 +any 4333
 calmWest = shape(west,any 5431 +any 5422 +any 5332 +any 4441 +any 4432 +any 4333) and hcp(west)<9
 calmOpps = calmEast and calmWest
 
-NT = shape(south, any 4333 +any 4432 +any 5332) and hcp(south)>14 and hcp(south)<18
+notNT = not (shape(south, any 4333 +any 4432 +any 5332) and hcp(south)>14 and hcp(south)<18)
 
-calmOpps and not NT and
+calmOpps and notNT and
 hcp(south)>7 and hcp(south)<12 and hcp(north)>11 and hcp(north)<20
 and
 (
@@ -21,5 +23,10 @@ or
 
 `)
 Script
-Button,Drury,Drury\n\
+Button,Drury,\n\
+--- Drury\n\
+After P (P) 1M (P)，Drury or Reverse Drury is on.\n\
+2!C asks about the opener's hand.\n\
+Drury:  2!D shows a shaded opener and 2M shows a full opener.\n\
+Reverse Drury: 2!D shows a full opener and 2M shows a shaded opener.\n\
 %Drury%
