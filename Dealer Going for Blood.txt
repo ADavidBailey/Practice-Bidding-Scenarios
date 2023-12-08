@@ -1,6 +1,9 @@
 Script,GoingForBlood
 setDealerCode(
 `
+produce 100
+dealer south
+
 # South opens and West is short in opener’s suit and North has <4-card support for minor and <3-card support for major
 Cs = clubs(south)>2 and clubs(south)>diamonds(south) and hearts(south)<5 and spades(south)<5 and clubs(north)<4 and clubs(west)<3
 Ds = diamonds(south)>2 and hearts(south)<5 and spades(south)<5 and diamonds(north)<4 and diamonds(west)<3
