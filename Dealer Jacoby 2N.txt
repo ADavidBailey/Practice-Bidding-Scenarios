@@ -1,18 +1,104 @@
 Script,Jacoby2N
 setDealerCode(
 `
+# Copyright (C) 2023 Rick Wilson
 
-# Jacoby 2N
-nSemiBal = shape(north, xxxx -any 1xxx -any 0xxx)
-(
-(shape(south,5xxx+6xxx-x5xx-x6xx -any 5332) and shape(north,4xxx))
-or
-(shape(south,x5xx+x6xx-5xxx-6xxx -any 5332) and shape(north,x4xx))
-)
-and nSemiBal
-and hcp(south)>11 and hcp(north)>12
+# Dealer: North
+# Mode: Pair or Solo
+
+produce 1000
+
+dealer north
+
+# 1NT opener: 15-17 HCP, and balanced, or semi-balanced with 4 hearts:
+open_1nt = shape(north, any 5332 + any 4432 + any 4333 + 2452 + 2425 )
+           && hcp(north)>=15 && hcp(north)<=17
+
+# Predict North's opening suit     // make sure the opening suit is a major -- ADB
+sN = spades(north)
+hN = hearts(north)
+dN = diamonds(north)
+cN = clubs(north)
+nS = sN>4 and sN>=hN and sN>=dN and sN>=cN
+nH = not nS and hN>4 and hN>=dN and hN>=cN
+
+# Opening suit is spades, unless more hearts
+has_5_card_major = nS || nH        // make sure the opening suit is a major -- ADB
+# has_5_card_major = spades(north) >= 5 || hearts(north) >= 5
+openers_suit_spades = spades(north) >= hearts(north)
+openers_major_length = openers_suit_spades ? spades(north) : hearts(north)
+major_declarer_points = hcp(north) + openers_major_length - 4
+
+open_1M = has_5_card_major && major_declarer_points >= 13 && hcp(north) <= 19 && not open_1nt
+
+# 4+ card support for opener’s major:
+responder_support_length = openers_suit_spades ? spades(south) : hearts(south)
+has_54_major_fit = responder_support_length >= 4
+
+has_shortness     = shape(north, any xxx0 + any xxx1 )
+has_good_spades   = spades(north) >= 5 && top3(north,spades) >= 2
+has_good_hearts   = hearts(north) >= 5 && top3(north,hearts) >= 2
+has_good_diamonds = diamonds(north) >= 5 && top3(north,diamonds) >= 2
+has_good_clubs    = clubs(north) >= 5 && top3(north,clubs) >= 2
+has_good_trumps = has_good_spades || has_good_hearts
+has_spades_plus_good_second_suit
+    = spades(north) >= 5 && spades(north) >= hearts(north)
+        && ( has_good_hearts || has_good_diamonds || has_good_clubs )
+has_hearts_plus_good_second_suit
+    = hearts(north) >= 5 && hearts(north) > spades(north)
+        && ( has_good_spades || has_good_diamonds || has_good_clubs )
+has_good_second_suit = has_spades_plus_good_second_suit || has_hearts_plus_good_second_suit
+respond_4M = ( not has_shortness ) && hcp(north)<16
+respond_3M = ( not has_shortness ) && hcp(north)>=16 && has_good_trumps
+respond_3N = ( not has_shortness ) && hcp(north)>=16 && not has_good_trumps
+respond_4x = has_good_second_suit
+respond_3x = has_shortness && !respond_4x
+
+# Frequency Reduction modifiers:
+reduce_25_percent = hascard(east,2C) || hascard(west,2D)
+reduce_50_percent = hascard(east,2C)
+reduce_60_percent = hascard(east,2C) && ( hascard(west,2D) || hascard(east,3C))
+reduce_75_percent = hascard(east,2C) && hascard(west,2D)
+reduce_97_percent = hascard(east,2C) && hascard(west,2D) && hascard(east,3C)
+reduce_99_percent = hascard(east,2C) && hascard(west,2D) && hascard(east,3C) && hascard(east,4C)
+
+# Ensure that West is quiet        // ADB
+west_quiet = shape(west, xxxx -any 8xxx -any 7xxx -any 6xxx) && hcp(west) <= 7 
+
+condition
+
+   open_1M
+      && west_quiet                // reduce robot action -- ADB
+      && has_54_major_fit
+      && hcp(south) >= 13          // robots treat 12 as a limit raise -- ADB
+
+# Level responder hand types:
+
+#&& (!respond_3M || reduce_25_percent )
+#&& (!respond_4M || reduce_97_percent )
+#&& (!respond_3x || reduce_97_percent )
+#&& (!respond_4x || reduce_60_percent )
+
+
+action
+
+average "3x" 100 * respond_3x,
+average "4M" 100 * respond_4M,
+average "4x" 100 * respond_4x,
+average "3M" 100 * respond_3M,
+average "3N" 100 * respond_3N,
+
 
 `
-)
+,"N",true)
 Script
-Button,Jacoby 2N,Jacoby 2N\n%Jacoby2N%
+Button,Jacoby 2N (Leveled),\n\
+--- Jacoby 2N (Leveled)\n\
+Five different Opening hands can be described after a major suit open and a Jacoby 2N response. The parenthetical\n\
+number at the end is the approximate frequency of occurrence. Use the (Leveled) script to even that out.\n\
+• 4M - minimum with no shortness  (43%)\n\
+• 4x - any strength with a good (5-cards with 2+ of top 3) second suit  (9%)\n\
+• 3x - any strength with a singleton  (44%)\n\
+• 3M - strong hand (16+) with good trumps (2+ of top 3)  (2.5%)\n\
+• 3N - strong hand (16+) with so-so trumps  (1.7%)\n\
+%Jacoby2N%
