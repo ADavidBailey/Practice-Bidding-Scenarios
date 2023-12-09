@@ -14,7 +14,7 @@ dealer north
 open_1nt = shape(north, any 5332 + any 4432 + any 4333 + 2452 + 2425 )
            && hcp(north)>=15 && hcp(north)<=17
 
-# Predict North's opening suit
+# Predict North's opening suit     // make sure the major is the opening suit -- ADB
 sN = spades(north)
 hN = hearts(north)
 dN = diamonds(north)
@@ -23,7 +23,7 @@ nS = sN>4 and sN>=hN and sN>=dN and sN>=cN
 nH = not nS and hN>4 and hN>=dN and hN>=cN
 
 # Opening suit is spades, unless more hearts
-has_5_card_major = nS || nH       // ensure that no minor suit is longer
+has_5_card_major = nS || nH        // ensure that no minor suit is longer -- ADB
 # has_5_card_major = spades(north) >= 5 || hearts(north) >= 5
 openers_suit_spades = spades(north) >= hearts(north)
 openers_major_length = openers_suit_spades ? spades(north) : hearts(north)
@@ -62,15 +62,15 @@ reduce_75_percent = hascard(east,2C) && hascard(west,2D)
 reduce_97_percent = hascard(east,2C) && hascard(west,2D) && hascard(east,3C)
 reduce_99_percent = hascard(east,2C) && hascard(west,2D) && hascard(east,3C) && hascard(east,4C)
 
-# Ensure that West is quiet
+# Ensure that West is quiet        // ADB
 west_quiet = shape(west, xxxx -any 8xxx -any 7xxx -any 6xxx) && hcp(west) <= 7 
 
 condition
 
    open_1M
-      && west_quiet
+      && west_quiet                // reduce robot action -- ADB
       && has_54_major_fit
-      && hcp(south) >= 12
+      && hcp(south) >= 13          // robots treat 12 as a limit raise -- ADB
 
 # Level responder hand types:
 
