@@ -14,7 +14,7 @@ dealer north
 open_1nt = shape(north, any 5332 + any 4432 + any 4333 + 2452 + 2425 )
            && hcp(north)>=15 && hcp(north)<=17
 
-# Predict North's opening suit     // make sure the major is the opening suit -- ADB
+# Predict North's opening suit     // make sure the opening suit is a major -- ADB
 sN = spades(north)
 hN = hearts(north)
 dN = diamonds(north)
@@ -23,7 +23,7 @@ nS = sN>4 and sN>=hN and sN>=dN and sN>=cN
 nH = not nS and hN>4 and hN>=dN and hN>=cN
 
 # Opening suit is spades, unless more hearts
-has_5_card_major = nS || nH        // ensure that no minor suit is longer -- ADB
+has_5_card_major = nS || nH        // make sure the opening suit is a major -- ADB
 # has_5_card_major = spades(north) >= 5 || hearts(north) >= 5
 openers_suit_spades = spades(north) >= hearts(north)
 openers_major_length = openers_suit_spades ? spades(north) : hearts(north)
