@@ -31,6 +31,7 @@ ntPoints = hcp(south) + lengthPoints - ntDownGrade
 #downgrade = (S2H or H2H or D2H or C2H) ? 1 : 0
 #adjustedTP = shape(south, 2452+2425+2245+2254+4522 any 5332) ? hcp(south) + 1 - downgrade : hcp(south)  // +1 unless we also have a doubleton honor
 
+# Open 1NT -- these include hands that might have rebid problems if opened in a suit
 shape(south, 2452+2425+2245+2254+4522 +any 4333+any 4432+any 5332) and ntPoints>14 and ntPoints<18
 
 action
@@ -38,7 +39,6 @@ average "HCP         " hcp(south),
 average "lengthPoints" lengthPoints,
 average "ntDownGrade " ntDownGrade,
 average "ntPoints    " ntPoints,
-
 
 `
 )
