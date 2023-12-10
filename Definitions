@@ -64,11 +64,13 @@ oneDiamond = oD and lengthPoints>11 and not (NT or GF)
 oneClub = oC and lengthPoints>11 and not (NT or GF)
 oneMinor = (oC or oD) and lengthPoints>11 and not (NT or GF)
 
-# Define suit Fits for south
-sFit = oS and spades(north)>2
-hFit = oH and hearts(north)>2
-majorFit = (oS or oH)
+# Define 3-card Fits for south
+sFit3 = oS and spades(north)>2
+hFit3 = oH and hearts(north)>2
 
+# Define 4-card fits for south
+sFit4 = oS and spades(north)>3
+hFit4 = oH and hearts(north)>3
 
 # Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
 calmEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
