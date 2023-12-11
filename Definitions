@@ -30,7 +30,7 @@ ntPoints = hcp(south) + lengthPoints - ntDownGrade
 # Define suit points for south (suitPoints)
 suitPoints = hcp(south) + lengthPoints
 
-# Define robot notrump shape and exclude any 5-card major
+# Define robot notrump shape and exclude any 5card major
 ntShape = shape(south, any 4333 +any 4432 +any 5332 +any 5422 -5xxx -x5xx)
 
 # Define ntPoint ranges
