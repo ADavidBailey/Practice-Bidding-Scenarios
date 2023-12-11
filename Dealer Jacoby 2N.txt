@@ -2,7 +2,7 @@ Script,Jacoby2N
 setDealerCode(
 `
 produce 1000
-dealer north
+dealer south
 
 ### Definitions  ALL BOILERPLATE
  
@@ -94,6 +94,8 @@ calmEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 calmWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 calmOpps= calmEast and calmWest
 
+##### END OF BOILERPLATE #####
+
 ##### Jacoby 2N #####
 
 # Define Majors with 2nd suits
@@ -134,7 +136,7 @@ average "5. M4" 100 * M4,
 
 
 `
-,"N",true)
+,"S",true)
 Script
 Button,Jacoby 2N,\n\
 --- Jacoby 2N\n\
