@@ -1,21 +1,33 @@
 Script,NotrumpWith1
 setDealerCode(
 `
+produce 100
 dealer south
 
-# 1 Notrump Off-Shape
+# 1 Notrump Opening with a singletion honor
 
 # Singleton A, K or Q
-oS = spades(south)==1 and top3(south,spades)==1
-oH = hearts(south)==1 and top3(south,hearts)==1
-oD = diamonds(south)==1 and top3(south,diamonds)==1
-oC = clubs(south)==1 and top3(south,clubs)==1
+oneS = spades(south)==1 and top3(south,spades)==1
+oneH = hearts(south)==1 and top3(south,hearts)==1
+oneD = diamonds(south)==1 and top3(south,diamonds)==1
+oneC = clubs(south)==1 and top3(south,clubs)==1
 
-sTP = shape(south, any 5431) ? hcp(south) + 1 : hcp(south)    // +1 if we have a 5-card suit
+# Defing lengthPoints
+lengthPoints = shape(south, any 5xxx) ? 1 : 0
 
-sxxx1 = shape(south, 3451+4351+3415+4315 any 4441) and (oS or oH or oD or oC)     // one singleton honor
+# Define notrump points for south -- deduct 1 for singleton honor
+ntPoints =  hcp(south) + lengthPoints -1
 
-sxxx1 and sTP>14 and sTP<18
+# Open 1NT with a singleton
+ntShape = shape(south, 3451+4351+3415+4315 any 4441) and (oneS or oneH or oneD or oneC)     // one singleton honor
+
+ntShape and ntPoints>14 and ntPoints<18
+
+action
+average "HCP         " hcp(south),
+average "lengthPoints" lengthPoints,
+average "ntDownGrade " 1,
+average "ntPoints    " ntPoints,
 
 `
 )
