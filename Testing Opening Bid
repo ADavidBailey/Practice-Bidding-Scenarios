@@ -61,7 +61,7 @@ openingSuit = (oS or oH or oD or oC)
 P3 = P2 or openingSuit
 
 # Define South's Weak 2 Bids
-w2Range = hcp(south)>4 and hcp(south)<11
+w2Range = hcp(south)>4 and hcp(south)<12
 weak2S = spades(south)==6 and top5(south,spades)>2 and hcp(south,spades)>4 and hearts(south)<4 and w2Range and not P3
 weak2H = hearts(south)==6 and top5(south,hearts)>2 and hcp(south,hearts)>4 and spades(south)<4 and w2Range and not P3
 weak2D = diamonds(south)==6 and top5(south,diamonds)>2 and hcp(south,diamonds)>4 and spades(south)<4 and hearts(south)<4 and w2Range and not P3
