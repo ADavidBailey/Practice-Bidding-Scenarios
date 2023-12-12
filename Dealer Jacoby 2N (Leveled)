@@ -1,96 +1,142 @@
 Script,Jacoby2NLeveled
 setDealerCode(
 `
-# Copyright (C) 2023 Rick Wilson
-
-# Dealer: North
-# Mode: Pair or Solo
-
 produce 1000
+dealer south
 
-dealer north
+### Definitions  ALL BOILERPLATE
+ 
+# Calculate Short Suit Points for north (shortSuitPoints)
+v1 = shape(north, any 0xxx) ? 5 : 0  // allow for 2 voids
+v2 = shape(north, any 00xx) ? 5 : 0
+s1 = shape(north, any 1xxx) ? 3 : 0 // allow for 2 singletons
+s2 = shape(north, any 11xx) ? 3 : 0
+d1 = shape(north, any 2xxx) ? 1 : 0 // allow for 3 doubletons
+d2 = shape(north, any 22xx) ? 1 : 0
+d3 = shape(north, any 222x) ? 1 : 0
+shortSuitPoints = v1+v2+s1+s2+d1+d2+d3
+supportPoints = shortSuitPoints + hcp(north)
 
-# 1NT opener: 15-17 HCP, and balanced, or semi-balanced with 4 hearts:
-open_1nt = shape(north, any 5332 + any 4432 + any 4333 + 2452 + 2425 )
-           && hcp(north)>=15 && hcp(north)<=17
+# Calculate length points for South (lengthPoints)
+lp1 = spades(south)>4 ? spades(south)-4 : 0
+lp2 = hearts(south)>4 ? hearts(south)-4 : 0
+lp3 = diamonds(south)>4 ? diamonds(south)-4 : 0
+lp4 = clubs(south)>4 ? clubs(south)-4 : 0
+lengthPoints = lp1 + lp2 + lp3 + lp4
 
-# Predict North's opening suit     // make sure the opening suit is a major -- ADB
-sN = spades(north)
-hN = hearts(north)
-dN = diamonds(north)
-cN = clubs(north)
-nS = sN>4 and sN>=hN and sN>=dN and sN>=cN
-nH = not nS and hN>4 and hN>=dN and hN>=cN
+# Calculate doubleton honor NT downgrade(s) for South -- 2 cards, 1 honor, not the Ace
+S2H = spades(south)==2 and top4(south,spades)==1 and not hascard(south,AS) ? 1 : 0
+H2H = hearts(south)==2 and top4(south,hearts)==1 and not hascard(south,AH) ? 1 : 0
+D2H = diamonds(south)==2 and top4(south,diamonds)==1 and not hascard(south,AD) ? 1 : 0
+C2H = clubs(south)==2 and top4(south,clubs)==1 and not hascard(south,AC) ? 1 : 0
+ntDownGrade = S2H + H2H + D2H + C2H
 
-# Opening suit is spades, unless more hearts
-has_5_card_major = nS || nH        // make sure the opening suit is a major -- ADB
-# has_5_card_major = spades(north) >= 5 || hearts(north) >= 5
-openers_suit_spades = spades(north) >= hearts(north)
-openers_major_length = openers_suit_spades ? spades(north) : hearts(north)
-major_declarer_points = hcp(north) + openers_major_length - 4
+# Define notrump points for south (ntPoints)
+ntPoints = hcp(south) + lengthPoints - ntDownGrade
 
-open_1M = has_5_card_major && major_declarer_points >= 13 && hcp(north) <= 19 && not open_1nt
+# Define suit points for south (suitPoints)
+suitPoints = hcp(south) + lengthPoints
 
-# 4+ card support for opener’s major:
-responder_support_length = openers_suit_spades ? spades(south) : hearts(south)
-has_54_major_fit = responder_support_length >= 4
+# Define robot notrump shape and exclude any 5card 
+ntShape = shape(south, any 4333 +any 4432 +any 5332 +any 5422 -5xxx -x5xx)
 
-has_shortness     = shape(north, any xxx0 + any xxx1 )
-has_good_spades   = spades(north) >= 5 && top3(north,spades) >= 2
-has_good_hearts   = hearts(north) >= 5 && top3(north,hearts) >= 2
-has_good_diamonds = diamonds(north) >= 5 && top3(north,diamonds) >= 2
-has_good_clubs    = clubs(north) >= 5 && top3(north,clubs) >= 2
-has_good_trumps = has_good_spades || has_good_hearts
-has_spades_plus_good_second_suit
-    = spades(north) >= 5 && spades(north) >= hearts(north)
-        && ( has_good_hearts || has_good_diamonds || has_good_clubs )
-has_hearts_plus_good_second_suit
-    = hearts(north) >= 5 && hearts(north) > spades(north)
-        && ( has_good_spades || has_good_diamonds || has_good_clubs )
-has_good_second_suit = has_spades_plus_good_second_suit || has_hearts_plus_good_second_suit
-respond_4M = ( not has_shortness ) && hcp(north)<16
-respond_3M = ( not has_shortness ) && hcp(north)>=16 && has_good_trumps
-respond_3N = ( not has_shortness ) && hcp(north)>=16 && not has_good_trumps
-respond_4x = has_good_second_suit
-respond_3x = has_shortness && !respond_4x
+# Define ntPoint ranges
+oneNT = ntShape and ntPoints>14 and ntPoints<18
+twoNT = ntShape and ntPoints>19 and ntPoints<22
+weakNT = ntShape and ntPoints>10 and ntPoints<15
+overcallNT = ntShape and ntPoints>14 and ntPoints<19  // 15-18
+
+# Define Game Force 2C
+gameForce2C = hcp(south)>22
+
+### Predict South's opening BID
+P1 = gameForce2C
+P2 = (twoNT or oneNT) and not P1
+
+# Predict South's Opening suit
+s = spades(south)
+h = hearts(south)
+d = diamonds(south)
+c = clubs(south)
+oS = s>4 and s>=h and s>=d and s>=c and not (P1 or P2)
+oH = not oS and h>4 and h>=d and h>=c not (P1 or P2)
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3) not (P1 or P2)
+oC = not (oS or oH or oD) and not (P1 or P2)
+openingSuit = (oS or oH or oD or oC)
+
+# Define opening Major and opening Minor
+oneSpade = oS
+oneHeart = oH
+oneDiamond = oD
+oneClub = oC
+oneMajor = (oS or oH)
+oneMinor = (oC or oD)
+
+# Define 3+ card Fits for south
+sFit3 = oneSpade and spades(north)>2
+hFit3 = oneHeart and hearts(north)>2
+
+# Define 4+ card fits for south
+sFit4 = oneSpade and spades(north)>3
+hFit4 = oneHeart and hearts(north)>3
+majorFit4 = sFit4 or hFit4
+
+# Define Good suits -- 5+ cards with 2 of the top 3
+gS = spades(south)>4 and top3(south,spades)>1
+gH = hearts(south)>4 and top3(south,hearts)>1
+gD = diamonds(south)>4 and top3(south,diamonds)>1
+gC = clubs(south)>4 and top3(south,clubs)>1
+
+# Define Strong suits -- 5+ cards with 3 of the top 4
+# Define Solid suits -- 5 cards with 4 of the top 4 or 6+ cards with 3 of the top 3  
+
+# Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
+calmEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+calmWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+calmOpps= calmEast and calmWest
+
+##### END OF BOILERPLATE #####
+
+##### Jacoby 2N #####
+
+# Define Majors with 2nd suits
+sFit2nd = oneSpade and sFit4 and (gH or gD or gC)
+hFit2nd = oneHeart and hFit4 and (gS or gD or gC)
+
+# Define the 5 types of opening hands in priority order
+x4 = sFit2nd or hFit2nd
+x3 = majorFit4 and shape(south, any 0xxx +any 1xxx) and not x4
+M3 = majorFit4 and suitPoints>17 and not (x4 or x3)
+N3 = majorFit4 and suitPoints>14 and suitPoints<18 and not (x4 or x3 or M3)
+M4 = majorFit4 and suitPoints>11 and suitPoints<15 and not (x4 or x3 or M3 or N3)
 
 # Frequency Reduction modifiers:
-reduce_25_percent = hascard(east,2C) || hascard(west,2D)
+reduce_25_percent = hascard(east,2C) or hascard(west,2D)
 reduce_50_percent = hascard(east,2C)
-reduce_60_percent = hascard(east,2C) && ( hascard(west,2D) || hascard(east,3C))
-reduce_75_percent = hascard(east,2C) && hascard(west,2D)
-reduce_97_percent = hascard(east,2C) && hascard(west,2D) && hascard(east,3C)
-reduce_99_percent = hascard(east,2C) && hascard(west,2D) && hascard(east,3C) && hascard(east,4C)
+reduce_60_percent = hascard(east,2C) and ( hascard(west,2D) or hascard(east,3C))
+reduce_75_percent = hascard(east,2C) and hascard(west,2D)
+reduce_97_percent = hascard(east,2C) and hascard(west,2D) and hascard(east,3C)
+reduce_99_percent = hascard(east,2C) and hascard(west,2D) and hascard(east,3C) and hascard(east,4C)
 
-# Ensure that West is quiet        // ADB
-west_quiet = shape(west, xxxx -any 8xxx -any 7xxx -any 6xxx) && hcp(west) <= 7 
-
-condition
-
-   open_1M
-      && west_quiet                // reduce robot action -- ADB
-      && has_54_major_fit
-      && hcp(south) >= 13          // robots treat 12 as a limit raise -- ADB
+##### Now do it #####
+(x4 or x3 or M3 or N3 or M4) and suitPoints>11 and calmWest and hcp(north)>12
 
 # Level responder hand types:
-
-&& (!respond_3M || reduce_25_percent )
-&& (!respond_4M || reduce_97_percent )
-&& (!respond_3x || reduce_97_percent )
-&& (!respond_4x || reduce_60_percent )
-
+and (not x3 or reduce_97_percent )
+and (not M4 or reduce_97_percent )
+and (not M3 or reduce_50_percent )
+and (not x4 or reduce_60_percent )
+and (not N3 or reduce_75_percent )
 
 action
-
-average "3x" 100 * respond_3x,
-average "4M" 100 * respond_4M,
-average "4x" 100 * respond_4x,
-average "3M" 100 * respond_3M,
-average "3N" 100 * respond_3N,
-
+average "1. x4" 100 * x4,
+average "2. x3" 100 * x3,
+average "3. M3" 100 * M3,
+average "4. N3" 100 * N3,
+average "5. M4" 100 * M4,
 
 `
-,"N",true)
+,"S",true)
 Script
 Button,Jacoby 2N (Leveled),\n\
 --- Jacoby 2N (Leveled)\n\
