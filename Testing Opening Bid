@@ -1,5 +1,5 @@
-### Definitions
- 
+# Testing Opening Bid
+
 # Calculate Short Suit Points for North (shortSuitPoints)
 v1 = shape(north, any 0xxx) ? 5 : 0  // allow for 2 voids
 v2 = shape(north, any 00xx) ? 5 : 0
@@ -65,15 +65,25 @@ w2Range = hcp(south)>4 and hcp(south)<12
 weak2S = spades(south)==6 and top5(south,spades)>2 and hcp(south,spades)>4 and hearts(south)<4 and w2Range and not P3
 weak2H = hearts(south)==6 and top5(south,hearts)>2 and hcp(south,hearts)>4 and spades(south)<4 and w2Range and not P3
 weak2D = diamonds(south)==6 and top5(south,diamonds)>2 and hcp(south,diamonds)>4 and spades(south)<4 and hearts(south)<4 and w2Range and not P3
+weakTwo = (weak2S or weak2H or weak2D)
+P4 = P3 or weakTwo
 
-# Define opening Major and opening Minor and opening Weak Two
+# Define Preempts
+preempt = shape(south, any 9xxx +any 8xxx +any 7xxx) and hcp(south)<12 and not P4
+P5 = P4 or preempt
+
+# Define Pass
+pass = not P5
+
+# Define opening Major, opening Minor
 oneSpade = oS
 oneHeart = oH
 oneDiamond = oD
 oneClub = oC
 oneMajor = (oS or oH)
 oneMinor = (oC or oD)
-weakTwo = (weak2S or weak2H or weak2D)
+
+
 
 C2x = gameForce2C
 N2x = twoNT
@@ -85,6 +95,8 @@ C1x = oneClub
 S2x = weak2S
 H2x = weak2H
 D2x = weak2D
+P3x = preempt
+NBx = pass
 
 (((C2x or N2x or N1x or S1x or H1x or D1x or C1x) and suitPoints>11) or ((S2x or H2x or D2x) and hcp(south)>5))
 
@@ -106,3 +118,5 @@ average " 7. 1C" 100 * C1x,
 average " 8. 2S" 100 * S2x,
 average " 9. 2H" 100 * H2x,
 average "10. 2D" 100 * D2x,
+average "11. 3x" 100 * P3x,
+average "Pass  " 100 * NBx,
