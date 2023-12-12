@@ -1,7 +1,4 @@
 ### Definitions
- 
-produce 100000
-# Testing Opening Bid
 
 # Calculate Short Suit Points for North (shortSuitPoints)
 v1 = shape(north, any 0xxx) ? 5 : 0  // allow for 2 voids
@@ -14,6 +11,7 @@ d3 = shape(north, any 222x) ? 1 : 0
 shortSuitPoints = v1+v2+s1+s2+d1+d2+d3
 supportPoints = shortSuitPoints + hcp(north)
 
+### Predict Opening Bid
 # Calculate length points for South (lengthPoints)
 lp1 = spades(south)>4 ? spades(south)-4 : 0
 lp2 = hearts(south)>4 ? hearts(south)-4 : 0
@@ -46,7 +44,7 @@ overcallNT = ntShape and ntPoints>14 and ntPoints<19  // 15-18
 # Define Game Force 2C
 gameForce2C = hcp(south)>22
 
-### Predict South's opening BID
+# Predict South's opening BID
 P1 = gameForce2C
 P2 = P1 or twoNT or oneNT
 
@@ -135,7 +133,7 @@ average "13. 2d" 100 * Dl2,
 average "14. 3x" 100 * P3x,
 average "Pass  " 100 * NBx,
 
-
+### End of Predict South's Opening Bid
 
 # Define 3+ card Fits for south
 sFit3 = oneSpade and spades(north)>2
