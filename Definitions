@@ -45,26 +45,35 @@ gameForce2C = hcp(south)>22
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = (twoNT or oneNT) and not P1
+P2 = P1 or twoNT or oneNT
 
 # Predict South's Opening suit
 s = spades(south)
 h = hearts(south)
 d = diamonds(south)
 c = clubs(south)
-oS = s>4 and s>=h and s>=d and s>=c and not (P1 or P2)
-oH = not oS and h>4 and h>=d and h>=c not (P1 or P2)
-oD = not (oS or oH) and ((d>3 and d>=c) or c<3) not (P1 or P2)
-oC = not (oS or oH or oD) and not (P1 or P2)
+s1Range = suitPoints>11
+oS = s>4 and s>=h and s>=d and s>=c and s1Range and not P2
+oH = not oS and h>4 and h>=d and h>=c and s1Range and not P2
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and s1Range and not P2
+oC = not (oS or oH or oD) and s1Range and not P2
 openingSuit = (oS or oH or oD or oC)
+P3 = P2 or openingSuit
 
-# Define opening Major and opening Minor
+# Define South's Weak 2 Bids
+w2Range = hcp(south)>4 and hcp(south)<11
+weak2S = spades(south)==6 and top5(south,spades)>2 and hcp(south,spades)>4 and hearts(south)<4 and w2Range and not P3
+weak2H = hearts(south)==6 and top5(south,hearts)>2 and hcp(south,hearts)>4 and spades(south)<4 and w2Range and not P3
+weak2D = diamonds(south)==6 and top5(south,diamonds)>2 and hcp(south,diamonds)>4 and spades(south)<4 and hearts(south)<4 and w2Range and not P3
+
+# Define opening Major and opening Minor and opening Weak Two
 oneSpade = oS
 oneHeart = oH
 oneDiamond = oD
 oneClub = oC
 oneMajor = (oS or oH)
 oneMinor = (oC or oD)
+weakTwo = (weak2S or weak2H or weak2D)
 
 # Define 3+ card Fits for south
 sFit3 = oneSpade and spades(north)>2
@@ -88,7 +97,6 @@ gC = clubs(south)>4 and top3(south,clubs)>1
 calmEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 calmWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 calmOpps= calmEast and calmWest
-
 
 # Define East weak 2 bids
 w2S = spades(east)==6 and top5(east,spades)>2 and hcp(east,spades)>4 and hearts(east)<4 and spades(south)<3 and spades(west)<3
