@@ -1,5 +1,8 @@
 ### Definitions
  
+produce 100000
+# Testing Opening Bid
+
 # Calculate Short Suit Points for North (shortSuitPoints)
 v1 = shape(north, any 0xxx) ? 5 : 0  // allow for 2 voids
 v2 = shape(north, any 00xx) ? 5 : 0
@@ -65,15 +68,74 @@ w2Range = hcp(south)>4 and hcp(south)<12
 weak2S = spades(south)==6 and top5(south,spades)>2 and hcp(south,spades)>4 and hearts(south)<4 and w2Range and not P3
 weak2H = hearts(south)==6 and top5(south,hearts)>2 and hcp(south,hearts)>4 and spades(south)<4 and w2Range and not P3
 weak2D = diamonds(south)==6 and top5(south,diamonds)>2 and hcp(south,diamonds)>4 and spades(south)<4 and hearts(south)<4 and w2Range and not P3
+weakTwo = (weak2S or weak2H or weak2D)
+P4 = P3 or weakTwo
 
-# Define opening Major and opening Minor and opening Weak Two
+# Define South's loose Weak 2 Bids
+loose2S = spades(south)==6 and top4(south,spades)>1 and w2Range and not P4
+loose2H = hearts(south)==6 and top4(south,hearts)>1 and w2Range and not P4
+loose2D = diamonds(south)==6 and top4(south,diamonds)>1 and w2Range and not P4
+P5 = P4 or (loose2S or loose2H or loose2D)
+
+# Define Preempts
+preempt = shape(south, any 9xxx +any 8xxx +any 7xxx) and hcp(south)<12 and not P4
+P6 = P5 or preempt
+
+# Define Pass
+pass = not P5
+P7 = P6 or pass
+
+# Define opening Major, opening Minor
 oneSpade = oS
 oneHeart = oH
 oneDiamond = oD
 oneClub = oC
 oneMajor = (oS or oH)
 oneMinor = (oC or oD)
-weakTwo = (weak2S or weak2H or weak2D)
+
+C2x = gameForce2C
+N2x = twoNT
+N1x = oneNT
+S1x = oneSpade
+H1x = oneHeart
+D1x = oneDiamond
+C1x = oneClub
+S2x = weak2S
+H2x = weak2H
+D2x = weak2D
+Sl2 = loose2S
+Hl2 = loose2H
+Dl2 = loose2D
+P3x = preempt
+NBx = pass
+
+P7  // any bid
+
+# Level responder hand types:
+#and (not x3 or reduce_97_percent )
+#and (not M4 or reduce_97_percent )
+#and (not M3 or reduce_50_percent )
+#and (not x4 or reduce_60_percent )
+#and (not N3 or reduce_75_percent )
+
+action
+average " 1. 2C" 100 * C2x,
+average " 2. 2N" 100 * N2x,
+average " 3. 1N" 100 * N1x,
+average " 4. 1S" 100 * S1x,
+average " 5. 1H" 100 * H1x,
+average " 6. 1D" 100 * D1x,
+average " 7. 1C" 100 * C1x,
+average " 8. 2S" 100 * S2x,
+average " 9. 2H" 100 * H2x,
+average "10. 2D" 100 * D2x,
+average "11. 2s" 100 * Sl2,
+average "12. 2h" 100 * Hl2,
+average "13. 2d" 100 * Dl2,
+average "14. 3x" 100 * P3x,
+average "Pass  " 100 * NBx,
+
+
 
 # Define 3+ card Fits for south
 sFit3 = oneSpade and spades(north)>2
