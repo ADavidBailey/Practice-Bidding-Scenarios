@@ -1,0 +1,119 @@
+### Definitions
+ 
+# Calculate Short Suit Points for North (shortSuitPoints)
+v1 = shape(north, any 0xxx) ? 5 : 0  // allow for 2 voids
+v2 = shape(north, any 00xx) ? 5 : 0
+s1 = shape(north, any 1xxx) ? 3 : 0 // allow for 2 singletons
+s2 = shape(north, any 11xx) ? 3 : 0
+d1 = shape(north, any 2xxx) ? 1 : 0 // allow for 3 doubletons
+d2 = shape(north, any 22xx) ? 1 : 0
+d3 = shape(north, any 222x) ? 1 : 0
+shortSuitPoints = v1+v2+s1+s2+d1+d2+d3
+supportPoints = shortSuitPoints + hcp(north)
+
+# Calculate length points for South (lengthPoints)
+lp1 = spades(south)>4 ? spades(south)-4 : 0
+lp2 = hearts(south)>4 ? hearts(south)-4 : 0
+lp3 = diamonds(south)>4 ? diamonds(south)-4 : 0
+lp4 = clubs(south)>4 ? clubs(south)-4 : 0
+lengthPoints = lp1 + lp2 + lp3 + lp4
+
+# Calculate doubleton honor NT downgrade(s) for South -- 2 cards, 1 honor, not the Ace
+S2H = spades(south)==2 and top4(south,spades)==1 and not hascard(south,AS) ? 1 : 0
+H2H = hearts(south)==2 and top4(south,hearts)==1 and not hascard(south,AH) ? 1 : 0
+D2H = diamonds(south)==2 and top4(south,diamonds)==1 and not hascard(south,AD) ? 1 : 0
+C2H = clubs(south)==2 and top4(south,clubs)==1 and not hascard(south,AC) ? 1 : 0
+ntDownGrade = S2H + H2H + D2H + C2H
+
+# Define notrump points for south (ntPoints)
+ntPoints = hcp(south) + lengthPoints - ntDownGrade
+
+# Define suit points for south (suitPoints)
+suitPoints = hcp(south) + lengthPoints
+
+# Define robot notrump shape and exclude any 5card 
+ntShape = shape(south, any 4333 +any 4432 +any 5332 +any 5422 -5xxx -x5xx)
+
+# Define ntPoint ranges
+oneNT = ntShape and ntPoints>14 and ntPoints<18
+twoNT = ntShape and ntPoints>19 and ntPoints<22
+weakNT = ntShape and ntPoints>10 and ntPoints<15
+overcallNT = ntShape and ntPoints>14 and ntPoints<19  // 15-18
+
+# Define Game Force 2C
+gameForce2C = hcp(south)>22
+
+### Predict South's opening BID
+P1 = gameForce2C
+P2 = P1 or twoNT or oneNT
+
+# Predict South's Opening suit
+s = spades(south)
+h = hearts(south)
+d = diamonds(south)
+c = clubs(south)
+s1Range = suitPoints>11
+oS = s>4 and s>=h and s>=d and s>=c and s1Range and not P2
+oH = not oS and h>4 and h>=d and h>=c and s1Range and not P2
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and s1Range and not P2
+oC = not (oS or oH or oD) and s1Range and not P2
+openingSuit = (oS or oH or oD or oC)
+P3 = P2 or openingSuit
+
+# Define South's Weak 2 Bids
+w2Range = hcp(south)>4 and hcp(south)<11
+weak2S = spades(south)==6 and top5(south,spades)>2 and hcp(south,spades)>4 and hearts(south)<4 and w2Range and not P3
+weak2H = hearts(south)==6 and top5(south,hearts)>2 and hcp(south,hearts)>4 and spades(south)<4 and w2Range and not P3
+weak2D = diamonds(south)==6 and top5(south,diamonds)>2 and hcp(south,diamonds)>4 and spades(south)<4 and hearts(south)<4 and w2Range and not P3
+
+# Define opening Major and opening Minor and opening Weak Two
+oneSpade = oS
+oneHeart = oH
+oneDiamond = oD
+oneClub = oC
+oneMajor = (oS or oH)
+oneMinor = (oC or oD)
+weakTwo = (weak2S or weak2H or weak2D)
+
+C2x = gameForce2C
+N2x = twoNT
+N1x = oneNT
+S1x = oneSpade
+H1x = oneHeart
+D1x = oneDiamond
+C1x = oneClub
+S2x = weak2S
+H2x = weak2H
+D2x = weak2D
+
+C2x = gameForce2C
+N2x = twoNT
+N1x = oneNT
+S1x = oneSpade
+H1x = oneHeart
+D1x = oneDiamond
+C1x = oneClub
+S2x = weak2S
+H2x = weak2H
+D2x = weak2D
+
+(((C2x or N2x or N1x or S1x or H1x or D1x or C1x) and suitPoints>11) or ((S2x or H2x or D2x) and hcp(south)>5))
+
+# Level responder hand types:
+#and (not x3 or reduce_97_percent )
+#and (not M4 or reduce_97_percent )
+#and (not M3 or reduce_50_percent )
+#and (not x4 or reduce_60_percent )
+#and (not N3 or reduce_75_percent )
+
+action
+average " 1. 2C" 100 * C2x,
+average " 2. 2N" 100 * N2x,
+average " 3. 1N" 100 * N1x,
+average " 4. 1S" 100 * S1x,
+average " 5. 1H" 100 * H1x,
+average " 6. 1D" 100 * D1x,
+average " 7. 1C" 100 * C1x,
+average " 8. 2S" 100 * S2x,
+average " 9. 2H" 100 * H2x,
+average "10. 2D" 100 * D2x,
