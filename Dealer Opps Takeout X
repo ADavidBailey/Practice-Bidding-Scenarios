@@ -10,10 +10,10 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Scr
 noSpadeFit = oneSpade and spades(north)<3 and spades(west)<2
 noHeartFit = oneHeart and hearts(north)<3 and hearts(west)<2
 
-noMajorFit = (noSpadeFit or noHeartFit)
+noMajorFit = (noSpadeFit or noHeartFit) and shape(west,any 5440 +any 5431 +any 5431)
 
 # South opens 1M
-noMajorFit and suitPoints>11 and hcp(west)>12 and hcp(west)<16 and hcp(south)>9
+noMajorFit and suitPoints>12 and hcp(west)>12 and hcp(west)<16 and hcp(south)>9
 
 `
 )
