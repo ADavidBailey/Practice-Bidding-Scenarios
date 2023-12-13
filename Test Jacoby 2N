@@ -2,16 +2,20 @@ Script,TestJacoby2N
 setDealerCode(
 `
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Script-Predict-Opening-1-Bid
-Import,//github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Script-Good-Suits-South
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Good-Suits-South
 
 ##### End of Imported Code #####
 
 ##### Jacoby 2N #####
 
+# Define Major 4-card fits
+sFit4 = oneSpade and spades(north)>3
+hFit4 = oneHeart and hearts(north)>3
+
 # Define Majors with 2nd suits
-sFit2nd = oneSpade and sFit4 and (gH or gD or gC)
-hFit2nd = oneHeart and hFit4 and (gS or gD or gC)
+sFit2nd = sFit4 and (gH or gD or gC)
+hFit2nd = hFit4 and (gS or gD or gC)
 
 # Define the 5 types of opening hands in priority order
 x4 = sFit2nd or hFit2nd
