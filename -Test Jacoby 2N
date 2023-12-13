@@ -12,6 +12,7 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Scr
 # Define Major 4-card fits
 sFit4 = oneSpade and spades(north)>3
 hFit4 = oneHeart and hearts(north)>3
+majorFit4 = sFit4 or hFit4
 
 # Define Majors with 2nd suits
 sFit2nd = sFit4 and (gH or gD or gC)
