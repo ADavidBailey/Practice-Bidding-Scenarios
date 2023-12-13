@@ -47,39 +47,10 @@ oS = s>4 and s>=h and s>=d and s>=c and s1Range and not P2
 oH = not oS and h>4 and h>=d and h>=c and s1Range and not P2
 oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and s1Range and not P2
 oC = not (oS or oH or oD) and s1Range and not P2
-openinuit = (oS or oH or oD or oC)
-P3 = P2 or openinuit
-
-# Define South's Weak 2 Bids
-w2Range = hcp(south)>4 and hcp(south)<12
-weak2S = spades(south)==6 and top5(south,spades)>2 and hcp(south,spades)>4 and hearts(south)<4 and w2Range and not P3
-weak2H = hearts(south)==6 and top5(south,hearts)>2 and hcp(south,hearts)>4 and spades(south)<4 and w2Range and not P3
-weak2D = diamonds(south)==6 and top5(south,diamonds)>2 and hcp(south,diamonds)>4 and spades(south)<4 and hearts(south)<4 and w2Range and not P3
-weakTwo = (weak2S or weak2H or weak2D)
-P4 = P3 or weakTwo
-
-# Define South's loose Weak 2 Bids
-loose2S = spades(south)==6 and top4(south,spades)>1 and w2Range and not P4
-loose2H = hearts(south)==6 and top4(south,hearts)>1 and w2Range and not P4
-loose2D = diamonds(south)==6 and top4(south,diamonds)>1 and w2Range and not P4
-looseTwo = (loose2S or loose2H or loose2D)
-P5 = P4 or looseTwo
-
-# Define Preempts
-preempt = shape(south, any 9xxx +any 8xxx +any 7xxx) and hcp(south)<12 and not P4
-P6 = P5 or preempt
-
-# Define Pass
-pass = not P5
-P7 = P6 or pass
-
-# Define opening Major, opening Minor
+openingSuit = (oS or oH or oD or oC)
 oneSpade = oS
 oneHeart = oH
 oneDiamond = oD
-oneClub = oC
-oneMajor = (oS or oH)
-oneMinor = (oC or oD)
+oneClube = oC
 
-# Opening Bid
-openingBid = P7
+
