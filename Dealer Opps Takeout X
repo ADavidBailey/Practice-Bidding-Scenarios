@@ -7,13 +7,13 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Scr
 # Opponents Takeout Double
 
 # Defining South opens a Major, West has 12-15 and short spades, and South has 10+ and no fit 
-noSpadeFit = oneSpade and spades(north)<3 and spades(west)<3
-noHeartFit = oneHeart and hearts(north)<3 and hearts(west)<3
+noSpadeFit = oneSpade and spades(north)<3 and spades(west)<2
+noHeartFit = oneHeart and hearts(north)<3 and hearts(west)<2
 
 noMajorFit = (noSpadeFit or noHeartFit)
 
 # South opens 1M
-noMajorFit and suitPoints>11 and hcp(west)>11 and hcp(west)<16 and hcp(south)>9
+noMajorFit and suitPoints>11 and hcp(west)>12 and hcp(west)<16 and hcp(south)>9
 
 `
 )
