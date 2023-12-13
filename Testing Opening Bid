@@ -50,17 +50,19 @@ oC = not (oS or oH or oD) and range1 and not P2
 openingSuit = (oS or oH or oD or oC)
 P3 = P2 or openingSuit
 
-# Define South's Weak 2 Bids
+# Define South's Weak 2 Bids with any 4-card
 tp = hcp(south)
 sp = hcp(south,spades) 
 hp = hcp(south,hearts)
 dp = hcp(south,diamonds)
 
-w2s = shape(south,6xxx-x6xx-x5xx-x4xx) and 2 * sp > tp    // at least half of south's points are in the suit
-w2h = shape(south,x6xx-6xxx-5xxx-4xxx) and 2 * hp > tp
-w2d = shape(south,xx6x-x6xx-x5xx-x4xx-6xxx-5xxx-4xxx) and 2* dp > tp
+// at least half of south's points are in the suit
+// don't allow 5-card major
+w2s = shape(south,6xxx-x6xx-x5xx) and 2 * sp > tp    
+w2h = shape(south,x6xx-6xxx-5xxx) and 2 * hp > tp
+w2d = shape(south,xx6x-x6xx-x5xx-6xxx-5xxx) and 2* dp > tp
 
-w2Range = tp<9 and losers(south)<8      // allow for 2 points for 6-card suit 
+w2Range = tp<11 and losers(south)<7
 
 weak2S = w2s and w2Range and not P3
 weak2H = w2h and w2Range and not P3
