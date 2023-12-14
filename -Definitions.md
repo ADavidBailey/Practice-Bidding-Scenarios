@@ -65,7 +65,7 @@ P1 = gameForce2C
 P2 = P1 or twoNT or oneNT
 ```
 
-### Predict South's Opening suit
+### Predict South's Opening Suit
 ```
 s = spades(south)
 h = hearts(south)
