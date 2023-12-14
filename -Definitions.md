@@ -2,7 +2,7 @@
 # Table of Contents
 
 ```
-[Short Suit Points](#suppoortPoints)
+[Short Suit Points for North](#suppoortPoints)
 [Predict Opening Bid](#Predict Opening Bid)
 ```
 
