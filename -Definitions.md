@@ -3,7 +3,6 @@
 ### Calculate Short Suit Points for North (shortSuitPoints)
 v1 = shape(north, any 0xxx) ? 5 : 0  // allow for 2 voids
 v2 = shape(north, any 00xx) ? 5 : 0
-
 s1 = shape(north, any 1xxx) ? 3 : 0 // allow for 2 singletons
 s2 = shape(north, any 11xx) ? 3 : 0
 d1 = shape(north, any 2xxx) ? 1 : 0 // allow for 3 doubletons
