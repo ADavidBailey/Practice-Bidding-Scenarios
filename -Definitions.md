@@ -1,6 +1,6 @@
-## Definitions
+# Definitions
 
-### Calculate Short Suit Points for North (shortSuitPoints)
+## Calculate Short Suit Points for North (shortSuitPoints)
 ```
   v1 = shape(north, any 0xxx) ? 5 : 0  // allow for 2 voids
   v2 = shape(north, any 00xx) ? 5 : 0
@@ -108,7 +108,7 @@ oneMinor = (oC or oD)
 
 P7   // any bid
 ```
-### Define the short opening bid type variables
+### Define the short variables for opening bids
 ```
 C2x = gameForce2C
 N2x = twoNT
@@ -165,6 +165,7 @@ sFit4 = oneSpade and spades(north)>3
 hFit4 = oneHeart and hearts(north)>3
 majorFit4 = sFit4 or hFit4
 ```
+## Define Good, Rebiddable, and Solid Suits
 ### Define Good suits -- 5+ cards with 2 of the top 3
 ```
 gS = spades(south)>4 and top3(south,spades)>1
@@ -175,13 +176,13 @@ gC = clubs(south)>4 and top3(south,clubs)>1
 ### Define Rebiddable suits -- 5+ cards with 3 of the top 4
 ### Define Solid suits -- 5 cards with 4 of the top 4 or 6+ cards with 3 of the top 3  
 
-# Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
+## Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
 ```
 calmEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 calmWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 calmOpps= calmEast and calmWest
 ```
-# Define East weak 2 bids
+## Define East weak 2 bids
 ```
 w2S = spades(east)==6 and top5(east,spades)>2 and hcp(east,spades)>4 and hearts(east)<4 and spades(south)<3 and spades(west)<3
 w2H = hearts(east)==6 and top5(east,hearts)>2 and hcp(east,hearts)>4 and spades(east)<4 and hearts(south)<3 and hearts(west)<3
