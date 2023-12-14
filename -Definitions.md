@@ -1,8 +1,9 @@
 # Definitions
 # Table of Contents
 
-- [Short Suit Points for North](#suppoortPoints)
-- [Predict Opening Bid](#Predict)
+1. [Short Suit Points for North](#suppoortPoints)
+2. [Predict Opening Bid](#Predict)
+   2.1 [Calculate length Points for South](lengthPoints)
 
 
 <a name="supportPoints"></a>
@@ -21,6 +22,7 @@
 ```
 <a name="Predict"></a>
 ## Predict Opening Bid
+<a name="lengthPoints"?</a>
 ### Calculate length points for South (lengthPoints)
 
 ```
@@ -29,8 +31,8 @@
   lp3 = diamonds(south)>4 ? diamonds(south)-4 : 0
   lp4 = clubs(south)>4 ? clubs(south)-4 : 0
   lengthPoints = lp1 + lp2 + lp3 + lp4
-
 ```
+
 ### Calculate doubleton honor NT downgrade(s) for South -- 2 cards, 1 honor, not the Ace
 
 ```
