@@ -3,7 +3,7 @@
 
 1. [Short Suit Points for North](#suppoortPoints)
 2. [Predict Opening Bid](#Predict)
-2.1 [Calculate length points for South](lengthPoints)
+3. [Calculate length points for South](lengthPoints)
 
 
 <a name="supportPoints"></a>
