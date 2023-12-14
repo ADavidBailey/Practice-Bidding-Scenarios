@@ -22,8 +22,8 @@
 ```
 <a name="Predict"></a>
 ## Predict Opening Bid
-<a name="lengthPoints"?</a>
-### Calculate length points for South (lengthPoints)
+
+### Calculate length points for South (lengthPoints)<a name="lengthPoints"?</a>
 
 ```
   lp1 = spades(south)>4 ? spades(south)-4 : 0
