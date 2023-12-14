@@ -1,6 +1,7 @@
 # Definitions
 
 ## Calculate Short Suit Points for North (shortSuitPoints)
+
 ```
   v1 = shape(north, any 0xxx) ? 5 : 0  // allow for 2 voids
   v2 = shape(north, any 00xx) ? 5 : 0
@@ -12,6 +13,7 @@
   shortSuitPoints = v1+v2+s1+s2+d1+d2+d3
   supportPoints = shortSuitPoints + hcp(north)
 ```
+
 ## Predict Opening Bid
 ### Calculate length points for South (lengthPoints)
 ```
