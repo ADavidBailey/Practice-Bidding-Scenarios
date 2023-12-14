@@ -2,24 +2,24 @@
 
 ### Calculate Short Suit Points for North (shortSuitPoints)
 ```
-v1 = shape(north, any 0xxx) ? 5 : 0  // allow for 2 voids
-v2 = shape(north, any 00xx) ? 5 : 0
-s1 = shape(north, any 1xxx) ? 3 : 0 // allow for 2 singletons
-s2 = shape(north, any 11xx) ? 3 : 0
-d1 = shape(north, any 2xxx) ? 1 : 0 // allow for 3 doubletons
-d2 = shape(north, any 22xx) ? 1 : 0
-d3 = shape(north, any 222x) ? 1 : 0
-shortSuitPoints = v1+v2+s1+s2+d1+d2+d3
-supportPoints = shortSuitPoints + hcp(north)
+  v1 = shape(north, any 0xxx) ? 5 : 0  // allow for 2 voids
+  v2 = shape(north, any 00xx) ? 5 : 0
+  s1 = shape(north, any 1xxx) ? 3 : 0 // allow for 2 singletons
+  s2 = shape(north, any 11xx) ? 3 : 0
+  d1 = shape(north, any 2xxx) ? 1 : 0 // allow for 3 doubletons
+  d2 = shape(north, any 22xx) ? 1 : 0
+  d3 = shape(north, any 222x) ? 1 : 0
+  shortSuitPoints = v1+v2+s1+s2+d1+d2+d3
+  supportPoints = shortSuitPoints + hcp(north)
 ```
 ## Predict Opening Bid
 ### Calculate length points for South (lengthPoints)
 ```
-lp1 = spades(south)>4 ? spades(south)-4 : 0
-lp2 = hearts(south)>4 ? hearts(south)-4 : 0
-lp3 = diamonds(south)>4 ? diamonds(south)-4 : 0
-lp4 = clubs(south)>4 ? clubs(south)-4 : 0
-lengthPoints = lp1 + lp2 + lp3 + lp4
+  lp1 = spades(south)>4 ? spades(south)-4 : 0
+  lp2 = hearts(south)>4 ? hearts(south)-4 : 0
+  lp3 = diamonds(south)>4 ? diamonds(south)-4 : 0
+  lp4 = clubs(south)>4 ? clubs(south)-4 : 0
+  lengthPoints = lp1 + lp2 + lp3 + lp4
 ```
 ### Calculate doubleton honor NT downgrade(s) for South -- 2 cards, 1 honor, not the Ace
 ```
