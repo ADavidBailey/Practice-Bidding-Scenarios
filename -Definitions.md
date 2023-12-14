@@ -1,5 +1,5 @@
 # Definitions
-
+# Table of Contents
 ## Calculate Short Suit Points for North (shortSuitPoints)
 
 ```
@@ -16,29 +16,36 @@
 
 ## Predict Opening Bid
 ### Calculate length points for South (lengthPoints)
+
 ```
   lp1 = spades(south)>4 ? spades(south)-4 : 0
   lp2 = hearts(south)>4 ? hearts(south)-4 : 0
   lp3 = diamonds(south)>4 ? diamonds(south)-4 : 0
   lp4 = clubs(south)>4 ? clubs(south)-4 : 0
   lengthPoints = lp1 + lp2 + lp3 + lp4
+
 ```
 ### Calculate doubleton honor NT downgrade(s) for South -- 2 cards, 1 honor, not the Ace
+
 ```
 S2H = spades(south)==2 and top4(south,spades)==1 and not hascard(south,AS) ? 1 : 0
 H2H = hearts(south)==2 and top4(south,hearts)==1 and not hascard(south,AH) ? 1 : 0
 D2H = diamonds(south)==2 and top4(south,diamonds)==1 and not hascard(south,AD) ? 1 : 0
 C2H = clubs(south)==2 and top4(south,clubs)==1 and not hascard(south,AC) ? 1 : 0
 ntDownGrade = S2H + H2H + D2H + C2H
+
 ```
 ### Define notrump points for south (ntPoints)
 ```
 ntPoints = hcp(south) + lengthPoints - ntDownGrade
 ```
+
 ### Define suit points for south (suitPoints)
+
 ```
 suitPoints = hcp(south) + lengthPoints
 ```
+
 ### Define robot notrump shape and exclude any 5 card major
 ```
 ntShape = shape(south, any 4333 +any 4432 +any 5332 +any 5422 -5xxx -x5xx)
