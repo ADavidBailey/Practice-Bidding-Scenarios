@@ -1,7 +1,10 @@
 # Definitions
 # Table of Contents
-[supportPoints](#suppoortPoints)
+
+```
+[Short Suit Points](#suppoortPoints)
 [Predict Opening Bid](#Predict Opening Bid)
+```
 
 <a name="supportPoints"></a>
 ## Calculate Short Suit Points for North (shortSuitPoints)
