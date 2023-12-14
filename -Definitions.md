@@ -3,7 +3,8 @@
 
 1. [Short Suit Points for North](#suppoortPoints)
 2. [Predict Opening Bid](#Predict)
-1. [Calculate length points for South](lengthPoints)
+1. [Calculate length points for South](#lengthPoints)
+2. [Calculate doubleton honor NT downgrade](#Hx)
 
 
 <a name="supportPoints"></a>
@@ -23,7 +24,7 @@
 <a name="Predict"></a>
 ## Predict Opening Bid
 
-### Calculate length points for South (lengthPoints)<a name="lengthPoints"?</a>
+### Calculate length points for South (lengthPoints)<a name="lengthPoints"></a>
 
 ```
   lp1 = spades(south)>4 ? spades(south)-4 : 0
@@ -33,7 +34,7 @@
   lengthPoints = lp1 + lp2 + lp3 + lp4
 ```
 
-### Calculate doubleton honor NT downgrade(s) for South -- 2 cards, 1 honor, not the Ace
+### Calculate doubleton honor NT downgrade(s) for South -- 2 cards, 1 honor, not the Ace<a name="Hx"></a>
 
 ```
 S2H = spades(south)==2 and top4(south,spades)==1 and not hascard(south,AS) ? 1 : 0
