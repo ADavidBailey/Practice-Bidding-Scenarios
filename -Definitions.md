@@ -134,7 +134,7 @@ NBx = pass
 //and (not x4 or reduce_60_percent )
 //and (not N3 or reduce_75_percent )
 ```
-### Calculate the Statists
+### Calculate the Statistics
 ```
 action
 average " 1. 2C" 100 * C2x,
