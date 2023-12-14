@@ -21,7 +21,6 @@ lp3 = diamonds(south)>4 ? diamonds(south)-4 : 0
 lp4 = clubs(south)>4 ? clubs(south)-4 : 0
 lengthPoints = lp1 + lp2 + lp3 + lp4
 ```
-
 ### Calculate doubleton honor NT downgrade(s) for South -- 2 cards, 1 honor, not the Ace
 ```
 S2H = spades(south)==2 and top4(south,spades)==1 and not hascard(south,AS) ? 1 : 0
@@ -30,22 +29,18 @@ D2H = diamonds(south)==2 and top4(south,diamonds)==1 and not hascard(south,AD) ?
 C2H = clubs(south)==2 and top4(south,clubs)==1 and not hascard(south,AC) ? 1 : 0
 ntDownGrade = S2H + H2H + D2H + C2H
 ```
-
 ### Define notrump points for south (ntPoints)
 ```
 ntPoints = hcp(south) + lengthPoints - ntDownGrade
 ```
-
 ### Define suit points for south (suitPoints)
 ```
 suitPoints = hcp(south) + lengthPoints
 ```
-
 ### Define robot notrump shape and exclude any 5 card major
 ```
 ntShape = shape(south, any 4333 +any 4432 +any 5332 +any 5422 -5xxx -x5xx)
 ```
-
 ### Define ntPoint ranges
 ```
 oneNT = ntShape and ntPoints>14 and ntPoints<18
@@ -53,18 +48,15 @@ twoNT = ntShape and ntPoints>19 and ntPoints<22
 weakNT = ntShape and ntPoints>10 and ntPoints<15
 overcallNT = ntShape and ntPoints>14 and ntPoints<19  // 15-18
 ```
-
 ### Define Game Force 2C
 ```
 gameForce2C = hcp(south)>22
 ```
-
 ### Predict South's opening BID
 ```
 P1 = gameForce2C
 P2 = P1 or twoNT or oneNT
 ```
-
 ### Predict South's Opening Suit
 ```
 s = spades(south)
@@ -79,7 +71,6 @@ oC = not (oS or oH or oD) and s1Range and not P2
 openingSuit = (oS or oH or oD or oC)
 P3 = P2 or openingSuit
 ```
-
 ### Define South's Weak 2 Bids
 ```
 w2Range = hcp(south)>4 and hcp(south)<12
@@ -89,7 +80,6 @@ weak2D = diamonds(south)==6 and top5(south,diamonds)>2 and hcp(south,diamonds)>4
 weakTwo = (weak2S or weak2H or weak2D)
 P4 = P3 or weakTwo
 ```
-
 ### Define South's loose Weak 2 Bids
 ```
 loose2S = spades(south)==6 and top4(south,spades)>1 and w2Range and not P4
@@ -97,7 +87,6 @@ loose2H = hearts(south)==6 and top4(south,hearts)>1 and w2Range and not P4
 loose2D = diamonds(south)==6 and top4(south,diamonds)>1 and w2Range and not P4
 P5 = P4 or (loose2S or loose2H or loose2D)
 ```
-
 ### Define Preempts
 ```
 preempt = shape(south, any 9xxx +any 8xxx +any 7xxx) and hcp(south)<12 and not P4
@@ -108,7 +97,6 @@ P6 = P5 or preempt
 pass = not P5
 P7 = P6 or pass
 ```
-
 ### Define opening Major, opening Minor
 ```
 oneSpade = oS
