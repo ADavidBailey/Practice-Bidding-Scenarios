@@ -10,7 +10,7 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Scr
 openSpade = oneSpade and spades(north)<3 and spades(west)<2
 openHeart = oneHeart and hearts(north)<3 and hearts(west)<2
 
-openMajor = (openSpade or openHeart) and shape(west,any 5440 +any 5431 +any 4441)
+openMajor = (openSpade or openHeart) and shape(west,any 5440 +any 5431 +any 4441 -5xxx -x5xx)
 
 # South opens 1M
 openMajor and hcp(south)>9 and hcp(west)>12 and hcp(west)<16
