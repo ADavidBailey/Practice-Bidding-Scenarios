@@ -1,5 +1,9 @@
 # Definitions
 # Table of Contents
+[supportPoints](#suppoortPoints)
+[Predict Opening Bid](#Predict Opening Bid)
+
+<a name="supportPoints"></a>
 ## Calculate Short Suit Points for North (shortSuitPoints)
 
 ```
@@ -13,7 +17,7 @@
   shortSuitPoints = v1+v2+s1+s2+d1+d2+d3
   supportPoints = shortSuitPoints + hcp(north)
 ```
-
+<a name="Predict Opening Bid"></a>
 ## Predict Opening Bid
 ### Calculate length points for South (lengthPoints)
 
