@@ -189,9 +189,9 @@ w2D = diamonds(east)==6 and top5(east,diamonds)>2 and hcp(east,diamonds)>4 and s
 eastWeak2 = (w2S or w2H or w2D) and hcp(east)>5 and hcp(east)<10 and shape(east,any 6430 +any 6421 +any 6331 +any 6322)  // should use east's lp rather than hcp
 ```
 
-# Calculate the suit ranks for North opener, East overall, and South new suit
-
-### Predict North's opening suit
+## Calculate the suit ranks for North opener, East overall, and South new suit
+### North
+#### Predict North's opening suit
 ```
 sN = spades(north)
 hN = hearts(north)
@@ -202,7 +202,7 @@ nH = not nS and hN>4 and hN>=dN and hN>=cN
 nD = not nS and not nH and ((dN>3 and dN>=cN))
 nC = not nS and not nH and not nD
 ```
-### Calculate North's Rank
+#### Calculate North's Rank
 ```
 nRS = nS ? 4 : 0
 nRH = nH ? 3 : 0
@@ -210,7 +210,8 @@ nRD = nD ? 2 : 0
 nRC = nC ? 1 : 0
 northRank = nRS+nRH+nRD+nRC   // all except one are zero
 ```
-### East's longest suit for overcall
+### East
+#### East's longest suit for overcall
 ```
 sE = spades(east)
 hE = hearts(east)
@@ -221,7 +222,7 @@ eH = not eS and hE>=dE and hE>=cE
 eD = not eS and not eH and dE>=cE
 eC = not eS and not eH and not eD
 ```
-### Calculate East's Rank
+#### Calculate East's Rank
 ```
 eRS = eS ? 4 : 0
 eRH = eH ? 3 : 0
@@ -229,7 +230,8 @@ eRD = eD ? 2 : 0
 eRC = eC ? 1 : 0
 eastRank = eRS+eRH+eRD+eRC
 ```
-### South's longest suit for responding in a new suit at the 2-level
+### South
+#### South's longest suit for responding in a new suit at the 2-level
 ```
 s = spades(south)
 h = hearts(south)
@@ -240,7 +242,7 @@ sH = not sS and h>=d and h>=c
 sD = not sS and not sH and d>=c
 sC = not sS and not sH and not sD
 ```
-### Calculate South's Rank
+#### Calculate South's Rank
 ```
 sRS = sS ? 4 : 0
 sRH = sH ? 3 : 0
