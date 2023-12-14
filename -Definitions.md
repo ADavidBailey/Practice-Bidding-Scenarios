@@ -1,7 +1,6 @@
 ## Definitions
 
-### Calculate Short Suit Points for North (shortSuitPoints)
-```
+### Calculate Short Suit Points for North (shortSuitPoints)```
 v1 = shape(north, any 0xxx) ? 5 : 0  // allow for 2 voids
 v2 = shape(north, any 00xx) ? 5 : 0
 s1 = shape(north, any 1xxx) ? 3 : 0 // allow for 2 singletons
