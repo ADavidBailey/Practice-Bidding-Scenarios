@@ -199,6 +199,15 @@ P7   // any bid
     calmWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
     calmOpps= calmEast and calmWest
 
+## Define South's Weak 2 Bids
+
+    w2Range = hcp(south)>4 and hcp(south)<12
+    weak2S = spades(south)==6 and top5(south,spades)>2 and hcp(south,spades)>4 and hearts(south)<4
+    weak2H = hearts(south)==6 and top5(south,hearts)>2 and hcp(south,hearts)>4 and spades(south)<4
+    weak2D = diamonds(south)==6 and top5(south,diamonds)>2 and hcp(south,diamonds)>4 and spades(south)<4 and hearts(south)<4
+    southWeakTwo = (weak2S or weak2H or weak2D) and w2Range
+    
+
 ## Define East weak 2 bids
 
     w2S = spades(east)==6 and top5(east,spades)>2 and hcp(east,spades)>4 and hearts(east)<4 and spades(south)<3 and spades(west)<3
