@@ -1,0 +1,91 @@
+Script,WeakTwoBidsLax
+setDealerCode(
+`
+produce 1000
+dealer south
+
+# Define South's Weak 2 Bids w/any 4-card suit
+     // at least half of south's points are in the suit
+     // don't allow 4-, 5-, or 6-card side major
+
+tp = hcp(south)
+sp = hcp(south,spades)
+hp = hcp(south,hearts)
+dp = hcp(south,diamonds)
+ 
+w2s = shape(south,6xxx-x6xx-x5xx) and 2 * sp > tp    
+w2h = shape(south,x6xx-6xxx-5xxx) and 2 * hp > tp
+w2d = shape(south,xx6x-x6xx-x5xx-6xxx-5xxx) and 2* dp > tp
+ 
+w2Range = tp<10 and losers(south)<7
+ 
+w2 = (w2s or w2h or w2d) and w2Range
+
+# Define responders hand types
+
+# Responder Raises
+sFit = w2s and spades(north)>2
+hFit = w2s and hearts(north)>2
+dFit = w2s and diamonds(north)>2
+fit = sFit or hFit or dFit
+
+sAK = top2(south,spades)==1 and not sFit
+hAK = top2(south,hearts)==1 and not hFit
+dAK = top2(south,diamonds)==1 and not dFit
+cAK = top2(south,clubs)==1
+sideHonor = (sAK or hAK or dAK or cAK)
+
+rPass = hcp(north)<15 and not fit
+rRaise = fit and hcp(north)<14    // Extend the preempt
+rInvite = fit and hcp(north)>13   // 2N
+rForce = hcp(north)>14            // Do something
+
+# Responder bids new suit
+rGS = (spades(north)==5 && top5(north,spades)>3) or (spades(north)>5 and top5(north,spades) >2)
+rGH = (hearts(north)==5 && top5(north,hearts)>3) or (hearts(north)>5 and top5(north,hearts) >2)
+rGD = (diamonds(north)==5 && top5(north,diamonds)>3) or (diamonds(north)>5 and top5(north,diamonds) >2)
+rGC = (clubs(north)==5 && top5(north,clubs)>3) or (clubs(north)>5 and top5(north,clubs) >2)
+rGSuit = rGS or rGH or rGD or rGC
+rNewSuit = rForce and rGSuit
+
+# Opener shows feature
+oFeature = rInvite and hcp(south)>8 and sideHonor
+
+# Opener rebids suit
+oRebid = not oFeature
+
+# do it
+w2
+
+# Leveling:
+reduce_90_percent = hascard(west,2C) && hascard(west,3C) && hascard(east,2D)
+reduce_75_percent = hascard(west,2C) && hascard(west,3C)
+
+# Level out responses:
+#(!rPass       || reduce_90_percent )
+#(!rRaise      || reduce_90_percent )
+#(!oFeature    || reduce_75_percent )
+#(!oRebid      || reduce_75_percent )
+
+action
+
+average "Responder pass          " 100 * rPass,
+average "Responder raises        " 100 * rRaise,
+average "2NT/Opener rebids major " 100 * oRebid,
+average "2NT/Opener shows feature" 100 * oFeature,
+average "New suit response       " 100 * rNewSuit,
+average "Trump fit               " 100 * fit,
+average "2NT response            " 100 * rInvite,
+average "9+ fit                  " 100 * fit and hcp(north)>8,
+frequency "HCP N+S" (hcp(south)+hcp(north),10,30)
+
+
+
+
+
+`,"S",true))
+Script
+Button,Weak 2 Bids Lax,\n\
+--- Weak 2 Bids Lax\n\
+These may have an outside 4-Card Major.\n\
+%WeakTwoBidsLax%
