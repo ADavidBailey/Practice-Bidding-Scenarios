@@ -35,7 +35,7 @@ sAK = top2(south,spades)==1 and not sFit
 hAK = top2(south,hearts)==1 and not hFit
 dAK = top2(south,diamonds)==1 and not dFit
 cAK = top2(south,clubs)==1
-oSideHonor = (sAK or hAK or dAK or cAK)
+oHonor = (sAK or hAK or dAK or cAK)
 
 rPass = hcp(north)<15 and not fit
 rRaise = fit and hcp(north)<14    // Extend the preempt
@@ -51,7 +51,7 @@ rGSuit = rGS or rGH or rGD or rGC
 rNewSuit = rForce and rGSuit
 
 # Opener shows feature
-oFeature = rInvite and hcp(south)>8 and oSideHonor
+oFeature = rInvite and hcp(south)>8 and oHonor
 
 # Opener rebids suit
 oRebid = rInvite and not oFeature
