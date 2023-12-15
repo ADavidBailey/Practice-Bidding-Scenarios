@@ -91,10 +91,10 @@
 ### Define South's Weak 2 Bids
 
     w2Range = hcp(south)>4 and hcp(south)<12
-    weak2S = spades(south)==6 and top5(south,spades)>2 and hcp(south,spades)>4 and hearts(south)<4 and w2Range and not P3
-    weak2H = hearts(south)==6 and top5(south,hearts)>2 and hcp(south,hearts)>4 and spades(south)<4 and w2Range and not P3
-    weak2D = diamonds(south)==6 and top5(south,diamonds)>2 and hcp(south,diamonds)>4 and spades(south)<4 and hearts(south)<4 and w2Range and not P3
-    weakTwo = (weak2S or weak2H or weak2D)
+    weak2S = spades(south)==6 and top5(south,spades)>2 and hcp(south,spades)>4 and hearts(south)<4
+    weak2H = hearts(south)==6 and top5(south,hearts)>2 and hcp(south,hearts)>4 and spades(south)<4
+    weak2D = diamonds(south)==6 and top5(south,diamonds)>2 and hcp(south,diamonds)>4 and spades(south)<4 and hearts(south)<4
+    weakTwo = (weak2S or weak2H or weak2D) and w2Range and not P3
     P4 = P3 or weakTwo
 
 ### Define South's loose Weak 2 Bids
