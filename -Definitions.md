@@ -202,18 +202,18 @@ P7   // any bid
 ## Define South's Weak 2 Bids
 
     w2Range = hcp(south)>4 and hcp(south)<12
-    weak2S = spades(south)==6 and top5(south,spades)>2 and hcp(south,spades)>4 and hearts(south)<4
-    weak2H = hearts(south)==6 and top5(south,hearts)>2 and hcp(south,hearts)>4 and spades(south)<4
-    weak2D = diamonds(south)==6 and top5(south,diamonds)>2 and hcp(south,diamonds)>4 and spades(south)<4 and hearts(south)<4
-    southWeakTwo = (weak2S or weak2H or weak2D) and w2Range
+    sW2S = spades(south)==6 and top5(south,spades)>2 and hcp(south,spades)>4 and hearts(south)<4
+    sW2H = hearts(south)==6 and top5(south,hearts)>2 and hcp(south,hearts)>4 and spades(south)<4
+    sW2D = diamonds(south)==6 and top5(south,diamonds)>2 and hcp(south,diamonds)>4 and spades(south)<4 and hearts(south)<4
+    southWeakTwo = (sW2S or sW2H or sW2D) and w2Range
     
 
 ## Define East weak 2 bids
 
-    w2S = spades(east)==6 and top5(east,spades)>2 and hcp(east,spades)>4 and hearts(east)<4 and spades(south)<3 and spades(west)<3
-    w2H = hearts(east)==6 and top5(east,hearts)>2 and hcp(east,hearts)>4 and spades(east)<4 and hearts(south)<3 and hearts(west)<3
-    w2D = diamonds(east)==6 and top5(east,diamonds)>2 and hcp(east,diamonds)>4 and spades(east)<4 and hearts(east)<4 and diamonds(south)<3
-    eastWeak2 = (w2S or w2H or w2D) and hcp(east)>5 and hcp(east)<10 and shape(east,any 6430 +any 6421 +any 6331 +any 6322)  // should use east's lp rather than hcp
+    eW2S = spades(east)==6 and top5(east,spades)>2 and hcp(east,spades)>4 and hearts(east)<4 and spades(south)<3 and spades(eWest)<3
+    eW2H = hearts(east)==6 and top5(east,hearts)>2 and hcp(east,hearts)>4 and spades(east)<4 and hearts(south)<3 and hearts(eWest)<3
+    eW2D = diamonds(east)==6 and top5(east,diamonds)>2 and hcp(east,diamonds)>4 and spades(east)<4 and hearts(east)<4 and diamonds(south)<3
+    eastWeakTwo = (eW2S or eW2H or eW2D) and hcp(east)>5 and hcp(east)<10 and shape(east,any 6430 +any 6421 +any 6331 +any 6322)  // should use east's lp rather than hcp
 
 
 ## Calculate the suit ranks for North opener, East overall, and South new suit
