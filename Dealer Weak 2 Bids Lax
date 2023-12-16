@@ -30,7 +30,7 @@ hFit = w2s and hearts(north)>2
 dFit = w2s and diamonds(north)>2
 fit = sFit or hFit or dFit
 
-# Define Feature
+# Define Feature -- an Ace or King outside the trump suit
 sAK = top2(south,spades)==1 and not sFit
 hAK = top2(south,hearts)==1 and not hFit
 dAK = top2(south,diamonds)==1 and not dFit
