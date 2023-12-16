@@ -4,25 +4,104 @@ setDealerCode(
 produce 1000
 dealer south
 
-# Define South's Robot Weak 2 Bids
+# Define South's Weak 2 Bids w/any 4-card suit
+
+     // at least half of south's points are in the suit
+     // don't allow 4-, 5-, or 6-card side major
+
 tp = hcp(south)
 sp = hcp(south,spades)
 hp = hcp(south,hearts)
 dp = hcp(south,diamonds)
  
-// at least half of south's points are in the suit
-// don't allow 4-, 5-, or 6-card side major
 w2s = shape(south,6xxx-x6xx-x5xx) and 2 * sp > tp    
 w2h = shape(south,x6xx-6xxx-5xxx) and 2 * hp > tp
 w2d = shape(south,xx6x-x6xx-x5xx-6xxx-5xxx) and 2* dp > tp
  
 w2Range = tp<10 and losers(south)<7
  
-(w2s or w2h or w2d) and w2Range
+weakTwo = (w2s or w2h or w2d) and w2Range
+
+# Define responders hand types
+
+# Responder Raises
+sFit = w2s and spades(north)>2
+hFit = w2s and hearts(north)>2
+dFit = w2s and diamonds(north)>2
+fit = sFit or hFit or dFit
+
+# Define Feature
+sAK = top2(south,spades)==1 and not sFit
+hAK = top2(south,hearts)==1 and not hFit
+dAK = top2(south,diamonds)==1 and not dFit
+cAK = top2(south,clubs)==1
+oHonor = (sAK or hAK or dAK or cAK)
+
+rPass = hcp(north)<15 and not fit
+rRaise = fit and hcp(north)<14    // Extend the preempt
+rInvite = fit and hcp(north)>13   // 2N
+rForce = hcp(north)>14            // Do something
+
+# Responder bids new suit
+rGS = (spades(north)==5 && top5(north,spades)>3) or (spades(north)>5 and top5(north,spades) >2)
+rGH = (hearts(north)==5 && top5(north,hearts)>3) or (hearts(north)>5 and top5(north,hearts) >2)
+rGD = (diamonds(north)==5 && top5(north,diamonds)>3) or (diamonds(north)>5 and top5(north,diamonds) >2)
+rGC = (clubs(north)==5 && top5(north,clubs)>3) or (clubs(north)>5 and top5(north,clubs) >2)
+rGSuit = rGS or rGH or rGD or rGC
+rNewSuit = rForce and rGSuit
+
+# Opener shows feature
+oFeature = rInvite and hcp(south)>8 and oHonor
+
+# Opener rebids suit
+oRebid = rInvite and not oFeature
+
+
+# Leveling
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+c5 = hascard(west,4C)
+c6 = hascard(east,4D)
+
+reduce98 = c1 and c2 and c3
+reduce94 = c1 and c2
+reduce87 = c1 and (c2 or c3)
+reduce75 = c1
+reduce62 = (c1 or c2) or ((c3 or c4) and c5)
+reduce50 = c1 or c2
+reduce44 = (c1 or c2) or (c3 and c4)
+reduce25 = c1 or c2 or c3
+reduce19 = (c1 or c2 or c3) or (c4 and c5 and c6)
+reduce12 = (c1 or c2 or c3) or (c4 and c5)
+
+# do it
+weakTwo
+
+# Level out responses:
+#and (!rPass       || reduce75 )
+#and (!rRaise      || reduce62 )
+#and (!rForce      || reduce50 )
+#and (!oFeature    || reduce12 )
+#and (!oRebid      || reduce25 )
+
+action
+average "Responder pass          " 100 * rPass,
+average "Responder raise         " 100 * rRaise,
+average "Responder invite        " 100 * rInvite,
+average "Responder force         " 100 * rForce,
+
+average "2NT/Opener rebids major " 100 * oRebid,
+average "2NT/Opener shows feature" 100 * oFeature,
+average "New suit response       " 100 * rNewSuit,
+average "Trump fit               " 100 * fit,
+average "9+ fit                  " 100 * fit,
+frequency "HCP N+S" (hcp(south)+hcp(north),10,30)
 
 `,"S",true)
 Script
 Button,Weak 2 maybe 4M,\n\
---- Weak 2 Bid with any 4-card side suit.\n\
+--- Weak 2 Bids with any 4-card side suit.\n\
 These may have an outside 4-Card Major.\n\
 %WeakTwoBidsLax%
