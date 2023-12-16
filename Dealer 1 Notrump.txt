@@ -32,6 +32,49 @@ average "lengthPoints" lengthPoints,
 average "ntDownGrade " ntDownGrade,
 average "ntPoints    " ntPoints,
 
+# Level openers strength
+c1 = hascard(west,2C)
+c3 = hascard(west,3C)
+c5 = hascard(west,4C)
+c2 = hascard(east,2D)
+c4 = hascard(east,3D)
+c6 = hascard(east,4D)
+
+reduce98 = c1 and c2 and c3
+reduce94 = c1 and c2
+reduce87 = c1 and (c2 or c3)
+reduce75 =  c1
+reduce50 = c1 or c2
+reduce44 = (c1 or c2) or (c3 and c4)
+reduce25 =  c1 or c2 or c3
+reduce19 = (c1 or c2 or c3) or (c4 and c5 and c6)
+reduce12 = (c1 or c2 or c3) or (c4 and c5)
+
+#and (not x3 or reduce_97_percent )
+#and (not M4 or reduce_97_percent )
+#and (not M3 or reduce_50_percent )
+#and (not x4 or reduce_60_percent )
+#and (not N3 or reduce_75_percent )
+
+x = hcp(south)
+x13 = x<14  ? 1 : 0
+x14 = x==14 ? 1 : 0
+x15 = x==15 ? 1 : 0
+x16 = x==16 ? 1 : 0
+x17 = x==17 ? 1 : 0
+x18 = x>17  ? 1 : 0
+
+
+action
+
+average "13" 100 * x13,
+average "14" 100 * x14,
+average "15" 100 * x15,
+average "16" 100 * x16,
+average "17" 100 * x17,
+average "18" 100 * x18,
+
+
 `
 )
 Script
