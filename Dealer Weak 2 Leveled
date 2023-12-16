@@ -56,8 +56,6 @@ oFeature = rInvite and hcp(south)>8 and oHonor
 # Opener rebids suit
 oRebid = rInvite and not oFeature
 
-# do it
-weakTwo
 
 # Leveling
 c1 = hascard(west,2C)
@@ -67,25 +65,28 @@ c4 = hascard(east,3D)
 c5 = hascard(west,4C)
 c6 = hascard(east,4D)
 
-reduce90 = hascard(west,2C) && hascard(west,3C) && hascard(east,2D)
-reduce75 = hascard(west,2C) && hascard(west,3C)
-# Frequency Reduction modifiers:
+reduce98 = c1 and c2 and c3
+reduce94 = c1 and c2
+reduce87 = c1 and (c2 or c3)
+reduce75 = c1
+reduce62 = (c1 or c2) or ((c3 or c4) and c5)
+reduce50 = c1 or c2
+reduce44 = (c1 or c2) or (c3 and c4)
+reduce25 = c1 or c2 or c3
+reduce19 = (c1 or c2 or c3) or (c4 and c5 and c6)
+reduce12 = (c1 or c2 or c3) or (c4 and c5)
 
-reduce25 = hascard(east,2C) or hascard(west,2D)
-reduce50 = hascard(east,2C)
-reduce60 = hascard(east,2C) and ( hascard(west,2D) or hascard(east,3C))
-reduce75 = hascard(east,2C) and hascard(west,2D)
-reduce97 = hascard(east,2C) and hascard(west,2D) and hascard(east,3C)
-reduce99 = hascard(east,2C) and hascard(west,2D) and hascard(east,3C) and hascard(east,4C)
+# do it
+weakTwo
 
 # Level out responses:
-#(!rPass       || reduce90 )
-#(!rRaise      || reduce90 )
-#(!oFeature    || reduce75 )
-#(!oRebid      || reduce75 )
+and (!rPass       || reduce75 )
+and (!rRaise      || reduce62 )
+and (!rForce      || reduce50 )
+#and (!oFeature    || reduce12 )
+and (!oRebid      || reduce25 )
 
 action
-
 average "Responder pass          " 100 * rPass,
 average "Responder raise         " 100 * rRaise,
 average "Responder invite        " 100 * rInvite,
@@ -97,9 +98,6 @@ average "New suit response       " 100 * rNewSuit,
 average "Trump fit               " 100 * fit,
 average "9+ fit                  " 100 * fit,
 frequency "HCP N+S" (hcp(south)+hcp(north),10,30)
-
-
-
 
 
 `,"S",true))
