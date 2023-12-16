@@ -7,7 +7,7 @@ dealer south
 # Define South's Weak 2 Bids w/any 4-card suit
 
      // at least half of south's points are in the suit
-     // don't allow 4-, 5-, or 6-card side major
+     // don't allow 5-, or 6-card side major.  DO ALLOW 4-card
 
 tp = hcp(south)
 sp = hcp(south,spades)
@@ -26,8 +26,8 @@ weakTwo = (w2s or w2h or w2d) and w2Range
 
 # Responder Raises
 sFit = w2s and spades(north)>2
-hFit = w2s and hearts(north)>2
-dFit = w2s and diamonds(north)>2
+hFit = w2h and hearts(north)>2
+dFit = w2d and diamonds(north)>2
 fit = sFit or hFit or dFit
 
 # Define Feature -- an Ace or King outside the trump suit
@@ -39,7 +39,7 @@ oHonor = (sAK or hAK or dAK or cAK)
 
 rPass = hcp(north)<15 and not fit
 rRaise = fit and hcp(north)<14    // Extend the preempt
-rInvite = fit and hcp(north)>13   // 2N
+rInvite = fit and hcp(north)>13   // use 2N to invite
 rForce = hcp(north)>14            // Do something
 
 # Responder bids new suit
@@ -80,10 +80,10 @@ reduce12 = (c1 or c2 or c3) or (c4 and c5)
 weakTwo
 
 # Level out responses:
-and (!rPass       || reduce75 )
-and (!rRaise      || reduce62 )
-and (!rForce      || reduce50 )
-and (!oRebid      || reduce25 )
+and (!rPass       || reduce94 )
+and (!rRaise      || reduce87 )
+and (!rForce      || reduce87 )
+and (!oRebid      || reduce44 )
 
 action
 average "Responder pass          " 100 * rPass,
