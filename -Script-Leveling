@@ -1,19 +1,41 @@
+produce 10000
+
 # Leveling
+
 c1 = hascard(west,2C)
 c2 = hascard(east,2D)
 c3 = hascard(west,3C)
 c4 = hascard(east,3D)
 c5 = hascard(west,4C)
-c6 = hascard(east,4D)
 
 reduce98 = c1 and c2 and c3
 reduce94 = c1 and c2
 reduce87 = c1 and (c2 or c3)
 reduce75 = c1
-reduce62 = (c1 or c2) and (c3 and (c4 or c5) 
+reduce62 = (c1 or c2) and not (c3 and (c4 or c5)) 
 reduce50 = c1 or c2
-reduce44 = (c1 or c2) or (c3 and c4)
-reduce37 = (c1 or c2) or (c3 and (c4 or c5) 
-reduce25 = c1 or c2 or c3
-reduce19 = (c1 or c2 or c3) or (c4 and c5)
-reduce11 = (c1 or c2 or c3) or (c4 and (c5 or c6))
+reduce38 = not reduce62
+reduce25 = not reduce75
+reduce13 = not reduce87
+reduce06 = not reduce94
+reduce02 = not reduce98
+
+action
+
+average "reduce98" 100 * reduce98,
+average "reduce94" 100 * reduce94,
+average "reduce87" 100 * reduce87,
+average "reduce75" 100 * reduce75,
+average "reduce62" 100 * reduce62,
+average "reduce50" 100 * reduce50,
+average "reduce38" 100 * reduce38,
+average "reduce25" 100 * reduce25,
+average "reduce13" 100 * reduce13,
+average "reduce06" 100 * reduce06,
+average "reduce02" 100 * reduce02,
+
+average "c1" 100 * c1,
+average "c2" 100 * c2,
+average "c3" 100 * c3,
+average "c4" 100 * c4,
+average "c5" 100 * c5,
