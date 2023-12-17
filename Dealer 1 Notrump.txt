@@ -4,7 +4,7 @@ setDealerCode(
 produce 100
 dealer south
 
-# 1 Notrump Opening
+### Define 1 Notrump Opening
 
 # Calculate length points for South (lengthPoints)
 lp1 = spades(south)>4 ? spades(south)-4 : 0
@@ -26,13 +26,9 @@ ntPoints = hcp(south) + lengthPoints - ntDownGrade
 # Open 1NT -- these include hands that might have rebid problems if opened in a suit
 NT = shape(south, 2452+2425+2245+2254+4522 +any 4333+any 4432+any 5332) and ntPoints>14 and ntPoints<18
 
-action
-average "HCP         " hcp(south),
-average "lengthPoints" lengthPoints,
-average "ntDownGrade " ntDownGrade,
-average "ntPoints    " ntPoints,
 
-# Level openers strength
+### Prepare for Leveling
+
 c1 = hascard(west,2C)
 c3 = hascard(west,3C)
 c5 = hascard(west,4C)
@@ -50,7 +46,6 @@ reduce25 =  c1 or c2 or c3
 reduce19 = (c1 or c2 or c3) or (c4 and c5 and c6)
 reduce12 = (c1 or c2 or c3) or (c4 and c5)
 
-
 x = hcp(south)
 x13 = x<14  ? 1 : 0
 x14 = x==14 ? 1 : 0
@@ -59,16 +54,30 @@ x16 = x==16 ? 1 : 0
 x17 = x==17 ? 1 : 0
 x18 = x>17  ? 1 : 0
 
-action
+### Ready for Leveling
+
+
+# Now OPEN 1NT
 
 NT
+
+### LEVEL START ###
 
 and (not x15 or reduce50 )
 and (not x16 or reduce25 )
 and (not x14 or reduce12 )
 
+### LEVEL END ###
+
+
+
+# Generate Statistics
 
 action
+average "HCP         " hcp(south),
+average "lengthPoints" lengthPoints,
+average "ntDownGrade " ntDownGrade,
+average "ntPoints    " ntPoints,
 
 average "13" 100 * x13,
 average "14" 100 * x14,
@@ -76,6 +85,7 @@ average "15" 100 * x15,
 average "16" 100 * x16,
 average "17" 100 * x17,
 average "18" 100 * x18,
+
 
 
 `
