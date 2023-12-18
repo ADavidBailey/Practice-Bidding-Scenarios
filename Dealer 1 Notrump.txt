@@ -1,7 +1,6 @@
-Script,NotrumpWith1
+Script,Notrump
 setDealerCode(
 `
-
 produce 100
 dealer south
 
@@ -19,53 +18,33 @@ S2H = spades(south)==2 and top4(south,spades)==1 and not hascard(south,AS) ? 1 :
 H2H = hearts(south)==2 and top4(south,hearts)==1 and not hascard(south,AH) ? 1 : 0
 D2H = diamonds(south)==2 and top4(south,diamonds)==1 and not hascard(south,AD) ? 1 : 0
 C2H = clubs(south)==2 and top4(south,clubs)==1 and not hascard(south,AC) ? 1 : 0
-ntDownGrade = S2H or H2H or D2H or C2H
+ntDownGrade = S2H + H2H + D2H + C2H
 
-# Define notrump points for south
+# Define notrump points for south (ntPoints)
 ntPoints = hcp(south) + lengthPoints - ntDownGrade
 
-ntMin = ntPoints<16
-ntAvg = ntPoints==16
-ntMax = ntPoints>16
-
-# Define 1NT -- these include hands that might have rebid problems if opened in a suit
+# Open 1NT -- these include hands that might have rebid problems if opened in a suit
 NT = shape(south, 2452+2425+2245+2254+4522 +any 4333+any 4432+any 5332) and ntPoints>14 and ntPoints<18
 
-# Define Leveling
+
+### Prepare for Leveling
+
 c1 = hascard(west,2C)
-c2 = hascard(east,2D)
 c3 = hascard(west,3C)
-c4 = hascard(east,3D)
 c5 = hascard(west,4C)
+c2 = hascard(east,2D)
+c4 = hascard(east,3D)
+c6 = hascard(east,4D)
 
 reduce98 = c1 and c2 and c3
 reduce94 = c1 and c2
 reduce87 = c1 and (c2 or c3)
 reduce75 = c1
-reduce62 = (c1 or c2) and not (c3 and (c4 or c5)) 
 reduce50 = c1 or c2
-reduce38 = not reduce62
-reduce25 = not reduce75
-reduce13 = not reduce87
-reduce06 = not reduce94
-reduce02 = not reduce98
-
-# Level it
-levMin = not ntMin or reduce38
-levAvg = not ntAvg or reduce25
-levMax = not ntMax or reduce25
-level = levMin and levAvg // and levMax
-
-### Ready for Leveling
-
-# Now OPEN 1NT
-
-NT
-and level
-
-# Generate Statistics
-
-action
+reduce44 = (c1 or c2) or (c3 and c4)
+reduce25 =  c1 or c2 or c3
+reduce19 = (c1 or c2 or c3) or (c4 and c5 and c6)
+reduce12 = (c1 or c2 or c3) or (c4 and c5)
 
 x = hcp(south)
 x13 = x<14  ? 1 : 0
@@ -75,14 +54,21 @@ x16 = x==16 ? 1 : 0
 x17 = x==17 ? 1 : 0
 x18 = x>17  ? 1 : 0
 
+### Ready for Leveling
+
+
+# Now OPEN 1NT
+
+NT
+and (not x15 or reduce50 ) and (not x16 or reduce25 ) and (not x14 or reduce12 )  // This one line levels the HCP
+
+# Generate Statistics
+
 action
 average "HCP         " hcp(south),
 average "lengthPoints" lengthPoints,
 average "ntDownGrade " ntDownGrade,
 average "ntPoints    " ntPoints,
-average "minimum     " 100 * ntMin,
-average "avg         " 100 * ntAvg,
-average "max         " 100 * ntMax,
 
 average "13" 100 * x13,
 average "14" 100 * x14,
@@ -91,11 +77,14 @@ average "16" 100 * x16,
 average "17" 100 * x17,
 average "18" 100 * x18,
 
+
+
 `
 )
 Script
-Button,1 Notrump (Leveled),\n\
----  1 Notrump (Leveled)\n\
-South has (3451+4351+3415+4315 or any 4441) with a singleton A，K，or Q.\n\
-HCP adjusted +1 for 5-card suit.\n\
-%NotrumpWith1%
+Button,15-17 Notrump Opening,\n\
+---  15-17 Notrump Opening\n\
+2452+2425+2245+2254+4522 +any 4333，4432，or 5332 distribution.\n\
+Those 5422 hands are the ones where you are likely to have to reverse to show your suits.\n\
+HCP adjusted +1 for any 5-card suit unless you have KQ，KJ，or QJ doubleton.\n\
+%Notrump%
