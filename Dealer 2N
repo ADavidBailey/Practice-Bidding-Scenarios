@@ -46,8 +46,8 @@ slam = combined>=33
 
 texas = (spades(north)>5 or hearts(north)>5) and not partscore
 smolen = shape(north,54xx+45xx) and not partscore
-MSS = diamonds(north)>4 or clubs(north>4 and not partscore
-puppet = shape(north,43xx+34xx) and not partscore
+MSS = (diamonds(north)>4 or clubs(north>4) and not partscore
+puppet = shape(north,43xx+34xx+33xx) and not partscore
 balanced = shape(north,any 4333 +any 4432 +any 5332)not partscore
 other = not (texas or smolen or MSS or puppet or balanced)
 
@@ -73,7 +73,7 @@ reduce02 = not reduce98
 levTexas = not texas or 0
 levSmolen = not smolen or 0
 levPuppet = not puppet or 0
-levMSS = not MSS or 0
+levelMSS = not MSS or 0
 levelBalanced = not balanced or 0
 levelOther = not other or 0
 levelTheCode = (levTexas or levSmolen or levMSS or levPuppet or levBalanced or levOther) 
@@ -81,7 +81,7 @@ levelTheCode = (levTexas or levSmolen or levMSS or levPuppet or levBalanced or l
 
 ### Do it
 twoNT
-and levelTheCode
+#and levelTheCode
 
 ### Generate Statistics
 action
@@ -102,6 +102,3 @@ average "strength    " strength,
 average "combined    " ntPoints + strength,
 
 action printoneline
-
-
-
