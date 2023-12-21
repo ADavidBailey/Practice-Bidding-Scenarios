@@ -21,7 +21,7 @@ C2H = clubs(south)==2 and top4(south,clubs)==1 and not hascard(south,AC) ? 1 : 0
 ntDownGrade = S2H or H2H or D2H or C2H
 
 # Define notrump points for south
-ntPoints = hcp(south) + lengthPoints - ntDownGrade
+ntPoints = ntDownGrade>1 ? hcp(south) : hcp(south) + lengthPoints
 
 ntMin = ntPoints<16
 ntAvg = ntPoints==16
