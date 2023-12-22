@@ -1,7 +1,7 @@
 Script,Notrump
 setDealerCode(
 `
-produce 100
+produce 1000
 dealer south
 
 ### Define 1 Notrump Opening
@@ -11,17 +11,17 @@ lp1 = spades(south)>4 ? spades(south)-4 : 0
 lp2 = hearts(south)>4 ? hearts(south)-4 : 0
 lp3 = diamonds(south)>4 ? diamonds(south)-4 : 0
 lp4 = clubs(south)>4 ? clubs(south)-4 : 0
-lengthPoints = lp1 + lp2 + lp3 + lp4
+lengthPoints = lp1 or lp2 or lp3 or lp4
 
 # Calculate doubleton honor NT downgrade(s) for South -- 2 cards, 1 honor, not the Ace
 S2H = spades(south)==2 and top4(south,spades)==1 and not hascard(south,AS) ? 1 : 0
 H2H = hearts(south)==2 and top4(south,hearts)==1 and not hascard(south,AH) ? 1 : 0
 D2H = diamonds(south)==2 and top4(south,diamonds)==1 and not hascard(south,AD) ? 1 : 0
 C2H = clubs(south)==2 and top4(south,clubs)==1 and not hascard(south,AC) ? 1 : 0
-ntDownGrade = S2H or H2H or D2H or C2H
+ntDownGrade = (S2H or H2H or D2H or C2H)
 
 # Define notrump points for south
-ntPoints = ntDownGrade>1 ? hcp(south) : hcp(south) + lengthPoints
+ntPoints = ntDownGrade ? hcp(south) : hcp(south) + lengthPoints
 
 ntMin = ntPoints<16
 ntAvg = ntPoints==16
@@ -66,30 +66,12 @@ and level
 
 action
 
-x = hcp(south)
-x13 = x<14  ? 1 : 0
-x14 = x==14 ? 1 : 0
-x15 = x==15 ? 1 : 0
-x16 = x==16 ? 1 : 0
-x17 = x==17 ? 1 : 0
-x18 = x>17  ? 1 : 0
+average "Minimum     " 100 * ntMin,
+average "Avg         " 100 * ntAvg,
+average "Max         " 100 * ntMax,
 
-action
-average "HCP         " hcp(south),
-average "lengthPoints" lengthPoints,
-average "ntDownGrade " ntDownGrade,
-average "ntPoints    " ntPoints,
-average "minimum     " 100 * ntMin,
-average "avg         " 100 * ntAvg,
-average "max         " 100 * ntMax,
-
-average "13" 100 * x13,
-average "14" 100 * x14,
-average "15" 100 * x15,
-average "16" 100 * x16,
-average "17" 100 * x17,
-average "18" 100 * x18,
-
+frequency  "HCP South "  (hcp(south) , 14, 18),
+frequency  "ntPoints  "  (ntPoints   , 14, 18),
 
 `
 )
