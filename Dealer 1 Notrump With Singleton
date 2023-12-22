@@ -17,7 +17,6 @@ oneC = clubs(south)==1 and top3(south,clubs)==1
 lengthPoints = shape(south, any 5xxx) ? 1 : 0
 
 # Define NT downgrade for singleton K or Q
-
 ntDownGrade = ((oneS and not hascard(south,AS)) or (oneH and hascard(south,AH)) or (oneD and hascard(south,AD)) or (oneC and hascard(south,AC))) 
 
 # Define notrump points for south -- deduct 1 for singleton honor
