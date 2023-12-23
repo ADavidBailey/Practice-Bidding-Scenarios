@@ -39,20 +39,18 @@ nlp2 = hearts(north)>4 ? hearts(north)-4 : 0
 nlp3 = diamonds(north)>4 ? diamonds(north)-4 : 0
 nlp4 = clubs(north)>4 ? clubs(north)-4 : 0
 strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
-combined = ntPoints + strength
 
-partscore = combined<=25
-game = combined>=26 and combined<=32
-slam = combined>=33
+partscore = strength<=3
+game = strength>=4 and strength<=11
+slam = strength>=12
 
 # How do you prioritize these?
 texas = (spades(north)>5 or hearts(north)>5) and not partscore
 MSS = ((diamonds(north)>4 and clubs(north)>4) or (diamonds(north)>5 or clubs(north)>4)) and not (partscore or texas)
 smolen = shape(north,54xx+45xx) and not (partscore or texas or MSS) 
 puppet = shape(north,43xx+34xx+33xx+any 1xxx) and not (partscore or texas or MSS or smolen)
-balanced = shape(north,any 4333 +any 4432 +any 5332)and not (partscore or texas or MSS or smolen or puppet)
-jacoby = (spades(north)>5 or hearts(north)>5) and partscore
-
+balanced = shape(north,any 4333 +any 4432 +any 5332) and not (partscore or texas or MSS or smolen or puppet)
+jacoby = (spades(north)>4 or hearts(north)>4) and not (texas or MSS or smolen or puppet or balanced)
 other = not (texas or smolen or MSS or puppet or balanced or jacoby)
 
 ### Define Leveling
@@ -77,16 +75,17 @@ reduce02 = not reduce98
 
 levTexas = not texas or 0
 levSmolen = not smolen or 0
-levPuppet = not puppet or 0  // reduce50
+levPuppet = not puppet or reduce98
 levMSS = not MSS or 0
-levBalanced = not balanced or 0  //  reduce98
+levBalanced = not balanced or reduce98
 levJacoby = not jacoby or 0
 levOther = not other or 0
 
 levSlam = not slam or 0
-levGame = not game or 0
-levpartscore = not partscore or 0
-levelTheCode = (levTexas or levSmolen or levMSS or levPuppet or levBalanced or levJacoby or levOther or levSlam or levGame or levPartscore)
+levGame = not game or reduce98
+levPartscore = not partscore or reduce98
+
+levelTheCode = levTexas or levSmolen or levMSS or levPuppet or levBalanced or levJacoby or levOther or levSlam or levGame or levPartscore
  
 ### Ready for Leveling
 
@@ -108,15 +107,9 @@ average "Partscore    " 100 * partscore,
 average "Game         " 100 * game,
 average "Slam         " 100 * slam,
 
-average "other>partscore " other>partscore,
-
 average "ntPoints     " ntPoints,
 average "strength     " strength,
-average "combined     " ntPoints + strength,
-
 average "lengthPoints " lengthPoints,
 average "ntDownGrade  " ntDownGrade,
 
-action
 printoneline
-
