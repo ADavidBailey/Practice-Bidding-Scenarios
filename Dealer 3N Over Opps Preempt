@@ -1,10 +1,9 @@
 Script,NTover3
 setDealerCode(
 `
-produce 1000
-dealer east
-
 ### Opponents Preempt and we overcall 3N ###
+
+produce 1000
 
 # define honor cards
 aS = hascard(south,AS)
@@ -43,11 +42,11 @@ longRebid = (lrS or lrH or lrD or lrC)
 
 
 # east preempts and the 3-level
-sE = shape(east, 9xxx+8xxx+7xxx)
-hE = shape(east, x9xx+x8xx+x7xx)
-dE = shape(east, xx9x+xx8x+xx7x)
-cE = shape(east, xxx9+xxx8+xxx7)
-ePreempts = (sE or hE or dE or cE) and hcp(east)<10
+sE = shape(east, 7xxx-x4xx) and top2(east,spades)==1 and top5(east,spades)>2
+hE = shape(east, x7xx-4xxx) and top2(east,hearts)==1 and top5(east,hearts)>2
+dE = shape(east, xx7x-4xxx-x4xx) and top2(east,diamonds)==1 and top5(east,diamonds)>2
+cE = shape(east, xxx7-4xxx-x4xx) and top2(east,clubs)==1 and top5(east,clubs)>2
+ePreempts = (sE or hE or dE or cE) and hcp(east)>6 and hcp(east)<11
 
 # define south's long rebiddable suits
 # Define Rebiddable suits -- 6+ cards with 3 of the top 4
@@ -57,15 +56,15 @@ rD = diamonds(south)>5 and top4(south,diamonds)>2
 rC = clubs(south)>5 and top4(south,clubs)>2
 
 
-# define Case1:  south has 1 stop -- A, Kx, QJx
-s1s = sE and (aS or (kS and s>1) or (qS and jS and s>2))
-h1s = hE and (aH or (kH and h>1) or (qH and jH and h>2))
-d1s = dE and (aD or (kD and d>1) or (qD and jD and d>2))
-c1s = cE and (aC or (kC and c>1) or (qC and jC and c>2))
+# define Case1:  south has only 1 stop -- A, Kx, QJx
+s1s = sE and (aS or (kS and s>1) or (qS and jS and s>2)) and hcp(south,spades)<5
+h1s = hE and (aH or (kH and h>1) or (qH and jH and h>2)) and hcp(south,hearts)<5
+d1s = dE and (aD or (kD and d>1) or (qD and jD and d>2)) and hcp(south,diamonds)<5
+c1s = cE and (aC or (kC and c>1) or (qC and jC and c>2)) and hcp(south,clubs)<5
 oneStop = (s1s or h1s or d1s or c1s)
 
 case1 = oneStop and hc>17
-case2 = oneStop and longRebid and hc>15
+case2 = oneStop and longRebid and hc>15 and not case1
 
 # define Case2:  south has 2 stops -- AK, AQ, KQx
 s2s = sE and ((aS and kS) or (aS and qS) or (kS and qS and s>2))
@@ -95,21 +94,30 @@ reduce25 = not reduce75
 reduce13 = not reduce87
 reduce06 = not reduce94
 reduce02 = not reduce98
+reduce   = 1
 
 # Level it
 level1 = not case1 or reduce87
-level2 = not case2 or 1
-level3 = not case3 or reduce75
+level2 = not case2 or reduce
+level3 = not case3 or reduce62
 level = level1 and level2 and level3
 
 # south bids 3N
-(case1 or case2 or case3)
+ePreempts and (case1 or case2 or case3)
 and level
 
 action
 average "1 Stop and >17             " 100 * case1,
 average "1 Stop, good suit, and >15 " 100 * case2,
 average "2 Stop and >15             " 100 * case3,
+
+
+### Leveling Results ###
+#   1 Stop and >17             : 36.1257
+#   1 Stop, good suit, and >15 : 32.7225
+#   2 Stop and >15             : 31.1518
+#   Generated 10000000 hands
+#   Produced 382 hands
 
 `,"E",true)
 Script
