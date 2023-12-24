@@ -98,7 +98,7 @@ reduce   = 1
 
 # Level it
 level1 = not case1 or reduce87
-level2 = not case2 or reduce
+level2 = not case2 or reduce06 or reduce02
 level3 = not case3 or reduce62
 level = level1 and level2 and level3
 
@@ -113,11 +113,20 @@ average "2 Stop and >15             " 100 * case3,
 
 
 ### Leveling Results ###
-#   1 Stop and >17             : 36.1257
-#   1 Stop, good suit, and >15 : 32.7225
-#   2 Stop and >15             : 31.1518
-#   Generated 10000000 hands
-#   Produced 382 hands
+
+#  Before:
+#  1 Stop and >17             : 70.4
+#  1 Stop, good suit, and >15 : 8.3
+#  2 Stop and >15             : 21.3
+#  Generated 7539098 hands
+#  Produced 1000 hands
+
+#  After:
+#  1 Stop and >17             : 35.4592
+#  1 Stop, good suit, and >15 : 34.4388
+#  2 Stop and >15             : 30.102
+#  Generated 10000000 hands
+#  Produced 392 hands
 
 `,"E",true)
 Script
