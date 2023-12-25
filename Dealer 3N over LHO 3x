@@ -60,44 +60,45 @@ nPasses = hcp(north)<11 and shape(north, xxxx - any 7xxx -any 6xxx -any 55xx)
 ePasses = hcp(east)<9 and shape(east, xxxx - any 7xxx -any 6xxx -any 55xx)
 
 # define south has only 1 stop -- A, Kx, QJx
-s1s = aS or (kS and s>1) or (qS and jS and s>2)
-h1s = aH or (kH and h>1) or (qH and jH and s>2)
-d1s = aD or (kD and d>1) or (qD and jD and s>2)
-c1s = aC or (kC and c>1) or (qC and jC and s>2)
+s1s = sW and aS or (kS and s>1) or (qS and jS and s>2)
+h1s = hW and aH or (kH and h>1) or (qH and jH and h>2)
+d1s = dW and aD or (kD and d>1) or (qD and jD and d>2)
+c1s = cW and aC or (kC and c>1) or (qC and jC and c>2)
 oneStop = (s1s or h1s or d1s or c1s)
 
 # define south has 2 stops -- AK, AQ, KQx
-s2s = sW and sCs==3 or (aS and qS) or (kS and qS and s>2)
-h2s = hW and sCh==3 or (aH and qH) or (kH and qH and h>2)
-d2s = dW and sCd==3 or (aD and qD) or (kD and qD and d>2)
-c2s = cW and sCc==3 or (aC and qC) or (kC and qC and c>2)
+s2s = sE and ((aS and kS) or (aS and qS) or (kS and qS and s>2))
+h2s = hE and ((aH and kH) or (aH and qH) or (kH and qH and h>2))
+d2s = dE and ((aD and kD) or (aD and qD) or (kD and qD and d>2))
+c2s = cE and ((aC and kC) or (aC and qC) or (kC and qC and c>2))
 twoStop = (s2s or h2s or d2s or c2s)
 
 # define the three cases
 case1 = oneStop and sHCP>17
 case2 = oneStop and sRebid and sHCP>15 and not case1
-case3 = twoStop and sHCP>15
-case4 = not (case1 or case2 or case3)
+case3 = twoStop and sHCP>15 and not (case1 or case2)
 
-### Define Leveling
 c1 = hascard(west,2C)
 c2 = hascard(east,2D)
 c3 = hascard(west,3C)
 c4 = hascard(east,3D)
-c5 = hascard(west,4C)
 
-reduce98 = c1 and c2 and c3
-reduce94 = c1 and c2
-reduce87 = c1 and (c2 or c3)
-reduce75 = c1
-reduce62 = (c1 or c2) and not (c3 and (c4 or c5)) 
-reduce50 = c1 or c2
-reduce38 = not reduce62
-reduce25 = not reduce75
-reduce13 = not reduce87
-reduce06 = not reduce94
-reduce02 = not reduce98
-reduce   = 1
+
+reduce98 = c1 * c2 * c3
+reduce94 = c1 * c2
+reduce87 = c1 * (c2 + c3)
+reduce81 = c1 - (c2 * c3)
+reduce75 = c1 
+reduce62 = c1 + (c2 * (c3 + c4))
+reduce56 = c1 + c2 - (c3 * c4)
+reduce50 = c1 + c2
+reduce44 = 1 - reduce56
+reduce38 = 1 - reduce62
+reduce25 = 1 - reduce75
+reduce19 = 1 - reduce81
+reduce13 = 1 - reduce87
+reduce06 = 1 - reduce94
+reduce02 = 1 - reduce98
 
 # Level it
 level1 = not case1 or reduce94
@@ -106,7 +107,6 @@ level3 = not case3 or reduce94
 level = level1 and level2 and level3
 
 # south bids 3N
-
 wPreempts and (case1 or case2 or case3) and nPasses and ePasses
 #and level
 
@@ -114,7 +114,6 @@ action
 average "1 Stop and >17             " 100 * case1,
 average "1 Stop, good suit, and >15 " 100 * case2,
 average "2 Stop and >15             " 100 * case3,
-average "not one of the above       " 100 * case4
 
 ### Leveling Results ###
 
