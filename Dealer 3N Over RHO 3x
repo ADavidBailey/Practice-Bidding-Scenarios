@@ -79,7 +79,6 @@ c2 = hascard(east,2D)
 c3 = hascard(west,3C)
 c4 = hascard(east,3D)
 
-
 reduce98 = c1 * c2 * c3
 reduce94 = c1 * c2
 reduce87 = c1 * (c2 + c3)
@@ -105,7 +104,7 @@ level = level1 and level2 and level3
 
 # south bids 3N
 ePreempts and (case1 or case2 or case3)
-#and level
+and level
 
 action
 average "1 Stop and >17             " 100 * case1,
