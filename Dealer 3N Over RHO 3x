@@ -55,10 +55,10 @@ cE = shape(east, xxx7-4xxx-x4xx-any 5xxx) and top2(east,clubs)==1 and top5(east,
 ePreempts = (sE or hE or dE or cE) and hcp(east)>6 and hcp(east)<11
 
 # define south has only 1 stop -- A, Kx, QJx
-s1s = sW and (aS or (kS and s>1) or (qS and jS and s>2))
-h1s = hW and (aH or (kH and h>1) or (qH and jH and h>2))
-d1s = dW and (aD or (kD and d>1) or (qD and jD and d>2))
-c1s = cW and (aC or (kC and c>1) or (qC and jC and c>2))
+s1s = sE and (aS or (kS and s>1) or (qS and jS and s>2))
+h1s = hE and (aH or (kH and h>1) or (qH and jH and h>2))
+d1s = dE and (aD or (kD and d>1) or (qD and jD and d>2))
+c1s = cE and (aC or (kC and c>1) or (qC and jC and c>2))
 oneStop = (s1s or h1s or d1s or c1s)
 
 # define south has 2 stops -- AK, AQ, KQx
