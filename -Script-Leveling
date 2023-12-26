@@ -25,15 +25,15 @@ keep98 = 1 - keep02
 keep   = 1
 
 ### Example of how to use this ###
-## Level it
-# level1 = case1 * keep06     // keep 06% of case 1
-# level2 = case2 * keep98     // keep 98% of case 2
-# level3 = case3 * keep       // keep all of case 3
-# levelTheDeal = level1 or level2 or level3
+#   # Level it
+#   level1 = case1 * keep06     // keep 06% of case 1
+#   level2 = case2 * keep98     // keep 98% of case 2
+#   level3 = case3 * keep       // keep all of case 3
+#   levelTheDeal = level1 or level2 or level3
 # 
-# # south bids 3N
-# wPreempts and nPasses and ePasses and (case1 or case2 or case3)
-# and levelTheDeal            // this line can be commented out to skip leveling
+#   # south bids 3N
+#   wPreempts and nPasses and ePasses and (case1 or case2 or case3)
+#   and levelTheDeal            // this line can be commented out to skip leveling
 
 ### Statistics for Leveling ###
 average "keep98" 100 * keep98,
@@ -57,7 +57,7 @@ average "c2" 100 * c2,
 average "c3" 100 * c3,
 average "c4" 100 * c4,
 
-### Results -- the actual probabilities ###
+### Results -- the actual probabilities based on 10,000,000 deals. ###
 # keep98: 98.4712
 # keep94: 93.6322
 # keep88: 87.7577
