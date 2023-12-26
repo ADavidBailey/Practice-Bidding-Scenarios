@@ -1,42 +1,80 @@
 produce 10000
 
-# Leveling
+### Leveling ###
 
 c1 = hascard(west,2C)
 c2 = hascard(east,2D)
 c3 = hascard(west,3C)
 c4 = hascard(east,3D)
-c5 = hascard(west,4C)
 
-reduce98 = c1 and c2 and c3
-reduce94 = c1 and c2
-reduce87 = c1 and (c2 or c3)
-reduce75 = c1
-reduce62 = (c1 or c2) and not (c3 and (c4 or c5)) 
-reduce50 = c1 or c2
-reduce38 = not reduce62
-reduce25 = not reduce75
-reduce13 = not reduce87
-reduce06 = not reduce94
-reduce02 = not reduce98
+keep02 = c1 * c2 * c3
+keep06 = c1 * c2
+keep12 = c1 * (c2 + c3)
+keep19 = c1 - (c2 * c3)
+keep25 = c1 
+keep37 = c1 + (c2 * (c3 + c4))
+keep44 = c1 + c2 - (c3 * c4)
+keep50 = c1 + c2
+keep56 = 1 - keep44
+keep63 = 1 - keep37
+keep75 = 1 - keep25
+keep81 = 1 - keep19
+keep88 = 1 - keep12
+keep94 = 1 - keep06
+keep98 = 1 - keep02
+keep   = 1
 
-#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Stats-Leveling
-action
+### Example of how to use this ###
+## Level it
+# level1 = case1 * keep06     // keep 06% of case 1
+# level2 = case2 * keep98     // keep 98$ of case 2
+# level3 = case3 * keep       // keep all of case 3
+# levelTheDeal = level1 or level2 or level3
+# 
+# # south bids 3N
+# wPreempts and nPasses and ePasses and (case1 or case2 or case3)
+# and levelTheDeal            // this line can be commented out to skip leveling
 
-average "reduce98" 100 * reduce98,
-average "reduce94" 100 * reduce94,
-average "reduce87" 100 * reduce87,
-average "reduce75" 100 * reduce75,
-average "reduce62" 100 * reduce62,
-average "reduce50" 100 * reduce50,
-average "reduce38" 100 * reduce38,
-average "reduce25" 100 * reduce25,
-average "reduce13" 100 * reduce13,
-average "reduce06" 100 * reduce06,
-average "reduce02" 100 * reduce02,
+### Statistics for Leveling ###
+average "keep98" 100 * keep98,
+average "keep94" 100 * keep94,
+average "keep87" 100 * keep87,
+average "keep98" 100 * keep81,
+average "keep75" 100 * keep75,
+average "keep62" 100 * keep62,
+average "keep98" 100 * keep56,
+average "keep50" 100 * keep50,
+average "keep98" 100 * keep44,
+average "keep38" 100 * keep38,
+average "keep25" 100 * keep25,
+average "keep98" 100 * keep19,
+average "keep13" 100 * keep13,
+average "keep06" 100 * keep06,
+average "keep02" 100 * keep02,
 
 average "c1" 100 * c1,
 average "c2" 100 * c2,
 average "c3" 100 * c3,
 average "c4" 100 * c4,
-average "c5" 100 * c5,
+
+### Results -- the actual probabilities ###
+# keep98: 98.4712
+# keep94: 93.6322
+# keep88: 87.7577
+# keep81: 81.388
+# keep75: 75.0112
+# keep63: 62.7497
+# keep56: 56.3801
+# keep50: 49.9913
+# keep44: 43.6199
+# keep37: 37.2503
+# keep25: 24.9888
+# keep19: 18.612
+# keep12: 12.2423
+# keep06: 6.36783
+# keep02: 1.52877
+# c1: 24.9888
+# c2: 25.0024
+# c3: 24.9853
+# Generated 10000000 hands
+# Produced 10000000 hands
