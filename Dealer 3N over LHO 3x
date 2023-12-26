@@ -83,32 +83,32 @@ c2 = hascard(east,2D)
 c3 = hascard(west,3C)
 c4 = hascard(east,3D)
 
-reduce98 = c1 * c2 * c3
-reduce94 = c1 * c2
-reduce87 = c1 * (c2 + c3)
-reduce81 = c1 - (c2 * c3)
-reduce75 = c1 
-reduce62 = c1 + (c2 * (c3 + c4))
-reduce56 = c1 + c2 - (c3 * c4)
-reduce50 = c1 + c2
-reduce44 = 1 - reduce56
-reduce38 = 1 - reduce62
-reduce25 = 1 - reduce75
-reduce19 = 1 - reduce81
-reduce13 = 1 - reduce87
-reduce06 = 1 - reduce94
-reduce02 = 1 - reduce98
-reduce   = 1
+keep02 = c1 * c2 * c3
+keep06 = c1 * c2
+keep13 = c1 * (c2 + c3)
+keep19 = c1 - (c2 * c3)
+keep25 = c1 
+keep38 = c1 + (c2 * (c3 + c4))
+keep44 = c1 + c2 - (c3 * c4)
+keep50 = c1 + c2
+keep56 = 1 - keep44
+keep62 = 1 - keep38
+keep75 = 1 - keep25
+keep81 = 1 - keep19
+keep87 = 1 - keep13
+keep94 = 1 - keep06
+keep98 = 1 - keep02
+keep   = 1
 
 # Level it
-level1 = not case1 or reduce94
-level2 = not case2 or reduce
-level3 = not case3 or reduce
-level = level1 and level2 and level3
+level1 = case1 * keep06
+level2 = case2 * keep98
+level3 = case3 * keep
+levelTheDeal = level1 or level2 or level3
 
 # south bids 3N
 wPreempts and (case1 or case2 or case3) and nPasses and ePasses
-and level
+and levelTheDeal
 
 action
 average "1 Stop and >17             " 100 * case1,
