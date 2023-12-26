@@ -7,7 +7,7 @@ c2 = hascard(east,2D)
 c3 = hascard(west,3C)
 c4 = hascard(east,3D)
 
-keep02 = c1 * c2 * c3
+keep02 = c1 and c2 and c3
 keep06 = c1 * c2
 keep12 = c1 * (c2 + c3)
 keep19 = c1 - (c2 * c3)
@@ -36,19 +36,20 @@ keep   = 1
 #   and levelTheDeal            // this line can be commented out to skip leveling
 
 ### Generate Statistics for Leveling ###
+action
 average "keep98" 100 * keep98,
 average "keep94" 100 * keep94,
-average "keep87" 100 * keep87,
-average "keep98" 100 * keep81,
+average "keep88" 100 * keep88,
+average "keep81" 100 * keep81,
 average "keep75" 100 * keep75,
-average "keep62" 100 * keep62,
+average "keep63" 100 * keep63,
 average "keep98" 100 * keep56,
 average "keep50" 100 * keep50,
-average "keep98" 100 * keep44,
-average "keep38" 100 * keep38,
+average "keep44" 100 * keep44,
+average "keep37" 100 * keep37,
 average "keep25" 100 * keep25,
-average "keep98" 100 * keep19,
-average "keep13" 100 * keep13,
+average "keep19" 100 * keep19,
+average "keep12" 100 * keep12,
 average "keep06" 100 * keep06,
 average "keep02" 100 * keep02,
 
