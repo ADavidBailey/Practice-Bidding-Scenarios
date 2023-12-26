@@ -99,7 +99,7 @@ reduce   = 1
 # Level it
 level1 = not case1 or reduce87
 level2 = not case2 or reduce06 or reduce02
-level3 = not case3 or reduce62
+level3 = not case3 or reduce
 level = level1 and level2 and level3
 
 # south bids 3N
@@ -111,7 +111,6 @@ average "1 Stop and >17             " 100 * case1,
 average "1 Stop, good suit, and >15 " 100 * case2,
 average "2 Stop and >15             " 100 * case3,
 
-
 ### Leveling Results ###
 
 #  Before:
@@ -122,11 +121,11 @@ average "2 Stop and >15             " 100 * case3,
 #  Produced 495 hands
 
 #  After:
-#  1 Stop and >17             : 39.5349
-#  1 Stop, good suit, and >15 : 26.7442
-#  2 Stop and >15             : 33.7209
+#  1 Stop and >17             : 34.9765
+#  1 Stop, good suit, and >15 : 30.2817
+#  2 Stop and >15             : 34.7418
 #  Generated 10000000 hands
-#  Produced 86 hands
+#  Produced 426 hands
 
 `,"E",true)
 Script
