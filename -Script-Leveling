@@ -1,3 +1,8 @@
+#  I do not understand why (c1 or c2( is 43% and (c1 + c2) is 50%.
+#  But, the proof's in the pudding!  I'm going with +, *, and -.
+
+#  NOTE: I added frequencies.  They may help figure this out.
+
 produce 10000000
 
 ### Leveling ###
@@ -58,29 +63,40 @@ frequency "c1 or c2 " ( c1 or c2   , 0, 2),
 frequency "c1 * c2  " ( c1 * c2    , 0, 2),
 frequency "c1 and c2" ( c1 and c2  , 0, 2),
 
-average "c1" 100 * c1,
-average "c2" 100 * c2,
-average "c3" 100 * c3,
-average "c4" 100 * c4,
 
-### Results -- the actual probabilities based on 10,000,000 deals. ###
-# keep98: 98.4712
-# keep94: 93.6322
-# keep88: 87.7577
-# keep81: 81.388
-# keep75: 75.0112
-# keep63: 62.7497
-# keep56: 56.3801
-# keep50: 49.9913
-# keep44: 43.6199
-# keep37: 37.2503
-# keep25: 24.9888
-# keep19: 18.612
-# keep12: 12.2423
-# keep06: 6.36783
-# keep02: 1.52877
-# c1: 24.9888
-# c2: 25.0024
-# c3: 24.9853
-# Generated 10000000 hands
-# Produced 10000000 hands
+/*
+Results -- the actual probabilities based on 10,000,000 deals.
+  keep98: 98.4694
+  keep94: 93.6285
+  keep88: 87.7337
+  keep81: 81.3585
+  keep75: 74.9761
+  keep63: 62.7279
+  keep56: 56.3628
+  keep50: 50.0168
+  keep44: 43.6372
+  keep37: 37.2721
+  keep25: 25.0239
+  keep19: 18.6415
+  keep12: 12.2663
+  keep06: 6.37146
+  keep02: 1.53062
+  Frequency c1 + c2  :
+      0	 5635461
+      1	 3727393
+      2	  637146
+  Frequency c1 or c2 :
+      0	 5635461
+      1	 4364539
+      2	       0
+  Frequency c1 * c2  :
+      0	 9362854
+      1	  637146
+      2	       0
+  Frequency c1 and c2:
+      0	 9362854
+      1	  637146
+      2	       0
+  Generated 10000000 hands
+  Produced 10000000 hands
+*/
