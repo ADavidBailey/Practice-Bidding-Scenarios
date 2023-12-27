@@ -11,7 +11,7 @@ keep02 = c1 and c2 and c3
 keep06 = c1 * c2
 keep12 = c1 * (c2 + c3)
 keep19 = c1 - (c2 * c3)
-keep25 = c1 
+keep25 = c1
 keep37 = c1 + (c2 * (c3 + c4))
 keep44 = c1 + c2 - (c3 * c4)
 keep50 = c1 + c2
@@ -52,6 +52,11 @@ average "keep19" 100 * keep19,
 average "keep12" 100 * keep12,
 average "keep06" 100 * keep06,
 average "keep02" 100 * keep02,
+
+frequency "c1 + c2  " ( c1 + c2    , 0, 2),
+frequency "c1 or c2 " ( c1 or c2   , 0, 2),
+frequency "c1 * c2  " ( c1 * c2    , 0, 2),
+frequency "c1 and c2" ( c1 and c2  , 0, 2),
 
 average "c1" 100 * c1,
 average "c2" 100 * c2,
