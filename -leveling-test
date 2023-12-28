@@ -1,0 +1,36 @@
+produce 1000000
+
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+
+keep25 = c1
+keep50 = c1 + c2
+keep56 = keep50 == 0
+keep37 = keep50 == 1
+keep06 = keep50 == 2
+keep94 = 1 - keep06
+keep63 = 1 - keep37
+keep44 = 1 - keep56
+keep75 = 1 - keep25
+keep13 = keep06 * 2
+keep87 = 1 - keep13
+keep19 = keep06 * 3
+
+action
+average "keep06 " 100 * keep06,
+average "keep13 " 100 * keep13,
+average "keep19 " 100 * keep19,
+average "keep25 " 100 * keep25,
+average "keep37 " 100 * keep37,
+
+average "keep50 " 100 * keep50,
+
+average "keep56 " 100 * keep56,
+average "keep63 " 100 * keep63,
+average "keep75 " 100 * keep25,
+average "keep87 " 100 * keep87,
+average "keep94 " 100 * keep94,
+frequency "keep50" (keep50, 0 , 2),
+
+
+
