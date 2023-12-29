@@ -1,10 +1,9 @@
 Script,InvitationalJump
 setDealerCode(
 `
-produce 10000
-dealer north
-
 # Gavin's 3 Under Invitational Jump (11-12 HCP)
+produce 1000
+dealer north
 
 ## Predict North's opening bid ##
 # Calculate length points for north (lengthPoints)
@@ -91,14 +90,12 @@ average "oneHeart     " 100 * oneHeart,
 average "oneDiamond   " 100 * oneDiamond,
 average "oneClub      " 100 * oneClub,
 average "GoodClubs    " 100 * goodClubs,
-average "GoodDiamonds " 100 * goodDiamonds,
+#average "GoodDiamonds " 100 * goodDiamonds,
 average "GoodHearts   " 100 * goodHearts,
 average "hFit         " 100 * hFit,
 average "sFit         " 100 * sFit,
 frequency "SuitPoints North" (suitPoints, 12, 21),
 frequency "HCP South       " (hcp(south), 11, 12),
-
-
 
 `, "N", true);
 Script
