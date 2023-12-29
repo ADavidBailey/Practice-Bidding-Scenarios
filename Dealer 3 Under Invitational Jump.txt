@@ -1,9 +1,10 @@
 Script,InvitationalJump3Under
 setDealerCode(
 `
-# Robot 3 Under Invitational Jump (11-12 HCP)
-produce 10000
+produce 1000
 dealer north
+
+# Robot 3 Under Invitational Jump (11-12 HCP)
 
 ## Predict North's opening bid ##
 # Calculate length points for north (lengthPoints)
@@ -31,16 +32,13 @@ ntShape = shape(north, any 4333 +any 4432 +any 5332 +any 5422)
 
 # Define ntPoint ranges
 oneNT = ntShape and ntPoints>14 and ntPoints<18
-twoNT = ntShape and ntPoints>19 and ntPoints<22
-weakNT = ntShape and ntPoints>10 and ntPoints<15
-overcallNT = ntShape and ntPoints>14 and ntPoints<19  // 15-18
 
 # Define Game Force 2C
 gameForce2C = suitPoints>21
 
 ### Predict north's opening BID
 P1 = gameForce2C
-P2 = P1 or twoNT or oneNT
+P2 = P1 or oneNT
 
 # Predict north's Opening suit
 s = spades(north)
@@ -57,11 +55,11 @@ oneSpade   = oS
 oneHeart   = oH
 oneDiamond = oD
 oneClub    = oC
-## End of predice north's opening bid ##
+## End of predict north's opening bid ##
 
 # Define NoMajorFit
-sFit = oneSpade and spades(south)>2
-hFit = oneHeart and hearts(south)>2
+sFit = oneSpade and spades(south)<2
+hFit = oneHeart and hearts(south)<2
 noMajorFit = not (sFit or hFit)
 
 # Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
@@ -84,6 +82,7 @@ and noMajorFit
 and hcp(south)>10 and hcp(south)<13
 and (goodHearts or goodDiamonds or goodClubs)
 
+/*
 action
 average "oneSpade     " 100 * oneSpade,
 average "oneHeart     " 100 * oneHeart,
@@ -96,7 +95,7 @@ average "hFit         " 100 * hFit,
 average "sFit         " 100 * sFit,
 frequency "SuitPoints North" (suitPoints, 12, 21),
 frequency "HCP South       " (hcp(south), 11, 12),
-
+*/
 
 `, "S", true);
 Script
