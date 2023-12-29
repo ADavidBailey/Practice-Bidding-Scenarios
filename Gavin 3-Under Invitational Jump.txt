@@ -1,10 +1,9 @@
 Script,InvitationalJump
 setDealerCode(
 `
+# 3 Under Invitational Jump (11-12 HCP)
 produce 100
 dealer north
-
-# 3 Under Invitational Jump (11-12 HCP)
 
 ## Predict North's opening bid ##
 # Calculate length points for north (lengthPoints)
@@ -61,8 +60,9 @@ oneClub = oC
 ## End of predice north's opening bid ##
 
 # Define NoMajorFit
-NoSpadeFit = oneSpade and spades(south)<3
-NoHeartFit = oneHeart and hearts(south)<3
+sFit = oneSpade and spades(south)<3
+hFit = oneHeart and hearts(south)<3
+noMajorFit = not (sFit or hFit)
 
 # Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
 calmEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx) and hcp(east)<9
@@ -77,7 +77,7 @@ condition
 hcp(north)>11
 and (oneSpade or oneHeart or oneDiamond)
 and calmEast
-and (NoSpadeFit or NoHeartFit)
+and noMajorFit
 and hcp(south)>10 and hcp(south)<13 
 and (goodHearts or goodClubs)
 
