@@ -8,12 +8,14 @@ keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
 keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
 
 keep03 = keep06 and keep44
+####06 = c1 and c2
 keep11 = c1 and keep44
 keep14 = c1 and not keep44
 keep19 = c1 and not c2
 keep25 = c1
 keep30 = keep06 or c3
 keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
 keep47 = keep44 or keep06
 
 keep53 = not keep47
