@@ -1,41 +1,37 @@
-/* 
-  I do not understand why (c1 or c2) is 43% and (c1 + c2) is 50%.
-  As expected (c1 and c2) is the same as (c2 * c2).
-  I do not understand why (! keep44) is 55% and (1 - keep44) is 56%
-  I'm going with +, *, and -.  They produce the results I want and expect!
-  
-  The proof's in the pudding! 
-  
-  P.S.
-  I added frequencies for (c1 + c2) and (c1 * c2).  They may help figure this out.
-
-*/
-
-produce 10000000
-
-### Leveling ###
-
+generate 10000000
 c1 = hascard(west,2C)
 c2 = hascard(east,2D)
 c3 = hascard(west,3C)
 c4 = hascard(east,3D)
 
-keep02 = c1 and c2 and c3
-keep06 = c1 * c2
-keep12 = c1 * (c2 + c3)
-keep19 = c1 - (c2 * c3)
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep03 = keep06 and keep44
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
 keep25 = c1
-keep37 = c1 + (c2 * (c3 + c4))
-keep44 = c1 + c2 - (c3 * c4)
-keep50 = c1 + c2
-keep56 = 1 - keep44
-keep63 = 1 - keep37
-keep75 = 1 - keep25
-keep81 = 1 - keep19
-keep88 = 1 - keep12
-keep94 = 1 - keep06
-keep98 = 1 - keep02
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep97 = not keep03
 keep   = 1
+
+# Use this to get the Produced/Generated ratio
+condition
+keep97
+action
 
 /*
   ### Example of how to use this ###
@@ -52,61 +48,48 @@ keep   = 1
 
 ### Generate Statistics for Leveling ###
 action
-average "keep98" 100 * keep98,
+average "keep97" 100 * keep97,
 average "keep94" 100 * keep94,
-average "keep88" 100 * keep88,
+average "keep89" 100 * keep89,
+average "keep86" 100 * keep86,
 average "keep81" 100 * keep81,
 average "keep75" 100 * keep75,
-average "keep63" 100 * keep63,
+average "keep70" 100 * keep70,
+average "keep67" 100 * keep67,
 average "keep56" 100 * keep56,
-average "keep50" 100 * keep50,
+average "keep53" 100 * keep53,
+
+average "keep47" 100 * keep47,
 average "keep44" 100 * keep44,
-average "keep37" 100 * keep37,
+average "keep33" 100 * keep33,
+average "keep30" 100 * keep30,
 average "keep25" 100 * keep25,
 average "keep19" 100 * keep19,
-average "keep12" 100 * keep12,
+average "keep14" 100 * keep14,
+average "keep11" 100 * keep11,
 average "keep06" 100 * keep06,
-average "keep02" 100 * keep02,
-
-frequency "c1 + c2  " ( c1 + c2    , 0, 2),
-frequency "c1 or c2 " ( c1 or c2   , 0, 2),
-frequency "c1 * c2  " ( c1 * c2    , 0, 2),
-frequency "c1 and c2" ( c1 and c2  , 0, 2),
-
+average "keep03" 100 * keep03,
 
 /*
 Results -- the actual probabilities based on 10,000,000 deals.
-  keep98: 98.4694
-  keep94: 93.6285
-  keep88: 87.7337
-  keep81: 81.3585
-  keep75: 74.9761
-  keep63: 62.7279
-  keep56: 56.3628
-  keep50: 50.0168
-  keep44: 43.6372
-  keep37: 37.2721
-  keep25: 25.0239
-  keep19: 18.6415
-  keep12: 12.2663
-  keep06: 6.37146
-  keep02: 1.53062
-  Frequency c1 + c2  :
-      0	 5635461         // The same as keep56
-      1	 3727393         // The same as keep37
-      2	  637146         // The same as keep06
-  Frequency c1 or c2 :
-      0	 5635461
-      1	 4364539         // The same as keep44
-      2	       0
-  Frequency c1 * c2  :
-      0	 9362854
-      1	  637146
-      2	       0
-  Frequency c1 and c2:
-      0	 9362854
-      1	  637146
-      2	       0
-  Generated 10000000 hands
-  Produced 10000000 hands
+  keep97: 97.3214
+  keep94: 93.6387
+  keep89: 89.2858
+  keep86: 85.7274
+  keep81: 81.3745
+  keep75: 75.0132
+  keep70: 70.1677
+  keep67: 66.9695
+  keep56: 56.3635
+  keep53: 52.6808
+  keep47: 47.3192
+  keep44: 43.6365
+  keep33: 33.0305
+  keep30: 29.8323
+  keep25: 24.9868
+  keep19: 18.6255
+  keep14: 14.2726
+  keep11: 10.7142
+  keep06: 6.36128
+  keep03: 2.67858
 */
