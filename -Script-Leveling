@@ -31,13 +31,6 @@ keep97 = not keep03
 keep   = 1
 
 /*
-  ### Example of how to get the Produced/Generated ratio
-  condition
-  keep97
-  action
-*/
-
-/*
   ### Example of how to use this to level hand types ###
   # Level it
   level1 = case1 * keep06     // keep 06% of case 1
@@ -50,7 +43,15 @@ keep   = 1
   and levelTheDeal            // this line can be commented out to skip leveling
 */
 
-### Generate Statistics for Leveling ###
+/*   Just in case you stubornly insist that c1 + c2 produces a 50% result.
+  ### Example of how to get the Produced/Generated ratio
+  condition
+  keep97
+  action
+*/
+
+/*
+### Example of how to generate Statistics for Leveling ###
 action
 average "keep97" 100 * keep97,
 average "keep94" 100 * keep94,
@@ -73,6 +74,7 @@ average "keep14" 100 * keep14,
 average "keep11" 100 * keep11,
 average "keep06" 100 * keep06,
 average "keep03" 100 * keep03,
+*/
 
 /*
 Results -- the actual probabilities based on 10,000,000 deals.
