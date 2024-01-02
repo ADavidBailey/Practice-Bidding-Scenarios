@@ -7,7 +7,7 @@ dealer south
 # Define South's Weak 2 Bids w/any 4-card suit
 
      // at least half of south's points are in the suit
-     // don't allow 4-, 5-, or 6-card side major
+     // allow 4-card side major
 
 tp = hcp(south)
 sp = hcp(south,spades)
@@ -40,7 +40,7 @@ oHonor = (sAK or hAK or dAK or cAK)
 rPass = hcp(north)<15 and not fit
 rRaise = fit and hcp(north)<14    // Extend the preempt
 rInvite = fit and hcp(north)>13   // 2N
-rForce = hcp(north)>14            // Do something
+rForce = hcp(north)>16            // Do something
 
 # Responder bids new suit
 rGS = (spades(north)==5 && top5(north,spades)>3) or (spades(north)>5 and top5(north,spades) >2)
