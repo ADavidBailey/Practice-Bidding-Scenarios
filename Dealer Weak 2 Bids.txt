@@ -18,7 +18,7 @@ w2s = shape(south,6xxx-x6xx-x5xx-x4xx) and 2 * sp > tp
 w2h = shape(south,x6xx-6xxx-5xxx-4xxx) and 2 * hp > tp
 w2d = shape(south,xx6x-x6xx-x5xx-x4xx-6xxx-5xxx-4xxx) and 2* dp > tp
  
-w2Range = tp<10 and losers(south)<7
+w2Range = tp>4 and tp<10 and losers(south)<7
  
 weakTwo = (w2s or w2h or w2d) and w2Range
 
