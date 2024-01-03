@@ -4,7 +4,7 @@ setDealerCode(
 produce 1000000
 dealer south
 
-# Define South's Weak 2 Bids w/any 4-card suit
+# Define South's Weak 2 Bids w/any 4-card suit -- Loose
 
      // at least half of south's points are in the suit
      // allow 4-card side major
@@ -18,7 +18,7 @@ w2s = shape(south,6xxx-x6xx-x5xx) and 2 * sp > tp
 w2h = shape(south,x6xx-6xxx-5xxx) and 2 * hp > tp
 w2d = shape(south,xx6x-x6xx-x5xx-6xxx-5xxx) and 2* dp > tp
  
-w2Range = tp>4 and tp<10 and losers(south)<7
+w2Range = tp>4 and tp<11 and losers(south)<7
  
 weakTwo = (w2s or w2h or w2d) and w2Range
 
@@ -111,8 +111,6 @@ average "2NT/Opener rebids major " 100 * oRebid,
 average "2NT/Opener shows feature" 100 * oFeature,
 average "New suit response       " 100 * rNewSuit,
 average "Trump fit               " 100 * fit,
-average "9+ fit                  " 100 * fit,
-
 
 `,"S",true)
 Script
