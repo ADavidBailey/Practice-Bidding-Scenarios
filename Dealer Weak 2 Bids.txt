@@ -1,9 +1,11 @@
 Script,WeakTwoBids
 setDealerCode(
-`produce 1000000
+`
+
+produce 1000000
 dealer south
 
-# Define South's Weak 2 Bids w/o 4-card major side suit
+# Define South's Weak 2 Bids w/o 4-card major side suit -- Strict
 
      // at least half of south's points are in the suit
      // allow no 4-card side major
@@ -17,7 +19,7 @@ w2s = shape(south,6xxx-x6xx-x5xx-x4xx) and 2 * sp > tp
 w2h = shape(south,x6xx-6xxx-5xxx-4xxx) and 2 * hp > tp
 w2d = shape(south,xx6x-x6xx-x5xx-x4xx-6xxx-5xxx-4xxx) and 2* dp > tp
  
-w2Range = tp>4 and tp<10 and losers(south)<7
+w2Range = tp>4 and tp<11 and losers(south)<7
  
 weakTwo = (w2s or w2h or w2d) and w2Range
 
