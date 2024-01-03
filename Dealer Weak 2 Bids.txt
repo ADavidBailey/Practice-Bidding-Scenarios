@@ -1,7 +1,6 @@
 Script,WeakTwoBids
 setDealerCode(
-`
-produce 1000000
+`produce 1000000
 dealer south
 
 # Define South's Weak 2 Bids w/o 4-card major side suit
@@ -38,9 +37,9 @@ cAK = top2(south,clubs)==1
 oHonor = (sAK or hAK or dAK or cAK)
 
 rPass = hcp(north)<15 and not fit
-rRaise = fit and hcp(north)<14                          // Extend the preempt
-rInvite = fit and hcp(north)>13                         // 2N
-rForce = hcp(north)>16 and not(rRaise or rInvite)       // Do something
+rRaise = fit and hcp(north)<14               // Extend the preempt
+rInvite = fit and hcp(north)>13              // 2N
+rForce = hcp(north)>16 and not rInvite       // Do something
 
 # Responder bids new suit
 rGS = (spades(north)==5 && top5(north,spades)>3) or (spades(north)>5 and top5(north,spades) >2)
@@ -55,7 +54,6 @@ oFeature = rInvite and hcp(south)>8 and oHonor
 
 # Opener rebids suit
 oRebid = rInvite and not oFeature
-
 
 c1 = hascard(west,2C)
 c2 = hascard(east,2D)
@@ -91,7 +89,7 @@ keep   = 1
 # Level the deal
 case1 = rPass and keep11
 case2 = rRaise and keep19
-case3 = rInvite and keep67
+case3 = rInvite and keep56
 case4 = rForce and keep
 levelTheDeal = (case1 or case2 or case3 or case4)
 
