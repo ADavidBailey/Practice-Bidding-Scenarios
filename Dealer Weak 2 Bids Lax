@@ -38,9 +38,9 @@ cAK = top2(south,clubs)==1
 oHonor = (sAK or hAK or dAK or cAK)
 
 rPass = hcp(north)<15 and not fit
-rRaise = fit and hcp(north)<14    // Extend the preempt
-rInvite = fit and hcp(north)>13   // 2N
-rForce = hcp(north)>16            // Do something
+rRaise = fit and hcp(north)<14             // Extend the preempt
+rInvite = fit and hcp(north)>13            // 2N
+rForce = hcp(north)>16 and not rInvite     // Do something
 
 # Responder bids new suit
 rGS = (spades(north)==5 && top5(north,spades)>3) or (spades(north)>5 and top5(north,spades) >2)
