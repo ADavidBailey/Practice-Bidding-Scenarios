@@ -26,23 +26,19 @@ M3 = majorFit4 and suitPoints>17 and not (x4 or x3)
 N3 = majorFit4 and suitPoints>14 and suitPoints<18 and not (x4 or x3 or M3)
 M4 = majorFit4 and suitPoints>11 and suitPoints<15 and not (x4 or x3 or M3 or N3)
 
-# Frequency Reduction modifiers:
-reduce_25_percent = hascard(east,2C) or hascard(west,2D)
-reduce_50_percent = hascard(east,2C)
-reduce_60_percent = hascard(east,2C) and ( hascard(west,2D) or hascard(east,3C))
-reduce_75_percent = hascard(east,2C) and hascard(west,2D)
-reduce_97_percent = hascard(east,2C) and hascard(west,2D) and hascard(east,3C)
-reduce_99_percent = hascard(east,2C) and hascard(west,2D) and hascard(east,3C) and hascard(east,4C)
+##### End of Jacopy 2N #####
+
+import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
+
+lx4 = x4 and keep
+lx3 = x3 and keep
+lM3 = M3 and keep
+lN3 = N3 and keep
+lM4 = M4 and keep
 
 ##### Now do it #####
 (x4 or x3 or M3 or N3 or M4) and suitPoints>11 and calmWest and hcp(north)>12
-
-# Level responder hand types:
-
-#and (not M3 or reduce_25_percent )
-#and (not M4 or reduce_97_percent )
-#and (not x3 or reduce_97_percent )
-#and (not x4 or reduce_60_percent )
+#and levelTheDeal
 
 action
 average "1. x4" 100 * x4,
