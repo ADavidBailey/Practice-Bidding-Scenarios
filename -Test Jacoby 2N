@@ -30,11 +30,16 @@ M4 = majorFit4 and suitPoints>11 and suitPoints<15 and not (x4 or x3 or M3 or N3
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
 
-lx4 = x4 and keep
-lx3 = x3 and keep
+##### Level the Deal #####
+
+lx4 = x4 and keep03
+lx3 = x3 and keep06
 lM3 = M3 and keep
-lN3 = N3 and keep
-lM4 = M4 and keep
+lN3 = N3 and keep30
+lM4 = M4 and keep19
+levelTheDeal = lx4 or lx3 or lM3 or lN3 or lM4
+
+##### End of Level the Deal #####
 
 ##### Now do it #####
 (x4 or x3 or M3 or N3 or M4) and suitPoints>11 and calmWest and hcp(north)>12
