@@ -100,8 +100,8 @@ calmOpps = calmEast and calmWest
 ##### Jacoby 2N #####
 
 # Define Majors with 2nd suits
-sFit2nd = oneSpade and sFit4 and (gH or gD or gC)
-hFit2nd = oneHeart and hFit4 and (gS or gD or gC)
+sFit2nd = oneSpade and suitPoints>11 and sFit4 and (gH or gD or gC)
+hFit2nd = oneHeart and suitPoints>11 and hFit4 and (gS or gD or gC)
 
 # Define the 5 types of opening hands in priority order
 x4 = sFit2nd or hFit2nd
