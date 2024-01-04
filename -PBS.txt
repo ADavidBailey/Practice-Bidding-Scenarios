@@ -5,9 +5,6 @@ Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/setDealerCode.js
 // Hide the Char, Word, All backspace buttons
 Script,onDataLoad,$("#adpanel2 button:lt(3)").hide();
 
-// Import the dummy PBS marker file
-# Import,https://github.com/ADavidBailey/PBS-Count/blob/main/PBS-Count
-
 // Redirect chat so it doesn't go to Lobby
 Script,onDataLoad
 sendPrivateChat(whoAmI(),"");
