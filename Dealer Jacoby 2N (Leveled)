@@ -110,23 +110,50 @@ M3 = majorFit4 and suitPoints>17 and not (x4 or x3)
 N3 = majorFit4 and suitPoints>14 and suitPoints<18 and not (x4 or x3 or M3)
 M4 = majorFit4 and suitPoints>11 and suitPoints<15 and not (x4 or x3 or M3 or N3)
 
-# Frequency Reduction modifiers:
-reduce_25_percent = hascard(east,2C) or hascard(west,2D)
-reduce_50_percent = hascard(east,2C)
-reduce_60_percent = hascard(east,2C) and ( hascard(west,2D) or hascard(east,3C))
-reduce_75_percent = hascard(east,2C) and hascard(west,2D)
-reduce_97_percent = hascard(east,2C) and hascard(west,2D) and hascard(east,3C)
-reduce_99_percent = hascard(east,2C) and hascard(west,2D) and hascard(east,3C) and hascard(east,4C)
+### More BOILERPLATE to Define Leveling ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep03 = keep06 and keep44
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep97 = not keep03
+keep   = 1
+##### END OF BOILERPLATE #####
+
+# Do the leveling
+levelx3 = x3 and keep03
+levelM4 = M4 and keep06
+levelM3 = M3 and keep
+levelx4 = x4 and keep30
+levelN3 = N3 and keep19
+levelTheDeal = levelx3 or levelM4 or levelM3 or levelx4 or levelN3
 
 ##### Now do it #####
 (x4 or x3 or M3 or N3 or M4) and suitPoints>11 and calmWest and hcp(north)>12
-
-# Level responder hand types:
-and (not x3 or reduce_97_percent )
-and (not M4 or reduce_97_percent )
-and (not M3 or reduce_50_percent )
-and (not x4 or reduce_60_percent )
-and (not N3 or reduce_75_percent )
+and levelTheDeal
 
 action
 average "1. x4" 100 * x4,
