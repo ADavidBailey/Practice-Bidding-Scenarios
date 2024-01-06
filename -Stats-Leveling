@@ -1,19 +1,57 @@
+
+/*   Just in case you stubornly insist that c1 + c2 produces a 50% result.
+  ### Example of how to get the Produced/Generated ratio
+  condition
+  keep97
+  action
+*/
+
+/*
+### Example of how to generate Statistics for Leveling ###
 action
+average "keep97" 100 * keep97,
+average "keep94" 100 * keep94,
+average "keep89" 100 * keep89,
+average "keep86" 100 * keep86,
+average "keep81" 100 * keep81,
+average "keep75" 100 * keep75,
+average "keep70" 100 * keep70,
+average "keep67" 100 * keep67,
+average "keep56" 100 * keep56,
+average "keep53" 100 * keep53,
 
-average "reduce98" 100 * reduce98,
-average "reduce94" 100 * reduce94,
-average "reduce87" 100 * reduce87,
-average "reduce75" 100 * reduce75,
-average "reduce62" 100 * reduce62,
-average "reduce50" 100 * reduce50,
-average "reduce38" 100 * reduce38,
-average "reduce25" 100 * reduce25,
-average "reduce13" 100 * reduce13,
-average "reduce06" 100 * reduce06,
-average "reduce02" 100 * reduce02,
+average "keep47" 100 * keep47,
+average "keep44" 100 * keep44,
+average "keep33" 100 * keep33,
+average "keep30" 100 * keep30,
+average "keep25" 100 * keep25,
+average "keep19" 100 * keep19,
+average "keep14" 100 * keep14,
+average "keep11" 100 * keep11,
+average "keep06" 100 * keep06,
+average "keep03" 100 * keep03,
+*/
 
-average "c1" 100 * c1,
-average "c2" 100 * c2,
-average "c3" 100 * c3,
-average "c4" 100 * c4,
-average "c5" 100 * c5,
+/*
+Results -- the actual probabilities based on 10,000,000 deals.
+  keep97: 97.3214
+  keep94: 93.6387
+  keep89: 89.2858
+  keep86: 85.7274
+  keep81: 81.3745
+  keep75: 75.0132
+  keep70: 70.1677
+  keep67: 66.9695
+  keep56: 56.3635
+  keep53: 52.6808
+  keep47: 47.3192
+  keep44: 43.6365
+  keep33: 33.0305
+  keep30: 29.8323
+  keep25: 24.9868
+  keep19: 18.6255
+  keep14: 14.2726
+  keep11: 10.7142
+  keep06: 6.36128
+  keep03: 2.67858
+*/
