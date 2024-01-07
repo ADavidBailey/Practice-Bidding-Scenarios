@@ -1,0 +1,30 @@
+### prepend this to the =Predict-Opening-Bid to produce stats
+pass = not (gameForce2C or twoNT or oneNT or oneSpade or oneHeart or oneDiamond or oneClub)
+
+condition
+gameForce2C or twoNT or oneNT or oneSpade or oneHeart or oneDiamond or oneClub or pass
+
+action
+average "2C " 100 * gameForce2C,
+average "2N " 100 * twoNT,
+average "1N " 100 * oneNT,
+average "1S " 100 * oneSpade,
+average "1H " 100 * oneHeart,
+average "1D " 100 * oneDiamond,
+average "1C " 100 * oneClub,
+average "P  " 100 * not (gameForce2C or twoNT or oneNT or oneSpade or oneHeart or oneDiamond or oneClub)
+
+/*   The Results
+2C : 0.21254
+2N : 0.51739
+1N : 4.55678
+1S : 8.39082
+1H : 8.02435
+1D : 11.3011
+1C : 10.7435
+P  : 56.2535
+Generated 10000000 hands
+Produced 10000000 hands
+Initial random seed 1704628388
+Time needed   54.549 sec
+*/
