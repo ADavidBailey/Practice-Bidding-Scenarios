@@ -7,6 +7,7 @@ dealer south
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Good-Suits-South
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
 
 ##### End of Imported Code #####
 
@@ -29,17 +30,13 @@ N3 = majorFit4 and suitPoints>14 and suitPoints<18 and not (x4 or x3 or M3)
 M4 = majorFit4 and suitPoints>11 and suitPoints<15 and not (x4 or x3 or M3 or N3)
 ##### End of Jacopy 2N #####
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
-
 ##### Level the Deal #####
-
 lx4 = x4 and keep56
 lx3 = x3 and keep06
 lM3 = M3 and keep
 lN3 = N3 and keep25
 lM4 = M4 and keep06
 levelTheDeal = lx4 or lx3 or lM3 or lN3 or lM4
-
 ##### End of Level the Deal #####
 
 ##### Now do it #####
