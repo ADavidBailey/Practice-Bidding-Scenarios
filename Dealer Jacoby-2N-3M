@@ -1,0 +1,57 @@
+Script,TestJacoby2N4MM
+setDealerCode(
+`
+produce 1000
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Good-Suits-South
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
+
+##### End of Imported Code #####
+
+##### Jacoby 2N #####
+# Define Major 4-card fits
+sFit4 = oneSpade and spades(north)>3
+hFit4 = oneHeart and hearts(north)>3
+majorFit4 = sFit4 or hFit4
+
+# Define Majors with 2nd suits
+sFit2nd = sFit4 and (gH or gD or gC)
+hFit2nd = hFit4 and (gS or gD or gC)
+
+# Define the 7 types of opening hands in priority order
+
+x4a = majorFit4 and shape(south, any 0xxx)
+x4b = sFit2nd or hFit2nd
+x3 = majorFit4 and shape(south, any 0xxx +any 1xxx)
+M3 = majorFit4 and suitPoints>17
+N3 = majorFit4 and suitPoints>14 and suitPoints<18
+M4 = majorFit4 and suitPoints>11 and suitPoints<15 and not
+##### End of Jacopy 2N #####
+
+##### Now do it #####
+suitPoints>11 and calmWest and hcp(north)>12
+
+// Selecte only one of the following
+
+#and x3    // Singleton or Void
+and M4    // 12-14
+#and N3    // 15-17
+#and x4a   // 2nd suit
+#and x4b   // Void
+#and M3    // 18+
+
+`,"S",true)
+Script
+Button,4M,\n\
+--- Jacoby 2N w/4x showing a void\n\
+Six different Opening hands can be tested independantly after a Jacoby 2N response.\n\
+• 3x (40%) - any strength with a singleton\n\
+• 3M (04%) - 18+ Semi-Balanced\n\
+• 3N (14%) - 15-17 Semi-Balanced\n\
+• 4M (34%) - 12-14 Semi-Balanced\n\
+• 4x (08%) - any strength with a good second suit (5-cards with 2+ of top 3)\n\
+• 4x (08%) - any strength with a void\n\
+%TestJacoby2N4M%,width 16% color blue
