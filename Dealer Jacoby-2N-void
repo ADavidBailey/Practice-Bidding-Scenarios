@@ -1,4 +1,4 @@
-Script,TestJacoby2N4M
+Script,Jacoby2N4xVoid
 setDealerCode(
 `
 produce 1000
@@ -37,15 +37,15 @@ suitPoints>11 and calmWest and hcp(north)>12
 // Selecte only one of the following
 
 #and x3    // Singleton or Void
-and M4    // 12-14
+#and M4    // 12-14
 #and N3    // 15-17
 #and x4a   // 2nd suit
-#and x4b   // Void
+and x4b   // Void
 #and M3    // 18+
 
 `,"S",true)
 Script
-Button,4M,\n\
+Button,4x-Void,\n\
 --- Jacoby 2N w/4x showing a void\n\
 Six different Opening hands can be tested independantly after a Jacoby 2N response.\n\
 • 3x (40%) - any strength with a singleton\n\
@@ -54,4 +54,4 @@ Six different Opening hands can be tested independantly after a Jacoby 2N respon
 • 4M (34%) - 12-14 Semi-Balanced\n\
 • 4x (08%) - any strength with a good second suit (5-cards with 2+ of top 3)\n\
 • 4x (08%) - any strength with a void\n\
-%TestJacoby2N4M%,width 16% color blue
+%TestJacoby2N4xVoid%,width 18% color blue
