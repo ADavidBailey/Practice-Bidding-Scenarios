@@ -1,31 +1,80 @@
-### Append this to the =Predict-Opening-Bid to produce statstics ###
+### End or -Predict-Opening-Bid ###
 
-pass = not (gameForce2C or twoNT or oneNT or oneSpade or oneHeart or oneDiamond or oneClub)
+P3 = P2 or openingSuit
+preempt = shape(south, any 9xxx+any 8xxx+any 7xxx) and hcp(south)<11 and not P3
+weakTwo = shape(south, any 6xxx - xxx6) and suitPoints>4 and hcp(south)<11 and not P3
+P4 = P3 or weakTwo or preempt
+
+pass = not P4
 
 condition
-gameForce2C or twoNT or oneNT or oneSpade or oneHeart or oneDiamond or oneClub or pass
+gameForce2C or twoNT or oneNT or openingSuit   or weakTwo or preempt or pass
 
 action
-average "2C " 100 * gameForce2C,
-average "2N " 100 * twoNT,
-average "1N " 100 * oneNT,
-average "1S " 100 * oneSpade,
-average "1H " 100 * oneHeart,
-average "1D " 100 * oneDiamond,
-average "1C " 100 * oneClub,
-average "P  " 100 * not (gameForce2C or twoNT or oneNT or oneSpade or oneHeart or oneDiamond or oneClub)
+average "2 Clubs     " 100 * gameForce2C,
+average "2 Notrump   " 100 * twoNT,
+average "1 Notrump   " 100 * oneNT,
+average "1 Spade     " 100 * oneSpade,
+average "1 Heart     " 100 * oneHeart,
+average "1 Diamond   " 100 * oneDiamond,
+average "1 Club      " 100 * oneClub,
+average "Weak Two    " 100 * weakTwo,
+average "Preempt     " 100 * preempt,
+average "Pass        " 100 * pass,
+frequency "South HCP" (hcp(south),0,37),
 
 /*   The Results
-2C : 0.21254
-2N : 0.51739
-1N : 4.55678
-1S : 8.39082
-1H : 8.02435
-1D : 11.3011
-1C : 10.7435
-P  : 56.2535
-Generated 10000000 hands
-Produced 10000000 hands
-Initial random seed 1704628388
-Time needed   54.549 sec
+2 Clubs     : 0.21
+2 Notrump   : 0.543
+1 Notrump   : 4.451
+1 Spade     : 8.17
+1 Heart     : 7.712
+1 Diamond   : 10.981
+1 Club      : 10.67
+Weak Two    : 5.578
+Preempt     : 1.904
+Pass        : 49.787
+Frequency South HCP:
+    0	     377
+    1	     823
+    2	    1374
+    3	    2447
+    4	    3829
+    5	    5254
+    6	    6602
+    7	    8087
+    8	    8893
+    9	    9399
+   10	    9487
+   11	    8984
+   12	    7955
+   13	    6893
+   14	    5576
+   15	    4336
+   16	    3217
+   17	    2408
+   18	    1602
+   19	    1033
+   20	     630
+   21	     370
+   22	     214
+   23	     111
+   24	      49
+   25	      29
+   26	      15
+   27	       4
+   28	       1
+   29	       1
+   30	       0
+   31	       0
+   32	       0
+   33	       0
+   34	       0
+   35	       0
+   36	       0
+   37	       0
+Generated 100000 hands
+Produced 100000 hands
+Initial random seed 1704632711
+Time needed    0.582 sec
 */
