@@ -11,15 +11,14 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Scr
 ##### End of Imported Code #####
 
 ##### Jacoby 2N #####
-
 # Define Major 4-card fits
 sFit4 = oneSpade and spades(north)>3
 hFit4 = oneHeart and hearts(north)>3
 majorFit4 = sFit4 or hFit4
 
 # Define Majors with 2nd suits
-sFit2nd = sFit4 and (gH or gD or gC)
-hFit2nd = hFit4 and (gS or gD or gC)
+#sFit2nd = sFit4 and (gH or gD or gC)
+#hFit2nd = hFit4 and (gS or gD or gC)
 
 # Define the 5 types of opening hands in priority order
 # x4 = sFit2nd or hFit2nd
@@ -28,18 +27,17 @@ x3 = majorFit4 and shape(south, any 0xxx +any 1xxx) and not x4
 M3 = majorFit4 and suitPoints>17 and not (x4 or x3)
 N3 = majorFit4 and suitPoints>14 and suitPoints<18 and not (x4 or x3 or M3)
 M4 = majorFit4 and suitPoints>11 and suitPoints<15 and not (x4 or x3 or M3 or N3)
-
 ##### End of Jacopy 2N #####
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
 
 ##### Level the Deal #####
 
-lx4 = x4 and keep03
+lx4 = x4 and keep56
 lx3 = x3 and keep06
 lM3 = M3 and keep
-lN3 = N3 and keep30
-lM4 = M4 and keep19
+lN3 = N3 and keep25
+lM4 = M4 and keep06
 levelTheDeal = lx4 or lx3 or lM3 or lN3 or lM4
 
 ##### End of Level the Deal #####
