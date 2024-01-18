@@ -31,17 +31,4 @@ keep97 = not keep03
 keep   = 1
 
 ### See -Stats-Leveling for statistics on these values ###
-
-/*
-  ### Example of how to use this to level hand types ###
-  # Level it
-  level1 = case1 and keep06     // keep 06% of case 1
-  level2 = case2 and keep98     // keep 98% of case 2
-  level3 = case3 and keep       // keep all of case 3
-  levelTheDeal = level1 or level2 or level3
-  
-  # south bids 3N
-  wPreempts and nPasses and ePasses and (case1 or case2 or case3)
-  and levelTheDeal            // this line can be commented out to skip leveling
-*/
-
+### See -Example-Leveling for an example of how to use this ###
