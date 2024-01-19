@@ -1,0 +1,101 @@
+Script,SlamAfterStaymanOrJacoby2
+setDealerCode(
+`
+
+dealer south
+produce 1000
+
+hFit4 = hearts(north)==4 and hearts(south)>3   // 4-4 or 4-5
+sFit4 = spades(north)==4 and spades(south)>3
+hFit5 = hearts(north)==5 and hearts(south)>2   // 5-3, 5-4, or 5-5
+sFit5 = spades(north)==5 and spades(south)>2
+jac = shape(north, 5xxx + x5xx -54xx -45xx)    // exclude smolen
+sta = shape(north, 4xxx + x4xx)                // includes smolen
+
+jacFit = jac and (hFit5 or sFit5)
+jacNoFit = jac and not jacFit
+
+staFit = sta and (hFit4 or sFit4)
+staNoFit = sta and not staFit
+
+southHcp = hcp(south)
+totalHcp = southHcp + hcp(north)
+
+### Boilerplate for leveling ###
+generate 10000000
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep03 = keep06 and keep44
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep97 = not keep03
+keep   = 1
+
+### End of Boilerplate for Leveling ###
+### See -Stats-Leveling for statistics on these values ###
+### See -Example-Leveling for an example of how to use this ###
+
+# Define Leveling
+case1  = jacFit    and keep44
+case2  = staFit    and keep30
+case3  = jacNoFit  and keep81
+case4  = staNoFit  and keep19
+levelTheDeal = case1 or case2 or case3 or case4
+
+# Do it
+shape(south,any 4333 +any 4432 +any 5422 +any 5332)
+and shape(north, 5xxx+4xxx+x5xx+x4xx)
+and southHcp>=15 and southHcp<=17 
+and ((totalHcp>=32 and totalHcp<=34) or (totalHcp>=36 and totalHcp<=38)) 
+and levelTheDeal
+
+action
+average "Jac + Fit " 100 * jacFit,
+average "Sta + Fit " 100 * staFit,
+average "Jac - Fit " 100 * jacNoFit,
+average "Sta - Fit " 100 * staNoFit,
+average "hcp south " hcp(south),
+average "total HCP " totalHcp,
+
+/*
+Jac + Fit : 26.7
+Sta + Fit : 24.9
+Jac - Fit : 24.1
+Sta - Fit : 24.3
+hcp south : 15.992
+total HCP : 32.742
+Generated 3655968 hands
+Produced 1000 hands
+Initial random seed 1705678961
+
+
+`,"S",true)
+Script
+Button,Slam after Sta/Jac 2,\n\
+--- Slam after Stayman w/totalHcp 32-34 or 36-38/Jacoby\n\
+%SlamAfterStaymanOrJacoby2%
+Time needed   10.726 sec
+*/
