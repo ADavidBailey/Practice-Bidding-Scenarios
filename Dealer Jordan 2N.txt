@@ -10,7 +10,7 @@ MajorFit = (SpadeFit or HeartFit)
 
 ShortSpade = SpadeFit and spade(west)<3
 ShortHeart = HeartFit and heart(west)<3
-ShortMajor = (ShortSpade or ShortHeart) and shape(west, any 4441 +any 5431 +any 5440)
+ShortMajor = (ShortSpade or ShortHeart) and shape(west, any 4441 +any 5431 +any 5440 -5xxx -x5xx)
 
 # South opens 1M
 hcp(south)>11 and hcp(south)<15 and MajorFit and
