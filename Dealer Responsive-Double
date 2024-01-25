@@ -1,6 +1,9 @@
 Script,ResponsiveDouble
 setDealerCode(
 `
+dealer south
+produce 1000
+
 ##### Responsive Double #####
 # West Opens, North Doubles, East bids, ...
 
@@ -32,14 +35,11 @@ northDoubles = hcp(north)>11 and hcp(north)<15 and northShape
 eastActs = (hcp(east)>10 or (eFit and hcp(east)>5)) and hcp(east)<13
 westActs = hcp(west)>7
 
-
 ##### Now do it #####
 westOpens and northDoubles and eastActs and westActs
 
-action printoneline
-
 `
-,"S",true)
+,"W",true)
 Script
 Button,Responsive Double,\n\
 --- Responsive Double\n\
