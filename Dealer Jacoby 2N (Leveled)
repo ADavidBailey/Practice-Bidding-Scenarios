@@ -58,10 +58,10 @@ s = spades(south)
 h = hearts(south)
 d = diamonds(south)
 c = clubs(south)
-oS = s>4 and s>=h and s>=d and s>=c and not (P1 or P2)
+oS = s>4 and s>=h and s>=d and s>=c not (P1 or P2)
 oH = not oS and h>4 and h>=d and h>=c not (P1 or P2)
 oD = not (oS or oH) and ((d>3 and d>=c) or c<3) not (P1 or P2)
-oC = not (oS or oH or oD) and not (P1 or P2)
+oC = not (oS or oH or oD) not (P1 or P2)
 openingSuit = (oS or oH or oD or oC)
 
 # Define opening Major and opening Minor
