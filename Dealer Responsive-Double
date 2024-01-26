@@ -33,10 +33,10 @@ eFit = (eS or eH or eD or eC)
 westOpens = hcp(west)>11 and hcp(west)<15 and westSuit
 northDoubles = hcp(north)>11 and hcp(north)<15 and northShape
 eastActs = (hcp(east)>10 or (eFit and hcp(east)>5)) and hcp(east)<13
-westActs = hcp(west)>7
+southActs = hcp(south)>7
 
 ##### Now do it #####
-westOpens and northDoubles and eastActs and westActs
+westOpens and northDoubles and eastActs and southActs
 
 `
 ,"W",true)
