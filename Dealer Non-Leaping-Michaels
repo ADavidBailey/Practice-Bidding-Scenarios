@@ -1,0 +1,68 @@
+Script,NonLeapingMichaels
+`
+produce 1000
+dealer east
+
+# Define Good suits South -- 5+ cards with at least 2 of the top 3
+gSs = spades(south)>4   and top3(south,spades)>1
+gHs = hearts(south)>4   and top3(south,hearts)>1
+gDs = diamonds(south)>4 and top3(south,diamonds)>1
+gCs = clubs(south)>4    and top3(south,clubs)>1
+
+# Define Good 2 Suits South
+g2SnotS = (gHs and gDs) or (gHs and gCs) or (gDs and gCs)
+g2SnotH = (gSs and gDs) or (gSs and gCs) or (gDs and gCs)
+g2SnotD = (gSs and gHs) or (gSs and gCs) or (gHs and gCs)
+g2SnotC = (gSs and gHs) or (gSs and gDs) or (gHs and gDs)
+southActs = hcp(south)>11 and losers(south)<7
+
+# Define Good suits North -- 5+ cards with at least 2 of the top 3
+gSn = spades(north)>4   and top3(north,spades)>1
+gHn = hearts(north)>4   and top3(north,hearts)>1
+gDn = diamonds(north)>4 and top3(north,diamonds)>1
+gCn = clubs(north)>4    and top3(north,clubs)>1
+
+# Define Good 2 Suits North
+g2NnotS = (gHn and gDn) or (gHn and gCn) or (gDn and gCn)
+g2NnotH = (gSn and gDn) or (gSn and gCn) or (gDn and gCn)
+g2NnotD = (gSn and gHn) or (gSn and gCn) or (gHn and gCn)
+northActs = hcp(north)>11 and losers(north)<7
+
+# Define East Weak 2 suits
+w2S = top3(east,spades)>1   and spades(east)==6   and hearts(east)<4                    and spades(west)>2   and g2NnotS
+w2H = top3(east,hearts)>1   and hearts(east)==6   and spades(east)<4                    and hearts(west)>2   and g2NnotH
+w2D = top3(east,diamonds)>1 and diamonds(east)==6 and spades(east)<4 and hearts(east)<4 and diamonds(west)>2 and g2NnotD
+
+southPass = shape(south,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx) and hcp(south)<9
+westRaise = hcp(west)>3 and hcp(west)<7 and shape(west, any 0xxx +any 1xxx)
+east2Bid = (w2S or w2H or w2D) and shape(east,any 6430 +any 6421 +any 6331 +any 6322) and southPass and westRaise and northActs
+
+# East Preempts the the 3-level and South has two good suits and less than 5 losers
+p3S = top5(east,spades)>2   and spades(east)==7   and hcp(east,spades)> hcp(east)/2   and g2SnotS
+p3H = top5(east,hearts)>2   and hearts(east)==7   and hcp(east,hearts)> hcp(east)/2   and g2SnotH
+p3D = top5(east,diamonds)>2 and diamonds(east)==7 and hcp(east,diamonds)> hcp(east)/2 and g2SnotD
+p3C = top5(east,clubs)>2    and clubs(east)==7    and hcp(east,clubs)> hcp(east)/2    and g2SnotC
+
+east3Bid = (p3S or p3H or p3D or p3C) and shape(east,any 7xxx -any 7600 -any 75xx) and southActs
+
+
+# Now do it
+hcp(east)>5 and hcp(east)<11 and (east2Bid or east3Bid)
+
+action
+
+average "2D" 100 * w2D,
+average "2H" 100 * w2H,
+average "2S" 100 * w2S,
+average "3C" 100 * p3C,
+average "3D" 100 * p3D,
+average "3H" 100 * p3H,
+average "3S" 100 * p3S,
+
+
+`
+,"E",true)
+Script
+Button,Non-Leaping Michaels,\n\
+Non-Leaping Michaels\n\
+%NonLeapingMichaels%
