@@ -18,7 +18,7 @@ g2SSnotD = (gSs and gHs) or (gSs and gCs) or (gHs and gCs)
 g2SSnotC = (gSs and gHs) or (gSs and gDs) or (gHs and gDs)
 southActs = hcp(south)>11 and losers(south)<7
 
-eastHCP = hcp(east)>5 and hcp(east)<11
+eastHCP = hcp(east)>5 and hcp(east)<10
 
 # East Preempts the the 3-level and South has two good suits and less than 5 losers
 p3S = top5(east,spades)>2   and spades(east)==7   and hcp(east,spades)> hcp(east)/2   and g2SSnotS
