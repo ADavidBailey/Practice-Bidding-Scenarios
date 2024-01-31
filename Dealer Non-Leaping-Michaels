@@ -1,4 +1,4 @@
-Script,NonLeapingMichaels
+Script,NonLeapingMichaelsAfter3Bid
 `
 produce 1000
 dealer east
@@ -16,30 +16,7 @@ g2SSnotD = (gSs and gHs) or (gSs and gCs) or (gHs and gCs)
 g2SSnotC = (gSs and gHs) or (gSs and gDs) or (gHs and gDs)
 southActs = hcp(south)>11 and losers(south)<7
 
-# Define Good suits North -- 5+ cards with at least 2 of the top 3
-gSn = spades(north)>4   and top3(north,spades)>1
-gHn = hearts(north)>4   and top3(north,hearts)>1
-gDn = diamonds(north)>4 and top3(north,diamonds)>1
-gCn = clubs(north)>4    and top3(north,clubs)>1
-
-# Define Good 2 Suits North
-g2SNnotS = (gHn and gDn) or (gHn and gCn) or (gDn and gCn)
-g2SNnotH = (gSn and gDn) or (gSn and gCn) or (gDn and gCn)
-g2SNnotD = (gSn and gHn) or (gSn and gCn) or (gHn and gCn)
-northActs = hcp(north)>11 and losers(north)<7
-
 eastHCP = hcp(east)>5 and hcp(east)<11
-
-# Define East Weak 2 suits
-w2S = top3(east,spades)>1   and spades(east)==6   and spades(west)>2   and g2SNnotS
-w2H = top3(east,hearts)>1   and hearts(east)==6   and hearts(west)>2   and g2SNnotH
-w2D = top3(east,diamonds)>1 and diamonds(east)==6 and diamonds(west)>2 and g2SNnotD
-
-southPass = shape(south,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx) and hcp(south)<9
-westRaise = hcp(west)>3 and hcp(west)<7 and shape(west, any 0xxx +any 1xxx)
-eastBids = eastHCP and (w2S or w2H or w2D) and shape(east,any 6430 +any 6421 +any 6331 +any 6322 -4xxx-x4xx)
-
-east2Bid = eastBids and southPass and westRaise and northActs
 
 # East Preempts the the 3-level and South has two good suits and less than 5 losers
 p3S = top5(east,spades)>2   and spades(east)==7   and hcp(east,spades)> hcp(east)/2   and g2SSnotS
@@ -49,63 +26,19 @@ p3C = top5(east,clubs)>2    and clubs(east)==7    and hcp(east,clubs)> hcp(east)
 
 east3Bid = eastHCP and (p3S or p3H or p3D or p3C) and shape(east,any 7xxx -any 7600 -any 75xx) and southActs
 
-c1 = hascard(west,2C)
-c2 = hascard(east,2D)
-c3 = hascard(west,3C)
-c4 = hascard(east,3D)
-
-keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
-keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
-
-keep03 = keep06 and keep44
-####06 = c1 and c2
-keep11 = c1 and keep44
-keep14 = c1 and not keep44
-keep19 = c1 and not c2
-keep25 = c1
-keep30 = keep06 or c3
-keep33 = c1 or (c2 and keep44)
-####44 = c3 or c4
-keep47 = keep44 or keep06
-
-keep53 = not keep47
-keep56 = not keep44
-keep67 = not keep33
-keep70 = not keep30
-keep75 = not keep25
-keep81 = not keep19
-keep86 = not keep14
-keep89 = not keep11
-keep94 = not keep06
-keep97 = not keep03
-keep   = 1
-
-### See -Stats-Leveling for statistics on these values ###
-### See -Example-Leveling for an example of how to use this ###
-lev2Bid = east2Bid and keep
-lev3Bid = east3Bid and 0
-levelTheDeal = lev2Bid or lev3Bid
-
-
 # Now do it
-(east2Bid or east3Bid)
-and levelTheDeal
+east3Bid
 
 action
 
-average "2D" 100 * w2D,
-average "2H" 100 * w2H,
-average "2S" 100 * w2S,
 average "3C" 100 * p3C,
 average "3D" 100 * p3D,
 average "3H" 100 * p3H,
 average "3S" 100 * p3S,
-
-
 
 `
 ,"E",true)
 Script
 Button,Non-Leaping Michaels,\n\
 Non-Leaping Michaels\n\
-%NonLeapingMichaels%
+%NonLeapingMichaelsAfter3Bid%
