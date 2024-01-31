@@ -1,7 +1,6 @@
 Script,NLMAfter2Bid
 setDealerCode(`
 
-generate 30000000
 produce 1000
 dealer east
 
@@ -20,9 +19,9 @@ g2notD = (gS and gH) or (gS and gC) or (gH and gC)
 eastHCP = hcp(east)>5 and hcp(east)<10
 
 # Define East's 2-level Preempt with West's support and North's 2 good suits and less than 7 losers
-sE = top3(east,spades)>1   and spades(east)==6   and shape(east,any 6xxx -4xxx-x4xx) and spades(west)==3   and g2notS
-hE = top3(east,hearts)>1   and hearts(east)==6   and shape(east,any 6xxx -4xxx-x4xx) and hearts(west)==3   and g2notH 
-dE = top3(east,diamonds)>1 and diamonds(east)==6 and shape(east,any 6xxx -4xxx-x4xx) and diamonds(west)==3 and g2notD
+sE = top3(east,spades)>1   and spades(east)==6   and spades(west)==3   and g2notS
+hE = top3(east,hearts)>1   and hearts(east)==6   and hearts(west)==3   and g2notH 
+dE = top3(east,diamonds)>1 and diamonds(east)==6 and diamonds(west)==3 and g2notD
 
 southPass = shape(south,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx) and hcp(south)<10
 westRaise = hcp(west)>3 and hcp(west)<10 and shape(west, any 0xxx +any 1xxx +any 22xx)
