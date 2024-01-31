@@ -23,8 +23,8 @@ w2S = top5(east,spades)>2   and spades(east)==6   and spades(west)==3   and g2SN
 w2H = top5(east,hearts)>2   and hearts(east)==6   and hearts(west)==3   and g2SNnotH
 w2D = top5(east,diamonds)>2 and diamonds(east)==6 and diamonds(west)==3 and g2SNnotD
 
-southPass = shape(south,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx) and hcp(south)<9
-westRaise = hcp(west)>3 and hcp(west)<7 and shape(west, any 0xxx +any 1xxx +any 22xx)
+southPass = shape(south,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx) and hcp(south)<10
+westRaise = hcp(west)>3 and hcp(west)<9 and shape(west, any 0xxx +any 1xxx +any 22xx)
 eastBids = eastHCP and (w2S or w2H or w2D) and shape(east,any 6430 +any 6421 +any 6331 +any 6322 -4xxx-x4xx)
 
 east2Bid = eastBids and southPass and westRaise and northActs
