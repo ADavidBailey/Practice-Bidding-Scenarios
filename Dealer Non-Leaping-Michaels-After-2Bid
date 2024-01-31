@@ -14,7 +14,7 @@ gCn = clubs(north)>4    and top3(north,clubs)>1
 g2SNnotS = (gHn and gDn) or (gHn and gCn) or (gDn and gCn)
 g2SNnotH = (gSn and gDn) or (gSn and gCn) or (gDn and gCn)
 g2SNnotD = (gSn and gHn) or (gSn and gCn) or (gHn and gCn)
-northActs = losers(north)>4
+//northActs = losers(north)>4 and hcp(north)>11
 
 eastHCP = hcp(east)>5 and hcp(east)<10
 
@@ -24,8 +24,8 @@ w2H = top5(east,hearts)>2   and hearts(east)==6   and hearts(west)==3   and g2SN
 w2D = top5(east,diamonds)>2 and diamonds(east)==6 and diamonds(west)==3 and g2SNnotD
 
 southPass = shape(south,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx) and hcp(south)<10
-westRaise = hcp(west)>3 and hcp(west)<9 and shape(west, any 0xxx +any 1xxx +any 22xx)
-eastBids = eastHCP and (w2S or w2H or w2D) and shape(east,any 6430 +any 6421 +any 6331 +any 6322 -4xxx-x4xx)
+westRaise = hcp(west)>3 and hcp(west)<10 and shape(west, any 0xxx +any 1xxx +any 22xx)
+eastBids = eastHCP and (w2S or w2H or w2D) and shape(east,any 6xxx -any 66xx -any 65xx -4xxx-x4xx)
 
 east2Bid = eastBids and southPass and westRaise //and northActs
 
@@ -34,9 +34,12 @@ east2Bid
 
 action
 
-average "2D" 100 * w2D,
-average "2H" 100 * w2H,
-average "2S" 100 * w2S,
+average "2D           " 100 * w2D,
+average "2H           " 100 * w2H,
+average "2S           " 100 * w2S,
+average "hcp(north)   " hcp(north),
+average "losers(north)" losers(north),
+
 
 `, "E", true);
 Script
