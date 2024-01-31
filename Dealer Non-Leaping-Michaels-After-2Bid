@@ -27,7 +27,7 @@ southPass = shape(south,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx) and hcp(so
 westRaise = hcp(west)>3 and hcp(west)<9 and shape(west, any 0xxx +any 1xxx +any 22xx)
 eastBids = eastHCP and (w2S or w2H or w2D) and shape(east,any 6430 +any 6421 +any 6331 +any 6322 -4xxx-x4xx)
 
-east2Bid = eastBids and southPass and westRaise and northActs
+east2Bid = eastBids and southPass and westRaise //and northActs
 
 # Now do it
 east2Bid
