@@ -1,6 +1,5 @@
 Script,NLMAfter2Bid
-setDealerCode(
-`
+setDealerCode(`
 
 produce 1000
 dealer east
@@ -17,7 +16,7 @@ g2SNnotH = (gSn and gDn) or (gSn and gCn) or (gDn and gCn)
 g2SNnotD = (gSn and gHn) or (gSn and gCn) or (gHn and gCn)
 northActs = hcp(north)>11 and losers(north)<7
 
-eastHCP = hcp(east)>5 and hcp(east)<11
+eastHCP = hcp(east)>5 and hcp(east)<10
 
 # Define East's 2-level Preempt with West's support and North's 2 good suits and less than 7 losers
 w2S = top5(east,spades)>2   and spades(east)==6   and spades(west)==3   and g2SNnotS
