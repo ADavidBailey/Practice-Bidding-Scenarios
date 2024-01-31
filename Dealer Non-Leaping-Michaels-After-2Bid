@@ -5,10 +5,10 @@ produce 1000
 dealer east
 
 # Define Good suits North -- 5+ cards with at least 2 of the top 3
-gSn = spades(north)>4   and top3(north,spades)>1
-gHn = hearts(north)>4   and top3(north,hearts)>1
-gDn = diamonds(north)>4 and top3(north,diamonds)>1
-gCn = clubs(north)>4    and top3(north,clubs)>1
+gSn = spades(north)>4   and top3(north,spades)==2
+gHn = hearts(north)>4   and top3(north,hearts)==2
+gDn = diamonds(north)>4 and top3(north,diamonds)==2
+gCn = clubs(north)>4    and top3(north,clubs)==2
 
 # Define Good 2 Suits North
 g2SNnotS = (gHn and gDn) or (gHn and gCn) or (gDn and gCn)
