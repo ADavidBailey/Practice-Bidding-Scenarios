@@ -1,7 +1,7 @@
 Script,NedWeakTwoBidLev
 setDealerCode(`
 
-generate 1000000
+generate 10000000
 dealer south
 
 # Ned's Weak Two
@@ -22,7 +22,12 @@ nS = w2S ? spades(north)   : 0
 nH = w2S ? hearts(north)   : 0
 nD = w2D ? diamonds(north) : 0
 nR17 = hcp(north) + nS + nH + nD
-winners = 24 - 7 - losers(north)   // invite game with 10 winners or with Rule of 17
+
+# Define North's strength
+force  = nR17>17 or losers(north)<7
+invite = (nR17>15 or losers(north)<8) and not force
+pass   = not (force or invite)
+
 
 # Define Good suits North -- 6+ cards with 2 of the top 3
 gS = spades(north)>5 and top3(north,spades)>1
@@ -38,20 +43,14 @@ rD = diamonds(north)>4 and top4(north,diamonds)>2
 rC = clubs(north)>4 and top4(north,clubs)>2
 rSuit = rS or rH or rD or rC
 
-# Define North's strength
-force  = nR17>17 or winners>10
-invite = (nR17>15 or winners>8) and not force
-pass   = not (force or invite)
-
-
-# North Passes
-nPass = pass
-
 # Define North Fit
 sFit = w2S and nS>2 
 hFit = w2H and nH>2
 dFit = w2D and nD>2
 fit = sFit or hFit or dFit
+
+# North Passes
+nPass = pass
 
 # North Invites in new suit
 nNewSuit = (gSuit or rSuit) and invite
@@ -94,10 +93,10 @@ keep94 = not keep06
 keep97 = not keep03
 keep   = 1
 
-levPass    = nPass    and keep25
-levRaise   = nRaise   and keep67
+levPass    = nPass    and keep11
+levRaise   = nRaise   and keep75
 levNewSuit = nNewSuit and keep
-levForce   = nForce   and keep19
+levForce   = nForce   and keep11
 levelTheDeal = levPass or levRaise or levNewSuit or levForce
 
 # Now do it
@@ -114,14 +113,13 @@ average "pass      " 100 * pass,
 average "invite    " 100 * invite,
 average "force     " 100 * force,
 
-# Pass      : 24.0768
-# Raise     : 27.5094
-# New Suit  : 21.0835
-# 2N Force  : 27.3304
+average "hcp       " hcp(north),
+average "rule of 17" nR17,
+average "losers    " losers(north),
 
 `,"S",true)
 Script
-Button,Ned’s Weak Two,\n\
+Button,Ned’s Weak Two (Lev),\n\
 --- Ned’s Weak Two\n\
 https://rb.gy/kaqcb\n\
 %NedWeakTwoBidLev%
