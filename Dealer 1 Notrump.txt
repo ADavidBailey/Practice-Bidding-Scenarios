@@ -35,35 +35,47 @@ c1 = hascard(west,2C)
 c2 = hascard(east,2D)
 c3 = hascard(west,3C)
 c4 = hascard(east,3D)
-c5 = hascard(west,4C)
 
-reduce98 = c1 and c2 and c3
-reduce94 = c1 and c2
-reduce87 = c1 and (c2 or c3)
-reduce75 = c1
-reduce62 = (c1 or c2) and not (c3 and (c4 or c5)) 
-reduce50 = c1 or c2
-reduce38 = not reduce62
-reduce25 = not reduce75
-reduce13 = not reduce87
-reduce06 = not reduce94
-reduce02 = not reduce98
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep03 = keep06 and keep44
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep97 = not keep03
+keep   = 1
 
 # Level it
-levMin = not ntMin or reduce38
-levAvg = not ntAvg or reduce25
-levMax = not ntMax or reduce25
-level = levMin and levAvg // and levMax
+levMin = ntMin and keep56
+levAvg = ntAvg and keep75
+levMax = ntMax and keep97
+levelTheDeal = levMin or levAvg or levMax
 
 ### Ready for Leveling
 
 # Now OPEN 1NT
 
 NT
-and level
+and levelTheDeal
 
 # Generate Statistics
-
 action
 
 average "Minimum     " 100 * ntMin,
@@ -73,8 +85,25 @@ average "Max         " 100 * ntMax,
 frequency  "HCP South "  (hcp(south) , 14, 18),
 frequency  "ntPoints  "  (ntPoints   , 14, 18),
 
-`
-)
+# Minimum     : 33.356
+# Avg         : 33.823
+# Max         : 32.821
+# Frequency HCP South :
+#    14	    8698
+#    15	   33607
+#    16	   33980# 
+#    17	   23715
+#    18	       0
+# Frequency ntPoints  :
+#    14	       0
+#    15	   33356
+#    16	   33823
+#    17	   32821
+#    18	       0
+# Generated 2482651 hands
+# Produced 100000 hands
+
+`,"S",true)
 Script
 Button,15-17 Notrump Opening,\n\
 ---  15-17 Notrump Opening\n\
