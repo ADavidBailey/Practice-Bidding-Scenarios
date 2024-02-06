@@ -1,0 +1,57 @@
+setDealerCode(`
+
+dealer north
+produce 1000
+
+# Predict North's opening suit w/o South fit
+sN = spades(north)
+hN = hearts(north)
+dN = diamonds(north)
+cN = clubs(north)
+nS = sN>4 and sN>=hN and sN>=dN and sN>=cN             and spades(south)<3
+nH = not nS and hN>4 and hN>=dN and hN>=cN             and hearts(south)<3
+nD = not nS and not nH and ((dN>3 and dN>=cN) or cN<3) and diamonds(south)<3
+nC = not nS and not nH and not nD                      and clubs(south)<3
+
+# Calculate North's Rank
+nRS = nS ? 4 : 0
+nRH = nH ? 3 : 0
+nRD = nD ? 2 : 0
+nRC = nC ? 1 : 0
+northRank = nRS+nRH+nRD+nRC   // all except one are zero
+
+# East's longest suit & good suit & south stack (North is short)
+sE = spades(east)
+hE = hearts(east)
+dE = diamonds(east)
+cE = clubs(east)
+eS = sE>=hE and sE>=dE and sE>=cE    and top3(east,spades)==2   and spades(south)==5   and top5(south,spades)==3   and spades(north)<2
+eH = not eSx and hE>=dE and hE>=cE   and top3(east,hearts)==2   and hearts(south)==5   and top5(south,hearts)==3   and hearts(north)<2
+eD = not eSx and not eHx and dE>=cE  and top3(east,diamonds)==2 and diamonds(south)==5 and top5(south,diamonds)==3 and diamonds(north)<2
+eC = not eSx and not eHx and not eDx and top3(east,clubs)==2    and clubs(south)==5    and top5(south,clubs)==3    and clubs(north)<2 
+
+# Calculate East's Rank
+eRS = eS ? 4 : 0
+eRH = eH ? 3 : 0
+eRD = eD ? 2 : 0
+eRC = eC ? 1 : 0
+eastRank = eRS+eRH+eRD+eRC   // all except one are zero
+
+# North opens, east overcalls, south is strong w/stack
+
+nOpens = hcp(north)>11 and hcp(north)<15 and (nS or nH or nD or nC) and shape(north,any 5432 +any 5431 +any 5440)
+eOvercalls = (eSx or eHx or eDx or eCx) and hcp(east)>10
+wQuiet = shape(west,xxxx-any 7xxx -any 6xxx)
+
+nOpens and eOvercalls and shape(east,any 5332 +any 5422) and eastRank<northRank
+
+action
+average "Weak" 100 * eOCsWeak,
+average "Trap" 100 * eOCsTrap,
+
+
+`,"N",true)
+Script
+Button,Weak/Penalty,\n\
+Weak or Penalty Pass,\n\
+%WeakOrPenalty%
