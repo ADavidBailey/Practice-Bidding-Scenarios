@@ -1,9 +1,8 @@
 setDealerCode(`
 
-dealer north
 produce 1000
+dealer north
 
-# Predict North's opening suit w/o South fit
 sN = spades(north)
 hN = hearts(north)
 dN = diamonds(north)
@@ -25,10 +24,10 @@ sE = spades(east)
 hE = hearts(east)
 dE = diamonds(east)
 cE = clubs(east)
-eS = sE>=hE and sE>=dE and sE>=cE    and top3(east,spades)==2   and spades(south)==5   and top5(south,spades)==3   and spades(north)<2
-eH = not eSx and hE>=dE and hE>=cE   and top3(east,hearts)==2   and hearts(south)==5   and top5(south,hearts)==3   and hearts(north)<2
-eD = not eSx and not eHx and dE>=cE  and top3(east,diamonds)==2 and diamonds(south)==5 and top5(south,diamonds)==3 and diamonds(north)<2
-eC = not eSx and not eHx and not eDx and top3(east,clubs)==2    and clubs(south)==5    and top5(south,clubs)==3    and clubs(north)<2 
+eS = sE>=hE and sE>=dE and sE>=cE and top3(east,spades)==2   and spades(south)>3   and top5(south,spades)==3
+eH = not eS and hE>=dE and hE>=cE and top3(east,hearts)==2   and hearts(south)>3   and top5(south,hearts)==3
+eD = not eS and not eH and dE>=cE and top3(east,diamonds)==2 and diamonds(south)>3 and top5(south,diamonds)==3
+eC = not eS and not eH and not eD and top3(east,clubs)==2    and clubs(south)>3    and top5(south,clubs)==3
 
 # Calculate East's Rank
 eRS = eS ? 4 : 0
@@ -39,15 +38,16 @@ eastRank = eRS+eRH+eRD+eRC   // all except one are zero
 
 # North opens, east overcalls, south is strong w/stack
 
-nOpens = hcp(north)>11 and hcp(north)<15 and (nS or nH or nD or nC) and shape(north,any 5432 +any 5431 +any 5440)
-eOvercalls = (eSx or eHx or eDx or eCx) and hcp(east)>10
-wQuiet = shape(west,xxxx-any 7xxx -any 6xxx)
+nOpens = hcp(north)>11 and (nS or nH or nD or nC) and shape(north,any 5440 +any 5431)
+eOvercalls = (eS or eH or eD or eC) and hcp(east)>10 and hcp(east)<15 and shape(east,any 5332 +any 5422) and eastRank<northRank
+sTraps = hcp(south)>9
+wQuiet = shape(west,xxxx-any 7xxx -any 6xxx) and hcp(west)<9
 
-nOpens and eOvercalls and shape(east,any 5332 +any 5422) and eastRank<northRank
+nOpens and eOvercalls and sTraps and wQuiet
 
 action
-average "Weak" 100 * eOCsWeak,
-average "Trap" 100 * eOCsTrap,
+action
+average "East>North" eastRank>northRank,
 
 
 `,"N",true)
