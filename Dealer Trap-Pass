@@ -39,11 +39,11 @@ eastRank = eRS+eRH+eRD+eRC   // all except one are zero
 
 rankOK = eastRank<northRank
 
-# South does not have a fit with North
-n1S = nS and spades(south)<3
-n1H = nH and hearts(south)<3
-n1D = nD and diamonds(south)<3
-n1C = nC and clubs(south)<3
+# South does not have a fit with North and East is NOT short in North's suit
+n1S = nS and spades(south)<3   and spades(east)>2
+n1H = nH and hearts(south)<3   and hearts(east)>2
+n1D = nD and diamonds(south)<3 and diamonds(east)>2
+n1C = nC and clubs(south)<3    and clubs(east)>2
 
 # East has a good suit and South has a stack
 e1S = eS and top3(east,spades)==2   and spades(south)==5   and top5(south,spades)==3
@@ -54,8 +54,8 @@ e1C = eC and top3(east,clubs)==2    and clubs(south)==5    and top5(south,clubs)
 
 # North opens, east overcalls, south is strong w/stack
 
-nOpens = hcp(north)>11 and (n1S or n1H or n1D or n1C) and shape(north,any 5440 +any 5431)
-eOvercalls = (e1S or e1H or e1D or e1C) and hcp(east)>10 and hcp(east)<15 and shape(east,any 5332 +any 5422) and rankOK
+nOpens = hcp(north)>11 and (n1S or n1H or n1D or n1C) and shape(north,any 0xxx+any 1xxx)
+eOvercalls = (e1S or e1H or e1D or e1C) and hcp(east)>10 and hcp(east)<15 and shape(east,any 5xxx) and rankOK
 sTraps = hcp(south)>9
 wQuiet = shape(west,xxxx-any 7xxx -any 6xxx) and hcp(west)<9
 
