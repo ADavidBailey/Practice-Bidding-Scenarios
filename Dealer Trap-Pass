@@ -52,9 +52,7 @@ e1H = eH and top3(east,hearts)==2   and hearts(south)==5   and top5(south,hearts
 e1D = eD and top3(east,diamonds)==2 and diamonds(south)==5 and top5(south,diamonds)==3
 e1C = eC and top3(east,clubs)==2    and clubs(south)==5    and top5(south,clubs)==3
 
-
 # North opens, east overcalls, south is strong w/stack
-
 nOpens = hcp(north)>11 and (n1S or n1H or n1D or n1C) and shape(north,any 0xxx+any 1xxx)
 eOvercalls = (e1S or e1H or e1D or e1C) and hcp(east)>10 and hcp(east)<15 and shape(east,any 5xxx) and rankOK
 sTraps = hcp(south)>9
