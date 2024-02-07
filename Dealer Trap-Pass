@@ -3,14 +3,15 @@ setDealerCode(`
 produce 1000
 dealer north
 
+# Determine North's opening bid
 sN = spades(north)
 hN = hearts(north)
 dN = diamonds(north)
 cN = clubs(north)
-nS = sN>4 and sN>=hN and sN>=dN and sN>=cN             and spades(south)<3
-nH = not nS and hN>4 and hN>=dN and hN>=cN             and hearts(south)<3
-nD = not nS and not nH and ((dN>3 and dN>=cN) or cN<3) and diamonds(south)<3
-nC = not nS and not nH and not nD                      and clubs(south)<3
+nS = sN>4 and sN>=hN and sN>=dN and sN>=cN
+nH = not nS and hN>4 and hN>=dN and hN>=cN
+nD = not nS and not nH and ((dN>3 and dN>=cN) or cN<3)
+nC = not nS and not nH and not nD
 
 # Calculate North's Rank
 nRS = nS ? 4 : 0
@@ -19,15 +20,15 @@ nRD = nD ? 2 : 0
 nRC = nC ? 1 : 0
 northRank = nRS+nRH+nRD+nRC   // all except one are zero
 
-# East's longest suit & good suit & south stack (North is short)
+# Determine East's longest suit
 sE = spades(east)
 hE = hearts(east)
 dE = diamonds(east)
 cE = clubs(east)
-eS = sE>=hE and sE>=dE and sE>=cE and top3(east,spades)==2   and spades(south)>3   and top5(south,spades)==3
-eH = not eS and hE>=dE and hE>=cE and top3(east,hearts)==2   and hearts(south)>3   and top5(south,hearts)==3
-eD = not eS and not eH and dE>=cE and top3(east,diamonds)==2 and diamonds(south)>3 and top5(south,diamonds)==3
-eC = not eS and not eH and not eD and top3(east,clubs)==2    and clubs(south)>3    and top5(south,clubs)==3
+eS = sE>=hE and sE>=dE and sE>=cE
+eH = not eS and hE>=dE and hE>=cE
+eD = not eS and not eH and dE>=cE
+eC = not eS and not eH and not eD
 
 # Calculate East's Rank
 eRS = eS ? 4 : 0
@@ -36,19 +37,35 @@ eRD = eD ? 2 : 0
 eRC = eC ? 1 : 0
 eastRank = eRS+eRH+eRD+eRC   // all except one are zero
 
+rankOK = eastRank<northRank
+
+# South does not have a fit with North
+n1S = nS and spades(south)<3
+n1H = nH and hearts(south)<3
+n1D = nD and diamonds(south)<3
+n1C = nC and clubs(south)<3
+
+# East has a good suit and South has a stack
+e1S = eS and top3(east,spades)==2   and spades(south)==5   and top5(south,spades)==3
+e1H = eH and top3(east,hearts)==2   and hearts(south)==5   and top5(south,hearts)==3
+e1D = eD and top3(east,diamonds)==2 and diamonds(south)==5 and top5(south,diamonds)==3
+e1C = eC and top3(east,clubs)==2    and clubs(south)==5    and top5(south,clubs)==3
+
+
 # North opens, east overcalls, south is strong w/stack
 
-nOpens = hcp(north)>11 and (nS or nH or nD or nC) and shape(north,any 5440 +any 5431)
-eOvercalls = (eS or eH or eD or eC) and hcp(east)>10 and hcp(east)<15 and shape(east,any 5332 +any 5422) and eastRank<northRank
+nOpens = hcp(north)>11 and (n1S or n1H or n1D or n1C) and shape(north,any 5440 +any 5431)
+eOvercalls = (e1S or e1H or e1D or e1C) and hcp(east)>10 and hcp(east)<15 and shape(east,any 5332 +any 5422) and rankOK
 sTraps = hcp(south)>9
 wQuiet = shape(west,xxxx-any 7xxx -any 6xxx) and hcp(west)<9
 
 nOpens and eOvercalls and sTraps and wQuiet
 
 action
-action
-average "East>North" eastRank>northRank,
-
+average "1 Club   " 100 * n1C,
+average "1 Diamond" 100 * n1D,
+average "1 Heart  " 100 * n1H,
+average "1 Spade  " 100 * n1S,
 
 `,"N",true)
 Script
