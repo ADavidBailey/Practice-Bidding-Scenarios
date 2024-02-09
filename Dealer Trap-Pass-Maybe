@@ -74,30 +74,21 @@ c4 = hascard(east,3D)
 c5 = hascard(west,4C)
 c6 = hascard(east,4D)
 
-keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
-keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
-
-keep03 = keep06 and keep44
+keep007 = (c1 and c2 and c3) and (c4 or c5)   //  0.7%
 
 # Level the deal
-levelTheDeal = (eOvercallAndWeak and keep03 and c5) or eOvercallAndTrap
+levelTheDeal = (eOvercallAndWeak and keep007) or eOvercallAndTrap
 
 nOpens and (eOvercallAndTrap or eOvercallAndWeak) and wQuiet
 and levelTheDeal
 
 action
-average "1 Club   " 100 * n1C,
-average "1 Diamond" 100 * n1D,
-average "1 Heart  " 100 * n1H,
-average "1 Spade  " 100 * n1S,
 average "Trap Pass" 100 * eOvercallAndTrap,
 average "Weak Pass" 100 * eOvercallAndWeak,
 
-# 1 Diamond: 25.9259
-# 1 Heart  : 18.5185
-# 1 Spade  : 55.5556
-# Trap Pass: 44.4444
-# Weak Pass: 55.5556
+# Results of Leveling
+# Trap Pass: 46.4286
+# Weak Pass: 53.5714
 
 `,"N",true)
 Script
