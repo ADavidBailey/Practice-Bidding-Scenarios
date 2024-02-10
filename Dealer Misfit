@@ -9,12 +9,12 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Scr
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
 
-nS = oneSpade   and spades(north)<2
-nH = oneHeart   and hearts(north)>2
+nS = oneSpade   and spades(north)  <2
+nH = oneHeart   and hearts(north)  <2
 nD = oneDiamond and diamonds(north)<2
-nC = oneClub    and clubs(north)<2
+nC = oneClub    and clubs(north)   <2
 
-sOpens = (oneSpade or oneHeart or oneDiamond or oneClub) and (nS or nH or nD or nC) and hcp(south)>11
+sOpens = ((oneSpade and nS) or (oneHeart and nH) or (oneDiamond and nD) or (oneClub and nC)) and hcp(south)>11
 nMin = hcp(north)>5  and hcp(north)<11
 nMid = hcp(north)>10 and hcp(north)<13
 nMax = hcp(north)>12
@@ -30,9 +30,9 @@ sOpens and (nMin or nMid or nMax) and calmOpps
 and levelTheDeal
 
 action
-average "Min" 100 * nMin
-average "Mid" 100 * nMid
-average "Max" 100 * nMax
+average "Min" 100 * nMin,
+average "Mid" 100 * nMid,
+average "Max" 100 * nMax,
 
 
 `,"S",true)
