@@ -3,7 +3,7 @@ setDealerCode(`
 
 # The McCabe Convention gives useful options for Responder after Partner’s Weak Two Bid is doubled.
 
-produce 1000000
+produce 10000
 dealer south
 
 # Define South's Weak 2 Bids w/o 4-card major side suit -- Strict
@@ -35,12 +35,10 @@ weakTwo = (w2s or w2h or w2d) and w2Range
 //  • New suit – I want you to lead the suit I bid. I have a some spot cards
 //    in you suit so you can rebid your own suit if Advancer passes.
 
-
-
 # Define fit
 sFit = w2s and spades(north)>2
-hFit = w2s and hearts(north)>2
-dFit = w2s and diamonds(north)>2
+hFit = w2h and hearts(north)>2
+dFit = w2d and diamonds(north)>2
 fit = sFit or hFit or dFit
 
 ### Define West X
@@ -49,12 +47,12 @@ hShort = w2h and hearts(west)<2
 dShort = w2d and diamonds(west)<2
 westX = hcp(west)>12 and (sShort or hShort or dShort)
 
-### Define Rule of 17 raise
+### Define Rule17 points
 sLen = sFit ? spades(north)   : 0
 hLen = hFit ? hearts(north)   : 0
 dLen = dFit ? diamonds(north) : 0
-trumps = sLen + hLen + dLen        // Only 1 of the Len values will be non-zero
-rule17 = (hcp(north) + trumps)>17
+trumpLength = (sLen + hLen + dLen)
+rule17 = (hcp(north) + trumpLength)>17
 
 ### Define North's solid suits
 sS = (spades(north)==5 and top4(north,spades)==4) or (spades(north)>5 and top3(north,spades)==3)
@@ -64,17 +62,17 @@ sC = (clubs(north)==5 and top4(north,clubs)==4) or (clubs(north)>5 and top3(nort
 solidSuit = (sS or sH or sD or sC) and not (rule17)
 
 ### Define Feature ask
-rule15 = (hcp(north) + trumps)>15
+rule15 = (hcp(north) + trumpLength)>15
 featureAsk = fit and rule15 and not(rule17 or solidSuit)
 
 ### Define Mild preempt
-raise = fit and hcp(north)>7 and not(rule17 or solidSuit or featureAsk)
+raise = fit and hcp(north)>6 and not(rule17 or solidSuit or featureAsk)
 
 ### Define Lead my suit
-lS = control(north,spades)>1   and top4(north,spades)>2   and not w2s
-lH = control(north,hearts)>1   and top4(north,hearts)>2   and not w2h
-lD = control(north,diamonds)>1 and top4(north,diamonds)>2 and not w2d
-lC = control(north,clubs)>1    and top4(north,clubs)>2
+lS = top3(north,spades)==2   and not w2s
+lH = top3(north,hearts)==2   and not w2h
+lD = top3(north,diamonds)==2 and not w2d
+lC = top3(north,clubs)==2
 suitToLead = (lS or lH or lD or lC)
 leadMySuit = fit and suitToLead and not (rule17 or solidSuit or featureAsk or raise)
 
@@ -87,9 +85,12 @@ c1 = hascard(west,2C)
 c2 = hascard(east,2D)
 c3 = hascard(west,3C)
 c4 = hascard(east,3D)
+c5 = hascard(west,4C)
+c6 = hascard(east,4D)
 
 keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
 keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
 
 keep03 = keep06 and keep44
 ####06 = c1 and c2
@@ -115,14 +116,14 @@ keep97 = not keep03
 keep0  = 0
 keep   = 1
 
-lRule17      = rule17     and keep0
+lRule17      = rule17     and keep
 lSolidSuit   = solidSuit  and keep
 lFeatureAsk  = featureAsk and keep
-lRaise       = raise      and keep
+lRaise       = raise      and keep03 //and (c5 or c6)  // 44% of 03
 lLeadMySuit  = leadMySuit and keep
-lPass        = pass       and keep
+lPass        = pass       and keep03 and (c5 or c6)  // 44% of 03
 
-levelTheDeal = lRule17 or lSolidSuit or lFeatureAsk or lRaise or lLeadMySuit
+levelTheDeal = lRule17 or lSolidSuit or lFeatureAsk or lRaise or lLeadMySuit or lPass
 
 # Now do it
 weakTwo and westX and (rule17 or solidSuit or featureAsk or raise or leadMySuit or pass)
@@ -135,8 +136,7 @@ average "FeatureAsk    " 100 * featureAsk,
 average "Raise         " 100 * raise,
 average "Lead My Suit  " 100 * leadMySuit,
 average "Pass          " 100 * pass,
-average "HCP North     " hcp(north),
-average "trumps        " trumps,
+
 `,"S",true)
 Script
 Button,McCabe--W2 (X) ??,\n\
