@@ -45,7 +45,7 @@ fit = sFit or hFit or dFit
 sShort = w2s and spades(west)<2
 hShort = w2h and hearts(west)<2
 dShort = w2d and diamonds(west)<2
-westX = hcp(west)>12 and (sShort or hShort or dShort) and shape(west,any 5440+any 5431+any 4441 -5xxx -x5xx)
+westX = hcp(west)>13 and (sShort or hShort or dShort) and shape(west,any 5440+any 5431+any 4441 -5xxx -x5xx)
 
 ### Define Rule17 points
 sLen = sFit ? spades(north)   : 0
