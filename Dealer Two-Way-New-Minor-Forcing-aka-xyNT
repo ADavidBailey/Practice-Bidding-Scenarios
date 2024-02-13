@@ -1,4 +1,6 @@
-
+Script,TwoWayNewMinorForcing
+setDealerCode(
+`
 produce 300000
 dealer south
 
@@ -34,38 +36,7 @@ invite      = hcp(south)>10 and hcp(south)<13
 game        = hcp(south)>12 and hcp(south)<18
 slam        = hcp(south)>17
 
-### Imported Leveling Code ###
-c1 = hascard(west,2C)
-c2 = hascard(east,2D)
-c3 = hascard(west,3C)
-c4 = hascard(east,3D)
-
-keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
-keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
-
-keep03 = keep06 and keep44
-####06 = c1 and c2
-keep11 = c1 and keep44
-keep14 = c1 and not keep44
-keep19 = c1 and not c2
-keep25 = c1
-keep30 = keep06 or c3
-keep33 = c1 or (c2 and keep44)
-####44 = c3 or c4
-keep47 = keep44 or keep06
-
-keep53 = not keep47
-keep56 = not keep44
-keep67 = not keep33
-keep70 = not keep30
-keep75 = not keep25
-keep81 = not keep19
-keep86 = not keep14
-keep89 = not keep11
-keep94 = not keep06
-keep97 = not keep03
-keep   = 1
-
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
 
 # Level the deal
 lpartscore = partscore and keep06 and c3
@@ -83,6 +54,14 @@ average "invite    " 100 * invite,
 average "game      " 100 * game,
 average "slam      " 100 * slam,
 
- 
-
+`,"N",true)
+Script
+Button,2-Way NMV aka xyNT,\n\
+---  Two Way New Minor Forcing aka xyNT allows you to describe four different responding hand types.\n\
+  • Part Score  -- after 1x-1y-1N，2!H or 2!S and natural and non-forcing.  2N relays to 3!C.\n\
+  • Game Invite -- after 1x-1y-1N bid 2C, an artifical relay to 2D，then all continuations are invitational.\n\
+  • Game Force  -- after 1x-1y-1N bid 2D, an artifical game force.\n\
+  • Slam Invite -- after 1x-1y-1N bid a suit bid at the 3-level is a natural slam try.\n\
+The deals are leveled so that the hand types occur at about the same frequency.\n\
 https://bridgewinners.com/article/view/two-way-new-minor-forcing-aka-xynt/
+%TwoWayNewMinorForcing%
