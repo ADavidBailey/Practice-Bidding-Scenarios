@@ -2,7 +2,7 @@ Script,McCabeAfterWeak2
 setDealerCode(`
 
 # The McCabe Convention gives useful options for Responder after Partner’s Weak Two Bid is doubled.
-generate 10000000
+generate 40000000
 produce 10000
 dealer south
 
@@ -78,49 +78,16 @@ mySuit = (sS or sH or sD or sC) and not fit and not (rule17 or rule15 or leadAsk
 pass = not (rule17 or rule15 or leadAsk or raise or mySuit)
 
 # Define leveling
-# Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
-c1 = hascard(west,2C)
-c2 = hascard(east,2D)
-c3 = hascard(west,3C)
-c4 = hascard(east,3D)
-c5 = hascard(west,4C)
-c6 = hascard(east,4D)
-
-keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
-keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
-
-
-keep03 = keep06 and keep44
-####06 = c1 and c2
-keep11 = c1 and keep44
-keep14 = c1 and not keep44
-keep19 = c1 and not c2
-keep25 = c1
-keep30 = keep06 or c3
-keep33 = c1 or (c2 and keep44)
-####44 = c3 or c4
-keep47 = keep44 or keep06
-
-keep53 = not keep47
-keep56 = not keep44
-keep67 = not keep33
-keep70 = not keep30
-keep75 = not keep25
-keep81 = not keep19
-keep86 = not keep14
-keep89 = not keep11
-keep94 = not keep06
-keep97 = not keep03
-keep   = 1
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
 
 keep0  = 0
 
-lRule17      = rule17     and keep81
-lRule15      = rule15     and keep33
+lRule17      = rule17     and keep86
+lRule15      = rule15     and keep25
 lLeadAsk     = leadAsk    and keep14
 lRaise       = raise      and keep06    //03 //and (c5 or c6)  // 44% of 03
 lmySuit      = mySuit     and keep
-lPass        = pass       and keep03  //03 //and (c5 or c6)  // 44% of 03
+lPass        = pass       and keep03    //03 //and (c5 or c6)  // 44% of 03
 levelTheDeal = lRule17 or lRule15 or lLeadAsk or lRaise or lmySuit or lPass
 
 # Now do it
@@ -129,11 +96,23 @@ and levelTheDeal
 
 action
 average "Rule of 17    " 100 * rule17,
-average "Rule15        " 100 * rule15,
+average "Rule of 15    " 100 * rule15,
 average "Lead Ask      " 100 * leadAsk,
 average "Raise         " 100 * raise,
 average "mySuit        " 100 * mySuit,
 average "Pass          " 100 * pass,
+
+
+/*
+Rule of 17    : 20.4545
+Rule of 15    : 14.2045
+Lead Ask      : 19.3182
+Raise         : 17.0455
+mySuit        : 17.0455
+Pass          : 11.9318
+Generated 40000000 hands
+Produced 176 hands
+*/
 
 `,"S",true)
 Script
