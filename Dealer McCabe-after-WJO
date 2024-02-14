@@ -1,7 +1,7 @@
 Script,McCabeAfterWJO
 setDealerCode(`
 
-# The McCabe Convention gives useful options for Responder after Partner’s Weak Two Bid is doubled.
+# The McCabe Convention gives useful options for Advancer after Partner’s Weak Jump Overcall is doubled.
 generate 30000000
 produce 10000
 dealer east
@@ -82,41 +82,8 @@ pass = not (rule17 or rule15 or leadAsk or raise or mySuit)
 
 # Define leveling
 # Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
-c1 = hascard(west,2C)
-c2 = hascard(east,2D)
-c3 = hascard(west,3C)
-c4 = hascard(east,3D)
 
-keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
-keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
-
-keep015= keep06 and c3
-keep03 = keep06 and keep44
-####06 = c1 and c2
-keep11 = c1 and keep44
-keep14 = c1 and not keep44
-keep19 = c1 and not c2
-keep25 = c1
-keep30 = keep06 or c3
-keep33 = c1 or (c2 and keep44)
-####44 = c3 or c4
-keep47 = keep44 or keep06
-
-keep53 = not keep47
-keep56 = not keep44
-keep67 = not keep33
-keep70 = not keep30
-keep75 = not keep25
-keep81 = not keep19
-keep86 = not keep14
-keep89 = not keep11
-keep94 = not keep06
-keep97 = not keep03
-keep985= not keep015
-keep   = 1
-keep0  = 0
-
-
+# Level the deal
 lRule17      = rule17     and keep
 lRule15      = rule15     and keep19
 lLeadAsk     = leadAsk    and keep14
@@ -145,7 +112,18 @@ average "North HCP "       hcp(north),
 
 
 /*
-
+Rule of 17: 15.493
+Rule of 15: 12.6761
+Lead Ask  : 25.3521
+Raise     : 21.1268
+mySuit    : 21.1268
+Pass      : 4.22535
+East  HCP : 12.5775
+South HCP : 8.43662
+West  HCP : 8.49296
+North HCP : 10.493
+Generated 20000000 hands
+Produced 71 hands
 */
 
 `,"E",true)
