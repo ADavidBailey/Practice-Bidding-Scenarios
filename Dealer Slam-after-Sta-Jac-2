@@ -1,40 +1,41 @@
 Script,SlamAfterStaymanOrJacoby2
 setDealerCode(
 `
-
 dealer south
 produce 1000
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Define-1N
 
 hFit4 = hearts(north)==4 and hearts(south)>3   // 4-4 or 4-5
 sFit4 = spades(north)==4 and spades(south)>3
 hFit5 = hearts(north)==5 and hearts(south)>2   // 5-3, 5-4, or 5-5
 sFit5 = spades(north)==5 and spades(south)>2
 jac = shape(north, 5xxx + x5xx -54xx -45xx)    // exclude smolen
-sta = shape(north, 4xxx + x4xx)                // includes smolen
-
 jacFit = jac and (hFit5 or sFit5)
 jacNoFit = jac and not jacFit
-
+sta = shape(north, 4xxx + x4xx)                // includes smolen
 staFit = sta and (hFit4 or sFit4)
 staNoFit = sta and not staFit
-
-southHcp = hcp(south)
-totalHcp = southHcp + hcp(north)
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
 
 # Define Leveling
-case1  = jacFit    and keep44
-case2  = staFit    and keep30
-case3  = jacNoFit  and keep81
-case4  = staNoFit  and keep19
-levelTheDeal = case1 or case2 or case3 or case4
+case1  = jacFit    and keep47
+case2  = staFit    and keep53
+case3  = jacNoFit  and keep
+case4  = staNoFit  and keep33
+case15 = ntMin     and keep75
+case16 = ntAvg     and keep86
+case17 = ntMax     and keep
+
+levelTheDealFit =   ((case1 or case2) and (case15 or case16 or case17))
+levelTheDealNoFit = ((case3 or case4) and (case15 or case16 or case17))
+levelTheDeal = levelTheDealNoFit or levelTheDealFit
+
+ntPoints + hcp(south)
 
 # Do it
-shape(south,any 4333 +any 4432 +any 5422 +any 5332)
-and shape(north, 5xxx+4xxx+x5xx+x4xx)
-and southHcp>=15 and southHcp<=17 
-and totalHcp>=31   // and totalHcp<=34) or (totalHcp>=36 and totalHcp<=38)) 
+NT and hcp(north)>15 and (case1 or case2 or case3 or case4) and (case15 or case16 or case17)
 and levelTheDeal
 
 action
@@ -42,12 +43,14 @@ average "Jac + Fit " 100 * jacFit,
 average "Sta + Fit " 100 * staFit,
 average "Jac - Fit " 100 * jacNoFit,
 average "Sta - Fit " 100 * staNoFit,
+average "ntMin     " 100 * ntMin,
+average "ntAvg     " 100 * ntAvg,
+average "ntMax     " 100 * ntMax,
 average "hcp south " hcp(south),
-average "total HCP " totalHcp,
 
 `,"S",true)
 Script
-Button,Slam after Sta/Jac 2,\n\
+Button,Slam after Sta/Jac - 31+,\n\
 --- Slam after Stayman or Jacoby w/total HCP > 31\n\
 %SlamAfterStaymanOrJacoby2%
 
