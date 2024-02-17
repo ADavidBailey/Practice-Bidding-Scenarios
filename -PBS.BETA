@@ -72,20 +72,22 @@ var l = $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", pa
 if((l%13) == 0) displayHCP();
 //Script
 
-//Script,setTeachingTable
+//Script,setBiddingTable
 var delayValue = 250;
 Promise.resolve()
     // press "Home" button
     .then(() => $("nav-bar button", BBOcontext()).eq(1).click())
     .then(() => delay(delayValue))
     // close dialog box if any
-    .then(() => $("server-prompt button",window.parent.document).eq(0).click())
-    .then(() => delay(delayValue))
+//    .then(() => $("server-prompt button",window.parent.document).eq(0).click())
+//    .then(() => delay(delayValue))
     // Press "Practice" button
     .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(4).click())
     .then(() => delay(delayValue))
     // press "Start a Teaching table"
-    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(13).click())
+    // .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(13).click())
+    // press "Start a Bidding table"
+    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(12).click())
     .then(() => delay(delayValue))
     // click table switches. Eventually remove unwanted portions of code.
     // Disallow kibitzers
@@ -133,6 +135,11 @@ function delay(duration) {
     });
 }
 //Script
+/*
+    // set your user ID in all four directions
+    // "South"
+    //    .then(() => $(".nameBarClass :contains(South - Sit!)", BBOcontext()).eq(0).click()).then(() => delay(delayValue))
+ //   .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click()).then(() => delay(delayValue))
 /*
     // set your user ID in all four directions
     // "South"
