@@ -73,39 +73,17 @@ case1 = oneStop and sHCP>17
 case2 = oneStop and sRebid and sHCP>15 and not case1
 case3 = twoStop and sHCP>15 and not (case1 or case2)
 
-### Define Leveling
-c1 = hascard(west,2C)
-c2 = hascard(east,2D)
-c3 = hascard(west,3C)
-c4 = hascard(east,3D)
-c5 = hascard(west,4C)
-
-reduce98 = c1 * c2 * c3
-reduce94 = c4 * c5
-reduce87 = c1 * (c2 + c3)
-reduce81 = c1 - (c2 * c3)
-reduce75 = c1 
-reduce62 = c1 + (c2 * (c3 + c4))
-reduce56 = c1 + c2 - (c3 * c4)
-reduce50 = c1 + c2
-reduce44 = 1 - reduce56
-reduce38 = 1 - reduce62
-reduce25 = 1 - reduce75
-reduce19 = 1 - reduce81
-reduce13 = 1 - reduce87
-reduce06 = 1 - reduce94
-reduce02 = 1 - reduce98
-reduce   = 1
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
 
 # Level it
-level1 = not case1 or reduce94
-level2 = not case2 or reduce19
-level3 = not case3 or reduce38
-level = level1 and level2 and level3
+level1 = case1 and keep06
+level2 = case2 and keep81
+level3 = case3 and keep67
+levelTheDeal = level1 or level2 or level3
 
 # south bids 3N
 ePreempts and (case1 or case2 or case3)
-and level
+and levelThe Deal
 
 action
 average "1 Stop and >17             " 100 * case1,
