@@ -78,31 +78,11 @@ case1 = oneStop and sHCP>17
 case2 = oneStop and sRebid and sHCP>15 and not case1
 case3 = twoStop and sHCP>15 and not (case1 or case2)
 
-c1 = hascard(west,2C)
-c2 = hascard(east,2D)
-c3 = hascard(west,3C)
-c4 = hascard(east,3D)
-
-keep02 = c1 * c2 * c3
-keep06 = c1 * c2
-keep13 = c1 * (c2 + c3)
-keep19 = c1 - (c2 * c3)
-keep25 = c1 
-keep38 = c1 + (c2 * (c3 + c4))
-keep44 = c1 + c2 - (c3 * c4)
-keep50 = c1 + c2
-keep56 = 1 - keep44
-keep62 = 1 - keep38
-keep75 = 1 - keep25
-keep81 = 1 - keep19
-keep87 = 1 - keep13
-keep94 = 1 - keep06
-keep98 = 1 - keep02
-keep   = 1
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
 
 # Level it
 level1 = case1 * keep06
-level2 = case2 * keep98
+level2 = case2 * keep97
 level3 = case3 * keep
 levelTheDeal = level1 or level2 or level3
 
