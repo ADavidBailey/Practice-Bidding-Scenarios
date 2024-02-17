@@ -126,6 +126,7 @@ Promise.resolve()
     .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(3).click())
     .then(() => delay(delayValue))
     .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+//Script
 
 //Script,setBiddingTable
 var delayValue = 250;
@@ -388,9 +389,9 @@ Option,Practice Table
 
 Button,Bidding Scenarios (click headers to open/close),,width=100% backgroundColor=lightyellow
 # Button,Review code,%reviewCurrentCode%,width=100% backgroundColor=lightgreen
-Button,Review code,%reviewCurrentCode%,width=34% backgroundColor=lightgreen
-Button,Start Teaching Table,%setTeachingTable%,width=33% backgroundColor=lightgreen
-Button,Start Bidding Table,%setBiddingTable%,width=33% backgroundColor=lightgreen
+Button,Review code,%reviewCurrentCode%,width=26% backgroundColor=lightgreen
+Button,Start Teaching Table,%setTeachingTable%,width=37% backgroundColor=lightgreen
+Button,Start Bidding Table,%setBiddingTable%,width=37% backgroundColor=lightgreen
 
 Script,reviewCurrentCode,setDealerCode("");
 
