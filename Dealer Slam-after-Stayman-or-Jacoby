@@ -4,31 +4,7 @@ setDealerCode(
 dealer south
 produce 1000
 
-#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Define-1N
-# Calculate length points for South (lengthPoints)
-lp1 = spades(south)>4 ? spades(south)-4 : 0
-lp2 = hearts(south)>4 ? hearts(south)-4 : 0
-lp3 = diamonds(south)>4 ? diamonds(south)-4 : 0
-lp4 = clubs(south)>4 ? clubs(south)-4 : 0
-lengthPoints = lp1 or lp2 or lp3 or lp4
-
-# Calculate doubleton honor NT downgrade(s) for South -- 2 cards, 1 honor, not the Ace
-S2H = spades(south)==2 and top4(south,spades)==1 and not hascard(south,AS) ? 1 : 0
-H2H = hearts(south)==2 and top4(south,hearts)==1 and not hascard(south,AH) ? 1 : 0
-D2H = diamonds(south)==2 and top4(south,diamonds)==1 and not hascard(south,AD) ? 1 : 0
-C2H = clubs(south)==2 and top4(south,clubs)==1 and not hascard(south,AC) ? 1 : 0
-ntDownGrade = (S2H or H2H or D2H or C2H)
-
-# Define notrump points for south
-ntPoints = ntDownGrade ? hcp(south) : hcp(south) + lengthPoints
-
-ntMin = ntPoints<16
-ntAvg = ntPoints==16
-ntMax = ntPoints>16
-
-# Define 1NT -- these include hands that might have rebid problems if opened in a suit
-NT = shape(south, 2452+2425+2245+2254+4522 +any 4333+any 4432+any 5332) and ntPoints>14 and ntPoints<18
-
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Define-1N
 
 hFit4 = hearts(north)==4 and hearts(south)>3   // 4-4 or 4-5
 sFit4 = spades(north)==4 and spades(south)>3
@@ -41,40 +17,7 @@ sta = shape(north, 4xxx + x4xx)                // includes smolen
 staFit = sta and (hFit4 or sFit4)
 staNoFit = sta and not staFit
 
-#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
-c1 = hascard(west,2C)
-c2 = hascard(east,2D)
-c3 = hascard(west,3C)
-c4 = hascard(east,3D)
-
-keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
-keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
-
-keep015= keep06 and c3
-keep03 = keep06 and keep44
-####06 = c1 and c2
-keep11 = c1 and keep44
-keep14 = c1 and not keep44
-keep19 = c1 and not c2
-keep25 = c1
-keep30 = keep06 or c3
-keep33 = c1 or (c2 and keep44)
-####44 = c3 or c4
-keep47 = keep44 or keep06
-
-keep53 = not keep47
-keep56 = not keep44
-keep67 = not keep33
-keep70 = not keep30
-keep75 = not keep25
-keep81 = not keep19
-keep86 = not keep14
-keep89 = not keep11
-keep94 = not keep06
-keep97 = not keep03
-keep985= not keep015
-keep   = 1
-keep0  = 0
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
 
 # Define Leveling
 case1  = jacFit    and keep47
