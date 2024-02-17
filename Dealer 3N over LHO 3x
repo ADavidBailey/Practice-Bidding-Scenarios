@@ -81,9 +81,9 @@ case3 = twoStop and sHCP>15 and not (case1 or case2)
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
 
 # Level it
-level1 = case1 * keep06
-level2 = case2 * keep97
-level3 = case3 * keep
+level1 = case1 and keep06
+level2 = case2 and keep97
+level3 = case3 and keep
 levelTheDeal = level1 or level2 or level3
 
 # south bids 3N
