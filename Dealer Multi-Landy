@@ -43,22 +43,20 @@ lN = c2N and keep
 levelTheDeal = lX or lC or lD or lH or lS or lN
 
 # Now OPEN 1NT
-NT and (cX or c2C or c2D or c2H or c2S or N)
+NT and (cX or c2C or c2D or c2H or c2S or c2N)
 and levelTheDeal
 
 # Generate Statistics
 action
 
-average "X    " 100 * X,
-average "2C   " 100 * C,
-average "2D   " 100 * D,
-average "2H   " 100 * H,
-average "2S   " 100 * S,
-average "2N   " 100 * N,
+average "X    " 100 * cX,
+average "2C   " 100 * c2C,
+average "2D   " 100 * c2D,
+average "2H   " 100 * c2H,
+average "2S   " 100 * c2S,
+average "2N   " 100 * c2N,
 
 frequency  "HCP South "  (hcp(south) , 14, 18),
-frequency  "ntPoints  "  (ntPoints   , 14, 18),
-
 
 `,"E",true)
 Script
@@ -70,5 +68,5 @@ Button,Multi-Landy (Lev),\n\
   • 2H = 5 !H & 4+ !C/!D\n\
   • 2S = 5 spades & 4+ !C/!D\n\
   • 2N = 5-5 or better in !C/!D\n\
-The Multi-Landy Responses are leveled.\n\
+The Multi-Landy Responses are leveled.  The NT opener is not leveled.\n\
 %MultiLandy%
