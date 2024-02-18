@@ -1,0 +1,79 @@
+Script,MultiLandy
+setDealerCode(
+`
+produce 1000
+dealer south
+
+# Import Define-1N and Leveling
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Define-1N
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
+
+# Level it
+levMin = ntMin and keep56
+levAvg = ntAvg and keep75
+levMax = ntMax and keep97
+levelTheDeal = levMin or levAvg or levMax
+
+# Define Multi-Landy
+# Double...
+#... 4-card major w/5+minor, a 6+ minor, a 5-card Major, a balanced 19+
+M4m5  = (spades(west)==4 or hearts(west)==4) and (diamonds(west)>4 or clubs(west)>4)
+m6    = (diamonds(west)>5 or clubs(west)>5)
+M5    = shape(west, 53xx+5233+35xx+2533-xxx4-xx4x-any 55xx-any 65xx-)
+bal19 = shape(west,any 4333+any 4432+any 5332) and hcp(west)>18
+X = (M4m5 or m6 or M5 or bal19)
+
+# 2C = at lead 5-4 or 4-5 in hearts and spades
+C = shape(west,66xx+65xx+56xx55xx+54xx+45xx)
+
+# 2D = 6 hearts/spades w/o a side suit
+D = shape(west,6xxx+x6xx-any 65xx-any 64xx)
+
+# 2H = 5 hearts and 4+ minor
+H = hearts(west)==5 and spades(west)<4 and shape(west,any 54xx)
+
+# 2S = 5 spades and 4+ minor
+S = spades(west)==5 and hearts(west)<4 and shape(west,any 54xx)
+
+# 2N = 5-5 or better in the minors
+N = diamonds(west)>4 and clubs(west)>4
+
+# Define Leveling
+lX = X and keep
+lC = C and keep
+lD = D and keep
+lH = H and keep
+lS = S and keep
+lN = N and keep
+levelTheDeal = lX or lC or lD or lH or lS or lN
+
+# Now OPEN 1NT
+
+NT and (X or C or D or H or S or N)
+and levelTheDeal
+
+# Generate Statistics
+action
+
+average "X    " 100 * X,
+average "2C   " 100 * C,
+average "2D   " 100 * D,
+average "2H   " 100 * H,
+average "2S   " 100 * S,
+average "2N   " 100 * N,
+
+frequency  "HCP South "  (hcp(south) , 14, 18),
+frequency  "ntPoints  "  (ntPoints   , 14, 18),
+
+
+`,"S",true)
+Script
+Button,Multi-Landy (Lev),\n\
+---  15-17 Notrump Opening and Multi-Landy action.\n\
+  • X  = 4-card major w/5+minor, a 6+ minor, a 5-card Major, a balanced 19+\n\
+  • 2C = at lead 5-4 or 4-5 in !H and !S\n\
+  • 2D = 6 hearts/spades w/o a side suit\n\
+  • 2H = 5 hearts and 4+ minor\n\
+  • 2S = 5 spades and 4+ minor\n\
+  • 2N = 5-5 (or better in the minors\n\
+%MultiLandy%
