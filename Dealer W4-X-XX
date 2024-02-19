@@ -1,20 +1,31 @@
-Script,W4XRX
+Script,PreemptXRX
 setDealerCode(`
 
 dealer east
 produce 1000
 
+dealer east
+generate 30000000
+produce 1000
+
 # Define East weak 3 bids
-w4S = spades(east)>7   and (top5(east,spades)>2   or top3(east,spades)>1)   and spades(west)>1
-w4H = hearts(east)>7   and (top5(east,hearts)>2   or top3(east,hearts)>1)   and hearts(west)>1
-w4D = diamonds(east)>7 and (top5(east,diamonds)>2 or top3(east,diamonds)>1) and diamonds(west)>1
-w4C = clubs(east)>7    and (top5(east,clubs)>2    or top3(east,clubs)>1)    and clubs(west)>1
+wS = spades(east)>6   and (top5(east,spades)>2   or top3(east,spades)>1)   and spades(west)>1
+wH = hearts(east)>6   and (top5(east,hearts)>2   or top3(east,hearts)>1)   and hearts(west)>1
+wD = diamonds(east)>6 and (top5(east,diamonds)>2 or top3(east,diamonds)>1) and diamonds(west)>1
+wC = clubs(east)>6    and (top5(east,clubs)>2    or top3(east,clubs)>1)    and clubs(west)>1
+
+lS = wS ? spades(east)   : 0
+lH = wH ? hearts(east)   : 0
+lD = wD ? diamonds(east) : 0
+lC = wC ? clubs(east)    : 0
+length = lS + lH + lD + lC 
+
 
 # South is short in East's suit
-sShortS = w4S and spades(south)<2
-sShortH = w4H and hearts(south)<2
-sShortD = w4D and diamonds(south)<2
-sShortC = w4C and clubs(south)<2
+sShortS = wS and spades(south)<2
+sShortH = wH and hearts(south)<2
+sShortD = wD and diamonds(south)<2
+sShortC = wC and clubs(south)<2
 sShort = (sShortS or sShortH or sShortD or sShortC)
 
 sDouble1 = hcp(south)>14 and sShort
@@ -22,12 +33,12 @@ sDouble2 = hcp(south)>17
 sDoubles = (sDouble1 or sDouble2) and shape(south,xxxx -5xxx -x5xx) and controls(south)>5
 
 # East opens 4, South doubles, and West Redoubles
-eOpens4 = (w3S or w3H or w3D or w3C) and hcp(east)>5 and hcp(east)<11 and shape(east,any 7xxx)
+eOpens = (wS or wH or wD or wC) and hcp(east)>3 and hcp(east)<11 and shape(east,any 9xxx+8xxx+7xxx)
 
 # West Redoubles
 wXX = hcp(west)>12 and shape(west,any 0xxx +any 1xxx)
 
-eOpens4 and sDoubles and wXX
+eOpens and sDoubles and wXX
 
 action
 average "hcp East " hcp(east),
@@ -36,11 +47,12 @@ average "hcp West " hcp(west),
 average "hcp South" hcp(south),
 average "hcp N/S  " hcp(north) + hcp(south),
 average "hcp E/W  " hcp(east) + hcp(west),
+frequency "length " (length, 6, 9),
 
 `,"E",true)
 Script
-Button,W4 (X) XX (??),\n\
+Button,Preempt (X) XX,\n\
 --- W4 (X) XX (Now What?)\n\
 After 4!C/4!D/4!H/4!S，(X)，XX，\n\
 What do we do after the Redouble ???.\n\
-%W4XRX%
+%PreemptXRX%
