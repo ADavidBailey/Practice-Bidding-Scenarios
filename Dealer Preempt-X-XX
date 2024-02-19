@@ -1,4 +1,4 @@
-Script,PreemptXRX
+pScript,PreemptXRX
 setDealerCode(`
 
 dealer east
@@ -19,7 +19,6 @@ lH = wH ? hearts(east)   : 0
 lD = wD ? diamonds(east) : 0
 lC = wC ? clubs(east)    : 0
 length = lS + lH + lD + lC 
-
 
 # South is short in East's suit
 sShortS = wS and spades(south)<2
@@ -52,7 +51,6 @@ frequency "length " (length, 6, 9),
 `,"E",true)
 Script
 Button,Preempt (X) XX,\n\
---- W4 (X) XX (Now What?)\n\
-After 4!C/4!D/4!H/4!S，(X)，XX，\n\
-What do we do after the Redouble ???.\n\
+--- Preempt (X) XX (Now What?)\n\
+After a 3-level or 4-level preempt，(X)，XX，what do we do?\n\
 %PreemptXRX%
