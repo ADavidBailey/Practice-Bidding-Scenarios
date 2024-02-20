@@ -2,23 +2,20 @@ pScript,PreemptXRX
 setDealerCode(`
 
 dealer east
+generate 20000000
 produce 1000
 
-dealer east
-generate 30000000
-produce 1000
-
-# Define East weak 3 bids
-wS = spades(east)>6   and (top5(east,spades)>2   or top3(east,spades)>1)   and spades(west)>1
-wH = hearts(east)>6   and (top5(east,hearts)>2   or top3(east,hearts)>1)   and hearts(west)>1
-wD = diamonds(east)>6 and (top5(east,diamonds)>2 or top3(east,diamonds)>1) and diamonds(west)>1
-wC = clubs(east)>6    and (top5(east,clubs)>2    or top3(east,clubs)>1)    and clubs(west)>1
+# Define East preempt at the 3- or 4-level
+wS = shape(east,9xxx+8xxx+7xxx) and top3(east,spades)>1   and spades(west)>1
+wH = shape(east,x9xx+x8xx+x7xx) and top3(east,hearts)>1   and hearts(west)>1
+wD = shape(east,xx9x+xx8x+xx7x) and top3(east,diamonds)>1 and diamonds(west)>1
+wC = shape(east,xxx9+xxx8+xxx7) and top3(east,clubs)>1    and clubs(west)>1
 
 lS = wS ? spades(east)   : 0
 lH = wH ? hearts(east)   : 0
 lD = wD ? diamonds(east) : 0
 lC = wC ? clubs(east)    : 0
-length = lS + lH + lD + lC 
+length = lS + lH + lD + lC
 
 # South is short in East's suit
 sShortS = wS and spades(south)<2
@@ -29,13 +26,13 @@ sShort = (sShortS or sShortH or sShortD or sShortC)
 
 sDouble1 = hcp(south)>14 and sShort
 sDouble2 = hcp(south)>17
-sDoubles = (sDouble1 or sDouble2) and shape(south,xxxx -5xxx -x5xx) and controls(south)>5
+sDoubles = (sDouble1 or sDouble2) and shape(south,xxxx-5xxx-x5xx) and controls(south)>3
 
 # East opens 4, South doubles, and West Redoubles
-eOpens = (wS or wH or wD or wC) and hcp(east)>3 and hcp(east)<11 and shape(east,any 9xxx+8xxx+7xxx)
+eOpens = (wS or wH or wD or wC) and hcp(east)>3 and hcp(east)<10
 
 # West Redoubles
-wXX = hcp(west)>12 and shape(west,any 0xxx +any 1xxx)
+wXX = hcp(west)>10 and shape(west,any 0xxx +any 1xxx)
 
 eOpens and sDoubles and wXX
 
@@ -46,7 +43,8 @@ average "hcp West " hcp(west),
 average "hcp South" hcp(south),
 average "hcp N/S  " hcp(north) + hcp(south),
 average "hcp E/W  " hcp(east) + hcp(west),
-frequency "length " (length, 6, 9),
+
+frequency "length " (length, 6, 10),
 
 `,"E",true)
 Script
