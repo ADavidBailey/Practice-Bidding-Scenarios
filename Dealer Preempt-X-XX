@@ -2,7 +2,7 @@ Script,PreemptXRX
 setDealerCode(`
 
 dealer east
-generate 20000000
+generate 10000000
 produce 1000
 
 # Define East preempt at the 3- or 4-level
@@ -34,7 +34,16 @@ eOpens = (wS or wH or wD or wC) and hcp(east)>3 and hcp(east)<10
 # West Redoubles
 wXX = hcp(west)>10
 
+# Define leveling
+import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
+
+lev7 = length==7 and keep19
+lev8 = length==8 and keep94
+lev9 = length==9 and keep
+levelTheDeal = lev7 or lev8 or lev9
+
 eOpens and sDoubles and wXX
+and levelTheDeal
 
 action
 average "hcp East " hcp(east),
