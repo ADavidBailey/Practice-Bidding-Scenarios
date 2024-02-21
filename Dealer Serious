@@ -1,15 +1,63 @@
-# Serious/Non-Serious Step Bid
+Script,Serious
+setDealerCode(
+`
 
-1D - 2C - 2H/S - 3H/S
-1D - 2C - 3C/H/S  balanced/short H/shortS
-1S - 2H - 3H
-1S - 2C/D/H - 2S - 3S
-1H - 2D - 3D
-1H - 2C/D - 2H - 3H
-1H - 2C/D - 2S - 3S
+dealer north
+generate 10000000
+produce 1000
 
-# Major 2/1
-sS = shape(south,5xxx+6xxx-x6xx-x5xx-xx6x-xx5x-xxx6-xxx5) and shape(north,x5xx+xx5x+xxx5)
-sH = shape(south,x5xx+x6xx-6xxx-5xxx-xx6x-xx5x-xxx6-xxx5) and shape(north,xx5x+xxx5)
-sD = shape(south,xx5x+xx6x-6xxx-5xxx-x6xx-x5xx-xxx6-xxx5) and shape(north,xxx5)
-hcp(south)>11 and hcp(north)>12 and (sS or sH or sD)
+# Define slamish strength
+nMin  = hcp(north)>11 and hcp(north)<15
+nGood = hcp(north)>14 and hcp(north)<18
+nMax  = hcp(north)>17 and hcp(north)<21
+
+sMin  = hcp(south)>12 and hcp(south)<15
+sGood = hcp(south)>14 and hcp(south)<18
+sMax  = hcp(south)>17
+
+slamish = (nMin and sMax) or (nGood and sGood) or (nMax and sMin)
+
+# North's opening suit
+NT = shape(north,any 4333+any 4432+any 5332-5xxx-x5xx) and nGood
+
+sN = spades(north)
+hN = hearts(north)
+dN = diamonds(north)
+cN = clubs(north)
+nS = not NT and sN>4 and sN>=hN and sN>=dN and sN>=cN     and spades(south)<4
+nH = not NT and not nS and hN>4 and hN>=dN and hN>=cN     and hearts(south)<4
+nD = not NT and not nS and not nH and ((dN>3 and dN>=cN)) and spades(north)<4 and hearts(north)<4
+
+# South's longest suit
+s = spades(south)
+h = hearts(south)
+d = diamonds(south)
+c = clubs(south)
+sS = s>=h and s>=d and s>=c
+sH = not sS and h>=d and h>=c
+sD = not sS and not sH and d>=c
+sC = not sS and not sH and not sD
+
+nOpens    = (nS or nH or nD)
+sResponds = (sH or sD or sC)
+
+sFit = spades(north) + spades(south) > 7
+hFit = hearts(north) + hearts(south) > 7
+majorFit = sFit or hFit
+
+nOpens and sResponds and majorFit and slamish
+
+action
+average "sFit " 100 * sFit,
+average "hFit " 100 * hFit,
+average "nMax " 100 * nMax,
+average "nGood" 100 * nGood,
+average "nMin " 100 * nMin,
+
+`)
+Script
+Button,Serious/Non-Serious,\n\
+---  Serious/Non-Serious: When we're in a 2/1 auction and we have a major suit fit\n\
+and the bid is at 3 of our major，the step bid says I'm either serious or not serious.\n\
+it's a partnership agreement.  I prefer non-serious as it doesn't reveal information.\n\
+%Serious%
