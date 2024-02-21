@@ -1,0 +1,15 @@
+# Serious/Non-Serious Step Bid
+
+1D - 2C - 2H/S - 3H/S
+1D - 2C - 3C/H/S  balanced/short H/shortS
+1S - 2H - 3H
+1S - 2C/D/H - 2S - 3S
+1H - 2D - 3D
+1H - 2C/D - 2H - 3H
+1H - 2C/D - 2S - 3S
+
+# Major 2/1
+sS = shape(south,5xxx+6xxx-x6xx-x5xx-xx6x-xx5x-xxx6-xxx5) and shape(north,x5xx+xx5x+xxx5)
+sH = shape(south,x5xx+x6xx-6xxx-5xxx-xx6x-xx5x-xxx6-xxx5) and shape(north,xx5x+xxx5)
+sD = shape(south,xx5x+xx6x-6xxx-5xxx-x6xx-x5xx-xxx6-xxx5) and shape(north,xxx5)
+hcp(south)>11 and hcp(north)>12 and (sS or sH or sD)
