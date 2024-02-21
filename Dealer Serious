@@ -13,9 +13,9 @@ sN = spades(north)
 hN = hearts(north)
 dN = diamonds(north)
 cN = clubs(north)
-nS = not NT and sN>4 and sN>=hN and sN>=dN and sN>=cN     and spades(south)<4
-nH = not NT and not nS and hN>4 and hN>=dN and hN>=cN     and hearts(south)<4
-nD = not NT and not nS and not nH and ((dN>3 and dN>=cN)) and spades(north)<4 and hearts(north)<4
+nS = sN>4 and sN>=hN and sN>=dN and sN>=cN     and spades(south)<4 and not NT 
+nH = not nS and hN>4 and hN>=dN and hN>=cN     and hearts(south)<4 and not NT  
+nD = not nS and not nH and ((dN>3 and dN>=cN)) and spades(north)<4 and hearts(north)<4 and not NT 
 
 # South's longest suit
 s = spades(south)
@@ -35,9 +35,9 @@ hFit = hearts(north) + hearts(south) > 7
 majorFit = sFit or hFit
 
 totalHCP = hcp(north) + hcp(south)
-game = totalHCP<31
-slam = totalHCP>30 and totalHCP<35
-grand = totalHCP>34
+game = totalHCP<24 and totalHCP<33
+slam = totalHCP>32 and totalHCP<37
+grand = totalHCP>36
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
 
