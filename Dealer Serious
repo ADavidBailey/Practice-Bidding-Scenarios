@@ -3,7 +3,6 @@ setDealerCode(
 `
 
 dealer north
-generate 10000000
 produce 1000
 
 # North's opening suit
@@ -34,46 +33,14 @@ hFit = hearts(north) + hearts(south) > 7
 majorFit = sFit or hFit
 
 totalHCP = hcp(north) + hcp(south)
-game = totalHCP>24 and totalHCP<33
-slam = totalHCP>32 and totalHCP<37
-grand = totalHCP>36
+game = totalHCP>23 and totalHCP<32
+slam = totalHCP>31 and totalHCP<36
+grand = totalHCP>35
 
-# Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
-### Imported Leveling Code ###
-c1 = hascard(west,2C)
-c2 = hascard(east,2D)
-c3 = hascard(west,3C)
-c4 = hascard(east,3D)
-keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
-keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
-keep015= keep06 and c3
-keep03 = keep06 and keep44
-####06 = c1 and c2
-keep11 = c1 and keep44
-keep14 = c1 and not keep44
-keep19 = c1 and not c2
-keep25 = c1
-keep30 = keep06 or c3
-keep33 = c1 or (c2 and keep44)
-####44 = c3 or c4
-keep47 = keep44 or keep06
-keep53 = not keep47
-keep56 = not keep44
-keep67 = not keep33
-keep70 = not keep30
-keep75 = not keep25
-keep81 = not keep19
-keep86 = not keep14
-keep89 = not keep11
-keep94 = not keep06
-keep97 = not keep03
-keep985= not keep015
-keep   = 1
-keep0  = 0
-### See -Stats-Leveling for statistics on these values ###
-### Example of how to generate Statistics for Leveling ###
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
+
 levGame  = game and keep03
-levSlam  = slam and keep
+levSlam  = slam and keep33
 levGrand = grand and keep
 levelTheDeal = levGame or levSlam or levGrand
 nOpens and majorFit
