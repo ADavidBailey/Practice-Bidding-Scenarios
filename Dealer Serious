@@ -43,11 +43,12 @@ levGame  = game and keep06
 levSlam  = slam and keep33
 levGrand = grand and keep
 levelTheDeal = levGame or levSlam or levGrand
-nOpens and majorFit
+
+# Now do it
+nOpens and majorFit and (game or slam or grand)
 and levelTheDeal
+
 action
-average "sFit " 100 * sFit,
-average "hFit " 100 * hFit,
 average "game " 100 * game,
 average "slam " 100 * slam,
 average "grand" 100 * grand,
