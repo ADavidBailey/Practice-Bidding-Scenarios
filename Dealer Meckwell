@@ -1,5 +1,4 @@
-Script,Meckwell
-setDealerCode(
+Script,MeckwellsetDealerCode(
 `
 produce 10000
 dealer south
@@ -7,21 +6,29 @@ dealer south
 # Define East's 1N Opener
 NT = hcp(east)>14 and hcp(east)<18 and shape(east,any 4333+any 4432+any 5422+any 5332-5xxx-x5xx)
 
+# Define South's good suits
+sGS = top5(south,spades)>1
+sGH = top5(south,hearts)>1
+sGD = top5(south,diamonds)>1
+sGC = top5(south,clubs)>1
+
+sS = spades(south)
+sH = hearts(south)
+sD = diamonds(south)
+sC = clubs(south)
+
 # Define South's Meckwell action
 
-majorAndLongerC   = (spades(south)>3 or hearts(south)>3) and clubs(south)>4    and clubs(south)   >(spades(south) and hearts(south)) and top4(south,clubs)>1
-majorAndLongerD   = (spades(south)>3 or hearts(south)>3) and diamonds(south)>4 and diamonds(south)>(spades(south) and hearts(south)) and top4(south,diamonds)>1
-bothMajors        = shape(south,76xx+75xx+67xx+57xx+66xx+65xx+56xx+55xx+54xx+45xx)
-oneSuit           = shape(south,any 8xxx+any 7xxx+any 6xxx+any 5xxx -any 85xx-any 84xx-any 76xx-any 75xx-any 74xx-any 66xx-any 65xx-any 64xx-any 55xx-any 54xx)
-clubSuit          = oneSuit and clubs(south)>4    and top4(south,clubs)>1
-diamondSuit       = oneSuit and diamonds(south)>4 and top4(south,diamonds)>1
-heartSuit         = oneSuit and hearts(south)>4   and top4(south,hearts)>1
-spadeSuit         = oneSuit and spades(south)>4   and top4(south,spades)>1
-goodHand          = oneSuit and hcp(south)>15
-bothMinors        = shape(south,xx66+xx65+xx56+xx55+xx54+xx45) and top4(south,clubs)>1 and top4(south,diamonds)>1
+majorAndLongerC   = ((sGS and sS>3) or (sGH and sH>3)) and sGC and sC>sS and sC>sH 
+majorAndLongerD   = ((sGS and sS>3) or (sGH and sH>3)) and sGD and sD>sS and sD>sH 
+bothMajors        = sGS and sGH and shape(south,66xx+65xx+56xx+55xx+54xx+45xx)
+oneSuit           = shape(south,xxxx-any 85xx-any 84xx-any 76xx-any 75xx-any 74xx-any 66xx-any 65xx-any 64xx-any 55xx- any 54xx)
 
+goodHand          = oneSuit and (sGS or sGH or sGD or sGC) and hcp(south)>15
+oneMinor          = oneSuit and (sGD or sGC)
+bothMinors        = sGD and sGC and shape(south,xx76+xx67+xx66+xx65+xx56+xx55+xx54+xx45)
 
-cX = clubSuit or diamondSuit or bothMajors or goodHand
+cX  = oneMinor or bothMajors or goodHand
 
 c2C = majorAndLongerC
 
@@ -70,11 +77,11 @@ keep   = 1
 keep0  = 0
 
 # Define Leveling
-lX = cX  and keep14
-lC = c2C and keep56
-lD = c2D and keep70
-lH = c2H and keep33
-lS = c2S and keep33
+lX = cX  and keep
+lC = c2C and keep
+lD = c2D and keep
+lH = c2H and keep
+lS = c2S and keep
 lN = c2N and keep
 levelTheDeal = lX or lC or lD or lH or lS or lN
 
@@ -93,7 +100,6 @@ average "2S   " 100 * c2S,
 average "2N   " 100 * c2N,
 
 frequency  "HCP South "  (hcp(south) , 7, 18),
-
 
 `,"E",true)
 Script
