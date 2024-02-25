@@ -1,43 +1,39 @@
-Script,MeckwellsetDealerCode(
-`
-produce 10000
-dealer south
+
+Script,MeckwellsetDealerCode(`
+
+dealer east
+produce 30000
 
 # Define East's 1N Opener
 NT = hcp(east)>14 and hcp(east)<18 and shape(east,any 4333+any 4432+any 5422+any 5332-5xxx-x5xx)
 
 # Define South's good suits
-sGS = top5(south,spades)>1
-sGH = top5(south,hearts)>1
-sGD = top5(south,diamonds)>1
-sGC = top5(south,clubs)>1
+sGS = top3(south,spades)>0   and top5(south,spades)>1
+sGH = top3(south,hearts)>0   and top5(south,hearts)>1
+sGD = top3(south,diamonds)>0 and top5(south,diamonds)>1
+sGC = top3(south,clubs)>0    and top5(south,clubs)>1
 
+# Define South's suit lengths
 sS = spades(south)
 sH = hearts(south)
 sD = diamonds(south)
 sC = clubs(south)
 
-# Define South's Meckwell action
-
+# Define South's shapes
 majorAndLongerC   = ((sGS and sS>3) or (sGH and sH>3)) and sGC and sC>sS and sC>sH 
 majorAndLongerD   = ((sGS and sS>3) or (sGH and sH>3)) and sGD and sD>sS and sD>sH 
 bothMajors        = sGS and sGH and shape(south,66xx+65xx+56xx+55xx+54xx+45xx)
-oneSuit           = shape(south,xxxx-any 85xx-any 84xx-any 76xx-any 75xx-any 74xx-any 66xx-any 65xx-any 64xx-any 55xx- any 54xx)
-
+oneSuit           = shape(south,any 9xxx+any 8xxx+any 7xxx+any 6xxx-any 76xx-any 5xxx-any 4xxx)
 goodHand          = oneSuit and (sGS or sGH or sGD or sGC) and hcp(south)>15
 oneMinor          = oneSuit and (sGD or sGC)
 bothMinors        = sGD and sGC and shape(south,xx76+xx67+xx66+xx65+xx56+xx55+xx54+xx45)
 
+# Define South's Meckwell action
 cX  = oneMinor or bothMajors or goodHand
-
-c2C = majorAndLongerC
-
-c2D = majorAndLongerD
-
-c2H = oneSuit and hearts(south)>4
-
-c2S = oneSuit and spades(south)>4
-
+c2C = majorAndLongerC              and not cX
+c2D = majorAndLongerD              and not cX
+c2H = oneSuit and hearts(south)>4  and not cX
+c2S = oneSuit and spades(south)>4  and not cX
 c2N = bothMinors
 
 # Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
@@ -77,12 +73,12 @@ keep   = 1
 keep0  = 0
 
 # Define Leveling
-lX = cX  and keep
-lC = c2C and keep
-lD = c2D and keep
-lH = c2H and keep
-lS = c2S and keep
-lN = c2N and keep
+lX = cX  and keep14
+lC = c2C and keep70
+lD = c2D and keep81
+lH = c2H and keep985
+lS = c2S and keep97
+lN = c2N and keep89
 levelTheDeal = lX or lC or lD or lH or lS or lN
 
 # Now OPEN 1NT
@@ -91,14 +87,12 @@ and levelTheDeal
 
 # Generate Statistics
 action
-
 average "X    " 100 * cX,
 average "2C   " 100 * c2C,
 average "2D   " 100 * c2D,
 average "2H   " 100 * c2H,
 average "2S   " 100 * c2S,
 average "2N   " 100 * c2N,
-
 frequency  "HCP South "  (hcp(south) , 7, 18),
 
 `,"E",true)
