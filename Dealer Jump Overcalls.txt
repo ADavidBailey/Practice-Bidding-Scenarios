@@ -4,7 +4,7 @@ setDealerCode(`
 dealer east
 produce 1000
 
-Predict East's opening suit
+# Predict East's opening suit
 sE = spades(east)
 hE = hearts(east)
 dE = diamonds(east)
@@ -14,7 +14,7 @@ eH = not eS and hE>4 and hE>=dE and hE>=cE
 eD = not eS and not eH and ((dE>3 and dE>=cE))
 eC = not eS and not eH and not eD
 
-Calculate east's Rank
+# Calculate east's Rank
 eRS = eS ? 4 : 0
 eRH = eH ? 3 : 0
 eRD = eD ? 2 : 0
@@ -31,7 +31,7 @@ sH = not sS and h>=d and h>=c
 sD = not sS and not sH and d>=c
 sC = not sS and not sH and not sD
 
-Calculate South's Rank
+# Calculate South's Rank
 sRS = sS ? 4 : 0
 sRH = sH ? 3 : 0
 sRD = sD ? 2 : 0
