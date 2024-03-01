@@ -63,7 +63,7 @@ hFit = oneHeart and hearts(south)<2
 noMajorFit = not (sFit or hFit)
 
 # Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
-calmEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx) and hcp(east)<9
+calmEast = (shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx) and hcp(east)<9) or (shape(east,any 4333 +any 4432) and hcp(east)<12)
 
 # Define South's good suits -- 6+ cards with 2 of the top 3
 goodHearts   = hearts(south)>5   and top3(south,hearts)  >1 and oneSpade  //only if north opened 1 spade
