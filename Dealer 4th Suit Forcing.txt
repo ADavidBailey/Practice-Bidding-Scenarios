@@ -1,15 +1,17 @@
 Script,FourthSuitForcing
-setDealerCode(
-`
+setDealerCode(`
+
 dealer south
+produce 1000
+
+# Define Calm Opponets
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
 
 # 4th Suit Forcing
 shape(south, 4xx5) && hcp(south) > 11 && hcp(south) < 15
-&&
-shape(north, x4xx+x5xx) && hcp(north) >11 && hcp(north)<15
-and hcp(west)<9 and hcp(east)<9
+and shape(north, x4xx+x5xx) && hcp(north) >11 && hcp(north)<15
+and calmOpps
 
-`
-)
+`)
 Script
 Button,4th Suit Forcing,4th Suit Forcing\n%FourthSuitForcing%
