@@ -2,6 +2,7 @@ Script,BergenRaises
 setDealerCode(
 `
 dealer north
+produce 1000
 
 # Bergen Raises
 
@@ -19,8 +20,8 @@ NT = shape(north, any 4333+4432+5332) and hcp(north)>14 and hcp(north)<18 and hc
 GF = hcp(north)>21
 
 # Define openers
-sOpener = not NT and spades(north) >= hearts(north) and spades(north) >=5 and spades(north) >= diamonds(north) and spades(north) > clubs(north)
-hOpener = not NT and not sOpener and hearts(north) >=5 and hearts(north) >= diamonds(north) and hearts(north) > clubs(north)
+sOpener = not NT and spades(north) >= hearts(north) and spades(north) >=5 and spades(north) >= diamonds(north) and spades(north) >= clubs(north)
+hOpener = not NT and not sOpener and hearts(north) >=5 and hearts(north) >= diamonds(north) and hearts(north) >= clubs(north)
 
 # Define suit fit w/4-card support
 sFit = sOpener and spades(south)==4
