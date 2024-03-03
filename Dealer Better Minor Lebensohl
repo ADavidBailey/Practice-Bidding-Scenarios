@@ -9,7 +9,7 @@ w2S = spades(east)==6 and (top5(east,spades)>2 or top3(east,spades)>1) and heart
 w2H = hearts(east)==6 and (top5(east,hearts)>2 or top3(east,hearts)>1) and spades(east)<4 and hearts(west)<3
 w2D = diamonds(east)==6 and (top5(east,diamonds)>2 or top3(east,diamonds)>1) and spades(east)<4 and hearts(east)<4 and diamonds(west)<3
 
-# Define South shortness w/3 suits
+# Define South shortness w/3 suits   Less than 3
 sShortS = w2S and spades(south)<3
 sShortH = w2H and hearts(south)<3
 sShortD = w2D and diamonds(south)<3
@@ -26,17 +26,17 @@ sNT = hcp(south)>15 and hcp(south)<19 and shape(south, any 4333+any 4432+any 533
 eOpensWeak2 = (w2S or w2H or w2D) and hcp(east)>5 and hcp(east)<11 and shape(east,any 6430 +any 6421 +any 6331 +any 6322)
 
 # Define South Double
-sDouble = hcp(south)>12 and shape(south, any 5440 +any 5431 +any 5332 +any 4441 +any 4432) and sShort and not sNT
+sDoubles = hcp(south)>12 and shape(south, any 5440 +any 5431 +any 5332 +any 4441 +any 4432) and sShort and not sNT
 
 # West Passes
-wPass = hcp(west)<10
+wPasses = hcp(west)<10
 
 # North has to do something
 weak   = hcp(north)<8
-invite = hcp(north)>7 and hcp(north)<12 // and not hascard(west,2C)
+invite = hcp(north)>7 and hcp(north)<12 and (hascard(west,2C) or hascard(east,2D))
 force  = hcp(north)>11
 
-eOpensWeak2 and sDouble and wPass
+eOpensWeak2 and sDoubles and wPasses
 and (weak or invite or force)
 
 action
