@@ -1,6 +1,7 @@
 Script,BetterMinorLebensohl
 setDealerCode(
 `
+# Better Minor Lebensohl
 dealer east
 produce 1000
 
@@ -9,7 +10,7 @@ w2S = spades(east)==6 and (top5(east,spades)>2 or top3(east,spades)>1) and heart
 w2H = hearts(east)==6 and (top5(east,hearts)>2 or top3(east,hearts)>1) and spades(east)<4 and hearts(west)<3
 w2D = diamonds(east)==6 and (top5(east,diamonds)>2 or top3(east,diamonds)>1) and spades(east)<4 and hearts(east)<4 and diamonds(west)<3
 
-# Define South shortness w/3 suits   Less than 3
+# Define South shortness w/3 suits & doubleton/singleton/void in opener's suit
 sShortS = w2S and spades(south)<3
 sShortH = w2H and hearts(south)<3
 sShortD = w2D and diamonds(south)<3
