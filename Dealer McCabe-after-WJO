@@ -7,7 +7,16 @@ produce 10000
 dealer east
 
 # Define East's Opening
-eastOpens = hcp(east)>11 and hcp(east)<15 and spades(east)<5 and hearts(east)<5
+s = spades(east)
+h = hearts(east)
+d = diamonds(east)
+c = clubs(east)
+eS = s>4 and s>=h and s>=d and s>=c
+eH = not eS and h>4 and h>=d and h>=c
+eD = not (eS or eH) and ((d>3 and d>=c) or c<3)
+eC = not (eS or eH or eD)
+
+eastOpens = hcp(east)>11 and hcp(east)<15 and (eC or eD or eH)
 
 # Define South's Weak Jump Overcall
 
@@ -24,8 +33,10 @@ w2h = shape(south,x6xx-6xxx-any 8xxx-any 7xxx-any 65xx)      and 2 * hp > tp
 w2d = shape(south,xx6x-6xxx-x6xx-any 8xxx-any 7xxx-any 65xx) and 2 * dp > tp
  
 w2Range = tp>4 and tp<10 and losers(south)<8
+
+wSuit = (eH and w2S) or (eD and (w2S or w2H)) or eC and (w2S or w2H or w2D)
  
-weakJumpOvercall = (w2s or w2h or w2d) and w2Range
+weakJumpOvercall = wSuit and w2Range
 
 // Define responders hand types
 
