@@ -9,8 +9,8 @@ w2D = diamonds(east)==6 and (top5(east,diamonds)>2 or top3(east,diamonds)>1) and
 # Define South shortness
 sShortS = w2S and spades(south)<2
 sShortH = w2H and hearts(south)<2
-sShortD = w2D and diamonds(south)<2  //10
-sShort = (sShortS or sShortH or sShortD)
+sShortD = w2D and diamonds(south)<2
+sShort = (sShortS or sShortH or sShortD) and shape(south,any 5440+any 5431+any 4441)
 
 # Define South stopper
 sStopS = w2S and top2(south,spades)>0 and spades(south)>1
