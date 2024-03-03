@@ -33,7 +33,7 @@ w2h = shape(south,x6xx-6xxx-any 8xxx-any 7xxx-any 65xx)      and 2 * hp > tp
 w2d = shape(south,xx6x-6xxx-x6xx-any 8xxx-any 7xxx-any 65xx) and 2 * dp > tp
  
 wjoRange = tp>4 and tp<10 and losers(south)<8
-wjoSuit = (eH and w2s) or (eD and (w2s or w2h)) or eC and (w2s or w2h or w2d)
+wjoSuit = (eH and w2s) or (eD and (w2s or w2h)) or (eC and (w2s or w2h or w2d))
 
 weakJumpOvercall = wjoSuit and wjoRange
 
