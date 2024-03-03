@@ -6,7 +6,7 @@ generate 30000000
 produce 10000
 dealer east
 
-# Define East's Opening
+# Define East's Opening of 1C, 1D, or 1H
 s = spades(east)
 h = hearts(east)
 d = diamonds(east)
@@ -15,7 +15,6 @@ eS = s>4 and s>=h and s>=d and s>=c
 eH = not eS and h>4 and h>=d and h>=c
 eD = not (eS or eH) and ((d>3 and d>=c) or c<3)
 eC = not (eS or eH or eD)
-
 eastOpens = hcp(east)>11 and hcp(east)<15 and (eC or eD or eH)
 
 # Define South's Weak Jump Overcall
@@ -34,7 +33,6 @@ w2d = shape(south,xx6x-6xxx-x6xx-any 8xxx-any 7xxx-any 65xx) and 2 * dp > tp
  
 wjoRange = tp>4 and tp<10 and losers(south)<8
 wjoSuit = (eH and w2s) or (eD and (w2s or w2h)) or (eC and (w2s or w2h or w2d))
-
 weakJumpOvercall = wjoSuit and wjoRange
 
 // Define responders hand types
@@ -114,12 +112,6 @@ average "Lead Ask  " 100 * leadAsk,
 average "Raise     " 100 * raise,
 average "mySuit    " 100 * mySuit,
 average "Pass      " 100 * pass,
-
-average "East  HCP "       hcp(east),
-average "South HCP "       hcp(south),
-average "West  HCP "       hcp(west),
-average "North HCP "       hcp(north),
-
 
 `,"E",true)
 Script
