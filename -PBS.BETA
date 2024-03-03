@@ -79,8 +79,8 @@ Promise.resolve()
     .then(() => $("nav-bar button", BBOcontext()).eq(1).click())
     .then(() => delay(delayValue))
     // close dialog box if any
-//    .then(() => $("server-prompt button",window.parent.document).eq(0).click())
-//    .then(() => delay(delayValue))
+    .then(() => $("server-prompt button",window.parent.document).eq(0).click())
+    .then(() => delay(delayValue))
     // Press "Practice" button
     .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(4).click())
     .then(() => delay(delayValue))
