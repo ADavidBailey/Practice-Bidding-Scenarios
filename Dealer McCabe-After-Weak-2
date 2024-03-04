@@ -16,10 +16,10 @@ tp = hcp(south)
 sp = hcp(south,spades)
 hp = hcp(south,hearts)
 dp = hcp(south,diamonds)
- 
-w2s = shape(south,6xxx-x6xx-x4xx-any 5xxx)           and 2 * sp > tp
-w2h = shape(south,x6xx-6xxx-4xxx-any 5xxx)           and 2 * hp > tp
-w2d = shape(south,xx6x-x6xx-x4xx-6xxx-4xxx-any 5xxx) and 2 * dp > tp
+
+w2s = shape(south,6xxx-x4xx     -any 8xxx-any 7xxx-any 66xx-any 65xx) and 2 * sp > tp
+w2h = shape(south,x6xx-4xxx     -any 8xxx-any 7xxx-any 66xx-any 65xx) and 2 * hp > tp
+w2d = shape(south,xx6x-x4xx-4xxx-any 8xxx-any 7xxx-any 66xx-any 65xx) and 2 * dp > tp
  
 w2Range = tp>6 and tp<11 and losers(south)<8
  
