@@ -5,10 +5,10 @@ setDealerCode(
 dealer east
 produce 1000
 
-tp = hcp(south)
-sp = hcp(south,spades)
-hp = hcp(south,hearts)
-dp = hcp(south,diamonds)
+tp = hcp(east)
+sp = hcp(east,spades)
+hp = hcp(east,hearts)
+dp = hcp(east,diamonds)
 
 # Define East weak 2 bids w/o 3-card support by west
 w2S = shape(east,6xxx-x4xx     -any 7xxx-any 66xx-any 65xx) and 2 * sp > tp and spades(west)<3
@@ -33,7 +33,7 @@ sDouble1 = hcp(south)>11 and hcp(south)<16 and sShort
 sDouble2 = hcp(south)>15 and not sNT
 sDoubles = (sDouble1 or sDouble2) and shape(south,any 5440+any 4441+any 4432)
 
-eOpensWeak2 = (w2S or w2H or w2D) and hcp(east)>5 and hcp(east)<10 and shape(east,any 6430 +any 6421 +any 6331 +any 6322)
+eOpensWeak2 = (w2S or w2H or w2D) and hcp(east)>5 and hcp(east)<10
 
 # West Passes
 wPasses = hcp(west)<10
