@@ -31,7 +31,7 @@ w2s = shape(south,6xxx-x6xx-any 8xxx-any 7xxx-any 65xx)      and 2 * sp > tp
 w2h = shape(south,x6xx-6xxx-any 8xxx-any 7xxx-any 65xx)      and 2 * hp > tp
 w2d = shape(south,xx6x-6xxx-x6xx-any 8xxx-any 7xxx-any 65xx) and 2 * dp > tp
  
-wjoRange = tp>4 and tp<10 and losers(south)<8
+wjoRange = tp>5 and tp<10 and losers(south)<8
 wjoSuit = (eH and w2s) or (eD and (w2s or w2h)) or (eC and (w2s or w2h or w2d))
 weakJumpOvercall = wjoSuit and wjoRange
 
@@ -54,10 +54,10 @@ fit = sFit or hFit or dFit
 
 ### Define West X
 ewFit = (eH and hearts(west)>2) or (eD and diamonds(west)>3) or (eC and clubs(west)>3)
-sShort = w2s and spades(west)<2
-hShort = w2h and hearts(west)<2
-dShort = w2d and diamonds(west)<2
-westX = hcp(west)>7 and (sShort or hShort or dShort) and shape(west,any 5440+any 5431+any 4441 -5xxx -x5xx) and not ewFit
+sShort = w2s and spades(west)<3
+hShort = w2h and hearts(west)<3
+dShort = w2d and diamonds(west)<3
+westX = hcp(west)>8 and (sShort or hShort or dShort) and shape(west,any 5440+any 4441+any 4432) and not ewFit
 
 ### Define Rule17 points -- FORCE TO GAME
 sLen = sFit ? spades(north)   : 0
