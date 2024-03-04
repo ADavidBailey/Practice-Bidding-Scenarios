@@ -5,10 +5,10 @@ setDealerCode(
 dealer east
 produce 1000
 
-# Define East weak 2 bids w/o 3-card support by west 
-w2S = spades(east)==6 and (top5(east,spades)>2 or top3(east,spades)>1) and hearts(east)<4 and spades(west)<3
-w2H = hearts(east)==6 and (top5(east,hearts)>2 or top3(east,hearts)>1) and spades(east)<4 and hearts(west)<3
-w2D = diamonds(east)==6 and (top5(east,diamonds)>2 or top3(east,diamonds)>1) and spades(east)<4 and hearts(east)<4 and diamonds(west)<3
+# Define East weak 2 bids w/o 3-card support by west
+w2S = shape(east,6xxx-x4xx     -any 7xxx-any 66xx-any 65xx) and 2 * sp > tp and spades(west)<3
+w2H = shape(east,x6xx-4xxx     -any 7xxx-any 66xx-any 65xx) and 2 * hp > tp and hearts(west)<3
+w2D = shape(east,xx6x-x4xx-4xxx-any 7xxx-any 66xx-any 65xx) and 2 * dp > tp and diamonds(west)<3
 
 # Define South shortness w/3 suits & doubleton/singleton/void in opener's suit
 sShortS = w2S and spades(south)<3
