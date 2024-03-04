@@ -1,8 +1,9 @@
 Script,McCabeAfterWeak2
 setDealerCode(`
 
+# McCabe after Weak 2
 # The McCabe Convention gives useful options for Responder after Partner’s Weak Two Bid is doubled.
-generate 20000000
+generate 10000000
 produce 1000
 dealer south
 
@@ -20,7 +21,7 @@ w2s = shape(south,6xxx-x6xx-x5xx-x4xx) and 2 * sp > tp
 w2h = shape(south,x6xx-6xxx-5xxx-4xxx) and 2 * hp > tp
 w2d = shape(south,xx6x-x6xx-x5xx-x4xx-6xxx-5xxx-4xxx) and 2 * dp > tp
  
-w2Range = tp>4 and tp<11 and losers(south)<7
+w2Range = tp>5 and tp<11 and losers(south)<7
  
 weakTwo = (w2s or w2h or w2d) and w2Range
 
@@ -42,10 +43,10 @@ dFit = w2d and diamonds(north)>2
 fit = sFit or hFit or dFit
 
 ### Define West X
-sShort = w2s and spades(west)<2
-hShort = w2h and hearts(west)<2
-dShort = w2d and diamonds(west)<2
-westX = hcp(west)>13 and (sShort or hShort or dShort) and shape(west,any 5440+any 5431+any 4441 -5xxx -x5xx)
+sShort = w2s and spades(west)<3
+hShort = w2h and hearts(west)<3
+dShort = w2d and diamonds(west)<3
+westX = hcp(west)>13 and (sShort or hShort or dShort) and shape(west,any 5440+any 4441+any 4432)
 
 ### Define Rule17 points -- FORCE TO GAME
 sLen = sFit ? spades(north)   : 0
