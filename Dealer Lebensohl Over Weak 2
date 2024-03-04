@@ -5,6 +5,11 @@ setDealerCode(
 dealer east
 produce 1000
 
+tp = hcp(south)
+sp = hcp(south,spades)
+hp = hcp(south,hearts)
+dp = hcp(south,diamonds)
+
 # Define East weak 2 bids w/o 3-card support by west
 w2S = shape(east,6xxx-x4xx     -any 7xxx-any 66xx-any 65xx) and 2 * sp > tp and spades(west)<3
 w2H = shape(east,x6xx-4xxx     -any 7xxx-any 66xx-any 65xx) and 2 * hp > tp and hearts(west)<3
@@ -37,8 +42,15 @@ weak   = hcp(north)<8
 invite = hcp(north)>7 and hcp(north)<12 and not hascard(west,2C)
 force  = hcp(north)>11
 
-eOpensWeak2 and sDoubles and wPasses
-and (weak or invite or force)
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
+# Define leveling
+levWeak   = weak   and keep
+levInvite = invite and keep
+levForce  = force  and keep
+levelTheDeal = (levWeak or levInvite or levForce)
+
+eOpensWeak2 and sDoubles and wPasses and (weak or invite or force)
+and levelTheDeal
 
 action
 average "Weak  " 100 * weak,
