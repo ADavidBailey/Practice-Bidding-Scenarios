@@ -76,14 +76,14 @@ lC = top3(north,clubs)==2
 leadAsk = nsFit and (lS or lH or lD or lC) and not (rule17 or rule15)
 
 ### Define Mild preempt -- MILD PREEMPT
-raise = fit and hcp(north)>6    and not(rule17 or rule15 or leadAsk)
+raise = nsFit and hcp(north)>6    and not(rule17 or rule15 or leadAsk)
 
 ### Define North's long & strong suits
 sS = (spades(north)==5 and top4(north,spades)==4)     or (spades(north)>5   and top4(north,spades)==3)
 sH = (hearts(north)==5 and top4(north,hearts)==4)     or (hearts(north)>5   and top4(north,hearts)==3)
 sD = (diamonds(north)==5 and top4(north,diamonds)==4) or (diamonds(north)>5 and top4(north,diamonds)==3)
 sC = (clubs(north)==5 and top4(north,clubs)==4)       or (clubs(north)>5    and top4(north,clubs)==3)
-mySuit = (sS or sH or sD or sC) and not fit and not (rule17 or rule15 or leadAsk or raise)
+mySuit = (sS or sH or sD or sC) and not nsFit and not (rule17 or rule15 or leadAsk or raise)
 
 ### Define pass
 pass = not (rule17 or rule15 or leadAsk or raise or mySuit)
