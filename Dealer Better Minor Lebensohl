@@ -15,9 +15,9 @@ w2H = shape(east,x6xx-4xxx     -any 7xxx-any 66xx-any 65xx) and 2 * hp > tp and 
 w2D = shape(east,xx6x-x4xx-4xxx-any 7xxx-any 66xx-any 65xx) and 2 * dp > tp and top5(east,diamonds)>2 and diamonds(west)<3
 
 ### Define West X -- short in opener's suit and 4-cards in each unbid major
-sShortS = w2S and spades(south)<3   and shape(west,x4xx)
-sShortH = w2H and hearts(south)<3   and shape(west,4xxx)
-sShortD = w2D and diamonds(south)<3 and shape(west,44xx)
+sShortS = w2S and spades(south)<3   and shape(south,x4xx)
+sShortH = w2H and hearts(south)<3   and shape(south,4xxx)
+sShortD = w2D and diamonds(south)<3 and shape(south,44xx)
 sShort = (sShortS or sShortH or sShortD)
 
 # Define South stopper
