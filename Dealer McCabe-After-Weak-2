@@ -3,7 +3,7 @@ setDealerCode(`
 
 # McCabe after Weak 2
 # The McCabe Convention gives useful options for Responder after Partner’s Weak Two Bid is doubled.
-generate 10000000
+generate 20000000
 produce 1000
 dealer south
 
@@ -16,13 +16,11 @@ tp = hcp(south)
 sp = hcp(south,spades)
 hp = hcp(south,hearts)
 dp = hcp(south,diamonds)
-
-w2s = shape(south,6xxx-x4xx     -any 7xxx-any 66xx-any 65xx) and 2 * sp > tp and top5(south,spades)>2
-w2h = shape(south,x6xx-4xxx     -any 7xxx-any 66xx-any 65xx) and 2 * hp > tp and top5(south,hearts)>2
-w2d = shape(south,xx6x-x4xx-4xxx-any 7xxx-any 66xx-any 65xx) and 2 * dp > tp and top5(south,diamonds)>2
+w2s = shape(south,6xxx-x4xx     -any 7xxx-any 66xx-any 65xx) and 2 * sp > tp and top4(south,spades)>1
+w2h = shape(south,x6xx-4xxx     -any 7xxx-any 66xx-any 65xx) and 2 * hp > tp and top4(south,hearts)>1
+w2d = shape(south,xx6x-x4xx-4xxx-any 7xxx-any 66xx-any 65xx) and 2 * dp > tp and top4(south,diamonds)>1
  
-w2Range = tp>6 and tp<11 and losers(south)<8
- 
+w2Range = tp>6 and tp<10 and losers(south)<8
 weakTwo = (w2s or w2h or w2d) and w2Range
 
 // Define responders hand types
@@ -46,7 +44,7 @@ fit = sFit or hFit or dFit
 sShort = w2s and spades(west)<3
 hShort = w2h and hearts(west)<3
 dShort = w2d and diamonds(west)<3
-westX = hcp(west)>13 and (sShort or hShort or dShort) and shape(west,any 5440+any 4441+any 4432)
+westX = hcp(west)>12 and (sShort or hShort or dShort) and shape(west,any 5440+any 4441+any 4432)
 
 ### Define Rule17 points -- FORCE TO GAME
 sLen = sFit ? spades(north)   : 0
@@ -81,6 +79,7 @@ pass = not (rule17 or rule15 or leadAsk or raise or mySuit)
 # Define leveling
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
 
+# Level the deal
 lRule17      = rule17     and keep86
 lRule15      = rule15     and keep25
 lLeadAsk     = leadAsk    and keep14
@@ -100,18 +99,6 @@ average "Lead Ask      " 100 * leadAsk,
 average "Raise         " 100 * raise,
 average "mySuit        " 100 * mySuit,
 average "Pass          " 100 * pass,
-
-
-/*
-Rule of 17    : 20.4545
-Rule of 15    : 14.2045
-Lead Ask      : 19.3182
-Raise         : 17.0455
-mySuit        : 17.0455
-Pass          : 11.9318
-Generated 40000000 hands
-Produced 176 hands
-*/
 
 `,"S",true)
 Script
