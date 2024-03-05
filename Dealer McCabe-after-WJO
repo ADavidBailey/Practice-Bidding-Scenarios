@@ -56,7 +56,7 @@ sShort = w2s and spades(west)<3 and shape(west,x4xx)
 hShort = w2h and hearts(west)<3 and shape(west,4xxx)
 dShort = w2d and diamonds(west)<3 and shape(west,44xx)
 ewFit = (eH and hearts(west)>2) or (eD and diamonds(west)>3) or (eC and clubs(west)>3)
-westX = hcp(west)>8 and (sShort or hShort or dShort) and shape(west,any 5440+any 4441+any 4432) and not ewFit
+westX = hcp(west)>8 and (sShort or hShort or dShort) and shape(west,any 5440+any 5431+any 4441+any 4432) and not ewFit
 
 ### Define Rule17 points -- FORCE TO GAME
 sLen = sFit ? spades(north)   : 0
