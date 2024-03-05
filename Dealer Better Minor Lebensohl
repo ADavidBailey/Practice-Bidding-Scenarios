@@ -39,7 +39,7 @@ wPasses = hcp(west)<10
 # North has to do something
 weak   = hcp(north)<8
 invite = hcp(north)>7 and hcp(north)<12 and (hascard(west,2C) or hascard(east,2D))
-force  = hcp(north)>11
+force  = hcp(north)>11 and not hascard(west,2C)  // keep 75%
 
 eOpensWeak2 and sDoubles and wPasses
 and (weak or invite or force)
