@@ -46,11 +46,12 @@ weakJumpOvercall = wjoSuit and wjoRange
 //    in you suit so you can rebid your own suit if Advancer passes.
 
 ### Define West X -- short in opener's suit and 4-cards in each unbid major
+// deny e/w fit, reduce west hcp, and allow 5431 to reduce 'Error generating deal'
 sShort = w2s and spades(west)<3 and shape(west,x4xx)
 hShort = w2h and hearts(west)<3 and shape(west,4xxx)
 dShort = w2d and diamonds(west)<3 and shape(west,44xx)
-ewFit = (eH and hearts(west)>2) or (eD and diamonds(west)>3) or (eC and clubs(west)>3)  // deny fit to increase X's
-westX = hcp(west)>8 and (sShort or hShort or dShort) and shape(west,any 5440+any 5431+any 4441+any 4432) and not ewFit  //added 5431 to reduce errors
+ewFit = (eH and hearts(west)>2) or (eD and diamonds(west)>3) or (eC and clubs(west)>3)
+westX = hcp(west)>6 and (sShort or hShort or dShort) and shape(west,any 5440+any 5431+any 4441+any 4432) and not ewFit
 
 # Define North's fit with South's suit
 sFit = w2s and spades(north)>2
@@ -93,10 +94,10 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Scr
 
 # Level the deal
 lRule17      = rule17     and keep
-lRule15      = rule15     and keep
-lLeadAsk     = leadAsk    and keep06
-lRaise       = raise      and keep03
-lmySuit      = mySuit     and keep81
+lRule15      = rule15     and keep44
+lLeadAsk     = leadAsk    and keep06 and not c3  // 4.5%
+lRaise       = raise      and keep06 and not c3  // 4.5%
+lmySuit      = mySuit     and keep56
 lPass        = pass       and keep03
 levelTheDeal = lRule17 or lRule15 or lLeadAsk or lRaise or lmySuit or lPass
 
@@ -113,16 +114,16 @@ average "mySuit    " 100 * mySuit,
 average "Pass      " 100 * pass,
 
 /*
-Rule of 17: 0
-Rule of 15: 12.1212
-Lead Ask  : 15.1515
-Raise     : 24.2424
-mySuit    : 12.1212
-Pass      : 36.3636
+Rule of 17: 6.66667
+Rule of 15: 20
+Lead Ask  : 13.3333
+Raise     : 22.2222
+mySuit    : 15.5556
+Pass      : 22.2222
 Generated 25000000 hands
-Produced 33 hands
-Initial random seed 1709656020
-Time needed   58.602 sec
+Produced 45 hands
+Initial random seed 1709659486
+Time needed   58.460 sec
 */
 
 `,"E",true)
