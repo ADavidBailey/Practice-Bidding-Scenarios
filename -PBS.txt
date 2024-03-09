@@ -1,4 +1,4 @@
-//BBOalert, Bidding Scenarios
+//BBOalert, Bidding Scenarios Beta
 //BBOalert, Bidding Scenarios - version 2.0
 Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/setDealerCode.js
 
@@ -95,8 +95,12 @@ Promise.resolve()
     // Press "Practice" button
     .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(4).click())
     .then(() => delay(delayValue))
+    // press "Start a table"
+    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(tableType).click())
+
     // press "Start a Teaching table"
     // .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(13).click())
+
     // press "Start a Bidding table"
     .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(12).click())
     .then(() => delay(delayValue))
@@ -146,20 +150,81 @@ function delay(duration) {
     });
 }
 //Script
-/*
 
+//Script,setTeachingTable
+var delayValue = 250;
+Promise.resolve()
+
+// From Thorvald
+    .then(() => {
+         const homeButton = $("nav-bar button", BBOcontext()).eq(0);
+			const isDisabled = homeButton.prop('disabled');
+
+			if (isDisabled) {
+				console.log("The home button is disabled.");
+			} else {
+				console.log("The home button is enabled.");
+            homeFound = true;
+				alert("You must be at the BBO Home to start a table.")
+            throw new Error("Go Home.");
+			}
+    })
+
+
+    // Press "Practice" button
+    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(4).click())
+    .then(() => delay(delayValue))
+    // press "Start a Teaching table"
+    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(13).click())
+    // press "Start a Bidding table"
+    // .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(12).click())
+    .then(() => delay(delayValue))
+    // click table switches. Eventually remove unwanted portions of code.
+    // Disallow kibitzers
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(0).click())
+    .then(() => delay(delayValue))
+    // Disallow kibitzers to chat with players
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(1).click())
+    .then(() => delay(delayValue))
+    // Set "Permission required to kibitz"
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(2).click())
+    .then(() => delay(delayValue))
+    // Set "Permission required to play"
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(3).click())
+    .then(() => delay(delayValue))
+    // Make the table "Invisible"
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(4).click())
+    .then(() => delay(delayValue))
+    // press "Start Table" button
+    .then(() => $("start-table-screen .buttonRowClass button", BBOcontext()).eq(2).click())
+    .then(() => delay(3000))
     // set your user ID in all four directions
     // "South"
-    //    .then(() => $(".nameBarClass :contains(South - Sit!)", BBOcontext()).eq(0).click()).then(() => delay(delayValue))
- //   .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click()).then(() => delay(delayValue))
-/*
-    // set your user ID in all four directions
-    // "South"
-    //    .then(() => $(".nameBarClass :contains(South - Sit!)", BBOcontext()).eq(0).click()).then(() => delay(delayValue))
- //   .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click()).then(() => delay(delayValue))
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(0).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => delay(delayValue))
+    // "West"
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(1).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => delay(delayValue))
+    // "North"
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(2).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => delay(delayValue))
+    // "East"
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(3).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
 
-Shortcut,SBT,%setBiddingTable%
-*/
+function delay(duration) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, duration);
+    });
+}
+//Script
 
 For each individual doc file where the code is defined you should :
 - add BBOalert code to define the script and the button
@@ -353,9 +418,9 @@ Option,Practice Table
 
 Button,Bidding Scenarios (click headers to open/close),,width=100% backgroundColor=lightyellow
 
-Button,Dealer Code,%reviewCurrentCode%,width=40% backgroundColor=lightgreen
-Button,Start Bidding Table,%setBiddingTable%,width=60% backgroundColor=lightgreen
-#Button,Start Teaching Table,%setTeachingTable%,width=38% backgroundColor=lightgreen
+Button,See Code,%reviewCurrentCode%,width=24% backgroundColor=lightgreen
+Button,Start Bidding Tbl,%setBiddingTable%,width=38% backgroundColor=lightgreen
+Button,Start Teaching Tbl,%setTeachingTable%,width=38% backgroundColor=lightgreen
 
 Script,reviewCurrentCode,setDealerCode("");
 
