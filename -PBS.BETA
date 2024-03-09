@@ -75,12 +75,23 @@ if((l%13) == 0) displayHCP();
 //Script,setBiddingTable
 var delayValue = 250;
 Promise.resolve()
-    // press "Home" button
-    .then(() => $("nav-bar button", BBOcontext()).eq(1).click())
-    .then(() => delay(delayValue))
-    // close dialog box if any
-    .then(() => $("server-prompt button",window.parent.document).eq(0).click())
-    .then(() => delay(delayValue))
+
+// From Thorvald
+    .then(() => {
+         const homeButton = $("nav-bar button", BBOcontext()).eq(0);
+			const isDisabled = homeButton.prop('disabled');
+
+			if (isDisabled) {
+				console.log("The home button is disabled.");
+			} else {
+				console.log("The home button is enabled.");
+            homeFound = true;
+				alert("You must be at the BBO Home to start a table.")
+            throw new Error("Go Home.");
+			}
+    })
+
+
     // Press "Practice" button
     .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(4).click())
     .then(() => delay(delayValue))
