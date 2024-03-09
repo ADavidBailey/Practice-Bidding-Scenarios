@@ -1,5 +1,5 @@
 //BBOalert, Bidding Scenarios
-//BBOalert, Bidding Scenarios - version 1.6
+//BBOalert, Bidding Scenarios - version 2.0
 Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/setDealerCode.js
 
 // Hide the Char, Word, All backspace buttons
@@ -72,6 +72,95 @@ var l = $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", pa
 if((l%13) == 0) displayHCP();
 //Script
 
+//Script,setBiddingTable
+var delayValue = 250;
+Promise.resolve()
+
+// From Thorvald
+    .then(() => {
+         const homeButton = $("nav-bar button", BBOcontext()).eq(0);
+			const isDisabled = homeButton.prop('disabled');
+
+			if (isDisabled) {
+				console.log("The home button is disabled.");
+			} else {
+				console.log("The home button is enabled.");
+            homeFound = true;
+				alert("You must be at the BBO Home to start a table.")
+            throw new Error("Go Home.");
+			}
+    })
+
+
+    // Press "Practice" button
+    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(4).click())
+    .then(() => delay(delayValue))
+    // press "Start a Teaching table"
+    // .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(13).click())
+    // press "Start a Bidding table"
+    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(12).click())
+    .then(() => delay(delayValue))
+    // click table switches. Eventually remove unwanted portions of code.
+    // Disallow kibitzers
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(0).click())
+    .then(() => delay(delayValue))
+    // Disallow kibitzers to chat with players
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(1).click())
+    .then(() => delay(delayValue))
+    // Set "Permission required to kibitz"
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(2).click())
+    .then(() => delay(delayValue))
+    // Set "Permission required to play"
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(3).click())
+    .then(() => delay(delayValue))
+    // Make the table "Invisible"
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(4).click())
+    .then(() => delay(delayValue))
+    // press "Start Table" button
+    .then(() => $("start-table-screen .buttonRowClass button", BBOcontext()).eq(2).click())
+    .then(() => delay(3000))
+    // set your user ID in all four directions
+    // "South"
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(0).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => delay(delayValue))
+    // "West"
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(1).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => delay(delayValue))
+    // "North"
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(2).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => delay(delayValue))
+    // "East"
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(3).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+
+function delay(duration) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, duration);
+    });
+}
+//Script
+/*
+
+    // set your user ID in all four directions
+    // "South"
+    //    .then(() => $(".nameBarClass :contains(South - Sit!)", BBOcontext()).eq(0).click()).then(() => delay(delayValue))
+ //   .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click()).then(() => delay(delayValue))
+/*
+    // set your user ID in all four directions
+    // "South"
+    //    .then(() => $(".nameBarClass :contains(South - Sit!)", BBOcontext()).eq(0).click()).then(() => delay(delayValue))
+ //   .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click()).then(() => delay(delayValue))
+
+Shortcut,SBT,%setBiddingTable%
+*/
+
 For each individual doc file where the code is defined you should :
 - add BBOalert code to define the script and the button
 - publish the files as web page
@@ -83,6 +172,7 @@ Import,Jacoby2N,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/
 Import,Jacoby2NLeveled,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Jacoby%202N%20(Leveled)
 Import,Jacoby2N4xVoid,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Jacoby-2N-4x-void
 Import,Jacoby2N4xVoidLeveled,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Jacoby-2N-4x-void-Leveled
+
 Import,SupportDouble,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Support%20Double.txt
 Import,Splinters,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Splinters.txt
 Import,InvertedMinors,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Inverted%20Minors.txt
@@ -140,7 +230,6 @@ Import,namyatSStrong,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/
 Import,KokishRelay,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Kokish%20Relay.txt
 Import,RuleOf2,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Rule%20of%202.txt
 
-
 Import,TrapPass,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Trap-Pass
 Import,TrapPassMaybe,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Trap-Pass-Maybe
 
@@ -187,8 +276,8 @@ Import,Stayman,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/m
 Import,XYZ,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20XYZ
 Import,BergenThrumpX,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Bergen%20Thrump%20X%20after%20Preempt
 Import,TislevollAfterOppsPreempt,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Tislevoll%20after%20Opps%20Preempt
-Import,Gambling3N,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Gambling%203N
-Import,OppsGambling3N,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Opps%20Gambling%203N
+Import,Gambling,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Gambling%20
+Import,OppsGambling,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Opps%20Gambling%20
 Import,OppsWeakTwo,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Opps%20Weak%20Two
 Import,OppsPreempt,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Opps%20Preempt
 Import,Multi2D,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Multi%202D
@@ -198,7 +287,6 @@ Import,LebensohlOverWeak2,https://github.com/ADavidBailey/Practice-Bidding-Scena
 Import,TexasOrJacoby,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Texas%20or%20Jacoby
 Import,Texas,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Texas%20Transfer
 Import,MinorSlams,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Minor%20Slams
-Import,TestJacoby2N,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Test%20Jacoby%202N
 Import,MultiLandy,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Multi-Landy
 Import,Meckwell,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Meckwell
 Import,DONT,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20DONT
@@ -226,8 +314,8 @@ Import,scsStrongClub,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/
 # End of Strong Club System
 
 Import,WeOvercall1N,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20We%20Overcall%201N
-Import,Weak2With10,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Weak%202%20with%2010%2B%20Resp
-Import,Weak2With14,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Weak%202%20with%2014%2B%20Resp
+#  Import,Weak2With10,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Weak%202%20with%2010%2B%20Resp
+#  Import,Weak2With14,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Weak%202%20with%2014%2B%20Resp
 Import,GameForce2C,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Game%20Forcing%202C
 Import,OppsTakeoutX,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Opps%20Takeout%20X
 Import,OppsTakeoutXWeXX,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Opps%20Takeout%20X%20We%20XX
@@ -247,7 +335,6 @@ Import,Misfit11to12,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/b
 Import,Misfit13Plus,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Misfit-13-Plus
 Import,xyNT,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Two-Way-New-Minor-Forcing-aka-xyNT
 
-
 # Basic
 Import,OneMajor,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Basic%201%20of%20a%20Major
 Import,BasicMajorSuitFit,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Basic%20Major%20Suit%20Fit
@@ -261,13 +348,15 @@ Import,AllNTResp,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob
 Import,RespTo1Minor,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Basic%20Responding%20to%201%20Minor
 
 
+
 Option,Practice Table
 
-# Button,Start Bidding Table,,width=50% backgroundColor=lightgreen
-# Button,Review code,%reviewCurrentCode%,width=50% backgroundColor=lightgreen
-
 Button,Bidding Scenarios (click headers to open/close),,width=100% backgroundColor=lightyellow
-Button,Review code,%reviewCurrentCode%,width=100% backgroundColor=lightgreen
+
+Button,Dealer Code,%reviewCurrentCode%,width=40% backgroundColor=lightgreen
+Button,Start Bidding Table,%setBiddingTable%,width=60% backgroundColor=lightgreen
+#Button,Start Teaching Table,%setTeachingTable%,width=38% backgroundColor=lightgreen
+
 Script,reviewCurrentCode,setDealerCode("");
 
 Button,Basic Bridge,,width=100% backgroundColor=lightblue
@@ -292,7 +381,6 @@ Import,MinorSlams
 Button,Minor/Major Sequences,,width=100% backgroundColor=lightblue
 
 Import,FourthSuitForcing
-#Button,---
 Import,NMFandSD
 Import,XYZ
 Import,xyNT
@@ -327,6 +415,7 @@ Import,Jacoby2N
 Import,Jacoby2NLeveled
 Import,Jacoby2N4xVoid
 Import,Jacoby2N4xVoidLeveled
+
 Import,SolowayJumpShift
 Button,---
 Import,SolowayJumpShiftType1
@@ -334,7 +423,6 @@ Import,SolowayJumpShiftType2
 Import,SolowayJumpShiftType3
 Import,SolowayJumpShiftType4
 Import,Splinters
-
 Import,GameForce2C
 
 Button,Notrump Sequences,,width=100% backgroundColor=lightblue
@@ -364,6 +452,7 @@ Import,TwoNTandBalanced
 Import,TwoNTandXfer
 Import,ThreeNT
 
+
 Button,Preempts,,width=100% backgroundColor=lightblue
 
 Import,WeakTwoBids
@@ -373,14 +462,15 @@ Import,WeakTwoBidsLaxLev
 Import,McCabeOverWeak2
 Import,Multi2D
 Import,Preempts
-Import,Gambling3N
+Import,Gambling
 
 Import,OppsWeakTwo
 Import,OppsMulti2D
 Import,OppsPreempt
+
 Import,NToverRHO3x
 Import,NToverLHO3x
-Import,OppsGambling3N
+Import,OppsGambling
 
 
 Button,We Compete in Opponents Auctions,,width=100% backgroundColor=lightblue
@@ -388,19 +478,18 @@ Import,Overcalls
 Import,JumpOvercalls
 Import,McCabeOverWJO
 Import,WeOvercall1N
-#Button,---
 Import,TakeoutDoubles
 Import,OppRedoubles
 Import,Weak2_X_XX
 Import,Preempt_X_XX
 Import,TwoSuitedOvercalls
-
+Button,---
 Import,LeapingMichaels
 Button,---
 Import,NonLeapingMichaelsAfter3
 Import,NonLeapingMichaelsAfter2
-
 Import,ResponsiveDouble
+Button,---
 Import,BalancedPower
 Import,UnbalPowerDoubles
 Import,LebensohlOverWeak2
@@ -424,7 +513,7 @@ Import,TrapPass
 Import,TrapPassMaybe
 Import,DealingWithOvercallsWeak
 Import,DealingWithOvercallsStrong
-Button,---
+
 Import,OppsTakeoutX
 Import,OppsTakeoutXWeXX
 Import,OppsOvercall1NT
