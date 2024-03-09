@@ -72,7 +72,7 @@ var l = $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", pa
 if((l%13) == 0) displayHCP();
 //Script
 
-//Script,setTable(tableType)
+//Script,setBiddingTable
 var delayValue = 250;
 Promise.resolve()
 
@@ -97,8 +97,10 @@ Promise.resolve()
     .then(() => delay(delayValue))
     // press "Start a table"
     .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(tableType).click())
+    // press "Start a Teaching table"
+    // .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(13).click())
     // press "Start a Bidding table"
-    // .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(12).click())
+    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(12).click())
     .then(() => delay(delayValue))
     // click table switches. Eventually remove unwanted portions of code.
     // Disallow kibitzers
@@ -146,20 +148,6 @@ function delay(duration) {
     });
 }
 //Script
-/*
-
-    // set your user ID in all four directions
-    // "South"
-    //    .then(() => $(".nameBarClass :contains(South - Sit!)", BBOcontext()).eq(0).click()).then(() => delay(delayValue))
- //   .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click()).then(() => delay(delayValue))
-/*
-    // set your user ID in all four directions
-    // "South"
-    //    .then(() => $(".nameBarClass :contains(South - Sit!)", BBOcontext()).eq(0).click()).then(() => delay(delayValue))
- //   .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click()).then(() => delay(delayValue))
-
-Shortcut,SBT,%setBiddingTable%
-*/
 
 //Script,setTeachingTable
 var delayValue = 250;
@@ -188,7 +176,7 @@ Promise.resolve()
     .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(13).click())
     // press "Start a Bidding table"
     // .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(12).click())
-    // .then(() => delay(delayValue))
+    .then(() => delay(delayValue))
     // click table switches. Eventually remove unwanted portions of code.
     // Disallow kibitzers
     .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(0).click())
