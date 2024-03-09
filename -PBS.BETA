@@ -72,7 +72,7 @@ var l = $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", pa
 if((l%13) == 0) displayHCP();
 //Script
 
-//Script,setBiddingTable
+//Script,setTable(tableType)
 var delayValue = 250;
 Promise.resolve()
 
@@ -95,10 +95,10 @@ Promise.resolve()
     // Press "Practice" button
     .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(4).click())
     .then(() => delay(delayValue))
-    // press "Start a Teaching table"
-    // .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(13).click())
+    // press "Start a table"
+    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(tableType).click())
     // press "Start a Bidding table"
-    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(12).click())
+    // .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(12).click())
     .then(() => delay(delayValue))
     // click table switches. Eventually remove unwanted portions of code.
     // Disallow kibitzers
@@ -429,8 +429,8 @@ Option,Practice Table
 Button,Bidding Scenarios (click headers to open/close),,width=100% backgroundColor=lightyellow
 
 Button,See Code,%reviewCurrentCode%,width=24% backgroundColor=lightgreen
-Button,Start Bidding Tbl,%setBiddingTable%,width=38% backgroundColor=lightgreen
-Button,Start Teaching Tbl,%setTeachingTable%,width=38% backgroundColor=lightgreen
+Button,Start Bidding Tbl,%setTable(12)%,width=38% backgroundColor=lightgreen
+Button,Start Teaching Tbl,%setTable(13)%,width=38% backgroundColor=lightgreen
 
 Script,reviewCurrentCode,setDealerCode("");
 
