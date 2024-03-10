@@ -226,6 +226,7 @@ function delay(duration) {
 }
 //Script
 
+
 For each individual doc file where the code is defined you should :
 - add BBOalert code to define the script and the button
 - publish the files as web page
@@ -665,3 +666,6 @@ Import,NegativeFreeBid
 Button,-- Facebook: Practice Bidding Scenarios --,window.open(https://www.facebook.com/groups/598917089100836);,width=100% backgroundColor=lightyellow
 
 Option
+Script,onLogin,setTimeout(setOptionsOff, 200);
+Script,onLogin,parent.$('.verticalClass')[0].click();
+
