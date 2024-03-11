@@ -77,7 +77,7 @@ calmOpps = calmEast and calmWest
 ### End of Boiler Plate ###
 
 # South opens 1C, 1D, or 1H
-sOpens = (oC or oD or oH) and hcp(north)>11
+sOpens = (oC or oD or oH) and shape(south,any 5431+any 5440+any 4432) and hcp(north)>11
 
 # North responds 1H or 1S and South has 3-card support
 nS = spades(north)>=hearts(north) and shape(north,5xxx+4xxx) and shape(south,3xxx)
