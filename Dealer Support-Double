@@ -90,7 +90,7 @@ nH = hearts(north)>spades(north)  and shape(north,x5xx+x4xx) and shape(south,x3x
 nResponds = (((oC or oD) and (nH or nS)) or (oH and nS)) and shape(north,xxxx-any 55xx-any 65xx-any 75xx) and hcp(north)>5
 
 
-eActs = hcp(east)>10 and shape(east,any 0xxx+any 1xxx +any 22xx)
+eActs = hcp(east)>10 and shape(east,any 0xxx+any 1xxx +any 22xx--any 66xx- any 65xx-any 55xx)
 
 # South makes a support double
 sOpens and calmWest and nResponds and eActs 
