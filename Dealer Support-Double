@@ -86,7 +86,12 @@ nH = hearts(north)>spades(north)  and shape(north,x5xx+x4xx) and shape(south,x3x
 nResponds = (((oC or oD) and (nH or nS)) or (oH and nS)) and shape(north,xxxx-any 55xx-any 65xx-any 75xx) and hcp(north)>5
 
 # East overcalls or doubles
-eShape = shape(east,any 0xxx+any 1xxx-any 7xxx-any 65xx)
+eS =       nS ? spades(east)  <3 : spades(east)  >3
+eH = oH or nH ? hearts(east)  <3 : hearts(east)  >3
+eD = oD       ? diamonds(east)<3 : diamonds(east)>3
+eC = oC       ? clubs(east)   <3 : clubs(east)   >3
+
+eShape = eS and eH and eD and eC
 eActs = hcp(east)>10 and eShape
 
 # South makes a support double
