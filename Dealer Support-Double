@@ -1,8 +1,12 @@
-#Script,TwoOverOne
+Script,SupportDouble
 setDealerCode(`
 
-dealer south
 produce 1000
+dealer south
+
+# Support Double
+
+# Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
 
 ## Imported Script -- Predict Opening Bid ##
 
@@ -56,59 +60,53 @@ oH = not oS and h>4 and h>=d and h>=c and s1Range and not P2
 oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and s1Range and not P2
 oC = not (oS or oH or oD) and s1Range and not P2
 openingSuit = (oS or oH or oD or oC)
+oneSpade = oS
+oneHeart = oH
+oneDiamond = oD                                                              // duplicates weakNT
+oneClub = oC                                                                 // duplicates weakNT
 
 ### End of Predict-Opening-Bid ###
-### Predice North's longest suit ###
 
+# Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
 
-# North's longest suit for responding in a new suit at the 2-level
-sN = spades(north)
-hN = hearts(north)
-dN = diamonds(north)
-cN = clubs(north)
-nS = sN>=hN and sN>=dN and sN>=cN
-nH = not nS and hN>=dN and hN>=cN
-nD = not nS and not nH and dN>=cN
-nC = not nS and not nH and not nD
-
-# South opens & North responds
-oneH = oH and s==3 and nS
-oneD = oD and nD<4 and ((nH and h==3) or (nS and s==3))
-oneC = oC and nC<4 and ((nH and h==3) or (nS and s==3))
-
-nShape = shape(north,any 6xxx+any 5xxx+any 4441-any 55xx -any 55xx)
-nRange = hcp(north)>5 and hcp(north)<12
-sRange = hcp(south)>11 and hcp(south)<20
-
-sOnR = (oneH or oneD or oneC) and sRange and nShape and nRange
-eOvercalls = shape(east,any 6xxx+any 5xxx-any 65xx-any 55xx) and hcp(east)>10
-
-# Define calmWest
+# Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
+calmEast = (shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx) and hcp(east)<9) or (shape(east,any 4333 +any 4432) and hcp(east)<12)
 calmWest = (shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx) and hcp(west)<9) or (shape(west,any 4333 +any 4432) and hcp(west)<12)
+calmOpps = calmEast and calmWest
+
+### End of Boiler Plate ###
+
+# South opens 1C, 1D, or 1H, a 12-15 hcp and a 3-card fit for responder's major
+sOpens = (oC or oD or oH) and shape(south,any 5332+any 4432+any 4333-4xxx-x4xx) and hcp(south)>11 and hcp(south)<15
+
+# North responds 1H or 1S
+nH = shape(north,x5xx+x4xx) and shape(south,x3xx) 
+nS = shape(north,5xxx+4xxx) and shape(south,3xxx)
+
+# East overcalls or doubles
+eShortSuit = shape(east,any 0xxx+any 1xxx)
+eActs = hcp(east)>10 and eShortSuit
 
 
-# Now do it.
-sOnR and calmWest and eOvercalls
+nResponds = (((oC or oD) and (nH or nS)) or (oH and nS)) and shape(north,xxxx-any 55xx-any 65xx-any 75xx) and hcp(north)>5
+
+# South rebids 1N
+sOpens and calmWest and nResponds and eActs 
 
 action
-printoneline
-
+#printoneline,
+average "1C     " 100 * oC,
+average "1D     " 100 * oD,
+average "1H     " 100 * oH,
+average "   - 1H" 100 * nH,
+average "   - 1S" 100 * nS,
 
 `,"S",true)
 Script
-Button,Two Over One,\n\
---- Any 2/1 after 1!D，1!H，or 1!S opening\n\
-1!D - 2!C\n\
-1!H - 2!C or 2!D\n\
-1!S - 2!C or 2!D or 2!H\n\
-%TwoOverOne%
-
-
-# South opens
-sOpens = (oC or oD or oH or oS)
-# West passes
-calmEast
-# North responds 1H or 1S
-nbids = oC and (
-# East overcalls
-# South has 3-card support
+Button,Support Double,\n\
+--- Support Double\n\
+Partner opens 1!C，1!D，or 1!H\n\
+You respond 1!H or 1!S\n\
+Your LHO bids or doubles\n\
+Your partner doubles or redoubles.\n\
+%SupportDouble%
