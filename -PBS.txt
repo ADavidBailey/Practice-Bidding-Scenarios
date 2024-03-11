@@ -95,7 +95,7 @@ Promise.resolve()
 			} else {
 				console.log("The home button is enabled.");
             homeFound = true;
-				alert("You must be at the BBO Home to start a table.")
+				alert("You must be at the BBO Home page to start a table.")
             throw new Error("Go Home.");
 			}
     })
@@ -174,7 +174,7 @@ Promise.resolve()
 			} else {
 				console.log("The home button is enabled.");
             homeFound = true;
-				alert("You must be at the BBO Home to start a table.")
+				alert("You must be at the BBO Home page to start a table.")
             throw new Error("Go Home.");
 			}
     })
@@ -248,12 +248,16 @@ Import,Jacoby2NLeveled,https://github.com/ADavidBailey/Practice-Bidding-Scenario
 Import,Jacoby2N4xVoid,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Jacoby-2N-4x-void
 Import,Jacoby2N4xVoidLeveled,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Jacoby-2N-4x-void-Leveled
 
-Import,SupportDouble,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Support%20Double.txt
+Import,SupportDouble,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Support-Double
+
+
 Import,Splinters,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Splinters.txt
 Import,InvertedMinors,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Inverted%20Minors.txt
 Import,Drury,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Drury
 Import,Runout,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Runout%20after%201N%20X.txt
 Import,NMFandSD,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20New%20Minor%20Forcing.txt
+
+Import,NewMinorForce,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20New-Minor-Forcing
 Import,StrongAfterNT,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Slam%20after%20NT.txt
 #Import,Major21,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Major%202%20Over%201.txt
 #Import,Minor21,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Minor%202%20Over%201.txt
@@ -458,6 +462,7 @@ Button,Minor/Major Sequences,,width=100% backgroundColor=lightblue
 
 Import,FourthSuitForcing
 Import,NMFandSD
+Import,NewMinorForce
 Import,XYZ
 Import,xyNT
 Import,InvJump3Under
@@ -480,17 +485,17 @@ Import,BergenRaises
 Import,XferAfter1MX
 Import,Drury
 
-
 Button,Game Forcing Sequences,,width=100% backgroundColor=lightblue
 
 Import,TwoOverOne
-#Import,Minor21
 Import,Serious
 #Button,---
 Import,Jacoby2N
 Import,Jacoby2NLeveled
 Import,Jacoby2N4xVoid
 Import,Jacoby2N4xVoidLeveled
+Import,Splinters
+Import,GameForce2C
 
 Import,SolowayJumpShift
 #Button,---
@@ -498,8 +503,6 @@ Import,SolowayJumpShiftType1
 Import,SolowayJumpShiftType2
 Import,SolowayJumpShiftType3
 Import,SolowayJumpShiftType4
-Import,Splinters
-Import,GameForce2C
 
 Button,Notrump Sequences,,width=100% backgroundColor=lightblue
 
