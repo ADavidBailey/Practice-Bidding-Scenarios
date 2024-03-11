@@ -80,8 +80,9 @@ calmOpps = calmEast and calmWest
 sOpens = (oC or oD or oH) and shape(south,any 5332+any 4432+any 4333-4xxx-x4xx) and hcp(south)>11 and hcp(south)<15
 
 # North responds 1H or 1S
-nH = shape(north,x5xx+x4xx) and shape(south,x3xx) 
-nS = shape(north,5xxx+4xxx) and shape(south,3xxx)
+
+nS = shape(north,5xxx+4xxx) and shape(south,3xxx) and spades(north)>=hearts(north)
+nH = shape(north,x5xx+x4xx) and shape(south,x3xx) and hearts(north)>spades(north)
 
 # East overcalls or doubles
 eShape = shape(east,any 0xxx+any 1xxx-any 7xxx-any 65xx)
