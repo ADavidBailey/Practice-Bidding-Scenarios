@@ -84,8 +84,8 @@ nH = shape(north,x5xx+x4xx) and shape(south,x3xx)
 nS = shape(north,5xxx+4xxx) and shape(south,3xxx)
 
 # East overcalls or doubles
-eShortSuit = shape(east,any 0xxx+any 1xxx)
-eActs = hcp(east)>10 and eShortSuit
+eShape = shape(east,any 0xxx+any 1xxx-any 7xxx-any 65xx)
+eActs = hcp(east)>10 and eShape
 
 
 nResponds = (((oC or oD) and (nH or nS)) or (oH and nS)) and shape(north,xxxx-any 55xx-any 65xx-any 75xx) and hcp(north)>5
