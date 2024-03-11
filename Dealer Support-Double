@@ -81,7 +81,7 @@ calmOpps = calmEast and calmWest
 aD = oD and diamonds(east)<3
 aH = oH and hearts(east)<3
 
-sOpens = (oC or aD or aH) and shape(south,any 5431+any 5440+any 4432) and hcp(south)>11
+sOpens = (oC or aD or aH) and shape(south,any 5431+any 5440+any 4432) and hcp(south)>11 and hcp(south)<20
 
 # North responds 1H or 1S and South has 3-card support and East is short in North's suit
 nS = spades(north)>=hearts(north) and shape(north,5xxx+4xxx) and shape(south,3xxx) and spades(east)<2
