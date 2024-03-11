@@ -79,7 +79,7 @@ calmOpps = calmEast and calmWest
 # South opens 1C, 1D, or 1H
 
 aHeart = oH and east(hearts)<2
-sOpens = (oC or oD or aHeart) and shape(south,any 5431+any 5440+any 4432) and hcp(south)>11 and hcp(north)>11
+sOpens = (oC or oD or aHeart) and shape(south,any 5431+any 5440+any 4432) and hcp(south)>11
 
 # North responds 1H or 1S and South has 3-card support
 nS = spades(north)>=hearts(north) and shape(north,5xxx+4xxx) and shape(south,3xxx) and spades(east)<3
