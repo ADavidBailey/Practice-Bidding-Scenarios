@@ -77,22 +77,18 @@ calmOpps = calmEast and calmWest
 ### End of Boiler Plate ###
 
 # South opens 1C, 1D, or 1H
-sOpens = (oC or oD or oH) and shape(south,any 5431+any 5440+any 4432) and hcp(north)>11
+
+aHeart = oH and east(hearts)<2
+sOpens = (oC or oD or aHeart) and shape(south,any 5431+any 5440+any 4432) and hcp(north)>11
 
 # North responds 1H or 1S and South has 3-card support
-nS = spades(north)>=hearts(north) and shape(north,5xxx+4xxx) and shape(south,3xxx)
-nH = hearts(north)>spades(north)  and shape(north,x5xx+x4xx) and shape(south,x3xx)
+nS = spades(north)>=hearts(north) and shape(north,5xxx+4xxx) and shape(south,3xxx) and spades(east)<3
+nH = hearts(north)>spades(north)  and shape(north,x5xx+x4xx) and shape(south,x3xx) and hearts(east)<3
 
 nResponds = (((oC or oD) and (nH or nS)) or (oH and nS)) and shape(north,xxxx-any 55xx-any 65xx-any 75xx) and hcp(north)>5
 
-# East overcalls or doubles
-eS =       nS ? spades(east)  <3 : spades(east)  >3
-eH = oH or nH ? hearts(east)  <3 : hearts(east)  >3
-eD = oD       ? diamonds(east)<3 : diamonds(east)>3
-eC = oC       ? clubs(east)   <3 : clubs(east)   >3
 
-eShape = eS and eH and eD and eC
-eActs = hcp(east)>10 and eShape
+eActs = hcp(east)>10 and shape(east,any 0xxx+any 1xxx +any 22xx)
 
 # South makes a support double
 sOpens and calmWest and nResponds and eActs 
