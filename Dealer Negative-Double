@@ -2,6 +2,11 @@ Script,NegativeDouble
 setDealerCode(
 `
 dealer south
+produce 100
+
+## Imported Script -- Predict Opening Bid ##
+
+# Calculate length points for South (lengthPoints)dealer south
 produce 40
 
 ## Imported Script -- Predict Opening Bid ##
@@ -95,10 +100,12 @@ x5 = oD and wS         ? nH and wP1 : 0
 x6 = oD and wC         ? nM and wP2 : 0
 x7 = oH and (wC or wD) ? nS and wP2 : 0
 x8 = oS and (wC or wD) ? nH and wP2 : 0
+
 p1 = hcp(north)>5
 p2 = hcp(north)>8
 p3 = hcp(north)>11
-nDoubles = ((x1 or x2) and p1) or ((x3 or x4) and p2) or ((x5 or x6 or x7 or x8) and p3) 
+
+nDoubles = (((x1 or x2) and p1) or ((x3 or x4 or x5) and p2) or ((x6 or x7 or x8) and p3))
 
 sOpens and wOvercalls and nDoubles
 
