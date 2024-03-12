@@ -89,11 +89,13 @@ nM = shape(north,44xx)
 nH = shape(north,x4xx)
 nS = shape(north,4xxx)
 x1 = oC and wD         ? nM and wP1 : 0
+f1 = oC and wD         ? (nH or nS) and wP1 : 0 // This is NOT a negative double
 x2 = oC and wH         ? nS and wP1 : 0
 x3 = oC and wS         ? nH and wP1 : 0
 x4 = oD and wH         ? nS and wP1 : 0
 x5 = oD and wS         ? nH and wP1 : 0
 x6 = oD and wC         ? nM and wP2 : 0
+f2 = oD and wC         ? (nH or nS) and wP1 : 0 // This is NOT a negative double
 x7 = oH and (wC or wD) ? nS and wP2 : 0
 x8 = oS and (wC or wD) ? nH and wP2 : 0
 
@@ -101,7 +103,7 @@ p1 = hcp(north)>5
 p2 = hcp(north)>8
 p3 = hcp(north)>11
 
-nDoubles = (((x1 or x2) and p1) or ((x3 or x4 or x5) and p2) or ((x6 or x7 or x8) and p3))
+nDoubles = (((x1 or x2 or f1) and p1) or ((x3 or x4 or x5) and p2) or ((x6 or f2 or x7 or x8) and p3))
 
 sOpens and wOvercalls and nDoubles
 
