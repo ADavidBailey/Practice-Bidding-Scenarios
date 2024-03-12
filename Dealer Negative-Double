@@ -75,7 +75,7 @@ dW = diamonds(east)
 cW = clubs(east)
 wS = sW>=hW and sW>=dW and sW>=cW
 wH = not wS and hW>=dW and hW>=cW
-wD = not (wS or wH) and dW>=cW
+wD = not (wS or wH) and (dW>=cW or cW==3)
 wC = not (wS or wH or wD)
 
 # Negative Double
