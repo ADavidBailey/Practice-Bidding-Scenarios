@@ -1,12 +1,10 @@
 Script,NegativeDouble
 setDealerCode(
 `
+
+# Negative Double
+
 dealer south
-produce 100
-
-## Imported Script -- Predict Opening Bid ##
-
-# Calculate length points for South (lengthPoints)dealer south
 produce 40
 
 ## Imported Script -- Predict Opening Bid ##
@@ -68,23 +66,21 @@ oneClub = oC                                                                 // 
 
 ### End of Predict-Opening-Bid ###
 
-# Predice West's overcall
-sW = spades(east)
-hW = hearts(east)
-dW = diamonds(east)
-cW = clubs(east)
+# Predict West's overcall
+sW = spades(west)
+hW = hearts(west)
+dW = diamonds(west)
+cW = clubs(west)
 wS = sW>=hW and sW>=dW and sW>=cW
 wH = not wS and hW>=dW and hW>=cW
 wD = not (wS or wH) and (dW>=cW or cW==3)
 wC = not (wS or wH or wD)
 
-# Negative Double
-
 # South Opens
-sOpens = (oS or oH or oD or oC) and (wS or wH or wD or wC)>4 and hcp(south)>11
+sOpens = (oS or oH or oD or oC) and hcp(south)>11
 
 # West overcalls
-wOvercalls = (wD or wH or wS or wC)
+wOvercalls = (wD or wH or wS or wC) and shape(west,any 6xxx+any 5xxx-any 65xx -any 55xx)
 wP1 = hcp(west)>5
 wP2 = hcp(west)>10
 
@@ -119,6 +115,7 @@ average "x5 " 100 * x5,
 average "x6 " 100 * x6,
 average "x7 " 100 * x7,
 average "x8 " 100 * x8,
+
 
 `)
 Script
