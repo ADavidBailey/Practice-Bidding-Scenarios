@@ -21,7 +21,7 @@ oneS = oS and nS<4 and (nH or nD or nC)
 oneH = oH and nH<4 and (nD or nC)
 oneD = oD and nD<4 and (nC)
 
-nShape = shape(north,any 6xxx+any 5xxx+any 4441-any 55xx -any 55xx)
+nShape = shape(north,any 6xxx+any 5xxx+any 4441-any 55xx)
 
 # Now do it.
 (oneS or oneH or oneD) and hcp(south)>11 and hcp(south)<20 and hcp(north)>12 and nShape and calmOpps
