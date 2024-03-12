@@ -5,7 +5,7 @@ setDealerCode(
 # Negative Double
 
 dealer south
-produce 40
+produce 1000
 
 ## Imported Script -- Predict Opening Bid ##
 
@@ -81,12 +81,12 @@ sOpens = (oS or oH or oD or oC) and hcp(south)>11
 
 # West overcalls
 wOvercalls = (wD or wH or wS or wC) and shape(west,any 6xxx+any 5xxx-any 65xx -any 55xx)
-wP1 = hcp(west)>7
+wP1 = hcp(west)>5
 wP2 = hcp(west)>10
 
 # North doubles
 nM = shape(north,44xx)
-nH = shape(north,x4xx+54xx+45xx)
+nH = shape(north,x4xx)
 nS = shape(north,4xxx)
 x1 = oC and wD         ? nM and wP1 : 0
 f1 = oC and wD         ? (nH or nS) and wP1 : 0 // This is NOT a negative double
@@ -108,15 +108,17 @@ nDoubles = (((x1 or x2 or f1) and p1) or ((x3 or x4 or x5) and p2) or ((x6 or f2
 sOpens and wOvercalls and nDoubles
 
 action
-printoneline,
-average "x1 " 100 * x1,
-average "x2 " 100 * x2,
-average "x3 " 100 * x3,
-average "x4 " 100 * x4,
-average "x5 " 100 * x5,
-average "x6 " 100 * x6,
-average "x7 " 100 * x7,
-average "x8 " 100 * x8,
+#printoneline,
+average "1C (1D) H&S " 100 * x1,
+average "1C (1D) H/S " 100 * f1,
+average "1C (1H) S   " 100 * x2,
+average "1C (1S) H   " 100 * x3,
+average "1D (1H) S   " 100 * x4,
+average "1D (1S) H   " 100 * x5,
+average "1D (2C) H&S " 100 * x6,
+average "1D (2C) H/S " 100 * f2,
+average "1H (2C/D) S " 100 * x7,
+average "1S (2C/D) H " 100 * x8,
 
 `)
 Script
