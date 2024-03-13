@@ -1,9 +1,6 @@
-Script,FourthSuitForcing
-setDealerCode(`
-
 dealer south
 generate 1000000
-produce 40
+produce 10000
 
 # Define Calm Opponents
 #Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
@@ -75,63 +72,58 @@ oneClub = oC                                                                 // 
 ### End of Predict-Opening-Bid ###
 
 
-# Predice North's 1-level responding suit
+# Predict North's 1-level responding suit
 sN = spades(north)
 hN = hearts(north)
 dN = diamonds(north)
 cN = clubs(north)
 
-nS = sN>hN  and sN>=dN         and shape(north,xxxx-any 5332-any 4333-any 4432)
-nH = hN>=dN and not sN         and shape(north,xxxx-any 5332-any 4333-any 4432)
+# North responds D, H, or S
+nS = sN>hN  and sN>=dN                  and shape(north,xxxx-any 5332-any 4333-any 4432)
+nH = hN>=dN and not sN                  and shape(north,xxxx-any 5332-any 4333-any 4432)
 nD = dN>3   and not (nS or nH) and dN>3 and shape(north,xxxx-any 5332-any 4333-any 4432)
-nC = not (nS or nH or nD)
+nC = cN>3   // user for N rebid
 
 # South opens and North is short in South's suit and responds at the 1-level
 oneH = oH and nH<3 and (nS)
 oneD = oD and nD<3 and (nH or nS)
 oneC = oC and nC<4 and (nD or nH or nS)
 
+sHcp = hcp(south)
+nHcp = hcp(south)
+TP = (sHcp + nHcp)
+
 # Define South's possible rebids
 sC = clubs(south)>3
 sD = diamonds(south)>3
-sH = hearts(south)>3
+sH = hearts(south)>3 and sHcp>17
 sS = spades(south)>3
 
 # Defining South's opening, North's response, and South's rebid
 CD = oneC and nD and (sH or sS)
-CH = oneC and nH and (sS or sD) and hcp(south)>17
+CH = oneC and nH and (sS or (sD and sHcp>17))
 CS = oneC and nS and (sD or sH)
-DH = oneD and nH and (sS or sC) and hcp(south)>17
-DS = oneD and nS and (sC or (sH and hcp(south)>17))
+DH = oneD and nH and (sS or sC)
+DS = oneD and nS and (sC or sH)
 HS = oneH and nS and (sC or sD)
 
-sHcp = hcp(south)>11 and hcp(south)<18
-nHcp = hcp(north)>5
-TP = (sHcp + nHcp)
 
-(oneC or oneD or oneH) and calmOpps and (hcp(south) + hcp(north))>25
+
+(oneC or oneD or oneH) and calmOpps and sHcp>11 and nHcp>6 and TP>26
 
 
 action
-printoneline,
-average "oneC" 100 * oneC,
-average "oneD" 100 * oneD,
-average "oneH" 100 * oneH,
-average "sC " 100 * sC,
-average "sD " 100 * sD,
-average "sH " 100 * sH,
+#printoneline,
+#average "oneC" 100 * oneC,
+#average "oneD" 100 * oneD,
+#average "oneH" 100 * oneH,
+#average "sC " 100 * sC,
+#average "sD " 100 * sD,
+#average "sH " 100 * sH,
 average "CD " 100 * CD,
 average "CH " 100 * CH,
 average "CS " 100 * CS,
 average "DH " 100 * DH,
 average "DS " 100 * DS,
 average "HS " 100 * HS,
-average "oneC " 100 * oneC,
-average "oneD " 100 * oneD,
-average "oneH " 100 * oneH,
-average "TP   " 100 * TP,
-
-
-`)
-Script
-Button,4th Suit Forcing,4th Suit Forcing\n%FourthSuitForcing%
+average "TP "       sHcp+nHcp,
