@@ -89,41 +89,34 @@ oneH = oH and nH<3 and (nS)
 oneD = oD and nD<3 and (nH or nS)
 oneC = oC and nC<4 and (nD or nH or nS)
 
-sHcp = hcp(south)
-nHcp = hcp(south)
-TP = (sHcp + nHcp)
+sP = hcp(south)
+nP = hcp(north)
 
 # Define South's possible rebids
 sC = clubs(south)>3
 sD = diamonds(south)>3
-sH = hearts(south)>3 and sHcp>17
+sH = hearts(south)>3 and sP>17
 sS = spades(south)>3
 
 # Defining South's opening, North's response, and South's rebid
 CD = oneC and nD and (sH or sS)
-CH = oneC and nH and (sS or (sD and sHcp>17))
+CH = oneC and nH and (sS or (sD and sP>17))
 CS = oneC and nS and (sD or sH)
 DH = oneD and nH and (sS or sC)
 DS = oneD and nS and (sC or sH)
 HS = oneH and nS and (sC or sD)
 
-
-
-(oneC or oneD or oneH) and calmOpps and sHcp>11 and nHcp>6 and TP>26
-
+(oneC or oneD or oneH) and calmOpps and sP>11 and nP>12
 
 action
 #printoneline,
-#average "oneC" 100 * oneC,
-#average "oneD" 100 * oneD,
-#average "oneH" 100 * oneH,
-#average "sC " 100 * sC,
-#average "sD " 100 * sD,
-#average "sH " 100 * sH,
+
 average "CD " 100 * CD,
 average "CH " 100 * CH,
 average "CS " 100 * CS,
 average "DH " 100 * DH,
 average "DS " 100 * DS,
 average "HS " 100 * HS,
-average "TP "       sHcp+nHcp,
+average "TP "       sP + nP,
+average "S  "       sP,
+average "N  "       nP,
