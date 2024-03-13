@@ -1,6 +1,9 @@
+Script,FourthSuitForcing
+setDealerCode(`
+
+
 dealer south
-generate 1000000
-produce 10000
+produce 1000
 
 # Define Calm Opponents
 #Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
@@ -75,7 +78,7 @@ sP = hcp(south)
 nP = hcp(north)
 
 # South has 2 suits and will not rebid NT
-twoSuits = shape(south,any 5440+any 5431+any 4441)
+sTwoSuits = shape(south,any 55xx+any 5440+any 5431+any 4441)
 
 # Exclude NT response
 NT = shape(north,4333+4432+5332)
@@ -85,16 +88,20 @@ sN = spades(north)
 hN = hearts(north)
 dN = diamonds(north)
 cN = clubs(north)
+sS = spades(south)
+hS = hearts(south)
+dS = diamonds(south)
+cS = clubs(south)
 
 # North responds in D, H, or S (not Walsh style)  longer than C to avoid 2/1
-nS = sN>3 and sN>hN and sN>dN and sN>cN  and not  NT
-nH = hN>3 and hN>dN and hN>cN            and not (NT or nS)
-nD = dN>3 and dN>cN                      and not (NT or nS or nH)
+nS = sS<3 and sN>3 and sN>hN and sN>dN and sN>cN  and not (NT)
+nH = hS<3 and hN>3 and hN>dN and hN>cN            and not (NT or nS)
+nD = dS<3 and dN>3 and dN>cN                      and not (NT or nS or nH)
 
 # South opens and North is short in South's suit and responds at the 1-level
-oneH = oH and twoSuits and hN<3 and (nS)
-oneD = oD and twoSuits and dN<3 and (nH or nS)
-oneC = oC and twoSuits and cN<4 and (nD or nH or nS)
+oneH = oH and sTwoSuits and hN<3 and (nS)
+oneD = oD and sTwoSuits and dN<3 and (nH or nS)
+oneC = oC and sTwoSuits and cN<4 and (nD or nH or nS)
 
 # Define North's support or South's opener
 nCs = clubs(north)>3
@@ -130,3 +137,11 @@ average "HS " 100 * HS,
 average "TP "       sP + nP,
 average "S  "       sP,
 average "N  "       nP,
+
+`"S",true)
+Script
+Button,4th Suit Forcing,\n\
+--- Fourth Suit Forcing\n\
+After 1!C，1!D，or 1!H and a suit response at the 1-level and a new suit by opener，\n\
+the 4th suit (always bid by responder) is artificial and game forcing.\n\
+%FourthSuitForcing%
