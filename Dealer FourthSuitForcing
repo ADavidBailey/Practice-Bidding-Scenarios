@@ -2,10 +2,10 @@ Script,FourthSuitForcing
 setDealerCode(`
 
 dealer south
-generate 10000
-produce 1000
+generate 1000000
+produce 40
 
-# Define Calm Opponets
+# Define Calm Opponents
 #Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
 
 # Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
@@ -74,18 +74,19 @@ oneClub = oC                                                                 // 
 
 ### End of Predict-Opening-Bid ###
 
-# North's 1-level responding suit
+
+# Predice North's 1-level responding suit
 sN = spades(north)
 hN = hearts(north)
 dN = diamonds(north)
 cN = clubs(north)
 
-nS = sN>hN and sN>=dN        and shape(north,-any 5332-any 4333-any 4432)
-nH = not nS and hN>=dN       and shape(north,-any 5332-any 4333-any 4432)
-nD = not (nS or nH) and dN>3 and shape(north,-any 5332-any 4333-any 4432)
+nS = sN>hN  and sN>=dN         and shape(north,xxxx-any 5332-any 4333-any 4432)
+nH = hN>=dN and not sN         and shape(north,xxxx-any 5332-any 4333-any 4432)
+nD = dN>3   and not (nS or nH) and dN>3 and shape(north,xxxx-any 5332-any 4333-any 4432)
 nC = not (nS or nH or nD)
 
-# North is short in South's opening suit
+# South opens and North is short in South's suit and responds at the 1-level
 oneH = oH and nH<3 and (nS)
 oneD = oD and nD<3 and (nH or nS)
 oneC = oC and nC<4 and (nD or nH or nS)
@@ -98,29 +99,37 @@ sS = spades(south)>3
 
 # Defining South's opening, North's response, and South's rebid
 CD = oneC and nD and (sH or sS)
-CH = oneC and nH and (sC or sD)
+CH = oneC and nH and (sS or sD) and hcp(south)>17
 CS = oneC and nS and (sD or sH)
-DH = oneD and nH and (sS or sC)
-DS = oneD and nS and (sC or sH)
+DH = oneD and nH and (sS or sC) and hcp(south)>17
+DS = oneD and nS and (sC or (sH and hcp(south)>17))
 HS = oneH and nS and (sC or sD)
 
-oRange = hcp(south)>11 and hcp(south)<20
-rRange = hcp(north)>5
-game   = (oRange + rRange)>25
+sHcp = hcp(south)>11 and hcp(south)<18
+nHcp = hcp(north)>5
+TP = (sHcp + nHcp)
 
-(oneC or oneD or oneH) and game and calmOpps
+(oneC or oneD or oneH) and calmOpps and (hcp(south) + hcp(north))>25
+
 
 action
-#printoneline,
+printoneline,
+average "oneC" 100 * oneC,
+average "oneD" 100 * oneD,
+average "oneH" 100 * oneH,
+average "sC " 100 * sC,
+average "sD " 100 * sD,
+average "sH " 100 * sH,
 average "CD " 100 * CD,
 average "CH " 100 * CH,
 average "CS " 100 * CS,
 average "DH " 100 * DH,
 average "DS " 100 * DS,
 average "HS " 100 * HS,
-average "1C " 100 * oneC,
-average "1D " 100 * oneD,
-average "1H " 100 * oneH,
+average "oneC " 100 * oneC,
+average "oneD " 100 * oneD,
+average "oneH " 100 * oneH,
+average "TP   " 100 * TP,
 
 
 `)
