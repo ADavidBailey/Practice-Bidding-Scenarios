@@ -25,15 +25,16 @@ sN = spades(north)
 hN = hearts(north)
 dN = diamonds(north)
 cN = clubs(north)
+
 sS = spades(south)
 hS = hearts(south)
 dS = diamonds(south)
 cS = clubs(south)
 
-# North responds in D, H, or S (not Walsh style)  longer than C to avoid 2/1
-nS = sS<3 and sN>3 and sN>hN and sN>dN and sN>cN  and not (NT)
-nH = hS<3 and hN>3 and hN>dN and hN>cN            and not (NT or nS)
-nD = dS<3 and dN>3 and dN>cN                      and not (NT or nS or nH)
+# North responds in D, H, or S (Walsh style)  longer than C to avoid 2/1
+nS = sS<3 and sN>3 and sN>hN and sN>=dN and sN>=cN  and not (NT)
+nH = hS<3 and hN>3 and hN>=dN and hN>=cN            and not (NT or nS)
+nD = dS<3 and dN>3 and dN>=cN                       and not (NT or nS or nH)
 
 # South opens and North is short in South's suit and responds at the 1-level
 oneH = oH and sTwoSuits and hN<3 and (nS)
