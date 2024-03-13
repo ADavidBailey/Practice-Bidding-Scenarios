@@ -71,6 +71,8 @@ oneClub = oC                                                                 // 
 
 ### End of Predict-Opening-Bid ###
 
+sP = hcp(south)
+nP = hcp(north)
 
 # Predict North's 1-level responding suit
 sN = spades(north)
@@ -78,35 +80,41 @@ hN = hearts(north)
 dN = diamonds(north)
 cN = clubs(north)
 
-# North responds D, H, or S
-nS = sN>hN  and sN>=dN                  and shape(north,xxxx-any 5332-any 4333-any 4432)
-nH = hN>=dN and not sN                  and shape(north,xxxx-any 5332-any 4333-any 4432)
-nD = dN>3   and not (nS or nH) and dN>3 and shape(north,xxxx-any 5332-any 4333-any 4432)
-nC = cN>3   // user for N rebid
+ntRange = sP>14 and sP<18
+nt = shape(north,any 4333+any 4432 +any 5332-5xxx-x5xx) and ntRange
+exclude = nt or shape(south,any 54xx+any 44xx-any 8xxx-any 7xxx-any 6xxx)
+
+# North responds D, H, or S (not Walsh style)
+nS = sN>3 and sN>hN and sN>dN   and exclude
+nH = not sN and hN>3 and hN>dN  and exclude
+nD = not (nS or nH) and dN>3    and exclude
 
 # South opens and North is short in South's suit and responds at the 1-level
-oneH = oH and nH<3 and (nS)
-oneD = oD and nD<3 and (nH or nS)
-oneC = oC and nC<4 and (nD or nH or nS)
+oneH = oH and hN<3 and (nS)
+oneD = oD and dN<3 and (nH or nS)
+oneC = oC and cN<4 and (nD or nH or nS)
 
-sP = hcp(south)
-nP = hcp(north)
+# Define North's support or South's opener
+nCs = clubs(north)>3
+nDs = diamonds(north)>3
+nHs = hearts(north)>2
 
 # Define South's possible rebids
-sC = clubs(south)>3
-sD = diamonds(south)>3
-sH = hearts(south)>3 and sP>17
-sS = spades(south)>3
+sCs = clubs(south)>3
+sDs = diamonds(south)>3
+sHs = hearts(south)>3
+sSs = spades(south)>3
 
 # Defining South's opening, North's response, and South's rebid
-CD = oneC and nD and (sH or sS)
-CH = oneC and nH and (sS or (sD and sP>17))
-CS = oneC and nS and (sD or sH)
-DH = oneD and nH and (sS or sC)
-DS = oneD and nS and (sC or sH)
-HS = oneH and nS and (sC or sD)
+CD = oneC and nD and not (sDs or nCs) and (sH or sS)
+CH = oneC and nH and not (sHs or nCs) and (sS or (sD and sP>16))  // D rebid is a reverse
+CS = oneC and nS and not (sSs or nCs) and (sD or sH) and sP>16    // S or H rebids are reverses
+DH = oneD and nH and not (sHs or nDs) and (sS or sC)
+DS = oneD and nS and not (sSs or nDs) and (sC or (sH and sP>16))  // H rebid is a reverse
+HS = oneH and nS and not (sSs or nHs) and (sC or sD)
 
-(oneC or oneD or oneH) and calmOpps and sP>11 and nP>12
+(oneC or oneD or oneH) and calmOpps and sP>11 and (nP>12 and nP<18)  // no jump responses
+
 
 action
 #printoneline,
