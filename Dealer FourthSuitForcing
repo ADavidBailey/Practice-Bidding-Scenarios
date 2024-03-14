@@ -2,8 +2,8 @@ Script,FourthSuitForcing
 setDealerCode(`
 
 dealer south
-generate 1000000
-produce 10000
+generate 10000000
+produce 5000
 
 # Define Calm Opponents
 #Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
@@ -121,7 +121,7 @@ DH = oneD and resH and (sS4 or sC4)
 DS = oneD and resS and (sC4 or (sH4 and sP>16))  // H rebid is a reverse
 HS = oneH and resS and (sC4 or sD4)
 
-(CD or CH or CS or DH or DS or HS) and calmOpps and sP>11 and sP<20 and (nP>12 and nP<17)  // no jump responses
+(oneC or oneD or oneH) and (CD or CH or CS or DH or DS or HS) and calmOpps and sP>11 and sP<20 and (nP>12 and nP<17)  // no jump responses
 
 
 action
@@ -136,6 +136,7 @@ average "HS " 100 * HS,
 average "TP "       sP + nP,
 average "S  "       sP,
 average "N  "       nP,
+
 
 `,"S",true)
 Script
