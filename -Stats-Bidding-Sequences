@@ -97,11 +97,11 @@ sRN = shape(south,any 4333+any 4432+any 5332)
 
 # Defining South's opening (not NT), North's response (not NT), and South's rebid
 CD = oC and nD
-CH = oC and nH and not (CD)
-CS = oC and nS and not (CD or CH)
-DH = oD and nH and not (CD or CH or CS)
-DS = oD and nD and not (CD or CH or CS or DH)
-HS = oH and nS and not (CD or CH or CS or DH or DS)
+CH = oC and nH
+CS = oC and nS
+DH = oD and nH
+DS = oD and nD
+HS = oH and nS
 
 CDH = CD and sH4
 CDS = CD and sS4 and not (CDH)
