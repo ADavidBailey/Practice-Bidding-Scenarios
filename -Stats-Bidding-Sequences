@@ -165,18 +165,21 @@ CDD = CD and d>3 //and not (CDH or CDS or CDN or CDC)
 # South opens 1C/D/H/S and North responds 1D/H/S
 calmOpps and sP>11 and sP<20 and nP>9 and nP<12
 
+# Lines that begin with a # are comments. 
+# Uncomment the printoneline statement to print the generated lines.  Be sure 
+# to reduce the number of hands produced, too.
+# Uncomment the next line to restrict the deals to one or a few sequences.
+
+# and CDC or CDD
 
 action
-#printoneline,
-
+# printoneline,
 average "C  " 100 * oneClub,
 average "D  " 100 * oneDiamond,
 average "H  " 100 * oneHeart,
 average "S  " 100 * oneSpade,
 average "N  " 100 * oneNT,
 average "?  " 100 * not (oneClub or oneDiamond or oneHeart or oneSpade or oneNT),
-
-
 
 average "CD " 100 * CD,
 average "CH " 100 * CH,
@@ -192,7 +195,6 @@ average "D? " 100 * oneDiamond and not (DH or DS or DN),
 average "HS " 100 * HS,
 average "HN " 100 * HN,
 average "H? " 100 * oneHeart and not (HS or HN),
-
 
 average "CDH " 100 * CDH,
 average "CDS " 100 * CDS,
