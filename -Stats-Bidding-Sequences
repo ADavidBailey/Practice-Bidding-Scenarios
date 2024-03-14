@@ -81,10 +81,10 @@ dN = diamonds(north)
 cN = clubs(north)
 
 # North responds in D, H, or S (Walsh style)  longer than C to avoid 2/1
-NT = shape(north,4333+4432+5332)
-nS = sN>hN and sN>=dN and sN>=cN  and not (NT)
-nH = hN>=dN and hN>=cN            and not (NT or nS)
-nD = dN>=cN                       and not (NT or nS or nH)
+nN = shape(north,4333+4432+5332)
+nS = sN>hN and sN>=dN and sN>=cN  and not (oneNT)
+nH = hN>=dN and hN>=cN            and not (oneNT or nS)
+nD = dN>=cN                       and not (oneNT or nS or nH)
 
 
 # Define South's possible rebids
@@ -99,15 +99,18 @@ sRN = shape(south,any 4333+any 4432+any 5332)
 CD = oC and nD
 CH = oC and nH
 CS = oC and nS
+CN = oC and nN
 DH = oD and nH
 DS = oD and nD
+DN = oD and nN
 HS = oH and nS
+HN = oH and nN
 
 CDH = CD and sH4
-CDS = CD and sS4 and not (CDH)
-CDN = CD and sRN and not (CDH or CDS)
-CDC = CD and c>5 and not (CDH or CDS or CDN)
-CDD = CD and d>3 and not (CDH or CDS or CDN or CDC)
+CDS = CD and sS4 //and not (CDH)
+CDN = CD and sRN //and not (CDH or CDS)
+CDC = CD and c>5 //and not (CDH or CDS or CDN)
+CDD = CD and d>3 //and not (CDH or CDS or CDN or CDC)
 
 # South opens 1C/D/H/S and North responds 1D/H/S
 calmOpps and sP>11 and sP<20 and nP>9 and nP<12
@@ -115,25 +118,34 @@ calmOpps and sP>11 and sP<20 and nP>9 and nP<12
 
 action
 #printoneline,
-average "P  " 100 * not (oneClub or oneDiamond or oneHeart or oneSpade or oneNT),
+
 average "C  " 100 * oneClub,
 average "D  " 100 * oneDiamond,
 average "H  " 100 * oneHeart,
 average "S  " 100 * oneSpade,
 average "N  " 100 * oneNT,
+average "???" 100 * (oneClub or oneDiamond or oneHeart or oneSpade or oneNT),
 
 
 
 average "CD " 100 * CD,
 average "CH " 100 * CH,
 average "CS " 100 * CS,
+average "CN " 100 * CN,
+average "C??" 100 * (CD or CH or CS or CN),
+
 average "DH " 100 * DH,
 average "DS " 100 * DS,
+average "DN " 100 * DN,
+average "D??" 100 * (DH or DS or DN),
+
 average "HS " 100 * HS,
+average "HN " 100 * HN,
+average "H??" 100 * (HS or HN),
 
 average "CDH " 100 * CDH,
 average "CDS " 100 * CDS,
 average "CDN " 100 * CDN,
 average "CDC " 100 * CDC,
 average "CDD " 100 * CDD,
-
+average "CD??" 100 * (CDH or CDS or CDN or CDC or CDD),
