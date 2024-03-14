@@ -124,7 +124,7 @@ average "D  " 100 * oneDiamond,
 average "H  " 100 * oneHeart,
 average "S  " 100 * oneSpade,
 average "N  " 100 * oneNT,
-average "???" 100 * (oneClub or oneDiamond or oneHeart or oneSpade or oneNT),
+average "?  " 100 * not (oneClub or oneDiamond or oneHeart or oneSpade or oneNT),
 
 
 
@@ -132,20 +132,21 @@ average "CD " 100 * CD,
 average "CH " 100 * CH,
 average "CS " 100 * CS,
 average "CN " 100 * CN,
-average "C??" 100 * (CD or CH or CS or CN),
+average "C? " 100 * oneClub and not (CD or CH or CS or CN),
 
 average "DH " 100 * DH,
 average "DS " 100 * DS,
 average "DN " 100 * DN,
-average "D??" 100 * (DH or DS or DN),
+average "D? " 100 * oneDiamond and not (DH or DS or DN),
 
 average "HS " 100 * HS,
 average "HN " 100 * HN,
-average "H??" 100 * (HS or HN),
+average "H? " 100 * oneHeart and not (HS or HN),
+
 
 average "CDH " 100 * CDH,
 average "CDS " 100 * CDS,
 average "CDN " 100 * CDN,
 average "CDC " 100 * CDC,
 average "CDD " 100 * CDD,
-average "CD??" 100 * (CDH or CDS or CDN or CDC or CDD),
+average "CD? " 100 * CD and not (CDH or CDS or CDN or CDC or CDD),
