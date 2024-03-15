@@ -86,10 +86,10 @@ dN = diamonds(north)
 cN = clubs(north)
 
 # North responds in D, H, or S (Walsh style)  longer than C to avoid 2/1
-NT = shape(north,4333+4432+5332)
-nS = sN>hN and sN>=dN and sN>=cN  and not (NT)
-nH = hN>=dN and hN>=cN            and not (NT or nS)
-nD = dN>=cN                       and not (NT or nS or nH)
+nUnbal = shape(north,any 7xxx+any 61xx+any 5431)
+nS = sN>hN and sN>=dN and sN>=cN  and nUnbal
+nH = hN>=dN and hN>=cN            and nUnbal and not (nS)
+nD = dN>=cN                       and nUnbal and not (nS or nH)
 
 # North has No support for South's opening suit
 nNc = clubs(north)   <4
@@ -121,7 +121,7 @@ DH = oneD and resH and (sS4 or sC4)
 DS = oneD and resS and (sC4 or (sH4 and sP>16))  // H rebid is a reverse
 HS = oneH and resS and (sC4 or sD4)
 
-(oneC or oneD or oneH) and (CD or CH or CS or DH or DS or HS) and calmOpps and sP>11 and sP<20 and (nP>12 and nP<17)  // no jump responses
+(oneC or oneD or oneH) and (CD or CH or CS or DH or DS or HS) and calmOpps and sP>11 and sP<18 and (nP>12 and nP<16)  // no jump responses
 
 
 action
