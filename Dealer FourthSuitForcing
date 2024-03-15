@@ -86,7 +86,7 @@ dN = diamonds(north)
 cN = clubs(north)
 
 # North responds in D, H, or S (Walsh style)  longer than C to avoid 2/1
-nUnbal = shape(north,any 7xxx+any 61xx+any 5431)
+nUnbal = shape(north,any 7xxx+any 61xx+any 5431+any 4441)
 nS = sN>hN and sN>=dN and sN>=cN  and nUnbal
 nH = hN>=dN and hN>=cN            and nUnbal and not (nS)
 nD = dN>=cN                       and nUnbal and not (nS or nH)
