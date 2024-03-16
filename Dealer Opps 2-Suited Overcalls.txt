@@ -2,7 +2,7 @@ Script,OppsTwoSuitedOvercalls
 setDealerCode(
 `
 dealer south
-produce 40
+produce 1000
 
 ## Imported Script -- Predict Opening Bid ##
 
@@ -89,12 +89,13 @@ sRange = hcp(south)>11 and hcp(south)<15
 sOpens = sSuit and sRange
 
 # West is weak or strong
-wWeak   = losers(west)<8 and hcp(west)>7  and hcp(west)<10
-wStrong = losers(west)<5 and hcp(west)>12 and hcp(west)<20
+wWeak   = losers(west)<8 and hcp(west)>7  and hcp(west)<12
+wStrong = losers(west)<5 and hcp(west)>14 and hcp(west)<20
 wRange  = wWeak or wStrong
 
 # Now do it
 sOpens and wRange
+#and wWeak
 #and wStrong
 #and SC or SD
 
