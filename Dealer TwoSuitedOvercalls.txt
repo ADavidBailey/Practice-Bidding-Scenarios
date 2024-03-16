@@ -3,35 +3,131 @@ setDealerCode(
 `
 # 2-Suited Overcalls
 
+##### DON'T TRY TO READ THIS CODE #####
+# ROTATED from Opps 2-Suited Overcalls
+
+dealer east
+produce 1000
+
+## Imported Script -- Predict Opening Bid ##
+
+# Calculate length points for east (lengthPoints)
+lp1 = spades(east)>4 ? spades(east)-4 : 0
+lp2 = hearts(east)>4 ? hearts(east)-4 : 0
+lp3 = diamonds(east)>4 ? diamonds(east)-4 : 0
+lp4 = clubs(east)>4 ? clubs(east)-4 : 0
+lengthPoints = lp1 + lp2 + lp3 + lp4
+
+# Calculate doubleton honor NT downgrade(s) for east -- 2 cards, 1 honor, not the Ace
+S2H = spades(east)==2 and top4(east,spades)==1 and not hascard(east,AS) ? 1 : 0
+H2H = hearts(east)==2 and top4(east,hearts)==1 and not hascard(east,AH) ? 1 : 0
+D2H = diamonds(east)==2 and top4(east,diamonds)==1 and not hascard(east,AD) ? 1 : 0
+C2H = clubs(east)==2 and top4(east,clubs)==1 and not hascard(east,AC) ? 1 : 0
+ntDownGrade = S2H + H2H + D2H + C2H
+
+# Define notrump points for east (ntPoints)
+ntPoints = hcp(east) + lengthPoints - ntDownGrade
+
+# Define suit points for east (suitPoints)
+suitPoints = hcp(east) + lengthPoints
+
+# Define robot notrump shape and exclude any 5card 
+ntShape = shape(east, any 4333 +any 4432 +any 5332 +any 5422 -5xxx -x5xx)
+
+# Define ntPoint ranges
+oneNT   = ntShape and ntPoints>14 and ntPoints<18
+twoNT   = ntShape and ntPoints>19 and ntPoints<22
+threeNT = ntShape and ntPoints>25 and ntPoints<28
+weakNT  = ntShape and ntPoints>10 and ntPoints<15
+
+# Define Game Forcing 2C
+case1 = hcp(east)>22
+case2 = hcp(east)>18 and losers(east)<5 and (spades(east)>5 or hearts(east)>5)
+case3 = hcp(east)>18 and losers(east)<4 and (diamonds(east)>5 or clubs(east)>5)
+gameForce2C = (case1 or case2 or case3) and not threeNT
+
+### Predict east's opening BID
+P1 = gameForce2C
+P2 = P1 or threeNT or twoNT or oneNT // or weakNT  weakNT will be duplicated diamond and club openings
+
+# Predict east's Opening suit
+s = spades(east)
+h = hearts(east)
+d = diamonds(east)
+c = clubs(east)
+s1Range = suitPoints>11 and hcp(east)>9
+oS = s>4 and s>=h and s>=d and s>=c and s1Range and not P2
+oH = not oS and h>4 and h>=d and h>=c and s1Range and not P2
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and s1Range and not P2
+oC = not (oS or oH or oD) and s1Range and not P2
+openingSuit = (oS or oH or oD or oC)
+oneSpade = oS
+oneHeart = oH
+oneDiamond = oD                                                              // duplicates weakNT
+oneClub = oC                                                                 // duplicates weakNT
+
+### End of Predict-Opening-Bid ###
+
+
+# Opponents 2-suited overcalls
+
 # Define good suits
 GoodS = spades(south)>4 and top5(south,spades)>2
 GoodH = hearts(south)>4 and top5(south,hearts)>2
 GoodD = diamonds(south)>4 and top5(south,diamonds)>2
 GoodC = clubs(south)>4 and top5(south,clubs)>2
 
-# East opens
-hcp(east)>11 and hcp(east)<15 and shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx) and
+# south is 2-suited
+SH = (GoodS and GoodH)
+SD = (GoodS and GoodD)
+SC = (GoodS and GoodC)
+HD = (GoodH and GoodD)
+HC = (GoodH and GoodC)
+DC = (GoodD and GoodC)
 
-# South is 2-suited
-(
-(GoodS and GoodH)
-or
-(GoodS and GoodD)
-or
-(GoodS and GoodC)
-or
-(GoodH and GoodD)
-or
-(GoodH and GoodC)
-or
-(GoodD and GoodC)
-)
-and 
+oneS = oS and (HD or HC or DC)  // Michaels or Michaels or Unusual NT
+oneH = oH and (SD or SC or DC)  // Michaels or Unusual NT
+oneD = oD and (SH or HC)        // Michaels or Unusual NT  // no way to show SC
+oneC = oC and (SH or HD)        // Michaels or Unusual NT  // no way to show SD
+sSuit = (oneS or oneH or oneD or oneC)  and shape(east,any xxxx-8xxx-7xxx-6xxx)
+sRange = hcp(east)>11 and hcp(east)<15
+sOpens = sSuit and sRange
 
-# South is weak or strong
-(losers(south)<7 or losers(south)<4)
-and
-(hcp(south)>7 and hcp(south)<15)
+# south is weak or strong
+wWeak   = losers(south)<8 and hcp(south)>7  and hcp(south)<12
+wStrong = losers(south)<5 and hcp(south)>14 and hcp(south)<20
+wRange  = wWeak or wStrong
+
+# Now do it
+sOpens and wRange
+#and wWeak
+#and wStrong
+#and SC or SD
+
+action
+#printoneline,
+average "Weak    " 100 * wWeak,
+average "Strong  " 100 * wStrong,
+average "HCP     " hcp(south),
+average "Losers  " losers(south),
+
+average "1S " 100 * (HD or HC or DC),
+average "         1S (2S)  HD" 100 * HD,
+average "         1S (2S)  HC" 100 * HC,
+average "         1S (2N)  DC" 100 * DC,
+average "1H " 100 * (SD or SC or DC),
+average "         1H (2H)  SD" 100 * SD,
+average "         1H (2H)  SC" 100 * SC,
+average "         1H (2N)  DC" 100 * DC,
+average "1D " 100 * (SH or HC or SC),
+average "         1D (2D)  SH" 100 * SH,
+average "         1D (2N)  HC" 100 * HC,
+average "         1D       SC" 100 * SC,
+average "1C " 100 * (SH or DC or SD),
+average "         1C (2C)  SH" 100 * SH,
+average "         1C (2N)  DC" 100 * HD,
+average "         1C       SD" 100 * SD,
+
 `, "E", true);
 Script
 Button,2-Suit Overcalls,2-Suit Overcalls\n%TwoSuitedOvercalls%
