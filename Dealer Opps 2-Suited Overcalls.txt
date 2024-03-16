@@ -2,7 +2,7 @@ Script,OppsTwoSuitedOvercalls
 setDealerCode(
 `
 dealer south
-produce 1000
+produce 40
 
 ## Imported Script -- Predict Opening Bid ##
 
@@ -89,24 +89,37 @@ sRange = hcp(south)>11 and hcp(south)<15
 sOpens = sSuit and sRange
 
 # West is weak or strong
-wRange = (losers(west)<7 or losers(west)<4) and (hcp(west)>7 and hcp(west)<15)
+wWeak   = losers(west)<8 and hcp(west)>7  and hcp(west)<10
+wStrong = losers(west)<5 and hcp(west)>12 and hcp(west)<20
+wRange  = wWeak or wStrong
 
 # Now do it
 sOpens and wRange
+and wStrong
 
 action
 #printoneline,
-average "1S (2S) HD/HC" 100 * (HD or HC),
-average "1S (2N) DC   " 100 * DC,
-average "1H (2H) SD/SC" 100 * SD or SC,
-average "1H (2N) DC   " 100 * DC,
-average "1D (2D) SH   " 100 * SH,
-average "1D (2N) HC   " 100 * HC,
-average "1C (2C) SH   " 100 * SH,
-average "1C (2N) HD   " 100 * HD,
+average "Weak    " 100 * wWeak,
+average "Strong  " 100 * wStrong,
+average "HCP     " hcp(west),
+average "Losers  " losers(west),
 
-
-
+average "1S " 100 * (HD or HC or DC),
+average "         1S (2S)  HD" 100 * HD,
+average "         1S (2S)  HC" 100 * HC,
+average "         1S (2N)  DC" 100 * DC,
+average "1H " 100 * (SD or SC or DC),
+average "         1H (2H)  SD" 100 * SD,
+average "         1H (2H)  SC" 100 * SC,
+average "         1H (2N)  DC" 100 * DC,
+average "1D " 100 * (SH or HC or SC),
+average "         1D (2D)  SH" 100 * SH,
+average "         1D (2N)  HC" 100 * HC,
+average "         1D       SC" 100 * SC,
+average "1C " 100 * (SH or DC or SD),
+average "         1C (2C)  SH" 100 * SH,
+average "         1C (2N)  DC" 100 * HD,
+average "         1C       SD" 100 * SD,
 
 `, "S", true);
 Script
