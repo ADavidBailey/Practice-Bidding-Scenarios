@@ -64,7 +64,7 @@ oneClub = oC                                                                 // 
 ### End of Predict-Opening-Bid ###
 
 
-# Opponents 2-suited overcalls
+# 2-suited overcalls
 
 # Define good suits
 GoodS = spades(south)>4 and top5(south,spades)>2
@@ -72,7 +72,7 @@ GoodH = hearts(south)>4 and top5(south,hearts)>2
 GoodD = diamonds(south)>4 and top5(south,diamonds)>2
 GoodC = clubs(south)>4 and top5(south,clubs)>2
 
-# south is 2-suited
+# Define 2-suits
 SH = (GoodS and GoodH)
 SD = (GoodS and GoodD)
 SC = (GoodS and GoodC)
@@ -80,32 +80,32 @@ HD = (GoodH and GoodD)
 HC = (GoodH and GoodC)
 DC = (GoodD and GoodC)
 
-# Define south's 2-Suited Overcalls
+# Define 2-Suits -- not opener's suit
 oneS = oS and (HD or HC or DC)  // Michaels or Michaels or Unusual NT
 oneH = oH and (SD or SC or DC)  // Michaels or Michaels or Unusual NT
 oneD = oD and (SH or HC or SC)  // Michaels or Unusual NT or ???? - no way to show SC
 oneC = oC and (SH or HD or SD)  // Michaels or Unusual NT or ???? - no way to show SD
 
-sSuit = (oneS or oneH or oneD or oneC) and shape(east,any xxxx-8xxx-7xxx-6xxx)
-sRange = hcp(east)>11 and hcp(east)<15
-sOpens = sSuit and sRange
+oSuit = (oneS or oneH or oneD or oneC) and shape(east,any xxxx-8xxx-7xxx-6xxx)
+oRange = hcp(east)>11 and hcp(east)<15
+opener = oSuit and oRange
 
-# south is weak or strong
+# Overcaller is weak or strong
 weak   = losers(south)<8 and hcp(south)>7  and hcp(south)<12
 strong = losers(south)<5 and hcp(south)>14 and hcp(south)<20
 wRange = weak or strong
 
-# This is an attempt to get stats for south weak/strong.  I don't think I can get it to work.
+# This is an attempt to get stats for overcaller weak/strong.  I don't think I can get it to work.
 wHCP    = weak   ? hcp(south)    : 0
 wLosers = weak   ? losers(south) : 0
 sHCP    = strong ? hcp(south)    : 0
 sLosers = strong ? losers(south) : 0
 
-# North minimum HCP -- you might try adjusting this
-nRange = hcp(north)>7
+# Responder's minimum HCP -- you might try adjusting this
+rRange = hcp(north)>7
 
 ### Now do it
-sOpens and wRange and nRange
+opener and oRange and rRange
 
 # To get stats for south weak/strong uncomment one of the following
 #and weak
