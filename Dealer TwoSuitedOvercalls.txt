@@ -99,14 +99,18 @@ wLosers = weak   ? losers(west) : 0
 sHCP    = strong ? hcp(west)    : 0
 sLosers = strong ? losers(west) : 0
 
+# North minimum HCP -- you might try adjusting this
+nRange = hcp(north)>7
+
 ### Now do it
-sOpens and wRange
+# You can adjust north's hcp to get more interesting responses
+sOpens and wRange and nRange
 
 # To get stats for west weak/strong uncomment one of the following
 #and weak
 #and strong
 
-# you can also play with choseing west's suits
+# You might also play with choseing west's suits
 #and SC or SD
 
 action
