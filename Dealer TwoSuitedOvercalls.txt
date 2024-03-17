@@ -1,6 +1,8 @@
 Script,TwoSuitedOvercalls
 setDealerCode(
 `
+
+# Two-Suited Overcalls
 dealer east
 produce 1000
 
@@ -88,24 +90,23 @@ oneC = oC and (SH or HD or SD)  // Michaels or Unusual NT or ???? - no way to sh
 
 oSuit = (oneS or oneH or oneD or oneC) and shape(east,any xxxx-8xxx-7xxx-6xxx)
 oRange = hcp(east)>11 and hcp(east)<15
-opener = oSuit and oRange
 
-# Overcaller is weak or strong
-weak   = losers(south)<8 and hcp(south)>7  and hcp(south)<12
-strong = losers(south)<5 and hcp(south)>14 and hcp(south)<20
-wRange = weak or strong
+# Intervener is weak or strong
+iWeak   = losers(south)<8 and hcp(south)>7  and hcp(south)<12
+iStrong = losers(south)<5 and hcp(south)>14 and hcp(south)<20
+iRange = weak or strong
 
 # This is an attempt to get stats for overcaller weak/strong.  I don't think I can get it to work.
-wHCP    = weak   ? hcp(south)    : 0
-wLosers = weak   ? losers(south) : 0
-sHCP    = strong ? hcp(south)    : 0
-sLosers = strong ? losers(south) : 0
+wHCP    = iWeak   ? hcp(south)    : 0
+wLosers = iWeak   ? losers(south) : 0
+sHCP    = iStrong ? hcp(south)    : 0
+sLosers = iStrong ? losers(south) : 0
 
 # Responder's minimum HCP -- you might try adjusting this
 rRange = hcp(north)>7
 
 ### Now do it
-opener and oRange and rRange
+oSuit and oRange and rRange
 
 # To get stats for south weak/strong uncomment one of the following
 #and weak
@@ -143,6 +144,7 @@ average "         SD" 100 * (oneC and SD),
 frequency "North HCP" (hcp(north),6,12),
 frequency "east HCP" (hcp(east),11,15),
 frequency "south HCP " (hcp(south),8,20),
+
 
 `, "E", true);
 Script
