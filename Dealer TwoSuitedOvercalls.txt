@@ -139,6 +139,9 @@ average "1C         " 100 * (oneC and (SH or HD or SD)),
 average "   (2C)  SH" 100 * (oneC and SH),
 average "   (2N)  DC" 100 * (oneC and HD),
 average "         SD" 100 * (oneC and SD),
+frequency "North HCP" (hcp(north),6,12),
+frequency "South HCP" (hcp(south),11,15),
+frequency "West HCP " (hcp(west),8,20),
 
 `, "E", true);
 Script
