@@ -94,7 +94,7 @@ oRange = hcp(east)>11 and hcp(east)<15
 # Intervener is weak or strong
 iWeak   = losers(south)<8 and hcp(south)>7  and hcp(south)<12
 iStrong = losers(south)<5 and hcp(south)>14 and hcp(south)<20
-iRange = weak or strong
+iRange = iWeak or iStrong
 
 # This is an attempt to get stats for overcaller weak/strong.  I don't think I can get it to work.
 wHCP    = iWeak   ? hcp(south)    : 0
@@ -118,10 +118,10 @@ oSuit and oRange and rRange
 action
 #printoneline,
 
-average "Weak       " 100 * weak,
+average "Weak       " 100 * iWeak,
 average "  HCP      "     wHCP,
 average "  Losers   "     wLosers,
-average "Strong     " 100 * strong,
+average "Strong     " 100 * iStrong,
 average "  HCP      "     sHCP,
 average "  Losers   "     sLosers,
 
