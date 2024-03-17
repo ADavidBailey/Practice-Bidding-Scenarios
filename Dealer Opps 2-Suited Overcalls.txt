@@ -1,6 +1,7 @@
 Script,OppsTwoSuitedOvercalls
 setDealerCode(
 `
+# Opponents Two-Suited Overcalls
 dealer south
 produce 1000
 
@@ -64,7 +65,7 @@ oneClub = oC                                                                 // 
 ### End of Predict-Opening-Bid ###
 
 
-# Opponents 2-suited overcalls
+# 2-suited overcalls
 
 # Define good suits
 GoodS = spades(west)>4 and top5(west,spades)>2
@@ -72,7 +73,7 @@ GoodH = hearts(west)>4 and top5(west,hearts)>2
 GoodD = diamonds(west)>4 and top5(west,diamonds)>2
 GoodC = clubs(west)>4 and top5(west,clubs)>2
 
-# West is 2-suited
+# Define all 2-suit combinations
 SH = (GoodS and GoodH)
 SD = (GoodS and GoodD)
 SC = (GoodS and GoodC)
@@ -80,32 +81,32 @@ HD = (GoodH and GoodD)
 HC = (GoodH and GoodC)
 DC = (GoodD and GoodC)
 
-# Define West's 2-Suited Overcalls
+# Define Overcaller's 2 suits -- not opener's suit
 oneS = oS and (HD or HC or DC)  // Michaels or Michaels or Unusual NT
 oneH = oH and (SD or SC or DC)  // Michaels or Michaels or Unusual NT
 oneD = oD and (SH or HC or SC)  // Michaels or Unusual NT or ???? - no way to show SC
 oneC = oC and (SH or HD or SD)  // Michaels or Unusual NT or ???? - no way to show SD
 
-sSuit = (oneS or oneH or oneD or oneC) and shape(south,any xxxx-8xxx-7xxx-6xxx)
-sRange = hcp(south)>11 and hcp(south)<15
-sOpens = sSuit and sRange
+# Define opener
+oSuit = (oneS or oneH or oneD or oneC) and shape(south,any xxxx-8xxx-7xxx-6xxx)
+oRange = hcp(south)>11 and hcp(south)<15
 
-# West is weak or strong
-weak   = losers(west)<8 and hcp(west)>7  and hcp(west)<12
-strong = losers(west)<5 and hcp(west)>14 and hcp(west)<20
-wRange = weak or strong
+# Intervener is weak or strong
+iWeak  = losers(west)<8 and hcp(west)>7  and hcp(west)<12
+iSrong = losers(west)<5 and hcp(west)>14 and hcp(west)<20
+iRange = iWeak or iStrong
 
-# This is an attempt to get stats for west weak/strong.  I don't think I can get it to work.
-wHCP    = weak   ? hcp(west)    : 0
-wLosers = weak   ? losers(west) : 0
-sHCP    = strong ? hcp(west)    : 0
-sLosers = strong ? losers(west) : 0
+# This is an attempt to get stats for intervener weak/strong.  I don't think I can get it to work.
+wHCP    = iWeak   ? hcp(west)    : 0
+wLosers = iWeak   ? losers(west) : 0
+sHCP    = iStrong ? hcp(west)    : 0
+sLosers = iStrong ? losers(west) : 0
 
-# North minimum HCP -- you might try adjusting this
-nRange = hcp(north)>7
+# Responder minimum HCP -- you might try adjusting this
+rRange = hcp(north)>7
 
 ### Now do it
-sOpens and wRange and nRange
+oSuit and oRange and rRange
 
 # To get stats for west weak/strong uncomment one of the following
 #and weak
