@@ -93,17 +93,20 @@ weak   = losers(west)<8 and hcp(west)>7  and hcp(west)<12
 strong = losers(west)<5 and hcp(west)>14 and hcp(west)<20
 wRange = weak or strong
 
+# This is an attempt to get stats for west weak/strong.  I don't think I can get it to work.
 wHCP    = weak   ? hcp(west)    : 0
 wLosers = weak   ? losers(west) : 0
 sHCP    = strong ? hcp(west)    : 0
 sLosers = strong ? losers(west) : 0
 
-
-
-# Now do it
+### Now do it
 sOpens and wRange
+
+# To get stats for west weak/strong uncomment one of the following
 #and weak
-and strong
+#and strong
+
+# you can also play with choseing west's suits
 #and SC or SD
 
 action
