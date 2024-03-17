@@ -89,39 +89,49 @@ sRange = hcp(south)>11 and hcp(south)<15
 sOpens = sSuit and sRange
 
 # West is weak or strong
-wWeak   = losers(west)<8 and hcp(west)>7  and hcp(west)<12
-wStrong = losers(west)<5 and hcp(west)>14 and hcp(west)<20
-wRange  = wWeak or wStrong
+weak   = losers(west)<8 and hcp(west)>7  and hcp(west)<12
+strong = losers(west)<5 and hcp(west)>14 and hcp(west)<20
+wRange = weak or strong
+
+wHCP    = weak   ? hcp(west)    : 0
+wLosers = weak   ? losers(west) : 0
+sHCP    = strong ? hcp(west)    : 0
+sLosers = strong ? losers(west) : 0
+
+
 
 # Now do it
 sOpens and wRange
-#and wWeak
-#and wStrong
+#and weak
+and strong
 #and SC or SD
 
 action
 #printoneline,
-average "Weak    " 100 * wWeak,
-average "Strong  " 100 * wStrong,
-average "HCP     " hcp(west),
-average "Losers  " losers(west),
 
-average "1S " 100 * (HD or HC or DC),
-average "         1S (2S)  HD" 100 * HD,
-average "         1S (2S)  HC" 100 * HC,
-average "         1S (2N)  DC" 100 * DC,
-average "1H " 100 * (SD or SC or DC),
-average "         1H (2H)  SD" 100 * SD,
-average "         1H (2H)  SC" 100 * SC,
-average "         1H (2N)  DC" 100 * DC,
-average "1D " 100 * (SH or HC or SC),
-average "         1D (2D)  SH" 100 * SH,
-average "         1D (2N)  HC" 100 * HC,
-average "         1D       SC" 100 * SC,
-average "1C " 100 * (SH or DC or SD),
-average "         1C (2C)  SH" 100 * SH,
-average "         1C (2N)  DC" 100 * HD,
-average "         1C       SD" 100 * SD,
+average "Weak       " 100 * weak,
+average "  HCP      "     wHCP,
+average "  Losers   "     wLosers,
+average "Strong     " 100 * strong,
+average "  HCP      "     sHCP,
+average "  Losers   "     sLosers,
+
+average "1S         " 100 * (oneS and (HD or HC or DC)),
+average "   (2S)  HD" 100 * (oneS and HD),
+average "   (2S)  HC" 100 * (oneS and HC),
+average "   (2N)  DC" 100 * (oneS and DC),
+average "1H         " 100 * (oneH and (SD or SC or DC)),
+average "   (2H)  SD" 100 * (oneH and SD),
+average "   (2H)  SC" 100 * (oneH and SC),
+average "   (2N)  DC" 100 * (oneH and DC),
+average "1D         " 100 * (oneD and (SH or HC or SC)),
+average "   (2D)  SH" 100 * (oneD and SH),
+average "   (2N)  HC" 100 * (oneD and HC),
+average "         SC" 100 * (oneD and SC),
+average "1C         " 100 * (oneC and (SH or HD or SD)),
+average "   (2C)  SH" 100 * (oneC and SH),
+average "   (2N)  DC" 100 * (oneC and HD),
+average "         SD" 100 * (oneC and SD),
 
 `, "S", true);
 Script
