@@ -80,11 +80,13 @@ HD = (GoodH and GoodD)
 HC = (GoodH and GoodC)
 DC = (GoodD and GoodC)
 
+# Define West's 2-Suited Overcalls
 oneS = oS and (HD or HC or DC)  // Michaels or Michaels or Unusual NT
 oneH = oH and (SD or SC or DC)  // Michaels or Unusual NT
-oneD = oD and (SH or HC)        // Michaels or Unusual NT  // no way to show SC
-oneC = oC and (SH or HD)        // Michaels or Unusual NT  // no way to show SD
-sSuit = (oneS or oneH or oneD or oneC)  and shape(south,any xxxx-8xxx-7xxx-6xxx)
+oneD = oD and (SH or HC or SC)  // Michaels or Unusual NT or ???? - no way to show SC
+oneC = oC and (SH or HD or SD)  // Michaels or Unusual NT or ???? - no way to show SD
+
+sSuit = (oneS or oneH or oneD or oneC) and shape(south,any xxxx-8xxx-7xxx-6xxx)
 sRange = hcp(south)>11 and hcp(south)<15
 sOpens = sSuit and sRange
 
