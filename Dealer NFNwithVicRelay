@@ -64,7 +64,7 @@ oneClub = oC                                                                 // 
 ### End of Predict-Opening-Bid ###
 
 
-type_1 = ((oneHeart && hearts(north)==3 && hearts(north)<4) || (oneSpade && spades(north)==3)) && hcp(south)>12 && hcp(north)>9 && hcp(north)<13
+type_1 = ((oneHeart && hearts(north)==3 && spades(north)<4) || (oneSpade && spades(north)==3)) && hcp(south)>12 && hcp(north)>9 && hcp(north)<13
 type_2 = ((oneSpade && spades(north)<3) || (oneHeart && hearts(north)<3 && spades(north)<4)) && hcp(south)>12 && hcp(north)>12 && spades(north)<5 && hearts(north)<5 && diamonds(north)<5 && clubs(north)<5
 type_3 = (oneSpade || oneHeart) && hcp(south)>12 && hcp(north)>12 && clubs(north)>4
 
