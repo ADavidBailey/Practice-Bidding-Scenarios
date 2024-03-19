@@ -1,4 +1,4 @@
-# Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
+# Calm pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
 calmEast = (shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx) and hcp(east)<9) or (shape(east,any 4333 +any 4432) and hcp(east)<12)
 calmWest = (shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx) and hcp(west)<9) or (shape(west,any 4333 +any 4432) and hcp(west)<12)
 calmOpps = calmEast and calmWest
