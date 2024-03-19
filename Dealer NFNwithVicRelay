@@ -70,9 +70,9 @@ oneClub = oC                                                                 // 
 ### End of Predict-Opening-Bid ###
 
 
-#type_0 = ((oneHeart && hearts(north)<4 && spades(north)<4) || (oneSpade && spades(north)<4)) && hcp(south)>12 && hcp(north)>6 and hcp(north)<10
-type_1 = ((oneHeart && hearts(north)==3 && spades(north)<4) || (oneSpade && spades(north)==3)) && hcp(south)>12 && hcp(north)>9 && hcp(north)<13
-type_2 = ((oneSpade && spades(north)<3) || (oneHeart && hearts(north)<3 && spades(north)<4)) && hcp(south)>12 && hcp(north)>12 && spades(north)<5 && hearts(north)<5 && diamonds(north)<5 && clubs(north)<5
+#type_0 = ((oneHeart && hearts(north)<4 && spades(north)<4) || (oneSpade && spades(north)<4)) && hcp(south)>11 && hcp(north)>6
+type_1 = ((oneHeart && hearts(north)==3 && spades(north)<4) || (oneSpade && spades(north)==3)) && hcp(south)>11 && hcp(north)>9 && hcp(north)<13
+type_2 = ((oneSpade && spades(north)<3) || (oneHeart && hearts(north)<3 && spades(north)<4)) && hcp(south)>11 && hcp(north)>12 && spades(north)<5 && hearts(north)<5 && diamonds(north)<5 && clubs(north)<5
 type_3 = (oneSpade || oneHeart) && hcp(south)>12 && hcp(north)>12 && clubs(north)>4
 
 c1 = hascard(west,2C)
@@ -128,7 +128,8 @@ average "Type 3" 100 * type_3,
 `,"S",true)
 Script
 Button,NF NT w/Vic's Relay,\n\
----  After 1M (P) 1N，is Not Forcing 8-11\n\
+---  After 1M (P)\n\
+•1N，is Not Forcing 8-11. Conntinuations are natural.\n\
 •2!C is a relay to 2!D. Continuations are\n\
   ◦2M is a 3-card invitational raise.\n\
   ◦3M is a 3-card Game Forcing raise.\n\
