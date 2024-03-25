@@ -83,9 +83,9 @@ c4 = hascard(east,3D)
 keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
 keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
 
-keep015= keep06 and c3
-keep03 = keep06 and keep44
-keep045= keep06 and not c3
+keep015 = keep06 and c3
+keep03  = keep06 and keep44
+keep045 = keep06 and not c3
 ####06 = c1 and c2
 keep11 = c1 and keep44
 keep14 = c1 and not keep44
@@ -117,7 +117,7 @@ level_type_2 = type_2 and keep
 level_type_3 = type_3 and keep44
 levelTheDeal = level_type_1 || level_type_2 || level_type_3
 
-condition ( type_1 || type_2 || type_3 ) and calmOpps
+( type_1 || type_2 || type_3 ) and calmOpps
 && levelTheDeal
 
 action
