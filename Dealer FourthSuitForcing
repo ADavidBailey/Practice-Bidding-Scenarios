@@ -91,10 +91,10 @@ nS = sN>hN and sN>=dN and sN>=cN  and nUnbal
 nH = hN>=dN and hN>=cN            and nUnbal and not (nS)
 nD = dN>=cN                       and nUnbal and not (nS or nH)
 
-# North has No support for South's opening suit
+# North has No direct support for South's opening suit
 nNc = clubs(north)   <4
 nNd = diamonds(north)<4
-nNh = hearts(north)  <3
+nNh = hearts(north)  <4
 
 # South has No direct support for North's responding suit
 resS = nS and spades(south)  <3
@@ -107,7 +107,7 @@ sD4 = diamonds(south)>3
 sH4 = hearts(south)>3
 sS4 = spades(south)>3
 
-# South opens and North is short in South's suit and responds at the 1-level
+# South opens and South responds at the 1-level
 
 oneC = oC and sTwoSuits and nNc and (nS or nH or nD)
 oneD = oD and sTwoSuits and nNd and (nS or nH)
