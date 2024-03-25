@@ -97,8 +97,8 @@ nNd = diamonds(north)<4
 nNh = hearts(north)  ==3
 
 # South has No direct support for North's responding suit
-resS = nS and spades(south)  ==3
-resH = nH and hearts(south)  ==3
+resS = nS and spades(south)  <4
+resH = nH and hearts(south)  <4
 resD = nD and diamonds(south)<4
 
 # Define South's possible rebids
