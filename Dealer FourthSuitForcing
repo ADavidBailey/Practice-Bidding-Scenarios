@@ -94,11 +94,11 @@ nD = dN>=cN                       and nUnbal and not (nS or nH)
 # North has No direct support for South's opening suit
 nNc = clubs(north)   <4
 nNd = diamonds(north)<4
-nNh = hearts(north)  ==3
+nNh = hearts(north)  <4
 
 # South has No direct support for North's responding suit
-resS = nS and spades(south)  ==3
-resH = nH and hearts(south)  ==3
+resS = nS and spades(south)  <4
+resH = nH and hearts(south)  <4
 resD = nD and diamonds(south)<4
 
 # Define South's possible rebids
@@ -122,7 +122,7 @@ DS = oneD and resS and (sC4 or (sH4 and sP>16))  // H rebid is a reverse
 HS = oneH and resS and (sC4 or sD4)
 
 (oneC or oneD or oneH) and (CD or CH or CS or DH or DS or HS) and calmOpps and sP>11 and sP<18 and (nP>12 and nP<16)  // no jump responses
-
+and not CD
 
 action
 #printoneline,
