@@ -40,6 +40,7 @@ sSupport = s3cards or s4cards
 fjC  = clubs(south)   >4 and top3(south,clubs)>1
 fjD  = diamonds(south)>4 and top3(south,diamonds)>1
 fjH  = hearts(south)  >4 and top3(south,hearts)>1 and nSpades
+fjSuit = fjC or fjD or fjH
 
 # Define South's Support Points (sPoints)
 v1 = shape(south, any 0xxx) ? 5 : 0 // allow for 2 voids
@@ -52,35 +53,39 @@ d3 = shape(south, any 222x) ? 1 : 0
 shortSuitPoints = v1+v2+s1+s2+d1+d2+d3
 sPoints = sSupport ? shortSuitPoints + hcp(south) : hcp(south)
 
-# Define responses
-pass       = sPoints<4  and hcp(south)<6
-raise      = sPoints>3  and sPoints<8 and s3cards
-fitJump    = (fjC or fjD or fjH)      and s4cards
-splinter1  = sPoints>11               and sSupport and shape(south,any 1xxx) and not fitJump
-splinter0  = sPoints>11               and sSupport and shape(south,any 0xxx) and not fitJump
-drury      = sPoints>7                and sSupport and not (splinter0 or splinter1 or fitJump)
-newSuit    = hcp(south)>9             and not sSupport and new5
-nt         = hcp(south)>5 and not (raise or fitJump or splinter1 or splinter0 or drury or newSuit)
+singleton = shape(south,any 1xxx)
+void      = shape(south,any 0xxx)
+spadeSuit = spades(south)>3
+noSupport = not sSupport
 
-game       = not (pass or raise or fitJump or splinter1 or splinter0 or drury or newSuit or nt)
+# Define responses
+fitJump    = sPoints>7               and s4cards   and fjSuit
+raise      = sPoints>3 and sPoints<8 and sSupport
+splinter1  = sPoints>11              and sSupport  and singleton and not (fitJump)
+splinter0  = sPoints>11              and sSupport  and void      and not (fitJump)
+drury      = sPoints>7               and sSupport                and not (fitJump or raise or splinter1 or splinter0)
+newSuit    = hcp(south)>9            and noSupport and new5
+oneSp      = hcp(south)>5            and noSupport and spadeSuit and not (newSuit)
+nt         = hcp(south)>5            and noSupport               and not (newSuit or oneSp)
+
+pass      = not (fitJump or raise or splinter1 or splinter0 or drury or newSuit or oneSp or nt)
  
 nOpens = nMajor and hcp(north)>11 and hcp(north)<20 and notNT and shape(north,any 6xxx+any 5xxx-any 65xx-any 55xx)
 
 sPasses and nOpens and calmOpps
-and not nt
-
+and not (oneSp or nt or pass)
 
 action
 #printoneline, 
-average "pass,      <4 sPts and <6 hcp      " 100 * pass,
-average "raise,     4-7 sPts & 3-cards      " 100 * raise,
-average "fit jump,  9+fit and good 2nd suit " 100 * fitJump,
-average "splinter1, 12+ sPts & singleton    " 100 * splinter1,
-average "splinter0, 12+ sPts & void         " 100 * splinter0,
-average "drury,     8+  sPts & 3+cards      " 100 * drury,
-average "new suit,  10-11 hcp & good suit   " 100 * newSuit,
-average "nt,        6+ HCP no fit           " 100 * nt,
-average "   -- not one of the above --      " 100 * game,
+average "fit jump   8+  sPts 4+fit  2nd suit " 100 * fitJump,
+average "raise      4-7 sPts 3+fit           " 100 * raise,
+average "splinter1  12+ sPts 3+fit  singleton" 100 * splinter1,
+average "splinter0  12+ sPts 3+fit  void     " 100 * splinter0,
+average "drury      8+  sPts 3+fit           " 100 * drury,
+average "2D/2H      10+ hcp  no fit good suit" 100 * newSuit,
+average "1S         6+  hcp  no fit 4+S      " 100 * oneSp,
+average "1N         6+  hcp  no fit          " 100 * nt,
+average "Pass                                " 100 * pass,
 frequency "Support Points" (sPoints,0,16),
 
 `,"S",true)
