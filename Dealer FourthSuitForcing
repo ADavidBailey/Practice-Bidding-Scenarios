@@ -26,8 +26,8 @@ unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 balEast   = shape(east,any 4333 +any 4432)
 balWest   = shape(west,any 4333 +any 4432)
 
-calmEast = ((unBalEast and noConEast) or balEast) and hcp(east)<12
-calmWest = ((unBalWest and noConWest) or balWest) and hcp(west)<12
+calmEast = ((unbalEast and noConEast) or balEast) and hcp(east)<12
+calmWest = ((unbalWest and noConWest) or balWest) and hcp(west)<12
 calmOpps = calmEast and calmWest
 
 # Predict South's opening bid
