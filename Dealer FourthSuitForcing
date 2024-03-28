@@ -21,6 +21,7 @@ noConWest = ccw and cdw and chw and csw
 
 unbalEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+
 balEast   = shape(east,any 4333 +any 4432)
 balWest   = shape(west,any 4333 +any 4432)
 
@@ -101,11 +102,11 @@ hN = hearts(north)
 dN = diamonds(north)
 cN = clubs(north)
 
-# North responds in D, H, or S (Walsh style)  longer than C to avoid 2/1
+# North responds in D, H, or S (Up The Line style)  longer than C to avoid 2/1
 nUnbal = shape(north,any 7xxx+any 61xx+any 5431+any 4441)
-nS = sN>hN and sN>=dN and sN>=cN  and nUnbal
-nH = hN>=dN and hN>=cN            and nUnbal and not (nS)
-nD = dN>=cN                       and nUnbal and not (nS or nH)
+nS = sN>hN and sN>dN and sN>cN and nUnbal
+nH = hN>dN and hN>cN           and nUnbal and not (nS)
+nD = dN>=cN                    and nUnbal and not (nS or nH)
 
 # North has No direct support for South's opening suit
 nNc = clubs(north)   <4
@@ -137,7 +138,8 @@ DH = oneD and resH and (sS4 or sC4)
 DS = oneD and resS and (sC4 or (sH4 and sP>16))  // H rebid is a reverse
 HS = oneH and resS and (sC4 or sD4)
 
-(oneC or oneD or oneH) and (CD or CH or CS or DH or DS or HS) and calmOpps and sP>11 and sP<17 and (nP>12 and nP<16)  // no jump responses/rebids
+# Now do it
+(oneC or oneD or oneH) and (CD or CH or CS or DH or DS or HS) and calmOpps and sP>11 and sP<19 and (nP>12 and nP<16)  // no jump responses/rebids
 and not CD
 
 action
@@ -152,6 +154,7 @@ average "HS " 100 * HS,
 average "TP "       sP + nP,
 average "S  "       sP,
 average "N  "       nP,
+
 
 `,"S",true)
 Script
