@@ -7,16 +7,16 @@ produce 1000
 # Define Calm Opponents
 #Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
 # Avoid concentration of values
-cce = hcp(east,clubs)<5
-cde = hcp(east,diamonds)<5
-che = hcp(east,hearts)<5
-cse = hcp(east,spades)<5
+cce = top4(east,clubs)<2
+cde = top4(east,diamonds)<2
+che = top4(east,hearts)<2
+cse = top4(east,spades)<2
 noConEast = cce and cde and che and cse
 
-ccw = hcp(west,clubs)<5
-cdw = hcp(west,diamonds)<5
-chw = hcp(west,hearts)<5
-csw = hcp(west,spades)<5
+ccw = top4(west,clubs)<2
+cdw = top4(west,diamonds)<2
+chw = top4(west,hearts)<2
+csw = top4(west,spades)<2
 noConWest = ccw and cdw and chw and csw
 
 unbalEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
@@ -25,8 +25,8 @@ unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 balEast   = shape(east,any 4333 +any 4432)
 balWest   = shape(west,any 4333 +any 4432)
 
-calmEast = ((unbalEast and noConEast) or balEast) and hcp(east)<12
-calmWest = ((unbalWest and noConWest) or balWest) and hcp(west)<12
+calmEast = (unbalEast and noConEast and hcp(east)<10) or (balEast and hcp(east)<12)
+calmWest = (unbalWest and noConWest and hcp(west)<10) or (balWest and hcp(west)<12)
 calmOpps = calmEast and calmWest
 
 # Predict South's opening bid
@@ -111,11 +111,11 @@ nD = dN>=cN                    and nUnbal and not (nS or nH)
 # North has No direct support for South's opening suit
 nNc = clubs(north)   <4
 nNd = diamonds(north)<4
-nNh = hearts(north)  ==3
+nNh = hearts(north)  ==3 //<4
 
 # South has No direct support for North's responding suit
-resS = nS and spades(south)  ==3
-resH = nH and hearts(south)  ==3
+resS = nS and spades(south)  <4   //==3   forces opener to be 5431
+resH = nH and hearts(south)  <4   //==3   forces opener to be 5431
 resD = nD and diamonds(south)<4
 
 # Define South's possible rebids
@@ -151,9 +151,6 @@ average "CS " 100 * CS,
 average "DH " 100 * DH,
 average "DS " 100 * DS,
 average "HS " 100 * HS,
-average "TP "       sP + nP,
-average "S  "       sP,
-average "N  "       nP,
 
 
 `,"S",true)
