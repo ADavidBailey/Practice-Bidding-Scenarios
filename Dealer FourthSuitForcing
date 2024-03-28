@@ -2,8 +2,7 @@ Script,FourthSuitForcing
 setDealerCode(`
 
 dealer south
-generate 10000000
-produce 5000
+produce 1000
 
 # Define Calm Opponents
 #Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
@@ -22,7 +21,6 @@ noConWest = ccw and cdw and chw and csw
 
 unbalEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
-
 balEast   = shape(east,any 4333 +any 4432)
 balWest   = shape(west,any 4333 +any 4432)
 
@@ -154,7 +152,6 @@ average "HS " 100 * HS,
 average "TP "       sP + nP,
 average "S  "       sP,
 average "N  "       nP,
-
 
 `,"S",true)
 Script
