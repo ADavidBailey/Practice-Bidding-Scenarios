@@ -9,39 +9,51 @@ Let's start with the RESULTS...
 Note the entries with a question mark '?'.  These represent the percentages for 'None of the above'.  
 I'm not sure that I fully understand what these are.  But, they are small enough that I'm not too concerned.
 
-C  : 23.555
-D  : 25.032
-H  : 15.435
-S  : 15.79
-N  : 19.49
-?  : 0.698
+C  : 23.972
+D  : 24.539
+H  : 15.213
+S  : 15.709
+N  : 19.872
+?  : 0.695
 
-CD : 6.44
-CH : 8.444
-CS : 6.731
-CN : 1.959
-C? : 0.0194
+CD : 6.621
+CH : 8.646
+CS : 6.826
+CN : 1.969
+C? : 0.01879
 
-DH : 9.705
-DS : 2.356
-DN : 1.672
-D? : 0.11815
+DH : 9.572
+DS : 2.284
+DN : 1.682
+D? : 0.11496
 
-HS : 6.102
-HN : 0.787
-H? : 0.09201
+HS : 6.023
+HN : 0.829
+H? : 0.09057
 
-CDH : 2.842
-CDS : 2.905
-CDN : 3.912
-CDC : 0.979
-CDD : 0.131
+CDH : 3.019
+CDS : 2.928
+CDN : 3.998
+CDC : 0.99
+CDD : 0.135
 CD? : 0
 
-Generated 6666493 hands
+DHS : 3.263
+DHN : 4.708
+DHC : 3.374
+DHD : 1.728
+DH? : 0.00288
+
+HSN : 4.708
+HSC : 3.374
+HSD : 1.728
+HSH : 1.615
+HS? : 0.00341
+
+Generated 6701380 hands
 Produced 100000 hands
-Initial random seed 1710430527
-Time needed   12.541 sec
+Initial random seed 1711719345
+Time needed   14.584 sec
 
 */
 
@@ -50,7 +62,6 @@ Time needed   12.541 sec
 ### Bidding Sequence Statistics ### 
 
 dealer south
-generate 10000000
 produce 100000
 
 # Define Calm Opponents
@@ -162,6 +173,18 @@ CDN = CD and sRN //and not (CDH or CDS)
 CDC = CD and c>5 //and not (CDH or CDS or CDN)
 CDD = CD and d>3 //and not (CDH or CDS or CDN or CDC)
 
+DHS = DH and sS4
+DHN = DH and sRN
+DHC = DH and sC4
+DHD = DH and d>5
+
+HSN = HS and sRN
+HSC = HS and sC4
+HSD = HS and sD4
+HSH = HS and h>5
+
+
+
 # South opens 1C/D/H/S and North responds 1D/H/S
 calmOpps and sP>11 and sP<20 and nP>9 and nP<12
 
@@ -202,3 +225,15 @@ average "CDN " 100 * CDN,
 average "CDC " 100 * CDC,
 average "CDD " 100 * CDD,
 average "CD? " 100 * CD and not (CDH or CDS or CDN or CDC or CDD),
+
+average "DHS " 100 * DHS,
+average "DHN " 100 * DHN,
+average "DHC " 100 * DHC,
+average "DHD " 100 * DHD,
+average "DH? " 100 * DH and not (DHS or DHN or DHC or DHD),
+
+average "HSN " 100 * DHN,
+average "HSC " 100 * DHC,
+average "HSD " 100 * DHD,
+average "HSH " 100 * HSH,
+average "HS? " 100 * HS and not (HSN or HSC or HSD or HSH),
