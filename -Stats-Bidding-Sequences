@@ -2,62 +2,82 @@
 
 South opens 1C/D/H/S and North responds 1D/H/S/N.  Here are the constraints:
 
-  calmOpps and sP>11 and sP<20 and nP>9 and nP<12
+  calmOpps and sP>11 and sP<20 and nP>5 and nP<12
 
 Let's start with the RESULTS...
 
 Note the entries with a question mark '?'.  These represent the percentages for 'None of the above'.  
 I'm not sure that I fully understand what these are.  But, they are small enough that I'm not too concerned.
 
-Club  : 23.705
-    CD: 4.73
-   CDH: 2.25
-   CDS: 1.515
-   CDN: 0.665
-   CDC: 0.235
-   CDD: 0.065
-??????: 0
-    CH: 9.35
-   CHS: 1.805
-   CHN: 4.13
-   CHC: 1.79
-   CHD: 0.735
-   CHH: 0
-??????: 0.89
-    CS: 7.685
-   CSN: 4.31
-   CSC: 1.375
-   CSD: 0.645
-   CSH: 1.135
-   CSS: 0.22
-??????: 0.22
-    CN: 1.94
-   CNC: 0.04
-    CC: 0
-Diamond: 25.355
-  DH   : 10.32
-    DHS: 3.74
-    DHN: 3.665
-    DHC: 1.535
-    DHD: 1.065
-    DHH: 0.315
-  DS   : 7.595
-  DN   : 5.58
-  DD   : 1.86
-Heart  : 14.625
-     HS: 6.82
-       HSN: 3.665
-       HSC: 1.535
-       HSD: 1.065
-       HSH: 1.245
-     HN: 3.405
-       HNC: 0.16
-       HND: 0.99
-       HNH: 0.75
-Generated 879352 hands
-Produced 20000 hands
-Initial random seed 1711740392
-Time needed    2.389 sec
+Club    : 23.858
+     CD       : 4.742
+       CDH          : 2.39
+       CDS          : 1.356
+       CDN          : 0.672
+       CDC          : 0.272
+       CDD          : 0.052
+       CD????       : 0
+     CH       : 9.714
+       CHS          : 1.856
+       CHN          : 4.052
+       CHC          : 1.844
+       CHD          : 0.938
+       CHH          : 0
+       CH????       : 1.024
+    CS        : 7.642
+      CSN           : 4.42
+      CSC           : 1.374
+      CSD           : 0.634
+      CSH           : 1.044
+      CSS           : 0.17
+      CS????        : 0.17
+    CN        : 0.598
+      CNC           : 0.024
+      CN????        : 0.574
+    CC        : 1.162
+       CD????       : 0
+Diamond: 24.216
+    DH        : 9.812
+      DHS           : 3.422
+      DHN           : 3.604
+      DHC           : 1.48
+      DHD           : 1.054
+      DHH           : 0.252
+      DH????        : 0
+    DS        : 7.582
+      DSN           : 4.058
+      DSC           : 1.584
+      DSD           : 1.94
+      DSH           : 0
+      DSS           : 0
+      DS????        : 0
+    DN        : 0.894
+      DNC           : 0.136
+      DND           : 0.062
+      DNH           : 0.314
+      DNS           : 0.202
+      DNN           : 0.18
+      DN????        : 0
+    DD        : 5.928
+Heart   : 14.71
+      HS        : 6.878
+        HSN         : 3.604
+        HSC         : 1.48
+        HSD         : 1.054
+        HSH         : 1.262
+        HSS         : 0.36
+        HS????      : 0
+      HN      : 0.41
+        HNC         : 0.03
+        HND         : 0.074
+        HNH         : 0.078
+        HNS         : 0.054
+        HNN         : 0.174
+        HN????      : 0
+Generated 2204245 hands
+Produced 50000 hands
+Initial random seed 1711750910
+Time needed    6.473 sec
 
 */
 
@@ -66,7 +86,7 @@ Time needed    2.389 sec
 ### Bidding Sequence Statistics ### 
 
 dealer south
-produce 20000
+produce 1000
 
 # Avoid concentration of values
 cce = top4(east,clubs)<2
@@ -165,12 +185,13 @@ hN = hearts(north)
 dN = diamonds(north)
 cN = clubs(north)
 
-# North responds in D, H, or S (Walsh style)  longer than C to avoid 2/1
+# North responds in D, H, or S (Walsh style), or raises C.  longer than C to avoid 2/1
 ######
 nS = sN>3 and sN>hN and sN>=cN
 nH = hN>3           and hN>=cN and not (nS)
 nD = dN>3           and dN>=cN and not (nS or nH)
-nN = not (nS or nH or nD)
+nC = cN>4           and cN>4   and not (nS or nH or nD)
+nN = not (nS or nH or nD or nC)
 
 # Define South's possible rebids
 sC4 = clubs(south)>3
@@ -185,7 +206,7 @@ CD = oC and nD
 CH = oC and nH
 CS = oC and nS
 CN = oC and nN
-CC = oC and not (CD or CH or CS or CN)
+CC = oC and nC
 
 DH = oD and nH
 DS = oD and nS
@@ -226,10 +247,15 @@ DHH = DH and h>3 and not (DHS or DHC or DHN or DHD)
 DSN = DS and sRN
 DSC = DS and sC4 and not (DSN)
 DSD = DS and sD4 and not (DSN or DSC)
-DSS = DS and s>3 and not (DSN or DSC or DSD)
+DSH = DS and sH4 and not (DSN or DSC or DSD)
+DSS = DS and sS4 and not (DSN or DSC or DSD or DSH)
 
 DNC = DN and sC4
 DND = DN and d>5 and not (DNC)
+DNH = DN and sH4 and not (DNC or DND)
+DNS = DN and sS4 and not (DNC or DND or DNH)
+DNN = DN and sRN and not (DNC or DND or DNH or DNS)
+
 
 HSN = HS and sRN
 HSC = HS and sC4 and not (HSN)
@@ -240,6 +266,8 @@ HSS = HS and s>3 and not (HSN or HSC or HSD or HSH)
 HNC = HN and sC4
 HND = HN and sD4 and not (HNC)
 HNH = HN and h>5 and not (HNC or HND)
+HNS = HN and sS4 and not (HNC or HND or HNH)
+HNN = HN and sRN and not (HNC or HND or HNH or HNS)
 
 
 
@@ -258,58 +286,80 @@ calmOpps and sP>11 and sP<20 and nP>5 and nP<12
 action
 #printoneline,
 
+  
+average "Club    " 100 * oneClub,
+average "     CD       " 100 * CD,
+average "       CDH          " 100 * CDH,
+average "       CDS          " 100 * CDS,
+average "       CDN          " 100 * CDN,
+average "       CDC          " 100 * CDC,
+average "       CDD          " 100 * CDD,
+average "       CD????       " 100 * (CD and not (CDH or CDS or CDN or CDC or CDD)),
 
-average "Club  " 100 * oneClub,
-average "    CD" 100 * CD,
+average "     CH       " 100 * CH,
+average "       CHS          " 100 * CHS,
+average "       CHN          " 100 * CHN,
+average "       CHC          " 100 * CHC,
+average "       CHD          " 100 * CHD,
+average "       CHH          " 100 * CHH,
+average "       CH????       " 100 * (CH and not (CHS or CHN or CHC or CHD or CHH)),
 
-average "   CDH" 100 * CDH,
-average "   CDS" 100 * CDS,
-average "   CDN" 100 * CDN,
-average "   CDC" 100 * CDC,
-average "   CDD" 100 * CDD,
-average "??????" 100 * (CD and not (CDH or CDS or CDN or CDC or CDD)),
+average "    CS        " 100 * CS,
+average "      CSN           " 100 * CSN,
+average "      CSC           " 100 * CSC,
+average "      CSD           " 100 * CSD,
+average "      CSH           " 100 * CSH,
+average "      CSS           " 100 * CSS,
+average "      CS????        " 100 * (CS and not (CSN or CSC or CSD or CSH)),
 
-average "    CH" 100 * CH,
-average "   CHS" 100 * CHS,
-average "   CHN" 100 * CHN,
-average "   CHC" 100 * CHC,
-average "   CHD" 100 * CHD,
-average "   CHH" 100 * CHH,
-average "??????" 100 * (CH and not (CHS or CHN or CHC or CHD or CHH)),
+average "    CN        " 100 * CN,
+average "      CNC           " 100 * CNC,
+average "      CN????        " 100 * (CN and not (CNC)),
+   
+average "    CC        " 100 * CC,
+average "       CD????       " 100 * (CD and not (CDH or CDS or CDN or CDC or CDD)),
 
-average "    CS" 100 * CS,
-average "   CSN" 100 * CSN,
-average "   CSC" 100 * CSC,
-average "   CSD" 100 * CSD,
-average "   CSH" 100 * CSH,
-average "   CSS" 100 * CSS,
-average "??????" 100 * (CS and not (CSN or CSC or CSD or CSH)),
-
-average "    CN" 100 * CN,
-average "   CNC" 100 * CNC,
-average "    CC" 100 * CC,
 
 average "Diamond" 100 * oneDiamond,
-average "  DH   " 100 * DH,
-average "    DHS" 100 * DHS,
-average "    DHN" 100 * DHN,
-average "    DHC" 100 * DHC,
-average "    DHD" 100 * DHD,
-average "    DHH" 100 * DHH,
+average "    DH        " 100 * DH,
+average "      DHS           " 100 * DHS,
+average "      DHN           " 100 * DHN,
+average "      DHC           " 100 * DHC,
+average "      DHD           " 100 * DHD,
+average "      DHH           " 100 * DHH,
+average "      DH????        " 100 * (DH and not (DHS or DHN or DHC or DHD or DHH)),
 
-average "  DS   " 100 * DS,
-average "  DN   " 100 * DN,
-average "  DD   " 100 * DD,
 
-average "Heart  " 100 * oneHeart,
-average "     HS" 100 * HS,
-average "       HSN" 100 * DHN,
-average "       HSC" 100 * DHC,
-average "       HSD" 100 * DHD,
-average "       HSH" 100 * HSH,
+average "    DS        " 100 * DS,
+average "      DSN           " 100 * DSN,
+average "      DSC           " 100 * DSC,
+average "      DSD           " 100 * DSD,
+average "      DSH           " 100 * DSH,
+average "      DSS           " 100 * DSS,
+average "      DS????        " 100 * (DS and not (DSN or DSC or DSD or DSH or DSS)),
 
-average "     HN" 100 * HN,
-average "       HNC" 100 * HNC,
-average "       HND" 100 * HND,
-average "       HNH" 100 * HNH,
+average "    DN        " 100 * DN,
+average "      DNC           " 100 * DNC,
+average "      DND           " 100 * DND,
+average "      DNH           " 100 * DNH,
+average "      DNS           " 100 * DNS,
+average "      DNN           " 100 * DNN,
+average "      DN????        " 100 * (DN and not (DNC or DND or DNH or DNS or DNN)),
+average "    DD        " 100 * DD,
 
+average "Heart   " 100 * oneHeart,
+average "      HS        " 100 * HS,
+average "        HSN         " 100 * DHN,
+average "        HSC         " 100 * DHC,
+average "        HSD         " 100 * DHD,
+average "        HSH         " 100 * HSH,
+average "        HSS         " 100 * HSS,
+average "        HS????      " 100 * (HS and not (HSN or HSC or HSD or HSH or HSS)),
+
+average "      HN      " 100 * HN,
+average "        HNC         " 100 * HNC,
+average "        HND         " 100 * HND,
+average "        HNH         " 100 * HNH,
+average "        HNS         " 100 * HNS,
+average "        HNN         " 100 * HNN,
+average "        HN????      " 100 * (HN and not (HNC or HND or HNH or HNS or HNN)),
