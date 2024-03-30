@@ -203,17 +203,21 @@ HNN = HN and sRN and not (HNC or HND or HNH or HNS)
 noReverse = (CDH or CDS or CHS or DHS or DHC or DSC or HSC or HSD) and sP>11
 isReverse = (CHD or CSD or CSH or DSH) and sP>16
 
-twoSuits  = shape(south,any 65xx+any 64xx+any 54xx+any 44xx)
+# North's constraints
+nShape = shape(north,any 7xxx+any 6xxx+any 5xxx-any 5332) 
 nRange = nP>11 and nP<16
+nConstraints = nShape and nRange
 
-# South has no direct support for North's response
+# South's constraints
 noS = nS and spades(south)<4
 noH = nH and hearts(south)<4
 noD = nD and diamonds(south)<4
-noDirect = noS or noH or noD 
+noDirect = noS or noH or noD   //no direct support for North's response
+twoSuits  = shape(south,any 65xx+any 64xx+any 54xx+any 44xx)
+sConstraints = noDirect and twoSuits and sp<19
 
 # Now do it
-twoSuits and (noReverse or isReverse) and sP<19 and nRange and noDirect and calmOpps
+(noReverse or isReverse) and sConstraints and nConstraints and calmOpps
 #and CHD
 
 action
