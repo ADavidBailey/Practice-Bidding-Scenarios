@@ -95,10 +95,8 @@ Time needed   14.019 sec
 
 ### PASTE all of the code below into the BBO - Hand generator:  https://www.bridgebase.com/tools/dealer/dealer.php ###
 
-### Bidding Sequence Statistics ### 
-
-dealer south
-produce 100000
+#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Bidding-Sequences
+##### Predict Bidding Sequences #####
 
 # Avoid concentration of values
 cce = top4(east,clubs)<2
@@ -119,8 +117,8 @@ unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 balEast   = shape(east,any 4333 +any 4432)
 balWest   = shape(west,any 4333 +any 4432)
 
-calmEast = (unbalEast and noConEast and hcp(east)<10) or (balEast and hcp(east)<12)
-calmWest = (unbalWest and noConWest and hcp(west)<10) or (balWest and hcp(west)<12)
+calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<12)
+calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<12)
 calmOpps = calmEast and calmWest
 
 # Predict South's opening bid
@@ -291,8 +289,10 @@ HNS = HN and sS4 and not (HNC or HND or HNH)
 HNN = HN and sRN and not (HNC or HND or HNH or HNS)
 ########
 
+##### Generate Statistics for Predict Bidding Sequences #####
 # South opens 1C/D/H/S and North responds 1D/H/S
 calmOpps and sP>11 and sP<20 and nP>5 and nP<12
+
 
 
 # Lines that begin with a # are comments. 
