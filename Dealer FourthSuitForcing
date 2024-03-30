@@ -204,7 +204,7 @@ noReverse = (CDH or CDS or CHS or DHS or DHC or DSC or HSC or HSD) and sP>11
 isReverse = (CHD or CSD or CSH or DSH) and sP>16
 
 # North's constraints
-nShape = shape(north,any 7xxx+any 6xxx+any 5xxx-any 5332) 
+nShape = shape(north,any 7xxx+any 6xxx+any 5xxx-any 74xx-any 64xx-any 5332-any 4432-any 4333) 
 nRange = nP>11 and nP<16
 nConstraints = nShape and nRange
 
