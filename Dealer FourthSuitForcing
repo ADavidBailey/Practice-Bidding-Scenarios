@@ -24,8 +24,8 @@ unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 balEast   = shape(east,any 4333 +any 4432)
 balWest   = shape(west,any 4333 +any 4432)
 
-calmEast = ((unbalEast and hcp(east)<9) or (balEast and hcp(east)<12)) and noConEast
-calmWest = ((unbalWest and hcp(west)<9) or (balWest and hcp(west)<12)) and noConWest
+calmEast = ((unbalEast and hcp(east)<8) or (balEast and hcp(east)<12)) and noConEast
+calmWest = ((unbalWest and hcp(west)<8) or (balWest and hcp(west)<12)) and noConWest
 calmOpps = calmEast and calmWest
 ##### End of Define Calm Opponents #####
 
