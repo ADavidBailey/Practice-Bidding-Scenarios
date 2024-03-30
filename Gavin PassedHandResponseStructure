@@ -60,14 +60,14 @@ clubSuit  = clubs(south)>5 and hcp(south,clubs)>4
 
 # Define responses
 raise      = sPoints>3 and sPoints<8 and sSupport
-fitJump    = sPoints>7               and s4cards   and fjSuit
-splinter1  = sHCP>7             and sSupport  and singleton and not (fitJump)
-splinter0  = sHCP>7             and sSupport  and void      and not (fitJump)
-drury      = sPoints>7          and sSupport                and not (fitJump or raise or splinter1 or splinter0)
-newSuit    = sHCP>9             and noSupport and new5
-threeClubs = sHCP>7 and sHCP<10 and noSupport and clubSuit  and not (newSuit)
-oneSp      = sHCP>5             and noSupport and spadeSuit and not (threeClubs or newSuit)
-nt         = sHCP>5             and noSupport               and not (threeClubs or newSuit or oneSp)
+fitJump    = sPoints>7 and s4cards   and fjSuit
+splinter1  = sHCP>7    and sSupport  and singleton and not (fitJump)
+splinter0  = sHCP>7    and sSupport  and void      and not (fitJump)
+drury      = sPoints>7 and sSupport                and not (fitJump or raise or splinter1 or splinter0)
+newSuit    = sHCP>9    and noSupport and new5
+threeClubs = sHCP>7    and noSupport and clubSuit  and not (newSuit)
+oneSp      = sHCP>5    and noSupport and spadeSuit and not (threeClubs or newSuit)
+nt         = sHCP>5    and noSupport               and not (threeClubs or newSuit or oneSp)
 
 pass      = not (fitJump or raise or splinter1 or splinter0 or drury or newSuit or threeClubs or oneSp or nt)
  
