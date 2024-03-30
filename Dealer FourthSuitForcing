@@ -214,7 +214,7 @@ noH = nH and hearts(south)<4
 noD = nD and diamonds(south)<4
 noDirect = noS or noH or noD   //no direct support for North's response
 twoSuits  = shape(south,any 65xx+any 64xx+any 54xx+any 44xx)
-sConstraints = noDirect and twoSuits and sp<19
+sConstraints = noDirect and twoSuits and sP<19
 
 # Now do it
 (noReverse or isReverse) and sConstraints and nConstraints and calmOpps
