@@ -1,8 +1,7 @@
 Script,FourthSuitForcing
 setDealerCode(`
 
-dealer south
-produce 1000
+produce 100
 
 ##### Define Calm Opponents #####
 #Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
@@ -210,12 +209,12 @@ nConstraints = nShape and nRange
 
 # South's constraints
 keep44 = hascard(east,2C) or hascard(west,2D)
-noS = nS ? keep44 and spades(south)<3 : spades(south)==3 
-noH = nH ? keep44 and hearts(south)<3 : hearts(south)==3
-noD = nD and diamonds(south)<4
-noDirect = noS or noH or noD   //no direct support for North's response
-twoSuits  = shape(south,any 65xx+any 64xx+any 54xx+any 44xx)
-sConstraints = noDirect and twoSuits and sP<19
+sSs = nS ? keep44 and spades(south)<3 : spades(south)==3 
+sHs = nH ? keep44 and hearts(south)<3 : hearts(south)==3
+sDs = nD and diamonds(south)<4
+sSupport = sSs or sHs or sDs
+twoSuits  = shape(south,any 54xx+any 44xx)
+sConstraints = sSupport and twoSuits and sP<19
 
 # Now do it
 (noReverse or isReverse) and sConstraints and nConstraints and calmOpps
@@ -239,6 +238,9 @@ average "CSH       " 100 * CSH,
 average "DSH       " 100 * DSH,
 average "singleton " 100 * shape(south,any 1xxx),
 average "void      " 100 * shape(south,any 0xxx),
+average "sSupport  " 100 * ((CH or DH)       and shape(south,3xxx)),
+average "hSupport  " 100 * ((CS or DS or HS) and shape(south,x3xx)),
+
 
 `,"S",true)
 Script
