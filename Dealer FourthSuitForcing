@@ -209,8 +209,9 @@ nRange = nP>11 and nP<16
 nConstraints = nShape and nRange
 
 # South's constraints
-noS = nS and spades(south)<4
-noH = nH and hearts(south)<4
+keep44 = hascard(east,2C) or hascard(west,2D)
+noS = nS ? keep44 and spades(south)<3 : spades(south)==3 
+noH = nH ? keep44 and hearts(south)<3 : hearts(south)==3
 noD = nD and diamonds(south)<4
 noDirect = noS or noH or noD   //no direct support for North's response
 twoSuits  = shape(south,any 65xx+any 64xx+any 54xx+any 44xx)
