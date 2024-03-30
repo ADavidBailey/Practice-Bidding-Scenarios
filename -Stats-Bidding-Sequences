@@ -289,10 +289,8 @@ HND = HN and sD4 and not (HNC)
 HNH = HN and h>5 and not (HNC or HND)
 HNS = HN and sS4 and not (HNC or HND or HNH)
 HNN = HN and sRN and not (HNC or HND or HNH or HNS)
-
-
-
 ########
+
 # South opens 1C/D/H/S and North responds 1D/H/S
 calmOpps and sP>11 and sP<20 and nP>5 and nP<12
 
@@ -300,14 +298,14 @@ calmOpps and sP>11 and sP<20 and nP>5 and nP<12
 # Lines that begin with a # are comments. 
 # Uncomment the printoneline statement to print the generated lines.  Be sure 
 # to reduce the number of hands produced, too.
+#
 # Uncomment the next line to restrict the deals to one or a few sequences.
 
-# and CDC or CDD
+# You may uncomment the 'and (CDC or CDD)' to restrict the sequences produced   // for sequences that start 1C - 1D - 2C or 1C - 1D - 2D)
 
 action
 #printoneline,
 
-  
 average "Club    " 100 * oneClub,
 average "     CD       " 100 * CD,
 average "       CDH          " 100 * CDH,
