@@ -1,6 +1,9 @@
+Script,SplinterByOpener
+setDealerCode(`
+
 
 dealer south
-produce 1000
+produce 100
 
 # Splinters by Opener
 ##### Define Calm Opponents #####
@@ -147,13 +150,13 @@ any1 = (C1 or D1 or H1 or S1)
 any0= shape(south,any 0xxx)
 anyShort = any0 or any1
 
-supportD = CD               and diamonds(south)>4 and anyShort
+supportD = (CD)             and diamonds(south)>4  and anyShort
 supportH = (CH or DH)       and hearts(south)>3    and anyShort
 supportS = (CS or DS or HS) and spades(south)>3    and anyShort
 supportResponder = supportD or supportH or supportS
 
 southRange = hcp(south)>15 and hcp(south)<19
-northRange = hcp(north)>5  and hcp(north)<13
+northRange = hcp(north)>5  and hcp(north)<15
 
 # Now do it
 (CD or CH or CS or DH or DS or HS) and supportResponder and anyShort and southRange and northRange and calmOpps
@@ -163,5 +166,14 @@ average "CD " 100 * CD,
 average "CH " 100 * CH,
 average "CS " 100 * CS,
 average "DH " 100 * DH,
-average "DS " 100 * CS,
+average "DS " 100 * DS,
 average "HS " 100 * HS,
+
+`,"S",true)
+Script
+Button,Splinter bu Opener,\n\
+--- Splinter by Opener\n\
+An unusual jump is a splinter.\n\
+A Jump Reverse is a splinter.\n\
+Jumps after these sequences are splinters.  CHD CSD DSH DSH\n\
+%SplinterByOpener%
