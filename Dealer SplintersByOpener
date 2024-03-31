@@ -162,10 +162,12 @@ jshift  = (CD or DH) and hcp(south)>14
 giSplinter = reverse
 gfSplinter = jshift
 
+sOpens = giSplinter or gfSplinter  
+
 northRange = hcp(north)>5  and hcp(north)<15
 
 # Now do it
-giSplinter or gfSplinter and supportResponder and anyShort and northRange and calmOpps
+(giSplinter or gfSplinter) and supportResponder and anyShort and northRange and calmOpps
 
 action
 average "CD " 100 * CD,
