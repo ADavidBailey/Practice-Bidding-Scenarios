@@ -141,7 +141,7 @@ HN = oH and nN
 HH = oH and not (HS or HN)
 ##### End of Define Bidding Sequences #####
 
-# Not a singleton A, K, Q
+# Don't include a singleton A, K, Q
 C1 = shape(south,xxx1) and top3(south,clubs)   ==0
 D1 = shape(south,xx1x) and top3(south,diamonds)==0
 H1 = shape(south,x1xx) and top3(south,hearts)  ==0
@@ -155,14 +155,17 @@ supportH = (CH or DH)       and hearts(south)>3    and anyShort
 supportS = (CS or DS or HS) and spades(south)>3    and anyShort
 supportResponder = supportD or supportH or supportS
 
-# South has 13-14 HCP
-giSplinter = hcp(south)>12 and hcp(south)<15
-gfSplinter = hcp(south)>14
-southRange = giSplinter or gfSplinter
+# South has 13-14 HCP for invite or 15+ for game force
+reverse = (CH or CS or DS or HS) and hcp(south)>12
+jshift  = (CD or DH) and hcp(south)>14
+
+giSplinter = reverse
+gfSplinter = jshift
+
 northRange = hcp(north)>5  and hcp(north)<15
 
 # Now do it
-(CD or CH or CS or DH or DS or HS) and supportResponder and anyShort and southRange and northRange and calmOpps
+giSplinter or gfSplinter and supportResponder and anyShort and northRange and calmOpps
 
 action
 average "CD " 100 * CD,
