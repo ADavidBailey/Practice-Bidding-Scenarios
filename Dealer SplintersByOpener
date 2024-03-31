@@ -150,10 +150,17 @@ any1 = (C1 or D1 or H1 or S1)
 any0= shape(south,any 0xxx)
 anyShort = any0 or any1
 
+# Responder does NOT have direct support for Opener's suit
+##   I may need to add this   ##
+
+# South has support for responder's suit
 supportD = (CD)             and diamonds(south)>4  and anyShort
 supportH = (CH or DH)       and hearts(south)>3    and anyShort
 supportS = (CS or DS or HS) and spades(south)>3    and anyShort
-supportResponder = supportD or supportH or supportS
+supportResponder = (supportD or supportH or supportS)
+
+# North does not have direct support for south
+northOK = supportD
 
 # South has 13-14 HCP for invite or 15+ for game force
 reverse = (CH or CS or DS or HS) and hcp(south)>12
