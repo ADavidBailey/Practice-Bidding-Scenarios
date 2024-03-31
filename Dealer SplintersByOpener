@@ -163,8 +163,8 @@ supportResponder = (supportD or supportH or supportS)
 northOK = supportD
 
 # South has 13-14 HCP for invite or 15+ for game force
-reverse = (CH or CS or DS or HS) and hcp(south)>12
-jshift  = (CD or DH) and hcp(south)>14
+reverse = (CH or CS or DS or HS) and hcp(south)>12 and hcp(south)<19
+jshift  = (CD or DH) and hcp(south)>14 and hcp(south)<19
 
 giSplinter = reverse
 gfSplinter = jshift
