@@ -224,8 +224,8 @@ DN = oD and nN
 DD = oD and not (DH or DS or DN)
 
 HS = oH and nS
-HN = oH and nN
-HH = oH and not (HS or HN)
+HH = oH and hN>2 and not HS
+HN = oH and not (HS or HH)
 
 CDH = CD and sH4
 CDS = CD and sS4 and not (CDH)
@@ -291,7 +291,7 @@ HNN = HN and sRN and not (HNC or HND or HNH or HNS)
 
 ##### Generate Statistics for Predict Bidding Sequences #####
 # South opens 1C/D/H/S and North responds 1D/H/S
-calmOpps and sP>11 and sP<20 and nP>5 and nP<12
+calmOpps and sP>11 and sP<20 and nP>5 and nP<11
 
 
 
@@ -302,7 +302,7 @@ calmOpps and sP>11 and sP<20 and nP>5 and nP<12
 # Uncomment the next line to restrict the deals to one or a few sequences.
 
 # You may uncomment the 'and (CDC or CDD)' to restrict the sequences produced   // for sequences that start 1C - 1D - 2C or 1C - 1D - 2D)
-
+produce 200000
 action
 #printoneline,
 
@@ -378,7 +378,7 @@ average "    DD        " 100 * DD,
 average "    D????     " 100 * (oneDiamond and not (DH or DS or DN or DD)),
 
 average "Heart   " 100 * oneHeart,
-average "    HS        " 100 * HS,
+average "    HS      " 100 * HS,
 average "      HSN         " 100 * DHN,
 average "      HSC         " 100 * DHC,
 average "      HSD         " 100 * DHD,
@@ -393,6 +393,6 @@ average "      HNH         " 100 * HNH,
 average "      HNS         " 100 * HNS,
 average "      HNN         " 100 * HNN,
 average "      HN????      " 100 * (HN and not (HNC or HND or HNH or HNS or HNN)),
+average "    HH       " 100 * HH,
 
 average "    H????   " 100 * (oneHeart and not (HS or HN or HH)),
-
