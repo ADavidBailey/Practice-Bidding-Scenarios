@@ -96,8 +96,7 @@ Time needed    3.555 sec
 
 ### PASTE all of the code below into the BBO - Hand generator:  https://www.bridgebase.com/tools/dealer/dealer.php ###
 
-#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Bidding-Sequences
-##### Predict Bidding Sequences #####
+##### Imported Script: Define Calm Opponents #####
 
 # Avoid concentration of values
 cce = top4(east,clubs)<2
@@ -122,9 +121,9 @@ calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<1
 calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<12)
 calmOpps = calmEast and calmWest
 
-# Predict South's opening bid
-#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
-## Imported Script -- Predict Opening Bid ##
+##### End of Imported Script: Define Calm Opponents #####
+
+##### Imported Script -- Predict Opening 1-Bid #####
 
 # Calculate length points for South (lengthPoints)
 lp1 = spades(south)>4 ? spades(south)-4 : 0
@@ -181,7 +180,9 @@ oneHeart = oH
 oneDiamond = oD                                                              // duplicates weakNT
 oneClub = oC                                                                 // duplicates weakNT
 
-### End of Predict-Opening-Bid ###
+##### End of Imported Script -- Predict Opening 1-Bid #####
+
+##### Predict Bidding Sequences #####
 
 # These variables are defined in the imported script
 # The number of cards South has in each suit: s, h, d, c
@@ -210,7 +211,6 @@ sD4 = diamonds(south)>3
 sH4 = hearts(south)>3
 sS4 = spades(south)>3
 sRN = shape(south,any 4333+any 4432+any 5332)
-
 
 # Defining South's opening (not NT) & North's non-GF response
 CD = oC and nD
@@ -294,8 +294,6 @@ HNN = HN and sRN and not (HNC or HND or HNH or HNS)
 # South opens 1C/D/H/S and North responds 1D/H/S
 calmOpps and sP>11 and sP<20 and nP>5 and nP<11
 
-
-
 # Lines that begin with a # are comments. 
 # Uncomment the printoneline statement to print the generated lines.  Be sure 
 # to reduce the number of hands produced, too.
@@ -303,7 +301,8 @@ calmOpps and sP>11 and sP<20 and nP>5 and nP<11
 # Uncomment the next line to restrict the deals to one or a few sequences.
 
 # You may uncomment the 'and (CDC or CDD)' to restrict the sequences produced   // for sequences that start 1C - 1D - 2C or 1C - 1D - 2D)
-produce 200000
+
+produce 1000
 action
 #printoneline,
 
