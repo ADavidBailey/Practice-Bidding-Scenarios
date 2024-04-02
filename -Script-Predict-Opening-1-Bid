@@ -8,14 +8,14 @@ lp4 = clubs(south)>4 ? clubs(south)-4 : 0
 lengthPoints = lp1 + lp2 + lp3 + lp4
 
 # Calculate doubleton honor NT downgrade(s) for South -- 2 cards, 1 honor, not the Ace
-S2H = spades(south)==2 and top4(south,spades)==1 and not hascard(south,AS) ? 1 : 0
-H2H = hearts(south)==2 and top4(south,hearts)==1 and not hascard(south,AH) ? 1 : 0
-D2H = diamonds(south)==2 and top4(south,diamonds)==1 and not hascard(south,AD) ? 1 : 0
-C2H = clubs(south)==2 and top4(south,clubs)==1 and not hascard(south,AC) ? 1 : 0
-ntDownGrade = S2H + H2H + D2H + C2H
+S2H = spades(south)==2 and   top4(south,spades)>0   and not hascard(south,AS) ? 1 : 0
+H2H = hearts(south)==2 and   top4(south,hearts)>0   and not hascard(south,AH) ? 1 : 0
+D2H = diamonds(south)==2 and top4(south,diamonds)>0 and not hascard(south,AD) ? 1 : 0
+C2H = clubs(south)==2 and    top4(south,clubs)>0    and not hascard(south,AC) ? 1 : 0
+dgPoints = S2H + H2H + D2H + C2H
 
 # Define notrump points for south (ntPoints)
-ntPoints = hcp(south) + lengthPoints - ntDownGrade
+ntPoints = lengthPoints>dgPoints ? hcp(south) + lengthPoints - dgPoints : hcp(south)
 
 # Define suit points for south (suitPoints)
 suitPoints = hcp(south) + lengthPoints
@@ -54,5 +54,7 @@ oneSpade = oS
 oneHeart = oH
 oneDiamond = oD                                                              // duplicates weakNT
 oneClub = oC                                                                 // duplicates weakNT
+hcp(south)>0
+and oneNT and hcp(south)<15
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
