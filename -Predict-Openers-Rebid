@@ -1,0 +1,62 @@
+##### Predict Opener's Rebid #####
+CDH = CD and sRH
+CDS = CD and sRS and not (CDH)
+CDN = CD and sRN and not (CDH or CDS)
+CDC = CD and c>5 and not (CDH or CDS or CDN)
+CDD = CD and d>3 and not (CDH or CDS or CDN or CDC)
+
+CHS = CH and sRS
+CHN = CH and sRN and not (CHS)
+CHC = CH and c>5 and not (CHS or CHN)
+CHD = CH and sRD and not (CHS or CHN or CHC)
+CHH = CH and sRH and not (CHS or CHN or CHC or CHD)
+
+CSN = CS and sRN
+CSC = CS and c>5 and not (CSN)
+CSD = CS and sRD and not (CSN or CSC)
+CSH = CS and sRH and not (CSN or CSC or CSD)
+CSS = CS and sRS and not (CSN or CSC or CSD or CSH)
+
+CNC = CN and c>5
+CND = CN and sRD and not (CNC)
+CNH = CN and sRH and not (CNC or CND)
+CNS = CN and sRS and not (CNC or CND or CNH)
+CNN = CN and sRN and not (CNC or CND or CNH or CNS)
+
+CCD = CC and sRD
+CCH = CC and sRH and not (CCD)
+CCS = CC and sRS and not (CCD or CCH)
+CCN = CC and sRN and not (CCD or CCH or CCS)
+CCC = CC and c>5 and not (CCD or CCH or CCS or CCN)
+
+DHS = DH and sRS
+DHN = DH and sRN and not (DHS)
+DHC = DH and sRC and not (DHS or DHN)
+DHD = DH and d>5 and not (DHS or DHC or DHN)
+DHH = DH and sRH and not (DHS or DHC or DHN or DHD)
+
+DSN = DS and sRN
+DSC = DS and sRC and not (DSN)
+DSD = DS and d>5 and not (DSN or DSC)
+DSH = DS and sRH and not (DSN or DSC or DSD)
+DSS = DS and sRS and not (DSN or DSC or DSD or DSH)
+
+DNC = DN and sRC
+DND = DN and d>5 and not (DNC)
+DNH = DN and sRH and not (DNC or DND)
+DNS = DN and sRS and not (DNC or DND or DNH)
+DNN = DN and sRN and not (DNC or DND or DNH or DNS)
+
+
+HSN = HS and sRN
+HSC = HS and sRC and not (HSN)
+HSD = HS and sRD and not (HSN or HSC)
+HSH = HS and h>5 and not (HSN or HSC or HSD)
+HSS = HS and sRS and not (HSN or HSC or HSD or HSH)
+
+HNC = HN and sRC
+HND = HN and sRD and not (HNC)
+HNH = HN and h>5 and not (HNC or HND)
+HNS = HN and sRS and not (HNC or HND or HNH)
+HNN = HN and sRN and not (HNC or HND or HNH or HNS)
+##### End of Predict Opener's Rebid #####
