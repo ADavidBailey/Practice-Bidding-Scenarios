@@ -133,7 +133,7 @@ DS = oD and nS
 DN = oD and nN
 DD = oD and not (DH or DS or DN)
 
-HS = oH and nS and not(nH)  // no Jacoby 2N
+HS = sP<11 ? oH and nS and hN<3 : oH and nS and hN<4     // no Jacoby 2N
 HN = oH and nN
 HH = oH and not (HS or HN)
 
@@ -200,7 +200,7 @@ HNN = HN and sRN and not (HNC or HND or HNH or HNS)
 ##### End of Define Bidding Sequences #####
 
 ##### Select appropriate 4SF bidding sequences #####
-noReverse = (CDH or CDS or CHS or DHS or DHC or DSC or HSC or HSD) and sP>11 and sP<16 // Avoid Jump Shifts
+noReverse = (CDH or CDS or CHS or DHS or DHC or DSC or HSC or HSD) and sP>11 and sP<17 // Avoid Jump Shifts
 isReverse = (CHD or CSD or CSH or DSH) and sP>16
 allSequences = noReverse or isReverse and not CDH     // CDH is ommited.  Many consider it natural and F1
 
