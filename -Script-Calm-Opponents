@@ -1,3 +1,5 @@
+##### Imported Script: Define Calm Opponents #####
+
 # Avoid concentration of values
 cce = top4(east,clubs)<2
 cde = top4(east,diamonds)<2
@@ -20,3 +22,5 @@ balWest   = shape(west,any 4333 +any 4432)
 calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<12)
 calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<12)
 calmOpps = calmEast and calmWest
+
+##### End of Imported Script: Define Calm Opponents #####
