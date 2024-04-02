@@ -108,7 +108,7 @@ cN = clubs(north)
 # North responds in D, H, or S (Walsh style), or raises C.  longer than C to avoid 2/1
 
 # Predict North's responding suit
-nS  =  nP<11 ? sN>3 and sN>hN : sN>3 and sN>hN and sN>=dN and sN>=cN   // avoid 2/1 in minor
+nS  =  nP<11 ? sN>3 and sN>hN : sN>3 and sN>hN and sN>=dN and sN>=cN               // avoid 2/1 in minor
 nH  = (nP<11 ? hN>3           : hN>3           and hN>=dN and hN>=cN) and not (nS)
 nD  = dN>3           and dN>=cN and not (nS or nH)
 nC  = cN>4           and cN>4   and not (nS or nH or nD)
