@@ -1,6 +1,4 @@
-produce 8000000
-
-## Imported Script -- Predict Opening Bid ##
+##### Imported Script -- Predict Opening Bid #####
 
 # Calculate length points for South (lengthPoints)
 lp1 = spades(south)>4 ? spades(south)-4 : 0
@@ -111,24 +109,3 @@ average "Weak Two Strict (dup) " 100 * weakTwoStrict,
 average "Weak Two Lax          " 100 * weakTwoLax,
 average "Preempt               " 100 * preempt,
 average "Pass                  " 100 * pass,
-
-/*  The results
-3 Notrump             : 0.0121
-2 Clubs               : 0.4088
-2 Notrump             : 0.516863
-1 Notrump             : 4.57049
-Weak NT (dup)         : 13.0339
-1 Spade               : 8.15859
-1 Heart               : 7.78284
-1 Diamond             : 11.1176
-1 Club                : 10.5475
-Weak Two Strict (dup) : 0.196263
-Weak Two Lax          : 0.281125
-Preempt               : 1.85215
-Pass                  : 54.7525
-Generated 8000000 hands
-Produced 8000000 hands
-Initial random seed 1705240369
-Time needed   54.110 sec
-*/
-
