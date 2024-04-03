@@ -5,7 +5,6 @@ dealer south
 produce 1000
 
 # Splinters by Opener
-
 ##### Define Calm Opponents #####
 #Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
 # Avoid concentration of values
@@ -31,6 +30,7 @@ calmEast = ((unbalEast and hcp(east)<8) or (balEast and hcp(east)<12)) and noCon
 calmWest = ((unbalWest and hcp(west)<8) or (balWest and hcp(west)<12)) and noConWest
 calmOpps = calmEast and calmWest
 ##### End of Define Calm Opponents #####
+
 ##### Predict South's opening bid #####
 #Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
 ## Imported Script -- Predict Opening Bid ##
@@ -91,6 +91,8 @@ oneDiamond = oD                                                              // 
 oneClub = oC                                                                 // duplicates weakNT
 
 ##### End of Predict-Opening-Bid #####
+
+
 ###### Define Bidding Sequences #####
 # These variables are defined in the imported script
 # The number of cards South has in each suit: s, h, d, c
@@ -133,7 +135,7 @@ DS = oD and nS
 DN = oD and nN
 DD = oD and not (DH or DS or DN)
 
-HS = sP<11 ? oH and nS and hN<3 : oH and nS and hN<4     // no Jacoby 2N
+HS = sP<11 ? oH and nS and nH<3 : oH and nS and nH<4     // no Jacoby 2N
 HN = oH and nN
 HH = oH and not (HS or HN)
 ##### End of Define Bidding Sequences #####
