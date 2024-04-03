@@ -1,11 +1,11 @@
 Script,SplinterByOpener
 setDealerCode(`
 
-
 dealer south
-produce 100
+produce 1000
 
 # Splinters by Opener
+
 ##### Define Calm Opponents #####
 #Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
 # Avoid concentration of values
@@ -31,7 +31,6 @@ calmEast = ((unbalEast and hcp(east)<8) or (balEast and hcp(east)<12)) and noCon
 calmWest = ((unbalWest and hcp(west)<8) or (balWest and hcp(west)<12)) and noConWest
 calmOpps = calmEast and calmWest
 ##### End of Define Calm Opponents #####
-
 ##### Predict South's opening bid #####
 #Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
 ## Imported Script -- Predict Opening Bid ##
@@ -92,8 +91,6 @@ oneDiamond = oD                                                              // 
 oneClub = oC                                                                 // duplicates weakNT
 
 ##### End of Predict-Opening-Bid #####
-
-
 ###### Define Bidding Sequences #####
 # These variables are defined in the imported script
 # The number of cards South has in each suit: s, h, d, c
@@ -141,50 +138,63 @@ HN = oH and nN
 HH = oH and not (HS or HN)
 ##### End of Define Bidding Sequences #####
 
-# Don't include a singleton A, K, Q
-C1 = shape(south,xxx1) and top3(south,clubs)   ==0
-D1 = shape(south,xx1x) and top3(south,diamonds)==0
-H1 = shape(south,x1xx) and top3(south,hearts)  ==0
-S1 = shape(south,1xxx) and top3(south,spades)  ==0
-any1 = (C1 or D1 or H1 or S1)
-any0= shape(south,any 0xxx)
-anyShort = any0 or any1
+# Don't include a singleton K, Q, or J
+Cshort = (shape(south,xxx1) and (top4(south,clubs)   ==0 or hascard(south,AC)) or shape(south,xxx0))
+Dshort = (shape(south,xx1x) and (top4(south,diamonds)==0 or hascard(south,AD)) or shape(south,xx0x))
+Hshort = (shape(south,x1xx) and (top4(south,hearts)  ==0 or hascard(south,AH)) or shape(south,x0xx))
+Sshort = (shape(south,1xxx) and (top4(south,spades)  ==0 or hascard(south,AS)) or shape(south,0xxx))
 
 # Responder does NOT have direct support for Opener's suit
 ##   I may need to add this   ##
 
-# South has support for responder's suit
-supportD = (CD)             and diamonds(south)>4  and anyShort
-supportH = (CH or DH)       and hearts(south)>3    and anyShort
-supportS = (CS or DS or HS) and spades(south)>3    and anyShort
-supportResponder = (supportD or supportH or supportS)
+# Define splinter sequences
+CD3H = CD and Hshort
+CD3S = CD and Sshort
+CH3D = CH and Dshort  // invite
+CH3S = CH and Sshort
+CS3D = CS and Dshort  // invite
+CS3H = CS and Hshort  // invite
+DH4C = DH and Cshort
+DH3S = DH and Sshort
+DS4C = DS and Cshort
+DS3H = DS and Hshort  // invite
+HS4C = HS and Cshort
+HS4D = HS and Dshort
+jReverse   = (CH3D or CS3D or CS3H or DS3H) and hcp(south)>12 and hcp(south)<19
+jJumpShift = (CD3H or CD3S or CH3S or DH4C or DH3S or DS4C or HS4C or HS4D) and hcp(south)>14 and hcp(south)<19
 
 # North does not have direct support for south
-northOK = supportD
+northOK = 1
 
-# South has 13-14 HCP for invite or 15+ for game force
-reverse = (CH or CS or DS or HS) and hcp(south)>12 and hcp(south)<19
-jshift  = (CD or DH) and hcp(south)>14 and hcp(south)<19
-
-giSplinter = reverse
-gfSplinter = jshift
-
-sOpens = giSplinter or gfSplinter  
+sOpens = jReverse or jJumpShift
 
 northRange = hcp(north)>5  and hcp(north)<17  // no jump shifts
 
 # Now do it
-(giSplinter or gfSplinter) and supportResponder and anyShort and northRange and calmOpps
+sOpens and northRange and calmOpps
 
 action
 average "CD " 100 * CD,
+average "  3H     " 100 * CD3H,
+average "  3S     " 100 * CD3S,
 average "CH " 100 * CH,
+average "  3Di    " 100 * CH3D,
+average "  3S     " 100 * CH3S,
 average "CS " 100 * CS,
+average "  3Di    " 100 * CS3D,
+average "  3Hi    " 100 * CS3H,
 average "DH " 100 * DH,
+average "  4C     " 100 * DH4C,
+average "  3S     " 100 * DH3S,
 average "DS " 100 * DS,
+average "  3Hi    " 100 * DS3H,
+average "  4C     " 100 * DS4C,
 average "HS " 100 * HS,
-average "GI " 100 * giSplinter,
-average "GF " 100 * gfSplinter,
+average "  4C     " 100 * HS4C,
+average "  4D     " 100 * HS4D,
+
+average "GI " 100 * jReverse,
+average "GF " 100 * jJumpShift,
 
 `,"S",true)
 Script
