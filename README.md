@@ -18,6 +18,4 @@ I would like your help in promoting this and encouraging users to use it.  This 
 
 
 Attachment(s)
-https://docs.google.com/document/d/e/2PACX-1vSsueHdVDUAIf6LuG2ijXDUhN9Apugpl37yhS5e3UyusjVsVTZJrWBxmu9bg89xcRuk06WhfrtF1TB0/pub
-
-
+[User Guide and Installation Instructions](https://docs.google.com/document/d/e/2PACX-1vRMURiOQGHu9oOkYXop9DIR40w3NlELg22DUeKOnhQL-3CBQCKpmicM8iAjtIGwVkg2bzJa6dQAYWSQ/pub?urp=gmail_link)
