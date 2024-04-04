@@ -4,6 +4,7 @@ setDealerCode(
 
 produce 1000
 dealer south
+# 2N and Minor Suit Stayman (MSS)
 
 ##### Imported Script -- Predict Opening 1-Bid #####
 
@@ -74,10 +75,8 @@ nlp3 = diamonds(north)>4 ? diamonds(north)-4 : 0
 nlp4 = clubs(north)>4 ? clubs(north)-4 : 0
 strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
 
-texas = (spades(north)>5 or hearts(north)>5)
-MSS   = ((diamonds(north)>4 and clubs(north)>4) or (diamonds(north)>5 or clubs(north)>5))
-
-game = strength>=4 and strength<=11
+MSS  = shape(north,xx66+xx65+xx56+xx55+xx54+xx45)
+game = strength>=7 and strength<=11
 slam = strength>=12
 
 ### Imported Leveling Code ###
@@ -120,12 +119,12 @@ keep0  = 0
 ### Example of how to generate Statistics for Leveling ###
 
 # Define leveling
+levGame = game and keep30
 levSlam = slam and keep
-levGame = game and keep
 levelTheDeal = levSlam or levGame
 
 ### Do it ###
-twoNT and (ntPoints + strength)>29
+twoNT and MSS and (game or slam)
 and levelTheDeal
 
 ### Generate Statistics
