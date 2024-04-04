@@ -18,7 +18,14 @@ NT = shape(south, any 4333+any 4432+any 5332 -5xxx-x5xx) and hcp(south)>14 and h
 
 `, "S", false);
 Script
-
+// Define red and blue highlighting
+//Script,red,R='<span style="color:red">';
+//Script,blue,R='<span style="color:blue">';
+//Script,~,R='</span>'
+//Script,onNewChatMessage
+var ci = parent.$("#chatDiv .chatOutputClass chat-list-item span:last")[0];
+ci.outerHTML= ci.outerHTML.replaceAll("&lt","<").replaceAll("&gt", ">").replaceAll("<;", "<").replaceAll(">;", ">");
+//Script
 Button,1 Major Opening,---  Basic 1 Major Opening\n\
 When %red%considering which suit to open%~% your first choice is 1 of a major suit，1!H or 1!S.\n\
 A major suit opening bid requires 5 or more cards in that major.\n\
