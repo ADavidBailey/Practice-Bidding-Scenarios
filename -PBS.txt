@@ -22,6 +22,15 @@ setTimeout(function() {
    },1000);
 Script
 
+// Define red and blue highlighting
+//Script,red,R='<span style="color:red">';
+//Script,blue,R='<span style="color:blue">';
+//Script,~,R='</span>';
+//Script,onNewChatMessage
+var ci = parent.$("#chatDiv .chatOutputClass chat-list-item span:last")[0];
+ci.outerHTML= ci.outerHTML.replaceAll("&lt","<").replaceAll("&gt", ">").replaceAll("<;", "<").replaceAll(">;", ">");
+//Script
+
 // Expand & Collapse Sections
 //Script,onDataLoad
 $("#adpanel2 button").filter(function () { return (this.style.backgroundColor == "lightblue") })
@@ -404,6 +413,7 @@ Import,TwoNT,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/mai
 Import,TwoNTand2C,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%202N%20and%202C%20Response
 Import,TwoNTandBalanced,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%202N%20and%20Balanced
 Import,TwoNTandXfer,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%202N%20and%20Transfers
+Import,TwoNTand1Minor,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%202N-and-1-Minor
 Import,ThreeNT,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%203N
 Import,NToverRHO3x,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%203N%20over%20RHO%203x
 Import,NToverLHO3x,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%203N%20over%20LHO%203x
@@ -531,6 +541,7 @@ Import,TwoNT
 Import,TwoNTand2C
 Import,TwoNTandBalanced
 Import,TwoNTandXfer
+Import,TwoNTand1Minor
 Import,ThreeNT
 
 
