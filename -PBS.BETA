@@ -22,6 +22,15 @@ setTimeout(function() {
    },1000);
 Script
 
+// Define red and blue highlighting
+//Script,red,R='<span style="color:red">';
+//Script,blue,R='<span style="color:blue">';
+//Script,~,R='</span>'
+//Script,onNewChatMessage
+var ci = parent.$("#chatDiv .chatOutputClass chat-list-item span:last")[0];
+ci.outerHTML= ci.outerHTML.replaceAll("&lt","<").replaceAll("&gt", ">").replaceAll("<;", "<").replaceAll(">;", ">");
+//Script
+
 // Expand & Collapse Sections
 //Script,onDataLoad
 $("#adpanel2 button").filter(function () { return (this.style.backgroundColor == "lightblue") })
