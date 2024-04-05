@@ -2,9 +2,10 @@ Script,TwoNTandMSS
 setDealerCode(
 `
 
-produce 1000
+### 2N and Minor Suit Stayman (MSS)
+
 dealer south
-# 2N and Minor Suit Stayman (MSS)
+produce 1000
 
 ##### Imported Script -- Predict Opening 1-Bid #####
 
@@ -75,9 +76,9 @@ nlp3 = diamonds(north)>4 ? diamonds(north)-4 : 0
 nlp4 = clubs(north)>4 ? clubs(north)-4 : 0
 strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
 
-MSS  = shape(north,xx66+xx65+xx56+xx55+xx54+xx45)
-game = strength>=7 and strength<=11
-slam = strength>=12
+MSS  = shape(north,xx66+xx65+xx56+xx55+xx54+xx45-4xxx-x4xx)
+game = strength>6 and strength<12
+slam = strength>11
 
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
