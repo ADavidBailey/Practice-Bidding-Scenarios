@@ -76,8 +76,9 @@ nlp4 = clubs(north)>4 ? clubs(north)-4 : 0
 strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
 
 # Define responder's hand types
-puppet = shape(north,4xxx+3xxx+x4xx+x3xx -any 6xxx -any 5xxx)
-stayman = shape(north,54xx+45xx+44xx+4xxx+x4xx-any 7xxx-any 6xxx)
+smolen   = shape(north,54xx+45xx-any 7xxx-any 6xxx-any 55xx)       and strength>4
+stayman  = shape(north,44xx+4xxx+x4xx-54xx-45xx-any 7xxx-any 6xxx) and strength>4 and not smolen
+puppet   = shape(north,4xxx+3xxx+x4xx+x3xx-any 6xxx -any 5xxx)     and strength>4 and not (smolen or stayman)
 
 partscore = strength<4
 game = strength>3 and strength<12
@@ -121,18 +122,20 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-levPuppet  = puppet  and keep
-levStayman = stayman and keep
-levGame    = game    and keep11
+levSmolen  = smolen  and keep
+levPuppet  = puppet  and keep86
+levStayman = stayman and keep06
+levGame    = game    and keep14
 levSlam    = slam    and keep
  
 ### Do it ###
-twoNT and (levPuppet or levStayman) and (levGame or levSlam)
+twoNT and (levSmolen or levPuppet or levStayman) and (levGame or levSlam)
 
 ### Generate Statistics ###
-produce 1000
+produce 5000
 action
 #printoneline,
+average "Smolen       " 100 * smolen,
 average "Stayman      " 100 * stayman,
 average "Puppet       " 100 * puppet,
 average "Game         " 100 * game,
