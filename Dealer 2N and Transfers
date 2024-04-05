@@ -1,11 +1,11 @@
 Script,TwoNTandXfer
 setDealerCode(
 `
-
-produce 1000
-dealer south
-
 ### 2N and Transfers ###
+
+dealer south
+#produce 1000
+
 
 ##### Imported Script -- Predict Opening 1-Bid #####
 
@@ -68,7 +68,7 @@ and oneNT and hcp(south)<15
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
 
-### NORTH ###
+### NORTH Constraints ###
 # Calculate strength for North -- hcp plus 1 for every card over 4 in any suit 
 nlp1 = spades(north)>4 ? spades(north)-4 : 0
 nlp2 = hearts(north)>4 ? hearts(north)-4 : 0
@@ -76,11 +76,11 @@ nlp3 = diamonds(north)>4 ? diamonds(north)-4 : 0
 nlp4 = clubs(north)>4 ? clubs(north)-4 : 0
 strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
 
-jacoby = shape(north,5xxx+x5xx-any 6xxx- any 55)
+jacoby = shape(north,5xxx+x5xx-any 6xxx- any 55xx)
 texas  = shape(north,6xxx+x6xx-any 65xx-any 55xx)
 
-game = strength>=4 and strength<=11
-slam = strength>=12
+game = (strength+21)<33
+slam = (strength+21)>32
 
 
 ### Imported Leveling Code ###
@@ -122,23 +122,29 @@ keep0  = 0
 ### See -Stats-Leveling for statistics on these values ###
 ### Example of how to generate Statistics for Leveling ###
 
-levJacoby = jacoby and keep
+levJacoby = jacoby and keep25
 levTexas  = texas  and keep
-levGame   = game   and keep
+levGame   = game   and keep30
 levSlam   = slam   and keep
+
 levelTheDeal = levJacoby or levTexas or levGame or levSlam
 
 ### Do it ###
 twoNT and (jacoby or texas) and (game or slam)
 and levelTheDeal
 
+
 ### Generate Statistics
+produce 1000
 
 action
-average "Jacoby       " 100 * jacoby
+#printoneline,
+
+average "Jacoby       " 100 * jacoby,
 average "Texas        " 100 * texas,
 average "Game         " 100 * game,
 average "Slam         " 100 * slam,
+
 
 `,"S",true)
 Script
