@@ -81,13 +81,14 @@ dN = diamonds(north)
 hN = hearts(north)
 sN = spades(north)
 
-balanced = shape(north,any 4333 +any 4432 +any 5332 -5xxx-x5xx)    and strength>4
-puppet   = shape(north,4xxx+3xxx+x4xx+x3xx -any 6xxx -any 5xxx)    and strength>4
+
 stayman  = shape(north,54xx+45xx+44xx+4xxx+x4xx-any 7xxx-any 6xxx) and strength>4
-jacoby   = ((sN>4 and hN<4) or (hN>4 and sN<4))
+puppet   = shape(north,4xxx+3xxx+x4xx+x3xx -any 6xxx -any 5xxx)    and strength>4 and not stayman
+MSS      = ((cN>4 and dN>3) or (dN>4 and cN>3))                    and strength>4 and not (stayman or puppet)
+oneMinor = ((cN>5 and dN<4) or (dN>5 and cN<4))                    and strength>4 and not (stayman or puppet)
+balanced = shape(north,any 4333 +any 4432 +any 5332 -5xxx-x5xx)    and strength>4 and not (stayman or puppet or MSS)
 texas    = (sN>5 or hN>5)                                          and strength>4
-oneMinor = ((cN>5 and dN<4) or (dN>5 and cN<4))                    and strength>4
-MSS      = ((cN>4 and dN>3) or (dN>4 and cN>3))                    and strength>4
+jacoby   = ((sN>4 and hN<4) or (hN>4 and sN<4))                                   and not texas
 pass     = strength<5 and not(jacoby)
 
 part = strength<5
@@ -98,18 +99,18 @@ slam = strength>11
 twoNT
 
 ### Generate Statistics ###
-produce 1000
+produce 10000
 
 action
 #printoneline,
 average "Pass                  " 100 * pass,
-average "Balanced, not Stayman " 100 * (balanced and not (puppet or stayman or MSS)),
-average "Puppet, not Stayman   " 100 * (puppet   and not (stayman or MSS)),
+average "Balanced, not Stayman " 100 * balanced, //and not (puppet or stayman or MSS)),
+average "Puppet, not Stayman   " 100 * puppet,  // and not (stayman or MSS)),
 average "Stayman               " 100 * stayman,
 average "Texas                 " 100 * texas,
-average "Jacoby, not Texas     " 100 * (jacoby   and not texas),
-average "One Minor             " 100 * (oneMinor and not (puppet or stayman or jacoby)),
-average "MSS, not Stayman      " 100 * (MSS      and not (puppet or stayman)),
+average "Jacoby, not Texas     " 100 * jacoby,   // and not texas),
+average "One Minor             " 100 * oneMinor, // and not (puppet or stayman or jacoby)),
+average "MSS, not Stayman      " 100 * MSS,      // and not (puppet or stayman)),
 
 average "Partscore    " 100 * part,
 average "Game         " 100 * game,
