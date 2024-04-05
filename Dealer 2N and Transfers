@@ -6,7 +6,6 @@ setDealerCode(
 dealer south
 #produce 1000
 
-
 ##### Imported Script -- Predict Opening 1-Bid #####
 
 # Calculate length points for South (lengthPoints)
@@ -79,8 +78,8 @@ strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
 jacoby = shape(north,5xxx+x5xx-any 6xxx- any 55xx)
 texas  = shape(north,6xxx+x6xx-any 65xx-any 55xx)
 
-game = (strength+21)<33
-slam = (strength+21)>32
+game = strength>4 and strength<12
+slam = strength>11
 
 
 ### Imported Leveling Code ###
@@ -122,21 +121,20 @@ keep0  = 0
 ### See -Stats-Leveling for statistics on these values ###
 ### Example of how to generate Statistics for Leveling ###
 
-levJacoby = jacoby and keep25
+levJacoby = jacoby and keep44
 levTexas  = texas  and keep
-levGame   = game   and keep30
+levGame   = game   and keep
 levSlam   = slam   and keep
 
-levelTheDeal = levJacoby or levTexas or levGame or levSlam
+levelTheDeal = (levJacoby or levTexas)
 
 ### Do it ###
-twoNT and (jacoby or texas) and (game or slam)
+twoNT and (jacoby or texas) and hcp(south) strength>6
 and levelTheDeal
 
 
 ### Generate Statistics
 produce 1000
-
 action
 #printoneline,
 
@@ -144,7 +142,6 @@ average "Jacoby       " 100 * jacoby,
 average "Texas        " 100 * texas,
 average "Game         " 100 * game,
 average "Slam         " 100 * slam,
-
 
 `,"S",true)
 Script
