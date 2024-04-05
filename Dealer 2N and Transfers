@@ -123,18 +123,14 @@ keep0  = 0
 
 levJacoby = jacoby and keep44
 levTexas  = texas  and keep
-levGame   = game   and keep
+levGame   = game   and keep19
 levSlam   = slam   and keep
 
-levelTheDeal = (levJacoby or levTexas)
-
 ### Do it ###
-twoNT and (jacoby or texas) and hcp(south) strength>6
-and levelTheDeal
-
+twoNT and (levJacoby or levTexas) and (levGame or levSlam)
 
 ### Generate Statistics
-produce 1000
+produce 5000
 action
 #printoneline,
 
@@ -142,6 +138,7 @@ average "Jacoby       " 100 * jacoby,
 average "Texas        " 100 * texas,
 average "Game         " 100 * game,
 average "Slam         " 100 * slam,
+
 
 `,"S",true)
 Script
