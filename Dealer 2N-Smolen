@@ -1,0 +1,190 @@
+Script,TwoNTSmolen
+setDealerCode(
+`
+
+### 2N w/Smolen and any response
+
+dealer south
+#produce 1000
+
+##### Imported Script -- Predict Opening 1-Bid #####
+
+# Calculate length points for South (lengthPoints)
+lp1 = spades(south)>4 ? spades(south)-4 : 0
+lp2 = hearts(south)>4 ? hearts(south)-4 : 0
+lp3 = diamonds(south)>4 ? diamonds(south)-4 : 0
+lp4 = clubs(south)>4 ? clubs(south)-4 : 0
+lengthPoints = lp1 + lp2 + lp3 + lp4
+
+# Calculate doubleton honor NT downgrade(s) for South -- 2 cards, 1 honor, not the Ace
+S2H = spades(south)==2 and   top4(south,spades)>0   and not hascard(south,AS) ? 1 : 0
+H2H = hearts(south)==2 and   top4(south,hearts)>0   and not hascard(south,AH) ? 1 : 0
+D2H = diamonds(south)==2 and top4(south,diamonds)>0 and not hascard(south,AD) ? 1 : 0
+C2H = clubs(south)==2 and    top4(south,clubs)>0    and not hascard(south,AC) ? 1 : 0
+dgPoints = S2H + H2H + D2H + C2H
+
+# Define notrump points for south (ntPoints)
+ntPoints = lengthPoints>dgPoints ? hcp(south) + lengthPoints - dgPoints : hcp(south)
+
+# Define suit points for south (suitPoints)
+suitPoints = hcp(south) + lengthPoints
+
+# Define robot notrump shape and exclude any 5card 
+ntShape = shape(south, any 4333 +any 4432 +any 5332 +any 5422 -5xxx -x5xx)
+
+# Define ntPoint ranges
+oneNT   = ntShape and ntPoints>14 and ntPoints<18
+twoNT   = ntShape and ntPoints>19 and ntPoints<22
+threeNT = ntShape and ntPoints>25 and ntPoints<28
+weakNT  = ntShape and ntPoints>10 and ntPoints<15
+
+# Define Game Forcing 2C
+case1 = hcp(south)>22
+case2 = hcp(south)>18 and losers(south)<5 and (spades(south)>5 or hearts(south)>5)
+case3 = hcp(south)>18 and losers(south)<4 and (diamonds(south)>5 or clubs(south)>5)
+gameForce2C = (case1 or case2 or case3) and not threeNT
+
+### Predict South's opening BID
+P1 = gameForce2C
+P2 = P1 or threeNT or twoNT or oneNT // or weakNT  weakNT will be duplicated diamond and club openings
+
+# Predict South's Opening suit
+s = spades(south)
+h = hearts(south)
+d = diamonds(south)
+c = clubs(south)
+s1Range = suitPoints>11 and hcp(south)>9
+oS = s>4 and s>=h and s>=d and s>=c and s1Range and not P2
+oH = not oS and h>4 and h>=d and h>=c and s1Range and not P2
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and s1Range and not P2
+oC = not (oS or oH or oD) and s1Range and not P2
+openingSuit = (oS or oH or oD or oC)
+oneSpade = oS
+oneHeart = oH
+oneDiamond = oD                                                              // duplicates weakNT
+oneClub = oC                                                                 // duplicates weakNT
+hcp(south)>0
+and oneNT and hcp(south)<15
+
+##### End of Imported Script -- Predict Opening 1-Bid #####
+
+### NORTH ###
+# Calculate strength for North -- hcp plus 1 for every card over 4 in any suit 
+nlp1 = spades(north)>4 ? spades(north)-4 : 0
+nlp2 = hearts(north)>4 ? hearts(north)-4 : 0
+nlp3 = diamonds(north)>4 ? diamonds(north)-4 : 0
+nlp4 = clubs(north)>4 ? clubs(north)-4 : 0
+strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
+
+cN = clubs(north)
+dN = diamonds(north)
+hN = hearts(north)
+sN = spades(north)
+
+### addition
+cSuit = cN>5 and hcp(north,clubs)>2    and dN<4 and shape(north,xxxx-any 66xx-any 65xx)
+dSuit = dN>5 and hcp(north,diamonds)>2 and cN<4 and shape(north,xxxx-any 66xx-any 65xx)
+minor2= ((cN>4 and dN>3) or (dN>4 and cN>3)) and (hcp(north,clubs) + hcp(north,diamonds))>2
+
+# Define objective
+part = strength<5
+more = not part       // easier to reuse
+game = strength>4 and strength<12
+slam = strength>11
+
+
+smolen   = shape(north,54xx+45xx-any 7xxx-any 6xxx-any 55xx)       and more
+stayman  = shape(north,44xx+4xxx+x4xx-54xx-45xx-any 7xxx-any 6xxx) and more and not smolen
+MSS      = minor2                                                  and more and not (smolen or stayman)
+oneMinor = (cSuit or dSuit)                                        and more and not (smolen or stayman or MSS)
+balanced = shape(north,any 4333 +any 4432 +any 5332-5xxx-x5xx)     and more and not (smolen or stayman)
+texas    = (sN>5 or hN>5)                                          and game
+jacoby   = ((sN>4 and hN<4) or (hN>4 and sN<4))                             and not texas
+pass     = strength<5                                                       and not(jacoby)
+
+
+
+### Imported Leveling Code ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep015 = keep06 and c3
+keep03 = keep06 and keep44
+keep045 = keep06 and not c3
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep955 = not keep045
+keep97 = not keep03
+keep985 = not keep015
+keep   = 1
+keep0  = 0
+### End of Imported Leveling Code ###
+
+##### Level the deal #####
+levPass     = pass     and keep25
+levBalanced = balanced and keep44
+levSmoSta      = (smolen or stayman) and keep25
+levSmolen   = smolen   and keep
+levStayman  = stayman  and keep015
+levJacTex      = (jacoby or texas) and keep19
+levTexas    = texas    and keep94
+levJacoby   = jacoby   and keep25
+levMinors      = (oneMinor or MSS) and keep
+levOneMinor = oneMinor and keep
+levMSS      = MSS      and keep
+levelTheDeal = (levPass or levBalanced or levSmolen or levStayman or levTexas or levJacoby or levOneMinor or levMSS or levSmoSta or levJacTex)
+
+### Do it ###
+twoNT
+#and levelTheDeal
+
+### Generate Statistics ###
+produce 5000
+
+action
+#printoneline,
+average "Pass                  " 100 * pass,
+average "Balanced              " 100 * balanced,
+average "Smolen or Stayman        " 100 * (smolen or stayman),
+average "Smolen                " 100 * smolen,
+average "Stayman               " 100 * stayman,
+average "Texas or Jacoby)         " 100 * (texas or jacoby),
+average "Texas                 " 100 * texas,
+average "Jacoby                " 100 * jacoby,
+average "one or two minors        " 100 * (oneMinor or MSS),
+average "One Minor             " 100 * oneMinor,
+average "MSS, not Stayman      " 100 * MSS,
+
+average "Partscore    " 100 * part,
+average "Game         " 100 * game,
+average "Slam         " 100 * slam,
+
+`,"S",true)
+Script
+Button,(Lev),\n\
+---  20-21 Notrump and any Response. The various continuations -- %blue%Pass，Balanced raises，\n\
+%blue%Puppet Stayman，Smolen，Stayman，Texas，Jacoby，6-card minor，and Minor-Suit Stayman%~% -- are leveled.\n\
+The responder's strength -- %blue%partscore，game，or slam%~% -- is not leveled.\n\
+%TwoNTSmolen%,width=38%
