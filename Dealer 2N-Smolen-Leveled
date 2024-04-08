@@ -99,10 +99,9 @@ MSS      = minor2                                                  and more and 
 oneMinor = (cSuit or dSuit)                                        and more and not (smolen or stayman or MSS)
 balanced = shape(north,any 4333 +any 4432 +any 5332-5xxx-x5xx)     and more and not (smolen or stayman)
 texas    = (sN>5 or hN>5)                                          and game
-jacoby   = ((sN>4 and hN<4) or (hN>4 and sN<4))                             and not texas
+jacoby   = ((sN>4 and hN<4) or (hN>4 and sN<4) or (sN>4 and hN>4))          and not texas
 pass     = strength<5                                                       and not(jacoby)
-
-
+punt     = not (smolen or stayman or MSS or oneMinor or balanced or texas or jacoby or pass)
 
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
@@ -154,7 +153,7 @@ levJacoby   = jacoby   and keep25
 levMinors      = (oneMinor or MSS) and keep
 levOneMinor = oneMinor and keep
 levMSS      = MSS      and keep
-levelTheDeal = (levPass or levBalanced or levSmolen or levStayman or levTexas or levJacoby or levOneMinor or levMSS or levSmoSta or levJacTex)
+levelTheDeal = (levPass or levBalanced or levSmolen or levStayman or levTexas or levJacoby or levOneMinor or levMSS or levSmoSta or levJacTex or punt)
 
 ### Do it ###
 twoNT
@@ -176,6 +175,7 @@ average "Jacoby                " 100 * jacoby,
 average "one or two minors        " 100 * (oneMinor or MSS),
 average "One Minor             " 100 * oneMinor,
 average "MSS, not Stayman      " 100 * MSS,
+average " - punt -             " 100 * punt,
 
 average "Partscore    " 100 * part,
 average "Game         " 100 * game,
