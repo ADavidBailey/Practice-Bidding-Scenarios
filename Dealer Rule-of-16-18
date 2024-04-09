@@ -44,7 +44,6 @@ r16D = top5(south,diamonds) + hascard(south,9D) + hascard(south,8D)
 r16C = top5(south,clubs)    + hascard(south,9C) + hascard(south,8C)
 r16  = r16S + r16H + r16D + r16C + hcp(south)
 
-
 ########## Place the Club 4 based on the Rule of 16 ##########
 club4 = r16>16 ? hascard(south,4C) : hascard(north,4C)
 
