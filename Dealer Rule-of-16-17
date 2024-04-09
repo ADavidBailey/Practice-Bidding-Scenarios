@@ -1,0 +1,119 @@
+Script,Rule17
+setDealerCode(
+`
+dealer north
+
+# North opens 1N
+nt = shape(north,any 4333+any 4432+any 5332 -5xxx-x5xx) and hcp(north)>14 and hcp(north)<18
+nOpens = nt
+
+# East passes
+##### Imported Script: Define Calm Opponents #####
+
+# Avoid concentration of values
+cce = top4(east,clubs)<2
+cde = top4(east,diamonds)<2
+che = top4(east,hearts)<2
+cse = top4(east,spades)<2
+noConEast = cce and cde and che and cse
+
+ccw = top4(west,clubs)<2
+cdw = top4(west,diamonds)<2
+chw = top4(west,hearts)<2
+csw = top4(west,spades)<2
+noConWest = ccw and cdw and chw and csw
+
+unbalEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+
+balEast   = shape(east,any 4333 +any 4432)
+balWest   = shape(west,any 4333 +any 4432)
+
+calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<12)
+calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<12)
+calmOpps = calmEast and calmWest
+
+##### End of Imported Script: Define Calm Opponents #####
+
+sActs = shape(south, any 4333+any 4432+any 5332-5xxx-x5xx) and hcp(south)>7 and hcp(south)<12
+
+# Calculate the Rule of 16 for South (cards>7 + HCP)
+r16S = top5(south,spades)   + hascard(south,9S) + hascard(south,8S) 
+r16H = top5(south,hearts)   + hascard(south,9H) + hascard(south,8H)
+r16D = top5(south,diamonds) + hascard(south,9D) + hascard(south,8D)
+r16C = top5(south,clubs)    + hascard(south,9C) + hascard(south,8C)
+r16  = r16S + r16H + r16D + r16C + hcp(south)
+
+
+########## Place the Club 4 based on the Rule of 16 ##########
+club4 = r16>16 ? hascard(south,4C) : hascard(north,4C)
+
+### Imported Leveling Code ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep015 = keep06 and c3
+keep03 = keep06 and keep44
+keep045 = keep06 and not c3
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep955 = not keep045
+keep97 = not keep03
+keep985 = not keep015
+keep   = 1
+keep0  = 0
+### End of Imported Leveling Code ###
+
+lev14 = r16==14 and keep
+lev15 = r16==15 and keep
+lev16 = r16==16 and keep81
+lev17 = r16==17 and keep70
+lev18 = r16==18 and keep81
+levelTheDeal = lev14 or lev15 or lev16 or lev17 or lev18
+
+nOpens and calmEast and sActs and r16  and club4
+and levelTheDeal
+
+###### Restrict hands for testing ######
+#and (lev16 or lev17)  
+#and lev16
+and lev17
+
+produce 2000
+action
+#printoneline,
+average "Rule of 16 " 100 * (r16<17),
+frequency "Rule of 16 " (r16,13,19),
+
+
+`,"N",true)
+Script
+Button,(17),\n\
+---  North opens 1N and East passes. South has a balanced hand with 8+ HCP. When South's hand meets the Rule of 16\n\
+(HCP + number of cards higher than an 8 is more than 16)，South will have the 4!C; otherwise，North will have the 4!C.\n\
+Sit South and put Robots in the other three seats.  Redeal and bid or don't bid.  Or，put robots in all 4 seats.\n\
+Check your results by checking double dummy. You can add 'and lev16' or 'and lev17' in %blue%Deal source%~% for testing.\n\
+Look for %blue%###### Restrict hands for testing ######%~% and uncomment one of the following example lines.\n\
+%Rule17%,width=12.5% color=blue
