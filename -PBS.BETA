@@ -23,6 +23,15 @@ setTimeout(function() {
 Script
 
 // Define red and blue highlighting
+Script,red,R='<span style="color:red">';
+Script,blue,R='<span style="color:blue">';
+Script,~,R='</span>'
+//Script,onNewChatMessage
+var ci = parent.$("#chatDiv .chatOutputClass chat-list-item:last")[0];
+ci.innerHTML= ci.innerHTML.replaceAll("&lt","<").replaceAll("&gt", ">").replaceAll("<;", "<").replaceAll(">;", ">");
+ci.innerHTML= ci.innerHTML.replaceAll("&lt","<").replaceAll("&gt", ">").replaceAll("<;", "<").replaceAll(">;", ">");
+//Script
+
 //Script,red,R='<span style="color:red">';
 //Script,blue,R='<span style="color:blue">';
 //Script,~,R='</span>';
