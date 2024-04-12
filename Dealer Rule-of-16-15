@@ -93,7 +93,8 @@ lev17 = r16==17 and keep70
 lev18 = r16==18 and keep81
 levelTheDeal = lev14 or lev15 or lev16 or lev17 or lev18
 
-nOpens and calmEast and sActs and r16  and club4
+# North opens 1N, East passes, and south has 8-9 HCP and 16 R16 points
+nOpens and calmEast and sActs and r16  and club4 and hcp(south)>7 and hcp(south<10
 and lev15
 
 produce 2000
