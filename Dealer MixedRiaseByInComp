@@ -1,0 +1,18 @@
+dealer west
+
+# West opens 1C, 1D, 1H
+wSpades = spades(west)<5
+wRange = hcp(west)>11 and hcp(west)<15
+wOpens = wRange and wS[ades
+
+
+# North overcalls 1H or 1S, South has 6-10 HCP and 4-Card Support 
+
+nSpades = spades(north)>4 and spades(south)>3
+nHearts = hearts(north)>4 and hearts(south)>3
+nRange = hcp(north)>9 and hcp(north)<18
+sRange = hcp(south)>6 and hcp(south)<12
+nOpens = (nSpades or nHearts) and nRange and sRange
+
+
+
