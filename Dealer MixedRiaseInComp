@@ -42,7 +42,9 @@ nSpades = spades(north)>4 and spades(south)>3
 nHearts = hearts(north)>4 and hearts(south)>3
 nRange = hcp(north)>9 and hcp(north)<18
 sRange = hcp(south)>6 and hcp(south)<12
-nOpens = (nSpades or nHearts) and nRange and sRange and calmEast
+nOvercalls = (nSpades or nHearts) and nRange and sRange
+
+wOpens and nOvercalls and calmEast
 
 produce 1000
 action
