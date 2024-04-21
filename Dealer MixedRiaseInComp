@@ -33,7 +33,7 @@ calmOpps = calmEast and calmWest
 # West opens 1C, 1D, 1H
 wSpades = spades(west)<5
 wRange = hcp(west)>11 and hcp(west)<15
-wOpens = wRange and wS[ades
+wOpens = wRange and wSpades
 
 
 # North overcalls 1H or 1S, South has 6-10 HCP and 4-Card Support 
@@ -43,6 +43,17 @@ nHearts = hearts(north)>4 and hearts(south)>3
 nRange = hcp(north)>9 and hcp(north)<18
 sRange = hcp(south)>6 and hcp(south)<12
 nOpens = (nSpades or nHearts) and nRange and sRange and calmEast
+
+produce 1000
+action
+average "N/S Spades" 100 * nSpades,
+average "N/S Hearts" 100 * nHearts,
+
+`,"W",true)
+Script
+Button,Mixed Raise in Comp,\n\
+---  Opponents open 1C/D/H.  We overcall one H/S. Partner has 4-Card Support and makes a mixed raise.\n\
+%MixedRaiseInComp%
 
 
 
