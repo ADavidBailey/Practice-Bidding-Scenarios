@@ -41,9 +41,10 @@ wOpens = wRange and wSpades
 nSpades = spades(north)>4 and spades(south)>3
 nHearts = hearts(north)>4 and hearts(south)>3
 nShape  = shape(north,xxxx-any 76xx-any 75xx- any 65xx- any 55xx)  // Kill the 2-suited hands
+sShape  = shape(south,xxxx-any 4333)
 nRange = hcp(north)>9 and hcp(north)<18
 sRange = hcp(south)>6 and hcp(south)<11
-nOvercalls = (nSpades or nHearts) and nRange and sRange
+nOvercalls = (nSpades or nHearts) and nShape and sShape and nRange and sRange
 
 wOpens and nOvercalls and calmEast
 
