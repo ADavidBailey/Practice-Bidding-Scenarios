@@ -1,3 +1,4 @@
+
 //BBOalert, Bidding Scenarios
 //BBOalert, Bidding Scenarios - version 2.0
 Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/setDealerCode.js
@@ -22,15 +23,15 @@ setTimeout(function() {
    },1000);
 Script
 
-// Define red and blue highlighting
-Script,red,R='<span style="color:red">';
-Script,blue,R='<span style="color:blue">';
-Script,~,R='</span>'
-//Script,onNewChatMessage
-var ci = parent.$("#chatDiv .chatOutputClass chat-list-item:last")[0];
-ci.innerHTML= ci.innerHTML.replaceAll("&lt","<").replaceAll("&gt", ">").replaceAll("<;", "<").replaceAll(">;", ">");
-ci.innerHTML= ci.innerHTML.replaceAll("&lt","<").replaceAll("&gt", ">").replaceAll("<;", "<").replaceAll(">;", ">");
-//Script
+#// Define red and blue highlighting
+#Script,red,R='<span style="color:red">';
+#Script,blue,R='<span style="color:blue">';
+#Script,~,R='</span>'
+#//Script,onNewChatMessage
+#var ci = parent.$("#chatDiv .chatOutputClass chat-list-item:last")[0];
+#ci.innerHTML= ci.innerHTML.replaceAll("&lt","<").replaceAll("&gt", ">").replaceAll("<;", "<").replaceAll(">;", ">");
+#ci.innerHTML= ci.innerHTML.replaceAll("&lt","<").replaceAll("&gt", ">").replaceAll("<;", "<").replaceAll(">;", ">");
+#//Script
 
 // Expand & Collapse Sections
 //Script,onDataLoad
