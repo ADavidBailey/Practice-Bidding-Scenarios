@@ -1,3 +1,9 @@
+Script,After1M2M
+setDealerCode(`
+
+dealer south
+
+
 ##### Imported Script -- Predict Opening 1-Bid #####
 
 # Calculate length points for South (lengthPoints)
@@ -84,7 +90,7 @@ calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
 
-
+# Calculate North's Short Suit Points
 v1 = shape(north, any 0xxx) ? 5 : 0  // allow for 2 voids
 v2 = shape(north, any 00xx) ? 5 : 0
 s1 = shape(north, any 1xxx) ? 3 : 0 // allow for 2 singletons
@@ -105,3 +111,12 @@ action
 average "1S" 100 * oneSpade,
 average "1H" 100 * oneHeart,
 frequency "ShortSuitPoints" (shortSuitPoints,1,5)
+
+`,"S",true)
+Script
+Button,After 1M - 2M,\n\
+---  After 1M - 2M\n\
+• 18+ bid game\n\
+• 15+ bid help suit\n\
+• 12-14 pass\n\
+%After1M2M%
