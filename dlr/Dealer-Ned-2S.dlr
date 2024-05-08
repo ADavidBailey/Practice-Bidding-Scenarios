@@ -1,0 +1,14 @@
+generate 100000000
+
+produce 500
+
+nO = hcp(north)>14 and hcp(north)<18 and shape(north, any 4333 +any 4432 +any 5332)
+sR = hcp(south)>5 and shape(south, xxx7+xxx6+xx7x+xx6x+xx66+xx65+xx56+xx55+xx54+xx45) and spades(south)<4 and hearts(south)<4
+
+condition
+# Ned's 2S
+# North opens 1N
+# South bids 2S
+nO and sR
+
+action printpbn

@@ -1,0 +1,18 @@
+generate 100000000
+
+produce 500
+
+akS = top2(south,spades)>0 and spades(south)>1
+akH = top2(south,hearts)>0 and hearts(south)>1
+akD = top2(south,diamonds)>0 and diamonds(south)>1
+akC = top2(south,clubs)>0 and clubs(south)>1
+Gs = spades(south)>6 and top5(south,spades)>3 and (akH or akD or akC)
+Gh = hearts(south)>6 and top5(south,hearts)>3 and (akS or akD or akC)
+
+condition
+# namyatS
+# Define A/K/AK
+# Define H & S suits suitable for 4-level preempt with As/Ks outside
+(Gs or Gh) and loser(south)<5 and hcp(south)<20
+
+action printpbn

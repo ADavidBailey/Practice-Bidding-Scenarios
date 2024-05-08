@@ -1,0 +1,14 @@
+generate 100000000
+
+produce 500
+
+NT = shape(north, any 4333 +any 4432 +any 5332 -5xxx-x5xx) and hcp(north)>14 and hcp(north)<18
+stayman = shape(south, 44xx+43xx+34xx) and hcp(south)>7
+dropDeadStayman = shape(south, 5440+4540+4450+4441)
+
+condition
+dealer north
+# 1 Notrump Opening
+NT and (stayman or dropDeadStayman)
+
+action printpbn

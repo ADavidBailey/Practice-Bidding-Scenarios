@@ -1,0 +1,14 @@
+generate 100000000
+
+produce 500
+
+case1 = hcp(south)>22
+case2 = hcp(south)>18 and losers(south)<5 and (spades(south)>5 or hearts(south)>5)
+case3 = hcp(south)>18 and losers(south)<4 and (diamonds(south)>5 or clubs(south)>5)
+
+condition
+dealer south
+# Game Forcing 2C
+case1 or case2 or case3
+
+action printpbn

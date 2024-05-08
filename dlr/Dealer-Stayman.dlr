@@ -1,0 +1,15 @@
+generate 100000000
+
+produce 500
+
+NT = shape(north, any 4333 +any 4432 +any 5332) and hcp(north) >=15 && hcp(north)<=17
+stayman = shape(south, 54xx+45xx+44xx+43xx+34xx) and hcp(south)>7
+dropDeadStayman = shape(south, 4441+4450) and hcp(south)<8
+crawlingStayman = shape(south, 4432+4423) and hcp(south)<8
+spadeInvite = shape(south, 5xxx - any 55xx - any 54xx - any 56xx) and hcp(south)>7 and hcp(south)<10
+
+condition
+# 1 Notrump Opening
+NT and (stayman or dropDeadStayman or crawlingStayman or spadeInvite)
+
+action printpbn

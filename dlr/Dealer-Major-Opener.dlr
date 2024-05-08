@@ -1,0 +1,13 @@
+generate 100000000
+
+produce 500
+
+NT = shape(south, any 4333 +any 4432 +any 5332) and hcp(south)>14 and hcp(south)<18
+S_ = spades(south)>4 and spades(south)>=diamonds(south) and spades(south)>=clubs(south)
+H_ = hearts(south)>4 and hearts(south)>=diamonds(south) and hearts(south)>=clubs(south)
+
+condition
+# South opens 1 Major
+(S_ or H_) and not NT and hcp(south)>11 and hcp(south)<20
+
+action printpbn

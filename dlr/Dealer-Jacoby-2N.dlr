@@ -1,0 +1,141 @@
+generate 100000000
+
+produce 500
+
+v1 = shape(north, any 0xxx) ? 5 : 0  // allow for 2 voids
+v2 = shape(north, any 00xx) ? 5 : 0
+s1 = shape(north, any 1xxx) ? 3 : 0 // allow for 2 singletons
+s2 = shape(north, any 11xx) ? 3 : 0
+d1 = shape(north, any 2xxx) ? 1 : 0 // allow for 3 doubletons
+d2 = shape(north, any 22xx) ? 1 : 0
+d3 = shape(north, any 222x) ? 1 : 0
+shortSuitPoints = v1+v2+s1+s2+d1+d2+d3
+supportPoints = shortSuitPoints + hcp(north)
+lp1 = spades(south)>4 ? spades(south)-4 : 0
+lp2 = hearts(south)>4 ? hearts(south)-4 : 0
+lp3 = diamonds(south)>4 ? diamonds(south)-4 : 0
+lp4 = clubs(south)>4 ? clubs(south)-4 : 0
+lengthPoints = lp1 + lp2 + lp3 + lp4
+S2H = spades(south)==2 and top4(south,spades)==1 and not hascard(south,AS) ? 1 : 0
+H2H = hearts(south)==2 and top4(south,hearts)==1 and not hascard(south,AH) ? 1 : 0
+D2H = diamonds(south)==2 and top4(south,diamonds)==1 and not hascard(south,AD) ? 1 : 0
+C2H = clubs(south)==2 and top4(south,clubs)==1 and not hascard(south,AC) ? 1 : 0
+ntDownGrade = S2H + H2H + D2H + C2H
+ntPoints = hcp(south) + lengthPoints - ntDownGrade
+suitPoints = hcp(south) + lengthPoints
+ntShape = shape(south, any 4333 +any 4432 +any 5332 +any 5422 -5xxx -x5xx)
+oneNT = ntShape and ntPoints>14 and ntPoints<18
+twoNT = ntShape and ntPoints>19 and ntPoints<22
+weakNT = ntShape and ntPoints>10 and ntPoints<15
+overcallNT = ntShape and ntPoints>14 and ntPoints<19  // 15-18
+gameForce2C = hcp(south)>22
+P1 = gameForce2C
+P2 = (twoNT or oneNT) and not P1
+s = spades(south)
+h = hearts(south)
+d = diamonds(south)
+c = clubs(south)
+oS = s>4 and s>=h and s>=d and s>=c and not (P1 or P2)
+oH = not oS and h>4 and h>=d and h>=c not (P1 or P2)
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3) not (P1 or P2)
+oC = not (oS or oH or oD) and not (P1 or P2)
+openingSuit = (oS or oH or oD or oC)
+oneSpade = oS
+oneHeart = oH
+oneDiamond = oD
+oneClub = oC
+oneMajor = (oS or oH)
+oneMinor = (oC or oD)
+sFit3 = oneSpade and spades(north)>2
+hFit3 = oneHeart and hearts(north)>2
+sFit4 = oneSpade and spades(north)>3
+hFit4 = oneHeart and hearts(north)>3
+majorFit4 = sFit4 or hFit4
+gS = spades(south)>4 and top3(south,spades)>1
+gH = hearts(south)>4 and top3(south,hearts)>1
+gD = diamonds(south)>4 and top3(south,diamonds)>1
+gC = clubs(south)>4 and top3(south,clubs)>1
+calmEast = (shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx) and hcp(east)<9) or (shape(east,any 4333 +any 4432) and hcp(east)<12)
+calmWest = (shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx) and hcp(west)<9) or (shape(west,any 4333 +any 4432) and hcp(west)<12)
+calmOpps = calmEast and calmWest
+sFit2nd = oneSpade and sFit4 and (gH or gD or gC)
+hFit2nd = oneHeart and hFit4 and (gS or gD or gC)
+x4 = sFit2nd or hFit2nd
+x3 = majorFit4 and shape(south, any 0xxx +any 1xxx) and not x4
+M3 = majorFit4 and suitPoints>17 and not (x4 or x3)
+N3 = majorFit4 and suitPoints>14 and suitPoints<18 and not (x4 or x3 or M3)
+M4 = majorFit4 and suitPoints>11 and suitPoints<15 and not (x4 or x3 or M3 or N3)
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+keep03 = keep06 and keep44
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep97 = not keep03
+keep   = 1
+levelx3 = x3 and keep03
+levelM4 = M4 and keep06
+levelM3 = M3 and keep
+levelx4 = x4 and keep30
+levelN3 = N3 and keep19
+levelTheDeal = levelx3 or levelM4 or levelM3 or levelx4 or levelN3
+
+condition
+produce 1000
+dealer south
+### Definitions  ALL BOILERPLATE
+# Calculate Short Suit Points for north (shortSuitPoints)
+# Calculate length points for South (lengthPoints)
+# Calculate doubleton honor NT downgrade(s) for South -- 2 cards, 1 honor, not the Ace
+# Define notrump points for south (ntPoints)
+# Define suit points for south (suitPoints)
+# Define robot notrump shape and exclude any 5card 
+# Define ntPoint ranges
+# Define Game Force 2C
+### Predict South's opening BID
+# Predict South's Opening suit
+# Define opening Major and opening Minor
+# Define 3+ card Fits for south
+# Define 4+ card fits for south
+# Define Good suits -- 5+ cards with 2 of the top 3
+# Define Strong suits -- 5+ cards with 3 of the top 4
+# Define Solid suits -- 5 cards with 4 of the top 4 or 6+ cards with 3 of the top 3  
+# Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
+##### END OF BOILERPLATE #####
+##### Jacoby 2N #####
+# Define Majors with 2nd suits
+# Define the 5 types of opening hands in priority order
+##### End of Jacoby 2N #####
+### More BOILERPLATE to Define Leveling ###
+##### END OF BOILERPLATE #####
+# Do the leveling
+##### Now do it #####
+(x4 or x3 or M3 or N3 or M4) and suitPoints>11 and calmWest and hcp(north)>12
+#and levelTheDeal
+action
+average "1. x4" 100 * x4,
+average "2. x3" 100 * x3,
+average "3. M3" 100 * M3,
+average "4. N3" 100 * N3,
+average "5. M4" 100 * M4,
+
+action printpbn

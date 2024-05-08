@@ -1,0 +1,34 @@
+generate 100000000
+
+produce 500
+
+oneCrHorSorN = spades(south)<5 and hearts(south)<4 and clubs(south)>diamonds(south)
+oneCrSorN = spades(south)<5 and hearts(south)<4 and clubs(south)>diamonds(south)
+oneCrN = spades(south)<4 and hearts(south)<4 and clubs(south)>diamonds(south)
+oneDrSorN = spades(south)<5 and hearts(south)<4 and clubs(south)<diamonds(south)
+oneDrN = spades(south)<4 and hearts(south)<4 and clubs(south)<diamonds(south)
+oneHrN = spades(south)<4 and hearts(south)==5
+oneDn = spades(north)<4 and hearts(north)<4 and diamonds(north)>4
+oneHn = spades(north)<5 and hearts(north)==4 and diamonds(north)<4
+oneSn = spades(north)>3
+oneSnw2H = spades(north)>3 and hearts(north)==2
+c1 = oneCrHorSorN and oneDn
+c2 = oneCrSorN and oneHn
+c3 = oneCrN and oneSn
+c4 = oneDrSorN and oneHn
+c5 = oneDrN and oneSn
+c6 = oneHrN and oneSnw2H
+
+condition
+# Open 1C and rebid...
+# Open 1D and rebid...
+# Open 1H and rebid 1N
+# Responses
+(c1 or c2 or c3 or c4 or c5 or c6)
+and shape(south, xxxx -any 0xxx -any 1xxx)
+and hcp(south)>11 and hcp(south)<15
+and hcp(north)>5 and hcp(north)<12
+and hcp(east)<10 and hcp(west)<10
+and shape(east, xxxx -any 8xxx -any 7xxx -any 6xxx) and shape(west, xxxx -any 8xxx -any 7xxx -any 6xxx)
+
+action printpbn

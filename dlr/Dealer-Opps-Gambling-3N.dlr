@@ -1,0 +1,16 @@
+generate 100000000
+
+produce 500
+
+
+condition
+# Opps Gambling 3N
+hcp(east)>8 and hcp(east)<12  // could have a Q or two J's outside
+and
+(
+(top3(east,diamonds)==3 and diamonds(east)>6)
+or
+(top3(east,clubs)==3 and clubs(east)>6)
+)
+
+action printpbn

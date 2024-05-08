@@ -1,0 +1,14 @@
+generate 100000000
+
+produce 500
+
+nO = hcp(north)>17 and hcp(north)<20 and shape(north, any 4333 +any 4432 +any 5332 +any 5422)
+sR = hcp(south)>5 and hcp(south)<13 and shape(south, any 41xx +any 40xx +any 31xx +any 30xx +any 22xx +any 21xx +any 20xx)
+
+condition
+# Transfers after 2N Rebid
+# South responds
+# Now do it
+nO and sR
+
+action printpbn

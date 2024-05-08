@@ -1,0 +1,20 @@
+generate 100000000
+
+produce 500
+
+
+condition
+# Opps Preempt
+hcp(east)>5 and hcp(east)<11
+and
+(
+(top5(east,spades)>1 and spades(east)>6)
+or
+(top5(east,hearts)>1 and hearts(east)>6)
+or
+(top5(east,diamonds)>1 and diamonds(east)>6)
+or
+(top5(east,clubs)>1 and clubs(east)>6)
+)
+
+action printpbn

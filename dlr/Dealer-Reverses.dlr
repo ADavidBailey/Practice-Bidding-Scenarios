@@ -1,0 +1,20 @@
+generate 100000000
+
+produce 500
+
+
+condition
+# Reverses
+(
+(shape(south, xx45) && shape(north, 3334+4333+5332))
+||
+(shape(south, x4x5) && shape(north, 3334+4333+5332))
+||
+(shape(south, 4xx5+x45x+4x5x) && shape(north,3334))
+||
+(shape(south, 45xx) && shape(north, 3244))
+)
+&& hcp(south) >16 && hcp(south) <20
+&& hcp(north) >5
+
+action printpbn
