@@ -1,7 +1,6 @@
 generate 10000000
 
 produce 1000
-action
 
 dealer east
 
@@ -26,13 +25,12 @@ dE = top3(east,diamonds)>1 and diamonds(east)==6 and spades(east)<4 and hearts(e
 # East opens a Weak Two and South has 2 good suits and less than 5 losers
 hcp(east)>5 and hcp(east)<10 and (sE or hE or dE) and hcp(south)>11 and losers(south)<5
 
+action
 average "           2S" 100 * sE,
 average "           2H" 100 * hE,
 average "           2D" 100 * dE,
 average "losers(south)" losers(south),
 average "hcp(south)   " hcp(south),
-
-
 
 
 printpbn

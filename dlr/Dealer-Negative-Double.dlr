@@ -1,6 +1,12 @@
 generate 10000000
 
 produce 10000
+
+
+# Negative Double
+
+dealer south
+
 ##### Imported Script -- Predict Opening 1-Bid #####
 
 # Calculate length points for South (lengthPoints)
@@ -59,13 +65,6 @@ oneDiamond = oD
 oneClub = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
-action
-
-
-# Negative Double
-
-dealer south
-
 
 # Predict West's overcall
 sW = spades(west)
@@ -108,6 +107,7 @@ nDoubles = (((x1 or x2 or f1) and p1) or ((x3 or x4 or x5) and p2) or ((x6 or f2
 
 sOpens and wOvercalls and nDoubles
 
+action
 #printoneline,
 average "1C (1D) H&S " 100 * x1,
 average "1C (1D) H/S " 100 * f1,
@@ -119,8 +119,6 @@ average "1D (2C) H&S " 100 * x6,
 average "1D (2C) H/S " 100 * f2,
 average "1H (2C/D) S " 100 * x7,
 average "1S (2C/D) H " 100 * x8,
-
-
 
 
 printpbn

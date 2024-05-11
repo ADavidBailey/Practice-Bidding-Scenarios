@@ -2,7 +2,6 @@ generate 10000000
 
 #produce 1000
 produce 10000
-action
 
 ### 2N and any response
 
@@ -152,6 +151,7 @@ twoNT
 
 ### Generate Statistics ###
 
+action
 #printoneline,
 average "Pass                  " 100 * pass,
 average "Balanced, not Stayman " 100 * balanced, //and not (puppet or stayman or MSS)),
@@ -166,7 +166,5 @@ average "MSS, not Stayman      " 100 * MSS,      // and not (puppet or stayman))
 average "Partscore    " 100 * part,
 average "Game         " 100 * game,
 average "Slam         " 100 * slam,
-
-
 
 printpbn

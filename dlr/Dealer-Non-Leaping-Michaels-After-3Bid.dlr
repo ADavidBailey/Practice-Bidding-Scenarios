@@ -1,7 +1,6 @@
 generate 10000000
 
 produce 1000
-action
 
 
 dealer east
@@ -32,13 +31,12 @@ east3Bid = eastHCP and (p3S or p3H or p3D or p3C) and shape(east,any 7xxx -any 7
 # Now do it
 east3Bid
 
+action
 
 average "3C" 100 * p3C,
 average "3D" 100 * p3D,
 average "3H" 100 * p3H,
 average "3S" 100 * p3S,
-
-
 
 
 printpbn

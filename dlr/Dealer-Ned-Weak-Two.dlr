@@ -1,7 +1,6 @@
 generate 10000000
 produce 50
 
-action
 
 
 dealer south
@@ -105,6 +104,7 @@ levelTheDeal = levPass or levRaise or levNewSuit or levForce
 sOpensWeak2 and (nPass or nRaise or nNewSuit or nForce)
 and levelTheDeal
 
+action
 average "Pass      " 100 * nPass,
 average "Raise     " 100 * nRaise,
 average "New Suit  " 100 * nNewSuit,
@@ -122,8 +122,6 @@ average "losers    " losers(north),
 # Raise     : 24.9019
 # New Suit  : 22.8895
 # 2N Force  : 25.3766
-
-
 
 
 printpbn

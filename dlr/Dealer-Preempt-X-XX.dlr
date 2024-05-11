@@ -1,5 +1,39 @@
 generate 10000000
 produce 1000
+
+
+dealer east
+
+# Define East preempt at the 3- or 4-level
+wS = shape(east,9xxx+8xxx+7xxx) and top3(east,spades)>1   and spades(west)>1
+wH = shape(east,x9xx+x8xx+x7xx) and top3(east,hearts)>1   and hearts(west)>1
+wD = shape(east,xx9x+xx8x+xx7x) and top3(east,diamonds)>1 and diamonds(west)>1
+wC = shape(east,xxx9+xxx8+xxx7) and top3(east,clubs)>1    and clubs(west)>1
+
+lS = wS ? spades(east)   : 0
+lH = wH ? hearts(east)   : 0
+lD = wD ? diamonds(east) : 0
+lC = wC ? clubs(east)    : 0
+length = lS + lH + lD + lC
+
+# South is short in East's suit
+sShortS = wS and spades(south)<2
+sShortH = wH and hearts(south)<2
+sShortD = wD and diamonds(south)<2
+sShortC = wC and clubs(south)<2
+sShort = (sShortS or sShortH or sShortD or sShortC)
+
+sDouble1 = hcp(south)>14 and sShort
+sDouble2 = hcp(south)>17
+sDoubles = (sDouble1 or sDouble2) and shape(south,xxxx-5xxx-x5xx) and controls(south)>3
+
+# East opens 4, South doubles, and West Redoubles
+eOpens = (wS or wH or wD or wC) and hcp(east)>3 and hcp(east)<10
+
+# West Redoubles
+wXX = hcp(west)>10
+
+# Define leveling
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
 c2 = hascard(east,2D)
@@ -40,41 +74,6 @@ keep0  = 0
 ### See -Stats-Leveling for statistics on these values ###
 ### Example of how to generate Statistics for Leveling ###
 
-action
-
-
-dealer east
-
-# Define East preempt at the 3- or 4-level
-wS = shape(east,9xxx+8xxx+7xxx) and top3(east,spades)>1   and spades(west)>1
-wH = shape(east,x9xx+x8xx+x7xx) and top3(east,hearts)>1   and hearts(west)>1
-wD = shape(east,xx9x+xx8x+xx7x) and top3(east,diamonds)>1 and diamonds(west)>1
-wC = shape(east,xxx9+xxx8+xxx7) and top3(east,clubs)>1    and clubs(west)>1
-
-lS = wS ? spades(east)   : 0
-lH = wH ? hearts(east)   : 0
-lD = wD ? diamonds(east) : 0
-lC = wC ? clubs(east)    : 0
-length = lS + lH + lD + lC
-
-# South is short in East's suit
-sShortS = wS and spades(south)<2
-sShortH = wH and hearts(south)<2
-sShortD = wD and diamonds(south)<2
-sShortC = wC and clubs(south)<2
-sShort = (sShortS or sShortH or sShortD or sShortC)
-
-sDouble1 = hcp(south)>14 and sShort
-sDouble2 = hcp(south)>17
-sDoubles = (sDouble1 or sDouble2) and shape(south,xxxx-5xxx-x5xx) and controls(south)>3
-
-# East opens 4, South doubles, and West Redoubles
-eOpens = (wS or wH or wD or wC) and hcp(east)>3 and hcp(east)<10
-
-# West Redoubles
-wXX = hcp(west)>10
-
-# Define leveling
 
 lev7 = length==7 and keep19
 lev8 = length==8 and keep81
@@ -84,6 +83,7 @@ levelTheDeal = lev7 or lev8 or lev9
 eOpens and sDoubles and wXX
 and levelTheDeal
 
+action
 average "hcp East " hcp(east),
 average "hcp North" hcp(north),
 average "hcp West " hcp(west),
@@ -92,8 +92,6 @@ average "hcp N/S  " hcp(north) + hcp(south),
 average "hcp E/W  " hcp(east) + hcp(west),
 
 frequency "length " (length, 6, 10),
-
-
 
 
 printpbn

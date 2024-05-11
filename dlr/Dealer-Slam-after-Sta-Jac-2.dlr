@@ -1,6 +1,9 @@
 generate 10000000
 
 produce 1000
+
+dealer south
+
 ### Imported: Define 1 Notrump Opening ###
 
 # Calculate length points for South (lengthPoints)
@@ -28,6 +31,18 @@ ntMax = ntPoints>16
 NT = shape(south, 2452+2425+2245+2254+4522 +any 4333+any 4432+any 5332) and ntPoints>14 and ntPoints<18
 
 ### End of Imported 1 Notrump ###
+
+
+hFit4 = hearts(north)==4 and hearts(south)>3   // 4-4 or 4-5
+sFit4 = spades(north)==4 and spades(south)>3
+hFit5 = hearts(north)==5 and hearts(south)>2   // 5-3, 5-4, or 5-5
+sFit5 = spades(north)==5 and spades(south)>2
+jac = shape(north, 5xxx + x5xx -54xx -45xx)    // exclude smolen
+jacFit = jac and (hFit5 or sFit5)
+jacNoFit = jac and not jacFit
+sta = shape(north, 4xxx + x4xx)                // includes smolen
+staFit = sta and (hFit4 or sFit4)
+staNoFit = sta and not staFit
 
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
@@ -69,22 +84,6 @@ keep0  = 0
 ### See -Stats-Leveling for statistics on these values ###
 ### Example of how to generate Statistics for Leveling ###
 
-action
-
-dealer south
-
-
-hFit4 = hearts(north)==4 and hearts(south)>3   // 4-4 or 4-5
-sFit4 = spades(north)==4 and spades(south)>3
-hFit5 = hearts(north)==5 and hearts(south)>2   // 5-3, 5-4, or 5-5
-sFit5 = spades(north)==5 and spades(south)>2
-jac = shape(north, 5xxx + x5xx -54xx -45xx)    // exclude smolen
-jacFit = jac and (hFit5 or sFit5)
-jacNoFit = jac and not jacFit
-sta = shape(north, 4xxx + x4xx)                // includes smolen
-staFit = sta and (hFit4 or sFit4)
-staNoFit = sta and not staFit
-
 
 # Define Leveling
 case1  = jacFit    and keep47
@@ -105,6 +104,7 @@ ntPoints + hcp(south)
 NT and hcp(north)>15 and (case1 or case2 or case3 or case4) and (case15 or case16 or case17)
 and levelTheDeal
 
+action
 average "Jac + Fit " 100 * jacFit,
 average "Sta + Fit " 100 * staFit,
 average "Jac - Fit " 100 * jacNoFit,
@@ -113,8 +113,6 @@ average "ntMin     " 100 * ntMin,
 average "ntAvg     " 100 * ntAvg,
 average "ntMax     " 100 * ntMax,
 average "hcp south " hcp(south),
-
-
 
 
 printpbn

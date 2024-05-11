@@ -2,7 +2,6 @@ generate 10000000
 
 produce 50
 
-action
 
 # Define East weak 2 bids
 w2S = spades(east)==6   and (top5(east,spades)>2   or top3(east,spades)>1)   and spades(west)<3
@@ -27,6 +26,7 @@ wXX = hcp(west)>12 and shape(west,any 4432 +any 4441)
 
 eOpensWeak2 and sDoubles and wXX
 
+action
 average "hcp East " hcp(east),
 average "hcp North" hcp(north),
 average "hcp West " hcp(west),
@@ -42,8 +42,6 @@ hcp South: 14.3277
 hcp N/S  : 18.1134
 hcp E/W  : 21.8866
 */
-
-
 
 
 printpbn

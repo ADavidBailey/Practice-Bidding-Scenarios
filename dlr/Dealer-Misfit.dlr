@@ -1,6 +1,11 @@
 generate 10000000
 
 produce 1000
+
+
+dealer south
+
+### Import 'canned' code for Leveling, Calm Opponents, and Predict Opening Bid 
 ##### Imported Script: Define Calm Opponents #####
 
 # Avoid concentration of values
@@ -86,6 +91,19 @@ oneDiamond = oD
 oneClub = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
+
+# Define misfits
+sMF = oneSpade   and spades(north)  <2
+hMF = oneHeart   and hearts(north)  <2
+dMF = oneDiamond and diamonds(north)<2
+cMF = oneClub    and clubs(north)   <2
+
+sOpens = (sMF or hMF or dMF or cMF) and hcp(south)>11 and hcp(south)<16
+nMin = hcp(north)>5  and hcp(north)<11
+nMid = hcp(north)>10 and hcp(north)<13
+nMax = hcp(north)>12
+
+# Level the deal
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
 c2 = hascard(east,2D)
@@ -126,25 +144,6 @@ keep0  = 0
 ### See -Stats-Leveling for statistics on these values ###
 ### Example of how to generate Statistics for Leveling ###
 
-action
-
-
-dealer south
-
-### Import 'canned' code for Leveling, Calm Opponents, and Predict Opening Bid 
-
-# Define misfits
-sMF = oneSpade   and spades(north)  <2
-hMF = oneHeart   and hearts(north)  <2
-dMF = oneDiamond and diamonds(north)<2
-cMF = oneClub    and clubs(north)   <2
-
-sOpens = (sMF or hMF or dMF or cMF) and hcp(south)>11 and hcp(south)<16
-nMin = hcp(north)>5  and hcp(north)<11
-nMid = hcp(north)>10 and hcp(north)<13
-nMax = hcp(north)>12
-
-# Level the deal
 
 lMin = nMin and keep70
 lMid = nMid and keep
@@ -155,6 +154,7 @@ levelTheDeal = (lMin or lMid or lMax)
 sOpens and (nMin or nMid or nMax) and calmOpps
 and levelTheDeal
 
+action
 average "Min" 100 * nMin,
 average "Mid" 100 * nMid,
 average "Max" 100 * nMax,
@@ -164,8 +164,6 @@ Min: 34.45
 Mid: 31.72
 Max: 33.83
 */
-
-
 
 
 printpbn

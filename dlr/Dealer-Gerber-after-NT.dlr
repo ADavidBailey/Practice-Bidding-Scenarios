@@ -1,6 +1,11 @@
 generate 10000000
 
 produce 1000
+
+dealer south
+
+# Gerber after Notrump
+
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
 c2 = hascard(east,2D)
@@ -41,12 +46,6 @@ keep0  = 0
 ### See -Stats-Leveling for statistics on these values ###
 ### Example of how to generate Statistics for Leveling ###
 
-action
-
-dealer south
-
-# Gerber after Notrump
-
 
 # Define the cases
 oneNT = hcp(south)>14 and hcp(south)<18 and hcp(north)>16        // 15 + 17
@@ -69,6 +68,7 @@ and shape(north, any 4333 +any 4432 +any 5332 -5xxx-x5xx)
 and levelTheDeal
 
 /*
+action
 average "1NT   " 100 * oneNT,
 average "1x 2N " 100 * onex2NT,
 average "2 NT  " 100 * twoNT,
@@ -84,8 +84,6 @@ average "2C 3NT" 100 * twoC2N,
 Generated 10000000 hands
 Produced 1155 hands
 */
-
-
 
 
 printpbn

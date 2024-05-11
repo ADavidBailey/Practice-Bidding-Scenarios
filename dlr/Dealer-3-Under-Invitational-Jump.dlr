@@ -1,7 +1,6 @@
 generate 10000000
 
 produce 1000
-action
 
 dealer north
 
@@ -84,6 +83,7 @@ and hcp(south)>10 and hcp(south)<13
 and (goodHearts or goodDiamonds or goodClubs)
 
 /*
+action
 average "oneSpade     " 100 * oneSpade,
 average "oneHeart     " 100 * oneHeart,
 average "oneDiamond   " 100 * oneDiamond,
@@ -96,8 +96,6 @@ average "sFit         " 100 * sFit,
 frequency "SuitPoints North" (suitPoints, 12, 21),
 frequency "HCP South       " (hcp(south), 11, 12),
 */
-
-
 
 
 printpbn

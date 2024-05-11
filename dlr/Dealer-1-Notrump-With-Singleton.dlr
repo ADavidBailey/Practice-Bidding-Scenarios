@@ -1,7 +1,6 @@
 generate 10000000
 
 produce 100
-action
 
 
 dealer south
@@ -28,12 +27,11 @@ ntShape = shape(south, 3451+4351+3415+4315 any 4441) and (oneS or oneH or oneD o
 
 ntShape and ntPoints>14 and ntPoints<18
 
+action
 average "HCP         " hcp(south),
 average "lengthPoints" lengthPoints,
 average "ntDownGrade " 1,
 average "ntPoints    " ntPoints,
-
-
 
 
 printpbn

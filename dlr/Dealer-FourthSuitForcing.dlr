@@ -1,12 +1,12 @@
 generate 10000000
 
 produce 100
-action
 
 
+dealer south
 
-##### Define Calm Opponents #####
-#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
+##### Imported Script: Define Calm Opponents #####
+
 # Avoid concentration of values
 cce = top4(east,clubs)<2
 cde = top4(east,diamonds)<2
@@ -26,13 +26,12 @@ unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 balEast   = shape(east,any 4333 +any 4432)
 balWest   = shape(west,any 4333 +any 4432)
 
-calmEast = ((unbalEast and hcp(east)<8) or (balEast and hcp(east)<12)) and noConEast
-calmWest = ((unbalWest and hcp(west)<8) or (balWest and hcp(west)<12)) and noConWest
+calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<12)
+calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<12)
 calmOpps = calmEast and calmWest
-##### End of Define Calm Opponents #####
 
-##### Predict South's opening bid #####
-#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
+##### End of Imported Script: Define Calm Opponents #####
+
 ##### Imported Script -- Predict Opening 1-Bid #####
 
 # Calculate length points for South (lengthPoints)
@@ -87,10 +86,8 @@ oC = not (oS or oH or oD) and s1Range and not P2
 openingSuit = (oS or oH or oD or oC)
 oneSpade = oS
 oneHeart = oH
-oneDiamond = oD                                                              // duplicates weakNT
-oneClub = oC                                                                 // duplicates weakNT
-hcp(south)>0
-and oneNT and hcp(south)<15
+oneDiamond = oD
+oneClub = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
 
@@ -232,6 +229,7 @@ h3  = h==3 and (CH or DH)
 s3  = s==3 and (CS or DS or HS)
 
 
+action
 printoneline,
 average "noReverse " 100 * noReverse,
 average "CDH       " 100 * CDH,
@@ -253,8 +251,6 @@ average " Spade sup" 100 * (bal and s3),
 average "unbalanced" 100 * not bal,
 average " Heart sup" 100 * (not bal and h3),
 average " Spade sup" 100 * (not bal and s3),
-
-
 
 
 printpbn

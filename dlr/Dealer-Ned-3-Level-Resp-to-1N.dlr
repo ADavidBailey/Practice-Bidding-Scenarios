@@ -1,6 +1,11 @@
 generate 10000000
 
 produce 1000
+
+
+dealer south
+
+# Import Define-1N and Leveling
 ### Imported: Define 1 Notrump Opening ###
 
 # Calculate length points for South (lengthPoints)
@@ -69,12 +74,6 @@ keep0  = 0
 ### See -Stats-Leveling for statistics on these values ###
 ### Example of how to generate Statistics for Leveling ###
 
-action
-
-
-dealer south
-
-# Import Define-1N and Leveling
 
 # North has a good suit and slam interest
 
@@ -101,6 +100,7 @@ and levelTheDeal
 
 # Generate Statistics
 
+action
 
 average "Minimum     " 100 * ntMin,
 average "Avg         " 100 * ntAvg,
@@ -108,8 +108,6 @@ average "Max         " 100 * ntMax,
 
 frequency  "HCP South "  (hcp(south) , 14, 18),
 frequency  "ntPoints  "  (ntPoints   , 14, 18),
-
-
 
 
 printpbn

@@ -1,7 +1,6 @@
 generate 10000000
 
 produce 30
-action
 
 
 # Gavin's Passed Hand Response Structure
@@ -77,6 +76,7 @@ nOpens = nMajor and hcp(north)>11 and hcp(north)<20 and notNT and shape(north,an
 sPasses and nOpens and calmOpps
 and not (oneSp or nt or pass)
 
+action
 printoneline,
 average "raise      4-7 sPts 3+fit                " 100 * raise,
 average "fit jump   8+  sPts 4+fit  good 2nd suit " 100 * fitJump,
@@ -89,8 +89,6 @@ average "1S         6+  sHCP no fit 4+S           " 100 * oneSp,
 average "1N         6+  sHCP no fit               " 100 * nt,
 average "Pass                                     " 100 * pass,
 frequency "Support Points" (sPoints,0,16),
-
-
 
 
 printpbn

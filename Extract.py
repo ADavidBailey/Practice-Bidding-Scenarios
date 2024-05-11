@@ -90,7 +90,7 @@ def process_extracted_text(extracted_text):
     if not produce_added:        
         processed_text.append(f"produce 50\n")
 
-    for line in lines[:]:  # Iterate through a copy of the original list
+    #for line in lines[:]:  # Iterate through a copy of the original list
 
    #     if line.startswith("predeal"):
    #         processed_text.append(line)
@@ -105,16 +105,16 @@ def process_extracted_text(extracted_text):
    #     if line.startswith("opener"):
    #         processed_text.append(line)
    #         lines.remove(line)             
-
-    #for line in lines[:]:  # Iterate through a copy of the original list
+### Changed to copy everything
+    for line in lines[:]:  # Iterate through a copy of the original list
         if "action" in line:
             action = True
     #    if "condition" in line:
     #        condition = True
     #    # We want to have all assignments before the condition statement         
     #    if ' = ' in line:
-            processed_text.append(line)
-            lines.remove(line)      
+    #        processed_text.append(line)
+    #        lines.remove(line)      
 
         if line.startswith("Import"):
             # Splitting the string by comma to get the URL
@@ -126,14 +126,18 @@ def process_extracted_text(extracted_text):
             if response.status_code == 200:
                 content = response.text  # Content of the URL
                 processed_text.append(content)
-            lines.remove(line) 
+            lines.remove(line)
+        else:
+            processed_text.append(line)
+            lines.remove(line)    
 
     #if not condition:
     #    processed_text.append("\ncondition\n")
 
-    for line in lines:
-        processed_text.append(line)
-    processed_text.append("\n")
+# everything was copied...
+    #for line in lines:
+    #    processed_text.append(line)
+    #processed_text.append("\n")
     
     if not action:
         processed_text.append("action printpbn\n")

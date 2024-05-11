@@ -1,7 +1,6 @@
 generate 10000000
 
 produce 1000
-action
 
 
 # Two-Suited Overcalls
@@ -116,6 +115,7 @@ oSuit and iRange and rRange
 # You might also play with choseing south's suits
 #and SC or SD  // If you just want the problematic ones
 
+action
 #printoneline,
 
 average "Weak       " 100 * iWeak,
@@ -145,8 +145,6 @@ average "         SD" 100 * (oneC and SD),
 frequency "Opener HCP    " (hcp(east),12,14),
 frequency "Intervener HCP" (hcp(south),8,19),
 frequency "Responder HCP " (hcp(west),6,17),
-
-
 
 
 printpbn

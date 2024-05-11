@@ -2,7 +2,6 @@ generate 10000000
 
 produce 1000
 produce 1000
-action
 
 
 dealer south
@@ -110,11 +109,10 @@ openH = oneHeart and hearts(north)==3 and spades(north)<4
 # Now do it
 (openS or openH) and suitPoints>11 and suitPoints<18 and shortSuitPoints>0 and hcp(north)>4 and hcp(north)<10 and calmOpps
 
+action
 average "1S" 100 * oneSpade,
 average "1H" 100 * oneHeart,
 frequency "ShortSuitPoints" (shortSuitPoints,1,5)
-
-
 
 
 printpbn

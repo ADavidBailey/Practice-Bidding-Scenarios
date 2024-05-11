@@ -1,7 +1,6 @@
 generate 10000000
 
 produce 1000
-action
 
 
 dealer south
@@ -177,6 +176,7 @@ northRange = hcp(north)>5  and hcp(north)<17  // no jump shifts
 # Now do it
 sOpens and northRange and calmOpps
 
+action
 average "CD " 100 * CD,
 average "  3H     " 100 * CD3H,
 average "  3S     " 100 * CD3S,
@@ -198,8 +198,6 @@ average "  4D     " 100 * HS4D,
 
 average "GI " 100 * jReverse,
 average "GF " 100 * jJumpShift,
-
-
 
 
 printpbn

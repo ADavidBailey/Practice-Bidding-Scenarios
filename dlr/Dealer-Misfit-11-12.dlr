@@ -1,6 +1,11 @@
 generate 10000000
 
 produce 1000
+
+
+dealer south
+
+### Import 'canned' code for Leveling, Calm Opponents, and Predict Opening Bid 
 ##### Imported Script: Define Calm Opponents #####
 
 # Avoid concentration of values
@@ -86,12 +91,6 @@ oneDiamond = oD
 oneClub = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
-action
-
-
-dealer south
-
-### Import 'canned' code for Leveling, Calm Opponents, and Predict Opening Bid 
 
 # Define misfits
 sMF = oneSpade   and spades(north)  <2
@@ -116,11 +115,10 @@ levelTheDeal = (lMin or lMid or lMax)
 sOpens and (nMin or nMid or nMax) and calmOpps
 and levelTheDeal
 
+action
 average "Min" 100 * nMin,
 average "Mid" 100 * nMid,
 average "Max" 100 * nMax,
-
-
 
 
 printpbn

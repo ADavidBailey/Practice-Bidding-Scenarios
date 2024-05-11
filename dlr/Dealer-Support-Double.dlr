@@ -1,6 +1,12 @@
 generate 10000000
 
 produce 1000
+
+
+dealer south
+
+# Support Double
+
 ##### Imported Script -- Predict Opening 1-Bid #####
 
 # Calculate length points for South (lengthPoints)
@@ -86,13 +92,6 @@ calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
 
-action
-
-
-dealer south
-
-# Support Double
-
 
 ### End of Boiler Plate ###
 
@@ -115,14 +114,13 @@ eActs = hcp(east)>10 and shape(east,any 0xxx+any 1xxx+any 22xx-any 66xx- any 65x
 # South makes a support double
 sOpens and calmWest and nResponds and eActs 
 
+action
 #printoneline,
 average "1C     " 100 * oC,
 average "1D     " 100 * oD,
 average "1H     " 100 * oH,
 average "   - 1H" 100 * nH,
 average "   - 1S" 100 * nS,
-
-
 
 
 printpbn

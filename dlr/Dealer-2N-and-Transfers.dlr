@@ -1,7 +1,6 @@
 ### Example of how to generate Statistics for Leveling ###
 #produce 1000
 produce 5000
-action
 
 ### 2N and Transfers ###
 
@@ -130,14 +129,13 @@ levSlam   = slam   and keep
 twoNT and (levJacoby or levTexas) and (levGame or levSlam)
 
 ### Generate Statistics
+action
 #printoneline,
 
 average "Jacoby       " 100 * jacoby,
 average "Texas        " 100 * texas,
 average "Game         " 100 * game,
 average "Slam         " 100 * slam,
-
-
 
 
 

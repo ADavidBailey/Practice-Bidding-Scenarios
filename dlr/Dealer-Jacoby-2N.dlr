@@ -1,7 +1,6 @@
 generate 10000000
 
 produce 1000
-action
 
 dealer south
 
@@ -158,13 +157,12 @@ levelTheDeal = levelx3 or levelM4 or levelM3 or levelx4 or levelN3
 (x4 or x3 or M3 or N3 or M4) and suitPoints>11 and calmWest and hcp(north)>12
 #and levelTheDeal
 
+action
 average "1. x4" 100 * x4,
 average "2. x3" 100 * x3,
 average "3. M3" 100 * M3,
 average "4. N3" 100 * N3,
 average "5. M4" 100 * M4,
-
-
 
 
 printpbn

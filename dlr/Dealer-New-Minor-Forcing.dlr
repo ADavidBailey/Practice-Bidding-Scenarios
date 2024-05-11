@@ -1,6 +1,11 @@
 generate 10000000
 
 produce 1000
+
+dealer south
+
+# New Minor Forcing
+
 ##### Imported Script -- Predict Opening 1-Bid #####
 
 # Calculate length points for South (lengthPoints)
@@ -86,12 +91,6 @@ calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
 
-action
-
-dealer south
-
-# New Minor Forcing
-
 
 ### End of Boiler Plate ###
 
@@ -109,6 +108,7 @@ nResponds = (((oC or oD) and (nH or nS)) or (oH and nS)) and shape(north,xxxx-an
 # South rebids 1N
 sOpens and nResponds and calmOpps
 
+action
 printoneline,
 average "1C     " 100 * oC,
 average "1D     " 100 * oD,
@@ -116,8 +116,6 @@ average "1H     " 100 * oH,
 average "   - 1H" 100 * nH,
 average "   - 1S" 100 * nS,
 average "fit    " 100 * sHasFit,
-
-
 
 
 printpbn
