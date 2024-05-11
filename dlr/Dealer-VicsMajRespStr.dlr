@@ -1,7 +1,6 @@
-generate 100000000
+generate 10000000
 
-produce 500
-
+produce 5000
 ##### Imported Script: Define Calm Opponents #####
 
 # Avoid concentration of values
@@ -87,10 +86,6 @@ oneDiamond = oD
 oneClub = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
-#type_0 = ((oneHeart && hearts(north)<4 || (oneSpade && spades(north)<4)) && hcp(south)>11 && hcp(north)>6 // less than 4-card support and 7+
-type_1 = ((oneHeart && hearts(north)==3 && spades(north)<4) || (oneSpade && spades(north)==3)) && hcp(south)>11 && hcp(north)>9 && hcp(north)<13
-type_2 = ((oneSpade && spades(north)<3) || (oneHeart && hearts(north)<3 && spades(north)<4)) && hcp(south)>11 && hcp(north)>12 && spades(north)<5 && hearts(north)<5 && diamonds(north)<5 && clubs(north)<5
-type_3 = (oneSpade || oneHeart) && hcp(south)>12 && hcp(north)>12 && clubs(north)>4
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
 c2 = hascard(east,2D)
@@ -131,24 +126,39 @@ keep0  = 0
 ### See -Stats-Leveling for statistics on these values ###
 ### Example of how to generate Statistics for Leveling ###
 
+action
+
+
+dealer south
+  
+
+
+#type_0 = ((oneHeart && hearts(north)<4 || (oneSpade && spades(north)<4)) && hcp(south)>11 && hcp(north)>6 // less than 4-card support and 7+
+
+# 3-card support and 10-12
+type_1 = ((oneHeart && hearts(north)==3 && spades(north)<4) || (oneSpade && spades(north)==3)) && hcp(south)>11 && hcp(north)>9 && hcp(north)<13
+
+# no support, no 5-card suit and 13+ 
+type_2 = ((oneSpade && spades(north)<3) || (oneHeart && hearts(north)<3 && spades(north)<4)) && hcp(south)>11 && hcp(north)>12 && spades(north)<5 && hearts(north)<5 && diamonds(north)<5 && clubs(north)<5
+
+# 5+ clubs and 13+
+type_3 = (oneSpade || oneHeart) && hcp(south)>12 && hcp(north)>12 && clubs(north)>4
+
+
+
+# Do the leveling
 level_type_1 = type_1 and keep19
 level_type_2 = type_2 and keep
 level_type_3 = type_3 and keep44
 levelTheDeal = level_type_1 || level_type_2 || level_type_3
 
-condition
-produce 5000
-dealer south
-# 3-card support and 10-12
-# no support, no 5-card suit and 13+ 
-# 5+ clubs and 13+
-# Do the leveling
 ( type_1 || type_2 || type_3 ) and calmOpps
 && levelTheDeal
-action
+
 average "Type 1" 100 * type_1,
 average "Type 2" 100 * type_2,
 average "Type 3" 100 * type_3,
+
 /*
 Type 1: 32.54
 Type 2: 34.5
@@ -159,4 +169,7 @@ Initial random seed 1710884998
 Time needed    6.412 sec
 */
 
-action printpbn
+
+
+
+printpbn

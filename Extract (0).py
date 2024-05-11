@@ -5,13 +5,11 @@ import hashlib
 import argparse
 
 parser = argparse.ArgumentParser(description="Extract dealer code")
-parser.add_argument("--generate", type=int, default=None, help="Number to generate")
-parser.add_argument("--produce", type=int, default=None, help="Number to produce")
-parser.add_argument("--nodealer", type=bool, default=False, help="Ignore dealer code")
+parser.add_argument("--generate", type=int, default="1000000000", help="Number to generate")
+parser.add_argument("--produce", type=int, default="500", help="Number to produce")
 args = parser.parse_args()
 generate = args.generate
 produce = args.produce
-nodealer = args.nodealer
 print("generating " + str(generate))
 print("producing " + str(produce))
 
@@ -54,68 +52,20 @@ def extract_text_in_backticks(file_path):
 
 def process_extracted_text(extracted_text):
     processed_text = []
-    
-    action = False
-    condition = False
-    generate_added = False
-    produce_added = False
-
+    processed_text.append(f"generate {generate}\n")
+    processed_text.append(f"produce {produce}\n")
     lines = extracted_text.split('\n')
-    # Remove all comments
-    #lines = [line for line in lines if not line.strip().startswith('#')]
-    # Remove all blank lines
-    #lines = [line for line in lines if line.strip() != ''] 
-
     for line in lines[:]:  # Iterate through a copy of the original list
-        ## Check if there is a generate that should be overwritten
-        if "generate" in line:
-            if generate is not None:
-                processed_text.append(f"generate {generate}\n")
-            else:
-                processed_text.append(line)
-            lines.remove(line)      
-            generate_added = True   
-    if not generate_added:        
-        processed_text.append(f"generate 10000000\n")
-
-    for line in lines[:]:  # Iterate through a copy of the original list
-        ## Check if there is a produce that should be overwritten
-        if "produce" in line:
-            if produce is not None:
-                processed_text.append(f"produce {produce}\n")
-            else:
-                processed_text.append(line)
-            lines.remove(line)    
-            produce_added = True   
-    if not produce_added:        
-        processed_text.append(f"produce 50\n")
-
-    for line in lines[:]:  # Iterate through a copy of the original list
-
-   #     if line.startswith("predeal"):
-   #         processed_text.append(line)
-   #         lines.remove(line)             
-   #     if line.startswith("dealer"):
-   #         if not nodealer:
-   #             processed_text.append(line)
-   #         lines.remove(line)             
-   #     if line.startswith("vulnerable"):
-   #         processed_text.append(line)
-   #         lines.remove(line)             
-   #     if line.startswith("opener"):
-   #         processed_text.append(line)
-   #         lines.remove(line)             
-
-    #for line in lines[:]:  # Iterate through a copy of the original list
-        if "action" in line:
-            action = True
-    #    if "condition" in line:
-    #        condition = True
-    #    # We want to have all assignments before the condition statement         
-    #    if ' = ' in line:
+        if line.startswith("predeal"):
             processed_text.append(line)
-            lines.remove(line)      
-
+            lines.remove(line)             
+        if "generate" in line:
+            lines.remove(line)             
+        if "produce" in line:
+            lines.remove(line)             
+        if ' = ' in line:
+            processed_text.append(line)
+            lines.remove(line)             
         if line.startswith("Import"):
             # Splitting the string by comma to get the URL
             split_string = line.replace("github.com","raw.githubusercontent.com").replace("blob/", "").split(',')
@@ -126,19 +76,12 @@ def process_extracted_text(extracted_text):
             if response.status_code == 200:
                 content = response.text  # Content of the URL
                 processed_text.append(content)
-            lines.remove(line) 
-
-    #if not condition:
-    #    processed_text.append("\ncondition\n")
-
+            lines.remove(line)             
+    processed_text.append("\ncondition")
     for line in lines:
-        processed_text.append(line)
-    processed_text.append("\n")
-    
-    if not action:
-        processed_text.append("action printpbn\n")
-    else:
-        processed_text.append("printpbn\n")
+        if line.strip() and ' = ' not in line and not line.startswith("predeal"):
+            processed_text.append(line)
+    processed_text.append("\naction printpbn")
     return '\n'.join(processed_text)
 
 

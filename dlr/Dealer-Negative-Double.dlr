@@ -1,7 +1,6 @@
-generate 100000000
+generate 10000000
 
-produce 500
-
+produce 10000
 ##### Imported Script -- Predict Opening 1-Bid #####
 
 # Calculate length points for South (lengthPoints)
@@ -60,6 +59,15 @@ oneDiamond = oD
 oneClub = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
+action
+
+
+# Negative Double
+
+dealer south
+
+
+# Predict West's overcall
 sW = spades(west)
 hW = hearts(west)
 dW = diamonds(west)
@@ -68,13 +76,20 @@ wS = sW>=hW and sW>=dW and sW>=cW
 wH = not wS and hW>=dW and hW>=cW
 wD = not (wS or wH) and (dW>=cW or cW==3)
 wC = not (wS or wH or wD)
+
+# South Opens
 sOpens = (oS or oH or oD or oC) and hcp(south)>11
+
+# West overcalls
 wOvercalls = (wD or wH or wS or wC) and shape(west,any 6xxx+any 5xxx-any 65xx -any 55xx)
 wP1 = hcp(west)>7
 wP2 = hcp(west)>10
+
 p1 = hcp(north)>5
 p2 = hcp(north)>9
 p3 = hcp(north)>11
+
+# North doubles
 nM = shape(north,44xx+45xx+54xx)
 nH = shape(north,x4xx)
 nS = shape(north,4xxx)
@@ -88,18 +103,11 @@ x6 = oD and wC         ? nM and p2 : 0
 f2 = oD and wC         ? (nH or nS) and p2 : 0 // What if Partner bids the wrong M?
 x7 = oH and (wC or wD) ? nS and p2 : 0
 x8 = oS and (wC or wD) ? nH and p2 : 0
+
 nDoubles = (((x1 or x2 or f1) and p1) or ((x3 or x4 or x5) and p2) or ((x6 or f2 or x7 or x8) and p3))
 
-condition
-# Negative Double
-dealer south
-produce 10000
-# Predict West's overcall
-# South Opens
-# West overcalls
-# North doubles
 sOpens and wOvercalls and nDoubles
-action
+
 #printoneline,
 average "1C (1D) H&S " 100 * x1,
 average "1C (1D) H/S " 100 * f1,
@@ -112,4 +120,7 @@ average "1D (2C) H/S " 100 * f2,
 average "1H (2C/D) S " 100 * x7,
 average "1S (2C/D) H " 100 * x8,
 
-action printpbn
+
+
+
+printpbn

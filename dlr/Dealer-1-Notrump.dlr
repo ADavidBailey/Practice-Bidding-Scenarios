@@ -1,7 +1,6 @@
-generate 100000000
+generate 10000000
 
-produce 500
-
+produce 1000
 ### Imported: Define 1 Notrump Opening ###
 
 # Calculate length points for South (lengthPoints)
@@ -70,27 +69,34 @@ keep0  = 0
 ### See -Stats-Leveling for statistics on these values ###
 ### Example of how to generate Statistics for Leveling ###
 
+action
+
+dealer south
+
+# Import Define-1N and Leveling
+
+# Level it
 levMin = ntMin and keep56
 levAvg = ntAvg and keep75
 levMax = ntMax and keep97
 levelTheDeal = levMin or levAvg or levMax
 
-condition
-produce 1000
-dealer south
-# Import Define-1N and Leveling
-# Level it
 ### Ready for Leveling
+
 # Now OPEN 1NT
+
 NT
 and levelTheDeal
+
 # Generate Statistics
-action
+
 average "Minimum     " 100 * ntMin,
 average "Avg         " 100 * ntAvg,
 average "Max         " 100 * ntMax,
+
 frequency  "HCP South "  (hcp(south) , 14, 18),
 frequency  "ntPoints  "  (ntPoints   , 14, 18),
+
 # Minimum     : 33.356
 # Avg         : 33.823
 # Max         : 32.821
@@ -109,4 +115,7 @@ frequency  "ntPoints  "  (ntPoints   , 14, 18),
 # Generated 2482651 hands
 # Produced 100000 hands
 
-action printpbn
+
+
+
+printpbn

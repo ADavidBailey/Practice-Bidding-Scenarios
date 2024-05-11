@@ -1,7 +1,6 @@
-generate 100000000
+generate 10000000
 
-produce 500
-
+produce 1000
 ##### Imported Script -- Predict Opening 1-Bid #####
 
 # Calculate length points for South (lengthPoints)
@@ -87,6 +86,13 @@ calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
 
+action
+
+
+dealer south
+
+
+# North's longest suit for responding in a new suit at the 2-level
 sN = spades(north)
 hN = hearts(north)
 dN = diamonds(north)
@@ -95,18 +101,16 @@ nS = sN>=hN and sN>=dN and sN>=cN
 nH = not nS and hN>=dN and hN>=cN
 nD = not nS and not nH and dN>=cN
 nC = not nS and not nH and not nD
+
 oneS = oS and nS<4 and (nH or nD or nC)
 oneH = oH and nH<4 and (nD or nC)
 oneD = oD and nD<4 and (nC)
+
 nShape = shape(north,any 6xxx+any 5xxx+any 4441-any 55xx)
 
-condition
-dealer south
-produce 1000
-# North's longest suit for responding in a new suit at the 2-level
 # Now do it.
 (oneS or oneH or oneD) and hcp(south)>11 and hcp(south)<20 and hcp(north)>12 and nShape and calmOpps
-action
+
 average "1S     " 100 * oS,
 average "1H     " 100 * oH,
 average "1D     " 100 * oD,
@@ -120,4 +124,8 @@ average "1H - 2C" 100 * (oH and nC),
 average "1H - 2D" 100 * (oH and nD),
 average "1D - 2C" 100 * (oD and nC),
 
-action printpbn
+
+
+
+
+printpbn

@@ -1,7 +1,13 @@
-generate 100000000
+generate 10000000
 
-produce 500
+produce 1000
 
+dealer south
+
+##### Responsive Double #####
+# West Opens, North Doubles, East bids, ...
+
+# Predict West's Opening suit
 s = spades(west)
 h = hearts(west)
 d = diamonds(west)
@@ -11,28 +17,28 @@ oH = not oS and h>4 and h>=d and h>=c
 oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
 oC = not (oS or oH or oD)
 westSuit = (oS or oH or oD or oC)
+
 nS = oS ? spades(north)<3   : 0
 nH = oH ? hearts(north)<3   : 0
 nD = oD ? diamonds(north)<3 : 0
 nC = oC ? clubs(north)<3    : 0
 northShape = (nS or nH or nD or nC) and shape(north,any 5440 +any 4441, any 4432 -5xxx -x5xx)
+
 eS = oS ? spades(east)>2   : 0
 eH = oH ? hearts(east)>2   : 0
 eD = oD ? diamonds(east)>3 : 0
 eC = oC ? clubs(east)>3    : 0
 eFit = (eS or eH or eD or eC)
+
 westOpens = hcp(west)>11 and hcp(west)<15 and westSuit
 northDoubles = hcp(north)>11 and hcp(north)<15 and northShape
 eastActs = (hcp(east)>10 or (eFit and hcp(east)>5)) and hcp(east)<13
 southActs = hcp(south)>7
 
-condition
-dealer south
-produce 1000
-##### Responsive Double #####
-# West Opens, North Doubles, East bids, ...
-# Predict West's Opening suit
 ##### Now do it #####
 westOpens and northDoubles and eastActs and southActs
+
+
+
 
 action printpbn

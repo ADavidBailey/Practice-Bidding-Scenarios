@@ -1,12 +1,6 @@
-generate 100000000
+generate 10000000
 
-produce 500
-
-minorOpening = hcp(south)>11 and hcp(south)<15 and shape(south,44xx+43xx+34xx+33xx)
-sFit8 = spades(south) + spades(north) > 7
-hFit8 = hearts(south) + hearts(north) > 7
-shortness = shape(south,any 0xxx+ any 1xxx)
-northResponds = shape(north, 44xx+43xx+34xx-any 6xxx -any 5xxx) and hcp(north)>10 and hcp(north)<14
+produce 1000
 ##### Imported Script: Define Calm Opponents #####
 
 # Avoid concentration of values
@@ -35,15 +29,27 @@ calmOpps = calmEast and calmWest
 ##### End of Imported Script: Define Calm Opponents #####
 
 
-condition
-produce 1000
 dealer south
+
 # Spiral Raise w/3-card support
+
 # Define 12-14 minor opening, w/3-card support of either major, and shortness
+minorOpening = hcp(south)>11 and hcp(south)<15 and shape(south,44xx+43xx+34xx+33xx)
+
 # Define 8-card fits and shortness
+sFit8 = spades(south) + spades(north) > 7
+hFit8 = hearts(south) + hearts(north) > 7
+shortness = shape(south,any 0xxx+ any 1xxx)
+
 # North has an invitational hand & responds in a major
+northResponds = shape(north, 44xx+43xx+34xx-any 6xxx -any 5xxx) and hcp(north)>10 and hcp(north)<14
+
 # Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
+
 # Now do it…
 minorOpening and shortness and northResponds and calmOpps and not (sFit8 or hFit8)
+
+
+
 
 action printpbn

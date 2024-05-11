@@ -1,7 +1,6 @@
-generate 100000000
+generate 10000000
 
-produce 500
-
+produce 1000
 ##### Imported Script -- Predict Opening 1-Bid #####
 
 # Calculate length points for South (lengthPoints)
@@ -87,24 +86,35 @@ calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
 
+action
+
+
+dealer south
+
+# Support Double
+
+
+### End of Boiler Plate ###
+
+# South opens 1C, 1D, or 1H
+
 aD = oD and diamonds(east)<3
 aH = oH and hearts(east)<3
+
 sOpens = (oC or aD or aH) and shape(south,any 5431+any 5440+any 4441) and hcp(south)>11 and hcp(south)<20
+
+# North responds 1H or 1S and South has 3-card support and East is short in North's suit
 nS = spades(north)>hearts(north) and shape(north,5xxx+4xxx+44xx) and shape(south,3xxx) and spades(east)<2
 nH = hearts(north)>=spades(north)  and shape(north,x5xx+x4xx+44xx) and shape(south,x3xx) and hearts(east)<3
+
 nResponds = (((oC or oD) and (nH or nS)) or (oH and nS)) and shape(north,xxxx-any 65xx-any 55xx-any 8xxx-any 7xxx) and hcp(north)>5
+
+
 eActs = hcp(east)>10 and shape(east,any 0xxx+any 1xxx+any 22xx-any 66xx- any 65xx-any 55xx)
 
-condition
-produce 1000
-dealer south
-# Support Double
-### End of Boiler Plate ###
-# South opens 1C, 1D, or 1H
-# North responds 1H or 1S and South has 3-card support and East is short in North's suit
 # South makes a support double
 sOpens and calmWest and nResponds and eActs 
-action
+
 #printoneline,
 average "1C     " 100 * oC,
 average "1D     " 100 * oD,
@@ -112,4 +122,7 @@ average "1H     " 100 * oH,
 average "   - 1H" 100 * nH,
 average "   - 1S" 100 * nS,
 
-action printpbn
+
+
+
+printpbn

@@ -1,14 +1,19 @@
-generate 100000000
+generate 10000000
 
-produce 500
+produce 50
 
 
-condition
+
 # South has 15+
 hcp(south)>14
+
 # North has 8+
 and hcp(north)>7
+
 # North has specific shapes
 and shape(north, any 4441 + any 5440)
+
+
+
 
 action printpbn

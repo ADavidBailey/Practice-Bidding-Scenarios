@@ -1,7 +1,11 @@
-generate 100000000
+generate 10000000
 
-produce 500
+produce 50
 
+
+dealer south
+
+# Predict South's Opening Suit
 s = spades(south)
 h = hearts(south)
 d = diamonds(south)
@@ -10,12 +14,13 @@ oS = s>4 and s>=h and s>=d and s>=c
 oH = not oS and h>4 and h>=d and h>=c
 oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
 oC = not (oS or oH or oD)
+
 NT = shape(south, any 4333+any 4432+any 5332 -5xxx-x5xx) and hcp(south)>14 and hcp(south)<18
 
-condition
-dealer south
-# Predict South's Opening Suit
 # Open 1C or 1D
 (oD or oC) and hcp(south)>11 and hcp(south)<20 and not NT
+
+
+
 
 action printpbn

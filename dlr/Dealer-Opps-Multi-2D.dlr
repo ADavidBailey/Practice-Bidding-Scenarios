@@ -1,13 +1,14 @@
-generate 100000000
+generate 10000000
 
-produce 500
+produce 50
 
+
+# Opps Multi 2D
+
+# Define East weak 2 bids
 w2S = spades(east)==6 and top5(east,spades)>2 and hcp(east,spades)>4 and hearts(east)<4
 w2H = hearts(east)==6 and top5(east,hearts)>2 and hcp(east,hearts)>4 and spades(east)<4
 
-condition
-# Opps Multi 2D
-# Define East weak 2 bids
 (
 # Weak Two Bid
 hcp(east)>5 and hcp(east)<11
@@ -16,5 +17,8 @@ and (w2S or w2H)
 # 17-24 HCP with 4441
 hcp(east)>16 and hcp(east)<25 and shape(east, any 4441)
 )
+
+
+
 
 action printpbn

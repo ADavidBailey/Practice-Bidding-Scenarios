@@ -1,7 +1,6 @@
-generate 100000000
+generate 10000000
 
-produce 500
-
+produce 1000
 ### Imported: Define 1 Notrump Opening ###
 
 # Calculate length points for South (lengthPoints)
@@ -70,33 +69,47 @@ keep0  = 0
 ### See -Stats-Leveling for statistics on these values ###
 ### Example of how to generate Statistics for Leveling ###
 
+action
+
+
+dealer south
+
+# Import Define-1N and Leveling
+
+# North has a good suit and slam interest
+
+# Define Good suits -- 5+ cards with 2 of the top 3
 gS = spades(north)>4 and top3(north,spades)>1
 gH = hearts(north)>4 and top3(north,hearts)>1
 gD = diamonds(north)>4 and top3(north,diamonds)>1
 gC = clubs(north)>4 and top3(north,clubs)>1
+
 nResponds = hcp(north)>15 and (gS or gH or gD or gC) and shape(north,any 65xx +any 64xx +any 55xx)
+
+# Level it
 levMin = ntMin and keep30
 levAvg = ntAvg and keep67
 levMax = ntMax and keep
 levelTheDeal = levMin or levAvg or levMax
 
-condition
-produce 1000
-dealer south
-# Import Define-1N and Leveling
-# North has a good suit and slam interest
-# Define Good suits -- 5+ cards with 2 of the top 3
-# Level it
 ### Ready for Leveling
+
 # Now OPEN 1NT, Respond, and levelThe Deal
+
 NT and nResponds
 and levelTheDeal
+
 # Generate Statistics
-action
+
+
 average "Minimum     " 100 * ntMin,
 average "Avg         " 100 * ntAvg,
 average "Max         " 100 * ntMax,
+
 frequency  "HCP South "  (hcp(south) , 14, 18),
 frequency  "ntPoints  "  (ntPoints   , 14, 18),
 
-action printpbn
+
+
+
+printpbn

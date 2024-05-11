@@ -1,17 +1,22 @@
-generate 100000000
+generate 10000000
 
-produce 500
+produce 50
+
+
+dealer south
 
 # Strong Club System:  2C = 11-16 HCP with 5+Clubs
 s = spades(south)
 h = hearts(south)
 d = diamonds(south)
 c = clubs(south)
+
 range = hcp(south)>10 and hcp(south)<17
 suit = c>4 and s<5 and h<5 and d<c
 
-condition
-dealer south
 range and suit
+
+
+
 
 action printpbn
