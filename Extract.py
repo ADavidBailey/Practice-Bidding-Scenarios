@@ -61,10 +61,6 @@ def process_extracted_text(extracted_text):
     produce_added = False
 
     lines = extracted_text.split('\n')
-    # Remove all comments
-    #lines = [line for line in lines if not line.strip().startswith('#')]
-    # Remove all blank lines
-    #lines = [line for line in lines if line.strip() != ''] 
 
     for line in lines[:]:  # Iterate through a copy of the original list
         ## Check if there is a generate that should be overwritten
@@ -90,31 +86,9 @@ def process_extracted_text(extracted_text):
     if not produce_added:        
         processed_text.append(f"produce 50\n")
 
-    #for line in lines[:]:  # Iterate through a copy of the original list
-
-   #     if line.startswith("predeal"):
-   #         processed_text.append(line)
-   #         lines.remove(line)             
-   #     if line.startswith("dealer"):
-   #         if not nodealer:
-   #             processed_text.append(line)
-   #         lines.remove(line)             
-   #     if line.startswith("vulnerable"):
-   #         processed_text.append(line)
-   #         lines.remove(line)             
-   #     if line.startswith("opener"):
-   #         processed_text.append(line)
-   #         lines.remove(line)             
-### Changed to copy everything
     for line in lines[:]:  # Iterate through a copy of the original list
         if "action" in line:
             action = True
-    #    if "condition" in line:
-    #        condition = True
-    #    # We want to have all assignments before the condition statement         
-    #    if ' = ' in line:
-    #        processed_text.append(line)
-    #        lines.remove(line)      
 
         if line.startswith("Import"):
             # Splitting the string by comma to get the URL
@@ -131,14 +105,6 @@ def process_extracted_text(extracted_text):
             processed_text.append(line)
             lines.remove(line)    
 
-    #if not condition:
-    #    processed_text.append("\ncondition\n")
-
-# everything was copied...
-    #for line in lines:
-    #    processed_text.append(line)
-    #processed_text.append("\n")
-    
     if not action:
         processed_text.append("action printpbn\n")
     else:
