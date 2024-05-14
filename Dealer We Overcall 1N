@@ -1,6 +1,9 @@
 Script,WeOvercall1NT
-setDealerCode(
-`
+setDealerCode(`
+
+# We Overcall 1NT
+dealer east
+
 # Predict East's opening suit
 s = spades(east)
 h = hearts(east)
@@ -30,8 +33,7 @@ and hcp(east)>11 and hcp(east)<20
 and shape(south, any 4333 +any 4432 +any 5332 - 5xxx - x5xx)
 and hcp(south)>14 && hcp(south)<19
 
-`
-, "E", true);
+`, "E", true);
 Script
 Button,We Overcall 1NT,We Overcall 1NT\n\
 %WeOvercall1NT%

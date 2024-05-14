@@ -1,7 +1,8 @@
 Script,OppsPreemptOvercall
-setDealerCode(
-`
+setDealerCode(`
+
 # Opponents preempt overcall
+dealer north
 
 # Preemptive Suits East
 PSE = spades(east)>5 and top4(east,spades)==2
@@ -14,8 +15,7 @@ hcp(north)>11 and hcp(north)<15 and (hcp(north) + hcp(south)) >19 and
 hcp(east)>5 and hcp(east)<9 and
 (PCE or PDE or PHE or PSE)
 
-`
-, "N", true);
+`, "N", true);
 Script
 Button,Opps Preempt Overcall,Opps Preemptive Overcall\n%OppsPreemptOvercall%
 

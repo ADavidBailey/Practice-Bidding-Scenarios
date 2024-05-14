@@ -1,6 +1,8 @@
 Script,OppsWeakTwoBid
-setDealerCode(
-`
+setDealerCode(`
+
+# Opponents Weak Two
+dealer east
 
 # Define East weak 2 bids
 w2S = spades(east)==6 and (top5(east,spades)>2 or top3(east,spades)>1) and hearts(east)<4
@@ -10,8 +12,7 @@ eOpensWeak2 = (w2S or w2H or w2D) and hcp(east)>5 and hcp(east)<11 and shape(eas
 
 eOpensWeak2
 
-`
-,"E",true)
+`,"E",true)
 Script
 Button,Opps Weak Two,Opps Weak Two Bid\n\
 %OppsWeakTwoBid%

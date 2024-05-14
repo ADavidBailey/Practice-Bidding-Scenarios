@@ -1,7 +1,8 @@
 Script,SemiConstructiveRaise
-setDealerCode(
-`
+setDealerCode(`
+
 # Semi-Constructive Raise 8-10 3-card support
+dealer north
 
 # Calculate Total Points for south (tp)
 v1 = shape(south, any 0xxx) ? 5 : 0  // allow for 2 voids

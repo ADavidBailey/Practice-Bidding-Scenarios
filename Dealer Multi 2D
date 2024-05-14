@@ -2,6 +2,8 @@ Script,Multi2D
 setDealerCode(
 `
 # Multi 2D
+dealer south
+
 # Define South weak 2 bids
 w2S = spades(south)==6 and top5(south,spades)>2 and hcp(south,spades)>4 and hearts(south)<4
 w2H = hearts(south)==6 and top5(south,hearts)>2 and hcp(south,hearts)>4 and spades(south)<4

@@ -1,7 +1,9 @@
 Script,OppsPreempt
-setDealerCode(
-`
+setDealerCode(`
+
 # Opps Preempt
+dealer east
+
 hcp(east)>5 and hcp(east)<11
 and
 (
@@ -14,8 +16,7 @@ or
 (top5(east,clubs)>1 and clubs(east)>6)
 )
 
-`
-,"E",true)
+`,"E",true)
 Script
 Button,Opps Preempt,Opps Preempt\n\
 %OppsPreempt%

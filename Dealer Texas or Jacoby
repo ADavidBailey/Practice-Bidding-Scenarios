@@ -1,6 +1,8 @@
 Script,JacobyOrTexas
-setDealerCode(
-`
+setDealerCode(`
+
+# Stayman or Jacoby
+dealer north
 
 # North has Robot 1 Notrump Opening
 n1N = shape(north, any 4333 +any 4432 +any 5332) and hcp(north)>14 and hcp(north)<18
@@ -13,8 +15,7 @@ sM = (sS or sH)
 # North has Robot 1 Notrump Opening and South Transfers
 n1N and sM
 
-`
-,"N",false)
+`,"N",false)
 Script
 Button,Jacoby or Texas,\n\
 ---  Jacoby or Texas\n\

@@ -4,6 +4,9 @@ produce 50
 
 
 
+# Opponents Weak Two
+dealer east
+
 # Define East weak 2 bids
 w2S = spades(east)==6 and (top5(east,spades)>2 or top3(east,spades)>1) and hearts(east)<4
 w2H = hearts(east)==6 and (top5(east,hearts)>2 or top3(east,hearts)>1) and spades(east)<4

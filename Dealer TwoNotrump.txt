@@ -1,10 +1,12 @@
 Script,TwoNotrump
-setDealerCode(
-`
+setDealerCode(`
+
 # 2 Notrump Opening
+dealer south
+
 shape(south, any 4333 +any 4432 +any 5332 +any 5422) and
 hcp(south) >19 and hcp(south)<22
-`
-)
+
+`)
 Script
 Button,20-21 Notrump Opening,20-21 Notrump Opening\n%TwoNotrump%

@@ -3,6 +3,10 @@ generate 10000000
 produce 50
 
 
+
+# Opponents Takeout Double
+dealer south
+
 ##### Imported Script -- Predict Opening 1-Bid #####
 
 # Calculate length points for South (lengthPoints)
@@ -61,9 +65,6 @@ oneDiamond = oD
 oneClub = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
-
-
-# Opponents Takeout Double
 
 # Defining South opens a Major, West has 12-15 and short spades, and South has 10+ and no fit 
 openSpade = oneSpade and spades(north)<3 and spades(west)<2

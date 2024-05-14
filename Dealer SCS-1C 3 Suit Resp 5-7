@@ -1,11 +1,13 @@
 Script,StrongClub3Suit57
-setDealerCode(
-`
+setDealerCode(`
+
+# Strong Club System: 1C & 3 suited response
+dealer south
 
 # South has 15+
 hcp(south)>14
 
-# North has 8+
+# North has 5-7 HCP
 and hcp(north)>4 and hcp(north)<8
 
 # North has specific shapes

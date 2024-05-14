@@ -3,6 +3,10 @@ generate 10000000
 produce 50
 
 
+
+# Weak 2 (X) XX
+dealer east
+
 # Define East weak 2 bids
 w2S = spades(east)==6   and (top5(east,spades)>2   or top3(east,spades)>1)   and spades(west)<3
 w2H = hearts(east)==6   and (top5(east,hearts)>2   or top3(east,hearts)>1)   and hearts(west)<3

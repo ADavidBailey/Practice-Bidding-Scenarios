@@ -2,6 +2,7 @@ Script,MajorSuitFit
 setDealerCode(
 `
 # North opens 1 Major and South has a fit
+dealer north
 
 NT = shape(north, any 4333 +any 4432 +any 5332) and hcp(north)>14 and hcp(north)<18
 S_ = spades(north)>4 and spades(north)>=diamonds(north) and spades(north)>=clubs(north)

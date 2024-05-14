@@ -1,7 +1,9 @@
 Script,Reverses
-setDealerCode(
-`
+setDealerCode(`
+
 # Reverses
+dealer south
+
 (
 (shape(south, xx45) && shape(north, 3334+4333+5332))
 ||
@@ -13,8 +15,8 @@ setDealerCode(
 )
 && hcp(south) >16 && hcp(south) <20
 && hcp(north) >5
-`
-)
+
+`)
 Script
 Button,Reverses,\n\
 --- Reverses\n\

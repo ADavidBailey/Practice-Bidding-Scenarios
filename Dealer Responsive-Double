@@ -1,10 +1,10 @@
 Script,ResponsiveDouble
-setDealerCode(
-`
-dealer south
+setDealerCode(`
+
+# Responsive Double
+dealer west
 produce 1000
 
-##### Responsive Double #####
 # West Opens, North Doubles, East bids, ...
 
 # Predict West's Opening suit
@@ -38,8 +38,7 @@ southActs = hcp(south)>7
 ##### Now do it #####
 westOpens and northDoubles and eastActs and southActs
 
-`
-,"W",true)
+`,"W",true)
 Script
 Button,Responsive Double,\n\
 --- Responsive Double\n\

@@ -1,7 +1,9 @@
 Script,Preempts
-setDealerCode(
-`
+setDealerCode(`
+
 # Preempts
+dealer south
+
 hcp(south)>5 and hcp(south)<10
 and
 (
@@ -13,8 +15,7 @@ or
 or
 (top5(south,clubs)>1 and clubs(south)>6)
 )
-`
-)
+`)
 Script
 Button,Preempts,Preempts\n%Preempts%
 
