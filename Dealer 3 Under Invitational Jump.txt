@@ -82,21 +82,6 @@ and noMajorFit
 and hcp(south)>10 and hcp(south)<13
 and (goodHearts or goodDiamonds or goodClubs)
 
-/*
-action
-average "oneSpade     " 100 * oneSpade,
-average "oneHeart     " 100 * oneHeart,
-average "oneDiamond   " 100 * oneDiamond,
-average "oneClub      " 100 * oneClub,
-average "GoodClubs    " 100 * goodClubs,
-average "GoodDiamonds " 100 * goodDiamonds,
-average "GoodHearts   " 100 * goodHearts,
-average "hFit         " 100 * hFit,
-average "sFit         " 100 * sFit,
-frequency "SuitPoints North" (suitPoints, 12, 21),
-frequency "HCP South       " (hcp(south), 11, 12),
-*/
-
 `, "S", true);
 Script
 Button,3-under Inv. Jump,\n\
