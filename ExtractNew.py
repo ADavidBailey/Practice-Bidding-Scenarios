@@ -75,7 +75,7 @@ def process_extracted_text(extracted_text, dealer):
 
     lines = extracted_text.split('\n')
 
-    processed_text.append "# {file_path}\n"
+    processed_text.append("# {file_path}\n")
 
     for line in lines[:]:  # Iterate through a copy of the original list
         ## Check if there is a generate that should be overwritten
