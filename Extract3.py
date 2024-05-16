@@ -23,14 +23,14 @@ pattern = r'`(.*?)`'
 
 # Function to find and process text enclosed in backticks and save to a .dlr file
 
-def calculate_seed(input):
-    # Calculate the SHA-256 hash
-    hash_object = hashlib.sha256(input.encode())
-    hash_bytes = hash_object.digest()
+#def calculate_seed(input):
+#    # Calculate the SHA-256 hash
+#    hash_object = hashlib.sha256(input.encode())
+#    hash_bytes = hash_object.digest()
 
-    # Convert the first 4 bytes of the hash to an integer and take modulus
-    hash_integer = int.from_bytes(hash_bytes[:4], byteorder='big') % (2**32 - 1)
-    return hash_integer
+#    # Convert the first 4 bytes of the hash to an integer and take modulus
+#    hash_integer = int.from_bytes(hash_bytes[:4], byteorder='big') % (2**32 - 1)
+#    return hash_integer
 
 def extract_text_in_backticks(file_path):
     with open(file_path, 'r') as file:
@@ -56,11 +56,11 @@ def extract_text_in_backticks(file_path):
             output_file_path = os.path.join("./dlr", output_file_path).replace('\\', '/')
             with open(output_file_path, 'w') as output_file:
                 # Save the processed text to the .dlr file
-                seed = calculate_seed(file_path)
+                # seed = calculate_seed(file_path)
                 # We seed based on filename, then we have reproduceale results, but different seed pr, file
                 output_file.write(processed_text)
-                print(f'echo ./dealerv2 {output_file_path}  -s {seed} ')
-                print(f'./dealerv2 {output_file_path} -s  {seed} > ./pbn/{ os.path.splitext(os.path.basename(file_path))[0].replace(" ","-").replace("(", "").replace(")", "").replace("&", "and").replace("+", "_")}.pbn ', end="\n")
+                # print(f'echo ./dealerv2 {output_file_path}  -s {seed} ')
+                # print(f'./dealerv2 {output_file_path} -s  {seed} > ./pbn/{ os.path.splitext(os.path.basename(file_path))[0].replace(" ","-").replace("(", "").replace(")", "").replace("&", "and").replace("+", "_")}.pbn ', end="\n")
 
 # Function to process the extracted text
 
