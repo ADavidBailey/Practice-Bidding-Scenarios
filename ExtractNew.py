@@ -75,6 +75,8 @@ def process_extracted_text(extracted_text, dealer):
 
     lines = extracted_text.split('\n')
 
+    processed_text.append "# {file_path}\n"
+
     for line in lines[:]:  # Iterate through a copy of the original list
         ## Check if there is a generate that should be overwritten
         if "generate" in line:
@@ -99,7 +101,7 @@ def process_extracted_text(extracted_text, dealer):
     if not produce_added:        
         processed_text.append(f"produce 50\n")
 
-    processed_text.append(f"dealer {dealer}\n")
+    processed_text.append(f"dealer {dealer}\n") # dealer is always derived from setDealerCode
     
     for line in lines[:]:  # Iterate through a copy of the original list
         if line.startswith("dealer"):
