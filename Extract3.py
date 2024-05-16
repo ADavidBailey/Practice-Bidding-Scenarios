@@ -22,6 +22,16 @@ directory_path = './'
 pattern = r'`(.*?)`'
 
 # Function to find and process text enclosed in backticks and save to a .dlr file
+
+def calculate_seed(input):
+    # Calculate the SHA-256 hash
+    hash_object = hashlib.sha256(input.encode())
+    hash_bytes = hash_object.digest()
+
+    # Convert the first 4 bytes of the hash to an integer and take modulus
+    hash_integer = int.from_bytes(hash_bytes[:4], byteorder='big') % (2**32 - 1)
+    return hash_integer
+
 def extract_text_in_backticks(file_path):
     with open(file_path, 'r') as file:
         content = file.read()
@@ -38,7 +48,6 @@ def extract_text_in_backticks(file_path):
                 dealer = "east"
             if quotes_matches[0] == "W":
                 dealer = "west"
-        
         matches = re.findall(pattern, content, re.DOTALL)
         for i, match in enumerate(matches, 1):
             # Process the extracted text
@@ -46,9 +55,16 @@ def extract_text_in_backticks(file_path):
             output_file_path = os.path.splitext(os.path.basename(file_path))[0].replace(" ", "-").replace("(", "").replace(")", "").replace("&", "and").replace("+", "_") + ".dlr"
             output_file_path = os.path.join("./dlr", output_file_path).replace('\\', '/')
             with open(output_file_path, 'w') as output_file:
-                process_extracted_text(extracted_text, dealer)
-                
+                # Save the processed text to the .dlr file
+                seed = calculate_seed(file_path)
+                # We seed based on filename, then we have reproduceale results, but different seed pr, file
+                output_file.write(processed_text)
+                print(f'echo ./dealerv2 {output_file_path}  -s {seed} ')
+                print(f'./dealerv2 {output_file_path} -s  {seed} > ./pbn/{ os.path.splitext(os.path.basename(file_path))[0].replace(" ","-").replace("(", "").replace(")", "").replace("&", "and").replace("+", "_")}.pbn ', end="\n")
+
 # Function to process the extracted text
+
+
 def process_extracted_text(extracted_text, dealer):
     processed_text = []
     
@@ -59,7 +75,7 @@ def process_extracted_text(extracted_text, dealer):
 
     lines = extracted_text.split('\n')
 
-    # Remove all dealer, generate, or produce statements
+        # Remove all dealer, generate, or produce statements
     for line in lines[:]:  # Iterate through a copy of the original list           
         if line.startswith("dealer"):
             lines.remove(line)
@@ -73,11 +89,13 @@ def process_extracted_text(extracted_text, dealer):
     processed_text.append(f"generate {generate}\n")
     processed_text.append(f"produce {produce}\n")
     processed_text.append(f"dealer {dealer}\n") # dealer is always derived from setDealerCode
-    
+
+
     for line in lines[:]:  # Iterate through a copy of the original list
         if "action" in line:
             action = True
         
+
         if line.startswith("Import"):
             # Splitting the string by comma to get the URL
             split_string = line.replace("github.com","raw.githubusercontent.com").replace("blob/", "").split(',')
