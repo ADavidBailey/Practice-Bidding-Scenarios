@@ -7,13 +7,13 @@ import argparse
 parser = argparse.ArgumentParser(description="Extract dealer code")
 parser.add_argument("--generate", type=int, default=10000000, help="Number to generate")
 parser.add_argument("--produce", type=int, default=500, help="Number to produce")
-parser.add_argument("--nodealer", type=bool, default=False, help="Ignore dealer code")
+#parser.add_argument("--nodealer", type=bool, default=False, help="Ignore dealer code")
 args = parser.parse_args()
 generate = args.generate
 produce = args.produce
-nodealer = args.nodealer
+#nodealer = args.nodealer
 print("generating " + str(generate))
-print("producing " + str(produce))
+print("producing  " + str(produce))
 
 # Directory containing the files
 directory_path = './'
@@ -85,7 +85,7 @@ def process_extracted_text(extracted_text, dealer):
             lines.remove(line)
     
     # The first 4 lines of each .dlr file...
-    processed_text.append(f"# {file_path}\n")
+    processed_text.append(f"# {filename}\n")
     processed_text.append(f"generate {generate}\n")
     processed_text.append(f"produce {produce}\n")
     processed_text.append(f"dealer {dealer}\n") # dealer is always derived from setDealerCode
