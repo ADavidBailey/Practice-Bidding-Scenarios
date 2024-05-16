@@ -99,9 +99,12 @@ def process_extracted_text(extracted_text, dealer):
     if not produce_added:        
         processed_text.append(f"produce 50\n")
 
+    processed_text.append(f"dealer {dealer}\n")
+    
     for line in lines[:]:  # Iterate through a copy of the original list
         if line.startswith("dealer"):
             lines.remove(line)
+
 
     for line in lines[:]:  # Iterate through a copy of the original list
         if "action" in line:
