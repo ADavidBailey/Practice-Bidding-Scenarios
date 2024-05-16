@@ -77,11 +77,11 @@ def process_extracted_text(extracted_text, dealer):
 
     # Ignore all dealer, generate, or produce statements
     for line in lines[:]:  # Iterate through a copy of the original list           
-        if line.lower.startswith("dealer "):
+        if line.lower().startswith("dealer "):
             lines.remove(line)
-        if line.lower.startswith("generate "):
+        if line.lower().startswith("generate "):
             lines.remove(line)             
-        if line.lower.startswith("produce "):
+        if line.lower().startswith("produce "):
             lines.remove(line)
     
     # The first 4 lines of each .dlr file...
@@ -91,7 +91,7 @@ def process_extracted_text(extracted_text, dealer):
     processed_text.append(f"dealer {dealer}")     # from setDealerCode
 
     for line in lines[:]:  # Iterate through a copy of the original list
-        if line.lower.startswith("action"):
+        if line.lower().startswith("action"):
             action = True  # append or create
         
         if line.startswith("Import"):
