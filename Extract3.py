@@ -85,10 +85,10 @@ def process_extracted_text(extracted_text, dealer):
             lines.remove(line)
     
     # The first 4 lines of each .dlr file...
-    processed_text.append(f"# {filename}\n")
-    processed_text.append(f"generate {generate}\n")
-    processed_text.append(f"produce {produce}\n")
-    processed_text.append(f"dealer {dealer}\n") # dealer is always derived from setDealerCode
+    processed_text.append(f"# {filename}")
+    processed_text.append(f"generate {generate}") # from default or arg
+    processed_text.append(f"produce {produce}")   # from default or arg
+    processed_text.append(f"dealer {dealer}")     # from setDealerCode
 
 
     for line in lines[:]:  # Iterate through a copy of the original list
