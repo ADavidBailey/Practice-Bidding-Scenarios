@@ -1,7 +1,7 @@
 import os
 import re
 import requests
-import hashlib
+#import hashlib
 import argparse
 
 parser = argparse.ArgumentParser(description="Extract dealer code")
@@ -69,13 +69,13 @@ def process_extracted_text(extracted_text, dealer):
     processed_text = []
     
     action = False
-    condition = False
-    generate_added = False
-    produce_added = False
+    #condition = False
+    #generate_added = False
+    #produce_added = False
 
     lines = extracted_text.split('\n')
 
-        # Remove all dealer, generate, or produce statements
+    # Ignore all dealer, generate, or produce statements
     for line in lines[:]:  # Iterate through a copy of the original list           
         if line.startswith("dealer"):
             lines.remove(line)
@@ -90,12 +90,10 @@ def process_extracted_text(extracted_text, dealer):
     processed_text.append(f"produce {produce}")   # from default or arg
     processed_text.append(f"dealer {dealer}")     # from setDealerCode
 
-
     for line in lines[:]:  # Iterate through a copy of the original list
         if "action" in line:
-            action = True
+            action = True  # append or create
         
-
         if line.startswith("Import"):
             # Splitting the string by comma to get the URL
             split_string = line.replace("github.com","raw.githubusercontent.com").replace("blob/", "").split(',')
