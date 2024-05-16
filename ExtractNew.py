@@ -38,7 +38,7 @@ def extract_text_in_backticks(file_path):
         # Pattern to find text in double quotes following a comma and a space
         quotes_pattern = r',\s*"([^"]+)"'
         quotes_matches = re.findall(quotes_pattern, content)
-        dealer = None
+        dealer = "south"
         if len(quotes_matches) > 0:
             if quotes_matches[0] == "N":
                 dealer = "north"
@@ -99,12 +99,14 @@ def process_extracted_text(extracted_text, dealer):
     if not produce_added:        
         processed_text.append(f"produce 50\n")
 
-    if dealer != None:
-        processed_text.append(f"dealer {dealer}\n")
+    for line in lines[:]:  # Iterate through a copy of the original list
+        if line.startswith("dealer"):
+            lines.remove(line)
 
     for line in lines[:]:  # Iterate through a copy of the original list
         if "action" in line:
             action = True
+        
 
         if line.startswith("Import"):
             # Splitting the string by comma to get the URL
