@@ -38,6 +38,7 @@ def extract_text_in_backticks(file_path):
                 dealer = "east"
             if quotes_matches[0] == "W":
                 dealer = "west"
+        
         matches = re.findall(pattern, content, re.DOTALL)
         for i, match in enumerate(matches, 1):
             # Process the extracted text
@@ -45,6 +46,7 @@ def extract_text_in_backticks(file_path):
             output_file_path = os.path.splitext(os.path.basename(file_path))[0].replace(" ", "-").replace("(", "").replace(")", "").replace("&", "and").replace("+", "_") + ".dlr"
             output_file_path = os.path.join("./dlr", output_file_path).replace('\\', '/')
             with open(output_file_path, 'w') as output_file:
+                process_extracted_text(extracted_text, dealer)
                 
 # Function to process the extracted text
 def process_extracted_text(extracted_text, dealer):
@@ -57,7 +59,7 @@ def process_extracted_text(extracted_text, dealer):
 
     lines = extracted_text.split('\n')
 
-    processed_text.append(f"# {file_path}\n")
+  
 
     # Remove all dealer, generate, or produce statements
     for line in lines[:]:  # Iterate through a copy of the original list           
@@ -67,7 +69,9 @@ def process_extracted_text(extracted_text, dealer):
             lines.remove(line)             
         if line.startswith("produce"):
             lines.remove(line)
-
+    
+    # The first 4 lines of each .dlr file...
+    processed_text.append(f"# {file_path}\n")
     processed_text.append(f"generate {generate}\n")
     processed_text.append(f"produce {produce}\n")
     processed_text.append(f"dealer {dealer}\n") # dealer is always derived from setDealerCode
