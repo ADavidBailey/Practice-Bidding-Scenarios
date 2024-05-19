@@ -1,8 +1,6 @@
 Script,InvitationalJump3Under
 setDealerCode(
 `
-produce 1000
-dealer north
 
 # Robot 3 Under Invitational Jump (11-12 HCP)
 
@@ -62,8 +60,7 @@ sFit = oneSpade and spades(south)<2
 hFit = oneHeart and hearts(south)<2
 noMajorFit = not (sFit or hFit)
 
-# Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
-calmEast = (shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx) and hcp(east)<9) or (shape(east,any 4333 +any 4432) and hcp(east)<12)
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
 
 # Define South's good suits -- 6+ cards with 2 of the top 3
 goodHearts   = hearts(south)>5   and top3(south,hearts)  >1 and oneSpade  //only if north opened 1 spade
@@ -75,7 +72,6 @@ noMajorSouth = spades(south)<4 and hearts(south)<4
 
 
 # Now do it.
-
 (oneSpade or (oneHeart and noMajorSouth) or (oneDiamond and noMajorSouth)) // these include 12-21 suitPoints
 and calmEast
 and noMajorFit
