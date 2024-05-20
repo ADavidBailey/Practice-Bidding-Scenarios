@@ -1,7 +1,7 @@
 Script,TwoNTPuppetLeveled
-setDealerCode(
-`
-### 2N w/Puppet and any response
+setDealerCode(`
+
+### 2N w/Puppet Leveled
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
 
@@ -43,19 +43,13 @@ punt      = not (MSS or oneMinor or stayman or balanced or texas or jacoby or pa
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
 
 ##### Level the deal #####
-levPass     = pass     and keep14
-levStayman  = stayman  and keep06
-levBalanced = balanced and keep
-levTexas    = texas    and keep70
-levJacoby   = jacoby   and keep14
-levOneMinor = oneMinor and keep
-levMSS      = MSS      and keep
-levelTheDeal = (levPass or levBalanced or levStayman or levTexas or levJacoby or levOneMinor or levMSS or punt)
+levGame = game and keep11
+levSlam = slam and keep
+levelTheDeal = levGame or levSlam
 
 ### Do it ###
-twoNT
+twoNT and stayman
 and levelTheDeal
-#and punt
 
 ### Generate Statistics ###
 generate 20000000
