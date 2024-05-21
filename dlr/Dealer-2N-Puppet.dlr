@@ -3,9 +3,8 @@ generate 10000000
 produce 500
 dealer south
 
-### 2N w/Puppet and any response
 
-#produce 1000
+### 2N w/Puppet and any response
 
 ##### Imported Script -- Predict Opening 1-Bid #####
 
@@ -61,10 +60,8 @@ oC = not (oS or oH or oD) and s1Range and not P2
 openingSuit = (oS or oH or oD or oC)
 oneSpade = oS
 oneHeart = oH
-oneDiamond = oD                                                              // duplicates weakNT
-oneClub = oC                                                                 // duplicates weakNT
-hcp(south)>0
-and oneNT and hcp(south)<15
+oneDiamond = oD
+oneClub = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
 
@@ -139,6 +136,9 @@ keep985 = not keep015
 keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
+### See -Stats-Leveling for statistics on these values ###
+### Example of how to generate Statistics for Leveling ###
+
 
 ##### Level the deal #####
 levPass     = pass     and keep25
@@ -153,11 +153,10 @@ levelTheDeal = (levPass or levBalanced or levStayman or levTexas or levJacoby or
 
 
 ### Do it ###
-twoNT
+twoNT and stayman
 #and levelTheDeal
 
 ### Generate Statistics ###
-
 action
 #printoneline,
 average "Pass                  " 100 * pass,

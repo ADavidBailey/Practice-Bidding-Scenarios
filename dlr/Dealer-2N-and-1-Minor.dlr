@@ -4,6 +4,7 @@ produce 500
 dealer south
 
 
+# Dealer 2N and 1-Minor
 
 ##### Imported Script -- Predict Opening 1-Bid #####
 
@@ -59,10 +60,8 @@ oC = not (oS or oH or oD) and s1Range and not P2
 openingSuit = (oS or oH or oD or oC)
 oneSpade = oS
 oneHeart = oH
-oneDiamond = oD                                                              // duplicates weakNT
-oneClub = oC                                                                 // duplicates weakNT
-hcp(south)>0
-and oneNT and hcp(south)<15
+oneDiamond = oD
+oneClub = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
 
@@ -115,7 +114,10 @@ keep97 = not keep03
 keep985 = not keep015
 keep   = 1
 keep0  = 0
-###
+### End of Imported Leveling Code ###
+### See -Stats-Leveling for statistics on these values ###
+### Example of how to generate Statistics for Leveling ###
+
 
 levSlam = slam and keep
 levGame = game and keep86

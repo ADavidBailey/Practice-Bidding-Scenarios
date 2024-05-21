@@ -3,9 +3,8 @@ generate 10000000
 produce 500
 dealer south
 
-### 2N and Transfers ###
 
-#produce 1000
+### 2N and Transfers ###
 
 ##### Imported Script -- Predict Opening 1-Bid #####
 
@@ -61,10 +60,8 @@ oC = not (oS or oH or oD) and s1Range and not P2
 openingSuit = (oS or oH or oD or oC)
 oneSpade = oS
 oneHeart = oH
-oneDiamond = oD                                                              // duplicates weakNT
-oneClub = oC                                                                 // duplicates weakNT
-hcp(south)>0
-and oneNT and hcp(south)<15
+oneDiamond = oD
+oneClub = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
 
@@ -81,7 +78,6 @@ texas  = shape(north,6xxx+x6xx-any 65xx-any 55xx)
 
 game = strength>4 and strength<12
 slam = strength>11
-
 
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
@@ -119,8 +115,10 @@ keep97 = not keep03
 keep985 = not keep015
 keep   = 1
 keep0  = 0
+### End of Imported Leveling Code ###
 ### See -Stats-Leveling for statistics on these values ###
 ### Example of how to generate Statistics for Leveling ###
+
 
 levJacoby = jacoby and keep44
 levTexas  = texas  and keep
