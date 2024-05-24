@@ -1,0 +1,35 @@
+# Dealer Inverted Minors.txt
+generate 10000000
+produce 500
+dealer south
+
+
+# Inverted Minors
+
+# Exclude NT hands for South and North
+southNT = shape(south, any 4333 +any 4432 +any 5332 +any 5422 -5xxx -x5xx) and hcp(south)>14 and hcp(south)<18
+northNT = shape(north, any 4333 +any 4432 +any 5332 +any 5422) and hcp(north)>5 and hcp(north)<11
+noNT = not(southNT or northNT)
+
+# Predict South's Opening Suit
+s = spades(south)
+h = hearts(south)
+d = diamonds(south)
+c = clubs(south)
+oS = s>4 and s>=h and s>=d and s>=c
+oH = not oS and h>4 and h>=d and h>=c
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
+oC = not (oS or oH or oD)
+
+# North has no major and has support for opener's minor
+noMajor = spades(north)<4 and hearts(north)<4
+cFit = oC and clubs(north)>4
+dFit = oD and diamonds(north)>3
+minorRaise = (cFit or dFit) and noMajor and noNT 
+
+# South opens 1m and North raises
+
+minorRaise and hcp(south)>11 and hcp(south)<20 and hcp(north)>5
+
+
+action printpbn

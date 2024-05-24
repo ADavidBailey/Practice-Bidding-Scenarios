@@ -1,0 +1,27 @@
+# Dealer Jordan 2N.txt
+generate 10000000
+produce 500
+dealer south
+
+# Jordan 2N
+
+# Defining Major Fit
+SpadeFit = ((spades(south)>4 and hearts(south)<5) and spades(north)>2)
+HeartFit = ((hearts(south)>4 and spades(south)<5) and hearts(north)>2)
+MajorFit = (SpadeFit or HeartFit)
+
+ShortSpade = SpadeFit and spade(west)<3
+ShortHeart = HeartFit and heart(west)<3
+ShortMajor = (ShortSpade or ShortHeart) and shape(west, any 4441 +any 5431 +any 5422 +any 5440 -5xxx -x5xx)
+
+# South opens 1M
+hcp(south)>11 and hcp(south)<15 and MajorFit and
+
+# West  makes a Takeout X
+hcp(west)>11 and hcp(west)< 15 and ShortMajor and
+
+# North bids 2N showing 3/4-card support and invitational or better
+hcp(north)>10 and hcp(north)<15 and MajorFit
+
+
+action printpbn

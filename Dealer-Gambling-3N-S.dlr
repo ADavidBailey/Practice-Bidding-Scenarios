@@ -1,0 +1,17 @@
+# Dealer Gambling 3N
+generate 10000000
+produce 500
+dealer south
+
+
+# Gambling 3N
+hcp(south)>8 and hcp(south)<12  // could have a Q or two J's outside
+and
+(
+(top3(south,diamonds)==3 and diamonds(south)>6)
+or
+(top3(south,clubs)==3 and clubs(south)>6)
+)
+
+
+action printpbn

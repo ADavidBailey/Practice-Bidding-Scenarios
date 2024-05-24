@@ -1,0 +1,21 @@
+# Dealer Minor Suit Stayman
+generate 10000000
+produce 500
+dealer north
+
+
+# Minor Suit Stayman
+
+#North Opens 1N
+nO = hcp(north) >14 and hcp(north)<18 and shape(north, any 4333 +any 4432 +any 5332)
+
+# West passes
+
+# South has 5-4 or better in the minors
+sR = hcp(south)>9 and shape(south, xx66+xx65+xx56+xx55+xx54+xx45)
+
+# Now do it
+nO and sR
+
+
+action printpbn

@@ -49,8 +49,8 @@ def extract_text_in_backticks(file_path):
             if quotes_matches[0] == "W":
                 dealer = "west"
         suffix = dealer[0]
-        suffix = suffix.upper
-        suffix = "-" + suffix + "./dlr"
+        suffix = suffix.upper()
+        suffix = "-" + suffix + ".dlr"
         matches = re.findall(pattern, content, re.DOTALL)
         for i, match in enumerate(matches, 1):
             # Process the extracted text
@@ -58,8 +58,7 @@ def extract_text_in_backticks(file_path):
             #output_file_path = os.path.splitext(os.path.basename(file_path))[0].replace(" ", "-").replace("(", "").replace(")", "").replace("&", "and").replace("+", "_") + ".dlr"
             #output_file_path = os.path.join("./dlr", output_file_path).replace('\\', '/')
 
-            output_file_path = os.path.splitext(os.path.basename(file_path))[0].replace(" ", "-").replace("(", "").replace(")", "").replace("&", "and").replace("+", "_") + suffix +  ".dlr"
-
+            output_file_path = os.path.splitext(os.path.basename(file_path))[0].replace(" ", "-").replace("(", "").replace(")", "").replace("&", "and").replace("+", "_") + suffix
             with open(output_file_path, 'w') as output_file:
                 # Save the processed text to the .dlr file
                 # seed = calculate_seed(file_path)

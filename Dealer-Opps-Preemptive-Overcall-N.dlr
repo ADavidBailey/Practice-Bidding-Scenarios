@@ -1,0 +1,21 @@
+# Dealer Opps Preemptive Overcall.txt
+generate 10000000
+produce 500
+dealer north
+
+
+# Opponents preempt overcall
+
+# Preemptive Suits East
+PSE = spades(east)>5 and top4(east,spades)==2
+PHE = hearts(east)>5 and top4(east,hearts)==2
+PDE = diamonds(east)>6 and top4(east,diamonds)==2
+PCE = clubs(east)>6 and top4(east,clubs)==2
+
+hcp(north)>11 and hcp(north)<15 and (hcp(north) + hcp(south)) >19 and
+# spades(north)<5 and hearts(north)<5 and 
+hcp(east)>5 and hcp(east)<9 and
+(PCE or PDE or PHE or PSE)
+
+
+action printpbn

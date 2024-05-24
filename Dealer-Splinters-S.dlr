@@ -1,0 +1,20 @@
+# Dealer Splinters.txt
+generate 10000000
+produce 500
+dealer south
+
+
+# Splinters
+
+hcp(south) > 11 && hcp(south) < 20 && hcp(north) >10 && hcp(north)<14
+&&
+(
+(shape(south, 5xxx + 6xxx - x5xx - x6xx - any 5332) &&
+shape(north, 41xx + 4x1x + 4xx1))
+||
+(shape(south, x5xx + x6xx - 5xxx - 6xxx - any 5332) && 
+shape(north, 14xx + x41x + x4x1))
+)
+
+
+action printpbn

@@ -1,0 +1,15 @@
+# Basic Other NT Response
+generate 10000000
+produce 500
+dealer north
+
+
+# 1 Notrump Opening
+NT = shape(north, any 4333 +any 4432 +any 5332 -5xxx-x5xx) and hcp(north)>14 and hcp(north)<18
+
+notStaymanOrJacoby = spades(south)<4 and hearts(south)<4 and hcp(south)>7
+
+NT and notStaymanOrJacoby
+
+
+action printpbn

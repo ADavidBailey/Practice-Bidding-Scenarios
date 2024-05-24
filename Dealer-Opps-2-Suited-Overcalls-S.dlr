@@ -1,0 +1,149 @@
+# Dealer Opps 2-Suited Overcalls.txt
+generate 10000000
+produce 500
+dealer south
+
+# Opponent's Two-Suited Overcalls
+
+## Imported Script -- Predict Opening Bid ##
+
+# Calculate length points for South (lengthPoints)
+lp1 = spades(south)>4 ? spades(south)-4 : 0
+lp2 = hearts(south)>4 ? hearts(south)-4 : 0
+lp3 = diamonds(south)>4 ? diamonds(south)-4 : 0
+lp4 = clubs(south)>4 ? clubs(south)-4 : 0
+lengthPoints = lp1 + lp2 + lp3 + lp4
+
+# Calculate doubleton honor NT downgrade(s) for South -- 2 cards, 1 honor, not the Ace
+S2H = spades(south)==2 and top4(south,spades)==1 and not hascard(south,AS) ? 1 : 0
+H2H = hearts(south)==2 and top4(south,hearts)==1 and not hascard(south,AH) ? 1 : 0
+D2H = diamonds(south)==2 and top4(south,diamonds)==1 and not hascard(south,AD) ? 1 : 0
+C2H = clubs(south)==2 and top4(south,clubs)==1 and not hascard(south,AC) ? 1 : 0
+ntDownGrade = S2H + H2H + D2H + C2H
+
+# Define notrump points for south (ntPoints)
+ntPoints = hcp(south) + lengthPoints - ntDownGrade
+
+# Define suit points for south (suitPoints)
+suitPoints = hcp(south) + lengthPoints
+
+# Define robot notrump shape and exclude any 5card 
+ntShape = shape(south, any 4333 +any 4432 +any 5332 +any 5422 -5xxx -x5xx)
+
+# Define ntPoint ranges
+oneNT   = ntShape and ntPoints>14 and ntPoints<18
+twoNT   = ntShape and ntPoints>19 and ntPoints<22
+threeNT = ntShape and ntPoints>25 and ntPoints<28
+weakNT  = ntShape and ntPoints>10 and ntPoints<15
+
+# Define Game Forcing 2C
+case1 = hcp(south)>22
+case2 = hcp(south)>18 and losers(south)<5 and (spades(south)>5 or hearts(south)>5)
+case3 = hcp(south)>18 and losers(south)<4 and (diamonds(south)>5 or clubs(south)>5)
+gameForce2C = (case1 or case2 or case3) and not threeNT
+
+### Predict South's opening BID
+P1 = gameForce2C
+P2 = P1 or threeNT or twoNT or oneNT // or weakNT  weakNT will be duplicated diamond and club openings
+
+# Predict South's Opening suit
+s = spades(south)
+h = hearts(south)
+d = diamonds(south)
+c = clubs(south)
+s1Range = suitPoints>11 and hcp(south)>9
+oS = s>4 and s>=h and s>=d and s>=c and s1Range and not P2
+oH = not oS and h>4 and h>=d and h>=c and s1Range and not P2
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and s1Range and not P2
+oC = not (oS or oH or oD) and s1Range and not P2
+openingSuit = (oS or oH or oD or oC)
+oneSpade = oS
+oneHeart = oH
+oneDiamond = oD                                                              // duplicates weakNT
+oneClub = oC                                                                 // duplicates weakNT
+
+### End of Predict-Opening-Bid ###
+
+
+# Opponents 2-suited overcalls
+
+# Define good suits
+GoodS = spades(west)>4 and top5(west,spades)>2
+GoodH = hearts(west)>4 and top5(west,hearts)>2
+GoodD = diamonds(west)>4 and top5(west,diamonds)>2
+GoodC = clubs(west)>4 and top5(west,clubs)>2
+
+# Intervener is 2-suited
+SH = (GoodS and GoodH)
+SD = (GoodS and GoodD)
+SC = (GoodS and GoodC)
+HD = (GoodH and GoodD)
+HC = (GoodH and GoodC)
+DC = (GoodD and GoodC)
+
+# Intervener's 2-Suits -- NOT opener's suit
+oneS = oS and (HD or HC or DC)  // Michaels or Michaels or Unusual NT
+oneH = oH and (SD or SC or DC)  // Michaels or Michaels or Unusual NT
+oneD = oD and (SH or HC)        // Michaels or Unusual NT  - no way to show SC
+oneC = oC and (SH or HD)        // Michaels or Unusual NT  - no way to show SD
+
+oSuit = (oneS or oneH or oneD or oneC) and shape(south,any xxxx-8xxx-7xxx-6xxx)
+oRange = hcp(south)>11 and hcp(south)<15
+
+# West is weak or strong
+iWeak   = losers(west)<8 and hcp(west)>7  and hcp(west)<12
+iStrong = losers(west)<5 and hcp(west)>14 and hcp(west)<20
+iRange = iWeak or iStrong
+
+# This is an attempt to get stats for west weak/strong.  I don't think I can get it to work.
+wHCP    = iWeak   ? hcp(west)    : 0
+wLosers = iWeak   ? losers(west) : 0
+sHCP    = iStrong ? hcp(west)    : 0
+sLosers = iStrong ? losers(west) : 0
+
+# Responder's minimum HCP -- you might try adjusting this
+rRange = hcp(north)>7
+
+### Now do it
+oSuit and oRange and iRange and rRange
+
+# To get stats for west weak/strong uncomment one of the following
+#and iWeak
+#and iStrong
+
+# You might also play with choseing west's suits
+#and SC or SD  // If you just want the problematic ones
+
+action
+#printoneline,
+
+average "Weak       " 100 * iWeak,
+average "  HCP      "     wHCP,
+average "  Losers   "     wLosers,
+average "Strong     " 100 * iStrong,
+average "  HCP      "     sHCP,
+average "  Losers   "     sLosers,
+
+average "1S         " 100 * (oneS and (HD or HC or DC)),
+average "   (2S)  HD" 100 * (oneS and HD),
+average "   (2S)  HC" 100 * (oneS and HC),
+average "   (2N)  DC" 100 * (oneS and DC),
+average "1H         " 100 * (oneH and (SD or SC or DC)),
+average "   (2H)  SD" 100 * (oneH and SD),
+average "   (2H)  SC" 100 * (oneH and SC),
+average "   (2N)  DC" 100 * (oneH and DC),
+average "1D         " 100 * (oneD and (SH or HC or SC)),
+average "   (2D)  SH" 100 * (oneD and SH),
+average "   (2N)  HC" 100 * (oneD and HC),
+average "         SC" 100 * (oneD and SC),
+average "1C         " 100 * (oneC and (SH or HD or SD)),
+average "   (2C)  SH" 100 * (oneC and SH),
+average "   (2N)  DC" 100 * (oneC and HD),
+average "         SD" 100 * (oneC and SD),
+
+frequency "Opener HCP    " (hcp(south),12,14),
+frequency "Intervener HCP" (hcp(west),8,19),
+frequency "Responder HCP " (hcp(north),6,17),
+
+
+printpbn
