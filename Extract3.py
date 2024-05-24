@@ -49,7 +49,8 @@ def extract_text_in_backticks(file_path):
             if quotes_matches[0] == "W":
                 dealer = "west"
         suffix = dealer[0]
-        suffix = "-" + suffix.upper + "./dlr"
+        suffix = suffix.upper
+        suffix = "-" + suffix + "./dlr"
         matches = re.findall(pattern, content, re.DOTALL)
         for i, match in enumerate(matches, 1):
             # Process the extracted text
