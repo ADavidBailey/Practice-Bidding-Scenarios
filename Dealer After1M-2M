@@ -9,7 +9,7 @@ lp2 = hearts(south)>4 ? hearts(south)-4 : 0
 lp3 = diamonds(south)>4 ? diamonds(south)-4 : 0
 lp4 = clubs(south)>4 ? clubs(south)-4 : 0
 lengthPoints = lp1 + lp2 + lp3 + lp4
-python
+
 # Calculate doubleton honor NT downgrade(s) for South -- 2 cards, 1 honor, not the Ace
 S2H = spades(south)==2 and   top4(south,spades)>0   and not hascard(south,AS) ? 1 : 0
 H2H = hearts(south)==2 and   top4(south,hearts)>0   and not hascard(south,AH) ? 1 : 0
@@ -107,7 +107,7 @@ produce 1000
 action
 average "1S" 100 * oneSpade,
 average "1H" 100 * oneHeart,
-frequency "ShortSuitPoints" (shortSuitPoints,1,5)
+frequency "ShortSuitPoints" (shortSuitPoints,1,5),
 
 `,"S",true)
 Script
