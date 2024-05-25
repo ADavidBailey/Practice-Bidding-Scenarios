@@ -121,10 +121,12 @@ def process_extracted_text(extracted_text, dealer):
         processed_text.append("printpbn\n")
     return '\n'.join(processed_text)
 
-
 # List all files in the directory
+n_files = 0
 for filename in os.listdir(directory_path):
     file_path = os.path.join(directory_path, filename)
     # Check if it's a file
     if os.path.isfile(file_path) and (filename.startswith('Dealer') or filename.startswith('Gavin') or (filename.startswith('Basic'))):
         extract_text_in_backticks(file_path)
+        n_files = n_files + 1
+print("number of .dlr files = " + str(n_files))
