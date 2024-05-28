@@ -89,6 +89,8 @@ def process_extracted_text(extracted_text, dealer):
             lines.remove(line)             
         if line.startswith("produce "):
             lines.remove(line)
+        if line.startswith("printoneline"):
+            lines.remove(line)
     
     # The first 4 lines of each .dlr file...
     processed_text.append(f"# {filename}")
