@@ -1,13 +1,7 @@
 Script,Basic1Notrump
-setDealerCode(
-`
-dealer south
+setDealerCode(`
 
-NT = shape(south, any 4333+any 4432+any 5332 -5xxx-x5xx) and hcp(south)>14 and hcp(south)<18
-
-
-# 1 Notrump Opening
-NT
+Include,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/dlr/Basic-1-Notrump-Opening-S.dlr
 
 `, "S", false);
 Script
