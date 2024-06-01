@@ -1,16 +1,12 @@
 import os
 
-input_directory_path = './pbnTest'    # Read files from pbn folder
-output_directory_path = './pbnr4'      # Write files to r4pbn folder
-
-
-# Directory containing the input files
+input_directory_path = './pbn'                          # Read files from pbn folder
+output_directory_path = './pbn-rotated-for-4-players'   # Write files to pbn-rotated... folder
 
 def rotate_deal(file_path,filename):
      with open(input_file_path, 'r') as file:
         content = file.read()
         processed_text = rotate_hand(content)
-        print(processed_text)
         output_file_path = os.path.join(output_directory_path, filename)
 
         with open(output_file_path, 'w') as output_file:
@@ -39,18 +35,14 @@ def rotate_hand(extracted_text):
 
 
 # List all files in the input directory
-testCount = 0
+n_files = 0
 rotation = "NESW"
 for filename in os.listdir(input_directory_path):
-    
     input_file_path = os.path.join(input_directory_path, filename)
     # Check if it's a file
     if os.path.isfile(input_file_path) and (filename.endswith('.pbn')):
-        testCount = testCount + 1
-        if testCount > 5:
-            break
+        n_files = n_files + 1
+        print(str(n_files), filename)
         dDealer = filename[-5]               # designated dealer is the last character of the .dlr & .pbn filename
         dDi = rotation.index(dDealer)        # designated dealer index, value is  0 to 3
-        print(input_file_path)
-        print(filename," Dealer=",dDealer," Dealer Index=",str(dDi))
         rotate_deal(input_file_path, filename)
