@@ -147,7 +147,7 @@ ntPoints = hcp(south) + lengthPoints - ntDownGrade
 # Define suit points for south (suitPoints)
 suitPoints = hcp(south) + lengthPoints
 
-# Define robot notrump shape and exclude any 5card 
+# Define robot notrump shape and exclude any 5-card major 
 ntShape = shape(south, any 4333 +any 4432 +any 5332 +any 5422 -5xxx -x5xx)
 
 # Define ntPoint ranges
@@ -162,7 +162,7 @@ case2 = hcp(south)>18 and losers(south)<5 and (spades(south)>5 or hearts(south)>
 case3 = hcp(south)>18 and losers(south)<4 and (diamonds(south)>5 or clubs(south)>5)
 gameForce2C = (case1 or case2 or case3) and not threeNT
 
-### Predict South's opening BID
+### Predict South's opening BID (P1 for priority 1)
 P1 = gameForce2C
 P2 = P1 or threeNT or twoNT or oneNT // or weakNT  weakNT will be duplicated diamond and club openings
 
