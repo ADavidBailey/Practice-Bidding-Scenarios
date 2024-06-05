@@ -119,6 +119,7 @@ P:\dealer P:\dlr\Dealer-SCS-1C-any-5-7-Resp-S.dlr >P:\pbn\Dealer-SCS-1C-any-5-7-
 P:\dealer P:\dlr\Dealer-Overcalls-E.dlr >P:\pbn\Dealer-Overcalls-E.pbn
 P:\dealer P:\dlr\Dealer-Minor-Suit-Opener-S.dlr >P:\pbn\Dealer-Minor-Suit-Opener-S.pbn
 P:\dealer P:\dlr\Dealer-Weak-2-Bids-Leveled-S.dlr >P:\pbn\Dealer-Weak-2-Bids-Leveled-S.pbn
+P:\dealer P:\dlr\A-Test-File-N.dlr >P:\pbn\A-Test-File-N.pbn
 P:\dealer P:\dlr\Dealer-Jacoby-2N-4x-void-Leveled-S.dlr >P:\pbn\Dealer-Jacoby-2N-4x-void-Leveled-S.pbn
 P:\dealer P:\dlr\Dealer-Lebensohl-Over-Weak-2-E.dlr >P:\pbn\Dealer-Lebensohl-Over-Weak-2-E.pbn
 P:\dealer P:\dlr\Dealer-SCS-Two-Clubs-S.dlr >P:\pbn\Dealer-SCS-Two-Clubs-S.pbn

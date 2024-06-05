@@ -1,0 +1,33 @@
+# Dealer Two-Way Size Ask
+generate 10000000
+produce 50
+dealer north
+
+
+# Two Way Size Ask
+
+# North opens 1N
+nO = hcp(north)> 14 and hcp(north)<18 and shape(north, 4333+4432+5332)
+
+# No major suit interest
+noMajor = spades(south)<4 and hearts(south)<4
+
+# With 5-5 minors weak???
+
+# South asks about size
+cA = shape(south, xxx6+xxx7+xxx8)             // long clubs w/any strength
+dA = shape(south, xx6x+xx7x+xx8x)             // long diamonds w/any strength
+iG = (hcp(south)>7 and hcp(south)<10)         // 8-9 ask for 15 and pass 2 or bid 3
+                                              // 10-15  bid 3
+iSS1 = hcp(south)==16                         // 16 ask for 17 and bid 3 or 6
+iSS2 = hcp(south)==17                         // 17 ask for 15 and bid 3 or invite 6
+                                              // 18-19 bid 6
+iGS1 = hcp(south)==20                         // 20 ask for 17 and bid 6 or 7
+iGS2 = hcp(south)==21                         // 21 ask for 15 and bid 6 invite 7
+
+sA = noMajor and (iG or iSS1 or iSS2 or iGS1 or iGS2 or cA or dA)
+condition
+nO and sA
+
+
+action printpbn

@@ -219,11 +219,38 @@ sSupport  = sSpades or sHearts or sDiamonds
 twoSuits  = shape(south,any 54xx+any 44xx)
 sConstraints = sSupport and twoSuits and sP<19
 
+# Now do it
+condition
+allSequences and sConstraints and nConstraints and calmOpps
+#and CHD
+
 # Just for stats...
 bal = shape(south,any 5422+any 5332+any 4432)
 h3  = h==3 and (CH or DH)
 s3  = s==3 and (CS or DS or HS)
 
-# Now do it
-condition
-allSequences and sConstraints and nConstraints and calmOpps
+
+action
+average "noReverse " 100 * noReverse,
+average "CDH       " 100 * CDH,
+average "CDS       " 100 * CDS,
+average "CHS       " 100 * CHS,
+average "DHS       " 100 * DHS,
+average "DHC       " 100 * DHC,
+average "DSC       " 100 * DSC,
+average "HSC       " 100 * HSC,
+average "HSD       " 100 * HSD,
+average "isReverse " 100 * isReverse,
+average "CHD       " 100 * CHD,
+average "CSD       " 100 * CSD,
+average "CSH       " 100 * CSH,
+average "DSH       " 100 * DSH,
+average "balanced  " 100 * bal,
+average " Heart sup" 100 * (bal and h3),
+average " Spade sup" 100 * (bal and s3),
+average "unbalanced" 100 * not bal,
+average " Heart sup" 100 * (not bal and h3),
+average " Spade sup" 100 * (not bal and s3),
+
+
+printpbn
