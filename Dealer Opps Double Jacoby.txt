@@ -20,10 +20,10 @@ nHearts = shape(north,x6xx+x5xx -any 66xx -any 65xx -any 55xx) and eGd
 # Define East's length in North's bid suit
 eLength = nSpades > 4 ? hearts(east) : diamonds(east)
 
-NT and (nSpades or nHearts)
+sNT and (nSpades or nHearts) and eLength>4
 
 action
-printoneline,
+
 average "South's hcp   " hcp(south),
 average "North's hcp   " hcp(north),
 average "East's length " eLength,
