@@ -24,10 +24,11 @@ sNT and (nSpades or nHearts) and eLength>4
 
 action
 
-average "South's hcp   " hcp(south),
-average "North's hcp   " hcp(north),
-average "East's length " eLength,
-average "East's hcp    " hcp(east),
+average "South's hcp     " hcp(south),
+average "North's hcp     " hcp(north),
+average "East's hcp      " hcp(east),
+average "East's length=5 " 100 * (eLength==5),
+average "East's length>5 " 100 * (eLength>5),
 
 `)
 Script
