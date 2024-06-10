@@ -17,7 +17,6 @@ def process_file(files):
                 boards = pbn.load(i_file)
             with open('./lin-rotated-for-4-players/' + o_filename, 'w') as o_file:
                 lin.dump(boards, o_file)
-                o_file.close()
 
 def scan_for_pbn(directory_path):
     # Use os.listdir() to get files in the current directory only
