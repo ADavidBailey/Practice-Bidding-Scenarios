@@ -42,6 +42,7 @@ P:\dealer P:\dlr\Gavin-3-card-Limit-Raise-N.dlr -s=3709128985 >P:\pbn\Gavin-3-ca
 P:\dealer P:\dlr\Dealer-Meckwell-E.dlr -s=1047857283 >P:\pbn\Dealer-Meckwell-E.pbn
 P:\dealer P:\dlr\Dealer-2N-and-MSS-S.dlr -s=873137103 >P:\pbn\Dealer-2N-and-MSS-S.pbn
 P:\dealer P:\dlr\Gavin-3-Under-Invitational-Jump-N.dlr -s=4286252186 >P:\pbn\Gavin-3-Under-Invitational-Jump-N.pbn
+P:\dealer P:\dlr\Dealer-1m-1x-2m-S.dlr -s=1914975742 >P:\pbn\Dealer-1m-1x-2m-S.pbn
 P:\dealer P:\dlr\Gavin-PassedHandResponseStructure-S.dlr -s=1088399423 >P:\pbn\Gavin-PassedHandResponseStructure-S.pbn
 P:\dealer P:\dlr\Gavin-Transfers-after-2N-Rebid-Unb-N.dlr -s=3399830439 >P:\pbn\Gavin-Transfers-after-2N-Rebid-Unb-N.pbn
 P:\dealer P:\dlr\Dealer-Two-Way-Game-Try-S.dlr -s=1000028760 >P:\pbn\Dealer-Two-Way-Game-Try-S.pbn
