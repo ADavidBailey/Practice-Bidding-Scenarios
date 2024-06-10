@@ -6,7 +6,6 @@ import endplay.parsers.pbn as pbn
 import endplay.parsers.lin as lin
 
 def process_file(files):
-    print("entered process_file")
     n_files = 0
     for i_filename in files:
         if i_filename.lower().endswith('.pbn'):
@@ -14,18 +13,13 @@ def process_file(files):
             print(str(n_files) + " " + i_filename)
             o_filename = i_filename.replace('.pbn', '.lin')
 
-            with open("./pbn-rotated-for-4-players-TEST/" + i_filename, 'r') as i_file:
-                print("opened pbn file")
-                # It fails on the next line
-                
+            with open('./pbn-rotated-for-4-players/' + i_filename, 'r') as i_file:
                 boards = pbn.load(i_file)
-
             with open('./lin-rotated-for-4-players/' + o_filename, 'w') as o_file:
                 lin.dump(boards, o_file)
                 o_file.close()
 
 def scan_for_pbn(directory_path):
-    print("entered scan_for_pbn")
     # Use os.listdir() to get files in the current directory only
     current_directory_files = os.listdir(directory_path)
     process_file(current_directory_files)
@@ -33,8 +27,7 @@ def scan_for_pbn(directory_path):
     print(f"# Scan complete!")
 
 def main():
-    print("entered main")
-    scan_for_pbn("./pbn-rotated-for-4-players-TEST")
+    scan_for_pbn("./pbn-rotated-for-4-players")
 
 if __name__ == "__main__":
     main()
