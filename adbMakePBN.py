@@ -19,7 +19,7 @@ def process_file(files):
             seed = calculate_seed(filename)
             output_filename = filename.replace('.dlr', '.pbn')
             #print('D:\\dealer\\dealer E:\\' + filename + ' >F:\\' + output_filename)
-            print("P:\\dealer P:\\dlr\\" + filename + " >P:\\pbn\\" + output_filename) 
+            print("P:\\dealer P:\\dlr\\" + filename + " -s=" + str(seed) + " >P:\\pbn\\" + output_filename) 
 
 
 def scan_for_dlr(directory_path):
