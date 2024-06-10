@@ -11,7 +11,7 @@ def process_file(files):
         if i_filename.lower().endswith('.pbn'):
             n_files = n_files + 1
             print(str(n_files) + " " + i_filename)
-            o_filename = i_filename.replace('.pbn', '.lin')
+            o_filename = i_filename.replace('.pbn', '-R.lin')  # Append -R for Rotated
 
             with open('./pbn-rotated-for-4-players/' + i_filename, 'r') as i_file:
                 boards = pbn.load(i_file)
