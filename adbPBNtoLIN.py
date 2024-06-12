@@ -28,7 +28,7 @@ def process_file(files, directory_path):
                 # Process each line to strip until 'md'
                 processed_lines = []
                 for line in lines:
-                    md_index = line.find('|md|')
+                    md_index = line.find('|qx|')
                     if md_index != -1:
                         processed_line = line[md_index:]
                         processed_lines.append(processed_line)
