@@ -121,7 +121,7 @@ Promise.resolve()
     // .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(13).click())
 
     // press "Start a Bidding table"
-    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(12).click())
+    .then(() => $(".menuGrid navigation-list-button .navClass:visible", BBOcontext()).eq(0).click())
     .then(() => delay(delayValue))
     // click table switches. Eventually remove unwanted portions of code.
     // Disallow kibitzers
