@@ -8,7 +8,7 @@ def process_file(files):
         nFiles = nFiles + 1
 
 
-        print('\n  ' + str(nFiles) + ' -- ' + filename)
+        print('\n ' + str(nFiles) + ' ------ ' + filename + ' ------ ')
         if filename.lower().endswith('.pbn'):
                       
             with open('./pbn/' + filename, 'r') as i_file:
