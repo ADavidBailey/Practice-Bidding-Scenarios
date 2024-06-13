@@ -19,18 +19,24 @@ def process_file(files, directory_path):
             with open(out_directory_path + '/' + o_filename, 'w') as o_file:
                 lin.dump(boards, o_file)
 
-
+            
             with open(out_directory_path + '/' + o_filename, 'r') as o_file:
                 # Split the string into individual lines
                 content = o_file.read()
                 lines = content.strip().split('\n')
 
-                # Process each line to strip until 'md'
+                # Process each line to strip until 'md', prepend 'qx|~~~' (~~~ is the board number)
                 processed_lines = []
                 for line in lines:
-                    md_index = line.find('|qx|')
+                    md_index = line.find('|md|')
                     if md_index != -1:
-                        processed_line = line[md_index:]
+                        # get the board numberidx = line.find('|Board ') + 7
+                        idx = line.find('|Board ') + 7
+                        txt = line[idx:]
+                        idx = txt.find('|sv|')
+                        boardNumber = txt[:idx]
+
+                        processed_line = 'qx|o' + boardNumber + line[md_index:]
                         processed_lines.append(processed_line)
 
             with open(out_directory_path + '/' + o_filename, 'w') as o_file:
