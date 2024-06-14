@@ -22,31 +22,34 @@ And, to define create and organize BBOalert buttons that cause BBOalert to invok
 
 The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (highlighted) to invoke a script to load the dealer code into the BBO Deal source and display chat, and to invoke the script to load the dealer code in the BBO Deal source all surrounding the dealer code itself:
 
-   <mark>Script,scriptname</mark>
-   <mark>setDealerCode(`</mark>
+    Script,thenameofthisscript
+    setDealerCode(`
 
-    A very, very long, multi-line string of dealer code to be loaded into
-    the 'Dealer source' on a BBO Bidding or Teaching table.  This
-    dealer code is read and used by BBO's Dealer by Hans van Staveren, et.al.
+        A very, very long, multi-line string of dealer code to be loaded into
+        the 'Dealer source' on a BBO Bidding or Teaching table.  This
+        dealer code is read and used by BBO's Dealer by Hans van Staveren, et.al.
 
-    The string is delinieated by back tics.  The string may include 'Import' that 
-    bring in common reusable snippets of dealer code.  Here's an example:
+        The string is delinieated by back tics.  The string may include 'Import' that 
+        bring in common reusable snippets of dealer code.  Here's an example:
 
-        Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
-    
-    This long string is followed by two additional parameters.
-        - dealer has a value of "N", "E", "S", or "W", if not specified, it
-          defaults to "S"
-        - rotate has a value of True or False.  The default is True.
+            Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
+        
+        This long string is followed the rest of the wrapper.
+         - dealer has a value of "N", "E", "S", or "W", if not specified, it
+            defaults to "S"
+         - rotate has a value of True or False.  The default is True.
+         - the BBOalert button definition
+         - the chat
+         - the name of the script to be executed -- a reference to the name of this very script
 
-`,"N",true),
-Script,
-Button,<short name>,
---- Descriptive name for scenario
-Chat to be spit out when the BBOalert
-button is clicked and string is loaded
-into 'Dealer source' at a BBO practice table.
-%scriptname%
+    `,"N",true),
+    Script,
+    Button,short name,
+    --- Descriptive name for scenario
+    Chat to be spit out when the BBOalert
+    button is clicked and string is loaded
+    into 'Dealer source' at a BBO practice table.
+    %sthenameofthisscript%
 
 ## Special Programs for pbn and lin files
 When scenarios are updated or new scenarios are created, you need to update the pbn and lin files.
