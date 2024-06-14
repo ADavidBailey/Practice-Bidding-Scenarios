@@ -22,54 +22,53 @@ And, to define create and organize BBOalert buttons that cause BBOalert to invok
 
 The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (highlighted) to invoke a script to load the dealer code into the BBO Deal source and display chat, and to invoke the script to load the dealer code in the BBO Deal source all surrounding the dealer code itself:
 
-## The Wrappered Scenario 
+## The Wrappered Dealer code
 
-It starts with the invocation of a script...
+<mark>It starts with the invocation of a script...</mark>
 
     Script,theNameOfThisScript
     setDealerCode(`
 
-The Dealer code is the first parameter to the script...
+<mark>The Dealer code is the first parameter to the script...</mark>
 
-    # The end of the beginning of the wrapper code and the beginning of the Dealer code
-        A very, very long, multi-line string of dealer code to be loaded into
-        the 'Dealer source' on a BBO Bidding or Teaching table.  This
-        dealer code is read and used by BBO's Dealer by Hans van Staveren, et.al.
+    
+    A very, very long, multi-line string of dealer code to be loaded into
+    the 'Dealer source' on a BBO Bidding or Teaching table.  This
+    dealer code is read and used by BBO's Dealer by Hans van Staveren, et.al.
 
-        The string is delinieated by back tics.  The string may include 'Import' that 
-        bring in common reusable snippets of dealer code.  Here's an example:
+    The string is delinieated by back tics.  The string may include 'Import' that 
+    bring in common reusable snippets of dealer code.  Here's an example:
 
-            Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
-        
-        This long string is followed the rest of the wrapper.
-         - dealer has a value of "N", "E", "S", or "W", if not specified, it
-            defaults to "S"
-         - rotate has a value of True or False.  The default is True.
-         - the BBOalert button definition
-         - the chat
-         - the name of the script to be executed -- a reference to the name of this very script
-    # The end of the Dealer code and begining of the end of the wrapper code
-
-At the end of the Dealer code we specify the 2nd and 3rd parameters to the script -- the dealer and rotation...
+        Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
+    
+    This long string is followed the rest of the wrapper.
+        - dealer has a value of "N", "E", "S", or "W", if not specified, it
+        defaults to "S"
+        - rotate has a value of True or False.  The default is True.
+        - the BBOalert button definition
+        - the chat
+        - the name of the script to be executed -- a reference to the name of this very script
+    
+<mark>At the end of the Dealer code we specify the 2nd and 3rd parameters to the script -- the dealer and rotation...</mark>
 
     `,"N",true),
     Script,
 
-Then we define the BBOalert button...
+<mark>Then we define the BBOalert button...</mark>
 
     Button,short name,
 
-The BBO chat...
+<mark>The BBO chat...
     --- Descriptive name for scenario
     Chat to be spit out when the BBOalert
     button is clicked and string is loaded
     into 'Dealer source' at a BBO practice table.
 
-And, finally invoke the script -- the script that we just defined...
+<mark>We invoke the script -- the script that we just defined...</mark>
 
     %theNameOfThisScript%
 
-And, finally, the end of the wrapper code.  Everything except the Dealer code is the wrapper.
+<mark>And, finally, the end of the wrapper code.  Everything except the Dealer code is the wrapper.</mark>
 
 ## Special Programs for pbn and lin files
 When scenarios are updated or new scenarios are created, you need to update the pbn and lin files.
