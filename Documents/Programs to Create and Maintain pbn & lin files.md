@@ -22,9 +22,15 @@ And, to define create and organize BBOalert buttons that cause BBOalert to invok
 
 The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (highlighted) to invoke a script to load the dealer code into the BBO Deal source and display chat, and to invoke the script to load the dealer code in the BBO Deal source all surrounding the dealer code itself:
 
-   # The beginning of the wrapper 
+## The Wrappered Scenario 
+
+It starts with the invocation of a script...
+
     Script,theNameOfThisScript
     setDealerCode(`
+
+The Dealer code is the first parameter to the script...
+
     # The end of the beginning of the wrapper code and the beginning of the Dealer code
         A very, very long, multi-line string of dealer code to be loaded into
         the 'Dealer source' on a BBO Bidding or Teaching table.  This
@@ -43,15 +49,27 @@ The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (hi
          - the chat
          - the name of the script to be executed -- a reference to the name of this very script
     # The end of the Dealer code and begining of the end of the wrapper code
+
+At the end of the Dealer code we specify the 2nd and 3rd parameters to the script -- the dealer and rotation...
+
     `,"N",true),
     Script,
+
+Then we define the BBOalert button...
+
     Button,short name,
+
+The BBO chat...
     --- Descriptive name for scenario
     Chat to be spit out when the BBOalert
     button is clicked and string is loaded
     into 'Dealer source' at a BBO practice table.
-    %stheNameOfThisScript%
-    # The end of the wrapper code
+
+And, finally invoke the script -- the script that we just defined...
+
+    %theNameOfThisScript%
+
+And, finally, the end of the wrapper code.  Everything except the Dealer code is the wrapper.
 
 ## Special Programs for pbn and lin files
 When scenarios are updated or new scenarios are created, you need to update the pbn and lin files.
