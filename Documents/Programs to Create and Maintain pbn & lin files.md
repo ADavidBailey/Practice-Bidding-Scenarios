@@ -28,46 +28,45 @@ The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (hi
 It starts with defining a script -- the name of the script and a function call...
 
 <mark>Script,theNameOfThisScript
-    setDealerCode(`
+setDealerCode(`
 
-The first parameter to the script is the Dealer code. It is enclosed in back-ticks...
+*The first parameter to the script is the Dealer code. It is enclosed in back-ticks...
 
-    The Dealer code is very, very long, multi-line string to be loaded into
-    the 'Dealer source' on a BBO Bidding or Teaching table.  This
-    dealer code is read and used by BBO's Dealer by Hans van Staveren, et.al.
+The Dealer code is very, very long, multi-line string to be loaded into
+the 'Dealer source' on a BBO Bidding or Teaching table.  This
+dealer code is read and used by BBO's Dealer by Hans van Staveren, et.al.
 
-        https://www.bridgebase.com/tools/dealer/dealer.php
+    https://www.bridgebase.com/tools/dealer/dealer.php
 
-    The string is delinieated by back tics.  The string may include 'Import' that 
-    bring in common reusable snippets of dealer code.  Here's an example:
+The string is delinieated by back tics.  The string may include 'Import' that 
+bring in common reusable snippets of dealer code.  Here's an example:
 
-        Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
+    Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
     
-    This long string is followed the rest of the wrapper.
-        - dealer has a value of "N", "E", "S", or "W", if not specified, it
-        defaults to "S"
-        - rotate has a value of True or False.  The default is True.
-        - the BBOalert button definition
-        - the chat
-        - the name of the script to be executed -- a reference to the name of this very script
+This long string is followed the rest of the wrapper.
+    - dealer has a value of "N", "E", "S", or "W", if not specified, it defaults to "S"
+    - rotate has a value of True or False.  The default is True.
+    - the BBOalert button definition
+    - the chat
+    - the name of the script to be executed -- a reference to the name of this very script
     
-At the end of the Dealer code we specify the 2nd and 3rd parameters to the script -- dealer and rotation -- and end the script.
+*At the end of the Dealer code we specify the 2nd and 3rd parameters to the script -- dealer and rotation -- and end the script.
 
-<mark>`,"N",true)
+`,"N",true)
 Script,
 
-Then we create a BBOalert button to invoke the script.
+*Then we create a BBOalert button to invoke the script...
 
-<mark>Button,short name,
-    --- Descriptive name for scenario
-    Chat to be spit out when the BBOalert
-    button is clicked and string is loaded
-    into 'Dealer source' at a BBO practice table.
-    %theNameOfThisScript%
+Button,short name,
+--- Descriptive name for scenario
+Chat to be spit out when the BBOalert
+button is clicked and string is loaded
+into 'Dealer source' at a BBO practice table.
+%theNameOfThisScript%
 
-That last line of the wrapper invokes the script.  Everything except the Dealer code is the wrapper.
+*That last line of the wrapper invokes the script.  Everything except the Dealer code is the wrapper.
 
-The total lines of code -- the -PBS.txt and the imported wrappered Dealer code is approaching 14,000 lines of code.
+In total, the code in -PBS.txt and the imported wrappered Dealer code is about 14,000 lines.
 
 ## Special Programs for pbn and lin files
 
