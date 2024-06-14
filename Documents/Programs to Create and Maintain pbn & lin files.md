@@ -20,7 +20,7 @@ And, to define create and organize BBOalert buttons that cause BBOalert to invok
     Import,Jacoby2N
 
 
-The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (in bold) to invoke a script to load the dealer code into the BBO Deal source and display chat, and to invoke the script to load the dealer code in the BBO Deal source all surrounding the dealer code itself:
+The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (highlighted) to invoke a script to load the dealer code into the BBO Deal source and display chat, and to invoke the script to load the dealer code in the BBO Deal source all surrounding the dealer code itself:
 
    <mark>setDealerCode(<script-name>,`</mark>
 
@@ -38,11 +38,11 @@ The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (in
           defaults to "S"
         - rotate has a value of True or False.  The default is True.
 
-    <mark>`,<dealer>,<rotate>),
-    Chat to be spit out when the BBOalert\n
-    button is clicked and string is loaded\n
-    into 'Dealer source' at a BBO practice table.\n
-    %<script-name>%</mark>
+    <mark>`,<dealer>,<rotate>),</mark>
+    <mark>Chat to be spit out when the BBOalert\n</mark>
+    <mark>button is clicked and string is loaded\n</mark>
+    <mark>into 'Dealer source' at a BBO practice table.\n</mark>
+    <mark>%<script-name>%</mark>
 
 ## adbExtract
 This program reads in Practice Bidding Scenarios.  For each filename that starts with Basic, Dealer, or Gavin, it extracts the Dealer Code from the BBOalert wrapper -- that's the very, very log string.  It processes any 'Imports' and puts the saves the code to the dlr folder with a .dlr extension.  Spaces are removed from filenames and replaced with -'s.
