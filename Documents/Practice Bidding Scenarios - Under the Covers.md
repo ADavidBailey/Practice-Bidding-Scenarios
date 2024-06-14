@@ -21,57 +21,56 @@ And, to define create and organize BBOalert buttons that cause BBOalert to invok
 
 This file contains almost a thousand lines of code.
 
-The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (highlighted) to invoke a script to load the dealer code into the BBO Deal source and display chat, and to invoke the script to load the dealer code in the BBO Deal source all surrounding the dealer code itself:
+The imported scenario files consist of two parts.  Wrapper code (highlighted) to invoke a script to load the dealer code into the BBO Deal source and display chat, and to invoke the script to load the dealer code in the BBO Deal source all surrounding the dealer code itself:
 
 ## The Wrappered Dealer code
 
-<mark>It starts with the invocation of a script...</mark>
+*It starts defining a script...
 
-    Script,theNameOfThisScript
-    setDealerCode(`
+Script,theNameOfThisScript
+setDealerCode(`
 
-<mark>The first parameter to the script is the Dealer. It is enclosed in back-ticks...</mark>
+*The first parameter to the script is the Dealer. It is enclosed in back-ticks...
 
     
-    The Dealer code is very, very long, multi-line string to be loaded into
-    the 'Dealer source' on a BBO Bidding or Teaching table.  This
-    dealer code is read and used by BBO's Dealer by Hans van Staveren, et.al.
+The Dealer code is very, very long, multi-line string to be loaded into
+the 'Dealer source' on a BBO Bidding or Teaching table.  This
+dealer code is read and used by BBO's Dealer by Hans van Staveren, et.al.
 
-        https://www.bridgebase.com/tools/dealer/dealer.php
+    https://www.bridgebase.com/tools/dealer/dealer.php
 
-    The string is delinieated by back tics.  The string may include 'Import' that 
-    bring in common reusable snippets of dealer code.  Here's an example:
+The string is delinieated by back tics.  The string may include 'Import' that 
+bring in common reusable snippets of dealer code.  Here's an example:
 
-        Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
+    Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
     
-    This long string is followed the rest of the wrapper.
-        - dealer has a value of "N", "E", "S", or "W", if not specified, it
-        defaults to "S"
-        - rotate has a value of True or False.  The default is True.
-        - the BBOalert button definition
-        - the chat
-        - the name of the script to be executed -- a reference to the name of this very script
+This long string is followed the rest of the wrapper.
+    - dealer has a value of "N", "E", "S", or "W", if not specified, it
+    - defaults to "S"
+    - rotate has a value of True or False.  The default is True.
+    - the BBOalert button definition
+    - the chat
+    - the name of the script to be executed -- a reference to the name of this very script
     
-<mark>At the end of the Dealer code we specify the 2nd and 3rd parameters to the script -- the dealer and rotation...</mark>
+*At the end of the Dealer code we specify the 2nd and 3rd parameters to the script -- the dealer and rotation...
 
-    `,"N",true),
-    Script,
+`,"N",true),
+Script,
 
-<mark>Then we define the BBOalert button...</mark>
+*Then we define the BBOalert button...
 
     Button,short name,
 
-<mark>The BBO chat...
-    --- Descriptive name for scenario
-    Chat to be spit out when the BBOalert
-    button is clicked and string is loaded
-    into 'Dealer source' at a BBO practice table.
+The BBO chat...
+--- Descriptive name for scenario
+Chat to be spit out when the BBOalert
+button is clicked and string is loaded
+into 'Dealer source' at a BBO practice table.
 
-<mark>We invoke the script -- the script that we just defined...</mark>
+*The last line of the wrapper invokes the script that we just defined...
 
     %theNameOfThisScript%
 
-<mark>And, finally, the end of the wrapper code.  Everything except the Dealer code is the wrapper.</mark>
 
 The total lines of code -- the -PBS.txt and the imported wrappered Dealer code is approaching 14,000 lines of code.
 
