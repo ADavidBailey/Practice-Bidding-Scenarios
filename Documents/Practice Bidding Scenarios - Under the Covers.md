@@ -25,12 +25,12 @@ The imported scenario files consist of two parts.  Wrapper code (highlighted) to
 
 ## The Wrappered Dealer code
 
-*It starts defining a script...*
+**It starts defining a script...**
 
 Script,theNameOfThisScript
 setDealerCode(`
 
-*The first parameter to the script is the Dealer. It is enclosed in back-ticks...*
+**The first parameter to the script is the Dealer. It is enclosed in back-ticks...**
 
     
 The Dealer code is very, very long, multi-line string to be loaded into
@@ -52,12 +52,12 @@ This long string is followed the rest of the wrapper.
     - the chat
     - the name of the script to be executed -- a reference to the name of this very script
     
-*At the end of the Dealer code we specify the 2nd and 3rd parameters to the script -- the dealer and rotation...*
+**At the end of the Dealer code we specify the 2nd and 3rd parameters to the script -- the dealer and rotation...**
 
 `,"N",true),
 Script,
 
-*Then we define the BBOalert button...*
+**Then we define the BBOalert button...**
 
     Button,short name,
 
@@ -67,7 +67,7 @@ Chat to be spit out when the BBOalert
 button is clicked and string is loaded
 into 'Dealer source' at a BBO practice table.
 
-*The last line of the wrapper invokes the script that we just defined...*
+**The last line of the wrapper invokes the script that we just defined...**
 
     %theNameOfThisScript%
 
