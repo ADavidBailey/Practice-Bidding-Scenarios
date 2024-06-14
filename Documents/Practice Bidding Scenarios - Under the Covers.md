@@ -6,7 +6,7 @@ BBO includes a Deal generator -- Dealer by Hans van Staveren, et.al.  It's acces
     
     https://www.bridgebase.com/tools/dealer/dealer.php
 
-I've used it a little for years to generate hands for lessons I would do at a BBO Practice Table.  I would develop the dealer code and save it in a Google Document.  Then, to use it, I would open the file, copy the code, and paste it into the Dealer source/advanced.  I used this often.
+I've used it a little for years to generate hands for lessons I would do at a BBO Practice Table.  I would develop the dealer code and save it in a Google Document.  Then, to use it, I would open the Google Doc, copy the code, and paste it into the Dealer source/advanced.  I used this often.
 
 ## BBOalert
 
@@ -21,12 +21,25 @@ where...
 - dealer   specifies which hand is the dealer.  It should be "N", "W", "S", or "E".  "S" is the default.
 - rotation specifies if the N/S hands should be randomly rotated.  The value True or False.  True is the default.
 
-Script,theNameOfTheScript<br>
-setDealerCode(`dealer code string`,dealer,rotation)
-
 Following the function call, the wrapper code defines a BBOalert button which will display a short descriptive name and when clicked will invoke the script.  Imbeded in the Button definition, is text to be displayed in the BBO chat.
 
 The very last line of the button is what invokes the script: %theNameOfTheScript%
+
+The whole thing looks like this:
+
+    Script,theNameOfTheScript<br>
+    setDealerCode(`<br>
+
+    dealer code string<br>
+    many, many lines of Dealer code.<br>
+
+    `,dealer,rotation)<br>
+    Script<br>
+    Button,Short Name,<br>
+    --- Long Descriptive Name<br>
+    Descriptive lines<br>
+    More deacriptive lines<br>
+    %theNameOfTheScript%<br>
 
 Note: some of the scenarios have hundreds of lines of Dealer code.
 
