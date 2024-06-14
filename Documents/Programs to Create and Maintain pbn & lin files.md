@@ -38,11 +38,40 @@ The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (hi
           defaults to "S"
         - rotate has a value of True or False.  The default is True.
 
-    <mark>`,<dealer>,<rotate>),</mark>
-    <mark>Chat to be spit out when the BBOalert\n</mark>
-    <mark>button is clicked and string is loaded\n</mark>
-    <mark>into 'Dealer source' at a BBO practice table.\n</mark>
-    <mark>%<script-name>%</mark>
+<mark>`,<dealer>,<rotate>),</mark>
+<mark>  Chat to be spit out when the BBOalert\n</mark>
+<mark>  button is clicked and string is loaded\n</mark>
+<mark>  into 'Dealer source' at a BBO practice table.\n</mark>
+<mark>  %<script-name>%</mark>
 
-## adbExtract
-This program reads in Practice Bidding Scenarios.  For each filename that starts with Basic, Dealer, or Gavin, it extracts the Dealer Code from the BBOalert wrapper -- that's the very, very log string.  It processes any 'Imports' and puts the saves the code to the dlr folder with a .dlr extension.  Spaces are removed from filenames and replaced with -'s.
+## Special Programs for pbn and lin files
+When scenarios are updated or new scenarios are created, you need to update the pbn and lin files.
+### adbExtract.py
+This program reads in Practice Bidding Scenarios.  For each filename that starts with Basic, Dealer, or Gavin, it extracts the Dealer Code from the BBOalert wrapper -- that's the very, very log string.  It processes any 'Imports' and creates dlr files that corresponding to each of the scenarios.  Spaces and special characters in filenames are translated to characters that are valid in filenames (space to -).
+
+    python3 adbExtract.py
+
+### adbMakePBN.py
+This program reads the dlr file and creates Windows commands that will create corresponding pbn files.  These commands are put into DOS command file run.cmd  Each record in the run.cmd looks like this:
+
+   -<mark>P:\dealer</mark> P:\dlr\Dealer-3N-over-LHO-3x-W.dlr -s=675264029 >P:\pbn\Dealer-3N-over-LHO-3x-W.pbn
+
+-<mark>dealer</mark> is the dealer.exe file which reades each .dlr file and writes corresponding .pbn file.  Look up 'Dealer by Hans van Staveren and others'.
+
+    python3 adbMakePBN.ph > run.cmd
+
+then go to Window Command Prompt and enter:
+
+    run.cmd
+
+this one runs a while (currently about 30 minutes).  It prints out the name of each file so you can keep track.
+
+### adbCommentStats.py
+The pbn file include some statistics.  They are ignored by BBO; but, some other programs don't like them.  So, this program converts the into comment lines that are part of the pbn standard.  Lines beginning with a # are ignored.  This program changes all of the statistics to comments by adding '# ' to the beginning of the line.  It also prints out the statistics for all of the files. Run it like this to create stats.txt:
+
+    python3 adbCommentStats.py > stats.txt
+
+### adbRotate.py
+This program reads all of files in the pbn folder and creates corresponding files in the pbn-rotated-for-4-players.  Rotates the deals in pbn files so they're suitable for four-hand play.
+### adbPBNtoLin.py
+This program reads all files in the pbn-rotated-for-4-players folder and creates corresponding files in the lin-rotated-for-four-players.  These have the extension .lin
