@@ -39,14 +39,14 @@ The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (hi
           defaults to "S"
         - rotate has a value of True or False.  The default is True.
 
-<mark>`,"N",true),</mark>
-<mark>Script,</mark>
-<mark>Button,<short name>,</mark>
-<mark>--- Descriptive name for scenario/n</mark>
-<mark>Chat to be spit out when the BBOalert/n</mark>
-<mark>button is clicked and string is loaded/n</mark>
-<mark>into 'Dealer source' at a BBO practice table./n</mark>
-<mark>%scriptname%</mark>
+`,"N",true),
+Script,
+Button,<short name>,
+--- Descriptive name for scenario
+Chat to be spit out when the BBOalert
+button is clicked and string is loaded
+into 'Dealer source' at a BBO practice table.
+%scriptname%
 
 ## Special Programs for pbn and lin files
 When scenarios are updated or new scenarios are created, you need to update the pbn and lin files.
