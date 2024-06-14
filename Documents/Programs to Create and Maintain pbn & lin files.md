@@ -42,10 +42,10 @@ The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (hi
 <mark>`,"N",true),</mark>
 <mark>Script,</mark>
 <mark>Button,<short name>,</mark>
-<mark>--- Descriptive name for scenario</mark>
-<mark>Chat to be spit out when the BBOalert</mark>
-<mark>button is clicked and string is loaded</mark>
-<mark>into 'Dealer source' at a BBO practice table.</mark>
+<mark>--- Descriptive name for scenario/n</mark>
+<mark>Chat to be spit out when the BBOalert/n</mark>
+<mark>button is clicked and string is loaded/n</mark>
+<mark>into 'Dealer source' at a BBO practice table./n</mark>
 <mark>%scriptname%</mark>
 
 ## Special Programs for pbn and lin files
