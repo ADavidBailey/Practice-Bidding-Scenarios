@@ -19,6 +19,7 @@ And, to define create and organize BBOalert buttons that cause BBOalert to invok
     Button,Game Forcing Sequences,,width=100% backgroundColor=lightblue
     Import,Jacoby2N
 
+This file contains almost a thousand lines of code.
 
 The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (highlighted) to invoke a script to load the dealer code into the BBO Deal source and display chat, and to invoke the script to load the dealer code in the BBO Deal source all surrounding the dealer code itself:
 
@@ -35,7 +36,7 @@ The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (hi
     The Dealer code is very, very long, multi-line string to be loaded into
     the 'Dealer source' on a BBO Bidding or Teaching table.  This
     dealer code is read and used by BBO's Dealer by Hans van Staveren, et.al.
-    
+
         https://www.bridgebase.com/tools/dealer/dealer.php
 
     The string is delinieated by back tics.  The string may include 'Import' that 
@@ -72,9 +73,14 @@ The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (hi
 
 <mark>And, finally, the end of the wrapper code.  Everything except the Dealer code is the wrapper.</mark>
 
+The total lines of code -- the -PBS.txt and the imported wrappered Dealer code is approaching 14,000 lines of code.
+
 ## Special Programs for pbn and lin files
+
 When scenarios are updated or new scenarios are created, you need to update the pbn and lin files.
+
 ### adbExtract.py
+
 This program reads in Practice Bidding Scenarios.  For each filename that starts with Basic, Dealer, or Gavin, it extracts the Dealer Code from the BBOalert wrapper -- that's the very, very log string.  It processes any 'Imports' and creates dlr files that corresponding to each of the scenarios.  Spaces and special characters in filenames are translated to characters that are valid in filenames (space to -).  The .dlr files are suitable to be processed directly by BBO Dealer: 
 
     https://www.bridgebase.com/tools/dealer/dealer.php
@@ -86,6 +92,7 @@ If you have access to these files in you own Practice Bidding Scenarios folder a
     python3 adbExtract.py
 
 ### adbMakePBN.py
+
 This program reads the files in the dlr folder and creates Windows commands that will create corresponding pbn files.  These commands are put into DOS command file run.cmd  Each record in the run.cmd looks like this:
 
     P:\dealer</mark> P:\dlr\Dealer-3N-over-LHO-3x-W.dlr -s=675264029 >P:\pbn\Dealer-3N-over-LHO-3x-W.pbn
@@ -106,13 +113,18 @@ Most of the pbn files include some statistics.  They are ignored by BBO; but, so
     python3 adbCommentStats.py > stats.txt
 
 ### adbRotate.py
+
 This program reads all of files in the pbn folder and creates corresponding files in the pbn-rotated-for-4-players.  Rotates the deals in pbn files so they're suitable for four-hand play.
+
 ### adbPBNtoLin.py
+
 This program reads all files in the pbn-rotated-for-4-players folder and creates corresponding files in the lin-rotated-for-four-players folder.  These have the extension .lin
 
-## An aside
+## Regrets
+
 If I had a do-over
- - I'd give all of my wappered files a common extension, maybe .bbo
+ - I'd git rid of the .txt extension on the PBS.txt file
+ - I'd give all of my wappered files a common extension, maybe .pbs
  - I'd put them all in a bbo folder
  - I'd get rid of the Basic, Dealer, Gavin prefixes to the names
  - I'd get rid of spaces & special characters in filenames
