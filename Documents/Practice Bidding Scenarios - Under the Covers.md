@@ -6,7 +6,7 @@ BBO includes a Deal generator -- Dealer by Hans van Staveren, et.al.  It's acces
     
     https://www.bridgebase.com/tools/dealer/dealer.php
 
-I've used it a little for years to generate hands for lessons I would do at a BBO Practice Table.  I would develop the dealer code and save it in a Google Document.  Then, to use it, I would open the file, copy the codek, and paste it into the Dealer source/advanced.  I used this often.
+I've used it a little for years to generate hands for lessons I would do at a BBO Practice Table.  I would develop the dealer code and save it in a Google Document.  Then, to use it, I would open the file, copy the code, and paste it into the Dealer source/advanced.  I used this often.
 
 ## BBOalert
 
@@ -21,11 +21,14 @@ where...
 - dealer   specifies which hand is the dealer.  It should be "N", "W", "S", or "E".  "S" is the default.
 - rotation specifies if the N/S hands should be randomly rotated.  The value True or False.  True is the default.
 
-Script,theNameOfTheScript setDealerCode(`dealer code string`,dealer,rotation)
+Script,theNameOfTheScript<br>
+setDealerCode(`dealer code string`,dealer,rotation)
 
 Following the function call, the wrapper code defines a BBOalert button which will display a short descriptive name and when clicked will invoke the script.  Imbeded in the Button definition, is text to be displayed in the BBO chat.
 
 The very last line of the button is what invokes the script: %theNameOfTheScript%
+
+Note: some of the scenarios have hundreds of lines of Dealer code.
 
 Each scenario is packaged this way.  I call it wrappered Dealer Code.  The ` ` and everything outside of the ...` `... is the wrapper.  There is a separate file for each scenario.  These are all in the root directory of my Practice Bidding Scenarios GitHub repository.  It ain't pretty.  The filenames beginning with Basic, Dealer, and Gavin are wrappered Dealer code.  And, I apologize for the awful names with spaces and special characters.
 
@@ -64,6 +67,7 @@ And, to define create and organize BBOalert buttons that cause BBOalert to invok
 
 This file contains almost a thousand lines of code.
 
+BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BBOalert is reloaded, and it in-turn reloads -PBS.txt and each and every one of the packaged dealer code files.  Everything is up to date.  I started BBO, just now.  13,599 records were loaded.
 
 ## Special Programs for pbn and lin files
 
