@@ -22,9 +22,10 @@ And, to define create and organize BBOalert buttons that cause BBOalert to invok
 
 The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (highlighted) to invoke a script to load the dealer code into the BBO Deal source and display chat, and to invoke the script to load the dealer code in the BBO Deal source all surrounding the dealer code itself:
 
-    Script,thenameofthisscript
+ <mark>   # The beginning of the wrapper </mark>
+    Script,theNameOfThisScript
     setDealerCode(`
-
+ <mark>   # The end of the beginning of the wrapper code and the beginning of the Dealer code</mark>
         A very, very long, multi-line string of dealer code to be loaded into
         the 'Dealer source' on a BBO Bidding or Teaching table.  This
         dealer code is read and used by BBO's Dealer by Hans van Staveren, et.al.
@@ -41,7 +42,7 @@ The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (hi
          - the BBOalert button definition
          - the chat
          - the name of the script to be executed -- a reference to the name of this very script
-
+<mark>    # The end of the Dealer code and begining of the end of the wrapper code</mark>
     `,"N",true),
     Script,
     Button,short name,
@@ -49,7 +50,8 @@ The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (hi
     Chat to be spit out when the BBOalert
     button is clicked and string is loaded
     into 'Dealer source' at a BBO practice table.
-    %sthenameofthisscript%
+    %stheNameOfThisScript%
+<mark>    # The end of the wrapper code</mark>
 
 ## Special Programs for pbn and lin files
 When scenarios are updated or new scenarios are created, you need to update the pbn and lin files.
@@ -91,9 +93,10 @@ This program reads all files in the pbn-rotated-for-4-players folder and creates
 
 ## An aside
 If I had a do-over
- - I'd give all of my wappered files an extension of .bboa
+ - I'd give all of my wappered files a common extension, maybe .bbo
+ - I'd put them all in a bbo folder
  - I'd get rid of the Basic, Dealer, Gavin prefixes to the names
- - I'd get rid of spaces in filenames
- - I'd put them all in a bboa folder
+ - I'd get rid of spaces & special characters in filenames
  - I'd put my adbxxx.py files in a py folder
-
+ 
+ To fix this at this point, I'd have to write another .py to make the changes.
