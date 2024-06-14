@@ -25,9 +25,9 @@ The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (hi
 
 ## The Wrappered Dealer code
 
-It starts with the invocation of a script...
+It starts with defining a script -- the name of the script and a function call...
 
-<mark>    Script,theNameOfThisScript
+<mark>Script,theNameOfThisScript
     setDealerCode(`
 
 The first parameter to the script is the Dealer code. It is enclosed in back-ticks...
@@ -51,11 +51,14 @@ The first parameter to the script is the Dealer code. It is enclosed in back-tic
         - the chat
         - the name of the script to be executed -- a reference to the name of this very script
     
-At the end of the Dealer code we specify the 2nd and 3rd parameters to the script -- the dealer and rotation...
+At the end of the Dealer code we specify the 2nd and 3rd parameters to the script -- dealer and rotation -- and end the script.
 
-<mark>    `,"N",true),
-    Script,
-    Button,short name,
+<mark>`,"N",true)
+Script,
+
+Then we create a BBOalert button to invoke the script.
+
+<mark>Button,short name,
     --- Descriptive name for scenario
     Chat to be spit out when the BBOalert
     button is clicked and string is loaded
