@@ -27,7 +27,7 @@ The imported scenario files consist of two parts.  Wrapper code (highlighted) to
 
 **It starts defining a script...**
 
-Script,theNameOfThisScript
+Script,theNameOfThisScript\n
 setDealerCode(`
 
 **The first parameter to the script is the Dealer. It is enclosed in back-ticks...**
