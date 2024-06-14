@@ -54,31 +54,46 @@ The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (hi
 ## Special Programs for pbn and lin files
 When scenarios are updated or new scenarios are created, you need to update the pbn and lin files.
 ### adbExtract.py
-This program reads in Practice Bidding Scenarios.  For each filename that starts with Basic, Dealer, or Gavin, it extracts the Dealer Code from the BBOalert wrapper -- that's the very, very log string.  It processes any 'Imports' and creates dlr files that corresponding to each of the scenarios.  Spaces and special characters in filenames are translated to characters that are valid in filenames (space to -).
+This program reads in Practice Bidding Scenarios.  For each filename that starts with Basic, Dealer, or Gavin, it extracts the Dealer Code from the BBOalert wrapper -- that's the very, very log string.  It processes any 'Imports' and creates dlr files that corresponding to each of the scenarios.  Spaces and special characters in filenames are translated to characters that are valid in filenames (space to -).  The .dlr files are suitable to be processed directly by BBO Dealer: 
+
+    https://www.bridgebase.com/tools/dealer/dealer.php
+
+Try some.  
+
+If you have access to these files in you own Practice Bidding Scenarios folder and enter:
 
     python3 adbExtract.py
 
 ### adbMakePBN.py
-This program reads the dlr file and creates Windows commands that will create corresponding pbn files.  These commands are put into DOS command file run.cmd  Each record in the run.cmd looks like this:
+This program reads the files in the dlr folder and creates Windows commands that will create corresponding pbn files.  These commands are put into DOS command file run.cmd  Each record in the run.cmd looks like this:
 
-   -<mark>P:\dealer</mark> P:\dlr\Dealer-3N-over-LHO-3x-W.dlr -s=675264029 >P:\pbn\Dealer-3N-over-LHO-3x-W.pbn
+    P:\dealer</mark> P:\dlr\Dealer-3N-over-LHO-3x-W.dlr -s=675264029 >P:\pbn\Dealer-3N-over-LHO-3x-W.pbn
 
--<mark>dealer</mark> is the dealer.exe file which reades each .dlr file and writes corresponding .pbn file.  Look up 'Dealer by Hans van Staveren and others'.
+<mark>dealer</mark> is the dealer.exe file which reades each .dlr file and writes corresponding .pbn file.  Look up 'Dealer by Hans van Staveren and others'.
 
     python3 adbMakePBN.ph > run.cmd
 
-then go to Window Command Prompt and enter:
+then go to Window's Command Prompt and enter:
 
     run.cmd
 
-this one runs a while (currently about 30 minutes).  It prints out the name of each file so you can keep track.
+this one runs a while (currently about 30 minutes).  It prints out the name of each file so you can along.
 
 ### adbCommentStats.py
-The pbn file include some statistics.  They are ignored by BBO; but, some other programs don't like them.  So, this program converts the into comment lines that are part of the pbn standard.  Lines beginning with a # are ignored.  This program changes all of the statistics to comments by adding '# ' to the beginning of the line.  It also prints out the statistics for all of the files. Run it like this to create stats.txt:
+Most of the pbn files include some statistics.  They are ignored by BBO; but, some other programs don't like them.  So, this program converts them into comment lines that are part of the pbn standard.  Lines beginning with a # are ignored.  This program changes all of the statistics to comments by adding a # and a space to the beginning of the line.  It also prints out the statistics for all of the files. Run it like this to create stats.txt:
 
     python3 adbCommentStats.py > stats.txt
 
 ### adbRotate.py
 This program reads all of files in the pbn folder and creates corresponding files in the pbn-rotated-for-4-players.  Rotates the deals in pbn files so they're suitable for four-hand play.
 ### adbPBNtoLin.py
-This program reads all files in the pbn-rotated-for-4-players folder and creates corresponding files in the lin-rotated-for-four-players.  These have the extension .lin
+This program reads all files in the pbn-rotated-for-4-players folder and creates corresponding files in the lin-rotated-for-four-players folder.  These have the extension .lin
+
+## An aside
+If I had a do-over
+ - I'd give all of my wappered files an extension of .bboa
+ - I'd get rid of the Basic, Dealer, Gavin prefixes to the names
+ - I'd get rid of spaces in filenames
+ - I'd put them all in a bboa folder
+ - I'd put my adbxxx.py files in a py folder
+
