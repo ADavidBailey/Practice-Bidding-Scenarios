@@ -1,4 +1,4 @@
-# Code to create and maintain Practice Bidding Scenarios and related pbn & lin files
+# Practice Bidding Scenarios - Under the Covers
 
 ## -PBS.txt
 
