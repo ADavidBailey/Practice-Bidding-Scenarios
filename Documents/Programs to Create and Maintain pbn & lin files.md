@@ -29,12 +29,14 @@ The imported scenario files consist of two parts.  <mark>Wrapper code</mark> (hi
     Script,theNameOfThisScript
     setDealerCode(`
 
-<mark>The Dealer code is the first parameter to the script...</mark>
+<mark>The first parameter to the script is the Dealer. It is enclosed in back-ticks...</mark>
 
     
-    A very, very long, multi-line string of dealer code to be loaded into
+    The Dealer code is very, very long, multi-line string to be loaded into
     the 'Dealer source' on a BBO Bidding or Teaching table.  This
     dealer code is read and used by BBO's Dealer by Hans van Staveren, et.al.
+    
+        https://www.bridgebase.com/tools/dealer/dealer.php
 
     The string is delinieated by back tics.  The string may include 'Import' that 
     bring in common reusable snippets of dealer code.  Here's an example:
