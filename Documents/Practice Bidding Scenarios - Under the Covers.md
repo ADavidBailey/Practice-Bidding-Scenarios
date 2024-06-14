@@ -21,62 +21,29 @@ And, to define create and organize BBOalert buttons that cause BBOalert to invok
 
 This file contains almost a thousand lines of code.
 
-The imported scenario files consist of two parts.  Wrapper code (highlighted) to invoke a script to load the dealer code into the BBO Deal source and display chat, and to invoke the script to load the dealer code in the BBO Deal source all surrounding the dealer code itself:
+The imported scenario files consist of two parts.  Wrapper code to define a script which will load the dealer code into the BBO Deal source, to create a BBOalert button which displays a short name of the script and when clicked, will invoke the script.  The first parameter to the script is the actual Dealer code -- it's very long with many, many lines.
 
 ## The Wrappered Dealer code
 
-**It starts defining a script...**
+Stanislaw Mazur created a function that will load text into the Deal source at a BBO Practice Table.  It's a function call:
 
-Script,theNameOfThisScript\n
-setDealerCode(`
+setDealerCode(`text`, dealer, rotation)
 
-**The first parameter to the script is the Dealer. It is enclosed in back-ticks...**
+- text     is inclosed in `s -- it's essentially a quoted string.  For it to work, it must be valid Dealer code.
+- dealer   specifies which hand is the dealer.  It should be "N", "W", "S", or "E".  "S" is the default.
+- rotation specifies if the N/S hands should be randomly rotated.  The value True or False.  True is the default.
 
-    
-The Dealer code is very, very long, multi-line string to be loaded into
-the 'Dealer source' on a BBO Bidding or Teaching table.  This
-dealer code is read and used by BBO's Dealer by Hans van Staveren, et.al.
+Script,theNameOfTheScript setDealerCode(`dealer code string`,dealer,rotation)
 
-    https://www.bridgebase.com/tools/dealer/dealer.php
+Following the function call, the wrapper code defines a BBOalert button which will display a short descriptive name and when clicked will invoke the script.  Imbeded in the Button definition, is text to be displayed in the BBO chat.
 
-The string is delinieated by back tics.  The string may include 'Import' that 
-bring in common reusable snippets of dealer code.  Here's an example:
+The very last line of the button is what invokes the script: %theNameOfTheScript%
 
-    Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
-    
-This long string is followed the rest of the wrapper.
-    - dealer has a value of "N", "E", "S", or "W", if not specified, it
-    - defaults to "S"
-    - rotate has a value of True or False.  The default is True.
-    - the BBOalert button definition
-    - the chat
-    - the name of the script to be executed -- a reference to the name of this very script
-    
-**At the end of the Dealer code we specify the 2nd and 3rd parameters to the script -- the dealer and rotation...**
-
-`,"N",true),
-Script,
-
-**Then we define the BBOalert button...**
-
-    Button,short name,
-
-The BBO chat...
---- Descriptive name for scenario
-Chat to be spit out when the BBOalert
-button is clicked and string is loaded
-into 'Dealer source' at a BBO practice table.
-
-**The last line of the wrapper invokes the script that we just defined...**
-
-    %theNameOfThisScript%
-
-
-The total lines of code -- the -PBS.txt and the imported wrappered Dealer code is approaching 14,000 lines of code.
+The total lines of code in -PBS.txt and the imported wrappered Dealer code is approaching 14,000 lines.
 
 ## Special Programs for pbn and lin files
 
-When scenarios are updated or new scenarios are created, you need to update the pbn and lin files.
+When scenarios are updated or new scenarios are created, we need to update the pbn and lin files.
 
 ### adbExtract.py
 
@@ -100,13 +67,14 @@ This program reads the files in the dlr folder and creates Windows commands that
 
     python3 adbMakePBN.ph > run.cmd
 
-then go to Window's Command Prompt and enter:
+And, then go to Window's Command Prompt and enter:
 
     run.cmd
 
 this one runs a while (currently about 30 minutes).  It prints out the name of each file so you can along.
 
 ### adbCommentStats.py
+
 Most of the pbn files include some statistics.  They are ignored by BBO; but, some other programs don't like them.  So, this program converts them into comment lines that are part of the pbn standard.  Lines beginning with a # are ignored.  This program changes all of the statistics to comments by adding a # and a space to the beginning of the line.  It also prints out the statistics for all of the files. Run it like this to create stats.txt:
 
     python3 adbCommentStats.py > stats.txt
@@ -118,6 +86,23 @@ This program reads all of files in the pbn folder and creates corresponding file
 ### adbPBNtoLin.py
 
 This program reads all files in the pbn-rotated-for-4-players folder and creates corresponding files in the lin-rotated-for-four-players folder.  These have the extension .lin
+
+## Acknowledgements
+
+I've had a lot of help with this project.
+
+*Stanislaw Mazur*, the creator of BBOalert.  When I first realized the the BBOalert buttons might load the Dealer, I approached Stanislaw.  This could not have been without his help, and lots of it.
+
+*Matthew Kidd*, the creator of BBO Helper, helped me write a decent description of my project and to get it posted on Bridge Winners.
+
+*Bob Wesneski*, a long-time friend and fellow programmer (15 years younger), helped me with a proof of concept project to create lin files from the Dealer code I had developed.  I think he'll be pleased to know that we're about there.
+
+*Gavin Wolpert* needs no introduction.  Just as I got this working Gavin joined me in a short Zoom.  His enthusiastic response boosted my energy level and propeled the project further.  I've implemented Scenarios to support several of his classes.  He's given me access to several of his Lessons and I've created Scenarios for them.
+
+*Rick Wilson*, called me and said, I think we're working on the same thing -- using BBO Dealer to generate hands for practice.
+
+*Thorsvald Aagaard* began using my code to create deals for training Ben.  He's discovered many bugs for me to fix.  Since I've begun working with pbn and lin files, Thorvald has been a mentor an coach.
+
 
 ## Regrets
 
