@@ -61,12 +61,12 @@ Rick Wilson introduced me to the idea of leveling and how to do it.  If for exam
 
 ## -PBS.txt
 
-This is the file that is pasted into BBOalert.  It contains some code pecular to Practice Bidding Scenarios.  For example, it includes code for the following:
+This is the file that is pasted into BBOalert.  It contains some code specific to Practice Bidding Scenarios.  For example, it includes code for the following:
 
 - Start Bidding/Teaching tables
-- Open Deal source, to 
+- Open Deal source
 - Display HCP at the top of the screen.  
-- Redirects BBO chat to go to you, the user.  (avoids my chat going to the lobby
+- Redirects BBO chat to go to you, the user.  This avoids my chat going to the lobby
 - Expand/collapse sections in the Practice Bidding Scenarios Shortcuts
 
 Most of the code is Import Definitions for the various scenario files with statements like this:
