@@ -6,7 +6,7 @@ BBO includes a Deal generator -- Dealer by Hans van Staveren, et.al.  It's acces
     
     https://www.bridgebase.com/tools/dealer/dealer.php
 
-I've used it a little for years to generate hands for lessons I would do at a BBO Practice Table.  I would develop the dealer code and save it in a Google Document.  Then, to use it, I would open the Google Doc, copy the code, and paste it into the Dealer source/advanced.  I used this often (notice the past tense.)  
+I've used it a little for years to generate hands for lessons I would do at a BBO Practice Table.  I would develop the dealer code and save it in a Google Document.  Then, to use it, I would open the Google Doc, copy the code, and paste it into the Dealer source/advanced and click the options I wanted.  I used this often (notice the past tense.)  
 
 ## BBOalert
 
