@@ -18,7 +18,7 @@ sOpens = (oC or oD or oH) and shape(south,any 5332+any 4432+any 4333-4xxx-x4xx) 
 
 nH = shape(north,x5xx)
 nS = shape(north,5xxx)
-sHasFit = (nH and hearts(south)>2) or (nS and spades(south)>2)
+sHasFit = (nH and hearts(south)==3) or (nS and spades(south)==3)
 
 nResponds = (((oC or oD) and (nH or nS)) or (oH and nS)) and shape(north,xxxx-any 55xx-any 65xx-any 75xx) and hcp(north)>10 and hcp(north)<13
 
