@@ -4,7 +4,7 @@
 
 BBO includes a Deal generator -- Dealer by Hans van Staveren, et.al.  It's accessible on the BBO site.
     
-    https://www.bridgebase.com/tools/dealer/dealer.php
+    <https://www.bridgebase.com/tools/dealer/dealer.php>
 
 I've used it a little for years to generate hands for lessons I would do at a BBO Practice Table.  I would develop the dealer code and save it in a Google Document.  Then, to use it, I would open the Google Doc, copy the code, and paste it into the Dealer source/advanced and click the options I wanted.  I used this often (notice the past tense.)  
 
@@ -45,7 +45,7 @@ The whole thing looks like this:
 
 Each scenario is packaged this way.  I call it wrappered Dealer Code.  The ` ` and everything outside of the ...` `... is the wrapper.  There is a separate file for each scenario.  These are all in the root directory of my Practice Bidding Scenarios GitHub repository.  It ain't pretty.  The filenames beginning with Basic, Dealer, and Gavin are wrappered Dealer code.  And, I apologize for the awful names with spaces and special characters.
 
-    https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main
+    <https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main>
 
 ## -Script files
 
@@ -55,8 +55,8 @@ These are code snippits that are often needed.  Stanislaw implemented an Import 
 
 Rick Wilson introduced me to the idea of leveling and how to do it.  If for example, you want to practice Jacoby 2N, the sequences begin the same 1M - 2N then there are 5 different continuations.  1. a singleton/void, 2. a good 5-card second suit, 3. minimum semi-balanced, 4. intermediate semi-balanced, and 5. strong semi-balanced.  These do not occur with the same frequencey.  Leveling uses the presence of a small cards to reduce the probability of the most common.  There's approximately a 25% chance that east holds the 2 of clubs.  So, you can code something do it and (hasShortness and east has the 2C) will keep about 25% of those deals.  Check out the following two files:
 
-    https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
-    https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Example%20Leveling
+    <https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling>
+    >https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Example%20Leveling>
 
 
 ## -PBS.txt
@@ -71,9 +71,9 @@ This is the file that is pasted into BBOalert.  It contains some code specific t
 
 Most of the code is Import Definitions for the various scenario files with statements like this:
 
-    Import,Smolen,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Smolen.txt
-    Import,FourthSuitForcing,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20FourthSuitForcing
-    Import,Jacoby2N,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Jacoby%202N.txt
+    <Import,Smolen,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Smolen.txt>
+    <Import,FourthSuitForcing,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20FourthSuitForcing>
+    <Import,Jacoby2N,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Jacoby%202N.txt>
 
 And, to define create and organize BBOalert buttons that cause BBOalert to invoke the i Imported the code.  Like this:
 
@@ -98,7 +98,7 @@ Since we have all of these scenarios, I wanted to leverage them.  I've created p
 
 This program reads all of through all of the files Practice Bidding Scenarios.  For each filename that starts with Basic, Dealer, or Gavin, it extracts the Dealer Code from the BBOalert wrapper, it processes any 'Imports', and creates dlr files that corresponding to each of the scenarios.  Spaces and special characters in filenames are translated to characters that are valid in filenames (space to -).  The .dlr files are suitable to be processed directly by BBO Dealer which is linked above.
 
-You can see the dlr files here:  https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main/dlr
+You can see the dlr files here:  <https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main/dlr>
 
 ### adbMakePBN.py
 
@@ -112,7 +112,7 @@ Here's an example of a record the run.cmd:
 
 <mark>dealer</mark> is the dealer.exe file which reads each .dlr file and prints corresponding a .pbn file.  The -s= is a random number seed.  If my code is the same and the seed is the same, it will produce the same hands each time it's run.  When I want new file, I can pick a different seed.
 
-Here's what run.cmd looks like:  https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/run.cmd
+Here's what run.cmd looks like:  <https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/run.cmd>
 
 And, then go to Window's Command Prompt and enter:
 
@@ -126,7 +126,7 @@ Most of the pbn files include some statistics.  They are ignored by BBO; but, so
 
     python3 adbCommentStats.py > stats.txt
 
-You can see the stats here:  https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/stats.txt
+You can see the stats here: <https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/stats.txt>
 
 ### adbRotate.py
 
