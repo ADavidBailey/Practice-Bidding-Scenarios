@@ -92,7 +92,7 @@ BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BB
 
 ## Special Programs for pbn and lin files
 
-Since we have all of these scenarios, I wanted to leverage them.  I've created pbn and lin files that can be used elsewhere.  When scenarios are updated or new scenarios are created, the following programs are used update the pbn and lin files.
+Since we have all of these scenarios, I wanted to leverage them.  I've created pbn and lin files that can be used elsewhere.  When scenarios are updated or new scenarios are created, the following programs are in the py folder and are used to create/update the pbn and lin files.
 
 ### adbExtract.py
 
@@ -102,13 +102,15 @@ You can see the dlr files here:  https://github.com/ADavidBailey/Practice-Biddin
 
 ### adbMakePBN.py
 
-This program reads the files in the dlr folder and creates Windows commands that will create corresponding pbn files.  These commands are put into DOS command file 'run.cmd'.  Each record in the run.cmd looks like this:
+This program reads the files in the dlr folder and creates Windows commands that will create corresponding pbn files.  These commands are put into DOS command file 'run.cmd'.
+
+    python3 adbMakePBN.py > ../run.cmd
+
+Here's an example of a record the run.cmd:
 
     P:\<mark>dealer</mark> P:\dlr\Dealer-3N-over-LHO-3x-W.dlr -s=675264029 >P:\pbn\Dealer-3N-over-LHO-3x-W.pbn
 
-<mark>dealer</mark> is the dealer.exe file which reads each .dlr file and prints corresponding a .pbn file.  The -s= is a random number seed.  If my code is the same and the seed is the same, it will produce the same hands each time it's run.  When I want new file, I can pick a different seed.  Here's the way to use it.
-
-    python3 adbMakePBN.ph > run.cmd
+<mark>dealer</mark> is the dealer.exe file which reads each .dlr file and prints corresponding a .pbn file.  The -s= is a random number seed.  If my code is the same and the seed is the same, it will produce the same hands each time it's run.  When I want new file, I can pick a different seed.
 
 Here's what run.cmd looks like:  https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/run.cmd
 
