@@ -52,7 +52,7 @@ def scan_for_pbn(directory_path):
     print(f"# Scan complete!")
 
 def main():
-    scan_for_pbn("./pbn-rotated-for-4-players")
+    scan_for_pbn(os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios/pbn-rotated-for-4-players")
 
 if __name__ == "__main__":
     main()

@@ -1,7 +1,10 @@
 import os
 
-input_directory_path = './pbn'                          # Read files from pbn folder
-output_directory_path = './pbn-rotated-for-4-players'   # Write files to pbn-rotated... folder
+# Read files from pbn folder
+input_directory_path = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios" + '/pbn')
+
+# Write files to pbn-rotated... folder
+output_directory_path = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios" + '/pbn-rotated-for-4-players')
 
 def rotate_deal(file_path,filename):
      with open(input_file_path, 'r') as file:
