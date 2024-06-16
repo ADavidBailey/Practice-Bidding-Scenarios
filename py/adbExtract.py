@@ -16,7 +16,9 @@ print("generating " + str(generate))
 print("producing  " + str(produce))
 
 # Directory containing the files
-directory_path = './'
+directory_path = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios")
+print(directory_path)
+
 
 # Regular expression pattern to match text enclosed in backticks spanning multiple lines
 pattern = r'`(.*?)`'
