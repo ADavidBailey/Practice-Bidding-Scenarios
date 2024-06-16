@@ -57,11 +57,10 @@ def extract_text_in_backticks(file_path):
         for i, match in enumerate(matches, 1):
             # Process the extracted text
             processed_text = process_extracted_text(match, dealer)
-            #output_file_path = os.path.splitext(os.path.basename(file_path))[0].replace(" ", "-").replace("(", "").replace(")", "").replace("&", "and").replace("+", "_") + ".dlr"
-            #output_file_path = os.path.join("./dlr", output_file_path).replace('\\', '/')
-
+            
             output_file_path = os.path.splitext(os.path.basename(file_path))[0].replace(" ", "-").replace("(", "").replace(")", "").replace("&", "and").replace("+", "_") + suffix
-            output_file_path = os.path.join("./dlr", output_file_path).replace('\\', '/')
+            output_file_path = os.path.join(directory_path + '/dlr', output_file_path).replace('\\', '/')
+            print(output_file_path)
             with open(output_file_path, 'w') as output_file:
                 # Save the processed text to the .dlr file
                 # seed = calculate_seed(file_path)
