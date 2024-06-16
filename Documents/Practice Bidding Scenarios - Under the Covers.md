@@ -97,7 +97,7 @@ Since we have all of these scenarios, I wanted to leverage them.  I've created p
 
 This program reads all of through all of the files Practice Bidding Scenarios.  For each filename that starts with Basic, Dealer, or Gavin, it extracts the Dealer Code from the BBOalert wrapper, it processes any 'Imports', and creates dlr files that corresponding to each of the scenarios.  Spaces and special characters in filenames are translated to characters that are valid in filenames (space to -).  The .dlr files are suitable to be processed directly by BBO Dealer which is linked above.
 
-    [Click here to see the dlr files](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main/dlr)
+[Click here to see the dlr files](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main/dlr)
 
 ### adbMakePBN.py
 
@@ -111,7 +111,7 @@ Here's an example of a record the run.cmd:
 
 <mark>dealer</mark> is the dealer.exe file which reads each .dlr file and prints corresponding a .pbn file.  The -s= is a random number seed.  If my code is the same and the seed is the same, it will produce the same hands each time it's run.  When I want new file, I can pick a different seed.
 
-    [Click here to see run.cmd](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/run.cmd>
+[Click here to see run.cmd](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/run.cmd>)
 
 And, then go to Window's Command Prompt and enter:
 
@@ -125,7 +125,7 @@ Most of the pbn files include some statistics.  They are ignored by BBO; but, so
 
     python3 adbCommentStats.py > stats.txt
 
-    [Click here to see stats.txt](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/stats.txt)
+[Click here to see stats.txt](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/stats.txt)
 
 ### adbRotate.py
 
