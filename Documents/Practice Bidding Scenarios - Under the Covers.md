@@ -3,7 +3,7 @@
 
 ## BBO Deal generator
 
-BBO includes a Deal generator -- <a href="www.squarespace.com" target="_blank">Squarespace</a>
+BBO includes a Deal generator -- <a href="www.squarespace.com" target="_blank">Squarespace</a>  this example was copied and not modified.
 
 <a href="https://www.bridgebase.com/tools/dealer/dealer.php" target="_blank">Dealer by Hans van Staveren, et.al.</a> It's accessible on the BBO site.
 
