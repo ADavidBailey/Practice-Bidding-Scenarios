@@ -4,20 +4,7 @@
 
 BBO includes a Deal generator that produces random hand and provides a means for constraining the deals.<br>
 
-<a href="https://www.bridgebase.com/tools/dealer/dealer.php" target="_blank">Dealer by Hans van Staveren, et.al.</a>
-
-
-[Dealer by Hans van Staveren, et.al.](https://www.bridgebase.com/tools/dealer/dealer.php)
-
-I'm trying to figure out how to get my urls to open in a new tab. The following example was copied and not modified.<br>
- 
-<a href="https://www.markdownguide.org" target="_blank">Learn Markdown!</a>
-
-<a href="https://www.w3schools.com/html/tryit.asp?filename=tryhtml_links_target" target="_blank">Visit W3Schools!</a></p>
-
-<a href="https://www.markdownguide.org/hacks/#link-targets" target="_blank">Link Targets</a>
-
-<a href="https://www.bridgebase.com/tools/dealer/dealer.php" target="_blank">Dealer by Hans van Staveren, et.al.</a>
+[CTRL-Click to check out Dealer by Hans van Staveren, et.al.](https://www.bridgebase.com/tools/dealer/dealer.php)
 
 I've used it a little for years to generate hands for lessons I would do at a BBO Practice Table.  I would develop the dealer code and save it in a Google Document.  Then, to use it, I would open the Google Doc, copy the code, and paste it into the Dealer source/advanced and click the options I wanted.  I used this often (notice the past tense.)  
 
@@ -56,7 +43,7 @@ The whole thing looks like this:
     More deacriptive lines<br>
     %theNameOfTheScript%<br>
 
-Each scenario is packaged this way.  I call it wrappered Dealer Code.  The ` ` and everything outside of the ...` `... is the wrapper.  There is a separate file for each scenario.  These are all in the root directory of my [Practice Bidding Scenarios GitHub repository](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main){:target="_blank"}.  It ain't pretty.  The filenames beginning with Basic, Dealer, and Gavin are wrappered Dealer code.  And, I apologize for the awful names with spaces and special characters.
+Each scenario is packaged this way.  I call it wrappered Dealer Code.  The ` ` and everything outside of the ...` `... is the wrapper.  There is a separate file for each scenario.  These are all in the root directory of my [CTRL-Click to check out the Practice Bidding Scenarios GitHub repository](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main).  It ain't pretty.  The filenames beginning with Basic, Dealer, and Gavin are wrappered Dealer code.  And, I apologize for the awful names with spaces and special characters.
 
     
 
@@ -111,7 +98,7 @@ Since we have all of these scenarios, I wanted to leverage them.  I've created p
 
 This program reads all of through all of the files Practice Bidding Scenarios.  For each filename that starts with Basic, Dealer, or Gavin, it extracts the Dealer Code from the BBOalert wrapper, it processes any 'Imports', and creates dlr files that corresponding to each of the scenarios.  Spaces and special characters in filenames are translated to characters that are valid in filenames (space to -).  The .dlr files are suitable to be processed directly by BBO Dealer which is linked above.
 
-[Click here to see the dlr files](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main/dlr)
+[CTRL-Click here to see the dlr files](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main/dlr)
 
 ### adbMakePBN.py
 
@@ -125,7 +112,7 @@ Here's an example of a record the run.cmd:
 
 <mark>dealer</mark> is the dealer.exe file which reads each .dlr file and prints corresponding a .pbn file.  The -s= is a random number seed.  If my code is the same and the seed is the same, it will produce the same hands each time it's run.  When I want new file, I can pick a different seed.
 
-[Click here to see run.cmd](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/run.cmd>){:target="_blank"}
+[CTRL-Click here to see run.cmd](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/run.cmd>){:target="_blank"}
 
 And, then go to Window's Command Prompt and enter:
 
@@ -139,7 +126,7 @@ Most of the pbn files include some statistics.  They are ignored by BBO; but, so
 
     python3 adbCommentStats.py > stats.txt
 
-[Click here to see stats.txt](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/stats.txt){:target="_blank"}
+[CTRL-Click here to see stats.txt](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/stats.txt){:target="_blank"}
 
 ### adbRotate.py
 
