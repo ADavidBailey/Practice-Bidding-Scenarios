@@ -6,7 +6,9 @@ BBO includes a Deal generator -- [Dealer by Hans van Staveren, et.al.](https://w
 
 I'm trying to figure out how to get my urls to open in a new tab. The following example was copied and not modified.<br>
  
-<a href="https://www.markdownguide.org" target="_blank">Learn Markdown!</a>   
+<a href="https://www.markdownguide.org" target="_blank">Learn Markdown!</a>
+
+<a href="https://www.markdownguide.org/hacks/#link-targets" target="_blank">Target Links</a>
 <br>
 <a href="https://www.bridgebase.com/tools/dealer/dealer.php" target="_blank">Dealer by Hans van Staveren, et.al.</a><br>
 
