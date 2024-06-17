@@ -2,7 +2,8 @@
 
 ## BBO Deal generator
 
-BBO includes a Deal generator that produces random hand and provides a means for constraining the deals.
+BBO includes a Deal generator that produces random hand and provides a means for constraining the deals.<br>
+
 <a href="https://www.bridgebase.com/tools/dealer/dealer.php" target="_blank">Dealer by Hans van Staveren, et.al.</a>
 
 
