@@ -8,6 +8,8 @@ I'm trying to figure out how to get my urls to open in a new tab. The following 
  
 <a href="https://www.markdownguide.org" target="_blank">Learn Markdown!</a>
 
+<a href="https://www.w3schools.com" target="_blank">Visit W3Schools!</a></p>
+
 <a href="https://www.markdownguide.org/hacks/#link-targets" target="_blank">Link Targets</a>
 
 <a href="https://www.bridgebase.com/tools/dealer/dealer.php" target="_blank">Dealer by Hans van Staveren, et.al.</a>
