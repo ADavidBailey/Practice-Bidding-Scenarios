@@ -2,7 +2,7 @@
 
 ## BBO Deal generator
 
-BBO includes a Deal generator -- [Dealer by Hans van Staveren, et.al.](https://www.bridgebase.com/tools/dealer/dealer.php) It's accessible on the BBO site.<br>
+BBO includes a Deal generator -- [Dealer by Hans van Staveren, et.al.](https://www.bridgebase.com/tools/dealer/dealer.php)
 
 I'm trying to figure out how to get my urls to open in a new tab. The following example was copied and not modified.<br>
  
