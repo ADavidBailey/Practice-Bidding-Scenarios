@@ -94,17 +94,17 @@ BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BB
 
 Since we have all of these scenarios, I wanted to leverage them.  I've created pbn and lin files that can be used elsewhere.  When scenarios are updated or new scenarios are created, the following programs are in the py folder and are used to create/update the pbn and lin files.
 
-### adbExtract.py
+### Extract.py
 
 This program reads all of through all of the files Practice Bidding Scenarios.  For each filename that starts with Basic, Dealer, or Gavin, it extracts the Dealer Code from the BBOalert wrapper, it processes any 'Imports', and creates dlr files that corresponding to each of the scenarios.  Spaces and special characters in filenames are translated to characters that are valid in filenames (space to -).  The .dlr files are suitable to be processed directly by BBO Dealer which is linked above.
 
 [CTRL-Click here to see the dlr files](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main/dlr)
 
-### adbMakePBN.py
+### MakePBN.py
 
 This program reads the files in the dlr folder and creates Windows commands that will create corresponding pbn files.  These commands are put into DOS command file 'run.cmd'.
 
-    python3 adbMakePBN.py > ../run.cmd
+    python3 MakePBN.py > ../run.cmd
 
 Here's an example of a record the run.cmd:
 
@@ -120,15 +120,15 @@ And, then go to Window's Command Prompt and enter:
 
 this one runs a while (currently about 30 minutes for 179 scenarios).  It prints out the name of each file so you can see what's happening.
 
-### adbCommentStats.py
+### CommentStats.py
 
 Most of the pbn files include some statistics.  They are ignored by BBO; but, some other programs don't like them.  So, this program converts them into comment lines that are part of the pbn standard -- lines beginning with a # are ignored.  This program changes all of the statistics to comments by adding a # and a space to the beginning of the line.  It also prints out the statistics for all of the files. Run it like this to create stats.txt:
 
-    python3 adbCommentStats.py > stats.txt
+    python3 CommentStats.py > stats.txt
 
 [CTRL-Click here to see stats.txt](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/stats.txt){:target="_blank"}
 
-### adbRotate.py
+### Rotate.py
 
 This program reads all of files in the pbn folder and creates corresponding files in the pbn-rotated-for-4-players.
 
@@ -138,7 +138,7 @@ When we put the deals into pbn and lin files intended for 4 people to play, they
 
 This code reads all of the files in the pbn folder and writes corresponding files to the pbn-rotated-for-4-players folder.  It appends a -R to the filename.
 
-### adbPBNtoLin.py
+### PBNtoLin.py
 
 This program reads all files in the pbn-rotated-for-4-players folder and creates corresponding files in the lin-rotated-for-four-players folder.  These have the extension .lin
 
@@ -167,6 +167,5 @@ If I had a do-over
  - I'd put them all in a folder
  - I'd get rid of the Basic, Dealer, Gavin prefixes to the names
  - I'd get rid of spaces & special characters in filenames
- - I'd put my adbxxx.py files in a py folder
  
  To fix this at this point, I'd have to write another .py to make the changes.
