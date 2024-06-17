@@ -25,9 +25,9 @@ sS = s>=h and s>=d and s>=c
 sH = not sS and h>=d and h>=c
 sD = not sS and not sH and d>=c and d>4
 
-cO = cN and (sD or sH or sS)
-dO = dN and (sH or sS)
-hO = hN and sS
+cO = nC and (sD or sH or sS)
+dO = nD and (sH or sS)
+hO = nH and sS
 
 # North opens, South responds, and North rebids 1N
 southResponds = (cO or dO or hO)
@@ -36,16 +36,10 @@ invite      = hcp(south)>10 and hcp(south)<13
 game        = hcp(south)>12 and hcp(south)<18
 slam        = hcp(south)>17
 
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
 
-# Level the deal
-lpartscore = partscore and keep06 and c3
-linvite    = invite    and keep06
-lgame      = game      and keep06
-lslam      = slam      and keep
-levelTheDeal = lpartscore or linvite or lgame or lslam
-
-northOpens and southResponds and (partscore or invite or game or slam)
+northOpens and southResponds and calmOpps and (partscore or invite or game or slam)
 and levelTheDeal
 
 action
