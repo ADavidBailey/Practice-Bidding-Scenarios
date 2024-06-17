@@ -1,4 +1,3 @@
-<base target="_blank">
 # Practice Bidding Scenarios - Under the Covers
 
 ## BBO Deal generator
