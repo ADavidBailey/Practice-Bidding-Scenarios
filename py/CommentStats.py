@@ -19,9 +19,9 @@ def process_file(files):
                 processed_lines = []
                 for line in lines:
                     if not (line.startswith('[') or line.strip() == ''):
-                        if line.strip() == '#':
-                            line = ''
-                        if not line.startswith('%'):
+                        if line.startswith('#'):
+                            line = '%' + line[1:]
+                        elif not line.startswith('%'):
                             line = '% ' + line
                         print(line)
                     processed_lines.append(line)
