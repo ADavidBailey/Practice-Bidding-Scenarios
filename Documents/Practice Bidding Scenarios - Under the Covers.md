@@ -43,7 +43,7 @@ The whole thing looks like this:
     More deacriptive lines<br>
     %theNameOfTheScript%<br>
 
-Each scenario is packaged this way.  I call it wrappered Dealer Code.  The ` ` and everything outside of the ...` `... is the wrapper.  There is a separate file for each scenario.  These are all in the root directory of my [CTRL-Click to check out the Practice Bidding Scenarios GitHub repository](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main).  It ain't pretty.  The filenames beginning with Dealer or Gavin are wrappered Dealer code.  And, I apologize for the awful names with spaces and special characters.
+Each scenario is packaged this way.  I call it wrappered Dealer Code.  The backticks and everything outside of the ...backticks... is the wrapper.  There is a separate file for each scenario.  These are all in the root directory of my [CTRL-Click to check out the Practice Bidding Scenarios GitHub repository](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main).  For brevity, I'll use the acronym, PBS, for the root directory.  The content isn't pretty -- it evolved rather than planned.  The filenames beginning with Dealer or Gavin are wrappered Dealer code.  And, I apologize for the awful names with spaces and special characters.
 
     
 
@@ -92,7 +92,7 @@ BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BB
 
 ## Special Programs for pbn and lin files
 
-Since we have all of these scenarios, I wanted to leverage them.  I've created pbn and lin files that can be used elsewhere.  When scenarios are updated or new scenarios are created, the following programs are in the py folder of the Practice-Bidding-Scenarios (PBS) root directory and are used to create/update the pbn and lin files.
+Since we have all of these scenarios, I wanted to leverage them.  I've created pbn and lin files that can be used elsewhere.  When scenarios are updated or new scenarios are created, the following programs are in the py folder of the PBS root directory and are used to create/update the pbn and lin files.
 
 ### extract.py
 
