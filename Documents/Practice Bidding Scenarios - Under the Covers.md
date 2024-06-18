@@ -55,9 +55,8 @@ These are code snippits that are often needed.  Stanislaw implemented an Import 
 
 Rick Wilson introduced me to the idea of leveling and how to do it.  If for example, you want to practice Jacoby 2N, the sequences begin the same 1M - 2N then there are 5 different continuations.  1. a singleton/void, 2. a good 5-card second suit, 3. minimum semi-balanced, 4. intermediate semi-balanced, and 5. strong semi-balanced.  These do not occur with the same frequencey.  Leveling uses the presence of a small cards to reduce the probability of the most common.  There's approximately a 25% chance that east holds the 2 of clubs.  So, you can code something do it and (hasShortness and east has the 2C) will keep about 25% of those deals.  Check out the following two files:
 
-    [-Script-Leveling](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling)
-    [Leveling Example](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Example%20Leveling)
-
+[CTRL-Click -Script-Leveling](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling)
+[CTRL-Click for Leveling Example](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Example%20Leveling)
 
 ## -PBS.txt
 
