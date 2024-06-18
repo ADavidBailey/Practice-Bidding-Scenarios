@@ -26,9 +26,9 @@ sS = s>=h and s>=d and s>=c
 sH = not sS and h>=d and h>=c
 sD = not sS and not sH and d>=c and d>4
 
-cO = cN and (sD or sH or sS)
-dO = dN and (sH or sS)
-hO = hN and sS
+cO = nC and (sD or sH or sS)
+dO = nD and (sH or sS)
+hO = nH and sS
 
 # North opens, South responds, and North rebids 1N
 southResponds = (cO or dO or hO)
@@ -36,6 +36,33 @@ partscore   = hcp(south)<11
 invite      = hcp(south)>10 and hcp(south)<13
 game        = hcp(south)>12 and hcp(south)<18
 slam        = hcp(south)>17
+
+##### Imported Script: Define Calm Opponents #####
+
+# Avoid concentration of values
+cce = top4(east,clubs)<2
+cde = top4(east,diamonds)<2
+che = top4(east,hearts)<2
+cse = top4(east,spades)<2
+noConEast = cce and cde and che and cse
+
+ccw = top4(west,clubs)<2
+cdw = top4(west,diamonds)<2
+chw = top4(west,hearts)<2
+csw = top4(west,spades)<2
+noConWest = ccw and cdw and chw and csw
+
+unbalEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+
+balEast   = shape(east,any 4333 +any 4432)
+balWest   = shape(west,any 4333 +any 4432)
+
+calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<12)
+calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<12)
+calmOpps = calmEast and calmWest
+
+##### End of Imported Script: Define Calm Opponents #####
 
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
@@ -78,14 +105,13 @@ keep0  = 0
 ### Example of how to generate Statistics for Leveling ###
 
 
-# Level the deal
-lpartscore = partscore and keep06 and c3
-linvite    = invite    and keep06
-lgame      = game      and keep06
-lslam      = slam      and keep
-levelTheDeal = lpartscore or linvite or lgame or lslam
+levPartscore = partscore and keep19
+levInvite    = invite    and keep25
+levGame      = game      and keep14
+levSlam      = slam      and keep
+levelTheDeal = (levPartscore or levInvite or levGame or levSlam)
 
-northOpens and southResponds and (partscore or invite or game or slam)
+northOpens and southResponds and calmOpps and (partscore or invite or game or slam)
 and levelTheDeal
 
 action

@@ -20,20 +20,14 @@ def process_file(files):
             output_filename = filename.replace('.dlr', '.pbn')
             print("P:\\dealer P:\\dlr\\" + filename + " -s=" + str(seed) + " >P:\\pbn\\" + output_filename) 
 
-
-def scan_for_dlr(directory_path):
-    # Use os.listdir() to get files in the current directory only
-    print(directory_path)
-    current_directory_files = os.listdir(directory_path)
-    process_file(current_directory_files)
-
-    print(f"# Scan complete!")
-
 def main():
     #print("# Create dealer script for running dealer, Version 1.0")
 
-    d_p = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios/dlr/")
-    scan_for_dlr(d_p)
+    PBS_DLR = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios/dlr/")
+    current_directory_files = os.listdir(PBS_DLR)
+    process_file(current_directory_files)
+
+    print(f"# Scan complete!")
 
 if __name__ == "__main__":
     main()

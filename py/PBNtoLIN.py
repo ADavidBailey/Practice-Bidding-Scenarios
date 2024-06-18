@@ -1,31 +1,27 @@
-# Reads all .pbn files from the folder /pbn-rotated-for-4-players
-# generating a matching .lin file in the folder /lin-rotated-for-4-players 
-
 import os
 import endplay.parsers.pbn as pbn
 import endplay.parsers.lin as lin
 
-def process_file(files, directory_path):
+def process_file(pbn_files):    
     n_files = 0
-    for i_filename in files:
-        if i_filename.lower().endswith('.pbn'):
+    for pbn_filename in pbn_files:
+        if pbn_filename.lower().endswith('.pbn'):
             n_files = n_files + 1
-            print(str(n_files) + " " + i_filename)
-            o_filename = i_filename.replace('.pbn', '-R.lin')  # Append -R for Rotated
-            out_directory_path = directory_path.replace('pbn', 'lin')
+            print(str(n_files) + " " + pbn_filename)
+            lin_filename = pbn_filename.replace('.pbn', '.lin')
+            lin_filepath = os.path.join(LIN_ROTATED, lin_filename)
 
-            with open(directory_path + "/" + i_filename, 'r') as i_file:
-                boards = pbn.load(i_file)
-            with open(out_directory_path + '/' + o_filename, 'w') as o_file:
-                lin.dump(boards, o_file)
+            with open(os.path.join(PBN_ROTATED, pbn_filename), 'r') as pbn_file:
+                boards = pbn.load(pbn_file)
+            with open(lin_filepath, 'w') as lin_file:
+                lin.dump(boards, lin_file)
 
-            
-            with open(out_directory_path + '/' + o_filename, 'r') as o_file:
+            with open(lin_filepath, 'r') as lin_file:
                 # Split the string into individual lines
-                content = o_file.read()
+                content = lin_file.read()
                 lines = content.strip().split('\n')
 
-                # Process each line to strip until 'md', prepend 'qx|~~~' (~~~ is the board number)
+                # Process each line to strip until 'md', prepend 'qx|o~~~' (~~~ is the board number)
                 processed_lines = []
                 for line in lines:
                     md_index = line.find('|md|')
@@ -39,20 +35,18 @@ def process_file(files, directory_path):
                         processed_line = 'qx|o' + boardNumber + line[md_index:]
                         processed_lines.append(processed_line)
 
-            with open(out_directory_path + '/' + o_filename, 'w') as o_file:
+            with open(lin_filepath, 'w') as lin_file:
                 # Join the processed lines back into a single string
                 result = '\n'.join(processed_lines)
-                o_file.write(result)
+                lin_file.write(result)
 
-def scan_for_pbn(directory_path):
+def scan_for_pbn():
     # Use os.listdir() to get files in the current directory only
-    current_directory_files = os.listdir(directory_path)
-    process_file(current_directory_files, directory_path)
+    pbn_files = os.listdir(PBN_ROTATED)
+    process_file(pbn_files)
 
     print(f"# Scan complete!")
 
-def main():
-    scan_for_pbn(os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios/pbn-rotated-for-4-players")
-
-if __name__ == "__main__":
-    main()
+PBN_ROTATED = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios/pbn-rotated-for-4-players")
+LIN_ROTATED = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios/lin-rotated-for-4-players-test")
+scan_for_pbn()

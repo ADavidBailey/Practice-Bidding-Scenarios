@@ -9,7 +9,7 @@ def process_file(files):
 
         print('\n ' + str(nFiles) + ' ------ ' + filename + ' ------ ')
         if filename.lower().endswith('.pbn'):
-            file_path = os.path.join(directory_path, filename)
+            file_path = os.path.join(PBS_PBN, filename)
             with open(file_path, 'r') as i_file:
                 # Split the string into individual lines
                 content = i_file.read()
@@ -33,7 +33,7 @@ def process_file(files):
 
 def scan_for_pbn():
     # Use os.listdir() to get files in the current directory only
-    current_directory_files = os.listdir(directory_path)
+    current_directory_files = os.listdir(PBS_PBN)
     process_file(current_directory_files)
 
     print(f"# Scan is complete!")
@@ -42,6 +42,6 @@ def main():
 
     scan_for_pbn()
 
-directory_path = os.path.join(os.path.expanduser("~"), 'Practice-Bidding-Scenarios', 'pbn')
+PBS_PBN = os.path.join(os.path.expanduser("~"), 'Practice-Bidding-Scenarios', 'pbn')
 if __name__ == "__main__":
     main()

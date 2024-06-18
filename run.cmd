@@ -1,4 +1,3 @@
-/Users/adavidbailey/Practice-Bidding-Scenarios/dlr/
 P:\dealer P:\dlr\Dealer-3N-over-LHO-3x-W.dlr -s=675264029 >P:\pbn\Dealer-3N-over-LHO-3x-W.pbn
 P:\dealer P:\dlr\Dealer-Misfit-06-10-S.dlr -s=1585317719 >P:\pbn\Dealer-Misfit-06-10-S.pbn
 P:\dealer P:\dlr\Dealer-Soloway-Jump-Shift-Type-4-S.dlr -s=3017462084 >P:\pbn\Dealer-Soloway-Jump-Shift-Type-4-S.pbn
@@ -138,6 +137,7 @@ P:\dealer P:\dlr\Gavin-Semi-Constructive-Raise-N.dlr -s=1569775078 >P:\pbn\Gavin
 P:\dealer P:\dlr\Dealer-SCS-Major-Open-2-Suit-Resp-S.dlr -s=2644084527 >P:\pbn\Dealer-SCS-Major-Open-2-Suit-Resp-S.pbn
 P:\dealer P:\dlr\Dealer-Weak-2-Bids-Lax-Leveled-S.dlr -s=2115231476 >P:\pbn\Dealer-Weak-2-Bids-Lax-Leveled-S.pbn
 P:\dealer P:\dlr\Gavin-Semi-Forcing-NT-with-Fit-N.dlr -s=442548703 >P:\pbn\Gavin-Semi-Forcing-NT-with-Fit-N.pbn
+P:\dealer P:\dlr\Dealer-2N-Smolen-Leveled-copy-S.dlr -s=1345525241 >P:\pbn\Dealer-2N-Smolen-Leveled-copy-S.pbn
 P:\dealer P:\dlr\Dealer-Game-Forcing-2C-S.dlr -s=2998193342 >P:\pbn\Dealer-Game-Forcing-2C-S.pbn
 P:\dealer P:\dlr\Dealer-FourthSuitForcing-S.dlr -s=418233527 >P:\pbn\Dealer-FourthSuitForcing-S.pbn
 P:\dealer P:\dlr\Dealer-Ned-2S-N.dlr -s=3553775728 >P:\pbn\Dealer-Ned-2S-N.pbn

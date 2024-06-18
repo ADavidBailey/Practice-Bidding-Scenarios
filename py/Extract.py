@@ -16,8 +16,8 @@ print("generating " + str(generate))
 print("producing  " + str(produce))
 
 # Directory containing the files
-directory_path = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios")
-print(directory_path)
+PBS = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios")
+print(PBS)
 
 
 # Regular expression pattern to match text enclosed in backticks spanning multiple lines
@@ -59,7 +59,7 @@ def extract_text_in_backticks(file_path):
             processed_text = process_extracted_text(match, dealer)
             
             output_file_path = os.path.splitext(os.path.basename(file_path))[0].replace(" ", "-").replace("(", "").replace(")", "").replace("&", "and").replace("+", "_") + suffix
-            output_file_path = os.path.join(directory_path + '/dlr', output_file_path).replace('\\', '/')
+            output_file_path = os.path.join(PBS + '/dlr', output_file_path).replace('\\', '/')
             print(output_file_path)
             with open(output_file_path, 'w') as output_file:
                 # Save the processed text to the .dlr file
@@ -126,8 +126,8 @@ def process_extracted_text(extracted_text, dealer):
 
 # List all files in the directory
 n_files = 0
-for filename in os.listdir(directory_path):
-    file_path = os.path.join(directory_path, filename)
+for filename in os.listdir(PBS):
+    file_path = os.path.join(PBS, filename)
     # Check if it's a file
     if os.path.isfile(file_path) and (filename.startswith('Dealer') or filename.startswith('Gavin') or (filename.startswith('Basic'))):
         extract_text_in_backticks(file_path)

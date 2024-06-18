@@ -1,19 +1,20 @@
 import os
 
 # Read files from pbn folder
-input_directory_path = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios" + '/pbn')
+PBS_PBN = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios", "pbn")
+print(PBS_PBN)
 
 # Write files to pbn-rotated... folder
-output_directory_path = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios" + '/pbn-rotated-for-4-players')
+PBS_PBN_ROTATED = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios", "pbn-rotated-for-4-players")
 
 def rotate_deal(file_path,filename):
      with open(input_file_path, 'r') as file:
         content = file.read()
         processed_text = rotate_hand(content)
-        output_file_path = os.path.join(output_directory_path, filename)
+        output_file_path = os.path.join(PBS_PBN_ROTATED, filename)
 
         with open(output_file_path, 'w') as output_file:
-            # Save the processed text to the output_directory_path as a .pbn file
+            # Save the processed text to the PBS_PBN_ROTATED as a .pbn file
             output_file.write(processed_text)
 
 def rotate_hand(extracted_text):
@@ -36,12 +37,11 @@ def rotate_hand(extracted_text):
         processed_text.append(line)
     return '\n'.join(processed_text)
 
-
 # List all files in the input directory
 n_files = 0
 rotation = "NESW"
-for filename in os.listdir(input_directory_path):
-    input_file_path = os.path.join(input_directory_path, filename)
+for filename in os.listdir(PBS_PBN):
+    input_file_path = os.path.join(PBS_PBN, filename)
     # Check if it's a file
     if os.path.isfile(input_file_path) and (filename.endswith('.pbn')):
         n_files = n_files + 1
