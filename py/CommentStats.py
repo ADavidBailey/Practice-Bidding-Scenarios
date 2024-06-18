@@ -15,12 +15,14 @@ def process_file(files):
                 content = i_file.read()
                 lines = content.strip().split('\n')
 
-                # Prepend '# ' to each line that is not a blank line or a pbn keyword/value [...]
+                # Prepend '% ' to each line that is not a blank line or a pbn keyword/value [...]
                 processed_lines = []
                 for line in lines:
                     if not (line.startswith('[') or line.strip() == ''):
-                        if not line.startswith('#'):
-                            line = '# ' + line
+                        if line.strip() == '#':
+                            line = ''
+                        if not line.startswith('%'):
+                            line = '% ' + line
                         print(line)
                     processed_lines.append(line)
 
