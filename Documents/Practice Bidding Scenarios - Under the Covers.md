@@ -43,7 +43,7 @@ The whole thing looks like this:
     More deacriptive lines<br>
     %theNameOfTheScript%<br>
 
-Each scenario is packaged this way.  I call it wrappered Dealer Code.  The ` ` and everything outside of the ...` `... is the wrapper.  There is a separate file for each scenario.  These are all in the root directory of my [CTRL-Click to check out the Practice Bidding Scenarios GitHub repository](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main).  It ain't pretty.  The filenames beginning with Basic, Dealer, and Gavin are wrappered Dealer code.  And, I apologize for the awful names with spaces and special characters.
+Each scenario is packaged this way.  I call it wrappered Dealer Code.  The ` ` and everything outside of the ...` `... is the wrapper.  There is a separate file for each scenario.  These are all in the root directory of my [CTRL-Click to check out the Practice Bidding Scenarios GitHub repository](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main).  It ain't pretty.  The filenames beginning with Dealer or Gavin are wrappered Dealer code.  And, I apologize for the awful names with spaces and special characters.
 
     
 
@@ -92,19 +92,21 @@ BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BB
 
 ## Special Programs for pbn and lin files
 
-Since we have all of these scenarios, I wanted to leverage them.  I've created pbn and lin files that can be used elsewhere.  When scenarios are updated or new scenarios are created, the following programs are in the py folder and are used to create/update the pbn and lin files.
+Since we have all of these scenarios, I wanted to leverage them.  I've created pbn and lin files that can be used elsewhere.  When scenarios are updated or new scenarios are created, the following programs are in the py folder of the Practice-Bidding-Scenarios (PBS) root directory and are used to create/update the pbn and lin files.
 
-### Extract.py
+### extract.py
 
-This program reads all of through all of the files Practice Bidding Scenarios.  For each filename that starts with Basic, Dealer, or Gavin, it extracts the Dealer Code from the BBOalert wrapper, it processes any 'Imports', and creates dlr files that corresponding to each of the scenarios.  Spaces and special characters in filenames are translated to characters that are valid in filenames (space to -).  The .dlr files are suitable to be processed directly by BBO Dealer which is linked above.
+This program reads all of through all of the files Practice Bidding Scenarios.  For each filename that starts with Dealer or Gavin, it extracts the Dealer Code from the BBOalert wrapper, it processes any 'Imports', and creates dlr files that corresponding to each of the scenarios.  Spaces and special characters in filenames are translated to characters that are valid in filenames (space to -).  The .dlr files are suitable to be processed directly by BBO Dealer which is linked above.  Switch to the py folder and enter the following
 
-[CTRL-Click here to see the dlr files](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main/dlr)
+    python3 extract.py
 
-### MakePBN.py
+[CTRL-Click here to see the dlr files](<https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main/dlr>)
 
-This program reads the files in the dlr folder and creates Windows commands that will create corresponding pbn files.  These commands are put into DOS command file 'run.cmd'.
+### makePBN.py
 
-    python3 MakePBN.py > ../run.cmd
+This program reads the files in the dlr folder and creates Windows commands that will create corresponding pbn files.  These commands are put into DOS command file 'run.cmd' which resides in the PBS root directory.  To run this, switch to the py folder and enter the following.
+
+    python3 makePBN.py > ../run.cmd
 
 Here's an example of a record the run.cmd:
 
@@ -112,23 +114,23 @@ Here's an example of a record the run.cmd:
 
 <mark>dealer</mark> is the dealer.exe file which reads each .dlr file and prints corresponding a .pbn file.  The -s= is a random number seed.  If my code is the same and the seed is the same, it will produce the same hands each time it's run.  When I want new file, I can pick a different seed.
 
-[CTRL-Click here to see run.cmd](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/run.cmd>){:target="_blank"}
+[CTRL-Click here to see run.cmd](<https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/run.cmd>)
 
-And, then go to Window's Command Prompt and enter:
+And, then go to Window's Command Prompt, switch to the PBS root directory and enter:
 
     run.cmd
 
 this one runs a while (currently about 30 minutes for 179 scenarios).  It prints out the name of each file so you can see what's happening.
 
-### CommentStats.py
+### commentStats.py
 
-Most of the pbn files include some statistics.  They are ignored by BBO; but, some other programs don't like them.  So, this program converts them into comment lines that are part of the pbn standard -- lines beginning with a # are ignored.  This program changes all of the statistics to comments by adding a # and a space to the beginning of the line.  It also prints out the statistics for all of the files. Run it like this to create stats.txt:
+Most of the pbn files include some statistics.  They are ignored by BBO; but, some other programs don't like them.  So, this program converts them into comment lines that are part of the pbn standard -- lines beginning with a % are ignored.  This program changes all of the statistics to comments by adding a % and a space to the beginning of the line.  It also prints out the statistics for all of the files.  Switch to the py directory and enter the following to create the stats.txt file in the PBS root directory:
 
-    python3 CommentStats.py > stats.txt
+    python3 commentStats.py > stats.txt
 
-[CTRL-Click here to see stats.txt](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/stats.txt){:target="_blank"}
+[CTRL-Click here to see stats.txt](<https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/stats.txt>)
 
-### Rotate.py
+### rotate.py
 
 This program reads all of files in the pbn folder and creates corresponding files in the pbn-rotated-for-4-players.
 
@@ -138,9 +140,15 @@ When we put the deals into pbn and lin files intended for 4 people to play, they
 
 This code reads all of the files in the pbn folder and writes corresponding files to the pbn-rotated-for-4-players folder.  It appends a -R to the filename.
 
+Switch to the py folder and enter the following:
+
+    python3 rotate.py
+
 ### PBNtoLin.py
 
-This program reads all files in the pbn-rotated-for-4-players folder and creates corresponding files in the lin-rotated-for-four-players folder.  These have the extension .lin
+This program reads all files in the pbn-rotated-for-4-players folder and creates corresponding files in the lin-rotated-for-four-players folder.  These have the extension '.lin'.  Switch to the py folder and enter the following:
+
+    python3 PBNtoLIN.py
 
 ## Acknowledgements
 
@@ -164,8 +172,8 @@ I've had a lot of help with this project.
 If I had a do-over
  - I'd get rid of the .txt extension on the PBS.txt file
  - I'd give all of my wappered files a common extension, maybe .pbs
- - I'd put them all in a folder
- - I'd get rid of the Basic, Dealer, Gavin prefixes to the names
+ - I'd put them all in a like-named folder
+ - I'd get rid of the Dealer, Gavin prefixes to the names
  - I'd get rid of spaces & special characters in filenames
  
  To fix this at this point, I'd have to write another .py to make the changes.
