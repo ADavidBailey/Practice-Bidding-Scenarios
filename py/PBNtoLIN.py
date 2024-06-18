@@ -10,6 +10,7 @@ def process_file(pbn_files):
             print(str(n_files) + " " + pbn_filename)
             lin_filename = pbn_filename.replace('.pbn', '.lin')
             lin_filepath = os.path.join(LIN_ROTATED, lin_filename)
+            print(lin_filepath)
 
             with open(os.path.join(PBN_ROTATED, pbn_filename), 'r') as pbn_file:
                 boards = pbn.load(pbn_file)
@@ -48,5 +49,5 @@ def scan_for_pbn():
     print(f"# Scan complete!")
 
 PBN_ROTATED = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios/pbn-rotated-for-4-players")
-LIN_ROTATED = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios/lin-rotated-for-4-players-test")
+LIN_ROTATED = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios/lin-rotated-for-4-players")
 scan_for_pbn()
