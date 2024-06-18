@@ -110,9 +110,11 @@ This program reads the files in the dlr folder and creates Windows commands that
 
 Here's an example of a record the run.cmd:
 
-    P:\<mark>dealer</mark> P:\dlr\Dealer-3N-over-LHO-3x-W.dlr -s=675264029 >P:\pbn\Dealer-3N-over-LHO-3x-W.pbn
+    P:\dealer P:\dlr\Dealer-3N-over-LHO-3x-W.dlr -s=675264029 >P:\pbn\Dealer-3N-over-LHO-3x-W.pbn
 
-<mark>dealer</mark> is the dealer.exe file which reads each .dlr file and prints corresponding a .pbn file.  The -s= is a random number seed.  If my code is the same and the seed is the same, it will produce the same hands each time it's run.  When I want new file, I can pick a different seed.
+The first P:\dealer invokes the dealer.exe with 3 parameters, 1. the file to read and 2.the seed.  The > directs the output to the corresponding pbn file.
+
+If my code is the same and the seed is the same, it will produce the same hands each time it's run.  When I want new file, I can pick a different seed.
 
 [CTRL-Click here to see run.cmd](<https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/run.cmd>)
 
