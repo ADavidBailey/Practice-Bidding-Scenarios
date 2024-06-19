@@ -14,7 +14,7 @@ losTrkOpener = (losers(south)<8 and hcp(south)>8) and not normalOpener
 
 pass         = not (losTrkOpener or normalOpener)
 
-pass or losTrkOpener or normalOpener
+losTrkOpener
 
 action
 average "losTrkOpener  " 100 * losTrkOpener,
