@@ -1,0 +1,18 @@
+dealer south
+
+hcOpener = hcp(south)>13
+w2Opener = shape(south,any 6xxx-xxx6) and hcp(south)>6 and hcp(south)<11
+w3Opener = shape(south,any 8xxx+7xxx) and hcp(south)>6 and hcp(south)<11
+normalOpener = (hcOpener or w2Opener or w3Opener)
+
+
+losTrkOpener = (losers(south)<8 and hcp(south)>8) and not normalOpener
+
+pass         = not (losTrkOpener or normalOpener)
+
+pass or losTrkOpener or normalOpener
+
+action
+average "losTrkOpener  " 100 * losTrkOpener,
+average "normalOpener  " 100 * normalOpener,
+average "pass          " 100 * pass,
