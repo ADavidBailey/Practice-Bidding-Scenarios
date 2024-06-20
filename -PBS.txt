@@ -92,7 +92,7 @@ if((l%13) == 0) displayHCP();
 //Script
 
 //Script,setBiddingTable
-var delayValue = 250;
+var delayValue = 500;
 Promise.resolve()
 
 // From Thorvald
@@ -171,7 +171,7 @@ function delay(duration) {
 //Script
 
 //Script,setTeachingTable
-var delayValue = 250;
+var delayValue = 500;
 Promise.resolve()
 
 // From Thorvald
@@ -194,7 +194,7 @@ Promise.resolve()
     .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(4).click())
     .then(() => delay(delayValue))
     // press "Start a Teaching table"
-    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(13).click())
+    .then(() => $(".menuGrid navigation-list-button .navClass:visible", BBOcontext()).eq(1).click())
     // press "Start a Bidding table"
     // .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(12).click())
     .then(() => delay(delayValue))
