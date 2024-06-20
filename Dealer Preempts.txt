@@ -4,18 +4,21 @@ setDealerCode(`
 # Preempts
 dealer south
 
-hcp(south)>5 and hcp(south)<10
-and
-(
-(top5(south,spades)>1 and spades(south)>6)
-or
-(top5(south,hearts)>1 and hearts(south)>6)
-or
-(top5(south,diamonds)>1 and diamonds(south)>6)
-or
-(top5(south,clubs)>1 and clubs(south)>6)
-)
-`)
+range = hcp(south)>5 and hcp(south)<11
+
+oS = top5(south,spades)>1 and spades(south)>6
+oH = top5(south,hearts)>1 and hearts(south)>6
+oD = top5(south,diamonds)>1 and diamonds(south)>6
+oC = top5(south,clubs)>1 and clubs(south)>6
+
+(oS or oH or oD or oC) and range
+
+`,"S",true)
 Script
-Button,Preempts,Preempts\n%Preempts%
+Button,Preempts,\n\
+--- Preempts at the 3-level or higher\n\
+- 7-card suits at the 3-level\n\
+- 8-card suits at the 4-level\n\
+6-10 HCP\n\
+%Preempts%
 
