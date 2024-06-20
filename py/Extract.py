@@ -5,7 +5,7 @@ import requests
 import argparse
 
 parser = argparse.ArgumentParser(description="Extract dealer code")
-parser.add_argument("--generate", type=int, default=10000000, help="Number to generate")
+parser.add_argument("--generate", type=int, default=100000000, help="Number to generate")
 parser.add_argument("--produce", type=int, default=500, help="Number to produce")
 #parser.add_argument("--nodealer", type=bool, default=False, help="Ignore dealer code")
 args = parser.parse_args()
