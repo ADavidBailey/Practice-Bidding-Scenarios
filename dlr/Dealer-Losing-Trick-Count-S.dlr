@@ -1,0 +1,25 @@
+# Dealer-Losing-Trick-Count
+generate 100000000
+produce 500
+dealer south
+
+
+
+hcOpener = hcp(south)>11
+w2Opener = shape(south,any 6xxx-xxx6) and hcp(south)>6 and hcp(south)<11
+w3Opener = shape(south,any 8xxx+7xxx) and hcp(south)>6 and hcp(south)<11
+normalOpener = (hcOpener or w2Opener or w3Opener)
+
+losTrkOpener = (losers(south)<8 and hcp(south)>7) and not normalOpener
+
+pass         = not (losTrkOpener or normalOpener)
+
+losTrkOpener and hcp(north)<6 and shape(north,xxxx-any 7xxx-any 6xxx)
+
+action
+average "losTrkOpener  " 100 * losTrkOpener,
+average "normalOpener  " 100 * normalOpener,
+average "pass          " 100 * pass,
+
+
+printpbn
