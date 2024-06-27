@@ -31,7 +31,7 @@ def rotate_hand(extracted_text):
             line = line[:9] + board_dealer + '"]'
 
         if line.startswith("[Deal "):
-            hRi = (bDi + dDi) % 4
+            hRi = (4 + bDi - dDi) % 4
             first_hand = rotation[hRi]
             line = line[:7] + first_hand + line[8:]              # rotated deal - 8th character
         processed_text.append(line)
