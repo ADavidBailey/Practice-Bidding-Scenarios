@@ -4,8 +4,8 @@ setDealerCode(`
 dealer south 
 
 hcOpener = hcp(south)>11
-w2Opener = shape(south,any 6xxx-xxx6) and hcp(south)>6 and hcp(south)<11
-w3Opener = shape(south,any 8xxx+7xxx) and hcp(south)>6 and hcp(south)<11
+w2Opener = shape(south,any 6xxx-xxx6) and hcp(south)>6 and hcp(south)<12
+w3Opener = shape(south,any 8xxx+7xxx) and hcp(south)>6 and hcp(south)<12
 normalOpener = (hcOpener or w2Opener or w3Opener)
 
 losTrkOpener = (losers(south)<8 and hcp(south)>7) and not normalOpener
