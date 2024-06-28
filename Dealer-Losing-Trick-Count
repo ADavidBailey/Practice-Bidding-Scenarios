@@ -3,6 +3,10 @@ setDealerCode(`
 
 dealer south 
 
+# Define cover cards
+coverCards = top2(north,hearts) + top2(north,spades) + top2(north,diamonds) + top2(north,clubs)
+
+
 hcOpener = hcp(south)>11
 w2Opener = shape(south,any 6xxx-xxx6) and hcp(south)>6 and hcp(south)<12
 w3Opener = shape(south,any 8xxx+7xxx) and hcp(south)>6 and hcp(south)<12
@@ -12,7 +16,9 @@ losTrkOpener = (losers(south)<8 and hcp(south)>7) and not normalOpener
 
 pass         = not (losTrkOpener or normalOpener)
 
-losTrkOpener and hcp(north)<6 and shape(north,xxxx-any 7xxx-any 6xxx)
+losTrkOpener and coverCards>3
+
+## hcp(north)<6 and shape(north,xxxx-any 7xxx-any 6xxx)
 
 action
 average "losTrkOpener  " 100 * losTrkOpener,
