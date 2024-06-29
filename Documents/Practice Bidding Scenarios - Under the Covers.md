@@ -145,7 +145,7 @@ Switch to the py folder and enter the following:
 
     python3 rotate.py
 
-### PBNtoLin.py
+### PBNtoLIN.py
 
 This program reads all files in the pbn-rotated-for-4-players folder and creates corresponding files in the lin-rotated-for-four-players folder.  These have the extension '.lin'.  Switch to the py folder and enter the following:
 
