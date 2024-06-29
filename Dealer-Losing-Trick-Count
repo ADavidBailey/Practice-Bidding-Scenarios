@@ -21,9 +21,11 @@ part = coverCards < 4
 ltcOpener
 
 action
-average "game        " 100 * game,
-average "part score  " 100 * part,
-frequency "cover-cards" (coverCards,0,7),
+average "opener's HCP    " hcp(south),
+average "responder's HCP " hcp(north),
+average "combined HCP    " hcp(south) + hcp(north),
+
+frequency "A's or K's    " (coverCards,0,7),
 
 `,"S",false);
 Script
