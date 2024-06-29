@@ -9,7 +9,7 @@ coverCards = top2(north,hearts) + top2(north,spades) + top2(north,diamonds) + to
 # Define normal opener
 hcOpener = hcp(south)>11
 w2Opener = shape(south,any 6xxx-xxx6) and hcp(south)>5 and hcp(south)<12
-w3Opener = shape(south,any 8xxx+7xxx) and hcp(south)>5 and hcp(south)<12
+w3Opener = shape(south,any 8xxx+any 7xxx) and hcp(south)>5 and hcp(south)<12
 normalOpener = (hcOpener or w2Opener or w3Opener)
 
 # Define Losing Trick Count opener
@@ -19,8 +19,6 @@ game = coverCards > 3
 part = coverCards < 4
 
 ltcOpener
-
-## hcp(north)<6 and shape(north,xxxx-any 7xxx-any 6xxx)
 
 action
 average "game        " 100 * game,
