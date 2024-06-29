@@ -5,21 +5,29 @@ dealer south
 
 
 
+# Define cover cards
+coverCards = top2(north,hearts) + top2(north,spades) + top2(north,diamonds) + top2(north,clubs)
+
+# Define normal opener
 hcOpener = hcp(south)>11
-w2Opener = shape(south,any 6xxx-xxx6) and hcp(south)>6 and hcp(south)<11
-w3Opener = shape(south,any 8xxx+7xxx) and hcp(south)>6 and hcp(south)<11
+w2Opener = shape(south,any 6xxx-xxx6) and hcp(south)>5 and hcp(south)<12
+w3Opener = shape(south,any 8xxx+7xxx) and hcp(south)>5 and hcp(south)<12
 normalOpener = (hcOpener or w2Opener or w3Opener)
 
-losTrkOpener = (losers(south)<8 and hcp(south)>7) and not normalOpener
+# Define Losing Trick Count opener
+ltcOpener = (losers(south)<8 and hcp(south)>7) and not normalOpener
 
-pass         = not (losTrkOpener or normalOpener)
+game = coverCards > 3
+part = coverCards < 4
 
-losTrkOpener and hcp(north)<6 and shape(north,xxxx-any 7xxx-any 6xxx)
+ltcOpener
+
+## hcp(north)<6 and shape(north,xxxx-any 7xxx-any 6xxx)
 
 action
-average "losTrkOpener  " 100 * losTrkOpener,
-average "normalOpener  " 100 * normalOpener,
-average "pass          " 100 * pass,
+average "game        " 100 * game,
+average "part score  " 100 * part,
+frequency "cover-cards" (coverCards,0,7),
 
 
 printpbn
