@@ -85,7 +85,7 @@ east3suit = (eSHD or eSHC or eSDC)
 sSup   = (nC and cSouth>2) or (nD and dSouth>2) or (nH and hSouth>2)
 wSup   = (eD and dWest>2) or (eH and hWest>2) or (eS and sWest>2)
 
-nOpens   = hcp(north)>13 and hcp(north)<15 and (nC or nD or nH)
+nOpens   = hcp(north)>11 and hcp(north)<15 and (nC or nD or nH)
 eDoubles = hcp(east)>12 and hcp(east)<16 and east3suit
 
 sPasses  = hcp(south)<6 and not sSup
@@ -102,11 +102,19 @@ sNewSuit2 = hcp(south)>5 and (not sSup) and southRank>eastRank
 
 type2 = (nOpens and eOvercalls and (not sSup) and (sPasses or sNewSuit2) and wRaises)
 
-type1 or type2
+## Type 3:  north opens, east passes, south responds and west competes
+
+ePasses = hcp(east)<6 and shape(east,xxxx-any 8xxx-any 7xxx-any 6xxx)
+sNewSuit3 = hcp(south)>5 and hcp(south)<10 and southRank>northRank
+
+type3 = nOpens and ePasses and sNewSuit3 and wNewSuit and westRank<southRank
+
+type1 or type2 or type3
 
 action
 average "type1" 100 * type1,
 average "type2" 100 * type2,
+average "type3" 100 * type3,
 
 `,"N",false);
 Script
