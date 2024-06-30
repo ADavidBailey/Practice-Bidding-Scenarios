@@ -1,0 +1,85 @@
+# Good/Bad 2N
+
+# Calculate Suit Ranks for North, East, South, West
+
+# Predict North's opening suit
+sNorth = spades(north)
+hNorth = hearts(north)
+dNorth = diamonds(north)
+cNorth = clubs(north)
+nS = sNorth>4 and sNorth>=hNorth and sNorth>=dNorth and sNorth>=cNorth
+nH = not nS and hNorth>4 and hNorth>=dNorth and hNorth>=cNorth
+nD = not nS and not nH and ((dNorth>3 and dNorth>=cNorth) or cNorth<3)
+nC = not nS and not nH and not nD
+
+# Calculate North's Rank
+nRS = nS ? 4 : 0
+nRH = nH ? 3 : 0
+nRD = nD ? 2 : 0
+nRC = nC ? 1 : 0
+northRank = nRS+nRH+nRD+nRC   // all except one are zero
+
+# East's longest suit for competing
+sEast = spades(east)
+hEast = hearts(east)
+dEast = diamonds(east)
+cEast = clubs(east)
+eS = sEast>=hEast and sEast>=dEast and sEast>=cEast
+eH = not eS and hEast>=dEast and hEast>=cEast
+eD = not eS and not eH and dEast>=cEast
+eC = not eS and not eH and not eD
+
+# Calculate East's Rank
+eRS = eS ? 4 : 0
+eRH = eH ? 3 : 0
+eRD = eD ? 2 : 0
+eRC = eC ? 1 : 0
+eastRank = eRS+eRH+eRD+eRC
+
+# South's longest suit for responding in a new suit at the 1-level
+sSouth = spades(south)
+hSouth = hearts(south)
+dSouth = diamonds(south)
+cSouth = clubs(south)
+sS = sSouth>=hSouth and sSouth>=dSouth and sSouth>=cSouth
+sH = not sS and hSouth>=dSouth and hSouth>=cSouth
+sD = not sS and not sH and dSouth>=cSouth
+sC = not sS and not sH and not sD
+
+# Calculate South's Rank
+sRS = sS ? 4 : 0
+sRH = sH ? 3 : 0
+sRD = sD ? 2 : 0
+sRC = sC ? 1 : 0
+southRank = sRS + sRH + sRD + sRC
+
+# West's longest suit for competing at the 2-level in D, H, or S
+sWest = spades(west)
+hWest = hearts(west)
+dWest = diamonds(west)
+cWest = clubs(west)
+wS = sWest>=hWest and sWest>=dWest and sWest>=cWest
+wH = not sS and hWest>=dWest and hWest>=cWest
+wD = not sS and not sH and dWest>=cWest
+wC = not sS and not sH and not sD
+
+eSHD = nS and shape(east, any 5440+any 5431+any 4441+any 4432) and clubs(east)<3
+eSHC = nS and shape(east, any 5440+any 5431+any 4441+any 4432) and diamonds(east)<3
+eSDC = nS and shape(east, any 5440+any 5431+any 4441+any 4432) and hearts(east)<3
+east3suit = (eSHD or eSHC or eSDC)
+
+east1suit = eastRank>northRank and shape(east,any 6xxx+any 5xxx)
+
+nOpens     = (nC or nD or nH) and shape(north,any 55xx+any 54xx+any 44xx) and hcp(north)>11
+eOvercalls = east1suit and hcp(east)>8
+eDoubles   = east3suit and hcp(east)>12 and hcp(east)<16
+sNoSup     = (nC and cSouth <3) or (nD and dSouth<3) or (nH and hSouth<3)
+sNoLen     = (eD and dSouth<4)  or (eH and hSouth<4) or (eS and sSouth<4)
+sDoubles   = sNoSup and sNoLen and shape(south,any 55xx+any 54xx+any 4432) and hcp(south)>5
+sNewSuit   = sNoSup  and shape(south,any 6331+any 6322+any 5332) and southRank>eastRank and hcp(south)>5
+wRaises    = ((eD and dWest>2) or (eH and hWest>2) or (eS and sWest>2)) and hcp(west)>6
+
+
+# North opens, East overcalls, South doubles/bids, and West raises
+nOpens and (eOvercalls or eDoubles) and (sDoubles or sNewSuit) and wRaises
+
