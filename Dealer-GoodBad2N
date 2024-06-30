@@ -1,3 +1,6 @@
+Script,GoodBad2N
+setDealerCode(`
+
 # Good/Bad 2N
 
 # Calculate Suit Ranks for North, East, South, West
@@ -63,23 +66,54 @@ wH = not sS and hWest>=dWest and hWest>=cWest
 wD = not sS and not sH and dWest>=cWest
 wC = not sS and not sH and not sD
 
-eSHD = nS and shape(east, any 5440+any 5431+any 4441+any 4432) and clubs(east)<3
-eSHC = nS and shape(east, any 5440+any 5431+any 4441+any 4432) and diamonds(east)<3
-eSDC = nS and shape(east, any 5440+any 5431+any 4441+any 4432) and hearts(east)<3
+# Calculate West's Rank
+wRS = sS ? 4 : 0
+wRH = sH ? 3 : 0
+wRD = sD ? 2 : 0
+wRC = sC ? 1 : 0
+westRank = sRS + sRH + sRD + sRC
+
+## Type 1:  north opens, east doubles, ...
+
+# East has 3 suits short in North's suit
+eSHD = nC and shape(east, any 5440+any 5431+any 4441+any 4432) and clubs(east)<3
+eSHC = nD and shape(east, any 5440+any 5431+any 4441+any 4432) and diamonds(east)<3
+eSDC = nH and shape(east, any 5440+any 5431+any 4441+any 4432) and hearts(east)<3
 east3suit = (eSHD or eSHC or eSDC)
 
-east1suit = eastRank>northRank and shape(east,any 6xxx+any 5xxx)
+# South/West support partner's suit
+sSup   = (nC and cSouth>2) or (nD and dSouth>2) or (nH and hSouth>2)
+wSup   = (eD and dWest>2) or (eH and hWest>2) or (eS and sWest>2)
 
-nOpens     = (nC or nD or nH) and shape(north,any 55xx+any 54xx+any 44xx) and hcp(north)>11
-eOvercalls = east1suit and hcp(east)>8
-eDoubles   = east3suit and hcp(east)>12 and hcp(east)<16
-sNoSup     = (nC and cSouth <3) or (nD and dSouth<3) or (nH and hSouth<3)
-sNoLen     = (eD and dSouth<4)  or (eH and hSouth<4) or (eS and sSouth<4)
-sDoubles   = sNoSup and sNoLen and shape(south,any 55xx+any 54xx+any 4432) and hcp(south)>5
-sNewSuit   = sNoSup  and shape(south,any 6331+any 6322+any 5332) and southRank>eastRank and hcp(south)>5
-wRaises    = ((eD and dWest>2) or (eH and hWest>2) or (eS and sWest>2)) and hcp(west)>6
+nOpens   = hcp(north)>13 and hcp(north)<15 and (nC or nD or nH)
+eDoubles = hcp(east)>12 and hcp(east)<16 and east3suit
 
+sPasses  = hcp(south)<6 and not sSup
+sNewSuit1= hcp(south)>5 and hcp(south)<10 and (not sSup)  and shape(south,any 6331+any 6322+any 5332) and southRank>northRank
+wRaises  = hcp(west)>5 and hcp(west)<9 and wSup
+wNewSuit = hcp(west)>5 and (not wSup) and shape(west, any 6331+any 6322+any 5332) and westRank<(southRank and northRank)
 
-# North opens, East overcalls, South doubles/bids, and West raises
-nOpens and (eOvercalls or eDoubles) and (sDoubles or sNewSuit) and wRaises
+type1    = (nOpens and eDoubles and (sPasses or sNewSuit1) and (wRaises or wNewSuit))
 
+## Type 2:  north opens, east overcalls, ...
+
+eOvercalls = hcp(east)>8 and hcp(east)<15 and eastRank>northRank and shape(east,any 6331+any 6322+any 5332)
+sNewSuit2 = hcp(south)>5 and (not sSup) and southRank>eastRank
+
+type2 = (nOpens and eOvercalls and (not sSup) and (sPasses or sNewSuit2) and wRaises)
+
+type1 or type2
+
+action
+average "type1" 100 * type1,
+average "type2" 100 * type2,
+
+`,"N",false);
+Script
+
+Button,Good/Bad 2N,\n\
+--- Good/Bad 2 Notrump.  After both sides have bid and there have been 3 or\n\
+more non-passes，and the most recent bid is 2x by RHO，2N is forcing and shows\n\
+a hand that wants to compete to the 3-level.  Bidding directly at the 3-level\n\
+is invitational.\n\
+%GoodBad2N%
