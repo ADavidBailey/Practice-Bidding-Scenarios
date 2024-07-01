@@ -109,7 +109,7 @@ type2 = nOpens and eOvercalls and (sPasses or sNewSuit2) and wRaises and not sSu
 
 ePasses = hcp(east)<6 and shape(east,xxxx-any 8xxx-any 7xxx-any 6xxx)
 sNewSuit3 = hcp(south)>5 and hcp(south)<10 and southRank>northRank and shape(south, any 5xxx)
-wNewSuit2 = hcp(west)>11 and shape(west, any 7xxx+any 6xxx+any 5xxx) and westRank<southRank
+wNewSuit2 = hcp(west)>11 and shape(west, any 7xxx+any 6xxx+any 5xxx) and westRank==(southRank-1)
 
 type3 = nOpens and ePasses and sNewSuit3 and wNewSuit2 and not nSup
 
