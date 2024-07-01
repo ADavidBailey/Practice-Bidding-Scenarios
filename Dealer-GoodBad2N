@@ -3,6 +3,8 @@ setDealerCode(`
 
 # Good/Bad 2N
 
+dealer north
+
 # Calculate Suit Ranks for North, East, South, West
 
 # Predict North's opening suit
@@ -67,22 +69,23 @@ wD = not sS and not sH and dWest>=cWest
 wC = not sS and not sH and not sD
 
 # Calculate West's Rank
-wRS = sS ? 4 : 0
-wRH = sH ? 3 : 0
-wRD = sD ? 2 : 0
-wRC = sC ? 1 : 0
-westRank = sRS + sRH + sRD + sRC
+wRS = wS ? 4 : 0
+wRH = wH ? 3 : 0
+wRD = wD ? 2 : 0
+wRC = wC ? 1 : 0
+westRank = wRS + wRH + wRD + wRC
 
 ## Type 1:  north opens, east doubles, ...
 
-# East has 3 suits short in North's suit
+# Define requirements for East take-out double -- 3 suits short in North's suit
 eSHD = nC and shape(east, any 5440+any 5431+any 4441+any 4432) and clubs(east)<3
 eSHC = nD and shape(east, any 5440+any 5431+any 4441+any 4432) and diamonds(east)<3
 eSDC = nH and shape(east, any 5440+any 5431+any 4441+any 4432) and hearts(east)<3
 east3suit = (eSHD or eSHC or eSDC)
 
-# South/West support partner's suit
+# Define North/South and East/West support
 sSup   = (nC and cSouth>2) or (nD and dSouth>2) or (nH and hSouth>2)
+nSup   = (sD and dNorth>2) or (sH and hNorth>2) or (sS and sNorth>2)
 wSup   = (eD and dWest>2) or (eH and hWest>2) or (eS and sWest>2)
 
 nOpens   = hcp(north)>11 and hcp(north)<15 and (nC or nD or nH)
@@ -91,27 +94,30 @@ eDoubles = hcp(east)>12 and hcp(east)<16 and east3suit
 sPasses  = hcp(south)<6 and not sSup
 sNewSuit1= hcp(south)>5 and hcp(south)<10 and (not sSup)  and shape(south,any 6331+any 6322+any 5332) and southRank>northRank
 wRaises  = hcp(west)>5 and hcp(west)<9 and wSup
-wNewSuit = hcp(west)>5 and (not wSup) and shape(west, any 6331+any 6322+any 5332) and westRank<(southRank and northRank)
+wNewSuit = hcp(west)>5 and shape(west, any 6331+any 6322+any 5332) and westRank<(southRank and northRank) and not wSup 
 
-type1    = (nOpens and eDoubles and (sPasses or sNewSuit1) and (wRaises or wNewSuit))
+type1    = nOpens and eDoubles and (sPasses or sNewSuit1) and (wRaises or wNewSuit)
 
 ## Type 2:  north opens, east overcalls, ...
 
 eOvercalls = hcp(east)>8 and hcp(east)<15 and eastRank>northRank and shape(east,any 6331+any 6322+any 5332)
-sNewSuit2 = hcp(south)>5 and (not sSup) and southRank>eastRank
+sNewSuit2 = hcp(south)>5 and southRank>eastRank and not sSup
 
-type2 = (nOpens and eOvercalls and (not sSup) and (sPasses or sNewSuit2) and wRaises)
+type2 = nOpens and eOvercalls and (sPasses or sNewSuit2) and wRaises and not sSup
 
 ## Type 3:  north opens, east passes, south responds and west competes
 
 ePasses = hcp(east)<6 and shape(east,xxxx-any 8xxx-any 7xxx-any 6xxx)
-sNewSuit3 = hcp(south)>5 and hcp(south)<10 and southRank>northRank
+sNewSuit3 = hcp(south)>5 and hcp(south)<10 and southRank>northRank and shape(south, any 5xxx)
+wNewSuit2 = hcp(west)>11 and shape(west, any 7xxx+any 6xxx+any 5xxx) and westRank<southRank
 
-type3 = nOpens and ePasses and sNewSuit3 and wNewSuit and westRank<southRank
+type3 = nOpens and ePasses and sNewSuit3 and wNewSuit2 and not nSup
 
+# Now do it
 type1 or type2 or type3
 
 action
+
 average "type1" 100 * type1,
 average "type2" 100 * type2,
 average "type3" 100 * type3,
