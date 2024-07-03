@@ -56,7 +56,7 @@ wDs = eD and top4(east,diamonds)>1 and dWest>3
 wCs = eC and top4(east,clubs)>1    and cWest>3
 
 nOpens = hcp(north)>11 and (nS or nH) and not nt
-eBids = shape(east,any 8xxx+any 7xxx) and hcp(east)>7 and hcp(east)<11
+eBids = shape(east,any 6xxx+any 5xxx-any 65xx) and hcp(east)>7 and hcp(east)<11
 sForces = hcp(south)>11
 wRaises = hcp(west)>3 and (wSs or wHs or wDs or wCs)
 
