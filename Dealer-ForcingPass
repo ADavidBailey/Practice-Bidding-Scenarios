@@ -1,0 +1,77 @@
+Script,ForcingPass
+setDealerCode(`
+
+# Forcing Pass
+
+dealer north
+
+# Define NT
+
+nt = hcp(north)>14 and hcp(north)<18 and shape(north,any 4333+any 4432+any 5332-5xxx-x5xx)
+
+# Predict North's opening suit
+sNorth = spades(north)
+hNorth = hearts(north)
+dNorth = diamonds(north)
+cNorth = clubs(north)
+nS = sNorth>4 and sNorth>=hNorth and sNorth>=dNorth and sNorth>=cNorth
+nH = not nS and hNorth>4 and hNorth>=dNorth and hNorth>=cNorth
+nD = not nS and not nH and ((dNorth>3 and dNorth>=cNorth) or cNorth<3)
+nC = not nS and not nH and not nD
+
+# East's longest suit for competing
+sEast = spades(east)
+hEast = hearts(east)
+dEast = diamonds(east)
+cEast = clubs(east)
+eS = sEast>=hEast and sEast>=dEast and sEast>=cEast
+eH = not eS and hEast>=dEast and hEast>=cEast
+eD = not eS and not eH and dEast>=cEast
+eC = not eS and not eH and not eD
+
+# South's longest suit for responding in a new suit at the 1-level
+sSouth = spades(south)
+hSouth = hearts(south)
+dSouth = diamonds(south)
+cSouth = clubs(south)
+sS = sSouth>=hSouth and sSouth>=dSouth and sSouth>=cSouth
+sH = not sS and hSouth>=dSouth and hSouth>=cSouth
+sD = not sS and not sH and dSouth>=cSouth
+sC = not sS and not sH and not sD
+
+# West's longest suit for competing at the 2-level in D, H, or S
+sWest = spades(west)
+hWest = hearts(west)
+dWest = diamonds(west)
+cWest = clubs(west)
+wS = sWest>=hWest and sWest>=dWest and sWest>=cWest
+wH = not sS and hWest>=dWest and hWest>=cWest
+wD = not sS and not sH and dWest>=cWest
+wC = not sS and not sH and not sD
+
+#West has support for East's longest suit
+wSs = eS and sWest>3
+wHs = eH and hWest>3
+wDs = eD and dWest>3
+wCs = eC and cWest>3
+
+nOpens = hcp(north)>11 and not nt
+eBids = shape(east,any 6xxx+any 5xxx-any 65xx) and hcp(east)>8 and hcp(east)<11
+sForces = hcp(south)>11
+wRaises = hcp(west)>6 and (wSs or wHs or wDs or wCs)
+
+nOpens and eBids and sForces and wRaises and (hcp(north) + hcp(south))>23
+
+action
+
+average "HCP N" hcp(north),
+average "HCP E" hcp(east),
+average "HCP S" hcp(south),
+average "HCP W" hcp(west),
+
+
+--- Forcing Pass,\n\
+Forcing Pass:  When we are in and invitational or better auction and an opponent intervenes, a pass is\n\
+forcing.  It shows interest in continuing -- extra offensive values.  A double denies extra offensive\n\
+values.  Pass and and then pulling partner's double is stronger that bidding directly.\n\
+%ForcingPass%
