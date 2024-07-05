@@ -80,10 +80,11 @@ nOpens and eBids and sForces and wRaises and (hcp(north) + hcp(south))>25
 
 action
 
-average "HCP N" hcp(north),
-average "HCP E" hcp(east),
-average "HCP S" hcp(south),
-average "HCP W" hcp(west),
+average "HCP N  " hcp(north),
+average "HCP E  " hcp(east),
+average "HCP S  " hcp(south),
+average "HCP W  " hcp(west),
+average "HCP N/S" hcp(north) + hcp(south),
 
 `,"N",true);
 Script
