@@ -66,10 +66,10 @@ wD = not sS and not sH and dWest>=cWest
 wC = not sS and not sH and not sD
 
 #West has support for East's longest suit
-wSs = eS and top4(east,spades)>1   and sWest>3
-wHs = eH and top4(east,hearts)>1   and hWest>3
-wDs = eD and top4(east,diamonds)>1 and dWest>3
-wCs = eC and top4(east,clubs)>1    and cWest>3
+wSs = eS and top3(east,spades)>1   and sWest>3
+wHs = eH and top3(east,hearts)>1   and hWest>3
+wDs = eD and top3(east,diamonds)>1 and dWest>3
+wCs = eC and top3(east,clubs)>1    and cWest>3
 
 nOpens = hcp(north)>11 and not nt and (nC or nD or nH)
 eBids1 = eastRank>northRank and hcp(east)>5 and hcp(east)<11 and shape(east,any 51xx)
