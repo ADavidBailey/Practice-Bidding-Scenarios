@@ -47,6 +47,7 @@ P:\dealer P:\dlr\Gavin-Transfers-after-2N-Rebid-Unb-N.dlr -s=3399830439 >P:\pbn\
 P:\dealer P:\dlr\Dealer-Two-Way-Game-Try-S.dlr -s=1000028760 >P:\pbn\Dealer-Two-Way-Game-Try-S.pbn
 P:\dealer P:\dlr\Dealer-SCS-1C-54-Resp-S.dlr -s=2512449319 >P:\pbn\Dealer-SCS-1C-54-Resp-S.pbn
 P:\dealer P:\dlr\Dealer-Serious-N.dlr -s=2610685915 >P:\pbn\Dealer-Serious-N.pbn
+P:\dealer P:\dlr\Dealer-5422-NT-S.dlr -s=1793479923 >P:\pbn\Dealer-5422-NT-S.pbn
 P:\dealer P:\dlr\Dealer-XYZ-S.dlr -s=1559081914 >P:\pbn\Dealer-XYZ-S.pbn
 P:\dealer P:\dlr\Gavin-4-card-Limit-Raise-N.dlr -s=3318500597 >P:\pbn\Gavin-4-card-Limit-Raise-N.pbn
 P:\dealer P:\dlr\Dealer-Opps-Takeout-X-S.dlr -s=1733112336 >P:\pbn\Dealer-Opps-Takeout-X-S.pbn
