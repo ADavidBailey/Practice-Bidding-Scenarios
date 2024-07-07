@@ -9,13 +9,13 @@ produce 1000
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
 
 # South passes
-sPasses = shape(south,xxxx-any 9xxx-any 8xxx-any 7xxx-any 6xxx-any 65xx-any 55xx) and hcp(south)>9 and hcp(south)<12
+sPasses = shape(south,xxxx-any 8xxx-any 7xxx-any 6xxx-any 65xx-any 55xx) and hcp(south)>9 and hcp(south)<12 and controls(north)<5
 
 # Define North's opening major
 nt =  hcp(north)>14 and hcp(north)<18 and shape(north,any 4333+any 4432+any 5332)
 nSpades = spades(north)>4 and hearts(north)<5 and spades(south)>2
 nHearts = hearts(north)>4 and spades(north)<5 and hearts(south)>2
-nMajor  = (nSpades or nHearts) and not nt
+nMajor  = (nSpades or nHearts) and not nt and shape(south,xxxx-5xxx-x5xx-any 6xxx)
 
 nOpens = nMajor and hcp(north)>11 and hcp(north)<20 and shape(north,any 6xxx+any 5xxx-any 65xx-any 55xx)
 
