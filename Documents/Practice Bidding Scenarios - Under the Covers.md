@@ -151,6 +151,16 @@ This program reads all files in the pbn-rotated-for-4-players folder and creates
 
     python3 PBNtoLIN.py
 
+### mix4.py
+
+This program creates a mixed 16-deal set of boards -- 4 boards from each of 4 scenarios.  This example has boards from Drury, Smolen, FourthSuitForcing, and Jacoby-2N.  It's in .lin format; so, you can import it into your BBO/Account/Deal archive.  Then, you can use it at a Bidding/Teaching Table -- Deal source/Use saved deals.
+
+The program picks a random starting point; so, each time it's run you should get a different set of deals.
+
+[CTRL-Click here to see -mixed.lin](<https://tinyurl.com/MixedLin>)
+
+I'm still working on a UI where users can create their own mixed deal set.
+
 ## Acknowledgements
 
 I've had a lot of help with this project.
