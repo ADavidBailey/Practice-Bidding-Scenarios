@@ -4,10 +4,13 @@ setDealerCode(
 # Smolen
 dealer south
 
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
+
 shape(south, 23xx+32xx+33xx-xxx1-xx1x-xx6x-xxx6) &&
 hcp(south) >=15 && hcp(south)<=17 &&
 shape(north, 54xx+45xx) &&
-hcp(north) > 9
+hcp(north) > 9 &&
+calmOpps
 
 `, "S", true);
 Script
