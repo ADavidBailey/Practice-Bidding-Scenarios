@@ -10,9 +10,9 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Scr
 
 # South passes
 sShape    = shape(south,xxxx-5xxx-x5xx-any 8xxx-any 7xxx-any 6xxx-any 65xx-any 55xx)
-sDiamonds = top3(south,diamonds)<2 and top5(south,diamonds)<3
-sClubs    = top3(south,clubs)<2  and top5(south,clubs)<3 
-sMinors   = (sDiamonds or sClubs)
+sDiamonds = hcp(south,diamonds)<4 and top5(south,diamonds)<3
+sClubs    = hcp(south,clubs)<4    and top5(south,clubs)<3
+sMinors   = (sDiamonds and sClubs)
 sPasses   = sShape and sMinors and hcp(south)>9 and hcp(south)<12 and controls(south)<5
 
 # Define North's opening major
