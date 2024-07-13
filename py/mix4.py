@@ -42,21 +42,21 @@ boards[0] = renumber(boards1[r + 0], 1)  # North from 1st scenario
 boards[1] = renumber(boards2[r + 1], 2)  # East  from 2nd scenario
 boards[2] = renumber(boards3[r + 2], 3)  # South from 4th scenario
 boards[3] = renumber(boards4[r + 3], 4)  # West  from 3rd scenario
-r = r + 1
+r = r + 1  # First Dealer is East
 boards[4] = renumber(boards2[r + 3], 5)
-boards[5] = renumber(boards3[r + 4], 6)
-boards[6] = renumber(boards4[r + 5], 7)
-boards[7] = renumber(boards1[r + 6], 8)
-r = r + 1
+boards[5] = renumber(boards3[r + 0], 6)
+boards[6] = renumber(boards4[r + 1], 7)
+boards[7] = renumber(boards1[r + 2], 8)
+r = r + 1  # First Dealer is South
 boards[8] = renumber(boards3[r + 2], 9)
 boards[9] = renumber(boards4[r + 3], 10)
-boards[10] = renumber(boards1[r + 4], 11)
-boards[11] = renumber(boards2[r + 5], 12)
-r = r + 1
+boards[10] = renumber(boards1[r + 0], 11)
+boards[11] = renumber(boards2[r + 1], 12)
+r = r + 1 # First  Dealer is West
 boards[12] = renumber(boards4[r + 1], 13)
 boards[13] = renumber(boards1[r + 2], 14)
 boards[14] = renumber(boards2[r + 3], 15)
-boards[15] = renumber(boards3[r + 4], 16)
+boards[15] = renumber(boards3[r + 0], 16)
 
 with open(os.path.join(LIN_ROTATED, out_filename), 'w') as out_filename:
     # Join the processed lines back into a single string
