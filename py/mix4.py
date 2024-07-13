@@ -18,9 +18,6 @@ lin_filename4 = "Dealer-Jacoby-2N-S.lin"
 out_filename  = "-mixed.lin"
 LIN_ROTATED   = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios/lin-rotated-for-4-players/")
 
-r = (random.randint(0, 123) * 4)
-print(r)
-
 # get all deals for selected scenarios and split into separate strings
 with open(os.path.join(LIN_ROTATED, lin_filename1), 'r') as file1:
     content = file1.read()
@@ -35,27 +32,31 @@ with open(os.path.join(LIN_ROTATED, lin_filename4), 'r') as file4:
     content = file4.read()
     boards4 = content.strip().split('\n')
 
+# get random starting point
+r = (random.randint(0, 123) * 4)
+print(r)
+
 # get four 4-board sets with one deal from each scenario (Dealer NESW)
 boards = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-boards[0] = renumber(boards1[r], 1)    # North from 1st scenario
-boards[1] = renumber(boards2[r+1], 2)  # East  from 2nd scenario
-boards[2] = renumber(boards3[r+2], 3)  # West  from 4th scenario
-boards[3] = renumber(boards4[r+3], 4)  # South from 3rd scenario
+boards[0] = renumber(boards1[r + 0], 1)  # North from 1st scenario
+boards[1] = renumber(boards2[r + 1], 2)  # East  from 2nd scenario
+boards[2] = renumber(boards3[r + 2], 3)  # South from 4th scenario
+boards[3] = renumber(boards4[r + 3], 4)  # West  from 3rd scenario
 r = r + 1
-boards[4] = renumber(boards4[r+3], 5)
-boards[5] = renumber(boards1[r], 6)
-boards[6] = renumber(boards2[r+1], 7)
-boards[7] = renumber(boards3[r+2], 8)
+boards[4] = renumber(boards2[r + 3], 5)
+boards[5] = renumber(boards3[r + 4], 6)
+boards[6] = renumber(boards4[r + 5], 7)
+boards[7] = renumber(boards1[r + 6], 8)
 r = r + 1
-boards[8] = renumber(boards3[r+2], 9)
-boards[9] = renumber(boards4[r+3], 10)
-boards[10] = renumber(boards1[r], 11)
-boards[11] = renumber(boards2[r+1], 12)
+boards[8] = renumber(boards3[r + 2], 9)
+boards[9] = renumber(boards4[r + 3], 10)
+boards[10] = renumber(boards1[r + 4], 11)
+boards[11] = renumber(boards2[r + 5], 12)
 r = r + 1
-boards[12] = renumber(boards2[r+1], 13)
-boards[13] = renumber(boards3[r+2], 14)
-boards[14] = renumber(boards4[r+3], 15)
-boards[15] = renumber(boards1[r], 16)
+boards[12] = renumber(boards4[r + 1], 13)
+boards[13] = renumber(boards1[r + 2], 14)
+boards[14] = renumber(boards2[r + 3], 15)
+boards[15] = renumber(boards3[r + 4], 16)
 
 with open(os.path.join(LIN_ROTATED, out_filename), 'w') as out_filename:
     # Join the processed lines back into a single string
