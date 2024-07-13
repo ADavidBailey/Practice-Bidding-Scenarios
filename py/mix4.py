@@ -13,7 +13,7 @@ def renumber(board, board_number):
 
 lin_filename1 = "Dealer-Drury-S.lin"
 lin_filename2 = "Dealer-Smolen-S.lin"
-lin_filename3 = "Dealer-FourthSuitForcing-S.lin"
+lin_filename3 = "Dealer-Trap-Pass-N.lin"
 lin_filename4 = "Dealer-Jacoby-2N-S.lin"
 out_filename  = "-mixed.lin"
 LIN_ROTATED   = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios/lin-rotated-for-4-players/")
@@ -22,18 +22,27 @@ LIN_ROTATED   = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenario
 with open(os.path.join(LIN_ROTATED, lin_filename1), 'r') as file1:
     content = file1.read()
     boards1 = content.strip().split('\n')
+    len1 = len(boards1)
 with open(os.path.join(LIN_ROTATED, lin_filename2), 'r') as file2:
     content = file2.read()
     boards2 = content.strip().split('\n')
+    len2 = len(boards2)
 with open(os.path.join(LIN_ROTATED, lin_filename3), 'r') as file3:
     content = file3.read()
     boards3 = content.strip().split('\n')
+    len3 = len(boards3)
+    print(len3)
 with open(os.path.join(LIN_ROTATED, lin_filename4), 'r') as file4:
     content = file4.read()
     boards4 = content.strip().split('\n')
+    len4 = len(boards4)
 
-# get random starting point
-r = (random.randint(0, 123) * 4)
+# get the upper limit for random starting point
+maxR = divmod(min(len1,len2,len3,len4), 4)[0] - 2
+print(maxR)
+
+# get random starting point & don't exceed the length of the smallest file
+r = random.randint(0, maxR)
 print(r)
 
 # get four 4-board sets with one deal from each scenario (Dealer NESW)
