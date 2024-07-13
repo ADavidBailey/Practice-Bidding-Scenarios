@@ -31,7 +31,6 @@ with open(os.path.join(LIN_ROTATED, lin_filename3), 'r') as file3:
     content = file3.read()
     boards3 = content.strip().split('\n')
     len3 = len(boards3)
-    print(len3)
 with open(os.path.join(LIN_ROTATED, lin_filename4), 'r') as file4:
     content = file4.read()
     boards4 = content.strip().split('\n')
@@ -39,33 +38,32 @@ with open(os.path.join(LIN_ROTATED, lin_filename4), 'r') as file4:
 
 # get the upper limit for random starting point
 maxR = divmod(min(len1,len2,len3,len4), 4)[0] - 2
-print(maxR)
 
 # get random starting point & don't exceed the length of the smallest file
-r = random.randint(0, maxR)
+r = random.randint(0, maxR) * 4
 print(r)
 
 # get four 4-board sets with one deal from each scenario (Dealer NESW)
-boards = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-boards[0] = renumber(boards1[r + 0], 1)  # North from 1st scenario
-boards[1] = renumber(boards2[r + 1], 2)  # East  from 2nd scenario
-boards[2] = renumber(boards3[r + 2], 3)  # South from 4th scenario
-boards[3] = renumber(boards4[r + 3], 4)  # West  from 3rd scenario
+boards = []
+boards.append(renumber(boards1[r + 0], 1))  # North from 1st scenario
+boards.append(renumber(boards2[r + 1], 2))  # East  from 2nd scenario
+boards.append(renumber(boards3[r + 2], 3))  # South from 4th scenario
+boards.append(renumber(boards4[r + 3], 4))  # West  from 3rd scenario
 r = r + 1  # First Dealer is East
-boards[4] = renumber(boards2[r + 3], 5)
-boards[5] = renumber(boards3[r + 0], 6)
-boards[6] = renumber(boards4[r + 1], 7)
-boards[7] = renumber(boards1[r + 2], 8)
+boards.append(renumber(boards2[r + 3], 5))
+boards.append(renumber(boards3[r + 0], 6))
+boards.append(renumber(boards4[r + 1], 7))
+boards.append(renumber(boards1[r + 2], 8))
 r = r + 1  # First Dealer is South
-boards[8] = renumber(boards3[r + 2], 9)
-boards[9] = renumber(boards4[r + 3], 10)
-boards[10] = renumber(boards1[r + 0], 11)
-boards[11] = renumber(boards2[r + 1], 12)
+boards.append(renumber(boards3[r + 2], 9))
+boards.append(renumber(boards4[r + 3], 10))
+boards.append(renumber(boards1[r + 0], 11))
+boards.append(renumber(boards2[r + 1], 12))
 r = r + 1 # First  Dealer is West
-boards[12] = renumber(boards4[r + 1], 13)
-boards[13] = renumber(boards1[r + 2], 14)
-boards[14] = renumber(boards2[r + 3], 15)
-boards[15] = renumber(boards3[r + 0], 16)
+boards.append(renumber(boards4[r + 1], 13))
+boards.append(renumber(boards1[r + 2], 14))
+boards.append(renumber(boards2[r + 3], 15))
+boards.append(renumber(boards3[r + 0], 16))
 
 with open(os.path.join(LIN_ROTATED, out_filename), 'w') as out_filename:
     # Join the processed lines back into a single string
