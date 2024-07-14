@@ -1,0 +1,21 @@
+## Imported Good-Suits-South
+
+# Define Good suits -- 5+ cards with 2 of the top 3
+gS = spades(south)>4 and top3(south,spades)>1
+gH = hearts(south)>4 and top3(south,hearts)>1
+gD = diamonds(south)>4 and top3(south,diamonds)>1
+gC = clubs(south)>4 and top3(south,clubs)>1
+
+# Define Rebiddable suits -- 5+ cards with 3 of the top 4
+rS = spades(south)>4 and top4(south,spades)>2
+rH = hearts(south)>4 and top4(south,hearts)>2
+rD = diamonds(south)>4 and top4(south,diamonds)>2
+rC = clubs(south)>4 and top4(south,clubs)>2
+
+# Define Solid suits -- 5 cards with 4 of the top 4 or 6+ cards with 3 of the top 3gS = spades(south)>4 and top3(south,spades)>1
+sS = (spades(south)==5 and top4(south,spades)==4) or (spades(south)>5 and top3(south,spades)==3)
+sH = (hearts(south)==5 and top4(south,hearts)==4)or (heart(south)>5 and top3(south,hearts)==3)
+sD = (diamonds(south)==5 and top4(south,diamonds)==4) or (diamonds(south)>5 and top3(south,diamonds)==3)
+sC = (clubs(south)==5 and top4(south,clubs)==4) or (clubs(south)>5 and top3(south,clubs)==3)
+
+## End of Good-Suits-South

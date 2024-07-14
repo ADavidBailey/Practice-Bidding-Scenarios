@@ -1,0 +1,21 @@
+Script,Gambling3N
+setDealerCode(
+`
+produce 100
+dealer south
+
+# Gambling 3N
+hcp(south)>8 and hcp(south)<12  // could have a Q or two J's outside
+and
+(
+(top3(south,diamonds)==3 and diamonds(south)>6)
+or
+(top3(south,clubs)==3 and clubs(south)>6)
+)
+
+`
+,"S",true)
+Script
+Button,Gambling 3N,Gambling 3N\n\
+A gambling 3N opening bid shows a solid 7+-card minor suit and less than a K outside.\n\
+%Gambling3N%

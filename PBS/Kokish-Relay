@@ -1,0 +1,30 @@
+Script,KokishRelay
+setDealerCode(
+`
+# Kokish Relay
+dealer south
+
+# South opens 2
+hcp(south)>21 and hcp(south)<28
+
+# North bid 2D, waiting
+and hcp(north)<8
+
+# South bids, 2H relay to 2S showing unbal w/5+H and 4 on the side
+and (hcp(south)>24 or (heart(south)>4 and shape(south,any 74xx +any 64xx +any 54xx)))
+
+`
+, "S", true);
+Script
+
+Button,Kokish Relay,\n\
+--- Kokish Relay\n\
+After the sequence 2!C - 2!D - 2!H\n\
+showing 22+ unbal with 5+H or 25-27 balanced GF\n\
+and forcing partner to accept the relay to 2!S.  Then\n\
+2N = 25+ Balanced game forcing\n\
+3!C = 5+!H and !C\n\
+3!D = 5+!H and !D\n\
+3!H = 6+!H\n\
+3!S = 5+!H and !S\n\
+%KokishRelay%

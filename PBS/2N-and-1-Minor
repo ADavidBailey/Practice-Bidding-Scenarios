@@ -1,0 +1,42 @@
+Script,TwoNTandOneMinor
+setDealerCode(`
+
+# Dealer 2N and 1-Minor
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
+
+### NORTH ###
+# Calculate strength for North -- hcp plus 1 for every card over 4 in any suit 
+nlp1 = spades(north)>4 ? spades(north)-4 : 0
+nlp2 = hearts(north)>4 ? hearts(north)-4 : 0
+nlp3 = diamonds(north)>4 ? diamonds(north)-4 : 0
+nlp4 = clubs(north)>4 ? clubs(north)-4 : 0
+strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
+
+oneMinor = clubs(north)>5 or diamonds(north)>5
+
+game = strength>=6 and strength<=11
+slam = strength>=12
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
+
+levSlam = slam and keep
+levGame = game and keep86
+levelTheCode = levSlam or levGame
+
+### Do it ###
+twoNT and oneMinor and (ntPoints + strength)>29
+and levelTheCode
+
+### Generate Statistics
+
+action
+average "Game         " 100 * game,
+average "Slam         " 100 * slam,
+
+`,"S",true)
+Script
+Button,2 NT and 1 Minor,\n\
+---  20-21 Notrump and one Minor-suit.  The responder's hand is\n\
+leveled to make game or slam at about the same frequency.\n\
+%TwoNTandOneMinor%

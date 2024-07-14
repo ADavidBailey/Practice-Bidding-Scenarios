@@ -1,0 +1,26 @@
+Script,namyatS
+setDealerCode(
+`
+
+# namyatS
+dealer south
+
+# Define A/K/AK
+akS = top2(south,spades)>0 and spades(south)>1
+akH = top2(south,hearts)>0 and hearts(south)>1
+akD = top2(south,diamonds)>0 and diamonds(south)>1
+akC = top2(south,clubs)>0 and clubs(south)>1
+
+# Define H & S suits suitable for 4-level preempt with As/Ks outside
+Gs = spades(south)>6 and top5(south,spades)>3 and (akH or akD or akC)
+Gh = hearts(south)>6 and top5(south,hearts)>3 and (akS or akD or akC)
+
+(Gs or Gh) and loser(south)<5 and hcp(south)<20
+
+`
+, "S", true);
+Script
+Button,namyatS - Strong,--- namyatS - Strong\n\
+4!C = 7+ strong !H and 8+ tricks w/outside A/K and a short suit\n\
+4!D = 7+ strong !S  and 8+ tricks w/outside A/K and a short\n\
+%namyatS%

@@ -1,0 +1,63 @@
+Script,MixedRaiseInComp
+setDealerCode(
+`
+dealer west
+
+##### Imported Script: Define Calm Opponents #####
+
+# Avoid concentration of values
+cce = top4(east,clubs)<2
+cde = top4(east,diamonds)<2
+che = top4(east,hearts)<2
+cse = top4(east,spades)<2
+noConEast = cce and cde and che and cse
+
+ccw = top4(west,clubs)<2
+cdw = top4(west,diamonds)<2
+chw = top4(west,hearts)<2
+csw = top4(west,spades)<2
+noConWest = ccw and cdw and chw and csw
+
+unbalEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+
+balEast   = shape(east,any 4333 +any 4432)
+balWest   = shape(west,any 4333 +any 4432)
+
+calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<12)
+calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<12)
+calmOpps = calmEast and calmWest
+
+##### End of Imported Script: Define Calm Opponents #####
+
+# West opens 1C, 1D, 1H
+wSpades = spades(west)<5
+wRange = hcp(west)>11 and hcp(west)<15
+wOpens = wRange and wSpades
+
+
+# North overcalls 1H or 1S, South has 6-10 HCP and 4-Card Support 
+
+nSpades = spades(north)>4 and spades(south)>3 and hcp(north,spades)>4
+nHearts = hearts(north)>4 and hearts(south)>3 and hcp(north,hearts)>4
+nShape  = shape(north,xxxx-any 76xx-any 75xx- any 65xx- any 55xx)  // Kill the 2-suited hands
+sShape  = shape(south,xxxx-any 4333)
+nRange = hcp(north)>9 and hcp(north)<18
+sRange = hcp(south)>6 and hcp(south)<11
+nOvercalls = (nSpades or nHearts) and nShape and sShape and nRange and sRange
+
+wOpens and nOvercalls and calmEast
+
+produce 1000
+action
+average "N/S Spades" 100 * nSpades,
+average "N/S Hearts" 100 * nHearts,
+
+`,"W",true)
+Script
+Button,Mixed Raise in Comp,\n\
+---  Opponents open 1C/1D/1H.  We overcall one 1H/1S. Partner has 4-Card Support and makes a mixed raise.\n\
+%MixedRaiseInComp%
+
+
+

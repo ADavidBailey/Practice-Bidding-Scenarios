@@ -1,0 +1,51 @@
+Script,TwoNTand3C
+setDealerCode(`
+
+### 2NT and 3C Response
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
+
+### NORTH Constraints ###
+# Calculate strength for North -- hcp plus 1 for every card over 4 in any suit 
+nlp1 = spades(north)>4 ? spades(north)-4 : 0
+nlp2 = hearts(north)>4 ? hearts(north)-4 : 0
+nlp3 = diamonds(north)>4 ? diamonds(north)-4 : 0
+nlp4 = clubs(north)>4 ? clubs(north)-4 : 0
+strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
+
+# Define responder's hand types
+smolen   = shape(north,54xx+45xx-any 7xxx-any 6xxx-any 55xx)       and strength>4
+stayman  = shape(north,44xx+4xxx+x4xx-54xx-45xx-any 7xxx-any 6xxx) and strength>4 and not smolen
+puppet   = shape(north,4xxx+3xxx+x4xx+x3xx-any 6xxx -any 5xxx)     and strength>4 and not (smolen or stayman)
+
+partscore = strength<4
+game = strength>3 and strength<12
+slam = strength>11
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
+
+levSmolen  = smolen  and keep
+levPuppet  = puppet  and keep86
+levStayman = stayman and keep06
+levGame    = game    and keep14
+levSlam    = slam    and keep
+ 
+### Do it ###
+twoNT and (levSmolen or levPuppet or levStayman) and (levGame or levSlam)
+
+### Generate Statistics ###
+produce 5000
+action
+#printoneline,
+average "Smolen       " 100 * smolen,
+average "Stayman      " 100 * stayman,
+average "Puppet       " 100 * puppet,
+average "Game         " 100 * game,
+average "Slam         " 100 * slam,
+
+`,"S",true)
+Script
+Button,2 NT and 3C Response,\n\
+---  20-21 Notrump and a Stayman or Puppet Stayman response.  The responder's hand is leveled to\n\
+make game or slam at about the same frequency.\n\
+%TwoNTand3C%

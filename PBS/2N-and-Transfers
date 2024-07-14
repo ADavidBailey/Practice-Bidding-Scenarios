@@ -1,0 +1,48 @@
+Script,TwoNTandXfer
+setDealerCode(`
+
+### 2N and Transfers ###
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
+
+### NORTH Constraints ###
+# Calculate strength for North -- hcp plus 1 for every card over 4 in any suit 
+nlp1 = spades(north)>4 ? spades(north)-4 : 0
+nlp2 = hearts(north)>4 ? hearts(north)-4 : 0
+nlp3 = diamonds(north)>4 ? diamonds(north)-4 : 0
+nlp4 = clubs(north)>4 ? clubs(north)-4 : 0
+strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
+
+jacoby = shape(north,5xxx+x5xx-any 6xxx- any 55xx)
+texas  = shape(north,6xxx+x6xx-any 65xx-any 55xx)
+
+game = strength>4 and strength<12
+slam = strength>11
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
+
+levJacoby = jacoby and keep44
+levTexas  = texas  and keep
+levGame   = game   and keep19
+levSlam   = slam   and keep
+
+### Do it ###
+twoNT and (levJacoby or levTexas) and (levGame or levSlam)
+
+### Generate Statistics
+produce 5000
+action
+#printoneline,
+
+average "Jacoby       " 100 * jacoby,
+average "Texas        " 100 * texas,
+average "Game         " 100 * game,
+average "Slam         " 100 * slam,
+
+
+`,"S",true)
+Script
+Button,2 NT and Jacoby/Texas,\n\
+---  20-21 Notrump and a Jacoby or Texas Transfer response.  The responder's hand is\n\
+leveled to make Jacoby or Texas Transfer AND game or slam at about the same frequency.\n\
+%TwoNTandXfer%
