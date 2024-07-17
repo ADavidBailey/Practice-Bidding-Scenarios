@@ -1,0 +1,21 @@
+# Texas_or_Jacoby
+generate 100000000
+produce 500
+dealer north
+
+
+# Stayman or Jacoby
+
+# North has Robot 1 Notrump Opening
+n1N = shape(north, any 4333 +any 4432 +any 5332) and hcp(north)>14 and hcp(north)<18
+
+# South has a 5+card major w/o 4 in other major and (no slam interest or intending to RKC)
+sS = shape(south,7xxx+6xxx+5xxx) and hearts(south)<4   // avoid Smolen
+sH = shape(south,x7xx+x6xx+x5xx) and spades(south)<4
+sM = (sS or sH)
+
+# North has Robot 1 Notrump Opening and South Transfers
+n1N and sM
+
+
+action printpbn

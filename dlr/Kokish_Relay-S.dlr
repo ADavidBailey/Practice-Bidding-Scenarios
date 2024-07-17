@@ -1,0 +1,18 @@
+# Kokish_Relay
+generate 100000000
+produce 500
+dealer south
+
+# Kokish Relay
+
+# South opens 2
+hcp(south)>21 and hcp(south)<28
+
+# North bid 2D, waiting
+and hcp(north)<8
+
+# South bids, 2H relay to 2S showing unbal w/5+H and 4 on the side
+and (hcp(south)>24 or (heart(south)>4 and shape(south,any 74xx +any 64xx +any 54xx)))
+
+
+action printpbn

@@ -1,0 +1,71 @@
+# Trap_Pass
+generate 100000000
+produce 500
+dealer north
+
+
+
+# Determine North's opening bid
+sN = spades(north)
+hN = hearts(north)
+dN = diamonds(north)
+cN = clubs(north)
+nS = sN>4 and sN>=hN and sN>=dN and sN>=cN
+nH = not nS and hN>4 and hN>=dN and hN>=cN
+nD = not nS and not nH and ((dN>3 and dN>=cN) or cN<3)
+nC = not nS and not nH and not nD
+
+# Calculate North's Rank
+nRS = nS ? 4 : 0
+nRH = nH ? 3 : 0
+nRD = nD ? 2 : 0
+nRC = nC ? 1 : 0
+northRank = nRS+nRH+nRD+nRC   // all except one are zero
+
+# Determine East's longest suit
+sE = spades(east)
+hE = hearts(east)
+dE = diamonds(east)
+cE = clubs(east)
+eS = sE>=hE and sE>=dE and sE>=cE
+eH = not eS and hE>=dE and hE>=cE
+eD = not eS and not eH and dE>=cE
+eC = not eS and not eH and not eD
+
+# Calculate East's Rank
+eRS = eS ? 4 : 0
+eRH = eH ? 3 : 0
+eRD = eD ? 2 : 0
+eRC = eC ? 1 : 0
+eastRank = eRS+eRH+eRD+eRC   // all except one are zero
+
+rankOK = eastRank<northRank
+
+# South does not have a fit with North and East is NOT short in North's suit
+n1S = nS and spades(south)<3   and spades(east)>2
+n1H = nH and hearts(south)<3   and hearts(east)>2
+n1D = nD and diamonds(south)<3 and diamonds(east)>2
+n1C = nC and clubs(south)<3    and clubs(east)>2
+
+# East has a good suit and South has a stack
+e1S = eS and top3(east,spades)==2   and spades(south)==5   and top5(south,spades)==3
+e1H = eH and top3(east,hearts)==2   and hearts(south)==5   and top5(south,hearts)==3
+e1D = eD and top3(east,diamonds)==2 and diamonds(south)==5 and top5(south,diamonds)==3
+e1C = eC and top3(east,clubs)==2    and clubs(south)==5    and top5(south,clubs)==3
+
+# North opens, east overcalls, south is strong w/stack
+nOpens = hcp(north)>11 and (n1S or n1H or n1D or n1C) and shape(north,any 0xxx+any 1xxx)
+eOvercalls = (e1S or e1H or e1D or e1C) and hcp(east)>10 and hcp(east)<15 and shape(east,any 5xxx) and rankOK
+sTraps = hcp(south)>9
+wQuiet = shape(west,xxxx-any 7xxx -any 6xxx) and hcp(west)<9
+
+nOpens and eOvercalls and sTraps and wQuiet
+
+action
+average "1 Club   " 100 * n1C,
+average "1 Diamond" 100 * n1D,
+average "1 Heart  " 100 * n1H,
+average "1 Spade  " 100 * n1S,
+
+
+printpbn

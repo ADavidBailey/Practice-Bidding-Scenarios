@@ -1,0 +1,19 @@
+# SCS_1C_3-Suit_Resp_5-7
+generate 100000000
+produce 500
+dealer south
+
+
+# Strong Club System: 1C & 3 suited response
+
+# South has 15+
+hcp(south)>14
+
+# North has 5-7 HCP
+and hcp(north)>4 and hcp(north)<8
+
+# North has specific shapes
+and shape(north, any 4441 + any 5440)
+
+
+action printpbn
