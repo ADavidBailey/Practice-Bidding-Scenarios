@@ -7,11 +7,9 @@ import argparse
 parser = argparse.ArgumentParser(description="Extract dealer code")
 parser.add_argument("--generate", type=int, default=100000000, help="Number to generate")
 parser.add_argument("--produce", type=int, default=500, help="Number to produce")
-#parser.add_argument("--nodealer", type=bool, default=False, help="Ignore dealer code")
 args = parser.parse_args()
 generate = args.generate
 produce = args.produce
-#nodealer = args.nodealer
 print("generating " + str(generate))
 print("producing  " + str(produce))
 
@@ -25,14 +23,6 @@ pattern = r'`(.*?)`'
 
 # Function to find and process text enclosed in backticks and save to a .dlr file
 
-#def calculate_seed(input):
-#    # Calculate the SHA-256 hash
-#    hash_object = hashlib.sha256(input.encode())
-#    hash_bytes = hash_object.digest()
-
-#    # Convert the first 4 bytes of the hash to an integer and take modulus
-#    hash_integer = int.from_bytes(hash_bytes[:4], byteorder='big') % (2**32 - 1)
-#    return hash_integer
 
 def extract_text_in_backticks(file_path):
     with open(file_path, 'r') as file:
@@ -58,7 +48,7 @@ def extract_text_in_backticks(file_path):
             # Process the extracted text
             processed_text = process_extracted_text(match, dealer)
             
-            output_file_path = os.path.splitext(os.path.basename(file_path))[0].replace(" ", "-").replace("(", "").replace(")", "").replace("&", "and").replace("+", "_") + suffix
+            output_file_path = os.path.splitext(os.path.basename(file_path))[0] + suffix  #.replace(" ", "-").replace("(", "").replace(")", "").replace("&", "and").replace("+", "_") + suffix
             output_file_path = os.path.join(PBS + '/dlr', output_file_path).replace('\\', '/')
             print(output_file_path)
             with open(output_file_path, 'w') as output_file:
@@ -126,10 +116,12 @@ def process_extracted_text(extracted_text, dealer):
 
 # List all files in the directory
 n_files = 0
-for filename in os.listdir(PBS):
-    file_path = os.path.join(PBS, filename)
+input_filepath = os.path.join(PBS + '/PBS/')
+for filename in os.listdir(input_filepath):
+    file_path = os.path.join(input_filepath, filename)
+    
     # Check if it's a file
-    if os.path.isfile(file_path) and (filename.startswith('Dealer') or filename.startswith('Gavin') or (filename.startswith('Basic'))):
+    if os.path.isfile(file_path) and not file_path.endswith('.DS_Store'):
         extract_text_in_backticks(file_path)
         n_files = n_files + 1
 print("number of .dlr files = " + str(n_files))
