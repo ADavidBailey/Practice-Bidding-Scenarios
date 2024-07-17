@@ -11,10 +11,10 @@ def renumber(board, board_number):
     part_3 = board_txt + '|sv|' +'onebneboebonbone'[board_number-1] + '|pg||'
     return(part_1 + part_2 + part_3)
 
-lin_filename1 = "Dealer-Drury-S.lin"
-lin_filename2 = "Dealer-Smolen-S.lin"
-lin_filename3 = "Dealer-Trap-Pass-N.lin"
-lin_filename4 = "Dealer-Jacoby-2N-S.lin"
+lin_filename1 = "Drury-S.lin"
+lin_filename2 = "Smolen-S.lin"
+lin_filename3 = "Trap_Pass-N.lin"
+lin_filename4 = "Jacoby_2N-S.lin"
 out_filename  = "-mixed.lin"
 LIN_ROTATED   = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios/lin-rotated-for-4-players/")
 
