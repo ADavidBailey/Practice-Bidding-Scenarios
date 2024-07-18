@@ -1,10 +1,10 @@
 Script,Smolen
-setDealerCode(
-`
+setDealerCode(`
+
 # Smolen
 dealer south
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
 
 shape(south, 23xx+32xx+33xx-xxx1-xx1x-xx6x-xxx6) &&
 hcp(south) >=15 && hcp(south)<=17 &&
@@ -12,9 +12,8 @@ shape(north, 54xx+45xx) &&
 hcp(north) > 9 &&
 calmWest        // It's OK for East to X with decent clubs -- system's on
 
-`, "S", true);
+`, "S", true)
 Script
-
 Button,Smolen,\n\
 --- Smolen\n\
 With game forcing values and 5-4 in the majors，start with 2!C.\n\

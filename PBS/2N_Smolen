@@ -3,7 +3,7 @@ setDealerCode(`
 
 ### 2N w/Smolen and any response
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 
 ### NORTH ###
 # Calculate strength for North -- hcp plus 1 for every card over 4 in any suit 
@@ -38,7 +38,7 @@ texas    = (sN>5 or hN>5)                                          and game
 jacoby   = ((sN>4 and hN<4) or (hN>4 and sN<4))                             and not texas
 pass     = strength<5                                                       and not(jacoby)
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 ##### Level the deal #####
 levPass     = pass     and keep25

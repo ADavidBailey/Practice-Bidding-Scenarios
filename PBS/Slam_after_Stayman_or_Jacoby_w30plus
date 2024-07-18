@@ -4,7 +4,7 @@ setDealerCode(
 dealer south
 produce 1000
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Define-1N
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Define-1N
 
 hFit4 = hearts(north)==4 and hearts(south)>3   // 4-4 or 4-5
 sFit4 = spades(north)==4 and spades(south)>3
@@ -17,7 +17,7 @@ sta = shape(north, 4xxx + x4xx)                // includes smolen
 staFit = sta and (hFit4 or sFit4)
 staNoFit = sta and not staFit
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 # Define Leveling
 case1  = jacFit    and keep47

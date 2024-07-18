@@ -1,6 +1,6 @@
 Script,SpiralRaise3only
-setDealerCode(
-`
+setDealerCode(`
+
 produce 1000
 dealer south
 
@@ -18,12 +18,12 @@ shortness = shape(south,any 0xxx+ any 1xxx)
 northResponds = shape(north, 44xx+43xx+34xx-any 6xxx -any 5xxx) and hcp(north)>10 and hcp(north)<14
 
 # Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
 
 # Now do it…
 minorOpening and shortness and northResponds and calmOpps and not (sFit8 or hFit8)
 
-`, "S", true);
+`, "S", true)
 Script
 
 Button,Spiral Raise w/3,\n\

@@ -1,6 +1,6 @@
 Script,NedWeakTwoBid
-setDealerCode(
-`
+setDealerCode(`
+
 # Ned's Weak Two
 dealer south
 
@@ -17,8 +17,7 @@ sOpensWeak2 = (w2S or w2H or w2D) and hcp(south)>7 and hcp(south)<12 and shape(s
 
 sOpensWeak2 and hcp(north)>9
 
-`
-)
+`,"S",true)
 Script
 Button,Ned’s Weak Two,\n\
 --- Ned’s Weak Two\n\

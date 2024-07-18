@@ -1,12 +1,13 @@
 Script,Jacoby2NLeveled
 setDealerCode(`
+
 produce 5000
 dealer south
 
 # Jacoby 2N Leveled
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
 
 ##### Jacoby 2N #####
 oneMajor = (oS or oH)
@@ -39,7 +40,7 @@ M4 = mFit and suitPoints>11 and suitPoints<15 and not (x4 or x3 or M3 or N3)
 
 ##### End of Jacoby 2N #####
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 # Do the leveling
 levelx4 = x4 and keep25

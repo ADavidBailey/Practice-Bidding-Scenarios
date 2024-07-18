@@ -27,7 +27,6 @@ sC = not sS and not sH and not sD
 
 nOpens = ((nS and (sC or sD or sH)) or (nH and (sC or sD)) or (nD and sC)) and hcp(north)>11 and hcp(south)>12
 
-
 sFit = spades(north) + spades(south) > 7
 hFit = hearts(north) + hearts(south) > 7
 majorFit = sFit or hFit
@@ -37,7 +36,7 @@ game = totalHCP>23 and totalHCP<32
 slam = totalHCP>31 and totalHCP<36
 grand = totalHCP>35
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 levGame  = game and keep03
 levSlam  = slam and keep44

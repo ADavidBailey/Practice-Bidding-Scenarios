@@ -3,7 +3,7 @@ setDealerCode(`
 
 ### 2N w/Puppet Leveled
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 
 ### NORTH ###
 # Calculate strength for North -- hcp plus 1 for every card over 4 in any suit 
@@ -40,7 +40,7 @@ jacoby    = (sN>4 or hN>4)                                                      
 pass      = strength<5                                                                and not (balanced or texas or jacoby)
 punt      = not (MSS or oneMinor or stayman or balanced or texas or jacoby or pass)
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 ##### Level the deal #####
 levGame = game and keep11

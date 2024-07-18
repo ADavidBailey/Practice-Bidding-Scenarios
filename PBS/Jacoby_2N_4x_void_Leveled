@@ -1,14 +1,12 @@
 Script,Jacoby2N4xVoidLeveled
-setDealerCode(
-`
+setDealerCode(`
+
 produce 1000
 dealer south
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Good-Suits-South
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
-
-##### End of Imported Code #####
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Good-Suits-South
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
 
 ##### Jacoby 2N #####
 # Define Major 4-card fits
@@ -29,7 +27,7 @@ N3 = majorFit4 and suitPoints>14 and suitPoints<18 and not (x4 or x3 or M3)
 M4 = majorFit4 and suitPoints>11 and suitPoints<15 and not (x4 or x3 or M3 or N3)
 ##### End of Jacopy 2N #####
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 ##### Level the Deal #####
 

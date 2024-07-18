@@ -1,13 +1,12 @@
 Script,NegativeDouble
-setDealerCode(
-`
+setDealerCode(`
 
 # Negative Double
 
 dealer south
 produce 10000
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 
 # Predict West's overcall
 sW = spades(west)
@@ -63,7 +62,7 @@ average "1D (2C) H/S " 100 * f2,
 average "1H (2C/D) S " 100 * x7,
 average "1S (2C/D) H " 100 * x8,
 
-`)
+`,"S",true)
 Script
 Button,Negative Double,\n\
 --- Negative Double\n\
