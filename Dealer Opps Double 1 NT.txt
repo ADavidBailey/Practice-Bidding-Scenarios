@@ -1,6 +1,6 @@
 Script,NotrumpX
-setDealerCode(
-`
+setDealerCode(`
+
 # Opponent doubles 1NT
 dealer south
 
@@ -24,7 +24,6 @@ or
 # West has 15+ points
 hcp(west) >14
 
-`
-)
+`,"S",true)
 Script
-Button,Opps X Notrump,Opps X Notrump\n%NotrumpX%
+Button,Opps X Notrump,--- Opponent doubles our 1 Notrump\n%NotrumpX%
