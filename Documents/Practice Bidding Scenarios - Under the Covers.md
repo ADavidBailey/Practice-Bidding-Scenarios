@@ -47,9 +47,9 @@ Each scenario is packaged this way.  I call it wrappered Dealer Code.  The backt
 
     
 
-## -Script files
+## Script files
 
-These are code snippits that are often needed.  Stanislaw implemented an Import feature that allows me to include these snippets in other scenarios.
+These are code fragments that are often needed.  Stanislaw implemented an Import feature that allows me to include these snippets in other scenarios.
 
 ## Leveling
 
@@ -70,9 +70,9 @@ This is the file that is pasted into BBOalert.  It contains some code specific t
 
 Most of the code is Import Definitions for the various scenario files with statements like this:
 
-    (Import,Smolen,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Smolen.txt)
-    (Import,FourthSuitForcing,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20FourthSuitForcing)
-    (Import,Jacoby2N,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/Dealer%20Jacoby%202N.txt)
+    Import,Smolen,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Smolen
+    Import,FourthSuitForcing,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Fourth_Suit_Forcing
+    Import,Jacoby2N,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Jacoby_2N
 
 And, to define create and organize BBOalert buttons that cause BBOalert to invoke the i Imported the code.  Like this:
 
@@ -85,17 +85,17 @@ And, to define create and organize BBOalert buttons that cause BBOalert to invok
     Button,Game Forcing Sequences,,width=100% backgroundColor=lightblue
     Import,Jacoby2N
 
-This file contains almost a thousand lines of code.
+This file contains almost 800 lines of code.
 
-BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BBOalert is reloaded, and it in-turn reloads -PBS.txt and each and every one of the packaged dealer code files.  Everything is up to date.  I started BBO, just now.  13,599 records were loaded.  With the BBOalert tab open, click the dark blue Data tab at the top left to see it.
+BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BBOalert is reloaded, and it in-turn reloads -PBS.txt and each and every one of the packaged dealer code files.  Everything is up to date.  I started BBO, just now.  14,127 records were imported.  With the BBOalert tab open, click the dark blue Data tab at the top left to see it.
 
 ## Special Programs for pbn and lin files
 
-Since we have all of these scenarios, I wanted to leverage them.  I've created pbn and lin files that can be used elsewhere.  When scenarios are updated or new scenarios are created, the following programs are in the py folder of the PBS root directory and are used to create/update the pbn and lin files.
+Since we have all of these scenarios, I wanted to leverage them.  I've created python programs that use the dlr files to create pbn, rotated pbn, and rotated lin files that can be used elsewhere.  When scenarios are updated or new scenarios are created, the following programs are in the py folder of the PBS root directory and are used to create/update the pbn and lin files.
 
 ### extract.py
 
-This program reads all of through all of the files Practice Bidding Scenarios.  For each filename that starts with Dealer or Gavin, it extracts the Dealer Code from the BBOalert wrapper, it processes any 'Imports', and creates dlr files that corresponding to each of the scenarios.  Spaces and special characters in filenames are translated to characters that are valid in filenames (space to -).  The .dlr files are suitable to be processed directly by BBO Dealer which is linked above.  Switch to the py folder and enter the following
+This program reads all of through all of the files in the PBS folder -- one for each scenario.  For each file, it extracts the Dealer Code from the BBOalert wrapper, it processes any 'Imports', and creates dlr files that corresponding to each of the scenarios.  The dlr files are suitable to be processed directly by BBO Dealer which is linked above.  Switch to the py folder and enter the following
 
     python3 extract.py
 
@@ -121,7 +121,7 @@ And, then go to Window's Command Prompt, switch to the PBS root directory and en
 
     run.cmd
 
-this one runs a while (currently about 30 minutes for 179 scenarios).  It prints out the name of each file so you can see what's happening.
+this one runs a while (currently about 1 hour and 25 minutes for 179 scenarios).  It prints out the name of each file so you can see what's happening.
 
 ### commentStats.py
 
@@ -183,8 +183,8 @@ I've had a lot of help with this project.
 If I had a do-over
  - I'd get rid of the .txt extension on the PBS.txt file
  - I'd give all of my wappered files a common extension, maybe .pbs
- - I'd put them all in a like-named folder
- - I'd get rid of the Dealer, Gavin prefixes to the names
- - I'd get rid of spaces & special characters in filenames
+ - I'd put them all in a like-named folder -- DONE 7/18/2024
+ - I'd get rid of the Dealer, Gavin prefixes to the names -- DONE 7/18/2024
+ - I'd get rid of spaces & special characters in filenames -- DONE 7/18/2024
  
  To fix this at this point, I'd have to write another .py to make the changes.
