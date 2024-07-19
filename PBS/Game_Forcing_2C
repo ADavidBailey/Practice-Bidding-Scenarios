@@ -1,14 +1,15 @@
 Script,GameForce2C
-setDealerCode(
-`
-dealer south
+setDealerCode(`
 
 # Game Forcing 2C
+dealer south
+
 case1 = hcp(south)>22
 case2 = hcp(south)>18 and losers(south)<5 and (spades(south)>5 or hearts(south)>5)
 case3 = hcp(south)>18 and losers(south)<4 and (diamonds(south)>5 or clubs(south)>5)
+s2C = (case1 or case2 or case3)
 
-case1 or case2 or case3
+s2C
 
 `,"S",true)
 Script
