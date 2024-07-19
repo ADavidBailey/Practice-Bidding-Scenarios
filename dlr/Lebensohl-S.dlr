@@ -31,7 +31,6 @@ n0Suit  = shape(north,any 4432+any 4333+any 4441) and hcp(north)>9
 n1Suit  = (GSN or GHN or GDN or GCN)              and hcp(north)>8
 nForces = (n0Suit or n1Suit)
 
-#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
 c2 = hascard(east,2D)
@@ -68,6 +67,10 @@ keep97 = not keep03
 keep985 = not keep015
 keep   = 1
 keep0  = 0
+### End of Imported Leveling Code ###
+### See -Stats-Leveling for statistics on these values ###
+### Example of how to generate Statistics for Leveling ###
+
 
 # Reduce West's 1-suited hands
 levStrong = wStrong and keep

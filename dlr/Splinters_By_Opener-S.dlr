@@ -6,8 +6,9 @@ dealer south
 
 
 # Splinters by Opener
-##### Define Calm Opponents #####
-#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Calm-Opponents
+
+##### Imported Script: Define Calm Opponents #####
+
 # Avoid concentration of values
 cce = top4(east,clubs)<2
 cde = top4(east,diamonds)<2
@@ -27,14 +28,13 @@ unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 balEast   = shape(east,any 4333 +any 4432)
 balWest   = shape(west,any 4333 +any 4432)
 
-calmEast = ((unbalEast and hcp(east)<8) or (balEast and hcp(east)<12)) and noConEast
-calmWest = ((unbalWest and hcp(west)<8) or (balWest and hcp(west)<12)) and noConWest
+calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<12)
+calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<12)
 calmOpps = calmEast and calmWest
-##### End of Define Calm Opponents #####
 
-##### Predict South's opening bid #####
-#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Predict-Opening-1-Bid
-## Imported Script -- Predict Opening Bid ##
+##### End of Imported Script: Define Calm Opponents #####
+
+##### Imported Script -- Predict Opening 1-Bid #####
 
 # Calculate length points for South (lengthPoints)
 lp1 = spades(south)>4 ? spades(south)-4 : 0
@@ -44,14 +44,14 @@ lp4 = clubs(south)>4 ? clubs(south)-4 : 0
 lengthPoints = lp1 + lp2 + lp3 + lp4
 
 # Calculate doubleton honor NT downgrade(s) for South -- 2 cards, 1 honor, not the Ace
-S2H = spades(south)==2 and top4(south,spades)==1 and not hascard(south,AS) ? 1 : 0
-H2H = hearts(south)==2 and top4(south,hearts)==1 and not hascard(south,AH) ? 1 : 0
-D2H = diamonds(south)==2 and top4(south,diamonds)==1 and not hascard(south,AD) ? 1 : 0
-C2H = clubs(south)==2 and top4(south,clubs)==1 and not hascard(south,AC) ? 1 : 0
-ntDownGrade = S2H + H2H + D2H + C2H
+S2H = spades(south)==2 and   top4(south,spades)>0   and not hascard(south,AS) ? 1 : 0
+H2H = hearts(south)==2 and   top4(south,hearts)>0   and not hascard(south,AH) ? 1 : 0
+D2H = diamonds(south)==2 and top4(south,diamonds)>0 and not hascard(south,AD) ? 1 : 0
+C2H = clubs(south)==2 and    top4(south,clubs)>0    and not hascard(south,AC) ? 1 : 0
+dgPoints = S2H + H2H + D2H + C2H
 
 # Define notrump points for south (ntPoints)
-ntPoints = hcp(south) + lengthPoints - ntDownGrade
+ntPoints = lengthPoints>dgPoints ? hcp(south) + lengthPoints - dgPoints : hcp(south)
 
 # Define suit points for south (suitPoints)
 suitPoints = hcp(south) + lengthPoints
@@ -88,11 +88,10 @@ oC = not (oS or oH or oD) and s1Range and not P2
 openingSuit = (oS or oH or oD or oC)
 oneSpade = oS
 oneHeart = oH
-oneDiamond = oD                                                              // duplicates weakNT
-oneClub = oC                                                                 // duplicates weakNT
+oneDiamond = oD
+oneClub = oC
 
-##### End of Predict-Opening-Bid #####
-
+##### End of Imported Script -- Predict Opening 1-Bid #####
 
 ###### Define Bidding Sequences #####
 # These variables are defined in the imported script
