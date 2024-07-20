@@ -55,10 +55,11 @@ wHs = eH and top3(east,hearts)>1   and hearts(west)>3
 wDs = eD and top3(east,diamonds)>1 and diamonds(west)>3
 wCs = eC and top3(east,clubs)>1    and clubs(west)>3
 
-nOpens = hcp(north)>11 and not nt and (nC or nD or nH)
 eBids1 = eastRank>northRank and hcp(east)>5 and shape(east,any 51xx+any 50xx)
-eJumps = eastRank>northRank and not eBids1 and hcp(east)>5 and hcp(east)<10 and shape(east,any 61xx+any 60xx)
-eBids2 = eastRank<northRank and hcp(east)>10 and not eBids1 and not eJumps and shape(east,any 61xx+any 60xx+any 51xx+any 50xx)
+eJumps = eastRank>northRank and hcp(east)>5 and hcp(east)<10 and shape(east,any 61xx+any 60xx)
+eBids2 = eastRank<northRank and hcp(east)>10 and shape(east,any 61xx+any 60xx+any 51xx+any 50xx)
+
+nOpens = hcp(north)>11 and not nt and (nC or nD or nH or nS)
 eBids  = (eBids1 or eJumps or eBids2)
 sInvites = sRaises and hcp(south)>11
 wRaises = hcp(west)>1 and (wSs or wHs or wDs or wCs) and shape(west,any 0xxx+any 1xxx)
@@ -66,7 +67,6 @@ wRaises = hcp(west)>1 and (wSs or wHs or wDs or wCs) and shape(west,any 0xxx+any
 nOpens and eBids and sInvites and wRaises and (hcp(north) + hcp(south))>25
 
 action
-
 average "HCP N  " hcp(north),
 average "HCP E  " hcp(east),
 average "HCP S  " hcp(south),
