@@ -4,7 +4,7 @@ import os
 
 def scan_for_OptimumResult():
 
-    input_file  = os.path.join(os.path.expanduser("~"), 'Practice-Bidding-Scenarios/BBA/BBA - 18.07.2024 09.45-Rule-16.pbn')
+    input_file  = os.path.join(os.path.expanduser("~"), 'Practice-Bidding-Scenarios/BBA/rule18.pbn')
     print(input_file)
 
     with open(input_file, 'r') as i_file:
@@ -20,9 +20,7 @@ def scan_for_OptimumResult():
             if captureNextLine == True:
                 game = False
                 nDeals = nDeals + 1
-                print(str(nDeals) + ': ' + line)
                 words = line.split()
-                print(words)
                 if words[0] == 'N':
                     if words[1] == 'NT':
                         if words[2]>'8':
@@ -36,7 +34,8 @@ def scan_for_OptimumResult():
                 if game == True:
                     nGames = nGames + 1
                 captureNextLine = False
-                
+                if game == True:
+                    print(str(nDeals) + ': ' + line + ' game')
             if line.startswith('[OptimumResult'):
                 captureNextLine = True
         print('nDeals = ' + str(nDeals))
