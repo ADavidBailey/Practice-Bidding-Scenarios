@@ -55,7 +55,7 @@ wHs = eH and top3(east,hearts)>1   and hearts(west)>3
 wDs = eD and top3(east,diamonds)>1 and diamonds(west)>3
 wCs = eC and top3(east,clubs)>1    and clubs(west)>3
 
-eBids1 = eastRank>northRank and hcp(east)>5 and shape(east,any 51xx+any 50xx)
+eBids1 = eastRank>northRank and hcp(east)>7 and shape(east,any 51xx+any 50xx)
 eJumps = eastRank>northRank and hcp(east)>5 and hcp(east)<10 and shape(east,any 61xx+any 60xx)
 eBids2 = eastRank<northRank and hcp(east)>10 and shape(east,any 61xx+any 60xx+any 51xx+any 50xx)
 
