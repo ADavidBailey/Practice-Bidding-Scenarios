@@ -1,4 +1,4 @@
-input_file  = '/Users/adavidbailey/Practice-Bidding-Scenarios/BBA/rule15.pbn'
+input_file  = '/Users/adavidbailey/Practice-Bidding-Scenarios/BBA - Drury.pbn'
 print(input_file)
 
 with open(input_file, 'r') as i_file:
