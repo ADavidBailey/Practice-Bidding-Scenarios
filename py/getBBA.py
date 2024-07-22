@@ -1,4 +1,16 @@
-input_file  = '/Users/adavidbailey/Practice-Bidding-Scenarios/BBA/Minor_Suit_Opener.pbn'
+import argparse
+import sys
+
+parser = argparse.ArgumentParser(description="get BBA Stats")
+parser.add_argument("--input", help="Name of input file")
+args = parser.parse_args()
+input = args.input
+
+if input[-4:] != '.pbn':
+    sys.exit("Input file must be .pbn")
+input_file  = '/Users/adavidbailey/Practice-Bidding-Scenarios/BBA/' + input
+
+print("reading " + str(input_file))
 output_file = input_file[:-3] + 'txt'
 f = open(output_file, 'w')
 f.write(input_file+'\n')
@@ -36,14 +48,15 @@ with open(input_file, 'r') as i_file:
             else:
                 this_note = this_note + ' | ' + note
         if line.startswith('[Play'):
-            f.write(board + ' ' + declarer + ' ' + contract + ' ' + score + ' | ' + this_note + '\n')
+            txt = board.center(5) + ' ' + declarer.center(7) + '   ' + contract.center(6) + '  ' + score.center(5)
+            f.write(txt + ' | ' + this_note + '\n')
             this_note = ''
     f.write('Statistics for ' + input_file + '\n')
-    f.write( '\n')
+    f.write('\n')
     f.write('nDeals = ' + str(nDeals) + '\n')
     f.write('nGames = ' + str(nGames) + '\n')
     f.write('%Games = ' + str((nGames/nDeals) * 100) + '%\n')
+    f.write('\n')
     for note in notes:
-        txt = '{:>5} ' + note
-        f.write(txt.format(str(notes[note]) + '\n'))
-                         
+        txt = ('    ' + str(notes[note]))
+        f.write(txt[-5:] + '  ' + note + '\n')
