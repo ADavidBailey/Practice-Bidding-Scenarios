@@ -1,5 +1,7 @@
-input_file  = '/Users/adavidbailey/Practice-Bidding-Scenarios/BBA/Jacoby_2N_Leveled.pbn'
-print(input_file)
+input_file  = '/Users/adavidbailey/Practice-Bidding-Scenarios/BBA/Minor_Suit_Opener.pbn'
+output_file = input_file[:-3] + 'txt'
+f = open(output_file, 'w')
+f.write(input_file+'\n')
 
 with open(input_file, 'r') as i_file:
     # Split the string into individual lines
@@ -10,7 +12,7 @@ with open(input_file, 'r') as i_file:
     nGames = 0
     notes = {}
     this_note = ''
-    print('board declarer contract score')
+    f.write('board declarer contract score | notes' + '\n')
     for line in lines:
         if line.startswith('[Board'):
             board = line[8:-2]
@@ -34,14 +36,14 @@ with open(input_file, 'r') as i_file:
             else:
                 this_note = this_note + ' | ' + note
         if line.startswith('[Play'):
-            print(board + ' ' + declarer + ' ' + contract + ' ' + score + ' | ' + this_note)
+            f.write(board + ' ' + declarer + ' ' + contract + ' ' + score + ' | ' + this_note + '\n')
             this_note = ''
-    print('Statistics for ' + input_file)
-    print(' ')
-    print('nDeals = ' + str(nDeals))
-    print('nGames = ' + str(nGames))
-    print('%Games = ' + str((nGames/nDeals) * 100) + '%')
+    f.write('Statistics for ' + input_file + '\n')
+    f.write( '\n')
+    f.write('nDeals = ' + str(nDeals) + '\n')
+    f.write('nGames = ' + str(nGames) + '\n')
+    f.write('%Games = ' + str((nGames/nDeals) * 100) + '%\n')
     for note in notes:
         txt = '{:>5} ' + note
-        print(txt.format(str(notes[note])))
+        f.write(txt.format(str(notes[note]) + '\n'))
                          
