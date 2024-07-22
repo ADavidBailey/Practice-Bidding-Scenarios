@@ -24,7 +24,6 @@ with open(input_file, 'r') as i_file:
                 nDeals = nDeals + 1
                 if int(score)>150:
                     nGames = nGames + 1
-            print(board + ' ' + declarer + ' ' + contract + ' ' + score)
         if line.startswith('[Note'):
             note = line[9:-2]
             if note not in notes:
