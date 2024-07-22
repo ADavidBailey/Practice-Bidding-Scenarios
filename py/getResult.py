@@ -1,4 +1,4 @@
-input_file  = '/Users/adavidbailey/Practice-Bidding-Scenarios/BBA/Trap_Pass.pbn'
+input_file  = '/Users/adavidbailey/Practice-Bidding-Scenarios/BBA/Jacoby_2N_Leveled.pbn'
 print(input_file)
 
 with open(input_file, 'r') as i_file:
@@ -34,7 +34,7 @@ with open(input_file, 'r') as i_file:
                 this_note = note
             else:
                 this_note = this_note + ' | ' + note
-        if line.strip() == '':
+        if line.startswith('[Play'):
             print(board + ' ' + declarer + ' ' + contract + ' ' + score + ' | ' + this_note)
             this_note = ''
     print('Statistics for ' + input_file)
