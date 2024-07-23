@@ -48,7 +48,7 @@ with open(input_file, 'r') as i_file:
             else:
                 this_note = this_note + ' | ' + note
         if line.startswith('[Play'):
-            txt = board.center(5) + ' ' + declarer.center(7) + '   ' + contract.center(6) + '  ' + score.center(5)
+            txt = board.rjust(5) + declarer.rjust(6) + contract.rjust(9) + score.rjust(9)
             f.write(txt + ' | ' + this_note + '\n')
             this_note = ''
     f.write('Statistics for ' + input_file + '\n')

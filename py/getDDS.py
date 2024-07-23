@@ -19,9 +19,7 @@ with open(input_file, 'r') as i_file:
     # Split the string into individual lines
     content = i_file.read()
     lines = content.strip().split('\n')
-        
-    nDeals = 0
-    nGames = 0
+    
     notes = {}
     this_note = ''
 
