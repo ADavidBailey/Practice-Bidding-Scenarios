@@ -42,8 +42,9 @@ n_files = 0
 rotation = "NESW"
 for filename in os.listdir(PBS_PBN):
     input_file_path = os.path.join(PBS_PBN, filename)
-    # Check if it's a file
-    if os.path.isfile(input_file_path) and (filename.endswith('.pbn')):
+
+    # Check if it's a file and ends with -X.pbn, where X is N, E, S, W.
+    if os.path.isfile(input_file_path) and filename.endswith('.pbn') and filename[-6] == '-':
         n_files = n_files + 1
         print(str(n_files), filename)
         dDealer = filename[-5]               # designated dealer is the last character of the .dlr & .pbn filename
