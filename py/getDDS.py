@@ -21,11 +21,9 @@ with open(input_file, 'r') as i_file:
     lines = content.strip().split('\n')
     
     notes = {}
-    this_note = ''
-
     for line in lines:
         cols = line.split(',')   
-        if cols[0] != '1':
+        if cols[0] != 'ID':
             board = cols[2]
             result = cols[7]
             score = cols[8]
@@ -35,10 +33,9 @@ with open(input_file, 'r') as i_file:
             if note not in notes:
                 notes[note] = 0
             notes[note] += 1
-            #f.write(board + ' ' + result + ' ' + score + ' ' + par + ' ' + vspar + ' | ' + note + '\n')
-        f.write(line + '\n')
-    f.write('Statistics for ' + input_file + '\n')
-    f.write('\n')
+            f.write(line + '\n')
+    f.write('\nStatistics for ' + input_file + '\n')
+    txt = ''
     sum = 0
     for note in notes:
         sum += notes[note]
