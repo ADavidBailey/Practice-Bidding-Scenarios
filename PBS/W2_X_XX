@@ -23,7 +23,11 @@ sDoubles = (sDouble1 or sDouble2) and shape(south,any 54xx +any 44xx -5xxx -x5xx
 eOpensWeak2 = (w2S or w2H or w2D) and hcp(east)>5 and hcp(east)<11 and shape(east,any 6430 +any 6421 +any 6331 +any 6322 -4xxx -x4xx)
 
 # West Redoubles
-wXX = hcp(west)>12 and shape(west,any 4432 +any 4441)
+wShortS = w2S and spades(west)<3
+wShortH = w2H and hearts(west)<3
+wShortD = w2D and diamonds(west)<3
+wShort = (wShortS or wShortH or wShortD)
+wXX = hcp(west)>12 and shape(west,any 4432 +any 4441) and wShort
 
 eOpensWeak2 and sDoubles and wXX
 
