@@ -7,19 +7,24 @@ dealer east
 # Weak 2 (X) XX
 
 # Define East weak 2 bids
-w2S = spades(east)==6   and (top5(east,spades)>2   or top3(east,spades)>1)   and spades(west)<3
-w2H = hearts(east)==6   and (top5(east,hearts)>2   or top3(east,hearts)>1)   and hearts(west)<3
-w2D = diamonds(east)==6 and (top5(east,diamonds)>2 or top3(east,diamonds)>1) and diamonds(west)<3
+w2S = spades(east)==6   and (top5(east,spades)>2   or top3(east,spades)>1)   and spades(west)==3   and hcp(west,spades)<2
+w2H = hearts(east)==6   and (top5(east,hearts)>2   or top3(east,hearts)>1)   and hearts(west)==3   and hcp(west,hearts)<2
+w2D = diamonds(east)==6 and (top5(east,diamonds)>2 or top3(east,diamonds)>1) and diamonds(west)==3 and hcp(west,diamonds)<2
 
 # South is short in East's suit
-sShortS = w2S and spades(south)<2
-sShortH = w2H and hearts(south)<2
-sShortD = w2D and diamonds(south)<2
-sShort = (sShortS or sShortH or sShortD)
+slt2S = w2S and spades(south)<2
+slt2H = w2H and hearts(south)<2
+slt2D = w2D and diamonds(south)<2
+slt2 = (slt2S or slt2H or slt2D)
 
-sDouble1 = hcp(south)>11 and hcp(south)<16 and sShort
-sDouble2 = hcp(south)>15
-sDoubles = (sDouble1 or sDouble2) and shape(south,any 54xx +any 44xx -5xxx -x5xx)
+slt3s = w2S and spades(south)<3
+slt3h = w2H and hearts(south)<3
+slt3d = w2D and diamonds(south)<3
+slt3 = (slt3s or slt3h or slt3d)
+
+sDouble1 = hcp(south)>11 and hcp(south)<16 and slt2
+sDouble2 = hcp(south)>15 and slt3
+sDoubles = (sDouble1 or sDouble2) and shape(south,any 5431 +any 44xx -5xxx -x5xx)
 
 # East opens a weak 2, South doubles, and West Redoubles
 eOpensWeak2 = (w2S or w2H or w2D) and hcp(east)>5 and hcp(east)<11 and shape(east,any 6430 +any 6421 +any 6331 +any 6322 -4xxx -x4xx)
