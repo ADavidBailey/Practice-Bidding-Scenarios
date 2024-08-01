@@ -20,6 +20,8 @@ with open(input_file, 'r') as i_file:
     content = i_file.read()
     lines = content.strip().split('\n')
     
+    pars = {}
+    games = 0
     notes = {}
     for line in lines:
         cols = line.split(',')   
@@ -28,6 +30,12 @@ with open(input_file, 'r') as i_file:
             result = cols[7]
             score = cols[8]
             par_result = cols[10]
+            par = int(cols[11])
+            if par > 399:
+                games += 1
+            if par not in pars:
+                pars[par] = 0
+            pars[par] += 1
             vs_par = cols[12]
             note = cols[13]
             if note not in notes:
@@ -43,4 +51,21 @@ with open(input_file, 'r') as i_file:
         f.write(txt[-5:] + '  ' + note + '\n')
         txt = ('    ' + str(sum))
     f.write('_____\n')
-    f.write(txt[-5:] + '  ' + 'TOTAL\n')
+    f.write(txt[-5:] + '  ' + 'TOTAL\n\n')
+
+    sorted_pars = sorted(pars.keys())
+    for par in sorted_pars:
+        txt = ('    ' + str(par))
+        f.write(txt[-5:] + '  ' + str(par) + '\n')
+        txt = ('    ' + str(sum))
+    f.write('_____\n')
+    f.write(txt[-5:] + '  ' + 'TOTAL\n\n')
+
+    f.write('Par Scores\n')
+    for par in sorted_pars:
+        txt = ('    ' + str(pars[par]))
+        f.write(txt[-5:] + '  ' + str(str(par)) + '\n')
+        txt = ('    ' + str(sum))
+    f.write('_____\n')
+    f.write(txt[-5:] + '  ' + 'TOTAL\n\n')
+    f.write('Par >= 400:  ' + str(games) + '\n')
