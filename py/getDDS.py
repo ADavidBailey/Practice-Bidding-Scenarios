@@ -53,19 +53,11 @@ with open(input_file, 'r') as i_file:
     f.write('_____\n')
     f.write(txt[-5:] + '  ' + 'TOTAL\n\n')
 
+    f.write('Par Scores\n')
     sorted_pars = sorted(pars.keys())
     for par in sorted_pars:
-        txt = ('    ' + str(par))
+        txt = ('    ' + str(pars[par]))
         f.write(txt[-5:] + '  ' + str(par) + '\n')
         txt = ('    ' + str(sum))
     f.write('_____\n')
-    f.write(txt[-5:] + '  ' + 'TOTAL\n\n')
-
-    f.write('Par Scores\n')
-    for par in sorted_pars:
-        txt = ('    ' + str(pars[par]))
-        f.write(txt[-5:] + '  ' + str(str(par)) + '\n')
-        txt = ('    ' + str(sum))
-    f.write('_____\n')
-    f.write(txt[-5:] + '  ' + 'TOTAL\n\n')
-    f.write('Par >= 400:  ' + str(games) + '\n')
+    f.write(txt[-5:] + '  ' + 'TOTAL\n')
