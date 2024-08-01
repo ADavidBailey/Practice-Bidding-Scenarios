@@ -10,7 +10,6 @@ if input[-4:] != '.csv':
     sys.exit("Input file must be .csv")
 input_file  = '/Users/adavidbailey/Practice-Bidding-Scenarios/BBA/' + input
 
-print("reading " + str(input_file))
 output_file = input_file[:-3] + 'csv.txt'
 f = open(output_file, 'w')
 f.write(input_file+'\n')
