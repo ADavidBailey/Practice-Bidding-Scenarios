@@ -78,7 +78,7 @@ def process_file(input_file):
 
         
         f.write('       --- Par Scores ---\n')
-        f.write('             count    vsPar avg\n')
+        f.write('            count  vsPar avg\n')
         if grand_slam > 0:
             grand_slam_ratio = round(grand_slam_vs_par / grand_slam, 2)
         else:
