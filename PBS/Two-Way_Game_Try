@@ -3,6 +3,7 @@ setDealerCode(`
 
 # Two-Way Game Tries
 dealer south
+produce 1000
 
 # Calculate Total Points for North (tp) for North
 v1 = shape(north, any 0xxx) ? 5 : 0  // allow for 2 voids
@@ -15,17 +16,18 @@ d3 = shape(north, any 222x) ? 1 : 0
 tp = v1+v2+s1+s2+d1+d2+d3 + hcp(north)
 
 # Define openers
-sOpener = spades(south) >= hearts(south) >= 5
-hOpener = hearts(south) > 5 and hearts(south) >= diamonds(south) and hearts(south) >=clubs(south) and not sOpener
-dOpener = diamonds(south) >= clubs(south) and not (sOpener or hOpener)
-cOpener = not sOpener and not hOpener and not dOpener
+sOpener = spades(south) >=5 and spades(south) >= diamonds(south) and spades(south) >=clubs(south)
+hOpener = hearts(south) >=5 and hearts(south) >= diamonds(south) and hearts(south) >=clubs(south) and not sOpener
 
 # Define suit fit
-Fs = spades(south) + spades(north)>7 and spades(north)>2 and sOpener 
-Fh = hearts(south) + hearts(north)>7 and hearts(north)>2 and hOpener
+sFit = sOpener and spades(north)>2 and spades(north)<4
+hFit = hOpener and hearts(north)>2 and hearts(north)<4
 
-(Fs or Fh) and shape(south,xxxx -any 5332) and hcp(south)>11 and hcp(south)<20 and
-tp>6 and tp<11
+(sFit or hFit) and shape(south,xxxx -any 5332) and hcp(south)>15 and hcp(south)<20 and tp>6 and tp<11
+
+action
+average "spade fit" 100 * sFit,
+average "heart fit" 100 * hFit,
 
 
 `, "S", true);
