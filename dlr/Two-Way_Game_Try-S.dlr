@@ -52,9 +52,9 @@ calmOpps = calmEast and calmWest
 
 
 # Define openers
-nt      = shape(south,any 5332+any 4432+any 4333-5xxx-x5xx) and hcp(south)>14 and hcp(south)<18
-sOpener = (not nt) and (spades(south)>4 and spades(south)>=hearts(south) and spades(south)>=diamonds(south) and spades(south)>=clubs(south))
-hOpener = (not (nt or sOpener)) and (hearts(south)>4 and hearts(south)>=diamonds(south) and hearts(south)>=clubs(south))
+nt = shape(south, any 4333+any 4432+any 5332) and hcp(south)>14 and hcp(south)<18
+sOpener = spades(south)>4 and spades(south)>=hearts(south) and spades(south)>=diamonds(south) and spades(south)>=clubs(south) and not nt
+hOpener = hearts(south)>4 and hearts(south)>=diamonds(south) and hearts(south)>=clubs(south) and not sOpener and not nt
 
 # Define suit fit
 sFit = sOpener and spades(north)>2 and spades(north)<5
