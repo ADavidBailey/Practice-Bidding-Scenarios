@@ -25,9 +25,9 @@ lp = lp1+lp2+lp3+lp4 + hcp(south)
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
 
 # Define openers
-nt = shape(south, any 4333+any 4432+any 5332) and hcp(south)>14 and hcp(south)<18
-sOpener = spades(south)>4 and spades(south)>=hearts(south) and spades(south)>=diamonds(south) and spades(south)>=clubs(south) and not nt
-hOpener = hearts(south)>4 and hearts(south)>=diamonds(south) and hearts(south)>=clubs(south) and not sOpener and not nt
+nt5332 = shape(south,any 5332) and hcp(south)>14 and hcp(south)<18
+sOpener = spades(south)>4 and spades(south)>=hearts(south) and spades(south)>=diamonds(south) and spades(south)>=clubs(south) and not nt5332
+hOpener = hearts(south)>4 and hearts(south)>=diamonds(south) and hearts(south)>=clubs(south) and not sOpener and not nt5332
 
 # Define suit fit
 sFit = sOpener and spades(north)>2 and spades(north)<5
@@ -38,6 +38,9 @@ hFit = hOpener and hearts(north)>2 and hearts(north)<5
 action
 average "spade fit" 100 * sFit,
 average "heart fit" 100 * hFit,
+average "hcp(south)" hcp(south),
+average "hcp(north)" hcp(north),
+frequency "hcp(south)" (hcp(south),14,18)
 
 `, "S", true);
 Script
