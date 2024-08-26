@@ -1,0 +1,28 @@
+Script,JacobySuperAccept
+setDealerCode(`
+
+# Import Define-1N and Calm Opponents
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Define-1N
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+
+# Define North's Jacoby Transfer and South's Super Accept (not Smolen)
+nS = spades(north)>4 and spades(south)>3 and hearts(north)<4
+nH = hearts(north)>4 and hearts(south)>3 and spades(north)<4
+
+# Now OPEN 1NT
+NT and (nS or nH) and calmWest
+
+# Generate Statistics
+action
+average "Heart Fit" 100 * nH,
+average "Spade Fit" 100 * nS, 
+
+`,"S",true)
+Script
+Button,Jacoby Super-Accept,\n\
+---  Jacobys Super-Accept\n\
+South opens 1N2452+2425+2245+2254+4522 +any 4333，4432，or 5332 distribution.\n\
+Those 5422 hands are the ones where you are likely to have to reverse to show your suits.\n\
+HCP adjusted +1 for any 5-card suit unless you have Kx，Qx，or Jx doubleton.\n\
+North transfers to Hearts or Spades.  South has 4- or 5-card support.\n\
+%JacobySuperAccept%
