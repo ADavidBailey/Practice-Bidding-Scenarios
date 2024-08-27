@@ -5,17 +5,19 @@ setDealerCode(`
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Define-1N
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
 
-# Define North's Jacoby Transfer (not Smolen)
-nS = spades(north)>4 and hearts(north)<4
-nH = hearts(north)>4 and spades(north)<4
+# Define North's Jacoby Transfer and South's Super Accept (not Smolen, allow 6-card suits, avoid Texas)
+nSps = spades(north)>5 and hearts(north)<4 and hcp(north)<9  // PartScore
+nHps = hearts(north)>5 and spades(north)<4 and hcp(north)<9
+nSgf = spades(north)==5 and hearts(north)<4 and hcp(north)>8 // GameForce
+nHgf = hearts(north)==5 and spades(north)<4 and hcp(north)>8
 
 # Now OPEN 1NT
-NT and (nS or nH) and calmWest
+NT and (nSps or nHps or nSgf or nHgf) and calmWest
 
 # Generate Statistics
 action
-average "Heart Fit" 100 * nH,
-average "Spade Fit" 100 * nS, 
+average "Heart Fit" 100 *(nHps or nHgf),
+average "Spade Fit" 100 * (nSps or nSgf), 
 
 `,"S",true)
 Script
