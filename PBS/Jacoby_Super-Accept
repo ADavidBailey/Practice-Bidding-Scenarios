@@ -6,11 +6,13 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
 
 # Define North's Jacoby Transfer and South's Super Accept (not Smolen)
-nS = spades(north)>4 and spades(south)>3 and hearts(north)<4
-nH = hearts(north)>4 and hearts(south)>3 and spades(north)<4
+nSps = spades(north)>5 and spades(south)>3 and hearts(north)<4 and hcp(north)<10
+nHps = hearts(north)>5 and hearts(south)>3 and spades(north)<4 and hcp(north)<10
+nSgf = spades(north)==5 and spades(south)>3 and hearts(north)<4 and hcp(north)>9
+nHgf = hearts(north)==5 and hearts(south)>3 and spades(north)<4 and hcp(north)>9
 
 # Now OPEN 1NT
-NT and (nS or nH) and calmWest
+NT and (nSps or nHps or nSgf or nHgf) and calmWest
 
 # Generate Statistics
 action
