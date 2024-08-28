@@ -14,7 +14,7 @@ nS = sN>4 and sN>=hN and sN>=dN and sN>=cN
 nH = not nS and hN>4 and hN>=dN and hN>=cN
 nD = not nS and not nH and ((dN>3 and dN>=cN))
 nC = not nS and not nH and not nD
-northOpens = (nC or nD or nH) and hcp(north)>11 and hcp(north)<15 and shape(north,any 4333+any 4432+any 5322+any 5422 -5xxx)
+northOpens = (nC or nD or nH) and hcp(north)>11 and hcp(north)<15 and shape(north,any 4333+any 4432+any 5332+any 5422 -5xxx)
 
 # Predict South's responding suit
 s = spades(south)
