@@ -30,9 +30,9 @@ def process_file(input_file):
         
         for line in lines:
             cols = line.split(',')
-            # 0  1    2     3     4     5    6    7      8     9    10            11       12    13        14
-            # ID,Date,Board,North,South,East,West,Result,Score,IMPs,OptimumResult,ParScore,VsPar,DDBidding,DDPlay   
-            if cols[0] != 'ID':
+            # 0  1    2     3     4     5    6    7      8     9    10        11       12    13        14
+            # ID,Date,Board,North,South,East,West,Result,Score,IMPs,ParResult,ParScore,VsPar,DDBidding,DDPlay
+            if cols[0] != '#' and cols[0] != 'ID':
                 vs_par = int(cols[12])
                 optimum_result = cols[10]
                 if optimum_result[3] == 'X':
