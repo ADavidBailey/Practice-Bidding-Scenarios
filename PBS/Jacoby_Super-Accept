@@ -6,8 +6,8 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
 
 # Spade/Heart Support Points
-ssP = hcp(north) + spades(north)-4
-hsP = hcp(north) + hearts(north)-4
+ssP = hcp(north) + spades(north)-4 and hcp(north,spades)>2
+hsP = hcp(north) + hearts(north)-4 and hcp(north,hearts)>2
 
 # Define North's Jacoby Transfer and South's Super Accept (not Smolen, allow 6-card suits, avoid Texas)
 nSws = spades(north)>4  and hearts(north)<4 and spades(south)>3 and (ssP<8 or (ssP>15 and ssP<18))   // Weak or Quantitave
