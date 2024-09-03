@@ -6,17 +6,17 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
 
 # Spade/Heart Support Points
-ssP = hcp(north) + spades(north)-4 and hcp(north,spades)>2
-hsP = hcp(north) + hearts(north)-4 and hcp(north,hearts)>2
+ssP = hcp(north) + spades(north)-4 and hcp(north,spades)>3
+hsP = hcp(north) + hearts(north)-4 and hcp(north,hearts)>3
 
 # Define North's Jacoby Transfer and South's Super Accept (not Smolen, allow 6-card suits, avoid Texas)
-nSws = spades(north)>4  and hearts(north)<4 and spades(south)>3 and (ssP<9 or (ssP>14 and ssP<17))   // Weak or Quantitave
-nHws = hearts(north)>4  and spades(north)<4 and hearts(south)>3 and (hsP<9 or (hsP>14 and hsP<17))
-nSg  = spades(north)==5 and hearts(north)<4 and spades(south)>3 and ssP>9 and ssP<14                 // Game
-nHg  = hearts(north)==5 and spades(north)<4 and hearts(south)>3 and hsP>9 and hsP<14
+nSwq = spades(north)>4  and hearts(north)<4 and spades(south)>3 and (ssP<9 or (ssP>15 and ssP<17))   // 6 w/Weak or Quantitave
+nHwq = hearts(north)>4  and spades(north)<4 and hearts(south)>3 and (hsP<9 or (hsP>15 and hsP<17))
+nSg  = spades(north)==5 and hearts(north)<4 and spades(south)>3 and ssP>9                            // 5 w/any strength
+nHg  = hearts(north)==5 and spades(north)<4 and hearts(south)>3 and hsP>9
 
 # Now OPEN 1NT
-NT and (nSws or nHws or nSg or nHg) and calmWest
+NT and (nSwq or nHwq or nSg or nHg) and calmWest
 
 # Generate Statistics
 action
