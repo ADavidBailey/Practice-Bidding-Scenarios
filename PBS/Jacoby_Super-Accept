@@ -6,9 +6,9 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
 
 # Define North's Jacoby Transfer and South's Super Accept (not Smolen, allow 6-card suits, avoid Texas)
-nSps = spades(north)>5 and spades(south)>3 and hearts(north)<4 and hcp(north)<9  // PartScore
-nHps = hearts(north)>5 and hearts(south)>3 and spades(north)<4 and hcp(north)<9
-nSgf = spades(north)==5 and spades(south)>3 and hearts(north)<4 and hcp(north)>8 // GameForce
+nSps = spades(north)>5 and spades(south)>3 and hearts(north)<4 and (hcp(north)<9 or hcp(north)>14) // PartScore or Slam Interest
+nHps = hearts(north)>5 and hearts(south)>3 and spades(north)<4 and (hcp(north)<9 or hcp(north)>14) 
+nSgf = spades(north)==5 and spades(south)>3 and hearts(north)<4 and hcp(north)>8                   // GameForce
 nHgf = hearts(north)==5 and hearts(south)>3 and spades(north)<4 and hcp(north)>8
 
 # Now OPEN 1NT
