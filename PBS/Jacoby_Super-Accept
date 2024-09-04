@@ -2,8 +2,11 @@ Script,JacobySuperAccept
 setDealerCode(`
 
 # Import Define-1N and Calm Opponents
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Define-1N
+#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Define-1N
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+
+# Define GIB NT
+NT = hcp(south)>14 and hcp(south)<18 and shape(south,any 4333+any 4432+any 5332)
 
 # Spade/Heart Support Points
 ssP = hcp(north) + spades(north)-4
