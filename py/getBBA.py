@@ -12,6 +12,7 @@ input_file  = '/Users/adavidbailey/Practice-Bidding-Scenarios/BBA/' + input
 
 print("reading " + str(input_file))
 output_file = input_file[:-3] + 'txt'
+print("writing " + str(output_file))
 f = open(output_file, 'w')
 f.write(input_file+'\n')
 
@@ -24,7 +25,8 @@ with open(input_file, 'r') as i_file:
     nGames = 0
     notes = {}
     this_note = ''
-    f.write('board declarer contract score | notes' + '\n')
+    optimum = False
+    f.write('board declarer contract score  par     | notes' + '\n')
     for line in lines:
         if line.startswith('[Board'):
             board = line[8:-2]
@@ -47,10 +49,14 @@ with open(input_file, 'r') as i_file:
                 this_note = note
             else:
                 this_note = this_note + ' | ' + note
-        if line.startswith('[Play'):
-            txt = board.rjust(5) + declarer.rjust(6) + contract.rjust(9) + score.rjust(9)
-            f.write(txt + ' | ' + this_note + '\n')
+        if optimum == True:
+            par = line.strip()
+            txt = board.rjust(5) + declarer.rjust(6) + contract.rjust(9) + score.rjust(9) + '  ' + par.ljust(7)
+            f.write(txt + '| ' + this_note + '\n')
             this_note = ''
+            optimum = False
+        if line.startswith('[Optimum'):
+            optimum = True
     f.write('Statistics for ' + input_file + '\n')
     f.write('\n')
     f.write('nDeals = ' + str(nDeals) + '\n')
