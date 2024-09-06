@@ -41,7 +41,7 @@ with open(input_file, 'r') as i_file:
                 if int(score)>150:
                     nGames = nGames + 1
         if line.startswith('[Note'):
-            note = line[9:-2]
+            note = line[9:-2].capitalize()
             if note not in notes:
                 notes[note] = 0
             notes[note] += 1
@@ -61,8 +61,10 @@ with open(input_file, 'r') as i_file:
     f.write('\n')
     f.write('nDeals = ' + str(nDeals) + '\n')
     f.write('nGames = ' + str(nGames) + '\n')
+
     f.write('%Games = ' + str((nGames/nDeals) * 100) + '%\n')
     f.write('\n')
-    for note in notes:
+    notes_sorted = dict(sorted(notes.items()))
+    for note in notes_sorted:
         txt = ('    ' + str(notes[note]))
         f.write(txt[-5:] + '  ' + note + '\n')
