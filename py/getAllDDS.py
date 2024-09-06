@@ -68,9 +68,9 @@ def process_file(input_file):
         f.write('\nStatistics for ' + input_file + '\n')
         txt = ''
         sum = 0
-        notes_sorted = dict(sorted(notes.items()))
-        for note in notes_sorted:
-            sum += notes_sorted[note]
+        #notes_sorted = dict(sorted(notes.items()))
+        for note in dict(sorted(notes.items())):
+            sum += notes[note]
             txt = ('    ' + str(notes[note]))
             f.write(txt[-5:] + '  ' + note + '\n')
         f.write('_____\n')
