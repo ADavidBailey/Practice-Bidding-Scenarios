@@ -34,7 +34,7 @@ def process_file(input_file):
             # ID,Date,Board,North,South,East,West,Result,Score,IMPs,ParResult,ParScore,VsPar,DDBidding,DDPlay
             if cols[0] != '#' and cols[0] != 'ID':
                 vs_par = int(cols[12])
-                optimum_result = cols[10]
+                optimum_result = '"' + cols[10]
                 if optimum_result[3] == 'X':
                     other += 1
                     other_vs_par = other_vs_par + vs_par
@@ -68,7 +68,6 @@ def process_file(input_file):
         f.write('\nStatistics for ' + input_file + '\n')
         txt = ''
         sum = 0
-        #notes_sorted = dict(sorted(notes.items()))
         for note in dict(sorted(notes.items())):
             sum += notes[note]
             txt = ('    ' + str(notes[note]))
@@ -130,4 +129,5 @@ folder = '/Users/adavidbailey/Practice-Bidding-Scenarios/BBA/'
 files = os.listdir(folder)
 for file in files:
     if file[-4:] == '.csv':
-        process_file(folder + file)
+        if file.startswith('Jacoby_Si[er-Accept'):
+            process_file(folder + file)
