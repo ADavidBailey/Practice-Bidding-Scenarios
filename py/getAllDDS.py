@@ -129,5 +129,4 @@ folder = '/Users/adavidbailey/Practice-Bidding-Scenarios/BBA/'
 files = os.listdir(folder)
 for file in files:
     if file[-4:] == '.csv':
-        if file.startswith('Jacoby_Si[er-Accept'):
-            process_file(folder + file)
+        process_file(folder + file)
