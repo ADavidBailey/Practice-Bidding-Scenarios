@@ -1,0 +1,39 @@
+Script,ReverseAfterTwoOverOne
+setDealerCode(`
+
+# Reverse by Resoponder
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+
+# 1!D-2!C-2!D- 2!H or 2!S
+sDD = shape(south,xx6x+xx7x)
+nC  = shape(north,xxx5+xxx6)
+nHorS = shape(north,x4xx+4xxx)
+DCDHorS = sDD and nC and nHorS
+
+# 1!H-2!C/!D - 2!H - 2!S
+sHH = shape(south,x6xx+x7xx)
+nCorD = shape(north,xxx5+xxx6)
+nS    = shape(north,4xxx)
+HCorDS = sHH and nCorD and nS
+
+sMin = hcp(south)>11 and hcp(south)<15
+nGF = hcp(north)>13
+
+# Now do it
+sMin and nGF and (DCDHorS or HCorDS) and calmOpps
+
+`)
+Script
+Button,Reverse After 2/1,\n\
+--- Reverse By Responder++ for those that don't play 2/1\n\
+Reverses show 5+ cards in the suit opened and 4+ cards in the suit rebid.  They are\n\
+Game Forcing.  Possible reverses after 2/1 are...\n\
+• 1!D - 2!C - 2!D - 2!H\n\
+• 1!D - 2!C - 2!D - 2!S\n\
+• 1!H - 2!C - 2!H - 2!S\n\
+• 1!H - 2!D - 2!H - 2!S\n\
+Reverses by Responder are natural and Game Forcing.  This is NOT a convention.\n\
+If you don't have the extra strength，don't reverse.\n\
+%ReverseAfterTwoOverOne%
