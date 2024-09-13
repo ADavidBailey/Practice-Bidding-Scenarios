@@ -71,6 +71,7 @@ P:\dealer P:\dlr\Game_Forcing_2C-S.dlr -s=2303006667 >P:\pbn\Game_Forcing_2C-S.p
 P:\dealer P:\dlr\Ned_2S-N.dlr -s=4088161287 >P:\pbn\Ned_2S-N.pbn
 P:\dealer P:\dlr\Weak_2_Bids_Lax_Leveled-S.dlr -s=3863231294 >P:\pbn\Weak_2_Bids_Lax_Leveled-S.pbn
 P:\dealer P:\dlr\Power_Double_Unbalanced-E.dlr -s=2714547563 >P:\pbn\Power_Double_Unbalanced-E.pbn
+P:\dealer P:\dlr\Reverse_By_Responder-S.dlr -s=1045368141 >P:\pbn\Reverse_By_Responder-S.pbn
 P:\dealer P:\dlr\SCS_Major_with_2nd_Suit-S.dlr -s=749934301 >P:\pbn\SCS_Major_with_2nd_Suit-S.pbn
 P:\dealer P:\dlr\Soloway_Jump_Shift_Type-4-S.dlr -s=1470070303 >P:\pbn\Soloway_Jump_Shift_Type-4-S.pbn
 P:\dealer P:\dlr\Two_Over_One-S.dlr -s=2921487298 >P:\pbn\Two_Over_One-S.pbn
