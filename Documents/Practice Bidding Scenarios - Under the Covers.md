@@ -177,14 +177,14 @@ I've had a lot of help with this project.
 
 *Thorvald Aagaard* began using my code to create deals for training Ben.  He's discovered many bugs for me to fix.  Since I've begun working with pbn and lin files, Thorvald has been a mentor an coach.
 
+*Edward Piwowar*'s, Bridge Bidding Analyser, has been a big help as I have progressed from the BBO Practice Table to creating pbn and lin files.  BBA enables me to see how the deals are bid and what conventions are used.  I use this information to adjust the deal constraints.
+
+*Bob Richardson*'s, Double Dummy Solver, helps me assess the Bridge Bidding Analyser's bidding. 
+
 
 ## Regrets
 
 If I had a do-over
  - I'd get rid of the .txt extension on the PBS.txt file
  - I'd give all of my wappered files a common extension, maybe .pbs
- - I'd put them all in a like-named folder -- DONE 7/18/2024
- - I'd get rid of the Dealer, Gavin prefixes to the names -- DONE 7/18/2024
- - I'd get rid of spaces & special characters in filenames -- DONE 7/18/2024
  
- To fix this at this point, I'd have to write another .py to make the changes.
