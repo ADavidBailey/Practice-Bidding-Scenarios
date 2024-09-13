@@ -204,7 +204,8 @@ HNN = HN and sRN and not (HNC or HND or HNH or HNS)
 ##### End of Predict Opener's Rebid #####
 
 
-(HNS or DSH or DNH or DNS or CHD or CSD or CSH or CND or CNH or CNS) and hcp(south)>16 and hcp(south)<20 and hcp(north)>5 and calmOpps
+reverse = (HNS or DSH or DNH or DNS or CHD or CSD or CSH or CND or CNH or CNS) 
+reverse and hcp(south)>16 and hcp(south)<20 and hcp(north)>5 and hcp(north)<13 and calmOpps
 
 
 action printpbn

@@ -157,6 +157,7 @@ P:\dealer P:\dlr\We_Overcall_1N-E.dlr -s=252395796 >P:\pbn\We_Overcall_1N-E.pbn
 P:\dealer P:\dlr\Gavin_3_Under_Invitational_Jump-N.dlr -s=307902177 >P:\pbn\Gavin_3_Under_Invitational_Jump-N.pbn
 P:\dealer P:\dlr\Gambling_3N-S.dlr -s=3643433969 >P:\pbn\Gambling_3N-S.pbn
 P:\dealer P:\dlr\Opps_Weak_Two-E.dlr -s=1475992262 >P:\pbn\Opps_Weak_Two-E.pbn
+P:\dealer P:\dlr\Reverse_After_Two_Over_One-S.dlr -s=3818596500 >P:\pbn\Reverse_After_Two_Over_One-S.pbn
 P:\dealer P:\dlr\McCabe_After_Weak_2-S.dlr -s=3473100855 >P:\pbn\McCabe_After_Weak_2-S.pbn
 P:\dealer P:\dlr\Vics_2C_Relay-S.dlr -s=475283154 >P:\pbn\Vics_2C_Relay-S.pbn
 P:\dealer P:\dlr\Slam_after_Stayman_or_Jacoby_w30plus-S.dlr -s=2006039300 >P:\pbn\Slam_after_Stayman_or_Jacoby_w30plus-S.pbn
