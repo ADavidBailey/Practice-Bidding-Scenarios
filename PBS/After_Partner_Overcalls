@@ -11,7 +11,7 @@ GoodS = spades(south)>4   and top5(south,spades)>2
 GoodH = hearts(south)>4   and top5(south,hearts)>2
 GoodD = diamonds(south)>4 and top5(south,diamonds)>2
 GoodC = clubs(south)>4    and top5(south,clubs)>2
-goodSuit = (GoodS or GoodH or GoodD or GoodC) and shape(south,any 6xxx+any 5xxx-any 65xx-any 55xx)
+goodSuit = (GoodS or GoodH or GoodD or GoodC) and shape(south,any 6xxx+any 5xxx-any 75xxany 65xx-any 55xx)
 
 # East opens
 eOpens = hcp(east)>11 and hcp(east)<15
@@ -50,4 +50,7 @@ average "new suit " 100 * nNewSuit,
 Script
 Button,After Partner Overcalls,\n\
 --- After Partner Overcalls\n\
+- Raise/n/
+- Cue Bids/n/
+- New Suit/n/
 %AfterPartnerOvercalls%
