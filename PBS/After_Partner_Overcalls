@@ -1,0 +1,55 @@
+Script,AfterPartnerOvercalls
+setDealerCode(`
+
+# After Partner Overcalls
+
+dealer east
+produce 1000
+
+# Define good suits
+GoodS = spades(south)>4   and top5(south,spades)>2
+GoodH = hearts(south)>4   and top5(south,hearts)>2
+GoodD = diamonds(south)>4 and top5(south,diamonds)>2
+GoodC = clubs(south)>4    and top5(south,clubs)>2
+goodSuit = (GoodS or GoodH or GoodD or GoodC) and shape(south,any 6xxx+any 5xxx-any 65xx-any 55xx)
+
+# East opens
+eOpens = hcp(east)>11 and hcp(east)<15
+
+# South has a decent suit
+sOvercalls = goodSuit and hcp(south)>8 
+
+nFitsS = GoodS and spades(north)>2
+nFitsH = GoodH and hearts(north)>2
+nFitsD = GoodD and diamonds(north)>3
+nFitsC = GoodC and clubs(north)>3
+nFit   = (nFitsS or nFitsH or nFitsD or nFitsC)
+
+nRaises  = nFit and hcp(north)>6 and hcp(north)<11
+nCueBids = nFit and hcp(north)>10
+nNewSuit = shape(north,any 5xxx+any 6xxx) and hcp(north)>9 and not nFit
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+
+levelRaise = nRaises  and keep75
+levelCue   = nCueBids and keep
+levelSuit  = nNewSuit and keep89
+
+levelTheDeal = nRaises or nCueBids or nNewSuit
+
+# Now do it
+eOpens and sOvercalls and (nRaises or nCueBids or nNewSuit)
+and levelTheDeal
+
+action
+average "raises   " 100 * nRaises,
+average "cue bids " 100 * nCueBids,
+average "new suit " 100 * nNewSuit,
+
+`, "E", true);
+Script
+Button,After Partner Overcalls,--- After Partner Overcalls\n\
+- Raise shows fit and 6-10 TP
+- Cue Bid shows fit and 11+
+- Bid new suit shows 10+ HCP and no fit
+%AfterPartnerOvercalls%
