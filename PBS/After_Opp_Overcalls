@@ -40,9 +40,7 @@ wC = not (wS or wH or wD)
 sOpens = (oS or oH or oD or oC) and hcp(south)>11
 
 # West overcalls with a single-suited hand
-wOvercalls = (wD or wH or wS or wC) and (gS or gH or gD or gC) and shape(west,any 6xxx+any 5xxx-any 65xx -any 55xx)
-wP1 = hcp(west)>7
-wP2 = hcp(west)>10
+wOvercalls = (wD or wH or wS or wC) and (gS or gH or gD or gC) and shape(west,any 6xxx+any 5xxx-any 65xx -any 55xx) and hcp(west)>10
 
 p1 = hcp(north)>5
 p2 = hcp(north)>9
@@ -69,7 +67,7 @@ nCueBids     = (oH or oS) and nFit and sp>10
 nNewSuit     = not(nFit or nDoubles) and (spades(north)>4 or hearts(north)>4 or diamonds(north)>4 or clubs(north)>4)
 nRaisesMinor = (oC or oD) and nFit and (wD or wH) sp>5
 
-nActs = nCueBids or (nRaisesMajor or (nDoubles or (nNewSuit or nRaisesMinor))) 
+nActs = nCueBids or nRaisesMajor or nDoubles or nRaisesMinor // or nNewSuit 
 sOpens and wOvercalls and nActs
 
 action

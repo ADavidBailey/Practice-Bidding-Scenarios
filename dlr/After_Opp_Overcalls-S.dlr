@@ -127,7 +127,7 @@ nCueBids     = (oH or oS) and nFit and sp>10
 nNewSuit     = not(nFit or nDoubles) and (spades(north)>4 or hearts(north)>4 or diamonds(north)>4 or clubs(north)>4)
 nRaisesMinor = (oC or oD) and nFit and (wD or wH) sp>5
 
-nActs = nCueBids or (nRaisesMajor or (nDoubles or (nNewSuit or nRaisesMinor))) 
+nActs = nCueBids or nRaisesMajor or nDoubles or nRaisesMinor // or nNewSuit 
 sOpens and wOvercalls and nActs
 
 action
