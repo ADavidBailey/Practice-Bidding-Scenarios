@@ -104,6 +104,7 @@ P:\dealer P:\dlr\Dealing_with_Ovecalls_Strong-S.dlr -s=2268153323 >P:\pbn\Dealin
 P:\dealer P:\dlr\Opps_Overcall_1NT-S.dlr -s=2599225800 >P:\pbn\Opps_Overcall_1NT-S.pbn
 P:\dealer P:\dlr\Slam_after_Stayman-S.dlr -s=121521247 >P:\pbn\Slam_after_Stayman-S.pbn
 P:\dealer P:\dlr\Gavin_Transfers_after_2N_Rebid_Weak-N.dlr -s=3334884535 >P:\pbn\Gavin_Transfers_after_2N_Rebid_Weak-N.pbn
+P:\dealer P:\dlr\1N_GIB-S.dlr -s=1716219719 >P:\pbn\1N_GIB-S.pbn
 P:\dealer P:\dlr\Ned_3-Level_Resp_to_1N-S.dlr -s=85003244 >P:\pbn\Ned_3-Level_Resp_to_1N-S.pbn
 P:\dealer P:\dlr\SCS_Two_Clubs-S.dlr -s=3254646252 >P:\pbn\SCS_Two_Clubs-S.pbn
 P:\dealer P:\dlr\Opps_Takeout_X-S.dlr -s=3004228463 >P:\pbn\Opps_Takeout_X-S.pbn

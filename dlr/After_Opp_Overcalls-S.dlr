@@ -95,7 +95,7 @@ wD = not (wS or wH) and (dW>=cW or cW==3)
 wC = not (wS or wH or wD)
 
 # South Opens
-sOpens = (oS or oH or oD or oC) and hcp(south)>11
+sOpens = (oS or oH or oD or oC) and hcp(south)>11 and hcp(south)<15
 
 # West overcalls with a single-suited hand
 wOvercalls = (wD or wH or wS or wC) and (gS or gH or gD or gC) and shape(west,any 6xxx+any 5xxx-any 65xx -any 55xx) and hcp(west)>10

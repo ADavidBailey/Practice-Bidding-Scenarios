@@ -1,8 +1,10 @@
-Script,NotrumpGIB
-setDealerCode(`
+# 1N_GIB
+generate 100000000
+produce 500
+dealer south
+
 
 # 1 Notrump GIB
-produce 10000
 
 # GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
 p = hcp(south) + shape(south,5xxx+x5xx)
@@ -14,7 +16,6 @@ nt2 = shape(south, 4252+4225+2452+2425+2254+2245) and hcp(south)>14 and hcp(sout
 
 nt1 or nt2
 
-produce 10000
 action
 
 average "not 5422" 100 * nt1,
@@ -25,10 +26,5 @@ average "2425    " 100 * shape(south,2425),
 average "2254    " 100 * shape(south,2254),
 average "2245    " 100 * shape(south,2245),
 
-`,"S",true)
-Script
-Button,GIB Notrump,\n\
----  GIB Notrump Opening\n\
-4252+4225+2452+2425+2254+2245 and 15-16 HCP (too few to reverse)\n\
-any 5332+any 4333，4432，or 5332 and (15-17 HCP with no 5-card major or 15-16 with a 5-card major)\n\
-%NotrumpGIB%
+
+printpbn
