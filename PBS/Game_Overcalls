@@ -1,0 +1,36 @@
+Script,WeOvercallGame
+setDealerCode(`
+
+# They open and We Bid Game
+dealer east
+produce 1000
+
+# Define long suits headed by A, AJ, or KQ
+sS = c13(south,spades)==6 or c13(south,spades)==5 and spades(south)>7
+sH = c13(south,hearts)==6 or c13(south,hearts)==5 and hearts(south)>7
+sD = c13(south,diamonds)==6 or c13(south,diamonds)==5 and diamonds(south)>8
+sC = c13(south,clubs)==6 or c13(south,clubs)==5 and clubs(south)>8
+
+# East opens
+eOpens = hcp(east)>11 and hcp(east)<15
+
+# South has a long good suit
+sBidsGame = (sS or sH or sD or sC) and hcp(south)>8 and hcp(south)<13
+
+# Now do it
+eOpens and sBidsGame
+
+action
+average "south hcp     " hcp(south),
+average "Spade Game    " 100 * sS,
+average "Heart Game    " 100 * sH,
+average "Diamond Game  " 100 * sD,
+average "Club Game     " 100 * sC,
+
+`, "E", true);
+Script
+Button,We Bid Game,\n\
+--- We Bid Game\n\
+• 8+ Major\n\
+• 9+ Minor\n\
+%WeOvercallGame%
