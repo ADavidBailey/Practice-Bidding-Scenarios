@@ -7,10 +7,10 @@ dealer east
 # They open and We Bid Game
 
 # Define long suits headed by A, AJ, or KQ
-sS = c13(south,spades)==6 or c13(south,spades)==5 and spades(south)>7
-sH = c13(south,hearts)==6 or c13(south,hearts)==5 and hearts(south)>7
-sD = c13(south,diamonds)==6 or c13(south,diamonds)==5 and diamonds(south)>8
-sC = c13(south,clubs)==6 or c13(south,clubs)==5 and clubs(south)>8
+sS = (c13(south,spades)==6 or c13(south,spades)==5) and spades(south)>7
+sH = (c13(south,hearts)==6 or c13(south,hearts)==5) and hearts(south)>7
+sD = (c13(south,diamonds)==6 or c13(south,diamonds)==5) and diamonds(south)>8
+sC = (c13(south,clubs)==6 or c13(south,clubs)==5) and clubs(south)>8
 
 # East opens
 eOpens = hcp(east)>11 and hcp(east)<15
