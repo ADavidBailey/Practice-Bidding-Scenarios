@@ -77,6 +77,7 @@ P:\dealer P:\dlr\Soloway_Jump_Shift_Type-4-S.dlr -s=1470070303 >P:\pbn\Soloway_J
 P:\dealer P:\dlr\Two_Over_One-S.dlr -s=2921487298 >P:\pbn\Two_Over_One-S.pbn
 P:\dealer P:\dlr\Power_Double_Balanced-E.dlr -s=3369163596 >P:\pbn\Power_Double_Balanced-E.pbn
 P:\dealer P:\dlr\Weak_NT_09-15-S.dlr -s=1898925101 >P:\pbn\Weak_NT_09-15-S.pbn
+P:\dealer P:\dlr\Game_Overcalls-E.dlr -s=3688960841 >P:\pbn\Game_Overcalls-E.pbn
 P:\dealer P:\dlr\Drury-S.dlr -s=3427455628 >P:\pbn\Drury-S.pbn
 P:\dealer P:\dlr\Negative_Free_Bid-N.dlr -s=1240219563 >P:\pbn\Negative_Free_Bid-N.pbn
 P:\dealer P:\dlr\Opp_Redoubles-E.dlr -s=3689096028 >P:\pbn\Opp_Redoubles-E.pbn
