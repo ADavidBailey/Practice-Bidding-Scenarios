@@ -6,17 +6,21 @@ import hashlib
 
 def process_file(files):
     nfiles = 0
-    for filename in files:
-        if filename.lower().endswith('.pbn'):
-            output_filename = filename.replace('.pbn', '.bba')
+    for pbn_file in files:
+        if pbn_file.lower().endswith('.pbn'):
+            bba_file = pbn_file.replace('.pbn', '.bba')
+            hand = " --HAND P:\\pbn\\" + pbn_file
+            archive = " --ARCHIVE_FILE P:\\bba\\" + bba_file
+            
+            print("P:\\BBA.exe --BBSA_FOLDER C:\\BBA --CC1 GIB-ADB.bbsa --CC2 GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID" + hand + archive)
+            nfiles += 1
             if nfiles >3:
                 break
-            print("P:\\BBA.exe --ARCHIVE_FILE !P:\\bba\\" + output_filename + "! --AUTOBID --HAND !P:\\pbn\\" + filename + "! --CC1 GIB-ADB.bbsa -- CC2 GIB-ADB.bbsa --DD 0 --SD 1")
-            nfiles += 1
 
 def main():
 
     PBS_pbn = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios/pbn/")
+    
 
     current_directory_files = os.listdir(PBS_pbn)
     process_file(current_directory_files)
