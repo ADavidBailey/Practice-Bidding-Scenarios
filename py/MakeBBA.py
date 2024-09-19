@@ -5,10 +5,14 @@ import os
 import hashlib
 
 def process_file(files):
+    nfiles = 0
     for filename in files:
         if filename.lower().endswith('.pbn'):
             output_filename = filename.replace('.pbn', '.bba')
-            print("P:\\BBA.exe --ARCHIVE_FILE !P:\\pbn\\" + output_filename + "! AUTOBID --HAND !" + filename + "! --CC1 GIB-ADB.bbsa -- CC2 GIB-ADB.bbsa --DD 0 --SD 1")
+            if nfiles >3:
+                break
+            print("P:\\BBA.exe --ARCHIVE_FILE !P:\\pbn\\" + output_filename + "! --AUTOBID --HAND !" + filename + "! --CC1 GIB-ADB.bbsa -- CC2 GIB-ADB.bbsa --DD 0 --SD 1")
+            nfiles += 1
 
 def main():
 
