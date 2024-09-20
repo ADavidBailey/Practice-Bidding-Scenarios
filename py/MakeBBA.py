@@ -10,11 +10,11 @@ def process_file(files):
         if pbn_file.lower().endswith('.pbn'):
             bba_file = pbn_file.replace('.pbn', '.bba')
             hand = " --HAND P:\\pbn\\" + pbn_file
-            archive = " --ARCHIVE_FILE P:\\bba\\" + bba_file
+            archive = " --ARCHIVE_FILE C:\\xxx\\" + bba_file
             
-            print("P:\\BBA.exe --BBSA_FOLDER C:\\BBA --CC1 GIB-ADB.bbsa --CC2 GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID" + hand + archive)
+            print("P:\\BBA /D --CC1 C:\\BBA\\GIB-ADB.bbsa --CC2 C:\\BBA\\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID" + hand + archive)
             nfiles += 1
-            if nfiles >3:
+            if nfiles > 1:
                 break
 
 def main():
