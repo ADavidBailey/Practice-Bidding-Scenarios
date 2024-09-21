@@ -11,7 +11,7 @@ def process_file(files):
             cc1 = " --CC1 C:\\BBA\\GIB-ADB.bbsa"
             cc2 = " --CC2 C:\\BBA\\GIB-Thorvald.bbsa"
             hand = " --HAND P:\\pbn\\" + pbn_file
-            current_archive = " --CURRENT_ARCHIVE P:\\pba"
+            current_archive = " --CURRENT_ARCHIVE P:\\bba"
             archive = " --ARCHIVE_FILE " + pbn_file
             
             print("C:\\BBA\\BBA" + cc1 + cc2 + " --DD 0 --SD 1 --AUTOBID" + hand + current_archive + archive)
