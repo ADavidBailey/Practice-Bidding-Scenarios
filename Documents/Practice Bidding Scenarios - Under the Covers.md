@@ -115,11 +115,11 @@ The first P:\dealer invokes the dealer.exe with 3 parameters, 1. the file to rea
 
 If my code is the same and the seed is the same, it will produce the same hands each time it's run.  The seed is derived from the filename.  If/When I want to produce new files, I can change the seed.
 
-[CTRL-Click here to see run.cmd](<https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/makePBN.cmd>)
+[CTRL-Click here to see makePBN.cmd](<https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/makePBN.cmd>)
 
 And, then go to Window's Command Prompt, switch to the PBS root directory and enter:
 
-    run.cmd
+    makePBN.cmd
 
 this one runs a while (currently about 1 hour and 25 minutes for 179 scenarios).  It prints out the name of each file so you can see what's happening.
 
