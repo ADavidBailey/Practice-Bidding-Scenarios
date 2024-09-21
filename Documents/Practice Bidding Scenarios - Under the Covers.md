@@ -105,9 +105,9 @@ This program reads all of through all of the files in the PBS folder -- one for 
 
 This program reads the files in the dlr folder and creates Windows commands that will create corresponding pbn files.  These commands are put into DOS command file 'run.cmd' which resides in the PBS root directory.  To run this, switch to the py folder and enter the following.
 
-    python3 makePBN.py > ../run.cmd
+    python3 makePBN.py > ../makePBN.cmd
 
-Here's an example of a record the run.cmd:
+Here's an example of a record the makePBN.cmd:
 
     P:\dealer P:\dlr\Dealer-3N-over-LHO-3x-W.dlr -s=675264029 >P:\pbn\Dealer-3N-over-LHO-3x-W.pbn
 
@@ -115,7 +115,7 @@ The first P:\dealer invokes the dealer.exe with 3 parameters, 1. the file to rea
 
 If my code is the same and the seed is the same, it will produce the same hands each time it's run.  The seed is derived from the filename.  If/When I want to produce new files, I can change the seed.
 
-[CTRL-Click here to see run.cmd](<https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/run.cmd>)
+[CTRL-Click here to see run.cmd](<https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/makePBN.cmd>)
 
 And, then go to Window's Command Prompt, switch to the PBS root directory and enter:
 
