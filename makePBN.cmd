@@ -7,6 +7,7 @@ P:\dealer P:\dlr\Support_Double-S.dlr -s=459724694 >P:\pbn\Support_Double-S.pbn
 P:\dealer P:\dlr\Rule_of_16-N.dlr -s=2225410582 >P:\pbn\Rule_of_16-N.pbn
 P:\dealer P:\dlr\2N_and_1_Minor-S.dlr -s=200873978 >P:\pbn\2N_and_1_Minor-S.pbn
 P:\dealer P:\dlr\Mixed_Raise_In_Comp-W.dlr -s=1661228870 >P:\pbn\Mixed_Raise_In_Comp-W.pbn
+P:\dealer P:\dlr\5431_After_NT-S.dlr -s=2431309584 >P:\pbn\5431_After_NT-S.pbn
 P:\dealer P:\dlr\Gavin_3-Card_Limit_Raise-N.dlr -s=3386189472 >P:\pbn\Gavin_3-Card_Limit_Raise-N.pbn
 P:\dealer P:\dlr\Jacoby_2N_4x_void_Leveled-S.dlr -s=1316327016 >P:\pbn\Jacoby_2N_4x_void_Leveled-S.pbn
 P:\dealer P:\dlr\2NT-S.dlr -s=1883612028 >P:\pbn\2NT-S.pbn
