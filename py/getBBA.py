@@ -25,6 +25,7 @@ with open(input_file, 'r') as i_file:
     nGames = 0
     notes = {}
     this_note = ''
+    par = ''
     optimum = False
     f.write('board declarer contract score  par     | notes' + '\n')
     for line in lines:
@@ -51,12 +52,15 @@ with open(input_file, 'r') as i_file:
                 this_note = this_note + ' | ' + note
         if optimum == True:
             par = line.strip()
-            txt = board.rjust(5) + declarer.rjust(6) + contract.rjust(9) + score.rjust(9) + '  ' + par.ljust(7)
-            f.write(txt + '| ' + this_note + '\n')
-            this_note = ''
             optimum = False
         if line.startswith('[Optimum'):
             optimum = True
+
+        if line.strip() == '':
+            txt = board.rjust(5) + declarer.rjust(6) + contract.rjust(9) + score.rjust(9) + '  ' + par.ljust(7)
+            f.write(txt + '| ' + this_note + '\n')
+            this_note = ''
+
     f.write('Statistics for ' + input_file + '\n')
     f.write('\n')
     f.write('nDeals = ' + str(nDeals) + '\n')
