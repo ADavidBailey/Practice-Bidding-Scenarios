@@ -8,7 +8,7 @@ input = args.input
 
 if input[-4:] != '.pbn':
     sys.exit("Input file must be .pbn")
-input_file  = '/Users/adavidbailey/Practice-Bidding-Scenarios/BBA/' + input
+input_file  = '/Users/adavidbailey/Practice-Bidding-Scenarios/bba/' + input
 
 print("reading " + str(input_file))
 output_file = input_file[:-3] + 'txt'
