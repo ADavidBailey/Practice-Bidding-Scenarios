@@ -1,5 +1,5 @@
-# Reads all .pbn files from directory /pbn and create command file for running BBA for each file
-# generating a matching .pbn file for each .dlr
+# Reads all .pbn files from the /pbn folder and creates command file for running BBA.exe for each file
+# creating a corresponding .pbn file in the /bba directory
 
 import os
 import hashlib
