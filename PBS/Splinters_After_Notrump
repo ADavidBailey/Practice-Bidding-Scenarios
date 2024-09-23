@@ -1,7 +1,7 @@
 Script,SplintersAfterNT
 setDealerCode(`
 
-# 5431 After NT
+# Splinters After Notrump
 dealer south
 produce 1000
 
@@ -16,14 +16,17 @@ nt2 = shape(south, 4252+4225+2452+2425+2254+2245) and hcp(south)>14 and hcp(sout
 # Responder holds (3-1 or 3-0 in the majors) and 4+ in each of the minors and 8+ HCP
 dSplinter = shape(north,31xx+30xx+13xx+03xx) and shape(north,xx64+xx46+xx55+xx54+xx45) and hcp(north)>7
 
-
+# Calculate Total Points
 s0 = shape(north,0xxx) ? 3 : 0
 s1 = shape(north,1xxx) ? 2 : 0
 tp = hcp(south) + s0 + s1
 
-dSpl= shape(north,any 4405+4414)
-hSpl = shape(north,any 4045+4054+4144)
-sSpl = shape(north,any 0445+0454+1444)
+# Define splinter distributions
+dSpl= shape(north,4405+4414)
+hSpl = shape(north,4045+4054+4144)
+sSpl = shape(north,0445+0454+1444)
+
+# Define splinter
 splinter = (dSpl or hSpl or sSpl) and tp>11
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
