@@ -37,6 +37,7 @@ P:\dealer P:\dlr\Multi_Landy-E.dlr -s=383391503 >P:\pbn\Multi_Landy-E.pbn
 P:\dealer P:\dlr\McCabe_after_WJO-E.dlr -s=62059325 >P:\pbn\McCabe_after_WJO-E.pbn
 P:\dealer P:\dlr\Weak_NT_13-15-S.dlr -s=15032107 >P:\pbn\Weak_NT_13-15-S.pbn
 P:\dealer P:\dlr\Meckwell-E.dlr -s=1762462905 >P:\pbn\Meckwell-E.pbn
+P:\dealer P:\dlr\Splinters_After_Notrump-S.dlr -s=602369094 >P:\pbn\Splinters_After_Notrump-S.pbn
 P:\dealer P:\dlr\Two-Way_Game_Try-S.dlr -s=4128512145 >P:\pbn\Two-Way_Game_Try-S.pbn
 P:\dealer P:\dlr\SCS_1C_any_8plus_Resp-S.dlr -s=1673979234 >P:\pbn\SCS_1C_any_8plus_Resp-S.pbn
 P:\dealer P:\dlr\Fourth_Suit_Forcing-S.dlr -s=2988127626 >P:\pbn\Fourth_Suit_Forcing-S.pbn
