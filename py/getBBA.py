@@ -12,7 +12,7 @@ if input[-4:] != '.pbn':
 input_file  = '/Users/adavidbailey/Practice-Bidding-Scenarios/bba/' + input
 
 print("reading " + str(input_file))
-output_file = input_file[:-3] + 'txt'
+output_file = input_file + '.txt'
 print("writing " + str(output_file))
 f = open(output_file, 'w')
 f.write(input_file+'\n')
@@ -94,10 +94,12 @@ with open(input_file, 'r') as i_file:
     f.write('nGames = ' + str(nGames) + '\n')
     f.write('%Games = ' + str((nGames/nDeals) * 100) + '%\n')
 
-    count = 0
-    notes_sorted = dict(sorted(notes.items()))
-    for note in notes_sorted:
-        count = count + notes[note]
-        txt = ('    ' + str(notes[note]))
-        f.write(txt[-5:] + '  ' + note + '\n')
-    f.write ('\nTotal = ' + str(count) + '\n')
+    
+    #f.write('\n --- Notes ---\n')
+    #count = 0
+    #notes_sorted = dict(sorted(notes.items()))
+    #for note in notes_sorted:
+    #    count = count + notes[note]
+    #    txt = ('    ' + str(notes[note]))
+    #    f.write(txt[-5:] + '  ' + note + '\n')
+    #f.write ('\nTotal = ' + str(count) + '\n')
