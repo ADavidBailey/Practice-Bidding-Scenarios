@@ -31,7 +31,7 @@ with open(input_file, 'r') as i_file:
     auction = False
     par = ''
     optimum = False
-    f.write('board declarer contract score  par     | notes' + '\n')
+    f.write('board declarer contract score  par    | notes' + '\n')
     for line in lines:
         if line.startswith('[Board'):
             board = line[8:-2]
