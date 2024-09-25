@@ -49,10 +49,17 @@ with open(input_file, 'r') as i_file:
             if line.startswith('['):
                 # this marks the end of this auction; now add it to auctions, the 'dictionary of auctions'
                 this_auction = '-'.join(this_auction.split()).replace('Pass', 'P').replace('-P-P-P','')
-                this_auction = re.sub(r'-=\d=', '', this_auction)               
-                if this_auction not in auctions:
-                    auctions[this_auction] = 0
-                auctions[this_auction] += 1
+                this_auction = re.sub(r'-=\d=', '', this_auction)
+
+                if this_auction not in notes:
+                    notes[this_auction] = 0
+                notes[this_auction] += 1
+                
+                if this_note == '':
+                    this_note = this_auction
+                else:
+                    this_note = this_note + ' | ' + this_auction
+
                 # we're all done with this auction
                 auction = False      
             else:
@@ -87,20 +94,10 @@ with open(input_file, 'r') as i_file:
     f.write('nGames = ' + str(nGames) + '\n')
     f.write('%Games = ' + str((nGames/nDeals) * 100) + '%\n')
 
-    f.write('\n--- Notes ---\n')
     count = 0
     notes_sorted = dict(sorted(notes.items()))
     for note in notes_sorted:
         count = count + notes[note]
         txt = ('    ' + str(notes[note]))
         f.write(txt[-5:] + '  ' + note + '\n')
-    f.write ('\nTotal = ' + str(count) + '\n')
-
-    f.write('\n--- Auctions ---\n')
-    count = 0
-    auctions_sorted = dict(sorted(auctions.items()))
-    for auction in auctions_sorted:
-        count = count + auctions[auction]
-        txt = ('    ' + str(auctions[auction]))
-        f.write(txt[-5:] + '  ' + auction + '\n')
     f.write ('\nTotal = ' + str(count) + '\n')
