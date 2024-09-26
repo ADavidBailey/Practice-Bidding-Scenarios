@@ -14,7 +14,6 @@ sC = (c13(south,clubs)==6 or c13(south,clubs)==5) and clubs(south)>8
 # East opens
 eOpens = hcp(east)>11 and hcp(east)<15
 
-# hcp changed from 9-12 to 5-11  9/26
 # South has a long good suit
 sBidsGame = (sS or sH or sD or sC) and hcp(south)>4 and hcp(south)<12
 
@@ -34,4 +33,5 @@ Button,We Jump to Game,\n\
 --- We Jump to Game\n\
 • 8+ Major\n\
 • 9+ Minor\n\
+And 5-11 HCP\n\
 %WeOvercallGame%
