@@ -6,7 +6,7 @@ dealer east
 
 # They open and We Bid Game
 
-# Define long suits headed by A, AJ, or KQ
+# Define long suits headed by A, KQ, or KJ
 sS = (c13(south,spades)==6 or c13(south,spades)==5) and spades(south)>7
 sH = (c13(south,hearts)==6 or c13(south,hearts)==5) and hearts(south)>7
 sD = (c13(south,diamonds)==6 or c13(south,diamonds)==5) and diamonds(south)>8
@@ -15,8 +15,9 @@ sC = (c13(south,clubs)==6 or c13(south,clubs)==5) and clubs(south)>8
 # East opens
 eOpens = hcp(east)>11 and hcp(east)<15
 
+# hcp changed from 9-12 to 5-11  9/26
 # South has a long good suit
-sBidsGame = (sS or sH or sD or sC) and hcp(south)>8 and hcp(south)<13
+sBidsGame = (sS or sH or sD or sC) and hcp(south)>4 and hcp(south)<12
 
 # Now do it
 eOpens and sBidsGame
