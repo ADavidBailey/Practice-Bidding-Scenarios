@@ -125,7 +125,7 @@ def process_file(input_file):
         f.write('             ' +total[-5:] + '  ' + 'TOTAL\n')
         f.close
 
-folder = '/Users/adavidbailey/Practice-Bidding-Scenarios/BBA/'
+folder = '/Users/adavidbailey/Practice-Bidding-Scenarios/bba/'
 files = os.listdir(folder)
 for file in files:
     if file[-4:] == '.csv':
