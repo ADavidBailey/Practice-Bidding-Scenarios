@@ -21,7 +21,8 @@ with open(input_file, 'r') as i_file:
     # Split the string into individual lines
     content = i_file.read()
     lines = content.strip().split('\n')
-        
+
+    nBoards = 0  
     nDeals = 0
     nGames = 0
     notes = {}
@@ -35,6 +36,7 @@ with open(input_file, 'r') as i_file:
     for line in lines:
         if line.startswith('[Board'):
             board = line[8:-2]
+            nBoards += 1
         if line.startswith('[Declarer'):
             declarer = line[11:-2]
         if line.startswith('[Contract'):
@@ -49,7 +51,9 @@ with open(input_file, 'r') as i_file:
             if line.startswith('['):
                 # this marks the end of this auction; now add it to auctions, the 'dictionary of auctions'
                 this_auction = '-'.join(this_auction.split()).replace('Pass', 'P').replace('-P-P-P','')
-                this_auction = re.sub(r'-=\d=', '', this_auction)
+
+                # auctions start with a space so they will sort first
+                this_auction = ' ' + re.sub(r'-=\d=', '', this_auction)
 
                 if this_auction not in notes:
                     notes[this_auction] = 0
@@ -81,25 +85,36 @@ with open(input_file, 'r') as i_file:
             optimum = False
         if line.startswith('[Optimum'):
             optimum = True
-
-        if line.strip() == '':
+        if line.startswith('[Play'):
             txt = board.rjust(5) + declarer.rjust(6) + contract.rjust(9) + score.rjust(9) + '  ' + par.ljust(7)
             f.write(txt + '| ' + this_note + '\n')
             this_note = ''
             this_auction = ''
 
-    f.write('Statistics for ' + input_file + '\n')
-    f.write('\n')
-    f.write('nDeals = ' + str(nDeals) + '\n')
-    f.write('nGames = ' + str(nGames) + '\n')
-    f.write('%Games = ' + str((nGames/nDeals) * 100) + '%\n')
+    f.write('\nSummary for ' + input_file + '\n')
+    f.write('Deals N/S = ' + str(nDeals) + '\n')
+    f.write('Games N/S = ' + str(nGames) + ' or ' + str(round(nGames/nDeals * 100, 2)) + '%\n')
 
-    
-    #f.write('\n --- Notes ---\n')
-    #count = 0
-    #notes_sorted = dict(sorted(notes.items()))
-    #for note in notes_sorted:
-    #    count = count + notes[note]
-    #    txt = ('    ' + str(notes[note]))
-    #    f.write(txt[-5:] + '  ' + note + '\n')
-    #f.write ('\nTotal = ' + str(count) + '\n')
+    f.write('\n -- Sorted Bidding Sequences --\n')
+
+    txt = ''
+    nDeals = 0
+    nNotes = 0
+    for note in dict(sorted(notes.items())):
+        if note[0] == ' ':
+            nDeals += notes[note]
+        else:
+            nNotes += notes[note]
+        txt = str(notes[note])
+        f.write(txt.rjust(5) + '  ' + note + '\n')
+
+        if nDeals == nBoards:
+            txt = ('    ' + str(nDeals))
+            f.write('_____\n')
+            f.write(txt[-5:] + '  ' + 'TOTAL Deals\n\n')
+            f.write('\n -- Sorted Notes --\n')
+            nDeals = 0
+
+    f.write('_____\n')       
+    txt = ('    ' + str(nNotes))
+    f.write(txt[-5:] + '  ' + 'TOTAL Notes\n\n')
