@@ -109,10 +109,10 @@ with open(input_file, 'r') as i_file:
         f.write(txt.rjust(5) + '  ' + note + '\n')
 
         if nDeals == nBoards:
-            txt = ('    ' + str(nDeals))
+            txt = (str(nDeals))
             f.write('_____\n')
-            f.write(txt[-5:] + '  ' + 'TOTAL Deals\n\n')
-            f.write('\n -- Sorted Notes --\n')
+            f.write(txt.rjust(5) + '  ' + 'TOTAL Deals\n\n')
+            f.write(' -- Sorted Notes --\n')
             nDeals = 0
 
     f.write('_____\n')       
