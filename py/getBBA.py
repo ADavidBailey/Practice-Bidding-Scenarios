@@ -18,7 +18,7 @@ f = open(output_file, 'w')
 f.write(input_file+'\n')
 
 
-f.write('\n -- Sorted Board Number --\n')
+f.write('\n                        -- Sorted by Board Number --\n')
 with open(input_file, 'r') as i_file:
     # Split the string into individual lines
     content = i_file.read()
@@ -33,8 +33,8 @@ with open(input_file, 'r') as i_file:
     auction = False
     par = ''
     optimum = False
-    f.write('board declarer contract score  par    north             east            south            west             | auction...   | notes\n')
-    #f.write('----- -------- -------- ------ ------ ----------------- --------------- ---------------- ---------------- | -------...\n')                                                                 | --------  -----' + '\n')
+    f.write('brd# contract score  par     north            east             south            west             | auction...   | notes\n')
+    f.write('---- -------- -----  ------  ---------------- ---------------- ---------------- ---------------- | ------------------------- \n')
     for line in lines:
         if line.startswith('[Board'):
             board_number = line[8:-2]
@@ -65,14 +65,15 @@ with open(input_file, 'r') as i_file:
             note = line[9:-2].capitalize()
             this_note = this_note + ' | ' + note
         if optimum == True:
-            par = line.strip()
+            txt = line.replace('NT', 'N')
+            par = txt[0:3] + txt[4:6].rjust(3)
             optimum = False
         if line.startswith('[Optimum'):
             optimum = True
         if line.startswith('[Play'):
             # I've got everything needed; so; write it out.
             result = bidding + this_note
-            f.write(board_number.rjust(5) + declarer.rjust(6) + contract.rjust(9) + score.rjust(9) + par.ljust(9) + the_deal + ' | ' + result + '\n')
+            f.write(board_number.rjust(4) + '  ' + (contract + '-' + declarer).ljust(8)  + score.rjust(5) + '  ' + par.ljust(8) + the_deal + ' | ' + result + '\n')
             
             if result not in results:
                 results[result] = 1
@@ -81,7 +82,7 @@ with open(input_file, 'r') as i_file:
             this_note = ''
             this_auction = ''
    
-    f.write('\n -- Sorted Bidding Sequences --\n')
+    f.write('\n                    -- Sorted byBidding Sequence --\n')
     for result in dict(sorted(results.items())):
         txt = str(results[result])
         f.write(txt.rjust(5) + '  ' + result +'\n')
