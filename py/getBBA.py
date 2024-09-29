@@ -1,6 +1,16 @@
 import argparse
 import sys
 
+def end_of_deal():
+    result = bidding + this_note
+    f.write(board_number.rjust(4) + '  ' + (contract + '-' + declarer).ljust(8)  + score.rjust(5) + '  ' + par.ljust(8) + the_deal + ' | ' + result + '\n')
+            
+    if result not in results:
+        results[result] = 1
+    else:
+        results[result] += 1
+
+
 parser = argparse.ArgumentParser(description="get BBA Stats")
 parser.add_argument("--input", help="Name of input file")
 args = parser.parse_args()
@@ -15,7 +25,6 @@ output_file = input_file + '.txt'
 print("writing " + str(output_file))
 f = open(output_file, 'w')
 f.write(input_file+'\n')
-
 
 f.write('\n                        -- Sorted by Board Number --\n')
 with open(input_file, 'r') as i_file:
@@ -71,16 +80,11 @@ with open(input_file, 'r') as i_file:
             optimum = True
         if line.strip() == '':
             # I've got everything needed; so, write it out.
-            result = bidding + this_note
-            f.write(board_number.rjust(4) + '  ' + (contract + '-' + declarer).ljust(8)  + score.rjust(5) + '  ' + par.ljust(8) + the_deal + ' | ' + result + '\n')
-            
-            if result not in results:
-                results[result] = 1
-            else:
-                results[result] += 1
+            end_of_deal()
             this_note = ''
             this_auction = ''
-   
+
+    end_of_deal()
     f.write('\n                    -- Sorted byBidding Sequence --\n')
     for result in dict(sorted(results.items())):
         txt = str(results[result])
