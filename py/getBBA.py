@@ -1,6 +1,5 @@
 import argparse
 import sys
-import re
 
 parser = argparse.ArgumentParser(description="get BBA Stats")
 parser.add_argument("--input", help="Name of input file")
@@ -70,8 +69,8 @@ with open(input_file, 'r') as i_file:
             optimum = False
         if line.startswith('[Optimum'):
             optimum = True
-        if line.startswith('[Play'):
-            # I've got everything needed; so; write it out.
+        if line.strip() == '':
+            # I've got everything needed; so, write it out.
             result = bidding + this_note
             f.write(board_number.rjust(4) + '  ' + (contract + '-' + declarer).ljust(8)  + score.rjust(5) + '  ' + par.ljust(8) + the_deal + ' | ' + result + '\n')
             
