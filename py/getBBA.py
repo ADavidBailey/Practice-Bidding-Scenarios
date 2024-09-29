@@ -33,11 +33,14 @@ with open(input_file, 'r') as i_file:
     auction = False
     par = ''
     optimum = False
-    f.write('board declarer contract score  par    | auction... notes' + '\n')
+    f.write('board declarer contract score  par    north             east            south            west             | auction...   | notes\n')
+    #f.write('----- -------- -------- ------ ------ ----------------- --------------- ---------------- ---------------- | -------...\n')                                                                 | --------  -----' + '\n')
     for line in lines:
         if line.startswith('[Board'):
             board_number = line[8:-2]
             nBoards += 1
+        if line.startswith('[Deal'):
+            the_deal = line[9:-2]
         if line.startswith('[Declarer'):
             declarer = line[11:-2]
         if line.startswith('[Contract'):
@@ -68,8 +71,8 @@ with open(input_file, 'r') as i_file:
             optimum = True
         if line.startswith('[Play'):
             # I've got everything needed; so; write it out.
-            result = bidding + ' ' + this_note
-            f.write(board_number.rjust(5) + declarer.rjust(6) + contract.rjust(9) + score.rjust(9) + '  ' + par.ljust(7) + ' ' + result + '\n')
+            result = bidding + this_note
+            f.write(board_number.rjust(5) + declarer.rjust(6) + contract.rjust(9) + score.rjust(9) + par.ljust(9) + the_deal + ' | ' + result + '\n')
             
             if result not in results:
                 results[result] = 1
