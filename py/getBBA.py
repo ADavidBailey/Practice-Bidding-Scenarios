@@ -21,7 +21,7 @@ if input[-4:] != '.pbn':
 input_file  = '/Users/adavidbailey/Practice-Bidding-Scenarios/bba/' + input
 
 print("reading " + str(input_file))
-output_file = input_file + '.txt'
+output_file = '/Users/adavidbailey/Practice-Bidding-Scenarios/bba+/' + input + '.txt'
 print("writing " + str(output_file))
 f = open(output_file, 'w')
 f.write(input_file+'\n')
@@ -36,6 +36,7 @@ with open(input_file, 'r') as i_file:
     nDeals = 0
     nGames = 0
     results = {}
+    notes = {}
     this_note = ''
     this_auction = ''
     auction = False
@@ -71,6 +72,10 @@ with open(input_file, 'r') as i_file:
             auction = True
         if line.startswith('[Note'):
             note = line[9:-2].capitalize()
+            if note not in notes:
+                notes[note] = 1
+            else:
+                notes[note] += 1
             this_note = this_note + ' | ' + note
         if optimum == True:
             txt = line.replace('NT', 'N')
@@ -86,10 +91,15 @@ with open(input_file, 'r') as i_file:
 
     if this_auction != '':
         end_of_deal()
-    f.write('\n                    -- Sorted by Bidding Sequence --\n')
+    f.write('\n             -- Sorted Summary of Bidding Sequences --\n\n')
     for result in dict(sorted(results.items())):
         txt = str(results[result])
         f.write(txt.rjust(5) + '  ' + result +'\n')
+
+    f.write('\n   -- Sorted Summary of Notes --\n\n')
+    for note in dict(sorted(notes.items())):
+        txt = str(notes[note])
+        f.write(txt.rjust(5) + '  ' + note +'\n')
     
     f.write('\nSummary for ' + input_file + '\n')
     f.write('Deals N/S = ' + str(nDeals) + '\n')
