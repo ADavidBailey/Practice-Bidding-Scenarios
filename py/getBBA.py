@@ -84,8 +84,9 @@ with open(input_file, 'r') as i_file:
             this_note = ''
             this_auction = ''
 
-    end_of_deal()
-    f.write('\n                    -- Sorted byBidding Sequence --\n')
+    if this_auction != '':
+        end_of_deal()
+    f.write('\n                    -- Sorted by Bidding Sequence --\n')
     for result in dict(sorted(results.items())):
         txt = str(results[result])
         f.write(txt.rjust(5) + '  ' + result +'\n')
