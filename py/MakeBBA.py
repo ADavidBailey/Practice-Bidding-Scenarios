@@ -2,7 +2,7 @@
 # creating a corresponding .pbn file in the /bba directory
 
 import os
-import hashlib
+#import hashlib
 
 def process_file(files):
     nfiles = 0
@@ -12,7 +12,7 @@ def process_file(files):
             cc2 = " --CC2 C:\\BBA\\GIB-Thorvald.bbsa"
             hand = " --HAND P:\\pbn\\" + pbn_file
             current_archive = " --CURRENT_ARCHIVE P:\\bba\\ "
-            archive = " --ARCHIVE_FILE " + pbn_file
+            archive = " --ARCHIVE_FILE " + pbn_file[:-6] + ".pbn"
             
             print("C:\\BBA\\BBA" + cc1 + cc2 + " --DD 0 --SD 1 --AUTOBID" + hand + current_archive + archive)
             nfiles += 1

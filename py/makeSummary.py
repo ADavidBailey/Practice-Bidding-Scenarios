@@ -42,7 +42,7 @@ if input[-4:] != '.pbn':
 input_file  = '/Users/adavidbailey/Practice-Bidding-Scenarios/bba/' + input
 
 # read corresponding DDS csv file
-csv_filepath = '/Users/adavidbailey/Practice-Bidding-Scenarios/bba/' + input[:-4] + '.csv'
+csv_filepath = '/Users/adavidbailey/Practice-Bidding-Scenarios/csv/' + input[:-4] + '.csv'
 if os.path.exists(csv_filepath):
     print("reading " + str(csv_file_name))
     with open(csv_filepath, 'r') as csv_file:
