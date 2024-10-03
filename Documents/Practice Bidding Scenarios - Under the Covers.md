@@ -103,7 +103,7 @@ This program reads all of through all of the files in the PBS folder -- one for 
 
 ### makePBN.py
 
-This program reads the files in the dlr folder and creates Windows commands that will create corresponding pbn files.  These commands are put into DOS command file 'run.cmd' which resides in the PBS root directory.  To run this, switch to the py folder and enter the following.
+This program reads the files in the dlr folder and creates Windows commands that will create corresponding pbn files.  These commands are put into DOS command file 'makePBN.cmd' which resides in the PBS root directory.  To run this, switch to the py folder and enter the following.
 
     python3 makePBN.py > ../makePBN.cmd
 
@@ -150,6 +150,30 @@ Switch to the py folder and enter the following:
 This program reads all files in the pbn-rotated-for-4-players folder and creates corresponding files in the lin-rotated-for-four-players folder.  These have the extension '.lin'.  Switch to the py folder and enter the following:
 
     python3 PBNtoLIN.py
+
+### makeBBA.py
+
+This program reads all .pbn files from the /pbn folder and creates command file for running BBA.exe for each file. The BBA archive file is created in the /bba directory.  It's in .pbn format.
+
+Switch to the py folder and enter the following:
+
+    python3 makeBBA.py > ../makeBBA.cmd
+
+Then go to Window's Command Prompt, switch to the PBS root directory and enter:
+
+    makeBBA.cmd
+
+This one runs a while (currently about 30 minutes for 195 scenarios).  Alternatively, you can copy a single line from the makeBBA.cmd file and run it by itself.
+
+### bbaSummary.py
+
+This program reads all of the files from the bba folder and creates corresponding files with three different summaries:
+
+    1. a one-line record of each deal, showing the hands, auctions, notes, and more.
+    2. a sorted summary of the auctions
+    3. a sorted summary of the BBA 'notes' (alerts)
+
+This file is in .txt format.
 
 ### mix4.py
 
