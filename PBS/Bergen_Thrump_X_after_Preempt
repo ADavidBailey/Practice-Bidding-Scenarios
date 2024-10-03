@@ -1,29 +1,37 @@
 Script,BergenThrumpX
-setDealerCode(
-`
-dealer north
+setDealerCode(`
 
-# Opponents preempt our Major
+# Bergen Thrump X after Preempt
+dealer north
+produce 1000
+
+# Opponents preempt 3D, 3H, or 3S and South does not have a stopper
 
 # Preemptive Suits East without control by South
 PSE = spades(east)>6 and top4(east,spades)==2 and top3(south, spades)==0 and spades(south)>1
 PHE = hearts(east)>6 and top4(east,hearts)==2 and top3(south, hearts)==0 and hearts(south)>1
 PDE = diamonds(east)>6 and top4(east,diamonds)==2 and top3(south, diamonds)==0 and diamonds(south)>1
-PCE = clubs(east)>6 and top4(east,clubs)==2 and top3(south, clubs)==0 and clubs(south)>1
 
-sNoFit = spades(north)>4 and spades(south)<3
-hNoFit = hearts(north)>4 and hearts(south)<3
+noSFit = spades(north)>4 and spades(south)<3
+noHFit = hearts(north)>4 and hearts(south)<3
+noMajorFit = noSFit or noHFit
 
-nOpens = hcp(north)>11 and hcp(north)<15
+nt = hcp(north)>14 and hcp(north)<18 and shape(north,any 5332+any 4432+any 4333)
+nOpens = hcp(north)>11 and not nt
 
-ePreempts = (PCE or PDE or PHE or PSE) and hcp(east)>5 and hcp(east)<10
+ePreempts = (PDE or PHE or PSE) and hcp(east)>5 and hcp(east)<10
 
-NoFitWith10Plus = (sNoFit or hNoFit) and hcp(south)>9
+sDoubles = noMajorFit and hcp(south)>9
 
-nOpens and ePreempts and NoFitWith10Plus
+nOpens and ePreempts and sDoubles
 
-`
-, "N", false);
+produce 1000
+action
+average "hcp(north)" hcp(north),
+average "hcp(south)" hcp(south),
+produce 1000
+
+`, "N", false);
 Script
 Button,Opps Preempt/Thrump X,\n\
 --- Opps Preempt/Bergen Thrump X\n\
