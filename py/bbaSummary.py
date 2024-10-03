@@ -2,7 +2,7 @@ import os
 def process_file(filename):
     input_file='/Users/adavidbailey/Practice-Bidding-Scenarios/bba/' + filename
     print("reading " + str(input_file))
-    output_file = '/Users/adavidbailey/Practice-Bidding-Scenarios/bba+/' + filename[:-4] + '.txt'
+    output_file = '/Users/adavidbailey/Practice-Bidding-Scenarios/bba-summary/' + filename[:-4] + '.txt'
     print("writing " + str(output_file))
     f = open(output_file, 'w')
     
@@ -21,11 +21,13 @@ def process_file(filename):
         auction = False
         par = ''
         optimum = False
-        f.write('brd# contract score  par     north            east             south            west             | auction...   | notes\n')
-        f.write('---- -------- -----  ------  ---------------- ---------------- ---------------- ---------------- | ------------------------- \n')
+        f.write('brd# dlr contract score  par     north            east             south            west             | auction...   | notes\n')
+        f.write('---- --- -------- -----  ------  ---------------- ---------------- ---------------- ---------------- | ------------------------- \n')
         for line in lines:
             if line.startswith('[Board'):
                 board_number = line[8:-2]
+            if line.startswith('[Dealer'):
+                dealer = ' ' + line[9] 
             if line.startswith('[Deal'):
                 the_deal = line[9:-2]
             if line.startswith('[Declarer'):
@@ -59,7 +61,7 @@ def process_file(filename):
                 optimum = True
             if line.strip() == '':
                 # I've got everything needed; so, write it out.
-                summary = board_number.ljust(5) + (contract + '-' + declarer).ljust(9) + score.rjust(5) + '  ' + par.ljust(8) + the_deal + ' | ' + bidding + this_note
+                summary = board_number.ljust(5) + dealer.ljust(4)  + (contract + '-' + declarer).ljust(9) + score.rjust(5) + '  ' + par.ljust(8) + the_deal + ' | ' + bidding + this_note
                 f.write(summary + '\n')
                 result = bidding + this_note
                 if result not in results:
@@ -70,27 +72,25 @@ def process_file(filename):
                 this_note = ''
                 this_auction = ''
 
-        if this_auction != '':
-            f.write(summary + '\n')
-            result = bidding + this_note
-            if result not in results:
-                results[result] = 1
-            else:
-                results[result] += 1
-        f.write('\n             -- Sorted Summary of Bidding Sequences --\n\n')
-        for result in dict(sorted(results.items())):
-            txt = str(results[result])
-            f.write(txt.rjust(5) + '  ' + result +'\n')
+    if this_auction != '':
+        summary = board_number.ljust(5) + dealer.ljust(4)  + (contract + '-' + declarer).ljust(9) + score.rjust(5) + '  ' + par.ljust(8) + the_deal + ' | ' + bidding + this_note
+        f.write(summary + '\n')
+        result = bidding + this_note
+    if result not in results:
+        results[result] = 1
+    else:
+        results[result] += 1
+    
+    f.write('\n             -- Sorted Summary of Bidding Sequences --\n\n')
+    for result in dict(sorted(results.items())):
+        txt = str(results[result])
+        f.write(txt.rjust(5) + '  ' + result +'\n')
 
-        f.write('\n   -- Sorted Summary of Notes --\n\n')
-        for note in dict(sorted(notes.items())):
-            txt = str(notes[note])
-            f.write(txt.rjust(5) + '  ' + note +'\n')
- 
-n_files = 0
+    f.write('\n   -- Sorted Summary of Notes --\n\n')
+    for note in dict(sorted(notes.items())):
+        txt = str(notes[note])
+        f.write(txt.rjust(5) + '  ' + note +'\n')
+
 for file in os.listdir('/Users/adavidbailey/Practice-Bidding-Scenarios/bba/'):
-    n_files += 1
     if file.endswith(".pbn"):
         process_file(file)
-    #if n_files > 2:
-    #    break
