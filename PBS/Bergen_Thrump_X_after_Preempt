@@ -14,7 +14,7 @@ PDE = diamonds(east)>6 and top4(east,diamonds)==2 and top3(south, diamonds)==0 a
 
 noSFit = spades(north)>4 and spades(south)<3
 noHFit = hearts(north)>4 and hearts(south)<3
-noMajorFit = noSFit or noHFit
+noMajorFit = noSFit or noHFit or (spades(north)<5 and hearts(north)<5)
 
 nt = hcp(north)>14 and hcp(north)<18 and shape(north,any 5332+any 4432+any 4333)
 nOpens = hcp(north)>11 and not nt
