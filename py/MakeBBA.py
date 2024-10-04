@@ -9,7 +9,7 @@ def process_file(files):
     for pbn_file in files:
         if pbn_file.lower().endswith('.pbn'):
             cc1 = " --CC1 C:\\BBA\\GIB-ADB.bbsa"
-            cc2 = " --CC2 C:\\BBA\\GIB-Thorvald.bbsa"
+            cc2 = " --CC2 C:\\BBA\\GIB-ADB.bbsa"
             hand = " --HAND P:\\pbn\\" + pbn_file
             archive = " --ARCHIVE_FILE P:\\bba\\" + pbn_file[:-6]
             
