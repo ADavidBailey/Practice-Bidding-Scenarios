@@ -1,0 +1,89 @@
+Script,MinorOpenerBalancedResponse
+setDealerCode(`
+
+# Open 1 of a Minor
+dealer south
+
+ntShape = shape(south, any 4333 +any 4432 +any 5422 +any 5332)
+oneNT = ntShape and hcp(south)>14 and hcp(south)<18
+twoNT = ntShape and hcp(south)>19 and hcp(south)<22
+
+notNT = not (oneNT or twoNT)
+notMajor = spades(south)<5 and hearts(south)<5
+hcpRange = hcp(south)>11 and hcp(south)<22
+
+nbalanced = shape(north, any 5332+any 4333+any 4432-5xxx-x5xx)
+n06_10 = hcp(north)>5 and hcp(north)<11
+n11_12 = hcp(north)>10 and hcp(north)<13
+n13_15 = hcp(north)>12 and hcp(north)<16
+n16_17 = hcp(north)>15 and hcp(north)<18
+n18_19 = hcp(north)>17 and hcp(north)<20
+
+#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+### Imported Leveling Code ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep015 = keep06 and c3
+keep03 = keep06 and keep44
+keep045 = keep06 and not c3
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep955 = not keep045
+keep97 = not keep03
+keep985 = not keep015
+keep   = 1
+keep0  = 0
+
+# Do the Leveling
+lev06_10 = n06_10 and keep
+lev11_12 = n11_12 and keep
+lev13_15 = n13_15 and keep
+lev16_17 = n16_17 and keep
+lev18_19 = n18_19 and keep
+levelTheDeal = lev06_10 or lev11_12 or lev13_15 or lev16_17 or lev18_19
+
+notNT and notMajor and hcpRange and nbalanced and (n06_10 or n11_12 or n13_15 or n16_17 or n18_19)
+#and levelTheDeal
+
+produce 1000
+action
+average "06_10 " 100 * n06_10,
+average "11_12 " 100 * n11_12,
+average "13_15 " 100 * n13_15,
+average "16_17 " 100 * n16_17,
+average "18_19 " 100 * n18_19,
+average "18_19 " 100 * n18_19,
+
+`,"S",false)
+Script
+
+Button,Minor Opening Bal Resp (Lev),---  Minor Opening w/Bal Resp (Lev)\n\
+6-10  (23%)  1N\n\
+11-12 (70%) 2H\n\
+13-15 (26%) 2N\n\
+16-17 (30%) 3N\n\
+18-19 (21%) 2N\n\
+%MinorOpenerBalancedResponse%
