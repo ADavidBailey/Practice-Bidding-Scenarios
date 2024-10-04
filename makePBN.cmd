@@ -121,6 +121,7 @@ P:\dealer P:\dlr\Runout_after_1N_X-S.dlr -s=2741647112 >P:\pbn\Runout_after_1N_X
 P:\dealer P:\dlr\Lebensohl_Over_Weak_2-E.dlr -s=1207433624 >P:\pbn\Lebensohl_Over_Weak_2-E.pbn
 P:\dealer P:\dlr\Trap_Pass_Maybe-N.dlr -s=478064360 >P:\pbn\Trap_Pass_Maybe-N.pbn
 P:\dealer P:\dlr\After_Partner_Overcalls-E.dlr -s=3757994427 >P:\pbn\After_Partner_Overcalls-E.pbn
+P:\dealer P:\dlr\Minor_Suit_Opener_Balanced_Response-S.dlr -s=3053179712 >P:\pbn\Minor_Suit_Opener_Balanced_Response-S.pbn
 P:\dealer P:\dlr\Forcing_Pass-N.dlr -s=1716717749 >P:\pbn\Forcing_Pass-N.pbn
 P:\dealer P:\dlr\Slam_after_Stayman_or_Jacoby_w31plus-S.dlr -s=488664379 >P:\pbn\Slam_after_Stayman_or_Jacoby_w31plus-S.pbn
 P:\dealer P:\dlr\Preempt_X_XX-E.dlr -s=2761546860 >P:\pbn\Preempt_X_XX-E.pbn
