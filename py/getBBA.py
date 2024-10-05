@@ -21,7 +21,7 @@ if input[-4:] != '.pbn':
 input_file  = '/Users/adavidbailey/Practice-Bidding-Scenarios/bba/' + input
 
 print("reading " + str(input_file))
-output_file = '/Users/adavidbailey/Practice-Bidding-Scenarios/bba+/' + input + '.txt'
+output_file = '/Users/adavidbailey/Practice-Bidding-Scenarios/bba-summary/' + input + '.txt'
 print("writing " + str(output_file))
 f = open(output_file, 'w')
 f.write(input_file+'\n')
