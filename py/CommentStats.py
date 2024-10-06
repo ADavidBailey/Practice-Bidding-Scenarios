@@ -7,7 +7,7 @@ def process_file(files):
     for filename in files:
         nFiles = nFiles + 1
 
-        print('\n ' + str(nFiles) + ' ------ ' + filename + ' ------ ')
+        print('\n ' + str(nFiles) + ' ------ ' + filename + ' ------ ', file=print_file)
         if filename.lower().endswith('.pbn'):
             file_path = os.path.join(PBS_PBN, filename)
             with open(file_path, 'r') as i_file:
@@ -23,7 +23,7 @@ def process_file(files):
                             line = '%' + line[1:]
                         elif not line.startswith('%'):
                             line = '% ' + line
-                        print(line)
+                        print(line, file=print_file)
                     processed_lines.append(line)
 
             with open(file_path, 'w') as o_file:
@@ -46,4 +46,5 @@ def main():
 
 PBS_PBN = os.path.join(os.path.expanduser("~"), 'Practice-Bidding-Scenarios', 'pbn')
 if __name__ == "__main__":
+    print_file = open('../commentStats.txt', 'w')
     main()

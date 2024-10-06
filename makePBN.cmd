@@ -118,6 +118,7 @@ P:\dealer P:\dlr\Gavin_Mixed_Raise-N.dlr -s=1778606746 >P:\pbn\Gavin_Mixed_Raise
 P:\dealer P:\dlr\Major_Suit_Fit-N.dlr -s=1725190561 >P:\pbn\Major_Suit_Fit-N.pbn
 P:\dealer P:\dlr\Gavin_Semi-Forcing_NT_with_Fit-N.dlr -s=2076899837 >P:\pbn\Gavin_Semi-Forcing_NT_with_Fit-N.pbn
 P:\dealer P:\dlr\Runout_after_1N_X-S.dlr -s=2741647112 >P:\pbn\Runout_after_1N_X-S.pbn
+P:\dealer P:\dlr\Minor_Suit_Opener_Mixed_Raise-S.dlr -s=2963525673 >P:\pbn\Minor_Suit_Opener_Mixed_Raise-S.pbn
 P:\dealer P:\dlr\Lebensohl_Over_Weak_2-E.dlr -s=1207433624 >P:\pbn\Lebensohl_Over_Weak_2-E.pbn
 P:\dealer P:\dlr\Trap_Pass_Maybe-N.dlr -s=478064360 >P:\pbn\Trap_Pass_Maybe-N.pbn
 P:\dealer P:\dlr\After_Partner_Overcalls-E.dlr -s=3757994427 >P:\pbn\After_Partner_Overcalls-E.pbn
@@ -190,4 +191,3 @@ P:\dealer P:\dlr\Negative_Double-S.dlr -s=3906984431 >P:\pbn\Negative_Double-S.p
 P:\dealer P:\dlr\3_Under_Invitational_Jump-S.dlr -s=1666557784 >P:\pbn\3_Under_Invitational_Jump-S.pbn
 P:\dealer P:\dlr\Misfit_06-10-S.dlr -s=1797866891 >P:\pbn\Misfit_06-10-S.pbn
 P:\dealer P:\dlr\Misfit_13-Plus-S.dlr -s=4073466894 >P:\pbn\Misfit_13-Plus-S.pbn
-# Scan complete!

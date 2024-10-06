@@ -18,7 +18,7 @@ def process_file(files):
             #print(f"# Found file: {filename}")
             seed = calculate_seed(filename)
             output_filename = filename.replace('.dlr', '.pbn')
-            print("P:\\dealer P:\\dlr\\" + filename + " -s=" + str(seed) + " >P:\\pbn\\" + output_filename) 
+            print("P:\\dealer P:\\dlr\\" + filename + " -s=" + str(seed) + " >P:\\pbn\\" + output_filename, file = print_file) 
 
 def main():
     #print("# Create dealer script for running dealer, Version 1.0")
@@ -30,4 +30,5 @@ def main():
     print(f"# Scan complete!")
 
 if __name__ == "__main__":
+    print_file = open("../makePBN.cmd", "w")
     main()
