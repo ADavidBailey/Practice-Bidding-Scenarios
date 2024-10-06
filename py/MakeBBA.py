@@ -13,7 +13,7 @@ def process_file(files):
             hand = " --HAND P:\\pbn\\" + pbn_file
             archive = " --ARCHIVE_FILE P:\\bba\\" + pbn_file[:-6]
             
-            print("C:\\BBA\\BBA" + cc1 + cc2 + " --DD 0 --SD 1 --AUTOBID" + hand + archive + " --AUTOCLOSE")
+            print("C:\\BBA\\BBA" + cc1 + cc2 + " --DD 0 --SD 1 --AUTOBID" + hand + archive + " --AUTOCLOSE", file = print_file)
             nfiles += 1
             #if nfiles > 1:
             #    break
@@ -27,4 +27,5 @@ def main():
     process_file(current_directory_files)
 
 if __name__ == "__main__":
+    print_file = open("../makeBBA.cmd", "w")
     main()
