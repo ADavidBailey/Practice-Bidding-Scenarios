@@ -24,7 +24,7 @@ noNewSuit = noNewMajor and diamonds(north)<4
 cRaise = oC and clubs(north)>4 and noNewSuit             //  5+ card support
 dRaise = oD and diamonds(north)>3 and noNewMajor         //  4+ card support
 noMajor = spades(north)<4 and hearts(north)<4
-mixedRaise = (cRaise or dRaise) and tp>5 and tp<13 and shape(north, any 0xxx+any 1xxx+any 2xxx)
+mixedRaise = (cRaise or dRaise) and tp>5 and tp<13 and shape(north, any 0xxx+any 1xxx)
 
 # Now do it
 mixedRaise and calmOpps
