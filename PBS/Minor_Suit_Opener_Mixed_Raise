@@ -18,9 +18,12 @@ d3 = shape(north, any 222x) ? 1 : 0
 tp = v1+v2+s1+s2+d1+d2+d3 + hcp(north)
 
 # Define 1 Minor and Mixed Raise
+noNewMajor = spades(north)<4 and hearts(north)<4
+noNewSuit = noNewMajor and diamonds(north)<4
 
-cRaise = oC and clubs(north)>4             //  5+ card support
-dRaise = oD and diamonds(north)>3          //  4+ card support
+cRaise = oC and clubs(north)>4 and noNewSuit             //  5+ card support
+dRaise = oD and diamonds(north)>3 and noNewMajor         //  4+ card support
+noMajor = spades(north)<4 and hearts(north)<4
 mixedRaise = (cRaise or dRaise) and tp>5 and tp<13 and shape(north, any 0xxx+any 1xxx+any 2xxx)
 
 # Now do it
@@ -44,5 +47,5 @@ Script
 Button,1m & Mixed Raise,--- Minor Opening w/Mixed Raise\n\
 1!C - 3!C shows 5+ card support and 6-12 TP\n\
 1!D - 3!D shows 4+ card support and 6-12 TP\n\
-TP is HCP + (5 for each void，3 for each singleton，and 1 for each doubleton\n\
+TP is HCP + (5 for each void，3 for each singleton，and 1 for each doubleton)\n\
 %MinorOpenerMixedRaise%)
