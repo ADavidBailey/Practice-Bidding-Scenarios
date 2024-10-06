@@ -105,7 +105,7 @@ This program reads all of through all of the files in the PBS folder -- one for 
 
 This program reads the files in the dlr folder and creates Windows commands that will create corresponding pbn files.  These commands are put into DOS command file 'makePBN.cmd' which resides in the PBS root directory.  To run this, switch to the py folder and enter the following.
 
-    python3 makePBN.py > ../makePBN.cmd
+    python3 makePBN.py
 
 Here's an example of a record the makePBN.cmd:
 
@@ -125,9 +125,9 @@ this one runs a while (currently about 1 hour and 25 minutes for 179 scenarios).
 
 ### commentStats.py
 
-Most of the pbn files include some statistics.  They are ignored by BBO; but, some other programs don't like them.  So, this program converts them into comment lines that are part of the pbn standard -- lines beginning with a % are ignored.  This program changes all of the statistics to comments by adding a % and a space to the beginning of the line.  It also prints out the statistics for all of the files.  Switch to the py directory and enter the following to create the stats.txt file in the PBS root directory:
+Most of the pbn files include some statistics.  They are ignored by BBO; but, some other programs don't like them.  So, this program converts them into comment lines that are part of the pbn standard -- lines beginning with a % are ignored.  This program changes all of the statistics to comments by adding a % and a space to the beginning of the line.  It also prints out the statistics for all of the files and puts the results in stats.txt.  Switch to the py directory and enter the following to create the stats.txt file in the PBS root directory:
 
-    python3 commentStats.py > ../stats.txt
+    python3 commentStats.py
 
 [CTRL-Click here to see stats.txt](<https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/stats.txt>)
 

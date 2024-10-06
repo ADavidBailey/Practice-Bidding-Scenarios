@@ -46,5 +46,5 @@ def main():
 
 PBS_PBN = os.path.join(os.path.expanduser("~"), 'Practice-Bidding-Scenarios', 'pbn')
 if __name__ == "__main__":
-    print_file = open('../commentStats.txt', 'w')
+    print_file = open('../stats.txt', 'w')
     main()
