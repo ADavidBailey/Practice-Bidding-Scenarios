@@ -23,7 +23,7 @@ dRaise = oD and diamonds(north)>3 and spades(north)<4 and hearts(north)<4 and di
 mixedRaise = (cRaise or dRaise) and tp>5 and tp<13 and shape(north, any 0xxx+any 1xxx)                        // shortness to eliminate 1N
 
 # Now do it
-mixedRaise and calmOpps
+mixedRaise and calmOpps     and hcp(south)<22  // some are included in imported code
 
 produce 1000
 action
