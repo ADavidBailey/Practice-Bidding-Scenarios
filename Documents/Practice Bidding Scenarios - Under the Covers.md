@@ -175,6 +175,8 @@ This program reads all of the files from the bba folder and creates correspondin
 
 This file is in .txt format.
 
+
+
 ### mix4.py
 
 This program creates a mixed 16-deal set of boards -- 4 boards from each of 4 scenarios.  This example has boards from Drury, Smolen, FourthSuitForcing, and Jacoby-2N.  It's in .lin format; so, you can import it into your BBO/Account/Deal archive.  Then, you can use it at a Bidding/Teaching Table -- Deal source/Use saved deals.
