@@ -1,7 +1,6 @@
 import os
 def process_file(filename):
     input_file='/Users/adavidbailey/Practice-Bidding-Scenarios/bba/' + filename
-    print("reading " + str(input_file))
     output_file = '/Users/adavidbailey/Practice-Bidding-Scenarios/bba-summary/' + filename[:-4] + '.txt'
     print("writing " + str(output_file))
     f = open(output_file, 'w')
