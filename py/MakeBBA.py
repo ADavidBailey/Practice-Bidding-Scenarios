@@ -12,6 +12,10 @@ def process_file(files):
             cc2 = " --CC2 C:\\BBA\\GIB-ADB.bbsa"
             hand = " --HAND P:\\pbn\\" + pbn_file
             archive = " --ARCHIVE_FILE P:\\bba\\" + pbn_file[:-6]
+
+            #print("cd bba", file = print_file)
+            #print("del " + archive, file = print_file)
+            #print("cd ..", file = print_file)
             
             print("C:\\BBA\\BBA" + cc1 + cc2 + " --DD 0 --SD 1 --AUTOBID" + hand + archive + " --AUTOCLOSE", file = print_file)
             nfiles += 1
