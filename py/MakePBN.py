@@ -15,7 +15,6 @@ def calculate_seed(input):
 def process_file(files):
     for filename in files:
         if filename.lower().endswith('.dlr'):
-            #print(f"# Found file: {filename}")
             seed = calculate_seed(filename)
             output_filename = filename.replace('.dlr', '.pbn')
             print("P:\\dealer P:\\dlr\\" + filename + " -s=" + str(seed) + " >P:\\pbn\\" + output_filename, file = print_file) 
