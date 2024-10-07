@@ -49,6 +49,4 @@ for filename in os.listdir(PBS_PBN):
     if os.path.isfile(input_file_path) and filename.endswith('.pbn') and filename[-6] == '-':
         n_files = n_files + 1
         print(str(n_files), filename)
-        #dDealer = filename[-5]               # designated dealer is the last character of the .dlr & .pbn filename
-        #dDi = rotation.index(dDealer)        # designated dealer index, value is  0 to 3
         rotate_deal(input_file_path, filename)
