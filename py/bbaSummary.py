@@ -75,10 +75,10 @@ def process_file(filename):
         summary = board_number.ljust(5) + dealer.ljust(4)  + (contract + '-' + declarer).ljust(9) + score.rjust(5) + '  ' + par.ljust(8) + the_deal + ' | ' + bidding + this_note
         f.write(summary + '\n')
         result = bidding + this_note
-    if result not in results:
-        results[result] = 1
-    else:
-        results[result] += 1
+        if result not in results:
+            results[result] = 1
+        else:
+            results[result] += 1
     
     f.write('\n             -- Sorted Summary of Bidding Sequences --\n\n')
     for result in dict(sorted(results.items())):
