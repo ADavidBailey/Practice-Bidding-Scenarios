@@ -39,6 +39,7 @@ C:\BBA\BBA --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --A
 C:\BBA\BBA --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --HAND P:\pbn\Weak_NT_10-12-S.pbn --ARCHIVE_FILE P:\bba\Weak_NT_10-12 --AUTOCLOSE
 C:\BBA\BBA --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --HAND P:\pbn\Negative_Double-S.pbn --ARCHIVE_FILE P:\bba\Negative_Double --AUTOCLOSE
 C:\BBA\BBA --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --HAND P:\pbn\3_Under_Invitational_Jump-S.pbn --ARCHIVE_FILE P:\bba\3_Under_Invitational_Jump --AUTOCLOSE
+C:\BBA\BBA --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --HAND P:\pbn\Minor_Suit_Opener_Inv_Raise-S.pbn --ARCHIVE_FILE P:\bba\Minor_Suit_Opener_Inv_Raise --AUTOCLOSE
 C:\BBA\BBA --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --HAND P:\pbn\Misfit_06-10-S.pbn --ARCHIVE_FILE P:\bba\Misfit_06-10 --AUTOCLOSE
 C:\BBA\BBA --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --HAND P:\pbn\Misfit_13-Plus-S.pbn --ARCHIVE_FILE P:\bba\Misfit_13-Plus --AUTOCLOSE
 C:\BBA\BBA --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --HAND P:\pbn\W2_X_XX-E.pbn --ARCHIVE_FILE P:\bba\W2_X_XX --AUTOCLOSE

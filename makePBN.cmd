@@ -189,5 +189,6 @@ P:\dealer P:\dlr\Jump_Overcalls-E.dlr -s=3686918377 >P:\pbn\Jump_Overcalls-E.pbn
 P:\dealer P:\dlr\Weak_NT_10-12-S.dlr -s=4109580238 >P:\pbn\Weak_NT_10-12-S.pbn
 P:\dealer P:\dlr\Negative_Double-S.dlr -s=3906984431 >P:\pbn\Negative_Double-S.pbn
 P:\dealer P:\dlr\3_Under_Invitational_Jump-S.dlr -s=1666557784 >P:\pbn\3_Under_Invitational_Jump-S.pbn
+P:\dealer P:\dlr\Minor_Suit_Opener_Inv_Raise-S.dlr -s=2544307662 >P:\pbn\Minor_Suit_Opener_Inv_Raise-S.pbn
 P:\dealer P:\dlr\Misfit_06-10-S.dlr -s=1797866891 >P:\pbn\Misfit_06-10-S.pbn
 P:\dealer P:\dlr\Misfit_13-Plus-S.dlr -s=4073466894 >P:\pbn\Misfit_13-Plus-S.pbn
