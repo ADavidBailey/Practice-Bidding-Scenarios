@@ -165,7 +165,7 @@ The code appends to the archive file if it already exists; so, we need to delete
 
 The normal use case is to update the bba files for a few scenarios -- Open makeBBA.cmd in a text editor, select the ones you want to update and copy/paste the code to a DOS command prompt OR to a small updateBBA.cmd file.
 
-These pbn files are large.  Creating/updating all of these files at once will cause an issue with GitHub.  I recommend doing about 40 at a time -- copy/paste 40, run updateBBA.cmd, sync 40, and repeat.
+These pbn files are large.  Creating/updating all of these files at once will cause an issue with GitHub.  I recommend doing about 50 at a time -- copy/paste 50, run updateBBA.cmd, sync 50, and repeat.
 
 
 ### bbaSummary.py
