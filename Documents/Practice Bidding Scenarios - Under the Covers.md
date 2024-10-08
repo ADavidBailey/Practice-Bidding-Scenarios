@@ -161,7 +161,7 @@ Switch to the py folder and enter the following:
 
 This will create makeBBA.cmd.  **CAUTION** -- read the rest of this.
           
-The code appends to the archive file if it already exists; so, we need to delete the file first.  makeBBA.cmd has two DOS commands for each scenario.  One is to delete the existing archive file, and the other to create a new one.
+The code appends to the archive file if it already exists; so, we need to delete the existing file.  makeBBA.cmd has two DOS commands for each scenario.  One is to delete the existing archive file, and the other to create a new one.
 
 The normal use case is to update the bba files for a few scenarios -- Open makeBBA.cmd in a text editor, select the ones you want to update and copy/paste the code to a DOS command prompt OR to a small someBBA.cmd file.
 
