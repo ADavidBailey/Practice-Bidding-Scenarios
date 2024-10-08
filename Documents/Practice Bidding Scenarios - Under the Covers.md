@@ -153,17 +153,20 @@ This program reads all files in the pbn-rotated-for-4-players folder and creates
 
 ### makeBBA.py
 
-This program reads all .pbn files from the /pbn folder and creates command file for running BBA.exe for each file. The BBA archive file is created in the /bba directory.  It's in .pbn format.
+This program reads all .pbn files from the /pbn folder and creates a DOS command file for running BBA.exe. The BBA archive file is created in the /bba directory.  It's in .pbn format.
 
 Switch to the py folder and enter the following:
 
-    python3 makeBBA.py > ../makeBBA.cmd
+    python3 makeBBA.py
 
-Then go to Window's Command Prompt, switch to the PBS root directory and enter:
+This will create makeBBA.cmd.  **CAUTION** -- read the rest of this.
+          
+The code appends to the archive file if it already exists; so, we need to delete the file first.  makeBBA.cmd has two DOS commands for each scenario.  One is to delete the existing archive file, and the other to create a new one.
 
-    makeBBA.cmd
+The normal use case is to update the bba files for a few scenarios -- Open makeBBA.cmd in a text editor, select the ones you want to update and copy/paste the code to a DOS command prompt OR to a small someBBA.cmd file.
 
-This one runs a while (currently about 30 minutes for 195 scenarios).  Alternatively, you can copy a single line from the makeBBA.cmd file and run it by itself.
+These pbn files are large.  Creating/updating all of these files at once will cause an issue with GitHub.  I recommend doing about 40 at a time -- copy/paste 40, run someBBA.cmd, sync 40, and repeat.
+
 
 ### bbaSummary.py
 

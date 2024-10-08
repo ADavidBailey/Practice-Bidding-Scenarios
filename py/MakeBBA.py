@@ -8,13 +8,20 @@ def process_file(files):
     nfiles = 0
     for pbn_file in files:
         if pbn_file.lower().endswith('.pbn'):
-            cc1 = " --CC1 C:\\BBA\\GIB-ADB.bbsa"
-            cc2 = " --CC2 C:\\BBA\\GIB-ADB.bbsa"
             hand = " --HAND P:\\pbn\\" + pbn_file
             archive = " --ARCHIVE_FILE P:\\bba\\" + pbn_file[:-6]
+            cc1 = " --CC1 C:\\BBA\\GIB-ADB.bbsa"
+            cc2 = " --CC2 C:\\BBA\\GIB-ADB.bbsa"
+            the_rest = " --DD 0 --SD 1 --AUTOBID --AUTOCLOSE\n"
+          
+          # The normal use case is to update the bba files for a few scenarios -- select the ones you want to update
+          # and copy/paste the code to DOS command prompt.
+          
+          # The code appends to the archive file if it already exists; so, we need to delete the file first.
           
             print("del bba\\" + pbn_file[:-6]+ ".pbn", file = print_file)
-            print("C:\\BBA\\BBA" + cc1 + cc2 + " --DD 0 --SD 1 --AUTOBID" + hand + archive + " --AUTOCLOSE\n", file = print_file)
+            print("C:\\BBA\\BBA" + hand + archive + cc1 + cc2 + the_rest, file = print_file)
+
             nfiles += 1
             #if nfiles > 1:
             #    break
