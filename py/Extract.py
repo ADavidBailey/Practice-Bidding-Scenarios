@@ -40,15 +40,14 @@ def extract_text_in_backticks(file_path):
                 dealer = "east"
             if quotes_matches[0] == "W":
                 dealer = "west"
-        suffix = dealer[0]
-        suffix = suffix.upper()
-        suffix = "-" + suffix + ".dlr"
+        suffix = ".dlr"
+
         matches = re.findall(pattern, content, re.DOTALL)
         for i, match in enumerate(matches, 1):
             # Process the extracted text
             processed_text = process_extracted_text(match, dealer)
             
-            output_file_path = os.path.splitext(os.path.basename(file_path))[0] + suffix  #.replace(" ", "-").replace("(", "").replace(")", "").replace("&", "and").replace("+", "_") + suffix
+            output_file_path = os.path.splitext(os.path.basename(file_path))[0] + suffix
             output_file_path = os.path.join(PBS + '/dlr', output_file_path).replace('\\', '/')
             print(output_file_path)
             with open(output_file_path, 'w') as output_file:
@@ -124,4 +123,6 @@ for filename in os.listdir(input_filepath):
     if os.path.isfile(file_path) and not file_path.endswith('.DS_Store'):
         extract_text_in_backticks(file_path)
         n_files = n_files + 1
+        if n_files>2:
+            break
 print("number of .dlr files = " + str(n_files))

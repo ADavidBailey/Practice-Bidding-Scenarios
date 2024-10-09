@@ -45,8 +45,8 @@ rotation = "NESW"
 for filename in os.listdir(PBS_PBN):
     input_file_path = os.path.join(PBS_PBN, filename)
 
-    # Check if it's a file and ends with -X.pbn, where X is N, E, S, W.
-    if os.path.isfile(input_file_path) and filename.endswith('.pbn') and filename[-6] == '-':
+    # Check if it's a file and ends with '.pbn'
+    if os.path.isfile(input_file_path) and filename.endswith('.pbn'):
         n_files = n_files + 1
         print(str(n_files), filename)
         rotate_deal(input_file_path, filename)

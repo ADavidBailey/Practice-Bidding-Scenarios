@@ -167,7 +167,6 @@ The normal use case is to update the bba files for a few scenarios -- Open makeB
 
 These pbn files are large.  Creating/updating all of these files at once will cause an issue with GitHub.  I recommend doing about 50 at a time -- copy/paste 50, run updateBBA.cmd, sync 50, and repeat.
 
-
 ### bbaSummary.py
 
 This program reads all of the files from the bba folder and creates corresponding files with three different summaries:
@@ -177,8 +176,6 @@ This program reads all of the files from the bba folder and creates correspondin
     3. a sorted summary of the BBA 'notes' (alerts)
 
 This file is in .txt format.
-
-
 
 ### mix4.py
 
