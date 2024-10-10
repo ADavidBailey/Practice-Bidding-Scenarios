@@ -370,6 +370,9 @@ C:\BBA\BBA --HAND P:\pbn\Kokish_Relay.pbn --ARCHIVE_FILE P:\bba\Kokish_Relay --C
 del bba\Spiral_Raise.pbn
 C:\BBA\BBA --HAND P:\pbn\Spiral_Raise.pbn --ARCHIVE_FILE P:\bba\Spiral_Raise --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE
 
+del bba\NT_Splinter.pbn
+C:\BBA\BBA --HAND P:\pbn\NT_Splinter.pbn --ARCHIVE_FILE P:\bba\NT_Splinter --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE
+
 del bba\Opps_Overcall_Stayman_or_Jacoby.pbn
 C:\BBA\BBA --HAND P:\pbn\Opps_Overcall_Stayman_or_Jacoby.pbn --ARCHIVE_FILE P:\bba\Opps_Overcall_Stayman_or_Jacoby --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE
 

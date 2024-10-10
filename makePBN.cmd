@@ -85,6 +85,7 @@ P:\dealer P:\dlr\Rule_of_2.dlr -s=2775815360 >P:\pbn\Rule_of_2.pbn
 P:\dealer P:\dlr\Soloway_Jump_Shift_Type-1.dlr -s=3359049636 >P:\pbn\Soloway_Jump_Shift_Type-1.pbn
 P:\dealer P:\dlr\Kokish_Relay.dlr -s=903818157 >P:\pbn\Kokish_Relay.pbn
 P:\dealer P:\dlr\Spiral_Raise.dlr -s=996101773 >P:\pbn\Spiral_Raise.pbn
+P:\dealer P:\dlr\NT_Splinter.dlr -s=2837649823 >P:\pbn\NT_Splinter.pbn
 P:\dealer P:\dlr\Opps_Overcall_Stayman_or_Jacoby.dlr -s=1576451452 >P:\pbn\Opps_Overcall_Stayman_or_Jacoby.pbn
 P:\dealer P:\dlr\Opps_Open_1N_15-17.dlr -s=3393642475 >P:\pbn\Opps_Open_1N_15-17.pbn
 P:\dealer P:\dlr\Soloway_Jump_Shift-Type-1.dlr -s=3931450952 >P:\pbn\Soloway_Jump_Shift-Type-1.pbn
