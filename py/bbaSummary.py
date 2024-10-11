@@ -38,7 +38,9 @@ def process_file(filename):
             if auction == True:
                 if line.startswith('['):
                     # this marks the end of this auction; save the bidding.'
-                    bidding = '-'.join(this_auction.split()).replace('Pass', 'P').replace('-P-P-P','')
+                    this_auction = this_auction.replace(' =','=')
+                    this_auction = this_auction.replace('Pass', 'P')
+                    bidding = '-'.join(this_auction.split()).replace('-P-P-P','')
                     auction = False
                 else:
                     this_auction = this_auction + ' ' + line
@@ -91,5 +93,9 @@ def process_file(filename):
         f.write(txt.rjust(5) + '  ' + note +'\n')
 
 for file in os.listdir('/Users/adavidbailey/Practice-Bidding-Scenarios/bba/'):
+    n_files = 0
     if file.endswith(".pbn"):
         process_file(file)
+        n_files += 1
+        if n_files > 2:
+            break
