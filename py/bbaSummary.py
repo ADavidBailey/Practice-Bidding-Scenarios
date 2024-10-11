@@ -48,7 +48,7 @@ def process_file(filename):
                 # the next line(s) are the auction
                 auction = True
             if line.startswith('[Note'):
-                note = line[9:-2]
+                note = line[9].upper() + line[10:-2]
                 if note not in notes:
                     notes[note] = 1
                 else:
@@ -87,7 +87,7 @@ def process_file(filename):
         txt = str(results[result])
         f.write(txt.rjust(5) + '  ' + result +'\n')
 
-    f.write('\n   -- Sorted Summary of Notes --\n\n')
+    f.write('\n   -- Sorted Summary of Notes (the first character is forced to upper case) --\n\n')
     for note in dict(sorted(notes.items())):
         txt = str(notes[note])
         f.write(txt.rjust(5) + '  ' + note +'\n')
