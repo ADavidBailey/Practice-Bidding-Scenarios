@@ -46,7 +46,7 @@ def process_file(filename):
                 # the next line(s) are the auction
                 auction = True
             if line.startswith('[Note'):
-                note = line[9:-2].capitalize()
+                note = line[9:-2]
                 if note not in notes:
                     notes[note] = 1
                 else:
