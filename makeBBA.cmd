@@ -283,6 +283,9 @@ C:\BBA\BBA --HAND P:\pbn\SCS_Major_with_2nd_Suit.pbn --ARCHIVE_FILE P:\bba\SCS_M
 del bba\Weak_NT_13-15.pbn
 C:\BBA\BBA --HAND P:\pbn\Weak_NT_13-15.pbn --ARCHIVE_FILE P:\bba\Weak_NT_13-15 --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE
 
+del bba\Grand_Slam_Invite.pbn
+C:\BBA\BBA --HAND P:\pbn\Grand_Slam_Invite.pbn --ARCHIVE_FILE P:\bba\Grand_Slam_Invite --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE
+
 del bba\Gambling_3N.pbn
 C:\BBA\BBA --HAND P:\pbn\Gambling_3N.pbn --ARCHIVE_FILE P:\bba\Gambling_3N --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE
 
