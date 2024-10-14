@@ -16,11 +16,11 @@ ntShape = shape(south, any 5332+any 4432+any 4333)
 
 nt1214 = ntShape and hcp(south)>11 and hcp(south)<15
 nt1517 = nt1 or nt2
-nt1819 = ntShape and (hcp(south)>17 and hcp(south)<20
-nt2021 = ntShape and (hcp(south)>19 and hcp(south)<22
-nt2224 = ntShape and (hcp(south)>21 and hcp(south)<25
-nt2527 = ntShape and (hcp(south)>24 and hcp(south)<28
-nt28   = ntShape and (hcp(south)>27
+nt1819 = ntShape and hcp(south)>17 and hcp(south)<20
+nt2021 = ntShape and hcp(south)>19 and hcp(south)<22
+nt2224 = ntShape and hcp(south)>21 and hcp(south)<25
+nt2527 = ntShape and hcp(south)>24 and hcp(south)<28
+nt28   = ntShape and hcp(south)>27
 
 nShape = shape(north, any 5332+any 4432+any 4333)
 totalHCP = hcp(north) + hcp(south)
