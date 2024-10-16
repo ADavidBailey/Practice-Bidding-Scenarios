@@ -1,10 +1,11 @@
 Script,GerberAfterNotrump
 setDealerCode(`
 
+#
+# Gerber after Notrump
+#
 produce 1000
 dealer south
-
-# Gerber after Notrump
 
 # Define the cases
 nt1517 = hcp(south)>14 and hcp(south)<18 and hcp(north)>16
@@ -73,10 +74,10 @@ keep0  = 0
 
 # Level the deal
 level1 = nt1517 and keep06
-level2 = nt1819 and keep19
-level3 = nt2021 and keep11
-level4 = nt2224 and keep89
-level5 = nt2527 and keep
+level2 = nt1819 and keep33
+level3 = nt2021 and keep14
+level4 = nt2224 and keep19
+level5 = nt2527 and keep89
 level6 = nt28   and keep
 levelTheDeal = level1 or level2 or level3 or level4 or level5 or level6
 
