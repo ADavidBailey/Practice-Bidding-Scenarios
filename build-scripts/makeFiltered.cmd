@@ -7,10 +7,10 @@ SET filter=cscript \\Mac\Home\Documents\BCScript\2024-10-03\Filter.js P:\bba\
 ::
 
 if "%1"=="" (
-	SET output=P:\bba\filtered\
+	SET output=P:\bba-filtered\
 	SET filter_flag=--PDF
 ) else (
-	SET output=P:\bba\filtered-out\
+	SET output=P:\bba-filtered-out\
 	SET filter_flag=--INVERSE --PDF
 )
 
@@ -51,7 +51,7 @@ if "%1"=="" (
 %filter%Drury.pbn 								"Note ...Drury"												%output%Drury.pbn							%filter_flag%
 :: Forcing_Pass.pbn "BBA doens't play this(?)"
 %filter%Fourth_Suit_Forcing.pbn 				"Note ...Fourth suit"										%output%Fourth_Suit_Forcing.pbn				%filter_flag%
-:: Gambling_3N.pbn "Note ...Gambling" -- Needs to be added to CC
+%filter%Gambling_3N.pbn							"Auction [\s\S]+3NT?"										%output%Gambling_3N.pbn						%filter_flag%
 %filter%Game_Forcing_2C.pbn 					"Auction [\s\S]+2C"											%output%Game_Forcing_2C.pbn					%filter_flag%
 %filter%Game_Overcalls.pbn 						"Auction [\s\S]+[123][CDHS]\s+(4[HS]|5[CD])"				%output%Game_Overcalls.pbn					%filter_flag%
 :: Gavin_3_Under_Invitational_Jump.pbn
