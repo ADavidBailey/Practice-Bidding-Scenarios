@@ -98,8 +98,8 @@ BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BB
 5. lin -- pbn files are converted to lin format for use with BBO
 6. lin-rotated-for-four-players -- rotated pbn files are converted to lin format for use with BBO
 7. bba -- pbn files are run through Bridge Bidding Analyser to add bidding
-7.1. bba-filtered -- bba files are filtered to select only those that are bid as intended
-7.2. bba-filtered-out -- bba files are NOT bid as intended
+8. bba-filtered -- bba files are filtered to select only those that are bid as intended
+9. bba-filtered-out -- bba files are NOT bid as intended
 
 The following table shows the relationship between the files in the various folders.  The folders below all have files that correspond to those in the PBS folder.
 
