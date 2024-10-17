@@ -89,6 +89,43 @@ This file contains almost 800 lines of code.
 
 BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BBOalert is reloaded, and it in-turn reloads -PBS.txt and each and every one of the packaged dealer code files.  Everything is up to date.  I started BBO, just now.  14,127 records were imported.  With the BBOalert tab open, click the dark blue Data tab at the top left to see it.
 
+## Folders in the Practice-Bidding-Scenarios GitHub repository
+
+1. PBS -- scenario files with Dealer code wrapped in code to import into BBOalert and create created buttons to load the code into BBO Practice Table Deal Source/Advanced.
+2. dlr -- Dealer code striped from PBS files with Imports resolved
+3. pbn -- dlr files are run through BBO's Dealer to create pbn files
+4. pbn-rotated-for-4-players -- pbn files are rotated for 4-handed play
+5. lin -- pbn files are converted to lin format for use with BBO
+6. lin-rotated-for-four-players -- rotated pbn files are converted to lin format for use with BBO
+7. bba -- pbn files are run through Bridge Bidding Analyser to add bidding
+7.a. bba-filtered -- bba files are filtered to select only those that are bid as intended
+7.b. bba-filtered-out -- bba files are NOT bid as intended
+
+The following table shows the relationship between the files in the various folders.  The folders below all have files that correspond to those in the PBS folder.
+
+| Program | from | to |
+| -------------------- | ------------------------------ | ------------------------------------ |
+| extract.py   |  PBN | dlr |
+| makePBN.py | dlr | makePBN.cmd
+| makePBN.cmd | dlr | pbn |
+| commentStats.py | pbn | pbn |
+| rotate.py | pbn | pbn-rotated-for-4-players |
+| PBNtoLIN.py. | pbn-rotated-for-4-players | lin-rotated-for-4-players |
+| makeBBA.py | pbn | makeBBA.cmd |
+| makeBBA.cmd | pbn | bba |
+| bbaSummary.py | bba | bba-summary |
+| makeFiltered.cmd  | bba | bba-filtered
+
+Other folders:
+- bbsa -- Bridge Bidding Analyser Convention Cards
+- build-scripts -- Windows CMD Programs to run BBA and Dealer
+- Documents -- Documentatio for the Practice-Bidding-Scenarios GitHub repository
+- misc
+- py -- Python programs (see below)
+- script -- BBO Dealer code fragments that are Imported into PBS files
+- TESTING
+
+
 ## Special Programs for pbn and lin files
 
 Since we have all of these scenarios, I wanted to leverage them.  I've created python programs that use the dlr files to create pbn, rotated pbn, and rotated lin files that can be used elsewhere.  When scenarios are updated or new scenarios are created, the following programs are in the py folder of the PBS root directory and are used to create/update the pbn and lin files.
