@@ -29,5 +29,5 @@ def main():
     print(f"# Scan complete!")
 
 if __name__ == "__main__":
-    print_file = open("../makePBN.cmd", "w")
+    print_file = open("../build-scripts/makePBN.cmd", "w")
     main()

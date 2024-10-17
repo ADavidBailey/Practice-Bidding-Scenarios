@@ -34,5 +34,5 @@ def main():
     process_file(current_directory_files)
 
 if __name__ == "__main__":
-    print_file = open("../makeBBA.cmd", "w")
+    print_file = open("../build-scripts/makeBBA.cmd", "w")
     main()
