@@ -103,7 +103,7 @@ BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BB
 
 The following table shows the relationship between the files in the various folders.  The folders below all have files that correspond to those in the PBS folder.
 
-| Program | from | to | created by
+| Program | from | to | created by |
 | -------------------- | ------------------------------ | --------------------------------------- | 
 | extract.py   |  PBN | dlr | |
 | makePBN.py | dlr | makePBN.cmd | |
