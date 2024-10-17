@@ -91,15 +91,15 @@ BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BB
 
 ## Folders in the Practice-Bidding-Scenarios GitHub repository
 
-1. PBS -- scenario files with Dealer code wrapped in code to import into BBOalert and create created buttons to load the code into BBO Practice Table Deal Source/Advanced.
+1. PBS -- scenario files with Dealer code wrapped in code to import into BBOalert and create the buttons to load the code into BBO Practice Table Deal Source/Advanced.
 2. dlr -- Dealer code striped from PBS files with Imports resolved
 3. pbn -- dlr files are run through BBO's Dealer to create pbn files
 4. pbn-rotated-for-4-players -- pbn files are rotated for 4-handed play
 5. lin -- pbn files are converted to lin format for use with BBO
 6. lin-rotated-for-four-players -- rotated pbn files are converted to lin format for use with BBO
 7. bba -- pbn files are run through Bridge Bidding Analyser to add bidding
-7.a. bba-filtered -- bba files are filtered to select only those that are bid as intended
-7.b. bba-filtered-out -- bba files are NOT bid as intended
+7.1. bba-filtered -- bba files are filtered to select only those that are bid as intended
+7.2. bba-filtered-out -- bba files are NOT bid as intended
 
 The following table shows the relationship between the files in the various folders.  The folders below all have files that correspond to those in the PBS folder.
 
