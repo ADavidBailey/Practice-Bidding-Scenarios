@@ -3,23 +3,17 @@ setDealerCode(`
 #
 # Gerber after Notrump
 #
-produce 1000
+produce 10000
 dealer south
 
-# Define the cases
-n16 = hcp(south)>15
-n14 = hcp(south)>13
-n12 = hcp(south)>11
-n9 = hcp(south)>8
-n6 = hcp(south)>5
-n3 = hcp(south)>2
-
-nt1517 = hcp(south)>14 and hcp(south)<18 and n16
-nt1819 = hcp(south)>17 and hcp(south)<20 and n14
-nt2021 = hcp(south)>19 and hcp(south)<22 and n12
-nt2224 = hcp(south)>21 and hcp(south)<25 and n9
-nt2527 = hcp(south)>24 and hcp(south)<28 and n6
-nt28 = hcp(south)>27                     and n3
+# Define responder's HCP required to invite slam
+n19 = hcp(north)>18
+n16 = hcp(north)>15
+n14 = hcp(north)>13
+n12 = hcp(north)>11
+n9  = hcp(north)>8
+n6  = hcp(north)>5
+n3  = hcp(north)>2
 
 # GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
 p = hcp(south) + shape(south,5xxx+x5xx)
@@ -28,9 +22,20 @@ nt1 = shape(south, any 5332+any 4432+any 4333) and hcp(south)>14 and p<18
 # GIB does not open with 5422 and a 5-card major
 # GIB does not open with 5422 and the strength to reverse
 nt2 = shape(south, 4252+4225+2452+2425+2254+2245) and hcp(south)>14 and hcp(south)<17
-GIB1N = nt1 or nt2
 
-anyNT = GIB1N or (shape(south, any 5332+any 4432+any 4333) and hcp(south)>17)
+# Define the ranges for NT shape hands
+gib1N  = (nt1 or nt2)                    and n16
+nt1214 = hcp(south)>11 and hcp(south)<15 and n19
+nt1819 = hcp(south)>17 and hcp(south)<20 and n14
+nt2021 = hcp(south)>19 and hcp(south)<22 and n12
+nt2224 = hcp(south)>21 and hcp(south)<25 and n9
+nt2527 = hcp(south)>24 and hcp(south)<28 and n6
+nt28   = hcp(south)>27                   and n3
+
+# all other balanced hands with 12+ hcp
+ntShape = shape(south, any 5332+any 4432+any 4333)
+ntRanges = (nt1214 or ntShape and nt1819 or ntShape and nt2021 or ntShape and nt2224 or ntShape and nt2527 or ntShape and nt28)
+otherNT = ntShape and ntRanges and not gib1N
 
 # Responder has a good minor suit
 gD = diamonds(north)>4 and top3(north,diamonds)>1
@@ -38,23 +43,62 @@ gC = clubs(north)>4    and top3(north,clubs)>1
 goodMinor = gD or gC
 suitLength = clubs(north) >= diamonds(north) ? clubs(north) : diamonds(north)
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+### Imported Leveling Code ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep015 = keep06 and c3
+keep03 = keep06 and keep44
+keep045 = keep06 and not c3
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep955 = not keep045
+keep97 = not keep03
+keep985 = not keep015
+keep   = 1
+keep0  = 0
+### End of Imported Leveling Code ###
 
 # Level the deal
-level1 = nt1517 and keep03
-level2 = nt1819 and keep11
-level3 = nt2021 and keep06
-level4 = nt2224 and keep11
-level5 = nt2527 and keep89
+level0 = nt1214 and keep06
+level1 = gib1N  and keep03
+level2 = nt1819 and keep14
+level3 = nt2021 and keep19
+level4 = nt2224 and keep25
+level5 = nt2527 and keep
 level6 = nt28   and keep
-levelTheDeal = level1 or level2 or level3 or level4 or level5 or level6
+levelTheDeal = level0 or level1 or level2 or level3 or level4 or level5 or level6
 
 # Now do it
-anyNT and goodMinor
+(gib1N or otherNT) and goodMinor
 and levelTheDeal
 
 action
-average "nt 15-17   " 100 * nt1517,
+average "nt 12-14   " 100 * nt1214,
+average "GIB 1N     " 100 * gib1N,
 average "nt 18-19   " 100 * nt1819,
 average "nt 20-21   " 100 * nt2021,
 average "nt 22-24   " 100 * nt2224,
@@ -66,5 +110,7 @@ average "c/d length " suitLength,
 //Script
 Button,Gerber after Notrump (Lev),\n\
 --- Gerber after Notrump.\n\
+The hands are leveled so that the various ranges of NT\n\
+shape hands are open at approximately the same frequency.\n\
 https://www.bridgebum.com/gerber.php\n\
 %GerberAfterNotrump%
