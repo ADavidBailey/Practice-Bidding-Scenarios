@@ -559,6 +559,9 @@ C:\BBA\BBA --HAND P:\pbn\Misfit_06-10.pbn --ARCHIVE_FILE P:\bba\Misfit_06-10 --C
 del bba\Opps_Double_Jacoby.pbn
 C:\BBA\BBA --HAND P:\pbn\Opps_Double_Jacoby.pbn --ARCHIVE_FILE P:\bba\Opps_Double_Jacoby --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE
 
+del bba\Gerber_By_Responder.pbn
+C:\BBA\BBA --HAND P:\pbn\Gerber_By_Responder.pbn --ARCHIVE_FILE P:\bba\Gerber_By_Responder --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE
+
 del bba\Game_Forcing_2C.pbn
 C:\BBA\BBA --HAND P:\pbn\Game_Forcing_2C.pbn --ARCHIVE_FILE P:\bba\Game_Forcing_2C --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE
 
