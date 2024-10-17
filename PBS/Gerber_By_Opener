@@ -1,9 +1,31 @@
 Script,GerberByOpener
 setDealerCode(`
 
+#
+# Gerber by Opener
+#
+# 2C - 2N - ?
+# 1m - 2N - ?
+#
+produce 10000
 dealer south
 
-# Gerber by Opener - after 1m - 1/2N
+# Define responder's 1m-2N where opener has slam interest
+n2N = hcp(north)>10 and hcp(north)<13 and shape(north, any 5332+any 4432+any 4333-5xxx-x5xx-4xxx-x4xx)
+
+gD = diamonds(south)>5 and top3(south,diamonds)>1
+gC = clubs(south)>5    and top3(south,clubs)>1
+goodMinor = gD or gC
+
+sLP = gD ? diamonds(south)-4 : clubs(south)-4
+sTP = hcp(south) + sLP
+s1mn2N = goodMinor and sTP>20 and n2N
+
+# Define 2C - 2N
+s2C = hcp(south)>21
+s2N = hcp(north)>7 and shape(north,any 5332+any 4432+any 4333-5xxx-x5xx)
+
+s2Cn2N = s2C and n2N
 
 #Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 ### Imported Leveling Code ###
@@ -44,54 +66,24 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-# Gerber after 1m - 1/2N
-
-gD = diamonds(south)>5 and top3(south,diamonds)>1
-gC = clubs(south)>5 and top3(south,clubs)>1
-
-
-oBal  = shape(south, any 5332+any 4432+any 4333-5xxx-x5xx)
-oUBal = not oBal and (gD or gC)
-o1214 =  hcp(south)>11 and hcp(south)<15
-o1517 = (hcp(south)>14 and hcp(south)<18) and oUBal
-o1819 =  hcp(south)>17 and hcp(south)<20
-o2021 = (hcp(south)>19 and hcp(south)<22) and oUBal
-
-
-rBal  = shape(north, any 5332+any 4432+any 4333)
-ruBal = not rBal
-r0610 = hcp(north)>5  and hcp(north)<11
-r1012 = hcp(north)>10 and hcp(north)<12
-r1315 = hcp(north)>12 and hcp(north)<16
-r1618 = hcp(north)>15 and hcp(north)<19
-r1920 = hcp(north)>19 and hcp(north)<21
-r23   = hcp(north)>21
-
-case1 = o1214 and r1920
-case2 = o1517 and r1618
-case3 = o1819 and r1315
-case4 = o2021 and r1012
-
 # Level the deal
-level1 = case1 and keep
-level2 = case2 and keep
-level3 = case3 and keep 
-level4 = case4 and keep
-levelTheDeal = level1 or level2 or level3 or level4
+level1m = s1mn2N and keep
+level2C = s2Cn2N  and keep53
+levelTheDeal = level1m or level2C
 
 # Now do it
-(case1 or case2 or case3 or case4)
+s1mn2N or s2Cn2N
 and levelTheDeal
 
 action
-average "Open 12-14  " 100 * case1,
-average "Open 15-17  " 100 * case2,
-average "Open 18-19  " 100 * case3,
-average "Open 20-21  " 100 * case4,
+average "1m - 2N  " 100 * s1mn2N,
+average "2C - 2N  " 100 * s2Cn2N,
 
 `,"S",true)
 //Script
 Button,Gerber by Opener,\n\
---- Gerber after 1m - 1N or 2N.\n\
+--- Gerber after 1m - 2N or 2C - 2N\n\
+These are leveled so that the two sequences occur\n\
+at approximately the same frequency.\n\
 https://www.bridgebum.com/gerber.php\n\
 %GerberByOpener%
