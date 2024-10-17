@@ -13,6 +13,5 @@ if "%1"=="" (
 	SET output=P:\bba-filtered-out\
 	SET filter_flag=--INVERSE --PDF
 )
-
-%filter%Gambling_3N.pbn					"Auction [\s\S]+3NT?"							%output%Gambling_3N.pbn				%filter_flag%
+%filter%Gerber_after_NT.pbn 					"Note ...Gerber"											%output%Gerber_after_NT.pbn				%filter_flag%
 
