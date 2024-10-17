@@ -104,7 +104,7 @@ BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BB
 The following table shows the relationship between the files in the various folders.  The folders below all have files that correspond to those in the PBS folder.
 
 | Program | from | to | Created by |
-| -------------------- | ------------------------------ | --------------------------------------- | ---------------- |
+| -------------------- | ------------------------------ | ----------------------------------------- | ---------------- |
 | extract.py   |  PBN | dlr | |
 | makePBN.py | dlr | makePBN.cmd | |
 | makePBN.cmd | dlr | pbn | |
@@ -118,7 +118,7 @@ The following table shows the relationship between the files in the various fold
 
 Other folders:
 - bbsa -- Bridge Bidding Analyser Convention Cards
-- build-scripts -- Windows CMD Programs to run BBA and Dealer
+- build-scripts -- Windows CMD Programs to run BBA, Dealer, and Filter
 - Documents -- Documentation for the Practice-Bidding-Scenarios GitHub repository
 - misc
 - py -- Python programs (see below)
