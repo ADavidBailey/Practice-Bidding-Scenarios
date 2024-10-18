@@ -103,13 +103,13 @@ BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BB
 The following table shows the relationship between the files in the various folders.  The folders below all have files that ard derived from and correspond to those in the PBS folder.
 
 | Program | from | to | Content | Created by |
-| -------------------- | ------------------------------ | ----------------------------------------- | ---------------- |
+| -------------------- | ------------------------------ | ----------------------------------------- | ------------ | ---------------- |
 | extract.py   |  PBS | dlr | Dealer code | |
-| makePBN.py | dlr | makePBN.cmd | CMD code |
+| makePBN.py | dlr | makePBN.cmd | CMD code | |
 | makePBN.cmd | dlr | pbn | pbn files | |
 | commentStats.py | pbn | pbn | pbn files| |
 | rotate.py | pbn | pbn-rotated-for-4-players | pbn files | |
-| PBNtoLIN.py. | pbn-rotated-for-4-players | lin-rotated-for-4-players | lin files  |
+| PBNtoLIN.py. | pbn-rotated-for-4-players | lin-rotated-for-4-players | lin files  | |
 | makeBBA.py | pbn | makeBBA.cmd | CMD code| |
 | makeBBA.cmd | pbn | bba | pbn files | |
 | bbaSummary.py | bba | bba-summary | txt files | |
@@ -215,7 +215,7 @@ This file is in .txt format.
 
 ### Filter.js
 
-This is Rick Wilson's idea and code.  It reads the files from the bba folder and creates corresponding files in the bba-filtered and bba-filtered-out folders.  It's in .js format.  It creates pbn and pdf files corresponding to the deals.
+This is Rick Wilson's idea and code.  It reads the files from the bba folder and creates corresponding files in the bba-filtered and bba-filtered-out folders.  It's in .js format.  This is the code that is invoked by makeFiltered.cmd to create pbn and pdf files corresponding to the files in the bba folder.
 
 ### mix4.py
 
