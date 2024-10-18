@@ -95,17 +95,16 @@ BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BB
 2. dlr -- Dealer code striped from PBS files with Imports resolved
 3. pbn -- dlr files are run through BBO's Dealer to create pbn files
 4. pbn-rotated-for-4-players -- pbn files are rotated for 4-handed play
-5. lin -- pbn files are converted to lin format for use with BBO
-6. lin-rotated-for-four-players -- rotated pbn files are converted to lin format for use with BBO
-7. bba -- pbn files are run through Bridge Bidding Analyser to add bidding
-8. bba-filtered -- bba files are filtered to select only those that are bid as intended
-9. bba-filtered-out -- bba files are NOT bid as intended
+5. lin-rotated-for-four-players -- rotated pbn files are converted to lin format for use with BBO
+6. bba -- pbn files are run through Bridge Bidding Analyser (BBA) to add bidding
+7. bba-filtered -- bba files are filtered to select only those that are bid as intended.  Note:  Rick Wilson came up with this idea and wrote the code. It uses regular expressions to filter deals based on how they are bid by BBA.
+8. bba-filtered-out -- bba files are NOT bid as intended
 
-The following table shows the relationship between the files in the various folders.  The folders below all have files that correspond to those in the PBS folder.
+The following table shows the relationship between the files in the various folders.  The folders below all have files that ard derived from and correspond to those in the PBS folder.
 
 | Program | from | to | Created by |
 | -------------------- | ------------------------------ | ----------------------------------------- | ---------------- |
-| extract.py   |  PBN | dlr | |
+| extract.py   |  PBS | dlr | |
 | makePBN.py | dlr | makePBN.cmd | |
 | makePBN.cmd | dlr | pbn | |
 | commentStats.py | pbn | pbn | |
@@ -120,11 +119,11 @@ Other folders:
 - bbsa -- Bridge Bidding Analyser Convention Cards
 - build-scripts -- Windows CMD Programs to run BBA, Dealer, and Filter
 - Documents -- Documentation for the Practice-Bidding-Scenarios GitHub repository
-- misc
+- lin -- lin files for BBO Practice Table.  It just has one mixed.lin file, today.
+- misc -- everything has to go somewhere
 - py -- Python programs (see below)
 - script -- BBO Dealer code fragments that are Imported into PBS files
 - TESTING
-
 
 ## Special Programs for pbn and lin files
 
