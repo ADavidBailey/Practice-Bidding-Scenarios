@@ -66,7 +66,8 @@ if "%1"=="" (
 :: Gavin_Transfers_after_2N_Rebid_Unb.pbn
 :: Gavin_Transfers_after_2N_Rebid_Weak.pbn
 :: Gavin_Weak_Splinter.pbn
-%filter%Gerber_after_NT.pbn 					"Note ...Gerber"											%output%Gerber_after_NT.pbn				%filter_flag%
+%filter%Gerber_By_Responder.pbn 				"Note ...Gerber"											%output%Gerber_By_Responder.pbn				%filter_flag%
+%filter%Gerber_By_Opener.pbn 					"Note ...Gerber"											%output%Gerber_By_opener.pbn				%filter_flag%
 :: Going_for_Blood.pbn
 :: Good_Bad_2N.pbn "No one bids 2NT - not sure if this is a script of BBA issue"
 %filter%Inverted_Minors.pbn 					"Note ...Inverted minors"									%output%Inverted_Minors.pbn				%filter_flag%

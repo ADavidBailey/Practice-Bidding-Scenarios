@@ -13,5 +13,6 @@ if "%1"=="" (
 	SET output=P:\bba-filtered-out\
 	SET filter_flag=--INVERSE --PDF
 )
-%filter%Gerber_after_NT.pbn 					"Note ...Gerber"											%output%Gerber_after_NT.pbn				%filter_flag%
+%filter%Gerber_By_Responder.pbn 				"Note ...Gerber"								%output%Gerber_By_Responder.pbn				%filter_flag%
+%filter%Gerber_By_Opener.pbn 					"Note ...Gerber"								%output%Gerber_By_opener.pbn				%filter_flag%
 

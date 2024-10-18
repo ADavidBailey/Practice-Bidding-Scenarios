@@ -151,7 +151,6 @@ P:\dealer P:\dlr\Soloway_Jump_Shift.dlr -s=2766074342 >P:\pbn\Soloway_Jump_Shift
 P:\dealer P:\dlr\Meckwell.dlr -s=1924438604 >P:\pbn\Meckwell.pbn
 P:\dealer P:\dlr\Rule_of_16-16.dlr -s=1220532631 >P:\pbn\Rule_of_16-16.pbn
 P:\dealer P:\dlr\3_Under_Invitational_Jump.dlr -s=55673438 >P:\pbn\3_Under_Invitational_Jump.pbn
-P:\dealer P:\dlr\Gerber_after_NT.dlr -s=196359243 >P:\pbn\Gerber_after_NT.pbn
 P:\dealer P:\dlr\Stayman.dlr -s=325671937 >P:\pbn\Stayman.pbn
 P:\dealer P:\dlr\Rule_of_16-17.dlr -s=1447754817 >P:\pbn\Rule_of_16-17.pbn
 P:\dealer P:\dlr\Minor_Slams.dlr -s=2510940223 >P:\pbn\Minor_Slams.pbn

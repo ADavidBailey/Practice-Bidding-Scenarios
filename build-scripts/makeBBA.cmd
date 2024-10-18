@@ -37,9 +37,6 @@ C:\BBA\BBA --HAND P:\pbn\Rule_of_16-16.pbn --ARCHIVE_FILE P:\bba\Rule_of_16-16 -
 del bba\3_Under_Invitational_Jump.pbn
 C:\BBA\BBA --HAND P:\pbn\3_Under_Invitational_Jump.pbn --ARCHIVE_FILE P:\bba\3_Under_Invitational_Jump --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE
 
-del bba\Gerber_after_NT.pbn
-C:\BBA\BBA --HAND P:\pbn\Gerber_after_NT.pbn --ARCHIVE_FILE P:\bba\Gerber_after_NT --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE
-
 del bba\Stayman.pbn
 C:\BBA\BBA --HAND P:\pbn\Stayman.pbn --ARCHIVE_FILE P:\bba\Stayman --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE
 
@@ -339,6 +336,9 @@ C:\BBA\BBA --HAND P:\pbn\Ned_2S.pbn --ARCHIVE_FILE P:\bba\Ned_2S --CC1 C:\BBA\GI
 
 del bba\Weak_2_Bids.pbn
 C:\BBA\BBA --HAND P:\pbn\Weak_2_Bids.pbn --ARCHIVE_FILE P:\bba\Weak_2_Bids --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE
+
+del bba\Gerber_By_Opener.pbn
+C:\BBA\BBA --HAND P:\pbn\Gerber_By_Opener.pbn --ARCHIVE_FILE P:\bba\Gerber_By_Opener --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE
 
 del bba\Minor_Suit_Opener.pbn
 C:\BBA\BBA --HAND P:\pbn\Minor_Suit_Opener.pbn --ARCHIVE_FILE P:\bba\Minor_Suit_Opener --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE
