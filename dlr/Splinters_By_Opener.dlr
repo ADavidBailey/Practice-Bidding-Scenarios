@@ -150,8 +150,6 @@ Sshort = (shape(south,1xxx) and (top4(south,spades)  ==0 or hascard(south,AS)) o
 ##   I may need to add this   ##
 
 # Define splinter sequences
-CD3H = CD and d>4 and Hshort
-CD3S = CD and d>4 and Sshort
 CH3D = CH and h>3 and Dshort  // invite
 CH3S = CH and h>3 and Sshort
 CS3D = CS and s>3 and Dshort  // invite
@@ -163,7 +161,7 @@ DS3H = DS and s>3 and Hshort  // invite
 HS4C = HS and s>3 and Cshort
 HS4D = HS and s>3 and Dshort
 jReverse   = (CH3D or CS3D or CS3H or DS3H) and hcp(south)>12 and hcp(south)<22
-jJumpShift = (CD3H or CD3S or CH3S or DH4C or DH3S or DS4C or HS4C or HS4D) and hcp(south)>15 and hcp(south)<19
+jJumpShift = (CH3S or DH4C or DH3S or DS4C or HS4C or HS4D) and hcp(south)>15 and hcp(south)<19
 
 # North does not have direct support for south
 northOK = 1
@@ -176,20 +174,17 @@ northRange = hcp(north)>5  and hcp(north)<17  // no jump shifts
 sOpens and northRange and calmOpps
 
 action
-average "CD " 100 * CD,
-average "  3H     " 100 * CD3H,
-average "  3S     " 100 * CD3S,
 average "CH " 100 * CH,
-average "  3Di    " 100 * CH3D,
+average "  3D     " 100 * CH3D,
 average "  3S     " 100 * CH3S,
 average "CS " 100 * CS,
-average "  3Di    " 100 * CS3D,
-average "  3Hi    " 100 * CS3H,
+average "  3D     " 100 * CS3D,
+average "  3H     " 100 * CS3H,
 average "DH " 100 * DH,
 average "  4C     " 100 * DH4C,
 average "  3S     " 100 * DH3S,
 average "DS " 100 * DS,
-average "  3Hi    " 100 * DS3H,
+average "  3H     " 100 * DS3H,
 average "  4C     " 100 * DS4C,
 average "HS " 100 * HS,
 average "  4C     " 100 * HS4C,
