@@ -38,8 +38,8 @@ if "%1"=="" (
 %filter%3N_over_RHO_3x.pbn 						"Auction [\s\S]+3[CDHS]\s+3NT?"								%output%3N_over_RHO_3x.pbn		%filter_flag%
 %filter%5431_After_NT.pbn 						"Auction [\s\S]+1NT?"										%output%5431_After_NT.pbn		%filter_flag%
 %filter%After_1M_2M.pbn 						"(1H.+Pass.+2H)|(1S.+Pass.+2S)"								%output%After_1M_2M.pbn			%filter_flag%
-%filter%After_Opp_Overcalls.pbn	 				"Auction [\s\S][1234567][CDHS]\s+[1234567]"					%output%After_Opp_Overcalls.pbn	%filter_flag%
-%filter%After_Partner_Overcalls.pbn 			"Auction [\s\S][1234567][CDHS]\s+[1234567]"					%output%After_Partner_Overcalls.pbn	%filter_flag%
+%filter%After_Opp_Overcalls.pbn	 				"Auction [\s\S]+[1234567][CDHS]\s+[1234567]"					%output%After_Opp_Overcalls.pbn	%filter_flag%
+%filter%After_Partner_Overcalls.pbn 			"Auction [\s\S]+[1234567][CDHS]\s+[1234567]"					%output%After_Partner_Overcalls.pbn	%filter_flag%
 %filter%Any_5422_with_15-17.pbn 				"."															%output%Any_5422_with_15-17.pbn	%filter_flag%
 :: Bergen_Raises.pbn "BBA not configured for Bergen raise"
 :: Bergen_Thrump_X_after_Preempt.pbn "BBA not configured for Bergen Thrump X"

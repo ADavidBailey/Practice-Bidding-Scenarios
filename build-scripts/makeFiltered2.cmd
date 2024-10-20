@@ -13,5 +13,6 @@ if "%1"=="" (
 	SET output=P:\bba-filtered-out\
 	SET filter_flag=--INVERSE --PDF
 )
-%filter%Splinters_By_Opener.pbn 				"Note ...Splinter"											%output%Splinters_By_Opener.pbn			%filter_flag%
+%filter%After_Opp_Overcalls.pbn	 				"Auction [\s\S]+[1234567][CDHS]\s+[1234567]"					%output%After_Opp_Overcalls.pbn	%filter_flag%
+%filter%After_Partner_Overcalls.pbn 			"Auction [\s\S]+[1234567][CDHS]\s+[1234567]"					%output%After_Partner_Overcalls.pbn	%filter_flag%
 
