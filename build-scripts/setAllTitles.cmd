@@ -77,7 +77,7 @@ SET Title=call P:\build-scripts\setOneTitle.cmd P:\bba-filtered\
 %Title%Responsive_Double.pbn 					"Responsive Double"
 %Title%Reverse_After_Two_Over_One.pbn			"Reverse after Two Over One"
 %Title%Reverse_By_Opener.pbn					"Reverse by Opener"
-%Title%Reverse_By_Responder.pbn					"Reverse by Opener"
+%Title%Reverse_By_Responder.pbn					"Reverse by Responder"
 %Title%Rule_of_16-15.pbn 						"Rule of 16-15"
 %Title%Rule_of_16-16.pbn 						"Rule of 16-16"
 %Title%Rule_of_16-18.pbn 						"Rule of 16-18"
