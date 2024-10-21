@@ -121,7 +121,7 @@ SET note=Note ...
 %filter%Opps_Double_1_NT.pbn					"%auction%1NT?\s+X"									%output%Opps_Double_1_NT.pbn		%filter_flag%
 %filter%Opps_Double_Jacoby.pbn					"%auction%1NT?\s+Pass\s+[24][DH]\s+X"				%output%Opps_Double_Jacoby.pbn		%filter_flag%
 %filter%Opps_Double_Stayman.pbn					"%auction%1NT?\s+Pass\s+2C....\s+X"					%output%Opps_Double_Stayman.pbn		%filter_flag%
-%filter%Opps_Gambling_3N.pbn 					%note%Gambling										%output%Opps_Gambling_3N.pbn		%filter_flag%
+%filter%Opps_Gambling_3N.pbn 					"%note%Gambling"										%output%Opps_Gambling_3N.pbn		%filter_flag%
 :: Opps_Multi_2D.pbn "BBA not configured for this convention"
 %filter%Opps_Open_1N_15-17.pbn 					"%auction%1NT?"										%output%Opps_Open_1N_15-17.pbn		%filter_flag%
 %filter%Opps_Overcall_1NT.pbn					"%auction%1[CDHS]\s+1NT?"							%output%Opps_Overcall_1NT.pbn		%filter_flag%
