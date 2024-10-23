@@ -28,7 +28,6 @@ foreach ($file in $files) {
     # Increment the counter
     $fileCount++
     if ($fileCount -eq 5) { break }
-	# break;
 }
 
 # Display the number of files processed
