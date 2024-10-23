@@ -6,12 +6,12 @@ SET inputFilePath=%~dpn1
 SET inputFilename=%~n1
 SET inputFileFolder=%~dp1
 
-:: Rotate the hands N/S - this will create a PNN file in the same folder
+:: Rotate the hands N,E,S,W - this will create a PNN file in the same folder
 :: with -NESW added to the end of the filename:
 
 cscript S:\SetDealerMulti.js %inputFilePath%.pbn NESW North
 
-:: Move the rotated file to the \bidding-sheets\ folder, and rename to remove the -NS suffix:
+:: Move the rotated file to the \pbn-rotated-for-4-players\ folder, and rename to remove the -NESW suffix:
 
 move /Y %inputFilePath%-NESW.pbn ..\pbn-rotated-for-4-players\%inputFilename%.pbn
 

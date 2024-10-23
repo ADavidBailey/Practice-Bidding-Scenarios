@@ -2,7 +2,7 @@
 $rootPath = "P:\pbn\"
 
 # Define the path to the script you want to call for each file
-$scriptPath = "P:\build-scripts\makeOneRotatedPBN.cmd"
+$scriptPath = "P:\build-scripts\makeOneRotated.cmd"
 
 # Define the file extension/type you want to filter by (e.g., ".txt", ".csv", ".log")
 $fileType = ".pbn"  # Change this to the desired file extension
@@ -27,6 +27,7 @@ foreach ($file in $files) {
 
     # Increment the counter
     $fileCount++
+    if ($fileCount -eq 5) { break }
 	# break;
 }
 
