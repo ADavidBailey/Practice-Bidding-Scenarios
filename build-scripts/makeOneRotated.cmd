@@ -18,10 +18,10 @@ move /Y %inputFilePath%-NESW.pbn ..\pbn-rotated-for-4-players\%inputFilename%.pb
 :: Rotate the hands N/S - this will create a PNN file in the same folder
 :: with -NESW added to the end of the filename:
 
-cscript S:\SetDealerMulti.js %inputFilePath%.pbn NESW North --LIN
+cscript S:\SetDealerMulti.js %inputFilePath%.pbn NESW North NOPBN LIN
 
 :: Move the rotated file to the \lin-rotated-for-4-players\ folder, and rename to remove the -NESW suffix:
 
-move /Y %inputFilePath%-NESW.pbn ..\lin-rotated-for-4-players\%inputFilename%.lin
+move /Y %inputFilePath%-NESW.lin ..\lin-rotated-for-4-players\%inputFilename%.lin
 
 :exitbat
