@@ -1,6 +1,6 @@
 import os
 def process_file(filename):
-    input_file='P:\\bba\\bba\\' + filename
+    input_file='P:\\bba\\' + filename
     output_file = 'P:\\bba-summary\\' + filename[:-4] + '.txt'
     print("writing " + str(output_file))
     f = open(output_file, 'w')
