@@ -1,0 +1,14 @@
+
+
+python3 extract.py              # /PBN > /dlr
+
+
+./makeAllPBNs.ps1               # /dlr > /pbn
+python3 commentStats.py         # /pbn > /pbn > stats.txt
+./makeAllRotated.ps1            # /pbn > /pbn-rotated-for-4-players > /lin-rotated-for-4-players
+./makeAllBBA.ps1                # /pbn > /bba
+
+./makeFiltered                  # /bba > /bba-filtered > filter.log > BBA Filter Rates
+./makeFiltered out              # /bba > /bba-filtered-out
+./setAllTitle.cmd               # /bba-filtered > /bba-filtered
+./makeAllBiddingSheets.ps1      # /bba-filtered > /bidding-sheets
