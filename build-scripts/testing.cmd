@@ -1,4 +1,9 @@
 
+:: /pbn > /pbn > stats.txt
+python3 P:\py\wCommentStats.py
 
-python3 wExtract.py              # /PBS > /dlr
-./makeFiltered out              # /bba > /bba-filtered-out
+:: /PBS > /dlr
+python3 P:\py\wExtract.py
+
+:: /bba > /bba-filtered-out
+:: P:\build-scripts\makeFiltered out

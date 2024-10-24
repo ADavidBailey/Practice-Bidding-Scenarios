@@ -1,14 +1,30 @@
 
+# /PBS > /dlr
+P:\py\python3 wExtract.py
 
-python3 extract.py              # /PBS > /dlr
+# /dlr > /pbn
+P:\build-scripts\makeAllPBNs.ps1
 
+# /pbn > /pbn > stats.txt
+P:\py\python3 wCommentStats.python3
 
-./makeAllPBNs.ps1               # /dlr > /pbn
-python3 wCommentStats.py        # /pbn > /pbn > stats.txt
-./makeAllRotated.ps1            # /pbn > /pbn-rotated-for-4-players > /lin-rotated-for-4-players
-./makeAllBBA.ps1                # /pbn > /bba
-python3 wBbaSummary.py           # /bba > /bba-summary
-./makeFiltered                  # /bba > /bba-filtered > filter.log > BBA Filter Rates
-./makeFiltered out              # /bba > /bba-filtered-out
-./setAllTitle.cmd               # /bba-filtered > /bba-filtered         ? could I put titles in the /PBS
-./makeAllBiddingSheets.ps1      # /bba-filtered > /bidding-sheets
+# /pbn > /pbn-rotated-for-4-players > /lin-rotated-for-4-players
+P:\build-scripts\makeAllRotated.ps1
+
+# /pbn > /bba
+P:\build-scripts\makeAllBBA.ps1
+
+# /bba > /bba-summary
+P:\py\python3 wBbaSummary.py
+
+# /bba > /bba-filtered > filter.log > BBA Filter Rates
+P:\build-scripts\makeFiltered
+
+# /bba > /bba-filtered-out
+P:\build-scripts\makeFiltered out
+
+# /bba-filtered > /bba-filtered         ? could I put titles in the /PBS
+P:\build-scripts\setAllTitle.cmd
+
+# /bba-filtered > /bidding-sheets
+P:\build-scripts\makeAllBiddingSheets.ps1
