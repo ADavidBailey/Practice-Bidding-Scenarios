@@ -8,6 +8,6 @@ SET inputFileFolder=%~dp1
 
 :: Invoke BBO's Dealer to convert dealer code to a PBN file
 
-P:\dealer %inputFilePath%.dlr -s=10232024 >P:\pbn\%inputFilename%.pbn
+P:\dealer %inputFilePath%.dlr -s 0 >P:\pbn\%inputFilename%.pbn
 
 :exitbat
