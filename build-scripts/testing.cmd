@@ -1,2 +1,4 @@
-python3 extract.py              # /PBS > /dlr
+
+
+python3 wExtract.py              # /PBS > /dlr
 ./makeFiltered out              # /bba > /bba-filtered-out
