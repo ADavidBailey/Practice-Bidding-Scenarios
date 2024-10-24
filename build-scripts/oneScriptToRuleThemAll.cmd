@@ -1,12 +1,12 @@
 
 # /PBS > /dlr
-P:\py\python3 wExtract.py
+python3 P:\py\wExtract.py
 
 # /dlr > /pbn
 P:\build-scripts\makeAllPBNs.ps1
 
 # /pbn > /pbn > stats.txt
-P:\py\python3 wCommentStats.python3
+python3 P:\py\wCommentStats.python3
 
 # /pbn > /pbn-rotated-for-4-players > /lin-rotated-for-4-players
 P:\build-scripts\makeAllRotated.ps1
@@ -15,7 +15,7 @@ P:\build-scripts\makeAllRotated.ps1
 P:\build-scripts\makeAllBBA.ps1
 
 # /bba > /bba-summary
-P:\py\python3 wBbaSummary.py
+python3 P:\py\wBbaSummary.py
 
 # /bba > /bba-filtered > filter.log > BBA Filter Rates
 P:\build-scripts\makeFiltered
