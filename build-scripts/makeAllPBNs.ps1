@@ -1,11 +1,11 @@
 # Define the path to the root directory containing the nested folders and files
-$rootPath = "P:\pbn\"
+$rootPath = "P:\dlr\"
 
 # Define the path to the script you want to call for each file
-$scriptPath = "P:\build-scripts\makeOneRotated.cmd"
+$scriptPath = "P:\build-scripts\makeOnePBN.cmd"
 
 # Define the file extension/type you want to filter by (e.g., ".txt", ".csv", ".log")
-$fileType = ".pbn"  # Change this to the desired file extension
+$fileType = ".dlr"  # Change this to the desired file extension
 
 # Get all files in the root directory and its subdirectories that match the specified file type
 $files = Get-ChildItem -Path $rootPath -Recurse -File | Where-Object { $_.Extension -eq $fileType }
@@ -27,7 +27,7 @@ foreach ($file in $files) {
 
     # Increment the counter
     $fileCount++
-    #if ($fileCount -eq 5) { break }
+    if ($fileCount -eq 3) { break }
 }
 
 # Display the number of files processed
