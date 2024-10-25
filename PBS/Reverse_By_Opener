@@ -9,7 +9,8 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Response-to-1-BId
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Openers-Rebid
 
-reverse = (HNS or DSH or DNH or DNS or CHD or CSD or CSH or CND or CNH or CNS) 
+sShape = shape(south,any 54xx+any 64xx)
+reverse = (HNS or DSH or DNH or DNS or CHD or CSD or CSH or CND or CNH or CNS) and sShape
 reverse and hcp(south)>16 and hcp(south)<20 and hcp(north)>5 and hcp(north)<13 and calmOpps
 
 `)
