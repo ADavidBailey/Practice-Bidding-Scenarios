@@ -1,2 +1,5 @@
+@echo off
+
 # /dlr > /pbn
-P:\build-scripts\makeAllPBNs.ps1
+powershell -ExecutionPolicy Bypass -File "P:\build-scripts\makeAllPBNs.ps1"
+
