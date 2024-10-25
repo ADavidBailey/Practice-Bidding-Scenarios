@@ -12,7 +12,7 @@ SET inputFileFolder=%~dp1
 
 :: Invoke BBA to create a bba file from a pbn file
 
-del P:\bba\%inputFilename%.bba
+del P:\bba\%inputFilename%.pbn
 C:\BBA\BBA --HAND %inputFilePath%.pbn --ARCHIVE_FILE P:\bba\%inputFilename% --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE
 
 :exitbat
