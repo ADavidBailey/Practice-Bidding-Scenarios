@@ -1,4 +1,4 @@
-@echo Opps_Overcall_1NT
+@echo off
 IF "%~1"=="" ECHO Provide PBN file as parameter 1 (without .pbn)
 IF "%~1"=="" goto exitbat
 

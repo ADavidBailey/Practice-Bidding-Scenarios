@@ -1,4 +1,4 @@
-ECHO OFF
+@echo off
 
 SET filter=cscript \\Mac\Home\Documents\BCScript\2024-10-03\Filter.js P:\bba\
 
