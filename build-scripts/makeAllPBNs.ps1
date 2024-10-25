@@ -28,8 +28,8 @@ foreach ($file in $files) {
     # Call the external script, passing the file path as an argument
     & $scriptPath $file.FullName
 
-    if ($fileCount -eq 1) { break }
-}
+    if ($fileCount -eq 2) { break }
+
 
 # Display the number of files processed
 Write-Host "Total number of files processed: $fileCount"

@@ -1,18 +1,23 @@
+# a Script To Rule Them All
+
+# The number of files for PowerScript programs
+$global:nFiles = 2
 
 # /PBS > /dlr
 python3 P:\py\wExtract.py
 
 # /dlr > /pbn
-P:\build-scripts\makeAllPBNs.ps1
+powershell -ExecutionPolicy Bypass -File "P:\build-scripts\makeAllPBNs.ps1"
 
 # /pbn > /pbn > stats.txt
 python3 P:\py\wCommentStats.python3
 
 # /pbn > /pbn-rotated-for-4-players > /lin-rotated-for-4-players
-P:\build-scripts\makeAllRotated.ps1
+powershell -ExecutionPolicy Bypass -File "P:\build-scripts\makeAllRotated.ps1"
 
 # /pbn > /bba
-P:\build-scripts\makeAllBBA.ps1
+powershell -ExecutionPolicy Bypass -File "P:\build-scripts\makeAllBBA.ps1"
+
 
 # /bba > /bba-summary
 python3 P:\py\wBbaSummary.py
@@ -27,4 +32,4 @@ P:\build-scripts\makeFiltered out
 P:\build-scripts\setAllTitle.cmd
 
 # /bba-filtered > /bidding-sheets
-P:\build-scripts\makeAllBiddingSheets.ps1
+powershell -ExecutionPolicy Bypass -File "P:\build-scripts\makeAllBiddingSheets.ps1"

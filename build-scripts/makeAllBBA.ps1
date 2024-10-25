@@ -28,7 +28,7 @@ foreach ($file in $files) {
     # Call the external script, passing the file path as an argument
     & $scriptPath $file.FullName
 
-    #if ($fileCount -eq 2) { break }
+    if ($fileCount -eq 2) { break }
 }
 
 # Display the number of files processed
