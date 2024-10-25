@@ -36,8 +36,8 @@ P:\build-scripts\makeFiltered
 # /bba > /bba-filtered-out
 P:\build-scripts\makeFiltered out
 
-# /bba-filtered > /bba-filtered  ? could I put titles in the /PBS     CHANGE TO setOneTitle.cmd   
-P:\build-scripts\setAllTitle.cmd
+# /bba-filtered > /bba-makeFiltered
+P:\build-scripts\setOneTitle.cmd
 
 # /bba-filtered > /bidding-sheets                                     CHANGE TO makeOneBiddingSheets.cmd
 powershell -ExecutionPolicy Bypass -File "P:\build-scripts\makeAllBiddingSheets.ps1"
