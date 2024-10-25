@@ -19,15 +19,16 @@ $fileCount = 0
 
 # Iterate through each filtered file and call the script
 foreach ($file in $files) {
+    # Increment the counter
+    $fileCount++
+
     # Output the current file being processed
-    Write-Host "Processing file: $($file.FullName)"
+    Write-Host "Processing file $($fileCount): $($file.FullName)"
 
     # Call the external script, passing the file path as an argument
     & $scriptPath $file.FullName
 
-    # Increment the counter
-    $fileCount++
-    if ($fileCount -eq 3) { break }
+    if ($fileCount -eq 2) { break }
 }
 
 # Display the number of files processed
