@@ -2,7 +2,7 @@
 $rootPath = "P:\bba-filtered\"
 
 # Define the path to the script you want to call for each file
-$scriptPath = "P:\build-scripts\makeOneBiddingSheets.cmd"
+$scriptPath = "P:\build-scripts\makeOneBiddingSheet.cmd"
 
 # Define the file extension/type you want to filter by (e.g., ".txt", ".csv", ".log")
 $fileType = ".pbn"  # Change this to the desired file extension
