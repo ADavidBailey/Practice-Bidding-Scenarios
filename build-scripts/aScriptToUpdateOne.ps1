@@ -3,7 +3,6 @@
 # The number of files for PowerScript programs
 #$global:nFiles = 2
 
-
 @echo off
 IF "%~1"=="" ECHO Provide PBN file as parameter 1 (without .pbn)
 IF "%~1"=="" goto exitbat
@@ -16,16 +15,16 @@ SET inputFileFolder=%~dp1
 python3 P:\py\wExtract.py
 
 # /dlr > /pbn                                                       CHANGE TO makeOnePBN.cmd
-powershell -ExecutionPolicy Bypass -File "P:\build-scripts\makeAllPBNs.ps1"
+P:\build-scripts\makeAllPBNs.ps1
 
 # /pbn > /pbn > stats.txt
 python3 P:\py\wCommentStats.python3
 
 # /pbn > /pbn-rotated-for-4-players > /lin-rotated-for-4-players    CHANGE TO makeOneRotated.cmd
-powershell -ExecutionPolicy Bypass -File "P:\build-scripts\makeAllRotated.ps1"
+P:\build-scripts\makeAllRotated.ps1
 
 # /pbn > /bba                                                       CHANGE TO makeOneBBA.cmd
-powershell -ExecutionPolicy Bypass -File "P:\build-scripts\makeAllBBA.ps1"
+P:\build-scripts\makeAllBBA.ps1
 
 # /bba > /bba-summary
 python3 P:\py\wBbaSummary.py
@@ -40,4 +39,4 @@ P:\build-scripts\makeFiltered out
 P:\build-scripts\setOneTitle.cmd
 
 # /bba-filtered > /bidding-sheets                                     CHANGE TO makeOneBiddingSheets.cmd
-powershell -ExecutionPolicy Bypass -File "P:\build-scripts\makeAllBiddingSheets.ps1"
+P:\build-scripts\makeAllBiddingSheets.ps1

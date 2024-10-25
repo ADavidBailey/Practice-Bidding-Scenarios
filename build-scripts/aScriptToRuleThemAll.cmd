@@ -1,7 +1,7 @@
 # a Script To Rule Them All
 
 # The number of files for PowerScript programs
-$global:nFiles = 2
+#$global:nFiles = 2
 
 # /PBS > /dlr
 python3 P:\py\wExtract.py
