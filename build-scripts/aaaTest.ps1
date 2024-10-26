@@ -14,7 +14,7 @@ echo "This is A Script to Rule Them All speaking, All done!"
 <#
 PS P:\build-scripts> ./aaatest.ps1
 This is A Script to Rule Them All speaking, I'm getting started!
-This is aCalled ps1 program speaking. nFiles = 1000
+This is a Called ps1 program speaking. nFiles = 1000
 This is A Script to Rule Them All speaking, All done!
 PS P:\build-scripts>
 #>
