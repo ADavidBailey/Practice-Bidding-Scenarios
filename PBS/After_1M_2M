@@ -3,6 +3,7 @@ setDealerCode(`
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
 
 # Calculate North's Short Suit Points
 v1 = shape(north, any 0xxx) ? 5 : 0  // allow for 2 voids
@@ -16,9 +17,10 @@ shortSuitPoints = v1+v2+s1+s2+d1+d2+d3
 
 openS = oneSpade and spades(north)==3
 openH = oneHeart and hearts(north)==3 and spades(north)<4
+HorS = (openS or openH) and not gibNT
 
 # Now do it
-(openS or openH) and suitPoints>11 and suitPoints<18 and shortSuitPoints>0 and hcp(north)>4 and hcp(north)<10 and calmOpps
+HorS and suitPoints>11 and suitPoints<18 and shortSuitPoints>0 and hcp(north)>4 and hcp(north)<10 and calmOpps
 
 produce 1000
 action
