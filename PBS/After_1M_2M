@@ -2,8 +2,11 @@ Script,After1M2M
 setDealerCode(`
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# defines oneSpade, oneHeart,suitPoints
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# defines calmOpps
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+# defines gibNT
 
 # Calculate North's Short Suit Points
 v1 = shape(north, any 0xxx) ? 5 : 0  // allow for 2 voids
