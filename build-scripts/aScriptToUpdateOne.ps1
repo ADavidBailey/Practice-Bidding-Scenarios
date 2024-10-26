@@ -1,8 +1,5 @@
 # A Script to Update One
 
-# The number of files for PowerScript programs
-#$global:nFiles = 2
-
 @echo off
 IF "%~1"=="" ECHO Provide PBN file as parameter 1 (without .pbn)
 IF "%~1"=="" goto exitbat
