@@ -5,4 +5,4 @@ $nFiles = $global:nTestFiles
 if ($fileCount -eq $nFiles) { break }
 
 # The number of files for PowerScript programs
-Write-Host "Hello, World!  This is abbTest.ps1" $nFiles
+Write-Host "This is aCalled ps1 program speaking. nFiles =" $nFiles
