@@ -2,7 +2,6 @@ param (
     [string]$WildCardScenarioSpec,
     [string]$Operation
 )
-$WildcardFileSpec = "P:\pbs\"
 
 # Function to perform actions on the file
 function Perform-Actions {
@@ -44,7 +43,7 @@ function Perform-Action {
         }
         "rotate" {
             echo "Rotating PBN for $Scenario to pbn-rotated-for-4-players and lin-rotated-for-4-players"
-            & BridgeComposer $Scenario
+            & P:\build-scripts $Scenario
         }
         "makeBBA" {
             echo "Generating BBA for $Scenario"
