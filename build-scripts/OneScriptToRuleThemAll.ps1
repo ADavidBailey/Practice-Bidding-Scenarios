@@ -30,35 +30,35 @@ function Perform-Action {
 
     switch ($Operation) {
         "extract" {
-            echo "Extracting $Scnario from PBS to dlr"
+            echo "Creating dlr\$Scnario from PBS\$Scenario"
             & P:\python3 extract.py $Scenario
         }
         "makePBN" {
-            echo "Generating PBN for $Scenario"
+            echo "Creating pbn\$Scenario.pbn from dlr\$Scenario.dlr"
             & P:\build-scripts\makeOnePBN.cmd $Scenario
         }
         "commentStats" {
-            echo "Change Stats to comments for $Scenario"
+            echo "Change Stats to comments for pbn\$Scenario.pbn"
             #Move-Item -Path $File -Destination $movedFile
         }
         "rotate" {
-            echo "Rotating PBN for $Scenario to pbn-rotated-for-4-players and lin-rotated-for-4-players"
-            & P:\build-scripts $Scenario
+            echo "creating pbn-rotated-for-4-players and lin-rotated-for-4-players\$Scenario from pbn\$Scenario"
+            & P:\build-scripts\makeOneRotated.cmd $Scenario
         }
         "makeBBA" {
-            echo "Generating BBA for $Scenario"
+            echo "Creating bba\$Scenario.pbn from pbn\$Scenario.pbn"
             & P:\build-scripts\makeOneBBA.cmd $Scenario
         }
         "bbaSummary" {
-            echo "Summarizing BBA for $Scenario"
+            echo "Creating bbaSummary\$Scenario.txt from bba\$Scenario.pbn"
             & P:\build-scripts\wBbaSummary.py $Scenario
         }
         "makeFiltered" {
-            echo "Generating filtered and filtered-out for $Scenario"
+            echo "Creating bba-filtered.pbn\ and bba-filtered-out.pbn from bba\$Scenario.pbn"
             & P:\build-scripts\makeOneFiltered $Scenario
         }
         "makeBiddingSheet" {
-            echo "Generating bidding sheet for $Scenario"
+            echo "Creating bidding-sheets\$Scenario.pbn and bba\$Scenario.pdf from bba\$Scenario.pbn"
             & P:\build-scripts\makeOneBiddingSheet.cmd $Scenario
         }
         default {
