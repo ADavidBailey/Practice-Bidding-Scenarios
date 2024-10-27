@@ -1,7 +1,8 @@
 param (
-    [string]$WildcardFileSpec,
+    [string]$WildCardScenarioSpec,
     [string]$Operation
 )
+$WildcardFileSpec = "P:\pbs\"
 
 # Function to perform actions on the file
 function Perform-Actions {
@@ -68,13 +69,13 @@ function Perform-Action {
 }
 
 # Main script execution
-if (-not $WildcardFileSpec -or -not $Operation) {
+if (-not $WildcardScenarioSpec -or -not $Operation) {
     echo "Usage: .\file_operations.ps1 [wildcard_file_specification] [operation]"
     exit 1
 }
 
 # Get files matching the wildcard specification
-$files = Get-ChildItem -Path $WildcardFileSpec
+$files = Get-ChildItem -Path p:\pbs -Recurse -File | Where-Object { $_.Name -like $WildcardScenarioSpec }
 
 foreach ($file in $files) {
     echo "Processing file: $file"
