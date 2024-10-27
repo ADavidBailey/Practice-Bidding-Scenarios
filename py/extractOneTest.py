@@ -1,24 +1,16 @@
 import os
 import re
 import requests
-#import hashlib
 import argparse
 
 parser = argparse.ArgumentParser(description="Extract dealer code")
-#parser.add_argument("--generate", type=int, default=100000000, help="Number to generate")
-#parser.add_argument("--produce", type=int, default=500, help="Number to produce")
 parser.add_argument("--scenario", type=str, default="*", help="Name of scenario (omit for all)")
 args = parser.parse_args()
-#generate = args.generate
-#produce = args.produce
+print(f"Scenario: {args.scenario}")
 scenario = args.scenario
-#print("generating " + str(generate))
-#print("producing  " + str(produce))
-print("Testing use of * for all")
 print("scenario " + str(scenario))
 
 # Directory containing the files
-#PBS = os.path.join(os.path.expanduser("~"), "Practice-Bidding-Scenarios")
 PBS = ".."
 # Regular expression pattern to match text enclosed in backticks spanning multiple lines
 pattern = r'`(.*?)`'
@@ -69,26 +61,18 @@ def extract_text_in_backticks(file_path):
             print(output_file_path)
             with open(output_file_path, 'w') as output_file:
                 # Save the processed text to the .dlr file
-                # seed = calculate_seed(file_path)
-                # We seed based on filename, then we have reproduceale results, but different seed pr, file
 
                 # Insert header in file
                 processed_text = header + processed_text
 
                 output_file.write(processed_text)
-                # print(f'echo ./dealerv2 {output_file_path}  -s {seed} ')
-                # print(f'./dealerv2 {output_file_path} -s  {seed} > ./pbn/{ os.path.splitext(os.path.basename(file_path))[0].replace(" ","-").replace("(", "").replace(")", "").replace("&", "and").replace("+", "_")}.pbn ', end="\n")
 
 # Function to process the extracted text
-
 
 def process_extracted_text(extracted_text, dealer):
     processed_text = []
     
     action = False
-    #condition = False
-    #generate_added = False
-    #produce_added = False
 
     lines = extracted_text.split('\n')
 
@@ -105,8 +89,6 @@ def process_extracted_text(extracted_text, dealer):
     
     # The first 4 lines of each .dlr file...
     processed_text.append(f"# {filename}")
-    #processed_text.append(f"generate {generate}") # from default or arg
-    #processed_text.append(f"produce {produce}")   # from default or arg
     processed_text.append(f"dealer {dealer}")     # from setDealerCode
 
     for line in lines[:]:  # Iterate through a copy of the original list
