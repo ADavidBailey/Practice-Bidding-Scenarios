@@ -30,17 +30,16 @@ function Perform-Action {
 
     switch ($Operation) {
         "extract" {
-            echo "Creating dlr\ from PBS\"
-            & python3 P:\py\wExtract.py
+            echo "Creating dlr\ from all PBS\"
+            & python3 P:\py\wExtract.py       # Change to One
         }
         "makePBN" {
             echo "Creating pbn\$Scenario.pbn from dlr\$Scenario.dlr"
             & P:\build-scripts\makeOnePBN.cmd $Scenario
         }
         "commentStats" {
-            echo "Change Stats for all pbn\"
-            #Move-Item -Path $File -Destination $movedFile
-            & python3 P:\py\wCommentStats.py
+            echo "Comment Stats for all pbn\"
+            & python3 P:\py\wCommentStats.py   # Change to One  
         }
         "rotate" {
             echo "creating pbn-rotated-for-4-players and lin-rotated-for-4-players\$Scenario from pbn\$Scenario"
@@ -51,8 +50,8 @@ function Perform-Action {
             & P:\build-scripts\makeOneBBA.cmd $Scenario
         }
         "bbaSummary" {
-            echo "Creating bbaSummary\$Scenario.txt from bba\$Scenario.pbn"
-            & P:\build-scripts\wBbaSummary.py $Scenario
+            echo "Creating bbaSummary from for all bba\"
+            & Python P:\py\wBbaSummary.py       # Change to One
         }
         "filter" {
             echo "Creating bba-filtered.pbn\ and bba-filtered-out.pbn from bba\$Scenario.pbn"
