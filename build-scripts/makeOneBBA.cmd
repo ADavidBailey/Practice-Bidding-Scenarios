@@ -4,6 +4,8 @@ IF "%~1"=="" goto exitbat
 
 SET scenarioName=%~1
 SET inputFilePath=P:\pbn\%scenarioName%.pbn
+
+:: BBA adds the .pbn to the archive
 SET outputFilePath=P:\bba\%scenarioName%
 
 :: Invoke BBA to create a bba file from a pbn file
