@@ -9,7 +9,7 @@ SET inputFilePath=P:\pbn\%scenarioName%.pbn
 SET outputFilePath=P:\bba\%scenarioName%
 
 :: Invoke BBA to create a bba file from a pbn file
-del %outputFilePath%
+del %outputFilePath%.pbn
 BBA --HAND %inputFilePath% --ARCHIVE_FILE %outputFilePath% --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE
 
 :exitbat

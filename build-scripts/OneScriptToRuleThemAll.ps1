@@ -30,16 +30,17 @@ function Perform-Action {
 
     switch ($Operation) {
         "extract" {
-            echo "Creating dlr\$Scnario from PBS\$Scenario"
-            & P:\python3 extract.py $Scenario
+            echo "Creating dlr\ from PBS\"
+            & python3 P:\py\wExtract.py
         }
         "makePBN" {
             echo "Creating pbn\$Scenario.pbn from dlr\$Scenario.dlr"
             & P:\build-scripts\makeOnePBN.cmd $Scenario
         }
         "commentStats" {
-            echo "Change Stats to comments for pbn\$Scenario.pbn"
+            echo "Change Stats for all pbn\"
             #Move-Item -Path $File -Destination $movedFile
+            & python3 P:\py\wCommentStats.py
         }
         "rotate" {
             echo "creating pbn-rotated-for-4-players and lin-rotated-for-4-players\$Scenario from pbn\$Scenario"
@@ -66,7 +67,6 @@ function Perform-Action {
         }
     }
 }
-
 # Main script execution
 if (-not $WildcardScenarioSpec -or -not $Operation) {
     echo "Usage: .\file_operations.ps1 [wildcard_file_specification] [operation]"
