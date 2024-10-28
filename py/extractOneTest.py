@@ -6,7 +6,6 @@ import argparse
 parser = argparse.ArgumentParser(description="Extract dealer code")
 parser.add_argument("--scenario", type=str, default="*", help="Name of scenario (omit for all)")
 args = parser.parse_args()
-print(f"Scenario: {args.scenario}")
 scenario = args.scenario
 print("scenario " + str(scenario))
 
@@ -134,6 +133,6 @@ else:
         if os.path.isfile(file_path) and not file_path.endswith('.DS_Store'):
             extract_text_in_backticks(file_path)
             n_files = n_files + 1
-            if n_files>2:
-                break
+            #if n_files>2:
+            #    break
     print("number of .dlr files = " + str(n_files))
