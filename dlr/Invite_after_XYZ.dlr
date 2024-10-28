@@ -6,12 +6,130 @@ dealer south
 
 # Invite after xyz
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Response-to-1-Bid
+##### Imported Script -- Predict Opening 1-Bid #####
+
+# Calculate length points for South (lengthPoints)
+lp1 = spades(south)>4 ? spades(south)-4 : 0
+lp2 = hearts(south)>4 ? hearts(south)-4 : 0
+lp3 = diamonds(south)>4 ? diamonds(south)-4 : 0
+lp4 = clubs(south)>4 ? clubs(south)-4 : 0
+lengthPoints = lp1 + lp2 + lp3 + lp4
+
+# Calculate doubleton honor NT downgrade(s) for South -- 2 cards, 1 honor, not the Ace
+S2H = spades(south)==2 and   top4(south,spades)>0   and not hascard(south,AS) ? 1 : 0
+H2H = hearts(south)==2 and   top4(south,hearts)>0   and not hascard(south,AH) ? 1 : 0
+D2H = diamonds(south)==2 and top4(south,diamonds)>0 and not hascard(south,AD) ? 1 : 0
+C2H = clubs(south)==2 and    top4(south,clubs)>0    and not hascard(south,AC) ? 1 : 0
+dgPoints = S2H + H2H + D2H + C2H
+
+# Define notrump points for south (ntPoints)
+ntPoints = lengthPoints>dgPoints ? hcp(south) + lengthPoints - dgPoints : hcp(south)
+
+# Define suit points for south (suitPoints)
+suitPoints = hcp(south) + lengthPoints
+
+# Define robot notrump shape and exclude any 5card 
+ntShape = shape(south, any 4333 +any 4432 +any 5332 +any 5422 -5xxx -x5xx)
+
+# Define ntPoint ranges
+oneNT   = ntShape and ntPoints>14 and ntPoints<18
+twoNT   = ntShape and ntPoints>19 and ntPoints<22
+threeNT = ntShape and ntPoints>25 and ntPoints<28
+weakNT  = ntShape and ntPoints>10 and ntPoints<15
+
+# Define Game Forcing 2C
+case1 = hcp(south)>22
+case2 = hcp(south)>18 and losers(south)<5 and (spades(south)>5 or hearts(south)>5)
+case3 = hcp(south)>18 and losers(south)<4 and (diamonds(south)>5 or clubs(south)>5)
+gameForce2C = (case1 or case2 or case3) and not threeNT
+
+### Predict South's opening BID
+P1 = gameForce2C
+P2 = P1 or threeNT or twoNT or oneNT // or weakNT  weakNT will be duplicated diamond and club openings
+
+# Predict South's Opening suit
+s = spades(south)
+h = hearts(south)
+d = diamonds(south)
+c = clubs(south)
+s1Range = suitPoints>11 and hcp(south)>9
+oS = s>4 and s>=h and s>=d and s>=c and s1Range and not P2
+oH = not oS and h>4 and h>=d and h>=c and s1Range and not P2
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and s1Range and not P2
+oC = not (oS or oH or oD) and s1Range and not P2
+openingSuit = (oS or oH or oD or oC)
+oneSpade = oS
+oneHeart = oH
+oneDiamond = oD
+oneClub = oC
+
+##### End of Imported Script -- Predict Opening 1-Bid #####
 
 SN = oS and nN
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Openers-Rebid
+
+##### Predict Opener's Rebid #####
+CDH = CD and sRH
+CDS = CD and sRS and not (CDH)
+CDN = CD and sRN and not (CDH or CDS)
+CDC = CD and c>5 and not (CDH or CDS or CDN)
+CDD = CD and d>3 and not (CDH or CDS or CDN or CDC)
+
+CHS = CH and sRS
+CHN = CH and sRN and not (CHS)
+CHC = CH and c>5 and not (CHS or CHN)
+CHD = CH and sRD and not (CHS or CHN or CHC)
+CHH = CH and sRH and not (CHS or CHN or CHC or CHD)
+
+CSN = CS and sRN
+CSC = CS and c>5 and not (CSN)
+CSD = CS and sRD and not (CSN or CSC)
+CSH = CS and sRH and not (CSN or CSC or CSD)
+CSS = CS and sRS and not (CSN or CSC or CSD or CSH)
+
+CNC = CN and c>5
+CND = CN and sRD and not (CNC)
+CNH = CN and sRH and not (CNC or CND)
+CNS = CN and sRS and not (CNC or CND or CNH)
+CNN = CN and sRN and not (CNC or CND or CNH or CNS)
+
+CCD = CC and sRD
+CCH = CC and sRH and not (CCD)
+CCS = CC and sRS and not (CCD or CCH)
+CCN = CC and sRN and not (CCD or CCH or CCS)
+CCC = CC and c>5 and not (CCD or CCH or CCS or CCN)
+
+DHS = DH and sRS
+DHN = DH and sRN and not (DHS)
+DHC = DH and sRC and not (DHS or DHN)
+DHD = DH and d>5 and not (DHS or DHC or DHN)
+DHH = DH and sRH and not (DHS or DHC or DHN or DHD)
+
+DSN = DS and sRN
+DSC = DS and sRC and not (DSN)
+DSD = DS and d>5 and not (DSN or DSC)
+DSH = DS and sRH and not (DSN or DSC or DSD)
+DSS = DS and sRS and not (DSN or DSC or DSD or DSH)
+
+DNC = DN and sRC
+DND = DN and d>5 and not (DNC)
+DNH = DN and sRH and not (DNC or DND)
+DNS = DN and sRS and not (DNC or DND or DNH)
+DNN = DN and sRN and not (DNC or DND or DNH or DNS)
+
+
+HSN = HS and sRN
+HSC = HS and sRC and not (HSN)
+HSD = HS and sRD and not (HSN or HSC)
+HSH = HS and h>5 and not (HSN or HSC or HSD)
+HSS = HS and sRS and not (HSN or HSC or HSD or HSH)
+
+HNC = HN and sRC
+HND = HN and sRD and not (HNC)
+HNH = HN and h>5 and not (HNC or HND)
+HNS = HN and sRS and not (HNC or HND or HNH)
+HNN = HN and sRN and not (HNC or HND or HNH or HNS)
+##### End of Predict Opener's Rebid #####
 
 
 SNC = SN and sRC
