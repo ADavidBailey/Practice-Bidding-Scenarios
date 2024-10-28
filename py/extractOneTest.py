@@ -133,6 +133,6 @@ else:
         if os.path.isfile(file_path) and not file_path.endswith('.DS_Store'):
             extract_text_in_backticks(file_path)
             n_files = n_files + 1
-            #if n_files>2:
-            #    break
+            if n_files>2:
+                break
     print("number of .dlr files = " + str(n_files))
