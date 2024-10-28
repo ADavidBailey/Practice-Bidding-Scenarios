@@ -6,6 +6,7 @@ dealer south
 
 # Invite after xyz
 
+# returns calmOpps
 ##### Imported Script -- Predict Opening 1-Bid #####
 
 # Calculate length points for South (lengthPoints)
@@ -64,6 +65,57 @@ oneDiamond = oD
 oneClub = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
+# returns oS
+##### Predict Response to 1-Bid ##### 
+
+# These variables are defined in the imported scripts above
+# The number of cards South has in each suit: s, h, d, c
+# South's predicted opening suit: oC, oD, oH, oS 
+
+sP = hcp(south)
+nP = hcp(north)
+
+# Predict North's 1-level response
+sN = spades(north)
+hN = hearts(north)
+dN = diamonds(north)
+cN = clubs(north)
+
+# North responds in D, H, or S (Walsh style), or raises C.
+######
+# If less than 13, Walsh Style; otherwise, longest suit.
+nS  =  nP<13 ? sN>3 and sN>hN : sN>3 and sN>hN and sN>=dN and sN>=cN
+nH  = (nP<13 ? hN>3           : hN>3           and hN>=dN and hN>=cN) and not (nS)
+nD = dN>3           and dN>=cN and not (nS or nH)
+nC = cN>4           and cN>4   and not (nS or nH or nD)
+nN = not (nS or nH or nD or nC)
+
+# Define South's possible new-suit/NT rebids
+sRC = clubs(south)>3
+sRD = diamonds(south)>3
+sRH = hearts(south)>3
+sRS = spades(south)>3
+sRN = shape(south,any 4333+any 4432+any 5332)
+
+
+# Defining South's opening (not NT) & North's non-GF response
+CD = oC and nD
+CH = oC and nH
+CS = oC and nS
+CN = oC and nN
+CC = oC and nC
+
+DH = oD and nH
+DS = oD and nS
+DN = oD and nN
+DD = oD and not (DH or DS or DN)
+
+HS = oH and nS
+HH = oH and hN>2 and not HS
+HN = oH and not (HS or HH)
+##### End of Predict Response to 1-Bid ##### 
+
+# returns nN
 
 SN = oS and nN
 
@@ -131,13 +183,13 @@ HNS = HN and sRS and not (HNC or HND or HNH)
 HNN = HN and sRN and not (HNC or HND or HNH or HNS)
 ##### End of Predict Opener's Rebid #####
 
-
+# returns a bunch of variables.  S,H,D,C,and N stand for Spades, Hearts, Diamonds, Clubs, and NT respectively
+# for example SNC means 1S (P) 1N (P) 2C
 SNC = SN and sRC
 SND = SN and sRD and not (SNC)
 SNH = SN and sRH and not (SNC or SND)
 SNS = SN and sRS and not (SNC or SND or SNH)
 SNN = SN and sRN and not (SNC or SND or SNH or SNS)
-
 
 strength = hcp(south)>11 and hcp(south)<15 and hcp(north)>9 and hcp(north)<13
 sShape = shape(south,any 5422+any 5431+any 4432+any 4333-5xxx)
