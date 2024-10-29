@@ -32,48 +32,49 @@ function Perform-Action {
 
     switch ($Operation) {
         "extract" {
-            echo "Creating dlr\$Scenario from PBS\$Scenario"
+            echo "--- Creating dlr\$Scenario from pbs\$Scenario"
             & python3 P:\py\extractOne.py --scenario $Scenario
         }
         "makePBN" {
-            #echo "Creating pbn\$Scenario.pbn from dlr\$Scenario.dlr"
+            echo "--- Creating pbn\$Scenario.pbn from dlr\$Scenario.dlr"
             & P:\build-scripts\makeOnePBN.cmd $Scenario
         }
         "titlePBN" {
+            echo "--- Setting title for pbn\$Scenario.pbn"
             & P:\build-scripts\setOneTitle.ps1 $Scenario
         }
         "commentStats" {
-            echo "Comment Stats for all pbn\"
+            echo "--- Comment Stats for all pbn\"
             & python3 P:\py\wCommentStats.py   # Change to One  
         }
         "rotate" {
-            echo "creating pbn-rotated-for-4-players and lin-rotated-for-4-players\$Scenario from pbn\$Scenario"
+            echo "--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\$Scenario from pbn\$Scenario"
             & P:\build-scripts\makeOneRotated.cmd $Scenario
         }
         "makeBBA" {
-            echo "Creating bba\$Scenario.pbn from pbn\$Scenario.pbn"
+            echo "--- Creating bba\$Scenario.pbn from pbn\$Scenario.pbn"
             & P:\build-scripts\makeOneBBA.cmd $Scenario
         }
         "bbaSummary" {
-            echo "Creating bbaSummary from for all bba\"
-            & Python P:\py\wBbaSummary.py       # Change to One
+            # echo "--- Creating bbaSummary from for all bba\"
+            # & Python P:\py\wBbaSummary.py       # Change to One
         }
         "filter" {
-            echo "Creating bba-filtered\ and bba-filtered-out from bba\$Scenario.pbn"
+            echo "--- Creating bba-filtered\ and bba-filtered-out from bba\$Scenario.pbn"
             & P:\build-scripts\filterOneScenario.cmd $Scenario
         }
         "filterStats" {
 			if ($WildCardScenarioSpec -ne "*") {
-				echo "Counting hands in bba-filtered\$Scenario.pbn"
+				echo "--- Counting hands in bba-filtered\$Scenario.pbn"
 				& P:\build-scripts\getFilterStats.ps1 $Scenario
 			}
         }
         "makeBiddingSheet" {
-            echo "Creating bidding-sheets\$Scenario.pbn and bba\$Scenario.pdf from bba\$Scenario.pbn"
+            echo "--- Creating bidding-sheets\$Scenario.pbn and bba\$Scenario.pdf from bba\$Scenario.pbn"
             & P:\build-scripts\makeOneBiddingSheet.cmd $Scenario
         }
         default {
-            echo "Unknown operation: $Operation"
+            echo "--- Unknown operation: $Operation"
         }
     }
 }
