@@ -57,7 +57,7 @@ function Perform-Action {
         }
         "bbaSummary" {
             echo "--- Creating bbaSummary of bba\$Scenario.bba"
-            & Python P:\py\makeOneSummary.py --scenario $Scenario
+            & Python P:\py\oneSummary.py --scenario $Scenario
         }
         "filter" {
             echo "--- Creating bba-filtered\ and bba-filtered-out from bba\$Scenario.pbn"
