@@ -107,10 +107,10 @@ if (($OperationList.count -eq 1 ) -and ($OperationList[0][-1] -eq "+")) {
         "makeBBA+" {
             $OperationList = "makeBBA,bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
         }
-        # bbaSummary has no downstream impact
         "bbaSummary+" {
-            $FileOperationList = "bbaSummary" -split ","
-        #    $OperationList = "bbaSummary" -split ","
+            # bbaSummary has no downstream impact
+            #$OperationList = "bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
+            $OperationList = "bbaSummary" -split ","
         }
         "filter+" {
             $OperationList = "filter,filterStats,makeBiddingSheet" -split ","
