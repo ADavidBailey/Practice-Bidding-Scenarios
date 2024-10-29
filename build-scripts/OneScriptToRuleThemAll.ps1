@@ -32,8 +32,8 @@ function Perform-Action {
 
     switch ($Operation) {
         "extract" {
-            echo "Creating dlr\$scenario from PBS\$scenario"
-            & python3 P:\py\extractOne.py --scenario $scenario
+            echo "Creating dlr\$Scenario from PBS\$Scenario"
+            & python3 P:\py\extractOne.py --scenario $Scenario
         }
         "makePBN" {
             #echo "Creating pbn\$Scenario.pbn from dlr\$Scenario.dlr"
@@ -65,7 +65,7 @@ function Perform-Action {
         "filterStats" {
 			if ($WildCardScenarioSpec -ne "*") {
 				echo "Counting hands in bba-filtered\$Scenario.pbn"
-				& P:\build-scripts\getOneFilterStats.ps1 $Scenario
+				& P:\build-scripts\getFilterStats.ps1 $Scenario
 			}
         }
         "makeBiddingSheet" {
