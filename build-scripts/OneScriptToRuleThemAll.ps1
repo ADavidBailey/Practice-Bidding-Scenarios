@@ -1,6 +1,6 @@
 param (
     [string]$WildCardScenarioSpec,
-    [string]$Operation
+    [string[]]$OperationList
 )
 
 # Function to perform actions on the file
@@ -11,11 +11,13 @@ function Perform-Actions {
     echo "Performing actions on $File"
     Perform-Action -Operation "extract" -File $File
     Perform-Action -Operation "makePBN" -File $File
+    Perform-Action -Operation "titlePBN" -File $File
     Perform-Action -Operation "commentStats" -File $File
     Perform-Action -Operation "rotate" -File $File
     Perform-Action -Operation "makeBBA" -File $File
     Perform-Action -Operation "bbaSummary" -File $File
     Perform-Action -Operation "filter" -File $File
+    Perform-Action -Operation "filterStats" -File $File
     Perform-Action -Operation "makeBiddingSheet" -File $File
 }
 
@@ -31,11 +33,14 @@ function Perform-Action {
     switch ($Operation) {
         "extract" {
             echo "Creating dlr\$scenario from PBS\$scenario"
-            & python3 ..\py\extractOne.py --scenario $scenario
+            & python3 P:\py\extractOne.py --scenario $scenario
         }
         "makePBN" {
             #echo "Creating pbn\$Scenario.pbn from dlr\$Scenario.dlr"
             & P:\build-scripts\makeOnePBN.cmd $Scenario
+        }
+        "titlePBN" {
+            & P:\build-scripts\setOneTitle.ps1 $Scenario
         }
         "commentStats" {
             echo "Comment Stats for all pbn\"
@@ -54,8 +59,14 @@ function Perform-Action {
             & Python P:\py\wBbaSummary.py       # Change to One
         }
         "filter" {
-            echo "Creating bba-filtered.pbn\ and bba-filtered-out.pbn from bba\$Scenario.pbn"
+            echo "Creating bba-filtered\ and bba-filtered-out from bba\$Scenario.pbn"
             & P:\build-scripts\filterOneScenario.cmd $Scenario
+        }
+        "filterStats" {
+			if ($WildCardScenarioSpec -ne "*") {
+				echo "Counting hands in bba-filtered\$Scenario.pbn"
+				& P:\build-scripts\getOneFilterStats.ps1 $Scenario
+			}
         }
         "makeBiddingSheet" {
             echo "Creating bidding-sheets\$Scenario.pbn and bba\$Scenario.pdf from bba\$Scenario.pbn"
@@ -67,19 +78,82 @@ function Perform-Action {
     }
 }
 # Main script execution
-if (-not $WildcardScenarioSpec -or -not $Operation) {
-    echo "Usage: .\file_operations.ps1 [wildcard_file_specification] [operation]"
+if (-not $WildcardScenarioSpec -or -not $OperationList) {
+    echo "Usage: .\OneScriptToRuleThemAll.ps1 [wildcard_file_specification] [operation]"
     exit 1
 }
 
+# If the operation is specified as a single entry ending with +, we will do all operations from
+# the one specified through the end:
+if (($OperationList.count -eq 1 ) -and ($OperationList[0][-1] -eq "+")) {
+
+	switch ($OperationList) {
+        "extract+" {
+            $OperationList = "extract,makePBN,titlePBN,commentStats,rotate,makeBBA,bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
+        }
+        "makePBN+" {
+            $OperationList = "makePBN,titlePBN,commentStats,rotate,makeBBA,bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
+        }
+        "titlePBN+" {
+            $OperationList = "titlePBN,commentStats,rotate,makeBBA,bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
+        }
+        "commentStats+" {
+            $OperationList = "commentStats,rotate,makeBBA,bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
+        }
+        "rotate+" {
+            $OperationList = "makeBBA,bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
+        }
+        "makeBBA+" {
+            $OperationList = "makeBBA,bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
+        }
+        "bbaSummary+" {
+            $OperationList = "bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
+        }
+        "filter+" {
+            $OperationList = "filter,filterStats,makeBiddingSheet" -split ","
+        }
+        "filterStats+" {
+            $OperationList = "filterStats,makeBiddingSheet" -split ","
+        }
+        "makeBiddingSheet+" {
+            $OperationList = "makeBiddingSheet" -split ","
+        }
+        default {
+            echo "Unknown operation+: $OperationList"
+        }
+	}
+}
+
+# Check to see if we are going to filter all files:
+$filterAll = (($OperationList -eq "filterStats") -or ($OperationList -eq "*")) -and ($WildCardScenarioSpec -eq "*")
+
+# Check to see if we are only going to filter all files:
+$onlyFilterAll = ($OperationList.count -eq 0) -and ($OperationList -eq "filterStats") -and $WildCardScenarioSpec -eq "*"
+
 # Get files matching the wildcard specification
-$files = Get-ChildItem -Path p:\pbs -Recurse -File | Where-Object { $_.Name -like $WildcardScenarioSpec }
+$files = Get-ChildItem -Path p:\pbs -Recurse -File | Where-Object { $_.Name -like $WildcardScenarioSpec } | Sort-Object Name
 
 foreach ($file in $files) {
-    echo "Processing file: $file"
-    if ($Operation -eq "*") {
-        Perform-Actions -File $file.FullName
-    } else {
-        Perform-Action -Operation $Operation -File $file.FullName
-    }
+	if (-not $onlyFilterAll) {
+		echo "Processing file: $file"
+
+		if ($OperationList -eq "*") {
+			Perform-Actions -File $file.FullName
+		} else {
+			# Loop through each item in the array and perform an action
+			foreach ($Operation in $OperationList) {
+				Write-Output "Processing Operation: $Operation"
+				Perform-Action -Operation $Operation -File $file.FullName
+			}		
+		}
+	}
 }
+
+# Finally, if we're performing all operations on all files, or filterStats on all files, run the Stats
+
+# generator that will save the results to a single filter.csv file:
+if ($filterAll) {
+	echo "Writing all filter stats to P:\build-scripts\filterStats.csv . . ."
+	& P:\build-scripts\getFilterStats.ps1
+}
+

@@ -1,4 +1,5 @@
 @echo off
+setlocal enabledelayedexpansion
 
 ::
 :: This script will filter P:\bba\[{scenario}.pbn into P:\bba-filtered\ and P:\bba-filtered-out\
@@ -14,15 +15,32 @@ if "%~1"=="" (
 )
 
 set scenario=%~1
+set filter=Filter_%scenario%
+
+set "file_path=C:\path\to\your\file.txt"
+
+:: Initialize FOUND variable to "no"
+set "filter_found=no"
+
+:: Search for the string in the file
+findstr /c:"%filter%" "P:\build-scripts\DefineAllScenarioFilters.cmd" >nul
+
+:: Check if the string was found
+if %errorlevel% equ 0 (
+    set "filter_found=yes"
+)
+
+if %filter_found%==no (
+	echo %scenario% doesn't have a filter expression, so no filtered/unfiltered files will be generated
+	exit /b
+)
+
+:: Display the result
+echo String found: %FOUND%
 
 call P:\build-scripts\DefineAllScenarioFilters.cmd
 
-call set this_filter=%%Filter_%scenario%%%
-
-if %this_filter%=="" (
-echo %scenario% doesn't have a filter expression, so no filtered/unfiltered files will be generated
-exit /b
-)
+set this_filter=!%filter%!
 
 cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %this_filter% P:\bba-filtered\%scenario%.pbn --PDF
 cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %this_filter% P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF
