@@ -15,7 +15,7 @@ function Perform-Actions {
     Perform-Action -Operation "commentStats" -File $File
     Perform-Action -Operation "rotate" -File $File
     Perform-Action -Operation "makeBBA" -File $File
-    Perform-Action -Operation "bbaSummary" -File $File
+    #Perform-Action -Operation "bbaSummary" -File $File
     Perform-Action -Operation "filter" -File $File
     Perform-Action -Operation "filterStats" -File $File
     Perform-Action -Operation "makeBiddingSheet" -File $File
@@ -56,8 +56,8 @@ function Perform-Action {
             & P:\build-scripts\makeOneBBA.cmd $Scenario
         }
         "bbaSummary" {
-            # echo "--- Creating bbaSummary from for all bba\"
-            # & Python P:\py\wBbaSummary.py       # Change to One
+            echo "--- Creating bbaSummary from for all bba\"
+            & Python P:\py\wBbaSummary.py       # Change to One
         }
         "filter" {
             echo "--- Creating bba-filtered\ and bba-filtered-out from bba\$Scenario.pbn"
