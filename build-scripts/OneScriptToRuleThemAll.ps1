@@ -12,7 +12,7 @@ function Perform-Actions {
     Perform-Action -Operation "extract" -File $File
     Perform-Action -Operation "makePBN" -File $File
     Perform-Action -Operation "titlePBN" -File $File
-    Perform-Action -Operation "commentStats" -File $File
+    #Perform-Action -Operation "commentStats" -File $File
     Perform-Action -Operation "rotate" -File $File
     Perform-Action -Operation "makeBBA" -File $File
     Perform-Action -Operation "bbaSummary" -File $File
@@ -45,7 +45,7 @@ function Perform-Action {
         }
         "commentStats" {
             echo "--- Comment Stats for all pbn\"
-            & python3 P:\py\wCommentStats.py   # Change to One  
+            & python3 P:\py\oneComment.py $Scenario
         }
         "rotate" {
             echo "--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\$Scenario from pbn\$Scenario"
