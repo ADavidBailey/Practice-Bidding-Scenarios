@@ -4,8 +4,8 @@ import argparse
 parser = argparse.ArgumentParser(description="Extract dealer code")
 parser.add_argument("--scenario", type=str, help="Name of scenario is required")
 args = parser.parse_args()
-scenario = args.scenario
-print("scenario " + str(scenario))
+scenario = str(args.scenario)
+print("scenario " + scenario)
 
 def process():
     '''
@@ -43,7 +43,8 @@ def process():
         o_file.write(result)
 
 # Do a single scenario
-file_path = os.path.join('..', 'pbn', scenario) + '.pbn'
+filename = scenario + '.pbn'
+file_path = os.path.join('..', 'pbn', filename)
 print(file_path)
 if os.path.isfile(file_path):
     process()
