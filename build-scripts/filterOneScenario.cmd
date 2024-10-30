@@ -1,5 +1,5 @@
 @echo off
-setlocal enabledelayedexpansion
+setlocal enabledelayedexpansion enableextensions
 
 ::
 :: This script will filter P:\bba\[{scenario}.pbn into P:\bba-filtered\ and P:\bba-filtered-out\
@@ -19,29 +19,43 @@ set filter=Filter_%scenario%
 
 set "file_path=C:\path\to\your\file.txt"
 
-:: Initialize FOUND variable to "no"
-set "filter_found=no"
+::
+::	First, check to see if there is an auction-filter defined in the original .dlr file:
+::
 
-:: Search for the string in the file
+call P:\build-scripts\FetchProperty.cmd %scenario% auction-filter
+:: echo PropertyValue: %propertyValue%
+
+IF defined propertyvalue ( 
+	SET "this_filter=%propertyvalue%"
+	goto foundFilter
+)
+
+::
+:: Next, check to see if it's defined in the DefineAllFilters.cmd file:
+::
 
 findstr /c:"%filter%" "P:\build-scripts\DefineAllScenarioFilters.cmd" >nul
 
 :: Check if the string was found
-if %errorlevel% equ 0 (
-    set "filter_found=yes"
-)
-
-if %filter_found%==no (
-	echo %scenario% doesn't have a filter expression, so no filtered/unfiltered files will be generated
-	exit /b
-)
+if %errorlevel% neq 0 goto filterNotFound
 
 call P:\build-scripts\DefineAllScenarioFilters.cmd
 
-:: Display the result
-echo Filter found: !%filter%!
+:: echo Filter found: !%filter%!
 
 set this_filter=!%filter%!
+
+goto foundFilter
+
+:filterNotFound
+
+echo %scenario% doesn't have a filter expression, so no filtered/unfiltered files will be generated
+exit /b
+
+:foundFilter
+
+echo Filter for %scenario% is %this_filter%
 
 cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %this_filter% P:\bba-filtered\%scenario%.pbn --PDF
 cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %this_filter% P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF

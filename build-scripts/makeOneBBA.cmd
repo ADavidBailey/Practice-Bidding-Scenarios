@@ -1,4 +1,7 @@
 @echo off
+
+setlocal enableextensions
+ 
 IF "%~1"=="" ECHO Provide PBN file as parameter 1 (without .pbn)
 IF "%~1"=="" goto exitbat
 
@@ -8,8 +11,15 @@ SET inputFilePath=P:\pbn\%scenarioName%.pbn
 :: BBA adds the .pbn to the archive
 SET outputFilePath=P:\bba\%scenarioName%
 
+call P:\build-scripts\FetchProperty.cmd %scenarioName% convention-card
+
+IF defined propertyvalue ( SET "conventionCard=%propertyvalue%" ) ELSE ( SET "conventionCard=GIB-ADB" )
+
+:: echo  Scenario: %scenarioName%, ConventionCard: "%conventionCard%"
+
 :: Invoke BBA to create a bba file from a pbn file
 del %outputFilePath%.pbn
-BBA --HAND %inputFilePath% --ARCHIVE_FILE %outputFilePath% --CC1 C:\BBA\GIB-ADB.bbsa --CC2 C:\BBA\GIB-ADB.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE
+
+BBA.exe --HAND %inputFilePath% --ARCHIVE_FILE %outputFilePath% --CC1 C:\BBA\%conventionCard%.bbsa --CC2 C:\BBA\%conventionCard%.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE
 
 :exitbat
