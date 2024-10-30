@@ -12,7 +12,7 @@ function Perform-Actions {
     Perform-Action -Operation "extract" -File $File
     Perform-Action -Operation "makePBN" -File $File
     Perform-Action -Operation "titlePBN" -File $File
-    #Perform-Action -Operation "commentStats" -File $File
+    Perform-Action -Operation "commentStats" -File $File
     Perform-Action -Operation "rotate" -File $File
     Perform-Action -Operation "makeBBA" -File $File
     Perform-Action -Operation "bbaSummary" -File $File
@@ -44,7 +44,7 @@ function Perform-Action {
             & P:\build-scripts\setOneTitle.ps1 $Scenario
         }
         "commentStats" {
-            echo "--- Comment Stats for all pbn\"
+            echo "--- Comment Stats for pbn\$Scenario.pbn"
             & python3 P:\py\oneComment.py $Scenario
         }
         "rotate" {
