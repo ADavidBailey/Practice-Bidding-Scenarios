@@ -23,6 +23,7 @@ set "file_path=C:\path\to\your\file.txt"
 set "filter_found=no"
 
 :: Search for the string in the file
+
 findstr /c:"%filter%" "P:\build-scripts\DefineAllScenarioFilters.cmd" >nul
 
 :: Check if the string was found
@@ -35,10 +36,10 @@ if %filter_found%==no (
 	exit /b
 )
 
-:: Display the result
-echo String found: %FOUND%
-
 call P:\build-scripts\DefineAllScenarioFilters.cmd
+
+:: Display the result
+echo Filter found: !%filter%!
 
 set this_filter=!%filter%!
 
