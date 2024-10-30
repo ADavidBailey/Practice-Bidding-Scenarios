@@ -13,7 +13,7 @@ SET outputFilePath=P:\bba\%scenarioName%
 
 call P:\build-scripts\FetchProperty.cmd %scenarioName% convention-card
 
-IF defined propertyvalue ( SET "conventionCard=%propertyvalue%" ) ELSE ( SET "conventionCard=GIB-ADB" )
+IF defined propertyvalue ( SET "conventionCard=%propertyvalue%" ) ELSE ( SET "conventionCard=21GF-ADB" )
 
 :: echo  Scenario: %scenarioName%, ConventionCard: "%conventionCard%"
 
