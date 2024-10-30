@@ -15,7 +15,7 @@ function Perform-Actions {
     Perform-Action -Operation "commentStats" -File $File
     Perform-Action -Operation "rotate" -File $File
     Perform-Action -Operation "makeBBA" -File $File
-    #Perform-Action -Operation "bbaSummary" -File $File
+    Perform-Action -Operation "bbaSummary" -File $File
     Perform-Action -Operation "filter" -File $File
     Perform-Action -Operation "filterStats" -File $File
     Perform-Action -Operation "makeBiddingSheet" -File $File
@@ -44,8 +44,8 @@ function Perform-Action {
             & P:\build-scripts\setOneTitle.ps1 $Scenario
         }
         "commentStats" {
-            echo "--- Comment Stats for all pbn\"
-            & python3 P:\py\wCommentStats.py   # Change to One  
+            echo "--- Comment Stats for pbn\$Scenario.pbn"
+            & python3 P:\py\oneComment.py --scenario $Scenario
         }
         "rotate" {
             echo "--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\$Scenario from pbn\$Scenario"
@@ -56,8 +56,8 @@ function Perform-Action {
             & P:\build-scripts\makeOneBBA.cmd $Scenario
         }
         "bbaSummary" {
-            echo "--- Creating bbaSummary from for all bba\"
-            & Python P:\py\wBbaSummary.py       # Change to One
+            echo "--- Creating bbaSummary of bba\$Scenario.bba"
+            & Python P:\py\oneSummary.py --scenario $Scenario
         }
         "filter" {
             echo "--- Creating bba-filtered\ and bba-filtered-out from bba\$Scenario.pbn"
@@ -119,7 +119,9 @@ if (($OperationList.count -eq 1 ) -and ($OperationList[0][-1] -eq "+")) {
             $OperationList = "makeBBA,bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
         }
         "bbaSummary+" {
-            $OperationList = "bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
+            # bbaSummary has no downstream impact
+            #$OperationList = "bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
+            $OperationList = "bbaSummary" -split ","
         }
         "filter+" {
             $OperationList = "filter,filterStats,makeBiddingSheet" -split ","
