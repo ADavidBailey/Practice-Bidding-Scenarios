@@ -45,7 +45,7 @@ function Perform-Action {
         }
         "commentStats" {
             echo "--- Comment Stats for pbn\$Scenario.pbn"
-            & python3 P:\py\oneComment.py $Scenario
+            & python3 P:\py\oneComment.py --scenario $Scenario
         }
         "rotate" {
             echo "--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\$Scenario from pbn\$Scenario"
