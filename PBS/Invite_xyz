@@ -116,6 +116,18 @@ HNN = HN and sRN and not (HNC or HND or HNH or HNS)
 
 ##### End of Define Bidding Sequences #####
 
+# sequences suggested by Thorvald
+# CDH - 3 C/D/H
+# CDS - 3 C/D/S
+# CDN - 3C/D
+# DHS - 3D/H/S
+# DHN - 3D/H
+# DHC -3D/H/D
+# HSN - 3H/3S
+# HSC - 3H/S/C
+# HSD -3H/S/D
+
+
 ##### Select appropriate 4SF bidding sequences #####
 noReverse = (CDH or CDS or CHS or DHS or DHC or DSC or HSC or HSD) and sP>11 and sP<17 // Avoid Jump Shifts
 isReverse = (CHD or CSD or CSH or DSH) and sP>16
