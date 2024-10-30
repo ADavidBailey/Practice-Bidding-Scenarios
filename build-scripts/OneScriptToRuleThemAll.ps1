@@ -81,6 +81,17 @@ function Perform-Action {
 # Main script execution
 if (-not $WildcardScenarioSpec -or -not $OperationList) {
     echo "Usage: .\OneScriptToRuleThemAll.ps1 [wildcard_file_specification] [operation]"
+	echo "Operations:"
+	echo "   extract"
+	echo "   makePBN"
+	echo "   titlePBN"
+	echo "   commentStats"
+	echo "   rotate"
+	echo "   makeBBA"
+	echo "   bbaSummary"
+	echo "   filter"
+	echo "   filterStats"
+	echo "   makeBiddingSheet"
     exit 1
 }
 
