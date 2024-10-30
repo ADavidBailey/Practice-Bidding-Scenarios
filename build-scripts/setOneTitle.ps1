@@ -20,7 +20,7 @@ $ScenarioTitle = Select-String -Path $filePath -Pattern "scenario-title:" -Simpl
 # Display the ScenarioTitle or notify if it wasn't found
 if ($ScenarioTitle) {
 #    Write-Host "Scenario Title: $ScenarioTitle"
-	& "BridgeComposer.exe" P:\pbn\$ScenarioName.pbn /event "$ScenarioTitle" /save P:\pbn\$ScenarioName.pbn
+	& "BridgeComposer.exe" P:\bba\$ScenarioName.pbn /event "$ScenarioTitle" /save P:\bba\$ScenarioName.pbn
 	Wait-Process -Name "BridgeComposer"
 } else {
     Write-Host "No scenario title found in the file."

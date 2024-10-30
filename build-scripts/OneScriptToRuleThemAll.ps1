@@ -9,16 +9,16 @@ function Perform-Actions {
         [string]$File
     )
     echo "Performing actions on $File"
-    Perform-Action -Operation "extract" -File $File
-    Perform-Action -Operation "makePBN" -File $File
-    Perform-Action -Operation "titlePBN" -File $File
+    Perform-Action -Operation "dlr" -File $File
+    Perform-Action -Operation "pbn" -File $File
     Perform-Action -Operation "commentStats" -File $File
     Perform-Action -Operation "rotate" -File $File
-    Perform-Action -Operation "makeBBA" -File $File
+    Perform-Action -Operation "bba" -File $File
     Perform-Action -Operation "bbaSummary" -File $File
+    Perform-Action -Operation "title" -File $File
     Perform-Action -Operation "filter" -File $File
     Perform-Action -Operation "filterStats" -File $File
-    Perform-Action -Operation "makeBiddingSheet" -File $File
+    Perform-Action -Operation "biddingSheet" -File $File
 }
 
 # Function to perform a specific action on the file
@@ -31,17 +31,13 @@ function Perform-Action {
     $Scenario = Split-Path -Path $File -Leaf
 
     switch ($Operation) {
-        "extract" {
+        "dlr" {
             echo "--- Creating dlr\$Scenario from pbs\$Scenario"
             & python3 P:\py\extractOne.py --scenario $Scenario
         }
-        "makePBN" {
+        "pbn" {
             echo "--- Creating pbn\$Scenario.pbn from dlr\$Scenario.dlr"
             & P:\build-scripts\makeOnePBN.cmd $Scenario
-        }
-        "titlePBN" {
-            echo "--- Setting title for pbn\$Scenario.pbn"
-            & P:\build-scripts\setOneTitle.ps1 $Scenario
         }
         "commentStats" {
             echo "--- Comment Stats for pbn\$Scenario.pbn"
@@ -51,13 +47,17 @@ function Perform-Action {
             echo "--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\$Scenario from pbn\$Scenario"
             & P:\build-scripts\makeOneRotated.cmd $Scenario
         }
-        "makeBBA" {
+        "bba" {
             echo "--- Creating bba\$Scenario.pbn from pbn\$Scenario.pbn"
             & P:\build-scripts\makeOneBBA.cmd $Scenario
         }
         "bbaSummary" {
             echo "--- Creating bbaSummary of bba\$Scenario.bba"
             & Python P:\py\oneSummary.py --scenario $Scenario
+        }
+        "title" {
+            echo "--- Setting title for pbn\$Scenario.pbn"
+            & P:\build-scripts\setOneTitle.ps1 $Scenario
         }
         "filter" {
             echo "--- Creating bba-filtered\ and bba-filtered-out from bba\$Scenario.pbn"
@@ -66,10 +66,10 @@ function Perform-Action {
         "filterStats" {
 			if ($WildCardScenarioSpec -ne "*") {
 				echo "--- Counting hands in bba-filtered\$Scenario.pbn"
-				& P:\build-scripts\getFilterStats.ps1 $Scenario
+				& P:\build-scripts\CountPattern.ps1 -FileSpec "P:\bba-filtered\$Scenario.pbn" -Pattern "\[Board"
 			}
         }
-        "makeBiddingSheet" {
+        "biddingSheet" {
             echo "--- Creating bidding-sheets\$Scenario.pbn and bba\$Scenario.pdf from bba\$Scenario.pbn"
             & P:\build-scripts\makeOneBiddingSheet.cmd $Scenario
         }
@@ -82,16 +82,16 @@ function Perform-Action {
 if (-not $WildcardScenarioSpec -or -not $OperationList) {
     echo "Usage: .\OneScriptToRuleThemAll.ps1 [wildcard_file_specification] [operation]"
 	echo "Operations:"
-	echo "   extract"
-	echo "   makePBN"
-	echo "   titlePBN"
+	echo "   dlr"
+	echo "   pbn"
 	echo "   commentStats"
 	echo "   rotate"
-	echo "   makeBBA"
+	echo "   bba"
 	echo "   bbaSummary"
+	echo "   title"
 	echo "   filter"
 	echo "   filterStats"
-	echo "   makeBiddingSheet"
+	echo "   biddingSheet"
     exit 1
 }
 
@@ -100,37 +100,37 @@ if (-not $WildcardScenarioSpec -or -not $OperationList) {
 if (($OperationList.count -eq 1 ) -and ($OperationList[0][-1] -eq "+")) {
 
 	switch ($OperationList) {
-        "extract+" {
-            $OperationList = "extract,makePBN,titlePBN,commentStats,rotate,makeBBA,bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
+        "dlr+" {
+            $OperationList = "dlr,pbn,commentStats,rotate,bba,bbaSummary,title,filter,filterStats,biddingSheet" -split ","
         }
-        "makePBN+" {
-            $OperationList = "makePBN,titlePBN,commentStats,rotate,makeBBA,bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
-        }
-        "titlePBN+" {
-            $OperationList = "titlePBN,commentStats,rotate,makeBBA,bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
+        "pbn+" {
+            $OperationList = "pbn,commentStats,rotate,bba,bbaSummary,title,filter,filterStats,biddingSheet" -split ","
         }
         "commentStats+" {
-            $OperationList = "commentStats,rotate,makeBBA,bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
+            $OperationList = "commentStats,rotate,bba,bbaSummary,title,filter,filterStats,biddingSheet" -split ","
         }
         "rotate+" {
-            $OperationList = "makeBBA,bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
+            $OperationList = "rotate,bba,bbaSummary,title,filter,filterStats,biddingSheet" -split ","
         }
-        "makeBBA+" {
-            $OperationList = "makeBBA,bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
+        "bba+" {
+            $OperationList = "bba,bbaSummary,title,filter,filterStats,biddingSheet" -split ","
         }
         "bbaSummary+" {
             # bbaSummary has no downstream impact
             #$OperationList = "bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
-            $OperationList = "bbaSummary" -split ","
+            $OperationList = "bbaSummary,title,filter,filterStats,biddingSheet" -split ","
+        }
+        "title+" {
+            $OperationList = "title,filter,filterStats,biddingSheet" -split ","
         }
         "filter+" {
-            $OperationList = "filter,filterStats,makeBiddingSheet" -split ","
+            $OperationList = "filter,filterStats,biddingSheet" -split ","
         }
         "filterStats+" {
-            $OperationList = "filterStats,makeBiddingSheet" -split ","
+            $OperationList = "filterStats,biddingSheet" -split ","
         }
-        "makeBiddingSheet+" {
-            $OperationList = "makeBiddingSheet" -split ","
+        "biddingSheet+" {
+            $OperationList = "biddingSheet" -split ","
         }
         default {
             echo "Unknown operation+: $OperationList"

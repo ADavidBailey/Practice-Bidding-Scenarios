@@ -13,7 +13,7 @@ foreach ($file in $files) {
     $count = (Get-Content -Path $file.FullName | Select-String -Pattern $Pattern).Count
     
     # Output the filename and count
-    if ($Prefix -eq $null) {
+    if (($Prefix -eq $null) -or ($Prefix -eq "")) {
 		Write-Output "$($file.Name),$count"
 	}
 	else {
