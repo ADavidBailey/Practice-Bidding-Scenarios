@@ -27,6 +27,7 @@ SET Title=call P:\build-scripts\setOneTitle.cmd P:\bba-filtered\
 %Title%Double_Showing_2_Suits.pbn				"Double showing 2 suits"
 %Title%Drury.pbn 								"Reverse Drury"
 %Title%Fourth_Suit_Forcing.pbn 					"Fourth Suit Forcing"
+%Title%Fourth_Bid_Inviting.pbn 					"Fourth Bid Inviting"
 %Title%Gambling_3N.pbn 							"Gambling 3NT"
 %Title%Game_Forcing_2C.pbn 						"Game Forcing 2C Opener"
 %Title%Game_Overcalls.pbn						"Game Overcalls"
