@@ -54,6 +54,7 @@ SET note=Note ...
 %filter%Drury.pbn 								"%note%Reverse drury"								%output%Drury.pbn					%filter_flag%
 :: Forcing_Pass.pbn "BBA doens't play this(?)"
 %filter%Fourth_Suit_Forcing.pbn 				"%note%Fourth suit"									%output%Fourth_Suit_Forcing.pbn		%filter_flag%
+%filter%Fourth_Bid_Inviting.pbn 				"%1[CDHS].*Pass.*[DHSN].*Pass\n.*Pass.*[(2NT|3*)]"	%output%Fourth_Bid_Inviting.pbn		%filter_flag%
 %filter%Gambling_3N.pbn							"%note%Gambling"									%output%Gambling_3N.pbn				%filter_flag%
 %filter%Game_Forcing_2C.pbn 					"%auction%2C"										%output%Game_Forcing_2C.pbn			%filter_flag%
 %filter%Game_Overcalls.pbn 						"%auction%[123][CDHS]\s+(4[HS]|5[CD])"				%output%Game_Overcalls.pbn			%filter_flag%
