@@ -33,7 +33,7 @@ function Perform-Action {
     switch ($Operation) {
         "dlr" {
             echo "--- Creating dlr\$Scenario from pbs\$Scenario"
-            & python3 P:\py\extractOne.py --scenario $Scenario
+            & python3 P:\py\OneExtract.py --scenario $Scenario
         }
         "pbn" {
             echo "--- Creating pbn\$Scenario.pbn from dlr\$Scenario.dlr"
