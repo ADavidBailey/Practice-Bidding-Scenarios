@@ -10,8 +10,8 @@ function Perform-Actions {
     )
     echo "Performing actions on $File"
     Perform-Action -Operation "dlr" -File $File
-    Perform-Action -Operation "pbn" -File $File
-    Perform-Action -Operation "commentStats" -File $File
+    Perform-Action -Operation "pbn" -File $File      # always run pbn & comment, together.
+    Perform-Action -Operation "comment" -File $File
     Perform-Action -Operation "rotate" -File $File
     Perform-Action -Operation "bba" -File $File
     Perform-Action -Operation "bbaSummary" -File $File
@@ -39,7 +39,7 @@ function Perform-Action {
             echo "--- Creating pbn\$Scenario.pbn from dlr\$Scenario.dlr"
             & P:\build-scripts\makeOnePBN.cmd $Scenario
         }
-        "commentStats" {
+        "comment" {
             echo "--- Comment Stats for pbn\$Scenario.pbn"
             & python3 P:\py\oneComment.py --scenario $Scenario
         }
@@ -84,7 +84,7 @@ if (-not $WildcardScenarioSpec -or -not $OperationList) {
 	echo "Operations:"
 	echo "   dlr"
 	echo "   pbn"
-	echo "   commentStats"
+	echo "   comment"
 	echo "   rotate"
 	echo "   bba"
 	echo "   bbaSummary"
@@ -101,13 +101,13 @@ if (($OperationList.count -eq 1 ) -and ($OperationList[0][-1] -eq "+")) {
 
 	switch ($OperationList) {
         "dlr+" {
-            $OperationList = "dlr,pbn,commentStats,rotate,bba,bbaSummary,title,filter,filterStats,biddingSheet" -split ","
+            $OperationList = "dlr,pbn,comment,rotate,bba,bbaSummary,title,filter,filterStats,biddingSheet" -split ","
         }
         "pbn+" {
-            $OperationList = "pbn,commentStats,rotate,bba,bbaSummary,title,filter,filterStats,biddingSheet" -split ","
+            $OperationList = "pbn,comment,rotate,bba,bbaSummary,title,filter,filterStats,biddingSheet" -split ","
         }
-        "commentStats+" {
-            $OperationList = "commentStats,rotate,bba,bbaSummary,title,filter,filterStats,biddingSheet" -split ","
+        "comment+" {
+            $OperationList = "comment,rotate,bba,bbaSummary,title,filter,filterStats,biddingSheet" -split ","
         }
         "rotate+" {
             $OperationList = "rotate,bba,bbaSummary,title,filter,filterStats,biddingSheet" -split ","
