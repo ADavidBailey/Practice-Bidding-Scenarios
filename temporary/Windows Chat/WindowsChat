@@ -1,0 +1,552 @@
+PS P:\build-scripts> one 2* pbn
+Processing file: 2N_and_1_Minor
+Processing Operation: pbn
+--- Creating pbn\2N_and_1_Minor.pbn from dlr\2N_and_1_Minor.dlr
+Processing file: 2N_and_3C_Response
+Processing Operation: pbn
+--- Creating pbn\2N_and_3C_Response.pbn from dlr\2N_and_3C_Response.dlr
+Processing file: 2N_and_Balanced
+Processing Operation: pbn
+--- Creating pbn\2N_and_Balanced.pbn from dlr\2N_and_Balanced.dlr
+Processing file: 2N_and_MSS
+Processing Operation: pbn
+--- Creating pbn\2N_and_MSS.pbn from dlr\2N_and_MSS.dlr
+Processing file: 2N_and_Transfers
+Processing Operation: pbn
+--- Creating pbn\2N_and_Transfers.pbn from dlr\2N_and_Transfers.dlr
+Processing file: 2N_Puppet
+Processing Operation: pbn
+--- Creating pbn\2N_Puppet.pbn from dlr\2N_Puppet.dlr
+Processing file: 2N_Puppet_Leveled
+Processing Operation: pbn
+--- Creating pbn\2N_Puppet_Leveled.pbn from dlr\2N_Puppet_Leveled.dlr
+Processing file: 2N_Smolen
+Processing Operation: pbn
+--- Creating pbn\2N_Smolen.pbn from dlr\2N_Smolen.dlr
+Processing file: 2N_Smolen_Leveled
+Processing Operation: pbn
+--- Creating pbn\2N_Smolen_Leveled.pbn from dlr\2N_Smolen_Leveled.dlr
+Processing file: 2NT
+Processing Operation: pbn
+--- Creating pbn\2NT.pbn from dlr\2NT.dlr
+PS P:\build-scripts> one 1* *
+Processing file: 1m_1x_2m
+Performing actions on P:\pbs\1m_1x_2m
+--- Creating dlr\1m_1x_2m from pbs\1m_1x_2m
+scenario 1m_1x_2m
+../dlr/1m_1x_2m.dlr
+--- Creating pbn\1m_1x_2m.pbn from dlr\1m_1x_2m.dlr
+--- Comment Stats for pbn\1m_1x_2m.pbn
+scenario 1m_1x_2m
+..\pbn\1m_1x_2m.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\1m_1x_2m from pbn\1m_1x_2m
+
+P:\build-scripts>IF "1m_1x_2m" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\1m_1x_2m.pbn from pbn\1m_1x_2m.pbn
+No line with "convention-card:" found in P:\dlr\1m_1x_2m.dlr
+--- Creating bbaSummary of bba\1m_1x_2m.bba
+--- Setting title for pbn\1m_1x_2m.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\1m_1x_2m.pbn
+No line with "auction-filter:" found in P:\dlr\1m_1x_2m.dlr
+Defining Filters...
+Filter for 1m_1x_2m is "(Auction.....[\s\S][\s\S]?1C[\s\S]+2C)|(Auction.....[\s\S][\s\S]?1D[\s\S]+2D)"
+File: 1m_1x_2m.pbn, Boards scanned: 500, boards matched: 306
+File: 1m_1x_2m.pbn, Boards scanned: 500, boards not matched: 194
+--- Counting hands in bba-filtered\1m_1x_2m.pbn
+1m_1x_2m.pbn,306
+--- Creating bidding-sheets\1m_1x_2m.pbn and bba\1m_1x_2m.pdf from bba\1m_1x_2m.pbn
+Processing file: 1N
+Performing actions on P:\pbs\1N
+--- Creating dlr\1N from pbs\1N
+scenario 1N
+../dlr/1N.dlr
+--- Creating pbn\1N.pbn from dlr\1N.dlr
+--- Comment Stats for pbn\1N.pbn
+scenario 1N
+..\pbn\1N.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\1N from pbn\1N
+
+P:\build-scripts>IF "1N" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\1N.pbn from pbn\1N.pbn
+No line with "convention-card:" found in P:\dlr\1N.dlr
+--- Creating bbaSummary of bba\1N.bba
+--- Setting title for pbn\1N.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\1N.pbn
+No line with "auction-filter:" found in P:\dlr\1N.dlr
+Defining Filters...
+Filter for 1N is "Auction.....[\s\S][\s\S]?1NT?"
+File: 1N.pbn, Boards scanned: 500, boards matched: 436
+File: 1N.pbn, Boards scanned: 500, boards not matched: 64
+--- Counting hands in bba-filtered\1N.pbn
+1N.pbn,436
+--- Creating bidding-sheets\1N.pbn and bba\1N.pdf from bba\1N.pbn
+Processing file: 1N_5M_and_6m
+Performing actions on P:\pbs\1N_5M_and_6m
+--- Creating dlr\1N_5M_and_6m from pbs\1N_5M_and_6m
+scenario 1N_5M_and_6m
+../dlr/1N_5M_and_6m.dlr
+--- Creating pbn\1N_5M_and_6m.pbn from dlr\1N_5M_and_6m.dlr
+--- Comment Stats for pbn\1N_5M_and_6m.pbn
+scenario 1N_5M_and_6m
+..\pbn\1N_5M_and_6m.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\1N_5M_and_6m from pbn\1N_5M_and_6m
+
+P:\build-scripts>IF "1N_5M_and_6m" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\1N_5M_and_6m.pbn from pbn\1N_5M_and_6m.pbn
+No line with "convention-card:" found in P:\dlr\1N_5M_and_6m.dlr
+--- Creating bbaSummary of bba\1N_5M_and_6m.bba
+--- Setting title for pbn\1N_5M_and_6m.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\1N_5M_and_6m.pbn
+No line with "auction-filter:" found in P:\dlr\1N_5M_and_6m.dlr
+Defining Filters...
+Filter for 1N_5M_and_6m is "Auction.....[\s\S][\s\S]?1NT?"
+File: 1N_5M_and_6m.pbn, Boards scanned: 500, boards matched: 438
+File: 1N_5M_and_6m.pbn, Boards scanned: 500, boards not matched: 62
+--- Counting hands in bba-filtered\1N_5M_and_6m.pbn
+1N_5M_and_6m.pbn,438
+--- Creating bidding-sheets\1N_5M_and_6m.pbn and bba\1N_5M_and_6m.pdf from bba\1N_5M_and_6m.pbn
+Processing file: 1N_GIB
+Performing actions on P:\pbs\1N_GIB
+--- Creating dlr\1N_GIB from pbs\1N_GIB
+scenario 1N_GIB
+../dlr/1N_GIB.dlr
+--- Creating pbn\1N_GIB.pbn from dlr\1N_GIB.dlr
+--- Comment Stats for pbn\1N_GIB.pbn
+scenario 1N_GIB
+..\pbn\1N_GIB.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\1N_GIB from pbn\1N_GIB
+
+P:\build-scripts>IF "1N_GIB" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\1N_GIB.pbn from pbn\1N_GIB.pbn
+No line with "convention-card:" found in P:\dlr\1N_GIB.dlr
+--- Creating bbaSummary of bba\1N_GIB.bba
+--- Setting title for pbn\1N_GIB.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\1N_GIB.pbn
+No line with "auction-filter:" found in P:\dlr\1N_GIB.dlr
+Defining Filters...
+Filter for 1N_GIB is "Auction.....[\s\S][\s\S]?1NT?"
+File: 1N_GIB.pbn, Boards scanned: 500, boards matched: 483
+File: 1N_GIB.pbn, Boards scanned: 500, boards not matched: 17
+--- Counting hands in bba-filtered\1N_GIB.pbn
+1N_GIB.pbn,483
+--- Creating bidding-sheets\1N_GIB.pbn and bba\1N_GIB.pdf from bba\1N_GIB.pbn
+Processing file: 1N_with_Singleton
+Performing actions on P:\pbs\1N_with_Singleton
+--- Creating dlr\1N_with_Singleton from pbs\1N_with_Singleton
+scenario 1N_with_Singleton
+../dlr/1N_with_Singleton.dlr
+--- Creating pbn\1N_with_Singleton.pbn from dlr\1N_with_Singleton.dlr
+--- Comment Stats for pbn\1N_with_Singleton.pbn
+scenario 1N_with_Singleton
+..\pbn\1N_with_Singleton.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\1N_with_Singleton from pbn\1N_with_Singleton
+
+P:\build-scripts>IF "1N_with_Singleton" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\1N_with_Singleton.pbn from pbn\1N_with_Singleton.pbn
+No line with "convention-card:" found in P:\dlr\1N_with_Singleton.dlr
+--- Creating bbaSummary of bba\1N_with_Singleton.bba
+--- Setting title for pbn\1N_with_Singleton.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\1N_with_Singleton.pbn
+No line with "auction-filter:" found in P:\dlr\1N_with_Singleton.dlr
+Defining Filters...
+Filter for 1N_with_Singleton is "Auction.....[\s\S][\s\S]?1NT?"
+File: 1N_with_Singleton.pbn, Boards scanned: 500, boards matched: 0
+File: 1N_with_Singleton.pbn, Boards scanned: 500, boards not matched: 500
+--- Counting hands in bba-filtered\1N_with_Singleton.pbn
+1N_with_Singleton.pbn,0
+--- Creating bidding-sheets\1N_with_Singleton.pbn and bba\1N_with_Singleton.pdf from bba\1N_with_Singleton.pbn
+PS P:\build-scripts> one * *
+Processing file: 1m_1x_2m
+Performing actions on P:\pbs\1m_1x_2m
+--- Creating dlr\1m_1x_2m from pbs\1m_1x_2m
+scenario 1m_1x_2m
+../dlr/1m_1x_2m.dlr
+--- Creating pbn\1m_1x_2m.pbn from dlr\1m_1x_2m.dlr
+--- Comment Stats for pbn\1m_1x_2m.pbn
+scenario 1m_1x_2m
+..\pbn\1m_1x_2m.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\1m_1x_2m from pbn\1m_1x_2m
+
+P:\build-scripts>IF "1m_1x_2m" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\1m_1x_2m.pbn from pbn\1m_1x_2m.pbn
+No line with "convention-card:" found in P:\dlr\1m_1x_2m.dlr
+--- Creating bbaSummary of bba\1m_1x_2m.bba
+--- Setting title for pbn\1m_1x_2m.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\1m_1x_2m.pbn
+No line with "auction-filter:" found in P:\dlr\1m_1x_2m.dlr
+Defining Filters...
+Filter for 1m_1x_2m is "(Auction.....[\s\S][\s\S]?1C[\s\S]+2C)|(Auction.....[\s\S][\s\S]?1D[\s\S]+2D)"
+File: 1m_1x_2m.pbn, Boards scanned: 500, boards matched: 306
+File: 1m_1x_2m.pbn, Boards scanned: 500, boards not matched: 194
+--- Creating bidding-sheets\1m_1x_2m.pbn and bba\1m_1x_2m.pdf from bba\1m_1x_2m.pbn
+Processing file: 1N
+Performing actions on P:\pbs\1N
+--- Creating dlr\1N from pbs\1N
+scenario 1N
+../dlr/1N.dlr
+--- Creating pbn\1N.pbn from dlr\1N.dlr
+--- Comment Stats for pbn\1N.pbn
+scenario 1N
+..\pbn\1N.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\1N from pbn\1N
+
+P:\build-scripts>IF "1N" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\1N.pbn from pbn\1N.pbn
+No line with "convention-card:" found in P:\dlr\1N.dlr
+--- Creating bbaSummary of bba\1N.bba
+--- Setting title for pbn\1N.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\1N.pbn
+No line with "auction-filter:" found in P:\dlr\1N.dlr
+Defining Filters...
+Filter for 1N is "Auction.....[\s\S][\s\S]?1NT?"
+File: 1N.pbn, Boards scanned: 500, boards matched: 436
+File: 1N.pbn, Boards scanned: 500, boards not matched: 64
+--- Creating bidding-sheets\1N.pbn and bba\1N.pdf from bba\1N.pbn
+Processing file: 1N_5M_and_6m
+Performing actions on P:\pbs\1N_5M_and_6m
+--- Creating dlr\1N_5M_and_6m from pbs\1N_5M_and_6m
+scenario 1N_5M_and_6m
+../dlr/1N_5M_and_6m.dlr
+--- Creating pbn\1N_5M_and_6m.pbn from dlr\1N_5M_and_6m.dlr
+--- Comment Stats for pbn\1N_5M_and_6m.pbn
+scenario 1N_5M_and_6m
+..\pbn\1N_5M_and_6m.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\1N_5M_and_6m from pbn\1N_5M_and_6m
+
+P:\build-scripts>IF "1N_5M_and_6m" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\1N_5M_and_6m.pbn from pbn\1N_5M_and_6m.pbn
+No line with "convention-card:" found in P:\dlr\1N_5M_and_6m.dlr
+--- Creating bbaSummary of bba\1N_5M_and_6m.bba
+--- Setting title for pbn\1N_5M_and_6m.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\1N_5M_and_6m.pbn
+No line with "auction-filter:" found in P:\dlr\1N_5M_and_6m.dlr
+Defining Filters...
+Filter for 1N_5M_and_6m is "Auction.....[\s\S][\s\S]?1NT?"
+File: 1N_5M_and_6m.pbn, Boards scanned: 500, boards matched: 438
+File: 1N_5M_and_6m.pbn, Boards scanned: 500, boards not matched: 62
+--- Creating bidding-sheets\1N_5M_and_6m.pbn and bba\1N_5M_and_6m.pdf from bba\1N_5M_and_6m.pbn
+Processing file: 1N_GIB
+Performing actions on P:\pbs\1N_GIB
+--- Creating dlr\1N_GIB from pbs\1N_GIB
+scenario 1N_GIB
+../dlr/1N_GIB.dlr
+--- Creating pbn\1N_GIB.pbn from dlr\1N_GIB.dlr
+--- Comment Stats for pbn\1N_GIB.pbn
+scenario 1N_GIB
+..\pbn\1N_GIB.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\1N_GIB from pbn\1N_GIB
+
+P:\build-scripts>IF "1N_GIB" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\1N_GIB.pbn from pbn\1N_GIB.pbn
+No line with "convention-card:" found in P:\dlr\1N_GIB.dlr
+--- Creating bbaSummary of bba\1N_GIB.bba
+--- Setting title for pbn\1N_GIB.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\1N_GIB.pbn
+No line with "auction-filter:" found in P:\dlr\1N_GIB.dlr
+Defining Filters...
+Filter for 1N_GIB is "Auction.....[\s\S][\s\S]?1NT?"
+File: 1N_GIB.pbn, Boards scanned: 500, boards matched: 483
+File: 1N_GIB.pbn, Boards scanned: 500, boards not matched: 17
+--- Creating bidding-sheets\1N_GIB.pbn and bba\1N_GIB.pdf from bba\1N_GIB.pbn
+Processing file: 1N_with_Singleton
+Performing actions on P:\pbs\1N_with_Singleton
+--- Creating dlr\1N_with_Singleton from pbs\1N_with_Singleton
+scenario 1N_with_Singleton
+../dlr/1N_with_Singleton.dlr
+--- Creating pbn\1N_with_Singleton.pbn from dlr\1N_with_Singleton.dlr
+--- Comment Stats for pbn\1N_with_Singleton.pbn
+scenario 1N_with_Singleton
+..\pbn\1N_with_Singleton.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\1N_with_Singleton from pbn\1N_with_Singleton
+
+P:\build-scripts>IF "1N_with_Singleton" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\1N_with_Singleton.pbn from pbn\1N_with_Singleton.pbn
+No line with "convention-card:" found in P:\dlr\1N_with_Singleton.dlr
+--- Creating bbaSummary of bba\1N_with_Singleton.bba
+--- Setting title for pbn\1N_with_Singleton.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\1N_with_Singleton.pbn
+No line with "auction-filter:" found in P:\dlr\1N_with_Singleton.dlr
+Defining Filters...
+Filter for 1N_with_Singleton is "Auction.....[\s\S][\s\S]?1NT?"
+File: 1N_with_Singleton.pbn, Boards scanned: 500, boards matched: 0
+File: 1N_with_Singleton.pbn, Boards scanned: 500, boards not matched: 500
+--- Creating bidding-sheets\1N_with_Singleton.pbn and bba\1N_with_Singleton.pdf from bba\1N_with_Singleton.pbn
+Processing file: 2N_and_1_Minor
+Performing actions on P:\pbs\2N_and_1_Minor
+--- Creating dlr\2N_and_1_Minor from pbs\2N_and_1_Minor
+scenario 2N_and_1_Minor
+../dlr/2N_and_1_Minor.dlr
+--- Creating pbn\2N_and_1_Minor.pbn from dlr\2N_and_1_Minor.dlr
+--- Comment Stats for pbn\2N_and_1_Minor.pbn
+scenario 2N_and_1_Minor
+..\pbn\2N_and_1_Minor.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\2N_and_1_Minor from pbn\2N_and_1_Minor
+
+P:\build-scripts>IF "2N_and_1_Minor" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\2N_and_1_Minor.pbn from pbn\2N_and_1_Minor.pbn
+No line with "convention-card:" found in P:\dlr\2N_and_1_Minor.dlr
+--- Creating bbaSummary of bba\2N_and_1_Minor.bba
+--- Setting title for pbn\2N_and_1_Minor.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\2N_and_1_Minor.pbn
+No line with "auction-filter:" found in P:\dlr\2N_and_1_Minor.dlr
+Defining Filters...
+Filter for 2N_and_1_Minor is "Auction.....[\s\S][\s\S]?2NT?"
+File: 2N_and_1_Minor.pbn, Boards scanned: 500, boards matched: 455
+File: 2N_and_1_Minor.pbn, Boards scanned: 500, boards not matched: 45
+--- Creating bidding-sheets\2N_and_1_Minor.pbn and bba\2N_and_1_Minor.pdf from bba\2N_and_1_Minor.pbn
+Processing file: 2N_and_3C_Response
+Performing actions on P:\pbs\2N_and_3C_Response
+--- Creating dlr\2N_and_3C_Response from pbs\2N_and_3C_Response
+scenario 2N_and_3C_Response
+../dlr/2N_and_3C_Response.dlr
+--- Creating pbn\2N_and_3C_Response.pbn from dlr\2N_and_3C_Response.dlr
+--- Comment Stats for pbn\2N_and_3C_Response.pbn
+scenario 2N_and_3C_Response
+..\pbn\2N_and_3C_Response.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\2N_and_3C_Response from pbn\2N_and_3C_Response
+
+P:\build-scripts>IF "2N_and_3C_Response" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\2N_and_3C_Response.pbn from pbn\2N_and_3C_Response.pbn
+No line with "convention-card:" found in P:\dlr\2N_and_3C_Response.dlr
+--- Creating bbaSummary of bba\2N_and_3C_Response.bba
+--- Setting title for pbn\2N_and_3C_Response.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\2N_and_3C_Response.pbn
+No line with "auction-filter:" found in P:\dlr\2N_and_3C_Response.dlr
+Defining Filters...
+Filter for 2N_and_3C_Response is "Auction.....[\s\S][\s\S]?2NT?\s+Pass\s+3C"
+File: 2N_and_3C_Response.pbn, Boards scanned: 500, boards matched: 287
+File: 2N_and_3C_Response.pbn, Boards scanned: 500, boards not matched: 213
+--- Creating bidding-sheets\2N_and_3C_Response.pbn and bba\2N_and_3C_Response.pdf from bba\2N_and_3C_Response.pbn
+Processing file: 2N_and_Balanced
+Performing actions on P:\pbs\2N_and_Balanced
+--- Creating dlr\2N_and_Balanced from pbs\2N_and_Balanced
+scenario 2N_and_Balanced
+../dlr/2N_and_Balanced.dlr
+--- Creating pbn\2N_and_Balanced.pbn from dlr\2N_and_Balanced.dlr
+--- Comment Stats for pbn\2N_and_Balanced.pbn
+scenario 2N_and_Balanced
+..\pbn\2N_and_Balanced.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\2N_and_Balanced from pbn\2N_and_Balanced
+
+P:\build-scripts>IF "2N_and_Balanced" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\2N_and_Balanced.pbn from pbn\2N_and_Balanced.pbn
+No line with "convention-card:" found in P:\dlr\2N_and_Balanced.dlr
+--- Creating bbaSummary of bba\2N_and_Balanced.bba
+--- Setting title for pbn\2N_and_Balanced.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\2N_and_Balanced.pbn
+No line with "auction-filter:" found in P:\dlr\2N_and_Balanced.dlr
+Defining Filters...
+Filter for 2N_and_Balanced is "Auction.....[\s\S][\s\S]?2NT?"
+File: 2N_and_Balanced.pbn, Boards scanned: 500, boards matched: 436
+File: 2N_and_Balanced.pbn, Boards scanned: 500, boards not matched: 64
+--- Creating bidding-sheets\2N_and_Balanced.pbn and bba\2N_and_Balanced.pdf from bba\2N_and_Balanced.pbn
+Processing file: 2N_and_MSS
+Performing actions on P:\pbs\2N_and_MSS
+--- Creating dlr\2N_and_MSS from pbs\2N_and_MSS
+scenario 2N_and_MSS
+../dlr/2N_and_MSS.dlr
+--- Creating pbn\2N_and_MSS.pbn from dlr\2N_and_MSS.dlr
+--- Comment Stats for pbn\2N_and_MSS.pbn
+scenario 2N_and_MSS
+..\pbn\2N_and_MSS.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\2N_and_MSS from pbn\2N_and_MSS
+
+P:\build-scripts>IF "2N_and_MSS" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\2N_and_MSS.pbn from pbn\2N_and_MSS.pbn
+No line with "convention-card:" found in P:\dlr\2N_and_MSS.dlr
+--- Creating bbaSummary of bba\2N_and_MSS.bba
+--- Setting title for pbn\2N_and_MSS.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\2N_and_MSS.pbn
+No line with "auction-filter:" found in P:\dlr\2N_and_MSS.dlr
+2N_and_MSS doesn't have a filter expression, so no filtered/unfiltered files will be generated
+--- Creating bidding-sheets\2N_and_MSS.pbn and bba\2N_and_MSS.pdf from bba\2N_and_MSS.pbn
+S:\SetDealerMulti.js(277, 3) (null): Expecting object to be local
+
+The system cannot find the file specified.
+S:\BiddingSheets.wsf(728, 4) (null): Expecting object to be local
+
+Exit with code 1 due to network error: ProtocolUnknownError
+Processing file: 2N_and_Transfers
+Performing actions on P:\pbs\2N_and_Transfers
+--- Creating dlr\2N_and_Transfers from pbs\2N_and_Transfers
+scenario 2N_and_Transfers
+../dlr/2N_and_Transfers.dlr
+--- Creating pbn\2N_and_Transfers.pbn from dlr\2N_and_Transfers.dlr
+--- Comment Stats for pbn\2N_and_Transfers.pbn
+scenario 2N_and_Transfers
+..\pbn\2N_and_Transfers.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\2N_and_Transfers from pbn\2N_and_Transfers
+
+P:\build-scripts>IF "2N_and_Transfers" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\2N_and_Transfers.pbn from pbn\2N_and_Transfers.pbn
+No line with "convention-card:" found in P:\dlr\2N_and_Transfers.dlr
+--- Creating bbaSummary of bba\2N_and_Transfers.bba
+--- Setting title for pbn\2N_and_Transfers.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\2N_and_Transfers.pbn
+No line with "auction-filter:" found in P:\dlr\2N_and_Transfers.dlr
+Defining Filters...
+Filter for 2N_and_Transfers is "Auction.....[\s\S][\s\S]?2NT?\s+Pass\s+[34][DH]"
+File: 2N_and_Transfers.pbn, Boards scanned: 500, boards matched: 358
+File: 2N_and_Transfers.pbn, Boards scanned: 500, boards not matched: 142
+--- Creating bidding-sheets\2N_and_Transfers.pbn and bba\2N_and_Transfers.pdf from bba\2N_and_Transfers.pbn
+Processing file: 2N_Puppet
+Performing actions on P:\pbs\2N_Puppet
+--- Creating dlr\2N_Puppet from pbs\2N_Puppet
+scenario 2N_Puppet
+../dlr/2N_Puppet.dlr
+--- Creating pbn\2N_Puppet.pbn from dlr\2N_Puppet.dlr
+--- Comment Stats for pbn\2N_Puppet.pbn
+scenario 2N_Puppet
+..\pbn\2N_Puppet.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\2N_Puppet from pbn\2N_Puppet
+
+P:\build-scripts>IF "2N_Puppet" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\2N_Puppet.pbn from pbn\2N_Puppet.pbn
+No line with "convention-card:" found in P:\dlr\2N_Puppet.dlr
+--- Creating bbaSummary of bba\2N_Puppet.bba
+--- Setting title for pbn\2N_Puppet.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\2N_Puppet.pbn
+No line with "auction-filter:" found in P:\dlr\2N_Puppet.dlr
+2N_Puppet doesn't have a filter expression, so no filtered/unfiltered files will be generated
+--- Creating bidding-sheets\2N_Puppet.pbn and bba\2N_Puppet.pdf from bba\2N_Puppet.pbn
+S:\SetDealerMulti.js(277, 3) (null): Expecting object to be local
+
+The system cannot find the file specified.
+S:\BiddingSheets.wsf(728, 4) (null): Expecting object to be local
+
+Exit with code 1 due to network error: ProtocolUnknownError
+Processing file: 2N_Puppet_Leveled
+Performing actions on P:\pbs\2N_Puppet_Leveled
+--- Creating dlr\2N_Puppet_Leveled from pbs\2N_Puppet_Leveled
+scenario 2N_Puppet_Leveled
+../dlr/2N_Puppet_Leveled.dlr
+--- Creating pbn\2N_Puppet_Leveled.pbn from dlr\2N_Puppet_Leveled.dlr
+--- Comment Stats for pbn\2N_Puppet_Leveled.pbn
+scenario 2N_Puppet_Leveled
+..\pbn\2N_Puppet_Leveled.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\2N_Puppet_Leveled from pbn\2N_Puppet_Leveled
+
+P:\build-scripts>IF "2N_Puppet_Leveled" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\2N_Puppet_Leveled.pbn from pbn\2N_Puppet_Leveled.pbn
+No line with "convention-card:" found in P:\dlr\2N_Puppet_Leveled.dlr
+--- Creating bbaSummary of bba\2N_Puppet_Leveled.bba
+--- Setting title for pbn\2N_Puppet_Leveled.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\2N_Puppet_Leveled.pbn
+No line with "auction-filter:" found in P:\dlr\2N_Puppet_Leveled.dlr
+2N_Puppet_Leveled doesn't have a filter expression, so no filtered/unfiltered files will be generated
+--- Creating bidding-sheets\2N_Puppet_Leveled.pbn and bba\2N_Puppet_Leveled.pdf from bba\2N_Puppet_Leveled.pbn
+S:\SetDealerMulti.js(277, 3) (null): Expecting object to be local
+
+The system cannot find the file specified.
+S:\BiddingSheets.wsf(728, 4) (null): Expecting object to be local
+
+Exit with code 1 due to network error: ProtocolUnknownError
+Processing file: 2N_Smolen
+Performing actions on P:\pbs\2N_Smolen
+--- Creating dlr\2N_Smolen from pbs\2N_Smolen
+scenario 2N_Smolen
+../dlr/2N_Smolen.dlr
+--- Creating pbn\2N_Smolen.pbn from dlr\2N_Smolen.dlr
+--- Comment Stats for pbn\2N_Smolen.pbn
+scenario 2N_Smolen
+..\pbn\2N_Smolen.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\2N_Smolen from pbn\2N_Smolen
+
+P:\build-scripts>IF "2N_Smolen" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\2N_Smolen.pbn from pbn\2N_Smolen.pbn
+No line with "convention-card:" found in P:\dlr\2N_Smolen.dlr
+--- Creating bbaSummary of bba\2N_Smolen.bba
+--- Setting title for pbn\2N_Smolen.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\2N_Smolen.pbn
+No line with "auction-filter:" found in P:\dlr\2N_Smolen.dlr
+Defining Filters...
+Filter for 2N_Smolen is "Note ...SMOLEN"
+File: 2N_Smolen.pbn, Boards scanned: 500, boards matched: 175
+File: 2N_Smolen.pbn, Boards scanned: 500, boards not matched: 325
+--- Creating bidding-sheets\2N_Smolen.pbn and bba\2N_Smolen.pdf from bba\2N_Smolen.pbn
+Processing file: 2N_Smolen_Leveled
+Performing actions on P:\pbs\2N_Smolen_Leveled
+--- Creating dlr\2N_Smolen_Leveled from pbs\2N_Smolen_Leveled
+scenario 2N_Smolen_Leveled
+../dlr/2N_Smolen_Leveled.dlr
+--- Creating pbn\2N_Smolen_Leveled.pbn from dlr\2N_Smolen_Leveled.dlr
+--- Comment Stats for pbn\2N_Smolen_Leveled.pbn
+scenario 2N_Smolen_Leveled
+..\pbn\2N_Smolen_Leveled.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\2N_Smolen_Leveled from pbn\2N_Smolen_Leveled
+
+P:\build-scripts>IF "2N_Smolen_Leveled" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\2N_Smolen_Leveled.pbn from pbn\2N_Smolen_Leveled.pbn
+No line with "convention-card:" found in P:\dlr\2N_Smolen_Leveled.dlr
+--- Creating bbaSummary of bba\2N_Smolen_Leveled.bba
+--- Setting title for pbn\2N_Smolen_Leveled.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\2N_Smolen_Leveled.pbn
+No line with "auction-filter:" found in P:\dlr\2N_Smolen_Leveled.dlr
+Defining Filters...
+Filter for 2N_Smolen_Leveled is "Note ...SMOLEN"
+File: 2N_Smolen_Leveled.pbn, Boards scanned: 500, boards matched: 182
+File: 2N_Smolen_Leveled.pbn, Boards scanned: 500, boards not matched: 318
+--- Creating bidding-sheets\2N_Smolen_Leveled.pbn and bba\2N_Smolen_Leveled.pdf from bba\2N_Smolen_Leveled.pbn
+Processing file: 2NT
+Performing actions on P:\pbs\2NT
+--- Creating dlr\2NT from pbs\2NT
+scenario 2NT
+../dlr/2NT.dlr
+--- Creating pbn\2NT.pbn from dlr\2NT.dlr
+--- Comment Stats for pbn\2NT.pbn
+scenario 2NT
+..\pbn\2NT.pbn
+--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\2NT from pbn\2NT
+
+P:\build-scripts>IF "2NT" == "" (ECHO Provide PBN filename as parameter 1 (without .pbn )
+
+P:\build-scripts>goto exitbat
+--- Creating bba\2NT.pbn from pbn\2NT.pbn
+No line with "convention-card:" found in P:\dlr\2NT.dlr
+--- Creating bbaSummary of bba\2NT.bba
+--- Setting title for pbn\2NT.pbn
+--- Creating bba-filtered\ and bba-filtered-out from bba\2NT.pbn
+No line with "auction-filter:" found in P:\dlr\2NT.dlr
+Defining Filters...
+Filter for 2NT is "Auction.....[\s\S][\s\S]?2NT?"
+File: 2NT.pbn, Boards scanned: 500, boards matched: 442
+File: 2NT.pbn, Boards scanned: 500, boards not matched: 58
+--- Creating bidding-sheets\2NT.pbn and bba\2NT.pdf from bba\2NT.pbn
