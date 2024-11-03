@@ -10,11 +10,11 @@ function Perform-Actions {
     )
     echo "Performing actions on $File"
     Perform-Action -Operation "dlr" -File $File
-    Perform-Action -Operation "pbn" -File $File      # always run pbn & comment, together.
-    Perform-Action -Operation "comment" -File $File
+    Perform-Action -Operation "pbn" -File $File
+    ###Perform-Action -Operation "comment" -File $File
     Perform-Action -Operation "rotate" -File $File
     Perform-Action -Operation "bba" -File $File
-    Perform-Action -Operation "bbaSummary" -File $File
+    ###Perform-Action -Operation "bbaSummary" -File $File
     Perform-Action -Operation "title" -File $File
     Perform-Action -Operation "filter" -File $File
     Perform-Action -Operation "filterStats" -File $File
@@ -32,49 +32,45 @@ function Perform-Action {
 
     switch ($Operation) {
         "dlr" {
-            echo "--- Creating dlr\$Scenario from pbs\$Scenario"
+            echo "--------- OneExtract.py: Creating dlr\$Scenario from pbs\$Scenario"
             & python3 P:\py\OneExtract.py --scenario $Scenario
         }
         "pbn" {
-            echo "--- Creating pbn\$Scenario.pbn from dlr\$Scenario.dlr"
+            echo "--------- makeOnePBN.cmd: Creating pbn\$Scenario.pbn from dlr\$Scenario.dlr"
             & P:\build-scripts\makeOnePBN.cmd $Scenario
-        }
-        "comment" {
-            echo "--- Comment Stats for pbn\$Scenario.pbn"
+            echo "--------- oneComment.py"
             & python3 P:\py\oneComment.py --scenario $Scenario
         }
         "rotate" {
-            echo "--- creating pbn-rotated-for-4-players and lin-rotated-for-4-players\$Scenario from pbn\$Scenario"
+            echo "--------- makeOneRotated.cmd: creating pbn-rotated-for-4-players and lin-rotated-for-4-players\$Scenario from pbn\$Scenario"
             & P:\build-scripts\makeOneRotated.cmd $Scenario
         }
         "bba" {
-            echo "--- Creating bba\$Scenario.pbn from pbn\$Scenario.pbn"
+            echo "--------- makeOneBBA.cmd:Creating bba\$Scenario.pbn from pbn\$Scenario.pbn"
             & P:\build-scripts\makeOneBBA.cmd $Scenario
-        }
-        "bbaSummary" {
-            echo "--- Creating bbaSummary of bba\$Scenario.bba"
+            echo "--------- oneSummary.py"
             & Python P:\py\oneSummary.py --scenario $Scenario
         }
         "title" {
-            echo "--- Setting title for pbn\$Scenario.pbn"
+            echo "--------- setOntitle: Setting title for pbn\$Scenario.pbn"
             & P:\build-scripts\setOneTitle.ps1 $Scenario
         }
         "filter" {
-            echo "--- Creating bba-filtered\ and bba-filtered-out from bba\$Scenario.pbn"
+            echo "--------- filterOneScenario.cmd: Creating bba-filtered\ and bba-filtered-out from bba\$Scenario.pbn"
             & P:\build-scripts\filterOneScenario.cmd $Scenario
         }
         "filterStats" {
 			if ($WildCardScenarioSpec -ne "*") {
-				echo "--- Counting hands in bba-filtered\$Scenario.pbn"
+				echo "--------- CountPattern.ps1: Counting hands in bba-filtered\$Scenario.pbn"
 				& P:\build-scripts\CountPattern.ps1 -FileSpec "P:\bba-filtered\$Scenario.pbn" -Pattern "\[Board"
 			}
         }
         "biddingSheet" {
-            echo "--- Creating bidding-sheets\$Scenario.pbn and bba\$Scenario.pdf from bba\$Scenario.pbn"
+            echo "--------- makeOneBiddingSheet.cmd: Creating bidding-sheets\$Scenario.pbn and bba\$Scenario.pdf from bba\$Scenario.pbn"
             & P:\build-scripts\makeOneBiddingSheet.cmd $Scenario
         }
         default {
-            echo "--- Unknown operation: $Operation"
+            echo "--------- Unknown operation: $Operation"
         }
     }
 }
@@ -84,10 +80,10 @@ if (-not $WildcardScenarioSpec -or -not $OperationList) {
 	echo "Operations:"
 	echo "   dlr"
 	echo "   pbn"
-	echo "   comment"
+#	echo "   comment"   combined with pbn
 	echo "   rotate"
 	echo "   bba"
-	echo "   bbaSummary"
+#	echo "   bbaSummary"    combined with bba
 	echo "   title"
 	echo "   filter"
 	echo "   filterStats"
@@ -101,24 +97,16 @@ if (($OperationList.count -eq 1 ) -and ($OperationList[0][-1] -eq "+")) {
 
 	switch ($OperationList) {
         "dlr+" {
-            $OperationList = "dlr,pbn,comment,rotate,bba,bbaSummary,title,filter,filterStats,biddingSheet" -split ","
+            $OperationList = "dlr,pbn,rotate,bba,title,filter,filterStats,biddingSheet" -split ","
         }
         "pbn+" {
-            $OperationList = "pbn,comment,rotate,bba,bbaSummary,title,filter,filterStats,biddingSheet" -split ","
-        }
-        "comment+" {
-            $OperationList = "comment,rotate,bba,bbaSummary,title,filter,filterStats,biddingSheet" -split ","
+            $OperationList = "pbn,rotate,bba,title,filter,filterStats,biddingSheet" -split ","
         }
         "rotate+" {
-            $OperationList = "rotate,bba,bbaSummary,title,filter,filterStats,biddingSheet" -split ","
+            $OperationList = "rotate,bba,title,filter,filterStats,biddingSheet" -split ","
         }
         "bba+" {
-            $OperationList = "bba,bbaSummary,title,filter,filterStats,biddingSheet" -split ","
-        }
-        "bbaSummary+" {
-            # bbaSummary has no downstream impact
-            #$OperationList = "bbaSummary,filter,filterStats,makeBiddingSheet" -split ","
-            $OperationList = "bbaSummary,title,filter,filterStats,biddingSheet" -split ","
+            $OperationList = "bba,title,filter,filterStats,biddingSheet" -split ","
         }
         "title+" {
             $OperationList = "title,filter,filterStats,biddingSheet" -split ","
@@ -156,7 +144,7 @@ foreach ($file in $files) {
 		} else {
 			# Loop through each item in the array and perform an action
 			foreach ($Operation in $OperationList) {
-				Write-Output "Processing Operation: $Operation"
+				Write-Output "========= Processing Operation: $Operation ========="
 				Perform-Action -Operation $Operation -File $file.FullName
 			}		
 		}
