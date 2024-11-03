@@ -116,6 +116,7 @@ SET note=Note ...
 :: Non_Leaping_Michaels_After_2-Bid.pbn "BBA doesn't support this convention"
 :: Non_Leaping_Michaels_After_3-Bid.pbn "BBA doesn't support this convention"
 %filter%Notrump_18-19.pbn 						"."													%output%Notrump_18-19.pbn			%filter_flag%
+%filter%NT_Splinter.pbn							"%note%Splinter"									%output%NT_Splinter.pbn				%filter_flag%
 %filter%Opp_Redoubles.pbn						"%auction%1[CDHSN]T?\s+X\s+XX"						%output%Opp_Redoubles.pbn			%filter_flag%
 %filter%Opps_2-Suited_Overcalls.pbn 			"(%note%Michaels)|(%note%Unusual)"					%output%Opps_2-Suited_Overcalls.pbn	%filter_flag%
 %filter%Opps_Bid_Over_GF_2C.pbn					"%auction%2C\s+[234X]"								%output%Opps_Bid_Over_GF_2C.pbn		%filter_flag%
@@ -175,7 +176,6 @@ SET note=Note ...
 :: Spiral_Raise.pbn "BBA doesn't support this convention"
 :: Spiral_Raises_with_3.pbn "BBA doesn't support this convention"
 %filter%Splinters.pbn 							"%note%Splinter"									%output%Splinters.pbn					%filter_flag%
-%filter%Splinters_After_Notrump.pbn				"%note%Splinter"									%output%Splinters_After_Notrump.pbn		%filter_flag%
 %filter%Splinters_By_Opener.pbn 				"%note%Splinter"									%output%Splinters_By_Opener.pbn			%filter_flag%
 %filter%Stayman.pbn 							"%note%Stayman"										%output%Stayman.pbn						%filter_flag%
 %filter%Support_Double.pbn						"%note%Support double"								%output%Support_Double.pbn				%filter_flag%

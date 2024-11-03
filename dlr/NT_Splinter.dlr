@@ -56,8 +56,8 @@ hSpl = shape(north,4045+4054+4144)
 sSpl = shape(north,0445+0454+1444)
 
 # Define North's tp
-s0 = shape(north,0xxx) ? 3 : 0
-s1 = shape(north,1xxx) ? 2 : 0
+s0 = shape(north,any 0xxx) ? 3 : 0
+s1 = shape(north,any 1xxx) ? 2 : 0
 tp = hcp(south) + s0 + s1
 
 # Define splinter
