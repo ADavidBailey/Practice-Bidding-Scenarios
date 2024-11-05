@@ -1,0 +1,63 @@
+Script,WeakJumpShift
+setDealerCode(`
+
+# Weak Jump Shift
+# South Open's 1C, 1D, or 1H and North has 5 or less HCP and a 6-card suit
+produce 1000
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+# Defines gibNT
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# Defines oneSpade, oneHeart, oneDiamond, oneClub
+
+# Define north's WJS suits
+nD = diamonds(north)>5 and top4(north,diamonds)>1
+nH = hearts(north)>5    and top4(north,hearts)>1
+nS = spades(north)>5    and top4(north,spades)>1
+
+# Define weak jump shifts -- they're always at the 2-level
+s1C = oneClub    and (nD or nH or nS)
+s1D = oneDiamond and (nH or nS)
+s1H = oneHeart   and nS
+
+#   A Weak Jump Shift is too weak to make a 1-level response
+WJS = (s1C or s1D or s1H) and hcp(north)>1 and hcp(north)<7    
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+
+dFit = nD and diamonds(south)>3
+hFit = nH and hearts(south)>2
+sFit = nS and spades(south)>2
+fit = (dFit or hFit or sFit)
+
+pass   = not fit
+raise  = fit and hcp(south)<16
+invite = fit and hcp(south)>16
+
+levPass   = pass   and keep06
+levRaise  = raise  and keep25
+levInvite = invite and keep47
+
+levelTheDeal = levPass or levRaise or levInvite
+
+# South opens, West passes, and North makes a Weak Jump Shift
+WJS and calmWest and not gibNT
+and levelTheDeal
+
+action
+average "hcp(south)  " hcp(south),
+average "hcp(north)  " hcp(north),
+average "pass        " 100 * pass,
+average "raise       " 100 * raise,
+average "invite      " 100 * invite,
+
+`,"S",true);
+Script
+
+Button,Weak Jump Shift,\n\
+--- Weak Jump Shift\n\
+South opens，West passes，and North jumps to the 2-level，\n\
+showing 2-6 HCP and 6+ cards in the suit bid.\n\
+%OneMinorTwoMinor%
