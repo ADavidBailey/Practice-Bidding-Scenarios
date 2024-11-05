@@ -44,12 +44,10 @@ fit = (cFit or dFit or hFit or sFit)
 s1Suit = shape(south,any 8xxx+any 7xxx)
 s2Suit = shape(south, any 76xx+any 75xx+any 65xx+any 55xx)
 
-force   = hcp(south)>19    # 2N -- continuations are like those after 2N response to a Weak Two Bid
+force   = hcp(south)>19    # 2N -- continuations like after 2N response to a Weak Two Bid
 rebid   = s1Suit and not fit and not force
-newSuit = s2Suit and not fit and not force      
-pass    =            not fit and not force
-raise   =                fit and not force
-PorR    = pass or raise
+newSuit = s2Suit and not fit and not force  
+other   = not (force or rebid or newSuit)
 
 # Level the deal
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
@@ -57,7 +55,7 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 levForce   = force   and keep
 levRebid   = rebid   and keep
 levNewSuit = newSuit and keep
-levPorR    = PorR    and keep
+levOther   = other   and keep
 
 levelTheDeal = levForce or levRebid or levNewSuit or levPorR
 
