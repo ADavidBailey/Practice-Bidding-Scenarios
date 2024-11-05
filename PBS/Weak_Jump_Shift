@@ -44,7 +44,7 @@ fit = (cFit or dFit or hFit or sFit)
 s1Suit = shape(south,any 8xxx+any 7xxx)
 s2Suit = shape(south, any 76xx+any 75xx+any 65xx+any 55xx)
 
-force   = hcp(south)>19    # 2N -- continuations like after 2N response to a Weak Two Bid
+force   = hcp(south)>19    // 2N -- continuations like after 2N response to a Weak Two Bid
 rebid   = s1Suit and not fit and not force
 newSuit = s2Suit and not fit and not force  
 other   = not (force or rebid or newSuit)
