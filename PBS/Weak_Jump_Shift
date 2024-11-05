@@ -54,8 +54,8 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 
 levForce   = force   and keep
 levRebid   = rebid   and keep
-levNewSuit = newSuit and keep
-levOther   = other   and keep
+levNewSuit = newSuit and keep56
+levOther   = other   and keep11
 
 levelTheDeal = levForce or levRebid or levNewSuit or levOther
 
@@ -65,11 +65,12 @@ levelTheDeal = levForce or levRebid or levNewSuit or levOther
 and levelTheDeal
 
 action
-average "hcp(south)  " hcp(south),
-average "hcp(north)  " hcp(north),
-average "pass        " 100 * pass,
-average "raise       " 100 * raise,
-average "invite      " 100 * invite,
+average "hcp(south)   " hcp(south),
+average "hcp(north)   " hcp(north),
+average "force        " 100 * force,
+average "rebid        " 100 * rebid,
+average "newSuit      " 100 * newSuit,
+average "raise or pass" 100 * other,
 
 `,"S",true);
 Script
