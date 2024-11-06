@@ -9,9 +9,8 @@ SET iPBN=P:\pbn\%scenarioName%
 SET oPBN=P:\pbn-rotated-for-4-players\%scenarioName%.pbn
 SET oLIN=P:\lin-rotated-for-4-players\%scenarioName%.lin
 
-:: Rotate the hands N,E,S,W - this will create a rotated pbn
-:: with -NESW appended to the filename
-:: create both pbn and lin files
+:: Rotate the hands N,E,S,W - this will create rotated files in the same folder
+:: create both pbn and lin files in the P:\pbn folder with -NESW.pbn and -NESW.lin appended
 
 cscript S:\SetDealerMulti.js %iPBN%.pbn NESW Dealer
 cscript S:\SetDealerMulti.js %iPBN%.pbn NESW Dealer NoPBN LIN 
