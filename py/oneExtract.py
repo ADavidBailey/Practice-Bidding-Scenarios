@@ -7,7 +7,6 @@ parser = argparse.ArgumentParser(description="Extract dealer code")
 parser.add_argument("--scenario", type=str, default="*", help="Name of scenario (omit for all)")
 args = parser.parse_args()
 scenario = args.scenario
-print("scenario " + str(scenario))
 
 # Directory containing the files
 PBS = ".."
@@ -15,7 +14,6 @@ PBS = ".."
 pattern = r'`(.*?)`'
 
 # Function to find and process text enclosed in backticks and save to a .dlr file
-
 
 def extract_button_info(pbs_content):
     # Regular expression to match the button lines
@@ -57,7 +55,6 @@ def extract_text_in_backticks(file_path):
             
             output_file_path = os.path.splitext(os.path.basename(file_path))[0] + suffix
             output_file_path = os.path.join(PBS + '/dlr', output_file_path).replace('\\', '/')
-            print(output_file_path)
             with open(output_file_path, 'w') as output_file:
                 # Save the processed text to the .dlr file
 
