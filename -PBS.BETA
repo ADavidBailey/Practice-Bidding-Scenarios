@@ -41,7 +41,7 @@ this.onclick = function () {
 try {
 // toggle all white buttons until a non-white button found
 var e = $(this).next();
-while (e[0].style.backgroundColor == "white" || e[0].style.backgroundColor == "lightpink") {
+while (e[0].style.backgroundColor == "white" || e[0].style.backgroundColor == "peachpuff") {
 $(e).toggle();
 e = $(e).next();
 }
@@ -55,7 +55,7 @@ $("#adpanel2 button")[3].show = true;
 $("#adpanel2 button")[3].onclick = function () {
 this.show = !this.show;
 var toShow = this.show;
-$("#adpanel2 button").filter(function () { return (this.style.backgroundColor == "white" || this.style.backgroundColor == "lightpink") })
+$("#adpanel2 button").filter(function () { return (this.style.backgroundColor == "white" || this.style.backgroundColor == "peachpuff") })
 // add click handlers to all lightblue buttons
 .each(function (idx) {
 if (idx > 2)
@@ -759,7 +759,7 @@ Import,scsStrongClub
 
 Button,Beyond BBO Robots,,width=100% backgroundColor=lightblue
 Import,Notrump5431
-Button,---,,backgroundColor=lightpink
+Button,---,,backgroundColor=peachpuff
 Import,NedWeakTwo
 Import,NedWeakTwoLev
 Import,Ned2Spades
@@ -768,7 +768,7 @@ Import,namyatSWeak
 Import,namyatSStrong
 Import,KokishRelay
 Import,LosingTrickCount
-Button,---,,backgroundColor=lightpink
+Button,---,,backgroundColor=peachpuff
 Import,ResponsiveDouble
 Import,NegativeFreeBid
 
