@@ -41,7 +41,7 @@ this.onclick = function () {
 try {
 // toggle all white buttons until a non-white button found
 var e = $(this).next();
-while (e[0].style.backgroundColor == ("white" or "lightpink")) {
+while (e[0].style.backgroundColor == ("white" || "violet")) {
 $(e).toggle();
 e = $(e).next();
 }
@@ -768,7 +768,7 @@ Import,namyatSWeak
 Import,namyatSStrong
 Import,KokishRelay
 Import,LosingTrickCount
-Button,---,, backgroundcolor=lightpink
+Button,---,, backgroundcolor=violet
 Import,ResponsiveDouble
 Import,NegativeFreeBid
 
