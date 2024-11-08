@@ -30,7 +30,7 @@ fit = spadeFit or heartFit
 noFit = not fit
 
 # Avoid 1H - 1S
-no1Spade = oneHeart and spades(north)>3
+no1Spade = oneHeart and spades(north)<4
 
 # Defining Forcting NT hand types
 wFit = fit and tp>4 and tp<8 and hcp(north)<6   and no1Spade
