@@ -4,6 +4,8 @@
 dealer south
 
 
+# auction-filter: Auction.....\n2NT
+
 # Dealer 2N and 1-Minor
 
 ##### Imported Script -- Predict Opening 1-Bid #####
@@ -73,7 +75,7 @@ nlp3 = diamonds(north)>4 ? diamonds(north)-4 : 0
 nlp4 = clubs(north)>4 ? clubs(north)-4 : 0
 strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
 
-oneMinor = clubs(north)>5 or diamonds(north)>5
+oneMinor = (clubs(north)>5 or diamonds(north)>5) and hearts(north)<4 and spades(north)<4
 
 game = strength>=6 and strength<=11
 slam = strength>=12
