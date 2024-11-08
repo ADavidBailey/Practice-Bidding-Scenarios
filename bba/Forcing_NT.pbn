@@ -2,7 +2,7 @@
 % EXPORT
 %Content-type: text/x-pbn; charset=ISO-8859-1
 %Creator: BridgeComposer Version 5.108
-%Created: Fri Nov  8 16:19:51 2024 -0600
+%Created: Fri Nov  8 16:41:07 2024 -0600
 %BCOptions Center STBorder STShade
 %BidAndCardSpacing Thin
 %BoardsPerPage 1
@@ -46,7 +46,7 @@
 % CC1 - C:\BBA\21GF-ADB.bbsa
 % CC2 - C:\BBA\21GF-ADB.bbsa
 % 1-2 - 1m opening allows 5M
-% 1-2 - 1M-3M blocking
+% 1-2 - 1M-3M inviting
 % 1-2 - 1X-(Y)-2Z forcing
 % 1-2 - 1X-(1Y)-2Z weak
 % 1-2 - 4NT opening
@@ -338,17 +338,17 @@ Pass Pass
 [Deal "N:6532.JT7.8.JT874 4.K9654.AJ54.KQ9 AQJT8.A8.Q972.A3 K97.Q32.KT63.652"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "3SX"]
+[Contract "3S"]
 [Result "9"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 530"]
+[Score "NS 140"]
 [Auction "S"]
-1S Pass 3S =1= X
-Pass Pass Pass
-[Note "1:1M-3M blocking"]
+1S Pass Pass 2H
+3D Pass 3S Pass
+Pass Pass
 [Play "W"]
 *
 
@@ -1057,9 +1057,10 @@ Pass Pass
 [Room "Open"]
 [Score "NS -420"]
 [Auction "S"]
-1S Pass 3S =1= 4H
-Pass Pass Pass
-[Note "1:1M-3M blocking"]
+1S Pass Pass 2H
+Pass Pass 2S 3H
+Pass 4H Pass Pass
+Pass
 [Play "S"]
 *
 
@@ -1462,9 +1463,9 @@ Pass Pass Pass
 [Room "Open"]
 [Score "NS -140"]
 [Auction "S"]
-1H Pass 3H =1= 3S
+1H Pass 2H 2S
+3H Pass Pass 3S
 Pass Pass Pass
-[Note "1:1M-3M blocking"]
 [Play "S"]
 *
 
@@ -1628,18 +1629,18 @@ Pass Pass
 [Deal "N:T53.QJ84.62.J843 AQ74.T.AKQ95.QT5 K92.AK9653.843.A J86.72.JT7.K9762"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "4H"]
+[Contract "4HX"]
 [Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 420"]
+[Score "NS 590"]
 [Auction "S"]
-1H Pass 3H =1= X
-Pass 4C Pass Pass
-4H Pass Pass Pass
-[Note "1:1M-3M blocking"]
+1H Pass Pass 2D
+2H Pass 3H 3S
+4H XH Pass Pass
+Pass
 [Play "W"]
 *
 
@@ -1974,20 +1975,19 @@ Pass Pass Pass
 [Vulnerable "NS"]
 [Deal "N:QT762.Q42.42.752 5.AT76.AKJT7.J63 AKJ98.K83.53.QT9 43.J95.Q986.AK84"]
 [Scoring "MP"]
-[Declarer "W"]
-[Contract "4C"]
+[Declarer "S"]
+[Contract "3SX"]
 [Result "8"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 100"]
+[Score "NS -200"]
 [Auction "S"]
-1S Pass 3S =1= X
-Pass 4C Pass Pass
-Pass
-[Note "1:1M-3M blocking"]
-[Play "N"]
+1S Pass Pass 2D
+Pass 3D 3S X
+Pass Pass Pass
+[Play "W"]
 *
 
 [Event ""]
@@ -2612,19 +2612,21 @@ X Pass Pass Pass
 [Vulnerable "None"]
 [Deal "N:T865.7.QJ3.98743 Q.QJ932.A9852.KQ AJ972.K84.K6.JT6 K43.AT65.T74.A52"]
 [Scoring "MP"]
-[Declarer "S"]
-[Contract "3S"]
-[Result "6"]
+[Declarer "E"]
+[Contract "4H"]
+[Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -150"]
+[Score "NS -420"]
 [Auction "S"]
-1S Pass 3S =1= Pass
-Pass Pass
-[Note "1:1M-3M blocking"]
-[Play "W"]
+1S Pass Pass 2S =1=
+Pass 3S =2= Pass 4H
+Pass Pass Pass
+[Note "1:Michaels Cuebid"]
+[Note "2:limit raise or better in !H"]
+[Play "S"]
 *
 
 [Event ""]
@@ -2986,18 +2988,19 @@ Pass Pass
 [Deal "N:J98.QJ942.J53.T7 AK75.7.A98.AJ863 Q2.AK8653.Q2.K42 T643.T.KT764.Q95"]
 [Scoring "MP"]
 [Declarer "W"]
-[Contract "4D"]
+[Contract "5DX"]
 [Result "9"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 50"]
+[Score "NS 300"]
 [Auction "S"]
 1H Pass 3H =1= X
-Pass 4D Pass Pass
-Pass
-[Note "1:1M-3M blocking"]
+XX 3S Pass Pass
+4H 5D Pass Pass
+X Pass Pass Pass
+[Note "1:1M-3M inviting"]
 [Play "N"]
 *
 
@@ -3102,17 +3105,15 @@ Pass Pass
 [Deal "N:Q983.T63.85.Q764 2.Q7542.J732.KJ5 AKT765.AJ.AQT.T8 J4.K98.K964.A932"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "4S"]
+[Contract "1S"]
 [Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 420"]
+[Score "NS 170"]
 [Auction "S"]
-1S Pass 3S =1= Pass
-4S Pass Pass Pass
-[Note "1:1M-3M blocking"]
+1S Pass Pass Pass
 [Play "W"]
 *
 
@@ -3392,9 +3393,8 @@ Pass Pass
 [Room "Open"]
 [Score "NS -50"]
 [Auction "S"]
-1S Pass 3S =1= Pass
-Pass Pass
-[Note "1:1M-3M blocking"]
+1S Pass 2S 3D
+3S Pass Pass Pass
 [Play "W"]
 *
 
@@ -4035,18 +4035,17 @@ Pass Pass
 [Deal "N:T5.K854.Q8654.T4 AKJ986.Q3.K.AK85 Q.AJT92.AT972.Q7 7432.76.J3.J9632"]
 [Scoring "MP"]
 [Declarer "W"]
-[Contract "4C"]
+[Contract "3C"]
 [Result "9"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 100"]
+[Score "NS -110"]
 [Auction "S"]
-1H Pass 3H =1= X
-Pass 4C Pass Pass
+1H Pass 2H X
+Pass 3C Pass Pass
 Pass
-[Note "1:1M-3M blocking"]
 [Play "N"]
 *
 
@@ -4207,19 +4206,21 @@ Pass
 [Vulnerable "EW"]
 [Deal "N:8764.K94.Q8.T876 .765.AT64.AKQJ92 AQT52.AQT83.952. KJ93.J2.KJ73.543"]
 [Scoring "MP"]
-[Declarer "S"]
-[Contract "3S"]
-[Result "10"]
+[Declarer "E"]
+[Contract "5C"]
+[Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 170"]
+[Score "NS -600"]
 [Auction "S"]
-1S Pass 3S =1= Pass
-Pass Pass
-[Note "1:1M-3M blocking"]
-[Play "W"]
+1S Pass Pass 2C
+2H Pass 2S 3C
+Pass 3H =1= 3S 5C
+Pass Pass Pass
+[Note "1:limit raise or better in !C"]
+[Play "S"]
 *
 
 [Event ""]
@@ -4411,11 +4412,10 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "S"]
-1S Pass 3S =1= Pass
-4C =2= Pass 4S Pass
+1S Pass 2S Pass
+4D =1= Pass 4S Pass
 Pass Pass
-[Note "1:1M-3M blocking"]
-[Note "2:Cue bid, a !C stopper"]
+[Note "1:Splinter"]
 [Play "W"]
 *
 
@@ -4746,20 +4746,21 @@ Pass Pass Pass
 [Vulnerable "EW"]
 [Deal "N:JT74.6.K9842.T76 85.AJT98.A75.A42 Q9632.K53.Q3.KQ9 AK.Q742.JT6.J853"]
 [Scoring "MP"]
-[Declarer "W"]
-[Contract "3N"]
-[Result "9"]
+[Declarer "S"]
+[Contract "4SX"]
+[Result "7"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -600"]
+[Score "NS -500"]
 [Auction "S"]
-1S Pass 3S =1= X
-Pass 3NT Pass Pass
-Pass
-[Note "1:1M-3M blocking"]
-[Play "N"]
+1S Pass Pass 2H
+Pass 2S =1= Pass 4H
+Pass Pass 4S X
+Pass Pass Pass
+[Note "1:limit raise or better in !H"]
+[Play "W"]
 *
 
 [Event ""]
@@ -4775,19 +4776,19 @@ Pass
 [Vulnerable "All"]
 [Deal "N:T8.K642.QT92.954 Q97643.A9.K86.QT A5.QJT53.J4.AJ83 KJ2.87.A753.K762"]
 [Scoring "MP"]
-[Declarer "S"]
-[Contract "3H"]
-[Result "9"]
+[Declarer "E"]
+[Contract "4S"]
+[Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 140"]
+[Score "NS -620"]
 [Auction "S"]
-1H Pass 3H =1= Pass
-Pass Pass
-[Note "1:1M-3M blocking"]
-[Play "W"]
+1H Pass 2H Pass
+Pass X Pass 4S
+Pass Pass Pass
+[Play "S"]
 *
 
 [Event ""]
@@ -5150,7 +5151,7 @@ Pass Pass
 [Deal "N:JT43.T962.K52.93 Q.853.A9743.Q862 AK965.AK.Q86.K75 872.QJ74.JT.AJT4"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "3S"]
+[Contract "1S"]
 [Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -5158,9 +5159,7 @@ Pass Pass
 [Room "Open"]
 [Score "NS 170"]
 [Auction "S"]
-1S Pass 3S =1= Pass
-Pass Pass
-[Note "1:1M-3M blocking"]
+1S Pass Pass Pass
 [Play "W"]
 *
 
@@ -5616,19 +5615,18 @@ Pass Pass
 [Deal "N:Q843.KT875.72.63 T6.Q963.KJ98.AKT AKJ97..QT53.Q875 52.AJ42.A64.J942"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "4SX"]
+[Contract "3SX"]
 [Result "9"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -100"]
+[Score "NS 530"]
 [Auction "S"]
-1S Pass 3S =1= X
-Pass 4H Pass Pass
-4S XS Pass Pass
+1S Pass 2S X
+Pass 3H 3S Pass
+Pass XASS Pass Pass
 Pass
-[Note "1:1M-3M blocking"]
 [Play "W"]
 *
 
@@ -6543,9 +6541,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "S"]
-1S Pass 3S =1= Pass
-4S Pass Pass Pass
-[Note "1:1M-3M blocking"]
+1S Pass Pass 2C
+3S Pass 4S Pass
+Pass Pass
 [Play "W"]
 *
 
@@ -6793,19 +6791,20 @@ Pass Pass
 [Vulnerable "All"]
 [Deal "N:T97.9654.KJ62.64 KQ654.8.QT5.KQ98 A3.KQT73.84.AJT2 J82.AJ2.A973.753"]
 [Scoring "MP"]
-[Declarer "S"]
-[Contract "3H"]
-[Result "8"]
+[Declarer "E"]
+[Contract "3S"]
+[Result "9"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -100"]
+[Score "NS -140"]
 [Auction "S"]
-1H Pass 3H =1= Pass
-Pass Pass
-[Note "1:1M-3M blocking"]
-[Play "W"]
+1H Pass Pass 1S
+2C 2S 3H Pass
+Pass 3S Pass Pass
+Pass
+[Play "S"]
 *
 
 [Event ""]
@@ -7048,17 +7047,19 @@ Pass Pass
 [Deal "N:KJ.9543.85.98763 985432..AKQ9.Q54 A76.AQ762.JT3.K2 QT.KJT8.7642.AJT"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "3H"]
+[Contract "3HX"]
 [Result "8"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -50"]
+[Score "NS -100"]
 [Auction "S"]
-1H Pass 3H =1= Pass
-Pass Pass
-[Note "1:1M-3M blocking"]
+1H Pass Pass 1S
+Pass 1NT 2H 2S
+Pass Pass 3H Pass
+Pass XASS Pass Pass
+Pass
 [Play "W"]
 *
 
@@ -7230,9 +7231,8 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "S"]
-1S Pass 3S =1= 4H
+1S Pass 2S 3H
 4S Pass Pass Pass
-[Note "1:1M-3M blocking"]
 [Play "W"]
 *
 
@@ -8045,17 +8045,20 @@ Pass Pass
 [Deal "N:A6.J753.T953.763 QT942..K42.AK982 K53.KT864.AJ6.J4 J87.AQ92.Q87.QT5"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "3H"]
+[Contract "5HX"]
 [Result "8"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -50"]
+[Score "NS -500"]
 [Auction "S"]
-1H Pass 3H =1= Pass
-Pass Pass
-[Note "1:1M-3M blocking"]
+1H Pass 2H 2S
+Pass 3H =1= X Pass
+Pass 3S Pass 4S
+Pass Pass 5H X
+Pass Pass Pass
+[Note "1:limit raise or better in !S"]
 [Play "W"]
 *
 
@@ -9064,9 +9067,10 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "S"]
-1H Pass 3H =1= Pass
+1H Pass Pass X
+2D Pass 2H Pass
+Pass 2S 3H Pass
 4H Pass Pass Pass
-[Note "1:1M-3M blocking"]
 [Play "W"]
 *
 
@@ -9654,20 +9658,19 @@ Pass Pass
 [Vulnerable "None"]
 [Deal "N:JT92.JT42.Q2.874 K3.AK7.JT863.AQ5 AQ874.Q3.AK4.K93 65.9865.975.JT62"]
 [Scoring "MP"]
-[Declarer "W"]
-[Contract "4HX"]
-[Result "6"]
+[Declarer "S"]
+[Contract "3S"]
+[Result "9"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 800"]
+[Score "NS 140"]
 [Auction "S"]
-1S Pass 3S =1= X
-Pass 4H Pass Pass
-X Pass Pass Pass
-[Note "1:1M-3M blocking"]
-[Play "N"]
+1S Pass Pass 2D
+2NT Pass 3S Pass
+Pass Pass
+[Play "W"]
 *
 
 [Event ""]
@@ -9692,11 +9695,11 @@ X Pass Pass Pass
 [Room "Open"]
 [Score "NS -450"]
 [Auction "S"]
-1H Pass 3H =1= 4C =2=
+1H Pass Pass 2H =1=
+Pass 2S 3H 3S
 Pass 4S Pass Pass
 Pass
-[Note "1:1M-3M blocking"]
-[Note "2:Leaping Michaels"]
+[Note "1:Michaels Cuebid"]
 [Play "N"]
 *
 
@@ -10171,19 +10174,20 @@ Pass Pass Pass
 [Vulnerable "EW"]
 [Deal "N:9852.KJT92.7.853 A.76.KQJT5.AKQ62 KQJ63.A854.A83.9 T74.Q3.9642.JT74"]
 [Scoring "MP"]
-[Declarer "S"]
-[Contract "3S"]
+[Declarer "W"]
+[Contract "4C"]
 [Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 170"]
+[Score "NS -130"]
 [Auction "S"]
-1S Pass 3S =1= Pass
-Pass Pass
-[Note "1:1M-3M blocking"]
-[Play "W"]
+1S Pass Pass X
+2H Pass 2S X
+Pass 3C 3H 4C
+Pass Pass Pass
+[Play "N"]
 *
 
 [Event ""]
@@ -10784,9 +10788,12 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "S"]
-1S Pass 3S =1= Pass
+1S Pass Pass 2D
+2NT Pass 3D =1= Pass
+3S Pass 4D =2= Pass
 4S Pass Pass Pass
-[Note "1:1M-3M blocking"]
+[Note "1:strength cue bid"]
+[Note "2:limit raise or better in !S"]
 [Play "W"]
 *
 
@@ -10898,9 +10905,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "S"]
-1S Pass 3S =1= Pass
-4S Pass Pass Pass
-[Note "1:1M-3M blocking"]
+1S Pass Pass 2H
+3C Pass 4S Pass
+Pass Pass
 [Play "W"]
 *
 
@@ -11457,19 +11464,19 @@ Pass Pass
 [Vulnerable "All"]
 [Deal "N:KT76.T9.JT943.J6 A4.KJ82.K.KQ8753 Q9853.743.AQ2.A4 J2.AQ65.8765.T92"]
 [Scoring "MP"]
-[Declarer "S"]
-[Contract "3S"]
-[Result "8"]
+[Declarer "E"]
+[Contract "3C"]
+[Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -100"]
+[Score "NS -130"]
 [Auction "S"]
-1S Pass 3S =1= Pass
-Pass Pass
-[Note "1:1M-3M blocking"]
-[Play "W"]
+1S Pass Pass 2C
+Pass Pass 2S 3C
+Pass Pass Pass
+[Play "S"]
 *
 
 [Event ""]
@@ -11798,20 +11805,19 @@ Pass Pass
 [Vulnerable "EW"]
 [Deal "N:Q984.T9754.K7.85 2.AQ82.AQ542.Q72 AJ653.K.T6.AJT64 KT7.J63.J983.K93"]
 [Scoring "MP"]
-[Declarer "W"]
-[Contract "4D"]
-[Result "9"]
+[Declarer "S"]
+[Contract "3S"]
+[Result "8"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 100"]
+[Score "NS -50"]
 [Auction "S"]
-1S Pass 3S =1= X
-Pass 4D Pass Pass
-Pass
-[Note "1:1M-3M blocking"]
-[Play "N"]
+1S Pass 2S X
+Pass 3D 3S Pass
+Pass Pass
+[Play "W"]
 *
 
 [Event ""]
@@ -12143,20 +12149,19 @@ Pass Pass
 [Vulnerable "NS"]
 [Deal "N:5.QT95.752.98752 KT82.87.AQJ3.KQ3 QJ76.AKJ42.96.JT A943.63.KT84.A64"]
 [Scoring "MP"]
-[Declarer "W"]
-[Contract "3S"]
-[Result "10"]
+[Declarer "S"]
+[Contract "2H"]
+[Result "6"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -170"]
+[Score "NS -200"]
 [Auction "S"]
-1H Pass 3H =1= X
-Pass 3S Pass Pass
-Pass
-[Note "1:1M-3M blocking"]
-[Play "N"]
+1H Pass Pass X
+1S Pass 2H Pass
+Pass Pass
+[Play "W"]
 *
 
 [Event ""]
@@ -12292,9 +12297,10 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "S"]
-1H Pass 3H =1= Pass
-4H Pass Pass Pass
-[Note "1:1M-3M blocking"]
+1H Pass 2H Pass
+4D =1= Pass 4H Pass
+Pass Pass
+[Note "1:Splinter"]
 [Play "W"]
 *
 
@@ -12714,17 +12720,17 @@ Pass
 [Deal "N:Q.T643.97654.QT6 K985.AJ.T2.AK953 AT63.KQ982.K8.72 J742.75.AQJ3.J84"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "3H"]
+[Contract "2H"]
 [Result "8"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -50"]
+[Score "NS 110"]
 [Auction "S"]
-1H Pass 3H =1= Pass
+1H Pass Pass 1NT
+Pass Pass 2H Pass
 Pass Pass
-[Note "1:1M-3M blocking"]
 [Play "W"]
 *
 
@@ -12979,9 +12985,8 @@ Pass Pass
 [Room "Open"]
 [Score "NS 680"]
 [Auction "S"]
-1S Pass 3S =1= Pass
+1S Pass 2S Pass
 4S Pass Pass Pass
-[Note "1:1M-3M blocking"]
 [Play "W"]
 *
 
@@ -13626,7 +13631,7 @@ Pass
 [Deal "N:JT95.QT.T52.J732 76.8642.A764.A95 AK832.KJ5.KJ.K64 Q4.A973.Q983.QT8"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "3S"]
+[Contract "2S"]
 [Result "9"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -13634,9 +13639,9 @@ Pass
 [Room "Open"]
 [Score "NS 140"]
 [Auction "S"]
-1S Pass 3S =1= Pass
+1S Pass Pass X
+XX 2H 2S Pass
 Pass Pass
-[Note "1:1M-3M blocking"]
 [Play "W"]
 *
 
@@ -13827,17 +13832,15 @@ Pass Pass
 [Deal "N:J62.8742.3.J9843 85.AKQ3.976.AQ52 AK7.JT965.AKJ84. QT943..QT52.KT76"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "4H"]
+[Contract "1H"]
 [Result "9"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -50"]
+[Score "NS 140"]
 [Auction "S"]
-1H Pass 3H =1= Pass
-4H Pass Pass Pass
-[Note "1:1M-3M blocking"]
+1H Pass Pass Pass
 [Play "W"]
 *
 
@@ -13863,10 +13866,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS -420"]
 [Auction "S"]
-1H Pass 3H =1= X
-Pass 3S Pass 4S
+1H Pass 2H X
+Pass 2S 3H 4S
 Pass Pass Pass
-[Note "1:1M-3M blocking"]
 [Play "N"]
 *
 
@@ -14053,17 +14055,16 @@ Pass Pass
 [Deal "N:QT8.QJ92.753.943 7653.54.AJ8.AJ65 AK94.AK763.Q4.Q8 J2.T8.KT962.KT72"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "3H"]
+[Contract "4H"]
 [Result "9"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 140"]
+[Score "NS -50"]
 [Auction "S"]
-1H Pass 3H =1= Pass
-Pass Pass
-[Note "1:1M-3M blocking"]
+1H Pass 2H Pass
+4H Pass Pass Pass
 [Play "W"]
 *
 
@@ -14389,7 +14390,7 @@ Pass Pass
 [Deal "N:Q864.QJ72.96.874 K.A98654.82.AT93 AJ975..AKT54.Q62 T32.KT3.QJ73.KJ5"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "3S"]
+[Contract "2S"]
 [Result "9"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -14397,8 +14398,7 @@ Pass Pass
 [Room "Open"]
 [Score "NS 140"]
 [Auction "S"]
-1S Pass 3S =1= Pass
+1S Pass 2S Pass
 Pass Pass
-[Note "1:1M-3M blocking"]
 [Play "W"]
 *
