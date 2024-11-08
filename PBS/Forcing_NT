@@ -30,13 +30,13 @@ fit = spadeFit or heartFit
 # Defining Forcting NT hand types
 weakFit = fit and tp>4 and tp<8
 noFit   = hcp(north)>5 and hcp(north)<13 and not fit
-invite  = fit and tp>11
+invite  = fit and tp>10 and tp<13
 
 Import,Leveling,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
-levWeakFit   = weakFit and keep
-levNoFit     = noFit   and keep30
-levInvite    = invite  and keep70
+levWeakFit   = weakFit and keep67
+levNoFit     = noFit   and keep19
+levInvite    = invite  and keep
 levelTheDeal = levWeakFit or levNoFit or levInvite
 
 # South opens 1 H/S and North bids 1N Forcing
@@ -45,9 +45,9 @@ and levelTheDeal
 
 produce 1000
 action
-average "fit 5-7 TP   " 100 * weakFit,
-average "no fit       " 100 * noFit,
-average "invite TP>11 " 100 * invite,
+average "fit 5-7 TP      " 100 * weakFit,
+average "no fit          " 100 * noFit,
+average "invite 11-12 TP " 100 * invite,
 
 
 `, "N", true);
@@ -55,7 +55,7 @@ Script
 Button,Forcing NT (Lev),\n\
 --- Forcing NT (Leveled)\n\
 • 5-7 TP with fit\n\
+• 11-12 TP with fit\n\
 • 6-12 HCP without fit\n\
-• 12+ TP with fit\n\
-These are leveled such that the fit and no fit occur at about the same frequency.\n\
+These are leveled such that the three types occur at about the same frequency.\n\
 %ForcingNT%
