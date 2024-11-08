@@ -4,9 +4,9 @@ setDealerCode(`
 # Forcing NT Leveled
 dealer south
 
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 # defines oneSpade, oneHeart
-
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
 # defines gibNT
 
@@ -37,7 +37,6 @@ noFit   = hcp(north)>5 and hcp(north)<13 and noSpadeBid and not fit
 invite  = fit and tp>10 and tp<13
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
-
 levWeakFit   = weakFit and keep67
 levNoFit     = noFit   and keep19
 levInvite    = invite  and keep
