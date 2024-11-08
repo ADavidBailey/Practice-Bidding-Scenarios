@@ -33,14 +33,14 @@ noFit = not fit
 noSpadeBid = oneHeart and spades(north)<4
 
 # Defining Forcting NT hand types
-wFit = fit and tp>4 and tp<8 and hcp(north)<6
-iFit = fit and tp>10 and tp<13
+wFit = fit and tp>4 and tp<8 and hcp(north)<6   and noSpadeBid
+iFit = fit and tp>10 and tp<13                  and noSpadeBid
 nFit = noFit and hcp(north)>5 and hcp(north)<13 and noSpadeBid
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
-wFitLev   = weakFit and keep67
-nFitLev     = noFit   and keep19
-iFitLev    = invite  and keep
+wFitLev = wFit and keep67
+nFitLev = nFit and keep19
+iFitLev = iFit and keep
 levelTheDeal = wFitLev or nFitLev or iFitLev
 
 # South opens 1 H/S and North bids 1N Forcing
