@@ -27,23 +27,24 @@ oneMajor = (oneSpade or oneHeart) and hcp(south)>11 and hcp(south)<20 and not gi
 spadeFit = oneSpade and spades(north)>2
 heartFit = oneHeart and hearts(north)>2
 fit = spadeFit or heartFit
+noFit = not fit
 
 # Defining 'no spade bid'
 noSpadeBid = oneHeart and spades(north)<4
 
 # Defining Forcting NT hand types
-weakFit = fit and tp>4 and tp<8
-noFit   = hcp(north)>5 and hcp(north)<13 and noSpadeBid and not fit
-invite  = fit and tp>10 and tp<13
+wFit = fit and tp>4 and tp<8 and hcp(north)<6
+iFit = fit and tp>10 and tp<13
+nFit = noFit and hcp(north)>5 and hcp(north)<13 and noSpadeBid
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
-levWeakFit   = weakFit and keep67
-levNoFit     = noFit   and keep19
-levInvite    = invite  and keep
-levelTheDeal = levWeakFit or levNoFit or levInvite
+wFitLev   = weakFit and keep67
+nFitLev     = noFit   and keep19
+iFitLev    = invite  and keep
+levelTheDeal = wFitLev or nFitLev or iFitLev
 
 # South opens 1 H/S and North bids 1N Forcing
-oneMajor and (fit or noFit or invite) and calmWest
+oneMajor and (wFit or nFit or iFit) and calmWest
 and levelTheDeal
 
 produce 1000
