@@ -4,10 +4,10 @@ setDealerCode(`
 # Forcing NT Leveled
 dealer south
 
-Import,Predict-Opening-1-Bid,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 # defines oneSpade, oneHeart
 
-Import,GIB-1N,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
 # defines gibNT
 
 # Calculate Total Points for North (tp)
@@ -33,7 +33,7 @@ weakFit = fit and tp>4 and tp<8
 noFit   = hcp(north)>5 and hcp(north)<13 and not fit
 invite  = fit and tp>10 and tp<13
 
-Import,Leveling,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 levWeakFit   = weakFit and keep67
 levNoFit     = noFit   and keep19
