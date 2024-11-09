@@ -37,21 +37,27 @@ noFit = not fit
 not1Spade = not(oneHeart and spades(north)>3)
 
 # Long minor
-lC = oneClub and clubs(north)>5
-lD = oneDiamond and diamonds(north)>5
-longMinor = oneClub or oneDiamond
+longC = oneClub and clubs(north)>5
+longD = oneDiamond and diamonds(north)>5
+longMinor = (longC or longD)
 
-# Defining Forcting NT hand types
-wFit = fit and tp>4 and tp<8 and hcp(north)<6   and not1Spade
-iFit = fit and tp>10 and tp<13                  and not1Spade
-nFit = noFit and hcp(north)>5 and hcp(north)<13 and not1Spade
-lMin = noFit and hcp(north)<10 and longMinor    and not1Spade  // see 3-under inv jump
+# Define ranges - TP for raises; otherwise HCP
+wRange = tp>4 and tp<8
+iRange = tp>10 and tp<13
+ngfRange = hcp(north)>5 and hcp(north)<13
+
+# Defining Forcing NT hand types
+wFit = fit and wRange                   and not1Spade
+iFit = fit and iRange                   and not1Spade
+lMin = noFit and ngfRange and longMinor and not1Spade  // overlaps w/3-under inv jump
+nFit = noFit and ngfRange and not lMin  and not1Spade
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 wFitLev = wFit and keep
-nFitLev = nFit and keep11
-iFitLev = iFit and keep33
-levelTheDeal = wFitLev or nFitLev or iFitLev
+iFitLev = iFit and keep
+lMinLev = lMin and keep
+nFitLev = nFit and keep
+levelTheDeal = wFitLev or nFitLev or iFitLev or lMinLev
 
 # South opens 1 H/S and North bids 1N Forcing
 oneMajor and (wFit or nFit or iFit) and calmWest
@@ -60,9 +66,9 @@ and levelTheDeal
 produce 1000
 action
 average "fit 5-7 TP      " 100 * wFit,
-average "no fit 6-12 HCP " 100 * nFit,
 average "fit 11-12 TP    " 100 * iFit,
-average "no fit & lMinor " 100 * lMin,
+average "no fit, lMin    " 100 * lMin,
+average "no fit 6-12 HCP " 100 * nFit,
 
 
 `, "S", true);
