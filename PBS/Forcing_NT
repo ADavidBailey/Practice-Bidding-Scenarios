@@ -34,7 +34,7 @@ fit = spadeFit or heartFit
 noFit = not fit
 
 # Avoid 1H - 1S
-not1Spade = not(oneHeart and spades(north)>3)
+noSpadeBid = not(oneHeart and spades(north)>3)
 
 # Long minor
 longC = clubs(north)>5
@@ -47,18 +47,18 @@ iRange = tp>10 and tp<13
 ngfRange = hcp(north)>5 and hcp(north)<13
 
 # Defining hand types for Forcing NT
-wFit = fit and wRange                   and not1Spade
-iFit = fit and iRange                   and not1Spade
-lMin = noFit and ngfRange and longMinor and not1Spade  // overlaps w/3-under inv jump
-nFit = noFit and ngfRange and not lMin  and not1Spade
-forcingNT = wFit or iFit or lMin or nFit
+wFit = fit and wRange
+iFit = fit and iRange
+lMin = noFit and ngfRange and longMinor  // overlaps w/3-under inv jump
+nFit = noFit and ngfRange and not lMin
+forcingNT = (wFit or iFit or lMin or nFit) and noSpadeBid
 
 # Defining Opener's rebids
 rebidM  = shape(south, any 7xxx+any 6xxx)
 rebidN  = shape(south, any 5332+any 5422) and hcp(south)>17 and hcp(south)<20
-reverse = shape(south, 45xx+46xx+56xx) and hcp(south)>17 and hcp(south)<20
-newSuit = shape(south, any 54xx) and not reverse
-openerRebid= rebidM or rebidN or newSuit or reverse
+reverse = shape(south, 45xx+46xx+56xx) and hcp(south)>17 and hcp(south)<22
+newSuit = not(rebidM or rebidN or reverse)
+openerRebid= rebidM or rebidN or reverse or newSuit
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
@@ -81,7 +81,7 @@ levelTheDeal = levelResponse or levelRebid
 
 ## Now Do it
 # South opens 1 H/S and North bids 1N Forcing and South Rebids
-oneMajor and forcingNT and openerRebidand calmWest and rebid
+oneMajor and forcingNT and openerRebid and calmWest and rebid
 and levelTheDeal
 
 produce 5000
