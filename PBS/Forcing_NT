@@ -36,10 +36,16 @@ noFit = not fit
 # Avoid 1H - 1S
 not1Spade = not(oneHeart and spades(north)>3)
 
+# Long minor
+lC = oneClub and clubs(north)>5
+lD = oneDiamond and diamonds(north)>5
+longMinor = oneClub or oneDiamond
+
 # Defining Forcting NT hand types
 wFit = fit and tp>4 and tp<8 and hcp(north)<6   and not1Spade
 iFit = fit and tp>10 and tp<13                  and not1Spade
 nFit = noFit and hcp(north)>5 and hcp(north)<13 and not1Spade
+lMin = noFit and hcp(north)<10 and longMinor    and not1Spade  // see 3-under inv jump
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 wFitLev = wFit and keep
@@ -56,6 +62,7 @@ action
 average "fit 5-7 TP      " 100 * wFit,
 average "no fit 6-12 HCP " 100 * nFit,
 average "fit 11-12 TP    " 100 * iFit,
+average "no fit & lMinor " 100 * lMin,
 
 
 `, "S", true);
