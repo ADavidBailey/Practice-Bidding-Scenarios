@@ -37,8 +37,8 @@ noFit = not fit
 not1Spade = not(oneHeart and spades(north)>3)
 
 # Long minor
-longC = oneClub and clubs(north)>5
-longD = oneDiamond and diamonds(north)>5
+longC = clubs(north)>5
+longD = diamonds(north)>5
 longMinor = (longC or longD)
 
 # Define ranges - TP for raises; otherwise HCP
@@ -52,15 +52,33 @@ iFit = fit and iRange                   and not1Spade
 lMin = noFit and ngfRange and longMinor and not1Spade  // overlaps w/3-under inv jump
 nFit = noFit and ngfRange and not lMin  and not1Spade
 
+# Defining Opener's rebids
+rebidM  = shape(south, any 7xxx+any 6xxx)
+rebidN  = shape(south, any 5332+any 5422) and hcp(south)>17 and hcp(south)<20
+reverse = shape(south, 45xx+46xx+56xx) and hcp(south)>17 and hcp(south)<20
+newSuit = shape(south, any 54xx) and not reverse
+
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+
+# Level Responses
 wFitLev = wFit and keep
-iFitLev = iFit and keep
-lMinLev = lMin and keep
-nFitLev = nFit and keep
-levelTheDeal = wFitLev or nFitLev or iFitLev or lMinLev
+iFitLev = iFit and keep81
+lMinLev = lMin and keep75
+nFitLev = nFit and keep25
+levelResponse = wFitLev or nFitLev or iFitLev or lMinLev
+
+# Level Rebids
+rMajLev = rebidM  and keep
+rNTLev = rebidN   and keep
+rNSLev = newSuit  and keep
+rRevLev = reverse and keep
+levelRebid = rMajLev or rRevLev or rNSLev or rNTLev
+
+# Level the deal
+levelTheDeal = levelResponse or levelRebid
 
 # South opens 1 H/S and North bids 1N Forcing
-oneMajor and (wFit or nFit or iFit) and calmWest
+oneMajor and (wFit or iFit or lMin or nFit) and calmWest and (rebidM or rebidN or newSuit or reverse)
 and levelTheDeal
 
 produce 1000
