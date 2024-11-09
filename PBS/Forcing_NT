@@ -46,48 +46,56 @@ wRange = tp>4 and tp<8
 iRange = tp>10 and tp<13
 ngfRange = hcp(north)>5 and hcp(north)<13
 
-# Defining Forcing NT hand types
+# Defining hand types for Forcing NT
 wFit = fit and wRange                   and not1Spade
 iFit = fit and iRange                   and not1Spade
 lMin = noFit and ngfRange and longMinor and not1Spade  // overlaps w/3-under inv jump
 nFit = noFit and ngfRange and not lMin  and not1Spade
+forcingNT = wFit or iFit or lMin or nFit
 
 # Defining Opener's rebids
 rebidM  = shape(south, any 7xxx+any 6xxx)
 rebidN  = shape(south, any 5332+any 5422) and hcp(south)>17 and hcp(south)<20
 reverse = shape(south, 45xx+46xx+56xx) and hcp(south)>17 and hcp(south)<20
 newSuit = shape(south, any 54xx) and not reverse
+openerRebid= rebidM or rebidN or newSuit or reverse
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 # Level Responses
 wFitLev = wFit and keep
 iFitLev = iFit and keep81
-lMinLev = lMin and keep75
-nFitLev = nFit and keep25
+lMinLev = lMin and keep
+nFitLev = nFit and keep015
 levelResponse = wFitLev or nFitLev or iFitLev or lMinLev
 
 # Level Rebids
-rMajLev = rebidM  and keep
-rNTLev = rebidN   and keep
-rNSLev = newSuit  and keep
+rMajLev = rebidM  and keep03
+rNTLev  = rebidN  and keep25
+rNSLev  = newSuit and keep015
 rRevLev = reverse and keep
-levelRebid = rMajLev or rRevLev or rNSLev or rNTLev
+levelRebid = rMajLev or rNTLev or rNSLev or rRevLev
 
 # Level the deal
 levelTheDeal = levelResponse or levelRebid
 
-# South opens 1 H/S and North bids 1N Forcing
-oneMajor and (wFit or iFit or lMin or nFit) and calmWest and (rebidM or rebidN or newSuit or reverse)
+## Now Do it
+# South opens 1 H/S and North bids 1N Forcing and South Rebids
+oneMajor and forcingNT and openerRebidand calmWest and rebid
 and levelTheDeal
 
-produce 1000
+produce 5000
 action
-average "fit 5-7 TP      " 100 * wFit,
-average "fit 11-12 TP    " 100 * iFit,
-average "no fit, lMin    " 100 * lMin,
-average "no fit 6-12 HCP " 100 * nFit,
-
+average "fit 5-7 TP         " 100 * wFit,
+average "fit 11-12 TP       " 100 * iFit,
+average "no fit, long minor " 100 * lMin,
+average "no fit 6-12 HCP    " 100 * nFit,
+average "-------------------" 100 * (wFit + iFit + lMin + nFit),
+average "rebid Major        " 100 * rebidM,
+average "rebid NT           " 100 * rebidN,
+average "rebid New Suit     " 100 * newSuit,
+average "rebid Reverse      " 100 * reverse,
+average "-------------------" 100 * (rebidM + rebidN + newSuit + reverse),
 
 `, "S", true);
 Script
