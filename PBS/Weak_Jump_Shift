@@ -56,11 +56,11 @@ other   = not (force1 or force2 or rebid or newSuit)
 # Level the deal
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
-levForce1  = force1  and keep
+levForce1  = force1  and keep75
 levForce2  = force2  and keep
 levRebid   = rebid   and keep
 levNewSuit = newSuit and keep56
-levOther   = other   and keep11
+levOther   = other   and keep06
 levelTheDeal = levForce1 or levForce2 or levRebid or levNewSuit or levOther
 
 # Now do it
@@ -69,13 +69,14 @@ levelTheDeal = levForce1 or levForce2 or levRebid or levNewSuit or levOther
 and levelTheDeal
 
 action
-average "hcp(south)   " hcp(south),
-average "hcp(north)   " hcp(north),
 average "force w/fit  " 100 * force1,
 average "force w/o fit" 100 * force2,
 average "rebid        " 100 * rebid,
 average "newSuit      " 100 * newSuit,
 average "raise or pass" 100 * other,
+average "-------------" 100 * (force1+force2+rebid+newSuit+other),
+average "hcp(south)   " hcp(south),
+average "hcp(north)   " hcp(north),
 
 `,"S",true);
 Script
