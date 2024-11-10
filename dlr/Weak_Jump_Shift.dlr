@@ -5,7 +5,8 @@ dealer south
 
 
 # convention-card: 21GF-WJS
-# auction-filter: \[Note....Weak.Jump.Shifts
+# auction-filter: Note...:Weak.Jump.Shifts
+
 # Weak Jump Shift
 # South Open's 1C, 1D, or 1H and North has 5 or less HCP and a 6-card suit
 
@@ -124,8 +125,8 @@ s1H = oneHeart   and nS
 
 # sometimes at the 3-level
 s1S3 = oneSpade   and (nC or nD or nH)
-s1D3 = oneDiamond and nC
 s1H3 = oneHeart   and (nC or nD)
+s1D3 = oneDiamond and nC
 
 #  A Weak Jump Shift at the 2-level is too weak to make a 1-level response
 WJS2 = (s1C or s1D or s1H) and hcp(north)>1 and hcp(north)<6
@@ -143,10 +144,11 @@ fit = (cFit or dFit or hFit or sFit)
 s1Suit = shape(south,any 8xxx+any 7xxx)
 s2Suit = shape(south, any 76xx+any 75xx+any 65xx+any 55xx)
 
-force   = hcp(south)>19    // 2N -- continuations like after 2N response to a Weak Two Bid
-rebid   = s1Suit and not fit and not force
-newSuit = s2Suit and not fit and not force  
-other   = not (force or rebid or newSuit)
+force1  = hcp(south)>17 and fit    // 2N -- continuations like after 2N response to a Weak Two Bid
+force2  = hcp(south)>19 and not (fit or force1)
+rebid   = s1Suit        and not (fit or force1 or force2)
+newSuit = s2Suit        and not (fit or force1 or force2 or rebid) 
+other   = not (force1 or force2 or rebid or newSuit)
 
 # Level the deal
 ### Imported Leveling Code ###
@@ -190,25 +192,27 @@ keep0  = 0
 ### Example of how to generate Statistics for Leveling ###
 
 
-levForce   = force   and keep
+levForce1  = force1  and keep75
+levForce2  = force2  and keep
 levRebid   = rebid   and keep
 levNewSuit = newSuit and keep56
-levOther   = other   and keep11
-
-levelTheDeal = levForce or levRebid or levNewSuit or levOther
+levOther   = other   and keep06
+levelTheDeal = levForce1 or levForce2 or levRebid or levNewSuit or levOther
 
 # Now do it
 # South opens, West passes, and North makes a Weak Jump Shift
-(WJS2 or WJS3) and calmWest and not gibNT and hcp(south)>11
+(WJS2 or WJS3) and calmWest and not gibNT and hcp(south)>11 and hcp(south)<22
 and levelTheDeal
 
 action
-average "hcp(south)   " hcp(south),
-average "hcp(north)   " hcp(north),
-average "force        " 100 * force,
+average "force w/fit  " 100 * force1,
+average "force w/o fit" 100 * force2,
 average "rebid        " 100 * rebid,
 average "newSuit      " 100 * newSuit,
 average "raise or pass" 100 * other,
+average "-------------" 100 * (force1+force2+rebid+newSuit+other),
+average "hcp(south)   " hcp(south),
+average "hcp(north)   " hcp(north),
 
 
 printpbn
