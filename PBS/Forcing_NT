@@ -66,23 +66,34 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 wFitLev = wFit and keep
 iFitLev = iFit and keep81
 lMinLev = lMin and keep
-nFitLev = nFit and keep25
+nFitLev = nFit and keep015
 levelResponse = wFitLev or nFitLev or iFitLev or lMinLev
 
 # Level Rebids
-rMajLev = rebidM  and keep03
-rNTLev  = rebidN  and keep
+rMajLev = rebidM  and keep015
+rNTLev  = rebidN  and keep33
+rRevLev = reverse and keep955
 rNSLev  = newSuit and keep015
-rRevLev = reverse and keep
-levelRebid = rMajLev or rNTLev or rNSLev or rRevLev
-
-# Level the deal
-levelTheDeal = levelResponse or levelRebid
+levelRebid = rMajLev or rNTLev or rRevLev or rNSLev
+levelTheDeal = levelResponse and levelRebid
 
 ## Now Do it
 # South opens 1 H/S and North bids 1N Forcing and South Rebids
 oneMajor and forcingNT and openerRebid and calmWest
 and levelTheDeal
+
+produce 5000
+action
+average "fit 5-7 TP         " 100 * wFit,
+average "fit 11-12 TP       " 100 * iFit,
+average "no fit, long minor " 100 * lMin,
+average "no fit 6-12 HCP    " 100 * nFit,
+average "-------------------" 100 * (wFit + iFit + lMin + nFit),
+average "rebid Major        " 100 * rebidM,
+average "rebid NT           " 100 * rebidN,
+average "rebid Reverse      " 100 * reverse,
+average "rebid New Suit     " 100 * newSuit,
+average "-------------------" 100 * (rebidM + rebidN + newSuit + reverse),
 
 produce 5000
 action
