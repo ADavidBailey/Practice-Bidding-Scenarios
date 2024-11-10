@@ -38,7 +38,7 @@ function Perform-Action {
         "pbn" {
             echo "--------- makeOnePBN.cmd: Creating pbn\$Scenario.pbn from dlr\$Scenario.dlr"
             & P:\build-scripts\makeOnePBN.cmd $Scenario
-            echo "--------- oneComment.py"
+            echo "--------- oneComment.py: Changins statistics to comments in pbn\$Scenario.pbn"
             & python3 P:\py\oneComment.py --scenario $Scenario
         }
         "rotate" {
@@ -48,7 +48,7 @@ function Perform-Action {
         "bba" {
             echo "--------- makeOneBBA.cmd:Creating bba\$Scenario.pbn from pbn\$Scenario.pbn"
             & P:\build-scripts\makeOneBBA.cmd $Scenario
-            echo "--------- oneSummary.py"
+            echo "--------- oneSummary.py: Creating bba-summary\$Scenario.pbn from bba\$Scenario.pbn"
             & Python P:\py\oneSummary.py --scenario $Scenario
         }
         "title" {
