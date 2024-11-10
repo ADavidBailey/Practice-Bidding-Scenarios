@@ -38,7 +38,7 @@ function Perform-Action {
         "pbn" {
             echo "--------- makeOnePBN.cmd: Creating pbn\$Scenario.pbn from dlr\$Scenario.dlr"
             & P:\build-scripts\makeOnePBN.cmd $Scenario
-            echo "--------- oneComment.py: Changins statistics to comments in pbn\$Scenario.pbn"
+            echo "--------- oneComment.py: Changing statistics to comments in pbn\$Scenario.pbn"
             & python3 P:\py\oneComment.py --scenario $Scenario
         }
         "rotate" {
