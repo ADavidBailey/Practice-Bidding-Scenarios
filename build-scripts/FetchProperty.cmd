@@ -47,5 +47,6 @@ for /f "tokens=* delims= " %%A in ("%PropertyValue%") do set "PropertyValue=%%A"
 if not defined PropertyValue (
 	echo No line with "%PropertyName%:" found in %FilePath% )
 
+echo "%PropertyName%: %PropertyValue%"
 ::endlocal & set %ScenarioName%_%PropertyName%=%PropertyValue%
 endlocal & set PropertyValue=%PropertyValue%

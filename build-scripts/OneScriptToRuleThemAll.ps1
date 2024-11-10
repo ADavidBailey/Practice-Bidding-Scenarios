@@ -52,7 +52,7 @@ function Perform-Action {
             & Python P:\py\oneSummary.py --scenario $Scenario
         }
         "title" {
-            echo "--------- setOntitle: Setting title for pbn\$Scenario.pbn"
+            echo "--------- setOneTitle: Setting title for pbn\$Scenario.pbn"
             & P:\build-scripts\setOneTitle.ps1 $Scenario
         }
         "filter" {
