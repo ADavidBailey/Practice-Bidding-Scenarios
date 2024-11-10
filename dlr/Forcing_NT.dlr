@@ -5,7 +5,7 @@ dealer south
 
 
 # convention-card: 21GF-ADB
-# auction-filter: Note....forcing 1NT
+# auction-filter: Note....forcing.1NT
 
 # Forcing NT Leveled
 
@@ -206,10 +206,11 @@ levelResponse = wFitLev or nFitLev or iFitLev or lMinLev
 
 # Level Rebids
 rMajLev = rebidM  and keep015
-rNTLev  = rebidN  and keep33
-rRevLev = reverse and keep955
+rNTLev  = rebidN  and keep25
+rRevLev = reverse and keep
 rNSLev  = newSuit and keep015
 levelRebid = rMajLev or rNTLev or rRevLev or rNSLev
+
 levelTheDeal = levelResponse and levelRebid
 
 ## Now Do it
