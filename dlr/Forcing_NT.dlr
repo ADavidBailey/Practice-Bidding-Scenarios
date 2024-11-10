@@ -131,12 +131,31 @@ fit = spadeFit or heartFit
 noFit = not fit
 
 # Avoid 1H - 1S
-not1Spade = not(oneHeart and spades(north)>3)
+noSpadeBid = not(oneHeart and spades(north)>3)
 
-# Defining Forcting NT hand types
-wFit = fit and tp>4 and tp<8 and hcp(north)<6   and not1Spade
-iFit = fit and tp>10 and tp<13                  and not1Spade
-nFit = noFit and hcp(north)>5 and hcp(north)<13 and not1Spade
+# Long minor
+longC = clubs(north)>5
+longD = diamonds(north)>5
+longMinor = (longC or longD)
+
+# Define ranges - TP for raises; otherwise HCP
+wRange = tp>4 and tp<8
+iRange = tp>10 and tp<13
+ngfRange = hcp(north)>5 and hcp(north)<13
+
+# Defining hand types for Forcing NT
+wFit = fit and wRange
+iFit = fit and iRange
+lMin = noFit and ngfRange and longMinor  // overlaps w/3-under inv jump
+nFit = noFit and ngfRange and not lMin
+forcingNT = (wFit or iFit or lMin or nFit) and noSpadeBid
+
+# Defining Opener's rebids
+rebidM  = shape(south, any 7xxx+any 6xxx)
+rebidN  = shape(south, any 5332+any 5422) and hcp(south)>17 and hcp(south)<20
+reverse = shape(south, 45xx+46xx+56xx) and hcp(south)>16 and hcp(south)<22
+newSuit = not(rebidM or rebidN or reverse)
+openerRebid= rebidM or rebidN or reverse or newSuit
 
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
@@ -178,20 +197,50 @@ keep0  = 0
 ### See -Stats-Leveling for statistics on these values ###
 ### Example of how to generate Statistics for Leveling ###
 
-wFitLev = wFit and keep
-nFitLev = nFit and keep11
-iFitLev = iFit and keep33
-levelTheDeal = wFitLev or nFitLev or iFitLev
 
-# South opens 1 H/S and North bids 1N Forcing
-oneMajor and (wFit or nFit or iFit) and calmWest
+# Level Responses
+wFitLev = wFit and keep
+iFitLev = iFit and keep81
+lMinLev = lMin and keep
+nFitLev = nFit and keep015
+levelResponse = wFitLev or nFitLev or iFitLev or lMinLev
+
+# Level Rebids
+rMajLev = rebidM  and keep015
+rNTLev  = rebidN  and keep33
+rRevLev = reverse and keep955
+rNSLev  = newSuit and keep015
+levelRebid = rMajLev or rNTLev or rRevLev or rNSLev
+levelTheDeal = levelResponse and levelRebid
+
+## Now Do it
+# South opens 1 H/S and North bids 1N Forcing and South Rebids
+oneMajor and forcingNT and openerRebid and calmWest
 and levelTheDeal
 
 action
-average "fit 5-7 TP      " 100 * wFit,
-average "no fit 6-12 HCP " 100 * nFit,
-average "fit 11-12 TP    " 100 * iFit,
+average "fit 5-7 TP         " 100 * wFit,
+average "fit 11-12 TP       " 100 * iFit,
+average "no fit, long minor " 100 * lMin,
+average "no fit 6-12 HCP    " 100 * nFit,
+average "-------------------" 100 * (wFit + iFit + lMin + nFit),
+average "rebid Major        " 100 * rebidM,
+average "rebid NT           " 100 * rebidN,
+average "rebid Reverse      " 100 * reverse,
+average "rebid New Suit     " 100 * newSuit,
+average "-------------------" 100 * (rebidM + rebidN + newSuit + reverse),
 
+action
+average "fit 5-7 TP         " 100 * wFit,
+average "fit 11-12 TP       " 100 * iFit,
+average "no fit, long minor " 100 * lMin,
+average "no fit 6-12 HCP    " 100 * nFit,
+average "-------------------" 100 * (wFit + iFit + lMin + nFit),
+average "rebid Major        " 100 * rebidM,
+average "rebid NT           " 100 * rebidN,
+average "rebid New Suit     " 100 * newSuit,
+average "rebid Reverse      " 100 * reverse,
+average "-------------------" 100 * (rebidM + rebidN + newSuit + reverse),
 
 
 printpbn
