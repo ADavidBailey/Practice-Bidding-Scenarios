@@ -7,6 +7,7 @@ dealer west
 produce 1000
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Defines calmOpps
 
 # North passes
 nPasses = hcp(north)<12 and shape(north,xxxx-any 7xxx-any 6xxx-any 55xx)
@@ -37,12 +38,9 @@ levelTheDeal = levLow or levEqual or levHigh
 calmOpps and nPasses and sMightOpen
 and levelTheDeal
 
-
 action
 average "HCP North=" hcp(north),
 average "HCP South=" hcp(south),
-
-
 frequency "r15   " (r15, 14,16),
 
 
