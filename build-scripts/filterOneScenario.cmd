@@ -55,7 +55,7 @@ exit /b
 
 :foundFilter
 
-echo Filter: !%filter%!
+echo Filter: %this_filter%
 
 cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %this_filter% P:\bba-filtered\%scenario%.pbn --PDF /noui >nul
 cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %this_filter% P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui >nul
