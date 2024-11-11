@@ -55,11 +55,25 @@ exit /b
 
 :foundFilter
 
-echo Filter: %this_filter%
+:: ----------------- Replace all \n with [\s\S][\s\S] --------------------
 
-echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %this_filter% P:\bba-filtered\%scenario%.pbn --PDF /noui >nul
+@echo off
+setlocal enabledelayedexpansion
 
-cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %this_filter% P:\bba-filtered\%scenario%.pbn --PDF /noui >nul
-cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %this_filter% P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui >nul
+set "input=%this_filter%"
+set "output="
+
+rem Replace all occurrences of \n with [\s\S][\s\S]
+for %%A in ("!input:\n=[\s\S][\s\S]!") do (
+    set "output=%%~A"
+)
+
+echo %input%
+echo %output%
+
+:: ------------------ Thank You, ChatGPT! --------------------------------
+
+cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %output% P:\bba-filtered\%scenario%.pbn --PDF /noui
+cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %output% P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui
 
 exit /b
