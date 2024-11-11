@@ -8,13 +8,13 @@ function Perform-Actions {
     param (
         [string]$File
     )
-    echo "Performing actions on $File"
+    ###echo "Performing actions on $File"                 # redundant  Processing file...
     Perform-Action -Operation "dlr" -File $File
     Perform-Action -Operation "pbn" -File $File
-    ###Perform-Action -Operation "comment" -File $File
+    ###Perform-Action -Operation "comment" -File $File    # combined with pbn
     Perform-Action -Operation "rotate" -File $File
     Perform-Action -Operation "bba" -File $File
-    ###Perform-Action -Operation "bbaSummary" -File $File
+    ###Perform-Action -Operation "bbaSummary" -File $File # combined with bba
     Perform-Action -Operation "title" -File $File
     Perform-Action -Operation "filter" -File $File
     Perform-Action -Operation "filterStats" -File $File

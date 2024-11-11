@@ -68,8 +68,8 @@ for %%A in ("!input:\n=[\s\S][\s\S]!") do (
     set "output=%%~A"
 )
 
-echo %input%
-echo %output%
+:: echo %input%
+:: echo %output%
 
 :: ------------------ Thank You, ChatGPT! --------------------------------
 
