@@ -68,11 +68,11 @@ for %%A in ("!input:\n=[\s\S][\s\S]!") do (
     set "output=%%~A"
 )
 
-:: echo %input%
-:: echo %output%
+echo %input%
+echo %output%
 
 :: ------------------ Thank You, ChatGPT! --------------------------------
-
+echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %output% P:\bba-filtered\%scenario%.pbn --PDF /noui
 cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %output% P:\bba-filtered\%scenario%.pbn --PDF /noui
 cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %output% P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui
 
