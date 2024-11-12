@@ -1,0 +1,25 @@
+# button-text: Flannery
+# scenario-title: Flannery 2D
+# Flannery
+dealer south
+
+
+# convention-card: 
+# auction-filter: Auction.....
+
+# Flannery
+
+
+# South had 11-15 HCP, 5 Hearts and 4 Spades
+flannery = hcp(south)>10 and hcp(south)<16 and shape(south, 45xx)
+
+# Now do it
+flannery
+
+action
+average "HCP North=" hcp(north),
+average "HCP South=" hcp(south),
+
+
+
+printpbn
