@@ -1,10 +1,10 @@
 Script,InvitationalJump3Under
 setDealerCode(`
 
-# convention-card:
+# convention-card: GIB-NoFitJump
 # auction-filter: Auction.....\\n(1D.Pass.3C)(1H.Pass.3[CD])(1S.Pass.3[CDH])
 
-# Robot 3 Under Invitational Jump (11-12 HCP)
+# Robot 3 Under Invitational Jump (9-11 HCP)
 
 #Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 ##### Imported Script -- Predict Opening 1-Bid #####
@@ -114,10 +114,9 @@ n3C = (oneDiamond or oneHeart or oneSpade) and goodClubs and noMajorNorth
 n3D = (oneHeart or oneSpade) and goodDiamonds and noMajorNorth
 n3H = (oneSpade) and goodHearts
 
-# reduce responder's hcp to avoid 2/1
 # (Predict South's opening bid sometimes opens w/10hcp
 # Now do it 
-(n3C or n3D or n3H) and calmWest and noFit and hcp(north)>9 and hcp(north)<12 and hcp(south)>10
+(n3C or n3D or n3H) and calmWest and noFit and hcp(north)>8 and hcp(north)<12 and hcp(south)>10
 
 produce 1000
 action
@@ -134,8 +133,8 @@ average "1S-3H        " 100 * (oneSpade and n3H),
 Script
 Button,3-under Inv. Jump,\n\
 --- 3 Under Invitational Jump\n\
-1!S - 3!C，3!D，or 3!H\n\
-1!H - 3!C or 3!D\n\
-1!D - 3!C\n\
-Show a good 6+ card suit with 10-12 HCP and deny 3-card support for opener’s major\n\
+• 1!S - 3!C，3!D，or 3!H\n\
+• 1!H - 3!C or 3!D\n\
+• 1!D - 3!C\n\
+Show a good 6+ card suit with 9-11 HCP and deny 3-card support for opener’s major.\n\
 %InvitationalJump3Under%

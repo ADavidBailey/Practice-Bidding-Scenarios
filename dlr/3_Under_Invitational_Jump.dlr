@@ -4,64 +4,73 @@
 dealer south
 
 
+# convention-card: GIB-NoFitJump
+# auction-filter: Auction.....\\n(1D.Pass.3C)(1H.Pass.3[CD])(1S.Pass.3[CDH])
+
 # Robot 3 Under Invitational Jump (11-12 HCP)
 
-## Predict North's opening bid ##
-# Calculate length points for north (lengthPoints)
-lp1 = spades(north)>4 ? spades(north)-4 : 0
-lp2 = hearts(north)>4 ? hearts(north)-4 : 0
-lp3 = diamonds(north)>4 ? diamonds(north)-4 : 0
-lp4 = clubs(north)>4 ? clubs(north)-4 : 0
+#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+##### Imported Script -- Predict Opening 1-Bid #####
+
+# Calculate length points for South (lengthPoints)
+lp1 = spades(south)>4 ? spades(south)-4 : 0
+lp2 = hearts(south)>4 ? hearts(south)-4 : 0
+lp3 = diamonds(south)>4 ? diamonds(south)-4 : 0
+lp4 = clubs(south)>4 ? clubs(south)-4 : 0
 lengthPoints = lp1 + lp2 + lp3 + lp4
 
-# Calculate doubleton honor NT downgrade(s) for north -- 2 cards, 1 honor, not the Ace
-S2H = spades(north)==2 and top4(north,spades)==1 and not hascard(north,AS) ? 1 : 0
-H2H = hearts(north)==2 and top4(north,hearts)==1 and not hascard(north,AH) ? 1 : 0
-D2H = diamonds(north)==2 and top4(north,diamonds)==1 and not hascard(north,AD) ? 1 : 0
-C2H = clubs(north)==2 and top4(north,clubs)==1 and not hascard(north,AC) ? 1 : 0
-ntDownGrade = S2H + H2H + D2H + C2H
+# Calculate doubleton honor NT downgrade(s) for South -- 2 cards, 1 honor, not the Ace
+S2H = spades(south)==2 and   top4(south,spades)>0   and not hascard(south,AS) ? 1 : 0
+H2H = hearts(south)==2 and   top4(south,hearts)>0   and not hascard(south,AH) ? 1 : 0
+D2H = diamonds(south)==2 and top4(south,diamonds)>0 and not hascard(south,AD) ? 1 : 0
+C2H = clubs(south)==2 and    top4(south,clubs)>0    and not hascard(south,AC) ? 1 : 0
+dgPoints = S2H + H2H + D2H + C2H
 
-# Define notrump points for north (ntPoints)
-ntPoints = hcp(north) + lengthPoints - ntDownGrade
+# Define notrump points for south (ntPoints)
+ntPoints = lengthPoints>dgPoints ? hcp(south) + lengthPoints - dgPoints : hcp(south)
 
-# Define suit points for north (suitPoints)
-suitPoints = hcp(north) + lengthPoints
+# Define suit points for south (suitPoints)
+suitPoints = hcp(south) + lengthPoints
 
-# Define robot notrump shape
-ntShape = shape(north, any 4333 +any 4432 +any 5332 +any 5422)
+# Define robot notrump shape and exclude any 5card 
+ntShape = shape(south, any 4333 +any 4432 +any 5332 +any 5422 -5xxx -x5xx)
 
 # Define ntPoint ranges
-oneNT = ntShape and ntPoints>14 and ntPoints<18
+oneNT   = ntShape and ntPoints>14 and ntPoints<18
+twoNT   = ntShape and ntPoints>19 and ntPoints<22
+threeNT = ntShape and ntPoints>25 and ntPoints<28
+weakNT  = ntShape and ntPoints>10 and ntPoints<15
 
-# Define Game Force 2C
-gameForce2C = suitPoints>21
+# Define Game Forcing 2C
+case1 = hcp(south)>22
+case2 = hcp(south)>18 and losers(south)<5 and (spades(south)>5 or hearts(south)>5)
+case3 = hcp(south)>18 and losers(south)<4 and (diamonds(south)>5 or clubs(south)>5)
+gameForce2C = (case1 or case2 or case3) and not threeNT
 
-### Predict north's opening BID
+### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or oneNT
+P2 = P1 or threeNT or twoNT or oneNT // or weakNT  weakNT will be duplicated diamond and club openings
 
-# Predict north's Opening suit
-s = spades(north)
-h = hearts(north)
-d = diamonds(north)
-c = clubs(north)
-s1Range = suitPoints>11 and suitPoints<22
+# Predict South's Opening suit
+s = spades(south)
+h = hearts(south)
+d = diamonds(south)
+c = clubs(south)
+s1Range = suitPoints>11 and hcp(south)>9
 oS = s>4 and s>=h and s>=d and s>=c and s1Range and not P2
 oH = not oS and h>4 and h>=d and h>=c and s1Range and not P2
 oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and s1Range and not P2
 oC = not (oS or oH or oD) and s1Range and not P2
 openingSuit = (oS or oH or oD or oC)
-oneSpade   = oS
-oneHeart   = oH
+oneSpade = oS
+oneHeart = oH
 oneDiamond = oD
-oneClub    = oC
-## End of predict north's opening bid ##
+oneClub = oC
 
-# Define NoMajorFit
-sFit = oneSpade and spades(south)<2
-hFit = oneHeart and hearts(south)<2
-noMajorFit = not (sFit or hFit)
+##### End of Imported Script -- Predict Opening 1-Bid #####
+# Defines oneClub, oneSpade, oneHeart, oneDiamond
 
+#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
 ##### Imported Script: Define Calm Opponents #####
 
 # Avoid concentration of values
@@ -88,23 +97,40 @@ calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<1
 calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
+# Define calmWest, calmEast, and calmOpps
+
+# Define NoFit
+sFit = oneSpade and spades(north)>2
+hFit = oneHeart and hearts(north)>2
+dFit = oneDiamond and diamonds(north)>3
+noFit = not (sFit or hFit or dFit)
+
+# Define North's good suits -- 6+ cards with at least AK, AQ, or KQJ
+goodHearts   = hearts(north)>5   and top5(north,hearts)  >2 and hcp(north,hearts)>5
+goodDiamonds = diamonds(north)>5 and top5(north,diamonds)>2 and hcp(north,diamonds)>5
+goodClubs    = clubs(north)>5    and top5(north,clubs)   >2 and hcp(north,clubs)>5
+
+# north does NOT have a major
+noMajorNorth = spades(north)<4 and hearts(north)<4
+
+n3C = (oneDiamond or oneHeart or oneSpade) and goodClubs and noMajorNorth
+n3D = (oneHeart or oneSpade) and goodDiamonds and noMajorNorth
+n3H = (oneSpade) and goodHearts
+
+# reduce responder's hcp to avoid 2/1
+# (Predict South's opening bid sometimes opens w/10hcp
+# Now do it 
+(n3C or n3D or n3H) and calmWest and noFit and hcp(north)>9 and hcp(north)<12 and hcp(south)>10
+
+action
+average "hcp(south)" hcp(south),
+average "hcp(north)" hcp(north),
+average "1D-3C        " 100 * (oneDiamond and n3C),
+average "1H-3C        " 100 * (oneHeart and n3C),
+average "1H-3D        " 100 * (oneHeart and n3D),
+average "1S-3C        " 100 * (oneSpade and n3C),
+average "1S-3D        " 100 * (oneSpade and n3D),
+average "1S-3H        " 100 * (oneSpade and n3H),
 
 
-# Define South's good suits -- 6+ cards with 2 of the top 3
-goodHearts   = hearts(south)>5   and top3(south,hearts)  >1 and oneSpade  //only if north opened 1 spade
-goodDiamonds = diamonds(south)>5 and top3(south,diamonds)>1 and (oneSpade or oneHeart)
-goodClubs    = clubs(south)>5    and top3(south,clubs)   >1 
-
-# South does NOT have a major
-noMajorSouth = spades(south)<4 and hearts(south)<4
-
-
-# Now do it.
-(oneSpade or (oneHeart and noMajorSouth) or (oneDiamond and noMajorSouth)) // these include 12-21 suitPoints
-and calmEast
-and noMajorFit
-and hcp(south)>10 and hcp(south)<13
-and (goodHearts or goodDiamonds or goodClubs)
-
-
-action printpbn
+printpbn
