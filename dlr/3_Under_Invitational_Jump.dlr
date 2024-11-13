@@ -4,10 +4,10 @@
 dealer south
 
 
-# convention-card: GIB-NoFitJump
+# convention-card: 21GF-3UJ
 # auction-filter: Auction.....\\n(1D.Pass.3C)(1H.Pass.3[CD])(1S.Pass.3[CDH])
 
-# Robot 3 Under Invitational Jump (11-12 HCP)
+# Robot 3 Under Invitational Jump (9-11 HCP)
 
 #Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 ##### Imported Script -- Predict Opening 1-Bid #####
@@ -117,10 +117,9 @@ n3C = (oneDiamond or oneHeart or oneSpade) and goodClubs and noMajorNorth
 n3D = (oneHeart or oneSpade) and goodDiamonds and noMajorNorth
 n3H = (oneSpade) and goodHearts
 
-# reduce responder's hcp to avoid 2/1
 # (Predict South's opening bid sometimes opens w/10hcp
 # Now do it 
-(n3C or n3D or n3H) and calmWest and noFit and hcp(north)>9 and hcp(north)<12 and hcp(south)>10
+(n3C or n3D or n3H) and calmWest and noFit and hcp(north)>8 and hcp(north)<12 and hcp(south)>10
 
 action
 average "hcp(south)" hcp(south),
