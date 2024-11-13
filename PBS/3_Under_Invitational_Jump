@@ -96,10 +96,10 @@ calmOpps = calmEast and calmWest
 ##### End of Imported Script: Define Calm Opponents #####
 # Define calmWest, calmEast, and calmOpps
 
-# Define NoMajorFit
-sFit = oneSpade and spades(north)<2
-hFit = oneHeart and hearts(north)<2
-dFit = oneDiamond and diamonds(north)<3
+# Define NoFit
+sFit = oneSpade and spades(north)>2
+hFit = oneHeart and hearts(north)>2
+dFit = oneDiamond and diamonds(north)>3
 noFit = not (sFit or hFit or dFit)
 
 # Define North's good suits -- 6+ cards with at least AK, AQ, or KQJ
