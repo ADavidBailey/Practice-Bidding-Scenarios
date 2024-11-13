@@ -114,8 +114,10 @@ n3C = (oneDiamond or oneHeart or oneSpade) and goodClubs and noMajorNorth
 n3D = (oneHeart or oneSpade) and goodDiamonds and noMajorNorth
 n3H = (oneSpade) and goodHearts
 
-# Now do it (Predict South's opening bid sometimes opens w10hcp
-(n3C or n3D or n3H) and calmWest and noFit and hcp(north)>10 and hcp(north)<13 and hcp(south)>10
+# reduce responder's hcp to avoid 2/1
+# (Predict South's opening bid sometimes opens w/10hcp
+# Now do it 
+(n3C or n3D or n3H) and calmWest and noFit and hcp(north)>9 and hcp(north)<12 and hcp(south)>10
 
 produce 1000
 action
