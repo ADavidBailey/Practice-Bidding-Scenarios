@@ -108,14 +108,22 @@ goodClubs    = clubs(north)>5    and top3(north,clubs)   >1
 # north does NOT have a major
 noMajorNorth = spades(north)<4 and hearts(north)<4
 
-n3C = (oneDiamond or oneHeart or oneSpade)) and goodClubs and noMajorNorth
-n3D = (oneHeart or oneSpade)) and goodDiamonds and noMajorNorth
-n3H = (oneSpade)) and goodHearts
+n3C = (oneDiamond or oneHeart or oneSpade) and goodClubs and noMajorNorth
+n3D = (oneHeart or oneSpade) and goodDiamonds and noMajorNorth
+n3H = (oneSpade) and goodHearts
 
 # Now do it.
 #(oneSpade or (oneHeart and noMajorSouth) or (oneDiamond and noMajorSouth)) // these include 12-21 suitPoints
 
 (n3C or n3D or n3H) and calmWest and noMajorFit and hcp(north)>10 and hcp(north)<13
+
+produce 1000
+action
+average "hcp(south)" hcp(south),
+average "hcp(north)" hcp(north),
+average "3C        " 100 * n3C,
+average "3D        " 100 * n3D,
+average "3H        " 100 * n3H,
 
 `, "S", true);
 Script
