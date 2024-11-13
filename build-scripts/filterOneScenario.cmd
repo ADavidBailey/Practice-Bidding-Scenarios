@@ -57,19 +57,20 @@ exit /b
 
 :: ----------------- Replace all \n with [\s\S][\s\S] --------------------
 
-@echo off
-setlocal enabledelayedexpansion
+::@echo off
+::setlocal enabledelayedexpansion
 
-set "input=%this_filter%"
-set "output="
+::set "input=%this_filter%"
+::set "output="
 
-rem Replace all occurrences of \n with [\s\S][\s\S] -- Help me change this to \r?\n
-for %%A in ("!input:\n=[\s\S][\s\S]!") do (
+::rem Replace all occurrences of \n with [\s\S][\s\S] -- Help me change this to \r?\n
+::for %%A in ("!input:\n=[\s\S][\s\S]!") do (
     set "output=%%~A"
-)
+::)
 
-echo %input%
-echo %output%
+::echo %input%
+::echo %output%
+set output=!%filter%! 
 
 :: ------------------ Thank You, ChatGPT! --------------------------------
 echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %output% P:\bba-filtered\%scenario%.pbn --PDF /noui
