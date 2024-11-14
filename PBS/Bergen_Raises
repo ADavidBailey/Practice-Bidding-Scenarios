@@ -2,7 +2,7 @@ Script,BergenRaises
 setDealerCode(`
 
 # convention-card: 21GF-Bergen
-# auction-filter: 1[HS].Pass.3[CDHSN]
+# auction-filter: auction.....\\n1[HS].Pass.
 
 # Bergen Raises
 dealer north
@@ -29,44 +29,46 @@ hOpener = not NT and not sOpener and hearts(north) >=5 and hearts(north) >= diam
 # Define suit fit w/4-card support
 sFit = sOpener and spades(south)==4
 hFit = hOpener and hearts(south)==4
+fit = sFit or hFit
+nOpens = fit and hcp(north)>11 and hcp(north)<22
 
 
 # 3M = Preemptive Raise 0-6 TP
-case3M = tp<7
+case3M = tp<7 and nOpens
 
 # 3C = Constructive 7-10 TP
-case3C = tp>6 and tp<11
+case3C = tp>6 and tp<11 and nOpens
 
 # 3oM = Ambiguous Splinter 12+ TP
-case3oM = tp>11 and shape(south, any 14xx+any 04xx)
+case3oM = tp>11 and shape(south, any 14xx+any 04xx) and nOpens
 
 # 3N = 4333 13-15 TP/HCP
-case3N = tp>12 and tp<16 and shape(south, any 4333)
+case3N = tp>12 and tp<16 and shape(south, any 4333) and nOpens
 
 # 3D = Limit Raise 11-12 TP
-case3D = tp>10 and tp<13 and not (case3oM or case3N)
+case3D = tp>10 and tp<13 and not (case3oM or case3N) and nOpens
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 # These need to be in the same order as the statistics
-l2 = case3C and keep03
-l5 = case3D and keep06
-l3 = case3oM and keep045
-l1 = case3M and keep06
-l4 = case3N and keep
+l2 = case3C  and keep14
+l5 = case3D  and keep19
+l3 = case3oM and keep19
+l1 = case3M  and keep
+l4 = case3N  and keep
 levelTheDeal = l1 or l2 or l3 or l4 or l5
 
 # Now do it
-hcp(north)>11 and (sFit or hFit) and (case3M or case3C or case3oM or case3N or case3D) and calmOpps
+nOpens and (case3M or case3C or case3oM or case3N or case3D)
 and levelTheDeal
 
 produce 5000
 action
-average "3C   7-10 TP   " 100 * case3C,
-average "3D  11-12 TP   " 100 * case3D,
-average "3oM 11-13 4441 " 100 * case3oM,
-average "3M   0-6  TP   " 100 * case3M,
-average "3N  13-15 4333 " 100 * case3N,
+average "3C   7-10 TP      " 100 * case3C,
+average "3D  11-12 TP      " 100 * case3D,
+average "3oM 11-13 41/40xx " 100 * case3oM,
+average "3M   0-6  TP      " 100 * case3M,
+average "3N  13-15 4333    " 100 * case3N,
 
 
 `, "N", true);
