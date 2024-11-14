@@ -64,7 +64,9 @@ set "input=%this_filter%"
 set "output="
 
 rem Replace all occurrences of \n with [\s\S][\s\S] -- Help me change this to \r?\n
-for %%A in ("!input:\n=[\s\S][\s\S]!") do (
+
+::for %%A in ("!input:\\n=\r?\n!") do (    -- I thought this should work; but it does NOT.
+for %%A in ("!input:\\n=[\s\S][\s\S]!") do (
     set "output=%%~A"
 )
 
