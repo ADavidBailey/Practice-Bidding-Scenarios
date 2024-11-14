@@ -2,7 +2,7 @@
 % EXPORT
 %Content-type: text/x-pbn; charset=ISO-8859-1
 %Creator: BridgeComposer Version 5.108
-%Created: Thu Nov 14 11:10:24 2024 -0600
+%Created: Thu Nov 14 12:25:34 2024 -0600
 %BCOptions Center STBorder STShade
 %BidAndCardSpacing Thin
 %BoardsPerPage 1
@@ -62,6 +62,7 @@
 % 1-2 - Fourth suit game force
 % 1-2 - Gerber
 % 1-2 - Inverted minors
+% 1-2 - Jacoby 2NT
 % 1-2 - Jordan Truscott 2NT
 % 1-2 - King ask by 5NT
 % 1-2 - Leaping Michaels
@@ -171,8 +172,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -228,11 +232,18 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1430"]
 [Auction "N"]
-1S Pass 2C Pass
-3H Pass 4S Pass
-4NT =1= Pass 5S Pass
+1S Pass 2NT =1= Pass
+3C =2= Pass 3D =3= Pass
+3S Pass 4C =4= Pass
+4H =5= Pass 4S Pass
+4NT =6= Pass 5S Pass
 6S Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Cue bid, a !C stopper"]
+[Note "5:Cue bid, surplus"]
+[Note "6:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -258,9 +269,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-3C Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -278,16 +289,20 @@ Pass Pass
 [Deal "N:AK.K9653.T.KJT53 8654.74.A9864.Q2 QJ2.AQ82.J52.A98 T973.JT.KQ73.764"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+4C Pass 4NT =2= Pass
+5H Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -313,9 +328,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -341,9 +356,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -361,16 +376,21 @@ Pass Pass
 [Deal "N:5.AKJ43.KT6.AJ72 QT943.76.Q752.Q5 KJ2.QT85.AJ8.K64 A876.92.943.T983"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4H Pass
+4NT =3= Pass 5D Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -489,8 +509,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3C =2= Pass 3S =3= Pass
+4C =4= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !S stopper"]
+[Note "4:Cue bid, a !D stopper"]
 [Play "E"]
 *
 
@@ -516,9 +542,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -620,20 +646,24 @@ Pass Pass
 [Deal "N:Q7532.A9.K93.AJT KJT.T654.J85.963 9864.KQJ.AT6.KQ5 A.8732.Q742.8742"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4S"]
+[Contract "5S"]
 [Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 420"]
+[Score "NS -50"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-3NT =1= Pass 4C =2= Pass
-4S Pass Pass Pass
-[Note "1:Cue bid, surplus"]
+1S Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4D =3= Pass 4H =4= Pass
+4NT =5= Pass 5D Pass
+5S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Note "2:Cue bid, a !C stopper"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Cue bid, surplus"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -659,11 +689,13 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1430"]
 [Auction "N"]
-1S Pass 2C Pass
-3D Pass 3S Pass
-4NT =1= Pass 5S Pass
+1S Pass 2NT =1= Pass
+3H =2= Pass 3S Pass
+4NT =3= Pass 5S Pass
 6S Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !H"]
+[Note "3:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -717,11 +749,13 @@ Pass Pass
 [Room "Open"]
 [Score "NS 980"]
 [Auction "N"]
-1S Pass 2C Pass
-3D Pass 4S Pass
-4NT =1= Pass 5H Pass
+1S Pass 2NT =1= Pass
+3H =2= Pass 4S Pass
+4NT =3= Pass 5H Pass
 6S Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !H"]
+[Note "3:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -805,8 +839,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -938,19 +973,24 @@ Pass Pass
 [Deal "N:AJT865.64.AT6.AJ 2.KT73.873.97643 KQ93.J92.KJ4.KQT 74.AQ85.Q952.852"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6N"]
-[Result "8"]
+[Contract "5S"]
+[Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -200"]
+[Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2S Pass 4S Pass
-4NT =1= Pass 5D Pass
-6NT Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4D =3= Pass 4H =4= Pass
+4NT =5= Pass 5D Pass
+5S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Cue bid, surplus"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -976,9 +1016,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-3C Pass 4S Pass
+1S Pass 2NT =1= Pass
+3H =2= Pass 4S Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !H"]
 [Play "E"]
 *
 
@@ -996,20 +1038,19 @@ Pass Pass
 [Deal "N:A43.K9643.AK76.K J9875.2.852.Q987 K.QT85.Q4.AJT543 QT62.AJ7.JT93.62"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "5N"]
-[Result "11"]
+[Contract "4H"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 460"]
+[Score "NS 480"]
 [Auction "N"]
-1H Pass 2C Pass
-3D Pass 4H Pass
-4NT =1= Pass 5D Pass
-5S Pass 5NT Pass
+1H Pass 2NT =1= Pass
+3C =2= Pass 4H Pass
 Pass Pass
-[Note "1:Blackwood 0314, for !H"]
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
 [Play "E"]
 *
 
@@ -1035,8 +1076,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1092,8 +1134,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1175,9 +1218,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2D Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1203,8 +1246,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1282,22 +1326,23 @@ Pass Pass
 [Deal "N:KQT763.A53.T.QJ2 .T974.85432.K873 AJ92.K62.K96.AT4 854.QJ8.AQJ7.965"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6S"]
+[Contract "5S"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -100"]
+[Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2S Pass 3S Pass
-4D =1= Pass 4H =2= Pass
-4NT =3= Pass 5S Pass
-6S Pass Pass Pass
-[Note "1:Cue bid, a !D stopper"]
-[Note "2:Cue bid, a !C stopper"]
-[Note "3:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+3D =2= Pass 3H =3= Pass
+4H =4= Pass 4NT =5= Pass
+5S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Cue bid, a !H stopper"]
+[Note "4:Cue bid, a !H stopper"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -1352,8 +1397,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1399,16 +1445,20 @@ Pass Pass
 [Deal "N:KQ.AQJ97.AJ865.Q J532.64.KT.98532 AT8.KT32.Q94.KJT 9764.85.732.A764"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 480"]
+[Score "NS 980"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+4D Pass 4NT =2= Pass
+5S Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -1434,8 +1484,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1461,8 +1512,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1607,8 +1659,10 @@ Pass Pass
 [Room "Open"]
 [Score "NS 680"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1626,16 +1680,21 @@ Pass Pass
 [Deal "N:6.QT862.AKQ3.A94 KQ87.A4.976.8732 AJ4.KJ73.JT8.QJ6 T9532.95.542.KT5"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS -50"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4H Pass
+4NT =3= Pass 5S Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -1689,12 +1748,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-4D =1= Pass 4H =2= Pass
+1S Pass 2NT =1= Pass
 4S Pass Pass Pass
-[Note "1:Cue bid, a !D stopper"]
-[Note "2:Cue bid, a !C stopper"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1804,9 +1860,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1S Pass 4H =1= Pass
+1S Pass 2NT =1= Pass
 4S Pass Pass Pass
-[Note "1:Splinter"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1882,24 +1938,24 @@ Pass Pass
 [Vulnerable "NS"]
 [Deal "N:KQJT2.96.AQJ64.9 854.82.K72.J7543 A963.AKQJT.5.AK6 7.7543.T983.QT82"]
 [Scoring "MP"]
-[Declarer "S"]
-[Contract "7N"]
+[Declarer "N"]
+[Contract "6S"]
 [Result "13"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 2220"]
+[Score "NS 1460"]
 [Auction "N"]
-1S Pass 2H Pass
-4C =1= Pass 4D =2= Pass
-4H Pass 4NT =3= Pass
-5D Pass 7NT Pass
-Pass Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Blackwood 0314, for !H"]
-[Play "W"]
+1S Pass 2NT =1= Pass
+3C =2= Pass 4D =3= Pass
+4NT =4= Pass 5C Pass
+6S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Splinter"]
+[Note "4:Blackwood 0314, for !S"]
+[Play "E"]
 *
 
 [Event ""]
@@ -2002,16 +2058,24 @@ Pass Pass
 [Deal "N:AQ9.AKQ63.92.K74 KT54.7.JT73.J865 J76.JT84.AKQ.A93 832.952.8654.QT2"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "7H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 480"]
+[Score "NS -50"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3H Pass 3NT =2= Pass
+4C =3= Pass 4D =4= Pass
+4NT =5= Pass 5S Pass
+7H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, surplus"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Cue bid, a !D stopper"]
+[Note "5:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -2184,9 +2248,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -2240,8 +2304,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -2259,16 +2326,23 @@ Pass Pass
 [Deal "N:KJ64.AJ732.K9.A4 AT7.984.T76.KJ87 Q82.KQT6.AJ8.Q93 953.5.Q5432.T652"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 650"]
+[Score "NS -100"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3H Pass 4D =2= Pass
+4S =3= Pass 4NT =4= Pass
+5S Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !D stopper"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -2327,8 +2401,10 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+4D Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -2354,8 +2430,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS -100"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -2381,9 +2458,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4C =1= Pass
+1H Pass 2NT =1= Pass
 4H Pass Pass Pass
-[Note "1:Splinter"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -2525,8 +2602,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 680"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -2552,8 +2630,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
 [Play "E"]
 *
 
@@ -2625,7 +2706,7 @@ Pass Pass
 [Deal "N:KJ876.63.KT76.AQ T2.J874.J542.KT3 AQ53.KQ9.A83.974 94.AT52.Q9.J8652"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "5S"]
+[Contract "4S"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -2633,14 +2714,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-3D Pass 3S Pass
-4C =1= Pass 4D =2= Pass
-4NT =3= Pass 5S Pass
-Pass Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -2666,11 +2742,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1430"]
 [Auction "N"]
-1H Pass 4D =1= Pass
+1H Pass 2NT =1= Pass
 4H Pass 4NT =2= Pass
 5S Pass 6H Pass
 Pass Pass
-[Note "1:Splinter"]
+[Note "1:Jacoby 2NT"]
 [Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
@@ -2689,16 +2765,23 @@ Pass Pass
 [Deal "N:QJ.Q9742.AKQ3.A6 T962.8.9762.Q932 A43.AKJT.JT5.754 K875.653.84.KJT8"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 480"]
+[Score "NS 980"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3H Pass 3S =2= Pass
+4C =3= Pass 4H Pass
+4NT =4= Pass 5C Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !S stopper"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -2724,9 +2807,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4C =1= Pass
+1H Pass 2NT =1= Pass
 4H Pass Pass Pass
-[Note "1:Splinter"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -2815,8 +2898,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
 [Play "E"]
 *
 
@@ -2894,22 +2980,21 @@ Pass Pass
 [Deal "N:A83.AQ964.9.QJ54 KJ75.85.J82.8763 962.KJ73.AK543.A QT4.T2.QT76.KT92"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "7HX"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -200"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4C =1= Pass
-4H Pass 4NT =2= Pass
-5S Pass 5NT =3= Pass
-6C Pass 7H X
-Pass Pass Pass
-[Note "1:Splinter"]
-[Note "2:Blackwood 0314, for !H"]
-[Note "3:King ask by 5NT"]
+1H Pass 2NT =1= Pass
+3D =2= Pass 3H Pass
+4NT =3= Pass 5C Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -2935,8 +3020,11 @@ Pass Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -2988,16 +3076,18 @@ Pass Pass
 [Deal "N:JT84.AJ982.KQ.A6 96.K54.T9743.Q43 AQ2.Q763.A52.K95 K753.T.J86.JT872"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3NT Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -3023,13 +3113,12 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1510"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4NT =1= Pass
-5H Pass 5NT =2= Pass
-6C Pass 7S Pass
+1S Pass 2NT =1= Pass
+4S Pass 4NT =2= Pass
+5S Pass 7S Pass
 Pass Pass
-[Note "1:Blackwood 0314, for !H"]
-[Note "2:King ask by 5NT"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -3055,8 +3144,13 @@ Pass Pass
 [Room "Open"]
 [Score "NS 680"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3C =2= Pass 3D =3= Pass
+3H Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !D stopper"]
 [Play "E"]
 *
 
@@ -3074,7 +3168,7 @@ Pass Pass
 [Deal "N:J982.KQ873.A.A87 AT63.52.JT863.J4 KQ7.AJT4.K97.QT6 54.96.Q542.K9532"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "5H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -3082,8 +3176,15 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 3H Pass
+4C =3= Pass 4H Pass
+4NT =4= Pass 5D Pass
+5H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -3129,22 +3230,17 @@ Pass Pass
 [Deal "N:KJT95.KT8.J5.AJ7 Q82.A764.863.K63 A643.QJ9.AQ7.QT5 7.532.KT942.9842"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6S"]
+[Contract "4S"]
 [Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -200"]
+[Score "NS 620"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-4C =1= Pass 4D =2= Pass
-4NT =3= Pass 5H Pass
-6S Pass Pass Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -3162,21 +3258,17 @@ Pass Pass
 [Deal "N:QJ743.Q7.AJ87.K8 A852.J86.K5.7643 KT96.AK4.642.AJT .T9532.QT93.Q952"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6S"]
+[Contract "4S"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -50"]
+[Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-3D Pass 3S Pass
-4C =1= Pass 4NT =2= Pass
-5D Pass 6S Pass
-Pass Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -3202,8 +3294,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -3259,9 +3354,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -3279,16 +3374,24 @@ Pass Pass
 [Deal "N:7.K7643.AK2.AJT6 K9432.A8.T853.84 AQT.QJ92.QJ4.K95 J865.T5.976.Q732"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 3NT =3= Pass
+4D =4= Pass 4NT =5= Pass
+5C Pass 5H Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Cue bid, surplus"]
+[Note "4:Cue bid, surplus"]
+[Note "5:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -3314,9 +3417,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1S Pass 2C Pass
-2S Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -3459,8 +3562,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -3486,13 +3590,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 4D =1= Pass
-4H =2= Pass 4S Pass
-4NT =3= Pass 5C Pass
+1S Pass 2NT =1= Pass
+3C =2= Pass 4D =3= Pass
+4H =4= Pass 4S Pass
+4NT =5= Pass 5C Pass
 5S Pass Pass Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Splinter"]
+[Note "4:Cue bid, surplus"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -3518,10 +3625,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS -100"]
 [Auction "N"]
-1H Pass 3D =1= Pass
-3H Pass 4H Pass
-Pass Pass
-[Note "1:Bergen"]
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -3575,12 +3681,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-4C =1= Pass 4D =2= Pass
+1S Pass 2NT =1= Pass
 4S Pass Pass Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, a !D stopper"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -3888,12 +3991,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-4D =1= Pass 4H =2= Pass
+1S Pass 2NT =1= Pass
 4S Pass Pass Pass
-[Note "1:Cue bid, a !D stopper"]
-[Note "2:Cue bid, a !C stopper"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -3911,16 +4011,23 @@ Pass Pass
 [Deal "N:K42.Q7632.7.AKQ2 Q75.T.J9542.J973 AT6.AJ84.AQ3.T84 J983.K95.KT86.65"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 3H Pass
+4C =3= Pass 4NT =4= Pass
+5D Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -4005,8 +4112,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3C =2= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
 [Play "E"]
 *
 
@@ -4149,9 +4259,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -4169,16 +4279,21 @@ Pass Pass
 [Deal "N:A9.AKT95.J732.Q3 Q842.Q7.T54.J654 T65.J643.AQ6.AK9 KJ73.82.K98.T872"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS -50"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4NT =3= Pass 5S Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -4196,16 +4311,20 @@ Pass Pass
 [Deal "N:98.J9654.AKQJ3.A QJ73.K83.T9.J842 AT4.AQ72.752.K76 K652.T.864.QT953"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+4D Pass 4NT =2= Pass
+5S Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -4348,9 +4467,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS -100"]
 [Auction "N"]
-1S Pass 2C Pass
-2S Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -4368,23 +4487,17 @@ Pass Pass
 [Deal "N:K9862.AJ2.65.A87 Q43.QT96.Q92.K93 AT75.K.AKJ74.Q54 J.87543.T83.JT62"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6S"]
+[Contract "4S"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -100"]
+[Score "NS 650"]
 [Auction "N"]
-1S Pass 2D Pass
-2NT Pass 3S Pass
-4C =1= Pass 4D =2= Pass
-4S Pass 4NT =3= Pass
-5C Pass 5S Pass
-6S Pass Pass Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -4445,12 +4558,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4C =1= Pass
-4D =2= Pass 4NT =3= Pass
+1H Pass 2NT =1= Pass
+3H Pass 3S =2= Pass
+4C =3= Pass 4NT =4= Pass
 5H Pass Pass Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Blackwood 0314, for !H"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !S stopper"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -4524,7 +4639,7 @@ Pass Pass
 [Deal "N:3.QT932.K986.AK7 AT4.87.T52.Q8643 KQ865.K654.AJ3.J J972.AJ.Q74.T952"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "5H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -4532,9 +4647,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4C =1= Pass
-4H Pass Pass Pass
-[Note "1:Splinter"]
+1H Pass 2NT =1= Pass
+3S =2= Pass 4C =3= Pass
+4NT =4= Pass 5H Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -4588,8 +4708,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -4640,16 +4763,21 @@ Pass Pass
 [Deal "N:K.AKJ86.KQJ.Q983 Q9876.Q4.92.J742 AT2.T732.A84.AK6 J543.95.T7653.T5"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 480"]
+[Score "NS 980"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4NT =3= Pass
+5S Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -4675,8 +4803,12 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 4C =3= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -4702,10 +4834,12 @@ Pass Pass
 [Room "Open"]
 [Score "NS 980"]
 [Auction "N"]
-1H Pass 4NT =1= Pass
+1H Pass 2NT =1= Pass
+4D Pass 4NT =2= Pass
 5S Pass 6H Pass
 Pass Pass
-[Note "1:Blackwood 0314, for !H"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -4731,9 +4865,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -4759,9 +4893,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -4903,21 +5037,18 @@ Pass Pass
 [Deal "N:KQJ52.A54.T4.AT2 63.J86.A6532.874 AT97.KQ9.QJ7.QJ5 84.T732.K98.K963"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6S"]
+[Contract "4S"]
 [Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -200"]
+[Score "NS 620"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-3NT =1= Pass 4S Pass
-4NT =2= Pass 5D Pass
-6S Pass Pass Pass
-[Note "1:Cue bid, surplus"]
-[Note "2:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+3NT Pass 4S Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -4971,8 +5102,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -5020,7 +5152,7 @@ Pass Pass
 [Deal "N:A9842.Q95.Q4.KQT 7.T74.A9732.J973 QJT3.AKJ8.KJ65.A K65.632.T8.86542"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "5S"]
+[Contract "4S"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -5028,14 +5160,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1S Pass 2D Pass
-2NT Pass 3S Pass
-4C =1= Pass 4H =2= Pass
-4NT =3= Pass 5S Pass
-Pass Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -5061,8 +5188,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -5349,16 +5479,18 @@ Pass Pass
 [Deal "N:K5.AQ632.Q6.QJ65 QJ4.T97.J972.AT3 AT7.KJ85.AK4.972 98632.4.T853.K84"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS -50"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3NT Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -5405,18 +5537,19 @@ Pass Pass
 [Vulnerable "None"]
 [Deal "N:K9.AK965.J5.K852 AT82.J3.T873.T96 Q63.T842.AKQ.Q73 J754.Q7.9642.AJ4"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "4H"]
+[Declarer "S"]
+[Contract "3N"]
 [Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 420"]
+[Score "NS 430"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
-[Play "E"]
+1H Pass 2NT =1= Pass
+3NT Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Play "W"]
 *
 
 [Event ""]
@@ -5441,9 +5574,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -5461,16 +5594,24 @@ Pass Pass
 [Deal "N:T72.AKJT82.A.KJ2 J653.9.KT976.T86 A84.Q754.J84.AQ9 KQ9.63.Q532.7543"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 3S =3= Pass
+4D =4= Pass 4H Pass
+4NT =5= Pass 5S Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Cue bid, a !S stopper"]
+[Note "4:Cue bid, a !D stopper"]
+[Note "5:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -5674,9 +5815,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1S Pass 2C Pass
-3C Pass 4S Pass
+1S Pass 2NT =1= Pass
+3D =2= Pass 3H =3= Pass
+3S Pass 4D =4= Pass
+4H =5= Pass 4S Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Cue bid, a !H stopper"]
+[Note "4:Cue bid, a !D stopper"]
+[Note "5:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -5702,15 +5850,12 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1430"]
 [Auction "N"]
-1H Pass 2C Pass
-2NT Pass 3H Pass
-3S =1= Pass 3NT =2= Pass
-4H Pass 4NT =3= Pass
+1H Pass 2NT =1= Pass
+4H Pass 4NT =2= Pass
 5D Pass 6H Pass
 Pass Pass
-[Note "1:Cue bid, a !S stopper"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Blackwood 0314, for !H"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -5736,11 +5881,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 980"]
 [Auction "N"]
-1S Pass 2C Pass
-3S Pass 4NT =1= Pass
-5C Pass 6S Pass
+1S Pass 2NT =1= Pass
+3S Pass 4C =2= Pass
+4H =3= Pass 4NT =4= Pass
+5C Pass 5D Pass
+6D Pass 6S Pass
 Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Cue bid, surplus"]
+[Note "4:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -5758,23 +5908,18 @@ Pass Pass
 [Deal "N:A6.AK643.65.QJT8 QT87.85.K42.K753 KJ43.JT72.AQJ9.A 952.Q9.T873.9642"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6H"]
+[Contract "5H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 1430"]
+[Score "NS 680"]
 [Auction "N"]
-1H Pass 4C =1= Pass
-4D =2= Pass 4NT =3= Pass
-5C Pass 5NT =4= Pass
-6C Pass 6H Pass
+1H Pass 2NT =1= Pass
+3NT Pass 5H Pass
 Pass Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Blackwood 0314, for !H"]
-[Note "4:King ask by 5NT"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -5921,9 +6066,15 @@ Pass Pass
 [Room "Open"]
 [Score "NS 980"]
 [Auction "N"]
-1S Pass 2C Pass
-3NT Pass 6S Pass
+1S Pass 2NT =1= Pass
+3S Pass 3NT =2= Pass
+4C =3= Pass 4NT =4= Pass
+5S Pass 6S Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, surplus"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -5979,8 +6130,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -6093,9 +6245,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -6139,18 +6291,19 @@ Pass Pass
 [Vulnerable "None"]
 [Deal "N:A65.AT875.K97.K3 KT874.42.543.AT6 QJ3.KQ63.AJ2.Q42 92.J9.QT86.J9875"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "4H"]
+[Declarer "S"]
+[Contract "3N"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS 460"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
-[Play "E"]
+1H Pass 2NT =1= Pass
+3NT Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Play "W"]
 *
 
 [Event ""]
@@ -6209,9 +6362,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1S Pass 2C Pass
-3C Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -6229,16 +6382,20 @@ Pass Pass
 [Deal "N:AK.AQ7543.KJ5.65 T852.T96.A92.KJ2 J63.KJ82.Q73.AQ4 Q974..T864.T9873"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3H Pass 4NT =2= Pass
+5S Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -6349,16 +6506,22 @@ Pass Pass
 [Deal "N:3.KQ986.KJ.KJ953 AT742.J3.T752.87 K86.A742.A98.A64 QJ95.T5.Q643.QT2"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 480"]
+[Score "NS 980"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4C =3= Pass
+4NT =4= Pass 5C Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -6384,8 +6547,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -6411,9 +6575,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -6439,8 +6603,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -6466,8 +6631,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -6543,7 +6709,7 @@ Pass Pass
 [Deal "N:A982.AJ874.Q3.A7 QJ3.K63.976.T862 K54.QT92.AJ2.KQ4 T76.5.KT854.J953"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "5H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -6551,8 +6717,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 680"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass 4NT =3= Pass
+5C Pass 5H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -6600,20 +6772,19 @@ Pass Pass
 [Deal "N:AKJ74.AKT8..J652 6.J943.JT752.QT8 9853.Q62.KQ9.AK4 QT2.75.A8643.973"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6S"]
+[Contract "4S"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 980"]
+[Score "NS 480"]
 [Auction "N"]
-1S Pass 2C Pass
-3H Pass 4S Pass
-5D =1= Pass 5S Pass
-5NT Pass 6S Pass
+1S Pass 2NT =1= Pass
+3D =2= Pass 4S Pass
 Pass Pass
-[Note "1:Exclusion, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
 [Play "E"]
 *
 
@@ -6639,8 +6810,12 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 3S =3= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Cue bid, a !S stopper"]
 [Play "E"]
 *
 
@@ -6658,16 +6833,19 @@ Pass Pass
 [Deal "N:KT.K6532.AT62.AK 7632.T7.843.Q984 AQ9.AQJ8.J97.JT3 J854.94.KQ5.7652"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 480"]
+[Score "NS 980"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4NT =2= Pass 5S Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -6685,19 +6863,20 @@ Pass Pass
 [Deal "N:AKQ964.85.AQ7.K6 532.J62.432.J983 JT87.KQ3.K96.A54 .AT974.JT85.QT72"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6N"]
+[Contract "6S"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 1440"]
+[Score "NS 1430"]
 [Auction "N"]
-1S Pass 2C Pass
-3S Pass 4S Pass
-4NT =1= Pass 5D Pass
-6NT Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+4C Pass 4S Pass
+4NT =2= Pass 5D Pass
+6S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -6723,9 +6902,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -6809,8 +6988,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -6828,16 +7010,20 @@ Pass Pass
 [Deal "N:5.AKQ93.65.AQJ42 QT863.7.J983.T53 KJ7.T652.AK2.K86 A942.J84.QT74.97"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 480"]
+[Score "NS 980"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4C Pass 4H Pass
+4NT =2= Pass 5D Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -6863,8 +7049,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -6910,22 +7097,20 @@ Pass Pass
 [Deal "N:KJ9.AKQJ5.Q87.Q4 AQ73.732.6532.53 8.T964.AJT.AKT96 T6542.8.K94.J872"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "5H"]
+[Contract "6H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 650"]
+[Score "NS -100"]
 [Auction "N"]
-1H Pass 3S =1= Pass
-3NT =2= Pass 4C =3= Pass
-4NT =4= Pass 5H Pass
+1H Pass 2NT =1= Pass
+3H Pass 4NT =2= Pass
+5S Pass 6H Pass
 Pass Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Cue bid, a !C stopper"]
-[Note "4:Blackwood 0314, for !H"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -6951,9 +7136,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
+1S Pass 2NT =1= Pass
+3C =2= Pass 3D =3= Pass
+4C =4= Pass 4S Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -6971,16 +7161,20 @@ Pass Pass
 [Deal "N:J943.AKJT2.A6.A8 Q7.73.T942.T9653 K65.Q954.KQ5.QJ7 AT82.86.J873.K42"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 480"]
+[Score "NS 980"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4C Pass 4H Pass
+4NT =2= Pass 5C Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -7065,9 +7259,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1S Pass 3D =1= Pass
+1S Pass 2NT =1= Pass
 4S Pass Pass Pass
-[Note "1:Bergen"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -7115,19 +7309,19 @@ Pass Pass
 [Vulnerable "EW"]
 [Deal "N:Q9643.AQT8.AK.86 KJ7.93.Q975.J943 AT85.K65.JT3.KQ7 2.J742.8642.AT52"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "4S"]
-[Result "11"]
+[Declarer "S"]
+[Contract "3N"]
+[Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS 430"]
 [Auction "N"]
-1S Pass 2C Pass
-3H Pass 4S Pass
-Pass Pass
-[Play "E"]
+1S Pass 2NT =1= Pass
+3NT Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Play "W"]
 *
 
 [Event ""]
@@ -7152,9 +7346,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS -100"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -7240,8 +7434,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -7323,8 +7518,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -7466,9 +7662,10 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1S Pass 3D =1= Pass
-4S Pass Pass Pass
-[Note "1:Bergen"]
+1S Pass 2NT =1= Pass
+3NT Pass 4S Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -7494,8 +7691,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -7576,16 +7774,19 @@ Pass Pass
 [Deal "N:AK3.QJT73.AJ.A96 Q96.94.QT76.QJT4 874.AK52.K53.K87 JT52.86.9842.532"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 480"]
+[Score "NS 980"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4NT =2= Pass 5H Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -7633,7 +7834,7 @@ Pass Pass
 [Deal "N:A.A8762.QJ32.K95 QJ86.K43.96.JT84 K43.QJT5.K85.A62 T9752.9.AT74.Q73"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "5H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -7641,8 +7842,13 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4H Pass
+4NT =3= Pass 5D Pass
+5H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -7787,8 +7993,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -7842,11 +8049,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1430"]
 [Auction "N"]
-1S Pass 2C Pass
-3H Pass 4S Pass
-4NT =1= Pass 5H Pass
-6S Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+3S Pass 4D =2= Pass
+4H =3= Pass 4NT =4= Pass
+5C Pass 5D Pass
+5H Pass 6S Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !D stopper"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -7902,8 +8114,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -7929,9 +8142,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
+1S Pass 2NT =1= Pass
+3C =2= Pass 4S Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
 [Play "E"]
 *
 
@@ -7987,8 +8202,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3C =2= Pass 4C =3= Pass
+4D =4= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Cue bid, a !S stopper"]
 [Play "E"]
 *
 
@@ -8274,7 +8495,7 @@ Pass Pass
 [Deal "N:AT9642.AQ.74.A98 Q3.KT96.J53.QT72 KJ87.843.AK8.K65 5.J752.QT962.J43"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4S"]
+[Contract "5S"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -8282,9 +8503,13 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1S Pass 2C Pass
-2S Pass 4S Pass
+1S Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4NT =3= Pass 5S Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -8420,16 +8645,21 @@ Pass Pass
 [Deal "N:6.AKQ43.QJ6.AJ83 AT53.92.K8754.T5 KQ7.JT86.AT2.K92 J9842.75.93.Q764"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS -50"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4H Pass
+4NT =3= Pass 5D Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -8447,16 +8677,20 @@ Pass Pass
 [Deal "N:A9.T9874.A2.AQT3 Q863.Q3.8654.765 KJT.AKJ2.Q97.984 7542.65.KJT3.KJ2"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS -50"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4H Pass
+4NT =2= Pass 5S Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -8504,16 +8738,18 @@ Pass Pass
 [Deal "N:K97.K8432.K7.KQ5 QT82.QT5.943.JT8 AJ6.AJ96.AJ8.732 543.7.QT652.A964"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS -50"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3NT Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -8594,14 +8830,13 @@ Pass Pass
 [Room "Open"]
 [Score "NS -50"]
 [Auction "N"]
-1S Pass 4C =1= Pass
-4H =2= Pass 4S Pass
-5H =3= Pass 5NT Pass
-6C Pass 6S Pass
+1S Pass 2NT =1= Pass
+4C Pass 4S Pass
+5H =2= Pass 5NT Pass
+6D Pass 6S Pass
 Pass Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Exclusion, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Exclusion, for !S"]
 [Play "E"]
 *
 
@@ -8706,16 +8941,24 @@ Pass Pass
 [Deal "N:T542.AJ942.AK.A9 J6.Q73.QT85.T643 AK8.KT86.762.KQ8 Q973.5.J943.J752"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "7H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS -100"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3H Pass 3NT =2= Pass
+4C =3= Pass 4NT =4= Pass
+5C Pass 5D Pass
+6D Pass 7H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, surplus"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -8761,18 +9004,21 @@ Pass Pass
 [Deal "N:AKQT42.K96.2.KQT 86.Q42.AJ74.J982 9753.AJ8.KQ9.A76 J.T753.T8653.543"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "5S"]
+[Contract "6S"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1S Pass 2C Pass
-3S Pass 4NT =1= Pass
-5S Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+3D =2= Pass 4S Pass
+4NT =3= Pass 5H Pass
+6S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -8798,15 +9044,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1430"]
 [Auction "N"]
-1H Pass 3S =1= Pass
-3NT =2= Pass 4C =3= Pass
-4NT =4= Pass 5C Pass
-5H Pass 6H Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass 4NT =3= Pass
+5S Pass 6H Pass
 Pass Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Cue bid, a !C stopper"]
-[Note "4:Blackwood 0314, for !H"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -8862,8 +9107,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -8917,12 +9163,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-4D =1= Pass 4H =2= Pass
+1S Pass 2NT =1= Pass
 4S Pass Pass Pass
-[Note "1:Cue bid, a !D stopper"]
-[Note "2:Cue bid, a !C stopper"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -9001,17 +9244,24 @@ Pass Pass
 [Deal "N:A8742.KQ92.KJ3.5 QT6.87.AT4.JT986 K953.AT4.872.AK7 J.J653.Q965.Q432"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4S"]
+[Contract "6S"]
 [Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 620"]
+[Score "NS -200"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+3C =2= Pass 3S Pass
+4D =3= Pass 4H =4= Pass
+4NT =5= Pass 5C Pass
+6S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Cue bid, a !C stopper"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -9065,8 +9315,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -9140,7 +9393,7 @@ Pass Pass
 [Deal "N:JT963.AK54.AT3.K 75.QT72.KJ7.JT86 KQ82.863.Q86.AQ4 A4.J9.9542.97532"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4S"]
+[Contract "5S"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -9148,9 +9401,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1S Pass 2C Pass
-3H Pass 4S Pass
+1S Pass 2NT =1= Pass
+3C =2= Pass 4C =3= Pass
+4D =4= Pass 4S Pass
+4NT =5= Pass 5S Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Cue bid, a !H stopper"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -9207,10 +9467,12 @@ Pass Pass
 [Room "Open"]
 [Score "NS 980"]
 [Auction "N"]
-1H Pass 4NT =1= Pass
+1H Pass 2NT =1= Pass
+4H Pass 4NT =2= Pass
 5D Pass 6H Pass
 Pass Pass
-[Note "1:Blackwood 0314, for !H"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -9236,8 +9498,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -9263,8 +9526,10 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -9282,20 +9547,20 @@ Pass Pass
 [Deal "N:A9653.AKQ3.K5.J9 T2.972.J982.AK82 KQJ4.JT6.AQT.764 87.854.7643.QT53"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6SX"]
+[Contract "5S"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -100"]
+[Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-3H Pass 4S Pass
-4NT =1= Pass 5S Pass
-6S XS Pass Pass
-Pass
-[Note "1:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+3S Pass 4NT =2= Pass
+5H Pass 5S Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -9321,8 +9586,11 @@ Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3C =2= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
 [Play "E"]
 *
 
@@ -9406,9 +9674,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4C =1= Pass
+1H Pass 2NT =1= Pass
 4H Pass Pass Pass
-[Note "1:Splinter"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -9434,8 +9702,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3C =2= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
 [Play "E"]
 *
 
@@ -9547,8 +9818,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -9748,8 +10022,10 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -9803,8 +10079,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -9860,9 +10139,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1S Pass 2C Pass
-2S Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -9888,8 +10167,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
 [Play "E"]
 *
 
@@ -9915,8 +10197,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3C =2= Pass 4C =3= Pass
+4D =4= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Cue bid, a !S stopper"]
 [Play "E"]
 *
 
@@ -10030,8 +10318,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -10057,9 +10346,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -10143,9 +10432,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1S Pass 2C Pass
-3C Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -10191,7 +10480,7 @@ Pass Pass
 [Deal "N:K6.AKT32.KQJT5.J J843.864.43.KT97 A72.QJ95.A82.Q42 QT95.7.976.A8653"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "5H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -10199,8 +10488,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4D Pass 4NT =2= Pass
+5H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -10253,8 +10545,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -10309,9 +10602,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1S Pass 3D =1= Pass
+1S Pass 2NT =1= Pass
 4S Pass Pass Pass
-[Note "1:Bergen"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -10365,11 +10658,13 @@ Pass Pass
 [Room "Open"]
 [Score "NS -100"]
 [Auction "N"]
-1S Pass 2C Pass
-3C Pass 4S Pass
-4NT =1= Pass 5H Pass
+1S Pass 2NT =1= Pass
+3D =2= Pass 3S Pass
+4NT =3= Pass 5H Pass
 5S Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -10395,11 +10690,13 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1430"]
 [Auction "N"]
-1S Pass 2C Pass
-3D Pass 4S Pass
-4NT =1= Pass 5D Pass
+1S Pass 2NT =1= Pass
+3C =2= Pass 4S Pass
+4NT =3= Pass 5D Pass
 6S Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -10425,9 +10722,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-3C Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -10535,8 +10832,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -10592,9 +10890,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 4D =1= Pass
+1S Pass 2NT =1= Pass
 4S Pass Pass Pass
-[Note "1:Splinter"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -10707,9 +11005,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1S Pass 2C Pass
-3C Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -10735,9 +11033,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4D =1= Pass
+1H Pass 2NT =1= Pass
 4H Pass Pass Pass
-[Note "1:Splinter"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -10763,12 +11061,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-4C =1= Pass 4D =2= Pass
+1S Pass 2NT =1= Pass
 4S Pass Pass Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, a !D stopper"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -10794,8 +11089,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -10821,8 +11117,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 680"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
 [Play "E"]
 *
 
@@ -10848,13 +11147,13 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1660"]
 [Auction "N"]
-1H Pass 3S =1= Pass
-4D =2= Pass 4H Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 4H Pass
 5D =3= Pass 5H Pass
 6H XH Pass Pass
 Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, a !D stopper"]
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
 [Note "3:Exclusion, for !H"]
 [Play "E"]
 *
@@ -10873,23 +11172,17 @@ Pass
 [Deal "N:AQJ52.Q6.9765.A4 43.T53.KQJ2.QJ32 KT86.AJ4.AT8.K95 97.K9872.43.T876"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6S"]
+[Contract "4S"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -50"]
+[Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-3D Pass 3S Pass
-4C =1= Pass 4D =2= Pass
-4S Pass 4NT =3= Pass
-5S Pass 6S Pass
-Pass Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -11146,8 +11439,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -11201,16 +11495,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1510"]
 [Auction "N"]
-1H Pass 3S =1= Pass
-3NT =2= Pass 4D =3= Pass
-4NT =4= Pass 5C Pass
-5NT =5= Pass 6D Pass
-7H Pass Pass Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Cue bid, surplus"]
-[Note "4:Blackwood 0314, for !H"]
-[Note "5:King ask by 5NT"]
+1H Pass 2NT =1= Pass
+3D =2= Pass 5S =3= Pass
+6C Pass 6D Pass
+6NT Pass 7H Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Exclusion, for !H"]
 [Play "E"]
 *
 
@@ -11327,15 +11619,12 @@ Pass Pass
 [Room "Open"]
 [Score "NS -100"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-4D =1= Pass 4H =2= Pass
-4S Pass 4NT =3= Pass
+1S Pass 2NT =1= Pass
+4S Pass 4NT =2= Pass
 5D Pass 6S Pass
 Pass Pass
-[Note "1:Cue bid, a !D stopper"]
-[Note "2:Cue bid, a !C stopper"]
-[Note "3:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -11381,7 +11670,7 @@ Pass Pass
 [Deal "N:T.KQ953.A86.KJ43 A874.62.Q9743.72 KJ2.A874.KT2.A95 Q9653.JT.J5.QT86"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "5H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -11389,8 +11678,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4C =3= Pass
+4NT =4= Pass 5H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -11416,8 +11711,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -11531,8 +11827,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 680"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -11550,7 +11849,7 @@ Pass Pass
 [Deal "N:KQ2.A96432.AT.J2 AJ6.T75.Q85.QT53 T87.KQJ8.KJ6.K94 9543..97432.A876"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "5H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -11558,8 +11857,12 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4H Pass
+4NT =2= Pass 5D Pass
+5H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -11585,8 +11888,10 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -11704,9 +12009,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -11732,8 +12037,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -11808,19 +12114,24 @@ Pass Pass
 [Deal "N:AKQ93.AJ74.4.QJ4 7.9852.JT93.KT65 J865.KQ6.AK7.932 T42.T3.Q8652.A87"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6S"]
+[Contract "5S"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -50"]
+[Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-3H Pass 4S Pass
-4NT =1= Pass 5D Pass
-6S Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+3D =2= Pass 3H =3= Pass
+3S Pass 4D =4= Pass
+4NT =5= Pass 5D Pass
+5S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Cue bid, a !H stopper"]
+[Note "4:Cue bid, a !D stopper"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -11846,9 +12157,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -11991,12 +12302,12 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1430"]
 [Auction "N"]
-1S Pass 4D =1= Pass
-4H =2= Pass 4NT =3= Pass
-5C Pass 5S Pass
+1S Pass 2NT =1= Pass
+3H =2= Pass 4S Pass
+4NT =3= Pass 5D Pass
 6S Pass Pass Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, surplus"]
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !H"]
 [Note "3:Blackwood 0314, for !S"]
 [Play "E"]
 *
@@ -12082,8 +12393,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3C =2= Pass 3D =3= Pass
+4D =4= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Cue bid, a !D stopper"]
 [Play "E"]
 *
 
@@ -12224,9 +12541,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -12244,16 +12561,23 @@ Pass Pass
 [Deal "N:Q852.AK632.9.AJ2 T74.T4.KQT5.K954 AK9.Q985.A82.Q63 J63.J7.J7643.T87"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 3H Pass
+4C =3= Pass 4NT =4= Pass
+5C Pass 5H Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -12302,21 +12626,21 @@ Pass Pass
 [Deal "N:AK8743.J7.AJ.A82 .T8632.9832.K543 Q965.A54.KQ4.QJ7 JT2.KQ9.T765.T96"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "7S"]
+[Contract "6S"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -100"]
+[Score "NS 1430"]
 [Auction "N"]
-1S Pass 2C Pass
-3S Pass 4NT =1= Pass
-5D Pass 5NT =2= Pass
-6C Pass 7S Pass
-Pass Pass
-[Note "1:Blackwood 0314, for !S"]
-[Note "2:King ask by 5NT"]
+1S Pass 2NT =1= Pass
+4C Pass 4D =2= Pass
+4NT =3= Pass 5D Pass
+6S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !D stopper"]
+[Note "3:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -12400,9 +12724,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4D =1= Pass
+1H Pass 2NT =1= Pass
 4H Pass Pass Pass
-[Note "1:Splinter"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -12544,11 +12868,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1430"]
 [Auction "N"]
-1S Pass 2C Pass
-3H Pass 3S Pass
-4NT =1= Pass 5S Pass
+1S Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4D =3= Pass 4H =4= Pass
+4NT =5= Pass 5S Pass
 6S Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Cue bid, surplus"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -12565,18 +12894,19 @@ Pass Pass
 [Vulnerable "EW"]
 [Deal "N:AK52.A9542.A5.T4 976.Q.JT972.7652 QJ3.KJ63.K86.QJ8 T84.T87.Q43.AK93"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "4H"]
-[Result "11"]
+[Declarer "S"]
+[Contract "3N"]
+[Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS 430"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
-[Play "E"]
+1H Pass 2NT =1= Pass
+3NT Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Play "W"]
 *
 
 [Event ""]
@@ -12592,7 +12922,7 @@ Pass Pass
 [Vulnerable "None"]
 [Deal "N:KQ542.AQ5.Q54.AQ A863.T84.J8.T952 JT97.KJ9.AK7.K73 .7632.T9632.J864"]
 [Scoring "MP"]
-[Declarer "N"]
+[Declarer "S"]
 [Contract "6N"]
 [Result "12"]
 [BCFlags "3f"]
@@ -12601,11 +12931,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 990"]
 [Auction "N"]
-1S Pass 2C Pass
-3NT Pass 4NT =1= Pass
-6NT Pass Pass Pass
-[Note "1:Quantitative 4NT"]
-[Play "E"]
+1S Pass 2NT =1= Pass
+4C Pass 4D =2= Pass
+4H =3= Pass 4NT =4= Pass
+5C Pass 6NT Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !D stopper"]
+[Note "3:Cue bid, surplus"]
+[Note "4:Blackwood 0314, for !S"]
+[Play "W"]
 *
 
 [Event ""]
@@ -12622,7 +12957,7 @@ Pass Pass
 [Deal "N:KT543.AJT84.T2.A A8.952.Q863.KQ64 QJ97.KQ7.AJ4.J85 62.63.K975.T9732"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4S"]
+[Contract "5S"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -12630,9 +12965,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 680"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+3C =2= Pass 3D =3= Pass
+4C =4= Pass 4S Pass
+4NT =5= Pass 5D Pass
+5S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Cue bid, a !C stopper"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -12752,14 +13094,13 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1010"]
 [Auction "N"]
-1S Pass 4D =1= Pass
-4H =2= Pass 4NT =3= Pass
+1S Pass 2NT =1= Pass
+3S Pass 4NT =2= Pass
 5C Pass 5D Pass
 6D Pass 6S Pass
 Pass Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -12990,11 +13331,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 3S Pass
-4H =1= Pass 4S Pass
-Pass Pass
-[Note "1:Cue bid, a !H stopper"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -13020,8 +13359,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -13047,9 +13387,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 4H =1= Pass
+1S Pass 2NT =1= Pass
 4S Pass Pass Pass
-[Note "1:Splinter"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -13075,8 +13415,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -13094,7 +13437,7 @@ Pass Pass
 [Deal "N:A.QJ876.KQ83.K54 T7632..T974.JT73 KJ8.AT32.AJ2.Q98 Q954.K954.65.A62"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "5H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -13102,8 +13445,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 680"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4D =3= Pass
+4S =4= Pass 5H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -13129,9 +13478,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -13149,16 +13498,21 @@ Pass Pass
 [Deal "N:AT98.QT752.A.A92 62.A943.Q9832.J5 KQ7.KJ86.K74.K74 J543..JT65.QT863"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 3H Pass
+4NT =3= Pass 5D Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -13445,8 +13799,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -13500,11 +13855,15 @@ Pass Pass
 [Room "Open"]
 [Score "NS 980"]
 [Auction "N"]
-1S Pass 2C Pass
-3S Pass 4NT =1= Pass
+1S Pass 2NT =1= Pass
+3S Pass 4C =2= Pass
+4D =3= Pass 4NT =4= Pass
 5S Pass 6S Pass
 Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -13530,13 +13889,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 4D =1= Pass
-4H =2= Pass 4NT =3= Pass
-5D Pass 5S Pass
-Pass Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+3H =2= Pass 3S Pass
+4C =3= Pass 4D =4= Pass
+4NT =5= Pass 5H Pass
+5S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !H"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Cue bid, a !D stopper"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -13562,9 +13924,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -13590,8 +13952,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -13645,12 +14008,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 3S Pass
-4D =1= Pass 4H =2= Pass
-4S Pass Pass Pass
-[Note "1:Cue bid, a !D stopper"]
-[Note "2:Cue bid, a !C stopper"]
+1S Pass 2NT =1= Pass
+3D =2= Pass 4S Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
 [Play "E"]
 *
 
@@ -13707,11 +14069,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-4H =1= Pass 4S Pass
-Pass Pass
-[Note "1:Cue bid, a !H stopper"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -13729,7 +14089,7 @@ Pass Pass
 [Deal "N:QJ982.KJ72.J4.KQ 643.QT65.KQ2.JT4 AKT5.A.9853.A653 7.9843.AT76.9872"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "5S"]
+[Contract "4S"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -13737,13 +14097,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 3S Pass
-4C =1= Pass 4NT =2= Pass
-5C Pass 5S Pass
-Pass Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -13769,9 +14125,13 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-3D Pass 4S Pass
+1S Pass 2NT =1= Pass
+3NT Pass 4D =2= Pass
+4H =3= Pass 4S Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !D stopper"]
+[Note "3:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -13859,8 +14219,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -13914,8 +14277,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -13941,9 +14305,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1S Pass 3D =1= Pass
+1S Pass 2NT =1= Pass
 4S Pass Pass Pass
-[Note "1:Bergen"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -13969,8 +14333,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -14141,8 +14506,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
 [Play "E"]
 *
 
@@ -14159,7 +14527,7 @@ Pass Pass
 [Vulnerable "All"]
 [Deal "N:QJ4.AK743.98.KJ9 98652.Q62.52.T75 A.T985.AKQJ6.AQ3 KT73.J.T743.8642"]
 [Scoring "MP"]
-[Declarer "N"]
+[Declarer "S"]
 [Contract "6N"]
 [Result "12"]
 [BCFlags "3f"]
@@ -14168,18 +14536,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1440"]
 [Auction "N"]
-1H Pass 2D Pass
-2NT Pass 3H Pass
-3NT =1= Pass 4D =2= Pass
-4NT =3= Pass 5C Pass
-5D Pass 5H Pass
-5S =4= Pass 6C Pass
-6NT Pass Pass Pass
-[Note "1:Cue bid, surplus"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Blackwood 0314, for !H"]
-[Note "4:King ask by available bid"]
-[Play "E"]
+1H Pass 2NT =1= Pass
+3NT Pass 6NT Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
+[Play "W"]
 *
 
 [Event ""]
@@ -14437,19 +14798,19 @@ Pass Pass
 [Vulnerable "EW"]
 [Deal "N:AJT54.K86.Q8.A62 8.AT94.KT73.9873 K973.QJ2.AJ9.QJT Q62.753.6542.K54"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "4S"]
+[Declarer "S"]
+[Contract "3N"]
 [Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 420"]
+[Score "NS 430"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
-[Play "E"]
+1S Pass 2NT =1= Pass
+3NT Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Play "W"]
 *
 
 [Event ""]
@@ -14507,8 +14868,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 

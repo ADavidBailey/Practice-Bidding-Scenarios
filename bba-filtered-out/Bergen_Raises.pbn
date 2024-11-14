@@ -2,7 +2,7 @@
 % EXPORT
 %Content-type: text/x-pbn; charset=ISO-8859-1
 %Creator: BridgeComposer Version 5.108
-%Created: Thu Nov 14 11:10:28 2024 -0600
+%Created: Thu Nov 14 12:25:38 2024 -0600
 %BCOptions Center STBorder STShade
 %BidAndCardSpacing Thin
 %BoardsPerPage 1
@@ -62,6 +62,7 @@
 % 1-2 - Fourth suit game force
 % 1-2 - Gerber
 % 1-2 - Inverted minors
+% 1-2 - Jacoby 2NT
 % 1-2 - Jordan Truscott 2NT
 % 1-2 - King ask by 5NT
 % 1-2 - Leaping Michaels
@@ -142,8 +143,11 @@
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -199,11 +203,18 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1430"]
 [Auction "N"]
-1S Pass 2C Pass
-3H Pass 4S Pass
-4NT =1= Pass 5S Pass
+1S Pass 2NT =1= Pass
+3C =2= Pass 3D =3= Pass
+3S Pass 4C =4= Pass
+4H =5= Pass 4S Pass
+4NT =6= Pass 5S Pass
 6S Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Cue bid, a !C stopper"]
+[Note "5:Cue bid, surplus"]
+[Note "6:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -229,9 +240,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-3C Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -249,16 +260,20 @@ Pass Pass
 [Deal "N:AK.K9653.T.KJT53 8654.74.A9864.Q2 QJ2.AQ82.J52.A98 T973.JT.KQ73.764"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+4C Pass 4NT =2= Pass
+5H Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -284,9 +299,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -312,9 +327,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -332,16 +347,21 @@ Pass Pass
 [Deal "N:5.AKJ43.KT6.AJ72 QT943.76.Q752.Q5 KJ2.QT85.AJ8.K64 A876.92.943.T983"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4H Pass
+4NT =3= Pass 5D Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -460,8 +480,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3C =2= Pass 3S =3= Pass
+4C =4= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !S stopper"]
+[Note "4:Cue bid, a !D stopper"]
 [Play "E"]
 *
 
@@ -487,9 +513,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -563,20 +589,24 @@ Pass Pass
 [Deal "N:Q7532.A9.K93.AJT KJT.T654.J85.963 9864.KQJ.AT6.KQ5 A.8732.Q742.8742"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4S"]
+[Contract "5S"]
 [Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 420"]
+[Score "NS -50"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-3NT =1= Pass 4C =2= Pass
-4S Pass Pass Pass
-[Note "1:Cue bid, surplus"]
+1S Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4D =3= Pass 4H =4= Pass
+4NT =5= Pass 5D Pass
+5S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Note "2:Cue bid, a !C stopper"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Cue bid, surplus"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -602,11 +632,13 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1430"]
 [Auction "N"]
-1S Pass 2C Pass
-3D Pass 3S Pass
-4NT =1= Pass 5S Pass
+1S Pass 2NT =1= Pass
+3H =2= Pass 3S Pass
+4NT =3= Pass 5S Pass
 6S Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !H"]
+[Note "3:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -632,11 +664,13 @@ Pass Pass
 [Room "Open"]
 [Score "NS 980"]
 [Auction "N"]
-1S Pass 2C Pass
-3D Pass 4S Pass
-4NT =1= Pass 5H Pass
+1S Pass 2NT =1= Pass
+3H =2= Pass 4S Pass
+4NT =3= Pass 5H Pass
 6S Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !H"]
+[Note "3:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -692,8 +726,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -741,19 +776,24 @@ Pass Pass
 [Deal "N:AJT865.64.AT6.AJ 2.KT73.873.97643 KQ93.J92.KJ4.KQT 74.AQ85.Q952.852"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6N"]
-[Result "8"]
+[Contract "5S"]
+[Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -200"]
+[Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2S Pass 4S Pass
-4NT =1= Pass 5D Pass
-6NT Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4D =3= Pass 4H =4= Pass
+4NT =5= Pass 5D Pass
+5S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Cue bid, surplus"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -779,9 +819,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-3C Pass 4S Pass
+1S Pass 2NT =1= Pass
+3H =2= Pass 4S Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !H"]
 [Play "E"]
 *
 
@@ -799,20 +841,19 @@ Pass Pass
 [Deal "N:A43.K9643.AK76.K J9875.2.852.Q987 K.QT85.Q4.AJT543 QT62.AJ7.JT93.62"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "5N"]
-[Result "11"]
+[Contract "4H"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 460"]
+[Score "NS 480"]
 [Auction "N"]
-1H Pass 2C Pass
-3D Pass 4H Pass
-4NT =1= Pass 5D Pass
-5S Pass 5NT Pass
+1H Pass 2NT =1= Pass
+3C =2= Pass 4H Pass
 Pass Pass
-[Note "1:Blackwood 0314, for !H"]
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
 [Play "E"]
 *
 
@@ -838,8 +879,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -865,8 +907,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -892,9 +935,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2D Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -920,8 +963,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -971,22 +1015,23 @@ Pass Pass
 [Deal "N:KQT763.A53.T.QJ2 .T974.85432.K873 AJ92.K62.K96.AT4 854.QJ8.AQJ7.965"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6S"]
+[Contract "5S"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -100"]
+[Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2S Pass 3S Pass
-4D =1= Pass 4H =2= Pass
-4NT =3= Pass 5S Pass
-6S Pass Pass Pass
-[Note "1:Cue bid, a !D stopper"]
-[Note "2:Cue bid, a !C stopper"]
-[Note "3:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+3D =2= Pass 3H =3= Pass
+4H =4= Pass 4NT =5= Pass
+5S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Cue bid, a !H stopper"]
+[Note "4:Cue bid, a !H stopper"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -1041,8 +1086,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1060,16 +1106,20 @@ Pass Pass
 [Deal "N:KQ.AQJ97.AJ865.Q J532.64.KT.98532 AT8.KT32.Q94.KJT 9764.85.732.A764"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 480"]
+[Score "NS 980"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+4D Pass 4NT =2= Pass
+5S Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -1095,8 +1145,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1122,8 +1173,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1235,8 +1287,10 @@ Pass Pass
 [Room "Open"]
 [Score "NS 680"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1254,16 +1308,21 @@ Pass Pass
 [Deal "N:6.QT862.AKQ3.A94 KQ87.A4.976.8732 AJ4.KJ73.JT8.QJ6 T9532.95.542.KT5"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS -50"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4H Pass
+4NT =3= Pass 5S Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -1289,12 +1348,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-4D =1= Pass 4H =2= Pass
+1S Pass 2NT =1= Pass
 4S Pass Pass Pass
-[Note "1:Cue bid, a !D stopper"]
-[Note "2:Cue bid, a !C stopper"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1376,9 +1432,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1S Pass 4H =1= Pass
+1S Pass 2NT =1= Pass
 4S Pass Pass Pass
-[Note "1:Splinter"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1454,24 +1510,24 @@ Pass Pass
 [Vulnerable "NS"]
 [Deal "N:KQJT2.96.AQJ64.9 854.82.K72.J7543 A963.AKQJT.5.AK6 7.7543.T983.QT82"]
 [Scoring "MP"]
-[Declarer "S"]
-[Contract "7N"]
+[Declarer "N"]
+[Contract "6S"]
 [Result "13"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 2220"]
+[Score "NS 1460"]
 [Auction "N"]
-1S Pass 2H Pass
-4C =1= Pass 4D =2= Pass
-4H Pass 4NT =3= Pass
-5D Pass 7NT Pass
-Pass Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Blackwood 0314, for !H"]
-[Play "W"]
+1S Pass 2NT =1= Pass
+3C =2= Pass 4D =3= Pass
+4NT =4= Pass 5C Pass
+6S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Splinter"]
+[Note "4:Blackwood 0314, for !S"]
+[Play "E"]
 *
 
 [Event ""]
@@ -1488,16 +1544,24 @@ Pass Pass
 [Deal "N:AQ9.AKQ63.92.K74 KT54.7.JT73.J865 J76.JT84.AKQ.A93 832.952.8654.QT2"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "7H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 480"]
+[Score "NS -50"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3H Pass 3NT =2= Pass
+4C =3= Pass 4D =4= Pass
+4NT =5= Pass 5S Pass
+7H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, surplus"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Cue bid, a !D stopper"]
+[Note "5:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -1614,9 +1678,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1642,8 +1706,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -1661,16 +1728,23 @@ Pass Pass
 [Deal "N:KJ64.AJ732.K9.A4 AT7.984.T76.KJ87 Q82.KQT6.AJ8.Q93 953.5.Q5432.T652"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 650"]
+[Score "NS -100"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3H Pass 4D =2= Pass
+4S =3= Pass 4NT =4= Pass
+5S Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !D stopper"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -1696,8 +1770,10 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+4D Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1723,8 +1799,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS -100"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1750,9 +1827,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4C =1= Pass
+1H Pass 2NT =1= Pass
 4H Pass Pass Pass
-[Note "1:Splinter"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1838,8 +1915,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 680"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1865,8 +1943,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
 [Play "E"]
 *
 
@@ -1938,7 +2019,7 @@ Pass Pass
 [Deal "N:KJ876.63.KT76.AQ T2.J874.J542.KT3 AQ53.KQ9.A83.974 94.AT52.Q9.J8652"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "5S"]
+[Contract "4S"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -1946,14 +2027,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-3D Pass 3S Pass
-4C =1= Pass 4D =2= Pass
-4NT =3= Pass 5S Pass
-Pass Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -1979,11 +2055,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1430"]
 [Auction "N"]
-1H Pass 4D =1= Pass
+1H Pass 2NT =1= Pass
 4H Pass 4NT =2= Pass
 5S Pass 6H Pass
 Pass Pass
-[Note "1:Splinter"]
+[Note "1:Jacoby 2NT"]
 [Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
@@ -2002,16 +2078,23 @@ Pass Pass
 [Deal "N:QJ.Q9742.AKQ3.A6 T962.8.9762.Q932 A43.AKJT.JT5.754 K875.653.84.KJT8"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 480"]
+[Score "NS 980"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3H Pass 3S =2= Pass
+4C =3= Pass 4H Pass
+4NT =4= Pass 5C Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !S stopper"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -2037,9 +2120,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4C =1= Pass
+1H Pass 2NT =1= Pass
 4H Pass Pass Pass
-[Note "1:Splinter"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -2065,8 +2148,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
 [Play "E"]
 *
 
@@ -2114,22 +2200,21 @@ Pass Pass
 [Deal "N:A83.AQ964.9.QJ54 KJ75.85.J82.8763 962.KJ73.AK543.A QT4.T2.QT76.KT92"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "7HX"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -200"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4C =1= Pass
-4H Pass 4NT =2= Pass
-5S Pass 5NT =3= Pass
-6C Pass 7H X
-Pass Pass Pass
-[Note "1:Splinter"]
-[Note "2:Blackwood 0314, for !H"]
-[Note "3:King ask by 5NT"]
+1H Pass 2NT =1= Pass
+3D =2= Pass 3H Pass
+4NT =3= Pass 5C Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -2155,8 +2240,11 @@ Pass Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -2208,16 +2296,18 @@ Pass Pass
 [Deal "N:JT84.AJ982.KQ.A6 96.K54.T9743.Q43 AQ2.Q763.A52.K95 K753.T.J86.JT872"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3NT Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -2243,13 +2333,12 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1510"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4NT =1= Pass
-5H Pass 5NT =2= Pass
-6C Pass 7S Pass
+1S Pass 2NT =1= Pass
+4S Pass 4NT =2= Pass
+5S Pass 7S Pass
 Pass Pass
-[Note "1:Blackwood 0314, for !H"]
-[Note "2:King ask by 5NT"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -2275,8 +2364,13 @@ Pass Pass
 [Room "Open"]
 [Score "NS 680"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3C =2= Pass 3D =3= Pass
+3H Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !D stopper"]
 [Play "E"]
 *
 
@@ -2294,7 +2388,7 @@ Pass Pass
 [Deal "N:J982.KQ873.A.A87 AT63.52.JT863.J4 KQ7.AJT4.K97.QT6 54.96.Q542.K9532"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "5H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -2302,8 +2396,15 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 3H Pass
+4C =3= Pass 4H Pass
+4NT =4= Pass 5D Pass
+5H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -2321,22 +2422,17 @@ Pass Pass
 [Deal "N:KJT95.KT8.J5.AJ7 Q82.A764.863.K63 A643.QJ9.AQ7.QT5 7.532.KT942.9842"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6S"]
+[Contract "4S"]
 [Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -200"]
+[Score "NS 620"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-4C =1= Pass 4D =2= Pass
-4NT =3= Pass 5H Pass
-6S Pass Pass Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -2354,21 +2450,17 @@ Pass Pass
 [Deal "N:QJ743.Q7.AJ87.K8 A852.J86.K5.7643 KT96.AK4.642.AJT .T9532.QT93.Q952"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6S"]
+[Contract "4S"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -50"]
+[Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-3D Pass 3S Pass
-4C =1= Pass 4NT =2= Pass
-5D Pass 6S Pass
-Pass Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -2394,8 +2486,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
@@ -2451,9 +2546,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -2471,16 +2566,24 @@ Pass Pass
 [Deal "N:7.K7643.AK2.AJT6 K9432.A8.T853.84 AQT.QJ92.QJ4.K95 J865.T5.976.Q732"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 3NT =3= Pass
+4D =4= Pass 4NT =5= Pass
+5C Pass 5H Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Cue bid, surplus"]
+[Note "4:Cue bid, surplus"]
+[Note "5:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
@@ -2506,9 +2609,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1S Pass 2C Pass
-2S Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -2562,8 +2665,9 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
@@ -2589,13 +2693,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 4D =1= Pass
-4H =2= Pass 4S Pass
-4NT =3= Pass 5C Pass
+1S Pass 2NT =1= Pass
+3C =2= Pass 4D =3= Pass
+4H =4= Pass 4S Pass
+4NT =5= Pass 5C Pass
 5S Pass Pass Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Splinter"]
+[Note "4:Cue bid, surplus"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
@@ -2603,6 +2710,34 @@ Pass Pass
 [Site ""]
 [Date "2024.11.14"]
 [Board "88"]
+{73F4458F217863EA8609ECFB8C7A}
+[West "EPBot4"]
+[North "EPBot1"]
+[East "EPBot2"]
+[South "EPBot3"]
+[Dealer "N"]
+[Vulnerable "All"]
+[Deal "N:J6.KQ763.Q53.KJ6 KT92..T8642.AT53 Q73.J985.AK7.Q94 A854.AT42.J9.872"]
+[Scoring "MP"]
+[Declarer "N"]
+[Contract "4H"]
+[Result "9"]
+[BCFlags "3f"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+[Room "Open"]
+[Score "NS -100"]
+[Auction "N"]
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Play "E"]
+*
+
+[Event ""]
+[Site ""]
+[Date "2024.11.14"]
+[Board "89"]
 {7191330AEC8B293F2C769256748E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -2621,19 +2756,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-4C =1= Pass 4D =2= Pass
+1S Pass 2NT =1= Pass
 4S Pass Pass Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, a !D stopper"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "89"]
+[Board "90"]
 {73CD15FC62ABB3AAC44D4A38E74A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -2659,7 +2791,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "90"]
+[Board "91"]
 {70071A88306ABC127F37AE8951D6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -2689,7 +2821,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "91"]
+[Board "92"]
 {72999D027D4E4EAE05E0E863C9D2}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -2717,7 +2849,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "92"]
+[Board "93"]
 {70200A01A47D3C6FD166BFA41FB6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -2745,7 +2877,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "93"]
+[Board "94"]
 {820E45AF92F374ED03E0487A6A85}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -2774,7 +2906,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "94"]
+[Board "95"]
 {810B8EA920BD2414EA9C16E747DE}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -2803,7 +2935,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "95"]
+[Board "96"]
 {83BF9E05A0C2220934507BA51BF8}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -2822,19 +2954,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-4D =1= Pass 4H =2= Pass
+1S Pass 2NT =1= Pass
 4S Pass Pass Pass
-[Note "1:Cue bid, a !D stopper"]
-[Note "2:Cue bid, a !C stopper"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "96"]
+[Board "97"]
 {82AD394DE09BF0EB448A7223CC01}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -2845,23 +2974,30 @@ Pass Pass
 [Deal "N:K42.Q7632.7.AKQ2 Q75.T.J9542.J973 AT6.AJ84.AQ3.T84 J983.K95.KT86.65"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 3H Pass
+4C =3= Pass 4NT =4= Pass
+5D Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "97"]
+[Board "98"]
 {83AD430304FAD5A668B078422DCB}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -2892,7 +3028,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "98"]
+[Board "99"]
 {8008872F0480E5FE5E08AA5246EF}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -2911,15 +3047,18 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3C =2= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "99"]
+[Board "100"]
 {838209C5B4F613648B8374301C1A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -2946,7 +3085,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "100"]
+[Board "101"]
 {8089432EE7D41E4AB79C35211CBA}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -2976,7 +3115,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "101"]
+[Board "102"]
 {829F0D15D016BAACCA3B606BB530}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3008,7 +3147,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "102"]
+[Board "103"]
 {8303A3DF3C36CA9371549BB50C1A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3027,16 +3166,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "103"]
+[Board "104"]
 {800BCF59E0860F7ED2A88464E172}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3047,23 +3186,28 @@ Pass Pass
 [Deal "N:A9.AKT95.J732.Q3 Q842.Q7.T54.J654 T65.J643.AQ6.AK9 KJ73.82.K98.T872"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS -50"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4NT =3= Pass 5S Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "104"]
+[Board "105"]
 {82A5D76644B202186FCBCE8856EC}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3074,23 +3218,27 @@ Pass Pass
 [Deal "N:98.J9654.AKQJ3.A QJ73.K83.T9.J842 AT4.AQ72.752.K76 K652.T.864.QT953"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+4D Pass 4NT =2= Pass
+5S Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "105"]
+[Board "106"]
 {81E10948F2A283C16E6D307454CE}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3119,7 +3267,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "106"]
+[Board "107"]
 {90033940A64FE8AA3542FA6484F6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3149,7 +3297,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "107"]
+[Board "108"]
 {912DE8860358F714A5A9BED0121E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3179,7 +3327,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "108"]
+[Board "109"]
 {931FAA35F30028F0988A1AC5269F}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3198,16 +3346,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS -100"]
 [Auction "N"]
-1S Pass 2C Pass
-2S Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "109"]
+[Board "110"]
 {928D2C53CE9A1039BD16B77F7802}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3218,30 +3366,24 @@ Pass Pass
 [Deal "N:K9862.AJ2.65.A87 Q43.QT96.Q92.K93 AT75.K.AKJ74.Q54 J.87543.T83.JT62"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6S"]
+[Contract "4S"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -100"]
+[Score "NS 650"]
 [Auction "N"]
-1S Pass 2D Pass
-2NT Pass 3S Pass
-4C =1= Pass 4D =2= Pass
-4S Pass 4NT =3= Pass
-5C Pass 5S Pass
-6S Pass Pass Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "110"]
+[Board "111"]
 {938309EDA67002A1C8D8BDA0944A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3260,19 +3402,21 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4C =1= Pass
-4D =2= Pass 4NT =3= Pass
+1H Pass 2NT =1= Pass
+3H Pass 3S =2= Pass
+4C =3= Pass 4NT =4= Pass
 5H Pass Pass Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Blackwood 0314, for !H"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !S stopper"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "111"]
+[Board "112"]
 {9375AD80F74ACE9CD1ACAA6004CA}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3283,7 +3427,7 @@ Pass Pass
 [Deal "N:3.QT932.K986.AK7 AT4.87.T52.Q8643 KQ865.K654.AJ3.J J972.AJ.Q74.T952"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "5H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -3291,16 +3435,21 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4C =1= Pass
-4H Pass Pass Pass
-[Note "1:Splinter"]
+1H Pass 2NT =1= Pass
+3S =2= Pass 4C =3= Pass
+4NT =4= Pass 5H Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "112"]
+[Board "113"]
 {928B6107CCFAA267E0CA14C1BC1C}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3319,15 +3468,18 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "113"]
+[Board "114"]
 {908B0351C0AE75496C4FFED8EDA4}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3338,23 +3490,28 @@ Pass Pass
 [Deal "N:K.AKJ86.KQJ.Q983 Q9876.Q4.92.J742 AT2.T732.A84.AK6 J543.95.T7653.T5"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 480"]
+[Score "NS 980"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4NT =3= Pass
+5S Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "114"]
+[Board "115"]
 {92EFC540A931A3C248FF1AA87D41}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3373,15 +3530,19 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 4C =3= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "115"]
+[Board "116"]
 {9188A3CB0814FE6A97CEA659648E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3400,17 +3561,19 @@ Pass Pass
 [Room "Open"]
 [Score "NS 980"]
 [Auction "N"]
-1H Pass 4NT =1= Pass
+1H Pass 2NT =1= Pass
+4D Pass 4NT =2= Pass
 5S Pass 6H Pass
 Pass Pass
-[Note "1:Blackwood 0314, for !H"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "116"]
+[Board "117"]
 {A0B719220AFE5C0517CCA4EBBD90}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3429,16 +3592,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "117"]
+[Board "118"]
 {A203AE397452278EBE38E118C380}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3457,16 +3620,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "118"]
+[Board "119"]
 {A10005386D54D76F3335BE968BAE}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3500,7 +3663,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "119"]
+[Board "120"]
 {A389222717BDA2D0B45A0BCC7A39}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3511,28 +3674,25 @@ Pass Pass
 [Deal "N:KQJ52.A54.T4.AT2 63.J86.A6532.874 AT97.KQ9.QJ7.QJ5 84.T732.K98.K963"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6S"]
+[Contract "4S"]
 [Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -200"]
+[Score "NS 620"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-3NT =1= Pass 4S Pass
-4NT =2= Pass 5D Pass
-6S Pass Pass Pass
-[Note "1:Cue bid, surplus"]
-[Note "2:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+3NT Pass 4S Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "120"]
+[Board "121"]
 {A103C68FE0442A2254CFBECC7DA9}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3551,15 +3711,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "121"]
+[Board "122"]
 {A027E981A89D042E54FACA12B436}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3570,7 +3731,7 @@ Pass Pass
 [Deal "N:A9842.Q95.Q4.KQT 7.T74.A9732.J973 QJT3.AKJ8.KJ65.A K65.632.T8.86542"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "5S"]
+[Contract "4S"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -3578,21 +3739,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1S Pass 2D Pass
-2NT Pass 3S Pass
-4C =1= Pass 4H =2= Pass
-4NT =3= Pass 5S Pass
-Pass Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "122"]
+[Board "123"]
 {A28F391C068A4AE2D46351AACC23}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3611,15 +3767,18 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "123"]
+[Board "124"]
 {A34EC4ADA2D4C70D10B880EF6A7A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3649,7 +3808,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "124"]
+[Board "125"]
 {A00B093D08E676E89479269EB196}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3680,7 +3839,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "125"]
+[Board "126"]
 {A2C94E13A54F0D642B6CC07AF2B2}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3706,7 +3865,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "126"]
+[Board "127"]
 {A169278AB22008B2FC1D9FF71ECC}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3736,7 +3895,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "127"]
+[Board "128"]
 {B009A2762BA8C5FF404F1646BC6D}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3766,7 +3925,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "128"]
+[Board "129"]
 {B284359DC3E2A22046DF289A2832}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3795,7 +3954,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "129"]
+[Board "130"]
 {B181E204A1D134804AF4CE6C9D2E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3830,7 +3989,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "130"]
+[Board "131"]
 {B30B16E5113368029A9D80667FBA}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3860,7 +4019,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "131"]
+[Board "132"]
 {B18022496D94DFE69FC92572C4CF}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3871,23 +4030,25 @@ Pass Pass
 [Deal "N:K5.AQ632.Q6.QJ65 QJ4.T97.J972.AT3 AT7.KJ85.AK4.972 98632.4.T853.K84"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS -50"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3NT Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "132"]
+[Board "133"]
 {B36FC52E80D6108C73383A1093A5}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3917,7 +4078,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "133"]
+[Board "134"]
 {B04A09BBD2640C65F78CC1EE976D}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3927,24 +4088,25 @@ Pass Pass
 [Vulnerable "None"]
 [Deal "N:K9.AK965.J5.K852 AT82.J3.T873.T96 Q63.T842.AKQ.Q73 J754.Q7.9642.AJ4"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "4H"]
+[Declarer "S"]
+[Contract "3N"]
 [Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 420"]
+[Score "NS 430"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
-[Play "E"]
+1H Pass 2NT =1= Pass
+3NT Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Play "W"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "134"]
+[Board "135"]
 {B12FB98C24025777C212254A9CBE}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3963,16 +4125,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "135"]
+[Board "136"]
 {B38FC9E34508DB842A7862A67201}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -3983,23 +4145,31 @@ Pass Pass
 [Deal "N:T72.AKJT82.A.KJ2 J653.9.KT976.T86 A84.Q754.J84.AQ9 KQ9.63.Q532.7543"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 3S =3= Pass
+4D =4= Pass 4H Pass
+4NT =5= Pass 5S Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Cue bid, a !S stopper"]
+[Note "4:Cue bid, a !D stopper"]
+[Note "5:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "136"]
+[Board "137"]
 {B249A48EE5C43698E0530F5E8AE2}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4029,7 +4199,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "137"]
+[Board "138"]
 {B1C980B30FE77514A50CCE606678}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4058,7 +4228,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "138"]
+[Board "139"]
 {C0292C16EF388235B7DA4D95DF84}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4077,16 +4247,23 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1S Pass 2C Pass
-3C Pass 4S Pass
+1S Pass 2NT =1= Pass
+3D =2= Pass 3H =3= Pass
+3S Pass 4D =4= Pass
+4H =5= Pass 4S Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Cue bid, a !H stopper"]
+[Note "4:Cue bid, a !D stopper"]
+[Note "5:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "139"]
+[Board "140"]
 {C22EAF0647C57CD0CB697368CB12}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4105,22 +4282,19 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1430"]
 [Auction "N"]
-1H Pass 2C Pass
-2NT Pass 3H Pass
-3S =1= Pass 3NT =2= Pass
-4H Pass 4NT =3= Pass
+1H Pass 2NT =1= Pass
+4H Pass 4NT =2= Pass
 5D Pass 6H Pass
 Pass Pass
-[Note "1:Cue bid, a !S stopper"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Blackwood 0314, for !H"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "140"]
+[Board "141"]
 {C1813B1D438F1416E6AEA8723C16}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4139,18 +4313,23 @@ Pass Pass
 [Room "Open"]
 [Score "NS 980"]
 [Auction "N"]
-1S Pass 2C Pass
-3S Pass 4NT =1= Pass
-5C Pass 6S Pass
+1S Pass 2NT =1= Pass
+3S Pass 4C =2= Pass
+4H =3= Pass 4NT =4= Pass
+5C Pass 5D Pass
+6D Pass 6S Pass
 Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Cue bid, surplus"]
+[Note "4:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "141"]
+[Board "142"]
 {C3078875A561F651600EDC8A80EA}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4161,30 +4340,25 @@ Pass Pass
 [Deal "N:A6.AK643.65.QJT8 QT87.85.K42.K753 KJ43.JT72.AQJ9.A 952.Q9.T873.9642"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6H"]
+[Contract "5H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 1430"]
+[Score "NS 680"]
 [Auction "N"]
-1H Pass 4C =1= Pass
-4D =2= Pass 4NT =3= Pass
-5C Pass 5NT =4= Pass
-6C Pass 6H Pass
+1H Pass 2NT =1= Pass
+3NT Pass 5H Pass
 Pass Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Blackwood 0314, for !H"]
-[Note "4:King ask by 5NT"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "142"]
+[Board "143"]
 {C0038D241E55EBD7B09508AEFE26}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4213,7 +4387,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "143"]
+[Board "144"]
 {C1A1093F77A69AF8021C74A007DC}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4232,16 +4406,22 @@ Pass Pass
 [Room "Open"]
 [Score "NS 980"]
 [Auction "N"]
-1S Pass 2C Pass
-3NT Pass 6S Pass
+1S Pass 2NT =1= Pass
+3S Pass 3NT =2= Pass
+4C =3= Pass 4NT =4= Pass
+5S Pass 6S Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, surplus"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "144"]
+[Board "145"]
 {C02F47136098658D3A76AACCCDC6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4260,15 +4440,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "145"]
+[Board "146"]
 {C2ED198638A33FD4900778912BF2}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4298,7 +4479,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "146"]
+[Board "147"]
 {C3EC6D3D0FE443C3BA7B48A3C09A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4325,7 +4506,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "147"]
+[Board "148"]
 {C06A017B81C09CE60BB6DFE4C56C}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4355,7 +4536,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "148"]
+[Board "149"]
 {C2918E2D4AE21730188558ABFF32}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4374,16 +4555,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "149"]
+[Board "150"]
 {C16B04C6C5BB88AE307C1F66AB4E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4410,7 +4591,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "150"]
+[Board "151"]
 {D00861AFBA4CF24E422C0657A5DB}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4420,24 +4601,25 @@ Pass Pass
 [Vulnerable "None"]
 [Deal "N:A65.AT875.K97.K3 KT874.42.543.AT6 QJ3.KQ63.AJ2.Q42 92.J9.QT86.J9875"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "4H"]
+[Declarer "S"]
+[Contract "3N"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS 460"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
-[Play "E"]
+1H Pass 2NT =1= Pass
+3NT Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Play "W"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "151"]
+[Board "152"]
 {D28B25DC03F256A3288AB94844A2}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4471,7 +4653,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "152"]
+[Board "153"]
 {D1B7099CA1F526EC189E1FF04533}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4490,16 +4672,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1S Pass 2C Pass
-3C Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "153"]
+[Board "154"]
 {D30B2CC7AC52DA62C6914DC38668}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4510,23 +4692,27 @@ Pass Pass
 [Deal "N:AK.AQ7543.KJ5.65 T852.T96.A92.KJ2 J63.KJ82.Q73.AQ4 Q974..T864.T9873"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3H Pass 4NT =2= Pass
+5S Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "154"]
+[Board "155"]
 {D20D3392B75428BD0BEC146ACA92}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4556,7 +4742,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "155"]
+[Board "156"]
 {D31F85A2385D03EB944026BED210}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4586,7 +4772,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "156"]
+[Board "157"]
 {D06B81CED176C988648FF56F1D66}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4597,23 +4783,29 @@ Pass Pass
 [Deal "N:3.KQ986.KJ.KJ953 AT742.J3.T752.87 K86.A742.A98.A64 QJ95.T5.Q643.QT2"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 480"]
+[Score "NS 980"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4C =3= Pass
+4NT =4= Pass 5C Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "157"]
+[Board "158"]
 {D1CF2BA84E816EE7BAC040FC19D6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4632,15 +4824,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "158"]
+[Board "159"]
 {D30A84AFE81475BE700112922B43}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4659,16 +4852,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "159"]
+[Board "160"]
 {D0A08ACD3E62E3DB75273C8448C4}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4687,15 +4880,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "160"]
+[Board "161"]
 {D2EF9541094E4BA2D6A278DB610E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4714,15 +4908,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "161"]
+[Board "162"]
 {D0260B912E4094F8373B8DB0D6E6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4752,7 +4947,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "162"]
+[Board "163"]
 {D20D9B674EE82208C1D0BA8B562C}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4763,7 +4958,7 @@ Pass Pass
 [Deal "N:A982.AJ874.Q3.A7 QJ3.K63.976.T862 K54.QT92.AJ2.KQ4 T76.5.KT854.J953"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "5H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -4771,15 +4966,21 @@ Pass Pass
 [Room "Open"]
 [Score "NS 680"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass 4NT =3= Pass
+5C Pass 5H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "163"]
+[Board "164"]
 {D19925E48F6A105418F3303AB78E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4809,7 +5010,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "164"]
+[Board "165"]
 {E00F0BE815C49A8C366DB51F9EE5}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4820,27 +5021,26 @@ Pass Pass
 [Deal "N:AKJ74.AKT8..J652 6.J943.JT752.QT8 9853.Q62.KQ9.AK4 QT2.75.A8643.973"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6S"]
+[Contract "4S"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 980"]
+[Score "NS 480"]
 [Auction "N"]
-1S Pass 2C Pass
-3H Pass 4S Pass
-5D =1= Pass 5S Pass
-5NT Pass 6S Pass
+1S Pass 2NT =1= Pass
+3D =2= Pass 4S Pass
 Pass Pass
-[Note "1:Exclusion, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "165"]
+[Board "166"]
 {E28F30096C4208F6EB5DA2E98B10}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4859,15 +5059,19 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 3S =3= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Cue bid, a !S stopper"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "166"]
+[Board "167"]
 {E1A905A4E31BB0EC524AC6FC4F4A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4878,23 +5082,26 @@ Pass Pass
 [Deal "N:KT.K6532.AT62.AK 7632.T7.843.Q984 AQ9.AQJ8.J97.JT3 J854.94.KQ5.7652"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 480"]
+[Score "NS 980"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4NT =2= Pass 5S Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "167"]
+[Board "168"]
 {E33F252E90B23480BE15433B685A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4905,26 +5112,27 @@ Pass Pass
 [Deal "N:AKQ964.85.AQ7.K6 532.J62.432.J983 JT87.KQ3.K96.A54 .AT974.JT85.QT72"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6N"]
+[Contract "6S"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 1440"]
+[Score "NS 1430"]
 [Auction "N"]
-1S Pass 2C Pass
-3S Pass 4S Pass
-4NT =1= Pass 5D Pass
-6NT Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+4C Pass 4S Pass
+4NT =2= Pass 5D Pass
+6S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "168"]
+[Board "169"]
 {E2A9960C84925F341BFA6B20F20D}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4943,16 +5151,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "169"]
+[Board "170"]
 {E139E027C36C4E867D7B98EA80CE}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -4982,7 +5190,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "170"]
+[Board "171"]
 {E087134F49FDCE7864D9AE20A4C2}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5001,15 +5209,18 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "171"]
+[Board "172"]
 {E1C18345BD64CE7F966B28F54CE1}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5020,23 +5231,27 @@ Pass Pass
 [Deal "N:5.AKQ93.65.AQJ42 QT863.7.J983.T53 KJ7.T652.AK2.K86 A942.J84.QT74.97"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 480"]
+[Score "NS 980"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4C Pass 4H Pass
+4NT =2= Pass 5D Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "172"]
+[Board "173"]
 {E3692701531EB0BAA44308C8CEE6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5055,15 +5270,47 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "173"]
+[Board "174"]
+{E24F0B450EEF2BB656E3C0E950D2}
+[West "EPBot4"]
+[North "EPBot1"]
+[East "EPBot2"]
+[South "EPBot3"]
+[Dealer "N"]
+[Vulnerable "NS"]
+[Deal "N:KJ9.AKQJ5.Q87.Q4 AQ73.732.6532.53 8.T964.AJT.AKT96 T6542.8.K94.J872"]
+[Scoring "MP"]
+[Declarer "N"]
+[Contract "6H"]
+[Result "11"]
+[BCFlags "3f"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+[Room "Open"]
+[Score "NS -100"]
+[Auction "N"]
+1H Pass 2NT =1= Pass
+3H Pass 4NT =2= Pass
+5S Pass 6H Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
+[Play "E"]
+*
+
+[Event ""]
+[Site ""]
+[Date "2024.11.14"]
+[Board "175"]
 {E306B987C692BC7F0C6B2AD01020}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5082,16 +5329,21 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
+1S Pass 2NT =1= Pass
+3C =2= Pass 3D =3= Pass
+4C =4= Pass 4S Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "174"]
+[Board "176"]
 {E0C18A6B0FC424FD5FB0A8261CC6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5102,23 +5354,27 @@ Pass Pass
 [Deal "N:J943.AKJT2.A6.A8 Q7.73.T942.T9653 K65.Q954.KQ5.QJ7 AT82.86.J873.K42"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 480"]
+[Score "NS 980"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4C Pass 4H Pass
+4NT =2= Pass 5C Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "175"]
+[Board "177"]
 {E2458A1AC37959A4EC66432C8FF2}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5147,7 +5403,7 @@ XX 1S 2S =1= Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "176"]
+[Board "178"]
 {E14A51A14BECD08D06A6E7F87F0E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5177,7 +5433,35 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "177"]
+[Board "179"]
+{F0BF0D2954F0889FF8359613ED26}
+[West "EPBot4"]
+[North "EPBot1"]
+[East "EPBot2"]
+[South "EPBot3"]
+[Dealer "N"]
+[Vulnerable "None"]
+[Deal "N:KQ642.K9.T4.KQ63 J.J854.J652.JT97 A985.Q32.Q97.A84 T73.AT76.AK83.52"]
+[Scoring "MP"]
+[Declarer "N"]
+[Contract "4S"]
+[Result "10"]
+[BCFlags "3f"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+[Room "Open"]
+[Score "NS 420"]
+[Auction "N"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Play "E"]
+*
+
+[Event ""]
+[Site ""]
+[Date "2024.11.14"]
+[Board "180"]
 {F18A6B0F70821C857F25AE3410F6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5187,25 +5471,25 @@ Pass Pass
 [Vulnerable "EW"]
 [Deal "N:Q9643.AQT8.AK.86 KJ7.93.Q975.J943 AT85.K65.JT3.KQ7 2.J742.8642.AT52"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "4S"]
-[Result "11"]
+[Declarer "S"]
+[Contract "3N"]
+[Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS 430"]
 [Auction "N"]
-1S Pass 2C Pass
-3H Pass 4S Pass
-Pass Pass
-[Play "E"]
+1S Pass 2NT =1= Pass
+3NT Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Play "W"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "178"]
+[Board "181"]
 {F3C429EF833A9C162EF09019F799}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5224,16 +5508,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS -100"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "179"]
+[Board "182"]
 {F289824DE2188458A4632DFEC7F2}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5263,7 +5547,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "180"]
+[Board "183"]
 {F119B19EE0BA62A0740E0433CD1E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5293,7 +5577,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "181"]
+[Board "184"]
 {F3644F0FC28869B6DB42EA9C31E5}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5312,15 +5596,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "182"]
+[Board "185"]
 {F38624CEC1B26B68A9DFC9577A01}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5339,15 +5624,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "183"]
+[Board "186"]
 {F3AF3DC2703BE33D14A59492580A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5377,7 +5663,36 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "184"]
+[Board "187"]
+{F24EC7249F0B1633BD18F89DB852}
+[West "EPBot4"]
+[North "EPBot1"]
+[East "EPBot2"]
+[South "EPBot3"]
+[Dealer "N"]
+[Vulnerable "NS"]
+[Deal "N:QT986.AKT.KQ9.74 A2.J9642.82.Q653 J743.Q.AJ74.KJT8 K5.8753.T653.A92"]
+[Scoring "MP"]
+[Declarer "N"]
+[Contract "4S"]
+[Result "10"]
+[BCFlags "3f"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+[Room "Open"]
+[Score "NS 620"]
+[Auction "N"]
+1S Pass 2NT =1= Pass
+3NT Pass 4S Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
+[Play "E"]
+*
+
+[Event ""]
+[Site ""]
+[Date "2024.11.14"]
+[Board "188"]
 {F1674108ADCCE3FAD68D93F5654C}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5396,15 +5711,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "185"]
+[Board "189"]
 {0227742D8EA9101282DED71BB2C8}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5434,7 +5750,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "186"]
+[Board "190"]
 {0129234CC8CC55B78F7DE29402E6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5445,23 +5761,26 @@ Pass Pass
 [Deal "N:AK3.QJT73.AJ.A96 Q96.94.QT76.QJT4 874.AK52.K53.K87 JT52.86.9842.532"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 480"]
+[Score "NS 980"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4NT =2= Pass 5H Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "187"]
+[Board "191"]
 {03221F1983AC14A840F572B6E90A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5491,7 +5810,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "188"]
+[Board "192"]
 {020B9D6664E8F14CCA43ED9896C7}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5502,7 +5821,7 @@ Pass Pass
 [Deal "N:A.A8762.QJ32.K95 QJ86.K43.96.JT84 K43.QJT5.K85.A62 T9752.9.AT74.Q73"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "5H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -5510,15 +5829,20 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4H Pass
+4NT =3= Pass 5D Pass
+5H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "189"]
+[Board "193"]
 {034542C900AB5AFF05DDB360A4EA}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5546,7 +5870,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "190"]
+[Board "194"]
 {038BECAE0ED46AF54183D0453B60}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5565,15 +5889,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "191"]
+[Board "195"]
 {028D04EF1A924831C7D2B3AA203C}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5592,18 +5917,23 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1430"]
 [Auction "N"]
-1S Pass 2C Pass
-3H Pass 4S Pass
-4NT =1= Pass 5H Pass
-6S Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+3S Pass 4D =2= Pass
+4H =3= Pass 4NT =4= Pass
+5C Pass 5D Pass
+5H Pass 6S Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !D stopper"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "192"]
+[Board "196"]
 {03E50CC7B5B010E97ACF60AF4842}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5633,7 +5963,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "193"]
+[Board "197"]
 {00A7418D5F8EECE44BFA71CA1024}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5652,15 +5982,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "194"]
+[Board "198"]
 {02B4E70DBBA29ED30E181008EA44}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5679,16 +6010,18 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
+1S Pass 2NT =1= Pass
+3C =2= Pass 4S Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "195"]
+[Board "199"]
 {0148B20821A4D630965D2B772DBE}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5718,7 +6051,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "196"]
+[Board "200"]
 {1067028F9062148CCB4E06EAF4E9}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5737,15 +6070,21 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3C =2= Pass 4C =3= Pass
+4D =4= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Cue bid, a !S stopper"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "197"]
+[Board "201"]
 {121C3509A77BA9F8105388FF0E92}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5774,7 +6113,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "198"]
+[Board "202"]
 {130FA1A89ADF6160B408C3CE817A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5806,7 +6145,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "199"]
+[Board "203"]
 {12C1A507A6EF420A53BA98803862}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5835,7 +6174,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "200"]
+[Board "204"]
 {10A29580CF74262C9F63BD40CFC6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5865,7 +6204,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "201"]
+[Board "205"]
 {13455FADA26683D93300FCE4C84A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5895,7 +6234,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "202"]
+[Board "206"]
 {10099B4CB61C1DA9B01FF722663C}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5906,7 +6245,7 @@ Pass Pass
 [Deal "N:AT9642.AQ.74.A98 Q3.KT96.J53.QT72 KJ87.843.AK8.K65 5.J752.QT962.J43"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4S"]
+[Contract "5S"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -5914,16 +6253,20 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1S Pass 2C Pass
-2S Pass 4S Pass
+1S Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4NT =3= Pass 5S Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "203"]
+[Board "207"]
 {10C02A45936AE4E30F4ECDB41A96}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5953,7 +6296,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "204"]
+[Board "208"]
 {124D82BDCAEC6D356B904AC811A2}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5985,7 +6328,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "205"]
+[Board "209"]
 {11418F8AE960D7EDBE2A7CCE45D3}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -5996,23 +6339,28 @@ Pass Pass
 [Deal "N:6.AKQ43.QJ6.AJ83 AT53.92.K8754.T5 KQ7.JT86.AT2.K92 J9842.75.93.Q764"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS -50"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4H Pass
+4NT =3= Pass 5D Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "206"]
+[Board "210"]
 {2021AE59AE8D0B47C874F4C75DE2}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6023,23 +6371,27 @@ Pass Pass
 [Deal "N:A9.T9874.A2.AQT3 Q863.Q3.8654.765 KJT.AKJ2.Q97.984 7542.65.KJT3.KJ2"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS -50"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4H Pass
+4NT =2= Pass 5S Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "207"]
+[Board "211"]
 {21A20955A0542E403BA6D5CECF47}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6050,23 +6402,25 @@ Pass Pass
 [Deal "N:K97.K8432.K7.KQ5 QT82.QT5.943.JT8 AJ6.AJ96.AJ8.732 543.7.QT652.A964"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS -50"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3NT Pass 6H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "208"]
+[Board "212"]
 {23811C0E1B0CA0D28B63C4F6666A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6095,7 +6449,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "209"]
+[Board "213"]
 {2205314ECF680B97F85AA16A8362}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6121,7 +6475,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "210"]
+[Board "214"]
 {21B92D62EC7AA6332990353D549E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6140,21 +6494,20 @@ Pass Pass
 [Room "Open"]
 [Score "NS -50"]
 [Auction "N"]
-1S Pass 4C =1= Pass
-4H =2= Pass 4S Pass
-5H =3= Pass 5NT Pass
-6C Pass 6S Pass
+1S Pass 2NT =1= Pass
+4C Pass 4S Pass
+5H =2= Pass 5NT Pass
+6D Pass 6S Pass
 Pass Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Exclusion, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Exclusion, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "211"]
+[Board "215"]
 {2131112B8AD44D27AF961DF4729E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6183,7 +6536,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "212"]
+[Board "216"]
 {238DAFDB4228C1ABD6643A00D006}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6194,23 +6547,31 @@ Pass Pass
 [Deal "N:T542.AJ942.AK.A9 J6.Q73.QT85.T643 AK8.KT86.762.KQ8 Q973.5.J943.J752"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "7H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS -100"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3H Pass 3NT =2= Pass
+4C =3= Pass 4NT =4= Pass
+5C Pass 5D Pass
+6D Pass 7H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, surplus"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "213"]
+[Board "217"]
 {22230D1DE0398C68B34BBA12BA14}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6221,25 +6582,61 @@ Pass Pass
 [Deal "N:AKQT42.K96.2.KQT 86.Q42.AJ74.J982 9753.AJ8.KQ9.A76 J.T753.T8653.543"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "5S"]
+[Contract "6S"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1S Pass 2C Pass
-3S Pass 4NT =1= Pass
-5S Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+3D =2= Pass 4S Pass
+4NT =3= Pass 5H Pass
+6S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "214"]
+[Board "218"]
+{238F60E10DC0241847E7F34A3B7A}
+[West "EPBot4"]
+[North "EPBot1"]
+[East "EPBot2"]
+[South "EPBot3"]
+[Dealer "N"]
+[Vulnerable "All"]
+[Deal "N:J983.AJT74.AJ.QJ K742.8.8432.KT98 A.KQ96.976.A7653 QT65.532.KQT5.42"]
+[Scoring "MP"]
+[Declarer "N"]
+[Contract "6H"]
+[Result "12"]
+[BCFlags "3f"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+[Room "Open"]
+[Score "NS 1430"]
+[Auction "N"]
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass 4NT =3= Pass
+5S Pass 6H Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Blackwood 0314, for !H"]
+[Play "E"]
+*
+
+[Event ""]
+[Site ""]
+[Date "2024.11.14"]
+[Board "219"]
 {20E50BC94AD04EF0966F86BD6720}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6269,7 +6666,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "215"]
+[Board "220"]
 {222D4C22EBDA728B81D44588DE23}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6288,15 +6685,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "216"]
+[Board "221"]
 {306312A3781E39B91E94E5BC4E07}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6315,19 +6713,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-4D =1= Pass 4H =2= Pass
+1S Pass 2NT =1= Pass
 4S Pass Pass Pass
-[Note "1:Cue bid, a !D stopper"]
-[Note "2:Cue bid, a !C stopper"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "217"]
+[Board "222"]
 {3101E258B5121DE5B5923CEC208E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6359,7 +6754,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "218"]
+[Board "223"]
 {332B8F42FC6880141770B12ABE06}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6370,24 +6765,31 @@ Pass Pass
 [Deal "N:A8742.KQ92.KJ3.5 QT6.87.AT4.JT986 K953.AT4.872.AK7 J.J653.Q965.Q432"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4S"]
+[Contract "6S"]
 [Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 620"]
+[Score "NS -200"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+3C =2= Pass 3S Pass
+4D =3= Pass 4H =4= Pass
+4NT =5= Pass 5C Pass
+6S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Cue bid, a !C stopper"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "219"]
+[Board "224"]
 {316A830D829EF06568FF650DC756}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6406,15 +6808,18 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "220"]
+[Board "225"]
 {31CB8D933C1836A05E2046C72A96}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6425,7 +6830,7 @@ Pass Pass
 [Deal "N:JT963.AK54.AT3.K 75.QT72.KJ7.JT86 KQ82.863.Q86.AQ4 A4.J9.9542.97532"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4S"]
+[Contract "5S"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -6433,16 +6838,23 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1S Pass 2C Pass
-3H Pass 4S Pass
+1S Pass 2NT =1= Pass
+3C =2= Pass 4C =3= Pass
+4D =4= Pass 4S Pass
+4NT =5= Pass 5S Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Cue bid, a !H stopper"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "221"]
+[Board "226"]
 {30E3A38C214E4FF574088626BC96}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6461,17 +6873,19 @@ Pass Pass
 [Room "Open"]
 [Score "NS 980"]
 [Auction "N"]
-1H Pass 4NT =1= Pass
+1H Pass 2NT =1= Pass
+4H Pass 4NT =2= Pass
 5D Pass 6H Pass
 Pass Pass
-[Note "1:Blackwood 0314, for !H"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "222"]
+[Board "227"]
 {328D3B6ACC6AA30BD40CC0E512B0}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6490,15 +6904,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "223"]
+[Board "228"]
 {33268E47CC546A42ECB12B3BF980}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6517,15 +6932,17 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "224"]
+[Board "229"]
 {3008808AA56A15F4DF2F32BF0E54}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6536,27 +6953,27 @@ Pass Pass
 [Deal "N:A9653.AKQ3.K5.J9 T2.972.J982.AK82 KQJ4.JT6.AQT.764 87.854.7643.QT53"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6SX"]
+[Contract "5S"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -100"]
+[Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-3H Pass 4S Pass
-4NT =1= Pass 5S Pass
-6S XS Pass Pass
-Pass
-[Note "1:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+3S Pass 4NT =2= Pass
+5H Pass 5S Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "225"]
+[Board "230"]
 {320E23A4FA7786D04B6DC44C9A28}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6575,15 +6992,18 @@ Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3C =2= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "226"]
+[Board "231"]
 {31C5CF219076A004E34AF81D8E6E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6613,7 +7033,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "227"]
+[Board "232"]
 {42A24D2550D97CCE9DAA46C80BA2}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6632,16 +7052,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4C =1= Pass
+1H Pass 2NT =1= Pass
 4H Pass Pass Pass
-[Note "1:Splinter"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "228"]
+[Board "233"]
 {4102BF04636AE27CBA0DC847ACF8}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6660,15 +7080,18 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3C =2= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "229"]
+[Board "234"]
 {430F6D6C06CC94ABF07B4FD3C2EA}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6698,7 +7121,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "230"]
+[Board "235"]
 {4347EDB906D210EF8C72474AA9E8}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6717,15 +7140,18 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "231"]
+[Board "236"]
 {4029952912CEEC94CF44C48E73EB}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6756,7 +7182,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "232"]
+[Board "237"]
 {41840D49E35ACE24A3237596DE4E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6783,7 +7209,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "233"]
+[Board "238"]
 {43BC851F559BBA4A2AE60CD02332}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6813,7 +7239,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "234"]
+[Board "239"]
 {4079298314BD5224FF1CBD1A8F66}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6843,7 +7269,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "235"]
+[Board "240"]
 {40891DA62B6FEB047CCCDC847202}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6862,15 +7288,17 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "236"]
+[Board "241"]
 {4143E99A0E7E8F72C424E35D8565}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6889,15 +7317,18 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "237"]
+[Board "242"]
 {500B5A31504AACA4ADDFA0C24EC6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6927,7 +7358,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "238"]
+[Board "243"]
 {523F940B226090AA793A0E0FF590}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6946,16 +7377,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1S Pass 2C Pass
-2S Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "239"]
+[Board "244"]
 {5107AD008667FE5D60CA16AFC17D}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -6974,15 +7405,18 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "240"]
+[Board "245"]
 {53CF0B96A81609600CF68E60EAD3}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7001,15 +7435,21 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3C =2= Pass 4C =3= Pass
+4D =4= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Cue bid, a !S stopper"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "241"]
+[Board "246"]
 {52213407C29D9CBB34FB68A62252}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7038,7 +7478,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "242"]
+[Board "247"]
 {532FEC8EB043884BB2630D12DB6A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7069,7 +7509,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "243"]
+[Board "248"]
 {5061A60BBD2CDB4FD81085E4CE4E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7088,15 +7528,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "244"]
+[Board "249"]
 {5127C8BB121074D0073EEDAA8CBD}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7115,16 +7556,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "245"]
+[Board "250"]
 {504109B1841CAA361468EE27FAB6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7152,7 +7593,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "246"]
+[Board "251"]
 {52A80D301F32255B71DFCA95AAB0}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7171,16 +7612,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1S Pass 2C Pass
-3C Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "247"]
+[Board "252"]
 {508A00E361C0EC5ABC1EE257468B}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7191,7 +7632,7 @@ Pass Pass
 [Deal "N:K6.AKT32.KQJT5.J J843.864.43.KT97 A72.QJ95.A82.Q42 QT95.7.976.A8653"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "5H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -7199,15 +7640,18 @@ Pass Pass
 [Room "Open"]
 [Score "NS 480"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4D Pass 4NT =2= Pass
+5H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "248"]
+[Board "253"]
 {52B624051BE890BECF19AA0C5372}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7234,7 +7678,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "249"]
+[Board "254"]
 {514DE3037695E9DF06A2C8C86CBC}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7253,15 +7697,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "250"]
+[Board "255"]
 {6003267FD18767EE404FF5CA18A6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7290,7 +7735,35 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "251"]
+[Board "256"]
+{62C82EA701385B331EF414A49EB2}
+[West "EPBot4"]
+[North "EPBot1"]
+[East "EPBot2"]
+[South "EPBot3"]
+[Dealer "N"]
+[Vulnerable "NS"]
+[Deal "N:KJT875.AJ.Q654.J 9.9753.J82.AT654 Q432.KQ4.K73.Q98 A6.T862.AT9.K732"]
+[Scoring "MP"]
+[Declarer "N"]
+[Contract "4S"]
+[Result "10"]
+[BCFlags "3f"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+[Room "Open"]
+[Score "NS 620"]
+[Auction "N"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Play "E"]
+*
+
+[Event ""]
+[Site ""]
+[Date "2024.11.14"]
+[Board "257"]
 {63B405351B8163AC0BF0F92A98D2}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7309,18 +7782,20 @@ Pass Pass
 [Room "Open"]
 [Score "NS -100"]
 [Auction "N"]
-1S Pass 2C Pass
-3C Pass 4S Pass
-4NT =1= Pass 5H Pass
+1S Pass 2NT =1= Pass
+3D =2= Pass 3S Pass
+4NT =3= Pass 5H Pass
 5S Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "252"]
+[Board "258"]
 {62860C23A47E340E7328FB965299}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7339,18 +7814,20 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1430"]
 [Auction "N"]
-1S Pass 2C Pass
-3D Pass 4S Pass
-4NT =1= Pass 5D Pass
+1S Pass 2NT =1= Pass
+3C =2= Pass 4S Pass
+4NT =3= Pass 5D Pass
 6S Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "253"]
+[Board "259"]
 {6189B497B166FBC1162C2DD01C3F}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7369,16 +7846,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-3C Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "254"]
+[Board "260"]
 {630C1B02CAB0759E0967B71390EA}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7404,7 +7881,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "255"]
+[Board "261"]
 {638626FD08A56283ECC85B0CF25B}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7423,15 +7900,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "256"]
+[Board "262"]
 {62288B26A1F485309A3F2BF06452}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7450,16 +7928,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 4D =1= Pass
+1S Pass 2NT =1= Pass
 4S Pass Pass Pass
-[Note "1:Splinter"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "257"]
+[Board "263"]
 {622D8D18E2B386C396203F185AD9}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7489,7 +7967,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "258"]
+[Board "264"]
 {61B34539EC941B118CFC27F2269D}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7508,16 +7986,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1S Pass 2C Pass
-3C Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "259"]
+[Board "265"]
 {708B4406AD4C640390A1BEEFFDD6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7536,16 +8014,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4D =1= Pass
+1H Pass 2NT =1= Pass
 4H Pass Pass Pass
-[Note "1:Splinter"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "260"]
+[Board "266"]
 {721F89A6F20077BEC72A3198502C}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7564,19 +8042,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-4C =1= Pass 4D =2= Pass
+1S Pass 2NT =1= Pass
 4S Pass Pass Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, a !D stopper"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "261"]
+[Board "267"]
 {712C8BD1426A96C8EDCEC3783CA7}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7595,15 +8070,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "262"]
+[Board "268"]
 {738B0965D368B346E23910A2064C}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7622,15 +8098,51 @@ Pass Pass
 [Room "Open"]
 [Score "NS 680"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "263"]
+[Board "269"]
+{72001F2BED4F22CA7808D08E4DE2}
+[West "EPBot4"]
+[North "EPBot1"]
+[East "EPBot2"]
+[South "EPBot3"]
+[Dealer "N"]
+[Vulnerable "NS"]
+[Deal "N:AKQ96.AT8643..J3 T73.K5.A952.A765 4.QJ92.KJT43.KQT J852.7.Q876.9842"]
+[Scoring "MP"]
+[Declarer "N"]
+[Contract "6HX"]
+[Result "12"]
+[BCFlags "3f"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+[Room "Open"]
+[Score "NS 1660"]
+[Auction "N"]
+1H Pass 2NT =1= Pass
+3D =2= Pass 4H Pass
+5D =3= Pass 5H Pass
+6H XH Pass Pass
+Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Exclusion, for !H"]
+[Play "E"]
+*
+
+[Event ""]
+[Site ""]
+[Date "2024.11.14"]
+[Board "270"]
 {7121BF0C2C92FBB2FA8A1B65543C}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7641,30 +8153,24 @@ Pass Pass
 [Deal "N:AQJ52.Q6.9765.A4 43.T53.KQJ2.QJ32 KT86.AJ4.AT8.K95 97.K9872.43.T876"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6S"]
+[Contract "4S"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -50"]
+[Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-3D Pass 3S Pass
-4C =1= Pass 4D =2= Pass
-4S Pass 4NT =3= Pass
-5S Pass 6S Pass
-Pass Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "264"]
+[Board "271"]
 {7009CE60856B8C38F0E526CF57B6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7691,7 +8197,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "265"]
+[Board "272"]
 {73093F47D0BDA1A6983E3824D67A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7720,7 +8226,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "266"]
+[Board "273"]
 {708381712AA4C84E76FCE88944E6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7752,7 +8258,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "267"]
+[Board "274"]
 {7203ED88906BCEB5F8E30455C26E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7771,15 +8277,49 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "268"]
+[Board "275"]
+{802928C30AEC077C76277E4BC846}
+[West "EPBot4"]
+[North "EPBot1"]
+[East "EPBot2"]
+[South "EPBot3"]
+[Dealer "N"]
+[Vulnerable "None"]
+[Deal "N:AKJ96.QJ9432.Q.A 87542..9762.KT83 .AKT6.AKJ43.Q964 QT3.875.T85.J752"]
+[Scoring "MP"]
+[Declarer "N"]
+[Contract "7H"]
+[Result "13"]
+[BCFlags "3f"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+[Room "Open"]
+[Score "NS 1510"]
+[Auction "N"]
+1H Pass 2NT =1= Pass
+3D =2= Pass 5S =3= Pass
+6C Pass 6D Pass
+6NT Pass 7H Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Exclusion, for !H"]
+[Play "E"]
+*
+
+[Event ""]
+[Site ""]
+[Date "2024.11.14"]
+[Board "276"]
 {810308115DBF3BB4E7A6B1167C1E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7812,7 +8352,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "269"]
+[Board "277"]
 {830CA35540F9C6EA2F86A001987A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7842,7 +8382,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "270"]
+[Board "278"]
 {82AB048E2B91D31520BAF0EB7512}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7861,22 +8401,19 @@ Pass Pass
 [Room "Open"]
 [Score "NS -100"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-4D =1= Pass 4H =2= Pass
-4S Pass 4NT =3= Pass
+1S Pass 2NT =1= Pass
+4S Pass 4NT =2= Pass
 5D Pass 6S Pass
 Pass Pass
-[Note "1:Cue bid, a !D stopper"]
-[Note "2:Cue bid, a !C stopper"]
-[Note "3:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "271"]
+[Board "279"]
 {836F85CAB136CB6E68DEC369C994}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7887,7 +8424,7 @@ Pass Pass
 [Deal "N:T.KQ953.A86.KJ43 A874.62.Q9743.72 KJ2.A874.KT2.A95 Q9653.JT.J5.QT86"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "5H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -7895,15 +8432,21 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4C =3= Pass
+4NT =4= Pass 5H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "272"]
+[Board "280"]
 {80132AEF84CD798AA47EC1436656}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7922,15 +8465,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "273"]
+[Board "281"]
 {80230D5BDA6FE06E9EC4BD450886}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7961,7 +8505,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "274"]
+[Board "282"]
 {8229A77D02E8D300B2076C48FC8A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7980,15 +8524,18 @@ Pass Pass
 [Room "Open"]
 [Score "NS 680"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "275"]
+[Board "283"]
 {834E2728659CC3AA9246D8C3C001}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -7999,7 +8546,7 @@ Pass Pass
 [Deal "N:KQ2.A96432.AT.J2 AJ6.T75.Q85.QT53 T87.KQJ8.KJ6.K94 9543..97432.A876"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "5H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -8007,15 +8554,19 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4H Pass
+4NT =2= Pass 5D Pass
+5H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "276"]
+[Board "284"]
 {80F30F4B8975A64CC0FD28A660D6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8034,15 +8585,17 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "277"]
+[Board "285"]
 {82BD0F113640DBAB21DAF2BCA114}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8072,7 +8625,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "278"]
+[Board "286"]
 {9085C12C1EF9A9E8E45B4E4D84B6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8101,7 +8654,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "279"]
+[Board "287"]
 {92AE0444A37B9F32017E18A932D6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8120,16 +8673,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "280"]
+[Board "288"]
 {91ADCB4752BE6F01E66C801AC8FA}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8148,15 +8701,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "281"]
+[Board "289"]
 {92048A79CF71DF4647ECD220A9A2}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8183,7 +8737,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "282"]
+[Board "290"]
 {910220258DFC1F9642A494C93FD7}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8194,26 +8748,31 @@ Pass Pass
 [Deal "N:AKQ93.AJ74.4.QJ4 7.9852.JT93.KT65 J865.KQ6.AK7.932 T42.T3.Q8652.A87"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "6S"]
+[Contract "5S"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -50"]
+[Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-3H Pass 4S Pass
-4NT =1= Pass 5D Pass
-6S Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+3D =2= Pass 3H =3= Pass
+3S Pass 4D =4= Pass
+4NT =5= Pass 5D Pass
+5S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Cue bid, a !H stopper"]
+[Note "4:Cue bid, a !D stopper"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "283"]
+[Board "291"]
 {9387112AC03A91ABDC1E7D13E4B4}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8232,16 +8791,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "284"]
+[Board "292"]
 {90A0052E4CB95F3B98C2C5EC8666}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8271,7 +8830,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "285"]
+[Board "293"]
 {9163390D9E246087188C17F2BAD6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8301,7 +8860,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "286"]
+[Board "294"]
 {930B431AFFD90080C664ADA1D66A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8328,7 +8887,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "287"]
+[Board "295"]
 {92652B39EE9AE02716B00199E092}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8347,12 +8906,12 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1430"]
 [Auction "N"]
-1S Pass 4D =1= Pass
-4H =2= Pass 4NT =3= Pass
-5C Pass 5S Pass
+1S Pass 2NT =1= Pass
+3H =2= Pass 4S Pass
+4NT =3= Pass 5D Pass
 6S Pass Pass Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, surplus"]
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !H"]
 [Note "3:Blackwood 0314, for !S"]
 [Play "E"]
 *
@@ -8360,7 +8919,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "288"]
+[Board "296"]
 {904F30913EB9ECCE3709A7285496}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8386,7 +8945,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "289"]
+[Board "297"]
 {92249FE946EC4286F7B0DB44224E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8405,15 +8964,21 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3C =2= Pass 3D =3= Pass
+4D =4= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Cue bid, a !D stopper"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "290"]
+[Board "298"]
 {A0C9903C334A90B625DD5FAF2626}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8443,7 +9008,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "291"]
+[Board "299"]
 {A207147A5CA4EE4E026BEBC13C82}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8472,7 +9037,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "292"]
+[Board "300"]
 {A385BA2800143F61B57222DF5A9F}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8491,16 +9056,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "293"]
+[Board "301"]
 {A28D8023F952A42E7ACB2058CB0D}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8511,23 +9076,30 @@ Pass Pass
 [Deal "N:Q852.AK632.9.AJ2 T74.T4.KQT5.K954 AK9.Q985.A82.Q63 J63.J7.J7643.T87"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 3H Pass
+4C =3= Pass 4NT =4= Pass
+5C Pass 5H Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "294"]
+[Board "302"]
 {A1038D84E1C8AFC46C7A70FB26DD}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8558,7 +9130,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "295"]
+[Board "303"]
 {A32D34B7CFD2BA190392A02418D9}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8569,28 +9141,28 @@ Pass Pass
 [Deal "N:AK8743.J7.AJ.A82 .T8632.9832.K543 Q965.A54.KQ4.QJ7 JT2.KQ9.T765.T96"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "7S"]
+[Contract "6S"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -100"]
+[Score "NS 1430"]
 [Auction "N"]
-1S Pass 2C Pass
-3S Pass 4NT =1= Pass
-5D Pass 5NT =2= Pass
-6C Pass 7S Pass
-Pass Pass
-[Note "1:Blackwood 0314, for !S"]
-[Note "2:King ask by 5NT"]
+1S Pass 2NT =1= Pass
+4C Pass 4D =2= Pass
+4NT =3= Pass 5D Pass
+6S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !D stopper"]
+[Note "3:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "296"]
+[Board "304"]
 {A0023F27ACE2BEA924B4455118F6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8618,7 +9190,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "297"]
+[Board "305"]
 {A1A925F417D93EC3BC7D1E9300AE}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8648,7 +9220,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "298"]
+[Board "306"]
 {A3B923204DEB60FB8E53C6BC880A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8667,16 +9239,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4D =1= Pass
+1H Pass 2NT =1= Pass
 4H Pass Pass Pass
-[Note "1:Splinter"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "299"]
+[Board "307"]
 {A021289EB57F16B9BDD34B1E2446}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8706,7 +9278,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "300"]
+[Board "308"]
 {A23F892912E3FB9D7200C8249C96}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8736,7 +9308,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "301"]
+[Board "309"]
 {A2478DA02A377A02AC8B381251FC}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8755,18 +9327,23 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1430"]
 [Auction "N"]
-1S Pass 2C Pass
-3H Pass 3S Pass
-4NT =1= Pass 5S Pass
+1S Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4D =3= Pass 4H =4= Pass
+4NT =5= Pass 5S Pass
 6S Pass Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Cue bid, surplus"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "302"]
+[Board "310"]
 {A10A2297AFFD4EF37C6008C5A60C}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8776,24 +9353,25 @@ Pass Pass
 [Vulnerable "EW"]
 [Deal "N:AK52.A9542.A5.T4 976.Q.JT972.7652 QJ3.KJ63.K86.QJ8 T84.T87.Q43.AK93"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "4H"]
-[Result "11"]
+[Declarer "S"]
+[Contract "3N"]
+[Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS 430"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
-[Play "E"]
+1H Pass 2NT =1= Pass
+3NT Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Play "W"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "303"]
+[Board "311"]
 {B0492B01A69CAC56BB7E00127F3C}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8803,7 +9381,7 @@ Pass Pass
 [Vulnerable "None"]
 [Deal "N:KQ542.AQ5.Q54.AQ A863.T84.J8.T952 JT97.KJ9.AK7.K73 .7632.T9632.J864"]
 [Scoring "MP"]
-[Declarer "N"]
+[Declarer "S"]
 [Contract "6N"]
 [Result "12"]
 [BCFlags "3f"]
@@ -8812,17 +9390,22 @@ Pass Pass
 [Room "Open"]
 [Score "NS 990"]
 [Auction "N"]
-1S Pass 2C Pass
-3NT Pass 4NT =1= Pass
-6NT Pass Pass Pass
-[Note "1:Quantitative 4NT"]
-[Play "E"]
+1S Pass 2NT =1= Pass
+4C Pass 4D =2= Pass
+4H =3= Pass 4NT =4= Pass
+5C Pass 6NT Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !D stopper"]
+[Note "3:Cue bid, surplus"]
+[Note "4:Blackwood 0314, for !S"]
+[Play "W"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "304"]
+[Board "312"]
 {B24D28A08F069A43AAF01B0C32D6}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8833,7 +9416,7 @@ Pass Pass
 [Deal "N:KT543.AJT84.T2.A A8.952.Q863.KQ64 QJ97.KQ7.AJ4.J85 62.63.K975.T9732"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4S"]
+[Contract "5S"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -8841,16 +9424,23 @@ Pass Pass
 [Room "Open"]
 [Score "NS 680"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+3C =2= Pass 3D =3= Pass
+4C =4= Pass 4S Pass
+4NT =5= Pass 5D Pass
+5S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !C"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Cue bid, a !C stopper"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "305"]
+[Board "313"]
 {B103841B3716E61CF041BEAA5DAD}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8881,7 +9471,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "306"]
+[Board "314"]
 {B12B3B1D23E44E5415B6BB5688AE}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8900,21 +9490,20 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1010"]
 [Auction "N"]
-1S Pass 4D =1= Pass
-4H =2= Pass 4NT =3= Pass
+1S Pass 2NT =1= Pass
+3S Pass 4NT =2= Pass
 5C Pass 5D Pass
 6D Pass 6S Pass
 Pass Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "307"]
+[Board "315"]
 {B1E51968BC9D37C2962F33401ABE}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8940,7 +9529,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "308"]
+[Board "316"]
 {B30BA53FCCD23A12A2A558975E39}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -8971,7 +9560,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "309"]
+[Board "317"]
 {B023D90746F2DE88AC0967825E6C}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9001,7 +9590,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "310"]
+[Board "318"]
 {B2855ECB035DFFA8063A616C62C2}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9031,7 +9620,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "311"]
+[Board "319"]
 {B08C2B820EA8F74856B336D41D2D}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9050,18 +9639,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 3S Pass
-4H =1= Pass 4S Pass
-Pass Pass
-[Note "1:Cue bid, a !H stopper"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "312"]
+[Board "320"]
 {B28EBE010840686B368BC066D3ED}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9080,15 +9667,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "313"]
+[Board "321"]
 {B12E3303981930D65D87B071F59E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9107,16 +9695,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 4H =1= Pass
+1S Pass 2NT =1= Pass
 4S Pass Pass Pass
-[Note "1:Splinter"]
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "314"]
+[Board "322"]
 {C02370A5CBB64CE5DC825A4CE90F}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9135,15 +9723,18 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "315"]
+[Board "323"]
 {C22EB5C78C60F387404AF9F1646E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9154,7 +9745,7 @@ Pass Pass
 [Deal "N:A.QJ876.KQ83.K54 T7632..T974.JT73 KJ8.AT32.AJ2.Q98 Q954.K954.65.A62"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "5H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -9162,15 +9753,21 @@ Pass Pass
 [Room "Open"]
 [Score "NS 680"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4D =3= Pass
+4S =4= Pass 5H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "316"]
+[Board "324"]
 {C1EF033936DAECA41E91867B009C}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9189,16 +9786,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "317"]
+[Board "325"]
 {C31DA78AE002192A8762C0D7DA49}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9209,23 +9806,28 @@ Pass Pass
 [Deal "N:AT98.QT752.A.A92 62.A943.Q9832.J5 KQ7.KJ86.K74.K74 J543..JT65.QT863"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3D =2= Pass 3H Pass
+4NT =3= Pass 5D Pass
+6H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
+[Note "3:Blackwood 0314, for !H"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "318"]
+[Board "326"]
 {C12F7BC81D36A43E609B8A779B3E}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9253,7 +9855,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "319"]
+[Board "327"]
 {C103668A052481F7E8FD40BC6F7C}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9283,7 +9885,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "320"]
+[Board "328"]
 {C03409EC3DF7264E68929BB31196}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9309,7 +9911,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "321"]
+[Board "329"]
 {C20695DC4B5DE8CCA8C2A28921B2}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9336,7 +9938,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "322"]
+[Board "330"]
 {C30D9CBE21E2EEA95B3623905B1A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9369,7 +9971,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "323"]
+[Board "331"]
 {C0434FE9EA7508A07C12C48FE296}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9388,15 +9990,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "324"]
+[Board "332"]
 {C12B993F416C300B1696A0B614F4}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9415,18 +10018,22 @@ Pass Pass
 [Room "Open"]
 [Score "NS 980"]
 [Auction "N"]
-1S Pass 2C Pass
-3S Pass 4NT =1= Pass
+1S Pass 2NT =1= Pass
+3S Pass 4C =2= Pass
+4D =3= Pass 4NT =4= Pass
 5S Pass 6S Pass
 Pass Pass
-[Note "1:Blackwood 0314, for !S"]
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Cue bid, a !D stopper"]
+[Note "4:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "325"]
+[Board "333"]
 {D0D3A129F7B4121CA33E6F94C536}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9445,20 +10052,23 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 4D =1= Pass
-4H =2= Pass 4NT =3= Pass
-5D Pass 5S Pass
-Pass Pass
-[Note "1:Splinter"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+3H =2= Pass 3S Pass
+4C =3= Pass 4D =4= Pass
+4NT =5= Pass 5H Pass
+5S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !H"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Cue bid, a !D stopper"]
+[Note "5:Blackwood 0314, for !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "326"]
+[Board "334"]
 {D20E2F48D2BA81B017B7EA112CD1}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9477,16 +10087,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 620"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "327"]
+[Board "335"]
 {D191CDA0487D270AEEA7D77441CE}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9505,15 +10115,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "328"]
+[Board "336"]
 {D2882F0E309EAB48F821971242C9}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9532,19 +10143,18 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 3S Pass
-4D =1= Pass 4H =2= Pass
-4S Pass Pass Pass
-[Note "1:Cue bid, a !D stopper"]
-[Note "2:Cue bid, a !C stopper"]
+1S Pass 2NT =1= Pass
+3D =2= Pass 4S Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !D"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "329"]
+[Board "337"]
 {D10A0B6087C4105433F49E8B16AE}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9575,7 +10185,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "330"]
+[Board "338"]
 {D3E700298E173CFA40A9BA31DB94}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9594,18 +10204,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 3S Pass
-4H =1= Pass 4S Pass
-Pass Pass
-[Note "1:Cue bid, a !H stopper"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "331"]
+[Board "339"]
 {D0AF8515009C3A3ACE5F9B707B06}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9616,7 +10224,7 @@ Pass Pass
 [Deal "N:QJ982.KJ72.J4.KQ 643.QT65.KQ2.JT4 AKT5.A.9853.A653 7.9843.AT76.9872"]
 [Scoring "MP"]
 [Declarer "N"]
-[Contract "5S"]
+[Contract "4S"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -9624,20 +10232,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-2H Pass 3S Pass
-4C =1= Pass 4NT =2= Pass
-5C Pass 5S Pass
-Pass Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Blackwood 0314, for !S"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "332"]
+[Board "340"]
 {D18AE1B71918D83F13A64CA632DC}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9656,16 +10260,20 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1S Pass 2C Pass
-3D Pass 4S Pass
+1S Pass 2NT =1= Pass
+3NT Pass 4D =2= Pass
+4H =3= Pass 4S Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !D stopper"]
+[Note "3:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "333"]
+[Board "341"]
 {D08A318B246A0E92FC14325D679F}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9699,7 +10307,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "334"]
+[Board "342"]
 {D28345AC1870FAE30BDE884DE566}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9718,15 +10326,18 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "335"]
+[Board "343"]
 {D039ADA44307E64B46D0AE5ED2C9}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9745,15 +10356,44 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "336"]
+[Board "344"]
+{D226691FFC868FB3C15838A00232}
+[West "EPBot4"]
+[North "EPBot1"]
+[East "EPBot2"]
+[South "EPBot3"]
+[Dealer "N"]
+[Vulnerable "NS"]
+[Deal "N:AQ532.T973.AT.K7 K6.Q6.87432.J654 T984.AK4.QJ9.Q98 J7.J852.K65.AT32"]
+[Scoring "MP"]
+[Declarer "N"]
+[Contract "4S"]
+[Result "10"]
+[BCFlags "3f"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+[Room "Open"]
+[Score "NS 620"]
+[Auction "N"]
+1S Pass 2NT =1= Pass
+4S Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Play "E"]
+*
+
+[Event ""]
+[Site ""]
+[Date "2024.11.14"]
+[Board "345"]
 {D100CFA74DF56414460FAA3252A8}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9772,15 +10412,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "337"]
+[Board "346"]
 {E20E24A1EB7FC8DCD844472F49F2}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9810,7 +10451,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "338"]
+[Board "347"]
 {E18A132DF718A5E73890700E9EF8}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9840,7 +10481,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "339"]
+[Board "348"]
 {E1E0C18D69C3C45F7FA5AE483A76}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9859,15 +10500,18 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "N"]
-1H Pass 4H Pass
+1H Pass 2NT =1= Pass
+3S =2= Pass 4H Pass
 Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:shortness  !S"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "340"]
+[Board "349"]
 {E387C51735E06D6EC0566802C35A}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9877,7 +10521,7 @@ Pass Pass
 [Vulnerable "All"]
 [Deal "N:QJ4.AK743.98.KJ9 98652.Q62.52.T75 A.T985.AKQJ6.AQ3 KT73.J.T743.8642"]
 [Scoring "MP"]
-[Declarer "N"]
+[Declarer "S"]
 [Contract "6N"]
 [Result "12"]
 [BCFlags "3f"]
@@ -9886,24 +10530,17 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1440"]
 [Auction "N"]
-1H Pass 2D Pass
-2NT Pass 3H Pass
-3NT =1= Pass 4D =2= Pass
-4NT =3= Pass 5C Pass
-5D Pass 5H Pass
-5S =4= Pass 6C Pass
-6NT Pass Pass Pass
-[Note "1:Cue bid, surplus"]
-[Note "2:Cue bid, surplus"]
-[Note "3:Blackwood 0314, for !H"]
-[Note "4:King ask by available bid"]
-[Play "E"]
+1H Pass 2NT =1= Pass
+3NT Pass 6NT Pass
+Pass Pass
+[Note "1:Jacoby 2NT"]
+[Play "W"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "341"]
+[Board "350"]
 {E007B0139D0EAE3B73C75AB97416}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9933,7 +10570,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "342"]
+[Board "351"]
 {E3C78C812159C833EC66B84F6672}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9963,7 +10600,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "343"]
+[Board "352"]
 {E23D9E454323B09A2CBBF8046932}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -9993,7 +10630,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "344"]
+[Board "353"]
 {E21D851D1E3AAB0279AF665870B2}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -10023,7 +10660,7 @@ Pass Pass
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "345"]
+[Board "354"]
 {E1118EEB231F9048BCC53616BCE5}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -10033,25 +10670,25 @@ Pass Pass
 [Vulnerable "EW"]
 [Deal "N:AJT54.K86.Q8.A62 8.AT94.KT73.9873 K973.QJ2.AJ9.QJT Q62.753.6542.K54"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "4S"]
+[Declarer "S"]
+[Contract "3N"]
 [Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 420"]
+[Score "NS 430"]
 [Auction "N"]
-1S Pass 2C Pass
-2NT Pass 4S Pass
-Pass Pass
-[Play "E"]
+1S Pass 2NT =1= Pass
+3NT Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Play "W"]
 *
 
 [Event ""]
 [Site ""]
 [Date "2024.11.14"]
-[Board "346"]
+[Board "355"]
 {F2E10F8C47606EA48BF600F8F5D2}
 [West "EPBot4"]
 [North "EPBot1"]
@@ -10070,7 +10707,10 @@ Pass Pass
 [Room "Open"]
 [Score "NS 650"]
 [Auction "N"]
-1H Pass 4H Pass
-Pass Pass
+1H Pass 2NT =1= Pass
+3NT Pass 4C =2= Pass
+4H Pass Pass Pass
+[Note "1:Jacoby 2NT"]
+[Note "2:Cue bid, a !C stopper"]
 [Play "E"]
 *
