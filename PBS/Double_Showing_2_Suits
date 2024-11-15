@@ -1,6 +1,12 @@
 Script,DoubleShowing2Suits
-setDealerCode(
-`dealer south
+setDealerCode(`
+
+# convention-card:
+# auction-filter: 
+
+# need to allow spaces: Auction.....\\n1[CDHS] .* [12][DHSC].
+
+dealer south
 produce 1000
 
 ##### Responsive Double #####
