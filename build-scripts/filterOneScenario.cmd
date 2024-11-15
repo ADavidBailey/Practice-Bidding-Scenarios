@@ -63,12 +63,14 @@ setlocal enabledelayedexpansion
 set "input=%this_filter%"
 set "output="
 
-rem Replace all occurrences of \n with [\s\S][\s\S] -- Help me change this to \r?\n
-rem This is working fine as is.  I really don't care which string is passed to BC.
+rem Replace all occurrences of \\n with [\s\S][\s\S] -- Help me change this to \r?\n
+rem I really don't care which string is passed to BC.
 rem I think we should probably use ^ to force the bidding to start with the dealer.
 rem For this to work, we need to pass the filter in a quoted string.
-rem I might still need to use \n to advanced to the next line of bidding; so, we should keep
+rem I might still need to use \\n to advanced to the next line of bidding; so, we should keep
 rem the translation of \\n to either \r?\n or [\s\S][\s\S] -- BC works with either.
+
+rem The translation of \\n is NOT working consistently 11/15/24
 
 ::for %%A in ("!input:\\n=\r?\n!") do (    -- I thought this should work; but it does NOT.
 for %%A in ("!input:\\n=[\s\S][\s\S]!") do (
