@@ -25,7 +25,9 @@ set "file_path=C:\path\to\your\file.txt"
 ::
 
 call P:\build-scripts\FetchProperty.cmd %scenario% auction-filter
-echo PropertyValue: %propertyValue%
+
+:: echo PropertyValue: "%propertyValue%"
+
 
 IF defined propertyvalue ( 
 	SET "this_filter=%propertyvalue%"
@@ -43,9 +45,9 @@ if %errorlevel% neq 0 goto filterNotFound
 
 call P:\build-scripts\DefineAllScenarioFilters.cmd
 
-:: echo Filter found: !%filter%!
+echo Filter found: !%filter%!
 
-set this_filter=!%filter%!
+set this_filter="!%filter%!"
 
 goto foundFilter
 
@@ -62,17 +64,27 @@ exit /b
 
 :: Store the input parameter
 set inputString=%this_filter%
-echo Original input: %inputString%
+
 
 :: Replace \\n with a real newline (using a caret and actual newlines)
 set outputString=!inputString:\\n=\r?\n!
 rem Yay!!  Either of these strings work; [\s\S][\s\S] or \r?\n
 
-:: Display the result
-echo Final output: !outputString!
 
-:: Continue with the rest of the script
-echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered\%scenario%.pbn --PDF /noui
+rem Replace all occurrences of \n with [\s\S][\s\S] -- Help me change this to \r?\n
+for %%A in ("!input:\n=[\s\S][\s\S]!") do (
+     set "output=%%~A"
+)
+
+:: echo input: "%input%"
+:: echo output: "%output%"
+
+:: ------------------ Thank You, ChatGPT! --------------------------------
+:: echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "%output%" P:\bba-filtered\%scenario%.pbn --PDF /noui
+:: cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "%output%" P:\bba-filtered\%scenario%.pbn --PDF /noui
+:: cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "%output%" P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui
+
+:: echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered\%scenario%.pbn --PDF /noui
 cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered\%scenario%.pbn --PDF /noui
 cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui
 
