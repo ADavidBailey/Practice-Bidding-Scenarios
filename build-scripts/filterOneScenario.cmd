@@ -24,7 +24,7 @@ set "file_path=C:\path\to\your\file.txt"
 ::
 
 call P:\build-scripts\FetchProperty.cmd %scenario% auction-filter
-:: echo PropertyValue: %propertyValue%
+:: echo PropertyValue: "%propertyValue%"
 
 IF defined propertyvalue ( 
 	SET "this_filter=%propertyvalue%"
@@ -42,9 +42,9 @@ if %errorlevel% neq 0 goto filterNotFound
 
 call P:\build-scripts\DefineAllScenarioFilters.cmd
 
-:: echo Filter found: !%filter%!
+echo Filter found: !%filter%!
 
-set this_filter=!%filter%!
+set this_filter="!%filter%!"
 
 goto foundFilter
 
@@ -57,23 +57,27 @@ exit /b
 
 :: ----------------- Replace all \n with [\s\S][\s\S] --------------------
 
-@echo off
-setlocal enabledelayedexpansion
+:: @echo off
+:: setlocal enabledelayedexpansion
 
 set "input=%this_filter%"
 set "output="
 
 rem Replace all occurrences of \n with [\s\S][\s\S] -- Help me change this to \r?\n
 for %%A in ("!input:\n=[\s\S][\s\S]!") do (
-    set "output=%%~A"
+     set "output=%%~A"
 )
 
-echo %input%
-echo %output%
+:: echo input: "%input%"
+:: echo output: "%output%"
 
 :: ------------------ Thank You, ChatGPT! --------------------------------
-echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %output% P:\bba-filtered\%scenario%.pbn --PDF /noui
-cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %output% P:\bba-filtered\%scenario%.pbn --PDF /noui
-cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %output% P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui
+:: echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "%output%" P:\bba-filtered\%scenario%.pbn --PDF /noui
+:: cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "%output%" P:\bba-filtered\%scenario%.pbn --PDF /noui
+:: cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "%output%" P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui
+
+:: echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "%this_filter%" P:\bba-filtered\%scenario%.pbn --PDF /noui
+cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "%this_filter%" P:\bba-filtered\%scenario%.pbn --PDF /noui
+cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "%this_filter%" P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui
 
 exit /b
