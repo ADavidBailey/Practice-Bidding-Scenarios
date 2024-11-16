@@ -1,9 +1,11 @@
 Script,WeOvercallGame
 setDealerCode(`
 
+# convention-card:
+# auction-filter: Auction.....\\n1[CDHS].[45][CDHS].
+
 # They open and We Bid Game
 dealer east
-produce 1000
 
 # Define long suits headed by A, KQ, or KJ
 sS = (c13(south,spades)==6 or c13(south,spades)==5) and spades(south)>7

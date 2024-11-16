@@ -1,5 +1,5 @@
 @echo off
-setlocal enabledelayedexpansion enableextensions
+setlocal enabledelayedexpansion
 
 ::
 :: This script will filter P:\bba\[{scenario}.pbn into P:\bba-filtered\ and P:\bba-filtered-out\
@@ -17,6 +17,7 @@ if "%~1"=="" (
 set scenario=%~1
 set filter=Filter_%scenario%
 
+:: file_path doesn't appear to be used.  Should this be removed?
 set "file_path=C:\path\to\your\file.txt"
 
 ::
@@ -24,7 +25,9 @@ set "file_path=C:\path\to\your\file.txt"
 ::
 
 call P:\build-scripts\FetchProperty.cmd %scenario% auction-filter
+
 :: echo PropertyValue: "%propertyValue%"
+
 
 IF defined propertyvalue ( 
 	SET "this_filter=%propertyvalue%"
@@ -55,13 +58,18 @@ exit /b
 
 :foundFilter
 
-:: ----------------- Replace all \n with [\s\S][\s\S] --------------------
-
+:: ----------------- Replace all \\n with \r?\n --------------------
 :: @echo off
 :: setlocal enabledelayedexpansion
 
-set "input=%this_filter%"
-set "output="
+:: Store the input parameter
+set inputString=%this_filter%
+
+
+:: Replace \\n with a real newline (using a caret and actual newlines)
+set outputString=!inputString:\\n=\r?\n!
+rem Yay!!  Either of these strings work; [\s\S][\s\S] or \r?\n
+
 
 rem Replace all occurrences of \n with [\s\S][\s\S] -- Help me change this to \r?\n
 for %%A in ("!input:\n=[\s\S][\s\S]!") do (
@@ -76,8 +84,10 @@ for %%A in ("!input:\n=[\s\S][\s\S]!") do (
 :: cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "%output%" P:\bba-filtered\%scenario%.pbn --PDF /noui
 :: cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "%output%" P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui
 
-:: echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "%this_filter%" P:\bba-filtered\%scenario%.pbn --PDF /noui
-cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "%this_filter%" P:\bba-filtered\%scenario%.pbn --PDF /noui
-cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "%this_filter%" P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui
+:: echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered\%scenario%.pbn --PDF /noui
+cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered\%scenario%.pbn --PDF /noui
+cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui
+
+endlocal
 
 exit /b

@@ -1,10 +1,41 @@
-# button-text: Bergen Raises
-# scenario-title: Bergen Raises
+# button-text: Bergen Raises (Lev)
+# scenario-title: Bergen Raises all show exactly 4-card support.
 # Bergen_Raises
 dealer north
 
 
+# convention-card: 21GF-Bergen
+# auction-filter: auction.....\\n1[HS].Pass.
+
 # Bergen Raises
+
+##### Imported Script: Define Calm Opponents #####
+
+# Avoid concentration of values
+cce = top4(east,clubs)<2
+cde = top4(east,diamonds)<2
+che = top4(east,hearts)<2
+cse = top4(east,spades)<2
+noConEast = cce and cde and che and cse
+
+ccw = top4(west,clubs)<2
+cdw = top4(west,diamonds)<2
+chw = top4(west,hearts)<2
+csw = top4(west,spades)<2
+noConWest = ccw and cdw and chw and csw
+
+unbalEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+
+balEast   = shape(east,any 4333 +any 4432)
+balWest   = shape(west,any 4333 +any 4432)
+
+calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<12)
+calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<12)
+calmOpps = calmEast and calmWest
+
+##### End of Imported Script: Define Calm Opponents #####
+
 
 # Calculate Total Points for south (tp) for south
 v1 = shape(south, any 0xxx) ? 5 : 0  // allow for 2 voids
@@ -26,29 +57,85 @@ hOpener = not NT and not sOpener and hearts(north) >=5 and hearts(north) >= diam
 # Define suit fit w/4-card support
 sFit = sOpener and spades(south)==4
 hFit = hOpener and hearts(south)==4
+fit = sFit or hFit
+nOpens = fit and hcp(north)>11 and hcp(north)<22
+
+
+# 3M = Preemptive Raise 0-6 TP
+case3M = tp<7 and nOpens
+
+# 3C = Constructive 7-10 TP
+case3C = tp>6 and tp<11 and nOpens
+
+# 3oM = Ambiguous Splinter 12+ TP
+case3oM = tp>11 and shape(south, any 14xx+any 04xx) and nOpens
+
+# 3N = 4333 13-15 TP/HCP
+case3N = tp>12 and tp<16 and shape(south, any 4333) and nOpens
+
+# 3D = Limit Raise 11-12 TP
+case3D = tp>10 and tp<13 and not (case3oM or case3N) and nOpens
+
+### Imported Leveling Code ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep015 = keep06 and c3
+keep03 = keep06 and keep44
+keep045 = keep06 and not c3
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep955 = not keep045
+keep97 = not keep03
+keep985 = not keep015
+keep   = 1
+keep0  = 0
+### End of Imported Leveling Code ###
+### See -Stats-Leveling for statistics on these values ###
+### Example of how to generate Statistics for Leveling ###
+
+
+# These need to be in the same order as the statistics
+l2 = case3C  and keep14
+l5 = case3D  and keep19
+l3 = case3oM and keep19
+l1 = case3M  and keep
+l4 = case3N  and keep
+levelTheDeal = l1 or l2 or l3 or l4 or l5
 
 # Now do it
-hcp(north)>11 and (sFit or hFit)
-and
-(
-   // 3C = Constructive 7-10 TP
-   tp>5 and tp<11
+nOpens and (case3M or case3C or case3oM or case3N or case3D)
+and levelTheDeal
 
-or
-   // 3D = Limit Raise 10-12 TP
-   tp>10 and tp<13
-
-or
-   // 3OM = Ambiguous Splinter 11-13 TP
-   tp>10 and tp<14and shape(south, any 14xx)
-
-or
-   // 3M = Preemptive Raise 0-6 TP
-   tp<6
-or
-   // 3N = 4333 13-15 HCP
-   tp>12 and tp<16 and shape(south, any 4333)
-)
+action
+average "3C   7-10 TP      " 100 * case3C,
+average "3D  11-12 TP      " 100 * case3D,
+average "3oM 11-13 41/40xx " 100 * case3oM,
+average "3M   0-6  TP      " 100 * case3M,
+average "3N  13-15 4333    " 100 * case3N,
 
 
-action printpbn
+
+printpbn
