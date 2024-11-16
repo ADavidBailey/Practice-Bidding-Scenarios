@@ -1,7 +1,10 @@
 Script,InvertedMinors
-setDealerCode(
-`
-produce 100
+setDealerCode(`
+
+# convention-card:
+# auction-filter: Auction.....\\n(1C Pass 2C|1D Pass 2D)
+
+
 dealer south
 
 # Inverted Minors
@@ -31,8 +34,7 @@ minorRaise = (cFit or dFit) and noMajor and noNT
 
 minorRaise and hcp(south)>11 and hcp(south)<20 and hcp(north)>5
 
-`
-)
+`)
 Script
 Button,Inverted Minors,\n\
 --- Inverted Minors\n\
