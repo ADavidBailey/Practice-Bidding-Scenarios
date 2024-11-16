@@ -55,34 +55,26 @@ exit /b
 
 :foundFilter
 
-:: ----------------- Replace all \n with [\s\S][\s\S] --------------------
-
+:: ----------------- Replace all \\n with \r?\n --------------------
 @echo off
 setlocal enabledelayedexpansion
 
-set "input=%this_filter%"
-set "output="
+:: Store the input parameter
+set inputString=%this_filter%
+echo Original input: %inputString%
 
-rem Replace all occurrences of \\n with [\s\S][\s\S] -- Help me change this to \r?\n
-rem I really don't care which string is passed to BC.
-rem I think we should probably use ^ to force the bidding to start with the dealer.
-rem For this to work, we need to pass the filter in a quoted string.
-rem I might still need to use \\n to advanced to the next line of bidding; so, we should keep
-rem the translation of \\n to either \r?\n or [\s\S][\s\S] -- BC works with either.
+:: Replace \\n with a real newline (using a caret and actual newlines)
+set outputString=!inputString:\\n=\r?\n!
+rem Yay!!  Either of these strings work; [\s\S][\s\S] or \r?\n
 
-rem The translation of \\n is NOT working consistently 11/15/24
+:: Display the result
+echo Final output: !outputString!
 
-::for %%A in ("!input:\\n=\r?\n!") do (    -- I thought this should work; but it does NOT.
-for %%A in ("!input:\\n=[\s\S][\s\S]!") do (
-    set "output=%%~A"
-)
+:: Continue with the rest of the script
+:: echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered\%scenario%.pbn --PDF /noui
+cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered\%scenario%.pbn --PDF /noui
+cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui
 
-echo %input%
-echo %output%
-
-:: ------------------ Thank You, ChatGPT! --------------------------------
-echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %output% P:\bba-filtered\%scenario%.pbn --PDF /noui
-cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %output% P:\bba-filtered\%scenario%.pbn --PDF /noui
-cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn %output% P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui
+endlocal
 
 exit /b
