@@ -2,19 +2,28 @@ Script,KokishRelay
 setDealerCode(`
 
 # convention-card:
-# auction-filter: Auction.....\\n2C Pass 2D
+# auction-filter: Auction.....\\n2C Pass 2D.*\\n(2H|3NT)
 
 # Kokish Relay
 dealer south
 
-# South opens 2
-hcp(south)>21 and hcp(south)<28
+# Kokish relay shows unbal w/5+H and 4 on the side or a 25-27 NT
+sHearts = hcp(south)>21 and hearts(south)>4 and shape(south,any 74xx +any 64xx +any 54xx)
+sNT     = hcp(south)>24 and hcp(south)<28 and shape(south,any 5332+any 4432+any 4333) and not sHearts
+s2C     = sHearts or sNT
 
-# North bid 2D, waiting
-and hcp(north)<9
+# North bids 2D, waiting
+n2D = hcp(north)<9
 
-# South bids, 2H relay to 2S showing unbal w/5+H and 4 on the side
-and (hcp(south)>24 or (heart(south)>4 and shape(south,any 74xx +any 64xx +any 54xx)))
+# Now do it
+s2C and n2D
+
+produce 5000
+action
+average "hearts  " 100 * sHearts,
+average "notrump " 100 * sNT,
+
+
 
 `,"S",true);
 Script
