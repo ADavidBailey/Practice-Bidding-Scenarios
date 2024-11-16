@@ -1,5 +1,5 @@
 @echo off
-setlocal enabledelayedexpansion enableextensions
+setlocal enabledelayedexpansion
 
 ::
 :: This script will filter P:\bba\[{scenario}.pbn into P:\bba-filtered\ and P:\bba-filtered-out\
@@ -17,6 +17,7 @@ if "%~1"=="" (
 set scenario=%~1
 set filter=Filter_%scenario%
 
+:: file_path doesn't appear to be used.  Should this be removed?
 set "file_path=C:\path\to\your\file.txt"
 
 ::
@@ -24,7 +25,7 @@ set "file_path=C:\path\to\your\file.txt"
 ::
 
 call P:\build-scripts\FetchProperty.cmd %scenario% auction-filter
-:: echo PropertyValue: %propertyValue%
+echo PropertyValue: %propertyValue%
 
 IF defined propertyvalue ( 
 	SET "this_filter=%propertyvalue%"
@@ -56,8 +57,8 @@ exit /b
 :foundFilter
 
 :: ----------------- Replace all \\n with \r?\n --------------------
-@echo off
-setlocal enabledelayedexpansion
+:: @echo off
+:: setlocal enabledelayedexpansion
 
 :: Store the input parameter
 set inputString=%this_filter%
@@ -71,7 +72,7 @@ rem Yay!!  Either of these strings work; [\s\S][\s\S] or \r?\n
 echo Final output: !outputString!
 
 :: Continue with the rest of the script
-:: echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered\%scenario%.pbn --PDF /noui
+echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered\%scenario%.pbn --PDF /noui
 cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered\%scenario%.pbn --PDF /noui
 cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui
 
