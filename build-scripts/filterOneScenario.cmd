@@ -59,34 +59,23 @@ exit /b
 :foundFilter
 
 :: ----------------- Replace all \\n with \r?\n --------------------
-:: @echo off
-:: setlocal enabledelayedexpansion
 
 :: Store the input parameter
-set inputString=%this_filter%
+set inputString="%this_filter%"
 
 
 :: Replace \\n with a real newline (using a caret and actual newlines)
 set outputString=!inputString:\\n=\r?\n!
 rem Yay!!  Either of these strings work; [\s\S][\s\S] or \r?\n
 
-
-rem Replace all occurrences of \n with [\s\S][\s\S] -- Help me change this to \r?\n
-for %%A in ("!input:\n=[\s\S][\s\S]!") do (
-     set "output=%%~A"
-)
-
-:: echo input: "%input%"
-:: echo output: "%output%"
+:: echo inputString: !inputString!
+:: echo outputString: !outputString!
 
 :: ------------------ Thank You, ChatGPT! --------------------------------
-:: echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "%output%" P:\bba-filtered\%scenario%.pbn --PDF /noui
-:: cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "%output%" P:\bba-filtered\%scenario%.pbn --PDF /noui
-:: cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "%output%" P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui
 
-:: echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered\%scenario%.pbn --PDF /noui
-cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered\%scenario%.pbn --PDF /noui
-cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui
+:: echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn !outputString! P:\bba-filtered\%scenario%.pbn --PDF /noui
+cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn !outputString! P:\bba-filtered\%scenario%.pbn --PDF /noui
+cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn !outputString! P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui
 
 endlocal
 
