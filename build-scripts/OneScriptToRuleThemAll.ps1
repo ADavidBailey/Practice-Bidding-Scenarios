@@ -144,7 +144,7 @@ foreach ($file in $files) {
 		} else {
 			# Loop through each item in the array and perform an action
 			foreach ($Operation in $OperationList) {
-				Write-Output "========= Processing Operation: $Operation ========="
+				#Write-Output "========= Processing Operation: $Operation ========="
 				Perform-Action -Operation $Operation -File $file.FullName
 			}		
 		}

@@ -14,7 +14,7 @@ foreach ($file in $files) {
     
     # Output the filename and count
     if (($Prefix -eq $null) -or ($Prefix -eq "")) {
-		Write-Output "$($file.Name),$count"
+		Write-Output "$count,$($file.Name)"
 	}
 	else {
 		Write-Output "$Prefix,$($file.Name),$count"
