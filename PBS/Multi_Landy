@@ -1,11 +1,22 @@
 Script,MultiLandy
 setDealerCode(`
 
+# convention-card: 21GF-Multi-Landy
+# auction-filter: 1NT X|2C|2D|2H|2S|2N
+
 produce 1000
 dealer south
 
 # Define East's 1N Opener
-NT = hcp(east)>14 and hcp(east)<18 and shape(east,any 4333+any 4432+any 5422+any 5332-5xxx-x5xx)
+### gibNT changed from east to east
+# GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
+ntP = hcp(east) + shape(east,5xxx+x5xx)
+nt1 = shape(east, any 5332+any 4432+any 4333) and hcp(east)>14 and ntP<18
+# GIB does not open with 5422 and a 5-card major
+# GIB does not open with 5422 and the strength to reverse
+nt2 = shape(east, 4252+4225+2452+2425+2254+2245) and hcp(east)>14 and hcp(east)<17
+gibNT = nt1 or nt2
+
 
 # Define South's Multi-Landy
 # Double...
@@ -43,7 +54,7 @@ lN = c2N and keep
 levelTheDeal = lX or lC or lD or lH or lS or lN
 
 # Now OPEN 1NT
-NT and (cX or c2C or c2D or c2H or c2S or c2N) and hcp(south)>7
+gibNT and (cX or c2C or c2D or c2H or c2S or c2N) and hcp(south)>7
 and levelTheDeal
 
 # Generate Statistics
