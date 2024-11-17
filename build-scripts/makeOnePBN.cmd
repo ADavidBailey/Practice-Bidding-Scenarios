@@ -15,6 +15,6 @@ set scenario=%~1
 :: Seed is specified to ensure consistent results it may be changed from time to time
 :: Produce 500 deals
 
-P:\dealer P:\dlr\%scenario%.dlr -s 1 -p 500 -m >P:\pbn\%scenario%.pbn
+P:\dealer P:\dlr\%scenario%.dlr -s 1 -g 40000000 -p 500 -m >P:\pbn\%scenario%.pbn
 
 :exitbat
