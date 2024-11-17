@@ -5,7 +5,7 @@ dealer south
 
 
 # convention-card: 21GF-MSS
-# auction-filter: Auction.....\\n1NT Pass 2S
+# auction-filter: 1NT Pass 2S
 
 # Minor Suit Stayman
 
@@ -26,8 +26,8 @@ gibNT = nt1 or nt2
 
 # West passes
 
-# South has 5-4 or better in the minors
-sR = hcp(south)>9 and shape(south, xx66+xx65+xx56+xx55+xx54+xx45)
+# North has 5-4 or better in the minors
+sR = hcp(north)>10 and shape(north, xx66+xx65+xx56+xx55+xx54+xx45)
 
 # Now do it
 gibNT and sR
