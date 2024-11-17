@@ -1,10 +1,11 @@
 Script,McCabeAfterWJO
 setDealerCode(`
 
+# auction-filter: Auction.....\\n1[CDHS] [23][DHSC] X
+
 # McCabe after Weak Jump Overcall
 # The McCabe Convention gives useful options for Advancer after Partner’s Weak Jump Overcall is doubled.
-generate 20000000
-produce 1000
+
 dealer east
 
 # Define East's Opening of 1C, 1D, or 1H
@@ -118,4 +119,11 @@ Script
 Button,McCabe over WJO (Lev),\n\
 --- McCabe after Partner's Weak Jump Overcall is Doubled -- Leveled.\n\
 After the opponents open and partner's weak jump overcal is doubled...\n\
+responder has six possible continuations:\n\
+• Bid game - Preempt or Rule of 17\n\
+• Raise below game - a mild preempt\n\
+• Bid a new suit - Please lead this suit.\n\
+• Bid 2N - I'm interested in game.  Do you have a feature?\n\
+• Redouble - I have a long suit of my own\n\
+• Pass - Good Luck!\n\
 %McCabeAfterWJO%
