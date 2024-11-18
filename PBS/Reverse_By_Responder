@@ -1,6 +1,15 @@
 Script,ReverseByResponder
 setDealerCode(`
 
+# auction-filter: (1C Pass 1H.*\\n(1NT|2C)|(1C Pass 1D .*\\n(1NT|2C) Pass 2[HS])|(1C Pass 1H .*\\n(1NT|2C) Pass 2S)|(1D Pass 1H .*\\n(1NT|2C|2D) Pass 2S))
+
+# 1C P 1D P 1S/1N/2C 2H : (1C Pass 1D .*\n(1S|1NT|2C) Pass 2H)
+# 1C P 1D P 1N/2C 2H/S  : (1C Pass 1D .*\n(1NT|2C) Pass 2[HS])
+# 1C P 1H P 1N/2C 2S    : (1C Pass 1H .*\n(1NT|2C) Pass 2S)
+# 1D P 1H P 1N/2C 2S    : (1D Pass 1H .*\n(1NT|2C|2D) Pass 2S)
+
+# (1C Pass 1H.*\n(1NT|2C)|(1C Pass 1D .*\n(1NT|2C) Pass 2[HS])|(1C Pass 1H .*\n(1NT|2C) Pass 2S)|(1D Pass 1H .*\n(1NT|2C|2D) Pass 2S)
+
 # Reverse by Resoponder
 dealer south
 
@@ -10,21 +19,21 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Openers-Rebid
 
 CDNHorS = CDN and shape(north,4x5x+x45x+4x6x+x46x)
-CHNS    = CHN and shape(south,45xx+46xx)
+CHNS    = CHN and shape(north,45xx+46xx)
 CDCHorS = CDC and shape(north,4x5x+x45x+4x6x+x46x)
-CHCS    = CHC and shape(south,45xx+46xx)
-DHNS    = DHN and shape(south,45xx+46xx)
-DHDS    = DHD and shape(south,45xx+46xx)
+CHCS    = CHC and shape(north,45xx+46xx)
+DHNS    = DHN and shape(north,45xx+46xx)
+DHDS    = DHD and shape(north,45xx+46xx)
 
 (CDNHorS or CHNS or CDCHorS or CHCS or DHNS or DHDS) and hcp(south)>11 and hcp(south)<15 and hcp(north)>12 and calmOpps
 
-#action
-#average "CDNHorS " 100 * CDNHorS,
-#average "CHNS    " 100 * CHNS,
-#average "CDCHorS " 100 * CDCHorS,
-#average "CHCS    " 100 * CHCS,
-#average "DHNS    " 100 * DHNS,
-#average "DHDS    " 100 * DHDS,
+action
+average "CDNHorS " 100 * CDNHorS,
+average "CHNS    " 100 * CHNS,
+average "CDCHorS " 100 * CDCHorS,
+average "CHCS    " 100 * CHCS,
+average "DHNS    " 100 * DHNS,
+average "DHDS    " 100 * DHDS,
 
 
 `)
