@@ -1,0 +1,55 @@
+Script,NedRespTo3N
+setDealerCode(`
+
+# auction-filter: Auction.....\\n1NT Pass
+
+produce 1000
+dealer south
+
+# Import Define-1N and Leveling
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Define-1N
+# Defines NT, ntMin, ntAvt, and ntMax
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+
+# North has a good suit and slam interest
+
+# Define Good suits -- 5+ cards with 2 of the top 3
+gS = spades(north)>4   and top3(north,spades)>1
+gH = hearts(north)>4   and top3(north,hearts)>1
+gD = diamonds(north)>4 and top3(north,diamonds)>1
+gC = clubs(north)>4    and top3(north,clubs)>1
+
+nResponds = hcp(north)>15 and (gS or gH or gD or gC) and shape(north,any 65xx +any 64xx +any 55xx)
+
+# Level it
+levMin = ntMin and keep30
+levAvg = ntAvg and keep67
+levMax = ntMax and keep
+levelTheDeal = levMin or levAvg or levMax
+
+### Ready for Leveling
+
+# Now OPEN 1NT, Respond, and levelThe Deal
+NT and nResponds
+and levelTheDeal
+
+# Generate Statistics
+
+action
+
+average "Minimum     " 100 * ntMin,
+average "Avg         " 100 * ntAvg,
+average "Max         " 100 * ntMax,
+
+frequency  "HCP South "  (hcp(south) , 14, 18),
+frequency  "ntPoints  "  (ntPoints   , 14, 18),
+
+`,"S",true)
+Script
+Button,Ned's 3-Lev 1N Resp (Lev),\n\
+---  Ned's 3-Level Response to 1N.\n\
+North jumps to 3 or his suit with a good suit and more that 16 HCP.\n\
+Without a fit，the opener bids 3N.  With a fit，the opener responds with Key-Cards，skipping around\n\
+3N.  If opener does not have a fit，responder can ask for Key-Cards by bidding the first new suit\n\
+(4!D when responder's suit is Clubs; otherwise，4!C.  This avoids confusion with any subsequent K-Ask).\n\
+%NedRespTo3N%,backgroundColor=lightpink
