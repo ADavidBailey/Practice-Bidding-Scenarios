@@ -1,5 +1,6 @@
 Script,Serious
 setDealerCode(`
+# auction-filter: 1[DHS].*\n*3[HS] Pass 
 
 # Serious/Non-Serious
 dealer north
@@ -44,7 +45,7 @@ levGrand = grand and keep
 levelTheDeal = levGame or levSlam or levGrand
 
 # Now do it
-nOpens and majorFit and (game or slam or grand)
+nOpens and majorFit and (game or slam or grand) and hcp(north)<16
 and levelTheDeal
 
 action

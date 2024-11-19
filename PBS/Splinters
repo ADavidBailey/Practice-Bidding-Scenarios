@@ -1,21 +1,25 @@
 Script,Splinters
 setDealerCode(`
 
+# auction-filter: (1H Pass 4[CDH])|(1S Pass (3H|4[CD]))
+
 # Splinters
 dealer south
 
-hcp(south) > 11 && hcp(south) < 20 && hcp(north) >10 && hcp(north)<14
-&&
-(
-(shape(south, 5xxx + 6xxx - x5xx - x6xx - any 5332) &&
-shape(north, 41xx + 4x1x + 4xx1))
-||
-(shape(south, x5xx + x6xx - 5xxx - 6xxx - any 5332) && 
-shape(north, 14xx + x41x + x4x1))
-)
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+# Defines gibNT
 
-`)
-Script
+sOpens = hcp(south)>11 and hcp(south)<22 and not gibNT 
+
+sFit = spades(south)>4 and hearts(south)<5 and spades(north)==4 
+hFit = hearts(south)>4 and spades(south)<5 and hearts(north)==4
+fit = sFit or hFit
+nSplinters = losers(north)<8 and hcp(north)>8 and hcp(north)<11 and shape(north,any 0xxx+any 1xxx)
+
+sOpens and fit and nSplinters and calmWest
+
+`)Script
 Button,Splinters,\n\
 Splinters\n\
 %Splinters%

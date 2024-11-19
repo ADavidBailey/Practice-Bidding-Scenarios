@@ -1,20 +1,25 @@
 Script,Stayman
 setDealerCode(`
 
+# auction-filter: Auction.....\\n1NT Pass 2C
+
 # Stayman
-dealer north
+dealer south
 
 # 1 Notrump Opening
-NT = shape(north, any 4333 +any 4432 +any 5332) and hcp(north) >=15 && hcp(north)<=17
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Defines gibNT
 
-stayman = shape(south, 54xx+45xx+44xx+43xx+34xx) and hcp(south)>7
-dropDeadStayman = shape(south, 4441+4450) and hcp(south)<8
-crawlingStayman = shape(south, 4432+4423) and hcp(south)<8
-spadeInvite = shape(south, 5xxx - any 55xx - any 54xx - any 56xx) and hcp(south)>7 and hcp(south)<10
+stayman = shape(north, 54xx+45xx+44xx+43xx+34xx) and hcp(north)>7
+dropDeadStayman = shape(north, 4441+4450) and hcp(north)<8
+crawlingStayman = shape(north, 4432+4423) and hcp(north)<8
+majorInvite = shape(north,54xx+45xx) and hcp(north)>7 and hcp(north)<10
+smolen = shape(north,54xx+45xx) and hcp(north)>9
 
-NT and (stayman or dropDeadStayman or crawlingStayman or spadeInvite)
+gibNT and (stayman or dropDeadStayman or crawlingStayman or majorInvite or smolen) and calmWest
 
-`, "N", false);
+`,"S",True);
 Script
 
 Button,Stayman,\n\
