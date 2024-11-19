@@ -1,11 +1,11 @@
 Script,TwoWayGameTry
 setDealerCode(`
 
-# auction-filter: Note...:.*game try
+# convention-card: Two-Way-Game-Try
+# auction-filter: Note...:Two way game tries
 
 # Two-Way Game Tries
 dealer south
-produce 1000
 
 # Calculate Dummy Points for responder North (dp)
 v1 = shape(north, any 0xxx) ? 5 : 0 // allow for 2 voids
@@ -25,17 +25,18 @@ lp4 = clubs(south)>4 ? clubs(south)-4 : 0
 lp = lp1+lp2+lp3+lp4 + hcp(south)
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Defines calmWest, calmEast, and calmOpps
 
 # Define openers
-nt5332 = shape(south,any 5332) and hcp(south)>14 and hcp(south)<18
-sOpener = spades(south)>4 and spades(south)>=hearts(south) and spades(south)>=diamonds(south) and spades(south)>=clubs(south) and not nt5332
-hOpener = hearts(south)>4 and hearts(south)>=diamonds(south) and hearts(south)>=clubs(south) and not sOpener and not nt5332
+sOpener = spades(south)>4 and spades(south)>=hearts(south) and spades(south)>=diamonds(south) and spades(south)>=clubs(south)
+hOpener = hearts(south)>4 and hearts(south)>=diamonds(south) and hearts(south)>=clubs(south) and not sOpener
 
 # Define suit fit
 sFit = sOpener and spades(north)>2 and spades(north)<5
-hFit = hOpener and hearts(north)>2 and hearts(north)<5
+hFit = hOpener and hearts(north)>2 and hearts(north)<5 and spades(north)<4 
+fit  = (sFit or hFit) and shape(north,any 0xxx+any 1xxx+any 22xx)
 
-(sFit or hFit) and lp>15 and lp<18 and dp>5 and dp<11 and calmWest
+(sFit or hFit) and lp>15 and lp<18 and dp>5 and dp<11 and calmWest and shape(south,any 61xx+any 51xx)
 
 action
 average "spade fit" 100 * sFit,
