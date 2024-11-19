@@ -26,6 +26,10 @@ nGF = hcp(north)>13
 # Now do it
 sMin and nGF and (DCDHorS or HCorDS) and calmOpps
 
+action
+average "D-C-D-H/S " 100 * DCDHorS,
+average "H-C/D-H-S " 100 * HCorDS,
+
 `)
 Script
 Button,Reverse After 2/1,\n\
