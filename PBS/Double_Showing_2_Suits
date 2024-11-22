@@ -4,12 +4,12 @@ setDealerCode(`
 # convention-card:
 # auction-filter: 
 
-# need to allow spaces: Auction.....\\n1[CDHS] .* [12][DHSC].
+# need to allow spaces: (Auction.....\\n1[CDHS] Pass [12][DHSC].X)
 
 dealer south
 produce 1000
 
-##### Responsive Double #####
+##### Double Showing 2 Suits #####
 # West Opens, North Overcalls/Passes, East Raises/Bids, ...
 
 # Predict West's Opening suit
@@ -21,32 +21,34 @@ oS = s>4 and s>=h and s>=d and s>=c
 oH = not oS and h>4 and h>=d and h>=c
 oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
 oC = not (oS or oH or oD)
-westSuit = (oS or oH or oD or oC)
+wSuit = (oS or oH or oD or oC)
 
-nS = oS ? spades(north)<3   : 0
-nH = oH ? hearts(north)<3   : 0
-nD = oD ? diamonds(north)<3 : 0
-nC = oC ? clubs(north)<3    : 0
+nS = oS ? shape(north, 1xxx+0xxx) : 0
+nH = oH ? shape(north, x1xx+x0xx) : 0
+nD = oD ? shape(north, xx1x+xx0x) : 0
+nC = oC ? shape(north, xxx1+xxx0) : 0
 nOverCalls = (nS or nH or nD or nC) and shape(north,any 6xxx +any 5xxx) and hcp(north)>7 and hcp(north)<11
-nPasses    = shape(north, any 4333 +any 4432) and hcp(north)<11
+nPasses    = shape(north, any 4333 +any 4432) and hcp(north)<8
 
-eS = oS ? spades(east)>2   : 0
-eH = oH ? hearts(east)>2   : 0
-eD = oD ? diamonds(east)>3 : 0
-eC = oC ? clubs(east)>3    : 0
-eFit = (eS or eH or eD or eC)
+eSfit = oS ? shape(east,4xxx+3xxx) : 0
+eHfit = oH ? shape(east,x4xx+x3xx) : 0
+eDfit = oD ? shape(east,xx5x+xx4x) : 0
+eCfit = oC ? shape(east,xxx5+xxx4) : 0
+ewFit = (eSfit or eHfit or eDfit or eCfit) and hcp(east)>6
+eSuit = shape(east,any 5xxx) and hcp(east)>9 and not ewFit
 
-westOpens = hcp(west)>11 and hcp(west)<15 and westSuit
+westOpens = hcp(west)>11 and hcp(west)<15 and wSuit
+
 northActs = nOverCalls or nPasses
-eastActs = (nOverCalls and eFit and hcp(east)>5 and hcp(east)<10) or (nPasses and not eFit and (hcp(east)>10 and hcp(east)<13))
-southActs = hcp(south)>12
+eastActs = (ewFit and hcp(east)>5) or (eSuit and hcp(east)>9)
+
+southActs = ((nOverCalls and ewFit) or (nPasses and eSuit)) and hcp(south)>11
 
 ##### Now do it #####
 westOpens and northActs and eastActs and southActs
 
-`
-,"W",true)
+`,"W",true)
 Script
-Button,Responsive Double,\n\
---- Responsive Double\n\
+Button,Double w/2 Suits,\n\
+--- Double Showing 2 Suits\n\
 %DoubleShowing2Suits%

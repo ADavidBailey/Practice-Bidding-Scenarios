@@ -62,11 +62,10 @@ n0 = (shape(north,0xxx) ? 3 : 0) + (shape(north,00xx) ? 3 : 0)
 n1 = (shape(north,1xxx) ? 2 : 0) + (shape(north,11xx) ? 2 : 0)
 n2 = (shape(north,2xxx) ? 1 : 0) + (shape(north,22xx) ? 1 : 0)
 
-cCovers = hascard(north,AC)+hascard(north,KC)+hascard(north,QC)
-dCovers = hascard(north,AD)+hascard(north,KD)+hascard(north,QD)
-hCovers = hascard(north,AH)+hascard(north,KH)+hascard(north,QH)
-sCovers = hascard(north,AS)+hascard(north,KS)+hascard(north,QS)
-
+cCovers = hascard(north,AC)+(hascard(north,KC) and clubs(north)>1)
+dCovers = hascard(north,AD)+(hascard(north,KD) and diamonds(north)>1)
+hCovers = hascard(north,AH)+(hascard(north,KH) and hearts(north)>1)
+sCovers = hascard(north,AS)+(hascard(north,KS) and spades(north)>1)
 covers = n0+n1+n2 +cCovers+dCovers+hCovers+sCovers
 netLosers = losers(south) - covers
 
