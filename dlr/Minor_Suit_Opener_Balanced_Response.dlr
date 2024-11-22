@@ -4,6 +4,9 @@
 dealer south
 
 
+# convention-card:
+# auction-filter: .
+
 # Open 1 of a Minor
 
 ##### Imported Script: Define Calm Opponents #####
@@ -50,7 +53,6 @@ n13_15 = hcp(north)>12 and hcp(north)<16
 n16_17 = hcp(north)>15 and hcp(north)<18
 n18_19 = hcp(north)>17 and hcp(north)<20
 
-#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
 c2 = hascard(east,2D)
@@ -87,6 +89,10 @@ keep97 = not keep03
 keep985 = not keep015
 keep   = 1
 keep0  = 0
+### End of Imported Leveling Code ###
+### See -Stats-Leveling for statistics on these values ###
+### Example of how to generate Statistics for Leveling ###
+
 
 # Do the Leveling
 lev06_10 = n06_10 and keep11

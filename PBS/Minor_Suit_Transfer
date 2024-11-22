@@ -1,12 +1,14 @@
 Script,MinorSuitTransfer
 setDealerCode(`
 
-# convention-card: 21GF-MST
+# Enable both MST and MSS
+# convention-card: 21GF-MSTandMSS
 # auction-filter: 1NT Pass 2[SN]
 
 # Minor Suit Transfer
 dealer south
 
+# enable both MSS and MST
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
 # Defines gibNT
 
@@ -22,8 +24,8 @@ gibNT and nResponds
 Script
 Button,Minor Suit Transfer,\n\
 --- Minor Suit Transfer\n\
-After we open 1NT，partner may transfer to their minor -- 2!S for !C or 2N for !D.\n\
-• Bidding in the gap shows support and invites responder to bid 3N.\n\
-• Bidding partner's suit denies a fit.\n\
-https://www.bridgebum.com/minor_suit_transfers.php\n\
+There are multiple ways to play MST; this is how GIB plays it...\n\
+After partner opens 1NT，responder bids the strain below their minor...\n\
+• 2N for !C\n\
+• 3!C for !D.\n\
 %MinorSuitTransfer%

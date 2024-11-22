@@ -1,7 +1,8 @@
 Script,WeOvercallNtThenMSS
 setDealerCode(`
 
-# convention-card: 21GF-MSS
+# Enable both MST and MSS
+# convention-card: 21GF-MSTandMSS
 # auction-filter: Note...:Minor Suit Stayman
 
 # We Overcall 1NT then Minor Suit Stayman (MSS)
@@ -43,8 +44,9 @@ eOpens and sNT and n2S
 `, "E", true)
 Script
 Button,then  MSS,\n\
---- After we Overcall 1NT，partner bids Minor Suit Stayman (2!S).\n\
-• 2N - Denies a 4-card minor\n\
-• 3!C - Shows 4-!C and may have 4!D\n\
-• 3!D - Shows 4-!D and denies 4!C\n\
+--- After we Overcall 1NT，partner bids Minor Suit Stayman.\n\
+There are multiple ways to play MSS; this is how GIB plays it...\n\
+2N is MSS, then...\n\
+• 3!C - Shows a !Club preference.\n\
+• 3!D - Shows a !Diamond preference.\n\
 %WeOvercallNtThenMSS%

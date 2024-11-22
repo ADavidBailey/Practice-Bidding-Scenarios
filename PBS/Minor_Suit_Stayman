@@ -1,7 +1,8 @@
 Script,MinorSuitStayman
 setDealerCode(`
 
-# convention-card: 21GF-MSS
+# Enable both MST and MSS
+# convention-card: 21GF-MSTandMSS
 # auction-filter: 1NT Pass 2S
 
 # Minor Suit Stayman
@@ -21,9 +22,9 @@ gibNT and sR
 `, "S", true);
 Script
 Button,Minor Suit Stayman,\n\
---- After we open 1NT，partner bids Minor Suit Stayman (2!S).\n\
-• 2N - Denies a 4-card minor\n\
-• 3!C - Shows 4-!C and may have 4!D\n\
-• 3!D - Shows 4-!D and denies 4!C\n\
-https://www.bridgebum.com/minor_suit_stayman.php\n\
+--- After we open 1NT，partner bids Minor Suit Stayman.\n\
+There are multiple ways to play it; this is how GIB plays it.\n\
+2N is MSS, then...\n\
+• 3!C - Shows a !Club preference.\n\
+• 3!D - Shows a !Diamond preference.\n\
 %MinorSuitStayman%
