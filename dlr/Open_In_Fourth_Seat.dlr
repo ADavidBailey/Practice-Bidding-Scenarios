@@ -43,7 +43,7 @@ calmOpps = calmEast and calmWest
 nPasses = hcp(north)<12 and shape(north,xxxx-any 7xxx-any 6xxx-any 55xx)
 
 # Rule of 15 
-r15 =hcp(south) + spades(south)
+r15 = hcp(south) + spades(south)
 sSouth = shape(south,any 64xx+any 63xx+any 54xx+any 53xx+any 4432+any 4333)
 sMightOpen = r15>13 and r15<17 and controls(south)>3 and hcp(south)<13 and sSouth
 
