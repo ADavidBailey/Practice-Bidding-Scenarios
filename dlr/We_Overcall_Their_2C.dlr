@@ -1,0 +1,34 @@
+# button-text: We Overcall Their 2C
+# scenario-title: They open 2C (strong) and we overcall or preempt.
+# We_Overcall_Their_2C
+dealer north
+
+
+
+# They open 2C (strong) and we overcall or preempt
+
+# auction-filter: Auction.....\\n2C [234]
+
+
+eOpens2C = hcp(east)>21
+
+# Define South's good suits
+sGC = top4(south,clubs)>2
+sGD = top4(south,diamonds)>2
+sGH = top4(south,hearts)>2
+sGS = top4(south,spades)>2
+sGoodSuit = sGC or sGD or sGH or sGS
+
+sPreempt  = shape(south,any 9xxx+any 8xxx+any 7xxx)          and sGoodSuit and hcp(south)<11
+sOvercall = shape(south,any 9xxx+any 8xxx+any 7xxx+any 6xxx) and sGoodSuit and hcp(south)>10
+
+eOpens2C and (sPreempt or sOvercall)
+
+
+action
+average "hcp east " hcp(east),
+average "sPreempt " 100 * sPreempt,
+average "sOvercall" 100 * sOvercall,
+
+
+printpbn
