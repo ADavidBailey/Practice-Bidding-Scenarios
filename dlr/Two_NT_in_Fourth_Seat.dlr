@@ -1,6 +1,6 @@
-# button-text: Strong NT in 4th Seat
-# scenario-title: Opening 2N or 3N in 4th Seat
-# Strong_NT_in_Fourth_Seat
+# button-text: 2N in 4th Seat
+# scenario-title: 2N in 4th Seat shows 20-21 HCP.
+# Two_NT_in_Fourth_Seat
 dealer west
 
 
@@ -41,19 +41,14 @@ calmOpps = calmEast and calmWest
 # North passes
 nPasses = hcp(north)<12 and shape(north,xxxx-any 7xxx-any 6xxx-any 55xx)
 
-# Define ranges for 2N and 3N
-s2N = (hcp(south)>19 and hcp(south)<21)
-s3N = (hcp(south)>24 and hcp(south)<28)
-
-# South opens 2N or 3N
-s2or3N = shape(south,any 5332+any 4432+any 4333-5xxx-x5xx) and (s2N or s3N)
+# South opens 2NT
+s2N = (hcp(south)>19 and hcp(south)<21) and shape(south,any 5332+any 4432+any 4333-5xxx-x5xx)
 
 # Now do it
-calmOpps and nPasses and s2or3N
+calmOpps and nPasses and s2N
 
 action
 average "south 2N" s2N,
-average "south 3N" s3N,
 
 
 printpbn
