@@ -54,8 +54,8 @@ forcingNT = (wFit or iFit or lMin or nFit) and noSpadeBid
 
 # Defining Opener's rebids
 rebidM  = shape(south, any 7xxx+any 6xxx)
-rebidN  = shape(south, any 5332+any 5422) and hcp(south)>17 and hcp(south)<20
-reverse = shape(south, 45xx+46xx+56xx) and hcp(south)>16 and hcp(south)<22
+rebidN  = shape(south, any 5332+any 5422) and hcp(south)>17 and hcp(south)<20 and not rebidM
+reverse = shape(south, 45xx+46xx+56xx) and hcp(south)>16 and hcp(south)<22    and not (rebidM or rebidN)
 newSuit = not(rebidM or rebidN or reverse)
 openerRebid = rebidM or rebidN or reverse or newSuit
 
