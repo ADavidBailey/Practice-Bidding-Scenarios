@@ -91,6 +91,8 @@ def process_extracted_text(extracted_text, dealer):
         if line.startswith("action"):
             action = True  # append or create
         
+        line.replace("\\n", "\n")
+
         if line.startswith("Import"):
             # Splitting the string by comma to get the URL
             split_string = line.replace("github.com","raw.githubusercontent.com").replace("blob/", "").split(',')
