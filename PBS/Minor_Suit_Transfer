@@ -18,7 +18,12 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 nResponds = (shape(north,xxx7+xxx6+xx7x+xx6x) and hcp(north)>7) or (shape(north,xxx9+xxx8+xx9x+xx8x) and hcp(north)>5)
 
 # Now do it
-gibNT and nResponds
+gibNT and nResponds and shape(north,xxxx-4xxx-5xxx-x4xx-x5xx)  // Kill the major suits
+
+produce 1000
+action
+average "4-card M" 100 * shape(north,4xxx+x4xx),
+average "5-card M" 100 * shape(north,5xxx+x5xx),
 
 `, "S", true);
 Script
