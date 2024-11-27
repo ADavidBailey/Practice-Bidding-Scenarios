@@ -33,7 +33,7 @@ mstD = shape(north,xx9x+xx8x+xx7x+xx6x) and gD  // Diamonds
 mst  = mstC or mstD
 
 # Now do it
-gibNT and (mss or mst) and noMajor and hcp(north)>15 and losers(north)<5
+gibNT and (mss or mst) and noMajor and hcp(north)>14 and losers(north)<5
 
 produce 500
 action
@@ -57,9 +57,10 @@ otherwise，it asks for Kings.\n\
 \n\
 There are multiple ways to play MSS and MST. GIB plays both together，like this:\n\
 • 2!S is MSS; then...\n\
-• ...3!C - Shows a !C preference\n\
-• ...3!D - Shows a !D preference\n\
-• ...3N - is a super accept with both minors\n\
+• ...2N - Denies a 4-card minor\n\
+• ...3!C - Shows a 4 !C (may have 4!D)\n\
+• ...3!D - Shows a 4 !D & denies 4!C\n\
+• ...3N - is a super accept with 17 HCP & 4 cards each minor\n\
 • 2N is a MST to !C showing 6+!C\n\
 • 3!C is a MST to !D showing 6+!D\n\
 %Minorwood%
