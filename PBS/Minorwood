@@ -3,7 +3,7 @@ setDealerCode(`
 
 # Enable both MST and MSS
 # convention-card: 21GF-MSTandMSS
-# auction-filter: 1NT Pass (2S|2NT|3C).*\n(2NT|3C|3D|3NT)
+# auction-filter: 1NT Pass (2S|2NT|3C).*\\n(2NT|3C|3D|3NT)
 
 # Minor Suit Stayman
 dealer south
@@ -22,8 +22,7 @@ fD = top4(north,diamonds)>1
 fC = top4(north,clubs)>1
 
 # Define 4-card majors
-noMajor = spades(north)<4 and hearts(north<4)
-
+noMajor = spades(north)<4 and hearts(north)<4
 
 # North has 5-4 or better in the minors for MSS
 mss = shape(north, xx76+xx67+xx66+xx65+xx56+xx55+xx54+xx45) and fD and fC  // both minors
@@ -36,20 +35,26 @@ mst  = mstC or mstD
 # Now do it
 gibNT and (mss or mst) and noMajor and hcp(north)>16 and losers(north)<5
 
+produce 500
+action
+average "mss " 100 * mss,
+average "mst " 100 * mst,
+
 `, "S", true);
 Script
 Button,Minorwood,\n\
---- After we open 1NT，partner bids Minor Suit Stayman or Minor Suit Transfer，minorwood\n\
-is on... 4 of the agreed minor is minorwood.  Responses are in steps.\n\
-• 1st step is 1/4
-• 2nd step is 2
-• 3rd step is 3
+--- After we open 1NT and partner bids Minor Suit Stayman or a Minor Suit Transfer，\n\
+minorwood is on... 4 of the agreed minor is minorwood.  Responses are in steps.\n\
+• 1st step is 1/4\n\
+• 2nd step is 2\n\
+• 3rd step is 3\n\
 If the Queen has not been shown or denied，then the first non-trump step asks for the Queen;\n\
 otherwise，it asks for Kings.\n\
 There are multiple ways to play MSS and MST; this is how GIB plays them.\n\
 • 2!S is MSS; then...\n\
     • 3!C - Shows a !C preference.\n\
     • 3!D - Shows a !D preference.\n\
+    • 3N - Shows 17 and both minors\n\
 • 2N is a MST to !C showing 6+!C\n\
 • 3!C is a MST to !D showing 6+!D\n\
 %Minorwood%
