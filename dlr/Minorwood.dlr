@@ -1,5 +1,5 @@
 # button-text: Minorwood
-# scenario-title: After we open 1NT，partner bids a Minor Suit Stayman or a Minor Suit Transfer，
+# scenario-title: After we open 1NT and partner bids Minor Suit Stayman or a Minor Suit Transfer，
 # Minorwood
 dealer south
 
@@ -8,7 +8,7 @@ dealer south
 # convention-card: 21GF-MSTandMSS
 # auction-filter: 1NT Pass (2S|2NT|3C).*\\n(2NT|3C|3D|3NT)
 
-# Minor Suit Stayman
+# Minorwood
 
 ##### Imported Script -- GIB 1 Notrump #####
 
@@ -50,8 +50,9 @@ mst  = mstC or mstD
 gibNT and (mss or mst) and noMajor and hcp(north)>16 and losers(north)<5
 
 action
-average "mss " 100 * mss,
-average "mst " 100 * mst,
+average "mss   " 100 * mss,
+average "mst C " 100 * mstC,
+average "mst D " 100 * mstD,
 
 
 printpbn

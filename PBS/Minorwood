@@ -33,14 +33,18 @@ mstD = shape(north,xx9x+xx8x+xx7x+xx6x) and gD  // Diamonds
 mst  = mstC or mstD
 
 # Now do it
-gibNT and (mss or mst) and noMajor and hcp(north)>16 and losers(north)<5
+gibNT and (mss or mst) and noMajor and hcp(north)>15 and losers(north)<5
 
 produce 500
 action
-average "mss " 100 * mss,
-average "mst " 100 * mst,
+average "mss   " 100 * mss,
+average "mst C " 100 * mstC,
+average "mst D " 100 * mstD,
+average "hcp S " hcp(south),
+average "hcp N " hcp(north),
+average "hcp   " hcp(south) + hcp(north),
 
-`, "S", true);
+`,"S",true)
 Script
 Button,Minorwood,\n\
 --- After we open 1NT and partner bids Minor Suit Stayman or a Minor Suit Transfer，\n\
