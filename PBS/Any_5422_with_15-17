@@ -1,45 +1,41 @@
 Script,Any5422
-setDealerCode(
-`
+setDealerCode(`
+
+
+# convention-card:
+# auction-filter: Auction.....\\n1NT
+
+
 dealer south
 
 # any 5422 w/15-17 HCP
 
-s5422 = shape(south,5422)
-s5242 = shape(south,5242)
-s5224 = shape(south,5224)
-s4522 = shape(south,4522)
-s2542 = shape(south,2542)
-s2524 = shape(south,2524)
-s4252 = shape(south,4252)
-s2452 = shape(south,2452)
-s2254 = shape(south,2254)
-s4225 = shape(south,4225)
-s2425 = shape(south,2425)
-s2245 = shape(south,2245)
-case1 = (s5422 or s4522 or s4252 or s2452 or s4225 or s2425 or s2245)      // open suit
-case2 = (s5242 or s5224 or s2542 or s2524) and hcp(south)==17              // open suit
-case3 = s2254 or ((s5242 or s5224 or s2542 or s2524) and hcp(south)<17)    // open notrump
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+# Defines gibNT
 
-nt = shape(south,any 5422) and hcp(south)>14 and hcp(south)<18
-nt and (case1 or case2 or case3)
+hcp(south)>14 and hcp(south)<18 and shape(south,any 5422)
+#hcp(south)==17 and shape(south,any 5422)
 
+produce 5000
 action
-average "5422      " 100 * shape(south,5422),
-average "5242      " 100 * shape(south,5242),
-average "5224      " 100 * shape(south,5224),
-average "4522      " 100 * shape(south,4522),
-average "2542      " 100 * shape(south,2542),
-average "2524      " 100 * shape(south,2524),
-average "4252      " 100 * shape(south,4252),
-average "2452      " 100 * shape(south,2452),
-average "2254      " 100 * shape(south,2254),
-average "4225      " 100 * shape(south,4225),
-average "2425      " 100 * shape(south,2425),
-average "2245      " 100 * shape(south,2245),
-average "case1-suit" 100 * case1,
-average "case2-suit" 100 * case2,
-average "case3-nt  " 100 * case3,
+average "hcp        " hcp(south),
+# 5 Spades
+average "5422 " 100 * (shape(south,5422) and gibNT),
+average "5242 " 100 * (shape(south,5242) and gibNT),
+average "5224 " 100 * (shape(south,5224) and gibNT),
+# 5 Hearts
+average "4522 " 100 * (shape(south,4522) and gibNT),
+average "2542 " 100 * (shape(south,2542) and gibNT),
+average "2524 " 100 * (shape(south,2524) and gibNT),
+# 5 Diamonds
+average "4252 " 100 * (shape(south,4252) and gibNT),
+average "2452 " 100 * (shape(south,2452) and gibNT),
+average "2254 " 100 * (shape(south,2254) and gibNT),
+# 5 Clubs
+average "4225 " 100 * (shape(south,4225) and gibNT),
+average "2425 " 100 * (shape(south,2425) and gibNT),
+average "2245 " 100 * (shape(south,2245) and gibNT),
+average "any 5422   " 100 * (shape(south,any 5422) and gibNT),
 
 `,"S",true)
 Script
