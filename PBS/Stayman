@@ -14,7 +14,7 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 
 stayman = shape(north, 54xx+45xx+44xx+43xx+34xx) and hcp(north)>7
 dropDeadStayman = shape(north, 4441+4450) and hcp(north)<8
-majorInvite = shape(north,5xxx) and hcp(north)>7 and hcp(north)<10
+majorInvite = shape(north,54xx+45xx) and hcp(north)>7 and hcp(north)<10
 smolen = shape(north,54xx+45xx) and hcp(north)>9
 
 gibNT and (stayman or dropDeadStayman or majorInvite or smolen) and calmWest
@@ -22,4 +22,12 @@ gibNT and (stayman or dropDeadStayman or majorInvite or smolen) and calmWest
 `,"S",True)
 Script
 Button,Stayman,\n\
+--- Stayman asks the opener to show a 4-card major.\n\
+After partner's 1NT opening，2!C asks for a 4-card major. Opener responds as follows:\n\
+• 2!D - No 4-card major\n\
+• 2!H - 4+!H，may also have 4!S\n\
+• 2!S - 4+!S and denies 4!H\n\
+Normally，Stayman shows 8+HCP; but，if you're willing to pass anything that your partner\n\
+might bid，you may bid 2!C with any strength.\n\
+https://www.bridgebum.com/stayman.php\n\
 %Stayman%
