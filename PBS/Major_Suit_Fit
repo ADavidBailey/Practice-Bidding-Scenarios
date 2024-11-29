@@ -1,40 +1,43 @@
 Script,MajorSuitFit
 setDealerCode(`
 
-# auction-filter: (Auction.....\\n1[HS] Pass [12]NT)|(Auction.....\\n1H Pass 2H)|(Auction.....\\n1S Pass 2S)
-
-# North opens 1 Major and South has a fit
+# convention-card:
+# auction-filter: Auction.....\\n(1H Pass |1S Pass )
+# Major_Suit_Fit
 dealer north
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
-# Defines gibNT
+# auction-filter: (Auction.....\\n1[HS] Pass [12]NT)|(Auction.....\\n1H Pass 2H)|(Auction.....\\n1S Pass 2S)
 
-S_ = spades(north)>4 and spades(north)>=diamonds(north) and spades(north)>=clubs(north)
-H_ = hearts(north)>4 and hearts(north)>=diamonds(north) and hearts(north)>=clubs(north)
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Returns calmEast
+
+# North opens 1 Major and South has a fit
+S_ = spades(north)>4 and spades(north)>= hearts(north) and spades(north)>=diamonds(north) and spades(north)>=clubs(north)
+H_ = hearts(north)>4 and hearts(north)>spades(north)   and hearts(north)>=diamonds(north) and hearts(north)>=clubs(north)
 
 spadeFit3 = S_ and spades(south)==3
-spadeFit4 = S_ and spades(south)>3
+spadeFit4 = S_ and spades(south)==4
 spadeFit5 = S_ and spades(south)>4
 heartFit3 = H_ and hearts(south)==3
-heartFit4 = H_ and hearts(south)>3
+heartFit4 = H_ and hearts(south)==4
 heartFit5 = H_ and hearts(south)>4
 
+fit5  = hcp(south)<8                   and (spadeFit5 or heartFit5)
 fit1  = hcp(south)>3 and hcp(south)<8  and (spadeFit3 or heartFit3 or spadeFit4 or heartFit4)
 fit2  = hcp(south)>7 and hcp(south)<11 and (spadeFit3 or heartFit3 or spadeFit4 or heartFit4)
-fit3  = hcp(south)>9 and hcp(south)<13 and (spadeFit3 or heartFit3)
-fit4  = hcp(south)>9 and hcp(south)<13 and (spadeFit4 or heartFit4)
-fit5  = hcp(south)<8                   and (spadeFit5 or heartFit5)
+fit3  = hcp(south)>10 and hcp(south)<13 and (spadeFit3 or heartFit3) 
+fit4  = hcp(south)>10 and hcp(south)<13 and (spadeFit4 or heartFit4)
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
-lev1 = fit1 and keep045
-lev2 = fit2 and keep03
-lev3 = fit3 and keep19
-lev4 = fit4 and keep19
+lev1 = fit1 and keep11
+lev2 = fit2 and keep06
+lev3 = fit3 and keep25
+lev4 = fit4 and keep44
 lev5 = fit5 and keep
 levelTheDeal = lev1 or lev2 or lev3 or lev4 or lev5
 
-hcp(north)>11 and hcp(south)>5
+hcp(north)>11 and hcp(south)>5 and calmEast
 and levelTheDeal
 
 produce 5000
@@ -42,9 +45,8 @@ action
 average "faulty raise  " 100 * fit1,
 average "simple raise  " 100 * fit2,
 average "3-card invite " 100 * fit3,
-average "4-card invite " 100 * fit3,
+average "4-card invite " 100 * fit4,
 average "preempt       " 100 * fit5,
-
 
 `, "N", false)
 Script
