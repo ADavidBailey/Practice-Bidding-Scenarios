@@ -8,8 +8,6 @@ dealer north
 
 # North opens 1 Major and South has a fit
 
-#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
-# Defines gibNT
 ##### Imported Script -- GIB 1 Notrump #####
 
 # GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
@@ -23,6 +21,7 @@ nt2 = shape(south, 4252+4225+2452+2425+2254+2245) and hcp(south)>14 and hcp(sout
 gibNT = nt1 or nt2
 
 ### End of GIB 1 Notrump ###
+# Defines gibNT
 
 S_ = spades(north)>4 and spades(north)>=diamonds(north) and spades(north)>=clubs(north)
 H_ = hearts(north)>4 and hearts(north)>=diamonds(north) and hearts(north)>=clubs(north)
@@ -40,8 +39,6 @@ fit3  = hcp(south)>9 and hcp(south)<13 and (spadeFit3 or heartFit3)
 fit4  = hcp(south)>9 and hcp(south)<13 and (spadeFit4 or heartFit4)
 fit5  = hcp(south)<8                   and (spadeFit5 or heartFit5)
 
-
-#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
 c2 = hascard(east,2D)
@@ -79,6 +76,9 @@ keep985 = not keep015
 keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
+### See -Stats-Leveling for statistics on these values ###
+### Example of how to generate Statistics for Leveling ###
+
 
 lev1 = fit1 and keep045
 lev2 = fit2 and keep03
@@ -91,11 +91,11 @@ hcp(north)>11 and hcp(south)>5
 and levelTheDeal
 
 action
-average " " 100 * fit1,
-average " " 100 * fit2,
-average " " 100 * fit3,
-average " " 100 * fit3,
-average " " 100 * fit5,
+average "faulty raise  " 100 * fit1,
+average "simple raise  " 100 * fit2,
+average "3-card invite " 100 * fit3,
+average "4-card invite " 100 * fit3,
+average "preempt       " 100 * fit5,
 
 
 
