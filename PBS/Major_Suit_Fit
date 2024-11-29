@@ -22,9 +22,9 @@ heartFit3 = H_ and hearts(south)==3
 heartFit4 = H_ and hearts(south)==4
 heartFit5 = H_ and hearts(south)>4
 
-fit5  = hcp(south)<8                   and (spadeFit5 or heartFit5)
-fit1  = hcp(south)>3 and hcp(south)<8  and (spadeFit3 or heartFit3 or spadeFit4 or heartFit4)
-fit2  = hcp(south)>7 and hcp(south)<11 and (spadeFit3 or heartFit3 or spadeFit4 or heartFit4)
+fit5  = hcp(south)<8                    and (spadeFit5 or heartFit5)
+fit1  = hcp(south)>3 and hcp(south)<8   and (spadeFit3 or heartFit3 or spadeFit4 or heartFit4) and not fit5
+fit2  = hcp(south)>7 and hcp(south)<11  and (spadeFit3 or heartFit3 or spadeFit4 or heartFit4)
 fit3  = hcp(south)>10 and hcp(south)<13 and (spadeFit3 or heartFit3) 
 fit4  = hcp(south)>10 and hcp(south)<13 and (spadeFit4 or heartFit4)
 
