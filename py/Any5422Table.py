@@ -42,25 +42,39 @@ def count_opening_patterns(input_file):
 def display_table(pattern_counts):
     """
     Displays the results in a table format with patterns as rows and opening bids as columns.
-    Columns are ordered as: 1S, 1H, 1D, 1C, 1NT.
+    Adds totals for each row and column.
     """
     # Define the table headers
-    headers = ["Pattern", "1S", "1H", "1D", "1C", "1NT"]
-    column_widths = [8, 5, 5, 5, 5, 5]
+    headers = ["Pattern", "1S", "1H", "1D", "1C", "1NT", "Total"]
+    column_widths = [8, 5, 5, 5, 5, 5, 6]
     
     # Print the header row
     header_row = " ".join(f"{header:>{width}}" for header, width in zip(headers, column_widths))
     print(header_row)
     print("-" * sum(column_widths))
-
+    
+    # Initialize column totals
+    column_totals = {"1S": 0, "1H": 0, "1D": 0, "1C": 0, "1NT": 0}
+    
     # Print each row of the table
     for pattern, counts in sorted(pattern_counts.items()):
-        row = [pattern] + [counts["1S"], counts["1H"], counts["1D"], counts["1C"], counts["1NT"]]
+        row_total = sum(counts.values())  # Total for the row
+        row = [pattern] + [counts["1S"], counts["1H"], counts["1D"], counts["1C"], counts["1NT"], row_total]
         formatted_row = " ".join(f"{value:>{width}}" for value, width in zip(row, column_widths))
         print(formatted_row)
+        
+        # Update column totals
+        for bid in column_totals:
+            column_totals[bid] += counts[bid]
+    
+    # Print totals row
+    total_row = ["Total"] + [column_totals[bid] for bid in ["1S", "1H", "1D", "1C", "1NT"]] + [sum(column_totals.values())]
+    formatted_total_row = " ".join(f"{value:>{width}}" for value, width in zip(total_row, column_widths))
+    print("-" * sum(column_widths))
+    print(formatted_total_row)
 
 # Example usage
-input_file = "/Users/adavidbailey/Practice-Bidding-Scenarios/misc/Any_5422_GIB.pbn"
+input_file = "/Users/adavidbailey/Practice-Bidding-Scenarios/bba/Jacoby_2N_4x_void_Leveled.pbn"
 pattern_counts = count_opening_patterns(input_file)
 
 # Display results in table format
