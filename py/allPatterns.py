@@ -1,4 +1,5 @@
 import os
+import re
 from collections import defaultdict
 
 def get_hand_pattern(hand):
@@ -38,40 +39,40 @@ def count_opening_patterns_in_file(input_file, pattern_counter):
 
         # Parse the deal line
         if line.startswith("[Deal "):
-            try:
+            #try:
                 deal_line = line[7:-2]
                 first_hand = deal_line[0]
 
-                if first_hand not in player_order_dict:
-                    print(f"Error: Invalid first hand indicator '{first_hand}' in line: {line}")
-                    continue
+                #if first_hand not in player_order_dict:
+                #    print(f"Error: Invalid first hand indicator '{first_hand}' in line: {line}")
+                #    continue
 
                 hands = deal_line[2:].split(" ")
-                if len(hands) != 4:
-                    print(f"Error: Unexpected number of hands: {hands} in line: {line}")
-                    continue
+                #if len(hands) != 4:
+                #    print(f"Error: Unexpected number of hands: {hands} in line: {line}")
+                #    continue
 
                 # Map the hands to the correct players based on `first_hand`
                 hand_mapping = dict(zip(player_order_dict[first_hand], hands))
-            except Exception as e:
-                print(f"Error parsing deal line: {line} - {e}")
-                continue
+            #except Exception as e:
+            #    print(f"Error parsing deal line: {line} - {e}")
+            #    continue
 
         # Parse the auction line
         elif line.startswith("[Auction"):
-            try:
+            #try:
                 first_seat = line[10]
                 if first_seat not in player_order_dict:
                     print(f"Error: Invalid first seat '{first_seat}' in line: {line}")
                     continue
                 auction = True
-            except Exception as e:
-                print(f"Error parsing auction line: {line} - {e}")
-                auction = False
+            #except Exception as e:
+            #    print(f"Error parsing auction line: {line} - {e}")
+            #    auction = False
 
         # Process the auction sequence
         elif auction:
-            try:
+            #try:
                 bids = line.split()
                 # Define the order of bidders starting with `first_seat`
                 player_order = ["N", "E", "S", "W"]
@@ -95,26 +96,47 @@ def count_opening_patterns_in_file(input_file, pattern_counter):
                             pattern_counter[pattern]["+"] += 1
 
                         break
-            except Exception as e:
-                print(f"Error processing auction line: {line} - {e}")
-            finally:
+            #except Exception as e:
+            #    print(f"Error processing auction line: {line} - {e}")
+            #finally:
                 auction = False
 
-def count_opening_patterns_in_folder(folder_path):
+def count_opening_patterns_in_folder(folder_path, filename_pattern):
     """
-    Processes all files in the specified folder and aggregates the pattern counts.
+    Processes files in the specified folder based on the provided filename pattern 
+    (supports wildcards and case-insensitive matching) and aggregates the pattern counts.
     """
-    # Include specific bid levels and lump everything else into "+"
+    # Initialize pattern counter with opening bids
     pattern_counter = defaultdict(lambda: {
         "1S": 0, "1H": 0, "1D": 0, "1C": 0, "1NT": 0,
         "2S": 0, "2H": 0, "2D": 0, "2C": 0, "2NT": 0,
         "3S": 0, "3H": 0, "3D": 0, "3C": 0, "3NT": 0,
         "+": 0  # Anything above level 3
     })
-    for entry in os.scandir(folder_path):
-        if entry.is_file() and entry.name.endswith(".pbn"):
-            print(f"Processing file: {entry.name}")
-            count_opening_patterns_in_file(entry.path, pattern_counter)
+
+    # Convert wildcard pattern to regex pattern
+    if "*" in filename_pattern:
+        # User provided a pattern with a wildcard, use it directly
+        filename_pattern = filename_pattern.replace('*', '.*').lower()
+        regex_pattern = re.compile(f"^{filename_pattern}$", re.IGNORECASE)
+    else:
+        # Exact match, no wildcard
+        regex_pattern = re.compile(f"^{filename_pattern}$", re.IGNORECASE)
+
+    # Get all .pbn files in the folder
+    matching_files = [entry.path for entry in os.scandir(folder_path) if entry.is_file() and entry.name.lower().endswith('.pbn')]
+
+    # Filter files based on the regex pattern
+    matching_files = [file for file in matching_files if regex_pattern.match(os.path.basename(file).lower())]
+
+    if not matching_files:
+        print(f"No files matched the pattern: {filename_pattern}")
+        return pattern_counter
+
+    for file_path in matching_files:
+        print(f"Processing file: {file_path}")
+        count_opening_patterns_in_file(file_path, pattern_counter)
+    
     return pattern_counter
 
 def display_table(pattern_counts):
@@ -144,6 +166,10 @@ def display_table(pattern_counts):
 
 # Example usage
 folder_path = "/Users/adavidbailey/Practice-Bidding-Scenarios/bba/"
-pattern_counts = count_opening_patterns_in_folder(folder_path)
+
+# Prompt for filename pattern if not provided
+filename_pattern = input("Enter filename pattern (e.g., 'Jacoby*' or 'start*end'): ").strip()
+
+pattern_counts = count_opening_patterns_in_folder(folder_path, filename_pattern)
 print("Opening Bid Counts by Pattern:")
 display_table(pattern_counts)
