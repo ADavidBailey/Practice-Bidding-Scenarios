@@ -1,4 +1,4 @@
-# button-text: 2NT w/Smolen
+# button-text: 2NT - Smolen
 # scenario-title: 20-21 Notrump with Smolen Response.
 # 2N_Smolen
 dealer south
@@ -143,17 +143,17 @@ keep0  = 0
 
 
 ##### Level the deal #####
-levPass     = pass     and keep25
-levBalanced = balanced and keep44
-levSmoSta      = (smolen or stayman) and keep25
-levSmolen   = smolen   and keep
-levStayman  = stayman  and keep015
-levJacTex      = (jacoby or texas) and keep19
-levTexas    = texas    and keep94
-levJacoby   = jacoby   and keep25
-levMinors      = (oneMinor or MSS) and keep
-levOneMinor = oneMinor and keep
-levMSS      = MSS      and keep
+levPass      = pass                 and keep25
+levBalanced  = balanced             and keep44
+levSmoSta    = (smolen or stayman)  and keep25
+levSmolen    = smolen               and keep
+levStayman   = stayman              and keep015
+levJacTex    = (jacoby or texas)    and keep19
+levTexas     = texas    and keep94
+levJacoby    = jacoby   and keep25
+levMinors    = (oneMinor or MSS)    and keep
+levOneMinor  = oneMinor             and keep
+levMSS       = MSS                  and keep
 levelTheDeal = (levPass or levBalanced or levSmolen or levStayman or levTexas or levJacoby or levOneMinor or levMSS or levSmoSta or levJacTex)
 
 ### Do it ###
