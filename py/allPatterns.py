@@ -146,7 +146,7 @@ def main():
         # Process .pbn files in the specified folder
         pattern_counts, file_count = count_opening_patterns_in_folder(folder_path, filename_pattern)
         if file_count > 0:
-            print("\nOpening Bid Counts by Pattern:\n")
+            print("\nOpening Bid Counts by HandPattern:\n")
             display_table(pattern_counts)
         else:
             print(f"No .pbn files matched the pattern '{filename_pattern}' in the folder '{folder_path}'.")
