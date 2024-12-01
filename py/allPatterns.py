@@ -91,6 +91,7 @@ def count_opening_patterns_in_folder(folder_path, filename_pattern):
     if "*" in filename_pattern:
         filename_pattern = filename_pattern.replace('*', '.*').lower()
     regex_pattern = re.compile(f"^{filename_pattern}$", re.IGNORECASE)
+    print(regex_pattern)
 
     # Scan the folder and filter based on filenames (ignoring extensions)
     matching_files = [
