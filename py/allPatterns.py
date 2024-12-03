@@ -54,7 +54,8 @@ def count_opening_patterns_in_file(input_file, pattern_counter):
             auction = True
 
         elif auction:
-            bids = line.split()
+            # BBA and BC use different Notrump representations -- translate NT to N
+            bids = line.replace("NT", "N").split()
             player_order = ["N", "E", "S", "W"]
             start_index = player_order.index(first_seat)
             rotated_order = player_order[start_index:] + player_order[:start_index]
@@ -81,9 +82,9 @@ def count_opening_patterns_in_folder(folder_path, filename_pattern):
     """
     pattern_counter = defaultdict(
         lambda: {
-            "1S": 0, "1H": 0, "1D": 0, "1C": 0, "1NT": 0,
-            "2S": 0, "2H": 0, "2D": 0, "2C": 0, "2NT": 0,
-            "3S": 0, "3H": 0, "3D": 0, "3C": 0, "3NT": 0,
+            "1S": 0, "1H": 0, "1D": 0, "1C": 0, "1N": 0,
+            "2S": 0, "2H": 0, "2D": 0, "2C": 0, "2N": 0,
+            "3S": 0, "3H": 0, "3D": 0, "3C": 0, "3N": 0,
             "+": 0,
         }
     )
@@ -91,7 +92,6 @@ def count_opening_patterns_in_folder(folder_path, filename_pattern):
     if "*" in filename_pattern:
         filename_pattern = filename_pattern.replace('*', '.*').lower()
     regex_pattern = re.compile(f"^{filename_pattern}$", re.IGNORECASE)
-    print(regex_pattern)
 
     # Scan the folder and filter based on filenames (ignoring extensions)
     matching_files = [
@@ -114,8 +114,8 @@ def display_table(pattern_counts):
     """
     Displays the results in a table format with patterns as rows and opening bids as columns.
     """
-    headers = ["Pattern", "1S", "1H", "1D", "1C", "1NT", "2S", "2H", "2D", "2C", "2NT",
-               "3S", "3H", "3D", "3C", "3NT", "+", "Total"]
+    headers = ["Pattern", "1S", "1H", "1D", "1C", "1N", "2S", "2H", "2D", "2C", "2N",
+               "3S", "3H", "3D", "3C", "3N", "+", "Total"]
     column_widths = [10] + [5] * (len(headers) - 2) + [6]
     header_row = " ".join(f"{header:>{width}}" for header, width in zip(headers, column_widths))
     print(header_row)
