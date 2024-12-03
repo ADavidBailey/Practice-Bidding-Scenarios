@@ -1,4 +1,8 @@
 `
+
+#  I've included the back=ticks so extract will work.
+#  I don't anticipate installing a PBN Button
+
 dealer south
 
 # auction-filter: .
@@ -6,7 +10,8 @@ dealer south
 produce 5000000
 action
 
-###. line 49: Too many shapes -- only 32 allowed!  I have 5 too many.
+# I got this error:  line 49: Too many shapes -- only 32 allowed!
+# So I lumped some patterns together
 average "13xxx" 100 * shape(south,any x000),
 average "12xxx" 100 * shape(south,any x100),
 average "11xxx" 100 * shape(south,any x200+x110),
