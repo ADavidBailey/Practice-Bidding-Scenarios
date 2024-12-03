@@ -3,12 +3,15 @@ dealer south
 
 # auction-filter: .
 
-produce 5000
+produce 5000000
 action
 
-average "9400 " 100 * shape(south,any 9400),
-average "9310 " 100 * shape(south,any 9310),
-average "9211 " 100 * shape(south,any 9211),
+###. line 49: Too many shapes -- only 32 allowed!  I have 5 too many.
+average "13xxx" 100 * shape(south,any x000),
+average "12xxx" 100 * shape(south,any x100),
+average "11xxx" 100 * shape(south,any x200+x110),
+average "10xxx" 100 * shape(south,any x300+x210+x111),
+average "9xxx " 100 * shape(south,any 9xxx),
 
 average "8500 " 100 * shape(south,any 8500),
 average "8410 " 100 * shape(south,any 8410),
@@ -32,6 +35,7 @@ average "6421 " 100 * shape(south,any 6421),
 
 average "5530 " 100 * shape(south,any 5530),
 average "5521 " 100 * shape(south,any 5521),
+average "5440 " 100 * shape(south,any 5440),
 average "5431 " 100 * shape(south,any 5431),
 average "5422 " 100 * shape(south,any 5422),
 average "5332 " 100 * shape(south,any 5332),
@@ -39,4 +43,5 @@ average "5332 " 100 * shape(south,any 5332),
 average "4441 " 100 * shape(south,any 4441),
 average "4432 " 100 * shape(south,any 4432),
 average "4333 " 100 * shape(south,any 4333),
+
 `
