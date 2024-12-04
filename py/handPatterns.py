@@ -4,26 +4,24 @@ from collections import defaultdict
 import sys
 import argparse
 
+def calculate_hcp(hand):
+    """Calculate the High Card Points (HCP) for a bridge hand."""
+    hcp_values = {'A': 4, 'K': 3, 'Q': 2, 'J': 1}
+    total_hcp = 0
+    for card in hand:
+        total_hcp += hcp_values.get(card, 0)
+    return total_hcp
 
 def get_hand_pattern(hand, generic=False):
-    """
-    Calculates the hand pattern for a given bridge hand.
-    Example: AQJ9.J6.AKJ63.T4 -> 4252 (Spades: 4, Hearts: 2, Diamonds: 5, Clubs: 2)
-    If `generic` is True, returns patterns like 4333 (sorted lengths).
-    """
+    """Calculates the hand pattern for a given bridge hand."""
     suits = hand.split(".")
     if len(suits) != 4:
         raise ValueError(f"Invalid hand format: {hand}")
     lengths = [len(suit) for suit in suits]
     return "".join(map(str, sorted(lengths, reverse=True))) if generic else "".join(map(str, lengths))
 
-
-def count_opening_patterns_in_file(input_file, pattern_counter, generic=False):
-    """
-    Reads a file of hands, determines the pattern of each hand,
-    and counts the occurrences of each opening bid for each hand pattern.
-    Updates the provided pattern_counter.
-    """
+def count_opening_patterns_in_file(input_file, pattern_counter, generic=False, hcp_range=None):
+    """Reads a file of hands, calculates patterns, and filters by HCP if specified."""
     auction = False
     hand_mapping = {}
     player_order_dict = {
@@ -42,22 +40,18 @@ def count_opening_patterns_in_file(input_file, pattern_counter, generic=False):
 
     for line in lines:
         line = line.strip()
-
         if line.startswith("[Deal "):
             deal_line = line[7:-2]
             first_hand = deal_line[0]
             hands = deal_line[2:].split(" ")
             hand_mapping = dict(zip(player_order_dict[first_hand], hands))
-
         elif line.startswith("[Auction"):
             first_seat = line[10]
             if first_seat not in player_order_dict:
                 print(f"Error: Invalid first seat '{first_seat}' in line: {line}")
                 continue
             auction = True
-
         elif auction:
-            # BBA and BC use different Notrump representations -- translate NT to N
             bids = line.replace("NT", "N").split()
             player_order = ["N", "E", "S", "W"]
             start_index = player_order.index(first_seat)
@@ -68,8 +62,13 @@ def count_opening_patterns_in_file(input_file, pattern_counter, generic=False):
                     opening_bid = bid
                     opening_bidder = rotated_order[i % 4]
                     opening_hand = hand_mapping[player_order_dict[first_seat][i % 4]]
-                    pattern = get_hand_pattern(opening_hand, generic)
+                    hcp = calculate_hcp(opening_hand.replace(".", ""))
 
+                    # Filter hands by HCP range if specified
+                    if hcp_range and not (hcp_range[0] <= hcp <= hcp_range[1]):
+                        break
+
+                    pattern = get_hand_pattern(opening_hand, generic)
                     if opening_bid in pattern_counter[pattern]:
                         pattern_counter[pattern][opening_bid] += 1
                     else:
@@ -77,28 +76,18 @@ def count_opening_patterns_in_file(input_file, pattern_counter, generic=False):
                     break
             auction = False
 
-
-def count_opening_patterns_in_folder(folder_path, filename_pattern, generic=False):
-    """
-    Processes files in the specified folder based on the provided filename pattern 
-    (supports wildcards and case-insensitive matching) and aggregates the pattern counts.
-    """
+def count_opening_patterns_in_folder(folder_path, filename_pattern, generic=False, hcp_range=None):
+    """Processes files in a folder, aggregates pattern counts, and filters by HCP range."""
     pattern_counter = defaultdict(
-        lambda: {
-            "1S": 0, "1H": 0, "1D": 0, "1C": 0, "1N": 0,
-            "2S": 0, "2H": 0, "2D": 0, "2C": 0, "2N": 0,
-            "3S": 0, "3H": 0, "3D": 0, "3C": 0, "3N": 0,
-            "+": 0,
-        }
+        lambda: {bid: 0 for bid in ["1S", "1H", "1D", "1C", "1N", "2S", "2H", "2D", "2C", "2N", "3S", "3H", "3D", "3C", "3N", "+"]}
     )
 
     if "*" in filename_pattern:
         filename_pattern = filename_pattern.replace('*', '.*').lower()
     regex_pattern = re.compile(f"^{filename_pattern}$", re.IGNORECASE)
 
-    # Scan the folder and filter based on filenames (ignoring extensions)
     matching_files = [
-        entry.path for entry in os.scandir(folder_path) 
+        entry.path for entry in os.scandir(folder_path)
         if entry.is_file() and regex_pattern.match(os.path.splitext(entry.name)[0].lower())
     ]
 
@@ -108,7 +97,7 @@ def count_opening_patterns_in_folder(folder_path, filename_pattern, generic=Fals
 
     for file_path in matching_files:
         print(f"Processing file: {file_path}")
-        count_opening_patterns_in_file(file_path, pattern_counter, generic)
+        count_opening_patterns_in_file(file_path, pattern_counter, generic, hcp_range)
 
     return pattern_counter, len(matching_files)
 
@@ -140,25 +129,25 @@ def display_table(pattern_counts):
     print("-" * (sum(column_widths) + len(column_widths) - 1))
     print(formatted_total_row)
 
+def parse_hcp_argument(hcp_arg):
+    """Parses the HCP range argument."""
+    if "-" in hcp_arg:
+        return list(map(int, hcp_arg.split("-")))
+    else:
+        return [int(hcp_arg), int(hcp_arg)]
+
 def main():
     folder_path = "/Users/adavidbailey/Practice-Bidding-Scenarios/bba/"
-
     parser = argparse.ArgumentParser(description="Bridge Hand Pattern Analysis")
     parser.add_argument("filename_pattern", help="Filename pattern to process (e.g., '*.pbn')")
-    parser.add_argument(
-        "--generic", action="store_true", 
-        help="Use generic hand patterns (e.g., 4333) instead of specific ones."
-    )
+    parser.add_argument("--generic", action="store_true", help="Use generic hand patterns (e.g., 4333).")
+    parser.add_argument("--hcp", help="Filter results by HCP (e.g., 10 or 10-12).")
     args = parser.parse_args()
 
-    # Process .pbn files in the specified folder
-    pattern_counts, file_count = count_opening_patterns_in_folder(folder_path, args.filename_pattern, args.generic)
+    hcp_range = parse_hcp_argument(args.hcp) if args.hcp else None
 
+    pattern_counts, file_count = count_opening_patterns_in_folder(folder_path, args.filename_pattern, args.generic, hcp_range)
     if file_count > 0:
-        if args.generic:
-            print(f"\nOpening Bid Counts for '{args.filename_pattern}' by Generic Hand Pattern:\n")
-        else:
-            print(f"\nOpening Bid Counts for '{args.filename_pattern}' by Specific Hand Pattern:\n")
         display_table(pattern_counts)
     else:
         print(f"No .pbn files matched the pattern '{args.filename_pattern}' in the folder '{folder_path}'.")
