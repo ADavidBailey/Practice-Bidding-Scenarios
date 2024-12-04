@@ -136,6 +136,7 @@ def display_table(pattern_counts):
 
     total_row = ["Total"] + [column_totals[bid] for bid in headers[1:-1]] + [sum(column_totals.values())]
     formatted_total_row = " ".join(f"{value:>{width}}" for value, width in zip(total_row, column_widths))
+    print('\n' + header_row)
     print("-" * (sum(column_widths) + len(column_widths) - 1))
     print(formatted_total_row)
 
