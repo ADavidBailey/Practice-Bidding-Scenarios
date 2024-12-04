@@ -101,7 +101,7 @@ def count_opening_patterns_in_folder(folder_path, filename_pattern, generic=Fals
 
     return pattern_counter, len(matching_files)
 
-def display_table(pattern_counts):
+def display_table(command_line, pattern_counts):
     """
     Displays the results in a table format with patterns as rows and opening bids as columns.
     """
@@ -109,6 +109,7 @@ def display_table(pattern_counts):
                "3S", "3H", "3D", "3C", "3N", "+", "Total"]
     column_widths = [10] + [5] * (len(headers) - 2) + [6]
     header_row = " ".join(f"{header:>{width}}" for header, width in zip(headers, column_widths))
+    print('\n' + command_line)
     print(header_row)
     print("-" * (sum(column_widths) + len(column_widths) - 1))
 
@@ -125,7 +126,8 @@ def display_table(pattern_counts):
 
     total_row = ["Total"] + [column_totals[bid] for bid in headers[1:-1]] + [sum(column_totals.values())]
     formatted_total_row = " ".join(f"{value:>{width}}" for value, width in zip(total_row, column_widths))
-    print('\n' + header_row)
+    print('\n' + command_line)
+    print(header_row)
     print("-" * (sum(column_widths) + len(column_widths) - 1))
     print(formatted_total_row)
 
@@ -144,11 +146,14 @@ def main():
     parser.add_argument("--hcp", help="Filter results by HCP (e.g., 10 or 10-12).")
     args = parser.parse_args()
 
+    command_line = " ".join(sys.argv)
+
+
     hcp_range = parse_hcp_argument(args.hcp) if args.hcp else None
 
     pattern_counts, file_count = count_opening_patterns_in_folder(folder_path, args.filename_pattern, args.generic, hcp_range)
     if file_count > 0:
-        display_table(pattern_counts)
+        display_table(command_line, pattern_counts)
     else:
         print(f"No .pbn files matched the pattern '{args.filename_pattern}' in the folder '{folder_path}'.")
 
