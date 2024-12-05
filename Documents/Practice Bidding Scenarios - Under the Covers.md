@@ -45,7 +45,6 @@ The whole thing looks like this:
 
 Each scenario is packaged this way.  I call it wrappered Dealer Code.  The backticks and everything outside of the ...backticks... is the wrapper.  There is a separate file for each scenario.  These are all in the pbs folder of my [CTRL-Click to check out the Practice Bidding Scenarios GitHub repository](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main).  The content isn't pretty -- it evolved rather than planned.  All of the files in the PBS folder are wrappered Dealer code.  I've tried to use descriptive names for the scenarios.  Words are separated by Underscores, _.  Presently, the scenario files do NOT have an extension.
 
-    
 ## Script files
 
 These are Dealer code fragments that are often needed.  Stanislaw implemented an Import feature that allows me to import these snippets into other scenarios.
@@ -126,16 +125,12 @@ There are several other folders:
 - bbsa -- Convention Cards for Bridge Bidding Analyser.  There's a 21GF-DEFAULT that's used for most scenarios.  For scenarios that need something different, I try to copy the DEFAULT and make the necessary changes.  I try to NOT change the DEFAULT.
 - build-scripts -- Windows CMD and Powershell Programs.  In some cases, these invoke code: Dealer.exe, BBA.exe, and BridgeComposer.exe
 - Documents -- Documentation for the Practice-Bidding-Scenarios GitHub repository.
-- lin -- a lin files for BBO Practice Table.  It just has one mixed.lin file, today.
+- lin -- a lin file for BBO Practice Table.  It just has one mixed.lin file, today.
 - misc -- everything has to go somewhere
 - py -- Python programs
 - script -- BBO Dealer code fragments that may be Imported into PBS files -- be careful modifying these as they may break any scenario that imports them.
 
-
-
 Since we have all of these scenarios, We wanted to leverage them.  I've created python programs that use the dlr files to create pbn, rotated pbn, and rotated lin files that can be used elsewhere.  When scenarios are updated or new scenarios are created, the following programs are in the py folder of the PBS root directory and are used to create/update the pbn and lin files.
-
-
 
 ## Acknowledgements
 
@@ -158,7 +153,6 @@ I've had a lot of help with this project.
 *Ray Spalding*'s, Bridge Composer has great features for manipulating bridge files.  Ray has helped us create and use JavaScript filters.
 
 *Bob Richardson*'s, Double Dummy Solver, helps assess the Bridge Bidding Analyser's bidding. 
-
 
 ## Regrets
 
