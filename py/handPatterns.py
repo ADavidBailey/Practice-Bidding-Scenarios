@@ -91,7 +91,9 @@ def count_opening_patterns_in_folder(folder_path, filename_pattern, generic=Fals
 
 
     if "*" in filename_pattern:
-        filename_pattern = filename_pattern.replace('*', '.*').lower()
+        # If someone enters a RegEx pattern, don't mess with any .* -- this comes through unscathed: '^(?!SCS)\.*'
+        filename_pattern = filename_pattern.replace('*', '.*').replace('..*', '.*').lower()
+        #print(filename_pattern)
     regex_pattern = re.compile(f"^{filename_pattern}$", re.IGNORECASE)
 
     matching_files = [
