@@ -2,7 +2,7 @@
 
 ## BBO Deal generator
 
-BBO includes a Deal generator that produces random hand and provides a means for constraining the deals.<br>
+BBO includes a Deal generator that produces random hands and provides a means for constraining the deals.<br>
 
 [CTRL-Click to check out Dealer by Hans van Staveren, et.al.](https://www.bridgebase.com/tools/dealer/dealer.php)
 
@@ -43,10 +43,9 @@ The whole thing looks like this:
     More deacriptive lines<br>
     %theNameOfTheScript%<br>
 
-Each scenario is packaged this way.  I call it wrappered Dealer Code.  The backticks and everything outside of the ...backticks... is the wrapper.  There is a separate file for each scenario.  These are all in the pbs folder of my [CTRL-Click to check out the Practice Bidding Scenarios GitHub repository](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main).  The content isn't pretty -- it evolved rather than planned.  The filenames beginning with Dealer or Gavin are wrappered Dealer code.  I've tried to use descriptive names for the scenarios.  Words are separated by Underscores, _.  Presently, the scenario files do NOT have an extension.
+Each scenario is packaged this way.  I call it wrappered Dealer Code.  The backticks and everything outside of the ...backticks... is the wrapper.  There is a separate file for each scenario.  These are all in the pbs folder of my [CTRL-Click to check out the Practice Bidding Scenarios GitHub repository](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main).  The content isn't pretty -- it evolved rather than planned.  All of the files in the PBS folder are wrappered Dealer code.  I've tried to use descriptive names for the scenarios.  Words are separated by Underscores, _.  Presently, the scenario files do NOT have an extension.
 
     
-
 ## Script files
 
 These are Dealer code fragments that are often needed.  Stanislaw implemented an Import feature that allows me to import these snippets into other scenarios.
@@ -110,14 +109,14 @@ And a few other folders
 - build-scripts -- contain Windows Command File programs and Windows Power Shell programs
 - Documents
 
-The following table shows the relationship between the files in the various folders.  The folders below all have files that ard derived from and correspond to those in the PBS folder.
+The following shows the relationship between the files in the various folders.  The folders below all have files that ard derived from and correspond to those in the PBS folder.
 
-We've automated the process of creating all of these files derived from those in the PBS folder.  OneScriptToRuleThemAll is a Windows PowerShell program.  It accepts a scenario-name and operation-list.  Both of these parameters can have * wild-cards.  The operation-list may also have a comma-separated list of operations.  The short names for the operations are as follow"
+We've automated the process of creating all of these files.  OneScriptToRuleThemAll is a Windows PowerShell program.  It accepts a scenario-name and operation-list.  Both of these parameters can have * wild-cards.  The operation-list may also have a comma-separated list of operations.  The short names for the operations are as follow"
 
-- dlr - runs extract.py to convert PBS wrappered file(s) to a dlr file(s)
-- pbn - makeOnePBN.cmd creates CMD file statement(s) to run BBO's Dealer.exe to convert a dlr file(s) to a pbn file(s)
-- rotate - makeOneRotated.cmd creates CMD file statement(s) to run Bridge Composer to produce pbn-rotated... and lin-rotated... file(s)
-- bba - makeOneBBA runs BBA.exe to bid hands and produces files in the bba -- a pbn with bidding added
+- dlr - runs **extract.py** to convert PBS wrappered file(s) to a dlr file(s)
+- pbn - **makeOnePBN.cmd** creates CMD file statement(s) to run BBO's **Dealer.exe** to convert a dlr file(s) to a pbn file(s)
+- rotate - **makeOneRotated.cmd** creates CMD file statement(s) to run **BridgeComposer.exe** to produce pbn-rotated... and lin-rotated... file(s)
+- bba - **makeOneBBAcmd** runs **BBA.exe** to bid hands and produces files in the bba -- a pbn with bidding added
 - title - 
 - filter - uses a RegEx filter to get the files that were bid as expected
 - filterStats
