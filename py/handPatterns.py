@@ -98,7 +98,7 @@ def count_opening_patterns_in_folder(folder_path, filename_pattern, generic=Fals
 
     matching_files = [
         entry.path for entry in os.scandir(folder_path)
-        if entry.is_file() and regex_pattern.match(os.path.splitext(entry.name)[0].lower())
+        if entry.is_file() and entry.name.endswith('.pbn') and regex_pattern.match(os.path.splitext(entry.name)[0].lower())
     ]
 
     if not matching_files:
