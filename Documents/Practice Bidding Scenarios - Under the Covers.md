@@ -115,7 +115,7 @@ We've automated the process of creating all of these files.  OneScriptToRuleThem
 - dlr - runs **extract.py** to convert PBS wrappered file(s) to a dlr file(s)
 - pbn - **makeOnePBN.cmd** creates CMD file statement(s) to run BBO's **Dealer.exe** to convert a dlr file(s) to a pbn file(s)
 - rotate - **makeOneRotated.cmd** creates CMD file statement(s) to run **BridgeComposer.exe** to produce pbn-rotated... and lin-rotated... file(s)
-- bba - **makeOneBBAcmd** runs **BBA.exe** to bid hands and produces files in the bba -- a pbn with bidding added
+- bba - **makeOneBBA,cmd** runs **BBA.exe** to bid hands and produces an archive file -- a pbn with bidding added
 - title - 
 - filter - uses a RegEx filter to get the files that were bid as expected
 - filterStats
@@ -129,8 +129,6 @@ There are several other folders:
 - misc -- everything has to go somewhere
 - py -- Python programs
 - script -- BBO Dealer code fragments that may be Imported into PBS files -- be careful modifying these as they may break any scenario that imports them.
-
-Since we have all of these scenarios, We wanted to leverage them.  I've created python programs that use the dlr files to create pbn, rotated pbn, and rotated lin files that can be used elsewhere.  When scenarios are updated or new scenarios are created, the following programs are in the py folder of the PBS root directory and are used to create/update the pbn and lin files.
 
 ## Acknowledgements
 
@@ -156,6 +154,6 @@ I've had a lot of help with this project.
 
 ## Regrets
 
-If I had a do-over
+If I had a do-over (this section once had a half-dozen items)
  - I'd give all of my wappered files a common extension, maybe .pbs
  
