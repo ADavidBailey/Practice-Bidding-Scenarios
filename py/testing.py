@@ -4,6 +4,13 @@ from collections import defaultdict
 import sys
 import argparse
 
+def parse_hcp_argument(hcp_arg):
+    """Parses the HCP range argument."""
+    if "-" in hcp_arg:
+        return list(map(int, hcp_arg.split("-")))
+    else:
+        return [int(hcp_arg), int(hcp_arg)]
+
 def calculate_hcp(hand):
     """Calculate the High Card Points (HCP) for a bridge hand."""
     hcp_values = {'A': 4, 'K': 3, 'Q': 2, 'J': 1}
@@ -18,7 +25,8 @@ def get_hand_pattern(hand, generic=False):
     if len(suits) != 4:
         raise ValueError(f"Invalid hand format: {hand}")
     lengths = [len(suit) for suit in suits]
-    return "".join(map(str, sorted(lengths, reverse=True))) if generic else "".join(map(str, lengths))
+    separator = "-" if generic else "="
+    return separator.join(map(str, sorted(lengths, reverse=True))) if generic else separator.join(map(str, lengths))
 
 def count_opening_patterns_in_file(input_file, pattern_counter, generic=False, hcp_range=None):
     """Reads a file of hands, calculates patterns, and filters by HCP if specified."""
@@ -89,14 +97,15 @@ def count_opening_patterns_in_folder(folder_path, filename_pattern, generic=Fals
         ]}
     )
 
-
     if "*" in filename_pattern:
-        filename_pattern = filename_pattern.replace('*', '.*').lower()
+        # If someone enters a RegEx pattern, don't mess with any .* -- this comes through unscathed: '^(?!SCS)\.*'
+        filename_pattern = filename_pattern.replace('*', '.*').replace('..*', '.*').lower()
+        #print(filename_pattern)
     regex_pattern = re.compile(f"^{filename_pattern}$", re.IGNORECASE)
 
     matching_files = [
         entry.path for entry in os.scandir(folder_path)
-        if entry.is_file() and regex_pattern.match(os.path.splitext(entry.name)[0].lower())
+        if entry.is_file() and entry.name.endswith('.pbn') and regex_pattern.match(os.path.splitext(entry.name)[0].lower())
     ]
 
     if not matching_files:
@@ -109,10 +118,9 @@ def count_opening_patterns_in_folder(folder_path, filename_pattern, generic=Fals
 
     return pattern_counter, len(matching_files)
 
-def display_table(command_line, pattern_counts, generic=False):
+def display_table(command_line, pattern_counts, generic=False, show_zeros=False):
     """
     Displays the results in a table format with patterns as rows and opening bids as columns.
-    If `generic` is True, patterns are displayed within parentheses.
     """
     headers = [
         "Pattern",
@@ -125,6 +133,8 @@ def display_table(command_line, pattern_counts, generic=False):
     ]
     column_widths = [15] + [5] * (len(headers) - 2) + [6]
     header_row = " ".join(f"{header:>{width}}" for header, width in zip(headers, column_widths))
+    title = "---------- Opening Bids by Opening Hand Patterns ----------"
+    print("\n" + title.center(sum(column_widths) + len(column_widths) - 1))
     print('\n' + command_line)
     print(header_row)
     print("-" * (sum(column_widths) + len(column_widths) - 1))
@@ -132,10 +142,13 @@ def display_table(command_line, pattern_counts, generic=False):
     column_totals = {bid: 0 for bid in headers[1:-1]}
 
     for pattern, counts in sorted(pattern_counts.items()):
-        # Display pattern in parentheses if `generic` is True
-        display_pattern = f"( {pattern} )" if generic else pattern
         row_total = sum(counts.values())
-        row = [display_pattern] + [counts[bid] for bid in headers[1:-1]] + [row_total]
+        row = [
+            pattern
+        ] + [
+            counts[contract] if counts[contract] > 0 or show_zeros else " "
+            for contract in headers[1:-1]
+        ] + [row_total]
         formatted_row = " ".join(f"{value:>{width}}" for value, width in zip(row, column_widths))
         print(formatted_row)
 
@@ -144,18 +157,8 @@ def display_table(command_line, pattern_counts, generic=False):
 
     total_row = ["Total"] + [column_totals[bid] for bid in headers[1:-1]] + [sum(column_totals.values())]
     formatted_total_row = " ".join(f"{value:>{width}}" for value, width in zip(total_row, column_widths))
-    print('\n' + command_line)
-    print(header_row)
     print("-" * (sum(column_widths) + len(column_widths) - 1))
     print(formatted_total_row)
-
-
-def parse_hcp_argument(hcp_arg):
-    """Parses the HCP range argument."""
-    if "-" in hcp_arg:
-        return list(map(int, hcp_arg.split("-")))
-    else:
-        return [int(hcp_arg), int(hcp_arg)]
 
 def main():
     folder_path = "/Users/adavidbailey/Practice-Bidding-Scenarios/bba/"
@@ -163,16 +166,16 @@ def main():
     parser.add_argument("filename_pattern", help="Filename pattern to process (e.g., '*.pbn')")
     parser.add_argument("--generic", action="store_true", help="Use generic hand patterns (e.g., 4333).")
     parser.add_argument("--hcp", help="Filter results by HCP (e.g., 10 or 10-12).")
+    parser.add_argument("--zeros", action="store_true", help="Display zeros instead of spaces for zero values.")
     args = parser.parse_args()
 
     command_line = " ".join(sys.argv)
-
 
     hcp_range = parse_hcp_argument(args.hcp) if args.hcp else None
 
     pattern_counts, file_count = count_opening_patterns_in_folder(folder_path, args.filename_pattern, args.generic, hcp_range)
     if file_count > 0:
-        display_table(command_line, pattern_counts, args.generic)
+        display_table(command_line, pattern_counts, args.generic, args.zeros)
     else:
         print(f"No .pbn files matched the pattern '{args.filename_pattern}' in the folder '{folder_path}'.")
 
