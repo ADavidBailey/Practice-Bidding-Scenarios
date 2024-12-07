@@ -22,8 +22,6 @@ def calculate_hcp(hand):
 def get_hand_pattern(hand, generic=False):
     """Calculates the hand pattern for a given bridge hand."""
     suits = hand.split(".")
-    if len(suits) != 4:
-        raise ValueError(f"Invalid hand format: {hand}")
     lengths = [len(suit) for suit in suits]
     separator = "-" if generic else "="
     return separator.join(map(str, sorted(lengths, reverse=True))) if generic else separator.join(map(str, lengths))
