@@ -37,11 +37,8 @@ def count_opening_hcp_in_file(input_file, hcp_counter):
             first_hand = deal_line[0]
             hands = deal_line[2:].split(" ")
             hand_mapping = dict(zip(player_order_dict[first_hand], hands))
-        elif line.startswith("[Auction"):
+        elif line.startswith("[Auction "):
             first_seat = line[10]
-            if first_seat not in player_order_dict:
-                print(f"Error: Invalid first seat '{first_seat}' in line: {line}")
-                continue
             auction = True
         elif line.startswith("[Contract "):
             # this ignores whether the contract is doubled or redoubled
