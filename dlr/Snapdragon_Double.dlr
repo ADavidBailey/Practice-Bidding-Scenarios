@@ -1,0 +1,52 @@
+# button-text: Overcalls
+# scenario-title: Snapdragon Double
+# Snapdragon_Double
+dealer east
+
+
+# convention-card:
+# auction-filter: Auction.....\n(1C 1D 1[HS])|(1C 1H 1S)|(1D 1H (1S|2C))|(1D 1S 2C)|(1H 1S 2[CD])|(1S 2C 2[DH])
+
+# Overcalls
+
+# Define good suits south with north tollerance (Ax, Kx, or Qx)
+GoodS = spades(south)>4 and top4(south,spades)==2 and top3(north,spades)==1 and shape(north,2xxx)
+GoodH = hearts(south)>4 and top4(south,hearts)==2 and top3(north,hearts)==1 and shape(north,x2xx)
+GoodD = diamonds(south)>4 and top4(south,diamonds)==2 and top3(north,diamonds)==1 and shape(north,xx2x)
+GoodC = clubs(south)>4 and top4(south,clubs)==2 and top3(north,clubs)==1 and shape(north,xxx2)
+
+# Define good suits north
+nGoodS = spades(north)>4 and top4(north,spades)==2
+nGoodH = hearts(north)>4 and top4(north,hearts)==2
+nGoodD = diamonds(north)>4 and top4(north,diamonds)==2
+nGoodC = clubs(north)>4 and top4(north,clubs)==2
+
+# Predict East's Opening suit
+s = spades(east)
+h = hearts(east)
+d = diamonds(east)
+c = clubs(east)
+oS = s>4 and s>=h and s>=d and s>=c              and spades(west)<3
+oH = not oS and h>4 and h>=d and h>=c            and hearts(west)<3
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3)  and diamonds(west)<3
+oC = not (oS or oH or oD)                        and clubs(west)<4
+eOpens = (oD or oC) and hcp(east)>11 and hcp(east)<15
+
+# South overcalls
+sOvercalls = (GoodS or GoodH or GoodD or GoodC) and hcp(south)>8
+
+# West bids a new suit
+wBids = shape(west,any 5332) and hcp(west)>6
+
+# North makes a Snapdragon Double 
+(nGoodS or nGoodH or nGoodD or nGoodC) and hcp(north)>7
+
+action
+average "east 1C" 100 * oC,
+average "east 1D" 100 * oD,
+
+
+
+
+
+printpbn
