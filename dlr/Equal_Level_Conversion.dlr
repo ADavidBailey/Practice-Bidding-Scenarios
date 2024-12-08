@@ -1,0 +1,67 @@
+# button-text: Equal Level Conv
+# scenario-title: Equal Level Conversion.  East opens a major.  South has 4 of the other major 5!D.
+# Equal_Level_Conversion
+dealer east
+
+
+# convention-card:
+# auction-filter: Auction.....\\n1[CDHS] X
+
+# Equal Level Conversion
+
+##### Imported Script: Define Calm Opponents #####
+
+# Avoid concentration of values
+cce = top4(east,clubs)<2
+cde = top4(east,diamonds)<2
+che = top4(east,hearts)<2
+cse = top4(east,spades)<2
+noConEast = cce and cde and che and cse
+
+ccw = top4(west,clubs)<2
+cdw = top4(west,diamonds)<2
+chw = top4(west,hearts)<2
+csw = top4(west,spades)<2
+noConWest = ccw and cdw and chw and csw
+
+unbalEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+
+balEast   = shape(east,any 4333 +any 4432)
+balWest   = shape(west,any 4333 +any 4432)
+
+calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<12)
+calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<12)
+calmOpps = calmEast and calmWest
+
+##### End of Imported Script: Define Calm Opponents #####
+
+# Defines calmWest
+
+# Predict East's Opening Suit
+s = spades(east)
+h = hearts(east)
+d = diamonds(east)
+c = clubs(east)
+oS = s>4 and s>=h and s>=d and s>=c
+oH = not oS and h>4 and h>=d and h>=c
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
+oC = not (oS or oH or oD)
+
+# East opens 1H or 1S and South is short in opener’s suit
+He = oH and hearts(south)<3 
+Se = oS and spades(south)<3 
+eOpens = hcp(east)>11 and hcp(east)<15 and (He or Se)
+
+# South has 5-Diamonds and 4-cards in the other major and less than 4-clubs
+sDoubles = shape(south,4153+4252+1453+2452) and hcp(south)>11 and hcp(south)<15
+
+# Now do it
+eOpens and sDoubles and calmWest
+
+action
+average "5431" 100 * shape(south,any 5431),
+average "5422" 100 * shape(south,any 5422),
+
+
+printpbn

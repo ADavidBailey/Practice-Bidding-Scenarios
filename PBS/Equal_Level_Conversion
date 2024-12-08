@@ -1,0 +1,45 @@
+Script,EqualLevConv
+setDealerCode(`
+
+# convention-card:
+# auction-filter: Auction.....\\n1[CDHS] X
+
+# Equal Level Conversion
+produce 500
+dealer east
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Defines calmWest
+
+# Predict East's Opening Suit
+s = spades(east)
+h = hearts(east)
+d = diamonds(east)
+c = clubs(east)
+oS = s>4 and s>=h and s>=d and s>=c
+oH = not oS and h>4 and h>=d and h>=c
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
+oC = not (oS or oH or oD)
+
+# East opens 1H or 1S and South is short in opener’s suit
+He = oH and hearts(south)<3 
+Se = oS and spades(south)<3 
+eOpens = hcp(east)>11 and hcp(east)<15 and (He or Se)
+
+# South has 5-Diamonds and 4-cards in the other major and less than 4-clubs
+sDoubles = shape(south,4153+4252+1453+2452) and hcp(south)>11 and hcp(south)<15
+
+# Now do it
+eOpens and sDoubles and calmWest
+
+action
+average "5431" 100 * shape(south,any 5431),
+average "5422" 100 * shape(south,any 5422),
+
+`, "E", true)
+Script
+Button,Equal Level Conv,\n\
+--- Equal Level Conversion.  East opens a major.  South has 4 of the other major 5!D.\n\
+South X's with the intention of correcting North's 2!C to 2!D，showing nothing extra.\n\
+https://www.bridgebum.com/equal_level_conversion.php\n\
+%EqualLevConv%
