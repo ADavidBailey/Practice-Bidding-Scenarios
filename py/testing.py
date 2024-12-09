@@ -1,21 +1,21 @@
+import sys
 import os
 import re
 from collections import defaultdict
-import sys
 import argparse
+
 
 def calculate_hcp(hand):
     """Calculate the High Card Points (HCP) for a bridge hand."""
     hcp_values = {'A': 4, 'K': 3, 'Q': 2, 'J': 1}
-    total_hcp = 0
-    for card in hand:
-        total_hcp += hcp_values.get(card, 0)
-    return total_hcp
+    return sum(hcp_values.get(card, 0) for card in hand)
 
-def count_opening_hcp_in_file(input_file, hcp_counter):
-    """Reads a file of hands, calculates patterns, and filters by HCP if specified."""
-    auction = False
-    hand_mapping = {}
+
+def process_file(file_path, hcp_counter):
+    """
+    Processes a single PBN file, calculates total HCP for opening and responding hands,
+    and updates the HCP counter.
+    """
     player_order_dict = {
         "N": ["North", "East", "South", "West"],
         "E": ["East", "South", "West", "North"],
@@ -24,65 +24,61 @@ def count_opening_hcp_in_file(input_file, hcp_counter):
     }
 
     try:
-        with open(input_file, "r") as infile:
-            lines = infile.readlines()
+        with open(file_path, "r") as file:
+            lines = file.readlines()
     except Exception as e:
-        print(f"Error reading file {input_file}: {e}")
+        print(f"Error reading file {file_path}: {e}")
         return
+
+    hand_mapping = {}
+    auction_in_progress = False
+    first_seat = None
 
     for line in lines:
         line = line.strip()
         if line.startswith("[Deal "):
-            deal_line = line[7:-2]
-            first_hand = deal_line[0]
-            hands = deal_line[2:].split(" ")
+            deal_data = line[7:-2]
+            first_hand = deal_data[0]
+            hands = deal_data[2:].split(" ")
             hand_mapping = dict(zip(player_order_dict[first_hand], hands))
+
         elif line.startswith("[Auction "):
             first_seat = line[10]
-            auction = True
-        elif line.startswith("[Contract "):
-            # this ignores whether the contract is doubled or redoubled
-            contract = line[11:13]
-        elif auction:
+            auction_in_progress = True
+
+        elif auction_in_progress and not line.startswith("["):
             bids = line.replace("NT", "N").split()
             player_order = ["N", "E", "S", "W"]
             start_index = player_order.index(first_seat)
             rotated_order = player_order[start_index:] + player_order[:start_index]
+
             for i, bid in enumerate(bids):
-                if bid == "Pass":
-                    continue
-                else:
-                    break
-                           
-            opening_hand = hand_mapping[rotated_order[0]]
-            opening_hcp = calculate_hcp(opening_hand.replace(".", ""))
-            responding_hand = hand_mapping[player_order_dict[first_seat][(i+2) % 4]]
-            responding_hcp = calculate_hcp(responding_hand.replace(".", ""))
+                if bid not in ("Pass", "="):  # Skip passes and repeat symbols
+                    opening_bidder = rotated_order[i % 4]
+                    responding_bidder = rotated_order[(i + 2) % 4]
 
-            total_hcp = opening_hcp + responding_hcp
-            if total_hcp in hcp_counter[total_hcp]:
-                 hcp_counter[total_hcp] += 1
-            else:
-                hcp_counter[total_hcp] = 1
-            auction = False
+                    opening_hand = hand_mapping[opening_bidder]
+                    responding_hand = hand_mapping[responding_bidder]
 
-def count_total_hcp_for_hands_in_folder(folder_path, filename_pattern):
-    """Processes files in a folder, aggregates pattern counts, and filters by HCP range."""
-    pattern_counter = defaultdict(
-        lambda: {contract: 0 for contract in [
-            "1C", "1D", "1H", "1S", "1N",
-            "2C", "2D", "2H", "2S", "2N",
-            "3C", "3D", "3H", "3S", "3N",
-            "4C", "4D", "4H", "4S", "4N",
-            "5C", "5D", "5H", "5S", "5N",
-            "6C", "6D", "6H", "6S", "6N",
-            "7C", "7D", "7H", "7S", "7N"
-        ]}
-    )
+                    opening_hcp = calculate_hcp(opening_hand.replace(".", ""))
+                    responding_hcp = calculate_hcp(responding_hand.replace(".", ""))
+                    total_hcp = opening_hcp + responding_hcp
 
+                    # Debugging log
+                    print(f"DEBUG: Incrementing hcp_counter[{total_hcp}] (Current Value: {hcp_counter[total_hcp]})")
+
+                    # Increment the count for this HCP total
+                    hcp_counter[total_hcp] += 1
+                    break  # Process only the first non-pass bid
+
+
+def process_folder(folder_path, filename_pattern):
+    """
+    Processes all PBN files in a folder that match the given filename pattern.
+    """
+    hcp_counter = defaultdict(int)
 
     if "*" in filename_pattern:
-        # If someone enters a RegEx pattern, don't mess with any .* -- this comes through unscathed: '^(?!SCS)\.*'
         filename_pattern = filename_pattern.replace('*', '.*').replace('..*', '.*').lower()
     regex_pattern = re.compile(f"^{filename_pattern}$", re.IGNORECASE)
 
@@ -93,73 +89,46 @@ def count_total_hcp_for_hands_in_folder(folder_path, filename_pattern):
 
     if not matching_files:
         print(f"No files matched the pattern: {filename_pattern}")
-        return pattern_counter, 0
+        return hcp_counter, 0
 
     for file_path in matching_files:
         print(f"Processing file: {file_path}")
-        count_opening_hcp_in_file(file_path, pattern_counter)
+        process_file(file_path, hcp_counter)
 
-    return pattern_counter, len(matching_files)
+    return hcp_counter, len(matching_files)
 
-def display_table(command_line, hcp_counts):
+
+def display_results(command_line, hcp_counter):
     """
-    Displays the results in a table format with patterns as rows and opening bids as columns.
-    The rows are sorted in descending order of the hand patterns.
+    Displays the results in a table format.
     """
-    headers = [
-        "Pattern",
-        "1C", "1D", "1H", "1S", "1N",
-        "2C", "2D", "2H", "2S", "2N",
-        "3C", "3D", "3H", "3S", "3N",
-        "4C", "4D", "4H", "4S", "4N",
-        "5C", "5D", "5H", "5S", "5N",
-        "6C", "6D", "6H", "6S", "6N",
-        "7C", "7D", "7H", "7S", "7N", "Total"
-    ]
-    column_widths = [11] + [5] * (len(headers) - 2) + [6]
-    header_row = " ".join(f"{header:>{width}}" for header, width in zip(headers, column_widths))
-    title = "---------- Final Contracts by Combined Hand Patterns ----------"
-    print("\n" + title.center(sum(column_widths) + len(column_widths) - 1))
-    print('\n' + command_line)
-    print(header_row)
-    print("-" * (sum(column_widths) + len(column_widths) - 1))
-    
-    column_totals = {contract: 0 for contract in headers[1:-1]}
+    print("\nResults:")
+    print("-" * 40)
+    print(f"{'HCP Total':<10}{'Count':<10}")
+    print("-" * 40)
 
-    row = [display_pattern] + [counts[contract] if counts[contract] > 0 else " " for contract in headers[1:-1]] + [row_total]
+    for hcp_total, count in sorted(hcp_counter.items()):
+        print(f"{hcp_total:<10}{count:<10}")
 
-    formatted_row = " ".join(f"{value:>{width}}" for value, width in zip(row, column_widths))
-    print(formatted_row)
+    print("-" * 40)
+    print(f"Total Entries: {sum(hcp_counter.values())}")
 
-    for contract in column_totals:
-        column_totals[contract] += counts[contract]
-
-    total_row = ["Total"] + [column_totals[contract] for contract in headers[1:-1]] + [sum(column_totals.values())]
-    formatted_total_row = " ".join(f"{value:>{width}}" for value, width in zip(total_row, column_widths))
-    print("-" * (sum(column_widths) + len(column_widths) - 1))
-    print(formatted_total_row)
-    print(header_row)
-
-def parse_hcp_argument(hcp_arg):
-    """Parses the HCP range argument."""
-    if "-" in hcp_arg:
-        return list(map(int, hcp_arg.split("-")))
-    else:
-        return [int(hcp_arg), int(hcp_arg)]
 
 def main():
     folder_path = "/Users/adavidbailey/Practice-Bidding-Scenarios/bba/"
-    parser = argparse.ArgumentParser(description="Bridge Hand Pattern Analysis")
-    parser.add_argument("filename_pattern", help="Filename pattern to process (.pbn is appended automatically).")
+    parser = argparse.ArgumentParser(description="Bridge Hand HCP Analysis")
+    #parser.add_argument("folder_path", help="Path to the folder containing PBN files.")
+    parser.add_argument("filename_pattern", help="Filename pattern to match (e.g., '*.pbn').")
     args = parser.parse_args()
 
     command_line = " ".join(sys.argv)
+    hcp_counter, file_count = process_folder(folder_path, args.filename_pattern)
 
-    hcp_counts, file_count = count_total_hcp_for_hands_in_folder(folder_path, args.filename_pattern)
     if file_count > 0:
-        display_table(command_line, hcp_counts)
+        display_results(command_line, hcp_counter)
     else:
-        print(f"No .pbn files matched the pattern '{args.filename_pattern}' in the folder '{folder_path}'.")
+        print(f"No .pbn files matched the pattern '{args.filename_pattern}' in the folder '{args.folder_path}'.")
+
 
 if __name__ == "__main__":
     main()
