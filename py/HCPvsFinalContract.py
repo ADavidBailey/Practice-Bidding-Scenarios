@@ -4,12 +4,6 @@ from collections import defaultdict
 import sys
 import argparse
 
-def parse_hcp_argument(hcp_arg):
-    """Parses the HCP range argument."""
-    if "-" in hcp_arg:
-        return list(map(int, hcp_arg.split("-")))
-    else:
-        return [int(hcp_arg), int(hcp_arg)]
 
 def calculate_hcp(hand):
     """Calculate the High Card Points (HCP) for a bridge hand."""
@@ -19,19 +13,11 @@ def calculate_hcp(hand):
         total_hcp += hcp_values.get(card, 0)
     return total_hcp
 
-def get_hand_pattern(hand, generic=False):
-    """Calculates the hand pattern for a given bridge hand."""
-    suits = hand.split(".")
-    if len(suits) != 4:
-        raise ValueError(f"Invalid hand format: {hand}")
-    lengths = [len(suit) for suit in suits]
-    separator = "-" if generic else "="
-    return separator.join(map(str, sorted(lengths, reverse=True))) if generic else separator.join(map(str, lengths))
-
-def count_opening_patterns_in_file(input_file, pattern_counter, generic=False, hcp_range=None):
-    """Reads a file of hands, calculates patterns, and filters by HCP if specified."""
+def count_final_contracts_by_hcp(input_file, contract_counter):
+    """Reads a file, calculates final contracts, and filters by HCP ranges."""
     auction = False
     hand_mapping = {}
+    final_contract = None
     player_order_dict = {
         "N": ["North", "East", "South", "West"],
         "E": ["East", "South", "West", "North"],
@@ -39,6 +25,7 @@ def count_opening_patterns_in_file(input_file, pattern_counter, generic=False, h
         "W": ["West", "North", "East", "South"],
     }
 
+    pass_out_count = 0
     try:
         with open(input_file, "r") as infile:
             lines = infile.readlines()
@@ -55,134 +42,134 @@ def count_opening_patterns_in_file(input_file, pattern_counter, generic=False, h
             hand_mapping = dict(zip(player_order_dict[first_hand], hands))
         elif line.startswith("[Auction"):
             first_seat = line[10]
-            if first_seat not in player_order_dict:
-                print(f"Error: Invalid first seat '{first_seat}' in line: {line}")
-                continue
             auction = True
+        elif line.startswith("[Declarer "):
+            declarer = line[11]
         elif line.startswith("[Contract "):
             final_contract = line[11:-2]
-        elif auction:
+        elif auction and final_contract:
+            # Do this once for each deal
+            auction = False
+
+            # Find the opening bidder -- the first player who bids
             bids = line.replace("NT", "N").split()
             player_order = ["N", "E", "S", "W"]
             start_index = player_order.index(first_seat)
             rotated_order = player_order[start_index:] + player_order[:start_index]
-
+            
             for i, bid in enumerate(bids):
                 if bid not in ("Pass", "="):  # Ignore "Pass" and "="
                     opening_bid = bid
                     opening_bidder = rotated_order[i % 4]
-                    opening_hand = hand_mapping[player_order_dict[first_seat][i % 4]]
-                    opening_hcp = calculate_hcp(opening_hand.replace(".", ""))
                     responding_bidder = rotated_order[(i + 2) % 4]
-                    responding_hand = hand_mapping[player_order_dict[first_seat][(i + 2) % 4]]
-                    responding_hcp = calculate_hcp(responding_hand.replace(".", ""))
-
-                    # Filter hands by HCP range if specified
-                    if hcp_range and not (hcp_range[0] <= opening_hcp <= hcp_range[1]):
-                        break
-
-                    pattern = get_hand_pattern(opening_hand, generic)
-                    if opening_bid in pattern_counter[pattern]:
-                        pattern_counter[pattern][opening_bid] += 1
-                    else:
-                        pattern_counter[pattern]["+"] += 1
                     break
-            auction = False
+                pass_out_count += 1
+                continue
 
-def count_opening_patterns_in_folder(folder_path, filename_pattern, generic=False, hcp_range=None):
-    """Processes files in a folder, aggregates pattern counts, and filters by HCP range."""
-    pattern_counter = defaultdict(
-        lambda: {bid: 0 for bid in [
-            "1C", "1D", "1H", "1S", "1N",
-            "2C", "2D", "2H", "2S", "2N",
-            "3C", "3D", "3H", "3S", "3N",
-            "4C", "4D", "4H", "4S", "4N",
-            "5C", "5D", "5H", "5S", "5N",
-            "+"
-        ]}
-    )
+            # Extract opening and responding hands and calculate the combined HCP
+            opening_hand = hand_mapping[player_order_dict[first_seat][i % 4]]
+            opening_hcp = calculate_hcp(opening_hand.replace(".", ""))
+            responding_hand = hand_mapping[player_order_dict[first_seat][(i + 2) % 4]]
+            responding_hcp = calculate_hcp(responding_hand.replace(".", ""))
+            total_hcp = opening_hcp + responding_hcp
 
-    if "*" in filename_pattern:
-        # If someone enters a RegEx pattern, don't mess with any .* -- this comes through unscathed: '^(?!SCS)\.*'
-        filename_pattern = filename_pattern.replace('*', '.*').replace('..*', '.*').lower()
-        #print(filename_pattern)
-    regex_pattern = re.compile(f"^{filename_pattern}$", re.IGNORECASE)
+            if declarer == (opening_bidder or responding_bidder):
+                # Count the contract by HCP
+                contract_counter[total_hcp][final_contract] += 1
+            else:
+                # Count the contract by -HCP
+                contract_counter[-total_hcp][final_contract] += 1
+
+def count_final_contracts_in_folder(folder_path, filename_pattern):
+    """Processes files in a folder and aggregates final contract counts by HCP."""
+    contract_counter = defaultdict(lambda: defaultdict(int))
 
     matching_files = [
         entry.path for entry in os.scandir(folder_path)
-        if entry.is_file() and entry.name.endswith('.pbn') and regex_pattern.match(os.path.splitext(entry.name)[0].lower())
+        if entry.is_file() and entry.name.endswith('.pbn') and re.match(filename_pattern.lower(), entry.name.lower())
     ]
 
     if not matching_files:
         print(f"No files matched the pattern: {filename_pattern}")
-        return pattern_counter, 0
+        return contract_counter, 0
 
     for file_path in matching_files:
         print(f"Processing file: {file_path}")
-        count_opening_patterns_in_file(file_path, pattern_counter, generic, hcp_range)
+        count_final_contracts_by_hcp(file_path, contract_counter)
 
-    return pattern_counter, len(matching_files)
+    return contract_counter, len(matching_files)
 
-def display_table(command_line, pattern_counts, generic=False, show_zeros=False):
-    """
-    Displays the results in a table format with patterns as rows and opening bids as columns.
-    """
-    headers = [
-        "Pattern",
-        "1C", "1D", "1H", "1S", "1N",
-        "2C", "2D", "2H", "2S", "2N",
-        "3C", "3D", "3H", "3S", "3N",
-        "4C", "4D", "4H", "4S", "4N",
-        "5C", "5D", "5H", "5S", "5N",
-        "+", "Total"
-    ]
-    column_widths = [15] + [5] * (len(headers) - 2) + [6]
+
+def display_contract_table(contract_counter):
+    """Displays contract counts in a table format by HCP and grouped by levels."""
+    levels = range(1, 8)  # Contract levels 1 through 7
+    suits = ["C", "D", "H", "S", "N"]
+    headers = ["HCP"] + [f"{level}{suit}" for level in levels for suit in suits] + ["Total"]
+    
+    column_widths = [6] + [5] * (len(headers) - 2) + [6]
     header_row = " ".join(f"{header:>{width}}" for header, width in zip(headers, column_widths))
-    title = "---------- Opening Bids by Opening Hand Patterns ----------"
-    print("\n" + title.center(sum(column_widths) + len(column_widths) - 1))
-    print('\n' + command_line)
+    print("\n" + "Final Contracts by Combined HCP -- non-opening side HCP are negative".center(sum(column_widths) + len(column_widths) - 1))
     print(header_row)
     print("-" * (sum(column_widths) + len(column_widths) - 1))
 
-    column_totals = {bid: 0 for bid in headers[1:-1]}
+    looking_for_positive_hcp = True
+    # initialize total row counts for non-opener/responder
+    total_row_counts = defaultdict(int)  # Totals for each contract column
 
-    for pattern, counts in sorted(pattern_counts.items()):
-        row_total = sum(counts.values())
-        row = [
-            pattern
-        ] + [
-            counts[contract] if counts[contract] > 0 or show_zeros else " "
-            for contract in headers[1:-1]
-        ] + [row_total]
+    for hcp, contracts in sorted(contract_counter.items()):
+        row_counts = [0] * (len(levels) * len(suits))  # Initialize counts for all contracts
+        row_total = 0
+
+        for contract, count in contracts.items():
+            level = int(contract[0])  # Extract level (e.g., 4 from "4H")
+            suit = contract[1]  # Extract suit (e.g., "H" from "4H")
+            column_index = (level - 1) * len(suits) + suits.index(suit)
+            row_counts[column_index] += count
+            row_total += count
+
+        # Update column totals
+        for i, count in enumerate(row_counts):
+            total_row_counts[i] += count
+
+        # Print sub-total row if first positive hcp
+        if looking_for_positive_hcp and hcp > 0:
+            looking_for_positive_hcp = False
+
+            # Print separator line
+            print("-" * (sum(column_widths) + len(column_widths) - 1))
+            total_row = ["Total"] + [total_row_counts[i] for i in range(len(total_row_counts))] + [sum(total_row_counts.values())]
+            formatted_total_row = " ".join(f"{value:>{width}}" for value, width in zip(total_row, column_widths))
+            print(formatted_total_row)
+            print("-" * (sum(column_widths) + len(column_widths) - 1))
+            print(header_row)
+            # Start over.  Initializetotal row counts for opener/responder
+            total_row_counts = defaultdict(int)  # Totals for each contract column
+        # Print row
+        row = [hcp] + row_counts + [row_total]
         formatted_row = " ".join(f"{value:>{width}}" for value, width in zip(row, column_widths))
         print(formatted_row)
+        #total_row_counts = defaultdict(int)  # Totals for each contract column
 
-        for bid in column_totals:
-            column_totals[bid] += counts[bid]
-
-    total_row = ["Total"] + [column_totals[bid] for bid in headers[1:-1]] + [sum(column_totals.values())]
+    # Print totals row
+    total_row = ["Total"] + [total_row_counts[i] for i in range(len(total_row_counts))] + [sum(total_row_counts.values())]
     formatted_total_row = " ".join(f"{value:>{width}}" for value, width in zip(total_row, column_widths))
     print("-" * (sum(column_widths) + len(column_widths) - 1))
     print(formatted_total_row)
+    print(header_row)
 
 def main():
     folder_path = "/Users/adavidbailey/Practice-Bidding-Scenarios/bba/"
-    parser = argparse.ArgumentParser(description="Bridge Hand Pattern Analysis")
+    parser = argparse.ArgumentParser(description="Bridge Contract Analysis")
     parser.add_argument("filename_pattern", help="Filename pattern to process (e.g., '*.pbn')")
-    parser.add_argument("--generic", action="store_true", help="Use generic hand patterns (e.g., 4333).")
-    parser.add_argument("--hcp", help="Filter results by HCP (e.g., 10 or 10-12).")
-    parser.add_argument("--zeros", action="store_true", help="Display zeros instead of spaces for zero values.")
+    parser.add_argument("--hcp", help="Filter results by HCP range (e.g., 20-40).")
     args = parser.parse_args()
-
-    command_line = " ".join(sys.argv)
-
-    hcp_range = parse_hcp_argument(args.hcp) if args.hcp else None
-
-    pattern_counts, file_count = count_opening_patterns_in_folder(folder_path, args.filename_pattern, args.generic, hcp_range)
+    contract_counter, file_count = count_final_contracts_in_folder(folder_path, args.filename_pattern)
     if file_count > 0:
-        display_table(command_line, pattern_counts, args.generic, args.zeros)
+        print(f"Processed {file_count} files.")
+        display_contract_table(contract_counter)
     else:
         print(f"No .pbn files matched the pattern '{args.filename_pattern}' in the folder '{folder_path}'.")
+
 
 if __name__ == "__main__":
     main()
