@@ -159,15 +159,19 @@ def display_contract_table(contract_counter, tp=False, zeros=False):
     levels = range(1, 8)  # Contract levels 1 through 7
     
     suits = ["C", "D", "H", "S", "N"]
-    hcptp = "HCP"
-    header1 = [hcptp] + [f"{level}{suit}" for level in levels for suit in suits] + ["Total"]
-    if tp: hcptp = "TP "
-    header2 = [hcptp] + [f"{level}{suit}" for level in levels for suit in suits] + ["Total"]
+    header = [f"{level}{suit}" for level in levels for suit in suits] + ["Total"]
+    header1 = [" HCP"] + header
+    if tp: 
+        header2 = [" TP"] + header
+    else:
+        header2 = header1
+    header_row1 = " ".join(f"{header1:>{width}}" for header1, width in zip(header1, [6] + [5] * (len(header1) - 2) + [6]))
+    header_row2 = " ".join(f"{header2:>{width}}" for header2, width in zip(header2, [6] + [5] * (len(header2) - 2) + [6]))
     
     column_widths = [6] + [5] * (len(header1) - 2) + [6]
-    header_row = " ".join(f"{header:>{width}}" for header, width in zip(header1, column_widths))
+    #header_row = " ".join(f"{header1:>{width}}" for header1, width in zip(header1, column_widths))
     print("\n" + "Final Contracts by Combined HCP/TP -- non-opening side are in descending order".center(sum(column_widths) + len(column_widths) - 1))
-    print(header_row)
+    print(header_row1)
     print("-" * (sum(column_widths) + len(column_widths) - 1))
 
     looking_for_positive_hcp = True
@@ -199,9 +203,9 @@ def display_contract_table(contract_counter, tp=False, zeros=False):
             formatted_total_row = " ".join(f"{value:>{width}}" for value, width in zip(total_row, column_widths))
             print(formatted_total_row)
             print("-" * (sum(column_widths) + len(column_widths) - 1))
-            header_row = " ".join(f"{header:>{width}}" for header, width in zip(header2, column_widths))
-            print(header_row)
-            # Start over.  Initializetotal row counts for opener/responder
+            print(header_row2)
+
+            # Restart totals.
             total_row_counts = defaultdict(int)  # Totals for each contract column
         # Print row
         if hcp < 0: hcp = -hcp
@@ -210,14 +214,13 @@ def display_contract_table(contract_counter, tp=False, zeros=False):
         if zeros:
             formatted_row = " ".join(f"{'' if value == 0 else value:>{width}}" for value, width in zip(row, column_widths))
         print(formatted_row)
-        #total_row_counts = defaultdict(int)  # Totals for each contract column
 
     # Print totals row
     total_row = ["Total"] + [total_row_counts[i] for i in range(len(total_row_counts))] + [sum(total_row_counts.values())]
     formatted_total_row = " ".join(f"{value:>{width}}" for value, width in zip(total_row, column_widths))
     print("-" * (sum(column_widths) + len(column_widths) - 1))
     print(formatted_total_row)
-    print(header_row)
+    print(header_row2)
 
 def main():
     folder_path = "/Users/adavidbailey/Practice-Bidding-Scenarios/bba/"
@@ -230,7 +233,7 @@ def main():
     contract_counter, file_count = count_final_contracts_in_folder(folder_path, args.filename_pattern, args.tp, args.zeros, args.printfiles)
     if file_count > 0:
         print(f"Processed {file_count} files.")
-        display_contract_table(contract_counter)
+        display_contract_table(contract_counter, args.tp, args.zeros)
     else:
         print(f"No .pbn files matched the pattern '{args.filename_pattern}' in the folder '{folder_path}'.")
 
