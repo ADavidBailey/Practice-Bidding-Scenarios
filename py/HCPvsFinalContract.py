@@ -53,8 +53,9 @@ def calculate_hcp(hand):
         total_hcp += hcp_values.get(card, 0)
     return total_hcp
 
-def count_final_contracts_by_hcp(input_file, contract_counter,tp=False):
+def count_final_contracts_by_hcp(input_file, contract_counter, tp=False):
     """Reads a file and calculates final contracts."""
+    deal_count = 0
     auction = False
     hand_mapping = {}
     final_contract = None
@@ -65,16 +66,17 @@ def count_final_contracts_by_hcp(input_file, contract_counter,tp=False):
         "W": ["West", "North", "East", "South"],
     }
 
-    pass_out_count = 0
+    passout_count = 0
     try:
         with open(input_file, "r") as infile:
             lines = infile.readlines()
     except Exception as e:
         print(f"Error reading file {input_file}: {e}")
-        return
+        return 0
     for line in lines:
         line = line.strip()
         if line.startswith("[Deal "):
+            deal_count +=1
             deal_line = line[7:-2]
             first_hand = deal_line[0]
             hands = deal_line[2:].split(" ")
@@ -129,10 +131,15 @@ def count_final_contracts_by_hcp(input_file, contract_counter,tp=False):
                     total_points = -(hcp2 + hcp4)
 
                 contract_counter[total_points][final_contract] += 1
+            else:
+                passout_count += 1
+    return deal_count, passout_count
 
 def count_final_contracts_in_folder(folder_path, filename_pattern,tp=False,zeros=False,printfiles=False):
     """Processes files in a folder and aggregates final contract counts by HCP."""
     contract_counter = defaultdict(lambda: defaultdict(int))
+    deal_count = 0
+    passout_count = 0
 
     if "*" in filename_pattern:
         # If someone enters a RegEx pattern, don't mess with any .* -- this comes through unscathed: '^(?!SCS)\.*'
@@ -146,13 +153,15 @@ def count_final_contracts_in_folder(folder_path, filename_pattern,tp=False,zeros
 
     if not matching_files:
         print(f"No files matched the pattern: {filename_pattern}")
-        return contract_counter, 0
+        return contract_counter, 0, 0, 0
 
     for file_path in matching_files:
         if printfiles: print(f"Processing file: {file_path}")
-        count_final_contracts_by_hcp(file_path, contract_counter,tp)
+        file_deal_count, file_passout_count = count_final_contracts_by_hcp(file_path, contract_counter,tp)
+        deal_count += file_deal_count
+        passout_count += file_passout_count
 
-    return contract_counter, len(matching_files)
+    return contract_counter, len(matching_files), deal_count, passout_count
 
 def display_contract_table(contract_counter, tp=False, zeros=False):
     """Displays contract counts in a table format by HCP/TP and grouped by levels."""
@@ -230,9 +239,10 @@ def main():
     parser.add_argument("--zeros", action="store_false", help="Print zero values.")
     parser.add_argument("--printfiles", action="store_true", help="Print names of files processed.")
     args = parser.parse_args()
-    contract_counter, file_count = count_final_contracts_in_folder(folder_path, args.filename_pattern, args.tp, args.zeros, args.printfiles)
+    contract_counter, file_count, deal_count, passout_count = count_final_contracts_in_folder(folder_path, args.filename_pattern, args.tp, args.zeros, args.printfiles)
     if file_count > 0:
         print(f"Processed {file_count} files.")
+        print(f"Bid {deal_count} deals, and passed out {passout_count} deals -- a total of {deal_count + passout_count} deals.")
         display_contract_table(contract_counter, args.tp, args.zeros)
     else:
         print(f"No .pbn files matched the pattern '{args.filename_pattern}' in the folder '{folder_path}'.")
