@@ -43,6 +43,7 @@ def count_final_contracts_by_hcp(input_file, contract_counter):
         elif line.startswith("[Auction"):
             first_seat = line[10]
             auction = True
+            print(f"Auction starts with seat: {first_seat}")
         elif line.startswith("[Declarer "):
             declarer = line[11]
         elif line.startswith("[Contract "):
@@ -63,8 +64,9 @@ def count_final_contracts_by_hcp(input_file, contract_counter):
                     opening_bidder = rotated_order[i % 4]
                     responding_bidder = rotated_order[(i + 2) % 4]
                     break
-                pass_out_count += 1
-                continue
+                opening_bid = "P"
+                opening_bidder = None
+                responding_bidder = None
 
             # Extract opening and responding hands and calculate the combined HCP
             opening_hand = hand_mapping[player_order_dict[first_seat][i % 4]]
@@ -99,23 +101,8 @@ def count_final_contracts_in_folder(folder_path, filename_pattern):
 
     return contract_counter, len(matching_files)
 
-
-def display_contract_table(contract_counter):
-    """Displays contract counts in a table format by HCP and grouped by levels."""
-    levels = range(1, 8)  # Contract levels 1 through 7
-    suits = ["C", "D", "H", "S", "N"]
-    headers = ["HCP"] + [f"{level}{suit}" for level in levels for suit in suits] + ["Total"]
-    
-    column_widths = [6] + [5] * (len(headers) - 2) + [6]
-    header_row = " ".join(f"{header:>{width}}" for header, width in zip(headers, column_widths))
-    print("\n" + "Final Contracts by Combined HCP -- non-opening side HCP are negative".center(sum(column_widths) + len(column_widths) - 1))
-    print(header_row)
-    print("-" * (sum(column_widths) + len(column_widths) - 1))
-
-    looking_for_positive_hcp = True
-    # initialize total row counts for non-opener/responder
-    total_row_counts = defaultdict(int)  # Totals for each contract column
-
+def display_contract_table(contract_counter, tp=False, zeros=False):
+    """Displays contract counts in a table format by HCP/TP and grouped by levels."""
     for hcp, contracts in sorted(contract_counter.items()):
         row_counts = [0] * (len(levels) * len(suits))  # Initialize counts for all contracts
         row_total = 0
