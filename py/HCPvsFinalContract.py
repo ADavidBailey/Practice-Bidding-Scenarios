@@ -34,7 +34,6 @@ def calculate_fit_points(bid, hand):
     # Calculate fit points -- they cannot exceed the number of fit-cards
     return max(fit_cards, short_suit_points) if fit_cards >= required_fit_cards[bid[1]] else 0
 
-
 def calculate_length_points(hand):
     """Calculates the length points for a hand."""
     LP = 0
@@ -131,13 +130,18 @@ def count_final_contracts_by_hcp(input_file, contract_counter,tp=False):
 
                 contract_counter[total_points][final_contract] += 1
 
-def count_final_contracts_in_folder(folder_path, filename_pattern,tp=False):
+def count_final_contracts_in_folder(folder_path, filename_pattern,tp=False,zeros=False,printfiles=False):
     """Processes files in a folder and aggregates final contract counts by HCP."""
     contract_counter = defaultdict(lambda: defaultdict(int))
 
+    if "*" in filename_pattern:
+        # If someone enters a RegEx pattern, don't mess with any .* -- this comes through unscathed: '^(?!SCS)\.*'
+        filename_pattern = filename_pattern.replace('*', '.*').replace('..*', '.*').lower()
+    regex_pattern = re.compile(f"^{filename_pattern}$", re.IGNORECASE)
+    
     matching_files = [
         entry.path for entry in os.scandir(folder_path)
-        if entry.is_file() and entry.name.endswith('.pbn') and re.match(filename_pattern.lower(), entry.name.lower())
+        if entry.is_file() and entry.name.endswith('.pbn') and regex_pattern.match(os.path.splitext(entry.name)[0].lower())
     ]
 
     if not matching_files:
@@ -145,7 +149,7 @@ def count_final_contracts_in_folder(folder_path, filename_pattern,tp=False):
         return contract_counter, 0
 
     for file_path in matching_files:
-        print(f"Processing file: {file_path}")
+        if printfiles: print(f"Processing file: {file_path}")
         count_final_contracts_by_hcp(file_path, contract_counter,tp)
 
     return contract_counter, len(matching_files)
@@ -156,12 +160,12 @@ def display_contract_table(contract_counter, tp=False, zeros=False):
     
     suits = ["C", "D", "H", "S", "N"]
     hcptp = "HCP"
-    headersHCP = [hcptp] + [f"{level}{suit}" for level in levels for suit in suits] + ["Total"]
+    header1 = [hcptp] + [f"{level}{suit}" for level in levels for suit in suits] + ["Total"]
     if tp: hcptp = "TP "
-    headersHcpTp = [hcptp] + [f"{level}{suit}" for level in levels for suit in suits] + ["Total"]
+    header2 = [hcptp] + [f"{level}{suit}" for level in levels for suit in suits] + ["Total"]
     
-    column_widths = [6] + [5] * (len(headersHCP) - 2) + [6]
-    header_row = " ".join(f"{header:>{width}}" for header, width in zip(headersHCP, column_widths))
+    column_widths = [6] + [5] * (len(header1) - 2) + [6]
+    header_row = " ".join(f"{header:>{width}}" for header, width in zip(header1, column_widths))
     print("\n" + "Final Contracts by Combined HCP/TP -- non-opening side are in descending order".center(sum(column_widths) + len(column_widths) - 1))
     print(header_row)
     print("-" * (sum(column_widths) + len(column_widths) - 1))
@@ -195,7 +199,7 @@ def display_contract_table(contract_counter, tp=False, zeros=False):
             formatted_total_row = " ".join(f"{value:>{width}}" for value, width in zip(total_row, column_widths))
             print(formatted_total_row)
             print("-" * (sum(column_widths) + len(column_widths) - 1))
-            header_row = " ".join(f"{header:>{width}}" for header, width in zip(headersHcpTp, column_widths))
+            header_row = " ".join(f"{header:>{width}}" for header, width in zip(header2, column_widths))
             print(header_row)
             # Start over.  Initializetotal row counts for opener/responder
             total_row_counts = defaultdict(int)  # Totals for each contract column
@@ -221,8 +225,9 @@ def main():
     parser.add_argument("filename_pattern", help="Filename pattern to process (e.g., '*.pbn')")
     parser.add_argument("--tp", action="store_true", help="Use Total Points (TP) instead of HCP.")
     parser.add_argument("--zeros", action="store_false", help="Print zero values.")
+    parser.add_argument("--printfiles", action="store_true", help="Print names of files processed.")
     args = parser.parse_args()
-    contract_counter, file_count = count_final_contracts_in_folder(folder_path, args.filename_pattern, args.tp)
+    contract_counter, file_count = count_final_contracts_in_folder(folder_path, args.filename_pattern, args.tp, args.zeros, args.printfiles)
     if file_count > 0:
         print(f"Processed {file_count} files.")
         display_contract_table(contract_counter)
