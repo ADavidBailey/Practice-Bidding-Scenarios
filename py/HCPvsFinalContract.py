@@ -169,7 +169,7 @@ def display_contract_table(contract_counter, tp=False, zeros=False):
     
     suits = ["C", "D", "H", "S", "N"]
     header = [f"{level}{suit}" for level in levels for suit in suits] + ["Total"]
-    header1 = [" HCP"] + header
+    header1 = ["HCP"] + header
     if tp: 
         header2 = [" TP"] + header
     else:
