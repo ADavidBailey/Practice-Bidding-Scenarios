@@ -36,7 +36,7 @@ oneClub = oC and clubs(south)==3
 eOpens = (oneSpade or oneHeart or oneDiamond or oneClub) and hcp(east)>11 and hcp(east)<15
 
 # South has a decent suit, too strong to overcall and NOT a NT hand
-sDoubles = (GoodS or GoodH or GoodD or GoodC) and hcp(south)>16 and not gibNT
+sDoubles = (GoodS or GoodH or GoodD or GoodC) and hcp(south)>17 and not gibNT
 
 eOpens and sDoubles
 
@@ -52,5 +52,6 @@ Button,Overcalls??,\n\
 Simple overcalls -- those at the same level as the opening bid -- show\n\
 • 7-17 at the 1-level\n\
 • 11-17 at the 2-level\n\
-With stronger hands，start with a double.\n\
+With stronger hands，start with a double.  Double then new suit shows 18+.\n\
+Overcall then Double is take-out in the 15-17 range.
 %TooStrongForOvercall%
