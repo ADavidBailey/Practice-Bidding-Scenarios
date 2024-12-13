@@ -7,7 +7,7 @@ def calculate_hcp(hand):
     return hcp
 
 def main():
-    file_path = "/Users/adavidbailey/Practice-Bidding-Scenarios/bba-filtered/Too_Strong_for_Overcall.pbn"
+    file_path = "/Users/adavidbailey/Practice-Bidding-Scenarios/bba-filtered/Too_Strong_for_Overcall4th.pbn"
     deal_count = 0
     auction = False
     passout_count = 0
@@ -32,13 +32,13 @@ def main():
             handS = hands[2]
             handW = hands[3]
 
-            hcpS = calculate_hcp(handS)
+            hcpN = calculate_hcp(handN)
 
             # Update the count for South's HCP
-            if hcpS in hcp_counts:
-                hcp_counts[hcpS] += 1
+            if hcpN in hcp_counts:
+                hcp_counts[hcpN] += 1
             else:
-                hcp_counts[hcpS] = 1
+                hcp_counts[hcpN] = 1
 
     # Print the results
     print("South Hands by HCP:")
