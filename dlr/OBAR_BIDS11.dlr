@@ -1,5 +1,5 @@
-# button-text: OBARBIDS6-11 (Lev)
-# scenario-title: Opponents Bid And Raise -- Balance In Drect Seat.
+# button-text: OBARBIDS 11+ (Lev)
+# scenario-title: Opponents Bid And Raise -- Bid In Drect Seat.
 # OBAR_BIDS11
 dealer east
 
@@ -93,9 +93,9 @@ keep0  = 0
 ### Example of how to generate Statistics for Leveling ###
 
 
-levX = n3Suits                          and keep985
-lev5 = n1Suit and shape(north,any 5xxx) and keep97
-lev6 = n1Suit and shape(north,any 6xxx) and keep
+levX = n3Suits                          and keep
+lev5 = n1Suit and shape(north,any 5xxx) and keep86
+lev6 = n1Suit and shape(north,any 6xxx) and keep89
 levelTheDeal = lev5 or lev6 or levX
 
 OBAR and BIDS
