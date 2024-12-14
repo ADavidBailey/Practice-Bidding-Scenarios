@@ -50,9 +50,9 @@ calmSouth = (unbalSouth and noConSouth and hcp(south)<8) or (balSouth and hcp(so
 
 # West passes
 wS = oS and spades(west)<3
-wH = oH and hearts(west)<3
-wD = oD and diamonds(west)<4
-wC = oC and clubs(west)<5
+wH = oH and hearts(west)<3   and spades(west)<4
+wD = oD and diamonds(west)<4 and hearts(west)<4 and spades(west)<4
+wC = oC and clubs(west)<5    and hearts(west)<4 and spades(west)<4
 wPasses = hcp(west)<6 and (wS or wH or wD or wC)
 
 # North's longest/highest ranking suit
@@ -140,14 +140,13 @@ keep0  = 0
 
 
 levnOC1 = nOC1  and keep11
-levnOC2 = nOC2  and keep33
+levnOC2 = nOC2  and keep19
 levnTOX = nTOX  and keep06
 levnOCN = nOCN  and keep47
-levnJOC = nJOC  and keep56
+levnJOC = nJOC  and keep86
 levnTSO = nTSO  and keep25
 levnTS  = nTS   and keep
 levelTheDeal = (levnOC1 or levnOC2 or levnTOX or levnOCN or levnJOC or levnTSO or levnTS)
-
 
 eOpens and wPasses and calmSouth and (nOC1 or nOC2 or nTOX or nOCN or nJOC or nTSO or nTS)
 and levelTheDeal
