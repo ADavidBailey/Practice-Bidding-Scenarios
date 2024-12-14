@@ -12,7 +12,8 @@ GoodH = hearts(north)>4 and top5(north,hearts)>2
 GoodD = diamonds(north)>4 and top5(north,diamonds)>2
 GoodC = clubs(north)>4 and top5(north,clubs)>2
 suits = GoodS + GoodH + GoodC + GoodD
-oneSuit  = suits == 1
+oneSuit6 = suits == 1 and shape(north,any 6xxx)
+oneSuit5 = suits == 1 and not oneSuit6
 twoSuits = suits == 2
 
 # Predict East's opening suit
@@ -84,13 +85,13 @@ nSSPV = shape(north,any 0xxx) ? 3 : 0
 nSSPS = shape(north,any 1xxx) ? 1 : 0
 nSSP  = nSSPV + nSSPS + hcp(north)
 
-nOC1 = oneSuit and northRank > eastRank and hcp(north)>6 and hcp(north)<18
-nOC2 = oneSuit and hcp(north)>10 and hcp(north)<18          and not nOC1
-nTOX = shape(north, any 5440+any 4441+any 4432) and nSSP>10 and not (nOC1 or nOC2)
-nOCN = nNT and hcp(north)>10 and hcp(north)<16              and not (nOC1 or nOC2 or nTOX)
-nJOC = oneSuit and hcp(north)>14 and hcp(north)<18          and not (nOC1 or nOC2 or nTOX or nOCN)
-nTSO = oneSuit and hcp(north)>17                            and not (nOC1 or nOC2 or nTOX or nOCN or nJOC)
-nTS  = twoSuits and hcp(north)>9                            and not (nOC1 or nOC2 or nTOX or nOCN or nJOC or nTSO)
+nOC1 = hcp(north)>5  and ((oneSuit5 and hcp(north)<18) or (oneSuit6 and hcp(north)<16)) and northRank>eastRank
+nOC2 = hcp(north)>10 and ((oneSuit5 and hcp(north)<18) or (oneSuit6 and hcp(north)<16)) and not nOC1
+nTOX = shape(north, any 5440+any 4441+any 4432) and nSSP>10                             and not (nOC1 or nOC2)
+nOCN = nNT and hcp(north)>10 and hcp(north)<16                                          and not (nOC1 or nOC2 or nTOX)
+nJOC = oneSuit6 and hcp(north)>14 and hcp(north)<18                                     and not (nOC1 or nOC2 or nTOX or nOCN)
+nTSO = (oneSuit5 or oneSuit6)  and hcp(north)>1                                         and not (nOC1 or nOC2 or nTOX or nOCN or nJOC)
+nTS  = twoSuits and hcp(north)>9                                                        and not (nOC1 or nOC2 or nTOX or nOCN or nJOC or nTSO)
 
 # East opens
 eOpens = (oS or oH or oD or oC) and hcp(east)>11 and hcp(east)<15
