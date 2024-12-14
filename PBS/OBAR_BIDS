@@ -33,9 +33,9 @@ eOpens = (oS or oH or oD or oC) and hcp(east)>11 and hcp(east)<15
 # West has support for East's suit
 oneSpade   = oS and spades(west)==3
 oneHeart   = oH and hearts(west)==3
-oneDiamond = oD and diamonds(west)==4
-oneClub    = oC and clubs(west)==5
-wRaises    = (oneSpade or oneHeart or oneDiamond or oneClub) and hcp(west)>5 and hcp(west)<11
+oneDiamond = oD and diamonds(west)==4 and hearts(west)<4 and spades(west)<4
+oneClub    = oC and clubs(west)==5    and hearts(west)<4 and spades(west)<4
+wRaises    = (oneSpade or oneHeart or oneDiamond or oneClub) and hcp(west)>5 and hcp(west)<10
 
 # East opens and West raises
 OBAR = eOpens and calmSouth and wRaises
