@@ -55,7 +55,7 @@ wS = oS and spades(west)<3
 wH = oH and hearts(west)<3   and spades(west)<4
 wD = oD and diamonds(west)<4 and hearts(west)<4 and spades(west)<4
 wC = oC and clubs(west)<5    and hearts(west)<4 and spades(west)<4
-wPasses = hcp(west)<6 and (wS or wH or wD or wC)
+wPasses = hcp(west)<6 and (wS or wH or wD or wC) and shape(west,xxxx-any 9xxx-any 8xxx-any 7xxx-any 6xxx) and hcp(west,diamonds)<4
 
 # North's longest/highest ranking suit
 sn = spades(north)
