@@ -14,7 +14,9 @@ GoodC = clubs(north)>4 and top5(north,clubs)>2
 suits = GoodS + GoodH + GoodC + GoodD
 oneSuit6 = suits == 1 and shape(north,any 6xxx)
 oneSuit5 = suits == 1 and not oneSuit6
-twoSuits = suits == 2
+
+# For cue bid -- both majors of one major and one minor
+twoSuits = (GoodS and GoodH) or ((GoodS or GoodH) and (GoodD or GoodC))  
 
 # Predict East's opening suit
 s = spades(east)
@@ -90,24 +92,27 @@ nOC2 = hcp(north)>10 and ((oneSuit5 and hcp(north)<18) or (oneSuit6 and hcp(nort
 nTOX = shape(north, any 5440+any 4441+any 4432) and nSSP>10                             and not (nOC1 or nOC2)
 nOCN = nNT and hcp(north)>10 and hcp(north)<16                                          and not (nOC1 or nOC2 or nTOX)
 nJOC = oneSuit6 and hcp(north)>14 and hcp(north)<18                                     and not (nOC1 or nOC2 or nTOX or nOCN)
-nTSO = (oneSuit5 or oneSuit6)  and hcp(north)>1                                         and not (nOC1 or nOC2 or nTOX or nOCN or nJOC)
+nTSO = (oneSuit5 or oneSuit6) and hcp(north)>17                                         and not (nOC1 or nOC2 or nTOX or nOCN or nJOC)
 nTS  = twoSuits and hcp(north)>9                                                        and not (nOC1 or nOC2 or nTOX or nOCN or nJOC or nTSO)
+n2NT = nNT and hcp(north)>19 and hcp(north)<22                                          and not (nOC1 or nOC2 or nTOX or nOCN or nJOC or nTSO or nTS)                              
 
 # East opens
 eOpens = (oS or oH or oD or oC) and hcp(east)>11 and hcp(east)<15
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
-levnOC1 = nOC1  and keep11
-levnOC2 = nOC2  and keep19
-levnTOX = nTOX  and keep06
-levnOCN = nOCN  and keep47
-levnJOC = nJOC  and keep86
-levnTSO = nTSO  and keep25
-levnTS  = nTS   and keep
-levelTheDeal = (levnOC1 or levnOC2 or levnTOX or levnOCN or levnJOC or levnTSO or levnTS)
+levnOC1 = nOC1  and keep03
+levnOC2 = nOC2  and keep045
+levnTOX = nTOX  and keep015
+levnOCN = nOCN  and keep14
+levnJOC = nJOC  and keep19
+levnTSO = nTSO  and keep06
+levnTS  = nTS   and keep89
+levn2NT = n2NT  and keep
+levelTheDeal = (levnOC1 or levnOC2 or levnTOX or levnOCN or levnJOC or levnTSO or levnTS or levn2NT)
 
-eOpens and wPasses and calmSouth and (nOC1 or nOC2 or nTOX or nOCN or nJOC or nTSO or nTS)
+
+eOpens and wPasses and calmSouth and (nOC1 or nOC2 or nTOX or nOCN or nJOC or nTSO or nTS or n2NT)
 and levelTheDeal
 
 produce 5000
@@ -121,6 +126,7 @@ average "blancing NT            " 100 * nOCN,
 average "jump overcall          " 100 * nJOC,
 average "too strong to overcall " 100 * nTSO,
 average "two suits              " 100 * nTS,
+average "2NT                    " 100 * n2NT,
 
 `, "E", true);
 Script
@@ -128,10 +134,12 @@ Button,Balancing,\n\
 --- After LHO opening is passed to you...\n\
 • Pass\n\
 • Overcall a suit (7-17 at the 1-level，11-17 at the 2 level)\n\
-• Overcall NT (15-17)\n\
+• Balancing NT (11-15)\n\
 • Take-out Double (10+ short in opener's suit w/at least 3 cards in each unbid suit)\n\
 • Jump Overcall (15-17 w/good 6-card suit)\n\
 • Too Strong to Overcall (18+) -- start with double\n\
-• Two-Suits -- cue bid or unusual 2N\n\
+• Two-Suits -- cue bid\n\
+• 2NT -- 20-21\n\
+
 This scenario attempts to offer all options (except 2-suits) with about the same frequency.\n\
 %Balancing%
