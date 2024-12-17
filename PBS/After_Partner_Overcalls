@@ -2,12 +2,17 @@ Script,AfterPartnerOvercalls
 setDealerCode(`
 
 # convention-card:
-# auction-filter: 1[CDHS].[12][CDHSN].
+# auction-filter: Auction.....\\n1[CDHS].[12][CDHSN].Pass
 
 # After Partner Overcalls
 
 dealer east
 produce 1000
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Defines calmWest
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+# Defines gibNT
 
 # Define good suits
 GoodS = spades(south)>4   and top5(south,spades)>2
@@ -20,7 +25,7 @@ goodSuit = (GoodS or GoodH or GoodD or GoodC) and shape(south,any 6xxx+any 5xxx-
 eOpens = hcp(east)>11 and hcp(east)<15
 
 # South has a decent suit
-sOvercalls = goodSuit and hcp(south)>8 
+sOvercalls = goodSuit and hcp(south)>8 and not gibNT
 
 nFitsS = GoodS and spades(north)>2
 nFitsH = GoodH and hearts(north)>2
@@ -41,7 +46,7 @@ levelSuit  = nNewSuit and keep89
 levelTheDeal = nRaises or nCueBids or nNewSuit
 
 # Now do it
-eOpens and sOvercalls and (nRaises or nCueBids or nNewSuit)
+eOpens and sOvercalls and calmWest and (nRaises or nCueBids or nNewSuit)
 and levelTheDeal
 
 action
