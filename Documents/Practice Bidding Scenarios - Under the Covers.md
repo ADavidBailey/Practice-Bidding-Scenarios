@@ -35,13 +35,13 @@ The whole thing looks like this:
 
     Some scenarios have hundrends of lines.  The average is under 100 lines.
 
-    `,dealer,rotation)
+    `,"N",false)
     Script
     Button,Short Name,\n\
     --- Long Descriptive Name\n\
     Descriptive lines\n\
     More deacriptive lines\n\
-    %theNameOfTheScript%\n\
+    %theNameOfTheScript%
 
 Each scenario is packaged this way.  I call it wrappered Dealer Code.  The backticks and everything outside of the ...backticks... is the wrapper.  There is a separate file for each scenario.  These are all in the pbs folder of my [CTRL-Click to check out the Practice Bidding Scenarios GitHub repository](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main).  The content isn't pretty -- it evolved rather than planned.  All of the files in the PBS folder are wrappered Dealer code.  I've tried to use descriptive names for the scenarios.  Words are separated by Underscores, _.  Presently, the scenario files do NOT have an extension.
 
