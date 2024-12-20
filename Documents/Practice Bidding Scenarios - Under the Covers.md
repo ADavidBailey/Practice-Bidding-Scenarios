@@ -53,8 +53,8 @@ These are Dealer code fragments that are often needed.  Stanislaw implemented an
 
 Rick Wilson introduced me to the idea of leveling and how to do it.  If for example, you want to practice Jacoby 2N, the sequences begin the same 1M - 2N then there are 5 different continuations.  1. a singleton/void, 2. a good 5-card second suit, 3. minimum semi-balanced, 4. intermediate semi-balanced, and 5. strong semi-balanced.  These do not occur with the same frequencey.  Leveling uses the presence of a small cards to reduce the probability of the most common.  For example, there's approximately a 25% chance that East holds the 2 of clubs.  So, you can define a condition, then and it with 'east has the 2C' will keep about 25% of those deals.  Check out the following two files:
 
-[CTRL-Click -Script-Leveling](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Script-Leveling)<br>
-[CTRL-Click for Leveling Example](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-Example%20Leveling)
+[CTRL-Click -Script-Leveling](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling)<br>
+[CTRL-Click for Leveling Example](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/misc/-Example%20Leveling)
 
 ## -PBS.txt
 
@@ -68,11 +68,11 @@ This is the file that is pasted into BBOalert.  It contains some code specific t
 
 Most of the code is Import Definitions for the various scenario files with statements like this:
 
-    Import,Smolen,Import,Smolen,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Smolen
+    Import,Smolen,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Smolen
     Import,FourthSuitForcing,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Fourth_Suit_Forcing
     Import,Jacoby2N,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Jacoby_2N
 
-And, to define create and organize BBOalert buttons that cause BBOalert to invoke the i Imported the code.  Like this:
+And, to define create and organize BBOalert buttons that cause BBOalert to invoke the Imported the code.  Like this:
 
     Button,Minor/Major Sequences,,width=100% backgroundColor=lightblue
     Import,FourthSuitForcing
@@ -91,7 +91,7 @@ BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BB
 
 - PBS -- scenario files with Dealer code wrapped in code to import into BBOalert and create the buttons to load the code into BBO Practice Table Deal Source/Advanced.
 
-Then for each file in the PBS folder, there is a corresponding file in each of these folders.
+Then, for each file in the PBS folder, there is a corresponding file in each of these folders.
 
 - dlr -- Dealer code striped from PBS files with Imports resolved (OneExtract.py)
 - pbn -- dlr files are run through BBO's Dealer to create pbn files (makeOnePBN.cmd & oneComment.py)
