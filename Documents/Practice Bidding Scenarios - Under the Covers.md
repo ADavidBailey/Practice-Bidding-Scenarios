@@ -124,6 +124,10 @@ We've automated the process of creating all of these files.  OneScriptToRuleThem
 - filterStats - runs **CountPattern.ps1** 
 - biddingSheet - runs **makeOneBiddingSheet.cmd** to create bidding sheets
 
+We have a synonym defined; so, you I can enter one * * to create all of the files derived from all of those in the PBS folder.  If I did so, it would run several hours.  I usually run all operations for a single scenario, like this:
+
+    one uniquePartOfScenarioName* *
+
 There are several other folders:
 - bbsa -- Convention Cards for Bridge Bidding Analyser.  There's a 21GF-DEFAULT that's used for most scenarios.  For scenarios that need something different, I try to copy the DEFAULT and make the necessary changes.  I try to NOT change the DEFAULT.
 - build-scripts -- Windows CMD and Powershell Programs.  In some cases, these invoke code: Dealer.exe, BBA.exe, and BridgeComposer.exe
