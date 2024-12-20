@@ -83,7 +83,7 @@ And, to define create and organize BBOalert buttons that cause BBOalert to invok
     Button,Game Forcing Sequences,,width=100% backgroundColor=lightblue
     Import,Jacoby2N
 
-This file contains almost 800 lines of code.  And, it imports all of the other files for a total of almost 20,000 lines of code.
+This file contains over 800 lines of code.  And, it imports all of the other files for a total of almost 20,000 lines of code.
 
 BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BBOalert is reloaded, and it in-turn reloads -PBS.txt which imports each and every one of the packaged dealer code files.  **Everything is up to date!**  I started BBO, just now.  18,369 records were imported.  With the BBOalert tab open, click the dark blue Data tab at the top left to see it.
 
