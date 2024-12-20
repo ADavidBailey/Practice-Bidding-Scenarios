@@ -119,10 +119,10 @@ We've automated the process of creating all of these files.  OneScriptToRuleThem
 - pbn - **makeOnePBN.cmd** creates CMD file statement(s) to run BBO's **Dealer.exe** to convert a dlr file(s) to a pbn file(s)
 - rotate - **makeOneRotated.cmd** creates CMD file statement(s) to run **BridgeComposer.exe** to produce pbn-rotated... and lin-rotated... file(s)
 - bba - **makeOneBBA,cmd** runs **BBA.exe** to bid hands and produces an archive file -- a pbn with bidding added
-- title - 
-- filter - uses a RegEx filter to get the files that were bid as expected
-- filterStats
-- biddingSheet - 
+- title - runs **setOneTitle.ps1**
+- filter - runs **filterOneScenario.cmd** which uses a RegEx filter to filter the files that were and were not bid as expected
+- filterStats - runs **CountPattern.ps1** 
+- biddingSheet - runs **makeOneBiddingSheet.cmd** to create bidding sheets
 
 There are several other folders:
 - bbsa -- Convention Cards for Bridge Bidding Analyser.  There's a 21GF-DEFAULT that's used for most scenarios.  For scenarios that need something different, I try to copy the DEFAULT and make the necessary changes.  I try to NOT change the DEFAULT.
