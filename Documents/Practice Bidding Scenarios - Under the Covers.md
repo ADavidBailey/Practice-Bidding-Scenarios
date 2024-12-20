@@ -27,21 +27,21 @@ The very last line of the button definition is what invokes the script: %theName
 
 The whole thing looks like this:
 
-    Script,theNameOfTheScript<br>
-    setDealerCode(`<br>
+    Script,theNameOfTheScript
+    setDealerCode(`
 
-    dealer code string<br>
-    many, many lines of Dealer code.<br>
+    dealer code string
+    many, many lines of Dealer code.
 
-    Some scenarios have hundrends of lines.  The average is under 100 lines.<br>
+    Some scenarios have hundrends of lines.  The average is under 100 lines.
 
-    `,dealer,rotation)<br>
-    Script<br>
-    Button,Short Name,<br>
-    --- Long Descriptive Name<br>
-    Descriptive lines<br>
-    More deacriptive lines<br>
-    %theNameOfTheScript%<br>
+    `,dealer,rotation)
+    Script
+    Button,Short Name,\n\
+    --- Long Descriptive Name\n\
+    Descriptive lines\n\
+    More deacriptive lines\n\
+    %theNameOfTheScript%\n\
 
 Each scenario is packaged this way.  I call it wrappered Dealer Code.  The backticks and everything outside of the ...backticks... is the wrapper.  There is a separate file for each scenario.  These are all in the pbs folder of my [CTRL-Click to check out the Practice Bidding Scenarios GitHub repository](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main).  The content isn't pretty -- it evolved rather than planned.  All of the files in the PBS folder are wrappered Dealer code.  I've tried to use descriptive names for the scenarios.  Words are separated by Underscores, _.  Presently, the scenario files do NOT have an extension.
 
