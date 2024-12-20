@@ -97,7 +97,7 @@ BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BB
 Then, for each file in the PBS folder, there is a corresponding file in each of these folders.
 
 - dlr -- Dealer code striped from PBS files with Imports resolved (OneExtract.py)
-- pbn -- dlr files are run through BBO's Dealer to create pbn files (makeOnePBN.cmd & oneComment.py)
+- pbn -- dlr files are run through BBO's Dealer to create pbn files (makeOnePBN.cmd, dealer.exe, & oneComment.py)
 - pbn-rotated-for-4-players -- pbn files are rotated for 4-handed play (makeOneRotated.cmd & BridgeComposer)
 - lin-rotated-for-four-players -- rotated pbn files are converted to lin format for use with BBO (makeOneRotated.cmd & BridgeComposer)
 - bba -- pbn files are run through Bridge Bidding Analyser (BBA) to add bidding (makeOneBBA.cmd, BBA.exe, and oneSummary.py)
