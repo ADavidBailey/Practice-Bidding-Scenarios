@@ -78,7 +78,10 @@ And, to define create and organize BBOalert buttons that cause BBOalert to invok
     Import,FourthSuitForcing
 
     Button,Notrump Sequences,,width=100% backgroundColor=lightblue
+    Import,Stayman
+    Import,JacobyTransfer
     Import,Smolen
+    Import,Texas
 
     Button,Game Forcing Sequences,,width=100% backgroundColor=lightblue
     Import,Jacoby2N
