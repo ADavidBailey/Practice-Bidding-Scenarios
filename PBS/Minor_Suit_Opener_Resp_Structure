@@ -2,7 +2,7 @@ Script,MinorOpenerRespStr
 setDealerCode(`
 
 # convention-card:
-# auction-filter: .
+# auction-filter: (1[CD] Pass 1[DHSN])|(1C Pass 2C)|(1D Pass 2D)|(1[CD] Pass [23]N)
 
 # Minor Opener w/Raise or Balanced Response -- Leveled
 dealer south
@@ -14,15 +14,12 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 cRaise = oC and clubs(north)>4    and spades(north)<4 and hearts(north)<4 and diamonds(north)<4                    //  5+ card support
 dRaise = oD and diamonds(north)>3 and spades(north)<4 and hearts(north)<4 and diamonds(north)>clubs(north)         //  4+ card support
 mRange = hcp(north)>5  and hcp(north)<11
-iRange = hcp(north)>10 and hcp(north)<13
-fRange = hcp(north)>12
+iRange = hcp(north)>10
 
 shortness = shape(north, any 0xxx+any 1xxx+any 2xxx)
 
 mixedRaise  = (cRaise or dRaise) and mRange and shortness
 inviteRaise = (cRaise or dRaise) and iRange and shortness
-forceRaise  = (cRaise or dRaise) and fRange and shortness
-anyRaise    = (cRaise or dRaise) and hcp(north)>5
 
 # Define one Minor and balanced responses w/o 5-card major
 nBalanced = shape(north, any 4333 +any 4432 +any 5422 +any 5332-5xxx-x5xx)
@@ -75,8 +72,11 @@ Script
 
 Button,1m & Raise/Bal (Lev),\n\
 --- 1 Minor w/Raise or Balanced Response -- Leveled\n\
-1!C - 2!S shows 5+ card support and invitational values 11-12 HCP\n\
-1!D - 2!S shows 4+ card support and invitational values 11-12 HCP\n\
+1!C/!D - 2!C/!D shows 5/4+ card support and mixed values 6-10 HCP\n\
+1!C/!D - 2!S shows 5/4+ card support and invitational+ values 11+ HCP\n\
+1!C/!D - 2!H shows 11-12 HCP balanced\n\
+1!C/!D - 2N shows 13-15 or 18-19 HCP balanced\n\
+1!C/!D - 3N shows 16-17 HCP balanced\n\
 Note:  Responder has no new suit to bid at the 1-level，shortness，and\n\
 opener's suit is responder's longest suit.\n\
 %MinorOpenerRespStr%,backgroundColor=lightpink
