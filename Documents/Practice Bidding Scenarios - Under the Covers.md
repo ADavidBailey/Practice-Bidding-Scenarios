@@ -21,7 +21,11 @@ where...
 - dealer   specifies which hand is the dealer.  It should be "N", "W", "S", or "E".  "S" is the default.
 - rotation specifies if the N/S hands should be randomly rotated -- True or False.  True is the default.
 
-Following the function call, the wrapper code defines a BBOalert button which will display a short descriptive name.  When clicked will invoke the script and spit out whatever BBO Chat is included in the button.  This is all part of the JavaScript function call; so, there are restrictions about what can go in the chat.
+## PBS Files
+
+Each Practice Bidding Scenario is defined by a file in the PBS folder.  I refer to them as wrappered Dealer code.    The function call, button definition, and chat that displayed make up the wrapper.  The Dealer code script definition is what actually does the work.  All of the Dealer code in the is enclosed in the backticks.
+
+Following the function call, the wrapper code defines a BBOalert button which will display a short descriptive name.  When clicked will invoke the script and spit out whatever BBO Chat is included in the button.  This is all part of the JavaScript function call; so, there are restrictions about what can go in the chat -- NO commas.
 
 The very last line of the button definition is what invokes the script: %theNameOfTheScript%
 
@@ -43,7 +47,18 @@ The whole thing looks like this:
     More deacriptive lines\n\
     %theNameOfTheScript%
 
-Each scenario is packaged this way.  I call it wrappered Dealer Code.  The backticks and everything outside of the ...backticks... is the wrapper.  There is a separate file for each scenario.  These are all in the pbs folder of my [CTRL-Click to check out the Practice Bidding Scenarios GitHub repository](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main).  The content isn't pretty -- it evolved rather than planned.  All of the files in the PBS folder are wrappered Dealer code.  I've tried to use descriptive names for the scenarios.  Words are separated by Underscores, _.  Presently, the scenario files do NOT have an extension.
+Each scenario is packaged this way.  The backticks and everything outside of the ...backticks... is the wrapper.  There is a separate file for each scenario.  These are all in the pbs folder of my [CTRL-Click to check out the Practice Bidding Scenarios GitHub repository](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main).  The content isn't pretty -- it has evolved.
+
+I've tried to use descriptive names for the scenarios.  Words are separated by Underscores, _.  Presently, the scenario files do NOT have an extension.
+
+Since we've added bidding and filtering the bid deals, Rick Wilson came up with the idea of adding the Convention Card and RegEx Filter expression to the PBS files.  These are added as comments, like this:
+
+    # Convention-Card: Convention Card Name
+    # Auction-Filter: Regular Expression
+
+The 21GF-DEFAULT is used by default.  I try to NOT change it.
+
+RegEx expressions frequently require \n for new lines.  These cause BBOalert to break the line; so, I have to escape the escape by using \\n -- the extra back-slash is removed before using it for filtering.
 
 ## Script files
 
@@ -58,7 +73,7 @@ Rick Wilson introduced me to the idea of leveling and how to do it.  If for exam
 
 ## -PBS.txt
 
-This is the file that is pasted into BBOalert.  It contains some code specific to Practice Bidding Scenarios.  For example, it includes code for the following:
+This is the file that is pasted into BBOalert.  It contains some JavaScript code specific to Practice Bidding Scenarios.  For example, it includes code for the following:
 
 - Start Bidding/Teaching tables
 - Open Deal source
@@ -72,7 +87,7 @@ Most of the code is Import Definitions for the various scenario files with state
     Import,FourthSuitForcing,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Fourth_Suit_Forcing
     Import,Jacoby2N,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Jacoby_2N
 
-And, to define create and organize BBOalert buttons that cause BBOalert to invoke the Imported the code.  Like this:
+And, to define and organize BBOalert buttons that cause BBOalert to invoke the Imported the code.  They look like this:
 
     Button,Minor/Major Sequences,,width=100% backgroundColor=lightblue
     Import,FourthSuitForcing
@@ -88,13 +103,15 @@ And, to define create and organize BBOalert buttons that cause BBOalert to invok
 
 This file contains over 800 lines of code.  And, it imports all of the other files for a total of almost 20,000 lines of code.
 
-BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BBOalert is reloaded, and it in-turn reloads -PBS.txt which imports each and every one of the packaged dealer code files.  **Everything is up to date!**  I started BBO, just now.  18,369 records were imported.  With the BBOalert tab open, click the dark blue Data tab at the top left to see it.
+Note:  The background color is used when expanding/collapsing the sections; so, I must be careful about changing it.
+
+BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BBOalert is reloaded, and it, in turn, reloads -PBS.txt file which imports each and every one of the packaged dealer code files.  **Everything is up to date!**  I started BBO, just now.  19,529 records were imported.  With the BBOalert tab open, click the dark blue Data tab at the top left to see it.
 
 ## Folders in the Practice-Bidding-Scenarios GitHub repository
 
 - PBS -- scenario files with Dealer code wrapped in code to import into BBOalert and create the buttons to load the code into BBO Practice Table Deal Source/Advanced.
 
-Then, for each file in the PBS folder, there is a corresponding file in each of these folders.
+Then, for each file in the PBS folder, there is a corresponding file in each of these folders.  (The name of the    program(s) that create the files in each of these folders is in the parentheses.)
 
 - dlr -- Dealer code striped from PBS files with Imports resolved (OneExtract.py)
 - pbn -- dlr files are run through BBO's Dealer to create pbn files (makeOnePBN.cmd, dealer.exe, & oneComment.py)
@@ -124,7 +141,7 @@ We've automated the process of creating all of these files.  OneScriptToRuleThem
 - filterStats - runs **CountPattern.ps1** 
 - biddingSheet - runs **makeOneBiddingSheet.cmd** to create bidding sheets
 
-We have a synonym defined; so, you I can enter one * * to create all of the files derived from all of those in the PBS folder.  If I did so, it would run several hours.  I usually run all operations for a single scenario, like this:
+We have a synonym defined; so, I can enter one * * to create all of the files derived from all of those in the PBS folder.  If I did so, it would run several hours.  I usually run all operations for a single scenario, like this:
 
     one uniquePartOfScenarioName* *
 
