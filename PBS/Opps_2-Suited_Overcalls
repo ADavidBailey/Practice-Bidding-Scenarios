@@ -26,10 +26,10 @@ HC = (GoodH and GoodC)
 DC = (GoodD and GoodC)
 
 # Intervener's 2-Suits -- NOT opener's suit
-oneS = oS and (HD or HC or DC)  // Michaels, Michaels, Unusual NT
-oneH = oH and (SD or SC or DC)  // Michaels, Michaels, Unusual NT
-oneD = oD and (SH or HC)        // Michaels, Unusual NT, no way to show SC
-oneC = oC and (SH or HD)        // Michaels, Unusual NT, no way to show SD
+oneS = oS and (HD or HC or DC)  // Michaels, Michaels/Top&Bottom, Unusual NT
+oneH = oH and (SD or SC or DC)  // Michaels, Michaels/Top&Bottom, Unusual NT
+oneD = oD and (SH or SC or HC)  // Michaels, Top&Bottom, Unusual NT
+oneC = oC and (SH or SD or HD)  // Michaels, Top&Bottom, Unusual NT
 
 oSuit = (oneS or oneH or oneD or oneC) and shape(south,any xxxx-8xxx-7xxx-6xxx)
 oRange = hcp(south)>11 and hcp(south)<22
@@ -48,23 +48,25 @@ oSuit and oRange and iRange and rRange
 # You might play with chosing west's suits
 #and SC or SD  // If you just want the problematic ones
 
+#  Michaels Cue Bid (MCB), Unusual 2NT (U2N), Top & Bottom Cue Bid (T&B)
+
 action
 average "1S         " 100 * (oneS and (HD or HC or DC)),
-average "   (2S)  HD" 100 * (oneS and HD),
-average "   (2S)  HC" 100 * (oneS and HC),
-average "   (2N)  DC" 100 * (oneS and DC),
+average "   (2S MCB     = HD) " 100 * (oneS and HD),
+average "   (2S MCB/T&B = HC) " 100 * (oneS and HC),
+average "   (2N U2N     = DC) " 100 * (oneS and DC),
 average "1H         " 100 * (oneH and (SD or SC or DC)),
-average "   (2H)  SD" 100 * (oneH and SD),
-average "   (2H)  SC" 100 * (oneH and SC),
-average "   (2N)  DC" 100 * (oneH and DC),
+average "   (2H MCB     = SD) " 100 * (oneH and SD),
+average "   (2H MCB/T&B = SC) " 100 * (oneH and SC),
+average "   (2N U2N     = DC) " 100 * (oneH and DC),
 average "1D         " 100 * (oneD and (SH or HC or SC)),
-average "   (2D)  SH" 100 * (oneD and SH),
-average "   (2N)  HC" 100 * (oneD and HC),
-average "         SC" 100 * (oneD and SC),
+average "   (2D MCB     = SH) " 100 * (oneD and SH),
+average "   (2N 2NT     = HC) " 100 * (oneD and HC),
+average "   (2D T&B     = SC) " 100 * (oneD and SC),
 average "1C         " 100 * (oneC and (SH or HD or SD)),
-average "   (2C)  SH" 100 * (oneC and SH),
-average "   (2N)  DC" 100 * (oneC and HD),
-average "         SD" 100 * (oneC and SD),
+average "   (2C MCB     = SH) " 100 * (oneC and SH),
+average "   (2N U2N     = DC) " 100 * (oneC and HD),
+average "   (2C T&B     = SD) " 100 * (oneC and SD),
 
 frequency "Opener HCP"     (hcp(south),12,21),
 frequency "Intervener HCP" (hcp(west),6,19),
@@ -77,9 +79,9 @@ Button,Opps 2-Suit Overcalls,\n\
 double is penalty oriented\n\
 raise is natural (about 7-10)\n\
 a jump raise is preemptive\n\
-bidding new suit (unshown) is natural & not forcing\n\
-bidding the one known suit limit+ raise\n\
-with two known suits: cue lower for lower & higher for higher\n\
+bidding new (unshown) suit is natural & not forcing\n\
+with 1 known opponent suit -- a cue bid is a limit+ raise\n\
+with 2 known opponent suits -- cue lower for lower & higher for higher\n\
 https://www.bridgebum.com/unusual_vs_unusual.php\n\
 https://www.bridgebum.com/defense_to_michaels.php\n\
 %OppsTwoSuitedOvercalls%
