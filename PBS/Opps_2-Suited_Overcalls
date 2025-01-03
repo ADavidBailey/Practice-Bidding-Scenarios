@@ -17,7 +17,7 @@ GoodH = hearts(west)>4 and top5(west,hearts)>2
 GoodD = diamonds(west)>4 and top5(west,diamonds)>2
 GoodC = clubs(west)>4 and top5(west,clubs)>2
 
-# Intervener is 2-suited
+# Intervener is 2-suited -- all require at least QJT; so, at least 6 HCP for the intervener 
 SH = (GoodS and GoodH)
 SD = (GoodS and GoodD)
 SC = (GoodS and GoodC)
@@ -26,48 +26,29 @@ HC = (GoodH and GoodC)
 DC = (GoodD and GoodC)
 
 # Intervener's 2-Suits -- NOT opener's suit
-oneS = oS and (HD or HC or DC)  // Michaels or Michaels or Unusual NT
-oneH = oH and (SD or SC or DC)  // Michaels or Michaels or Unusual NT
-oneD = oD and (SH or HC)        // Michaels or Unusual NT  - no way to show SC
-oneC = oC and (SH or HD)        // Michaels or Unusual NT  - no way to show SD
+oneS = oS and (HD or HC or DC)  // Michaels, Michaels, Unusual NT
+oneH = oH and (SD or SC or DC)  // Michaels, Michaels, Unusual NT
+oneD = oD and (SH or HC)        // Michaels, Unusual NT, no way to show SC
+oneC = oC and (SH or HD)        // Michaels, Unusual NT, no way to show SD
 
 oSuit = (oneS or oneH or oneD or oneC) and shape(south,any xxxx-8xxx-7xxx-6xxx)
-oRange = hcp(south)>11 and hcp(south)<15
+oRange = hcp(south)>11 and hcp(south)<22
 
-# West is weak or strong
-iWeak   = losers(west)<8 and hcp(west)>7  and hcp(west)<12
+# West is weak or strong, 6-11 or 15-19
+iWeak   = losers(west)<8 and hcp(west)>5  and hcp(west)<12
 iStrong = losers(west)<5 and hcp(west)>14 and hcp(west)<20
 iRange = iWeak or iStrong
 
-# This is an attempt to get stats for west weak/strong.  I don't think I can get it to work.
-wHCP    = iWeak   ? hcp(west)    : 0
-wLosers = iWeak   ? losers(west) : 0
-sHCP    = iStrong ? hcp(west)    : 0
-sLosers = iStrong ? losers(west) : 0
-
-# Responder's minimum HCP -- you might try adjusting this
-rRange = hcp(north)>7
+# Responder's minimum HCP
+rRange = hcp(north)>6
 
 ### Now do it
 oSuit and oRange and iRange and rRange
 
-# To get stats for west weak/strong uncomment one of the following
-#and iWeak
-#and iStrong
-
-# You might also play with choseing west's suits
+# You might play with chosing west's suits
 #and SC or SD  // If you just want the problematic ones
 
 action
-#printoneline,
-
-average "Weak       " 100 * iWeak,
-average "  HCP      "     wHCP,
-average "  Losers   "     wLosers,
-average "Strong     " 100 * iStrong,
-average "  HCP      "     sHCP,
-average "  Losers   "     sLosers,
-
 average "1S         " 100 * (oneS and (HD or HC or DC)),
 average "   (2S)  HD" 100 * (oneS and HD),
 average "   (2S)  HC" 100 * (oneS and HC),
@@ -85,9 +66,9 @@ average "   (2C)  SH" 100 * (oneC and SH),
 average "   (2N)  DC" 100 * (oneC and HD),
 average "         SD" 100 * (oneC and SD),
 
-frequency "Opener HCP    " (hcp(south),12,14),
-frequency "Intervener HCP" (hcp(west),8,19),
-frequency "Responder HCP " (hcp(north),6,17),
+frequency "Opener HCP"     (hcp(south),12,21),
+frequency "Intervener HCP" (hcp(west),6,19),
+frequency "Responder HCP"  (hcp(north),6,19),
 
 `, "S", true)
 Script
