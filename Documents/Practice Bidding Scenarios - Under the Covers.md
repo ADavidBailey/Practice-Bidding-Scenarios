@@ -88,9 +88,9 @@ Rick Wilson introduced me to the idea of leveling and how to do it.  If for exam
 
 These do not occur with the same frequencey.  Leveling uses the presence of a small cards to reduce the probability of the most common.  For example, there's approximately a 25% chance that East holds the 2 of clubs.  So, you can define a condition, then 'and' it with 'east has the 2C'.  This will keep about 25% of those deals.  Check out the following three files:
 
-[CTRL-Click -Script-Leveling](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling)<br>
-[CTRL-Click -Stats-Leveling](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/misc/-Stats-Leveling)<br>
-[CTRL-Click for Leveling Example](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/misc/-Example%20Leveling)
+    [CTRL-Click -Script-Leveling](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling)<br>
+    [CTRL-Click -Stats-Leveling](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/misc/-Stats-Leveling)<br>
+    [CTRL-Click for Leveling Example](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/misc/-Example%20Leveling)
 
 ## -PBS.txt
 
