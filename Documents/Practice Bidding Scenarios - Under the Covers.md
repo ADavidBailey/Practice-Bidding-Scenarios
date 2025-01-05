@@ -6,13 +6,13 @@ BBO includes a Deal generator that produces random hands and provides a means fo
 
 [CTRL-Click to check out Dealer by Hans van Staveren, et.al.](https://www.bridgebase.com/tools/dealer/dealer.php)
 
-I've used it a little for years to generate hands for lessons I would do at a BBO Practice Table.  I would develop the dealer code and save it in a Google Document.  Then, to use it, I would open the Google Doc, copy the code, and paste it into the Dealer source/advanced and click the options I wanted.  I used this often (notice the past tense.)  
+I've used it a little for years to generate hands for lessons I would do at a BBO Practice Table.  I would develop the dealer code and save it in a Google Document.  Then, to use it, I would open the Google Doc, copy the code, and paste it into the Dealer source/Advanced and click the options I wanted.  I used this often (notice the past tense).  
 
 ## BBOalert
 
-During COVID, when we started playing more online bridge.  We were encouraged to alert everything.  I discovered BBOalert and created files to automate alerts in my most common partnerships.  In the fall of 2023, it occurred to me that BBOalert buttons might be used to automate the process of opening, copying, and pasting.  I approched Stanislaw Mazur, the creator of BBOalert, and asked for his help.  He gave it big time.  He continues to help.
+During COVID, when we started playing more online bridge, we were encouraged to alert everything.  I discovered BBOalert and created files to automate alerts in my most common partnerships.  In the fall of 2023, it occurred to me that BBOalert buttons might be used to automate the process of opening, copying, and pasting.  I approched Stanislaw Mazur, the creator of BBOalert, and asked for his help.  He gave it big time.  He continues to help.
 
-Stanislaw figured out how to do it.  He created a JavaScript function that will load text into the Deal source at a BBO Practice Table.  It's a function call:
+Stanislaw figured out how to do it.  He created a JavaScript function that will load text into the Deal source/Advanced at a BBO Practice Table.  It's a function call:
 
     setDealerCode(`text within quotes`, dealer, rotation)
 
@@ -21,15 +21,23 @@ where...
 - dealer   specifies which hand is the dealer.  It should be "N", "W", "S", or "E".  "S" is the default.
 - rotation specifies if the N/S hands should be randomly rotated -- True or False.  True is the default.
 
-## PBS Files
+Of course, we need a JavaScript program to invoke the function.  It looks like this:
 
-Each Practice Bidding Scenario is defined by a file in the PBS folder.  I refer to them as wrappered Dealer code.    The function call, button definition, and chat that displayed make up the wrapper.  The Dealer code script definition is what actually does the work.  All of the Dealer code in the is enclosed in the backticks.
+    Script theNameOfTheScript
+    --- the rest of the script goes here --
+    Script
 
-Following the function call, the wrapper code defines a BBOalert button which will display a short descriptive name.  When clicked will invoke the script and spit out whatever BBO Chat is included in the button.  This is all part of the JavaScript function call; so, there are restrictions about what can go in the chat -- NO commas.
+In addition to the script, we need a BBOalert button to invoke it.  A BBOalert button definition looks like this:
 
-The very last line of the button definition is what invokes the script: %theNameOfTheScript%
+    Button,button text,long descriptive text,optional properties
 
-The whole thing looks like this:
+Finally, we need to invoke the script, like this:
+
+    %theNameOfTheScript%
+
+BBOalert parses out the three parts, the script, the button which includes the chat, and the script invocation.  BBOalert depends on the commas to separate the three parts; so, there are restrictions about what can go in the chat -- NO commas.
+
+Putting it all together, each scenario looks like this:
 
     Script,theNameOfTheScript
     setDealerCode(`
@@ -47,7 +55,11 @@ The whole thing looks like this:
     More deacriptive lines\n\
     %theNameOfTheScript%
 
-Each scenario is packaged this way.  The backticks and everything outside of the ...backticks... is the wrapper.  There is a separate file for each scenario.  These are all in the pbs folder of my [CTRL-Click to check out the Practice Bidding Scenarios GitHub repository](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main).  The content isn't pretty -- it has evolved.
+The backticks and everything outside of the ...backticks... is the wrapper.
+
+## PBS Files
+
+  There is a separate file for each scenario.  These are all in the pbs folder of my [CTRL-Click to check out the Practice Bidding Scenarios PBS folder](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/tree/main/PBS).  The content isn't pretty -- it has evolved.
 
 I've tried to use descriptive names for the scenarios.  Words are separated by Underscores, _.  Presently, the scenario files do NOT have an extension.
 
@@ -56,7 +68,7 @@ Since we've added bidding and filtering the bid deals, Rick Wilson came up with 
     # Convention-Card: Convention Card Name
     # Auction-Filter: Regular Expression
 
-The 21GF-DEFAULT is used by default.  I try to NOT change it.
+The 21GF-DEFAULT convention card is used by default.  I try to NOT change it.
 
 RegEx expressions frequently require \n for new lines.  These cause BBOalert to break the line; so, I have to escape the escape by using \\n -- the extra back-slash is removed before using it for filtering.
 
@@ -66,14 +78,23 @@ These are Dealer code fragments that are often needed.  Stanislaw implemented an
 
 ## Leveling
 
-Rick Wilson introduced me to the idea of leveling and how to do it.  If for example, you want to practice Jacoby 2N, the sequences begin the same 1M - 2N then there are 5 different continuations.  1. a singleton/void, 2. a good 5-card second suit, 3. minimum semi-balanced, 4. intermediate semi-balanced, and 5. strong semi-balanced.  These do not occur with the same frequencey.  Leveling uses the presence of a small cards to reduce the probability of the most common.  For example, there's approximately a 25% chance that East holds the 2 of clubs.  So, you can define a condition, then and it with 'east has the 2C' will keep about 25% of those deals.  Check out the following two files:
+Rick Wilson introduced me to the idea of leveling and how to do it.  If for example, you want to practice Jacoby 2N, the sequences begin the same 1M - 2N then there are 5 different continuations.
+
+    1. a singleton/void
+    2. 5-card second suit 
+    3. minimum semi-balanced 
+    4. intermediate semi-balanced 
+    5. strong semi-balanced
+
+These do not occur with the same frequencey.  Leveling uses the presence of a small cards to reduce the probability of the most common.  For example, there's approximately a 25% chance that East holds the 2 of clubs.  So, you can define a condition, then 'and' it with 'east has the 2C'.  This will keep about 25% of those deals.  Check out the following three files:
 
 [CTRL-Click -Script-Leveling](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling)<br>
+[CTRL-Click -Stats-Leveling](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/misc/-Stats-Leveling)<br>
 [CTRL-Click for Leveling Example](https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/misc/-Example%20Leveling)
 
 ## -PBS.txt
 
-This is the file that is pasted into BBOalert.  It contains some JavaScript code specific to Practice Bidding Scenarios.  For example, it includes code for the following:
+This is the file that is imported into BBOalert.  It contains some JavaScript code specific to Practice Bidding Scenarios.  For example, it includes code for the following:
 
 - Start Bidding/Teaching tables
 - Open Deal source
@@ -103,15 +124,15 @@ And, to define and organize BBOalert buttons that cause BBOalert to invoke the I
 
 This file contains over 800 lines of code.  And, it imports all of the other files for a total of almost 20,000 lines of code.
 
-Note:  The background color is used when expanding/collapsing the sections; so, I must be careful about changing it.
+Note:  The background color is used when expanding/collapsing the sections; so, one must be careful about changing it.
 
-BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BBOalert is reloaded, and it, in turn, reloads -PBS.txt file which imports each and every one of the packaged dealer code files.  **Everything is up to date!**  I started BBO, just now.  19,529 records were imported.  With the BBOalert tab open, click the dark blue Data tab at the top left to see it.
+**NOTE:**  BBOalert caches the url of the -PBS.txt file.  Thus, each time you start BBO, BBOalert is reloaded, and it, in turn, reloads -PBS.txt file which imports each and every one of the packaged dealer code files.  **Each time you start BBO, Everything is up to date!**  I started BBO, just now.  19,529 records were imported.  (With the BBOalert tab open, click the dark blue Data tab at the top left to see it.)
 
 ## Folders in the Practice-Bidding-Scenarios GitHub repository
 
-- PBS -- scenario files with Dealer code wrapped in code to import into BBOalert and create the buttons to load the code into BBO Practice Table Deal Source/Advanced.
+- PBS -- scenario files with Dealer code wrapped in code to import into BBOalert and create the buttons to load the code into BBO Practice Table/Deal Source/Advanced.
 
-Then, for each file in the PBS folder, there is a corresponding file in each of these folders.  (The name of the    program(s) that create the files in each of these folders is in the parentheses.)
+Then, for each file in the PBS folder, there is a corresponding file in each of these folders.  (The name of the program(s) that create the files in each of these folders is in the parentheses.)
 
 - dlr -- Dealer code striped from PBS files with Imports resolved (OneExtract.py)
 - pbn -- dlr files are run through BBO's Dealer to create pbn files (makeOnePBN.cmd, dealer.exe, & oneComment.py)
