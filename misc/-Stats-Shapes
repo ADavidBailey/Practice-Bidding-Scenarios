@@ -1,0 +1,44 @@
+# Statistics for hands where the longest suit is 9-, 8-, 7-, 6-, 5- and 4-cards
+
+#  https://tinyurl.com/Hand-Shape-Frequency
+
+# kill suits with more than 9 cards
+shape(south,xxxx -any x000-any x100-any x200-any x110-any x300-any x210-any x111)
+
+generate 30000000
+produce 10000000
+action
+
+average "9xxx-----" 100 *  shape(south,any 9xxx),
+average "8xxx-----" 100 *  shape(south,any 8xxx),
+
+average "7xxx-----" 100 *  shape(south,any 7xxx),
+average "7600" 100 *  shape(south,any 7600),
+average "7510" 100 *  shape(south,any 7510),
+average "7420" 100 *  shape(south,any 7420),
+average "7411" 100 *  shape(south,any 7411),
+average "7330" 100 *  shape(south,any 7330),
+average "7321" 100 *  shape(south,any 7321),
+average "7222" 100 *  shape(south,any 7222),
+
+average "6xxx-----" 100 *  shape(south,any 6xxx-any 7xxx),
+average "6610" 100 *  shape(south,any 6610),
+average "6520" 100 *  shape(south,any 6520),
+average "6511" 100 *  shape(south,any 6511),
+average "6430" 100 *  shape(south,any 6430),
+average "6421" 100 *  shape(south,any 6421),
+average "6331" 100 *  shape(south,any 6331),
+average "6322" 100 *  shape(south,any 6322),
+
+average "5xxx-----" 100 *  shape(south,any 5xxx-any 8xxx-any 7xxx-any 6xxx),
+average "5530" 100 *  shape(south,any 5530),
+average "5521" 100 *  shape(south,any 5521),
+average "5440" 100 *  shape(south,any 5440),
+average "5431" 100 *  shape(south,any 5431),
+average "5422" 100 *  shape(south,any 5422),
+average "5332" 100 *  shape(south,any 5332),
+
+average "4xxx-----" 100 *  shape(south,any 4xxx-any 9xxx-any 8xxx-any 7xxx-any 6xxx-any 5xxx),
+average "4441" 100 *  shape(south,any 4441),
+average "4432" 100 *  shape(south,any 4432),
+average "4333" 100 *  shape(south,any 4333),
