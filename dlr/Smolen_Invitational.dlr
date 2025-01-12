@@ -1,10 +1,10 @@
-# button-text: Smolen
-# scenario-title: Smolen
-# Smolen
+# button-text: Smolen Inv
+# scenario-title: Smolen Shape w/Invitational values
+# Smolen_Invitational
 dealer south
 
 
-# auction-filter: Auction.....\\n1NT.Pass.2[C].*Pass\\n2D
+# auction-filter: Auction.....\\n1NT.Pass.2[CD].*.Pass\\n2[DH]
 
 # Smolen
 
@@ -39,8 +39,8 @@ calmOpps = calmEast and calmWest
 shape(south, 23xx+32xx+33xx-xxx1-xx1x-xx6x-xxx6) &&
 hcp(south) >=15 && hcp(south)<=17 &&
 shape(north, 54xx+45xx) &&
-hcp(north) > 9 &&
-calmWest        // It's OK for East to X with decent clubs -- system's on
+hcp(north) >= 8 && hcp(north) <= 9 &&
+calmWest        // It's OK for west to X with decent clubs -- system's on
 
 
 action printpbn
