@@ -1,0 +1,31 @@
+Script,Benjamin2D
+setDealerCode(`
+
+# convention-card: 21GF-Benjamin2D
+# auction-filter: Auction.....\\n2D.
+
+# Game Forcing Benjamin 2D
+dealer south
+bal = shape(south,any 4333+any 4432+any 5332)
+
+gC = clubs(south)>5    and hcp(south,clubs)==9
+gD = diamonds(south)>5 and hcp(south,clubs)==9
+gH = hearts(south)>5   and hcp(south,clubs)==9
+gS = spades(south)>5   and hcp(south,clubs)==9
+LP = (gC or gD or gH or gS) ? 2 : 0
+TP = hcp(south) + LP
+
+case1 = hcp(south)>23 and bal
+case2 = TP>22         and not bal
+s2D = (case1 or case2)
+
+s2D
+
+`,"S",true)
+Script
+Button,Benjamin 2D,\n\
+--- Benjamin 2!D Game Forcing!\n\ 
+24+ balanced\n\
+23+ with a solid/semi-solid long suit\n\
+https://sites.google.com/view/bbaenglish/description-of-conventions/benjamin-2d?authuser=0\n\
+%GameForce2C%
