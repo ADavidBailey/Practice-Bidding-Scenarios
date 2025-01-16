@@ -4,6 +4,7 @@
 dealer south
 
 
+# convention-card: 21GF-PolishTwoSuiters
 # auction-filter: Auction.....\\n2[HS]
 
 # Muiderberg Two Bids
@@ -13,7 +14,7 @@ hS = hearts(south)==5 and hcp(south,hearts)>2
 dS = diamonds(south)>3 and hcp(south,diamonds)>1
 cS = clubs(south)>3 and hcp(south,clubs)>1
 
-(sS or hS) and (dS or cS) and hcp(south)>4 and hcp(south)<11
+(sS or hS) and (dS or cS) and hcp(south)>4 and hcp(south)<11 and shape(south,xxxx-any 5440)
 
 
 
