@@ -1,5 +1,5 @@
 # button-text: Benjamin 2D
-# scenario-title: Benjamin 2!D Game Forcing!
+# scenario-title: Benjamin 2!D Game Forcing
 # Benjamin_2D
 dealer south
 
@@ -10,15 +10,15 @@ dealer south
 # Game Forcing Benjamin 2D
 bal = shape(south,any 4333+any 4432+any 5332)
 
-#gC = clubs(south)>5    and hcp(south,clubs)==9
-#gD = diamonds(south)>5 and hcp(south,clubs)==9
-#gH = hearts(south)>5   and hcp(south,clubs)==9
-#gS = spades(south)>5   and hcp(south,clubs)==9
-#LP = (gC or gD or gH or gS) ? 2 : 0
-#TP = hcp(south) + LP
+gC = clubs(south)>5    and hcp(south,clubs)==9
+gD = diamonds(south)>5 and hcp(south,clubs)==9
+gH = hearts(south)>5   and hcp(south,clubs)==9
+gS = spades(south)>5   and hcp(south,clubs)==9
+LP = (gC or gD or gH or gS) ? 2 : 0
+TP = hcp(south) + LP
 
 case1 = hcp(south)>23 and bal
-case2 = hcp(south)>22 and not bal
+case2 = TP>21 and not bal
 s2D = (case1 or case2)
 
 s2D

@@ -8,15 +8,15 @@ setDealerCode(`
 dealer south
 bal = shape(south,any 4333+any 4432+any 5332)
 
-#gC = clubs(south)>5    and hcp(south,clubs)==9
-#gD = diamonds(south)>5 and hcp(south,clubs)==9
-#gH = hearts(south)>5   and hcp(south,clubs)==9
-#gS = spades(south)>5   and hcp(south,clubs)==9
-#LP = (gC or gD or gH or gS) ? 2 : 0
-#TP = hcp(south) + LP
+gC = clubs(south)>5    and hcp(south,clubs)==9
+gD = diamonds(south)>5 and hcp(south,clubs)==9
+gH = hearts(south)>5   and hcp(south,clubs)==9
+gS = spades(south)>5   and hcp(south,clubs)==9
+LP = (gC or gD or gH or gS) ? 2 : 0
+TP = hcp(south) + LP
 
 case1 = hcp(south)>23 and bal
-case2 = hcp(south)>22 and not bal
+case2 = TP>21 and not bal
 s2D = (case1 or case2)
 
 s2D
@@ -27,5 +27,5 @@ Button,Benjamin 2D,\n\
 --- Benjamin 2!D Game Forcing\n\ 
 1. 24+ balanced\n\
 2. 23+ unbalanced\n\
-https://sites.google.com/view/bbaenglish/description-of-conventions/benjamin-2d\n\
+https://en.wikipedia.org/wiki/Benjamin_Twos\n\
 %Benjamin2D%,backgroundColor=lightpink
