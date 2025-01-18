@@ -27,20 +27,20 @@ oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
 oC = not (oS or oH or oD)
 
 # A or Kx in opponent's suit is a stopper
-HS = controls(south,hearts)>1   or (controls(south,hearts)==1   and hearts(south)>1)
-SS = controls(south,spades)>1   or (controls(south,spades)==1   and spades(south)>1)
+HS = controls(south,hearts)>1 or (controls(south,hearts)==1 and hearts(south)>1)
+SS = controls(south,spades)>1 or (controls(south,spades)==1 and spades(south)>1)
 
 openC = oC and goodC
 openD = oD and goodD 
 openH = oH and (solidC or solidD or solidS) and not HS
 openS = oS and (solidC or solidD or solidH) and not SS
 openMinor = (openC or openD) and hcp(south)<11                       // aggressive weak jump overcall
-openMajor = (openH or openS) and hcp(south)>17 and losers(south)<5   // solid suit asking for 3N
+openMajor = (openH or openS) and hcp(south)>23 and losers(south)<5   // solid suit asking for 3N
 
 # East opens
 eOpens = (openMinor or openMajor) and hcp(east)>11 and hcp(east)<15
 
-eOpens
+eOpens and shape(south,any 9xxx+any 8xxx+any 7xxx-any 5xxx)
 
 action
 average "(hcp east)  " hcp(east),
