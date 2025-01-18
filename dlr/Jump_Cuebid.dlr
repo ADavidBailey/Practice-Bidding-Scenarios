@@ -1,0 +1,57 @@
+# button-text: Jump Cue-Bid
+# scenario-title: Jump Cue-Bid asks partner to bid 3N with a stop in opponents suit.
+# Jump_Cuebid
+dealer east
+
+
+# auction-filter: Auction.....\\n(1C 3C)|(1D 3D)|(1H 3H)|(1S 3S)
+
+# A Jump Cue Bid asks partner to bid 3N with a stopper in the opponent's suit.
+
+# Define solid suits
+solidS = spades(south)>5 and hcp(south,spades)>8
+solidH = hearts(south)>5 and hcp(south,hearts)>8
+solidD = diamonds(south)>5 and hcp(south,diamonds)>8
+solidC = clubs(south)>5 and hcp(south,clubs)>8
+
+# Predict East's opening suit
+s = spades(east)
+h = hearts(east)
+d = diamonds(east)
+c = clubs(east)
+oS = s>4 and s>=h and s>=d and s>=c
+oH = not oS and h>4 and h>=d and h>=c
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
+oC = not (oS or oH or oD)
+openingSuit = (oS or oH or oD or oC)
+
+# A or Kx in opponent's suit is a stopper
+CS = controls(south,clubs)>1    or (controls(south,clubs)==1    and clubs(south)>1)
+DS = controls(south,diamonds)>1 or (controls(south,diamonds)==1 and diamonds(south)>1)
+HS = controls(south,hearts)>1   or (controls(south,hearts)==1   and hearts(south)>1)
+SS = controls(south,spades)>1   or (controls(south,spades)==1   and spades(south)>1)
+
+sCS = oC and CS
+sDS = oD and DS
+sHS = oH and HS
+sSS = oS and SS
+noStop = not (sCS and sDS and sHS and sSS)
+
+# East opens
+eOpens = (oS or oH or oD or oC) and hcp(east)>11 and hcp(east)<15
+
+# South has a long, solid suit (usually a minor) and less than 5-losers
+sJumpCue = (solidS or solidH or solidD or solidC) and hcp(south)>17 and losers(south)<5
+
+eOpens and sJumpCue and noStop
+
+action
+average "(hcp east)  " hcp(east),
+average "(hcp south) " hcp(south),
+average "Clubs       " 100 * solidC,
+average "Diamonds    " 100 * solidD,
+average "Hearts      " 100 * solidH,
+average "Spades      " 100 * solidS,
+
+
+printpbn
