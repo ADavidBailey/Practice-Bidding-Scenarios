@@ -1,7 +1,10 @@
 Script,DirectJumpCuebid
 setDealerCode(`
 
-# auction-filter: Auction.....\\n(1C 3C)|(1D 3D)|(1H 3H)|(1S 3S)
+# BBA does NOT play Direct Jump Cuebids.  This is an attempt to filter the deals that
+# fit the scenario -- weak or strong over minors or strong over majors.
+
+# auction-filter: (\\n1C.*\\n..* [3-7][CDHS])|(\\n1D.*\\n..* [3-7][CDHS])|(\\n1H.*\\n..* [3-7][CDS])|(\\n1S.*\\n..* [3-7][CDH])
 
 # Jump Cue Bid 
 dealer east
