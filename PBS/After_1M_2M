@@ -1,10 +1,8 @@
 Script,After1M2M
 setDealerCode(`
 
-# For now, | doesn't work in filter. Change to this: 1H.Pass.2H.Pass|1S.Pass.2S.Pass
-
 # convention-card:
-# auction-filter: (1H.Pass.2H.Pass)|(1S.Pass.2S.Pass)
+# auction-filter: (1H.Pass.2H.)|(1S.Pass.2S.)
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 # defines oneSpade, oneHeart,suitPoints
@@ -21,7 +19,7 @@ s2 = shape(north, any 11xx) ? 3 : 0
 d1 = shape(north, any 2xxx) ? 1 : 0 // allow for 3 doubletons
 d2 = shape(north, any 22xx) ? 1 : 0
 d3 = shape(north, any 222x) ? 1 : 0
-shortSuitPoints = v1+v2+s1+s2+d1+d2+d3
+shortSuitPoints = (v1+v2+s1+s2+d1+d2+d3)>2 ? 3 : (v1+v2+s1+s2+d1+d2+d3) // limit to number of trumps
 
 openS = oneSpade and spades(north)==3
 openH = oneHeart and hearts(north)==3 and spades(north)<4
