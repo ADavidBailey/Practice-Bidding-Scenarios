@@ -4,8 +4,9 @@
 dealer north
 
 
+# Select Bergen,and 1M 3M blocking
 # convention-card: 21GF-Bergen
-# auction-filter: auction.....\\n1[HS].Pass.
+# auction-filter: Auction.....\\n1[HS].Pass.3[CDHSN]
 
 # Bergen Raises
 
@@ -45,7 +46,10 @@ s2 = shape(south, any 11xx) ? 3 : 0
 d1 = shape(south, any 2xxx) ? 1 : 0 // allow for 3 doubletons
 d2 = shape(south, any 22xx) ? 1 : 0
 d3 = shape(south, any 222x) ? 1 : 0
-tp = v1+v2+s1+s2+d1+d2+d3 + hcp(south)
+ssp = v1+v2+s1+s2+d1+d2+d3          // possible short suit points
+
+# Short Suit Points is limited to the number of trump support cards
+tp = ssp<4 ? ssp + hcp(south) : 4 + hcp(south)
 
 NT = shape(north, any 4333+4432+5332) and hcp(north)>14 and hcp(north)<18 and hcp(north)>19 and hcp(north)<22
 GF = hcp(north)>21
@@ -59,7 +63,6 @@ sFit = sOpener and spades(south)==4
 hFit = hOpener and hearts(south)==4
 fit = sFit or hFit
 nOpens = fit and hcp(north)>11 and hcp(north)<22
-
 
 # 3M = Preemptive Raise 0-6 TP
 case3M = tp<7 and nOpens
@@ -113,8 +116,6 @@ keep985 = not keep015
 keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
-### See -Stats-Leveling for statistics on these values ###
-### Example of how to generate Statistics for Leveling ###
 
 
 # These need to be in the same order as the statistics
