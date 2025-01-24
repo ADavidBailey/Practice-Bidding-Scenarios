@@ -72,7 +72,7 @@ hOpener = hearts(north) >=5 and not sOpener                    and hearts(north)
 sFit = sOpener and spades(south)==4
 hFit = hOpener and hearts(south)==4
 fit = sFit or hFit
-nOpens = fit and hcp(north)>11 and hcp(north)<22 and not gibNT
+nOpens = fit and hcp(north)>11 and hcp(north)<20 and not gibNT
 
 # 3M = Preemptive Raise 3-6 TP
 case3M = tp>2 and tp<7
