@@ -1,9 +1,9 @@
-Script,Minorwood
+Script,MSTorMSS
 setDealerCode(`
 
 # Enable MST and MSS and Exclusion Blackwood
 # convention-card: 21GF-MSTandMSS
-# auction-filter: 1NT Pass (2S|2NT|3C).*\\n(2NT|3C|3D|3NT)
+# auction-filter: Note....1N-(2[SN]|3C)
 
 # Minorwood
 dealer south
@@ -46,7 +46,7 @@ average "hcp   " hcp(south) + hcp(north),
 
 `,"S",true) 
 Script
-Button,Minorwood,\n\
+Button,MST or MSS,\n\
 --- After we open 1NT and partner bids Minor Suit Stayman or a Minor Suit Transfer，\n\
 minorwood is on: A jump to 4 of the agreed minor is minorwood.  Responses are in steps.\n\
 • 1st step is 1 or 4\n\
@@ -63,4 +63,4 @@ There are multiple ways to play MSS and MST. GIB plays both together，like this
 • ...3N - is a super accept with 17 HCP & 4 cards each minor\n\
 • 2N is a MST to !C showing 6+!C\n\
 • 3!C is a MST to !D showing 6+!D\n\
-%Minorwood%
+%MSTorMSS%
