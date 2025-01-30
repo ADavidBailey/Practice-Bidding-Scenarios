@@ -2,7 +2,7 @@
 % EXPORT
 %Content-type: text/x-pbn; charset=ISO-8859-1
 %Creator: BridgeComposer Version 5.109
-%Created: Thu Jan 30 09:22:38 2025 -0600
+%Created: Thu Jan 30 15:32:37 2025 -0600
 %BCOptions Center STBorder STShade
 %BidAndCardSpacing Thin
 %BoardsPerPage 1
@@ -77,11 +77,11 @@
 % 1-2 - New Minor Forcing
 % 1-2 - Quantitative 4NT
 % 1-2 - Responsive double
-% 1-2 - Reverse Bergen
 % 1-2 - Reverse drury
 % 1-2 - ROPI
 % 1-2 - Shape Bergen structure
 % 1-2 - SMOLEN
+% 1-2 - Soloway Jump Shifts
 % 1-2 - Splinter
 % 1-2 - Super acceptance after NT
 % 1-2 - Support double redouble
@@ -172,19 +172,24 @@ Pass Pass
 [Vulnerable "EW"]
 [Deal "N:2.KQ753.AK75.KJT K8654.JT42.2.Q42 AQ93..QJT964.A73 JT7.A986.83.9865"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3N"]
-[Result "11"]
+[Declarer "S"]
+[Contract "6D"]
+[Result "13"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 460"]
+[Score "NS 940"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3NT Pass
-Pass Pass
-[Play "E"]
+1D Pass 2H =1= Pass
+3D =2= Pass 3S Pass
+4NT =3= Pass 5H =4= Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=2/5 or 5/5, Q(D)=0"]
+[Play "W"]
 *
 
 [Event ""]
@@ -293,19 +298,26 @@ Pass Pass
 [Vulnerable "All"]
 [Deal "N:AK643.A.AT43.J86 Q972.T9765.Q8.T3 J.KQ83.KJ762.KQ7 T85.J42.95.A9542"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3N"]
-[Result "11"]
+[Declarer "S"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 660"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3NT Pass
+1D Pass 2S =1= Pass
+3D =2= Pass 3H Pass
+4C =3= Pass 4NT =4= Pass
+5C =5= Pass 6D Pass
 Pass Pass
-[Play "E"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 1430, for !D"]
+[Note "5:A=1/5 or 4/5"]
+[Play "W"]
 *
 
 [Event ""]
@@ -553,13 +565,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1390"]
 [Auction "S"]
-1C Pass 2H Pass
-2S Pass 3H Pass
-4C Pass 5D =1= Pass
-5S =2= Pass 6C Pass
+1C Pass 2H =1= Pass
+3C =2= Pass 3H Pass
+4NT =3= Pass 5D =4= Pass
+5S Pass 6C =5= Pass
 Pass Pass
-[Note "1:Exclusion, for !C"]
-[Note "2:1 out of 4"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !H"]
+[Note "4:A=0/5 or 3/5"]
+[Note "5:!H queen and !C king"]
 [Play "W"]
 *
 
@@ -604,22 +619,21 @@ Pass Pass
 [Vulnerable "None"]
 [Deal "N:AK642.T.AJT9.AQ9 QJ75.A83.Q5.JT74 T.KQJ4.K743.K653 983.97652.862.82"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "6NX"]
-[Result "12"]
+[Declarer "S"]
+[Contract "3N"]
+[Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 1230"]
+[Score "NS 460"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 4NT =1= Pass
-5C =2= Pass 6NT X
-Pass Pass Pass
-[Note "1:Blackwood 1430, for !H"]
-[Note "2:A=1/5 or 4/5"]
-[Play "E"]
+1D Pass 2S =1= Pass
+2NT =2= Pass 3H Pass
+3NT Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Play "W"]
 *
 
 [Event ""]
@@ -785,19 +799,27 @@ Pass Pass
 [Vulnerable "All"]
 [Deal "N:A.AQJ43.K872.JT3 T8532.K65.543.94 KQ74..AJT96.AK86 J96.T9872.Q.Q752"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "6N"]
-[Result "11"]
+[Declarer "S"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -100"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3NT Pass
-6NT Pass Pass Pass
-[Play "E"]
+1D Pass 2H =1= Pass
+3D =2= Pass 3S Pass
+4C =3= Pass 4H =4= Pass
+4NT =5= Pass 5D =6= Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Cue bid, a !H stopper"]
+[Note "5:Blackwood 1430, for !D"]
+[Note "6:A=0/5 or 3/5"]
+[Play "W"]
 *
 
 [Event ""]
@@ -846,22 +868,26 @@ Pass Pass
 [Vulnerable "EW"]
 [Deal "N:AKQ32.J.AJ95.AJ5 975.973.K86.T832 6.AK65.Q7432.KQ9 JT84.QT842.T.764"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "6N"]
+[Declarer "S"]
+[Contract "6D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 990"]
+[Score "NS 920"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 4NT =1= Pass
-5H =2= Pass 6NT Pass
+1D Pass 2S =1= Pass
+3D =2= Pass 3H Pass
+4C =3= Pass 4NT =4= Pass
+5C =5= Pass 6D Pass
 Pass Pass
-[Note "1:Blackwood 1430, for !H"]
-[Note "2:A=2/5 or 5/5, Q(H)=0"]
-[Play "E"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 1430, for !D"]
+[Note "5:A=1/5 or 4/5"]
+[Play "W"]
 *
 
 [Event ""]
@@ -886,9 +912,17 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1370"]
 [Auction "S"]
-1C Pass 2S Pass
-3H Pass 6C Pass
-Pass Pass
+1C Pass 2S =1= Pass
+3C =2= Pass 3H Pass
+4H =3= Pass 4S =4= Pass
+4NT =5= Pass 5C =6= Pass
+6C Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Cue bid, a !H stopper"]
+[Note "4:Cue bid, a !D stopper"]
+[Note "5:Blackwood 1430, for !C"]
+[Note "6:A=1/5 or 4/5"]
 [Play "W"]
 *
 
@@ -979,12 +1013,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1390"]
 [Auction "S"]
-1C Pass 2H Pass
-2S Pass 4C Pass
-4NT =1= Pass 5D =2= Pass
+1C Pass 2H =1= Pass
+3C =2= Pass 3S Pass
+4NT =3= Pass 5D =4= Pass
 6C Pass Pass Pass
-[Note "1:Blackwood 1430, for !C"]
-[Note "2:A=0/5 or 3/5"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !C"]
+[Note "4:A=0/5 or 3/5"]
 [Play "W"]
 *
 
@@ -1319,19 +1355,21 @@ Pass Pass
 [Vulnerable "None"]
 [Deal "N:2.AKJ96.QJ93.A32 Q974.Q74.542.754 KT83.8.AK76.KQ98 AJ65.T532.T8.JT6"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3N"]
-[Result "10"]
+[Declarer "S"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 430"]
+[Score "NS 920"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3NT Pass
-Pass Pass
-[Play "E"]
+1D Pass 2H =1= Pass
+2S =2= Pass 3S Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Play "W"]
 *
 
 [Event ""]
@@ -1510,19 +1548,24 @@ Pass Pass
 [Vulnerable "None"]
 [Deal "N:6.AQJ98.QT97.AK7 A753.K643.83.954 KQ82.T.AKJ42.Q32 JT94.752.65.JT86"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3N"]
-[Result "11"]
+[Declarer "S"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 460"]
+[Score "NS 920"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3NT Pass
-Pass Pass
-[Play "E"]
+1D Pass 2H =1= Pass
+3D =2= Pass 3S Pass
+4NT =3= Pass 5S =4= Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=2/5 or 5/5, Q(D)=1"]
+[Play "W"]
 *
 
 [Event ""]
@@ -1547,17 +1590,19 @@ Pass Pass
 [Room "Open"]
 [Score "NS 2140"]
 [Auction "S"]
-1D Pass 2S Pass
-3C Pass 4D Pass
-4NT =1= Pass 5D =2= Pass
-5H Pass 5S =3= Pass
-5NT =4= Pass 6D =5= Pass
+1D Pass 2S =1= Pass
+3D =2= Pass 4C Pass
+4NT =3= Pass 5D =4= Pass
+5H Pass 5S =5= Pass
+5NT =6= Pass 6D =7= Pass
 7D Pass Pass Pass
-[Note "1:Blackwood 1430, for !D"]
-[Note "2:A=0/5 or 3/5"]
-[Note "3:!D queen and !S king"]
-[Note "4:King ask by 5NT"]
-[Note "5:K=1"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=0/5 or 3/5"]
+[Note "5:!D queen and !S king"]
+[Note "6:King ask by 5NT"]
+[Note "7:K=1"]
 [Play "W"]
 *
 
@@ -2015,21 +2060,26 @@ Pass Pass
 [Deal "N:Q5.KQJT3.AQT52.T T98.A82.863.Q987 AK32.6.K974.AK65 J764.9754.J.J432"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "6N"]
+[Contract "6D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 990"]
+[Score "NS 920"]
 [Auction "S"]
-1D Pass 1H Pass
-1S Pass 2C =1= Pass
-4NT =2= Pass 5C =3= Pass
-6NT Pass Pass Pass
-[Note "1:Fourth suit game force"]
-[Note "2:Blackwood 1430, for N"]
-[Note "3:A=1/4 or 4/4"]
+1D Pass 2H =1= Pass
+2S =2= Pass 3C Pass
+4D Pass 4H =3= Pass
+4NT =4= Pass 5C =5= Pass
+5H Pass 5NT =6= Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Cue bid, a !H stopper"]
+[Note "4:Blackwood 1430, for !D"]
+[Note "5:A=1/5 or 4/5"]
+[Note "6:!D queen no !S king no !C king"]
 [Play "W"]
 *
 
@@ -2047,17 +2097,19 @@ Pass Pass
 [Deal "N:AKQ72.J74.AQ63.2 JT865.Q6.85.Q864 9.K853.KJT7.AKT7 43.AT92.942.J953"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "4H"]
-[Result "10"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 620"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 4H Pass
-Pass Pass
+1D Pass 2S =1= Pass
+3C =2= Pass 4C Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
 [Play "W"]
 *
 
@@ -2083,14 +2135,15 @@ Pass Pass
 [Room "Open"]
 [Score "NS 920"]
 [Auction "S"]
-1D Pass 2H Pass
-3D Pass 4D Pass
-4NT =1= Pass 5D =2= Pass
-5H Pass 5NT =3= Pass
-6D Pass Pass Pass
-[Note "1:Blackwood 1430, for !D"]
-[Note "2:A=0/5 or 3/5"]
-[Note "3:!D queen no !S king no !C king"]
+1D Pass 2H =1= Pass
+3D =2= Pass 3S Pass
+3NT Pass 4NT =3= Pass
+5H =4= Pass 6D Pass
+Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=2/5 or 5/5, Q(D)=0"]
 [Play "W"]
 *
 
@@ -2361,19 +2414,19 @@ Pass Pass
 [Vulnerable "EW"]
 [Deal "N:KT6432.K2.AK62.Q A85.Q754.J8.J754 Q.AJT3.T7543.AK3 J97.986.Q9.T9862"]
 [Scoring "MP"]
-[Declarer "S"]
-[Contract "3N"]
-[Result "11"]
+[Declarer "N"]
+[Contract "4S"]
+[Result "10"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 460"]
+[Score "NS 420"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3S Pass
-3NT Pass Pass Pass
-[Play "W"]
+1D Pass 1S Pass
+1NT Pass 3S Pass
+4S Pass Pass Pass
+[Play "E"]
 *
 
 [Event ""]
@@ -2459,17 +2512,23 @@ Pass Pass
 [Deal "N:.AJT32.KQT8.AQ53 K743.Q95.32.JT74 AQ95.4.A97654.K9 JT862.K876.J.862"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "3N"]
-[Result "11"]
+[Contract "7D"]
+[Result "13"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 660"]
+[Score "NS 2140"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3C Pass
-3NT Pass Pass Pass
+1D Pass 2H =1= Pass
+3D =2= Pass 3S Pass
+4NT =3= Pass 5C =4= Pass
+5D Pass 6D Pass
+7D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=1/5 or 4/5"]
 [Play "W"]
 *
 
@@ -2520,19 +2579,21 @@ Pass Pass
 [Vulnerable "None"]
 [Deal "N:AKQJ8.T.QT84.AQ8 9432.9532.95.K73 T.AKQJ.KJ73.JT96 765.8764.A62.542"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3N"]
+[Declarer "S"]
+[Contract "6D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 490"]
+[Score "NS 920"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3NT Pass
-Pass Pass
-[Play "E"]
+1D Pass 2S =1= Pass
+3C =2= Pass 3H Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Play "W"]
 *
 
 [Event ""]
@@ -2582,23 +2643,24 @@ Pass Pass
 [Deal "N:97.AKQ63.KQJ84.9 KQ53.82.973.J654 AT86.4.AT62.AKT7 J42.JT975.5.Q832"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "7D"]
+[Contract "6D"]
 [Result "13"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 1440"]
+[Score "NS 940"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 4D Pass
-4NT =1= Pass 5S =2= Pass
-5NT =3= Pass 6D =4= Pass
-7D Pass Pass Pass
-[Note "1:Blackwood 1430, for !D"]
-[Note "2:A=2/5 or 5/5, Q(D)=1"]
-[Note "3:King ask by 5NT"]
-[Note "4:K=1"]
+1D Pass 2H =1= Pass
+2S =2= Pass 3C Pass
+4D Pass 4H =3= Pass
+4NT =4= Pass 5S =5= Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Cue bid, a !H stopper"]
+[Note "4:Blackwood 1430, for !D"]
+[Note "5:A=2/5 or 5/5, Q(D)=1"]
 [Play "W"]
 *
 
@@ -2687,9 +2749,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 460"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3S Pass
+1D Pass 2S =1= Pass
+2NT =2= Pass 3S Pass
 3NT Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
 [Play "W"]
 *
 
@@ -2715,18 +2779,20 @@ Pass Pass
 [Room "Open"]
 [Score "NS 2210"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3H Pass
-4NT =1= Pass 5C =2= Pass
-5D Pass 5NT =3= Pass
-6C =4= Pass 6D =5= Pass
+1D Pass 2H =1= Pass
+2S =2= Pass 3H Pass
+4NT =3= Pass 5C =4= Pass
+5D Pass 5NT =5= Pass
+6C =6= Pass 6D =7= Pass
 6NT Pass 7H Pass
 Pass Pass
-[Note "1:Blackwood 1430, for !H"]
-[Note "2:A=1/5 or 4/5"]
-[Note "3:!H queen no !S king no !C king no !D king"]
-[Note "4:King ask by available bid"]
-[Note "5:K=0"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Blackwood 1430, for !H"]
+[Note "4:A=1/5 or 4/5"]
+[Note "5:!H queen no !S king no !C king no !D king"]
+[Note "6:King ask by available bid"]
+[Note "7:K=0"]
 [Play "E"]
 *
 
@@ -2836,7 +2902,7 @@ Pass Pass
 [Vulnerable "None"]
 [Deal "N:7.AK763.AT93.KQ5 J9852.T82.J87.J9 AK63.J.KQ65.T874 QT4.Q954.42.A632"]
 [Scoring "MP"]
-[Declarer "N"]
+[Declarer "S"]
 [Contract "3N"]
 [Result "11"]
 [BCFlags "3f"]
@@ -2845,10 +2911,12 @@ Pass Pass
 [Room "Open"]
 [Score "NS 460"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3NT Pass
-Pass Pass
-[Play "E"]
+1D Pass 2H =1= Pass
+2NT =2= Pass 3S Pass
+3NT Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Play "W"]
 *
 
 [Event ""]
@@ -3060,9 +3128,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 660"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3H Pass
+1D Pass 2H =1= Pass
+2NT =2= Pass 3H Pass
 3NT Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
 [Play "W"]
 *
 
@@ -3145,17 +3215,22 @@ Pass Pass
 [Deal "N:AK643.AQ2.JT87.K Q975.K87.Q4.T632 J.T963.AK932.AQ8 T82.J54.65.J9754"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "4H"]
-[Result "11"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 650"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 4H Pass
-Pass Pass
+1D Pass 2S =1= Pass
+3D =2= Pass 4C Pass
+4NT =3= Pass 5H =4= Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=2/5 or 5/5, Q(D)=0"]
 [Play "W"]
 *
 
@@ -3173,19 +3248,24 @@ Pass Pass
 [Deal "N:AQT72.4.A542.A96 943.JT953.86.Q32 J.AK62.QJ973.KJ7 K865.Q87.KT.T854"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "3N"]
-[Result "10"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 430"]
+[Score "NS 920"]
 [Auction "S"]
-1D Pass 1S Pass
-1NT Pass 2C =1= Pass
-2H Pass 3NT Pass
+1D Pass 2S =1= Pass
+3D =2= Pass 3H Pass
+4C =3= Pass 4NT =4= Pass
+5C =5= Pass 6D Pass
 Pass Pass
-[Note "1:New Minor Forcing"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 1430, for !D"]
+[Note "5:A=1/5 or 4/5"]
 [Play "W"]
 *
 
@@ -3499,20 +3579,26 @@ Pass Pass
 [Deal "N:KQJ.KQJ62.AQ954. T972.T983.82.T95 A3.4.KJ763.AKQ76 8654.A75.T.J8432"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "6D"]
+[Contract "7DX"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 1370"]
+[Score "NS -200"]
 [Auction "S"]
-1D Pass 2H Pass
-3C Pass 4D Pass
-4NT =1= Pass 5C =2= Pass
-6D Pass Pass Pass
-[Note "1:Blackwood 1430, for !D"]
-[Note "2:A=1/5 or 4/5"]
+1D Pass 2H =1= Pass
+3D =2= Pass 4C Pass
+4NT =3= Pass 5S =4= Pass
+5NT =5= Pass 6H =6= Pass
+7D X Pass Pass
+Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=2/5 or 5/5, Q(D)=1"]
+[Note "5:King ask by 5NT"]
+[Note "6:K=2"]
 [Play "W"]
 *
 
@@ -3661,19 +3747,27 @@ Pass Pass
 [Vulnerable "NS"]
 [Deal "N:AQ652.2.J842.AKJ J8.J764.A6.T8652 9.AKT5.KQ953.Q73 KT743.Q983.T7.94"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3N"]
-[Result "11"]
+[Declarer "S"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 660"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3NT Pass
-Pass Pass
-[Play "E"]
+1D Pass 2S =1= Pass
+3D =2= Pass 3H Pass
+4H =3= Pass 4S =4= Pass
+4NT =5= Pass 5H =6= Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Cue bid, a !H stopper"]
+[Note "4:Cue bid, a !C stopper"]
+[Note "5:Blackwood 1430, for !D"]
+[Note "6:A=2/5 or 5/5, Q(D)=0"]
+[Play "W"]
 *
 
 [Event ""]
@@ -3722,20 +3816,22 @@ Pass Pass
 [Deal "N:AKJ84.J.K5.KQ643 QT9.Q6542.Q962.7 5.AK9.AT4.AJT852 7632.T873.J873.9"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "6C"]
-[Result "13"]
+[Contract "6N"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 1390"]
+[Score "NS 1440"]
 [Auction "S"]
-1C Pass 2S Pass
-4C Pass 4NT =1= Pass
-5D =2= Pass 6C Pass
-Pass Pass
-[Note "1:Blackwood 1430, for !C"]
-[Note "2:A=0/5 or 3/5"]
+1C Pass 2S =1= Pass
+3C =2= Pass 3H Pass
+4NT =3= Pass 5S =4= Pass
+6NT Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !C"]
+[Note "4:A=2/5 or 5/5, Q(C)=1"]
 [Play "W"]
 *
 
@@ -3781,22 +3877,27 @@ Pass Pass
 [Deal "N:AKQ86.A54.AJ65.3 T52.J762.Q9.JT72 94.K.KT842.AKQ54 J73.QT983.73.986"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "6D"]
+[Contract "7D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 920"]
+[Score "NS -50"]
 [Auction "S"]
-1D Pass 2S Pass
-3C Pass 4D Pass
-4NT =1= Pass 5D =2= Pass
-5H Pass 6D =3= Pass
-Pass Pass
-[Note "1:Blackwood 1430, for !D"]
-[Note "2:A=0/5 or 3/5"]
-[Note "3:no !D queen"]
+1D Pass 2S =1= Pass
+3D =2= Pass 4C Pass
+4NT =3= Pass 5D =4= Pass
+5H Pass 5S =5= Pass
+5NT =6= Pass 6D =7= Pass
+7D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=0/5 or 3/5"]
+[Note "5:!D queen and !S king"]
+[Note "6:King ask by 5NT"]
+[Note "7:K=1"]
 [Play "W"]
 *
 
@@ -3822,14 +3923,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1370"]
 [Auction "S"]
-1D Pass 2S Pass
-3C Pass 4D Pass
-4NT =1= Pass 5D =2= Pass
-5H Pass 6D =3= Pass
+1D Pass 2S =1= Pass
+3D =2= Pass 3H Pass
+4NT =3= Pass 5D =4= Pass
+5H Pass 6D =5= Pass
 Pass Pass
-[Note "1:Blackwood 1430, for !D"]
-[Note "2:A=0/5 or 3/5"]
-[Note "3:no !D queen"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=0/5 or 3/5"]
+[Note "5:no !D queen"]
 [Play "W"]
 *
 
@@ -3886,14 +3989,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 400"]
 [Auction "S"]
-1D Pass 2H Pass
-3C Pass 3D Pass
-4D Pass 4H =1= Pass
-4NT =2= Pass 5C =3= Pass
+1D Pass 2H =1= Pass
+3D =2= Pass 4C Pass
+4NT =3= Pass 5C =4= Pass
 5D Pass Pass Pass
-[Note "1:Cue bid, a !H stopper"]
-[Note "2:Blackwood 1430, for !D"]
-[Note "3:A=1/5 or 4/5"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=1/5 or 4/5"]
 [Play "W"]
 *
 
@@ -3911,19 +4014,22 @@ Pass Pass
 [Deal "N:T73.AKJ94.QJ73.K A95.73.965.JT965 KQJ2.6.AKT42.AQ4 864.QT852.8.8732"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "6N"]
+[Contract "6D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 1440"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 1H Pass
-2S Pass 3C =1= Pass
-3NT Pass 6NT Pass
-Pass Pass
-[Note "1:Fourth suit game force"]
+1D Pass 2H =1= Pass
+3D =2= Pass 4C Pass
+4NT =3= Pass 5C =4= Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=1/5 or 4/5"]
 [Play "W"]
 *
 
@@ -3969,17 +4075,23 @@ Pass Pass
 [Deal "N:AQ862..AQJ86.K75 K3.JT864.K94.982 J.AKQ2.7532.AQ43 T9754.9753.T.JT6"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "6D"]
+[Contract "7D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 1370"]
+[Score "NS -100"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 6D Pass
-Pass Pass
+1D Pass 2S =1= Pass
+3C =2= Pass 3H Pass
+4NT =3= Pass 5D =4= Pass
+6D Pass 6S Pass
+7D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Blackwood 1430, for !S"]
+[Note "4:A=0/5 or 3/5"]
 [Play "W"]
 *
 
@@ -4005,13 +4117,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1370"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3D Pass
-4D Pass 4NT =1= Pass
-5C =2= Pass 6D Pass
-Pass Pass
-[Note "1:Blackwood 1430, for !D"]
-[Note "2:A=1/5 or 4/5"]
+1D Pass 2H =1= Pass
+3D =2= Pass 4C Pass
+4NT =3= Pass 5D =4= Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=0/5 or 3/5"]
 [Play "W"]
 *
 
@@ -4058,19 +4171,21 @@ Pass Pass
 [Vulnerable "NS"]
 [Deal "N:AKQ93.4.AQJ84.63 T74.KT765.T5.Q75 8.AQ83.9762.AK84 J652.J92.K3.JT92"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3N"]
-[Result "11"]
+[Declarer "S"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 660"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3NT Pass
-Pass Pass
-[Play "E"]
+1D Pass 2S =1= Pass
+2NT =2= Pass 3H Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Play "W"]
 *
 
 [Event ""]
@@ -4158,24 +4273,25 @@ Pass Pass
 [Deal "N:AJT32.A.AK86.A97 985.J986.92.QT65 K.KQ3.JT753.KJ42 Q764.T7542.Q4.83"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "6D"]
+[Contract "6N"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 1370"]
+[Score "NS 1440"]
 [Auction "S"]
-1D Pass 2S Pass
-3C Pass 4D Pass
-4H =1= Pass 4NT =2= Pass
-5D =3= Pass 5H Pass
-5S =4= Pass 6D Pass
+1D Pass 2S =1= Pass
+3D =2= Pass 3H Pass
+3NT Pass 4NT =3= Pass
+5D =4= Pass 5H Pass
+6D =5= Pass 6NT Pass
 Pass Pass
-[Note "1:Cue bid, a !H stopper"]
-[Note "2:Blackwood 1430, for !D"]
-[Note "3:A=0/5 or 3/5"]
-[Note "4:!D queen and !S king"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=0/5 or 3/5"]
+[Note "5:no !D queen"]
 [Play "W"]
 *
 
@@ -4478,19 +4594,26 @@ Pass Pass
 [Vulnerable "NS"]
 [Deal "N:9.AKJ973.A986.K4 T7652.QT65.7.QT7 AKJ8.4.JT52.AJ52 Q43.82.KQ43.9863"]
 [Scoring "MP"]
-[Declarer "S"]
-[Contract "3N"]
+[Declarer "N"]
+[Contract "6H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 660"]
+[Score "NS -100"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3H Pass
-3NT Pass Pass Pass
-[Play "W"]
+1D Pass 2H =1= Pass
+2S =2= Pass 3H Pass
+4NT =3= Pass 5D =4= Pass
+5S Pass 6H =5= Pass
+Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Blackwood 1430, for !H"]
+[Note "4:A=0/5 or 3/5"]
+[Note "5:no !H queen"]
+[Play "E"]
 *
 
 [Event ""]
@@ -4830,19 +4953,25 @@ Pass Pass
 [Vulnerable "All"]
 [Deal "N:9.KQJ62.A5.AQT42 AT73.743.QT87.97 KQ82.A.J96.K8653 J654.T985.K432.J"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3N"]
-[Result "11"]
+[Declarer "S"]
+[Contract "6C"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 660"]
+[Score "NS 1370"]
 [Auction "S"]
-1C Pass 2H Pass
-2S Pass 3NT Pass
+1C Pass 2H =1= Pass
+3C =2= Pass 3S Pass
+3NT Pass 4NT =3= Pass
+5H =4= Pass 6C Pass
 Pass Pass
-[Play "E"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !C"]
+[Note "4:A=2/5 or 5/5, Q(C)=0"]
+[Play "W"]
 *
 
 [Event ""]
@@ -4955,7 +5084,7 @@ Pass Pass
 [Vulnerable "None"]
 [Deal "N:K.AQJ932.AK98.82 QT843.KT76.5.J65 A762.8.QJT74.KQ9 J95.54.632.AT743"]
 [Scoring "MP"]
-[Declarer "S"]
+[Declarer "N"]
 [Contract "3N"]
 [Result "11"]
 [BCFlags "3f"]
@@ -4964,10 +5093,13 @@ Pass Pass
 [Room "Open"]
 [Score "NS 460"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3H Pass
-3NT Pass Pass Pass
-[Play "W"]
+1D Pass 2H =1= Pass
+3D =2= Pass 3H Pass
+3S Pass 3NT Pass
+Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Play "E"]
 *
 
 [Event ""]
@@ -5053,22 +5185,19 @@ Pass Pass
 [Deal "N:85.AKJT8.K.AJ962 J42.Q953.AT984.T AKT6.2.J73.KQ754 Q973.764.Q652.83"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "6C"]
+[Contract "5C"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 920"]
+[Score "NS 420"]
 [Auction "S"]
-1C Pass 2H Pass
-2S Pass 3C Pass
-4C Pass 4D =1= Pass
-4NT =2= Pass 5H =3= Pass
-6C Pass Pass Pass
-[Note "1:Cue bid, a !D stopper"]
-[Note "2:Blackwood 1430, for !C"]
-[Note "3:A=2/5 or 5/5, Q(C)=0"]
+1C Pass 1H Pass
+1S Pass 2D =1= X
+3C Pass 5C Pass
+Pass Pass
+[Note "1:Fourth suit game force"]
 [Play "W"]
 *
 
@@ -5151,19 +5280,26 @@ Pass Pass
 [Vulnerable "None"]
 [Deal "N:AKQT6.K9.8.K9654 873.Q864.AT643.T J.AT32.KQ7.AQJ82 9542.J75.J952.73"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "6N"]
+[Declarer "S"]
+[Contract "6C"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 990"]
+[Score "NS 920"]
 [Auction "S"]
-1C Pass 2S Pass
-3H Pass 3NT Pass
-6NT Pass Pass Pass
-[Play "E"]
+1C Pass 2S =1= Pass
+3C =2= Pass 3D X
+4C Pass 4H =3= Pass
+4NT =4= Pass 5S =5= Pass
+6C Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Cue bid, a !H stopper"]
+[Note "4:Blackwood 1430, for !C"]
+[Note "5:A=2/5 or 5/5, Q(C)=1"]
+[Play "W"]
 *
 
 [Event ""]
@@ -5180,20 +5316,20 @@ Pass Pass
 [Deal "N:KQJ92.K84.KQ93.K A843.T73.8.JT842 6.AQ96.AT74.AQ95 T75.J52.J652.763"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "6N"]
+[Contract "6D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 1440"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 4H Pass
-4NT =1= Pass 5C =2= Pass
-6NT Pass Pass Pass
-[Note "1:Blackwood 1430, for !S"]
-[Note "2:A=1/5 or 4/5"]
+1D Pass 2S =1= Pass
+3C =2= Pass 4C Pass
+5D Pass 6D Pass
+Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
 [Play "W"]
 *
 
@@ -5219,12 +5355,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 920"]
 [Auction "S"]
-1D Pass 1S Pass
-3D Pass 4NT =1= Pass
-5D =2= Pass 6D Pass
-Pass Pass
-[Note "1:Blackwood 1430, for !D"]
-[Note "2:A=0/5 or 3/5"]
+1D Pass 2S =1= Pass
+3D =2= Pass 4C Pass
+4NT =3= Pass 5S =4= Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=2/5 or 5/5, Q(D)=1"]
 [Play "W"]
 *
 
@@ -5250,14 +5388,12 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1370"]
 [Auction "S"]
-1D Pass 1S Pass
-2H Pass 3C =1= Pass
-3NT Pass 4D Pass
-4H =2= Pass 4NT =3= Pass
-5S =4= Pass 6D Pass
-Pass Pass
-[Note "1:Fourth suit game force"]
-[Note "2:Cue bid, a !H stopper"]
+1D Pass 2S =1= Pass
+3D =2= Pass 4C Pass
+4NT =3= Pass 5S =4= Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
 [Note "3:Blackwood 1430, for !D"]
 [Note "4:A=2/5 or 5/5, Q(D)=1"]
 [Play "W"]
@@ -5380,13 +5516,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 420"]
 [Auction "S"]
-1D Pass 1H Pass
-2C Pass 2S =1= Pass
-3NT Pass 4D Pass
-4S =2= Pass 5D Pass
+1D Pass 2H =1= Pass
+3D =2= Pass 4C Pass
+4S =3= Pass 4NT =4= Pass
+5C =5= Pass 5D Pass
 Pass Pass
-[Note "1:Fourth suit game force"]
-[Note "2:Cue bid, a !S stopper"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Cue bid, a !S stopper"]
+[Note "4:Blackwood 1430, for !D"]
+[Note "5:A=1/5 or 4/5"]
 [Play "W"]
 *
 
@@ -5437,21 +5576,23 @@ Pass Pass
 [Deal "N:AQ852.AJ7.AK96.9 T976.T64.JT.K864 K.KQ8.Q8432.QJ73 J43.9532.75.AT52"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "5D"]
+[Contract "6D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 620"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2S Pass
-3C Pass 4D Pass
-4H =1= Pass 4NT =2= Pass
-5D =3= Pass Pass Pass
-[Note "1:Cue bid, a !H stopper"]
-[Note "2:Blackwood 1430, for !D"]
-[Note "3:A=0/5 or 3/5"]
+1D Pass 2S =1= Pass
+3D =2= Pass 4C Pass
+4D Pass 4NT =3= Pass
+5D =4= Pass 6D Pass
+Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=0/5 or 3/5"]
 [Play "W"]
 *
 
@@ -5506,10 +5647,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1370"]
 [Auction "S"]
-1D Pass 2H Pass
-3C Pass 4D Pass
-5D Pass 6D Pass
+1D Pass 2H =1= Pass
+3D =2= Pass 3S Pass
+4NT =3= Pass 5D =4= Pass
+5H Pass 6D =5= Pass
 Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=0/5 or 3/5"]
+[Note "5:no !D queen"]
 [Play "W"]
 *
 
@@ -5535,14 +5682,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1370"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3D Pass
-4D Pass 4H =1= Pass
-4NT =2= Pass 5S =3= Pass
+1D Pass 2H =1= Pass
+2S =2= Pass 3C Pass
+4D Pass 4H =3= Pass
+4NT =4= Pass 5S =5= Pass
 6D Pass Pass Pass
-[Note "1:Cue bid, a !H stopper"]
-[Note "2:Blackwood 1430, for !D"]
-[Note "3:A=2/5 or 5/5, Q(D)=1"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Cue bid, a !H stopper"]
+[Note "4:Blackwood 1430, for !D"]
+[Note "5:A=2/5 or 5/5, Q(D)=1"]
 [Play "W"]
 *
 
@@ -5815,17 +5964,20 @@ Pass Pass
 [Deal "N:AKQ543.7.AK83.84 9876.T8432.9.QT9 .KQ95.QT742.AK65 JT2.AJ6.J65.J732"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "3N"]
+[Contract "6D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 490"]
+[Score "NS 920"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3S Pass
-3NT Pass Pass Pass
+1D Pass 2S =1= Pass
+3D =2= Pass 3S Pass
+3NT Pass 6D Pass
+Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
 [Play "W"]
 *
 
@@ -5843,17 +5995,19 @@ Pass Pass
 [Deal "N:AK842.KQ7.K764.5 JT73.63.532.K432 5.AJ82.AJ98.AT98 Q96.T954.QT.QJ76"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "4H"]
+[Contract "6D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 4H Pass
-Pass Pass
+1D Pass 2S =1= Pass
+3C =2= Pass 4C Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
 [Play "W"]
 *
 
@@ -5905,19 +6059,21 @@ Pass Pass
 [Vulnerable "EW"]
 [Deal "N:9.AKQJ7.AQ854.65 KT82.96543.3.T72 AJ64.8.KT76.AQ98 Q753.T2.J92.KJ43"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3N"]
-[Result "12"]
+[Declarer "S"]
+[Contract "6D"]
+[Result "13"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 490"]
+[Score "NS 940"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3NT Pass
-Pass Pass
-[Play "E"]
+1D Pass 2H =1= Pass
+2S =2= Pass 3S Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Play "W"]
 *
 
 [Event ""]
@@ -6027,19 +6183,26 @@ Pass Pass
 [Vulnerable "All"]
 [Deal "N:A.KQJ64.AT72.J74 Q942.987.K54.963 KJ76.2.QJ986.AK8 T853.AT53.3.QT52"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3N"]
-[Result "10"]
+[Declarer "S"]
+[Contract "5D"]
+[Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 630"]
+[Score "NS 600"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3NT Pass
+1D Pass 2H =1= Pass
+3D =2= Pass 3S Pass
+4C =3= Pass 4NT =4= Pass
+5C =5= Pass 5D Pass
 Pass Pass
-[Play "E"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 1430, for !D"]
+[Note "5:A=1/5 or 4/5"]
+[Play "W"]
 *
 
 [Event ""]
@@ -6223,12 +6386,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 920"]
 [Auction "S"]
-1D Pass 2S Pass
-3D Pass 4D Pass
-4NT =1= Pass 5D =2= Pass
+1D Pass 2S =1= Pass
+3D =2= Pass 4C Pass
+4NT =3= Pass 5D =4= Pass
 6D Pass Pass Pass
-[Note "1:Blackwood 1430, for !D"]
-[Note "2:A=0/5 or 3/5"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=0/5 or 3/5"]
 [Play "W"]
 *
 
@@ -6315,14 +6480,19 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1510"]
 [Auction "S"]
-1D Pass 2H Pass
-3C Pass 3H Pass
-4NT =1= Pass 5D =2= Pass
-5S Pass 5NT =3= Pass
+1D Pass 2H =1= Pass
+3D =2= Pass 3H Pass
+4NT =3= Pass 5D =4= Pass
+5S Pass 5NT =5= Pass
+6C =6= Pass 6D =7= Pass
 7H Pass Pass Pass
-[Note "1:Blackwood 1430, for !H"]
-[Note "2:A=0/5 or 3/5"]
-[Note "3:!H queen no !C king no !D king"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !H"]
+[Note "4:A=0/5 or 3/5"]
+[Note "5:!H queen no !C king no !D king"]
+[Note "6:King ask by available bid"]
+[Note "7:K=0"]
 [Play "E"]
 *
 
@@ -6339,19 +6509,26 @@ Pass Pass
 [Vulnerable "All"]
 [Deal "N:A83.AQT98.KQ84.4 K54.J7.763.QT953 Q97.4.AJT95.AK76 JT62.K6532.2.J82"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3N"]
-[Result "11"]
+[Declarer "S"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 660"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2H Pass
-3C Pass 3NT Pass
-Pass Pass
-[Play "E"]
+1D Pass 2H =1= Pass
+3D =2= Pass 4C Pass
+4NT =3= Pass 5D =4= Pass
+5H Pass 5NT =5= Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=0/5 or 3/5"]
+[Note "5:!D queen no !S king no !C king"]
+[Play "W"]
 *
 
 [Event ""]
@@ -6625,7 +6802,7 @@ Pass Pass
 [Vulnerable "EW"]
 [Deal "N:T.AKQJ4.AJ64.QJ8 QJ64.752.87.K632 AK53.8.KQ953.A74 9872.T963.T2.T95"]
 [Scoring "MP"]
-[Declarer "N"]
+[Declarer "S"]
 [Contract "6N"]
 [Result "13"]
 [BCFlags "3f"]
@@ -6634,10 +6811,15 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1020"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 2NT Pass
+1D Pass 2H =1= Pass
+3D =2= Pass 3S Pass
+4NT =3= Pass 5H =4= Pass
 6NT Pass Pass Pass
-[Play "E"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=2/5 or 5/5, Q(D)=0"]
+[Play "W"]
 *
 
 [Event ""]
@@ -6685,17 +6867,24 @@ Pass Pass
 [Deal "N:AKQ65.Q53.AQT9.7 T7432.82.83.AT32 .KJT7.KJ742.KQ86 J98.A964.65.J954"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "4H"]
+[Contract "5D"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 650"]
+[Score "NS 600"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 4H Pass
+1D Pass 2S =1= Pass
+3D =2= Pass 4C Pass
+4H =3= Pass 4NT =4= Pass
+5C =5= Pass 5D Pass
 Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Cue bid, a !H stopper"]
+[Note "4:Blackwood 1430, for !D"]
+[Note "5:A=1/5 or 4/5"]
 [Play "W"]
 *
 
@@ -6712,21 +6901,24 @@ Pass Pass
 [Vulnerable "EW"]
 [Deal "N:KQ987.AJT.AQ43.Q JT643.64.96.A754 A.KQ85.KT875.J93 52.9732.J2.KT862"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "5S"]
-[Result "10"]
+[Declarer "S"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -50"]
+[Score "NS 920"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 4NT =1= Pass
-5S =2= Pass Pass Pass
-[Note "1:Blackwood 1430, for !H"]
-[Note "2:A=2/5 or 5/5, Q(H)=1"]
-[Play "E"]
+1D Pass 2S =1= Pass
+3D =2= Pass 4C Pass
+4NT =3= Pass 5S =4= Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=2/5 or 5/5, Q(D)=1"]
+[Play "W"]
 *
 
 [Event ""]
@@ -6779,11 +6971,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 660"]
 [Auction "S"]
-1D Pass 1H Pass
-1S Pass 2C =1= Pass
-2NT Pass 3H Pass
+1D Pass 2H =1= Pass
+2S =2= Pass 3S Pass
 3NT Pass Pass Pass
-[Note "1:Fourth suit game force"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
 [Play "W"]
 *
 
@@ -6897,20 +7089,19 @@ Pass
 [Deal "N:AKJT9.654.AQ76.A Q4.JT2.842.86543 7.AQ93.KT93.QJ97 86532.K87.J5.KT2"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "5H"]
+[Contract "3N"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS 460"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 4NT =1= Pass
-5C =2= Pass 5H Pass
-Pass Pass
-[Note "1:Blackwood 1430, for !H"]
-[Note "2:A=1/5 or 4/5"]
+1D Pass 2S =1= Pass
+2NT =2= Pass 3C Pass
+3NT Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
 [Play "W"]
 *
 
@@ -6927,19 +7118,21 @@ Pass Pass
 [Vulnerable "All"]
 [Deal "N:AKQJ9.6.QT83.KJ9 86532.987.A64.73 T.AQJ4.K752.A642 74.KT532.J9.QT85"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3N"]
-[Result "11"]
+[Declarer "S"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 660"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3NT Pass
-Pass Pass
-[Play "E"]
+1D Pass 2S =1= Pass
+3C =2= Pass 3H Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Play "W"]
 *
 
 [Event ""]
@@ -6998,11 +7191,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 660"]
 [Auction "S"]
-1D Pass 1H Pass
-1S Pass 2C =1= Pass
-2NT Pass 3H Pass
+1D Pass 2H =1= Pass
+2S =2= Pass 3S Pass
 3NT Pass Pass Pass
-[Note "1:Fourth suit game force"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
 [Play "W"]
 *
 
@@ -7045,21 +7238,21 @@ Pass Pass
 [Vulnerable "None"]
 [Deal "N:AKJ86.K87.AQ92.J T743.J96.T8.T862 2.AQ54.KJ65.A753 Q95.T32.743.KQ94"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "5S"]
-[Result "11"]
+[Declarer "S"]
+[Contract "6D"]
+[Result "13"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 450"]
+[Score "NS 940"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 4NT =1= Pass
-5S =2= Pass Pass Pass
-[Note "1:Blackwood 1430, for !H"]
-[Note "2:A=2/5 or 5/5, Q(H)=1"]
-[Play "E"]
+1D Pass 2S =1= Pass
+3C =2= Pass 4C Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Play "W"]
 *
 
 [Event ""]
@@ -7144,17 +7337,15 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1440"]
 [Auction "S"]
-1D Pass 1H Pass
-3C Pass 3S =1= Pass
-3NT Pass 4D Pass
-4S =2= Pass 4NT =3= Pass
-5D =4= Pass 5NT =5= Pass
-6D =6= Pass 7D Pass
-Pass Pass
-[Note "1:Fourth suit game force"]
-[Note "2:Cue bid, a !S stopper"]
+1D Pass 2H =1= Pass
+3D =2= Pass 4C Pass
+4NT =3= Pass 5S =4= Pass
+5NT =5= Pass 6D =6= Pass
+7D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
 [Note "3:Blackwood 1430, for !D"]
-[Note "4:A=0/5 or 3/5"]
+[Note "4:A=2/5 or 5/5, Q(D)=1"]
 [Note "5:King ask by 5NT"]
 [Note "6:K=1"]
 [Play "W"]
@@ -7218,18 +7409,20 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1510"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3S Pass
-4NT =1= Pass 5C =2= Pass
-5D Pass 5NT =3= Pass
-6C =4= Pass 6D =5= Pass
+1D Pass 2S =1= Pass
+3C =2= Pass 3S Pass
+4NT =3= Pass 5C =4= Pass
+5D Pass 5NT =5= Pass
+6C =6= Pass 6D =7= Pass
 6NT Pass 7S Pass
 Pass Pass
-[Note "1:Blackwood 1430, for !S"]
-[Note "2:A=1/5 or 4/5"]
-[Note "3:!S queen no !H king no !C king no !D king"]
-[Note "4:King ask by available bid"]
-[Note "5:K=0"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Blackwood 1430, for !S"]
+[Note "4:A=1/5 or 4/5"]
+[Note "5:!S queen no !H king no !C king no !D king"]
+[Note "6:King ask by available bid"]
+[Note "7:K=0"]
 [Play "E"]
 *
 
@@ -7281,23 +7474,22 @@ Pass Pass
 [Vulnerable "NS"]
 [Deal "N:.AKQ84.KJ86.AJ75 QT52.JT73.Q92.84 AJ86.5.AT73.KQ62 K9743.962.54.T93"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "6C"]
-[Result "13"]
+[Declarer "S"]
+[Contract "7D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 1390"]
+[Score "NS -100"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3C Pass
-4C Pass 4NT =1= Pass
-5D =2= Pass 6C Pass
+1D Pass 2H =1= Pass
+2S =2= Pass 3S Pass
+6D Pass 7D Pass
 Pass Pass
-[Note "1:Blackwood 1430, for !C"]
-[Note "2:A=0/5 or 3/5"]
-[Play "E"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Play "W"]
 *
 
 [Event ""]
@@ -7728,17 +7920,19 @@ Pass Pass
 [Deal "N:AKQ62.T98.AT53.Q J953.65.642.AKT8 8.AKQJ.KJ98.J763 T74.7432.Q7.9542"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "4H"]
-[Result "10"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 420"]
+[Score "NS 920"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 4H Pass
-Pass Pass
+1D Pass 2S =1= Pass
+3C =2= Pass 4C Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
 [Play "W"]
 *
 
@@ -7820,21 +8014,23 @@ Pass Pass
 [Deal "N:.AKJ54.T965.AKQJ AT872.T983.Q74.7 KQ64.Q.AKJ32.T32 J953.762.8.98654"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "6D"]
+[Contract "7D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 920"]
+[Score "NS -50"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3C Pass
-3D Pass 4D Pass
-4NT =1= Pass 5H =2= Pass
-6D Pass Pass Pass
-[Note "1:Blackwood 1430, for !D"]
-[Note "2:A=2/5 or 5/5, Q(D)=0"]
+1D Pass 2H =1= Pass
+3D =2= Pass 3S X
+4D Pass 5S =3= Pass
+6D =4= Pass 7D Pass
+Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Exclusion, for !D"]
+[Note "4:2 out of 4"]
 [Play "W"]
 *
 
@@ -7953,19 +8149,21 @@ Pass Pass
 [Vulnerable "All"]
 [Deal "N:AK764.Q.KJ98.A95 J9853.T742.643.Q T.AJ96.A752.KJ63 Q2.K853.QT.T8742"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3N"]
-[Result "11"]
+[Declarer "S"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 660"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3NT Pass
-Pass Pass
-[Play "E"]
+1D Pass 2S =1= Pass
+2NT =2= Pass 3H Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Play "W"]
 *
 
 [Event ""]
@@ -8234,12 +8432,12 @@ Pass Pass
 [Room "Open"]
 [Score "NS -50"]
 [Auction "S"]
-1D Pass 2H Pass
-3C Pass 3H Pass
-4NT =1= Pass 5H =2= Pass
+1D Pass 2H =1= Pass
+3D =2= Pass 3H Pass
+4C Pass 5D Pass
 6NT Pass Pass Pass
-[Note "1:Blackwood 1430, for !H"]
-[Note "2:A=2/5 or 5/5, Q(H)=0"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
 [Play "W"]
 *
 
@@ -8291,20 +8489,19 @@ Pass Pass
 [Deal "N:AKQ94.AQ4.QJ62.Q T53.5.9875.A8543 6.KJT8.AK43.KT62 J872.97632.T.J97"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "6H"]
+[Contract "6D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 1430"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 4NT =1= Pass
-5H =2= Pass 6H Pass
-Pass Pass
-[Note "1:Blackwood 1430, for !H"]
-[Note "2:A=2/5 or 5/5, Q(H)=0"]
+1D Pass 2S =1= Pass
+3C =2= Pass 4C Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
 [Play "W"]
 *
 
@@ -8361,13 +8558,15 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1370"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3D Pass
-4D Pass 4NT =1= Pass
-5H =2= Pass 6D Pass
+1D Pass 2H =1= Pass
+2S =2= Pass 3C X
+4D Pass 4NT =3= Pass
+5H =4= Pass 6D Pass
 Pass Pass
-[Note "1:Blackwood 1430, for !D"]
-[Note "2:A=2/5 or 5/5, Q(D)=0"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=2/5 or 5/5, Q(D)=0"]
 [Play "W"]
 *
 
@@ -8481,23 +8680,23 @@ Pass Pass
 [Deal "N:AJT.AKJT7.K864.T K842.Q965.92.653 9653.4.AQJ3.AKQ7 Q7.832.T75.J9842"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "7D"]
+[Contract "6D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -50"]
+[Score "NS 920"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3D Pass
-4NT =1= Pass 5D =2= Pass
-5NT =3= Pass 6D =4= Pass
-7D Pass Pass Pass
-[Note "1:Blackwood 1430, for !D"]
-[Note "2:A=0/5 or 3/5"]
-[Note "3:King ask by 5NT"]
-[Note "4:K=1"]
+1D Pass 2H =1= Pass
+2S =2= Pass 3C Pass
+4D Pass 4NT =3= Pass
+5S =4= Pass 6D Pass
+Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=2/5 or 5/5, Q(D)=1"]
 [Play "W"]
 *
 
@@ -8523,9 +8722,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1370"]
 [Auction "S"]
-1C Pass 2H Pass
-2S Pass 6C Pass
+1C Pass 1H Pass
+1S Pass 2D =1= Pass
+2NT Pass 4C Pass
+4D =2= Pass 4NT =3= Pass
+5C =4= Pass 6C Pass
 Pass Pass
+[Note "1:Fourth suit game force"]
+[Note "2:Cue bid, a !D stopper"]
+[Note "3:Blackwood 1430, for !C"]
+[Note "4:A=1/5 or 4/5"]
 [Play "W"]
 *
 
@@ -8758,19 +8964,24 @@ Pass Pass
 [Vulnerable "All"]
 [Deal "N:AK987.4.A764.A75 T543.K86.T3.KJT4 Q.AQJ7.KQJ82.832 J62.T9532.95.Q96"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3N"]
-[Result "11"]
+[Declarer "S"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 660"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3NT Pass
-Pass Pass
-[Play "E"]
+1D Pass 2S =1= Pass
+3D =2= Pass 3H Pass
+4NT =3= Pass 5D =4= Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=0/5 or 3/5"]
+[Play "W"]
 *
 
 [Event ""]
@@ -9178,20 +9389,25 @@ Pass Pass
 [Deal "N:AKQ72.AJ8.QJ32.Q T543.Q653.84.K86 6.92.AKT976.AJ53 J98.KT74.5.T9742"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "6D"]
+[Contract "7D"]
 [Result "13"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 940"]
+[Score "NS 1440"]
 [Auction "S"]
-1D Pass 2S Pass
-3C Pass 4D Pass
-4NT =1= Pass 5S =2= Pass
-6D Pass Pass Pass
-[Note "1:Blackwood 1430, for !D"]
-[Note "2:A=2/5 or 5/5, Q(D)=1"]
+1D Pass 2S =1= Pass
+3D =2= Pass 4C Pass
+4NT =3= Pass 5S =4= Pass
+5NT =5= Pass 6D =6= Pass
+7D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=2/5 or 5/5, Q(D)=1"]
+[Note "5:King ask by 5NT"]
+[Note "6:K=1"]
 [Play "W"]
 *
 
@@ -9217,9 +9433,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 630"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3S Pass
+1D Pass 2S =1= Pass
+2NT =2= Pass 3S Pass
 3NT Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
 [Play "W"]
 *
 
@@ -9497,23 +9715,24 @@ Pass Pass
 [Deal "N:Q.A9643.AKQ98.Q5 JT9.QJ75.76.K432 AK82.8.JT543.AJ8 76543.KT2.2.T976"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "7D"]
+[Contract "6D"]
 [Result "13"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 1440"]
+[Score "NS 940"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 4D Pass
-4NT =1= Pass 5D =2= Pass
-5NT =3= Pass 6C =4= Pass
-7D Pass Pass Pass
-[Note "1:Blackwood 1430, for !D"]
-[Note "2:A=0/5 or 3/5"]
-[Note "3:King ask by 5NT"]
-[Note "4:K=0"]
+1D Pass 1H Pass
+1S Pass 2C =1= Pass
+2NT Pass 4D Pass
+4S =2= Pass 4NT =3= Pass
+5S =4= Pass 6D Pass
+Pass Pass
+[Note "1:Fourth suit game force"]
+[Note "2:Cue bid, a !S stopper"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=2/5 or 5/5, Q(D)=1"]
 [Play "W"]
 *
 
@@ -9695,12 +9914,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1020"]
 [Auction "S"]
-1D Pass 2H Pass
-3C Pass 3H Pass
-4NT =1= Pass 5D =2= Pass
+1D Pass 2H =1= Pass
+3D =2= Pass 3H Pass
+4NT =3= Pass 5D =4= Pass
 6NT Pass Pass Pass
-[Note "1:Blackwood 1430, for !H"]
-[Note "2:A=0/5 or 3/5"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !H"]
+[Note "4:A=0/5 or 3/5"]
 [Play "W"]
 *
 
@@ -9717,19 +9938,25 @@ Pass Pass
 [Vulnerable "NS"]
 [Deal "N:4.AKQJ64.AT54.J4 QT5.9852.93.AT96 KJ72.3.KQ82.KQ72 A9863.T7.J76.853"]
 [Scoring "MP"]
-[Declarer "S"]
-[Contract "3N"]
+[Declarer "N"]
+[Contract "6H"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 660"]
+[Score "NS -100"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3H Pass
-3NT Pass Pass Pass
-[Play "W"]
+1D Pass 2H =1= Pass
+2S =2= Pass 3H Pass
+4NT =3= Pass 5D =4= Pass
+5H Pass 6H Pass
+Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Blackwood 1430, for !H"]
+[Note "4:A=0/5 or 3/5"]
+[Play "E"]
 *
 
 [Event ""]
@@ -9818,13 +10045,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 600"]
 [Auction "S"]
-1D Pass 2H Pass
-3C Pass 4D Pass
-4S =1= Pass 4NT =2= Pass
-5D =3= Pass Pass Pass
-[Note "1:Cue bid, a !S stopper"]
-[Note "2:Blackwood 1430, for !D"]
-[Note "3:A=0/5 or 3/5"]
+1D Pass 2H =1= Pass
+3D =2= Pass 4C Pass
+4D Pass 4NT =3= Pass
+5D =4= Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=0/5 or 3/5"]
 [Play "W"]
 *
 
@@ -9877,19 +10105,24 @@ Pass Pass
 [Deal "N:AJ7.KQT43.Q654.Q Q9652.A952.8.J43 KT43.6.AJ72.AK85 8.J87.KT93.T9762"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "3N"]
+[Contract "6N"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 660"]
+[Score "NS -100"]
 [Auction "S"]
-1D Pass 1H Pass
-1S Pass 2C =1= Pass
-2NT Pass 3H Pass
-3NT Pass Pass Pass
-[Note "1:Fourth suit game force"]
+1D Pass 2H =1= Pass
+2S =2= Pass 3C Pass
+4D Pass 4H =3= Pass
+4NT =4= Pass 5C =5= Pass
+6NT Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Cue bid, a !H stopper"]
+[Note "4:Blackwood 1430, for !D"]
+[Note "5:A=1/5 or 4/5"]
 [Play "W"]
 *
 
@@ -10139,12 +10372,11 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1390"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 4NT =1= Pass
-5D =2= Pass 6D Pass
-Pass Pass
-[Note "1:Blackwood 1430, for !S"]
-[Note "2:A=0/5 or 3/5"]
+1D Pass 2H =1= Pass
+2S =2= Pass 3S Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
 [Play "W"]
 *
 
@@ -10221,19 +10453,26 @@ Pass Pass
 [Vulnerable "NS"]
 [Deal "N:K.AQT62.A652.AJ6 T9843.J743.3.982 QJ62.K.KQJT4.KQ4 A75.985.987.T753"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "6N"]
+[Declarer "S"]
+[Contract "6D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 1440"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 2NT Pass
-6NT Pass Pass Pass
-[Play "E"]
+1D Pass 2H =1= Pass
+3D =2= Pass 3S Pass
+4C =3= Pass 4NT =4= Pass
+5C =5= Pass 6D Pass
+Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 1430, for !D"]
+[Note "5:A=1/5 or 4/5"]
+[Play "W"]
 *
 
 [Event ""]
@@ -10250,17 +10489,19 @@ Pass Pass
 [Deal "N:AKQJ2.AJ6.QT94.J 984.Q84.65.96532 3.T532.AK72.AQ87 T765.K97.J83.KT4"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "4H"]
-[Result "12"]
+[Contract "3N"]
+[Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 480"]
+[Score "NS 460"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 4H Pass
-Pass Pass
+1D Pass 2S =1= Pass
+2NT =2= Pass 3C Pass
+3NT Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
 [Play "W"]
 *
 
@@ -10419,12 +10660,18 @@ Pass Pass
 [Room "Open"]
 [Score "NS 920"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 4D Pass
-4NT =1= Pass 5C =2= Pass
-6D Pass Pass Pass
-[Note "1:Blackwood 1430, for !D"]
-[Note "2:A=1/5 or 4/5"]
+1D Pass 2H =1= Pass
+2NT =2= Pass 3C Pass
+4D Pass 4H =3= Pass
+4S =4= Pass 4NT =5= Pass
+5D =6= Pass 6D Pass
+Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Cue bid, a !H stopper"]
+[Note "4:Cue bid, a !S stopper"]
+[Note "5:Blackwood 1430, for !D"]
+[Note "6:A=0/5 or 3/5"]
 [Play "W"]
 *
 
@@ -10562,19 +10809,24 @@ Pass Pass
 [Vulnerable "All"]
 [Deal "N:KQ653.K54.KQ65.Q 987.JT976.874.A8 A.Q2.AJT32.KJT75 JT42.A83.9.96432"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3N"]
+[Declarer "S"]
+[Contract "5D"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 660"]
+[Score "NS 600"]
 [Auction "S"]
-1D Pass 2S Pass
-3C Pass 3NT Pass
-Pass Pass
-[Play "E"]
+1D Pass 2S =1= Pass
+3D =2= Pass 4C Pass
+4NT =3= Pass 5C =4= Pass
+5D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=1/5 or 4/5"]
+[Play "W"]
 *
 
 [Event ""]
@@ -10725,19 +10977,24 @@ Pass Pass
 [Vulnerable "NS"]
 [Deal "N:AKQ85.Q87.QT94.Q J7432.52.J8.AT87 T.AK64.AK62.K953 96.JT93.753.J642"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "6N"]
+[Declarer "S"]
+[Contract "6D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 1440"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3NT Pass
-6NT Pass Pass Pass
-[Play "E"]
+1D Pass 2S =1= Pass
+3C =2= Pass 4C Pass
+4NT =3= Pass 5S =4= Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Blackwood 1430, for !S"]
+[Note "4:A=2/5 or 5/5, Q(S)=1"]
+[Play "W"]
 *
 
 [Event ""]
@@ -10794,13 +11051,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS -100"]
 [Auction "S"]
-1D Pass 1H Pass
-1S Pass 2C =1= Pass
-4NT =2= Pass 5H =3= Pass
+1D Pass 2H =1= Pass
+2S =2= Pass 3C Pass
+4D Pass 4H =3= Pass
+4NT =4= Pass 5H =5= Pass
 Pass Pass
-[Note "1:Fourth suit game force"]
-[Note "2:Blackwood 1430, for N"]
-[Note "3:A=2 out of 4"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Cue bid, a !H stopper"]
+[Note "4:Blackwood 1430, for !D"]
+[Note "5:A=2/5 or 5/5, Q(D)=0"]
 [Play "E"]
 *
 
@@ -11544,19 +11804,26 @@ Pass Pass
 [Vulnerable "NS"]
 [Deal "N:AQJ82.9.AK95.K76 T954.JT64.J.T942 K.A832.T7643.AQ8 763.KQ75.Q82.J53"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3N"]
+[Declarer "S"]
+[Contract "6D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 690"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3NT Pass
+1D Pass 2S =1= Pass
+3D =2= Pass 3H Pass
+4C =3= Pass 4NT =4= Pass
+5H =5= Pass 6D Pass
 Pass Pass
-[Play "E"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Cue bid, a !C stopper"]
+[Note "4:Blackwood 1430, for !D"]
+[Note "5:A=2/5 or 5/5, Q(D)=0"]
+[Play "W"]
 *
 
 [Event ""]
@@ -11573,17 +11840,20 @@ Pass Pass
 [Deal "N:AKJT64.8.AQ75.AT 9853.T653.3.9873 Q.AQ42.JT964.KJ4 72.KJ97.K82.Q652"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "3N"]
-[Result "11"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 660"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3S Pass
-3NT Pass Pass Pass
+1D Pass 2S =1= Pass
+3D =2= Pass 3S Pass
+3NT Pass 6D Pass
+Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
 [Play "W"]
 *
 
@@ -11753,19 +12023,23 @@ Pass
 [Vulnerable "EW"]
 [Deal "N:Q73.AKJT6.K965.Q K64.Q872.A3.8754 AT2.5.QJ742.AKT3 J985.943.T8.J962"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3N"]
+[Declarer "S"]
+[Contract "5D"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 460"]
+[Score "NS 400"]
 [Auction "S"]
-1D Pass 2H Pass
-3C Pass 3NT Pass
+1D Pass 2H =1= Pass
+3D =2= Pass 4C Pass
+4S =3= Pass 5D Pass
 Pass Pass
-[Play "E"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Cue bid, a !S stopper"]
+[Play "W"]
 *
 
 [Event ""]
@@ -11902,22 +12176,20 @@ Pass Pass
 [Deal "N:AKQJ9.T92.KJ95.2 T52.J8654.T.T654 3.KQ.A8742.AKJ73 8764.A73.Q63.Q98"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "6D"]
-[Result "12"]
+[Contract "6N"]
+[Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 920"]
+[Score "NS -50"]
 [Auction "S"]
-1D Pass 1S Pass
-3C Pass 3H =1= Pass
-3NT Pass 4D Pass
-4H =2= Pass 4NT =3= Pass
-5H =4= Pass 6D Pass
-Pass Pass
-[Note "1:Fourth suit game force"]
-[Note "2:Cue bid, a !H stopper"]
+1D Pass 2S =1= Pass
+3D =2= Pass 4C Pass
+4NT =3= Pass 5H =4= Pass
+6NT Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
 [Note "3:Blackwood 1430, for !D"]
 [Note "4:A=2/5 or 5/5, Q(D)=0"]
 [Play "W"]
@@ -12012,12 +12284,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS 450"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3S Pass
-4NT =1= Pass 5C =2= Pass
+1D Pass 2S =1= Pass
+3C =2= Pass 3S Pass
+4NT =3= Pass 5C =4= Pass
 5S Pass Pass Pass
-[Note "1:Blackwood 1430, for !S"]
-[Note "2:A=1/5 or 4/5"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Blackwood 1430, for !S"]
+[Note "4:A=1/5 or 4/5"]
 [Play "E"]
 *
 
@@ -12380,23 +12654,20 @@ Pass Pass
 [Deal "N:AKJ9763.K5.KT84. QT542.Q643.2.J86 .AJT.AQJ65.AKT42 8.9872.973.Q9753"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "7D"]
-[Result "13"]
+[Contract "6N"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 2140"]
+[Score "NS 1440"]
 [Auction "S"]
-1D Pass 1S Pass
-3C Pass 3H =1= Pass
-3NT Pass 4D Pass
-4NT =2= Pass 5H =3= Pass
-6D Pass 6S Pass
-7D Pass Pass Pass
-[Note "1:Fourth suit game force"]
-[Note "2:Blackwood 1430, for !D"]
-[Note "3:A=2/5 or 5/5, Q(D)=0"]
+1D Pass 2S =1= Pass
+3D =2= Pass 3S Pass
+4C Pass 6D Pass
+6NT Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
 [Play "W"]
 *
 
@@ -12475,19 +12746,24 @@ Pass Pass
 [Vulnerable "All"]
 [Deal "N:2.KQJ97.AK73.QJ9 Q43.T42.Q2.K6532 AKJ6.A3.JT9864.4 T9875.865.5.AT87"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "4H"]
+[Declarer "S"]
+[Contract "6D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 680"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3NT Pass
-4H Pass Pass Pass
-[Play "E"]
+1D Pass 2H =1= Pass
+3D =2= Pass 3S Pass
+4NT =3= Pass 5H =4= Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=2/5 or 5/5, Q(D)=0"]
+[Play "W"]
 *
 
 [Event ""]
@@ -12692,23 +12968,21 @@ Pass Pass
 [Vulnerable "None"]
 [Deal "N:.KQ875.A962.AK98 T9532.J962.54.T4 KJ84.A.QJT3.Q653 AQ76.T43.K87.J72"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "5C"]
-[Result "12"]
+[Declarer "S"]
+[Contract "3N"]
+[Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 420"]
+[Score "NS 460"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3C Pass
-4C Pass 4H =1= Pass
-4S =2= Pass 5C Pass
-Pass Pass
-[Note "1:Cue bid, a !H stopper"]
-[Note "2:Cue bid, a !S stopper"]
-[Play "E"]
+1D Pass 2H =1= Pass
+2NT =2= Pass 3S Pass
+3NT Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Play "W"]
 *
 
 [Event ""]
@@ -12853,7 +13127,7 @@ Pass Pass
 [Vulnerable "EW"]
 [Deal "N:KQ974.2.AKT8.AJ6 J82.Q9754.J2.954 A.KJT8.Q963.K732 T653.A63.754.QT8"]
 [Scoring "MP"]
-[Declarer "N"]
+[Declarer "S"]
 [Contract "3N"]
 [Result "11"]
 [BCFlags "3f"]
@@ -12862,10 +13136,12 @@ Pass Pass
 [Room "Open"]
 [Score "NS 460"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3NT Pass
-Pass Pass
-[Play "E"]
+1D Pass 2S =1= Pass
+2NT =2= Pass 3H Pass
+3NT Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Play "W"]
 *
 
 [Event ""]
@@ -13014,14 +13290,16 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1510"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3H Pass
-4NT =1= Pass 5D =2= Pass
-6C Pass 6D =3= Pass
+1D Pass 2H =1= Pass
+2S =2= Pass 3H Pass
+4NT =3= Pass 5D =4= Pass
+5S Pass 6D =5= Pass
 7H Pass Pass Pass
-[Note "1:Blackwood 1430, for !H"]
-[Note "2:A=0/5 or 3/5"]
-[Note "3:!H queen and !D king"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Blackwood 1430, for !H"]
+[Note "4:A=0/5 or 3/5"]
+[Note "5:!H queen and !D king"]
 [Play "E"]
 *
 
@@ -13069,19 +13347,21 @@ Pass Pass
 [Vulnerable "All"]
 [Deal "N:AK874.K.KQT8.JT7 653.T863.A763.Q9 Q.AQJ7.9542.A853 JT92.9542.J.K642"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3N"]
+[Declarer "S"]
+[Contract "6D"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 660"]
+[Score "NS -100"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3NT Pass
-Pass Pass
-[Play "E"]
+1D Pass 2S =1= Pass
+2NT =2= Pass 3H Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Play "W"]
 *
 
 [Event ""]
@@ -13253,22 +13533,23 @@ Pass Pass
 [Deal "N:AKQT6.J52.J542.A 9532.QT4.98.9876 8.AK87.AT73.KQ42 J74.963.KQ6.JT53"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "6N"]
+[Contract "7D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 990"]
+[Score "NS -50"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 4H Pass
-4NT =1= Pass 5D =2= Pass
-6C Pass 6NT =3= Pass
-Pass Pass
-[Note "1:Blackwood 1430, for !S"]
-[Note "2:A=0/5 or 3/5"]
-[Note "3:!S queen no !D king no !H king"]
+1D Pass 2S =1= Pass
+3C =2= Pass 4C Pass
+4NT =3= Pass 5D =4= Pass
+6D Pass 6S Pass
+7D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Blackwood 1430, for !S"]
+[Note "4:A=0/5 or 3/5"]
 [Play "W"]
 *
 
@@ -13510,22 +13791,21 @@ Pass Pass
 [Vulnerable "None"]
 [Deal "N:A.KQT954.QT83.K4 QT85.863.J54.T63 KJ97.A.AK97.J752 6432.J72.62.AQ98"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "6H"]
-[Result "12"]
+[Declarer "S"]
+[Contract "3N"]
+[Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 980"]
+[Score "NS 460"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3H Pass
-4NT =1= Pass 5S =2= Pass
-6H Pass Pass Pass
-[Note "1:Blackwood 1430, for !H"]
-[Note "2:A=2/5 or 5/5, Q(H)=1"]
-[Play "E"]
+1D Pass 1H Pass
+1S Pass 2C =1= Pass
+2NT Pass 3H Pass
+3NT Pass Pass Pass
+[Note "1:Fourth suit game force"]
+[Play "W"]
 *
 
 [Event ""]
@@ -13541,19 +13821,25 @@ Pass Pass
 [Vulnerable "NS"]
 [Deal "N:AJT85.K.AK64.Q98 K974.T743.2.JT63 Q.AQJ9.T985.AK75 632.8652.QJ73.42"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "6N"]
+[Declarer "S"]
+[Contract "7D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 1440"]
+[Score "NS -100"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3NT Pass
-6NT Pass Pass Pass
-[Play "E"]
+1D Pass 2S =1= Pass
+3C =2= Pass 3H Pass
+4NT =3= Pass 5H =4= Pass
+6D Pass 6S Pass
+7D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Blackwood 1430, for !S"]
+[Note "4:A=2/5 or 5/5, Q(S)=0"]
+[Play "W"]
 *
 
 [Event ""]
@@ -13787,19 +14073,21 @@ Pass Pass
 [Vulnerable "All"]
 [Deal "N:KQJ84.J.AK87.J97 A95.K964.T9.QT53 3.A732.QJ52.AK84 T762.QT85.643.62"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3N"]
-[Result "11"]
+[Declarer "S"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 660"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 3NT Pass
-Pass Pass
-[Play "E"]
+1D Pass 2S =1= Pass
+3C =2= Pass 3H Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Play "W"]
 *
 
 [Event ""]
@@ -14161,19 +14449,24 @@ Pass Pass
 [Deal "N:2.KQ976.Q762.AK6 Q8754.JT5.4.JT74 AK6.4.AK983.Q983 JT93.A832.JT5.52"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "6N"]
+[Contract "6D"]
 [Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 990"]
+[Score "NS 920"]
 [Auction "S"]
-1D Pass 1H Pass
-2C Pass 2S =1= Pass
-2NT Pass 3NT Pass
-6NT Pass Pass Pass
-[Note "1:Fourth suit game force"]
+1D Pass 2H =1= Pass
+3D =2= Pass 3S Pass
+4NT =3= Pass 5C =4= Pass
+5H Pass 6C =5= Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=1/5 or 4/5"]
+[Note "5:!D queen and !C king"]
 [Play "W"]
 *
 
@@ -14253,17 +14546,19 @@ Pass Pass
 [Deal "N:AQJ95.Q9.QJ652.A 8632.T842..JT862 K.7653.AK83.KQ94 T74.AKJ.T974.753"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "6D"]
+[Contract "5D"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -50"]
+[Score "NS 400"]
 [Auction "S"]
-1D Pass 2S Pass
-3H Pass 6D Pass
-Pass Pass
+1D Pass 2S =1= Pass
+3C =2= Pass 4C Pass
+5D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
 [Play "W"]
 *
 
@@ -14491,17 +14786,22 @@ Pass Pass
 [Deal "N:AJ9.AQJ93.AJ73.8 86.8764.T92.AK52 KQT3.K.KQ85.T976 7542.T52.64.QJ43"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "3N"]
-[Result "8"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -50"]
+[Score "NS 920"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3D Pass
-3NT Pass Pass Pass
+1D Pass 2H =1= Pass
+2NT =2= Pass 3C Pass
+3D Pass 4H =3= Pass
+5D Pass 6D Pass
+Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Cue bid, a !H stopper"]
 [Play "W"]
 *
 
@@ -14552,23 +14852,24 @@ Pass Pass
 [Vulnerable "All"]
 [Deal "N:Q95.AJT98.A652.K 864.KQ65.QJ.JT94 AKT.2.KT984.AQ73 J732.743.73.8652"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "5H"]
-[Result "10"]
+[Declarer "S"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -100"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 1H Pass
-2C Pass 2S =1= Pass
-4NT =2= Pass 5H =3= Pass
-Pass Pass
-[Note "1:Fourth suit game force"]
-[Note "2:Blackwood 1430, for N"]
-[Note "3:A=2 out of 4"]
-[Play "E"]
+1D Pass 2H =1= Pass
+3D =2= Pass 4C Pass
+4NT =3= Pass 5H =4= Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=2/5 or 5/5, Q(D)=0"]
+[Play "W"]
 *
 
 [Event ""]
@@ -14806,23 +15107,21 @@ Pass Pass
 [Vulnerable "NS"]
 [Deal "N:9.AKJT86.AJ76.A4 AJ73.97.T84.QT63 KT86.3.KQ53.KJ97 Q542.Q542.92.852"]
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "5H"]
+[Declarer "S"]
+[Contract "3N"]
 [Result "11"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 650"]
+[Score "NS 660"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3H Pass
-4H Pass 4NT =1= Pass
-5D =2= Pass 5H Pass
-Pass Pass
-[Note "1:Blackwood 1430, for !H"]
-[Note "2:A=0/5 or 3/5"]
-[Play "E"]
+1D Pass 2H =1= Pass
+2NT =2= Pass 3H Pass
+3NT Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Play "W"]
 *
 
 [Event ""]
@@ -15067,19 +15366,24 @@ Pass Pass
 [Deal "N:K98.QJT86.KQT4.K 65.A752.9872.T73 AJT2.9.AJ53.AJ65 Q743.K43.6.Q9842"]
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "3N"]
-[Result "11"]
+[Contract "6D"]
+[Result "12"]
 [BCFlags "3f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 660"]
+[Score "NS 1370"]
 [Auction "S"]
-1D Pass 1H Pass
-1S Pass 2C =1= Pass
-2NT Pass 3H Pass
-3NT Pass Pass Pass
-[Note "1:Fourth suit game force"]
+1D Pass 2H =1= Pass
+2S =2= Pass 3C Pass
+4D Pass 4S =3= Pass
+4NT =4= Pass 5C =5= Pass
+6D Pass Pass Pass
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Cue bid, a !S stopper"]
+[Note "4:Blackwood 1430, for !D"]
+[Note "5:A=1/5 or 4/5"]
 [Play "W"]
 *
 
@@ -15301,13 +15605,15 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1370"]
 [Auction "S"]
-1D Pass 2H Pass
-2S Pass 3D Pass
-4D Pass 4NT =1= Pass
-5H =2= Pass 6D Pass
+1D Pass 2H =1= Pass
+2S =2= Pass 3C Pass
+4D Pass 4NT =3= Pass
+5H =4= Pass 6D Pass
 Pass Pass
-[Note "1:Blackwood 1430, for !D"]
-[Note "2:A=2/5 or 5/5, Q(D)=0"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:artificial"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=2/5 or 5/5, Q(D)=0"]
 [Play "W"]
 *
 
@@ -15333,12 +15639,14 @@ Pass Pass
 [Room "Open"]
 [Score "NS -100"]
 [Auction "S"]
-1D Pass 2S Pass
-3C Pass 4D Pass
-4NT =1= Pass 5H =2= Pass
+1D Pass 2S =1= Pass
+3D =2= Pass 4C Pass
+4NT =3= Pass 5H =4= Pass
 6D Pass Pass Pass
-[Note "1:Blackwood 1430, for !D"]
-[Note "2:A=2/5 or 5/5, Q(D)=0"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
+[Note "3:Blackwood 1430, for !D"]
+[Note "4:A=2/5 or 5/5, Q(D)=0"]
 [Play "W"]
 *
 
@@ -15589,12 +15897,12 @@ Pass Pass
 [Room "Open"]
 [Score "NS 1440"]
 [Auction "S"]
-1D Pass 2S Pass
-3C Pass 3S Pass
-4NT =1= Pass 5H =2= Pass
+1D Pass 2S =1= Pass
+3D =2= Pass 3S Pass
+4C Pass 6D Pass
 6NT Pass Pass Pass
-[Note "1:Blackwood 1430, for !S"]
-[Note "2:A=2/5 or 5/5, Q(S)=0"]
+[Note "1:Soloway Jump Shifts"]
+[Note "2:bidable suit"]
 [Play "W"]
 *
 
