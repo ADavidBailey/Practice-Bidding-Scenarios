@@ -5,7 +5,7 @@ dealer south
 
 
 # convention-card:
-# auction-filter: Auction.....\\n(1C Pass 2C|1D Pass 2D)
+# auction-filter: Auction.....\\n((1C Pass [23]C)|(1D Pass [23]D))
 
 
 
@@ -63,7 +63,7 @@ minorRaise = (cFit or dFit) and noMajor and noNT
 
 # South opens 1m and North raises
 
-minorRaise and hcp(south)>11 and hcp(south)<20 and hcp(north)>5 and calmOpps
+minorRaise and hcp(south)>11 and hcp(south)<20 and hcp(north)>5 and hcp(north)<13 and calmOpps
 
 
 action printpbn
