@@ -47,8 +47,8 @@ eOpens and shape(south,any 9xxx+any 8xxx+any 7xxx-any 5xxx)
 action
 average "hcp(east)      " hcp(east),
 average "hcp(south)     " hcp(south),
-average "losers(south)  " 100 * losers(south),
-average "controls(south)" 100 * controls(south),
+average "losers(south)  " losers(south),
+average "controls(south)" controls(south),
 
 average "Clubs            " 100 * oC,
 average "Diamonds         " 100 * oD,
@@ -59,9 +59,11 @@ average "Spades           " 100 * oS,
 Script
 Button,Jump Cuebid Strong,\n\
 --- Strong Direct Jump Cuebids of any suit.\n\
-• 1x (3x) shows any other solid suit (usually a minor) with less than 5\n\
-losers and asks partner to bid 3N with a stopper in the opponent's suit.\n\
-Without a stopper，bidding a new major is natural，4!C shows\n\
-0/1 controls，and 4!D shows 2+ controls.  (GIB does NOT play this.)\n\
+1x (3x) shows any other solid suit (usually a minor) with 6+ controls and asks\n\
+partner to bid 3N with a stopper in the opponent's suit.  Without a stopper，\n\
+ • bidding a new major is natural，
+ • 4!C shows 0/1 controls，and 
+ • 4!D shows 2+ controls.
+(NOTE:  GIB does NOT play this!)\n\
 https://tinyurl.com/JumpCueBids\n\
 %JumpCuebidStrong%,backgroundColor=lightpink
