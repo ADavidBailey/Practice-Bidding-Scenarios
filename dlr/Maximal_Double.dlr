@@ -25,10 +25,17 @@ gibNT = nt1 or nt2
 ### End of GIB 1 Notrump ###
 # Defines gibNT
 
-# North opens 1 Major // and short in the suit below (the maximal suit) 
-S_ = spades(north)>4 and spades(north)>=diamonds(north) and spades(north)>=clubs(north) and hearts(north)<3
-H_ = hearts(north)>4 and hearts(north)>spades(north)    and hearts(north)>=clubs(north) and diamonds(north)<3
-n1M = (S_ or H_) and hcp(north)>11 and hcp(north)<20 and not gibNT  // the higher minimum produces more Maximal Doubles and fewer 3M bids
+# Restrict shapes
+shapeN = shape(north,any 2xxx+any 1xxx+any 0xxx-any 85xx-any 75xx-any 65xx-any 55xx)
+shapeE = shape(east,xxxx-any 9xxx-any 8xxx-any 7xxx-any 6xxx-any 55xx)
+shapeS = shape(south,any 2xxx+any 1xxx+any 0xxx-any 6xxx-any 55xx)
+shapeW = shape(west,xxxx-any 85xx-any 75xx-any 65xx-any 55xx)
+shapes = shapeN and shapeE and shapeS and shapeW
+
+# North opens 1M
+S_ = spades(north)>4
+H_ = hearts(north)>4
+n1M = (S_ or H_) and hcp(north)>11 and hcp(north)<20 and losers(north)<8 and not gibNT
 
 # East overcalls any suit or passes
 eGC = clubs(east)>4    and top5(east,clubs)>2
@@ -50,16 +57,22 @@ eX = (H_X or S_X) and hcp(east)>9
 # Define East Pass
 eP = not (e1S or e2C or e2D or e2H or eX)
 
+# Define East Bids
+eBids = (eP or e1S or e2C or e2D or e2H) and not eX
+
 # calculate South's dummy points
-d0  = shape(south,any 0xxx) ? 5 : 0
-d1  = shape(south,any 1xxx) ? 3 : 0
+d0  = shape(south,any 0xxx) ? 3 : 0
+d1  = shape(south,any 1xxx) ? 2 : 0
 d2a = shape(south,any 2xxx) ? 1 : 0
 d2b = shape(south,any 22xx) ? 1 : 0
 dp = d1+d2a+d2b+hcp(south)
 
+# A friend plays losing trick count (with Jade Barret) 1M - 2M shows a hand that would accept at least one game try. Thus,
+# needs 2-Cover cards.  With less, they respond 1N and rebid 2M.  With more, they bid 3M with 4 or 1N and rebid 3M with 3.
+
 # Define South's major suit raises
-spadeFit = S_ and spades(south)>2 and hcp(south,spades)>1 and hcp(south)>4 and dp<10
-heartFit = H_ and hearts(south)>2 and hcp(south,hearts)>1 and hcp(south)>4 and dp<10
+spadeFit = S_ and spades(south)>2 and hcp(south,spades)>1 and hcp(south)>4 and dp<10 and (controls(south)-controls(south,spades)==1)
+heartFit = H_ and hearts(south)>2 and hcp(south,hearts)>1 and hcp(south)>4 and dp<10 and (controls(south)-controls(south,hearts)==1)
 sRaise = (spadeFit or heartFit)
 
 # Define West's fit for Maximal suit and tolerance for non-maximal suit
@@ -73,16 +86,11 @@ maximalRaise = ((spadeFit and wH) or (heartFit and wD)) and hcp(west)>6
 maximalNewSuit = ((spadeFit and (wC or wD) and (hearts(west)>4)) or ((heartFit and (wS or wC)) and diamonds(west)>4)) and hcp(west)>9
 maximalFreeBid = eP and ((spadeFit and hearts(west)>6) or (heartFit and diamonds(west)>6)) and hcp(west)>8 and shape(west,any 0xxx+any 1xxx)
 
-shapeN = shape(north,any 2xxx+any 1xxx+any 0xxx-any 75xx-any 65xx-any 55xx)
-shapeE = shape(east,xxxx-any 9xxx-any 8xxx-any 7xxx-any 6xxx-any 55xx)
-shapeS = shape(south,any 2xxx+any 1xxx+any 0xxx-any 6xxx-any 55xx)
-shapeW = shape(west,xxxx-any 85xx-any 75xx-any 65xx-any 55xx)
-shapes = shapeN and shapeE and shapeS and shapeW
 
 w3Max = (maximalRaise or maximalNewSuit or maximalFreeBid) and shapes and not eX
 
 # Now do it
-n1M and sRaise and w3Max
+n1M and eBids and sRaise and w3Max
 
 action
 average "hcp(north)   " hcp(north),
