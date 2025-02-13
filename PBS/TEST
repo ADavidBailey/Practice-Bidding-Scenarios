@@ -11,27 +11,27 @@ dealer north
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
 # Defines gibNT
 
-# North opens 1 Major // and short in the suit below (the maximal suit) 
+# North opens 1 Major and short in the suit below (the maximal suit) 
 S_ = spades(north)>4 and spades(north)>=diamonds(north) and spades(north)>=clubs(north) and hearts(north)<3
 H_ = hearts(north)>4 and hearts(north)>spades(north)    and hearts(north)>=clubs(north) and diamonds(north)<3
-n1M = (S_ or H_) and hcp(north)>11 and hcp(north)<20 and not gibNT  // the higher minimum produces more Maximal Doubles and fewer 3M bids
+n1M = (S_ or H_) and hcp(north)>13 and hcp(north)<20 and not gibNT  // the higher minimum produces more Maximal Doubles and fewer 3M bids
 
 # East overcalls any suit or passes
-eGC = clubs(east)>4    and top5(east,clubs)>2
-eGD = diamonds(east)>4 and top5(east,diamonds)>2
-eGH = hearts(east)>4   and top5(east,hearts)>2
-eGS = spades(east)>4   and top5(east,spades)>2 // restrict 5-cards to avoid WJO
+eGC = clubs(east)>4    and top5(east,clubs)>2    and hcp(east,clubs)==5     // AJT+ or KQT+
+eGD = diamonds(east)>4 and top5(east,diamonds)>2 and hcp(east,diamonds)==5
+eGH = hearts(east)>4   and top5(east,hearts)>2   and hcp(east,hearts)==5
+eGS = spades(east)>4   and top5(east,spades)>2   and hcp(east,spades)==5    // restrict 5-cards to avoid WJO
 
 # Define East overcalls
-e1S = H_ and eGS and hcp(east)>8
-e2C =        eGC and hcp(east)>10
-e2D =        eGD and hcp(east)>10
-e2H = S_ and eGH and hcp(east)>10
+e1S = H_ and eGS and hcp(east)>7      // 1 over 1
+e2C =        eGC and hcp(east)>11     // 2 over 1
+e2D =        eGD and hcp(east)>11
+e2H = S_ and eGH and hcp(east)>11
 
 # Define East Takeout Double -- we'll prevent this
 H_X = H_ and shape(east,any 6430+any 6331+any 5440+any 5431+any 4441+x0xx+x1xx)
 S_X = S_ and shape(east,any 6430+any 6331+any 5440+any 5431+any 4441+0xxx+1xxx)
-eX = (H_X or S_X) and hcp(east)>9
+eX = (H_X or S_X) and hcp(east)>10
 
 # Define East Pass
 eP = not (e1S or e2C or e2D or e2H or eX)
@@ -49,15 +49,15 @@ heartFit = H_ and hearts(south)>2 and hcp(south,hearts)>1 and hcp(south)>4 and d
 sRaise = (spadeFit or heartFit)
 
 # Define West's fit for Maximal suit and tolerance for non-maximal suit
-wS = e1S and spades(west)==2
-wH = S_ ? e2H and hearts(west)>2   and hcp(west,hearts)>1   : e2H and hearts(west)==2
-wD = H_ ? e2D and diamonds(west)>2 and hcp(west,diamonds)>1 : e2D and diamonds(west)==2
-wC = e2C and clubs(west)==2
+wS = e1S and spades(west)>1
+wH = S_ ? e2H and hearts(west)>2   and hcp(west,hearts)>1   : e2H and hearts(west)>1
+wD = H_ ? e2D and diamonds(west)>2 and hcp(west,diamonds)>1 : e2D and diamonds(west)>1
+wC = e2C and clubs(west)>1
 
-# West bids 3 of the maximal suit // stats 22 raise, 2 new suit, 114 free bid
-maximalRaise = ((spadeFit and wH) or (heartFit and wD)) and hcp(west)>6
-maximalNewSuit = ((spadeFit and (wC or wD) and (hearts(west)>4)) or ((heartFit and (wS or wC)) and diamonds(west)>4)) and hcp(west)>9
-maximalFreeBid = eP and ((spadeFit and hearts(west)>6) or (heartFit and diamonds(west)>6)) and hcp(west)>8 and shape(west,any 0xxx+any 1xxx)
+# West bids 3 of the maximal suit
+maximalRaise   = ((spadeFit and wH) or (heartFit and wD)) and hcp(west)>6 and shape(west,any xxxx-any 7xxx-any 6xxx -any 5xxx)
+maximalNewSuit = ((spadeFit and (wC or wD) and (hearts(west)>4)) or ((heartFit and (wS or wC)) and diamonds(west)>4)) and hcp(west)>8
+maximalFreeBid = eP and ((spadeFit and hearts(west)>6) or (heartFit and diamonds(west)>6)) and hcp(west)>7
 
 shapeN = shape(north,any 2xxx+any 1xxx+any 0xxx-any 75xx-any 65xx-any 55xx)
 shapeE = shape(east,xxxx-any 9xxx-any 8xxx-any 7xxx-any 6xxx-any 55xx)
@@ -90,12 +90,12 @@ average "Max Free Bid " 100 * maximalFreeBid,
 Script
 
 Button,Maximal Double,\n\
---- Maximal Overcall Double:  After we've bid and raised a major suit\n\
-and they compete in the suit just under ours (the Maximal suit).\n\
+--- Maximal Overcall Double after we've bid and raised a major suit...\n\
+and they compete in the suit just under ours (the Maximal suit)，we have an issue.\n\
   • 1!H (?) 2!H (3!D)\n\
   • 1!S (?) 2!S (3!H)\n\
-how do we need distingusih between a competitive raise and an\n\
-invitational raise? The Maximal Overcall Double is invitational and\n\
-bidding 3 of our suit is competitive.  The BBO Robots do NOT play this.\n\
+The Maximal Overcall Double is invitational enables us to distinguis\n\
+between an invitional raise (X) and a competitive raise (3M)\n\
+Note: The BBO Robots do NOT play this.\n\
 https://www.nvba.org/novices/Robert_Todd/(195)+Maximal+Doubles.pdf\n\
 %MaximalDouble%,backgroundColor=lightpink

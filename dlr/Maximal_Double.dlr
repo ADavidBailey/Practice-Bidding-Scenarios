@@ -1,5 +1,5 @@
 # button-text: Maximal Double
-# scenario-title: Maximal Overcall Double after we've bid and raised a major suit...
+# scenario-title: Maximal Overcall Double:  After we've bid and raised a major suit
 # Maximal_Double
 dealer north
 
@@ -45,7 +45,7 @@ e2H = S_ and eGH and hcp(east)>10
 # Define East Takeout Double -- we'll prevent this
 H_X = H_ and shape(east,any 6430+any 6331+any 5440+any 5431+any 4441+x0xx+x1xx)
 S_X = S_ and shape(east,any 6430+any 6331+any 5440+any 5431+any 4441+0xxx+1xxx)
-eX = (H_X or S_X) and hcp(east)>10
+eX = (H_X or S_X) and hcp(east)>9
 
 # Define East Pass
 eP = not (e1S or e2C or e2D or e2H or eX)
@@ -68,7 +68,7 @@ wH = S_ ? e2H and hearts(west)>2   and hcp(west,hearts)>1   : e2H and hearts(wes
 wD = H_ ? e2D and diamonds(west)>2 and hcp(west,diamonds)>1 : e2D and diamonds(west)==2
 wC = e2C and clubs(west)==2
 
-# West bids 3 of the maximal suit
+# West bids 3 of the maximal suit // stats 22 raise, 2 new suit, 114 free bid
 maximalRaise = ((spadeFit and wH) or (heartFit and wD)) and hcp(west)>6
 maximalNewSuit = ((spadeFit and (wC or wD) and (hearts(west)>4)) or ((heartFit and (wS or wC)) and diamonds(west)>4)) and hcp(west)>9
 maximalFreeBid = eP and ((spadeFit and hearts(west)>6) or (heartFit and diamonds(west)>6)) and hcp(west)>8 and shape(west,any 0xxx+any 1xxx)
