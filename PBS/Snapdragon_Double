@@ -23,29 +23,24 @@ sGoodS = spades(south)>4 and top4(south,spades)==2 and top3(north,spades)==1 and
 sGoodH = hearts(south)>4 and top4(south,hearts)==2 and top3(north,hearts)==1 and shape(north,x2xx)
 sGoodD = diamonds(south)>4 and top4(south,diamonds)==2 and top3(north,diamonds)==1 and shape(north,xx2x)
 sGoodC = clubs(south)>4 and top4(south,clubs)==2 and top3(north,clubs)==1 and shape(north,xxx2)
-
-# South overcalls
-sOvercalls = (GoodS or GoodH or GoodD or GoodC) and hcp(south)>8
+sBids = (sGoodS or sGoodH or sGoodD or sGoodC) and hcp(south)>8
 
 # West bids a new suit
 wGoodS = spades(west)>4   and top4(west,spades)==2   and spades(south)<3
 wGoodH = hearts(west)>4   and top4(west,hearts)==2   and hearts(south)<3
 wGoodD = diamonds(west)>4 and top4(west,diamonds)==2 and diamonds(south)<3 and not oD
-wGoodC = clubs(west)>4    and top4(west,clubs)==2    and clubs(south)<4 and not oC
-
+wGoodC = clubs(west)>4    and top4(west,clubs)==2    and clubs(south)<4    and not oC
 wBids = (wGoodS or wGoodH or wGoodD or wGoodC) and hcp(west)>8
 
 
 # Define good suits for north's Snapdragon Double
 nGoodS = spades(north)>4   and top4(north,spades)==2
-nGoodH = hearts(north)>    and top4(north,hearts)==2
+nGoodH = hearts(north)>4   and top4(north,hearts)==2
 nGoodD = diamonds(north)>4 and top4(north,diamonds)==2
 nGoodC = clubs(north)>4    and top4(north,clubs)==2
-
-# North makes a Snapdragon Double 
 nX = (nGoodS or nGoodH or nGoodD or nGoodC) and hcp(north)>7
 
-eOpens and sOvercalls and wBids and nX
+eOpens and sBidss and wBids and nX
 
 action
 average "east 1C" 100 * oC,
