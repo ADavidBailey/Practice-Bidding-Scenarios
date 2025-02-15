@@ -1,0 +1,41 @@
+Script,SlamAfterMajor
+setDealerCode(`
+
+# convention-card:
+# auction-filter: Declarer..[NS]..\\n.Contract..([4-7][HSN])
+
+# Major_Suit_Fit
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Returns calmWest
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+# Returns gibNT
+
+heartFit = shape(south,x7xx + x6xx + x5xx -any 65xx -any 55xx) and hearts(north)>2
+spadeFit = shape(south,7xxx + 6xxx + 5xxx -any 65xx -any 55xx) and spades(north)>2
+
+# North opens 1 Major and South has a fit
+oneM = (heartFit or spadeFit) and not gibNT
+
+oneM and hcp(south)>11 and hcp(south)<22 and hcp(north)>5 and (hcp(north)+hcp(south))>29 and calmWest
+
+action
+average "hcp south  " 100 * hcp(south),
+average "hcp north  " 100 * hcp(north),
+average "hcp total  " 100 * (hcp(north)+hcp(south)),
+
+`, "S", true)
+Script
+
+Button,Major Suit Slam,\n\
+--- Slam after Major Suit Fit -- N/S have 30+ HCP\n\
+  • 2M = 8-10 HCP and 3+ card support\n\
+  • 1N/2M = 4-7 HCP and 3+ card support (Forcing/Semi-Forcing NT followed by 2M)\n\
+  • 1N/3M = 11-12 HCP and 3-card support (Forcing/Semi-Forcing NT followed by 3M)\n\
+  • 3M = 11-12 HCP and 4+ card support\n\
+  • 4M = 0-7 HCP and 5+ card support\n\
+Check the link below for more information\n\
+https://www.larryco.com/bridge-articles/major-openings-part-1\n\
+%SlamAfterMajor%
