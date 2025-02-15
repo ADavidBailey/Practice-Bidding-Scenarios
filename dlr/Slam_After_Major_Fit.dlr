@@ -5,7 +5,7 @@ dealer south
 
 
 # convention-card:
-# auction-filter: Declarer..[NS]..\\n.Contract..([4-7][HSN])
+# auction-filter: .Declarer..[NS]..\\n.Contract..([4-7][HSN])[\\s\\S]*?.Auction.....\\n1[HS]
 
 # Major_Suit_Fit
 
@@ -62,9 +62,9 @@ oneM = (heartFit or spadeFit) and not gibNT
 oneM and hcp(south)>11 and hcp(south)<22 and hcp(north)>5 and (hcp(north)+hcp(south))>28 and calmWest
 
 action
-average "hcp south  " 100 * hcp(south),
-average "hcp north  " 100 * hcp(north),
-average "hcp total  " 100 * (hcp(north)+hcp(south)),
+average "hcp south  " hcp(south),
+average "hcp north  " hcp(north),
+average "hcp total  " (hcp(north)+hcp(south)),
 
 
 printpbn
