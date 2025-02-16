@@ -60,7 +60,7 @@ d3 = shape(south, any 222x) ? 1 : 0
 ssp = v1+s1+d1+d2+d3          // possible short suit points
 
 # Short Suit Points is limited to the number of trump support cards
-tp = ssp<4 ? ssp + hcp(south) : 4 + hcp(south)
+tp = ssp<5 ? ssp + hcp(south) : 4 + hcp(south)
 
 # Define openers
 sOpener = spades(north) >= hearts(north) and spades(north) >=5 and spades(north) >= diamonds(north) and spades(north) >= clubs(north)
