@@ -50,9 +50,9 @@ heartFit3 = H_ and hearts(south)==3
 heartFit4 = H_ and hearts(south)==4
 heartFit5 = H_ and hearts(south)>4
 
-fit5  = hcp(south)<8                   and (spadeFit5 or heartFit5)
-fit1  = hcp(south)>3 and hcp(south)<8  and (spadeFit3 or heartFit3 or spadeFit4 or heartFit4)
-fit2  = hcp(south)>7 and hcp(south)<11 and (spadeFit3 or heartFit3 or spadeFit4 or heartFit4)
+fit5  = hcp(south)<8                    and (spadeFit5 or heartFit5)
+fit1  = hcp(south)>3 and hcp(south)<8   and (spadeFit3 or heartFit3 or spadeFit4 or heartFit4) and not fit5
+fit2  = hcp(south)>7 and hcp(south)<11  and (spadeFit3 or heartFit3 or spadeFit4 or heartFit4)
 fit3  = hcp(south)>10 and hcp(south)<13 and (spadeFit3 or heartFit3) 
 fit4  = hcp(south)>10 and hcp(south)<13 and (spadeFit4 or heartFit4)
 
@@ -93,8 +93,6 @@ keep985 = not keep015
 keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
-### See -Stats-Leveling for statistics on these values ###
-### Example of how to generate Statistics for Leveling ###
 
 
 lev1 = fit1 and keep11

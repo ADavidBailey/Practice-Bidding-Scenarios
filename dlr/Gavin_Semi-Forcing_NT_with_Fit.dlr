@@ -9,14 +9,12 @@ dealer north
 # Semi-Forcing NT w/3-card fit
 
 # Calculate Total Points for South (tp) for south
-v1 = shape(south, any 0xxx) ? 5 : 0  // allow for 2 voids
-v2 = shape(south, any 00xx) ? 5 : 0
-s1 = shape(south, any 1xxx) ? 3 : 0 // allow for 2 singletons
-s2 = shape(south, any 11xx) ? 3 : 0
+v1 = shape(south, any 0xxx) ? 5 : 0
+s1 = shape(south, any 1xxx) ? 3 : 0
 d1 = shape(south, any 2xxx) ? 1 : 0 // allow for 3 doubletons
 d2 = shape(south, any 22xx) ? 1 : 0
 d3 = shape(south, any 222x) ? 1 : 0
-tp = v1+v2+s1+s2+d1+d2+d3 + hcp(south)
+tp = v1+s1+d1+d2+d3 + hcp(south)
 
 # Defining Major Fit
 SpadeFit = ((spades(north)>4 and hearts(north)<5) and spades(south)==3)
