@@ -9,8 +9,8 @@ dealer south
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
 # Defines gibNT
 
-S_ = spades(south)>4 and spades(south)>=diamonds(south) and spades(south)>=clubs(south)
-H_ = hearts(south)>4 and hearts(south)>=diamonds(south) and hearts(south)>=clubs(south)
+S_ = shape(south,x7xx + x6xx + x5xx -any 65xx -any 55xx) and top5(south,hearts)>2
+H_ = shape(south,7xxx + 6xxx + 5xxx -any 65xx -any 55xx) and top5(south,spades)>2
 
 (S_ or H_) and not gibNT and hcp(south)>11 and hcp(south)<20
 

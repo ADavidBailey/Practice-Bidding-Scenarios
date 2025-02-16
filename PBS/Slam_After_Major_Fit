@@ -2,7 +2,7 @@ Script,SlamAfterMajor
 setDealerCode(`
 
 # convention-card:
-# auction-filter: .Declarer..[NS]..\\n.Contract..([4-7][HSN])[\\s\\S]*?.Auction.....\\n1[HS]
+# auction-filter: Auction.....\n1[HS]
 
 # Major_Suit_Fit
 dealer south
@@ -13,8 +13,8 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
 # Returns gibNT
 
-heartFit = shape(south,x7xx + x6xx + x5xx -any 65xx -any 55xx) and hearts(north)>2
-spadeFit = shape(south,7xxx + 6xxx + 5xxx -any 65xx -any 55xx) and spades(north)>2
+heartFit = shape(south,x7xx + x6xx + x5xx -any 65xx -any 55xx) and hearts(north)>2 and top5(south,hearts)>2
+spadeFit = shape(south,7xxx + 6xxx + 5xxx -any 65xx -any 55xx) and spades(north)>2 and top5(south,spades)>2
 
 # North opens 1 Major and South has a fit
 oneM = (heartFit or spadeFit) and not gibNT
