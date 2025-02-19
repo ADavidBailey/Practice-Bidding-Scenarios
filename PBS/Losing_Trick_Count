@@ -17,7 +17,7 @@ normalOpener = (hcOpener or w2Opener or w3Opener)
 # Define Losing Trick Count opener
 ltcOpener = (losers(south)<8 and hcp(south)>7) and not normalOpener
 
-# Define cover cards
+# Define cover cards -- for statistics only
 qC = oneClub    and hascard(north,QC)
 qD = oneDiamond and hascard(north,QD)
 qH = oneHeart   and hascard(north,QH)
