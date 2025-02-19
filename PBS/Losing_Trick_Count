@@ -1,19 +1,28 @@
 Script,LosingTrickCount
 setDealerCode(`
 
+# auction-filter: Auction.....\\n[1-7][CDHSN]
+
 dealer south 
 
-# Define cover cards
-coverCards = top2(north,hearts) + top2(north,spades) + top2(north,diamonds) + top2(north,clubs)
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# Defines oneClub, oneDiamond, oneHeart, oneSpade, oneNT, twoNT
 
 # Define normal opener
-hcOpener = hcp(south)>11
+hcOpener = oneClub or oneDiamond or oneHeart or oneSpade or oneNT or twoNT or threeNT or gameForce2C
 w2Opener = hcp(south)>5 and hcp(south)<12 and shape(south,any 6xxx-xxx6)
 w3Opener = hcp(south)>5 and hcp(south)<12 and shape(south,any 9xxx+any 8xxx+any 7xxx)
 normalOpener = (hcOpener or w2Opener or w3Opener)
 
 # Define Losing Trick Count opener
 ltcOpener = (losers(south)<8 and hcp(south)>7) and not normalOpener
+
+# Define cover cards
+qC = oneClub    and hascard(north,QC)
+qD = oneDiamond and hascard(north,QD)
+qH = oneHeart   and hascard(north,QH)
+qS = oneSpade   and hascard(north,QS)
+coverCards = top2(north,hearts) + top2(north,spades) + top2(north,diamonds) + top2(north,clubs) + qC + qD + qH + qS
 
 game = coverCards > 3
 part = coverCards < 4
@@ -22,13 +31,21 @@ ltcOpener
 
 action
 average "opener's HCP    " hcp(south),
+average "losers          " losers(south),
 average "responder's HCP " hcp(north),
+average "cover cards     " coverCards,
 average "combined HCP    " hcp(south) + hcp(north),
+average "losers-covers   " losers(south) - coverCards,
+average "partscore       " 100 * part,
+average "game            " 100 * game,
 
-frequency "A's or K's    " (coverCards,0,7),
+frequency "losers        " (losers(south),0,7),   
+frequency "cover cards   " (coverCards,0,7), 
 
 `,"S",false);
 Script
 Button,Losing Trick Count,\n\
 --- Losing Trick Count\n\
+This scenario focuses on hands that are opened with Losing Trick Count\n\
+and not with normal opener requirements.\n\
 %LosingTrickCount%,backgroundColor=lightpink
