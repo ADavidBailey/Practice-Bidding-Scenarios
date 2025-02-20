@@ -6,7 +6,7 @@ setDealerCode(`
 dealer south 
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
-# Defines oneClub, oneDiamond, oneHeart, oneSpade, oneNT, twoNT
+# Defines oneClub, oneDiamond, oneHeart, oneSpade, oneNT, twoNT, and gameForce2C
 
 # Define normal opener
 hcOpener = oneClub or oneDiamond or oneHeart or oneSpade or oneNT or twoNT or threeNT or gameForce2C
@@ -14,7 +14,7 @@ w2Opener = hcp(south)>5 and hcp(south)<12 and shape(south,any 6xxx-xxx6)
 w3Opener = hcp(south)>5 and hcp(south)<12 and shape(south,any 9xxx+any 8xxx+any 7xxx)
 normalOpener = (hcOpener or w2Opener or w3Opener)
 
-# Define Losing Trick Count opener
+# Define Losing Trick Count opener -- those that don't open the usual opening bids
 ltcOpener = (losers(south)<8 and hcp(south)>7) and not normalOpener
 
 # Define cover cards -- for statistics only
