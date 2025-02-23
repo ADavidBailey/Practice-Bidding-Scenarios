@@ -1,5 +1,5 @@
 # button-text: Suction (Lev)
-# scenario-title: 15-17 Notrump Opening and Suction action.
+# scenario-title: 15-17 Notrump Opening and Suction.
 # Suction
 dealer east
 
@@ -18,77 +18,42 @@ nt2 = shape(east, 4252+4225+2452+2425+2254+2245) and hcp(east)>14 and hcp(east)<
 
 gibNT = nt1 or nt2
 
-# Define South's 1 suit for 1-suited hands
-sGS = hcp(south,spades)>6   and spades(south)>4
-sGH = hcp(south,hearts)>6   and hearts(south)>4
-sGD = hcp(south,diamonds)>6 and diamonds(south)>4
-sGC = hcp(south,clubs)>6    and clubs(south)>5
+# Define South's suits for 1-suited hands
+sS1 = hcp(south,spades)>6   and spades(south)>5
+sH1 = hcp(south,hearts)>6   and hearts(south)>5
+sD1 = hcp(south,diamonds)>6 and diamonds(south)>5
+sC1 = hcp(south,clubs)>6    and clubs(south)>5
 
 # Define South's suits for 2-suited hands
-sS = hcp(south,spades)>3   and spades(south)>4 
-sH = hcp(south,hearts)>3   and hearts(south)>4
-sD = hcp(south,diamonds)>3 and diamonds(south)>4
-sC = hcp(south,clubs)>3    and clubs(south)>4
+sS2 = hcp(south,spades)>3   and spades(south)>4 
+sH2 = hcp(south,hearts)>3   and hearts(south)>4
+sD2 = hcp(south,diamonds)>3 and diamonds(south)>4
+sC2 = hcp(south,clubs)>3    and clubs(south)>4
 
-# Define South's Suction action
-cX  =         sC and sH
-c2C = sGD or (sH and sS) and not cX
-c2D = sGH or (sS and sC) and not (cX  or c2C)
-c2H = sGS or (sC and sD) and not (cX  or c2C or c2D)
-c2S = sGC or (sD and sH) and not (cX  or c2C or c2D or c2H)
-c2N =         sD and sS  and not (cX  or c2C or c2D or c2H or c2S)
+# Define South's 2-suited combinations
+sCD = sC2 and sD2
+sCH = sC2 and sH2
+sCS = sC2 and sS2
+sDH = sD2 and sH2
+sDS = sD2 and sS2
+sHS = sH2 and sS2
 
-### Imported Leveling Code ###
-c1 = hascard(west,2C)
-c2 = hascard(east,2D)
-c3 = hascard(west,3C)
-c4 = hascard(east,3D)
+# Define South's 1-Suited hands
+sS = sS1 and not sCD
+sH = sH1 and not sCS
+sD = sD1 and not sHS
+sC = sC1 and not sDH
 
-keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
-keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
-
-keep015 = keep06 and c3
-keep03 = keep06 and keep44
-keep045 = keep06 and not c3
-####06 = c1 and c2
-keep11 = c1 and keep44
-keep14 = c1 and not keep44
-keep19 = c1 and not c2
-keep25 = c1
-keep30 = keep06 or c3
-keep33 = c1 or (c2 and keep44)
-####44 = c3 or c4
-keep47 = keep44 or keep06
-
-keep53 = not keep47
-keep56 = not keep44
-keep67 = not keep33
-keep70 = not keep30
-keep75 = not keep25
-keep81 = not keep19
-keep86 = not keep14
-keep89 = not keep11
-keep94 = not keep06
-keep955 = not keep045
-keep97 = not keep03
-keep985 = not keep015
-keep   = 1
-keep0  = 0
-### End of Imported Leveling Code ###
-
-
-# Define Leveling
-lX = cX  and keep
-lC = c2C and keep
-lD = c2D and keep
-lH = c2H and keep
-lS = c2S and keep
-lN = c2N and keep
-levelTheDeal = lX or lC or lD or lH or lS or lN
+# Define South's Suction actions -- 1-suited or 2-suited
+cX  =        sCH
+c2C = (sD or sHS) and not  cX
+c2D = (sH or sCS) and not (cX  or c2C)
+c2H = (sS or sCD) and not (cX  or c2C or c2D)
+c2S = (sC or sDH) and not (cX  or c2C or c2D or c2H)
+c2N =        sDS  and not (cX  or c2C or c2D or c2H or c2S)
 
 # Now OPEN 1NT
-gibNT and (cX or c2C or c2D or c2H or c2S) and hcp(south)>9
-and levelTheDeal
+gibNT and (cX or c2C or c2D or c2H or c2S or c2N) and hcp(south)>9 and shape(south,any 0xxx+any 1xxx)
 
 # Generate Statistics
 action
@@ -98,10 +63,21 @@ average "2D   " 100 * c2D,
 average "2H   " 100 * c2H,
 average "2S   " 100 * c2S,
 average "2N   " 100 * c2N,
-average "S    " 100 * (c2H and sGS),
-average "H    " 100 * (c2D and sGH),
-average "D    " 100 * (c2C and sGD),
-average "C    " 100 * (c2S and sGC),
+average "-----" 100 * (cX or c2C or c2D or c2H or c2S or c2N),
+
+average "C&D  " 100 * sCD,
+average "C&H  " 100 * sCH,
+average "C&S  " 100 * sCS,
+average "D&H  " 100 * sDH,
+average "D&S  " 100 * sDS,
+average "H&S  " 100 * sHS,
+average "-----" 100 * (sCD or sCH or sCS or sDH or sDS or sHS),
+
+average "S    " 100 * sS,
+average "H    " 100 * sH,
+average "D    " 100 * sD,
+average "C    " 100 * sC,
+average "-----" 100 * (sS or sH or sD or sC),
 
 
 printpbn
