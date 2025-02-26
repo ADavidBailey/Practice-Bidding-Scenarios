@@ -6,10 +6,10 @@ setDealerCode(`
 # Slam after Preempt
 dealer south
 
-sS = spades(south)>6 and top4(south,spades)>1
-sH = hearts(south)>6 and top4(south,hearts)>1
-sD = diamonds(south)>6 and top4(south,diamonds)>1
-sC = clubs(south)>6 and top4(south,clubs)>1
+sS = spades(south)>5   and top4(south,spades)>1
+sH = hearts(south)>5   and top4(south,hearts)>1
+sD = diamonds(south)>5 and top4(south,diamonds)>1
+sC = clubs(south)>6    and top4(south,clubs)>1
 
 sPreempt = (sS or sH or sD or sC) and hcp(south)>3 and hcp(south)<10 and shape(south,xxxx -any 5xxx-any 4xxx)
 
