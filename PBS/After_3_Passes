@@ -1,0 +1,40 @@
+Script,After3Passes
+setDealerCode(`
+
+# auction-filter: Auction.....\\nPass.Pass.Pass.
+
+# After 3 Passes...
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+
+dealer west
+calmNorth = hcp(north)<12 and shape(north,xxxx-any 9xxx-any 8xxx-any 7xxx-any 6xxx-any 55xx)
+calmWest and calmNorth and calmEast 
+
+action
+average "losers S" losers(south),
+average "losers W" losers(west),
+average "losers N" losers(north),
+average "losers E" losers(east),
+
+average "hcp S   " hcp(south),
+average "hcp W   " hcp(west),
+average "hcp N   " hcp(north),
+average "hcp E   " hcp(east),
+
+frequency "losers S " (losers(south), 4, 9),
+frequency "losers W " (losers(west) , 4, 9),
+frequency "losers N " (losers(north), 4, 9),
+frequency "losers E " (losers(east) , 4, 5),
+
+frequency "hcp S    " (hcp(south), 5, 12),
+frequency "hcp W    " (hcp(west) , 5, 12),
+frequency "hcp N    " (hcp(north), 5, 12),
+frequency "hcp E    " (hcp(east) , 9, 20),
+
+`, "W", true);
+Script
+Button,After 3 Passes...,\n\
+--- After 3 Passes...\n\
+Should you open in 4th seat?  The Rule of 15 says if you hcp + number\n\
+of spades is less than 15，you should Pass.  You be the judge!\n\
+%After3Passes%

@@ -1,0 +1,64 @@
+# button-text: After 2 Passes...
+# scenario-title: After 2 Passs...
+# After_2_Passes
+dealer north
+
+
+# auction-filter: Auction.....\\nPass.Pass.
+
+# After 2 Passes...
+
+##### Imported Script: Define Calm Opponents #####
+
+# Avoid concentration of values
+cce = top4(east,clubs)<2
+cde = top4(east,diamonds)<2
+che = top4(east,hearts)<2
+cse = top4(east,spades)<2
+noConEast = cce and cde and che and cse
+
+ccw = top4(west,clubs)<2
+cdw = top4(west,diamonds)<2
+chw = top4(west,hearts)<2
+csw = top4(west,spades)<2
+noConWest = ccw and cdw and chw and csw
+
+unbalEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+
+balEast   = shape(east,any 4333 +any 4432)
+balWest   = shape(west,any 4333 +any 4432)
+
+calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<12)
+calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<12)
+calmOpps = calmEast and calmWest
+
+##### End of Imported Script: Define Calm Opponents #####
+
+
+calmNorth = hcp(north)<12 and shape(north,xxxx-any 9xxx-any 8xxx-any 7xxx-any 6xxx-any 55xx)
+calmNorth and calmEast 
+
+action
+average "losers S" losers(south),
+average "losers W" losers(west),
+average "losers N" losers(north),
+average "losers E" losers(east),
+
+average "hcp S   " hcp(south),
+average "hcp W   " hcp(west),
+average "hcp N   " hcp(north),
+average "hcp E   " hcp(east),
+
+frequency "losers S " (losers(south), 4, 9),
+frequency "losers W " (losers(west) , 4, 9),
+frequency "losers N " (losers(north), 4, 9),
+frequency "losers E " (losers(east) , 4, 5),
+
+frequency "hcp S    " (hcp(south), 5, 12),
+frequency "hcp W    " (hcp(west) , 5, 12),
+frequency "hcp N    " (hcp(north), 5, 12),
+frequency "hcp E    " (hcp(east) , 9, 20),
+
+
+printpbn
