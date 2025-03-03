@@ -33,35 +33,37 @@ chs = top5(south,hearts  )<3 and hcp(south,hearts  )<5
 css = top5(south,spades  )<3 and hcp(south,spades  )<5
 noConSouth = ccs and cds and chs and css
 
+# Hands with 5+ cards and no concentrateion of values are seldom opened with 8 or less HCP
 length5or6West  = shape(west ,xxxx -any 8xxx -any 7xxx -any 65xx -any 55xx)
 length5or6North = shape(north,xxxx -any 8xxx -any 7xxx -any 65xx -any 55xx)
 length5or6East  = shape(east ,xxxx -any 8xxx -any 7xxx -any 65xx -any 55xx)
 length5or6South = shape(south,xxxx -any 8xxx -any 7xxx -any 65xx -any 55xx)
 
-length4West   = shape(west ,any 4441+ any 4333 +any 4432)
-length4North  = shape(north,any 4441+ any 4333 +any 4432)
-length4East   = shape(east ,any 4441+ any 4333 +any 4432)
-length4South  = shape(south,any 4441+ any 4333 +any 4432)
+# Hands with 5+ cards are often opened with 11 HCP
+length4West   = shape(west ,any 4333 +any 44xx)
+length4North  = shape(north,any 4333 +any 44xx)
+length4East   = shape(east ,any 4333 +any 44xx)
+length4South  = shape(south,any 4333 +any 44xx)
 
 calmWest  = ((length5or6West  and noConWest  and hcp(west) <9) or (length4West  and hcp(west) <12)) and controls(west) <5
 calmNorth = ((length5or6North and noConNorth and hcp(north)<9) or (length4North and hcp(north)<12)) and controls(north)<5
 calmEast  = ((length5or6East  and noConEast  and hcp(east) <9) or (length4East  and hcp(east) <12)) and controls(east) <5
 calmSouth = ((length5or6South and noConSouth and hcp(south)<9) or (length4South and hcp(south)<12)) and controls(south)<5
 
-# For Pass-Out rule points (rHcp) should be less than 15
-rHcp = hcp(south) + spades(south)
+# For 4th seat, the rule points of 15 applies -- it should be less than 15 for a pass-out.
+r15 = hcp(south) + spades(south)
 
 # comment the line below to random hands in various seats -- everything following // is a comment
-//1 //and calmWest //and calmNorth //and calmEast //and calmSouth //and rHcp<15
+//1 //and calmWest //and calmNorth //and calmEast //and calmSouth //and r15<15
 
-1 and calmWest and calmNorth and calmEast and calmSouth and rHcp<15
+1 and calmWest and calmNorth and calmEast and calmSouth and r15<15
 
 action
 
-average "hcp W    " hcp(west),
-average "hcp N    " hcp(north),
-average "hcp E    " hcp(east),
-average "hcp S    " hcp(south),
+average "hcp W     " hcp(west),
+average "hcp N     " hcp(north),
+average "hcp E     " hcp(east),
+average "hcp S     " hcp(south),
 
 average "controls W" controls(west),
 average "controls N" controls(north),
@@ -72,16 +74,6 @@ average "losers W  " losers(west),
 average "losers N  " losers(north),
 average "losers E  " losers(east),
 average "losers S  " losers(south),
-
-frequency "hcp W    " (hcp(west) , 7, 13),
-frequency "hcp N    " (hcp(north), 7, 13),
-frequency "hcp E    " (hcp(east) , 7, 13),
-frequency "hcp S    " (hcp(south), 7, 13),
-
-frequency "controls W " (controls(west) , 0, 6),
-frequency "controls N " (controls(north), 0, 6),
-frequency "controls E " (controls(east) , 0, 6),
-frequency "controls S " (controls(south), 0, 6),
 
 
 printpbn
