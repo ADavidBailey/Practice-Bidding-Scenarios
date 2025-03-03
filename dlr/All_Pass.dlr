@@ -8,7 +8,7 @@ dealer west
 
 # All Pass...
 
-# Avoid concentration of values in unbalanced hands -- no AK, AQ, or KQ
+# Avoid concentration of values in long suits -- no AK, AQ, or KQ
 ccw = top5(west ,clubs   )<3 and hcp(west ,clubs   )<5
 cdw = top5(west ,diamonds)<3 and hcp(west ,diamonds)<5
 chw = top5(west ,hearts  )<3 and hcp(west ,hearts  )<5
@@ -33,21 +33,23 @@ chs = top5(south,hearts  )<3 and hcp(south,hearts  )<5
 css = top5(south,spades  )<3 and hcp(south,spades  )<5
 noConSouth = ccs and cds and chs and css
 
-# NOTE: This treats all 5-card suits as unbalanced
-unbalWest  = shape(west ,xxxx -any 8xxx -any 7xxx -any 65xx -any 55xx)
-unbalNorth = shape(north,xxxx -any 8xxx -any 7xxx -any 65xx -any 55xx)
-unbalEast  = shape(east ,xxxx -any 8xxx -any 7xxx -any 65xx -any 55xx)
-unbalSouth = shape(south,xxxx -any 8xxx -any 7xxx -any 65xx -any 55xx)
+length5or6West  = shape(west ,xxxx -any 8xxx -any 7xxx -any 65xx -any 55xx)
+length5or6North = shape(north,xxxx -any 8xxx -any 7xxx -any 65xx -any 55xx)
+length5or6East  = shape(east ,xxxx -any 8xxx -any 7xxx -any 65xx -any 55xx)
+length5or6South = shape(south,xxxx -any 8xxx -any 7xxx -any 65xx -any 55xx)
 
-balWest   = shape(west ,any 4441+ any 4333 +any 4432)
-balNorth  = shape(north,any 4441+ any 4333 +any 4432)
-balEast   = shape(east ,any 4441+ any 4333 +any 4432)
-balSouth  = shape(south,any 4441+ any 4333 +any 4432)
+length4West   = shape(west ,any 4441+ any 4333 +any 4432)
+length4North  = shape(north,any 4441+ any 4333 +any 4432)
+length4East   = shape(east ,any 4441+ any 4333 +any 4432)
+length4South  = shape(south,any 4441+ any 4333 +any 4432)
 
-calmWest  = ((unbalWest  and noConWest  and hcp(west) <9) or (balWest  and hcp(west) <12)) and controls(west) <5
-calmNorth = ((unbalNorth and noConNorth and hcp(north)<9) or (balNorth and hcp(north)<12)) and controls(north)<5
-calmEast  = ((unbalEast  and noConEast  and hcp(east) <9) or (balEast  and hcp(east) <12)) and controls(east) <5
-calmSouth = ((unbalSouth and noConSouth and hcp(south)<9) or (balSouth and hcp(south)<12)) and controls(south)<5
+calmWest  = ((length5or6West  and noConWest  and hcp(west) <9) or (length4West  and hcp(west) <12)) and controls(west) <5
+calmNorth = ((length5or6North and noConNorth and hcp(north)<9) or (length4North and hcp(north)<12)) and controls(north)<5
+calmEast  = ((length5or6East  and noConEast  and hcp(east) <9) or (length4East  and hcp(east) <12)) and controls(east) <5
+calmSouth = ((length5or6South and noConSouth and hcp(south)<9) or (length4South and hcp(south)<12)) and controls(south)<5
+
+# comment the line below to random hands in various seats -- everything following // is a comment
+//1 //and calmWest //and calmNorth //and calmEast //and calmSouth 
 
 1 and calmWest and calmNorth and calmEast and calmSouth 
 
