@@ -7,13 +7,13 @@ setDealerCode(`
 dealer east
 
 # define east's 1H, 1S or any weak 2 bids with south's sta
-o1S = spades(east)>4   and top4(east,spades)>1   and hcp(east)>11 and hcp(east)<15 and spades(south)>4   and top5(south,spades)>2
-o1H = hearts(east)>4   and top4(east,hearts)>1   and hcp(east)>11 and hcp(east)<15 and hearts(south)>4   and top5(south,hearts)>2
+o1S = spades(east)>4   and top4(east,spades)>1   and hcp(east)>11 and hcp(east)<14 and spades(south)>4   and top5(south,spades)>2
+o1H = hearts(east)>4   and top4(east,hearts)>1   and hcp(east)>11 and hcp(east)<14 and hearts(south)>4   and top5(south,hearts)>2
 w2S = spades(east)>5   and top4(east,spades)>1   and hcp(east)>6  and hcp(east)<11 and spades(south)>4   and top5(south,spades)>2
 w2H = hearts(east)>5   and top4(east,hearts)>1   and hcp(east)>6  and hcp(east)<11 and hearts(south)>4   and top5(south,hearts)>2
 w2D = diamonds(east)>5 and top4(east,diamonds)>1 and hcp(east)>6  and hcp(east)<11 and diamonds(south)>4 and top5(south,diamonds)>2
 
-(o1S or o1H or w2S or w2H or w2D) and hcp(east)>6 and hcp(east)<11 and hcp(south)>11
+(o1S or o1H or w2S or w2H or w2D) and hcp(south)>11 and hcp(north)>10
 
 action
 average "w2S" 100 * w2S,
