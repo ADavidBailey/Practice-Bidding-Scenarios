@@ -45,11 +45,14 @@ calmNorth = ((length5or6North and noConNorth and hcp(north)<9) or (length4North 
 calmEast  = ((length5or6East  and noConEast  and hcp(east) <9) or (length4East  and hcp(east) <12)) and controls(east) <5
 calmSouth = ((length5or6South and noConSouth and hcp(south)<9) or (length4South and hcp(south)<12)) and controls(south)<5
 
+# For Pass-Out rule points (rHcp) should be less than 15
+rHcp = hcp(south) + spades(south)
+
 dealer west
 # comment the line below to random hands in various seats -- everything following // is a comment
-//1 //and calmWest //and calmNorth //and calmEast //and calmSouth 
+//1 //and calmWest //and calmNorth //and calmEast //and calmSouth //and rHcp<15
 
-1 and calmWest and calmNorth and calmEast and calmSouth 
+1 and calmWest and calmNorth and calmEast and calmSouth and rHcp<15
 
 action
 
