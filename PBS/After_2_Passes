@@ -31,7 +31,7 @@ calmNorth = ((length5or6North and noConNorth and hcp(north)<9) or (length4North 
 calmEast  = ((length5or6East  and noConEast  and hcp(east) <9) or (length4East  and hcp(east) <12)) and controls(east) <5
 
 # Now do it...
-calmNorth and calmEast and hcp(south)>5 and hcp(south)<12 and shape(south,xxxx -any 8xxx -any 7xxx -any 65xx -any 55xx -xxx6-xxx5)
+calmNorth and calmEast and hcp(south)>5 and hcp(south)<12 and shape(south,any 64xx+any 63xx+any 54xx+any 5332-any 55xx-xxx6-xxx5)
 
 action
 average "losers S" losers(south),
@@ -58,5 +58,5 @@ frequency "hcp E    " (hcp(east) , 9, 20),
 Script
 Button,After 2 Passes...,\n\
 --- After 2 Passs...\n\
-What should you with a marginal hand in 3d seat?\n\
+What should you do in 3rd seat with a marginal hand w/5- or 6-card suit?\n\
 %After2Passes%
