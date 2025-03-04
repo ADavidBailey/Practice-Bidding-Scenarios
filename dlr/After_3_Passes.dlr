@@ -4,7 +4,9 @@
 dealer west
 
 
-# auction-filter: Auction.....\\nPass.Pass.Pass.
+
+# include Passout ("), Negative (-) or Positive ([1-9]) scores opened in 4th seat (Pass.Pass.Pass.)
+# auction-filter: Score..("|NS.(-|[1-9])).*\\n.Auction.....\\nPass.Pass.Pass.
 
 # All Pass...
 
@@ -83,13 +85,12 @@ keep0  = 0
 ### End of Imported Leveling Code ###
 
 
-lev14 = r15==14 and keep
-lev15 = r15==15 and keep70
-lev16 = r15==16 and keep25
-levelTheDeal = lev14 or lev15 or lev16
+lev14 = r15==14 and keep94
+lev15 = r15==15 and keep56
+levelTheDeal = lev14 or lev15
 
 # Now do it
-calmWest and calmNorth and calmEast and hcp(south)>10 and hcp(south)<15 and r15>13 and r15<17
+calmWest and calmNorth and calmEast and hcp(south)>10 and hcp(south)<15 and r15>13 and r15<16
 and levelTheDeal
 
 action
@@ -109,7 +110,7 @@ average "losers N  " losers(north),
 average "losers E  " losers(east),
 average "losers S  " losers(south),
 
-frequency "r15" (r15,10,20),
+frequency "r15" (r15,14,15),
 
 
 printpbn
