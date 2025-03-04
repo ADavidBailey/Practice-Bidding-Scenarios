@@ -6,21 +6,74 @@ dealer east
 
 # Stack in Opponents Suit -- for training Ben
 
-# auction-filter: Auction.....\\n2[DHS].
+# auction-filter: Auction.....\\n(1[HS]|2[DHS]|[3-5][CDHS]).
 
 # define east's 1H, 1S or any weak 2 bids with south's sta
-o1S = spades(east)>4   and top4(east,spades)>1   and hcp(east)>11 and hcp(east)<14 and spades(south)>4   and top5(south,spades)>2
-o1H = hearts(east)>4   and top4(east,hearts)>1   and hcp(east)>11 and hcp(east)<14 and hearts(south)>4   and top5(south,hearts)>2
-w2S = spades(east)>5   and top4(east,spades)>1   and hcp(east)>6  and hcp(east)<11 and spades(south)>4   and top5(south,spades)>2
-w2H = hearts(east)>5   and top4(east,hearts)>1   and hcp(east)>6  and hcp(east)<11 and hearts(south)>4   and top5(south,hearts)>2
-w2D = diamonds(east)>5 and top4(east,diamonds)>1 and hcp(east)>6  and hcp(east)<11 and diamonds(south)>4 and top5(south,diamonds)>2
+o1S = spades(east) >4 and top4(east,spades)  >1 and hcp(east)>11 and hcp(east)<14 and spades(south)  >4 and top5(south,spades)  >2
+o1H = hearts(east) >4 and top4(east,hearts)  >1 and hcp(east)>11 and hcp(east)<14 and hearts(south)  >4 and top5(south,hearts)  >2
+wS = spades(east)  >5 and top4(east,spades)  >1 and hcp(east)>6  and hcp(east)<11 and spades(south)  >4 and top5(south,spades)  >2
+wH = hearts(east)  >5 and top4(east,hearts)  >1 and hcp(east)>6  and hcp(east)<11 and hearts(south)  >4 and top5(south,hearts)  >2
+wD = diamonds(east)>5 and top4(east,diamonds)>1 and hcp(east)>6  and hcp(east)<11 and diamonds(south)>4 and top5(south,diamonds)>2
+wC = clubs(east)   >6 and top4(east,clubs)   >1 and hcp(east)>6  and hcp(east)<11 and clubs(south)   >4 and top5(south,clubs)   >2
 
-(o1S or o1H or w2S or w2H or w2D) and hcp(south)>11 and hcp(north)>10
+l5 = shape(east,any 5xxx)
+l6 = shape(east,any 6xxx)
+l7 = shape(east,any 7xxx)
+l8 = shape(east,any 8xxx)
+
+### Imported Leveling Code ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep015 = keep06 and c3
+keep03 = keep06 and keep44
+keep045 = keep06 and not c3
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep955 = not keep045
+keep97 = not keep03
+keep985 = not keep015
+keep   = 1
+keep0  = 0
+### End of Imported Leveling Code ###
+
+
+lev5 = l5 and keep
+lev6 = l6 and keep
+lev7 = l7 and keep
+lev8 = l8 and keep
+levelTheDeal = lev5 or lev6 or lev7 or lev8
+
+(o1S or o1H or wS or wH or wD or wC) and hcp(south)>11 and hcp(north)>10 and shape(north, any 5440+any 5431+any 4441)
+and levelTheDeal
 
 action
-average "w2S" 100 * w2S,
-average "w2H" 100 * w2H,
-average "w2D" 100 * w2D,
+average "5-cards" 100 * lev5,
+average "6-cards" 100 * lev6,
+average "7-cards" 100 * lev7,
+average "8-cards" 100 * lev8,
 
 
 printpbn
