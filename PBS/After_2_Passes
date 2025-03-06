@@ -30,13 +30,13 @@ length4East   = shape(east ,any 4333 +any 44xx)
 calmNorth = ((length5or6North and noConNorth and hcp(north)<9) or (length4North and hcp(north)<12)) and controls(north)<5
 calmEast  = ((length5or6East  and noConEast  and hcp(east) <9) or (length4East  and hcp(east) <12)) and controls(east) <5
 
-shaded = hcp(south)>5 and hcp(south)<12 and shape(south,any 64xx+any 63xx+any 54xx+any 5332-any 55xx-xxx6-xxx5)
+shaded = hcp(south)>3 and hcp(south)<12 and shape(south,any 64xx+any 63xx+any 54xx+any 5332-any 55xx-xxx6-xxx5)
 full   = hcp(south)>11 and hcp(south)<15
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 levShaded = shaded and keep
-levFull   = full   and keep
+levFull   = full   and keep47
 levelTheDeal = levShaded or levFull
 
 
