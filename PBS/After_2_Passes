@@ -36,34 +36,22 @@ full   = hcp(south)>11 and hcp(south)<15
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 levShaded = shaded and keep
-levFull   = full   and keep47
+levFull   = full   and keep53
 levelTheDeal = levShaded or levFull
-
 
 # Now do it...
 calmNorth and calmEast and (shaded or full)
 and levelTheDeal
 
 action
-average "losers S" losers(south),
-average "losers W" losers(west),
-average "losers N" losers(north),
-average "losers E" losers(east),
+
+average "shaded  " 100 * shaded,
+average "full    " 100 * full,
 
 average "hcp S   " hcp(south),
 average "hcp W   " hcp(west),
 average "hcp N   " hcp(north),
 average "hcp E   " hcp(east),
-
-frequency "losers S " (losers(south), 4, 9),
-frequency "losers W " (losers(west) , 4, 9),
-frequency "losers N " (losers(north), 4, 9),
-frequency "losers E " (losers(east) , 4, 5),
-
-frequency "hcp S    " (hcp(south), 5, 12),
-frequency "hcp W    " (hcp(west) , 5, 12),
-frequency "hcp N    " (hcp(north), 5, 12),
-frequency "hcp E    " (hcp(east) , 9, 20),
 
 `, "N", true);
 Script

@@ -32,7 +32,7 @@ length4East   = shape(east ,any 4333 +any 44xx)
 calmNorth = ((length5or6North and noConNorth and hcp(north)<9) or (length4North and hcp(north)<12)) and controls(north)<5
 calmEast  = ((length5or6East  and noConEast  and hcp(east) <9) or (length4East  and hcp(east) <12)) and controls(east) <5
 
-shaded = hcp(south)>5 and hcp(south)<12 and shape(south,any 64xx+any 63xx+any 54xx+any 5332-any 55xx-xxx6-xxx5)
+shaded = hcp(south)>3 and hcp(south)<12 and shape(south,any 64xx+any 63xx+any 54xx+any 5332-any 55xx-xxx6-xxx5)
 full   = hcp(south)>11 and hcp(south)<15
 
 ### Imported Leveling Code ###
@@ -75,7 +75,7 @@ keep0  = 0
 
 
 levShaded = shaded and keep
-levFull   = full   and keep
+levFull   = full   and keep53
 levelTheDeal = levShaded or levFull
 
 
@@ -84,25 +84,14 @@ calmNorth and calmEast and (shaded or full)
 and levelTheDeal
 
 action
-average "losers S" losers(south),
-average "losers W" losers(west),
-average "losers N" losers(north),
-average "losers E" losers(east),
+
+average "shaded  " 100 * shaded,
+average "full    " 100 * full,
 
 average "hcp S   " hcp(south),
 average "hcp W   " hcp(west),
 average "hcp N   " hcp(north),
 average "hcp E   " hcp(east),
-
-frequency "losers S " (losers(south), 4, 9),
-frequency "losers W " (losers(west) , 4, 9),
-frequency "losers N " (losers(north), 4, 9),
-frequency "losers E " (losers(east) , 4, 5),
-
-frequency "hcp S    " (hcp(south), 5, 12),
-frequency "hcp W    " (hcp(west) , 5, 12),
-frequency "hcp N    " (hcp(north), 5, 12),
-frequency "hcp E    " (hcp(east) , 9, 20),
 
 
 printpbn
