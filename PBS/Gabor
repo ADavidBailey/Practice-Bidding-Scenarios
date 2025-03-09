@@ -72,7 +72,7 @@ dLength = nGD ? dN : 0
 cLength = nGC ? cN : 0
 northLength = sLength+hLength+dLength+cLength  // all except one are zero
 
-lowLimit = northRank>westRank and northLength<6? 8 : 11  // avoid weak jump shifts
+lowLimit = northRank>westRank and northLength<6 ? 8 : 11  // avoid weak jump shifts
 northRange = hcp(north)>lowLimit and hcp(north)<16
 
 northShape = northRank>westRank ? shape(north,any 6xxx+any 5xxx-any 66xx-any 65xx-any 55xx) : shape(north,any 6xxx - any 66xx-any 65xx-any 55xx)
