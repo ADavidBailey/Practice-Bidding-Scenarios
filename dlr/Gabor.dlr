@@ -51,7 +51,13 @@ nS = sN>=hN and sN>=dN and sN>=cN
 nH = not nS and hN>=dN and hN>=cN
 nD = not nS and not nH and dN>=cN
 nC = not nS and not nH and not nD
-northSuit = (nS or nH or nD or nC)
+
+# add suit quality
+nGS = nS and top5(north,spades)>1
+nGH = nH and top5(north,hearts)>1
+nGD = nD and top5(north,diamonds)>1
+nGC = nC and top5(north,clubs)>1
+northSuit = (nGS or nGH or nGD or nGC)
 
 # Calculate North's Rank
 nRS = nS ? 4 : 0
@@ -63,14 +69,14 @@ northRank = nRS+nRH+nRD+nRC
 lowLimit = northRank>westRank ? 8 : 11
 northRange = hcp(north)>lowLimit and hcp(north)<16
 
-northShape = northRank>westRank ? shape(north,any 6xxx+any 5xxx-any 66xx-any 65xx-any 55xx) : shape(north,any 6xxx)
+northShape = northRank>westRank ? shape(north,any 6xxx+any 5xxx-any 66xx-any 65xx-any 55xx) : shape(north,any 6xxx - any 66xx-any 65xx-any 55xx)
 northHand = northSuit and northRange and northShape
 
 eS = wS ? spades(east)<3   : spades(east)<7
 eH = wH ? hearts(east)<3   : hearts(east)<7
 eD = wD ? diamonds(east)<4 : diamonds(east)<7
 eC = wC ? clubs(east)<4    : clubs(east)<7
-eastShape = eS and eH and eD and eC and shape(east,any 6xxx+any 5xxx-any 66xx-any 65xx-any 55xx)
+eastShape = eS and eH and eD and eC and shape(east,any 6xxx+any 5xxx+any 4xxx-any 66xx-any 65xx-any 55xx)
 eastHand = eastShape and hcp(east)<6
 
 southHand = hcp(south)>5
