@@ -1,7 +1,7 @@
-# button-text: None
-# scenario-title: None
+# button-text: Gabor
+# scenario-title: Gabor Transfer Overcalls.
 # Gabor
-dealer south
+dealer west
 
 
 /*
@@ -20,6 +20,7 @@ Can you do it? Thank you in advance, G.
 */
 
 # auction-filter: Auction.....\\n(1[CDHS].(1[DHS]|2[CDH]))
+
 
 # Predict West's opening suit
 sW = spades(west)
@@ -124,7 +125,7 @@ keep0  = 0
 levC = wC and keep045
 levD = wD and keep14
 levH = wH and keep33
-levS = wS and keep75
+levS = wS and keep81
 levelTheDeal = levC or levD or levH or levS
 
 westHand and northHand and eastHand and southHand
