@@ -19,7 +19,7 @@ or 13-16 and 5-6 cards. Suit quality is at least 2 of top 5.
 Can you do it? Thank you in advance, G.
 */
 
-# auction-filter: Auction.....\\n(1[CDHS].(1[DHS]|2[CDH]))
+# auction-filter: Auction.....\\n((1C.1[DHS]|1D.(1[HS]|2C)|1H.(1S|2[CD])|1S.2[CDH]))
 
 
 # Predict West's opening suit
@@ -74,7 +74,7 @@ dLength = nGD ? dN : 0
 cLength = nGC ? cN : 0
 northLength = sLength+hLength+dLength+cLength  // all except one are zero
 
-lowLimit = northRank>westRank and northLength<6? 8 : 11  // avoid weak jump shifts
+lowLimit = northRank>westRank and northLength<6 ? 8 : 11  // avoid weak jump shifts
 northRange = hcp(north)>lowLimit and hcp(north)<16
 
 northShape = northRank>westRank ? shape(north,any 6xxx+any 5xxx-any 66xx-any 65xx-any 55xx) : shape(north,any 6xxx - any 66xx-any 65xx-any 55xx)
