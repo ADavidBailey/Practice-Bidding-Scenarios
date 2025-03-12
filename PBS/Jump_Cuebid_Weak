@@ -3,10 +3,8 @@ setDealerCode(`
 
 # BBA does NOT play Direct Jump Cuebids.  The following filter matches the deals that
 # fit the intent of the scenario -- an agressive preempt over minors.
-#                 (\\n1C.*\\n..* [3-7][CDHS])|(\\n1D.*\\n..* [3-7][CDHS])
 
-# This filter matches the bidding.
-# auction-filter: (\\n1C 3C)|(\\n1D 3D)
+# auction-filter: (\\n1C.*\\n..* [3-7][CDHS])|(\\n1D.*\\n..* [3-7][CDHS])
 
 # Jump Cuebid of a Minor is an aggressive preempt
 dealer east
@@ -14,7 +12,6 @@ dealer east
 # Define good minor suits -- preempt in their minor
 goodD  = diamonds(south)>6 and hcp(south,diamonds)>5
 goodC  = clubs(south)>6    and hcp(south,clubs)>5
-
 
 # Predict East's opening suit
 s = spades(east)

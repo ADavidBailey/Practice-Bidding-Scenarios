@@ -1,15 +1,12 @@
 # button-text: Jump Cuebid Strong
-# scenario-title: Direct Jump Cuebid of a major suit.
+# scenario-title: Strong Direct Jump Cuebids of any suit.
 # Jump_Cuebid_Strong
 dealer east
 
 
 # BBA does NOT play Strong Direct Jump Cuebids.  The following filter matches the deals that
 # fit the intent of the scenario
-#                 (\\n1C.*\\n..* [3-7][CDHS])|(\\n1D.*\\n..* [3-7][CDHS])|(\\n1H.*\\n..* [3-7][CDS])|(\\n1S.*\\n..* [3-7][CDH])
-
-# This filter matches the bidding.
-# auction-filter: (\\n1C 3C)|(\\n1D 3D)|(\\n1H 3H)|(\\n1S 3S)
+# auction-filter: (\\n1C.*\\n..* [3-7][CDHS])|(\\n1D.*\\n..* [3-7][CDHS])|(\\n1H.*\\n..* [3-7][CDS])|(\\n1S.*\\n..* [3-7][CDH])
 
 # Jump Cuebid Strong 
 
@@ -49,8 +46,8 @@ eOpens and shape(south,any 9xxx+any 8xxx+any 7xxx-any 5xxx)
 action
 average "hcp(east)      " hcp(east),
 average "hcp(south)     " hcp(south),
-average "losers(south)  " 100 * losers(south),
-average "controls(south)" 100 * controls(south),
+average "losers(south)  " losers(south),
+average "controls(south)" controls(south),
 
 average "Clubs            " 100 * oC,
 average "Diamonds         " 100 * oD,
