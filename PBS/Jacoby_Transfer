@@ -2,17 +2,17 @@ Script,JacobyTransfer
 setDealerCode(`
 
 # convention-card:
-# auction-filter: Auction.....\\n1N Pass 2[DH]
+# auction-filter: Auction.....\\n1NT Pass 2[DH]
 
 # Import Define-1N and Calm Opponents
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Define-1N
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
 
 # Define North's Jacoby Transfer and South's Super Accept (not Smolen, allow 6-card suits, avoid Texas)
-nSps = spades(north)>5 and hearts(north)<4 and hcp(north)<9  // PartScore
-nHps = hearts(north)>5 and spades(north)<4 and hcp(north)<9
-nSgf = spades(north)==5 and hearts(north)<4 and hcp(north)>8 // GameForce
-nHgf = hearts(north)==5 and spades(north)<4 and hcp(north)>8
+nSps = shape(north,6xxx) and hearts(north)<4 and hcp(north)<7  // PartScore
+nHps = shape(north,x6xx) and spades(north)<4 and hcp(north)<7
+nSgf = shape(north,5xxx) and hearts(north)<4 and hcp(north)>8 // GameForce
+nHgf = shape(north,x5xx) and spades(north)<4 and hcp(north)>8
 
 # Now OPEN 1NT
 NT and (nSps or nHps or nSgf or nHgf) and calmWest
