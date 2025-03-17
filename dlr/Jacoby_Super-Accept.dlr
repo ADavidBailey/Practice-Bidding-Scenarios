@@ -4,8 +4,8 @@
 dealer south
 
 
-# convention-card: 21GF-ADB
-# auction-filter: Auction.....\\n1NT Pass 2(D.*\\n(2S|2NT|3[CDH])|(H.*\\n(2NT|3[CDHS])))
+# convention-card:
+# auction-filter: Note.* acceptance after NT
 
 # Import Define-1N and Calm Opponents
 ##### Imported Script: Define Calm Opponents #####
@@ -44,10 +44,10 @@ ssP = hcp(north) + spades(north)-4
 hsP = hcp(north) + hearts(north)-4
 
 # Define North's Jacoby Transfer and South's Super Accept (not Smolen, allow 6-card suits, avoid Texas)
-nSwq = spades(north)>4  and hearts(north)<4 and spades(south)>3 and (ssP<9 or (ssP>15 and ssP<17))   // 6 w/Weak or Quantitave
-nHwq = hearts(north)>4  and spades(north)<4 and hearts(south)>3 and (hsP<9 or (hsP>15 and hsP<17))
-nS5  = spades(north)==5 and hearts(north)<4 and spades(south)>3 and ssP>9                            // 5 w/any strength
-nH5  = hearts(north)==5 and spades(north)<4 and hearts(south)>3 and hsP>9
+nSwq = shape(north,6xxx) and hearts(north)<4 and spades(south)>3 and (ssP<8 or (ssP>15 and ssP<18))   // 6 not GF or Quantitave
+nHwq = shape(north,x6xx) and spades(north)<4 and hearts(south)>3 and (hsP<8 or (hsP>15 and hsP<18))
+nS5  = shape(north,5xxx) and hearts(north)<4 and spades(south)>3 and ssP>9                            // 5 w/any strength
+nH5  = shape(north,x5xx) and spades(north)<4 and hearts(south)>3 and hsP>9
 
 # Now OPEN 1NT
 NT and (nSwq or nHwq or nS5 or nH5) and calmWest
