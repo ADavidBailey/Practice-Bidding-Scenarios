@@ -70,7 +70,7 @@ Since we've added bidding and filtering the bid deals, Rick Wilson came up with 
 
 The 21GF-DEFAULT convention card is used by default.  I try to NOT change it.
 
-RegEx expressions frequently require \n for new lines.  These cause BBOalert to break the line; so, I have to escape the escape by using \\n -- the extra back-slash is removed before using it for filtering.
+RegEx expressions frequently require \n for new lines.  These cause BBOalert to break the line; so, I have to escape the escape by using \\\\n -- the extra back-slash is removed before using it for filtering.
 
 ## Script files
 
