@@ -1,0 +1,51 @@
+Script,TransferWalsh
+setDealerCode(`
+
+# Transfer Walsh
+
+# auction-filter: Auction.....\\n1C.Pass.1[DHSN].Pass.
+
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# Defines oneClub
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Defines calmOpps
+
+nMajor = (spades(north)>3 or hearts(north)>3 or diamonds(north)>4) and hcp(north)>5
+
+# South open's 1C, West Passes, and North Transfers
+oneClub and calmOpps and nMajor
+
+M44 = hearts(north)==4 and spades(north)==4
+h4  = hearts(north)>3 and spades(north)<4
+s4  = spades(north)>3 and hearts(north)<4
+noM = not (M44 or h4 or s4)
+
+#  produce 40
+
+action
+#  printoneline,
+
+average "1D = 4+ hearts <4 spades     " 100 * h4,
+average "1H = 4+ spades <4 hearts     " 100 * s4,
+average "1S = No 4+ Major (often 5+D) " 100 * noM ,
+average "1N = exactly 4H & 4S         " 100 * M44,
+average "no M and 5+D                 " 100 * (noM and diamonds(north)>4),
+
+
+`,"W",false)
+Script
+Button,Transfer Walsh,\n\
+--- Transfer Walsh w/X-Y-NT\n\
+After 1!C...\n\
+  • 1!D - 4+!H\n\
+  • 1!H - 4+!S\n\
+  • 1!S - relay to 1N\n\
+      After 1N...\n\
+        • 2!C - relay to 2!D\n\
+        • 2!D - artificial Game Force\n\
+  • 1N - 4!H and 4!S\n\
+https://en.wikipedia.org/wiki/Transfer_Walsh#\n\
+%TransferWalsh%,backgroundColor=lightpink
