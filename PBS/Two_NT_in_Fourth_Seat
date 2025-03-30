@@ -14,7 +14,7 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 nPasses = hcp(north)<12 and shape(north,xxxx-any 7xxx-any 6xxx-any 55xx)
 
 # South opens 2NT
-s2N = (hcp(south)>19 and hcp(south)<22) and shape(south,any 5332+any 4432+any 4333-5xxx-x5xx)
+s2N = (hcp(south)>19 and hcp(south)<22) and shape(south,any 5422+any 5332+any 4432+any 4333)
 
 # Now do it
 calmOpps and nPasses and s2N
@@ -25,6 +25,6 @@ average "south 2N" s2N,
 
 `,"W",true)
 Script
-Button,2N in 4th Seat,\n\
+Button,2NT in 4th Seat,\n\
 --- 2N in 4th Seat shows 20-21 HCP.\n\
 %TwoN4thSeat%
