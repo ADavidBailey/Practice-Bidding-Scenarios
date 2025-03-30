@@ -5,11 +5,9 @@ setDealerCode(`
 # auction-filter: (1H.Pass.2H.)|(1S.Pass.2S.)
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
-# defines oneSpade, oneHeart,suitPoints
+# defines oneSpade, oneHeart, suitPoints, gibNT
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
 # defines calmOpps
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
-# defines gibNT
 
 # Calculate North's Short Suit Points
 v1 = shape(north, any 0xxx) ? 5 : 0
