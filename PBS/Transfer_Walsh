@@ -34,18 +34,19 @@ average "1S = No 4+ Major (often 5+D) " 100 * noM ,
 average "1N = exactly 4H & 4S         " 100 * M44,
 average "no M and 5+D                 " 100 * (noM and diamonds(north)>4),
 
+# Use special characters (··) as tab in the chat, below 
 
 `,"S",false)
 Script
 Button,Transfer Walsh,\n\
 --- Transfer Walsh w/X-Y-NT\n\
 After 1!C...\n\
-  • 1!D = 4+!H\n\
-  • 1!H = 4+!S\n\
-  • 1!S = Relay to 1N\n\
-  • After 1N...\n\
-    • 2!C = relay to 2!D\n\
-    • 2!D = artificial Game Force\n\
-  • 1N = 4!H and 4!S\n\
+• 1!D = 4+!H\n\
+• 1!H = 4+!S\n\
+• 1!S = Relay to 1N\n\
+··• After 1N...\n\
+··• 2!C = relay to 2!D\n\
+··• 2!D = artificial Game Force\n\
+• 1N = 4!H and 4!S\n\
 https://en.wikipedia.org/wiki/Transfer_Walsh#\n\
 %TransferWalsh%,backgroundColor=lightpink
