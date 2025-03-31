@@ -3,7 +3,7 @@ setDealerCode(`
 
 # Transfer Walsh
 
-# auction-filter: Auction.....\\n1C.Pass.1[DHSN].Pass
+# auction-filter: Auction.....\\n1C.[PX1].* [1-3X].*[P]
 
 dealer south
 
@@ -13,11 +13,12 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
 # Defines calmOpps
 
-nMajor = (spades(north)>3 or hearts(north)>3 or diamonds(north)>4) and hcp(north)>5
+nResponds = hcp(north)>5   // Anthing goes...
 
 # South open's 1C, West Passes, and North Transfers
-oneClub and calmOpps and nMajor
+oneClub and nResponds  //  and calmOpps
 
+# For statistics
 M44 = hearts(north)==4 and spades(north)==4
 h4  = hearts(north)>3 and spades(north)<4
 s4  = spades(north)>3 and hearts(north)<4
@@ -43,10 +44,10 @@ Button,Transfer Walsh,\n\
 After 1!C...\n\
 • 1!D = 4+!H\n\
 • 1!H = 4+!S\n\
-• 1!S = Relay to 1N\n\
-·· After 1N...\n\
+• 1!S = No 4+ Major (usually 5+D)\n\
+·· If opener rebids 1N...\n\
 ··• 2!C = relay to 2!D\n\
 ··• 2!D = artificial Game Force\n\
-• 1N = 4!H and 4!S\n\
+• 1N is either (exactly 4!H and 4!S) or (12-14 balanced) - partnership decision.\n\
 https://en.wikipedia.org/wiki/Transfer_Walsh#\n\
 %TransferWalsh%,backgroundColor=lightpink

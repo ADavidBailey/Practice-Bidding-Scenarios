@@ -6,7 +6,7 @@ dealer south
 
 # Transfer Walsh
 
-# auction-filter: Auction.....\\n1C.Pass.1[DHSN].Pass
+# auction-filter: Auction.....\\n1C.[PX1].* [1-3X].*[P]
 
 
 ##### Imported Script -- Predict Opening 1-Bid #####
@@ -41,7 +41,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 threeNT = TwoNtShape and hcp(south)>24 and hcp(south)<28
 
 # Define Game Forcing 2C
-case1 = hcp(south)>22
+case1 = hcp(south)>21
 case2 = hcp(south)>18 and losers(south)<5 and (spades(south)>5 or hearts(south)>5)
 case3 = hcp(south)>18 and losers(south)<4 and (diamonds(south)>5 or clubs(south)>5)
 gameForce2C = (case1 or case2 or case3) and not threeNT
@@ -98,11 +98,12 @@ calmOpps = calmEast and calmWest
 
 # Defines calmOpps
 
-nMajor = (spades(north)>3 or hearts(north)>3 or diamonds(north)>4) and hcp(north)>5
+nResponds = hcp(north)>5   // Anthing goes...
 
 # South open's 1C, West Passes, and North Transfers
-oneClub and calmOpps and nMajor
+oneClub and nResponds  //  and calmOpps
 
+# For statistics
 M44 = hearts(north)==4 and spades(north)==4
 h4  = hearts(north)>3 and spades(north)<4
 s4  = spades(north)>3 and hearts(north)<4
@@ -119,7 +120,7 @@ average "1S = No 4+ Major (often 5+D) " 100 * noM ,
 average "1N = exactly 4H & 4S         " 100 * M44,
 average "no M and 5+D                 " 100 * (noM and diamonds(north)>4),
 
-# Spaces don't work for indentation. Repeating the bullet is as good as I've found 
+# Spaces don't work for indentation. Using the small bullet is as good as I've found 
 
 
 printpbn
