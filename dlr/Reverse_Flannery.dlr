@@ -105,8 +105,8 @@ nMin = hcp(north)>4 and hcp(north)<9
 nMax = hcp(north)>8 and hcp(north)<11
 
 # Responder's spades and hearts
-nS5 = top4(north,spades)==2 and spades(north)==5
-nH5 = top4(north,hearts)==2 and hearts(north)==5
+nS5 = top4(north,spades)==2 and spades(north)>4
+nH5 = top4(north,hearts)==2 and hearts(north)>4
 nH4 = top4(north,hearts)==2 and hearts(north)==4
 
 # Responder's Reverse Flannery
@@ -114,14 +114,58 @@ twoH = nS5 and (nH5 or nH4) and nMin
 twoS = nS5 and nH4          and nMax
 nRevFlannery = twoH or twoS
 
-# South opens 1 minor, West Passes, South bids 2H or 2S (reverse flannery)
+### Imported Leveling Code ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep015 = keep06 and c3
+keep03 = keep06 and keep44
+keep045 = keep06 and not c3
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep955 = not keep045
+keep97 = not keep03
+keep985 = not keep015
+keep   = 1
+keep0  = 0
+### End of Imported Leveling Code ###
+
+
+levH = twoH and keep
+levS = twoS and keep70
+levelTheDeal = levH or levS 
+
+# South opens 1 minor, West Passes, South bids 2H or 2S (reverse flannery) NOTE: BBA responds 1S on almost all of these
 sOneMinor and calmWest and nRevFlannery
+and levelTheDeal
 
 #  produce 40
 action
 #  printoneline,
-average "2H  " 100 * twoH,
-average "2S  " 100 * twoS,
+average "2H min " 100 * twoH,
+average "2S max " 100 * twoS,
 
 
 printpbn
