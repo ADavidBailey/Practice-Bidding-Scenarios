@@ -20,13 +20,13 @@ nMin = hcp(north)>4 and hcp(north)<9
 nMax = hcp(north)>8 and hcp(north)<11
 
 # Responder's spades and hearts
-nS  = top4(north,spades)==2 and spades(north)==5
+nS5 = top4(north,spades)==2 and spades(north)==5
 nH5 = top4(north,hearts)==2 and hearts(north)==5
 nH4 = top4(north,hearts)==2 and hearts(north)==4
 
 # Responder's Reverse Flannery
-twoH = nS and (nH5 or nH4) and nMin
-twoS = nS and nH4          and nMax
+twoH = nS5 and (nH5 or nH4) and nMin
+twoS = nS5 and nH4          and nMax
 nRevFlannery = twoH or twoS
 
 # South opens 1 minor, West Passes, South bids 2H or 2S (reverse flannery)
