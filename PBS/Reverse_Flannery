@@ -16,10 +16,10 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 sOneMinor = oneClub or oneDiamond
 
 # Responder's ranges
-nMin = hcp(north)>4 and hcp(north)<9
+nMin = hcp(north)>3 and hcp(north)<9
 nMax = hcp(north)>8 and hcp(north)<11
 
-# Responder's spades and hearts
+# Responder's spade and heart suits
 nS5 = top4(north,spades)==2 and spades(north)==5
 nH5 = top4(north,hearts)==2 and hearts(north)==5
 nH4 = top4(north,hearts)==2 and hearts(north)==4
@@ -31,9 +31,9 @@ nRevFlannery = twoH or twoS
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
-levH = twoH and keep
-levS = twoS and keep70
-levelTheDeal = levH or levS 
+lev2H = twoH and keep
+lev2S = twoS and keep70
+levelTheDeal = lev2S or lev2H
 
 # South opens 1 minor, West Passes, South bids 2H or 2S (reverse flannery) NOTE: BBA responds 1S on almost all of these
 sOneMinor and calmWest and nRevFlannery
@@ -44,6 +44,8 @@ action
 #  printoneline,
 average "2H min " 100 * twoH,
 average "2S max " 100 * twoS,
+average "4-H " 100 * (hearts(north)==4),
+average "5-H " 100 * (hearts(north)==5),
 
 `,"S",true)
 Script
