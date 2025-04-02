@@ -8,14 +8,14 @@ setDealerCode(`
 dealer east
 
 ## sPasses rotated from CalmOpps
-ccs = top4(south,clubs)<2
-cds = top4(south,diamonds)<2
-chs = top4(south,hearts)<2
-css = top4(south,spades)<2
-noConSouth = ccs and cds and chs and css
-unbalSouth = shape(south,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
-balSouth   = shape(south,any 4333 +any 4432)
-sPasses  = (unbalSouth and noConSouth and hcp(south)<8) or (balSouth and hcp(south)<12)
+#ccs = top4(south,clubs)<2
+#cds = top4(south,diamonds)<2
+#chs = top4(south,hearts)<2
+#css = top4(south,spades)<2
+#noConSouth = ccs and cds and chs and css
+unbalSouth = shape(south,any 0xxx+any 1xxx) and shape(south,xxxx-any 8xxx -any 7xxx -any 6xxx -any 55xx)
+balSouth   = shape(south,any 5422+any 5332+any 4333 +any 4432)
+sPasses  = (unbalSouth and hcp(south)<8) or (balSouth and hcp(south)<12)  //  and noConSouth
 ## End of sPasses
 
 ## Predict Opening 1-Bid rotated to east ##
