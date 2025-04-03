@@ -3,18 +3,11 @@
 # Gerber_By_Responder
 dealer south
 
+
+# auction-filter: Note....Gerber
 #
 # Gerber by Responder
 # 
-
-# Define responder's HCP required to invite slam
-n19 = hcp(north)>18
-n16 = hcp(north)>15
-n14 = hcp(north)>13
-n12 = hcp(north)>11
-n9  = hcp(north)>8
-n6  = hcp(north)>5
-n3  = hcp(north)>2
 
 # GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
 p = hcp(south) + shape(south,5xxx+x5xx)
@@ -24,27 +17,27 @@ nt1 = shape(south, any 5332+any 4432+any 4333) and hcp(south)>14 and p<18
 # GIB does not open with 5422 and the strength to reverse
 nt2 = shape(south, 4252+4225+2452+2425+2254+2245) and hcp(south)>14 and hcp(south)<17
 
-# Define the ranges for NT shape hands -- the Notrump Ladder
-nt1214 = hcp(south)>11 and hcp(south)<15 and n19
-gib1N  = (nt1 or nt2)                    and n16
-nt1819 = hcp(south)>17 and hcp(south)<20 and n14
-nt2021 = hcp(south)>19 and hcp(south)<22 and n12
-nt2224 = hcp(south)>21 and hcp(south)<25 and n9
-nt2527 = hcp(south)>24 and hcp(south)<28 and n6
-nt28   = hcp(south)>27                   and n3
+# Define NT shape for other ranges
+ntShape = shape(south, any 5422+any 5332+any 4432+any 4333)
+
+# Define the ranges for NT shape hands -- the Notrump Ladder w/1 hcp short of slam
+nt1214 = hcp(south)>=12 and hcp(south)<=14 and hcp(north)==21
+gib1N  = (nt1 or nt2)                      and hcp(north)==17
+nt1819 = hcp(south)>=18 and hcp(south)<=19 and hcp(north)==14
+nt2021 = hcp(south)>=20 and hcp(south)<=21 and hcp(north)==12
+nt2224 = hcp(south)>=22 and hcp(south)<=24 and hcp(north)==10
+nt2527 = hcp(south)>=25 and hcp(south)<=27 and hcp(north)==7
+nt28   = hcp(south)>=28                    and hcp(north)==4
 
 # all other balanced hands with 12+ hcp
-ntShape = shape(south, any 5332+any 4432+any 4333)
-ntRanges = (nt1214 or ntShape and nt1819 or ntShape and nt2021 or ntShape and nt2224 or ntShape and nt2527 or ntShape and nt28)
-otherNT = ntShape and ntRanges and not gib1N
+otherNT = (nt1214 or nt1819 or nt2021 or nt2224 or nt2527 or nt28) and ntShape
+sOpens = gib1N or otherNT
 
-# Responder has a good minor suit
-gD = diamonds(north)>4 and top3(north,diamonds)>1
-gC = clubs(north)>4    and top3(north,clubs)>1
-goodMinor = gD or gC
-suitLength = clubs(north) >= diamonds(north) ? clubs(north) : diamonds(north)
+# Responder has a hand without a 4+ card major and a good source of tricks and 1 HCP short of slam
+nGC = clubs(north)>5    and top3(north,clubs)==3
+nGD = diamonds(north)>5 and top3(north,diamonds)==3
+nResponds = shape(north,xx6x+xxx6+any 5422+any 5332+any 4432+any 4333-5xxx-x5xx-4xxx-x4xx) and (nGC or nGD)
 
-#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
 c2 = hascard(east,2D)
@@ -83,29 +76,29 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
+
 # Level the deal
-level0 = nt1214 and keep06
-level1 = gib1N  and keep03
-level2 = nt1819 and keep14
-level3 = nt2021 and keep19
-level4 = nt2224 and keep25
-level5 = nt2527 and keep
-level6 = nt28   and keep
-levelTheDeal = level0 or level1 or level2 or level3 or level4 or level5 or level6
+lev1214 = nt1214 and keep0
+lev1517 = gib1N  and keep
+lev1819 = nt1819 and keep
+lev2021 = nt2021 and keep
+lev2224 = nt2224 and keep0
+lev2527 = nt2527 and keep0
+lev28   = nt28   and keep0
+levelTheDeal = lev1214 or lev1517 or lev1819 or lev2021 or lev2224 or lev2527 or lev28
 
 # Now do it
-(gib1N or otherNT) and goodMinor
+sOpens and nResponds
 and levelTheDeal
 
 action
-average "nt 12-14   " 100 * nt1214,
-average "GIB 1N     " 100 * gib1N,
-average "nt 18-19   " 100 * nt1819,
-average "nt 20-21   " 100 * nt2021,
-average "nt 22-24   " 100 * nt2224,
-average "nt 25-27   " 100 * nt2527,
-average "nt 28+     " 100 * nt28,
-average "c/d length " suitLength,
+average "12-14  " 100 * nt1214,
+average "15-17  " 100 * gib1N,
+average "18-19  " 100 * nt1819,
+average "20-21  " 100 * nt2021,
+average "22-24  " 100 * nt2224,
+average "25-27  " 100 * nt2527,
+average "28     " 100 * nt28,
 
 
 printpbn
