@@ -10,32 +10,43 @@ dealer south
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 # Defines oneClub
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
-# Defines calmOpps
+# North responds
+bal = shape(north,any 5422+any 5332+any 4432+any 4333-xx5x)
 
-nResponds = hcp(north)>5   // Anthing goes...
+MH = hearts(north)>3
+MS = spades(north)>3 and not MH
+MM = hearts(north)>3 and spades(north)>3
+M0 = not (MH or MS)
 
-# South open's 1C, West Passes, and North Transfers
-oneClub and nResponds  //  and calmOpps
+# Define North's responses
+n1D = MH
+n1H = MS
+n1N = M0 and bal and hcp(north)>9  and hcp(north)<13
+n2N = M0 and bal and hcp(north)>12 and hcp(north)<16
+n3N = M0 and bal and hcp(north)>15
+n1S = M0 and not (n1N or n2N or n3N) and diamonds(north)>clubs(north)
+n2C = M0 and not (n1N or n2N or n3N or n1S)
 
-# For statistics
-M44 = hearts(north)==4 and spades(north)==4
-h4  = hearts(north)>3 and spades(north)<4
-s4  = spades(north)>3 and hearts(north)<4
-noM = not (M44 or h4 or s4)
+nResponds = hcp(north)>5
+
+# South open's 1C and North Responds -- Transfer Walsh is on in competition
+oneClub and hcp(south)>11 and nResponds   // BBO does not open most 11s
+
 
 #  produce 40
-
+generate 20000000
 action
 #  printoneline,
 
-average "1D = 4+ hearts <4 spades     " 100 * h4,
-average "1H = 4+ spades <4 hearts     " 100 * s4,
-average "1S = No 4+ Major (often 5+D) " 100 * noM ,
-average "1N = exactly 4H & 4S         " 100 * M44,
-average "no M and 5+D                 " 100 * (noM and diamonds(north)>4),
-
-# Spaces don't work for indentation. Using the small bullet is as good as I've found 
+average "1D        " 100 * n1D,
+average "1H        " 100 * n1H,
+average "1S        " 100 * n1S,
+average "1N        " 100 * n1N,
+average "2N        " 100 * n2N,
+average "3N        " 100 * n3N,
+average "2C        " 100 * n2C,
+average "All       " 100 * (n1D or n1H or n1S or n1N or n2C or n2N or n3N),
+average "1S & D>4  " 100 * (n1S and diamonds(north)>4),
 
 `,"S",false)
 Script
