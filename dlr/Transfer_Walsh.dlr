@@ -82,8 +82,10 @@ n1H = MS
 n1N = M0 and bal and hcp(north)>9  and hcp(north)<13
 n2N = M0 and bal and hcp(north)>12 and hcp(north)<16
 n3N = M0 and bal and hcp(north)>15
-n1S = M0 and not (n1N or n2N or n3N) and diamonds(north)>clubs(north)
-n2C = M0 and not (n1N or n2N or n3N or n1S)
+#n1S = M0 and not (n1N or n2N or n3N) and diamonds(north)>clubs(north)
+#n2C = M0 and not (n1N or n2N or n3N or n1S)
+n2C = M0 and not (n1N or n2N or n3N) and clubs(north)>4
+n1S = M0 and not (n1N or n2N or n3N or n2C)
 
 nResponds = hcp(north)>5
 
