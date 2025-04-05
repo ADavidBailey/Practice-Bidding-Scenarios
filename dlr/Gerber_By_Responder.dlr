@@ -72,17 +72,17 @@ oneClub    = oC
 # Define NT shape for xy NT rebids
 ntShape = shape(south, any 5422+any 5332+any 4432+any 4333)
 
-# Define north's possible xy and south's NON-support
-n1D = diamonds(north)>3 and top4(north,diamonds)==3 and diamonds(south)<4
-n1H = hearts(north)  >3 and top4(north,hearts)  ==3 and hearts(south)<4 and not n1D
-n1S = spades(north)  >3 and top4(north,spades)  ==3 and spades(south)<4 and not (n1D or n1H)
+# Define north's possible xy and south's NON-support and no 1-level suit rebid
+n1D = diamonds(north)>3 and top4(north,diamonds)==3 and hearts(south)<4 and spades(south)<4
+n1H = hearts(north)  >3 and top4(north,hearts)  ==3 and spades(south)<4 and spades(south)<4 and not n1D 
+n1S = spades(north)  >3 and top4(north,spades)  ==3 and spades(south)<4                     and not (n1D or n1H)
 
-cy   = oneClub    and (n1D or n1H or n1S) and clubs(north)<5 and diamonds(north)>4
+cy   = oneClub    and (n1D or n1H or n1S) and clubs(north)<5 and hearts(north)<4 and spades(north)<4
 dy   = oneDiamond and (n1H or n1S)        and clubs(north)>4 and diamonds(north)<4
 hy   = oneHeart   and n1S
-xyNT = (cy or dy or hy) and ntShape
+xyNT = (cy or dy or hy) and ntShape  // avoid xyz to get a NT rebid
 
-gfNT = gameForce2C and ntShape and shape(south, xxxx-5xxx-x5xx) and ntShape
+gfNT = gameForce2C and ntShape and hearts(south)<4 and spades(south)<4       // avoid xyz to get a NT rebid
 
 # Define suit fits
 sFit = (spades(south)+spades(north))>7
@@ -91,13 +91,14 @@ dFit = (diamonds(south)+diamonds(north))>8
 cfit = (clubs(south)+clubs(north))>8
 fit  = sFit or hFit or dFit or cfit
 
-nt12 = xyNT    and hcp(south)==12
-nt15 = oneNT   and hcp(south)==15 
+nt12 = xyNT    and hcp(south)==12 
+nt15 = oneNT   and hcp(south)==15 and shape(north,3343+3334)   // avoid 2C-2x-xz
 nt18 = xyNT    and hcp(south)==18
-nt20 = twoNT   and hcp(south)==20
-nt22 = gfNT    and hcp(south)==22
-nt25 = threeNT and hcp(south)==25
-nt28 = gfNT    and hcp(south)==28
+nt20 = twoNT   and hcp(south)==20 and shape(north,3343+3334)
+nt22 = gfNT    and hcp(south)==22 and shape(north,3343+3334)
+nt25 = threeNT and hcp(south)==25 and shape(north,3343+3334)
+nt28 = gfNT    and hcp(south)==28 and shape(north,3343+3334)
+
 
 # Define tp = combined hcp
 tp = hcp(south)+hcp(north)
@@ -142,32 +143,37 @@ keep0  = 0
 
 
 # Level the deal
-lev12 = nt12 and keep
-lev15 = nt15 and keep
-lev18 = nt18 and keep
-lev20 = nt20 and keep
-lev22 = nt22 and keep
-lev25 = nt25 and keep
-lev28 = nt28 and keep
-levelTheDeal = lev12 or lev15 or lev18 or lev20 or lev22 or lev25 or lev28
+lev12 = nt12   and keep
+lev15 = nt15   and keep19
+lev18 = nt18   and keep
+lev20 = nt20   and keep47
+lev22 = nt22   and keep19
+lev25 = nt25   and keep
+lev28 = nt28   and keep
+
+# Keep at least one of these
+lev31 = tp==31 and keep70
+lev32 = tp==32 and keep81
+lev33 = tp==33 and keep
+levelTheDeal = (lev12 or lev15 or lev18 or lev20 or lev22 or lev25 or lev28) and (lev31 or lev32 or lev33)
 
 # Now do it
-(nt12 or nt15 or nt18 or nt20 or nt22 or nt25 or nt28) and tp==32 and not fit
+(nt12 or nt15 or nt18 or nt20 or nt22 or nt25 or nt28 or lev31 or lev32 or lev33) and not fit
 and levelTheDeal
 
-#  produce 1000
 action
-average "12 + 21 = 1x-?       " 100 * nt12,
-average "15 + 18 = 1N-?       " 100 * nt15,
-average "18 + 15 = 1x-1y-2N-? " 100 * nt18,
-average "20 + 13 = 2N-?       " 100 * nt20,
-average "22 + 11 = 2C-2x-2N-? " 100 * nt22,
-average "25 +  8 = 3N-?       " 100 * nt25,
-average "28 +  5 = 2C-2x-3N-? " 100 * nt28,
-average "hcp S                " hcp(south),
-average "hcp N                " hcp(north),
-average "hcp NS               " (hcp(south) + hcp(north)),
-average "Suit Fit 8+M or 9+m  " fit,
+average "12 + 21: 1x-1y-1N-? " 100 * nt12,
+average "15 + 18: 1N-?       " 100 * nt15,
+average "18 + 15: 1x-1y-2N-? " 100 * nt18,
+average "20 + 13: 2N-?       " 100 * nt20,
+average "22 + 11: 2C-2x-2N-? " 100 * nt22,
+average "25 +  8: 3N-?       " 100 * nt25,
+average "28 +  5: 2C-2x-3N-? " 100 * nt28,
+average "hcp S               " hcp(south),
+average "hcp N               " hcp(north),
+average "hcp NS=31   " 100 * (hcp(south)+hcp(north)==31),
+average "hcp NS=32   " 100 * (hcp(south)+hcp(north)==32),
+average "hcp NS=33   " 100 * (hcp(south)+hcp(north)==33),
 
 
 printpbn
