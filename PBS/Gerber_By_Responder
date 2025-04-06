@@ -1,10 +1,11 @@
 Script,GerberByResponder
 setDealerCode(`
 
-# auction-filter: Note....Gerber
-#
+# These are sequences where 4C would be Gerber by Responder 
+# auction-filter: Auction.....\n([123]NT|1[CDH].*Pass.2D.*Pass\n[23]NT|2C.* Pass.2D.* Pass\n[23]NT)
+
 # Gerber by Responder
-# 
+
 produce 10000
 dealer south
 
@@ -18,17 +19,20 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 predeal south SA,HA,DAK,CA
 predeal north S,H,DQJT9876,CK5
 
-xyNT = CDN or CHN or CSN or DHN or DSN or HSN
+xyNT = (CDN or CHN or CSN or DHN or DSN or HSN) and spades(south)<5 and hearts(south)<5
 
 ntShape = shape(north, any 5422+any 5332+any 4432+any 4333+2272)
-gfNT = gameForce2C and ntShape and hearts(south)<4 and spades(south)<4       // avoid xyz to get a NT rebid
+gfNT = gameForce2C and ntShape       // avoid xyz to get a NT rebid
+
 
 # Define suit fits
 sFit = (spades(south)+spades(north))>7
 hFit = (hearts(south)+hearts(north))>7
 dFit = (diamonds(south)+diamonds(north))>8
 cfit = (clubs(south)+clubs(north))>8
-fit  = sFit or hFit // or dFit or cfit
+noMajorFit  = sFit or hFit // or dFit or cfit
+no5CardMajor = spades(south)<5 and hearts(south)<5 and noMajorFit
+majorOK = noMajorFit and no5CardMajor
 
 # Define goodC and goodD
 # goodC = clubs(north)>4    and top5(north,clubs)>2
@@ -63,7 +67,7 @@ lev33 = tp==33 and keep
 levelTheDeal = (lev12 or lev15 or lev18 or lev20 or lev22 or lev25 or lev28) and (lev31 or lev32 or lev33)
 
 # Now do it
-(nt12 or nt15 or nt18 or nt20 or nt22 or nt25 or nt28 or lev31 or lev32 or lev33) and not fit
+(nt12 or nt15 or nt18 or nt20 or nt22 or nt25 or nt28 or lev31 or lev32 or lev33) and majorOK
 and levelTheDeal
 
 produce 10
