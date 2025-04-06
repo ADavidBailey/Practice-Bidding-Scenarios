@@ -8,22 +8,69 @@ setDealerCode(`
 produce 10000
 dealer south
 
+
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
-# returns oneClub, oneDiamond, oneHeart, oneNT, twoNT, gameForce2C, threeNT
+#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Response-to-1-BId
+##### Predict Response to 1-Bid ##### 
 
-# Define NT shape for xy NT rebids
-ntShape = shape(south, any 5422+any 5332+any 4432+any 4333)
+# These variables are defined in the imported scripts above
+# The number of cards South has in each suit: s, h, d, c
+# South's predicted opening suit: oC, oD, oH, oS 
 
-# Define north's possible xy and south's NON-support and no 1-level suit rebid
-n1D = diamonds(north)>3 and top4(north,diamonds)==3 and hearts(south)<4 and spades(south)<4
-n1H = hearts(north)  >3 and top4(north,hearts)  ==3 and spades(south)<4 and spades(south)<4 and not n1D 
-n1S = spades(north)  >3 and top4(north,spades)  ==3 and spades(south)<4                     and not (n1D or n1H)
+sP = hcp(south)
+nP = hcp(north)
 
-cy   = oneClub    and (n1D or n1H or n1S) and clubs(north)<5 and hearts(north)<4 and spades(north)<4
-dy   = oneDiamond and (n1H or n1S)        and clubs(north)>4 and diamonds(north)<4
-hy   = oneHeart   and n1S
-xyNT = (cy or dy or hy) and ntShape  // avoid xyz to get a NT rebid
+# Predict North's 1-level response
+sN = spades(north)
+hN = hearts(north)
+dN = diamonds(north)
+cN = clubs(north)
 
+# North responds in D, H, or S (Walsh style), or raises C.
+######
+# If less than 13, Walsh Style; otherwise, longest suit.
+nS  =  nP<13 ? sN>3 and sN>hN : sN>3 and sN>hN and sN>=dN and sN>=cN
+nH  = (nP<13 ? hN>3           : hN>3           and hN>=dN and hN>=cN) and not (nS)
+nD = dN>3           and dN>=cN and not (nS or nH)
+nC = cN>4           and cN>4   and not (nS or nH or nD)
+nN = not (nS or nH or nD or nC)
+
+# Define South's possible new-suit/NT rebids
+sRC = clubs(south)>3
+sRD = diamonds(south)>3
+sRH = hearts(south)>3
+sRS = spades(south)>3
+sRN = shape(south,any 4333+any 4432+any 5332)
+
+
+# Defining South's opening (not NT) & North's non-GF response
+CD = oC and nD
+CH = oC and nH
+CS = oC and nS
+CN = oC and nN
+CC = oC and nC
+
+DH = oD and nH
+DS = oD and nS
+DN = oD and nN
+DD = oD and not (DH or DS or DN)
+
+HS = oH and nS
+HH = oH and hN>2 and not HS
+HN = oH and not (HS or HH)
+##### End of Predict Response to 1-Bid ##### 
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Openers-Rebid
+# returns oneNT, twoNT, gameForce2C, threeNT
+# returns CDN, CHN, CSN, DHN, DSN, HSN
+
+
+#predeal south SA,HA,DAK,CA
+#predeal north S,H,DQJT9876,C
+
+xyNT = CDN or CHN or CSN or DHN or DSN or HSN
+
+ntShape = shape(north, any 5422+any 5332+any 4432+any 4333+2272)
 gfNT = gameForce2C and ntShape and hearts(south)<4 and spades(south)<4       // avoid xyz to get a NT rebid
 
 # Define suit fits
@@ -31,16 +78,19 @@ sFit = (spades(south)+spades(north))>7
 hFit = (hearts(south)+hearts(north))>7
 dFit = (diamonds(south)+diamonds(north))>8
 cfit = (clubs(south)+clubs(north))>8
-fit  = sFit or hFit or dFit or cfit
+fit  = sFit or hFit // or dFit or cfit
 
-nt12 = xyNT    and hcp(south)==12 
-nt15 = oneNT   and hcp(south)==15 and shape(north,3343+3334)   // avoid 2C-2x-xz
-nt18 = xyNT    and hcp(south)==18
-nt20 = twoNT   and hcp(south)==20 and shape(north,3343+3334)
-nt22 = gfNT    and hcp(south)==22 and shape(north,3343+3334)
-nt25 = threeNT and hcp(south)==25 and shape(north,3343+3334)
-nt28 = gfNT    and hcp(south)==28 and shape(north,3343+3334)
+# Define goodC and goodD
+# goodC = clubs(north)>4    and top5(north,clubs)>2
+# goodD = diamonds(north)>4 and top5(north,diamonds)>2
 
+nt12 = xyNT    and hcp(south)>11  and hcp(south)<15 
+nt15 = oneNT   and hcp(south)==15
+nt18 = xyNT    and hcp(south)>17  and hcp(south)<20
+nt20 = twoNT   and hcp(south)==20
+nt22 = gfNT    and hcp(south)==22
+nt25 = threeNT and hcp(south)==25
+nt28 = gfNT    and hcp(south)==28
 
 # Define tp = combined hcp
 tp = hcp(south)+hcp(north)
@@ -48,17 +98,17 @@ tp = hcp(south)+hcp(north)
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 # Level the deal
-lev12 = nt12   and keep
-lev15 = nt15   and keep19
+lev12 = nt12   and keep81
+lev15 = nt15   and keep75
 lev18 = nt18   and keep
-lev20 = nt20   and keep47
-lev22 = nt22   and keep19
+lev20 = nt20   and keep97
+lev22 = nt22   and keep
 lev25 = nt25   and keep
 lev28 = nt28   and keep
 
 # Keep at least one of these
-lev31 = tp==31 and keep70
-lev32 = tp==32 and keep81
+lev31 = tp==31 and keep44
+lev32 = tp==32 and keep67
 lev33 = tp==33 and keep
 levelTheDeal = (lev12 or lev15 or lev18 or lev20 or lev22 or lev25 or lev28) and (lev31 or lev32 or lev33)
 
