@@ -24,8 +24,8 @@ sTP = hcp(south) + sLP
 s1mn2N = goodMinor and sTP>20 and n2N
 
 # Define 2C - 2N
-s2C = hcp(south)>21
-s2N = hcp(north)>7 and shape(north,any 5332+any 4432+any 4333-5xxx-x5xx)
+s2C = hcp(south)>21 and shape(south,any 5332+any 4432+any 4333-5xxx-x5xx)
+s2N = hcp(north)>7  and shape(north,any 5332+any 4432+any 4333-5xxx-x5xx)
 
 s2Cn2N = s2C and n2N
 
