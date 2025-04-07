@@ -2,7 +2,7 @@ Script,GerberByResponder
 setDealerCode(`
 
 # These are sequences where 4C-Gerber might be bid by Responder
-# auction-filter: Auction.....\\n([123]NT|1[CDH].*Pass.2D.*Pass\\n[23]NT|2C.* Pass.2D.* Pass\\n[23]NT)
+# auction-filter: Auction.....\\n([123]NT|1[CDH].*.1[DHS].*\\n[123]NT|2C.* 2[DHS].*\\n[23]NT)
 
 # Gerber by Responder
 #
@@ -27,22 +27,28 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 #predeal south SA,HA,DAK,CA
 #predeal north S,H,DQJT9876,CK5
 
-xyNT = (CDN or CHN or CSN or DHN or DSN or HSN) and spades(south)<4 and hearts(south)<4 and spades(north)<5 and hearts(north)<5
+# avoid New Minor Forcing and raises
+cdn = CDN
+chn = CHN and hearts(north)<5 and hearts(south)<4
+csn = CSN and spades(north)<5 and spades(south)<4
+dhn = DHN and hearts(north)<5 and hearts(south)<4
+dsn = DSN and spades(north)<5 and spades(south)<4
+hsn = HSN and spades(north)<5 and spades(south)<4
+xyNT = cdn or chn or csn or dhn or dsn or hsn
 
 # North is balanced or has long Diamonds to allow 1C-1D... auctions.
 northBal = shape(north, any 5422+any 5332+any 4432+any 4333)
 northDiamonds = shape(north, 2272+2263+2362+3262)
 northShape = northBal or northDiamonds
 
-gfNT = gameForce2C and northShape
-
+gfNT = gameForce2C and shape(south, any 5422+any 5332+any 4432+any 4333) and northShape
 
 # Define suit fits
 sFit = (spades(south)+spades(north))>7
 hFit = (hearts(south)+hearts(north))>7
 dFit = (diamonds(south)+diamonds(north))>8
 cfit = (clubs(south)+clubs(north))>8
-noMajorFit  = sFit or hFit // or dFit or cfit
+noMajorFit  = not (sFit or hFit) // or dFit or cfit
 no5CardMajor = spades(south)<5 and hearts(south)<5 and noMajorFit
 majorOK = noMajorFit and no5CardMajor
 
