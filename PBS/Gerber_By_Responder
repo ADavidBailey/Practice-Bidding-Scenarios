@@ -29,8 +29,9 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 
 xyNT = (CDN or CHN or CSN or DHN or DSN or HSN) and spades(south)<5 and hearts(south)<5
 
-ntShape = shape(north, any 5422+any 5332+any 4432+any 4333+2272)
-gfNT = gameForce2C and ntShape       // avoid xyz to get a NT rebid
+# North is balanced or has long Diamonds to allow 1C-1D... auctions.
+northShape = shape(north, any 5422+any 5332+any 4432+any 4333) or (spades(north)<4 and hearts(north)<4 and diamonds(north)>4)
+gfNT = gameForce2C and northShape       // avoid xyz to get a NT rebid
 
 
 # Define suit fits
