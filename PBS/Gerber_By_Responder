@@ -1,7 +1,7 @@
 Script,GerberByResponder
 setDealerCode(`
 
-# These are sequences where 4C would be Gerber by Responder 
+# These are sequences where 4C-Gerber might be bid by Responder
 # auction-filter: Auction.....\\n([123]NT|1[CDH].*Pass.2D.*Pass\\n[23]NT|2C.* Pass.2D.* Pass\\n[23]NT)
 
 # Gerber by Responder
@@ -9,13 +9,12 @@ setDealerCode(`
 # 1x - 1y - 1N - ?
 # 1x - 1y - 2N - ?
 # 1m - 2N - ?
-# 1N
-# 2N
-# 3N
-# 2C 2D 2N
-# 2C 2D 3N
+# 1N - ?
+# 2N - ?
+# 3N - ?
+# 2C 2D 2N - ?
+# 2C 2D 3N - ?
 
-produce 10000
 dealer south
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
@@ -25,8 +24,8 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 # returns CDN, CHN, CSN, DHN, DSN, HSN
 
 # Create hands where the only question is "How may keycards does partner have?"
-predeal south SA,HA,DAK,CA
-predeal north S,H,DQJT9876,CK5
+#predeal south SA,HA,DAK,CA
+#predeal north S,H,DQJT9876,CK5
 
 xyNT = (CDN or CHN or CSN or DHN or DSN or HSN) and spades(south)<5 and hearts(south)<5
 
