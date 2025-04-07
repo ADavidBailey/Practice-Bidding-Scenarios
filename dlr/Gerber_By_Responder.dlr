@@ -198,10 +198,14 @@ HNN = HN and sRN and not (HNC or HND or HNH or HNS)
 #predeal south SA,HA,DAK,CA
 #predeal north S,H,DQJT9876,CK5
 
-xyNT = (CDN or CHN or CSN or DHN or DSN or HSN) and spades(south)<5 and hearts(south)<5
+xyNT = (CDN or CHN or CSN or DHN or DSN or HSN) and spades(south)<4 and hearts(south)<4 and spades(north)<5 and hearts(north)<5
 
-ntShape = shape(north, any 5422+any 5332+any 4432+any 4333+2272)
-gfNT = gameForce2C and ntShape       // avoid xyz to get a NT rebid
+# North is balanced or has long Diamonds to allow 1C-1D... auctions.
+northBal = shape(north, any 5422+any 5332+any 4432+any 4333)
+northDiamonds = shape(north, 2272+2263+2362+3262)
+northShape = northBal or northDiamonds
+
+gfNT = gameForce2C and northShape
 
 
 # Define suit fits
