@@ -4,7 +4,8 @@
 dealer south
 
 
-# auction-filter: Auction.....\\n(1[CD] Pass 2NT|2C.* Pass 2N).*\\n
+# These are sequences where 4C-Gerber might be bid by Opener
+# auction-filter: Auction.....\\n(1[CD].* Pass 2NT |2C.* Pass 2NT )
 
 #
 # Gerber by Opener
@@ -13,22 +14,90 @@ dealer south
 # 2C - 2N - ?
 
 
-# Define responder's 1m-2N where opener has slam interest
-n2N = hcp(north)>10 and hcp(north)<13 and shape(north, any 5332+any 4432+any 4333-5xxx-x5xx-4xxx-x4xx)
+##### Imported Script: Define Calm Opponents #####
 
-gD = diamonds(south)>5 and top3(south,diamonds)>1
-gC = clubs(south)>5    and top3(south,clubs)>1
-goodMinor = gD or gC
+# Avoid concentration of values
+cce = top4(east,clubs)<2
+cde = top4(east,diamonds)<2
+che = top4(east,hearts)<2
+cse = top4(east,spades)<2
+noConEast = cce and cde and che and cse
 
+ccw = top4(west,clubs)<2
+cdw = top4(west,diamonds)<2
+chw = top4(west,hearts)<2
+csw = top4(west,spades)<2
+noConWest = ccw and cdw and chw and csw
+
+unbalEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+
+balEast   = shape(east,any 4333 +any 4432)
+balWest   = shape(west,any 4333 +any 4432)
+
+calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<12)
+calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<12)
+calmOpps = calmEast and calmWest
+
+##### End of Imported Script: Define Calm Opponents #####
+
+# Defines calmOpps
+
+# South has a control in all suits
+sControlsOK = controls(south,spades)>0 and controls(south,hearts)>0 and controls(south,diamonds)>0 and controls(south,clubs)>0
+
+### Define south's 1m - 2N
+# South has 1 good minor -- a source of tricks and north doesn't have a raise.  Avoid 1C - 1D
+gC = clubs(south)>4    and top3(south,clubs)>1    and top3(north,clubs)==1    and diamonds(north)<5 and hcp(north,diamonds)==2
+gD = diamonds(south)>4 and top3(south,diamonds)>1 and top3(north,diamonds)==1
+sGoodMinorOK = (gC or gD) and (gC + gD) == 1
+
+# Define North's partial stops
+nPSC = (clubs(north)>2    and hcp(north,clubs)>1    and hcp(north,diamonds)<4) or (sGoodMinorOK and gC)
+nPSD = (diamonds(north)>2 and hcp(north,diamonds)>1 and hcp(north,clubs)<4)    or (sGoodMinorOK and gD)
+nPSH =  hearts(north)>2   and hcp(north,hearts)>1   and hcp(north,spades)<4
+nPSS =  spades(north)>2   and hcp(north,spades)>1   and hcp(north,hearts)<4
+nPSOK = nPSC and nPSD and nPSH and nPSS
+
+sShape1m = shape(south,any 7222+any 6322+any 5422+any 5332)
+nShape1m = shape(north,any 6322+any 5332+any 4432+any 4333) and spades(north)<4 and hearts(north)<4
+shape1mOK  = sShape1m and nShape1m
+
+# South gets extra points for length
 sLP = gD ? diamonds(south)-4 : clubs(south)-4
 sTP = hcp(south) + sLP
-s1mn2N = goodMinor and sTP>20 and n2N
 
-# Define 2C - 2N
-s2C = hcp(south)>21 and shape(south,any 5332+any 4432+any 4333-5xxx-x5xx)
-s2N = hcp(north)>7  and shape(north,any 5332+any 4432+any 4333-5xxx-x5xx)
+ntShape = shape(south, any 5422+any 5332+any 4432+any 4333)
+s1NT = ntShape and hcp(south)>15 and hcp(south)<18
+s2NT = ntShape and hcp(south)>18 and hcp(south)<21
+sNTOK = not (s1NT or s2NT)
 
-s2Cn2N = s2C and n2N
+sRange1m = sTP>17 and hcp(south)<22 and sNTOK
+nRange1m = hcp(north)>10 and hcp(north)<13
+range1mOK = sRange1m and nRange1m
+
+oneMinor2N = sControlsOK and sGoodMinorOK and nPSOK and shape1mOK and range1mOK
+
+### Define south's 2C - 2NT
+
+# North has bad minors
+bC = clubs(north)>4    ? top3(south,clubs)==0    : 1
+bD = diamonds(north)>4 ? top3(south,diamonds)==0 : 1
+nBadMinorsOK = bC and bD
+
+sShape2C = shape(south,any 7222+any 6322+any 5422+any 5332+any 4432+any 4333)
+nShape2C = shape(north,any 6322+any 5332+any 4432+any 4333) and spades(north)<4 and hearts(north)<4
+shape2cOK  = sShape2C and nShape2C
+
+sRange2C = hcp(south)>21
+nRange2C = hcp(north)>7
+range2cOK = sRange2C and nRange2C
+
+# North has at least 1 control
+nControlsOK = controls(north)>0
+controlsOK = sControlsOK and nControlsOK
+
+twoClubs2N = controlsOK and nBadMinorsOK and shape2cOK and range2cOK
 
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
@@ -70,17 +139,17 @@ keep0  = 0
 
 
 # Level the deal
-level1m = s1mn2N and keep
-level2C = s2Cn2N  and keep53
-levelTheDeal = level1m or level2C
+level1m2N = oneMinor2N and keep
+level2C2N = twoClubs2N and keep
+levelTheDeal = level1m2N or level2C2N
 
 # Now do it
-s1mn2N or s2Cn2N
+(oneMinor2N or twoClubs2N) and calmOpps
 and levelTheDeal
 
 action
-average "1m - 2N  " 100 * s1mn2N,
-average "2C - 2N  " 100 * s2Cn2N,
+average "1m - 2N  " 100 * oneMinor2N,
+average "2C - 2N  " 100 * twoClubs2N,
 
 
 printpbn
