@@ -4,85 +4,69 @@ setDealerCode(`
 # These are sequences where 4C-Gerber might be bid by Opener
 # auction-filter: Auction.....\\n(1[CD].* Pass 2NT |2C.* Pass 2NT )
 
-#
-# Gerber by Opener
-#
-# 1m - 2N - ?
-# 2C - 2N - ?
-
-produce 10000
 dealer south
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
-# Defines calmOpps
+#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Defines calmWest
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 
-# South has a control in all suits
-sControlsOK = controls(south,spades)>0 and controls(south,hearts)>0 and controls(south,diamonds)>0 and controls(south,clubs)>0
+##### Imported Script: Define Calm Opponents #####
 
-### Define south's 1m - 2N
-# South has 1 good minor -- a source of tricks and north doesn't have a raise.  Avoid 1C - 1D
-gC = clubs(south)>4    and top3(south,clubs)>1    and top3(north,clubs)==1    and diamonds(north)<5 and hcp(north,diamonds)==2
-gD = diamonds(south)>4 and top3(south,diamonds)>1 and top3(north,diamonds)==1
-sGoodMinorOK = (gC or gD) and (gC + gD) == 1
+# Avoid concentration of values
+cce = top4(east,clubs)<2
+cde = top4(east,diamonds)<2
+che = top4(east,hearts)<2
+cse = top4(east,spades)<2
+noConEast = cce and cde and che and cse
 
-# Define North's partial stops
-nPSC = hcp(north,clubs)>1
-nPSD = hcp(north,diamonds)>1
-nPSH = hcp(north,hearts)>1
-nPSS = hcp(north,spades)>1
-nPSOK = nPSC and nPSD and nPSH and nPSS
+ccw = top4(west,clubs)<2
+cdw = top4(west,diamonds)<2
+chw = top4(west,hearts)<2
+csw = top4(west,spades)<2
+noConWest = ccw and cdw and chw and csw
 
-sShape1m = shape(south,any 7222+any 6322+any 5422+any 5332)
-nShape1m = shape(north,any 5332+any 4432+any 4333) and spades(north)<4 and hearts(north)<4
-shape1mOK  = sShape1m and nShape1m
+balEast    = shape(east,any 5422+any 5332+any 4432+any 4333)
+unbalEast  = not balEast and shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 
-# South gets extra points for length
-sLP = gD ? diamonds(south)-4 : clubs(south)-4
-sTP = hcp(south) + sLP
+balWest    = shape(west,any 5422+any 5332+any 4432+any 4333)
+unbalWest  = not balWest and shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 
-ntShape = shape(south, any 5422+any 5332+any 4432+any 4333)
-s1NT = ntShape and hcp(south)>15 and hcp(south)<18
-s2NT = ntShape and hcp(south)>18 and hcp(south)<21
-sNTOK = not (s1NT or s2NT)
+calmEast = (unbalEast and noConEast and hcp(east)<6) or (balEast and hcp(east)<12)
+calmWest = (unbalWest and noConWest and hcp(west)<6) or (balWest and hcp(west)<12)
+calmOpps = calmEast and calmWest
 
-#sRange1m = sTP>17 and hcp(south)<22 and sNTOK
-sRange1m = hcp(south)>18 and hcp(south)<22 and sNTOK
-nRange1m = hcp(north)>10 and hcp(north)<13
-range1mOK = sRange1m and nRange1m
+##### End of Imported Script: Define Calm Opponents #####
 
-oneMinor2N = sControlsOK and sGoodMinorOK and shape1mOK and range1mOK and nPSOK
+# Defines oneClub, oneDiamond
 
-### Define south's 2C - 2NT
+# Calculate South's TP
+sC = clubs(south) >4   ? clubs(south) - 4    : 0
+sD = diamonds(south)>4 ? diamonds(south) - 4 : 0
+sH = hearts(south)>4   ? hearts(south) - 4   : 0
+sS = spades(south)>4   ? spades(south) - 4   : 0
+sTP = hcp(south) + sC + sD + sH + sS
 
-# North has bad minors -- changed from <2 to <3
-bC = clubs(north)>4    ? hcp(south,clubs)<3    : 1
-bD = diamonds(north)>4 ? hcp(south,diamonds)<3 : 1
-nBadMinorsOK = bC and bD
+# Define suit quality for NT Response needed for other minor and both majors
+cQ = hcp(north,clubs)>2
+dQ = hcp(north,diamonds)>2
+mQ = hcp(north,hearts)>2 and hcp(north,spades)>2
 
-sShape2C = shape(south,any 7222+any 6322+any 5422+any 5332+any 4432+any 4333)
-nShape2C = shape(north,any 6322+any 5332+any 4432+any 4333) and spades(north)<4 and hearts(north)<4
-shape2cOK  = sShape2C and nShape2C
+# South opens a minor and North does not respond 1D, 1H, or 1S or raise -- allow as much length as possible  
+# There are too many constraints for 1C - 2N, so I removed the code
+s1D = oneDiamond and cQ and hcp(north,diamonds)==0 and hearts(north)<4 and spades(north)<4
 
-sRange2C = sTP>21
-nRange2C = hcp(north)>7
-range2cOK = sRange2C and nRange2C
+# North responds in NT -- balanced w/major suit quality
+ntResponse = shape(north, any 5422 +any 5332 +any 4432 +any 4333) and mQ
 
-# North has at least 1 control
-nControlsOK = controls(north)>0
-controlsOK = sControlsOK and nControlsOK
+# South opens 2C or 1m
+s2C = hcp(south)>21 and hearts(north)<5 and spades(north)<5
+s1m = hcp(south)<22 and sTP>20 and s1D
 
-twoClubs2N = controlsOK and nBadMinorsOK and shape2cOK and range2cOK
+# Define south's 1m-2N and 2C-2N responses
+oneMinor2N = s1m and ntResponse and hcp(north)>10 and hcp(north)<13
+twoClubs2N = s2C and ntResponse and hcp(north)>7
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
-
-# Level the deal
-level1m2N = oneMinor2N and keep
-level2C2N = twoClubs2N and keep
-levelTheDeal = level1m2N or level2C2N
-
-# Now do it
-(oneMinor2N or twoClubs2N) and calmOpps
-and levelTheDeal
+(oneMinor2N or twoClubs2N) and calmWest
 
 action
 average "1m - 2N  " 100 * oneMinor2N,
@@ -93,7 +77,6 @@ average "2C - 2N  " 100 * twoClubs2N,
 Button,Gerber by Opener (Lev),\n\
 --- Gerber by Opener (Leveled)\n\
 There are two sequences where Gerber might be used -- after 1m - 2N\n\
-or 2!C - 2N and opener has slam interest.  The deals are leveled so\n\
-that the two sequences occur with approximately the same frequency.\n\
+or 2!C - 2N and opener has slam interest.  The 1m - 2N sequences are rare.\n\
 https://www.bridgebum.com/gerber.php\n\
 %GerberByOpener%

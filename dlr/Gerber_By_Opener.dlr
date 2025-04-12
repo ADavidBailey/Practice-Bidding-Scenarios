@@ -7,12 +7,67 @@ dealer south
 # These are sequences where 4C-Gerber might be bid by Opener
 # auction-filter: Auction.....\\n(1[CD].* Pass 2NT |2C.* Pass 2NT )
 
-#
-# Gerber by Opener
-#
-# 1m - 2N - ?
-# 2C - 2N - ?
 
+#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Defines calmWest
+##### Imported Script -- Predict Opening 1-Bid #####
+
+# Changed to use gibNT 3/30/2025
+
+# GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
+ntP = hcp(south) + shape(south,5xxx+x5xx)
+nt1 = shape(south, any 5332+any 4432+any 4333) and hcp(south)>14 and ntP<18
+
+# GIB does not open with 5422 and a 5-card major
+# GIB does not open with 5422 and the strength to reverse
+nt2 = shape(south, 4252+4225+2452+2425+2254+2245) and hcp(south)>14 and hcp(south)<17
+
+gibNT = nt1 or nt2
+
+# Calculate length points for South (lengthPoints)
+lp1 = spades(south)>4 ? spades(south)-4 : 0
+lp2 = hearts(south)>4 ? hearts(south)-4 : 0
+lp3 = diamonds(south)>4 ? diamonds(south)-4 : 0
+lp4 = clubs(south)>4 ? clubs(south)-4 : 0
+lengthPoints = lp1 + lp2 + lp3 + lp4
+
+# Define suit points for south (suitPoints)
+suitPoints = hcp(south) + lengthPoints
+
+TwoNtShape = shape(south, any 4333 +any 4432 +any 5332 +any 5422)
+
+# Define ntPoint ranges
+oneNT   = gibNT
+twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
+threeNT = TwoNtShape and hcp(south)>24 and hcp(south)<28
+
+# Define Game Forcing 2C
+case1 = hcp(south)>21
+case2 = hcp(south)>18 and losers(south)<5 and (spades(south)>5 or hearts(south)>5)
+case3 = hcp(south)>18 and losers(south)<4 and (diamonds(south)>5 or clubs(south)>5)
+gameForce2C = (case1 or case2 or case3) and not threeNT
+
+### Predict South's opening BID
+P1 = gameForce2C
+P2 = P1 or threeNT or twoNT or oneNT
+
+# Predict South's Opening suit
+s = spades(south)
+h = hearts(south)
+d = diamonds(south)
+c = clubs(south)
+s1Range = suitPoints>11 and hcp(south)>9
+oS = s>4 and s>=h and s>=d and s>=c and s1Range and not P2
+oH = not oS and h>4 and h>=d and h>=c and s1Range and not P2
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and s1Range and not P2
+oC = not (oS or oH or oD) and s1Range and not P2
+openingSuit = (oS or oH or oD or oC)
+oneSpade   = oS
+oneHeart   = oH
+oneDiamond = oD
+oneClub    = oC
+
+##### End of Imported Script -- Predict Opening 1-Bid #####
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -29,124 +84,48 @@ chw = top4(west,hearts)<2
 csw = top4(west,spades)<2
 noConWest = ccw and cdw and chw and csw
 
-unbalEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
-unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+balEast    = shape(east,any 5422+any 5332+any 4432+any 4333)
+unbalEast  = not balEast and shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 
-balEast   = shape(east,any 4333 +any 4432)
-balWest   = shape(west,any 4333 +any 4432)
+balWest    = shape(west,any 5422+any 5332+any 4432+any 4333)
+unbalWest  = not balWest and shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 
-calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<12)
-calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<12)
+calmEast = (unbalEast and noConEast and hcp(east)<6) or (balEast and hcp(east)<12)
+calmWest = (unbalWest and noConWest and hcp(west)<6) or (balWest and hcp(west)<12)
 calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
 
-# Defines calmOpps
+# Defines oneClub, oneDiamond
 
-# South has a control in all suits
-sControlsOK = controls(south,spades)>0 and controls(south,hearts)>0 and controls(south,diamonds)>0 and controls(south,clubs)>0
+# Calculate South's TP
+sC = clubs(south) >4   ? clubs(south) - 4    : 0
+sD = diamonds(south)>4 ? diamonds(south) - 4 : 0
+sH = hearts(south)>4   ? hearts(south) - 4   : 0
+sS = spades(south)>4   ? spades(south) - 4   : 0
+sTP = hcp(south) + sC + sD + sH + sS
 
-### Define south's 1m - 2N
-# South has 1 good minor -- a source of tricks and north doesn't have a raise.  Avoid 1C - 1D
-gC = clubs(south)>4    and top3(south,clubs)>1    and top3(north,clubs)==1    and diamonds(north)<5 and hcp(north,diamonds)==2
-gD = diamonds(south)>4 and top3(south,diamonds)>1 and top3(north,diamonds)==1
-sGoodMinorOK = (gC or gD) and (gC + gD) == 1
+# Define suit quality for NT Response needed for other minor and both majors
+cQ = hcp(north,clubs)>2
+dQ = hcp(north,diamonds)>2
+mQ = hcp(north,hearts)>2 and hcp(north,spades)>2
 
-# Define North's partial stops
-nPSC = hcp(north,clubs)>1
-nPSD = hcp(north,diamonds)>1
-nPSH = hcp(north,hearts)>1
-nPSS = hcp(north,spades)>1
-nPSOK = nPSC and nPSD and nPSH and nPSS
+# South opens a minor and North does not respond 1D, 1H, or 1S or raise -- allow as much length as possible  
+# There are too many constraints for 1C - 2N, so I removed the code
+s1D = oneDiamond and cQ and hcp(north,diamonds)==0 and hearts(north)<4 and spades(north)<4
 
-sShape1m = shape(south,any 7222+any 6322+any 5422+any 5332)
-nShape1m = shape(north,any 5332+any 4432+any 4333) and spades(north)<4 and hearts(north)<4
-shape1mOK  = sShape1m and nShape1m
+# North responds in NT -- balanced w/major suit quality
+ntResponse = shape(north, any 5422 +any 5332 +any 4432 +any 4333) and mQ
 
-# South gets extra points for length
-sLP = gD ? diamonds(south)-4 : clubs(south)-4
-sTP = hcp(south) + sLP
+# South opens 2C or 1m
+s2C = hcp(south)>21 and hearts(north)<5 and spades(north)<5
+s1m = hcp(south)<22 and sTP>20 and s1D
 
-ntShape = shape(south, any 5422+any 5332+any 4432+any 4333)
-s1NT = ntShape and hcp(south)>15 and hcp(south)<18
-s2NT = ntShape and hcp(south)>18 and hcp(south)<21
-sNTOK = not (s1NT or s2NT)
+# Define south's 1m-2N and 2C-2N responses
+oneMinor2N = s1m and ntResponse and hcp(north)>10 and hcp(north)<13
+twoClubs2N = s2C and ntResponse and hcp(north)>7
 
-#sRange1m = sTP>17 and hcp(south)<22 and sNTOK
-sRange1m = hcp(south)>18 and hcp(south)<22 and sNTOK
-nRange1m = hcp(north)>10 and hcp(north)<13
-range1mOK = sRange1m and nRange1m
-
-oneMinor2N = sControlsOK and sGoodMinorOK and shape1mOK and range1mOK and nPSOK
-
-### Define south's 2C - 2NT
-
-# North has bad minors -- changed from <2 to <3
-bC = clubs(north)>4    ? hcp(south,clubs)<3    : 1
-bD = diamonds(north)>4 ? hcp(south,diamonds)<3 : 1
-nBadMinorsOK = bC and bD
-
-sShape2C = shape(south,any 7222+any 6322+any 5422+any 5332+any 4432+any 4333)
-nShape2C = shape(north,any 6322+any 5332+any 4432+any 4333) and spades(north)<4 and hearts(north)<4
-shape2cOK  = sShape2C and nShape2C
-
-sRange2C = sTP>21
-nRange2C = hcp(north)>7
-range2cOK = sRange2C and nRange2C
-
-# North has at least 1 control
-nControlsOK = controls(north)>0
-controlsOK = sControlsOK and nControlsOK
-
-twoClubs2N = controlsOK and nBadMinorsOK and shape2cOK and range2cOK
-
-### Imported Leveling Code ###
-c1 = hascard(west,2C)
-c2 = hascard(east,2D)
-c3 = hascard(west,3C)
-c4 = hascard(east,3D)
-
-keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
-keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
-
-keep015 = keep06 and c3
-keep03 = keep06 and keep44
-keep045 = keep06 and not c3
-####06 = c1 and c2
-keep11 = c1 and keep44
-keep14 = c1 and not keep44
-keep19 = c1 and not c2
-keep25 = c1
-keep30 = keep06 or c3
-keep33 = c1 or (c2 and keep44)
-####44 = c3 or c4
-keep47 = keep44 or keep06
-
-keep53 = not keep47
-keep56 = not keep44
-keep67 = not keep33
-keep70 = not keep30
-keep75 = not keep25
-keep81 = not keep19
-keep86 = not keep14
-keep89 = not keep11
-keep94 = not keep06
-keep955 = not keep045
-keep97 = not keep03
-keep985 = not keep015
-keep   = 1
-keep0  = 0
-### End of Imported Leveling Code ###
-
-
-# Level the deal
-level1m2N = oneMinor2N and keep
-level2C2N = twoClubs2N and keep
-levelTheDeal = level1m2N or level2C2N
-
-# Now do it
-(oneMinor2N or twoClubs2N) and calmOpps
-and levelTheDeal
+(oneMinor2N or twoClubs2N) and calmWest
 
 action
 average "1m - 2N  " 100 * oneMinor2N,
