@@ -1,19 +1,107 @@
 Script,TEST
 setDealerCode(`
 
+# These are sequences where 4C-Gerber might be bid by Responder
+# auction-filter: Auction.....\\n([123]NT|1[CDH].Pass.1[DHS].Pass\\n[123]NT.Pass |2C.*Pass.2[DHS].Pass\\n[23]NT.Pass.)
+
+# Gerber by Responder
+#
+# 1x - 1y - 1N - ?
+# 1x - 1y - 2N - ?
+# 1m - 2N - ?
+# 1N - ?
+# 2N - ?
+# 3N - ?
+# 2C 2D 2N - ?
+# 2C 2D 3N - ?
+
 dealer south
 
-# IMPORT Calm-Opponents
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
-# IMPORT Predict-Opening-1-Bid
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
-# IMPORT Predict-Response-to-1-Bid
+# Defines oneNT, twoNT, gameForce2C, threeNT
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Response-to-1-Bid
-# IMPORT Predict-Openers-Rebid
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Openers-Rebid
+# Defines CDN, CHN, CSN, DHN, DSN, HSN
 
-CDN or CHN or CSN or DHS or DHN or DSN
+# Create hands where the only question is "How may keycards does partner have?"
+#predeal south SA,HA,DAK,CA
+#predeal north S,H,DQJT9876,CK5
 
+# avoid New Minor Forcing and raises
+cdn = CDN
+chn = CHN and hearts(north)<5 and hearts(south)<4
+csn = CSN and spades(north)<5 and spades(south)<4
+dhn = DHN and hearts(north)<5 and hearts(south)<4
+dsn = DSN and spades(north)<5 and spades(south)<4
+hsn = HSN and spades(north)<5 and spades(south)<4
+xyNT = cdn or chn or csn or dhn or dsn or hsn
+
+# North is balanced or has long Diamonds to allow 1C-1D... auctions.
+northBal = shape(north, any 5422+any 5332+any 4432+any 4333)
+northDiamonds = shape(north, 2272+2263+2362+3262)
+northShape = northBal //or northDiamonds
+
+gfNT = gameForce2C and shape(south, any 5422+any 5332+any 4432+any 4333) and northShape
+
+# Avoid Major suit opener and major suit fit
+sFit = (spades(south)+spades(north))>7
+hFit = (hearts(south)+hearts(north))>7
+dFit = (diamonds(south)+diamonds(north))>8
+cfit = (clubs(south)+clubs(north))>8
+noMajorFit = not (sFit or hFit)
+majorOK    = spades(south)<5 and hearts(south)<5 and noMajorFit
+
+# North is anywhere within their range
+nt12 = xyNT    and hcp(south)>11 and hcp(south)<15
+nt15 = oneNT   and hcp(south)>14 and hcp(south)<18
+nt18 = xyNT    and hcp(south)>17 and hcp(south)<20
+nt20 = twoNT   and hcp(south)>19 and hcp(south)<22
+nt22 = gfNT    and hcp(south)>21 and hcp(south)<25
+nt25 = threeNT and hcp(south)>24 and hcp(south)<28
+nt28 = gfNT    and hcp(south)>28
+
+# Define tp = combined hcp
+tp = hcp(south)+hcp(north)
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+
+# Level the deal
+lev12 = nt12   and keep86
+lev15 = nt15   and keep19
+lev18 = nt18   and keep
+lev20 = nt20   and keep44
+lev22 = nt22   and keep94
+lev25 = nt25   and keep
+lev28 = nt28   and keep
+
+# Keep at least one of these
+grandSlam = tp>36
+smallSlam = tp>32 and not grandSlam
+slamTry   = not (grandSlam or smallSlam)
+
+levst = slamTry   and keep
+levss = smallSlam and keep
+levgs = grandSlam and keep
+levelTheDeal = (lev12 or lev15 or lev18 or lev20 or lev22 or lev25 or lev28) and (levst or levss or levgs)
+
+# Now do it
+(nt12 or nt15 or nt18 or nt20 or nt22 or nt25 or nt28) and majorOK and tp>30
+and levelTheDeal
+
+produce 10
+action
+average "12 + 21: 1x-1y-1N-? " 100 * nt12,
+average "15 + 18: 1N-?       " 100 * nt15,
+average "18 + 15: 1x-1y-2N-? " 100 * nt18,
+average "20 + 13: 2N-?       " 100 * nt20,
+average "22 + 11: 2C-2x-2N-? " 100 * nt22,
+average "25 +  8: 3N-?       " 100 * nt25,
+average "28 +  5: 2C-2x-3N-? " 100 * nt28,
+average "hcp S               " hcp(south),
+average "hcp N               " hcp(north),
+average "total < 32  " 100 * slamTry,
+average "total 33-36 " 100 * smallSlam,
+average "total > 36  " 100 * grandSlam,
 
 `, "S", true)
 Script

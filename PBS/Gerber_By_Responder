@@ -27,66 +27,64 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 #predeal south SA,HA,DAK,CA
 #predeal north S,H,DQJT9876,CK5
 
-# avoid New Minor Forcing and raises
+# avoid New Minor Forcing
 cdn = CDN
-chn = CHN and hearts(north)<5 and hearts(south)<4
-csn = CSN and spades(north)<5 and spades(south)<4
-dhn = DHN and hearts(north)<5 and hearts(south)<4
-dsn = DSN and spades(north)<5 and spades(south)<4
-hsn = HSN and spades(north)<5 and spades(south)<4
+chn = CHN and hearts(north)<5
+csn = CSN and spades(north)<5
+dhn = DHN and hearts(north)<5
+dsn = DSN and spades(north)<5
+hsn = HSN and spades(north)<5
 xyNT = cdn or chn or csn or dhn or dsn or hsn
 
-# North is balanced or has long Diamonds to allow 1C-1D... auctions.
-northBal = shape(north, any 5422+any 5332+any 4432+any 4333)
-northDiamonds = shape(north, 2272+2263+2362+3262)
-northShape = northBal or northDiamonds
+gfNT = gameForce2C and shape(south, any 5422+any 5332+any 4432+any 4333)
 
-gfNT = gameForce2C and shape(south, any 5422+any 5332+any 4432+any 4333) and northShape
-
-# Define suit fits
+# Avoid major suit fit
 sFit = (spades(south)+spades(north))>7
 hFit = (hearts(south)+hearts(north))>7
-dFit = (diamonds(south)+diamonds(north))>8
-cfit = (clubs(south)+clubs(north))>8
-noMajorFit  = not (sFit or hFit) // or dFit or cfit
-no5CardMajor = spades(south)<5 and hearts(south)<5 and noMajorFit
-majorOK = noMajorFit and no5CardMajor
+noMfit = not (sFit or hFit)
 
-# Define goodC and goodD
-# goodC = clubs(north)>4    and top5(north,clubs)>2
-# goodD = diamonds(north)>4 and top5(north,diamonds)>2
+# North is balanced with no 4-card major.  May have a long minor.
+northBal = shape(north,43xx+34xx+33xx+32xx+23xx+22xx-any 0xxx-any 1xxx)
+northNo4M = shape(north,33xx+32xx+23xx+22xx-any 0xxx-any 1xxx)
 
-nt12 = xyNT    and hcp(south)>11  and hcp(south)<15 
-nt15 = oneNT   and hcp(south)==15
-nt18 = xyNT    and hcp(south)>17  and hcp(south)<20
-nt20 = twoNT   and hcp(south)==20
-nt22 = gfNT    and hcp(south)==22
-nt25 = threeNT and hcp(south)==25
-nt28 = gfNT    and hcp(south)==28
-
-# Define tp = combined hcp
-tp = hcp(south)+hcp(north)
+# North is anywhere within their range and the pair has at least 32
+nt12 = xyNT    and hcp(south)>=12 and hcp(south)<=14 and hcp(north)>=20 and northBal
+nt15 = oneNT   and hcp(south)>=15 and hcp(south)<=17 and hcp(north)>=17 and northNo4M
+nt18 = xyNT    and hcp(south)>=18 and hcp(south)<=19 and hcp(north)>=14 and northBal
+nt20 = twoNT   and hcp(south)>=20 and hcp(south)<=21 and hcp(north)>=12 and northNo4M
+nt22 = gfNT    and hcp(south)>=22 and hcp(south)<=24 and hcp(north)>=10 and northNo4M
+nt25 = threeNT and hcp(south)>=25 and hcp(south)<=27 and hcp(north)>=7  and northNo4M
+nt28 = gfNT    and hcp(south)>=28                    and hcp(north)>=4  and northNo4M
+anyNT = nt12 or nt15 or nt18 or nt20 or nt22 or nt25 or nt28
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 # Level the deal
-lev12 = nt12   and keep89
-lev15 = nt15   and keep70
+lev12 = nt12   and keep86
+lev15 = nt15   and keep19
 lev18 = nt18   and keep
-lev20 = nt20   and keep81
-lev22 = nt22   and keep
+lev20 = nt20   and keep44
+lev22 = nt22   and keep94
 lev25 = nt25   and keep
 lev28 = nt28   and keep
 
+# Define tp = combined hcp
+tp = hcp(south)+hcp(north)
+
 # Keep at least one of these
-lev31 = tp==31 and keep44
-lev32 = tp==32 and keep67
-lev33 = tp==33 and keep
-levelTheDeal = (lev12 or lev15 or lev18 or lev20 or lev22 or lev25 or lev28) and (lev31 or lev32 or lev33)
+grandSlam = tp>36
+smallSlam = tp>32 and not grandSlam
+slamTry   = not (grandSlam or smallSlam)
+
+levst = slamTry   and keep
+levss = smallSlam and keep
+levgs = grandSlam and keep
+levelTheDeal = (lev12 or lev15 or lev18 or lev20 or lev22 or lev25 or lev28) and (levst or levss or levgs)
 
 # Now do it
-(nt12 or nt15 or nt18 or nt20 or nt22 or nt25 or nt28 or lev31 or lev32 or lev33) and majorOK
+anyNT and noMfit
 and levelTheDeal
+
 
 produce 10
 action
@@ -99,9 +97,9 @@ average "25 +  8: 3N-?       " 100 * nt25,
 average "28 +  5: 2C-2x-3N-? " 100 * nt28,
 average "hcp S               " hcp(south),
 average "hcp N               " hcp(north),
-average "hcp NS=31   " 100 * (hcp(south)+hcp(north)==31),
-average "hcp NS=32   " 100 * (hcp(south)+hcp(north)==32),
-average "hcp NS=33   " 100 * (hcp(south)+hcp(north)==33),
+average "total < 32  " 100 * slamTry,
+average "total 33-36 " 100 * smallSlam,
+average "total > 36  " 100 * grandSlam,
 
 `,"S",true)
 //Script
