@@ -23,31 +23,34 @@ sH = hearts(south)>4   ? hearts(south) - 4   : 0
 sS = spades(south)>4   ? spades(south) - 4   : 0
 sTP = hcp(south) + sC + sD + sH + sS
 
-# Define suit quality for NT Response needed for other minor and both majors
-cQ = hcp(north,clubs)>2
-dQ = hcp(north,diamonds)>2
+# Define suit quality for NT -- Qxx opener's suit and Kxx or QJx in unbid suits
+cQ = hcp(north,clubs)>1 and hcp(north,diamonds)>2  // 10-12 doesn't all room for 3-points in each suit
+dQ = hcp(north,diamonds)>1 and hcp(north,clubs)>2
 mQ = hcp(north,hearts)>2 and hcp(north,spades)>2
 
-# South opens a minor and North does not respond 1D, 1H, or 1S or raise -- allow as much length as possible  
-# There are too many constraints for 1C - 2N, so I removed the code
-s1D = oneDiamond and cQ and hcp(north,diamonds)==0 and hearts(north)<4 and spades(north)<4
+# South opens a minor and North has a 4333 hand with an honor(s) in every suit
+s1C = oneClub    and dQ and clubs(south)>5 and diamonds(north)<4 and hearts(north)<4 and spades(north)<4
+s1D = oneDiamond and cQ and diamonds(south)>5 and hearts(north)<4 and spades(north)<4
+s1mShape = shape(south,any 7xxx+any 6xxx)       // shape upgrades required for TP
+s1mRange = sTP>21 and hcp(south)<22
+n1mRange = hcp(north)>10 and hcp(north)<13      // North responds 2N
+n1mShape = shape(north,any 4333)
 
-# North responds in NT -- balanced w/major suit quality
-ntResponse = shape(north, any 5422 +any 5332 +any 4432 +any 4333) and mQ
+# South opens 1m and North responds 2N
+s1m = (s1C or s1D) and mQ and s1mShape and s1Range and n1mRange and n1mShape
 
-# South opens 2C or 1m
-s2C = hcp(south)>21 and hearts(north)<5 and spades(north)<5
-s1m = hcp(south)<22 and sTP>20 and s1D
+# South opens 2C and north responds 2N
+n2cRange = hcp(north)>7
+n2cShape = shape(north,3343+3334)  // avoid Stayman after 2C - 2D - 2N
+n2cQ     = hcp(north,clubs)>1 and hcp(north,diamonds)>1 and hcp(north,hearts)>1 and hcp(north,spades)>1
 
-# Define south's 1m-2N and 2C-2N responses
-oneMinor2N = s1m and ntResponse and hcp(north)>10 and hcp(north)<13
-twoClubs2N = s2C and ntResponse and hcp(north)>7
+s2C = hcp(south)>21 and n2cRange and n2cShape and n2cQ 
 
-(oneMinor2N or twoClubs2N) and calmWest
-
+# Now do it
+(s1m or s2C) and calmWest
 action
-average "1m - 2N  " 100 * oneMinor2N,
-average "2C - 2N  " 100 * twoClubs2N,
+average "1m - 2N  " 100 * s1m,
+average "2C - 2N  " 100 * s2C,
 
 `,"S",true)
 //Script
