@@ -4,21 +4,49 @@
 dealer south
 
 
-# These are sequences where 4C-Gerber might be bid by Responder
-# auction-filter: Auction.....\\n([123]NT|1[CDH].Pass.1[DHS].Pass\\n[123]NT.Pass |2C.*Pass.2[DHS].Pass\\n[23]NT.Pass.)
+# These are sequences where 4C-Gerber might be bid by Opener
+# auction-filter: Auction.....\\n(1[CD].* Pass 2NT |2C.* Pass 2NT )
 
-# Gerber by Responder
+# Gerber by Opener
 #
-# 1x - 1y - 1N - ?
-# 1x - 1y - 2N - ?
 # 1m - 2N - ?
-# 1N - ?
-# 2N - ?
-# 3N - ?
-# 2C 2D 2N - ?
-# 2C 2D 3N - ?
+# 2C - 2N - ?   ***** For this test I'm omitting this option *****
 
 
+##### Imported Script: Define Calm Opponents #####
+
+# Avoid concentration of values
+cce = top4(east,clubs)<2
+cde = top4(east,diamonds)<2
+che = top4(east,hearts)<2
+cse = top4(east,spades)<2
+noConEast = cce and cde and che and cse
+
+ccw = top4(west,clubs)<2
+cdw = top4(west,diamonds)<2
+chw = top4(west,hearts)<2
+csw = top4(west,spades)<2
+noConWest = ccw and cdw and chw and csw
+
+#unbalEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+#unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+
+#balEast   = shape(east,any 4333 +any 4432)
+#balWest   = shape(west,any 4333 +any 4432)
+
+balEast    = shape(east,any 4432+any 4333)
+unbalEast  = not balEast
+
+balWest    = shape(west,any 4432+any 4333)
+unbalWest  = not balWest
+
+calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<12)
+calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<12)
+calmOpps = calmEast and calmWest
+
+##### End of Imported Script: Define Calm Opponents #####
+
+# Defines calmWest
 ##### Imported Script -- Predict Opening 1-Bid #####
 
 # Changed to use gibNT 3/30/2025
@@ -77,238 +105,39 @@ oneDiamond = oD
 oneClub    = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
-# Defines oneNT, twoNT, gameForce2C, threeNT
-##### Predict Response to 1-Bid ##### 
+# Defines oneClub, oneDiamond
 
-# These variables are defined in the imported scripts above
-# The number of cards South has in each suit: s, h, d, c
-# South's predicted opening suit: oC, oD, oH, oS 
-
-sP = hcp(south)
-nP = hcp(north)
-
-# Predict North's 1-level response
-sN = spades(north)
-hN = hearts(north)
-dN = diamonds(north)
-cN = clubs(north)
-
-# North responds in D, H, or S (Walsh style), or raises C.
-######
-# If less than 13, Walsh Style; otherwise, longest suit.
-nS  =  nP<13 ? sN>3 and sN>hN : sN>3 and sN>hN and sN>=dN and sN>=cN
-nH  = (nP<13 ? hN>3           : hN>3           and hN>=dN and hN>=cN) and not (nS)
-nD = dN>3           and dN>=cN and not (nS or nH)
-nC = cN>4           and cN>4   and not (nS or nH or nD)
-nN = not (nS or nH or nD or nC)
-
-# Define South's possible new-suit/NT rebids
-sRC = clubs(south)>3
-sRD = diamonds(south)>3
-sRH = hearts(south)>3
-sRS = spades(south)>3
-sRN = shape(south,any 4333+any 4432+any 5332)
+# Define suit quality for NT -- Qxx opener's suit and Kxx or QJx in unbid suits
+nC2 = hcp(north,clubs)>1         // at least Qxx
+nD2 = hcp(north,diamonds)>1
+nM2 = hcp(north,hearts)>1 and hcp(north,spades)>1
+nC3 = hcp(north,clubs)>2         // at least Kxx or QJx
+nD3 = hcp(north,diamonds)>2
+nM3 = hcp(north,hearts)>2 and hcp(north,spades)>2
 
 
-# Defining South's opening (not NT) & North's non-GF response
-CD = oC and nD
-CH = oC and nH
-CS = oC and nS
-CN = oC and nN
-CC = oC and nC
+# Define North's response ranges
+n1 = hcp(north)>5  and hcp(north)<11
+n2 = hcp(north)>10 and hcp(north)<13
+n3 = hcp(north)>12 and hcp(north)<16
 
-DH = oD and nH
-DS = oD and nS
-DN = oD and nN
-DD = oD and not (DH or DS or DN)
+# South bids 1C or 1D and North responds 1N or 2/3N
+s1Cn1N = oneClub    and nD2 and nM2 and n1          // 1C - 1N       with 2 hcp in unbid suits
+s1Dn1N = oneDiamond and nC2 and nM2 and n1          // 1D - 1N  
+s1Cn2N = oneClub    and nD3 and nM3 and (n2 or n3)  // 1C - 2N or 3N with 3 hcp in unbid suits
+s1Dn2N = oneDiamond and nC3 and nM3 and (n2 or n3)  // 1D - 2N or 3N
 
-HS = oH and nS
-HH = oH and hN>2 and not HS
-HN = oH and not (HS or HH)
-
-##### End of Predict Response to 1-Bid ##### 
-
-
-##### Predict Opener's Rebid #####
-CDH = CD and sRH
-CDS = CD and sRS and not (CDH)
-CDN = CD and sRN and not (CDH or CDS)
-CDC = CD and c>5 and not (CDH or CDS or CDN)
-CDD = CD and d>3 and not (CDH or CDS or CDN or CDC)
-
-CHS = CH and sRS
-CHN = CH and sRN and not (CHS)
-CHC = CH and c>5 and not (CHS or CHN)
-CHD = CH and sRD and not (CHS or CHN or CHC)
-CHH = CH and sRH and not (CHS or CHN or CHC or CHD)
-
-CSN = CS and sRN
-CSC = CS and c>5 and not (CSN)
-CSD = CS and sRD and not (CSN or CSC)
-CSH = CS and sRH and not (CSN or CSC or CSD)
-CSS = CS and sRS and not (CSN or CSC or CSD or CSH)
-
-CNC = CN and c>5
-CND = CN and sRD and not (CNC)
-CNH = CN and sRH and not (CNC or CND)
-CNS = CN and sRS and not (CNC or CND or CNH)
-CNN = CN and sRN and not (CNC or CND or CNH or CNS)
-
-CCD = CC and sRD
-CCH = CC and sRH and not (CCD)
-CCS = CC and sRS and not (CCD or CCH)
-CCN = CC and sRN and not (CCD or CCH or CCS)
-CCC = CC and c>5 and not (CCD or CCH or CCS or CCN)
-
-DHS = DH and sRS
-DHN = DH and sRN and not (DHS)
-DHC = DH and sRC and not (DHS or DHN)
-DHD = DH and d>5 and not (DHS or DHC or DHN)
-DHH = DH and sRH and not (DHS or DHC or DHN or DHD)
-
-DSN = DS and sRN
-DSC = DS and sRC and not (DSN)
-DSD = DS and d>5 and not (DSN or DSC)
-DSH = DS and sRH and not (DSN or DSC or DSD)
-DSS = DS and sRS and not (DSN or DSC or DSD or DSH)
-
-DNC = DN and sRC
-DND = DN and d>5 and not (DNC)
-DNH = DN and sRH and not (DNC or DND)
-DNS = DN and sRS and not (DNC or DND or DNH)
-DNN = DN and sRN and not (DNC or DND or DNH or DNS)
-
-
-HSN = HS and sRN
-HSC = HS and sRC and not (HSN)
-HSD = HS and sRD and not (HSN or HSC)
-HSH = HS and h>5 and not (HSN or HSC or HSD)
-HSS = HS and sRS and not (HSN or HSC or HSD or HSH)
-
-HNC = HN and sRC
-HND = HN and sRD and not (HNC)
-HNH = HN and h>5 and not (HNC or HND)
-HNS = HN and sRS and not (HNC or HND or HNH)
-HNN = HN and sRN and not (HNC or HND or HNH or HNS)
-##### End of Predict Opener's Rebid #####
-
-# Defines CDN, CHN, CSN, DHN, DSN, HSN
-
-# Create hands where the only question is "How may keycards does partner have?"
-#predeal south SA,HA,DAK,CA
-#predeal north S,H,DQJT9876,CK5
-
-# avoid New Minor Forcing and raises
-cdn = CDN
-chn = CHN and hearts(north)<5 and hearts(south)<4
-csn = CSN and spades(north)<5 and spades(south)<4
-dhn = DHN and hearts(north)<5 and hearts(south)<4
-dsn = DSN and spades(north)<5 and spades(south)<4
-hsn = HSN and spades(north)<5 and spades(south)<4
-xyNT = cdn or chn or csn or dhn or dsn or hsn
-
-# North is balanced or has long Diamonds to allow 1C-1D... auctions.
-northBal = shape(north, any 5422+any 5332+any 4432+any 4333)
-northDiamonds = shape(north, 2272+2263+2362+3262)
-northShape = northBal //or northDiamonds
-
-gfNT = gameForce2C and shape(south, any 5422+any 5332+any 4432+any 4333) and northShape
-
-# Avoid Major suit opener and major suit fit
-sFit = (spades(south)+spades(north))>7
-hFit = (hearts(south)+hearts(north))>7
-dFit = (diamonds(south)+diamonds(north))>8
-cfit = (clubs(south)+clubs(north))>8
-noMajorFit = not (sFit or hFit)
-majorOK    = spades(south)<5 and hearts(south)<5 and noMajorFit
-
-# North is anywhere within their range
-nt12 = xyNT    and hcp(south)>11 and hcp(south)<15
-nt15 = oneNT   and hcp(south)>14 and hcp(south)<18
-nt18 = xyNT    and hcp(south)>17 and hcp(south)<20
-nt20 = twoNT   and hcp(south)>19 and hcp(south)<22
-nt22 = gfNT    and hcp(south)>21 and hcp(south)<25
-nt25 = threeNT and hcp(south)>24 and hcp(south)<28
-nt28 = gfNT    and hcp(south)>28
-
-# Define tp = combined hcp
-tp = hcp(south)+hcp(north)
-
-### Imported Leveling Code ###
-c1 = hascard(west,2C)
-c2 = hascard(east,2D)
-c3 = hascard(west,3C)
-c4 = hascard(east,3D)
-
-keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
-keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
-
-keep015 = keep06 and c3
-keep03 = keep06 and keep44
-keep045 = keep06 and not c3
-####06 = c1 and c2
-keep11 = c1 and keep44
-keep14 = c1 and not keep44
-keep19 = c1 and not c2
-keep25 = c1
-keep30 = keep06 or c3
-keep33 = c1 or (c2 and keep44)
-####44 = c3 or c4
-keep47 = keep44 or keep06
-
-keep53 = not keep47
-keep56 = not keep44
-keep67 = not keep33
-keep70 = not keep30
-keep75 = not keep25
-keep81 = not keep19
-keep86 = not keep14
-keep89 = not keep11
-keep94 = not keep06
-keep955 = not keep045
-keep97 = not keep03
-keep985 = not keep015
-keep   = 1
-keep0  = 0
-### End of Imported Leveling Code ###
-
-
-# Level the deal
-lev12 = nt12   and keep14
-lev15 = nt15   and keep11
-lev18 = nt18   and keep
-lev20 = nt20   and keep
-lev22 = nt22   and keep
-lev25 = nt25   and keep
-lev28 = nt28   and keep
-
-# Keep at least one of these
-grandSlam = tp>36
-smallSlam = tp>32 and not grandSlam
-slamTry   = not (grandSlam or smallSlam)
-
-levst = slamTry   and keep
-levss = smallSlam and keep
-levgs = grandSlam and keep
-levelTheDeal = (lev12 or lev15 or lev18 or lev20 or lev22 or lev25 or lev28) and (levst or levss or levgs)
+nShape = shape(north,any 4333)
 
 # Now do it
-(nt12 or nt15 or nt18 or nt20 or nt22 or nt25 or nt28) and majorOK and tp>30
-and levelTheDeal
+(s1Cn1N or s1Cn2N or s1Dn1N or s1Dn2N) and calmWest and nShape
 
 action
-average "12 + 21: 1x-1y-1N-? " 100 * nt12,
-average "15 + 18: 1N-?       " 100 * nt15,
-average "18 + 15: 1x-1y-2N-? " 100 * nt18,
-average "20 + 13: 2N-?       " 100 * nt20,
-average "22 + 11: 2C-2x-2N-? " 100 * nt22,
-average "25 +  8: 3N-?       " 100 * nt25,
-average "28 +  5: 2C-2x-3N-? " 100 * nt28,
-average "hcp S               " hcp(south),
-average "hcp N               " hcp(north),
-average "total < 32  " 100 * slamTry,
-average "total 33-36 " 100 * smallSlam,
-average "total > 36  " 100 * grandSlam,
+average "1C - 2N  " 100 * (s1Cn1N or s1Cn2N),
+average "1N - 2N  " 100 * (s1Dn1N or s1Dn2N),
+average " 6-10 " 100 * n1,
+average "11-12 " 100 * n2,
+average "13-15 " 100 * n3,
 
 
 printpbn
