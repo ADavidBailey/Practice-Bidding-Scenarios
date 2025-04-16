@@ -1,6 +1,6 @@
-# button-text: TEST
-# scenario-title: All Opening Bids ---
-# A_TEST_1m-123N
+# button-text: 1m - 1|2|3 NT
+# scenario-title: 1m - 1NT, 2NT or 3NT
+# 1m-1_2_or_3_NT
 dealer south
 
 
@@ -116,7 +116,6 @@ nC3 = hcp(north,clubs)>2         // at least Kxx or QJx
 nD3 = hcp(north,diamonds)>2
 nM3 = hcp(north,hearts)>2 and hcp(north,spades)>2
 
-
 # Define North's response ranges
 n1 = hcp(north)>5  and hcp(north)<11
 n2 = hcp(north)>10 and hcp(north)<13
@@ -142,9 +141,19 @@ nShape = shape(north,any 4333)
 
 action
 
-average "1m - 1N  " 100 * s1m1N,
-average "1m - 2N  " 100 * s1m2N,
-average "1m - 3N  " 100 * s1m3N,
+average "1m - 1N    " 100 * s1m1N,
+average "     2N    " 100 * s1m2N,
+average "     3N    " 100 * s1m3N,
+
+average "hcp South  " hcp(south),
+average "    West   " hcp(west),
+average "    North  " hcp(north),
+average "    East   " hcp(east),
+
+average "South 4333 " 100 * shape(north,4333),
+average "      3433 " 100 * shape(north,3433),
+average "      3343 " 100 * shape(north,3343),
+average "      3334 " 100 * shape(north,3334),
 
 
 printpbn

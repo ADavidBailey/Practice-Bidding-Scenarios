@@ -1,0 +1,62 @@
+While struggling with trying to get 1C - 2N bids, it occurred to me that the 2N response​ should be a picture bid-4333 with an honor in every suit. Even after I configured it​ that way, B​ridge B​bidding A​nalyser (BBA) insisted on responding 1D, 1H, 1S, or raising Clubs. That's not a complaint!​ Skipping a 4-card suit, especially a major, would be heresy for most bridge players.
+
+The same thing applies after a 1D opener. If the hand screams NT, skip a 4-card suit.
+
+I'm pretty sure that skipping 4-card suits with a 4333 and stoppers in unbid suits would​ get better results. ​ To test this premise, I need to see results from lots of deals.
+
+I created a file 500 deals just to test this premise:​ A_Test_1m-123N​. It's an archive PBN file from BBA. It includes the bidding.
+South opens 1C or 1D with no other constraints.
+North has any 4333 hand with the following ranges​:
+6-10 with at least Qxx in each unbid suit -- no requirement for opener's suit
+11-12 with at least Kxx or QJx in each unbid suit AND at least Qxx in the opener's suit
+13-15 ​with same as 11-12
+Here are some statistics​ (I use Regular Expressions to examine the file):
+466 Auction.....\n1[CD].Pass
+​- 70 Auction.....\n1[CD].Pass 1D
+​- 126 Auction.....\n1[CD].Pass 1H
+​- 120 Auction.....\n1[CD].Pass 1S
+​- 91 Auction.....\n1[CD]Pass.1N
+​- 33 Auction.....\n1(C Pass.2C|D Pass 2D) 11 were 1C - 2C!!
+​- 24 Auction.....\n1D Pass 2C
+- 3 Auction.....\n1D Pass 2N
+- 0 Auction.....\n1[CD] Pass 3N
+​Final Contracts
+​- 31 Contract...C
+​- 54 Contract...D
+​- 39 Contract...H
+​- 51 Contract...S
+​- 324 Contract...​NT
+​Who declared NT contracts
+​- 196 Declarer..N..\n.Contract...N.. ​ North declared NT
+​- 126 Declarer..S..\n.Contract...N..​ South declared NT
+Underbid...
+​- 19 Contract..[12]N..\n.Result..(9|10)
+​- 3 Contract..[123][HS]..\n.Result..(10|11)
+​- 11 Contract..[1-4][CD]..\n.Result..(11|12|13)
+​Overbid...
+​- 34 Score ....- ​ Negative Scores.
+​Who declared all N/S contracts
+​- 254 Declarer..N..\n.Contract...[CDHSN]..\n.*\n.*\n.*\n.*\n.*\n.Score..... North. 17 were -
+​- 192 Declarer..S..\n.Contract...[CDHSN]..\n.*\n.*\n.*\n.*\n.*\n.Score..... South. 6 were -
+O​bservations...
+​- NT responses to 1m reveal much less info to opponents.
+- After reviewing many hands, I don't expect there's a significant declarer advantage for ​opener vs. responder
+​- After 1m (Pass), the advancer is likely to have the better hand.
+Here are more stats from the BBO Dealer:
+For Responder's 1NT
+​- hcp South: 13.8473
+​- hcp West : 6.40037
+​- hcp North: 9.15904
+​- hcp East : 10.5933
+For Responder's 2NT:
+​- hcp South: 13.3413
+​- hcp West : 5.98976
+​- hcp North: 11.802
+​- hcp East : 8.86689
+For Responder's 3NT:
+​- hcp South: 13.0162
+​- hcp West : 5.34875
+​- hcp North: 14.2105
+​- hcp East : 7.42461
+
+If ​y​ou have BBA you'll find it interesting to open the file​ in Bridge Bidding Analyser and step through some hands. Let me know if you do.
