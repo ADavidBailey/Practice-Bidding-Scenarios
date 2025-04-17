@@ -45,8 +45,16 @@ s1m3N  = s1Cn3N or s1Dn3N
 
 nShape = shape(north,any 4333)
 
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+
+levN1 = n1 and keep06
+levN2 = n2 and keep97
+levN3 = n3 and keep11
+levelTheDeal = (levN1 or levN2 or levN3)
+
 # Now do it
 (s1m1N or s1m2N or s1m3N) and calmWest and nShape
+and levelTheDeal
 
 action
 
@@ -63,8 +71,6 @@ average "South 4333 " 100 * shape(north,4333),
 average "      3433 " 100 * shape(north,3433),
 average "      3343 " 100 * shape(north,3343),
 average "      3334 " 100 * shape(north,3334),
-
-# Randomly rotate is set to false for testing
 
 `, "S", false)
 Script

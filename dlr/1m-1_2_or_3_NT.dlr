@@ -1,10 +1,10 @@
 # button-text: 1m - 1|2|3 NT
-# scenario-title: 1m - 1NT, 2NT or 3NT
+# scenario-title: 1m - 1NT，2NT，or 3NT
 # 1m-1_2_or_3_NT
 dealer south
 
 
-# South open 1C or 1D with no other constraints
+# South opens 1C or 1D with no other constraints
 # North has any 4333 hand with the following ranges
 #
 #  6-10 with at least Qxx in each unbid suit -- no requirement for opener's suit
@@ -136,8 +136,53 @@ s1m3N  = s1Cn3N or s1Dn3N
 
 nShape = shape(north,any 4333)
 
+### Imported Leveling Code ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep015 = keep06 and c3
+keep03 = keep06 and keep44
+keep045 = keep06 and not c3
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep955 = not keep045
+keep97 = not keep03
+keep985 = not keep015
+keep   = 1
+keep0  = 0
+### End of Imported Leveling Code ###
+
+
+levN1 = n1 and keep
+levN2 = n2 and keep
+levN3 = n3 and keep
+levelTheDeal = (levN1 or levN2 or levN3)
+
 # Now do it
 (s1m1N or s1m2N or s1m3N) and calmWest and nShape
+and levelTheDeal
 
 action
 
@@ -154,6 +199,8 @@ average "South 4333 " 100 * shape(north,4333),
 average "      3433 " 100 * shape(north,3433),
 average "      3343 " 100 * shape(north,3343),
 average "      3334 " 100 * shape(north,3334),
+
+# Randomly rotate is set to false for testing
 
 
 printpbn
