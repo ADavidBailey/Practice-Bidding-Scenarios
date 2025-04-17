@@ -43,17 +43,20 @@ s1Cn3N = oneClub    and nC2 and nD3 and nM3 and n3   // 1C - 3N with 3 hcp in un
 s1Dn3N = oneDiamond and nD2 and nC3 and nM3 and n3   // 1D - 3N
 s1m3N  = s1Cn3N or s1Dn3N
 
-nShape = shape(north,any 4333)
+nAny4   = shape(north,any 4333)   # any 4333
+nMajor4 = shape(north,4333+3433)  # either major
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
-levN1 = n1 and keep06
-levN2 = n2 and keep97
-levN3 = n3 and keep11
-levelTheDeal = (levN1 or levN2 or levN3)
+levN1 = n1      and keep06
+levN2 = n2      and keep97
+levN3 = n3      and keep11
+levA4 = nAny4   and keep
+levM4 = nMajor4 and keep0
+levelTheDeal = (levN1 or levN2 or levN3 or levA4 or levM4)
 
 # Now do it
-(s1m1N or s1m2N or s1m3N) and calmWest and nShape
+(s1m1N or s1m2N or s1m3N) and calmWest and (nShape or nShapeM)
 and levelTheDeal
 
 action
@@ -81,5 +84,5 @@ South opens 1!C or 1!D.  North has any 4333 hand with stuff in every other suit.
 Should North skip over a 4-card suit to bid NT?\n\
 1NT is 6-10，2NT is 11-12，3NT is 13-15\n\
 These deals are leveled so 1NT，2NT，and 3NT occur at about the same frequency.\n\
-These do not use 'Randomly rotate' -- go to Deal source to change it.\n\ 
+These do not use 'Randomly rotate' -- go to 'Deal source' to change it.\n\ 
 %NtAfter1m%,backgroundColor=lightpink
