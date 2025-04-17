@@ -59,23 +59,23 @@ DCSH = oneD and sc and ws and nh  and hcp(west)>10 // 1D - 2C - 2S - 3H
 otherHCP = hcp(south)>7 and hcp(west)>7 and hcp(north)>7
 sequences = (CDHS or CDSH or CHSD or CHDS or CSDH or CSHD or DHSC or DHCS or DSCH or DSHC or DCHS or DCSH)
 
-/*
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
-lCDHS = CDHS and keep25
-lCDSH = CDSH and keep25
-lCHSD = CHSD and keep25
-lCHDS = CHDS and keep
-lCSDH = CSDH and keep
-lCSHD = CSHD and keep
-lDHSC = DHSC and keep14
-lDHCS = DHCS and keep
-lDSCH = DSCH and keep
-lDSHC = DSHC and keep
-lDCHS = DCHS and keep
-lDCSH = DCSH and keep
-levelTheDeal = (lCDHS or lCDSH or lCHSD or lCHDS or lCSDH or lCSHD or lDHSC or lDHCS or lDSCH or lDSHC or lDCHS or lDCSH)
-*/
+#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+
+#lCDHS = CDHS and keep25
+#lCDSH = CDSH and keep25
+#lCHSD = CHSD and keep25
+#lCHDS = CHDS and keep
+#lCSDH = CSDH and keep
+#lCSHD = CSHD and keep
+#lDHSC = DHSC and keep14
+#lDHCS = DHCS and keep
+#lDSCH = DSCH and keep
+#lDSHC = DSHC and keep
+#lDCHS = DCHS and keep
+#lDCSH = DCSH and keep
+#levelTheDeal = (lCDHS or lCDSH or lCHSD or lCHDS or lCSDH or lCSHD or lDHSC or lDHCS or lDSCH or lDSHC or lDCHS or lDCSH)
+
 
 # Now do it
 eOpens and otherHCP and sequences
