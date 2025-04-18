@@ -1,0 +1,24 @@
+# button-text: Exclusion 1M-3M
+# scenario-title: Exclusion Blackwood after 1M - 3M
+# Exclusion_After_1M-3M
+dealer south
+
+
+# auction-filter: Note....Exclusion
+# convention-card: 21GF-Exclusion
+
+
+sShape  = shape(south,any 50xx-xx5x-xxx5-any 55xx)
+
+s1M = (spades(south)>4 and spades(north)==4) or (hearts(south)>4 and hearts(north)==4)
+
+s1M and sShape and hcp(south)>18 and hcp(south)<23 and hcp(north)>10 and hcp(north)<14
+
+
+action
+average "hcp south " hcp(south),
+average "hcp north " hcp(north),
+average "hcp total " (hcp(north)+hcp(south)),
+
+
+printpbn
