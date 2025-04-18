@@ -6,17 +6,42 @@ setDealerCode(`
 
 dealer south
 
-sShape  = shape(south,any 50xx-xx5x-xxx5-any 55xx)
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# Defines oneSpade, oneHeart
 
-s1M = (spades(south)>4 and spades(north)==4) or (hearts(south)>4 and hearts(north)==4)
+sBid = oneSpade and spades(north)>3
+hBid = oneHeart and hearts(north)>3
 
-s1M and sShape and hcp(south)>18 and hcp(south)<23 and hcp(north)>10 and hcp(north)<14
+sShape  = shape(south,any 0xxx+any 1xxx)
+
+sStrength = hcp(south) +6 - losers(south)
+sRange = sStrength>18 and sStrength<23
+
+sOpens = (sBid or hBid) and sShape and sRange 
+
+nStrength = hcp(north) +6 - losers(north)
+
+# Define a 4-card raise
+jacoby2n = sOpens and nStrength>12 
+splinter = sOpens and shape(north,any 0xxx+any 1xxx) and nStrength>11 and nStrength<15 and not jacoby2n
+invite   = sOpens and nStrength>10 and nStrength<13 and not (jacoby2n or splinter)
+
+# Define preemptive raises
+hPreempt = oneHeart and hearts(north)>4
+sPreempt = oneSpade and spades(north)>4
+preempt  = sOpens and nStrength>5 and not (jacoby2n or splinter or invite)
+
+(jacoby2n or splinter or invite or preempt) and hcp(north)>5
 
 
 action
 average "hcp south " hcp(south),
 average "hcp north " hcp(north),
 average "hcp total " (hcp(north)+hcp(south)),
+average "jacoby 2N " 100 * jacoby2n,
+average "splinter  " 100 * splinter,
+average "inv raise " 100 * invite,
+average "preempt   " 100 * preempt,
 
 `,"S",true)
 Script
