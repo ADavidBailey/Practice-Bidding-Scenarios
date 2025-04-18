@@ -134,7 +134,8 @@ s1Cn3N = oneClub    and nC2 and nD3 and nM3 and n3   // 1C - 3N with 3 hcp in un
 s1Dn3N = oneDiamond and nD2 and nC3 and nM3 and n3   // 1D - 3N
 s1m3N  = s1Cn3N or s1Dn3N
 
-nShape = shape(north,any 4333)
+nAny4   = shape(north,any 4333)   // any 4333
+nMajor4 = shape(north,4333+3433)  // either major
 
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
@@ -175,13 +176,15 @@ keep0  = 0
 ### End of Imported Leveling Code ###
 
 
-levN1 = n1 and keep
-levN2 = n2 and keep
-levN3 = n3 and keep
-levelTheDeal = (levN1 or levN2 or levN3)
+levN1 = n1      and keep06
+levN2 = n2      and keep97
+levN3 = n3      and keep11
+levA4 = nAny4   and keep
+levM4 = nMajor4 and keep0
+levelTheDeal = (levN1 or levN2 or levN3 or levA4 or levM4)
 
 # Now do it
-(s1m1N or s1m2N or s1m3N) and calmWest and nShape
+(s1m1N or s1m2N or s1m3N) and calmWest and (nAny4 or nMajor4)
 and levelTheDeal
 
 action
@@ -199,8 +202,6 @@ average "South 4333 " 100 * shape(north,4333),
 average "      3433 " 100 * shape(north,3433),
 average "      3343 " 100 * shape(north,3343),
 average "      3334 " 100 * shape(north,3334),
-
-# Randomly rotate is set to false for testing
 
 
 printpbn
