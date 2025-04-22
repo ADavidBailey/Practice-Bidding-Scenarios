@@ -38,12 +38,13 @@ nsFit = nsCfit or nsDfit or nsHfit or nsSfit
 
 # Define north's two suits with room for secondary support and South has no direct raise
 nsh = shape(north,44xx +45xx +54xx) and spades(south)<4   and hearts(south)<4    // S & H
-nsd = shape(north,4x4x +4x5x +4x6x) and spades(south)<4   and diamonds(south)<4  // S & D
-nsc = shape(north,4xx4 +4xx5 +4xx6) and spades(south)<4   and clubs(south)<4     // S & C
-nhd = shape(north,x44x +x45x +x46x) and hearts(south)<4   and diamonds(south)<4  // H & D
-nhc = shape(north,x4x4 +x4x5 +x4x6) and hearts(south)<4   and clubs(south)<4     // H & C
+nsd = shape(north,4x4x +4x5x)       and spades(south)<4   and diamonds(south)<4  // S & D
+nsc = shape(north,4xx4 +4xx5)       and spades(south)<4   and clubs(south)<4     // S & C
+nhd = shape(north,x44x +x45x)       and hearts(south)<4   and diamonds(south)<4  // H & D
+nhc = shape(north,x4x4 +x4x5)       and hearts(south)<4   and clubs(south)<4     // H & C
 ndc = shape(north,xx44 +xx45 +xx54) and diamonds(south)<4 and clubs(south)<4     // D & C
 
+# North has the other two suits
 cd = oC and ewDfit and nsh
 ch = oC and ewHfit and nsd
 cs = oC and ewSfit and nhd
@@ -52,9 +53,9 @@ ds = oD and ewSfit and nhc
 hs = oH and ewSfit and ndc
 
 # South Opens, West Overcalls at the 1-level, and North has the other two suits. 
-sOpens = (cd or ch or cs or dh or ds or hs)
+sOpens = (cd or ch or cs or dh or ds or hs) and shape(south,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 
-lRanges = hcp(south)>=11 and hcp(west)>=7  and hcp(north)>=10 and hcp(east)>=5
+lRanges = hcp(south)>=11 and hcp(west)>=8  and hcp(north)>=10 and hcp(east)>=5
 uRanges = hcp(south)<=13 and hcp(west)<=10                    and hcp(east)<=8
 
 sOpens and nsFit and ewFit and lRanges and uRanges
