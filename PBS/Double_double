@@ -25,10 +25,9 @@ ewSfit = wS and top3(west,spades)==2   and spades(west)==5   and spades(east)>2
 ewHfit = wH and top3(west,hearts)==2   and hearts(west)==5   and hearts(east)>2
 ewDfit = wD and top3(west,diamonds)==2 and diamonds(west)==5 and diamonds(east)>2
 ewCfit = wC and top3(west,clubs)==2    and clubs(west)==5    and clubs(east)>2
+
 w1suit = shape(west,any 5xxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
-wShape = shape(west,any 0xxx +any 1xxx)
-eShape = shape(east,any 0xxx +any 1xxx)
-ewFit = (ewSfit or ewHfit or ewDfit or ewCfit) and w1suit + wShape + eShape
+ewFit = (ewSfit or ewHfit or ewDfit or ewCfit) and w1suit
 
 # Define North/South fit -- no direct raise -- secondary support
 nsCfit = oC and clubs(north)==3
