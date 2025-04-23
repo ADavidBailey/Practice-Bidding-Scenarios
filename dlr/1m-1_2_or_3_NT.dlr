@@ -7,11 +7,11 @@ dealer south
 # South opens 1C or 1D with no other constraints
 # North has any 4333 hand with the following ranges
 #
-#  6-10 with at least Qxx in each unbid suit -- no requirement for opener's suit
-# 11-12 with at least Kxx or QJx in each unbid suit AND at least Qxx in the opener's suit
-# 13-15 same as 11-12
+#  6-9  with at least Qxx in each unbid suit -- no requirement for opener's suit
+# 10-12 with at least Kxx or QJx in each unbid suit AND at least Qxx in the opener's suit
+# 13-15 same as 10-12
 
-# auction-filter: .
+# auction-filter: Auction.....\\n1[CD].Pass.[123]NT
 
 
 ##### Imported Script: Define Calm Opponents #####
@@ -117,9 +117,9 @@ nD3 = hcp(north,diamonds)>2
 nM3 = hcp(north,hearts)>2 and hcp(north,spades)>2
 
 # Define North's response ranges
-n1 = hcp(north)>5  and hcp(north)<11
-n2 = hcp(north)>10 and hcp(north)<13
-n3 = hcp(north)>12 and hcp(north)<16
+n1 = hcp(north)>5  and hcp(north)<10
+n2 = hcp(north)>9  and hcp(north)<13
+n3 = hcp(north)>13 and hcp(north)<16
 
 # South bids 1C or 1D and North responds 1N or 2/3N
 s1Cn1N = oneClub    and nD2 and nM2 and n1           // 1C - 1N with 2 hcp in unbid suits
@@ -176,9 +176,9 @@ keep0  = 0
 ### End of Imported Leveling Code ###
 
 
-levN1 = n1      and keep06
-levN2 = n2      and keep97
-levN3 = n3      and keep11
+levN1 = n1      and keep015
+levN2 = n2      and keep
+levN3 = n3      and keep06
 levA4 = nAny4   and keep
 levM4 = nMajor4 and keep0
 levelTheDeal = (levN1 or levN2 or levN3 or levA4 or levM4)
@@ -189,9 +189,9 @@ and levelTheDeal
 
 action
 
-average "1m - 1N    " 100 * s1m1N,
-average "     2N    " 100 * s1m2N,
-average "     3N    " 100 * s1m3N,
+average "1m... 6- 9 " 100 * s1m1N,
+average "     10-12 " 100 * s1m2N,
+average "     13-15 " 100 * s1m3N,
 
 average "hcp South  " hcp(south),
 average "    West   " hcp(west),
