@@ -3,7 +3,7 @@ setDealerCode(`
 
 # Stack in Opponents Suit -- for training Ben
 
-# auction-filter: Auction.....\\n(1[HS]|2[DHS]|[3-5][CDHS]).
+# auction-filter: Auction.....\\n[1-7][CDHS].Pass.Pass.X
 dealer east
 
 # define east's 1H, 1S or any weak 2 bids with south's sta
@@ -21,8 +21,8 @@ l8 = shape(east,any 8xxx)
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
-lev5 = l5 and keep
-lev6 = l6 and keep
+lev5 = l5 and keep44
+lev6 = l6 and keep11
 lev7 = l7 and keep
 lev8 = l8 and keep
 levelTheDeal = lev5 or lev6 or lev7 or lev8

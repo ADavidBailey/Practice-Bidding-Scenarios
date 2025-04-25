@@ -6,7 +6,7 @@ dealer east
 
 # Stack in Opponents Suit -- for training Ben
 
-# auction-filter: Auction.....\\n(1[HS]|2[DHS]|[3-5][CDHS]).
+# auction-filter: Auction.....\\n[1-7][CDHS].Pass.Pass.X
 
 # define east's 1H, 1S or any weak 2 bids with south's sta
 o1S = spades(east) >4 and top4(east,spades)  >1 and hcp(east)>11 and hcp(east)<14 and spades(south)  >4 and top5(south,spades)  >2
@@ -60,8 +60,8 @@ keep0  = 0
 ### End of Imported Leveling Code ###
 
 
-lev5 = l5 and keep
-lev6 = l6 and keep
+lev5 = l5 and keep44
+lev6 = l6 and keep11
 lev7 = l7 and keep
 lev8 = l8 and keep
 levelTheDeal = lev5 or lev6 or lev7 or lev8
