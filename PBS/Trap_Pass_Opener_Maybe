@@ -1,0 +1,48 @@
+Script,TrapPassOpenerMaybe
+setDealerCode(`
+
+# Stack in Opponents Suit -- for training Ben
+
+# auction-filter: Auction.....\\n[1-7][CDHS].Pass.Pass.X
+dealer east
+
+# define east's 1H, 1S or any preemptive bid
+o1S = spades(east) >4 and top4(east,spades)  >1 and hcp(east)>11 and hcp(east)<15 and spades(north)<2   and spades(west)<3   and spades(south)>2
+o1H = hearts(east) >4 and top4(east,hearts)  >1 and hcp(east)>11 and hcp(east)<15 and hearts(north)<2   and hearts(west)<3   and hearts(south)>2
+wS = spades(east)  >5 and top4(east,spades)  >1 and hcp(east)>6  and hcp(east)<12 and spades(north)<2   and spades(west)<2   and spades(south)>2
+wH = hearts(east)  >5 and top4(east,hearts)  >1 and hcp(east)>6  and hcp(east)<12 and hearts(north)<2   and hearts(west)<2   and hearts(south)>2
+wD = diamonds(east)>5 and top4(east,diamonds)>1 and hcp(east)>6  and hcp(east)<12 and diamonds(north)<2 and diamonds(west)<2 and diamonds(south)>2
+wC = clubs(east)   >6 and top4(east,clubs)   >1 and hcp(east)>6  and hcp(east)<12 and clubs(north)<2    and clubs(west)<2    and clubs(south)>2
+
+eOpens = (o1S or o1H or wS or wH or wD or wC) and shape(east,any 7xxx +any 6xxx +any 5xxx)
+
+l5 = shape(east,any 5xxx)
+l6 = shape(east,any 6xxx)
+l7 = shape(east,any 7xxx)
+l8 = shape(east,any 8xxx)
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+
+lev5 = l5 and keep44
+lev6 = l6 and keep11
+lev7 = l7 and keep
+lev8 = l8 and keep
+levelTheDeal = lev5 or lev6 or lev7 or lev8
+
+sPasses = hcp(south)<13 and shape(south,any 4432 +any 4333)
+wPasses = hcp(west)<6
+nBalances = hcp(north)>10 and shape(north,any 5440+any 5431+any 4441) 
+eOpens and sPasses and wPasses and nBalances
+and levelTheDeal
+
+action
+average "5-cards" 100 * l5,
+average "6-cards" 100 * l6,
+average "7-cards" 100 * l7,
+average "8-cards" 100 * l8,
+
+`,"E",true)
+Script
+Button,Trap Pass Opener?,\n\
+--- Trap Pass after opener's major or weak 2 (Maybe)\n\
+%TrapPassOpener%
