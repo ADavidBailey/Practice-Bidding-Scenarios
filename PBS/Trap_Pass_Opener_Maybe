@@ -70,9 +70,9 @@ P3 = P1 or P2 or oneSpade or oneHeart or oneDiamond or oneClub
 # Defines gibNT, oneHeart, oneSpade, 
 
 # define east's 1H, 1S or any preemptive bid -- I want it to look like a Trap Pass from South's perspective
-#                                            no trap pass -----------------------------       no raise  -----  short in East's suit
-o1S = oneSpade and top4(east,spades)  >1 and spades(south)<5   and top5(south,spades)<2   and spades(west)<3   and spades(north)<2
-o1H = oneHeart and top4(east,hearts)  >1 and hearts(south)<5   and top5(south,hearts)<2   and hearts(west)<3   and hearts(north)<2
+#                                                   no trap pass -----------------------------       no raise  ----   short in East's suit
+o1S = oneSpade and top4(east,spades)  >1        and spades(south)<5   and top5(south,spades)<2   and spades(west)<3   and spades(north)<2
+o1H = oneHeart and top4(east,hearts)  >1        and hearts(south)<5   and top5(south,hearts)<2   and hearts(west)<3   and hearts(north)<2
 wS = spades(east)  >5 and top4(east,spades)  >1 and spades(south)<4   and top5(south,spades)<2   and spades(west)<3   and spades(north)<2   and not P3
 wH = hearts(east)  >5 and top4(east,hearts)  >1 and hearts(south)<4   and top5(south,hearts)<2   and hearts(west)<3   and hearts(north)<2   and not P3
 wD = diamonds(east)>5 and top4(east,diamonds)>1 and diamonds(south)<4 and top5(south,diamonds)<2 and diamonds(west)<3 and diamonds(north)<2 and not P3
