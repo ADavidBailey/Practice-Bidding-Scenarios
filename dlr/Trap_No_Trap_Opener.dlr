@@ -141,7 +141,7 @@ keep0  = 0
 
 
 l1t = eOpens1 and trap     and keep19
-l1n = eOpens1 and not trap and keep11
+l1n = eOpens1 and not trap and keep06
 l2t = eOpens2 and trap     and keep
 l2n = eOpens2 and not trap and keep25
 
@@ -156,11 +156,11 @@ and levelTheDeal
 
 action
 average "---- 1-level ----" 100 * eOpens1,
-average "   1-level trap    " 100 * l1t,
-average "   1-level no trap " 100 * l1n,
+average "     1-level trap    " 100 * l1t,
+average "     1-level no trap " 100 * l1n,
 average "---- 2-level-----" 100 * eOpens2,
-average "   2-level trap    " 100 * l2t,
-average "   2-level no trap " 100 * l2n,
+average "     2-level trap    " 100 * l2t,
+average "     2-level no trap " 100 * l2n,
 
 
 printpbn
