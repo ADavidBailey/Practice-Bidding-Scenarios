@@ -2,15 +2,12 @@ Script,DoubleShowing2Suits
 setDealerCode(`
 
 # convention-card:
-# auction-filter: 
+# auction-filter: Auction.....\\n((1C Pass 1[DHS]|1D Pass 1[HS]|1H Pass 1S) X)
 
-# need to allow spaces: (Auction.....\\n1[CDHS] Pass [12][DHSC].X)
-
-dealer south
-produce 1000
+dealer west
 
 ##### Double Showing 2 Suits #####
-# West Opens, North Overcalls/Passes, East Raises/Bids, ...
+# West Opens, North Passes, East Bids a new suit at the 1-level, and South has the other 2 suits
 
 # Predict West's Opening suit
 s = spades(west)
@@ -23,32 +20,65 @@ oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
 oC = not (oS or oH or oD)
 wSuit = (oS or oH or oD or oC)
 
-nS = oS ? shape(north, 1xxx+0xxx) : 0
-nH = oH ? shape(north, x1xx+x0xx) : 0
-nD = oD ? shape(north, xx1x+xx0x) : 0
-nC = oC ? shape(north, xxx1+xxx0) : 0
-nOverCalls = (nS or nH or nD or nC) and shape(north,any 6xxx +any 5xxx) and hcp(north)>7 and hcp(north)<11
-nPasses    = shape(north, any 4333 +any 4432) and hcp(north)<8
+##### Predict East's Response ##### 
 
-eSfit = oS ? shape(east,4xxx+3xxx) : 0
-eHfit = oH ? shape(east,x4xx+x3xx) : 0
-eDfit = oD ? shape(east,xx5x+xx4x) : 0
-eCfit = oC ? shape(east,xxx5+xxx4) : 0
-ewFit = (eSfit or eHfit or eDfit or eCfit) and hcp(east)>6
-eSuit = shape(east,any 5xxx) and hcp(east)>9 and not ewFit
+eP = hcp(east)
+wP = hcp(west)
+
+# Predict East's 1-level response
+sE = spades(east)
+hE = hearts(east)
+dE = diamonds(east)
+cE = clubs(east)
+
+# West responds in D, H, or S (Walsh style), or raises C.
+######
+# If less than 13, Walsh Style; otherwise, longest suit.
+eS  =  eP<13 ? sE>3 and sE>hE : sE>3 and sE>hE and sE>=dE and sE>=cE
+eH  = (eP<13 ? hE>3           : hE>3           and hE>=dE and hE>=cE) and not (eS)
+eD = dE>3           and dE>=cE and not (eS or eH)
+eC = cE>4           and cE>4   and not (eS or eH or eD)
+
+CD = oC and eD
+CH = oC and eH
+CS = oC and eS
+DH = oD and eH
+DS = oD and eS
+HS = oH and eS
+
+sHS = CD ? shape(south,44xx+54xx+45xx) : 0
+sDS = CH ? shape(south,4x4x+4x5x)      : 0
+sDH = CS ? shape(south,x44x+x45x)      : 0
+sCS = DH ? shape(south,4xx4+4xx5)      : 0
+sCH = DS ? shape(south,x4x4+x4x5)      : 0
+sCD = HS ? shape(south,xx44+xx45+xx54) : 0
+
+sGHS = sHS and top4(south,hearts)>1 and top4(south,spades)>1
+sGDS = sDS and top4(south,diamonds)>1 and top4(south,spades)>1
+sGDH = sDH and top4(south,diamonds)>1 and top4(south,hearts)>1
+sGCS = sCS and top4(south,clubs)>1 and top4(south,spades)>1
+sGCH = sCH and top4(south,clubs)>1 and top4(south,hearts)>1
+sGCD = sCD and top4(south,diamonds)>1 and top4(south,clubs)>1
 
 westOpens = hcp(west)>11 and hcp(west)<15 and wSuit
-
-northActs = nOverCalls or nPasses
-eastActs = (ewFit and hcp(east)>5) or (eSuit and hcp(east)>9)
-
-southActs = ((nOverCalls and ewFit) or (nPasses and eSuit)) and hcp(south)>11
+northPasses = shape(north,any 4333+any 4432) and hcp(north)<11
+eastActs = (eD or eH or eS) and hcp(east)>5
+southActs = (sGHS or sGDS or sGDH or sGCS or sGCH or sGCD) and hcp(south)>11
 
 ##### Now do it #####
-westOpens and northActs and eastActs and southActs
+westOpens and northPasses and eastActs and southActs
+
+action
+average "H&S   " 100 * sHS,
+average "D&S   " 100 * sDS,
+average "D&H   " 100 * sDH,
+average "C&S   " 100 * sCS,
+average "C&H   " 100 * sCH,
+average "C&D   " 100 * sCD,
 
 `,"W",true)
 Script
 Button,Double w/2 Suits,\n\
 --- Double Showing 2 Suits\n\
+After 1x Pass 1y，X shows the other 2 suits.
 %DoubleShowing2Suits%
