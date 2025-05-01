@@ -94,8 +94,8 @@ southActs = (sGHS or sGDS or sGDH or sGCS or sGCH or sGCD) and hcp(south)>11
 
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
-levNBids = northBids   and keep
-levNPass = northPasses and keep015
+levNBids = northBids   and keep0  // It's very hard to get North to bid.  Keeping only .015 of the passes produces less than 10 bids.
+levNPass = northPasses and keep
 levelTheDeal = levNBids or levNPass
 
 ##### Now do it #####
@@ -103,8 +103,8 @@ westOpens and northActs and eastActs and southActs
 and levelTheDeal
 
 action
-average "5-card" 100 * shape(north,any 5xxx),
-average "4-card" 100 * shape(north,any 4333+any 4432),
+average "N bids" 100 * northBids,
+average "N pass" 100 * northPasses,
 average "H&S   " 100 * sHS,
 average "D&S   " 100 * sDS,
 average "D&H   " 100 * sDH,
@@ -116,5 +116,5 @@ average "C&D   " 100 * sCD,
 Script
 Button,Double w/2 Suits,\n\
 --- Double Showing 2 Suits\n\
-After 1x (P) 1y or 1x (1y) 2x，a Double shows the other two suits.\n\
+After 1x (P) 1y，(X) shows the other two suits.\n\
 %DoubleShowing2Suits%
