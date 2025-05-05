@@ -1,6 +1,6 @@
 # button-text: namyatS - Weak
 # scenario-title: namyatS - Weak
-# Namyats_Weak
+# Namyats
 dealer south
 
 
@@ -10,14 +10,14 @@ dealer south
 # namyatS Weak
 
 # Define A/K/AK
-akS = top2(south,spades)>0 and spades(south)>1
-akH = top2(south,hearts)>0 and hearts(south)>1
-akD = top2(south,diamonds)>0 and diamonds(south)>1
-akC = top2(south,clubs)>0 and clubs(south)>1
+akS = top2(south,spades)>0 and spades(south)>0
+akH = top2(south,hearts)>0 and hearts(south)>0
+akD = top2(south,diamonds)>0 and diamonds(south)>0
+akC = top2(south,clubs)>0 and clubs(south)>0
 
 # Define H & S suits suitable for 4-level preempt with As/Ks outside
-Gs = spades(south)>6 and top5(south,spades)>3 and not (akH or akD or akC)
-Gh = hearts(south)>6 and top5(south,hearts)>3 and not (akS or akD or akC)
+Gs = spades(south)>6 and top5(south,spades)>3 and (akH or akD or akC)==0
+Gh = hearts(south)>6 and top5(south,hearts)>3 and (akS or akD or akC)==0
 
 (Gs or Gh) and loser(south)<6 and hcp(south)<18
 

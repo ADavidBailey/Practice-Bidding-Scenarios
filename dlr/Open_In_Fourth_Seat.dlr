@@ -41,8 +41,6 @@ calmWest  = (unbalWest  and noConWest  and hcp(west) <8) or (balWest  and hcp(we
 calmNorth = (unbalNorth and noConNorth and hcp(north)<8) or (balNorth and hcp(north)<12)
 calmEast  = (unbalEast  and noConEast  and hcp(east) <8) or (balEast  and hcp(east) <12)
 
-nPasses = hcp(north)<12 and shape(north,xxxx-any 7xxx-any 6xxx-any 55xx)
-
 # Rule of 15 
 r15 = hcp(south) + spades(south)
 sSouth = shape(south,any 64xx+any 63xx+any 54xx+any 53xx+any 4432+any 4333)

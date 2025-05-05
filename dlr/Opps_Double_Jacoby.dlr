@@ -22,7 +22,7 @@ eGh = hearts(east)>4   and hearts(east)<7   and top4(east,hearts)==3
 nSpades = shape(north,6xxx+5xxx -any 7xxx-any 66xx -any 65xx -any 55xx -54xx-45xx) and eGh
 nHearts = shape(north,x6xx+x5xx -any 7xxx-any 66xx -any 65xx -any 55xx -54xx-45xx) and eGd
 
-nUpperLimit = shape(north,any 6xxx) ? 7 : 15  // Kill Texas Transfers
+nUpperLimit = shape(north,any 6xxx) ? 7 : 15  // Reduce Texas Transfers
 
 nTransfers = (nSpades or nHearts) and hcp(north)<=nUpperLimit
 
