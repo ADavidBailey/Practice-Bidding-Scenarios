@@ -133,8 +133,8 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-levNBids = northBids   and keep
-levNPass = northPasses and keep015
+levNBids = northBids   and keep0  // It's very hard to get North to bid.  Keeping only .015 of the passes produces less than 10 bids.
+levNPass = northPasses and keep
 levelTheDeal = levNBids or levNPass
 
 ##### Now do it #####

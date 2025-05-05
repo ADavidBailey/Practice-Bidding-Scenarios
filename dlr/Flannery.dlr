@@ -10,7 +10,7 @@ dealer south
 # Flannery
 
 
-# South had 11-15 HCP, 5 Hearts and 4 Spades
+# South has 11-15 HCP, 5 Hearts and 4 Spades
 flannery = hcp(south)>10 and hcp(south)<16 and shape(south, 45xx)
 
 # Now do it
@@ -19,7 +19,6 @@ flannery
 action
 average "HCP North=" hcp(north),
 average "HCP South=" hcp(south),
-
 
 
 printpbn
