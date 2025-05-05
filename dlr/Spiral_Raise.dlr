@@ -35,11 +35,17 @@ chw = top4(west,hearts)<2
 csw = top4(west,spades)<2
 noConWest = ccw and cdw and chw and csw
 
-unbalEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
-unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+#unbalEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+#unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
 
-balEast   = shape(east,any 4333 +any 4432)
-balWest   = shape(west,any 4333 +any 4432)
+#balEast   = shape(east,any 4333 +any 4432)
+#balWest   = shape(west,any 4333 +any 4432)
+
+balEast    = shape(east,any 4432+any 4333)
+unbalEast  = not balEast
+
+balWest    = shape(west,any 4432+any 4333)
+unbalWest  = not balWest
 
 calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<12)
 calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<12)
