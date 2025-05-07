@@ -129,16 +129,60 @@ m2N  = (oneClub or oneDiamond) and nNT and n3
 # With 16-17, bid 3N
 m3N  = (oneClub or oneDiamond) and nNT and n4
 
+### Imported Leveling Code ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep015 = keep06 and c3
+keep03 = keep06 and keep44
+keep045 = keep06 and not c3
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep955 = not keep045
+keep97 = not keep03
+keep985 = not keep015
+keep   = 1
+keep0  = 0
+### End of Imported Leveling Code ###
+
+lev1N = m1N and keep14
+lev2H = m2H and keep30
+lev2N = m2N and keep33
+lev3N = m3N and keep
+levelTheDeal = lev1N or lev2H or lev2N or lev3N
+
 # Now do it
 (m1N or m2H or m2N or m3N) and calmWest
+and levelTheDeal
 
 action
 
-average "1m... 6-10 " 100 * n1,
-average "     11-12 " 100 * n2,
-average "     13-15 " 100 * n3,
-average "     16-17 " 100 * n4,
-
+average "1N  6-10 " 100 * n1,
+average "2H 11-12 " 100 * n2,
+average "2N 13-15 " 100 * n3,
+average "3N 16-17 " 100 * n4,
 
 
 printpbn

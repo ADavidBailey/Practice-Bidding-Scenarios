@@ -38,26 +38,33 @@ m2N  = (oneClub or oneDiamond) and nNT and n3
 # With 16-17, bid 3N
 m3N  = (oneClub or oneDiamond) and nNT and n4
 
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+lev1N = m1N and keep14
+lev2H = m2H and keep30
+lev2N = m2N and keep33
+lev3N = m3N and keep
+levelTheDeal = lev1N or lev2H or lev2N or lev3N
+
 # Now do it
 (m1N or m2H or m2N or m3N) and calmWest
+and levelTheDeal
 
 action
 
-average "1m... 6-10 " 100 * n1,
-average "     11-12 " 100 * n2,
-average "     13-15 " 100 * n3,
-average "     16-17 " 100 * n4,
-
+average "1N  6-10 " 100 * n1,
+average "2H 11-12 " 100 * n2,
+average "2N 13-15 " 100 * n3,
+average "3N 16-17 " 100 * n4,
 
 `, "S", true)
 Script
 
-Button,Bal Resp to 1m,\n\
+Button,Vic's Bal Resp to 1m,\n\
 --- Vic's balanced-hand responses to 1!C or 1!D\n\
 South opens 1!C or 1!D and North has any balanced hand without a major suit.\n\
-• 1NT = 6-10\n\
-• 2H  = 11-12 (a relay to 2!S)\n\
-• 2NT = 13-15\n\
-• 3NT = 16-17\n\\n\
+• 1N = 6-10\n\
+• 2!H = 11-12 (a relay to 2!S)\n\
+• 2N = 13-15\n\
+• 3N = 16-17\n\
 https://www.nxtbook.com/acbl/bridgebulletin/2025_05/index.php#/p/70\n\
 %vicsBalRespTo1m%,backgroundColor=lightpink
