@@ -1,0 +1,63 @@
+Script,vicsBalRespTo1m
+setDealerCode(`
+
+# South opens 1C or 1D with no other constraints
+# North has a balanced hand without a major suit and the following ranges
+
+#  6-10 1N
+# 11-12 2H
+# 13-15 2N
+# 16-17 3N
+
+# auction-filter: Auction.....\\n1[CD].Pass.[123]NT
+
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Defines calmWest
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# Defines oneClub, oneDiamond
+
+nNT = shape(north,any 5332 +any 4432 +any 4333 -5xxx-4xxx-x5xx-x4xx)
+
+# Define Vic's HCP North's response ranges
+n1 = hcp(north)>= 6 and hcp(north)<=10
+n2 = hcp(north)>=11 and hcp(north)<=12
+n3 = hcp(north)>=13 and hcp(north)<=15
+n4 = hcp(north)>=16 and hcp(north)<=17
+
+# South bids 1C or 1D and North responds 1N or 2/3N
+m1N  = (oneClub or oneDiamond) and nNT and n1
+
+# With 11-12, relay to Spades then bid 2N
+m2H  = (oneClub or oneDiamond) and nNT and n2
+
+# With 13-15, bid 2N
+m2N  = (oneClub or oneDiamond) and nNT and n3
+
+# With 16-17, bid 3N
+m3N  = (oneClub or oneDiamond) and nNT and n4
+
+# Now do it
+(m1N or m2H or m2N or m3N) and calmWest
+
+action
+
+average "1m... 6-10 " 100 * n1,
+average "     11-12 " 100 * n2,
+average "     13-15 " 100 * n3,
+average "     16-17 " 100 * n4,
+
+
+`, "S", true)
+Script
+
+Button,Bal Resp to 1m,\n\
+--- Vic's balanced-hand responses to 1!C or 1!D\n\
+South opens 1!C or 1!D and North has any balanced hand without a major suit.\n\
+• 1NT = 6-10\n\
+• 2H  = 11-12 (a relay to 2!S)\n\
+• 2NT = 13-15\n\
+• 3NT = 16-17\n\\n\
+https://www.nxtbook.com/acbl/bridgebulletin/2025_05/index.php#/p/70\n\
+%vicsBalRespTo1m%,backgroundColor=lightpink
