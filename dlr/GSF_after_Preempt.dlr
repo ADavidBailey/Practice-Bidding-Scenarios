@@ -48,10 +48,10 @@ calmOpps = calmEast and calmWest
 # Preempt is restricted to a major; so, we can predeal cards in the minors.
 predeal north CAKQ,DAKQ,H,S
 
-# South opens 3C, 3D, 3H, or 3S and North has 3-card support with 1 of the top 3 -- North can see 5, 6, or 7 sure tricks.
-southH = hearts(south)>6   and top3(south,hearts)>1 and hearts(north)>2 and top3(north,hearts)==1 and losers(north,spades) == 0
-southS = spades(south)>6   and top3(south,spades)>1 and spades(north)>2 and top3(north,spades)==1 and losers(north,hearts) == 0
-southPreempts = (southH or southS) and hcp(south)<10
+# South opens 3H or 3S and North has 3-card support with 1 of the top 3 -- North can see 5, 6, or 7 sure tricks.
+southH = hearts(south)>6 and hearts(north)>2 and top3(north,hearts)==1 and losers(north,spades) == 0
+southS = spades(south)>6 and spades(north)>2 and top3(north,spades)==1 and losers(north,hearts) == 0
+southPreempts = (southH or southS) and hcp(south)>6 and hcp(south)<11
 
 # So, if South has 2 of the top 3 in his suit, North can count 13 tricks -- in NT.
 # If opener has 1 of the top 3, 12 tricks in the suit are certain.
