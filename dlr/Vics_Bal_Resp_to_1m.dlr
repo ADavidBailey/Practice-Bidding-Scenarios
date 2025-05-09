@@ -1,4 +1,4 @@
-# button-text: Bal Resp to 1m
+# button-text: Vic's Bal Resp to 1m
 # scenario-title: Vic's balanced-hand responses to 1!C or 1!D
 # Vics_Bal_Resp_to_1m
 dealer south
@@ -117,18 +117,6 @@ n2 = hcp(north)>=11 and hcp(north)<=12
 n3 = hcp(north)>=13 and hcp(north)<=15
 n4 = hcp(north)>=16 and hcp(north)<=17
 
-# South bids 1C or 1D and North responds 1N or 2/3N
-m1N  = (oneClub or oneDiamond) and nNT and n1
-
-# With 11-12, relay to Spades then bid 2N
-m2H  = (oneClub or oneDiamond) and nNT and n2
-
-# With 13-15, bid 2N
-m2N  = (oneClub or oneDiamond) and nNT and n3
-
-# With 16-17, bid 3N
-m3N  = (oneClub or oneDiamond) and nNT and n4
-
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
 c2 = hascard(east,2D)
@@ -167,14 +155,14 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-lev1N = m1N and keep14
-lev2H = m2H and keep30
-lev2N = m2N and keep33
-lev3N = m3N and keep
+lev1N = n1 and keep14
+lev2H = n2 and keep30
+lev2N = n3 and keep33
+lev3N = n4 and keep
 levelTheDeal = lev1N or lev2H or lev2N or lev3N
 
 # Now do it
-(m1N or m2H or m2N or m3N) and calmWest
+(oneClub or oneDiamond) and (n1 or n2 or n3 or n4) and nNT and calmWest
 and levelTheDeal
 
 action
