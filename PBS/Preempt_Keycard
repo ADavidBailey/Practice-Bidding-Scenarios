@@ -19,7 +19,7 @@ o3D = top5(south,diamonds)>1 and diamonds(south)>6 and diamonds(north)>1
 o3C = top5(south,clubs)>1    and clubs(south)>6    and clubs(north)>1
 o3  = o3S or o3H or o3D or o3C
 
-((o2 and controls(north)>8) or (o3 and controls(north)>7)) and range and controls(north)>7
+((o2 and controls(north)>8) or (o3 and controls(north)>7)) and range
 
 action
 average "hcp south " hcp(south),
