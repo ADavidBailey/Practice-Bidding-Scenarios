@@ -1,12 +1,12 @@
 Script,PreemptKeycard
 setDealerCode(`
 
-# auction-filter: Auction.....\\n([24][DHS] Pass 2NT|3[CDHS] Pass 4NT)
+# auction-filter: Auction.....\\n(2[DHS] Pass 2NT|3[CDHS] Pass 4NT)
 
 # Keycard ask after Preempt
 dealer south 
 
-range = hcp(south)>5 and hcp(south)<11
+range = hcp(south)>5 and hcp(south)<10
 
 o2S = top5(south,spades)>1   and spades(south)==6   and spades(north)>2
 o2H = top5(south,hearts)>1   and hearts(south)==6   and hearts(north)>2
@@ -20,6 +20,10 @@ o3C = top5(south,clubs)>1    and clubs(south)>6    and clubs(north)>1
 o3  = o3S or o3H or o3D or o3C
 
 ((o2 and controls(north)>8) or (o3 and controls(north)>7)) and range and controls(north)>7
+
+action
+average "hcp south " hcp(south),
+average "hcp north " hcp(north),
 
 `,"S",true)
 Script
