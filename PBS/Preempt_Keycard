@@ -22,8 +22,10 @@ o3  = o3S or o3H or o3D or o3C
 ((o2 and controls(north)>8) or (o3 and controls(north)>7)) and range
 
 action
-average "hcp south " hcp(south),
-average "hcp north " hcp(north),
+average "hcp south    " hcp(south),
+average "hcp north    " hcp(north),
+average "losers South " losers(south),
+average "losers North " losers(north),
 
 `,"S",true)
 Script
