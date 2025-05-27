@@ -1,7 +1,7 @@
 Script,Smolen2N
 setDealerCode(`
 
-# auction-filter: Auction.....\\n2NT.Pass.3C.*Pass\\n3D
+# auction-filter: Auction.....\\n2NT.Pass.3C.*(Pass|X)\\n3D
 
 # Smolen after 2NT
 dealer south
@@ -9,7 +9,7 @@ dealer south
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
 
 shape(south, 23xx+32xx+33xx-xxx1-xx1x-xx6x-xxx6) &&
-hcp(south) >=18 && hcp(south)<=22 &&
+hcp(south) >=20 && hcp(south)<=21 &&
 shape(north, 54xx+45xx) &&
 hcp(north) > 4 &&
 calmWest        // It's OK for East to X with decent clubs -- system's on
@@ -20,4 +20,4 @@ Button,Smolen2N,\n\
 --- Smolen after 2NT\n\
 With game forcing values and 5-4 in the majors，start with 3!C.\n\
 If partner bids 3!D，bid your 4-card major.\n\
-%Smolen%
+%Smolen2N%
