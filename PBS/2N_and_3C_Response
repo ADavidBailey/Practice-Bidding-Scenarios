@@ -39,11 +39,11 @@ stayman  = shape(north,44xx+4xxx+x4xx-54xx-45xx-any 7xxx-any 6xxx) and game and 
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
-levGame    = game    and keep25
+levGame    = game    and keep19
 levSlam    = slam    and keep
  
 ### Do it ###
-twoNT and (levGame or levSlam)
+twoNT and (smolen or stayman) and (levGame or levSlam)
 
 ### Generate Statistics ###
 produce 5000
