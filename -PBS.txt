@@ -248,8 +248,8 @@ function delay(duration) {
 
 For each individual doc file where the code is defined you should :
 - add BBOalert code to define the script and the button
-- publish the files as web page
-- add the Import statements with the URL od published web pages
+- publish the files to gitHub
+- add the Import statements with the URL of gitHub file
 
 ### SORTED by Script Name -- everything except Strong Club System
 
@@ -416,7 +416,6 @@ Import,SlamAfterStaJac31,https://github.com/ADavidBailey/Practice-Bidding-Scenar
 Import,SlamAfterStayman,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Slam_after_Stayman
 Import,SlamAfterTransfer,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Slam_after_Transfer
 Import,Smolen,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Smolen
-Import,SmolenAfter2N,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Smolen_after_2N
 Import,SmolenInv,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Smolen_Invitational
 Import,Snapdragon,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Snapdragon_Double
 Import,SolowayJumpShift,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Soloway_Jump_Shift
@@ -450,6 +449,7 @@ Import,TrapPass,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/
 Import,TrapPassMaybe,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Trap_Pass_Maybe
 Import,TrapPassOpener,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Trap_Pass_Opener
 Import,TrapPassOpenerMaybe,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Trap_Pass_Opener_Maybe
+Import,TwoNT,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/2N
 Import,TwoNTand1Minor,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/2N_and_1_Minor
 Import,TwoNTand3C,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/2N_and_3C_Response
 Import,TwoNTandBalanced,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/2N_and_Balanced
@@ -457,9 +457,7 @@ Import,TwoNTandMSS,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/bl
 Import,TwoNTandXfer,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/2N_and_Transfers
 Import,TwoNTin4thSeat,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Two_NT_in_Fourth_Seat
 Import,TwoNTPuppet,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/2N_Puppet
-Import,TwoNTPuppetLev,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/2N_Puppet_Leveled
 Import,TwoNTSmolen,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/2N_Smolen
-Import,TwoNTSmolenLev,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/2N_Smolen_Leveled
 Import,TwoOverOne,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Two_Over_One
 Import,TwoSuitedOvercalls,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Two-Suited_Overcalls
 Import,TwoWayGameTry,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Two-Way_Game_Try
@@ -618,15 +616,14 @@ Button,---
 Button,---
 Import,Stayman
 Import,JacobyTransfer
-Button,---
 Import,Texas
+Button,---
 Import,MinorSuitStayman
 Import,MinorSuitTransfer
 Import,MSTorMSS
 Import,SizeAskingMSS
 
 Import,Smolen
-Import,SmolenAfter2N
 Import,SmolenInv
 Button,---
 Import,NTSplinter
@@ -650,18 +647,19 @@ Import,Runout
 Import,Notrump18-19
 Button,---
 Button,---
-Import,TwoNTSmolen
-Import,TwoNTSmolenLev
-Import,TwoNTPuppet
-Import,TwoNTPuppetLev
+Import,TwoNT
+Button,---
 Import,TwoNTand3C
+Import,TwoNTSmolen
+Import,TwoNTPuppet
 Import,TwoNTandBalanced
 Import,TwoNTandXfer
 Import,TwoNTandMSS
 Import,TwoNTand1Minor
+Button,---
 Import,ThreeNT
-Button,---
-Button,---
+#Button,---
+#Button,---
 #Import,RuleOf16
 #Import,Rule15
 #Import,Rule16

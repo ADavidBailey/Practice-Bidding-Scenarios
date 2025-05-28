@@ -7,21 +7,30 @@ setDealerCode(`
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 
 ### NORTH ###
+
+# Define suit lengths
+cN = clubs(north)
+dN = diamonds(north)
+hN = hearts(north)
+sN = spades(north)
+
 # Calculate strength for North -- hcp plus 1 for every card over 4 in any suit 
-nlp1 = spades(north)>4 ? spades(north)-4 : 0
-nlp2 = hearts(north)>4 ? hearts(north)-4 : 0
-nlp3 = diamonds(north)>4 ? diamonds(north)-4 : 0
-nlp4 = clubs(north)>4 ? clubs(north)-4 : 0
+nlp1 = sN>4 ? sN-4 : 0
+nlp2 = hN>4 ? hN-4 : 0
+nlp3 = dN>4 ? dN-4 : 0
+nlp4 = cN>4 ? cN-4 : 0
 strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
 
-game = strength>3 and strength<12
-slam = strength>11
+# Define objective
+weak = strength<5
+game = strength>4
+slam = strength>10
 
 balanced = shape(north,any 4333 +any 4432 +any 5332 -5xxx-x5xx)
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
-levGame = game and keep11
+levGame = game and keep14
 levSlam = slam and keep
 
 ### Do it ###
@@ -37,6 +46,6 @@ average "Slam         " 100 * slam,
 `,"S",true)
 Script
 Button,2NT - Balanced,\n\
----  20-21 Notrump and a Balanced response.  The responder's hand is leveled to\n\
-make game or slam at about the same frequency.\n\
+---  20-21 Notrump and a Balanced response.\n\
+The responder's strength -- game or slam -- is leveled.\n\
 %TwoNTandBalanced%

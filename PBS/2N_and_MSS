@@ -9,21 +9,36 @@ setDealerCode(`
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 
 ### NORTH ###
+
+# Define suit lengths
+cN = clubs(north)
+dN = diamonds(north)
+hN = hearts(north)
+sN = spades(north)
+
 # Calculate strength for North -- hcp plus 1 for every card over 4 in any suit 
-nlp1 = spades(north)>4 ? spades(north)-4 : 0
-nlp2 = hearts(north)>4 ? hearts(north)-4 : 0
-nlp3 = diamonds(north)>4 ? diamonds(north)-4 : 0
-nlp4 = clubs(north)>4 ? clubs(north)-4 : 0
+nlp1 = sN>4 ? sN-4 : 0
+nlp2 = hN>4 ? hN-4 : 0
+nlp3 = dN>4 ? dN-4 : 0
+nlp4 = cN>4 ? cN-4 : 0
 strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
 
-MSS  = shape(north,xx66+xx65+xx56+xx55+xx54+xx45-4xxx-x4xx)
-game = strength>6 and strength<12
-slam = strength>11
+# Define objective
+weak = strength<5
+game = strength>4
+slam = strength>10
+
+# Define One Minor and Both Minors
+cSuit  = cN>5 and hcp(north,clubs)>2    and dN<4 and shape(north,xxxx-any 66xx-any 65xx)
+dSuit  = dN>5 and hcp(north,diamonds)>2 and cN<4 and shape(north,xxxx-any 66xx-any 65xx)
+minor2 = ((cN>4 and dN>3) or (dN>4 and cN>3)) and (hcp(north,clubs) + hcp(north,diamonds))>2
+
+MSS      = minor2 and game
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 # Define leveling
-levGame = game and keep30
+levGame = game and keep44
 levSlam = slam and keep
 levelTheDeal = levSlam or levGame
 
@@ -41,5 +56,5 @@ average "Slam         " 100 * slam,
 Script
 Button,2NT - MSS,\n\
 ---  20-21 Notrump and Minor-suit Stayman response.  The responder has at least\n\
-5-4 in the minors.  The deal is leveled to make game or slam at about the same frequency.\n\
+5-4 in the minors.  The responder's strength -- game or slam -- is leveled.\n\
 %TwoNTandMSS%

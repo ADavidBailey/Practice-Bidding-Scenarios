@@ -68,19 +68,29 @@ oneClub    = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
 
-### NORTH Constraints ###
+### NORTH ###
+
+# Define suit lengths
+cN = clubs(north)
+dN = diamonds(north)
+hN = hearts(north)
+sN = spades(north)
+
 # Calculate strength for North -- hcp plus 1 for every card over 4 in any suit 
-nlp1 = spades(north)>4 ? spades(north)-4 : 0
-nlp2 = hearts(north)>4 ? hearts(north)-4 : 0
-nlp3 = diamonds(north)>4 ? diamonds(north)-4 : 0
-nlp4 = clubs(north)>4 ? clubs(north)-4 : 0
+nlp1 = sN>4 ? sN-4 : 0
+nlp2 = hN>4 ? hN-4 : 0
+nlp3 = dN>4 ? dN-4 : 0
+nlp4 = cN>4 ? cN-4 : 0
 strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
 
-jacoby = shape(north,5xxx+x5xx-any 6xxx- any 55xx)
-texas  = shape(north,6xxx+x6xx-any 65xx-any 55xx)
+# Define objective
+weak = strength<5
+game = strength>4
+slam = strength>10
 
-game = strength>4 and strength<12
-slam = strength>11
+# Define Responses
+texas    = (sN>5 or hN>5) and game
+jacoby   = ((sN>4 and hN<4) or (hN>4 and sN<4)) and not texas  // no strength requirement
 
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
@@ -123,7 +133,7 @@ keep0  = 0
 
 levJacoby = jacoby and keep44
 levTexas  = texas  and keep
-levGame   = game   and keep19
+levGame   = game   and keep33
 levSlam   = slam   and keep
 
 ### Do it ###

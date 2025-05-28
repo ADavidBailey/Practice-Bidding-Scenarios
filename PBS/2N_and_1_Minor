@@ -9,27 +9,42 @@ setDealerCode(`
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 
 ### NORTH ###
+
+# Define suit lengths
+cN = clubs(north)
+dN = diamonds(north)
+hN = hearts(north)
+sN = spades(north)
+
 # Calculate strength for North -- hcp plus 1 for every card over 4 in any suit 
-nlp1 = spades(north)>4 ? spades(north)-4 : 0
-nlp2 = hearts(north)>4 ? hearts(north)-4 : 0
-nlp3 = diamonds(north)>4 ? diamonds(north)-4 : 0
-nlp4 = clubs(north)>4 ? clubs(north)-4 : 0
+nlp1 = sN>4 ? sN-4 : 0
+nlp2 = hN>4 ? hN-4 : 0
+nlp3 = dN>4 ? dN-4 : 0
+nlp4 = cN>4 ? cN-4 : 0
 strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
 
-oneMinor = (clubs(north)>5 or diamonds(north)>5) and hearts(north)<4 and spades(north)<4
+# Define objective
+weak = strength<5
+game = strength>4
+slam = strength>10
 
-game = strength>=6 and strength<=11
-slam = strength>=12
+# Define One Minor and Both Minors
+cSuit  = cN>5 and hcp(north,clubs)>2    and dN<4 and shape(north,xxxx-any 66xx-any 65xx)
+dSuit  = dN>5 and hcp(north,diamonds)>2 and cN<4 and shape(north,xxxx-any 66xx-any 65xx)
+minor2 = ((cN>4 and dN>3) or (dN>4 and cN>3)) and (hcp(north,clubs) + hcp(north,diamonds))>2
+
+# Define Responses
+oneMinor = cSuit or dSuit
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 levSlam = slam and keep
-levGame = game and keep86
-levelTheCode = levSlam or levGame
+levGame = game and keep75
+levelTheDeal = levSlam or levGame
 
 ### Do it ###
-twoNT and oneMinor and (hcp(south) + strength)>29
-and levelTheCode
+twoNT and oneMinor
+and levelTheDeal
 
 ### Generate Statistics
 
@@ -40,6 +55,6 @@ average "Slam         " 100 * slam,
 `,"S",true)
 Script
 Button,2NT - 1m,\n\
----  20-21 Notrump and one Minor-suit.  The responder's hand is\n\
-leveled to make game or slam at about the same frequency.\n\
+---  20-21 Notrump and one Minor-suit.\n\
+The responder's strength -- game or slam -- is leveled.\n\\n\
 %TwoNTandOneMinor%
