@@ -66,16 +66,16 @@ produce 10000
 action
 #printoneline,
 average "Pass                  " 100 * pass,
-average "Balanced, not Stayman " 100 * balanced, //and not (puppet or stayman or MSS)),
-average "Puppet, not Stayman   " 100 * puppet,   // and not (stayman or MSS)),
+average "Balanced, not Stayman " 100 * balanced, //and not puppet, stayman, or MSS
+average "Puppet, not Stayman   " 100 * puppet,   // and not stayman or MSS
 average "Smolen                " 100 * smolen,
 average "Stayman, not Smolen   " 100 * stayman,
 average "Texas                 " 100 * texas,
-average "Jacoby, not Texas     " 100 * jacoby,   // and not texas),
-average "One Minor             " 100 * oneMinor, // and not (puppet or stayman or jacoby)),
-average "MSS, not Stayman      " 100 * MSS,      // and not (puppet or stayman)),
+average "Jacoby, not Texas     " 100 * jacoby,   // and not texas
+average "One Minor             " 100 * oneMinor, // and not puppet, stayman, or jacoby
+average "MSS, not Stayman      " 100 * MSS,      // and not puppet or stayman
 
-average "Pass                  " 100 * weak,
+average "Partscore             " 100 * weak,
 average "Game                  " 100 * game,
 average "Slam                  " 100 * slam,
 
