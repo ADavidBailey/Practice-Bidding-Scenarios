@@ -24,7 +24,7 @@ strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
 
 # Define objective
 weak = strength<5
-game = strength>4
+game = strength>4 and strength<11
 slam = strength>10
 
 # Define One Minor and Both Minors
@@ -33,19 +33,19 @@ dSuit  = dN>5 and hcp(north,diamonds)>2 and cN<4 and shape(north,xxxx-any 66xx-a
 minor2 = ((cN>4 and dN>3) or (dN>4 and cN>3)) and (hcp(north,clubs) + hcp(north,diamonds))>2
 
 # Define Responses
-smolen   = shape(north,54xx+45xx-any 7xxx-any 6xxx-any 55xx)       and game and shape(south,33xx+32xx+23xx)  // rebid 2D
-stayman  = shape(north,44xx+4xxx+x4xx-54xx-45xx-any 7xxx-any 6xxx) and game and not smolen
-puppet   = shape(north,4xxx+3xxx+x4xx+x3xx-any 6xxx -any 5xxx)     and game and not (smolen or stayman)
-MSS      = minor2                                                  and game and not (smolen or stayman)
-oneMinor = (cSuit or dSuit)                                        and game and not (smolen or stayman or MSS)
-balanced = shape(north,any 4333 +any 4432 +any 5332 -5xxx-x5xx)    and game and not (smolen or stayman or puppet or MSS)
-texas    = (sN>5 or hN>5)                                          and game
+smolen   = shape(north,54xx+45xx-any 7xxx-any 6xxx-any 55xx)       and not weak and shape(south,33xx+32xx+23xx)  // rebid 2D
+stayman  = shape(north,44xx+4xxx+x4xx-54xx-45xx-any 7xxx-any 6xxx) and not weak and not smolen
+puppet   = shape(north,4xxx+3xxx+x4xx+x3xx-any 6xxx -any 5xxx)     and not weak and not (smolen or stayman)
+MSS      = minor2                                                  and not weak and not (smolen or stayman)
+oneMinor = (cSuit or dSuit)                                        and not weak and not (smolen or stayman or MSS)
+balanced = shape(north,any 4333 +any 4432 +any 5332 -5xxx-x5xx)    and not weak and not (smolen or stayman or puppet or MSS)
+texas    = (sN>5 or hN>5)                                          and not weak
 jacoby   = ((sN>4 and hN<4) or (hN>4 and sN<4))                             and not texas  // no strength requirement
 pass     = weak and not jacoby
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
-levPass     = weak     and keep14
+levPass     = weak     and keep06
 levBalanced = balanced and keep33
 levPuppet   = puppet   and keep19
 levSmolen   = smolen   and keep
@@ -54,7 +54,12 @@ levTexas    = texas    and keep19
 levJacoby   = jacoby   and keep06
 levOneMinor = oneMinor and keep44
 levMSS      = MSS      and keep47
+
+levPart     = weak     and keep
+levGame     = game     and keep11
+levSlam     = slam     and keep
 levelTheDeal = (levPass or levBalanced or levSmolen or levPuppet or levStayman or levTexas or levJacoby or levOneMinor or levMSS)
+and (levPart or levGame or levSlam)
 
 ### Do it ###
 twoNT
