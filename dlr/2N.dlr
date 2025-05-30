@@ -142,20 +142,19 @@ keep0  = 0
 ### End of Imported Leveling Code ###
 
 
-levPass     = weak     and keep06
-levBalanced = balanced and keep33
+levBalanced = balanced and keep19
 levPuppet   = puppet   and keep19
 levSmolen   = smolen   and keep
 levStayman  = stayman  and keep06
-levTexas    = texas    and keep19
+levTexas    = texas    and keep11
 levJacoby   = jacoby   and keep06
-levOneMinor = oneMinor and keep44
-levMSS      = MSS      and keep47
+levOneMinor = oneMinor and keep25
+levMSS      = MSS      and keep33
 
 levPart     = weak     and keep
 levGame     = game     and keep11
 levSlam     = slam     and keep
-levelTheDeal = (levPass or levBalanced or levSmolen or levPuppet or levStayman or levTexas or levJacoby or levOneMinor or levMSS)
+levelTheDeal = (levBalanced or levSmolen or levPuppet or levStayman or levTexas or levJacoby or levOneMinor or levMSS)
 and (levPart or levGame or levSlam)
 
 ### Do it ###
@@ -166,7 +165,7 @@ and levelTheDeal
 
 action
 #printoneline,
-average "Pass                  " 100 * pass,
+average "Pass                  " 100 * weak,
 average "Balanced, not Stayman " 100 * balanced, // and not puppet, stayman, or MSS
 average "Puppet, not Stayman   " 100 * puppet,   // and not stayman or MSS
 average "Smolen                " 100 * smolen,

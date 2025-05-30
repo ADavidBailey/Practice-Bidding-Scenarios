@@ -85,11 +85,11 @@ strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
 
 # Define objective
 weak = strength<5
-game = strength>4
-slam = strength>10
+game = strength>4 and strength<12
+slam = strength>11
 
 # Define Responses
-texas    = (sN>5 or hN>5) and game
+texas    = (sN>5 or hN>5) and (game or slam)
 jacoby   = ((sN>4 and hN<4) or (hN>4 and sN<4)) and not texas  // no strength requirement
 
 ### Imported Leveling Code ###
@@ -133,7 +133,7 @@ keep0  = 0
 
 levJacoby = jacoby and keep44
 levTexas  = texas  and keep
-levGame   = game   and keep33
+levGame   = game   and keep19
 levSlam   = slam   and keep
 
 ### Do it ###

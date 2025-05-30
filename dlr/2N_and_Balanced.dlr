@@ -83,8 +83,8 @@ strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
 
 # Define objective
 weak = strength<5
-game = strength>4
-slam = strength>10
+game = strength>4 and strength<12
+slam = strength>11
 
 balanced = shape(north,any 4333 +any 4432 +any 5332 -5xxx-x5xx)
 
@@ -127,7 +127,7 @@ keep0  = 0
 ### End of Imported Leveling Code ###
 
 
-levGame = game and keep14
+levGame = game and keep11
 levSlam = slam and keep
 
 ### Do it ###

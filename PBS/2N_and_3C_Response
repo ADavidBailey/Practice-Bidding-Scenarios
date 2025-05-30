@@ -25,8 +25,8 @@ strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
 
 # Define objective
 weak = strength<5
-game = strength>4
-slam = strength>10
+game = strength>4 and strength<12
+slam = strength>11
 
 # Define One Minor and Both Minors
 cSuit  = cN>5 and hcp(north,clubs)>2    and dN<4 and shape(north,xxxx-any 66xx-any 65xx)
@@ -34,12 +34,12 @@ dSuit  = dN>5 and hcp(north,diamonds)>2 and cN<4 and shape(north,xxxx-any 66xx-a
 minor2 = ((cN>4 and dN>3) or (dN>4 and cN>3)) and (hcp(north,clubs) + hcp(north,diamonds))>2
 
 # Define Responses
-smolen   = shape(north,54xx+45xx-any 7xxx-any 6xxx-any 55xx)       and game and shape(south,33xx+32xx+23xx)  // rebid 2D
-stayman  = shape(north,44xx+4xxx+x4xx-54xx-45xx-any 7xxx-any 6xxx) and game and not smolen
+smolen   = shape(north,54xx+45xx-any 7xxx-any 6xxx-any 55xx)       and (game or slam) and shape(south,33xx+32xx+23xx)  // rebid 2D
+stayman  = shape(north,44xx+4xxx+x4xx-54xx-45xx-any 7xxx-any 6xxx) and (game or slam) and not smolen
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
-levGame    = game    and keep19
+levGame    = game    and keep14
 levSlam    = slam    and keep
  
 ### Do it ###

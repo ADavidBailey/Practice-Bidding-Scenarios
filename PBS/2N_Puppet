@@ -25,21 +25,21 @@ strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
 
 # Define objective
 weak = strength<5
-game = strength>4
-slam = strength>10
+game = strength>4 and strength<12
+slam = strength>11
 
 # Define responses
-puppet = shape(north,44xx+43xx+42xx+34xx+33xx+32xx+23xx -any 8xxx -any 7xxx -any 6xxx) and game
+puppet = shape(north,44xx+43xx+42xx+34xx+33xx+32xx+23xx -any 8xxx -any 7xxx -any 6xxx)
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 ##### Level the deal #####
-levGame = game and keep19
+levGame = game and keep11
 levSlam = slam and keep
 levelTheDeal = levGame or levSlam
 
 ### Do it ###
-twoNT and puppet and game
+twoNT and puppet
 and levelTheDeal
 
 ### Generate Statistics ###

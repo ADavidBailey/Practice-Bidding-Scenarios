@@ -17,8 +17,8 @@ strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
 
 # Define objective
 weak = strength<5
-game = strength>4
-slam = strength>10
+game = strength>4 and strength<12
+slam = strength>11
 
 # Define One Minor and Both Minors
 cN = clubs(north)
@@ -30,14 +30,15 @@ dSuit  = dN>5 and hcp(north,diamonds)>2 and cN<4 and shape(north,xxxx-any 66xx-a
 minor2 = ((cN>4 and dN>3) or (dN>4 and cN>3)) and (hcp(north,clubs) + hcp(north,diamonds))>2
 
 # Define Responses
-smolen   = shape(north,54xx+45xx-any 7xxx-any 6xxx-any 55xx)      and game and shape(south,33xx+32xx+23xx)
+smolen = shape(north,54xx+45xx-any 7xxx-any 6xxx-any 55xx) and shape(south,33xx+32xx+23xx)
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 ##### Level the deal #####
-levGame = game and keep25
+levPart = weak and keep0
+levGame = game and keep19
 levSlam = slam and keep
-levelTheDeal = levGame or levSlam
+levelTheDeal = levPart or levGame or levSlam
 
 ### Do it ###
 twoNT and smolen
@@ -47,6 +48,7 @@ and levelTheDeal
 action
 #printoneline,
 
+average "Partscore    " 100 * weak,
 average "Game         " 100 * game,
 average "Slam         " 100 * slam,
 
