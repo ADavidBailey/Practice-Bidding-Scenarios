@@ -1,7 +1,8 @@
 Script,Splinter_After_NT
 setDealerCode(`
 
-# auction-filter: Note...:Splinter
+# convention-card: 21GF-3DHS-Splinter
+# auction-filter: Note..1:1N-3[DM] splinter
 
 # Splinter after NT
 produce 10000
@@ -12,18 +13,27 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
 # defines gibNT
 
-# Define splinter distributions
+# Define splinter distributions -- BBA, unlike GIB, does not splinter with a stiff A, K, or Q
 dSpl = shape(north,4405+4414)
 hSpl = shape(north,4045+4054+4144)
 sSpl = shape(north,0445+0454+1444)
 
-# Define North's tp
+# Define North's tp (+3 for void, +2 for stiff, -1 for a stiff honor)
 s0 = shape(north,any 0xxx) ? 3 : 0
 s1 = shape(north,any 1xxx) ? 2 : 0
-tp = hcp(south) + s0 + s1
+
+dH = shape(north, xx1x) and hcp(north,diamonds)>0
+hH = shape(north, x1xx) and hcp(north,hearts)>0
+sH = shape(north, 1xxx) and hcp(north,spades)>0
+
+tp = hcp(north) + s0 + s1 - (dH + hH + sH)
+
+//dAKQ = shape(north, xx1x) and hcp(north,diamonds)>1
+//hAKQ = shape(north, x1xx) and hcp(north,hearts)>1
+//sAKQ = shape(north, 1xxx) and hcp(north,spades)>1
 
 # Define splinter
-splinter = (dSpl or hSpl or sSpl) and tp>11
+splinter = (dSpl or hSpl or sSpl) and tp>11 //and (dAKQ or hAKQ or sAKQ)
 
 # Now do it
 gibNT and splinter and calmOpps
@@ -44,5 +54,6 @@ Script
 Button,Splinter after NT,\n\
 ---  Splinter after GIB Notrump\n\
 A 3!D，3!H，or 3!S response to 1N showing a stiff or void with 4-cards\n\
-in each unbid major and at least 4 in unbid minors. and 12+ TP\n\
+in each unbid major and at least 4 in unbid minors. and 12+ TP.\n\
+Note: GIB does splinter with a stiff A，K，or Q.\n\
 %Splinter_After_NT%
