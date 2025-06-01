@@ -74,12 +74,12 @@ sH = shape(north, 1xxx) and hcp(north,spades)>0
 
 tp = hcp(north) + s0 + s1 - (dH + hH + sH)
 
-//dAKQ = shape(north, xx1x) and hcp(north,diamonds)>1
-//hAKQ = shape(north, x1xx) and hcp(north,hearts)>1
-//sAKQ = shape(north, 1xxx) and hcp(north,spades)>1
+#dAKQ = shape(north, xx1x) and hcp(north,diamonds)>1
+#hAKQ = shape(north, x1xx) and hcp(north,hearts)>1
+#sAKQ = shape(north, 1xxx) and hcp(north,spades)>1
 
 # Define splinter
-splinter = (dSpl or hSpl or sSpl) and tp>11 //and (dAKQ or hAKQ or sAKQ)
+splinter = (dSpl or hSpl or sSpl) and tp>11  // and (dAKQ or hAKQ or sAKQ)
 
 # Now do it
 gibNT and splinter and calmOpps
