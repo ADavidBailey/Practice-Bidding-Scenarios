@@ -1,7 +1,7 @@
 Script,Splinters
 setDealerCode(`
 
-# auction-filter: (1H Pass 4[CDH])|(1S Pass (3H|4[CD]))
+# auction-filter: Note..1.Splinter
 
 # Splinters
 dealer south
@@ -10,12 +10,33 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
 # Defines gibNT
 
-sOpens = hcp(south)>11 and hcp(south)<22 and not gibNT 
+sOpens = hcp(south)>11 and hcp(south)<22 and not gibNT
 
-sFit = spades(south)>4 and hearts(south)<5 and spades(north)==4 
+sFit = spades(south)>4 and hearts(south)<5 and spades(north)==4
 hFit = hearts(south)>4 and spades(south)<5 and hearts(north)==4
 fit = sFit or hFit
-nSplinters = losers(north)<8 and hcp(north)>8 and hcp(north)<11 and shape(north,any 0xxx+any 1xxx)
+
+# North Splinters w/4-card support and shortness that's not an A, K, or Q
+cSpl = shape(north, xxx1+xxx0) and hcp(north,clubs)<2
+dSpl = shape(north, xx1x+xx0x) and hcp(north,diamonds)<2
+hSpl = shape(north, x1xx+x0xx) and hcp(north,hearts)<2
+sSpl = shape(north, 1xxx+0xxx) and hcp(north,spades)<2
+nonAKQshortness = cSpl or dSpl or hSpl or sSpl
+
+# North Splinters w/4-card support and any shortness
+anyShortness    = shape(north,any 1xxx +any 0xxx)
+
+# Define North's tp (+3 for void, +2 for stiff, -1 for a stiff A, K, Q, or J)
+s0 = shape(north,any 0xxx) ? 3 : 0
+s1 = shape(north,any 1xxx) ? 2 : 0
+
+dH = shape(north, xx1x) and hcp(north,diamonds)>0
+hH = shape(north, x1xx) and hcp(north,hearts)>0
+sH = shape(north, 1xxx) and hcp(north,spades)>0
+
+tp = hcp(north) + s0 + s1 - (dH + hH + sH)
+
+nSplinters = losers(north)<8 and tp>11 and hcp(north)<13 and anyShortness
 
 sOpens and fit and nSplinters and calmWest
 
@@ -23,7 +44,7 @@ sOpens and fit and nSplinters and calmWest
 Script
 Button,Splinters,\n\
 --- Splinter Bids are double jumps.  They show a singleton or void in the suit bid\n\
-and 4+ card support for opener's major.\n\
+and 4+ card support for opener's major.  Some do NOT splinter with a singleton A，K，or Q.\n\
 • After 1!H a jump to 3!S，4!C，or 4!D\n\
 • After 1!S a jump to 4!C，4!D，or 4!H\n\
 %Splinters%
