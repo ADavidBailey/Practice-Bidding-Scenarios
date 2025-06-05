@@ -82,17 +82,7 @@ nPasses = hcp(north)<14 and shape(north, any 5332 + any 4432) and controls(north
 
 sActs = ePasses and sDoubles and nResponds
 
-
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
-
-# Define leveling
-//levWeak   = weak   and keep
-//levInvite = invite and keep
-//levForce  = force  and keep
-//levelTheDeal = (levWeak or levInvite or levForce)
-
 wOpensWeak2 and (nActs or sActs)
-//and levelTheDeal
 
 action
 average "North X" 100 * nActs,

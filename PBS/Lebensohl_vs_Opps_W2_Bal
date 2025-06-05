@@ -33,7 +33,7 @@ sNT = hcp(south)>15 and hcp(south)<19 and shape(south, any 4333+any 4432+any 533
 
 sDouble1 = hcp(south)>11 and hcp(south)<16 and sShort
 sDouble2 = hcp(south)>15 and not sNT
-southDoubles = (sDouble1 or sDouble2) and shape(south,any 5440+any 4441+any 4432)
+sDoubles = (sDouble1 or sDouble2) and shape(south,any 5440+any 4441+any 4432)
 
 # West opens weak 2
 wOpensWeak2 = (w2S or w2H or w2D) and hcp(west)>6 and hcp(west)<10
@@ -58,7 +58,7 @@ levInvite = invite and keep
 levForce  = force  and keep
 levelTheDeal = (levWeak or levInvite or levForce)
 
-wOpensWeak2 and nPasses and ePasses and nResponds
+wOpensWeak2 and nPasses and ePasses and sDoubles and nResponds
 and levelTheDeal
 
 action
@@ -73,8 +73,8 @@ Button,Leb vs W2-Bal Seat,\n\
 After 2!D/2!H/2!S Pass Pass，X is a Lebensohl Double.\n\
   • A new suit at the 2-level is natural and weak (0-7).\n\
   • A non-jump new suit at the 3-level shows 8-10 and no stop.\n\
-  • Cue Bid openers suit to show major suit interest without a stop.\n\
-  • Jump bidding a new suit at the 3-level shows 8-10 and no stop.\n\
+  • Cue Bid openers suit to show major suit interest without a stop.\n\
+  • Jump bidding a new suit at the 3-level shows 8-10 and no stop.\n\
   • 3N shows game forcing values without major suit interest and no stop -- pass or scramble.\n\
   • Bidding 2N is the Lebensohl relay to 3!C.  After partner's forced 3!C，you may...\n\
     ◦ Pass or Correct to a new suit below opener's suit (0-7).\n\
