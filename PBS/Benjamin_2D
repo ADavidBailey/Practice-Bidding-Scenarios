@@ -2,21 +2,26 @@ Script,Benjamin2D
 setDealerCode(`
 
 # convention-card: 21GF-Benjamin2D
-# auction-filter: Auction.....\\n2D.
+# auction-filter: Auction.....\\n2[CD].
 
 # Game Forcing Benjamin 2D
 dealer south
-bal = shape(south,any 4333+any 4432+any 5332)
+bal = shape(south,any 4333 +any 4432 +any 5332)
 
 gC = clubs(south)>5    and hcp(south,clubs)==9
-gD = diamonds(south)>5 and hcp(south,clubs)==9
-gH = hearts(south)>5   and hcp(south,clubs)==9
-gS = spades(south)>5   and hcp(south,clubs)==9
-LP = (gC or gD or gH or gS) ? 2 : 0
-TP = hcp(south) + LP
+gD = diamonds(south)>5 and hcp(south,diamonds)==9
+gH = hearts(south)>5   and hcp(south,hearts)==9
+gS = spades(south)>5   and hcp(south,spades)==9
 
-case1 = hcp(south)>23 and bal
-case2 = TP>21 and not bal
+# Calculate Total Points
+lpC = clubs(south)>4    ? clubs(south)-4    : 0
+lpD = diamonds(south)>4 ? diamonds(south)-4 : 0
+lpH = hearts(south)>4   ? hearts(south)-4   : 0
+lpS = spades(south)>4   ? spades(south)-4   : 0
+TP  = hcp(south) + lpC + lpD + lpH + lpS
+
+case1 = (hcp(south)>23 and bal) or (TP>23 and not bal)
+case2 = TP>20 and hcp(south)<24 and (gC or gD or gH or gS)
 s2D = (case1 or case2)
 
 s2D
@@ -24,8 +29,8 @@ s2D
 `,"S",true)
 Script
 Button,Benjamin 2D,\n\
---- Benjamin 2!D Game Forcing\n\ 
-1. 24+ balanced\n\
-2. 23+ unbalanced\n\
+--- Benjamin 2!D Game Forcing\n\
+1. 24+ HCP balanced or 23+ TP unbalanced\n\
+2. 20+ TP and <24 HCP unbalanced - usually w/any good suit\n\
 https://en.wikipedia.org/wiki/Benjamin_Twos\n\
 %Benjamin2D%,backgroundColor=lightpink
