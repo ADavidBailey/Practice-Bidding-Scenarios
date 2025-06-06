@@ -13,9 +13,9 @@ hp = hcp(west,hearts)
 dp = hcp(west,diamonds)
 
 # Define West's weak 2 bids w/o 3-card support by East
-w2S = shape(west,6xxx-x4xx     -any 7xxx-any 66xx-any 65xx) and 2 * sp > tp and top3(west,spades)>1   and spades(east)<3   //and spades(north)>2
-w2H = shape(west,x6xx-4xxx     -any 7xxx-any 66xx-any 65xx) and 2 * hp > tp and top3(west,hearts)>1   and hearts(east)<3   //and hearts(north)>2
-w2D = shape(west,xx6x-x4xx-4xxx-any 7xxx-any 66xx-any 65xx) and 2 * dp > tp and top3(west,diamonds)>1 and diamonds(east)<3 //and diamonds(north)>2
+w2S = shape(west,6xxx-x4xx     -any 7xxx-any 66xx-any 65xx) and 2 * sp > tp and top5(west,spades)>2   and spades(east)<3
+w2H = shape(west,x6xx-4xxx     -any 7xxx-any 66xx-any 65xx) and 2 * hp > tp and top5(west,hearts)>2   and hearts(east)<3
+w2D = shape(west,xx6x-x4xx-4xxx-any 7xxx-any 66xx-any 65xx) and 2 * dp > tp and top5(west,diamonds)>2 and diamonds(east)<3
 
 ### North Direct Lebensohl
 # Define North shortness w/3 suits & shortness in opener's suit
