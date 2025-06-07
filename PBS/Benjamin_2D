@@ -20,23 +20,31 @@ lpH = hearts(south)>4   ? hearts(south)-4   : 0
 lpS = spades(south)>4   ? spades(south)-4   : 0
 TP  = hcp(south) + lpC + lpD + lpH + lpS
 
-case1 = (hcp(south)>23 and bal) or (TP>23 and not bal)
-case2 = TP>20 and TP<24 and (gC or gD or gH or gS)
+twoC = TP>20 and TP<24 and (gC or gD or gH or gS)
+twoD = (hcp(south)>23 and bal) or (TP>23 and not bal)
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+
+lev2C = twoC and keep
+lev2D = twoD and keep53
+levelTheDeal = lev2C or lev2D
 
 # Now do it
-case1 or case2
+twoC or twoD
+and levelTheDeal
 
 action
 
-average "2D" 100 * case1,
-average "2C" 100 * case2,
+average "2C" 100 * twoC,
+average "2D" 100 * twoD,
 
 
 `,"S",true)
 Script
-Button,Benjamin 2 Bid,\n\
+Button,Benjamin 2 Bid (Lev),\n\
 --- Benjamin 2 Bid - 2!C strong & 2!D Game Forcing\n\
 • 2!C shows 20-23 TP unbalanced - usually w/good suit\n\
 • 2!D shows 24+ HCP balanced or 24+ TP unbalanced\n\
+This is leveled so that 2!C and 2!D occur at about the same frequency.\n\
 https://en.wikipedia.org/wiki/Benjamin_Twos\n\
 %Benjamin2D%,backgroundColor=lightpink
