@@ -21,7 +21,7 @@ lpS = spades(south)>4   ? spades(south)-4   : 0
 TP  = hcp(south) + lpC + lpD + lpH + lpS
 
 case1 = (hcp(south)>23 and bal) or (TP>23 and not bal)
-case2 = TP>20 and hcp(south)<24 and (gC or gD or gH or gS)
+case2 = TP>20 and TP<24 and (gC or gD or gH or gS)
 s2D = (case1 or case2)
 
 s2D
@@ -30,7 +30,7 @@ s2D
 Script
 Button,Benjamin 2D,\n\
 --- Benjamin 2!D Game Forcing\n\
-1. 24+ HCP balanced or 23+ TP unbalanced\n\
-2. 20+ TP and <24 HCP unbalanced - usually w/good suit\n\
+1. 2!D shows 24+ HCP balanced or 24+ TP unbalanced\n\
+2. 2!C shows 20-23 TP unbalanced - usually w/good suit\n\
 https://en.wikipedia.org/wiki/Benjamin_Twos\n\
 %Benjamin2D%,backgroundColor=lightpink
