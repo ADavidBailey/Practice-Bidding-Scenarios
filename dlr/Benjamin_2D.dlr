@@ -1,4 +1,4 @@
-# button-text: Benjamin 2D
+# button-text: Benjamin 2 Bid
 # scenario-title: Benjamin 2!D Game Forcing
 # Benjamin_2D
 dealer south
@@ -24,9 +24,9 @@ TP  = hcp(south) + lpC + lpD + lpH + lpS
 
 case1 = (hcp(south)>23 and bal) or (TP>23 and not bal)
 case2 = TP>20 and TP<24 and (gC or gD or gH or gS)
-s2D = (case1 or case2)
 
-s2D
+# Now do it
+case1 or case2
 
 action
 

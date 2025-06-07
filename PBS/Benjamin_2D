@@ -22,9 +22,9 @@ TP  = hcp(south) + lpC + lpD + lpH + lpS
 
 case1 = (hcp(south)>23 and bal) or (TP>23 and not bal)
 case2 = TP>20 and TP<24 and (gC or gD or gH or gS)
-s2D = (case1 or case2)
 
-s2D
+# Now do it
+case1 or case2
 
 action
 
@@ -34,9 +34,9 @@ average "2C" 100 * case2,
 
 `,"S",true)
 Script
-Button,Benjamin 2D,\n\
+Button,Benjamin 2 Bid,\n\
 --- Benjamin 2!D Game Forcing\n\
-1. 2!D shows 24+ HCP balanced or 24+ TP unbalanced\n\
-2. 2!C shows 20-23 TP unbalanced - usually w/good suit\n\
+• 2!D shows 24+ HCP balanced or 24+ TP unbalanced\n\
+• 2!C shows 20-23 TP unbalanced - usually w/good suit\n\
 https://en.wikipedia.org/wiki/Benjamin_Twos\n\
 %Benjamin2D%,backgroundColor=lightpink
