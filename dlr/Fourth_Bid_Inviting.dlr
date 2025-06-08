@@ -239,28 +239,30 @@ d01 = shape(north,xx1x+xx0x)
 c01 = shape(north,xxx0+xxx1)
 
 # north is short in the 3rd or 4th suit and does not have 4-card support for opener's major
-CDH and s01
-CDS and h01
-CDN and (s01 or h01)
-CHS and d01          and hearts(south)<4
-CHN and (d01 or s01) and hearts(south)<4
-CSN and (d01 or h01) and spades(south)<4
+cdh = CDH and s01
+cds = CDS and h01
+cdn = CDN and (s01 or h01)
+chs = CHS and d01          and hearts(south)<4
+chn = CHN and (d01 or s01) and hearts(south)<4
+csn = CSN and (d01 or h01) and spades(south)<4
 
-DHS and c01          and hearts(south)<4
-DHN and (s01 or c01) and hearts(south)<4
-DHC and s01          and hearts(south)<4
-DSN and (c01 or h01) and spades(south)<4
-DSC and h01          and spades(south)<4
+dhs = DHS and c01          and hearts(south)<4
+dhn = DHN and (s01 or c01) and hearts(south)<4
+dhc = DHC and s01          and hearts(south)<4
+dsn = DSN and (c01 or h01) and spades(south)<4
+dsc = DSC and h01          and spades(south)<4
    
-HSN and (c01 or d01) and spades(south)<4
-HSC and d01          and spades(south)<4
-HSD and c01          and spades(south)<4
+hsn = HSN and (c01 or d01) and spades(south)<4
+hsc = HSC and d01          and spades(south)<4
+hsd = HSD and c01          and spades(south)<4
 
-SNC and (d01 or h01)
-SND and c01
-SNH and (d01 or c01)
- 
-xyz = (CDH or CDS or CDN or CHS or CHN or CSN or DHS or DHN or DHC or DSN or DSC or HSN or HSC or HSD or SNC or SND or SNH)
+snc = SNC and (d01 or h01)
+snd = SND and c01
+snh = SNH and (d01 or c01)
+
+xyz = (cdh or cds or cdn or chs or chn or csn or dhs or dhn or dhc or dsn or dsc or hsn or hsc or hsd or snc or snd or snh)
+
+//xyz = (CDH or CDS or CDN or CHS or CHN or CSN or DHS or DHN or DHC or DSN or DSC or HSN or HSC or HSD or SNC or SND or SNH)
 
 xyz and strength and calmOpps and sShape and nShape
 
