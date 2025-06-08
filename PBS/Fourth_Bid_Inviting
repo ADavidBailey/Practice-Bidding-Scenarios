@@ -30,10 +30,10 @@ sShape = shape(south,any 5422+any 5431+any 4432+any 4333-5xxx)
 nShape = shape(north,any 60xx+61xx+any 5440+any 5431+any 4441-5xxx-x5xx+any 5332+any 4432+any 4333)
 
 # Define north's short suits
-s01 = shape(north,0xxx+1xxx)
-h01 = shape(north,x1xx+x0xx)
-d01 = shape(north,xx1x+xx0x)
-c01 = shape(north,xxx0+xxx1)
+s01 = shape(north,0xxx+1xxx+2xxx)
+h01 = shape(north,x0xx+x1xx+x2xx)
+d01 = shape(north,xx0x+xx1x+xx2x)
+c01 = shape(north,xxx0+xxx1+xxx2)
 
 # north is short in the 3rd or 4th suit and does not have 4-card support for opener's major
 cdh = CDH and s01
@@ -66,6 +66,9 @@ xyz and strength and calmOpps and sShape and nShape
 produce 100
 action
 
+average "5422" 100 * shape(north,any 5422),
+average "5431" 100 * shape(north,any 5431),
+average "5440" 100 * shape(north,any 5440),
 average "5332" 100 * shape(north,any 5332),
 average "4432" 100 * shape(north,any 4432),
 average "4333" 100 * shape(north,any 4333),
