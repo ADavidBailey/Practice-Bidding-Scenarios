@@ -34,17 +34,18 @@ rCI = hcp(north)>6 and hcp(north)<13  // constructive plus
 
 # Define North's actions w/o fit
 XX = xFit and rI
-S1 = xFit and rCI and spades(north)>3   and hcp(north,spades)>2 and oneH and not (XX)
-N1 = xFit and rCI and clubs(north)>4    and top5(north,clubs)>2          and not (XX or S1)
-c2 = xFit and rCI and diamonds(north)>4 and top5(north,diamonds)>2       and not (XX or S1 or N1) // C2 refers to the 2 of Clubs
+S1 = xFit and rCI and spades(north)>3   and hcp(north,spades)>2 and oneH and not (XX)             // Redouble -- it's our hand
+N1 = xFit and rCI and clubs(north)>4    and top5(north,clubs)>2          and not (XX or S1)       // Bid 1NT -- Transfer to 2C
+c2 = xFit and rCI and diamonds(north)>4 and top5(north,diamonds)>2       and not (XX or S1 or N1) // Bid 2C -- Transfer to 2D
+//Note: C2 refers to the 2 of Clubs in Dealer code; thus, can't be used in my code.
 
 # Define North's actions w/fit
-M4 = n5
-X2 = n3 and rCI and not (M4)
-M2 = n3 and rW  and not (M4 or X2)
-N2 = n4 and rI  and not (M4 or X2 or M2)
-X3 = n4 and rCI and not (M4 or X2 or M2 or N2)
-M3 = n4 and rW  and not (M4 or X2 or M2 or N2 or X3)
+M4 = n5                                              // Bid 4M
+X2 = n3 and rCI and not (M4)                         // Transfer to 2M
+M2 = n3 and rW  and not (M4 or X2)                   // Bid 2M
+N2 = n4 and rI  and not (M4 or X2 or M2)             // Bid 2NT
+M3 = n4 and rW  and not (M4 or X2 or M2 or N2)       // Bid 3M
+X3 = n4 and rCI and not (M4 or X2 or M2 or N2 or M3) // Transfer to 3M
 
 nActs = XX or S1 or N1 or c2 or M4 or X2 or M2 or N2 or X3 or M3
 
@@ -78,4 +79,5 @@ xfr2M = constructive+ w/3
 xfr3M = constructive w/4
 3M    = weak w/4\n\
 4M    = any 5/good 4\n\
+https://www.nxtbook.com/acbl/bridgebulletin/2025_06/index.php#/p/66\n\
 %OppsX1M%
