@@ -1,0 +1,81 @@
+Script,OppsX1M
+setDealerCode(`
+
+# auction-filter: Auction.....\\n1[HS] X
+
+# South opens 1 Major
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+# Defines gibNT
+
+# South opens 1M
+oneH = shape(south,x7xx + x6xx + x5xx -any 75xx -any 65xx -any 55xx)
+oneS = shape(south,7xxx + 6xxx + 5xxx -any 75xx -any 65xx -any 55xx)
+southM = (oneH or oneS) and not gibNT and hcp(south)>11 and hcp(south)<20
+
+# West Doubles
+wShort = (oneH and hearts(west)<3) or (oneS and spades(west)<3)
+wShape = shape(west,any 5440 +any 5431 +any 4441 +any 4432)
+wHCP   = hcp(west)>11 and hcp(west)<15
+westX     = wShort and wShape and wHCP
+
+# North fits and xFit
+n3 = (oneH and hearts(north)==3) or (oneS and spades(north)==3)
+n4 = (oneH and hearts(north)>3)  or (oneS and spades(north)==4)
+n5 = (oneH and hearts(north)>4)  or (oneS and spades(north)>4)
+xFit = not (n3 or n4 or n5)   // no fit
+
+# North strengths
+rW  = hcp(north)<7                    // weak
+rC  = hcp(north)>6 and hcp(north)<10  // constructive
+rI  = hcp(north)>9 and hcp(north)<13  // invitational
+rCI = hcp(north)>6 and hcp(north)<13  // constructive plus
+
+# Define North's actions w/o fit
+XX = xFit and rI
+S1 = xFit and rCI and spades(north)>3   and hcp(north,spades)>2 and oneH and not (XX)
+N1 = xFit and rCI and clubs(north)>4    and top5(north,clubs)>2          and not (XX or S1)
+c2 = xFit and rCI and diamonds(north)>4 and top5(north,diamonds)>2       and not (XX or S1 or N1) // C2 refers to the 2 of Clubs
+
+# Define North's actions w/fit
+M4 = n5
+X2 = n3 and rCI and not (M4)
+M2 = n3 and rW  and not (M4 or X2)
+N2 = n4 and rI  and not (M4 or X2 or M2)
+X3 = n4 and rCI and not (M4 or X2 or M2 or N2)
+M3 = n4 and rW  and not (M4 or X2 or M2 or N2 or X3)
+
+nActs = XX or S1 or N1 or c2 or M4 or X2 or M2 or N2 or X3 or M3
+
+# Now do it
+southM and westX and nActs
+
+action
+
+average "XX (10+ no fit)  " 100 * XX,
+average "1S (spades)      " 100 * S1,
+average "1N (clubs)       " 100 * N1,
+average "2C (diamonds)    " 100 * c2,
+average "xM (cons+ w/3)   " 100 * X2,
+average "M2 (weak w/3)    " 100 * M2,
+average "2N (inv+ w/4)    " 100 * N2,
+average "X3 (cons w/4)    " 100 * X3,
+average "M3 (weak w/4)    " 100 * M3,
+average "M4 (any 5)       " 100 * M4,
+
+`,"S",true)
+Script
+Button,Xfer after 1M (X)\n\
+--- Transfers after Opponents double our 1!H or 1!S.\n\
+XX    = 10+ w/no fit\n\
+1S    = 4+ Spades (natural)\n\
+1N    = 5+ Clubs\n\
+2C    = 5+ Diamonds\n\
+xfr2M = constructive+ w/3
+2M    = weak w/3\n\
+2N    = invitational+ w/4
+xfr3M = constructive w/4
+3M    = weak w/4\n\
+4M    = any 5/good 4\n\
+%OppsX1M%
