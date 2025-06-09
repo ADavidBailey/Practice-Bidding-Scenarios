@@ -15,11 +15,23 @@ H_ = hearts(north)>4 and hearts(north)>=diamonds(north) and hearts(north)>=clubs
 oneS = S_ and hcp(north)>11 and hcp(north)<20 and not NT
 oneH = H_ and hcp(north)>11 and hcp(north)<20 and not NT
 
+c3 = (oneS and spades(south)==3) or (oneH and hearts(south)==3)
+c4 = (oneS and spades(south)==4) or (oneH and hearts(south)==4)
+c5 = (oneS and spades(south)==5) or (oneH and hearts(south)==5)
+
 # East makes a takeout double
 XoneS = hcp(east)>11 and spades(east)<2 and hearts(east)==4 and diamonds(east)>2 and clubs(east)>2 and shape(east, xxxx -any 7xxx -any 6xxx) 
 XoneH = hcp(east)>11 and spades(east)==4 and hearts(east)<2 and diamonds(east)>2 and clubs(east)>2 and shape(east, xxxx -any 7xxx -any 6xxx)
 
 (oneS and XoneS) or (oneH and XoneH)
+
+action
+average "4-7   w/3 " 100 * (hcp(south)>3 and hcp(south)<8  and c3),
+average "4-7   w/4 " 100 * (hcp(south)>3 and hcp(south)<8  and c4),
+average "8-10  w/3 " 100 * (hcp(south)>7 and hcp(south)<11 and c3),
+average "8-10  w/4 " 100 * (hcp(south)>7 and hcp(south)<11 and c4),
+average "????  w/5 " 100 * (hcp(south)>7 and hcp(south)<11 and c5),
+average "11+       " 100 * (hcp(south)>10),
 
 `,"N",true)
 Script
@@ -30,7 +42,10 @@ Transfers start at 1N and end at 2M-1.\n\
   • 2!C --> 2!D\n\
   • 2!D --> 2!H\n\
   • 2!H --> 2!S (only after 1S opener)\n\
-With a 1-bid hand responder will have something like a weak 2 in their suit. Responder\n\
-has 2 ways to raise. Transferring into openers suit = 8-10 TP. Bidding it directly = 4-7 TP.\n\
-A 1-under jump (1!H (X) 3!D or 1!S (X) 3!H) is a 4-card mixed raise.\n\
+For transfers into a new suit，responder will have something like a weak 2，or better.\n\
+A 1-under jump at the 3-level is a transfer (1!H (X) 3!D，or 1!S (X) 3!H). So，responder has\n\
+two ways to raise to the 2- or 3-level. A direct raise is 4-7 and the 1-under jump is 8-10.\n\
+With less than invitional values，raise to the limit! 2-level w/3，3-level w/4，or game w/5.\n\
+With a fit and invitional+ values (11+)，bid 2NT.\n\
+https://www.nxtbook.com/acbl/bridgebulletin/2025_06/index.php#/p/66\n\
 %XferAfter1MajorX%

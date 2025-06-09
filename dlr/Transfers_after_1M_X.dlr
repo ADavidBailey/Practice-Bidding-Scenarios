@@ -17,11 +17,23 @@ H_ = hearts(north)>4 and hearts(north)>=diamonds(north) and hearts(north)>=clubs
 oneS = S_ and hcp(north)>11 and hcp(north)<20 and not NT
 oneH = H_ and hcp(north)>11 and hcp(north)<20 and not NT
 
+c3 = (oneS and spades(south)==3) or (oneH and hearts(south)==3)
+c4 = (oneS and spades(south)==4) or (oneH and hearts(south)==4)
+c5 = (oneS and spades(south)==5) or (oneH and hearts(south)==5)
+
 # East makes a takeout double
 XoneS = hcp(east)>11 and spades(east)<2 and hearts(east)==4 and diamonds(east)>2 and clubs(east)>2 and shape(east, xxxx -any 7xxx -any 6xxx) 
 XoneH = hcp(east)>11 and spades(east)==4 and hearts(east)<2 and diamonds(east)>2 and clubs(east)>2 and shape(east, xxxx -any 7xxx -any 6xxx)
 
 (oneS and XoneS) or (oneH and XoneH)
 
+action
+average "4-7   w/3 " 100 * (hcp(south)>3 and hcp(south)<8  and c3),
+average "4-7   w/4 " 100 * (hcp(south)>3 and hcp(south)<8  and c4),
+average "8-10  w/3 " 100 * (hcp(south)>7 and hcp(south)<11 and c3),
+average "8-10  w/4 " 100 * (hcp(south)>7 and hcp(south)<11 and c4),
+average "????  w/5 " 100 * (hcp(south)>7 and hcp(south)<11 and c5),
+average "11+       " 100 * (hcp(south)>10),
 
-action printpbn
+
+printpbn
