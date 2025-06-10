@@ -28,9 +28,9 @@ oneH = shape(south,x7xx + x6xx + x5xx -any 75xx -any 65xx -any 55xx)
 oneS = shape(south,7xxx + 6xxx + 5xxx -any 75xx -any 65xx -any 55xx)
 southM = (oneH or oneS) and not gibNT and hcp(south)>11 and hcp(south)<20
 
-# West Doubles
-wShort = (oneH and hearts(west)<3) or (oneS and spades(west)<3)
-wShape = shape(west,any 5440 +any 5431 +any 4441 +any 4432)
+# West Doubles  // avoid any honor in short suit
+wShort = (oneH and hearts(west)<3 and hcp(west,hearts)==0) or (oneS and spades(west)<3 and hcp(west,spades)==0)
+wShape = shape(west,any 5440 +any 5431 +any 4441 +any 4432-5xxx-x5xx) // Exclude 5M to reduce overcalls
 wHCP   = hcp(west)>11 and hcp(west)<15
 westX  = wShort and wShape and wHCP
 
@@ -41,7 +41,7 @@ n5 = (oneH and hearts(north)>4)  or (oneS and spades(north)>4)
 xFit = not (n3 or n4 or n5)   // no fit
 
 # North strengths
-rWeak  = hcp(north)<7                    // weak
+rWeak  = hcp(north)>3 and hcp(north)<7   // weak   Note: BBA rarely raises w/4-5 HCP
 rConst = hcp(north)>6 and hcp(north)<10  // constructive
 rInv   = hcp(north)>9 and hcp(north)<13  // invitational
 rCI    = hcp(north)>6 and hcp(north)<13  // constructive plus
