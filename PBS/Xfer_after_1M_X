@@ -1,0 +1,89 @@
+Script,XferAfter1MX
+setDealerCode(`
+
+# auction-filter: Auction.....\\n1[HS] X
+
+# South opens 1 Major
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+# Defines gibNT
+
+# South opens 1M
+oneH = shape(south,x7xx + x6xx + x5xx -any 75xx -any 65xx -any 55xx)
+oneS = shape(south,7xxx + 6xxx + 5xxx -any 75xx -any 65xx -any 55xx)
+southM = (oneH or oneS) and not gibNT and hcp(south)>11 and hcp(south)<20
+
+# West Doubles
+wShort = (oneH and hearts(west)<3) or (oneS and spades(west)<3)
+wShape = shape(west,any 5440 +any 5431 +any 4441 +any 4432)
+wHCP   = hcp(west)>11 and hcp(west)<15
+westX  = wShort and wShape and wHCP
+
+# North fits and xFit
+n3 = (oneH and hearts(north)==3) or (oneS and spades(north)==3)
+n4 = (oneH and hearts(north)==4) or (oneS and spades(north)==4)
+n5 = (oneH and hearts(north)>4)  or (oneS and spades(north)>4)
+xFit = not (n3 or n4 or n5)   // no fit
+
+# North strengths
+rWeak  = hcp(north)<7                    // weak
+rConst = hcp(north)>6 and hcp(north)<10  // constructive
+rInv   = hcp(north)>9 and hcp(north)<13  // invitational
+rCI    = hcp(north)>6 and hcp(north)<13  // constructive plus
+
+# Define North's actions w/o fit
+XX = xFit and hcp(north)>10
+S1 = xFit and rCI and spades(north)>3   and hcp(north,spades)>2 and oneH and not (XX)             // Redouble -- it's our hand
+N1 = xFit and rCI and clubs(north)>4    and top5(north,clubs)>2          and not (XX or S1)       // Bid 1NT -- Transfer to 2C
+c2 = xFit and rCI and diamonds(north)>4 and top5(north,diamonds)>2       and not (XX or S1 or N1) // Bid 2C -- Transfer to 2D
+     //Note: In Dealer code,C2 refers to the 2 of Clubs; so, I can't use it in my code.
+
+# Define North's actions w/fit
+M4 = n5                                                // Bid 4M
+X2 = n3 and rCI   and not (M4)                         // Transfer to 2M
+M2 = n3 and rWeak and not (M4 or X2)                   // Bid 2M
+N2 = n4 and rInv  and not (M4 or X2 or M2)             // Bid 2NT
+M3 = n4 and rWeak and not (M4 or X2 or M2 or N2)       // Bid 3M
+X3 = n4 and rCI   and not (M4 or X2 or M2 or N2 or M3) // Transfer to 3M
+
+nActsWithFit    =  M4 or X2 or M2 or N2 or M3 or X3
+nActsWithoutFit = XX or S1 or N1 or c2
+
+# Now do it
+southM and westX and (nActsWithFit or nActsWithoutFit)
+
+action
+
+average "no fit           " 100 * nActsWithoutFit,
+average "XX (10+ no fit)  " 100 * XX,
+average "1S (spades)      " 100 * S1,
+average "1N (clubs)       " 100 * N1,
+average "2C (diamonds)    " 100 * c2,
+average "fit              " 100 * nActsWithFit, 
+average "xM (cons+ w/3)   " 100 * X2,
+average "M2 (weak w/3)    " 100 * M2,
+average "2N (inv+ w/4)    " 100 * N2,
+average "X3 (cons w/4)    " 100 * X3,
+average "M3 (weak w/4)    " 100 * M3,
+average "M4 (any 5)       " 100 * M4,
+
+`,"S",true)
+Script
+Button,Xfer after 1M (X),\n\
+--- Transfers after Opponents double our 1!H or 1!S with or without a fit.\n\
+Transfers start at 1N and end at 2M-1.\n\
+  • 1N  --> 2!C\n\
+  • 2!C --> 2!D\n\
+  • 2!D --> 2!H\n\
+  • 2!H --> 2!S (only after 1S opener)\n\
+Transfers into a new suit，show something like a weak 2，or better and less than 3-card support.\n\
+A 1-under jump at the 3-level is a transfer (1!H (X) 3!D，or 1!S (X) 3!H). So，responder has\n\
+two ways to raise to the to the 2-level AND two ways to raise to the 3-level.  Raise to the 2-level\n\
+with 3-card support.  And raise to the 3-level with 4-card support.  Use a simple raise with 4-7 points\n\
+and a transfer raise with 8-10 points.  With less than invitional values，raise to the limit
+ 2-level w/3，3-level w/4，or game w/5.  Raising to game may be any strength.\n\
+With a fit and invitional+ values (11+)，bid 2NT.\n\
+Finally，XX is Business with less than 3-card support.\n\
+https://www.nxtbook.com/acbl/bridgebulletin/2025_06/index.php#/p/66\n\
+%XferAfter1MX%,backgroundColor=lightpink
