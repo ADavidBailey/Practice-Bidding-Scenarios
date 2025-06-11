@@ -22,8 +22,8 @@ oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
 oC = not (oS or oH or oD)
 
 # East opens 1H or 1S and South is short in opener’s suit w/4om and 5D, west does NOT have support for east
-He = oH and hearts(south)<3 and shape(south,4252) and hearts(west)<3
-Se = oS and spades(south)<3 and shape(south,2452) and spades(west)<3
+He = oH and hearts(south)<3 and shape(south,4252+4153) and hearts(west)<3
+Se = oS and spades(south)<3 and shape(south,2452+1453) and spades(west)<3
 eOpens = hcp(east)>11 and hcp(east)<15 and (He or Se)
 
 # South has 5-Diamonds and 4-cards in the other major and less than 4-clubs
@@ -42,4 +42,4 @@ Button,Equal Level Conv,\n\
 --- Equal Level Conversion.  East opens a major.  South has 4 of the other major and 5!D.\n\
 South X's with the intention of correcting North's 2!C to 2!D，showing nothing extra.\n\
 https://www.bridgebum.com/equal_level_conversion.php\n\
-%EqualLevConv%
+%EqualLevConv%,backgroundColor=lightpink
