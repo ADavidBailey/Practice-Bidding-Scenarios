@@ -59,6 +59,10 @@ He = oH and hearts(south)<3 and shape(south,4252+4153) and hearts(west)<3
 Se = oS and spades(south)<3 and shape(south,2452+1453) and spades(west)<3
 eOpens = hcp(east)>11 and hcp(east)<15 and (He or Se)
 
+oMajorCards  = He ? spades(north) + spades(south) : hearts(north) + hearts(south)
+diamondCards = diamonds(north) + diamonds(south)
+clubCards    = clubs(north) + clubs(south)
+
 # South has 5-Diamonds and 4-cards in the other major and less than 4-clubs
 sDoubles = hcp(south)>11 and hcp(south)<15
 
@@ -68,6 +72,9 @@ eOpens and sDoubles and calmWest
 action
 average "5431" 100 * shape(south,any 5431),
 average "5422" 100 * shape(south,any 5422),
+average "oM Fit" 100 * (oMajorCards>7),
+average "D Fit" 100 * (diamondCards>7),
+average "C Fit" 100 * (clubCards>7), 
 
 
 printpbn
