@@ -2,7 +2,7 @@ Script,EqualLevConv
 setDealerCode(`
 
 # convention-card:
-# auction-filter: Auction.....\\n1[CDHS] X
+# auction-filter: Auction.....\\n1[HS] [^P].* Pass 
 
 # Equal Level Conversion
 produce 500
@@ -21,13 +21,13 @@ oH = not oS and h>4 and h>=d and h>=c
 oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
 oC = not (oS or oH or oD)
 
-# East opens 1H or 1S and South is short in opener’s suit
-He = oH and hearts(south)<3 
-Se = oS and spades(south)<3 
+# East opens 1H or 1S and South is short in opener’s suit w/4om and 5D, west does NOT have support for east
+He = oH and hearts(south)<3 and shape(south,4252) and hearts(west)<3
+Se = oS and spades(south)<3 and shape(south,2452) and spades(west)<3
 eOpens = hcp(east)>11 and hcp(east)<15 and (He or Se)
 
 # South has 5-Diamonds and 4-cards in the other major and less than 4-clubs
-sDoubles = shape(south,4153+4252+1453+2452) and hcp(south)>11 and hcp(south)<15
+sDoubles = hcp(south)>11 and hcp(south)<15
 
 # Now do it
 eOpens and sDoubles and calmWest
