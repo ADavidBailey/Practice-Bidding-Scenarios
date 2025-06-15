@@ -54,6 +54,9 @@ average "  all shapes           " 100 * shape(south,4xxx +x4xx),
 average "M Fit      " 100 * (oMajorCards>7),
 average "D Fit      " 100 * (diamondCards>7),
 average "M & D Fit  " 100 * (oMajorCards>7 and diamondCards>7),
+average "M only     " 100 * (oMajorCards>7 and diamondCards<8),
+average "D only     " 100 * (oMajorCards<8 and diamondCards>7),
+average "neither    " 100 * (oMajorCards<8 and diamondCards<8),
 average "C Fit      " 100 * (clubCards>7), 
 
 `, "E", true)
