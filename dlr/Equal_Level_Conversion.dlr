@@ -1,11 +1,11 @@
 # button-text: Equal Level Conv
-# scenario-title: Equal Level Conversion.  East opens 1 or 2 of a major.  South has 4 of the other major and 5 or 6!D.
+# scenario-title: Equal Level Conversion.  East opens 1 of a major.  South has 4 of the other major and 5+ !D.
 # Equal_Level_Conversion
 dealer east
 
 
 # convention-card:
-# auction-filter: Auction.....\\n(1[HS] (2D|X))
+# auction-filter: Auction.....\\n1[HS] (2D|X) Pass
 
 # Equal Level Conversion
 
@@ -54,9 +54,9 @@ oH = not oS and h>4 and h>=d and h>=c
 oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
 oC = not (oS or oH or oD)
 
-# East opens 1H or 1S and South is short in opener’s suit w/4om and 5+D  //, west does NOT have support for east
-He = oH and spades(south)==4 and hearts(south)<3 and diamonds(south)>4 and clubs(south)<4 
-Se = oS and hearts(south)==4 and spades(south)<3 and diamonds(south)>4 and clubs(south)<4
+# East opens 1H or 1S and South is short in opener’s suit w/4om and 5+D, west does NOT have support for east
+He = oH and hearts(west)<3 and hearts(south)<3 and spades(south)==4 and diamonds(south)>4 and clubs(south)<4 
+Se = oS and spades(west)<3 and spades(south)<3 and hearts(south)==4 and diamonds(south)>4 and clubs(south)<4
 eOpens = hcp(east)>11 and hcp(east)<15 and (He or Se)
 
 oMajorCards  = He ? spades(north) + spades(south) : hearts(north) + hearts(south)
@@ -85,12 +85,8 @@ average "x49x" 100 * shape(south,x49x),
 average "  all shapes           " 100 * shape(south,4xxx +x4xx),
 
 average "M Fit      " 100 * (oMajorCards>7),
-average "D Fit      " 100 * (diamondCards>7),
-average "M & D Fit  " 100 * (oMajorCards>7 and diamondCards>7),
-average "M only     " 100 * (oMajorCards>7 and diamondCards<8),
 average "D only     " 100 * (oMajorCards<8 and diamondCards>7),
 average "neither    " 100 * (oMajorCards<8 and diamondCards<8),
-average "C Fit      " 100 * (clubCards>7), 
 
 
 printpbn
