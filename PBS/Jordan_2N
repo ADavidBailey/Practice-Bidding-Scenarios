@@ -8,25 +8,29 @@ setDealerCode(`
 dealer south
 
 # Defining Major Fit
-SpadeFit = ((spades(south)>4 and hearts(south)<5) and spades(north)>3)
-HeartFit = ((hearts(south)>4 and spades(south)<5) and hearts(north)>3)
-MajorFit = (SpadeFit or HeartFit)
+SpadeFit = spades(south)>4 and spades(south)>=hearts(south) and spades(north)>3
+HeartFit = hearts(south)>4 and hearts(south)> spades(south) and hearts(north)>3
+MajorFit = (SpadeFit or HeartFit) and diamonds(south)<6 and clubs(south)<6
 
-ShortSpade = SpadeFit and spade(west)<3
-ShortHeart = HeartFit and heart(west)<3
-ShortMajor = (ShortSpade or ShortHeart) and shape(west, any 4441 +any 5431 +any 5422 +any 5440 -5xxx -x5xx)
+ShortSpade = SpadeFit and spade(west)<2
+ShortHeart = HeartFit and heart(west)<2
+ShortMajor = (ShortSpade or ShortHeart) and shape(west, any 4441 +any 5431 +any 5440 -5xxx -x5xx)
 
 # South opens 1M
-hcp(south)>11 and hcp(south)<15 and MajorFit and
+sRange = hcp(south)>11 and hcp(south)<15
 
 # West  makes a Takeout X
-hcp(west)>11 and hcp(west)< 15 and ShortMajor and
+wRange = hcp(west)>11 and hcp(west)< 15
 
-# North bids 2N showing 3/4-card support and invitational or better
-hcp(north)>10 and hcp(north)<15 and MajorFit
+# North bids 2N showing 4+ card support and 10+ HCP
+nRange = hcp(north)>9
+
+sRange and wRange and nRange and MajorFit and ShortMajor
 
 `,"S",true)
 Script
 Button,Jordan 2N,\n\
 --- Jordan 2N\n\
+After 1M (X)，2N shows 4+ card support and 10+ HCP.\n\
+https://www.bridgebum.com/jordan_2nt.php\n\
 %Jordan2N%
