@@ -8,8 +8,8 @@ setDealerCode(`
 dealer south
 
 # Defining Major Fit
-SpadeFit = ((spades(south)>4 and hearts(south)<5) and spades(north)>2)
-HeartFit = ((hearts(south)>4 and spades(south)<5) and hearts(north)>2)
+SpadeFit = ((spades(south)>4 and hearts(south)<5) and spades(north)>3)
+HeartFit = ((hearts(south)>4 and spades(south)<5) and hearts(north)>3)
 MajorFit = (SpadeFit or HeartFit)
 
 ShortSpade = SpadeFit and spade(west)<3
