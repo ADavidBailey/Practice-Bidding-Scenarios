@@ -2,53 +2,72 @@ Script,MajorSuitFit
 setDealerCode(`
 
 # convention-card:
-# auction-filter: Auction.....\\n(1H Pass |1S Pass )
+# auction-filter: Auction.....\\n(1H Pass (1NT|[2-7]H))|1S Pass (1NT|[2-7]S)
+
 # Major_Suit_Fit
-dealer north
+dealer south
 
-# auction-filter: (Auction.....\\n1[HS] Pass [12]NT)|(Auction.....\\n1H Pass 2H)|(Auction.....\\n1S Pass 2S)
+#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Returns calmWest
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
-# Returns calmEast
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# Returns oS & oH
 
-# North opens 1 Major and South has a fit
-S_ = spades(north)>4 and spades(north)>= hearts(north) and spades(north)>=diamonds(north) and spades(north)>=clubs(north)
-H_ = hearts(north)>4 and hearts(north)>spades(north)   and hearts(north)>=diamonds(north) and hearts(north)>=clubs(north)
+# South opens 1 Major and North has a fit
+S_ = oS and spades(north)>2
+H_ = oH and hearts(north)>2
 
-spadeFit3 = S_ and spades(south)==3
-spadeFit4 = S_ and spades(south)==4
-spadeFit5 = S_ and spades(south)>4
-heartFit3 = H_ and hearts(south)==3
-heartFit4 = H_ and hearts(south)==4
-heartFit5 = H_ and hearts(south)>4
+# Avoid preempts, weak 2, Michaels, and Unusual NT
+wPreempt  = shape(west,any 9xxx +any 8xxx +any 7xxx +any 6xxx) and hcp(west)>3
+w2Suits   = shape(west,any 76xx +any 75xx +any 66xx +any 65xx +any 55xx) and hcp(west)>3
+wOvercall = shape(west,any 5xxx) and hcp(west)>7
+wPasses   = hcp(west)<11 and not(wPreempt or w2Suits or wOvercall)
 
-fit5  = hcp(south)<8                    and (spadeFit5 or heartFit5)
-fit1  = hcp(south)>3 and hcp(south)<8   and (spadeFit3 or heartFit3 or spadeFit4 or heartFit4) and not fit5
-fit2  = hcp(south)>7 and hcp(south)<11  and (spadeFit3 or heartFit3 or spadeFit4 or heartFit4)
-fit3  = hcp(south)>10 and hcp(south)<13 and (spadeFit3 or heartFit3) 
-fit4  = hcp(south)>10 and hcp(south)<13 and (spadeFit4 or heartFit4)
+# Define North's 3- 4+ and 5+ card fits
+spadeFit3 = S_ and spades(north)==3
+spadeFit4 = S_ and spades(north)>3
+spadeFit5 = S_ and spades(north)>4
+heartFit3 = H_ and hearts(north)==3
+heartFit4 = H_ and hearts(north)>3
+heartFit5 = H_ and hearts(north)>4
+
+# Avoid a splinter
+v1 = shape(north, any 0xxx) ? 3 : 0
+s1 = shape(north, any 1xxx) ? 2 : 0
+d1 = shape(north, any 2xxx) ? 1 : 0 // allow for 2 doubletons
+d2 = shape(north, any 22xx) ? 1 : 0
+nTP = v1+s1+d1+d2 + hcp(north)
+Splinter = ((oH and hearts(north)>3) or (oS and spades(north)>3)) and shape(north,any 0xxx +any 1xxx) and nTP>10 and nTP<16
+
+preempt = nTP<8             and (spadeFit5 or heartFit5)
+faulty  = nTP>3  and nTP<8  and (S_ or H_) and not preempt
+simple  = nTP>7  and nTP<11 and (S_ or H_)
+invite3 = nTP>10 and nTP<13 and (spadeFit3 or heartFit3) 
+invite4 = nTP>10 and nTP<13 and (spadeFit4 or heartFit4)
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
-lev1 = fit1 and keep11
-lev2 = fit2 and keep06
-lev3 = fit3 and keep25
-lev4 = fit4 and keep44
-lev5 = fit5 and keep
+lev1 = faulty  and keep14
+lev2 = simple  and keep06
+lev3 = invite3 and keep19
+lev4 = invite4 and keep44
+lev5 = preempt and keep
 levelTheDeal = lev1 or lev2 or lev3 or lev4 or lev5
 
-hcp(north)>11 and hcp(south)>5 and calmEast
+sOpens = (oH or oS) and hcp(south)>11 and hcp(south)<19
+nResponds = (preempt or faulty or simple or invite3 or invite4) and not Splinter
+
+sOpens and wPasses and nResponds
 and levelTheDeal
 
-produce 5000
 action
-average "faulty raise  " 100 * fit1,
-average "simple raise  " 100 * fit2,
-average "3-card invite " 100 * fit3,
-average "4-card invite " 100 * fit4,
-average "preempt       " 100 * fit5,
+average "faulty raise  " 100 * faulty,
+average "simple raise  " 100 * simple,
+average "3-card invite " 100 * invite3,
+average "4-card invite " 100 * invite4,
+average "preempt       " 100 * preempt,
 
-`, "N", true)
+`, "S", true)
 Script
 
 Button,Major Suit Fit (Lev),\n\
