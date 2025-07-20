@@ -2,6 +2,7 @@ Script,ThreeNT
 setDealerCode(`
 
 # auction-filter: Auction.....\\n3NT.Pass.
+# convention-card: 21GF-Not-Gambling
 
 # Three Notrump Opening
 
@@ -28,7 +29,6 @@ ntShape = shape(south, any 4333 +any 4432 +any 5332 +any 5422 -5xxx -x5xx)
 
 # Define Two NT Point range
 threeNT = ntShape and ntPoints>24 and ntPoints<28
-
 
 ### Do it ###
 threeNT and hcp(north)>4     // Increase the probability of slam
