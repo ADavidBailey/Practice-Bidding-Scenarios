@@ -5,19 +5,28 @@ setDealerCode(`
 # auction-filter: Auction.....\\n1NT.Pass.2[DH].Pass\\n2[HS].Pass.3[CD].
 
 # Import Define-1N and Leveling
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Define-1N
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# Defines gibNT
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Defines calmOpps
+
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 # Level it
-levMin = ntMin and keep56
-levAvg = ntAvg and keep75
-levMax = ntMax and keep97
+ntMin = hcp(south)==15
+ntAvg = hcp(south)==16
+ntMax = hcp(south)==17
+
+levMin = ntMin and keep44
+levAvg = ntAvg and keep56
+levMax = ntMax and keep
 levelTheDeal = levMin or levAvg or levMax
 
 ### Ready for Leveling
 
 # Now OPEN 1NT
-NT and shape(north, 5xxx+x5xx) and (clubs(north)>5 or diamonds(north)>5)
+gibNT and shape(north, 5xxx+x5xx) and (clubs(north)>5 or diamonds(north)>5) and calmOpps 
 and levelTheDeal
 
 # Generate Statistics
@@ -31,14 +40,13 @@ average "5S and 6+C  " 100 * shape(north,5xx6+5xx7),
 average "5H and 6+D  " 100 * shape(north,x56x+x57x),
 average "5H and 6+C  " 100 * shape(north,x5x6+x5x7),
 
-frequency  "HCP South "  (hcp(south) , 14, 18),
-frequency  "ntPoints  "  (ntPoints   , 14, 18),
+frequency  "HCP South "  (hcp(south) , 15, 17),
+frequency  "HCP North "  (hcp(north) ,  3, 17),
 
 `,"S",true)
 Script
 Button,1NT w/5M-6+m (Lev),\n\
 ---  15-17 Notrump Opening with 5M and 6+m response.\n\
-2452+2425+2245+2254+4522 +any 4333，4432，or 5332 distribution.\n\
-Those 5422 hands are the ones where you are likely to have to reverse to show your suits.\n\
-HCP adjusted +1 for any 5-card suit unless you have Kx，Qx，or Jx doubleton.\n\
+GIB opens 1N with any 5332，4432，or 4333 and (15-17 HCP with no 5-card major or 15-16 with\n\
+a 5-card major) plus any 5422 without a 5-card major and 15-16 HCP (too few points to reverse)\n\
 %Notrump5M6m%
