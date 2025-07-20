@@ -6,13 +6,12 @@ setDealerCode(`
 # South opens 1 Major
 dealer south
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
-# Defines gibNT
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# Defines oS and oH
 
-H_ = shape(south,x7xx + x6xx + x5xx -any 65xx -any 55xx)
-S_ = shape(south,7xxx + 6xxx + 5xxx -any 65xx -any 55xx)
+# South opens 1M
+(oS or oH) and hcp(south)>11 and hcp(south)<20
 
-(S_ or H_) and not gibNT and hcp(south)>11 and hcp(south)<20
 
 `,"S",true)
 Script
