@@ -10,7 +10,7 @@ setDealerCode(`
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 # Defines oneClub, oneSpade, oneHeart, oneDiamond
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
-# Define calmWest, calmEast, and calmOpps
+# Defines calmWest
 
 # Define NoFit
 sFit = oneSpade and spades(north)>2
@@ -19,9 +19,10 @@ dFit = oneDiamond and diamonds(north)>3
 noFit = not (sFit or hFit or dFit)
 
 # Define North's good suits -- 6+ cards with at least AK, AQ, or KQJ
-goodHearts   = hearts(north)>5   and top5(north,hearts)  >2 and hcp(north,hearts)>5
-goodDiamonds = diamonds(north)>5 and top5(north,diamonds)>2 and hcp(north,diamonds)>5
-goodClubs    = clubs(north)>5    and top5(north,clubs)   >2 and hcp(north,clubs)>5
+#predeal north H9, D9, C9
+goodHearts   = hearts(north)>5   and hcp(north,hearts)>2   and hcp(north,hearts)<7   and top5(north,hearts)==3
+goodDiamonds = diamonds(north)>5 and hcp(north,diamonds)>2 and hcp(north,diamonds)<7 and top5(north,diamonds)==3
+goodClubs    = clubs(north)>5    and hcp(north,clubs)>2    and hcp(north,clubs)<7    and top5(north,clubs)==3
 
 # north does NOT have a major
 noMajorNorth = spades(north)<4 and hearts(north)<4
@@ -52,5 +53,7 @@ Button,3-under Inv. Jump,\n\
 • 1!S - 3!C，3!D，or 3!H\n\
 • 1!H - 3!C or 3!D\n\
 • 1!D - 3!C\n\
-Show a good 6+ card suit with 9-11 HCP and deny 3-card support for opener’s major.\n\
+Shows a good 6+ card suit with 9-11 HCP.\n\
+- denies 3-card support for opener’s major\n\
+- denies 4-cards in another major\n\
 %InvitationalJump3Under%

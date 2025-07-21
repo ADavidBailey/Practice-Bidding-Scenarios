@@ -102,7 +102,7 @@ calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
 
-# Define calmWest, calmEast, and calmOpps
+# Defines calmWest
 
 # Define NoFit
 sFit = oneSpade and spades(north)>2
@@ -111,9 +111,10 @@ dFit = oneDiamond and diamonds(north)>3
 noFit = not (sFit or hFit or dFit)
 
 # Define North's good suits -- 6+ cards with at least AK, AQ, or KQJ
-goodHearts   = hearts(north)>5   and top5(north,hearts)  >2 and hcp(north,hearts)>5
-goodDiamonds = diamonds(north)>5 and top5(north,diamonds)>2 and hcp(north,diamonds)>5
-goodClubs    = clubs(north)>5    and top5(north,clubs)   >2 and hcp(north,clubs)>5
+#predeal north H9, D9, C9
+goodHearts   = hearts(north)>5   and hcp(north,hearts)>2   and hcp(north,hearts)<7   and top5(north,hearts)==3
+goodDiamonds = diamonds(north)>5 and hcp(north,diamonds)>2 and hcp(north,diamonds)<7 and top5(north,diamonds)==3
+goodClubs    = clubs(north)>5    and hcp(north,clubs)>2    and hcp(north,clubs)<7    and top5(north,clubs)==3
 
 # north does NOT have a major
 noMajorNorth = spades(north)<4 and hearts(north)<4
@@ -124,7 +125,7 @@ n3H = (oneSpade) and goodHearts
 
 # (Predict South's opening bid sometimes opens w/10hcp
 # Now do it 
-(n3C or n3D or n3H) and calmWest and noFit and hcp(north)>8 and hcp(north)<12 and hcp(south)>10
+(n3C or n3D or n3H) and calmWest and noFit and hcp(north)>8 and hcp(north)<12 and hcp(south)>10 //and shape(north,any 0xxx +any 1xxx)
 
 action
 average "hcp(south)" hcp(south),
