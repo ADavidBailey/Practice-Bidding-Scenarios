@@ -42,15 +42,15 @@ sRD = sD ? 2 : 0
 sRC = sC ? 1 : 0
 southRank = sRS+sRH+sRD+sRC   // all except one are zero
 
-# Calculate the minimum length for South's suit
-length = southRank>eastRank ? 6 : 7
+# Define south's shapes
+sShape = southRank>eastRank ? shape(south,any 6xxx -any 76xx -any 5xxx) : shape(south,any 9xxx+any 8xxx+any 7xxx-any 76xx-any 5xxx)
 
 # Define South Weak Jump Overcalls
-w2S = spades(south)>=length and top5(south,spades)>2 and hcp(south,spades)>4
-w2H = hearts(south)>=length and top5(south,hearts)>2 and hcp(south,hearts)>4
-w2D = diamonds(south)>=length and top5(south,diamonds)>2 and hcp(south,diamonds)>4
-w2C = clubs(south)>=length and top5(south,clubs)>2 and hcp(south,clubs)>4
-sWeakJumpOvercall = (w2S or w2H or w2D or w2C) and hcp(south)>5 and hcp(south)<11
+w2S = spades(south)>5   and top5(south,spades)>2 and hcp(south,spades)>4
+w2H = hearts(south)>5   and top5(south,hearts)>2 and hcp(south,hearts)>4
+w2D = diamonds(south)>5 and top5(south,diamonds)>2 and hcp(south,diamonds)>4
+w2C = clubs(south)>5    and top5(south,clubs)>2 and hcp(south,clubs)>4
+sWeakJumpOvercall = (w2S or w2H or w2D or w2C) and hcp(south)>5 and hcp(south)<11 and sShape
 
 # East opens
 hcp(east)>11 and hcp(east)<15
