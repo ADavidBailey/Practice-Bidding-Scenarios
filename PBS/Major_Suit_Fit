@@ -27,16 +27,17 @@ spadeFit5 = S_ and spades(north)>4
 heartFit3 = H_ and hearts(north)==3
 heartFit4 = H_ and hearts(north)>3
 heartFit5 = H_ and hearts(north)>4
+fit4 = spadeFit4 or heartFit4
 
-# Calculate North's Total Points: HCP + shape and +1 for 4+ support unless 4333
+# Calculate North's Total Points: HCP + shape (and +1 for 4+ support unless 4333)
 v1 = shape(north, any 0xxx) ? 3 : 0
 s1 = shape(north, any 1xxx) ? 2 : 0
 d1 = shape(north, any 2xxx) ? 1 : 0 // allow for 2 doubletons
 d2 = shape(north, any 22xx) ? 1 : 0
-nTP = v1+s1+d1+d2 + hcp(north) + ((spadeFit4 or heartFit4) and shape(north,any 4333))
+nTP = v1+s1+d1+d2 + hcp(north) + (fit4 and shape(north,xxxx-any 4333))
 
 # Avoid Splinter
-Splinter = ((oH and hearts(north)>3) or (oS and spades(north)>3)) and shape(north,any 0xxx +any 1xxx) and nTP>10 and nTP<16
+Splinter = fit4 and shape(north,any 0xxx +any 1xxx) and nTP>10 and nTP<16
 
 preempt = nTP<8             and (spadeFit5 or heartFit5)
 faulty  = nTP>3  and nTP<8  and (S_ or H_) and not preempt
