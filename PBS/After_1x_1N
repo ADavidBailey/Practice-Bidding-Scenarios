@@ -11,7 +11,7 @@ dealer south
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 # returns oC, oD, oH, oS
 
-# West has a stop in South's opening suit -- at least Axx, Kxx or QJx -- for NT overcall
+# West has a stop in South's opening suit -- at least Kxx or QJx -- for NT overcall
 sC = oC and (hcp(west,clubs)==3    or hcp(west,clubs)==4)    and clubs(west)==3
 sD = oD and (hcp(west,diamonds)==3 or hcp(west,diamonds)==4) and diamonds(west)==3
 sH = oH and (hcp(west,hearts)==3   or hcp(west,hearts)==4)   and hearts(west)==3
@@ -71,7 +71,7 @@ oH2C = sH and nC4S4t9
 oH2D = sH and nD4S4t9
 oH2S = sH and nS1
 
-oS2C = sS and nD4S4t9
+oS2C = sS and nC4H4t9
 oS2D = sS and nD4H4t9
 oS2H = sS and nH1
 oMajor = oM2C or oM2D or oM2N or oH2C or oH2D or oH2S or oS2C or oS2D or oS2H
