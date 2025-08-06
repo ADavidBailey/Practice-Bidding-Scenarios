@@ -88,7 +88,31 @@ nDoubles = hcp(north)>9
 nBids    = (oMinor or oMajor) and hcp(north)>4 and hcp(north)<10
 nRaises  = ((sH and hearts(north)>2) or (sS and spades(north)>2)) and nTP>4 and hcp(north)<10 and not nBids
 
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+
+levDouble = nDoubles and keep03
+lev1m2C   = om2C     and keep045
+lev1m2D   = om2D     and keep
+lev1m2N   = om2N     and keep
+lev1C2H   = oC2H     and keep
+lev1C2S   = oC2S     and keep
+lev1D2H   = oD2H     and keep
+lev1D2S   = oD2S     and keep
+lev1M2C   = oM2C     and keep
+lev1M2D   = oM2D     and keep
+lev1M2N   = oM2N     and keep
+lev1H2C   = oH2C     and keep
+lev1H2D   = oH2D     and keep
+lev1H2S   = oH2S     and keep
+lev1S2C   = oS2C     and keep
+lev1S2D   = oS2D     and keep
+levBid    = nBids    and keep
+levRaise  = nRaises  and keep25
+
+levelTheDeal = levDouble or lev1m2C or lev1m2D or lev1m2N or lev1C2H or lev1C2S or lev1D2H or lev1D2S or lev1M2C or lev1M2D or lev1M2N or lev1H2C or lev1H2D or lev1H2S or lev1S2C or lev1S2D or levBid or levRaise
+
 sOpens and wOvercalls1N and (nDoubles or nBids or nRaises)
+and levelTheDeal
 
 action
 average "Double " 100 * nDoubles,

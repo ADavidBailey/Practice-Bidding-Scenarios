@@ -103,7 +103,7 @@ nD4S4t9   = nD2 and nS2 and (diamonds(north) + spades(north))>8       // 4+D & 4
 
 nH4S4t8   = nH2 and nS2                                               // 4+H & 4+S min 8
 
-nH6orS6   = (nH1 and hearts(north)>5) or (nS1 and spades(north)>5)  // 6+H or 6+S
+nH6orS6   = (nH1 and hearts(north)>5) or (nS1 and spades(north)>5)    // 6+H or 6+S
 
 sm = sC or sD
 sM = sH or sS
@@ -147,7 +147,68 @@ nDoubles = hcp(north)>9
 nBids    = (oMinor or oMajor) and hcp(north)>4 and hcp(north)<10
 nRaises  = ((sH and hearts(north)>2) or (sS and spades(north)>2)) and nTP>4 and hcp(north)<10 and not nBids
 
+### Imported Leveling Code ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep015 = keep06 and c3
+keep03 = keep06 and keep44
+keep045 = keep06 and not c3
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep955 = not keep045
+keep97 = not keep03
+keep985 = not keep015
+keep   = 1
+keep0  = 0
+### End of Imported Leveling Code ###
+
+
+levDouble = nDoubles and keep03
+lev1m2C   = om2C     and keep045
+lev1m2D   = om2D     and keep
+lev1m2N   = om2N     and keep
+lev1C2H   = oC2H     and keep
+lev1C2S   = oC2S     and keep
+lev1D2H   = oD2H     and keep
+lev1D2S   = oD2S     and keep
+lev1M2C   = oM2C     and keep
+lev1M2D   = oM2D     and keep
+lev1M2N   = oM2N     and keep
+lev1H2C   = oH2C     and keep
+lev1H2D   = oH2D     and keep
+lev1H2S   = oH2S     and keep
+lev1S2C   = oS2C     and keep
+lev1S2D   = oS2D     and keep
+levBid    = nBids    and keep
+levRaise  = nRaises  and keep25
+
+levelTheDeal = levDouble or lev1m2C or lev1m2D or lev1m2N or lev1C2H or lev1C2S or lev1D2H or lev1D2S or lev1M2C or lev1M2D or lev1M2N or lev1H2C or lev1H2D or lev1H2S or lev1S2C or lev1S2D or levBid or levRaise
+
 sOpens and wOvercalls1N and (nDoubles or nBids or nRaises)
+and levelTheDeal
 
 action
 average "Double " 100 * nDoubles,
