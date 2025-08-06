@@ -12,10 +12,10 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 # returns oC, oD, oH, oS
 
 # West has a stop in South's opening suit -- at least Axx, Kxx or QJx -- for NT overcall
-sC = oC and hcp(west,clubs)>2    and clubs(west)>2
-sD = oD and hcp(west,diamonds)>2 and diamonds(west)>2
-sH = oH and hcp(west,hearts)>2   and hearts(west)>2
-sS = oS and hcp(west,spades)>2   and spades(west)>2
+sC = oC and (hcp(west,clubs)==3    or hcp(west,clubs)==4)    and clubs(west)==3
+sD = oD and (hcp(west,diamonds)==3 or hcp(west,diamonds)==4) and diamonds(west)==3
+sH = oH and (hcp(west,hearts)==3   or hcp(west,hearts)==4)   and hearts(west)==3
+sS = oS and (hcp(west,spades)==3   or hcp(west,spades)==4)   and spades(west)==3
 
 # South opens & West has stop
 sOpens = (sC or sD or sH or sS) and hcp(south)>11
@@ -91,7 +91,7 @@ nRaises  = ((sH and hearts(north)>2) or (sS and spades(north)>2)) and nTP>4 and 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 levDouble = nDoubles and keep03
-lev1m2C   = om2C     and keep045
+lev1m2C   = om2C     and keep03
 lev1m2D   = om2D     and keep
 lev1m2N   = om2N     and keep
 lev1C2H   = oC2H     and keep
@@ -107,7 +107,7 @@ lev1H2S   = oH2S     and keep
 lev1S2C   = oS2C     and keep
 lev1S2D   = oS2D     and keep
 levBid    = nBids    and keep
-levRaise  = nRaises  and keep25
+levRaise  = nRaises  and keep19
 
 levelTheDeal = levDouble or lev1m2C or lev1m2D or lev1m2N or lev1C2H or lev1C2S or lev1D2H or lev1D2S or lev1M2C or lev1M2D or lev1M2N or lev1H2C or lev1H2D or lev1H2S or lev1S2C or lev1S2D or levBid or levRaise
 
