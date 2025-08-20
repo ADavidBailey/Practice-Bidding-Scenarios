@@ -2,7 +2,7 @@
 % EXPORT
 %Content-type: text/x-pbn; charset=ISO-8859-1
 %Creator: BridgeComposer Version 5.112
-%Created: Sat Jul 19 09:39:55 2025 -0500
+%Created: Wed Aug 20 16:19:05 2025 -0500
 %BCOptions Center STBorder STShade
 %BidAndCardSpacing Thin
 %BoardsPerPage 1
@@ -16,7 +16,7 @@
 %Font:FixedPitch "Courier New",10,400,0
 %Font:HandRecord "Arial",11,400,0
 %GutterSize 500,500
-%HRTitleDate 2025.07.19
+%HRTitleDate 2025.08.20
 %HRTitleEvent "GIB Notrump Opening"
 %HRTitleSetID ""
 %HRTitleSetIDPrefix ""
@@ -57,6 +57,7 @@
 % 1-2 - 1X-(1Y)-2Z weak
 % 1-2 - 4NT opening
 % 1-2 - Blackwood 0314
+% 1-2 - Cappelletti
 % 1-2 - Cue bid
 % 1-2 - DOPI
 % 1-2 - Extended acceptance after NT
@@ -65,7 +66,6 @@
 % 1-2 - Gambling
 % 1-2 - Gerber
 % 1-2 - Inverted minors
-% 1-2 - Inviting Jump Shifts
 % 1-2 - Jacoby 2NT
 % 1-2 - Jordan Truscott 2NT
 % 1-2 - King ask by 5NT
@@ -78,7 +78,6 @@
 % 1-2 - Mark on king
 % 1-2 - Michaels Cuebid
 % 1-2 - Minor Suit Transfers after 2NT
-% 1-2 - Multi-Landy
 % 1-2 - New Minor Forcing
 % 1-2 - Quantitative 4NT
 % 1-2 - Responsive double
@@ -96,12 +95,13 @@
 % 1-2 - Unusual 1NT
 % 1-2 - Unusual 2NT
 % 1-2 - Unusual 4NT
+% 1-2 - Weak Jump Shifts 3
 % 1-2 - Weak natural 2D
 % 1-2 - Weak natural 2M
 % 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "1"]
 {089EE3B91957E0AFC40A1E34D220}
 [West "EPBot1"]
@@ -132,7 +132,7 @@ Pass Pass X Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "2"]
 {0AA3C6EC2DD39E66314C111542D2}
 [West "EPBot1"]
@@ -155,17 +155,17 @@ Losers 8 8 7 6}
 [Room "Open"]
 [Score "NS 600"]
 [Auction "S"]
-1NT X =1= 2C =2= Pass
+1NT 2C =1= X =2= Pass
 2H Pass 3NT Pass
 Pass Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
+[Note "1:Cappelletti, any 6+suit"]
 [Note "2:Stayman"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "3"]
 {097DA6A3B85F5C27011EE52B4CCE}
 [West "EPBot1"]
@@ -194,7 +194,7 @@ Losers 10 9 6 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "4"]
 {0BA91A826FC21B7509E0DDDDC6CB}
 [West "EPBot1"]
@@ -224,7 +224,7 @@ Losers 9 7 8 6}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "5"]
 {0A25D8076E91BCD21765001FFAB2}
 [West "EPBot1"]
@@ -255,7 +255,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "6"]
 {09C9C83DB504930E11766A1CAA1C}
 [West "EPBot1"]
@@ -280,14 +280,14 @@ Losers 6 11 7 6}
 [Auction "S"]
 1NT X =1= 4H =2= Pass
 4S Pass Pass Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
+[Note "1:Cappelletti, strong"]
 [Note "2:Texas"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "7"]
 {08E39FD08D57FC4F9BA46B48D5E3}
 [West "EPBot1"]
@@ -319,7 +319,7 @@ Losers 7 6 7 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "8"]
 {09B18B5BDEA07C0D59E81218460C}
 [West "EPBot1"]
@@ -351,7 +351,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "9"]
 {0BA9F44EE2C6B1ABF5C9551F56C3}
 [West "EPBot1"]
@@ -365,7 +365,7 @@ Pass Pass
 HCP 5 6 15 14
 Losers 8 10 8 7}
 [Scoring "MP"]
-[Declarer "E"]
+[Declarer "W"]
 [Contract "2S"]
 [Result "8"]
 [BCFlags "7f"]
@@ -374,15 +374,17 @@ Losers 8 10 8 7}
 [Room "Open"]
 [Score "NS -110"]
 [Auction "S"]
-1NT 2D =1= X 2S
-Pass Pass Pass
-[Note "1:Multi-Landy, Multi"]
-[Play "S"]
+1NT 2C =1= Pass 2D =2=
+Pass 2S Pass Pass
+Pass
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:automat"]
+[Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "10"]
 {08A7223E40D9DA3A35DEB9872DB6}
 [West "EPBot1"]
@@ -414,7 +416,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "11"]
 {0B3591FDEB660FD52ED8CAE64082}
 [West "EPBot1"]
@@ -429,24 +431,25 @@ HCP 9 6 15 10
 Losers 9 9 6 8}
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "2N"]
-[Result "8"]
+[Contract "4H"]
+[Result "9"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 120"]
+[Score "NS -100"]
 [Auction "S"]
-1NT 2D =1= X 2S
-Pass Pass 2NT Pass
+1NT 2C =1= X =2= Pass
+2H 2S 4H Pass
 Pass Pass
-[Note "1:Multi-Landy, Multi"]
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:Stayman"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "12"]
 {0841B72246C43BDE89A0677AEE79}
 [West "EPBot1"]
@@ -478,7 +481,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "13"]
 {0A2CE68DAC7897CE3242D1CB7929}
 [West "EPBot1"]
@@ -510,7 +513,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "14"]
 {09519DB8223F0BF51B9E706D3A5F}
 [West "EPBot1"]
@@ -542,7 +545,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "15"]
 {1863B942D0D62CEBCC829C00780D}
 [West "EPBot1"]
@@ -573,7 +576,7 @@ Losers 8 9 6 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "16"]
 {1AA903766011E3B74F9BF6D24604}
 [West "EPBot1"]
@@ -605,7 +608,7 @@ Losers 7 8 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "17"]
 {1928E5346C1517B183681A4CDC4B}
 [West "EPBot1"]
@@ -635,7 +638,7 @@ Losers 9 8 7 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "18"]
 {1A87D679A15E462FB014FB9EC100}
 [West "EPBot1"]
@@ -667,7 +670,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "19"]
 {196B10A8E242FE1929BEC853D410}
 [West "EPBot1"]
@@ -699,7 +702,7 @@ Losers 7 8 6 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "20"]
 {1BBD02DE94B3F7A045F6E42F62D4}
 [West "EPBot1"]
@@ -731,7 +734,7 @@ Losers 8 7 7 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "21"]
 {18DAA1E5DA8F4397FCE2788D5BC7}
 [West "EPBot1"]
@@ -745,7 +748,7 @@ Losers 8 7 7 7}
 HCP 5 10 16 9
 Losers 8 10 6 7}
 [Scoring "MP"]
-[Declarer "E"]
+[Declarer "W"]
 [Contract "3S"]
 [Result "9"]
 [BCFlags "7f"]
@@ -754,16 +757,17 @@ Losers 8 10 6 7}
 [Room "Open"]
 [Score "NS -140"]
 [Auction "S"]
-1NT 2D =1= X 2S
-Pass Pass X 3S
+1NT 2C =1= Pass 2D =2=
+Pass 2S Pass 3S
 Pass Pass Pass
-[Note "1:Multi-Landy, Multi"]
-[Play "S"]
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:automat"]
+[Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "22"]
 {1B9B9CCD4E75F720D601EBD6B1D5}
 [West "EPBot1"]
@@ -792,7 +796,7 @@ Losers 9 9 6 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "23"]
 {182C6151FC67195BC68890FC8B98}
 [West "EPBot1"]
@@ -821,7 +825,7 @@ Losers 10 6 6 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "24"]
 {1AB9A2041B137BD4ED2B86327436}
 [West "EPBot1"]
@@ -852,7 +856,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "25"]
 {1BD02D6E4D37F767D2B755FBFCA2}
 [West "EPBot1"]
@@ -884,7 +888,7 @@ Pass Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "26"]
 {186399F08E5429E892FE09FA7802}
 [West "EPBot1"]
@@ -916,7 +920,7 @@ Losers 8 9 7 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "27"]
 {1AB1D666137203E88D5FBF6AE027}
 [West "EPBot1"]
@@ -945,7 +949,7 @@ Losers 11 7 6 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "28"]
 {1907A94AE9FFFEF41376611FD191}
 [West "EPBot1"]
@@ -975,7 +979,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "29"]
 {283DA5FE92D9FECA7B770920E36A}
 [West "EPBot1"]
@@ -998,15 +1002,15 @@ Losers 10 8 7 5}
 [Room "Open"]
 [Score "NS -140"]
 [Auction "S"]
-1NT 2C =1= Pass 2S
+1NT 2D =1= Pass 2S
 Pass Pass Pass
-[Note "1:Multi-Landy, both majors"]
+[Note "1:Cappelletti, both majors"]
 [Play "S"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "30"]
 {2AB62A2738E7DA51838DD5FF4232}
 [West "EPBot1"]
@@ -1038,7 +1042,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "31"]
 {29A80B5D50D7DED5A17493CF2FB1}
 [West "EPBot1"]
@@ -1068,7 +1072,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "32"]
 {2BEF2982D6459D95DB79C0CE7806}
 [West "EPBot1"]
@@ -1099,7 +1103,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "33"]
 {2A66F1AFF0D51A0D6F8542F816DF}
 [West "EPBot1"]
@@ -1128,7 +1132,7 @@ Losers 10 9 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "34"]
 {2939056BC8A42C5E5E34BA3312C9}
 [West "EPBot1"]
@@ -1159,7 +1163,7 @@ Losers 7 10 6 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "35"]
 {2BB08D3DF06E77989523C464465B}
 [West "EPBot1"]
@@ -1173,25 +1177,22 @@ Losers 7 10 6 10}
 HCP 5 5 17 13
 Losers 10 10 6 7}
 [Scoring "MP"]
-[Declarer "W"]
-[Contract "2H"]
-[Result "6"]
+[Declarer "S"]
+[Contract "1N"]
+[Result "7"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 200"]
+[Score "NS 90"]
 [Auction "S"]
-1NT X =1= Pass 2D
-Pass 2H Pass Pass
-Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
-[Play "N"]
+1NT Pass Pass Pass
+[Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "36"]
 {298886ACDFCA0F15D0C0D5293555}
 [West "EPBot1"]
@@ -1217,13 +1218,13 @@ Losers 8 7 7 7}
 1NT 2S =1= X Pass
 3C Pass 3H Pass
 Pass Pass
-[Note "1:Multi-Landy, 5M-4m"]
+[Note "1:Cappelletti, 5M-4m"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "37"]
 {2B7981FDDF13CB1F2A2970837399}
 [West "EPBot1"]
@@ -1246,17 +1247,16 @@ Losers 8 8 6 6}
 [Room "Open"]
 [Score "NS 130"]
 [Auction "S"]
-1NT X =1= 2S =2= Pass
-3C =3= Pass Pass Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
-[Note "2:1N-2S transfer to clubs"]
-[Note "3:automat"]
+1NT Pass 2S =1= Pass
+3C =2= Pass Pass Pass
+[Note "1:1N-2S transfer to clubs"]
+[Note "2:automat"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "38"]
 {28E8BDB2645F974B10893FF9701D}
 [West "EPBot1"]
@@ -1281,13 +1281,13 @@ Losers 10 9 6 6}
 [Auction "S"]
 1NT 2H =1= Pass Pass
 Pass
-[Note "1:Multi-Landy, 5M-4m"]
+[Note "1:Cappelletti, 5M-4m"]
 [Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "39"]
 {2AB4C9D7A7327018AE9D038EEEDA}
 [West "EPBot1"]
@@ -1316,7 +1316,7 @@ Losers 10 8 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "40"]
 {2B3EAB4DDC1829019046CAB280C5}
 [West "EPBot1"]
@@ -1347,7 +1347,7 @@ Losers 7 10 6 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "41"]
 {286C95B5112E7588C648BF033E3D}
 [West "EPBot1"]
@@ -1361,25 +1361,24 @@ Losers 7 10 6 9}
 HCP 1 12 16 11
 Losers 10 8 5 6}
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3S"]
-[Result "8"]
+[Declarer "W"]
+[Contract "2H"]
+[Result "9"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -50"]
+[Score "NS -140"]
 [Auction "S"]
-1NT Pass 2H Pass
-2NT =1= Pass 3S Pass
-Pass Pass
-[Note "1:Extended acceptance after NT"]
-[Play "E"]
+1NT 2H =1= Pass Pass
+Pass
+[Note "1:Cappelletti, 5M-4m"]
+[Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "42"]
 {2AA02FC58B01BC8978487E6AF6C9}
 [West "EPBot1"]
@@ -1410,7 +1409,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "43"]
 {2948F9A51FBA624370F93784F682}
 [West "EPBot1"]
@@ -1424,7 +1423,7 @@ Pass Pass
 HCP 6 7 16 11
 Losers 10 8 6 7}
 [Scoring "MP"]
-[Declarer "E"]
+[Declarer "W"]
 [Contract "2H"]
 [Result "8"]
 [BCFlags "7f"]
@@ -1433,16 +1432,17 @@ Losers 10 8 6 7}
 [Room "Open"]
 [Score "NS -110"]
 [Auction "S"]
-1NT 2D =1= X 2H =2=
-Pass Pass Pass
-[Note "1:Multi-Landy, Multi"]
-[Note "2:to the partner's longer"]
-[Play "S"]
+1NT 2C =1= Pass 2D =2=
+Pass 2H Pass Pass
+Pass
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:automat"]
+[Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "44"]
 {38B37E818E4499642115F83EFA4B}
 [West "EPBot1"]
@@ -1473,7 +1473,7 @@ Losers 9 8 6 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "45"]
 {3A6405C1D14A32262398D408BE6F}
 [West "EPBot1"]
@@ -1505,7 +1505,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "46"]
 {39159BA4C57C113E53F9280EE2C5}
 [West "EPBot1"]
@@ -1536,7 +1536,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "47"]
 {3BDD6895314F7198F76926C30EF6}
 [West "EPBot1"]
@@ -1565,7 +1565,7 @@ Losers 11 9 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "48"]
 {3A9D6CC514E4414F2AF2EEDA8FB8}
 [West "EPBot1"]
@@ -1597,7 +1597,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "49"]
 {399A098374EF25C7D83F8C95DE97}
 [West "EPBot1"]
@@ -1630,7 +1630,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "50"]
 {3B1FED63F6B00F9717A0397072A8}
 [West "EPBot1"]
@@ -1662,7 +1662,7 @@ Losers 7 8 6 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "51"]
 {3871833FC52E9EE621BADEC33714}
 [West "EPBot1"]
@@ -1693,7 +1693,7 @@ Losers 6 8 8 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "52"]
 {39A08DBE3D61D44AB307606B46DC}
 [West "EPBot1"]
@@ -1725,7 +1725,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "53"]
 {3B21F99E765A3985AA35E817544F}
 [West "EPBot1"]
@@ -1754,7 +1754,7 @@ Losers 9 7 7 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "54"]
 {386010A447C26D18750894CF512A}
 [West "EPBot1"]
@@ -1783,7 +1783,7 @@ Losers 10 8 7 5}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "55"]
 {3AACB7C91492013C4FB650615C6E}
 [West "EPBot1"]
@@ -1813,7 +1813,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "56"]
 {3B694FBFE1EFC1F602F51AA4C24A}
 [West "EPBot1"]
@@ -1845,7 +1845,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "57"]
 {38A2F9973C751C16A7C2D9168A23}
 [West "EPBot1"]
@@ -1877,7 +1877,7 @@ X 3H 3S Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "58"]
 {3AA176FB480A7AB72FE2CD47E193}
 [West "EPBot1"]
@@ -1906,7 +1906,7 @@ Losers 9 7 8 6}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "59"]
 {39606BED9E1A02F261F053893C5D}
 [West "EPBot1"]
@@ -1938,7 +1938,7 @@ Losers 8 7 6 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "60"]
 {4825E7A78AD0915ECD1C1C057700}
 [West "EPBot1"]
@@ -1970,7 +1970,7 @@ Losers 7 10 7 6}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "61"]
 {4AEDE91182A380D34A1197404346}
 [West "EPBot1"]
@@ -1986,21 +1986,24 @@ Losers 8 9 6 5}
 [Scoring "MP"]
 [Declarer "W"]
 [Contract "5DX"]
-[Result "9"]
+[Result "10"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 300"]
+[Score "NS 100"]
 [Auction "S"]
-1NT 5D Pass Pass
-X Pass Pass Pass
+1NT 2C =1= 2D Pass
+2H 3D 3H 4D
+4H 5D X Pass
+Pass Pass
+[Note "1:Cappelletti, any 6+suit"]
 [Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "62"]
 {49294ADDDF9004EC5C0811C5A751}
 [West "EPBot1"]
@@ -2032,7 +2035,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "63"]
 {4BA063910D5879C1EF86F747F841}
 [West "EPBot1"]
@@ -2064,7 +2067,7 @@ Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "64"]
 {4A85FDC67F5CDBBF747522EBCA97}
 [West "EPBot1"]
@@ -2087,15 +2090,15 @@ Losers 7 11 6 6}
 [Room "Open"]
 [Score "NS 630"]
 [Auction "S"]
-1NT 2C =1= 3NT Pass
+1NT 2D =1= 3NT Pass
 Pass Pass
-[Note "1:Multi-Landy, both majors"]
+[Note "1:Cappelletti, both majors"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "65"]
 {498149ECE3B66A49D0334AB65C30}
 [West "EPBot1"]
@@ -2127,7 +2130,7 @@ Losers 7 9 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "66"]
 {4B1DB36C429760C9C9F277E32909}
 [West "EPBot1"]
@@ -2159,7 +2162,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "67"]
 {4835E11982CF8718A046CC6D4C54}
 [West "EPBot1"]
@@ -2190,7 +2193,7 @@ Losers 8 10 7 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "68"]
 {49A952C3C78277FE6828DD72B2BB}
 [West "EPBot1"]
@@ -2220,7 +2223,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "69"]
 {4B9126F5A857844E4D608A8BFBF2}
 [West "EPBot1"]
@@ -2251,7 +2254,7 @@ Losers 8 8 7 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "70"]
 {4892D134332857FB9AFE6F4421AA}
 [West "EPBot1"]
@@ -2280,7 +2283,7 @@ Losers 9 8 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "71"]
 {4A85BFE8403A15A10AD6AFF0530A}
 [West "EPBot1"]
@@ -2312,7 +2315,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "72"]
 {4B0D6E308A18DBB56AC98654E6A3}
 [West "EPBot1"]
@@ -2344,7 +2347,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "73"]
 {48A53D4F9EC96A0CBC75CC23F09B}
 [West "EPBot1"]
@@ -2375,7 +2378,7 @@ Losers 9 7 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "74"]
 {4AE19AB9803F6BD788EF14CAF647}
 [West "EPBot1"]
@@ -2404,7 +2407,7 @@ Losers 10 7 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "75"]
 {49AF29F33E72FF9CD58B5692C161}
 [West "EPBot1"]
@@ -2434,7 +2437,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "76"]
 {58A9578787E550EC0A59FF3C3262}
 [West "EPBot1"]
@@ -2464,7 +2467,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "77"]
 {5A95CB496F3974E8EB3FF01326AA}
 [West "EPBot1"]
@@ -2496,7 +2499,7 @@ Losers 8 6 7 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "78"]
 {592945CC4980BF46D2A0CCB67906}
 [West "EPBot1"]
@@ -2527,7 +2530,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "79"]
 {5B82AAEFD11130403D7D3A833435}
 [West "EPBot1"]
@@ -2559,7 +2562,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "80"]
 {5AAEEE668799FE06F778EC48F90C}
 [West "EPBot1"]
@@ -2591,7 +2594,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "81"]
 {59A1C0BCAE93D3180534185E92E5}
 [West "EPBot1"]
@@ -2623,7 +2626,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "82"]
 {5B24BF816A88F74A320EDB5D9A2C}
 [West "EPBot1"]
@@ -2655,7 +2658,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "83"]
 {58ADB8E6470287A21AEC174EC1FC}
 [West "EPBot1"]
@@ -2687,7 +2690,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "84"]
 {59E892D129228F704FB64EFD8D57}
 [West "EPBot1"]
@@ -2716,7 +2719,7 @@ Losers 9 8 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "85"]
 {5B6CC99ECF28600300FC09634299}
 [West "EPBot1"]
@@ -2748,7 +2751,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "86"]
 {58A7C148757F92F32668CB42D97D}
 [West "EPBot1"]
@@ -2780,7 +2783,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "87"]
 {5A7187E68108437BDC63586702A1}
 [West "EPBot1"]
@@ -2803,14 +2806,15 @@ Losers 7 9 7 8}
 [Room "Open"]
 [Score "NS 170"]
 [Auction "S"]
-1NT Pass 2D Pass
+1NT 2C =1= 2D Pass
 2H Pass Pass Pass
+[Note "1:Cappelletti, any 6+suit"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "88"]
 {5BD1EAAD8BA432486C7ECB462402}
 [West "EPBot1"]
@@ -2842,7 +2846,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "89"]
 {5811964DED9788563AE35BB8B400}
 [West "EPBot1"]
@@ -2857,21 +2861,24 @@ HCP 6 15 15 4
 Losers 10 7 7 10}
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "1N"]
-[Result "7"]
+[Contract "3S"]
+[Result "8"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 90"]
+[Score "NS -50"]
 [Auction "S"]
-1NT Pass Pass Pass
+1NT Pass Pass X =1=
+2S Pass 3S Pass
+Pass Pass
+[Note "1:Cappelletti, strong"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "90"]
 {5A678914D41879367A358CE88FFF}
 [West "EPBot1"]
@@ -2903,7 +2910,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "91"]
 {59A1CCE61B532545A37C64F7C87B}
 [West "EPBot1"]
@@ -2932,7 +2939,7 @@ Losers 9 8 7 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "92"]
 {68BC6661E39B7CDB038AFD1695C8}
 [West "EPBot1"]
@@ -2961,7 +2968,7 @@ Losers 11 8 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "93"]
 {6A8D0101A2A65053C877FA9C7E27}
 [West "EPBot1"]
@@ -2993,7 +3000,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "94"]
 {69E5FD2B10451483927A517DFBB0}
 [West "EPBot1"]
@@ -3022,7 +3029,7 @@ Losers 9 10 7 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "95"]
 {6BA97A2A7EA259273647083FF0AE}
 [West "EPBot1"]
@@ -3047,13 +3054,13 @@ Losers 10 6 7 5}
 [Auction "S"]
 1NT 2H =1= Pass Pass
 Pass
-[Note "1:Multi-Landy, 5M-4m"]
+[Note "1:Cappelletti, 5M-4m"]
 [Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "96"]
 {6AA9DB11B8D6C1D68C202753831E}
 [West "EPBot1"]
@@ -3067,7 +3074,7 @@ Pass
 HCP 5 13 15 7
 Losers 9 6 8 8}
 [Scoring "MP"]
-[Declarer "W"]
+[Declarer "E"]
 [Contract "2H"]
 [Result "8"]
 [BCFlags "7f"]
@@ -3076,17 +3083,17 @@ Losers 9 6 8 8}
 [Room "Open"]
 [Score "NS -110"]
 [Auction "S"]
-1NT Pass Pass 2D =1=
-Pass 2H =2= Pass Pass
-Pass
-[Note "1:Multi-Landy, Multi"]
-[Note "2:to the partner's longer"]
-[Play "N"]
+1NT Pass Pass 2C =1=
+Pass 2D =2= Pass 2H
+Pass Pass Pass
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:automat"]
+[Play "S"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "97"]
 {6935B948CE3E0BA7ED6E444AD720}
 [West "EPBot1"]
@@ -3118,7 +3125,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "98"]
 {6BBBA17EA6583EEA2E1B03C4CF59}
 [West "EPBot1"]
@@ -3147,7 +3154,7 @@ Losers 10 8 6 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "99"]
 {68AA40A8B5C6048EDC274EE11B50}
 [West "EPBot1"]
@@ -3179,7 +3186,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "100"]
 {694D71AB6B5C5E988313BC3ADB34}
 [West "EPBot1"]
@@ -3209,7 +3216,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "101"]
 {6BAF879B5841D6E98C4BCEC85F6A}
 [West "EPBot1"]
@@ -3244,7 +3251,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "102"]
 {6AE7AC369203569FB1C162D2014E}
 [West "EPBot1"]
@@ -3259,22 +3266,25 @@ HCP 9 4 17 10
 Losers 9 8 7 8}
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "3S"]
-[Result "10"]
+[Contract "3N"]
+[Result "9"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 170"]
+[Score "NS 600"]
 [Auction "S"]
-1NT 3D X Pass
-3S Pass Pass Pass
+1NT 2C =1= X =2= Pass
+2S Pass 2NT Pass
+3NT Pass Pass Pass
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:Stayman"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "103"]
 {6BC98C4D68B42482355253FC9F77}
 [West "EPBot1"]
@@ -3306,7 +3316,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "104"]
 {689295B7D9D4C32A4C127F13E3F9}
 [West "EPBot1"]
@@ -3320,7 +3330,7 @@ Pass Pass
 HCP 3 12 17 8
 Losers 10 7 6 8}
 [Scoring "MP"]
-[Declarer "W"]
+[Declarer "E"]
 [Contract "3H"]
 [Result "9"]
 [BCFlags "7f"]
@@ -3329,17 +3339,18 @@ Losers 10 7 6 8}
 [Room "Open"]
 [Score "NS -140"]
 [Auction "S"]
-1NT Pass Pass 2D =1=
-Pass 2S Pass 2NT
+1NT Pass Pass 2C =1=
+Pass 2D =2= Pass 2H
 Pass 3H Pass Pass
 Pass
-[Note "1:Multi-Landy, Multi"]
-[Play "N"]
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:automat"]
+[Play "S"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "105"]
 {6A1DE52B9FA4D2722E02535CB180}
 [West "EPBot1"]
@@ -3371,7 +3382,7 @@ Losers 7 9 6 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "106"]
 {69098E49E2895F241292DC44BCE0}
 [West "EPBot1"]
@@ -3402,7 +3413,7 @@ Losers 6 9 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "107"]
 {78A90296FBB4549A42494416E9E9}
 [West "EPBot1"]
@@ -3440,7 +3451,7 @@ Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "108"]
 {7A92E554D93E83BB1B38A23FE386}
 [West "EPBot1"]
@@ -3469,7 +3480,7 @@ Losers 10 7 6 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "109"]
 {795998B420F4E9CB600E0187567F}
 [West "EPBot1"]
@@ -3498,7 +3509,7 @@ Losers 12 7 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "110"]
 {7B6099E56F0E08D0949E1687BB78}
 [West "EPBot1"]
@@ -3527,7 +3538,7 @@ Losers 11 8 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "111"]
 {7AA9C8BFBE21DB7E7B2CE6C5740A}
 [West "EPBot1"]
@@ -3550,15 +3561,15 @@ Losers 9 8 8 7}
 [Room "Open"]
 [Score "NS 100"]
 [Auction "S"]
-1NT 2C =1= Pass 2S
+1NT 2D =1= Pass 2S
 Pass Pass Pass
-[Note "1:Multi-Landy, both majors"]
+[Note "1:Cappelletti, both majors"]
 [Play "S"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "112"]
 {799953FFA170DBFB76CB8E680F66}
 [West "EPBot1"]
@@ -3588,7 +3599,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "113"]
 {7BBDC574E09513A4781F554B6B5C}
 [West "EPBot1"]
@@ -3618,7 +3629,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "114"]
 {7893992A4A6C84CC74B1281EE03A}
 [West "EPBot1"]
@@ -3654,7 +3665,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "115"]
 {79FBB5C9E7E3527FB7274EF54099}
 [West "EPBot1"]
@@ -3668,8 +3679,8 @@ Pass Pass
 HCP 7 4 15 14
 Losers 8 9 7 5}
 [Scoring "MP"]
-[Declarer "S"]
-[Contract "3C"]
+[Declarer "N"]
+[Contract "4C"]
 [Result "10"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -3677,17 +3688,15 @@ Losers 8 9 7 5}
 [Room "Open"]
 [Score "NS 130"]
 [Auction "S"]
-1NT 2C =1= 2S =2= Pass
-3C =3= Pass Pass Pass
-[Note "1:Multi-Landy, both majors"]
-[Note "2:1N-2S transfer to clubs"]
-[Note "3:automat"]
-[Play "W"]
+1NT 2D =1= 4C Pass
+Pass Pass
+[Note "1:Cappelletti, both majors"]
+[Play "E"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "116"]
 {7BB1A048D97A2037235D60048B4D}
 [West "EPBot1"]
@@ -3716,7 +3725,7 @@ Losers 10 6 7 6}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "117"]
 {78F9A06AF8A908F8DB556B524266}
 [West "EPBot1"]
@@ -3745,7 +3754,7 @@ Losers 6 7 6 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "118"]
 {7AA633C4AE01E0864A427C15047A}
 [West "EPBot1"]
@@ -3776,7 +3785,7 @@ Losers 7 8 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "119"]
 {7B4D6933ECBA77B3DCDE358A1323}
 [West "EPBot1"]
@@ -3808,7 +3817,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "120"]
 {782AB09A9172C875460468B88E2A}
 [West "EPBot1"]
@@ -3840,7 +3849,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "121"]
 {7AA18AD84D6564837AC80CCA3101}
 [West "EPBot1"]
@@ -3871,7 +3880,7 @@ Losers 8 7 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "122"]
 {792268A3557F6FFBF1C76334D9B6}
 [West "EPBot1"]
@@ -3906,7 +3915,7 @@ Losers 5 8 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "123"]
 {88AFAC054A3EB2FAFB2567103255}
 [West "EPBot1"]
@@ -3937,7 +3946,7 @@ Losers 9 9 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "124"]
 {8AADDCD15D4CE9AFEEC508F2764E}
 [West "EPBot1"]
@@ -3951,25 +3960,26 @@ Losers 9 9 7 8}
 HCP 8 7 15 10
 Losers 6 9 6 7}
 [Scoring "MP"]
-[Declarer "E"]
-[Contract "5SX"]
+[Declarer "W"]
+[Contract "4SX"]
 [Result "7"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 800"]
+[Score "NS 500"]
 [Auction "S"]
-1NT 2D =1= X 2S
-Pass Pass 5D 5S
+1NT 2C =1= X =2= Pass
+2H 2S 4H 4S
 X Pass Pass Pass
-[Note "1:Multi-Landy, Multi"]
-[Play "S"]
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:Stayman"]
+[Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "125"]
 {89D165A32A7C2CD9D74073BD0A77}
 [West "EPBot1"]
@@ -3999,7 +4009,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "126"]
 {8BF90D6E80CBE66F0BA0F23ED64E}
 [West "EPBot1"]
@@ -4029,7 +4039,7 @@ Losers 9 8 5 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "127"]
 {8A959C1FF8EE47EFCAD1556CDDEC}
 [West "EPBot1"]
@@ -4059,7 +4069,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "128"]
 {89209885E143850E541A6A3CFCB2}
 [West "EPBot1"]
@@ -4091,7 +4101,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "129"]
 {8B6526AB7BFF92D87F01C3FE5FA4}
 [West "EPBot1"]
@@ -4121,7 +4131,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "130"]
 {882DBDEBB4451392C37639784D7A}
 [West "EPBot1"]
@@ -4151,7 +4161,7 @@ Losers 9 9 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "131"]
 {89B901551F36DBE4E5B32477E4B3}
 [West "EPBot1"]
@@ -4183,7 +4193,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "132"]
 {8B236DFF940DC0507FF7A44D7A76}
 [West "EPBot1"]
@@ -4213,7 +4223,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "133"]
 {8861CEC9459BB33C5560683EB6CB}
 [West "EPBot1"]
@@ -4245,7 +4255,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "134"]
 {8A0588A0221D53DC917A613ECF75}
 [West "EPBot1"]
@@ -4277,7 +4287,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "135"]
 {8B252AB50202F2BEC95928792B4E}
 [West "EPBot1"]
@@ -4312,7 +4322,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "136"]
 {889DA6BA54C3D0E90F06BCB10ECF}
 [West "EPBot1"]
@@ -4342,7 +4352,7 @@ Pass Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "137"]
 {8A2661F6DC9E1309F8D4D5280B8D}
 [West "EPBot1"]
@@ -4372,7 +4382,7 @@ Losers 10 8 6 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "138"]
 {890AB9B44EEFD3628C00D4AB5164}
 [West "EPBot1"]
@@ -4404,7 +4414,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "139"]
 {98EDC8A2A40524065A162ABF4154}
 [West "EPBot1"]
@@ -4427,14 +4437,15 @@ Losers 8 9 7 6}
 [Room "Open"]
 [Score "NS 140"]
 [Auction "S"]
-1NT Pass 2H Pass
+1NT 2C =1= 2H Pass
 2S Pass Pass Pass
+[Note "1:Cappelletti, any 6+suit"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "140"]
 {9A4CE5AD22345BD10AF2EEA28BCE}
 [West "EPBot1"]
@@ -4466,7 +4477,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "141"]
 {9984A641ADB877173D0BF07F1866}
 [West "EPBot1"]
@@ -4498,7 +4509,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "142"]
 {9B7D2FC8831E527E752C05B3E0FB}
 [West "EPBot1"]
@@ -4530,7 +4541,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "143"]
 {9A693547FE8F5FCDA851FC98E27D}
 [West "EPBot1"]
@@ -4560,7 +4571,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "144"]
 {99AC92F82DC4748E04042557AB11}
 [West "EPBot1"]
@@ -4574,26 +4585,24 @@ Pass Pass
 HCP 4 6 15 15
 Losers 9 8 8 7}
 [Scoring "MP"]
-[Declarer "N"]
-[Contract "3S"]
+[Declarer "E"]
+[Contract "3D"]
 [Result "9"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 140"]
+[Score "NS -110"]
 [Auction "S"]
-1NT X =1= 2H Pass
-2NT =2= Pass 3S Pass
-Pass Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
-[Note "2:Extended acceptance after NT"]
-[Play "E"]
+1NT X =1= 2H 3D
+Pass Pass Pass
+[Note "1:Cappelletti, strong"]
+[Play "S"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "145"]
 {98F3628821301DD7DB6748BC1E71}
 [West "EPBot1"]
@@ -4625,7 +4634,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "146"]
 {99A817FAC1B4140C6BAD764E3385}
 [West "EPBot1"]
@@ -4657,7 +4666,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "147"]
 {9B84A39E8F147BFB2A4190F1C2CD}
 [West "EPBot1"]
@@ -4689,7 +4698,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "148"]
 {98953BE1EFDB26DACB79929CD026}
 [West "EPBot1"]
@@ -4712,17 +4721,15 @@ Losers 7 8 7 7}
 [Room "Open"]
 [Score "NS 400"]
 [Auction "S"]
-1NT 2D =1= 2NT =2= Pass
-3C Pass 3NT Pass
+1NT 2C =1= 3NT Pass
 Pass Pass
-[Note "1:Multi-Landy, Multi"]
-[Note "2:Lebensohl after 1NT"]
+[Note "1:Cappelletti, any 6+suit"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "149"]
 {9A57A740E438C09C49BAC67B450D}
 [West "EPBot1"]
@@ -4753,7 +4760,7 @@ Losers 7 7 7 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "150"]
 {9B82EDCF34B14ABAA08B23DA164C}
 [West "EPBot1"]
@@ -4784,7 +4791,7 @@ Losers 8 8 6 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "151"]
 {9851F188D328046E225C8FF1DA04}
 [West "EPBot1"]
@@ -4813,7 +4820,7 @@ Losers 9 10 7 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "152"]
 {9A9E27D52B14E3C613D94ABC94FC}
 [West "EPBot1"]
@@ -4845,7 +4852,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "153"]
 {99BC65693B503CB41909D24E2F17}
 [West "EPBot1"]
@@ -4876,7 +4883,7 @@ Pass Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "154"]
 {A88A2DED800EF48A82D849D07516}
 [West "EPBot1"]
@@ -4911,7 +4918,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "155"]
 {AA87BA2AB91470623F750C93DD88}
 [West "EPBot1"]
@@ -4943,7 +4950,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "156"]
 {A97914AB05172275C3BE3EE4E8C5}
 [West "EPBot1"]
@@ -4973,7 +4980,7 @@ Losers 9 7 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "157"]
 {AB9D84BBCAA5D31102DACF654CFA}
 [West "EPBot1"]
@@ -5004,7 +5011,7 @@ Losers 8 10 6 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "158"]
 {AAB9849AFF2FD44750EF6267D11C}
 [West "EPBot1"]
@@ -5033,7 +5040,7 @@ Losers 9 8 6 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "159"]
 {A966ABFD763B3902B85C83620EE4}
 [West "EPBot1"]
@@ -5047,25 +5054,22 @@ Losers 9 8 6 9}
 HCP 3 15 15 7
 Losers 11 7 7 9}
 [Scoring "MP"]
-[Declarer "W"]
-[Contract "3C"]
-[Result "9"]
+[Declarer "S"]
+[Contract "1N"]
+[Result "6"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -110"]
+[Score "NS -50"]
 [Auction "S"]
-1NT Pass Pass X =1=
-Pass 2C Pass 3C
-Pass Pass Pass
-[Note "1:Multi-Landy, 4M-5m or 18+ HCP"]
-[Play "N"]
+1NT Pass Pass Pass
+[Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "160"]
 {ABAB3189622A9FB811D4CF13F1C6}
 [West "EPBot1"]
@@ -5097,7 +5101,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "161"]
 {A8A21FBC09AC054CE4DDD5000642}
 [West "EPBot1"]
@@ -5128,7 +5132,7 @@ Losers 7 7 8 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "162"]
 {A9A2F819CD54D71B9099E7D07B33}
 [West "EPBot1"]
@@ -5153,13 +5157,13 @@ Losers 8 7 6 7}
 [Auction "S"]
 1NT 2S =1= Pass Pass
 Pass
-[Note "1:Multi-Landy, 5M-4m"]
+[Note "1:Cappelletti, 5M-4m"]
 [Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "163"]
 {ABEDB3C3FF10039C9FF1DB62F625}
 [West "EPBot1"]
@@ -5174,25 +5178,23 @@ HCP 8 5 16 11
 Losers 8 7 8 6}
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "3C"]
-[Result "10"]
+[Contract "3N"]
+[Result "8"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 130"]
+[Score "NS -100"]
 [Auction "S"]
-1NT 2C =1= 2S =2= Pass
-3C =3= Pass Pass Pass
-[Note "1:Multi-Landy, both majors"]
-[Note "2:1N-2S transfer to clubs"]
-[Note "3:automat"]
+1NT 2D =1= 3C Pass
+3NT Pass Pass Pass
+[Note "1:Cappelletti, both majors"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "164"]
 {A82146BAE85584D6DEC907AF3142}
 [West "EPBot1"]
@@ -5223,7 +5225,7 @@ Losers 8 8 8 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "165"]
 {AA7EA18987F3145E2C16717ED18C}
 [West "EPBot1"]
@@ -5253,7 +5255,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "166"]
 {ABA1DFF7EC35BBF34E29335EC266}
 [West "EPBot1"]
@@ -5276,16 +5278,16 @@ Losers 8 9 7 6}
 [Room "Open"]
 [Score "NS 150"]
 [Auction "S"]
-1NT 2C =1= Pass 2S
+1NT 2D =1= Pass 2S
 Pass Pass 3C Pass
 Pass Pass
-[Note "1:Multi-Landy, both majors"]
+[Note "1:Cappelletti, both majors"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "167"]
 {A8C9A0D7AA65877A43EF2EFD7F3C}
 [West "EPBot1"]
@@ -5315,7 +5317,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "168"]
 {AA3586CED1C429BF6312467C6EE8}
 [West "EPBot1"]
@@ -5347,7 +5349,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "169"]
 {A995A4DB2F0B1CF9574711ED24DC}
 [West "EPBot1"]
@@ -5380,7 +5382,7 @@ Pass Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "170"]
 {B8290582385463435CBDD4E74E31}
 [West "EPBot1"]
@@ -5413,7 +5415,7 @@ Losers 6 11 7 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "171"]
 {BAA4CAB21DC4772EDD8ADBABBEF3}
 [West "EPBot1"]
@@ -5442,7 +5444,7 @@ Losers 10 7 7 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "172"]
 {B9AB38038346B7CE58F56D14B6F9}
 [West "EPBot1"]
@@ -5475,7 +5477,7 @@ Losers 6 11 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "173"]
 {BBBE45B5261FF05775F8AF9362F4}
 [West "EPBot1"]
@@ -5505,7 +5507,7 @@ Losers 7 10 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "174"]
 {BA64EEBFABFDB4CBB54BBAFB5F7B}
 [West "EPBot1"]
@@ -5519,26 +5521,25 @@ Losers 7 10 7 8}
 HCP 8 8 15 9
 Losers 5 7 7 5}
 [Scoring "MP"]
-[Declarer "S"]
-[Contract "3C"]
+[Declarer "N"]
+[Contract "5C"]
 [Result "11"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 150"]
+[Score "NS 600"]
 [Auction "S"]
-1NT 2C =1= 2S =2= Pass
-3C =3= Pass Pass Pass
-[Note "1:Multi-Landy, both majors"]
-[Note "2:1N-2S transfer to clubs"]
-[Note "3:automat"]
-[Play "W"]
+1NT 2D =1= 3C Pass
+3NT Pass 5C Pass
+Pass Pass
+[Note "1:Cappelletti, both majors"]
+[Play "E"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "175"]
 {B9195141A33EC9F6F86E3012B688}
 [West "EPBot1"]
@@ -5570,7 +5571,7 @@ Losers 6 7 7 11}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "176"]
 {BBE5E5648BC119721CBB46BE733E}
 [West "EPBot1"]
@@ -5600,7 +5601,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "177"]
 {B8A17C14097EDC2C87E8124543A8}
 [West "EPBot1"]
@@ -5629,7 +5630,7 @@ Losers 10 8 8 6}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "178"]
 {B96D1DB953DF97A60EC633AEEBF0}
 [West "EPBot1"]
@@ -5658,7 +5659,7 @@ Losers 10 9 6 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "179"]
 {B871290212CC5BFCBCBDEAEB248E}
 [West "EPBot1"]
@@ -5690,7 +5691,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "180"]
 {BAA2251FFB3A4D2319B9C673A8D0}
 [West "EPBot1"]
@@ -5721,7 +5722,7 @@ Losers 7 9 6 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "181"]
 {BBAEB04635EDC43EB105DC137A32}
 [West "EPBot1"]
@@ -5751,7 +5752,7 @@ Losers 8 7 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "182"]
 {B89AE392D5E8DFD90AFE33A9CDFF}
 [West "EPBot1"]
@@ -5781,7 +5782,7 @@ Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "183"]
 {BAA30969C1CA7A1FECD4D4013997}
 [West "EPBot1"]
@@ -5813,7 +5814,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "184"]
 {B98A21F699B63F2453FC1ED4A32B}
 [West "EPBot1"]
@@ -5849,7 +5850,7 @@ Losers 7 7 7 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "185"]
 {C8112681F4C537DB0E9366FD6E49}
 [West "EPBot1"]
@@ -5881,7 +5882,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "186"]
 {CA05615CBE6C8C9A73C714AA3140}
 [West "EPBot1"]
@@ -5913,7 +5914,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "187"]
 {C92BB691DB324CDC99549123CCC5}
 [West "EPBot1"]
@@ -5943,7 +5944,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "188"]
 {CBAF01D33E3450D30C69FF40AB7D}
 [West "EPBot1"]
@@ -5975,7 +5976,7 @@ Losers 6 7 7 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "189"]
 {C92ABEA31FAC777E953873049A31}
 [West "EPBot1"]
@@ -6010,7 +6011,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "190"]
 {CB1E0DA829FC710102436A9F7B38}
 [West "EPBot1"]
@@ -6045,7 +6046,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "191"]
 {C884A22CF71E13321995C46C2FD3}
 [West "EPBot1"]
@@ -6076,7 +6077,7 @@ Losers 7 8 6 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "192"]
 {C9B7EDA5DA09BF945ECADA320F33}
 [West "EPBot1"]
@@ -6105,7 +6106,7 @@ Losers 10 8 6 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "193"]
 {CB2171A0F03694750CA357F89D47}
 [West "EPBot1"]
@@ -6134,7 +6135,7 @@ Losers 10 6 6 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "194"]
 {C86CA92B93DCB7EDFBC0C27F3E8E}
 [West "EPBot1"]
@@ -6164,7 +6165,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "195"]
 {CB9963A70BE043CCDFC131A97A76}
 [West "EPBot1"]
@@ -6196,7 +6197,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "196"]
 {C88D1C23A9744B79D0AA57743279}
 [West "EPBot1"]
@@ -6226,7 +6227,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "197"]
 {CA2517591B631A98F430BF94BFC1}
 [West "EPBot1"]
@@ -6266,7 +6267,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "198"]
 {C9886039270DA714D27E30B9DAC6}
 [West "EPBot1"]
@@ -6297,7 +6298,7 @@ Losers 8 10 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "199"]
 {D8FDB15F20B9931B36708C2A7C3F}
 [West "EPBot1"]
@@ -6311,26 +6312,26 @@ Losers 8 10 7 8}
 HCP 3 10 15 12
 Losers 9 7 7 5}
 [Scoring "MP"]
-[Declarer "E"]
-[Contract "4H"]
+[Declarer "W"]
+[Contract "5HX"]
 [Result "11"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -450"]
+[Score "NS -650"]
 [Auction "S"]
-1NT 2D =1= Pass 2S
-Pass 2NT Pass 3H
-Pass 4H Pass Pass
-Pass
-[Note "1:Multi-Landy, Multi"]
-[Play "S"]
+1NT Pass 2H Pass
+2NT =1= 3H 3S 4H
+Pass Pass 4S 5H
+X Pass Pass Pass
+[Note "1:Extended acceptance after NT"]
+[Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "200"]
 {DA6F896454FE0FD846C0EA8EE1A3}
 [West "EPBot1"]
@@ -6362,7 +6363,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "201"]
 {D9A8101FAA42106ADF15217D7CCD}
 [West "EPBot1"]
@@ -6393,7 +6394,7 @@ Losers 7 8 8 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "202"]
 {DBAE5B61F58FF47D841753E639DA}
 [West "EPBot1"]
@@ -6422,7 +6423,7 @@ Losers 9 7 7 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "203"]
 {DA87B632273E1BEF46B970D9E09E}
 [West "EPBot1"]
@@ -6454,7 +6455,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "204"]
 {D9EDAF06AC824BFB3846CECA5524}
 [West "EPBot1"]
@@ -6486,7 +6487,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "205"]
 {DB6DF1F3CA664B91BF549B25F63F}
 [West "EPBot1"]
@@ -6509,15 +6510,15 @@ Losers 9 9 8 6}
 [Room "Open"]
 [Score "NS -140"]
 [Auction "S"]
-1NT 2C =1= Pass 2S
+1NT 2D =1= Pass 2S
 Pass Pass Pass
-[Note "1:Multi-Landy, both majors"]
+[Note "1:Cappelletti, both majors"]
 [Play "S"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "206"]
 {D8C061BB014E049FD8E77E241172}
 [West "EPBot1"]
@@ -6549,7 +6550,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "207"]
 {D9A11728154EBF86F835915078CF}
 [West "EPBot1"]
@@ -6581,7 +6582,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "208"]
 {DBA11E781CC121C2712B480CDB85}
 [West "EPBot1"]
@@ -6611,7 +6612,7 @@ Losers 8 7 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "209"]
 {D8314D69C5AEC8C9587052E8FF9B}
 [West "EPBot1"]
@@ -6644,7 +6645,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "210"]
 {DA89A20DDFFAEBD98275543344C7}
 [West "EPBot1"]
@@ -6675,7 +6676,7 @@ Losers 8 10 6 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "211"]
 {DB396D1361B7EC55474BBB54D998}
 [West "EPBot1"]
@@ -6705,7 +6706,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "212"]
 {D811E459AA3A4A1594E33FBC4D24}
 [West "EPBot1"]
@@ -6735,7 +6736,7 @@ Losers 8 9 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "213"]
 {DAAA3429FEB875039B726782EFDF}
 [West "EPBot1"]
@@ -6764,7 +6765,7 @@ Losers 9 8 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "214"]
 {D975AE2B3BE5FDD2D683D08B45D0}
 [West "EPBot1"]
@@ -6793,7 +6794,7 @@ Losers 10 8 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "215"]
 {E8B26897E9EF52CC23ED35040FDE}
 [West "EPBot1"]
@@ -6822,7 +6823,7 @@ Losers 9 8 8 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "216"]
 {EAA914C2D05BC02BB8E11F875DAE}
 [West "EPBot1"]
@@ -6851,7 +6852,7 @@ Losers 10 8 7 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "217"]
 {E9AD33C6B9FB53143E2E068AD89D}
 [West "EPBot1"]
@@ -6883,7 +6884,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "218"]
 {EBED0B09FEEFB012D47F42A01C97}
 [West "EPBot1"]
@@ -6915,7 +6916,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "219"]
 {EA054BA1BE080AD8B336BFA861D8}
 [West "EPBot1"]
@@ -6953,7 +6954,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "220"]
 {E9A1DB3B37F695E4F6879B480D1C}
 [West "EPBot1"]
@@ -6985,7 +6986,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "221"]
 {EBA32FB7DF31CEF242FD27F0B690}
 [West "EPBot1"]
@@ -7015,7 +7016,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "222"]
 {E8256378868C0656EDD89F40B9EB}
 [West "EPBot1"]
@@ -7047,7 +7048,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "223"]
 {E91D2978832F2D1794A24EFED2DD}
 [West "EPBot1"]
@@ -7078,7 +7079,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "224"]
 {EBB955B09FAC88F6572C375316D9}
 [West "EPBot1"]
@@ -7107,7 +7108,7 @@ Losers 9 8 7 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "225"]
 {E8B7A9503820360F106B707E6116}
 [West "EPBot1"]
@@ -7133,13 +7134,13 @@ Losers 8 9 5 6}
 1NT 2H =1= 3S Pass
 3NT Pass 4S Pass
 Pass Pass
-[Note "1:Multi-Landy, 5M-4m"]
+[Note "1:Cappelletti, 5M-4m"]
 [Play "E"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "226"]
 {EA80EA954581770EE2FC0E41C6DA}
 [West "EPBot1"]
@@ -7164,13 +7165,13 @@ Losers 8 8 6 7}
 [Auction "S"]
 1NT 2S =1= Pass Pass
 Pass
-[Note "1:Multi-Landy, 5M-4m"]
+[Note "1:Cappelletti, 5M-4m"]
 [Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "227"]
 {E840A2945AF63B3EBB71322DB93A}
 [West "EPBot1"]
@@ -7200,7 +7201,7 @@ Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "228"]
 {EAC5623DA38EF3195247C9C77261}
 [West "EPBot1"]
@@ -7223,15 +7224,16 @@ Losers 9 8 7 6}
 [Room "Open"]
 [Score "NS -100"]
 [Auction "S"]
-1NT Pass 2D Pass
+1NT 2C =1= 2D Pass
 2H Pass 2NT Pass
 4H Pass Pass Pass
+[Note "1:Cappelletti, any 6+suit"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "229"]
 {E9A1EE0A57FC3BC8517A1AA374B3}
 [West "EPBot1"]
@@ -7261,7 +7263,7 @@ Losers 9 9 6 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "230"]
 {F841B9244360C73ABF66164173D6}
 [West "EPBot1"]
@@ -7293,7 +7295,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "231"]
 {FA64C22DE57FCAA31E7EC2779510}
 [West "EPBot1"]
@@ -7322,7 +7324,7 @@ Losers 9 8 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "232"]
 {F9BA8148F73E406F682B9806741D}
 [West "EPBot1"]
@@ -7354,7 +7356,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "233"]
 {FB7F3DA9627292FF8B3808024F29}
 [West "EPBot1"]
@@ -7386,7 +7388,7 @@ Losers 7 9 6 6}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "234"]
 {FA952C5EED770E56F170C398CD89}
 [West "EPBot1"]
@@ -7418,7 +7420,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "235"]
 {F9213EA8E01769C55DC39C5C4BD2}
 [West "EPBot1"]
@@ -7448,7 +7450,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "236"]
 {FBA0E9334C44B4F3BE4E10012289}
 [West "EPBot1"]
@@ -7478,7 +7480,7 @@ Losers 9 8 8 6}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "237"]
 {F8914F8D777FC415A345764821D8}
 [West "EPBot1"]
@@ -7509,7 +7511,7 @@ Pass Pass 3C 3S
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "238"]
 {F98186EB71247EE407F6B8B8064B}
 [West "EPBot1"]
@@ -7544,7 +7546,7 @@ Losers 7 7 6 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "239"]
 {FBBB79A19C101C5323348D201A08}
 [West "EPBot1"]
@@ -7559,25 +7561,23 @@ HCP 4 6 15 15
 Losers 8 7 7 5}
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "4SX"]
+[Contract "4S"]
 [Result "10"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 790"]
+[Score "NS 620"]
 [Auction "S"]
-1NT X =1= 4H =2= Pass
-4S Pass Pass X
-Pass Pass Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
-[Note "2:Texas"]
+1NT Pass 4H =1= Pass
+4S Pass Pass Pass
+[Note "1:Texas"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "240"]
 {F8C18F11EC565B40FAC1CEABFC20}
 [West "EPBot1"]
@@ -7608,7 +7608,7 @@ Losers 8 10 6 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "241"]
 {FA1DA7935D7768C55066D8FC330D}
 [West "EPBot1"]
@@ -7638,7 +7638,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "242"]
 {FB638F2EF94A382D73685882238B}
 [West "EPBot1"]
@@ -7670,7 +7670,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "243"]
 {F8E23D19A8753FFF3D0563669E38}
 [West "EPBot1"]
@@ -7701,7 +7701,7 @@ Losers 7 9 6 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "244"]
 {FAD6AC67A4B1FC789E2E3ED93E0B}
 [West "EPBot1"]
@@ -7733,7 +7733,7 @@ Losers 8 9 6 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "245"]
 {F961B110E0C916FB126798CE2EEE}
 [West "EPBot1"]
@@ -7766,7 +7766,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "246"]
 {0880896CD0F66BCCA10C981B5AD5}
 [West "EPBot1"]
@@ -7798,7 +7798,7 @@ Losers 7 9 7 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "247"]
 {0AB149AF9214DA37912C6C9F7013}
 [West "EPBot1"]
@@ -7829,7 +7829,7 @@ Losers 8 8 6 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "248"]
 {09A2B9F616B6C5F3396310E13E60}
 [West "EPBot1"]
@@ -7861,7 +7861,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "249"]
 {0B3D0F21498A5C8B58993BD85225}
 [West "EPBot1"]
@@ -7898,7 +7898,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "250"]
 {0AC9E5265B8346FB677A00B3C6C1}
 [West "EPBot1"]
@@ -7929,7 +7929,7 @@ Losers 7 8 5 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "251"]
 {0949AEDA01BEE52F443ECE793A02}
 [West "EPBot1"]
@@ -7960,7 +7960,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "252"]
 {0BAEC6D5456BBC1D1811C6A8DA36}
 [West "EPBot1"]
@@ -7992,7 +7992,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "253"]
 {0860BAB0C1C96E8B2F95DEC754CA}
 [West "EPBot1"]
@@ -8022,7 +8022,7 @@ Losers 9 10 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "254"]
 {09B96CCE90F7DF574985494500EF}
 [West "EPBot1"]
@@ -8046,16 +8046,16 @@ Losers 8 9 7 6}
 [Score "NS -140"]
 [Auction "S"]
 1NT X =1= 2D 2S
-Pass 3H =2= Pass 3S
-Pass Pass Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
-[Note "2:limit raise or better in !S"]
+Pass Pass 3H X
+Pass 3S Pass Pass
+Pass
+[Note "1:Cappelletti, strong"]
 [Play "S"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "255"]
 {0B8C25095EE735EADBD639B3E292}
 [West "EPBot1"]
@@ -8087,7 +8087,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "256"]
 {08BDFDB34F74D068327B08AF5322}
 [West "EPBot1"]
@@ -8101,25 +8101,22 @@ Pass Pass
 HCP 4 9 15 12
 Losers 10 8 6 5}
 [Scoring "MP"]
-[Declarer "E"]
-[Contract "2H"]
-[Result "10"]
+[Declarer "S"]
+[Contract "1N"]
+[Result "6"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -170"]
+[Score "NS -50"]
 [Auction "S"]
-1NT 2D =1= Pass 2H =2=
-Pass Pass Pass
-[Note "1:Multi-Landy, Multi"]
-[Note "2:to the partner's longer"]
-[Play "S"]
+1NT Pass Pass Pass
+[Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "257"]
 {0A05EEA7FF745B3B9791AE087270}
 [West "EPBot1"]
@@ -8149,7 +8146,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "258"]
 {0BE78DB2457EC85856EE8583CABB}
 [West "EPBot1"]
@@ -8184,7 +8181,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "259"]
 {0892C2D113C49FC8640B16209D75}
 [West "EPBot1"]
@@ -8198,26 +8195,26 @@ Pass Pass
 HCP 5 14 16 5
 Losers 10 6 6 8}
 [Scoring "MP"]
-[Declarer "W"]
-[Contract "2HX"]
-[Result "7"]
+[Declarer "E"]
+[Contract "2H"]
+[Result "8"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 100"]
+[Score "NS -110"]
 [Auction "S"]
-1NT Pass Pass 2D =1=
-X 2H =2= X Pass
-Pass Pass
-[Note "1:Multi-Landy, Multi"]
-[Note "2:to the partner's longer"]
-[Play "N"]
+1NT Pass Pass 2C =1=
+Pass 2D =2= Pass 2H
+Pass Pass Pass
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:automat"]
+[Play "S"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "260"]
 {0ACAA7ABA8CF15DAB2140C189DF0}
 [West "EPBot1"]
@@ -8249,7 +8246,7 @@ Losers 9 6 6 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "261"]
 {09698251FCF7028443FAED6F1568}
 [West "EPBot1"]
@@ -8281,7 +8278,7 @@ Losers 8 8 6 12}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "262"]
 {1815BC91E0F7D64F3B1E982E39A9}
 [West "EPBot1"]
@@ -8313,7 +8310,7 @@ Losers 9 7 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "263"]
 {1AAC4514C088BD1B7E46C261AB7C}
 [West "EPBot1"]
@@ -8344,7 +8341,7 @@ Losers 8 10 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "264"]
 {19AA63C4B0C328D14644BBCC966D}
 [West "EPBot1"]
@@ -8376,7 +8373,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "265"]
 {1B8CD8252DBDF2E276200B185741}
 [West "EPBot1"]
@@ -8407,7 +8404,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "266"]
 {1ABBA9C32575365B6C0ACC50BC44}
 [West "EPBot1"]
@@ -8439,7 +8436,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "267"]
 {1902A52910CF3FC89A7A4C9174D5}
 [West "EPBot1"]
@@ -8472,7 +8469,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "268"]
 {1BB5B375AF72277EBA1223F4798B}
 [West "EPBot1"]
@@ -8502,7 +8499,7 @@ Losers 7 8 7 5}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "269"]
 {187CA17932B707EE6D0BFAF86D9A}
 [West "EPBot1"]
@@ -8516,7 +8513,7 @@ Losers 7 8 7 5}
 HCP 3 11 15 11
 Losers 10 7 6 7}
 [Scoring "MP"]
-[Declarer "E"]
+[Declarer "W"]
 [Contract "2H"]
 [Result "10"]
 [BCFlags "7f"]
@@ -8525,16 +8522,17 @@ Losers 10 7 6 7}
 [Room "Open"]
 [Score "NS -170"]
 [Auction "S"]
-1NT 2D =1= Pass 2H =2=
-Pass Pass Pass
-[Note "1:Multi-Landy, Multi"]
-[Note "2:to the partner's longer"]
-[Play "S"]
+1NT 2C =1= Pass 2D =2=
+Pass 2H Pass Pass
+Pass
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:automat"]
+[Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "270"]
 {1949E145F765F8DD32500BF086A7}
 [West "EPBot1"]
@@ -8566,7 +8564,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "271"]
 {1BE48E2531DC1CFE537238B6158F}
 [West "EPBot1"]
@@ -8597,7 +8595,7 @@ Losers 6 10 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "272"]
 {18B260455E7809F060B34A4639BB}
 [West "EPBot1"]
@@ -8612,24 +8610,23 @@ HCP 2 13 16 9
 Losers 9 5 6 7}
 [Scoring "MP"]
 [Declarer "E"]
-[Contract "2H"]
-[Result "9"]
+[Contract "2S"]
+[Result "11"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -140"]
+[Score "NS -200"]
 [Auction "S"]
-1NT 2D =1= Pass 2H =2=
+1NT 2H =1= Pass 2S
 Pass Pass Pass
-[Note "1:Multi-Landy, Multi"]
-[Note "2:to the partner's longer"]
+[Note "1:Cappelletti, 5M-4m"]
 [Play "S"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "273"]
 {1A886429863DFBF26311839ED817}
 [West "EPBot1"]
@@ -8661,7 +8658,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "274"]
 {1B98AC68CD771E14F54E86C3B3D1}
 [West "EPBot1"]
@@ -8675,25 +8672,26 @@ Pass Pass
 HCP 1 6 17 16
 Losers 11 10 7 7}
 [Scoring "MP"]
-[Declarer "W"]
-[Contract "2S"]
-[Result "8"]
+[Declarer "N"]
+[Contract "2D"]
+[Result "7"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -110"]
+[Score "NS -100"]
 [Auction "S"]
-1NT X =1= Pass 2C
-Pass 2S Pass Pass
-Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
-[Play "N"]
+1NT X =1= Pass Pass
+XX =2= Pass 2D Pass
+Pass Pass
+[Note "1:Cappelletti, strong"]
+[Note "2:SOS"]
+[Play "E"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "275"]
 {1871E4950FD3DBE127794E5C48B9}
 [West "EPBot1"]
@@ -8707,7 +8705,7 @@ Pass
 HCP 3 7 15 15
 Losers 11 8 7 7}
 [Scoring "MP"]
-[Declarer "W"]
+[Declarer "E"]
 [Contract "2S"]
 [Result "10"]
 [BCFlags "7f"]
@@ -8716,16 +8714,15 @@ Losers 11 8 7 7}
 [Room "Open"]
 [Score "NS -170"]
 [Auction "S"]
-1NT X =1= Pass 2H
-Pass 2S Pass Pass
-Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
-[Play "N"]
+1NT X =1= Pass 2S
+Pass Pass Pass
+[Note "1:Cappelletti, strong"]
+[Play "S"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "276"]
 {1AA75B2C750AF077D3AEB28902C6}
 [West "EPBot1"]
@@ -8757,7 +8754,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "277"]
 {1929F484194F436BBFEF59D7D6FB}
 [West "EPBot1"]
@@ -8789,7 +8786,7 @@ Losers 7 8 8 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "278"]
 {28A9F62A0112E3FAC9D3F65C4C82}
 [West "EPBot1"]
@@ -8812,17 +8809,17 @@ Losers 8 8 7 7}
 [Room "Open"]
 [Score "NS 400"]
 [Auction "S"]
-1NT 2D =1= X 2H =2=
-Pass 2S 3NT Pass
+1NT 2C =1= X =2= Pass
+2D 2S 3NT Pass
 Pass Pass
-[Note "1:Multi-Landy, Multi"]
-[Note "2:to the partner's longer"]
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:Stayman"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "279"]
 {2AA79BC2B873301668EB9F6DF51F}
 [West "EPBot1"]
@@ -8854,7 +8851,7 @@ Losers 8 9 7 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "280"]
 {2999204758C9F6E34C1C81D8D2A2}
 [West "EPBot1"]
@@ -8886,7 +8883,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "281"]
 {2BE72D3B99F2136A6E30217C8004}
 [West "EPBot1"]
@@ -8921,7 +8918,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "282"]
 {2A97284466913D6903B94378F3CB}
 [West "EPBot1"]
@@ -8953,7 +8950,7 @@ Losers 7 6 8 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "283"]
 {2968AE4D388308DE1D4480229E64}
 [West "EPBot1"]
@@ -8984,7 +8981,7 @@ Pass Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "284"]
 {2BFDE5138201CD8473ABB0D01A49}
 [West "EPBot1"]
@@ -9015,7 +9012,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "285"]
 {285229AA4340DE7AE4AA32C8C1C4}
 [West "EPBot1"]
@@ -9046,7 +9043,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "286"]
 {29F9E7A056F78C51A3DC929BCD13}
 [West "EPBot1"]
@@ -9078,7 +9075,7 @@ Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "287"]
 {2B25411E8C5C8248CAC08064E935}
 [West "EPBot1"]
@@ -9113,7 +9110,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "288"]
 {28BAB1EC374E2B9458311D33B27A}
 [West "EPBot1"]
@@ -9127,26 +9124,26 @@ Pass Pass
 HCP 6 6 15 13
 Losers 9 10 7 6}
 [Scoring "MP"]
-[Declarer "S"]
-[Contract "3D"]
+[Declarer "N"]
+[Contract "4S"]
 [Result "9"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 110"]
+[Score "NS -50"]
 [Auction "S"]
-1NT 2D =1= X 2H =2=
-Pass Pass X Pass
-3D Pass Pass Pass
-[Note "1:Multi-Landy, Multi"]
-[Note "2:to the partner's longer"]
-[Play "W"]
+1NT 2C =1= 2H Pass
+2NT =2= 3H 4S Pass
+Pass Pass
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:Extended acceptance after NT"]
+[Play "E"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "289"]
 {2A75AA6F0E8532775023E65308B0}
 [West "EPBot1"]
@@ -9177,7 +9174,7 @@ Losers 10 6 6 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "290"]
 {2BDDABD38F17F82CD0610C14BF52}
 [West "EPBot1"]
@@ -9209,7 +9206,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "291"]
 {2889B4699826937D49F8D6366B53}
 [West "EPBot1"]
@@ -9239,7 +9236,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "292"]
 {2AEEB4B92457F04A085717CDEC9E}
 [West "EPBot1"]
@@ -9253,25 +9250,22 @@ Pass Pass
 HCP 5 6 16 13
 Losers 11 10 7 6}
 [Scoring "MP"]
-[Declarer "W"]
-[Contract "2S"]
+[Declarer "S"]
+[Contract "1N"]
 [Result "7"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 50"]
+[Score "NS 90"]
 [Auction "S"]
-1NT X =1= Pass 2C
-Pass 2S Pass Pass
-Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
-[Play "N"]
+1NT Pass Pass Pass
+[Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "293"]
 {29F9A0B258404EAB5206F5306DE3}
 [West "EPBot1"]
@@ -9303,7 +9297,7 @@ Losers 8 9 7 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "294"]
 {38B139574F7A24D33C9214A9842E}
 [West "EPBot1"]
@@ -9334,7 +9328,7 @@ Losers 8 10 8 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "295"]
 {3A8DE6DCB0ECC97684134E775719}
 [West "EPBot1"]
@@ -9366,7 +9360,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "296"]
 {3BEC8B5DD5D198C669CB478B225C}
 [West "EPBot1"]
@@ -9391,13 +9385,13 @@ Losers 8 8 7 6}
 [Auction "S"]
 1NT 2S =1= X Pass
 3H Pass Pass Pass
-[Note "1:Multi-Landy, 5M-4m"]
+[Note "1:Cappelletti, 5M-4m"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "297"]
 {3A8DB1FB625ACC7307849B34AA28}
 [West "EPBot1"]
@@ -9429,7 +9423,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "298"]
 {3999D4EB5690C524D3FEC12F81B7}
 [West "EPBot1"]
@@ -9443,8 +9437,8 @@ Pass Pass
 HCP 2 14 16 8
 Losers 10 6 7 7}
 [Scoring "MP"]
-[Declarer "E"]
-[Contract "2H"]
+[Declarer "W"]
+[Contract "2S"]
 [Result "9"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -9453,14 +9447,15 @@ Losers 10 6 7 7}
 [Score "NS -140"]
 [Auction "S"]
 1NT Pass Pass 2H =1=
-Pass Pass Pass
-[Note "1:Multi-Landy, 5M-4m"]
-[Play "S"]
+Pass 2S Pass Pass
+Pass
+[Note "1:Cappelletti, 5M-4m"]
+[Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "299"]
 {3BECF79DC1E925B65F1B5BD216B4}
 [West "EPBot1"]
@@ -9475,23 +9470,21 @@ HCP 7 3 15 15
 Losers 8 9 7 7}
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "1NXX"]
+[Contract "1N"]
 [Result "7"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 760"]
+[Score "NS 90"]
 [Auction "S"]
-1NT X =1= XX Pass
-Pass Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
+1NT Pass Pass Pass
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "300"]
 {388140E8DBE726103ADE5580DF82}
 [West "EPBot1"]
@@ -9523,7 +9516,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "301"]
 {39DD95A4A10A5CBFCC77E9164333}
 [West "EPBot1"]
@@ -9552,7 +9545,7 @@ Losers 12 7 6 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "302"]
 {3B01EDEE58945B790B1BB22C8619}
 [West "EPBot1"]
@@ -9583,7 +9576,7 @@ Losers 9 9 6 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "303"]
 {38A0FD341E9BEA0A66D667610BF1}
 [West "EPBot1"]
@@ -9597,25 +9590,24 @@ Losers 9 9 6 9}
 HCP 3 6 15 16
 Losers 10 10 7 6}
 [Scoring "MP"]
-[Declarer "W"]
-[Contract "2S"]
-[Result "8"]
+[Declarer "S"]
+[Contract "2H"]
+[Result "6"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -110"]
+[Score "NS -100"]
 [Auction "S"]
-1NT X =1= Pass 2C
-Pass 2S Pass Pass
-Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
-[Play "N"]
+1NT X =1= Pass Pass
+2H Pass Pass Pass
+[Note "1:Cappelletti, strong"]
+[Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "304"]
 {3A89B104C12BF62FFA91B25B47DB}
 [West "EPBot1"]
@@ -9647,7 +9639,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "305"]
 {3B97DD88EDA963175F32DCCB4A3A}
 [West "EPBot1"]
@@ -9677,7 +9669,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "306"]
 {3831A7FF40D7A84D7DE20EF8436A}
 [West "EPBot1"]
@@ -9709,7 +9701,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "307"]
 {3AE1A4D2738BD2025B93DEA53F2D}
 [West "EPBot1"]
@@ -9723,8 +9715,8 @@ Pass Pass
 HCP 1 5 17 17
 Losers 11 8 6 5}
 [Scoring "MP"]
-[Declarer "W"]
-[Contract "2D"]
+[Declarer "E"]
+[Contract "3D"]
 [Result "9"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -9732,16 +9724,17 @@ Losers 11 8 6 5}
 [Room "Open"]
 [Score "NS -110"]
 [Auction "S"]
-1NT X =1= Pass 2C
-Pass 2D Pass Pass
+1NT 2C =1= Pass 2D =2=
+Pass 3D Pass Pass
 Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
-[Play "N"]
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:automat"]
+[Play "S"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "308"]
 {3941A66ABE2BE410B7FF7B7D0735}
 [West "EPBot1"]
@@ -9773,7 +9766,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "309"]
 {4AA7C9F2586C8D0DDEFDBD1AB4DB}
 [West "EPBot1"]
@@ -9805,7 +9798,7 @@ Losers 8 9 6 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "310"]
 {492C9B99026E3EEFEEE53291105F}
 [West "EPBot1"]
@@ -9836,7 +9829,7 @@ Losers 8 7 6 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "311"]
 {4B5E698E59C8D53B2A8D0ACA16AB}
 [West "EPBot1"]
@@ -9866,7 +9859,7 @@ Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "312"]
 {4AB9647D7F94FE1604A2C702DB41}
 [West "EPBot1"]
@@ -9895,7 +9888,7 @@ Losers 11 8 6 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "313"]
 {4968D198163CE7BB15DBB2D2CD23}
 [West "EPBot1"]
@@ -9924,7 +9917,7 @@ Losers 9 7 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "314"]
 {4B15BFE5E2F4826BEC9B56C10A8A}
 [West "EPBot1"]
@@ -9956,7 +9949,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "315"]
 {48112781FB79329EB67CDB78A602}
 [West "EPBot1"]
@@ -9988,7 +9981,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "316"]
 {496EAA0DC4D0A6C5EB53D0847009}
 [West "EPBot1"]
@@ -10018,7 +10011,7 @@ Losers 9 9 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "317"]
 {4B9D33CCEA5B37B114004D20E2E1}
 [West "EPBot1"]
@@ -10049,7 +10042,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "318"]
 {4830BDE9E96A84457B56F28F261F}
 [West "EPBot1"]
@@ -10078,7 +10071,7 @@ Losers 10 10 6 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "319"]
 {4A8C8DAABA7750CFFF91D67D2CEA}
 [West "EPBot1"]
@@ -10108,7 +10101,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "320"]
 {4B3D914C34DAC630D3AA9123C53D}
 [West "EPBot1"]
@@ -10139,7 +10132,7 @@ Losers 9 8 6 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "321"]
 {48F28DB2EAEF0AA10B3AD8B47E7D}
 [West "EPBot1"]
@@ -10153,8 +10146,8 @@ Losers 9 8 6 9}
 HCP 4 10 15 11
 Losers 10 6 7 6}
 [Scoring "MP"]
-[Declarer "W"]
-[Contract "2C"]
+[Declarer "E"]
+[Contract "3C"]
 [Result "10"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -10162,15 +10155,15 @@ Losers 10 6 7 6}
 [Room "Open"]
 [Score "NS -130"]
 [Auction "S"]
-1NT 2C =1= Pass Pass
-Pass
-[Note "1:Multi-Landy, both majors"]
-[Play "N"]
+1NT 2D =1= Pass 3C
+Pass Pass Pass
+[Note "1:Cappelletti, both majors"]
+[Play "S"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "322"]
 {4AB0F5ADB0521F18198FF51C664E}
 [West "EPBot1"]
@@ -10184,7 +10177,7 @@ Pass
 HCP 2 0 17 21
 Losers 9 11 6 6}
 [Scoring "MP"]
-[Declarer "W"]
+[Declarer "E"]
 [Contract "2H"]
 [Result "9"]
 [BCFlags "7f"]
@@ -10193,16 +10186,15 @@ Losers 9 11 6 6}
 [Room "Open"]
 [Score "NS -140"]
 [Auction "S"]
-1NT X =1= Pass 2C
-Pass 2H Pass Pass
-Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
-[Play "N"]
+1NT X =1= Pass 2H
+Pass Pass Pass
+[Note "1:Cappelletti, strong"]
+[Play "S"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "323"]
 {4926EAA10080F56E0B8A60F0547E}
 [West "EPBot1"]
@@ -10234,7 +10226,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "324"]
 {58639CC1CC10551E1DE323FAB7C8}
 [West "EPBot1"]
@@ -10266,7 +10258,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "325"]
 {5A2149661EA916F0CC7B7C0493BD}
 [West "EPBot1"]
@@ -10298,7 +10290,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "326"]
 {599309B1516C5427FAE51F7FCE88}
 [West "EPBot1"]
@@ -10331,7 +10323,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "327"]
 {5B1CAE5CF03B44CBBD1A86B56116}
 [West "EPBot1"]
@@ -10360,7 +10352,7 @@ Losers 10 7 6 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "328"]
 {5AA65F9D2BBCF460799C0B424DF4}
 [West "EPBot1"]
@@ -10390,7 +10382,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "329"]
 {59B9E618C43EC2A1C592DB1806EF}
 [West "EPBot1"]
@@ -10404,7 +10396,7 @@ Pass Pass
 HCP 3 9 17 11
 Losers 10 6 7 7}
 [Scoring "MP"]
-[Declarer "E"]
+[Declarer "W"]
 [Contract "2S"]
 [Result "8"]
 [BCFlags "7f"]
@@ -10413,15 +10405,17 @@ Losers 10 6 7 7}
 [Room "Open"]
 [Score "NS -110"]
 [Auction "S"]
-1NT 2D =1= Pass 2S
-Pass Pass Pass
-[Note "1:Multi-Landy, Multi"]
-[Play "S"]
+1NT 2C =1= Pass 2D =2=
+Pass 2S Pass Pass
+Pass
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:automat"]
+[Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "330"]
 {58C1903485AD3A093E4FA7544CEE}
 [West "EPBot1"]
@@ -10452,7 +10446,7 @@ Losers 8 10 7 6}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "331"]
 {59E9155EBBEB0C5AAC4EC89E3203}
 [West "EPBot1"]
@@ -10481,7 +10475,7 @@ Losers 10 6 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "332"]
 {5B0D8FC2EA288B5ED90E823AF180}
 [West "EPBot1"]
@@ -10516,7 +10510,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "333"]
 {58AFF17F00EDF2AC6C53D70B4779}
 [West "EPBot1"]
@@ -10548,7 +10542,7 @@ Losers 8 6 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "334"]
 {5A279889341E8BC157AE702AF2E3}
 [West "EPBot1"]
@@ -10580,7 +10574,7 @@ Losers 8 8 7 11}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "335"]
 {5BB59E539C0744C5A96C7A154878}
 [West "EPBot1"]
@@ -10603,16 +10597,16 @@ Losers 9 5 7 9}
 [Room "Open"]
 [Score "NS 200"]
 [Auction "S"]
-1NT Pass Pass 2C =1=
+1NT Pass Pass 2D =1=
 Pass 2H Pass Pass
 Pass
-[Note "1:Multi-Landy, both majors"]
+[Note "1:Cappelletti, both majors"]
 [Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "336"]
 {58618B46BCA1DBC49EEC88145BD3}
 [West "EPBot1"]
@@ -10644,7 +10638,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "337"]
 {5AB0A1473E19E5B656F34E338A3E}
 [West "EPBot1"]
@@ -10658,25 +10652,25 @@ Pass Pass
 HCP 6 3 15 16
 Losers 10 9 6 5}
 [Scoring "MP"]
-[Declarer "E"]
-[Contract "2H"]
+[Declarer "W"]
+[Contract "3HX"]
 [Result "9"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -140"]
+[Score "NS -530"]
 [Auction "S"]
-1NT 2D =1= X 2H =2=
-Pass Pass Pass
-[Note "1:Multi-Landy, Multi"]
-[Note "2:to the partner's longer"]
-[Play "S"]
+1NT 2H =1= X Pass
+2S 3H X Pass
+Pass Pass
+[Note "1:Cappelletti, 5M-4m"]
+[Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "338"]
 {59A09B8C4CA38C42FD790D465258}
 [West "EPBot1"]
@@ -10708,7 +10702,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "339"]
 {6862BFF5B04C4804988BDD22D10E}
 [West "EPBot1"]
@@ -10738,7 +10732,7 @@ Losers 10 9 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "340"]
 {6AA93E21FED206784788BD282E74}
 [West "EPBot1"]
@@ -10769,7 +10763,7 @@ Losers 7 8 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "341"]
 {69B81549BED620EB47B0D27C2B27}
 [West "EPBot1"]
@@ -10798,7 +10792,7 @@ Losers 10 9 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "342"]
 {6BA3EC1ECE3583323D788811149A}
 [West "EPBot1"]
@@ -10830,7 +10824,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "343"]
 {6ADDAD16636EF46732CB79178BF0}
 [West "EPBot1"]
@@ -10860,7 +10854,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "344"]
 {69295A7DDC6FEF72B3D293291D10}
 [West "EPBot1"]
@@ -10874,27 +10868,25 @@ Pass Pass
 HCP 4 12 17 7
 Losers 8 5 6 9}
 [Scoring "MP"]
-[Declarer "E"]
-[Contract "2HX"]
+[Declarer "W"]
+[Contract "2H"]
 [Result "9"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -870"]
+[Score "NS -140"]
 [Auction "S"]
-1NT Pass Pass 2C =1=
-Pass 2D =2= Pass 2H
-Pass Pass X Pass
-Pass Pass
-[Note "1:Multi-Landy, both majors"]
-[Note "2:artificial"]
-[Play "S"]
+1NT Pass Pass 2D =1=
+Pass 2H Pass Pass
+Pass
+[Note "1:Cappelletti, both majors"]
+[Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "345"]
 {6BAE237A2075F4005DA4C80291B7}
 [West "EPBot1"]
@@ -10925,7 +10917,7 @@ Losers 9 7 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "346"]
 {68A946F040C4C5173EADAA6BDB9E}
 [West "EPBot1"]
@@ -10957,7 +10949,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "347"]
 {698DB421670E4B3D9250FCB9476E}
 [West "EPBot1"]
@@ -10989,7 +10981,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "348"]
 {6B2FF1F1A633BC1ADE4025CF714B}
 [West "EPBot1"]
@@ -11012,15 +11004,15 @@ Losers 9 9 7 6}
 [Room "Open"]
 [Score "NS 120"]
 [Auction "S"]
-1NT 2C =1= 2NT Pass
+1NT 2D =1= 2NT Pass
 Pass Pass
-[Note "1:Multi-Landy, both majors"]
+[Note "1:Cappelletti, both majors"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "349"]
 {68A8F3EDDF658902F2C71D5DC45B}
 [West "EPBot1"]
@@ -11034,26 +11026,26 @@ Pass Pass
 HCP 8 4 15 13
 Losers 9 10 6 6}
 [Scoring "MP"]
-[Declarer "W"]
-[Contract "2S"]
+[Declarer "S"]
+[Contract "2N"]
 [Result "8"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -110"]
+[Score "NS 120"]
 [Auction "S"]
-1NT 2D =1= X 2H =2=
-Pass 2S Pass Pass
-Pass
-[Note "1:Multi-Landy, Multi"]
-[Note "2:to the partner's longer"]
-[Play "N"]
+1NT 2C =1= X =2= Pass
+2D 2S Pass Pass
+2NT Pass Pass Pass
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:Stayman"]
+[Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "350"]
 {6AADB87D30345F0EC69AE96617F3}
 [West "EPBot1"]
@@ -11085,7 +11077,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "351"]
 {6BA94E74C4AA6CD702C06CE54349}
 [West "EPBot1"]
@@ -11116,7 +11108,7 @@ Losers 7 7 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "352"]
 {6830A3846B87C589F5EE784E5A9E}
 [West "EPBot1"]
@@ -11147,7 +11139,7 @@ Losers 7 11 6 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "353"]
 {6AB54F59BBC51F605413F3C8A542}
 [West "EPBot1"]
@@ -11179,7 +11171,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "354"]
 {6959BBF5B344EEA74DAFE242DF0E}
 [West "EPBot1"]
@@ -11208,7 +11200,7 @@ Losers 9 8 6 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "355"]
 {78D1898CD60E331FE9782CFD5124}
 [West "EPBot1"]
@@ -11239,7 +11231,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "356"]
 {7A92E12604E28C0C09D5581B14B2}
 [West "EPBot1"]
@@ -11270,7 +11262,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "357"]
 {7996BA79AF435E4BDFE0E07BC78D}
 [West "EPBot1"]
@@ -11301,7 +11293,7 @@ Pass Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "358"]
 {7B2E0FE55A8B3290FD3A1CB92233}
 [West "EPBot1"]
@@ -11336,7 +11328,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "359"]
 {7AED45041E485739E8AE940270C4}
 [West "EPBot1"]
@@ -11369,7 +11361,7 @@ Losers 6 11 6 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "360"]
 {79BABF7900A8DA0E4E6133529D3E}
 [West "EPBot1"]
@@ -11394,13 +11386,13 @@ Losers 10 7 6 5}
 [Auction "S"]
 1NT 2H =1= X Pass
 2S Pass Pass Pass
-[Note "1:Multi-Landy, 5M-4m"]
+[Note "1:Cappelletti, 5M-4m"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "361"]
 {7BBD1483B348D3E38DA05B092070}
 [West "EPBot1"]
@@ -11432,7 +11424,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "362"]
 {7833D12DE82687468554505B32BA}
 [West "EPBot1"]
@@ -11464,7 +11456,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "363"]
 {79FD68D92215327413BB9B9C4D04}
 [West "EPBot1"]
@@ -11489,13 +11481,13 @@ Losers 11 9 6 7}
 [Auction "S"]
 1NT X =1= 2H Pass
 2S Pass Pass Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
+[Note "1:Cappelletti, strong"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "364"]
 {7B6DB674BBA52550DFF4441180D3}
 [West "EPBot1"]
@@ -11527,7 +11519,7 @@ Losers 8 8 7 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "365"]
 {788167F45FBA1B4BFDB971F9736E}
 [West "EPBot1"]
@@ -11550,17 +11542,15 @@ Losers 7 9 7 6}
 [Room "Open"]
 [Score "NS 150"]
 [Auction "S"]
-1NT 2D =1= Pass 2H =2=
-Pass Pass 2NT Pass
+1NT 2C =1= 2NT Pass
 Pass Pass
-[Note "1:Multi-Landy, Multi"]
-[Note "2:to the partner's longer"]
+[Note "1:Cappelletti, any 6+suit"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "366"]
 {7AB73911A8A77E6F1CF9094222F2}
 [West "EPBot1"]
@@ -11574,7 +11564,7 @@ Pass Pass
 HCP 9 6 15 10
 Losers 8 10 7 7}
 [Scoring "MP"]
-[Declarer "S"]
+[Declarer "N"]
 [Contract "4S"]
 [Result "10"]
 [BCFlags "7f"]
@@ -11583,15 +11573,15 @@ Losers 8 10 7 7}
 [Room "Open"]
 [Score "NS 620"]
 [Auction "S"]
-1NT Pass 2H Pass
-2S Pass 2NT Pass
+1NT 2H =1= 3S Pass
 4S Pass Pass Pass
-[Play "W"]
+[Note "1:Cappelletti, 5M-4m"]
+[Play "E"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "367"]
 {7BEC83A275444D57FB0AD168DB8D}
 [West "EPBot1"]
@@ -11621,7 +11611,7 @@ Losers 8 9 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "368"]
 {782D8EA715DBC232B5009802745C}
 [West "EPBot1"]
@@ -11653,7 +11643,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "369"]
 {7A64962F83DC19CDB29C3B762AF4}
 [West "EPBot1"]
@@ -11685,7 +11675,7 @@ Losers 8 8 6 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "370"]
 {7939E1FA228CDFA5514F184DD714}
 [West "EPBot1"]
@@ -11717,7 +11707,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "371"]
 {88F8A9210223DEFDE777DF9A5B70}
 [West "EPBot1"]
@@ -11740,15 +11730,15 @@ Losers 7 12 5 7}
 [Room "Open"]
 [Score "NS 430"]
 [Auction "S"]
-1NT 2C =1= 3NT Pass
+1NT 2D =1= 3NT Pass
 Pass Pass
-[Note "1:Multi-Landy, both majors"]
+[Note "1:Cappelletti, both majors"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "372"]
 {8A6D589590DBC73DC2C6A3C793DB}
 [West "EPBot1"]
@@ -11779,7 +11769,7 @@ Pass Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "373"]
 {896A2D3F63310D36B5DDBA9C1244}
 [West "EPBot1"]
@@ -11810,7 +11800,7 @@ Losers 8 10 7 6}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "374"]
 {8BA495E073CF677801C2E63B62BD}
 [West "EPBot1"]
@@ -11840,7 +11830,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "375"]
 {8AA7360A0511EEE8CA87F251C1CA}
 [West "EPBot1"]
@@ -11871,7 +11861,7 @@ Losers 5 6 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "376"]
 {89B4682E89C6B60B5FFDAF1FDA13}
 [West "EPBot1"]
@@ -11900,7 +11890,7 @@ Losers 9 8 7 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "377"]
 {8B55AE8A54388E9177641CCBBB31}
 [West "EPBot1"]
@@ -11915,21 +11905,24 @@ HCP 7 15 15 3
 Losers 10 7 6 9}
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "1N"]
-[Result "7"]
+[Contract "3S"]
+[Result "9"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 90"]
+[Score "NS 140"]
 [Auction "S"]
-1NT Pass Pass Pass
+1NT Pass Pass X =1=
+2S Pass 3S Pass
+Pass Pass
+[Note "1:Cappelletti, strong"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "378"]
 {884AE191A6570CE98437124B70D6}
 [West "EPBot1"]
@@ -11961,7 +11954,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "379"]
 {89B09DA339560FCA7BE01D76713A}
 [West "EPBot1"]
@@ -11975,26 +11968,26 @@ Pass Pass
 HCP 9 3 16 12
 Losers 8 10 7 7}
 [Scoring "MP"]
-[Declarer "S"]
-[Contract "3C"]
+[Declarer "N"]
+[Contract "3S"]
 [Result "9"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 110"]
+[Score "NS 140"]
 [Auction "S"]
-1NT 2D =1= X 2H =2=
-Pass Pass X Pass
-3C Pass Pass Pass
-[Note "1:Multi-Landy, Multi"]
-[Note "2:to the partner's longer"]
-[Play "W"]
+1NT 2C =1= X =2= Pass
+2D 2H 3S Pass
+Pass Pass
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:Stayman"]
+[Play "E"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "380"]
 {8BCD4DCF3A96945D674AA888C472}
 [West "EPBot1"]
@@ -12026,7 +12019,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "381"]
 {88868D63AD471BC543FDF674711A}
 [West "EPBot1"]
@@ -12057,7 +12050,7 @@ Losers 7 8 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "382"]
 {8A24D5379F71FD790B6352E18E7E}
 [West "EPBot1"]
@@ -12087,7 +12080,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "383"]
 {8B4EACCBA4625F0C76C92B48557C}
 [West "EPBot1"]
@@ -12118,7 +12111,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "384"]
 {888AED51EDFBF28F350C2F2EC6FD}
 [West "EPBot1"]
@@ -12150,7 +12143,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "385"]
 {8AAC152840CEB152C2C68BEAEE8D}
 [West "EPBot1"]
@@ -12182,7 +12175,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "386"]
 {893DD9E5BF072E527628DB42CFAD}
 [West "EPBot1"]
@@ -12196,25 +12189,22 @@ Pass Pass
 HCP 5 5 15 15
 Losers 10 10 6 6}
 [Scoring "MP"]
-[Declarer "W"]
-[Contract "2D"]
-[Result "9"]
+[Declarer "S"]
+[Contract "1N"]
+[Result "7"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -110"]
+[Score "NS 90"]
 [Auction "S"]
-1NT X =1= Pass 2C
-Pass 2D Pass Pass
-Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
-[Play "N"]
+1NT Pass Pass Pass
+[Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "387"]
 {98511049E3033CBF7EF4C04AACAF}
 [West "EPBot1"]
@@ -12245,7 +12235,7 @@ Losers 9 6 8 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "388"]
 {9A20C965AFCEC716DB901EB05CE9}
 [West "EPBot1"]
@@ -12271,14 +12261,14 @@ Losers 10 10 7 7}
 1NT 2S =1= 2NT =2= Pass
 3C Pass 3NT Pass
 Pass Pass
-[Note "1:Multi-Landy, 5M-4m"]
+[Note "1:Cappelletti, 5M-4m"]
 [Note "2:Lebensohl after 1NT"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "389"]
 {992EABB4C0EFDF57443AD9B29A01}
 [West "EPBot1"]
@@ -12308,7 +12298,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "390"]
 {9BD9BD34AD8EC4205AF75B510510}
 [West "EPBot1"]
@@ -12322,25 +12312,24 @@ Pass Pass
 HCP 4 4 17 15
 Losers 9 10 7 7}
 [Scoring "MP"]
-[Declarer "W"]
-[Contract "2S"]
-[Result "6"]
+[Declarer "E"]
+[Contract "2H"]
+[Result "8"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 200"]
+[Score "NS -110"]
 [Auction "S"]
-1NT X =1= Pass 2D
-Pass 2S Pass Pass
-Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
-[Play "N"]
+1NT X =1= Pass 2H
+Pass Pass Pass
+[Note "1:Cappelletti, strong"]
+[Play "S"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "391"]
 {9ACDB905F61AECBBD39FE22E49B8}
 [West "EPBot1"]
@@ -12363,15 +12352,15 @@ Losers 8 9 7 8}
 [Room "Open"]
 [Score "NS 600"]
 [Auction "S"]
-1NT 2C =1= 3NT Pass
+1NT 2D =1= 3NT Pass
 Pass Pass
-[Note "1:Multi-Landy, both majors"]
+[Note "1:Cappelletti, both majors"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "392"]
 {9BEFAA236AF51DC698C6B8510209}
 [West "EPBot1"]
@@ -12403,7 +12392,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "393"]
 {98B117B6406F25FF67109F0D7FE8}
 [West "EPBot1"]
@@ -12435,7 +12424,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "394"]
 {99BF39E16376D39FC5B6D3AEDAE3}
 [West "EPBot1"]
@@ -12458,15 +12447,15 @@ Losers 6 11 6 5}
 [Room "Open"]
 [Score "NS 400"]
 [Auction "S"]
-1NT 2C =1= 3NT Pass
-Pass Pass
-[Note "1:Multi-Landy, both majors"]
+1NT 2D =1= 3C Pass
+3NT Pass Pass Pass
+[Note "1:Cappelletti, both majors"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "395"]
 {9B2D92C27D7057B5F3A96035C708}
 [West "EPBot1"]
@@ -12481,23 +12470,21 @@ HCP 6 14 17 3
 Losers 10 6 7 10}
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "2C"]
-[Result "9"]
+[Contract "1N"]
+[Result "8"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 110"]
+[Score "NS 120"]
 [Auction "S"]
-1NT Pass Pass X =1=
-2C Pass Pass Pass
-[Note "1:Multi-Landy, 4M-5m or 18+ HCP"]
+1NT Pass Pass Pass
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "396"]
 {9895A8FDCE913AC96D243FD31A77}
 [West "EPBot1"]
@@ -12526,7 +12513,7 @@ Losers 10 9 6 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "397"]
 {9A16C5AE54D35225D1FFCEEB03B6}
 [West "EPBot1"]
@@ -12556,7 +12543,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "398"]
 {9BA54A0F8BE279185B8F7E68E5D3}
 [West "EPBot1"]
@@ -12591,7 +12578,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "399"]
 {9811A67286678BF6468D770CEFC1}
 [West "EPBot1"]
@@ -12622,7 +12609,7 @@ Losers 8 6 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "400"]
 {9A2999DBF77E784C06D0258CB7EB}
 [West "EPBot1"]
@@ -12651,7 +12638,7 @@ Losers 10 6 8 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "401"]
 {998BE794BB79737BE6D03520DB72}
 [West "EPBot1"]
@@ -12681,7 +12668,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "402"]
 {AAC4D6852D5C51C27B8C4ED224A3}
 [West "EPBot1"]
@@ -12713,7 +12700,7 @@ Pass Pass 3D Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "403"]
 {A9C951ED1428387C07E247868CA6}
 [West "EPBot1"]
@@ -12744,7 +12731,7 @@ Losers 8 9 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "404"]
 {AB6EEF530C3819E6738A77CEBB9D}
 [West "EPBot1"]
@@ -12773,7 +12760,7 @@ Losers 9 7 7 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "405"]
 {AAED16B51C3B223A701910A6EFC9}
 [West "EPBot1"]
@@ -12804,7 +12791,7 @@ Losers 7 8 6 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "406"]
 {A9B1F192BB7546FAAA1E00FA20C2}
 [West "EPBot1"]
@@ -12818,25 +12805,25 @@ Losers 7 8 6 10}
 HCP 10 4 15 11
 Losers 7 8 7 6}
 [Scoring "MP"]
-[Declarer "W"]
-[Contract "3HX"]
-[Result "8"]
+[Declarer "N"]
+[Contract "5D"]
+[Result "11"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 200"]
+[Score "NS 400"]
 [Auction "S"]
-1NT 2C =1= 3D Pass
-Pass 3H X Pass
+1NT 2D =1= 3D Pass
+4D Pass 5D Pass
 Pass Pass
-[Note "1:Multi-Landy, both majors"]
-[Play "N"]
+[Note "1:Cappelletti, both majors"]
+[Play "E"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "407"]
 {AB55299FA1306EF5404BF33C1B3E}
 [West "EPBot1"]
@@ -12867,7 +12854,7 @@ Losers 7 8 7 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "408"]
 {A81126B13EF5801E90E7134BCCCE}
 [West "EPBot1"]
@@ -12899,7 +12886,7 @@ Losers 8 8 5 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "409"]
 {ABE095AC72C70127103338E19C9A}
 [West "EPBot1"]
@@ -12931,7 +12918,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "410"]
 {A82B51834336BFB1567D188664F7}
 [West "EPBot1"]
@@ -12964,7 +12951,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "411"]
 {AAD587788B2B887F5F25C0B2E678}
 [West "EPBot1"]
@@ -12996,7 +12983,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "412"]
 {AB7D6CC39D6446879ACBD1E4D388}
 [West "EPBot1"]
@@ -13026,7 +13013,7 @@ Losers 7 8 8 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "413"]
 {A8BFF1D1BF20CB3B719F775A6FE6}
 [West "EPBot1"]
@@ -13041,26 +13028,25 @@ HCP 5 7 15 13
 Losers 8 9 7 5}
 [Scoring "MP"]
 [Declarer "W"]
-[Contract "4HX"]
+[Contract "4H"]
 [Result "10"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -590"]
+[Score "NS -420"]
 [Auction "S"]
-1NT 2C =1= 2S =2= Pass
-3C =3= 3H 4C 4H
-X Pass Pass Pass
-[Note "1:Multi-Landy, both majors"]
-[Note "2:1N-2S transfer to clubs"]
-[Note "3:automat"]
+1NT 2D =1= Pass 2S
+Pass Pass 3C Pass
+Pass 3H 4C 4H
+Pass Pass Pass
+[Note "1:Cappelletti, both majors"]
 [Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "414"]
 {AAE9B045CFAA03AC5D16DFEB9050}
 [West "EPBot1"]
@@ -13089,7 +13075,7 @@ Losers 10 9 7 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "415"]
 {A9A15803FBF2976CE562C97DDF06}
 [West "EPBot1"]
@@ -13119,7 +13105,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "416"]
 {B899DD930BF6CC9167B7E35A7547}
 [West "EPBot1"]
@@ -13151,7 +13137,7 @@ Losers 8 6 6 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "417"]
 {BAE9AACB7986FCA823CE0EBC55FB}
 [West "EPBot1"]
@@ -13165,22 +13151,26 @@ Losers 8 6 6 9}
 HCP 4 14 15 7
 Losers 9 5 7 8}
 [Scoring "MP"]
-[Declarer "S"]
-[Contract "1N"]
-[Result "6"]
+[Declarer "W"]
+[Contract "2D"]
+[Result "10"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -100"]
+[Score "NS -130"]
 [Auction "S"]
-1NT Pass Pass Pass
-[Play "W"]
+1NT Pass Pass 2C =1=
+Pass 2D =2= Pass Pass
+Pass
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:automat"]
+[Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "418"]
 {B962988BDB15AFF33D2C6456372C}
 [West "EPBot1"]
@@ -13211,7 +13201,7 @@ Losers 7 8 6 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "419"]
 {BBA44F8F697A4DC8321F93D398E4}
 [West "EPBot1"]
@@ -13243,7 +13233,7 @@ Losers 5 10 6 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "420"]
 {BA9601ED7E30D4B95B6025730E8E}
 [West "EPBot1"]
@@ -13275,7 +13265,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "421"]
 {B961E84EBF13B54D8A5853393C1E}
 [West "EPBot1"]
@@ -13307,7 +13297,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "422"]
 {B85DA96E3BC1E043CA3632F4905B}
 [West "EPBot1"]
@@ -13334,13 +13324,13 @@ Losers 11 6 6 11}
 2D Pass Pass X
 Pass 2H 3D Pass
 Pass Pass
-[Note "1:Multi-Landy, 4M-5m or 18+ HCP"]
+[Note "1:Cappelletti, strong"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "423"]
 {B99DE3E6B9E3564EF31B0FAAD0F5}
 [West "EPBot1"]
@@ -13369,7 +13359,7 @@ Losers 8 8 8 7}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "424"]
 {BB5D253ACF1689B5D3ED2AF2F21B}
 [West "EPBot1"]
@@ -13400,7 +13390,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "425"]
 {B8F06901759E4BC647F3241C8EAD}
 [West "EPBot1"]
@@ -13430,7 +13420,7 @@ Losers 8 10 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "426"]
 {BA8FE2A5CF5A25FA0AE5BEC8C0DB}
 [West "EPBot1"]
@@ -13460,7 +13450,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "427"]
 {BBBD24DF12816532FBD4B3EA5509}
 [West "EPBot1"]
@@ -13492,7 +13482,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "428"]
 {B8AE89492CD273CBD51DB484F21F}
 [West "EPBot1"]
@@ -13524,7 +13514,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "429"]
 {BA9FE5881E953282D9CEEC08F96C}
 [West "EPBot1"]
@@ -13556,7 +13546,7 @@ Losers 7 8 6 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "430"]
 {B9819AE63A7D300FB269961CD020}
 [West "EPBot1"]
@@ -13587,7 +13577,7 @@ Losers 7 7 7 11}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "431"]
 {C893B74521C00CEECDCA6A3552C6}
 [West "EPBot1"]
@@ -13618,7 +13608,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "432"]
 {CA87FD93E9134CF2A354A2182B19}
 [West "EPBot1"]
@@ -13650,7 +13640,7 @@ Losers 6 9 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "433"]
 {C98D2BD537DA91B6D708F3DA61CC}
 [West "EPBot1"]
@@ -13680,7 +13670,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "434"]
 {CB5EA0852B9AF00DD7F681803C4A}
 [West "EPBot1"]
@@ -13710,7 +13700,7 @@ Losers 9 7 6 11}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "435"]
 {CA75941C28A3C9907BE9437C154F}
 [West "EPBot1"]
@@ -13739,7 +13729,7 @@ Losers 10 6 8 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "436"]
 {C9E9871B1E1EEE0475A1DC885833}
 [West "EPBot1"]
@@ -13770,7 +13760,7 @@ Losers 7 9 7 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "437"]
 {CB9F654F985472FBAF045039CD20}
 [West "EPBot1"]
@@ -13800,7 +13790,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "438"]
 {C8ACB2CBEDFF5A45B50683DB117C}
 [West "EPBot1"]
@@ -13829,7 +13819,7 @@ Losers 8 10 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "439"]
 {C9AA4E9ABFF0D1822F7A0134D779}
 [West "EPBot1"]
@@ -13858,7 +13848,7 @@ Losers 11 6 6 10}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "440"]
 {CB88A1018CCB245ADA11F7DD416B}
 [West "EPBot1"]
@@ -13889,7 +13879,7 @@ Losers 8 9 6 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "441"]
 {C8A5BB535AF5D5C017A553DA285B}
 [West "EPBot1"]
@@ -13919,7 +13909,7 @@ Losers 6 6 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "442"]
 {CA6679142DD0DF19A3B3DC778BBB}
 [West "EPBot1"]
@@ -13950,7 +13940,7 @@ Pass Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "443"]
 {CB112D7548B0BA862A7B430DB3FE}
 [West "EPBot1"]
@@ -13982,7 +13972,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "444"]
 {C8B069C4BC42C90C2910FEA64E43}
 [West "EPBot1"]
@@ -13997,7 +13987,7 @@ HCP 5 4 15 16
 Losers 8 9 8 7}
 [Scoring "MP"]
 [Declarer "S"]
-[Contract "2H"]
+[Contract "3H"]
 [Result "9"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -14006,14 +13996,15 @@ Losers 8 9 8 7}
 [Score "NS 140"]
 [Auction "S"]
 1NT X =1= 2D Pass
-2H Pass Pass Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
+2H Pass 3H Pass
+Pass Pass
+[Note "1:Cappelletti, strong"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "445"]
 {CAC62CA199EF3030449652AA3B4F}
 [West "EPBot1"]
@@ -14045,7 +14036,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "446"]
 {C9EBFB9572DE83098EE7EE554D30}
 [West "EPBot1"]
@@ -14077,7 +14068,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "447"]
 {D8E0D02DF11768511B88164ECC80}
 [West "EPBot1"]
@@ -14091,25 +14082,22 @@ Pass Pass
 HCP 2 5 17 16
 Losers 10 9 6 5}
 [Scoring "MP"]
-[Declarer "W"]
-[Contract "2S"]
-[Result "7"]
+[Declarer "S"]
+[Contract "1N"]
+[Result "6"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS 50"]
+[Score "NS -50"]
 [Auction "S"]
-1NT X =1= Pass 2D
-X 2S Pass Pass
-Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
-[Play "N"]
+1NT Pass Pass Pass
+[Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "448"]
 {DA7593D6A3396C1F26B3FE281016}
 [West "EPBot1"]
@@ -14140,7 +14128,7 @@ X Pass Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "449"]
 {D999C78720C06D6A9DD044C1D872}
 [West "EPBot1"]
@@ -14171,7 +14159,7 @@ Losers 6 8 8 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "450"]
 {DB9811A9954CC87C2B463210A415}
 [West "EPBot1"]
@@ -14203,7 +14191,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "451"]
 {DA958C19FC71D131629EE72EDA0F}
 [West "EPBot1"]
@@ -14235,7 +14223,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "452"]
 {DBE96F73414A335F94D4E9CF2AA4}
 [West "EPBot1"]
@@ -14264,7 +14252,7 @@ Losers 9 8 7 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "453"]
 {D8B5ED1666F0049D0AE10E1743C2}
 [West "EPBot1"]
@@ -14278,26 +14266,23 @@ Losers 9 8 7 9}
 HCP 2 9 15 14
 Losers 8 8 7 6}
 [Scoring "MP"]
-[Declarer "W"]
-[Contract "3D"]
-[Result "9"]
+[Declarer "S"]
+[Contract "2S"]
+[Result "6"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 [Room "Open"]
-[Score "NS -110"]
+[Score "NS -100"]
 [Auction "S"]
-1NT X =1= 2H Pass
-2S Pass Pass X
-Pass 3D Pass Pass
-Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
-[Play "N"]
+1NT Pass 2H Pass
+2S Pass Pass Pass
+[Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "454"]
 {D9B8C9F8B0944C822A426336D505}
 [West "EPBot1"]
@@ -14322,13 +14307,13 @@ Losers 9 11 6 4}
 [Auction "S"]
 1NT X =1= 2D Pass
 2H Pass Pass Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
+[Note "1:Cappelletti, strong"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "455"]
 {DBB12C75309164CA121E0B28BB81}
 [West "EPBot1"]
@@ -14360,7 +14345,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "456"]
 {D8B8A9494862FD4FBA943570593A}
 [West "EPBot1"]
@@ -14383,15 +14368,15 @@ Losers 5 9 5 7}
 [Room "Open"]
 [Score "NS 430"]
 [Auction "S"]
-1NT 2D =1= 3NT Pass
+1NT 2H =1= 3NT Pass
 Pass Pass
-[Note "1:Multi-Landy, Multi"]
+[Note "1:Cappelletti, 5M-4m"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "457"]
 {DB699937015F49BB3ACC9E70B326}
 [West "EPBot1"]
@@ -14423,7 +14408,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "458"]
 {D8A9F8C02ABD3AAF11FC10579E47}
 [West "EPBot1"]
@@ -14455,7 +14440,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "459"]
 {DAA4C290EF827206C8AF95385E1D}
 [West "EPBot1"]
@@ -14470,7 +14455,7 @@ HCP 5 5 15 15
 Losers 10 8 7 6}
 [Scoring "MP"]
 [Declarer "E"]
-[Contract "3C"]
+[Contract "2C"]
 [Result "9"]
 [BCFlags "7f"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -14479,15 +14464,14 @@ Losers 10 8 7 6}
 [Score "NS -110"]
 [Auction "S"]
 1NT X =1= Pass 2C
-Pass 3C Pass Pass
-Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
+Pass Pass Pass
+[Note "1:Cappelletti, strong"]
 [Play "S"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "460"]
 {D9883D2B52143379753EBE7D5BA3}
 [West "EPBot1"]
@@ -14518,7 +14502,7 @@ Losers 6 11 7 5}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "461"]
 {E880B3D2042E4715783A65AE1C80}
 [West "EPBot1"]
@@ -14550,7 +14534,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "462"]
 {EA61E5C810DF9AC1A0CD1B5FB947}
 [West "EPBot1"]
@@ -14575,13 +14559,13 @@ Losers 10 8 6 6}
 [Auction "S"]
 1NT 2S =1= Pass Pass
 Pass
-[Note "1:Multi-Landy, 5M-4m"]
+[Note "1:Cappelletti, 5M-4m"]
 [Play "N"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "463"]
 {E91985FC82360E77E1E9CA08945F}
 [West "EPBot1"]
@@ -14612,7 +14596,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "464"]
 {EBAEF39136D425D45FB361340CBA}
 [West "EPBot1"]
@@ -14641,7 +14625,7 @@ Losers 9 7 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "465"]
 {EAAEF12C6610071A727782204186}
 [West "EPBot1"]
@@ -14664,16 +14648,17 @@ Losers 8 8 7 7}
 [Room "Open"]
 [Score "NS -100"]
 [Auction "S"]
-1NT Pass 2C =1= Pass
+1NT 2C =1= X =2= Pass
 2H Pass 4H Pass
 Pass Pass
-[Note "1:Stayman"]
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:Stayman"]
 [Play "W"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "466"]
 {E99A31697270052C0D363E8EBB75}
 [West "EPBot1"]
@@ -14703,7 +14688,7 @@ Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "467"]
 {E8E3B851AA87D70E7F601430158E}
 [West "EPBot1"]
@@ -14735,7 +14720,7 @@ Losers 9 10 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "468"]
 {E9A4845599F5DE43C2E30238EE28}
 [West "EPBot1"]
@@ -14764,7 +14749,7 @@ Losers 10 7 8 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "469"]
 {EB2B87BD4D6063BB765AE0C779C1}
 [West "EPBot1"]
@@ -14801,7 +14786,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "470"]
 {E875A5BFC177DF5453822A9F08E8}
 [West "EPBot1"]
@@ -14830,7 +14815,7 @@ Losers 10 9 7 8}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "471"]
 {EA0BA79D29DE20FC1A8A37F09578}
 [West "EPBot1"]
@@ -14861,7 +14846,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "472"]
 {EBE57EFCA2F2A94F3C47305B011F}
 [West "EPBot1"]
@@ -14890,7 +14875,7 @@ Losers 10 9 7 6}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "473"]
 {E849A5F1DF6FD2A04907DFCD347F}
 [West "EPBot1"]
@@ -14922,7 +14907,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "474"]
 {EA05BF26BC7AF8E85C67216B0841}
 [West "EPBot1"]
@@ -14955,7 +14940,7 @@ Losers 7 9 6 9}
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "475"]
 {E9AFF88F39F411C512A4E2560F9A}
 [West "EPBot1"]
@@ -14969,7 +14954,7 @@ Losers 7 9 6 9}
 HCP 9 0 15 16
 Losers 9 10 8 7}
 [Scoring "MP"]
-[Declarer "S"]
+[Declarer "N"]
 [Contract "3S"]
 [Result "9"]
 [BCFlags "7f"]
@@ -14978,17 +14963,16 @@ Losers 9 10 8 7}
 [Room "Open"]
 [Score "NS 140"]
 [Auction "S"]
-1NT X =1= 2C =2= Pass
-2S Pass 3S Pass
+1NT X =1= XX 2H
+Pass Pass 3S Pass
 Pass Pass
-[Note "1:Multi-Landy, 4M-5m or 15+ HCP"]
-[Note "2:Stayman"]
-[Play "W"]
+[Note "1:Cappelletti, strong"]
+[Play "E"]
 *
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "476"]
 {F8B5B82203C266AA7C6B17FE18ED}
 [West "EPBot1"]
@@ -15020,7 +15004,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "477"]
 {FA2137E912C38A095819B768E0C7}
 [West "EPBot1"]
@@ -15052,7 +15036,7 @@ Pass Pass
 
 [Event ""]
 [Site ""]
-[Date "2025.07.19"]
+[Date "2025.08.20"]
 [Board "478"]
 {FB250D7C9B66DBA4145A79D2EF8B}
 [West "EPBot1"]
