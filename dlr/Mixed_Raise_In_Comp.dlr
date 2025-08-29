@@ -62,14 +62,15 @@ wOpens = wRange and wSuit
 
 # North overcalls 1H or 1S and South has 6-10 HCP and 4-Card Support 
 
-nSpades = spades(north)>4 and spades(south)>3 and hcp(north,spades)>4
-nHearts = hearts(north)>4 and hearts(south)>3 and hcp(north,hearts)>4
-nShape  = shape(north,xxxx-any 76xx-any 75xx- any 65xx- any 55xx)  // Kill the 2-suited hands
-nWeak   = shape(north,any 8xxx +any 7xxx +any 6xxx) and hcp(north)>6 and hcp(north)<12
-sShape  = shape(south,any 0xxx +any 1xxx -any 4333)
-nRange = hcp(north)>7 and hcp(north)<17
-sRange = hcp(south)>6 and hcp(south)<11 and controls(south)>1
-nOvercalls = (nSpades or nHearts) and nShape and sShape and nRange and sRange and not nWeak
+nSpades  = spades(north)>4 and spades(south)>3 and hcp(north,spades)>4
+nHearts  = hearts(north)>4 and hearts(south)>3 and hcp(north,hearts)>4
+nShape   = shape(north,xxxx-any 76xx-any 75xx- any 65xx- any 55xx)  // Kill the 2-suited hands
+nPreempt = shape(north,any 8xxx +any 7xxx +any 6xxx) and hcp(north)<12
+sShape   = shape(south,any 0xxx +any 1xxx -any 4333)
+nRange   = hcp(north)>7 and hcp(north)<17
+sRange   = hcp(south)>6 and hcp(south)<11 and controls(south)>1
+
+nOvercalls = (nSpades or nHearts) and nShape and sShape and nRange and sRange and not nPreempt
 
 wOpens and nOvercalls // and calmEast
 
