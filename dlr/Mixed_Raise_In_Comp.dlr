@@ -4,6 +4,7 @@
 dealer west
 
 
+# Changed default CC to include Mixed Raise and 1X-(Y)-2Z forcing. 
 # convention-card: 21GF-MixedRaise
 # auction-filter: Note....Mixed raise
 
@@ -72,7 +73,7 @@ sRange   = hcp(south)>6 and hcp(south)<11 and controls(south)>1
 
 nOvercalls = (nSpades or nHearts) and nShape and sShape and nRange and sRange and not nPreempt
 
-wOpens and nOvercalls // and calmEast
+wOpens and nOvercalls and calmEast
 
 action
 average "N/S Spades" 100 * nSpades,
