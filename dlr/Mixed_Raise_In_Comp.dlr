@@ -4,7 +4,8 @@
 dealer west
 
 
-# auction-filter: 1[CDH] 1[HS] .* [23][CDHS]
+# convention-card: 21GF-MixedRaise
+# auction-filter: Note....Mixed raise
 
 
 ##### Imported Script: Define Calm Opponents #####
@@ -40,24 +41,37 @@ calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
 
+# Defines calmEast
 
-# West opens 1C, 1D, 1H
-wSpades = spades(west)<5
+# Predict West's opening 1C, 1D, 1H
+s = spades(west)
+h = hearts(west)
+d = diamonds(west)
+c = clubs(west)
+oS = s>4 and s>=h and s>=d and s>=c
+oH = not oS and h>4 and h>=d and h>=c
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
+oC = not (oS or oH or oD)
+oneHeart   = oH and hearts(east)<3
+oneDiamond = oD and diamonds(east)<4
+oneClub    = oC and clubs(east)<4
+
+wSuit = oneHeart or oneDiamond or oneClub
 wRange = hcp(west)>11 and hcp(west)<15
-wOpens = wRange and wSpades
+wOpens = wRange and wSuit
 
-
-# North overcalls 1H or 1S, South has 6-10 HCP and 4-Card Support 
+# North overcalls 1H or 1S and South has 6-10 HCP and 4-Card Support 
 
 nSpades = spades(north)>4 and spades(south)>3 and hcp(north,spades)>4
 nHearts = hearts(north)>4 and hearts(south)>3 and hcp(north,hearts)>4
 nShape  = shape(north,xxxx-any 76xx-any 75xx- any 65xx- any 55xx)  // Kill the 2-suited hands
-sShape  = shape(south,xxxx-any 4333)
-nRange = hcp(north)>9 and hcp(north)<18
-sRange = hcp(south)>6 and hcp(south)<11
-nOvercalls = (nSpades or nHearts) and nShape and sShape and nRange and sRange
+nWeak   = shape(north,any 8xxx +any 7xxx +any 6xxx) and hcp(north)>6 and hcp(north)<12
+sShape  = shape(south,any 0xxx +any 1xxx -any 4333)
+nRange = hcp(north)>7 and hcp(north)<17
+sRange = hcp(south)>6 and hcp(south)<11 and controls(south)>1
+nOvercalls = (nSpades or nHearts) and nShape and sShape and nRange and sRange and not nWeak
 
-wOpens and nOvercalls and calmEast
+wOpens and nOvercalls // and calmEast
 
 action
 average "N/S Spades" 100 * nSpades,
