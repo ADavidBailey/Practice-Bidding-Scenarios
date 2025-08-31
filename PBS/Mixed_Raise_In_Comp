@@ -19,9 +19,9 @@ oS = s>4 and s>=h and s>=d and s>=c
 oH = not oS and h>4 and h>=d and h>=c
 oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
 oC = not (oS or oH or oD)
-oneHeart   = oH and hearts(east)<3
-oneDiamond = oD and diamonds(east)<4
-oneClub    = oC and clubs(east)<4
+oneHeart   = oH and hearts(east)<3      // Avoid Gambling 3N by West and raises by East
+oneDiamond = oD and hcp(west,diamonds)<9 and diamonds(east)<4
+oneClub    = oC and hcp(west,clubs)<9    and clubs(east)<4
 
 wSuit = oneHeart or oneDiamond or oneClub
 wRange = hcp(west)>11 and hcp(west)<15
@@ -34,19 +34,20 @@ sTP = hcp(south)
 nSpades  = spades(north)>4 and spades(south)>3 and hcp(north,spades)>4
 nHearts  = hearts(north)>4 and hearts(south)>3 and hcp(north,hearts)>4
 nShape   = shape(north,xxxx-any 76xx-any 75xx- any 65xx- any 55xx)  // Kill the 2-suited hands
-nPreempt = shape(north,any 8xxx +any 7xxx +any 6xxx) and hcp(north)<12
+nWeak2   = shape(north,any 6xxx) and hcp(north)<10
+nPreempt = shape(north,any 8xxx +any 7xxx) and hcp(north)<12
 sShape   = shape(south,any 0xxx +any 1xxx -any 4333)
-nRange   = hcp(north)>7 and hcp(north)<17
+nRange   = hcp(north)>7 and hcp(north)<15
 sRange   = sTP>6 and sTP<10 and controls(south)>1
 
-nOvercalls = (nSpades or nHearts) and nShape and sShape and nRange and sRange and not nPreempt
+nOvercalls = (nSpades or nHearts) and nShape and sShape and nRange and sRange and not (nWeak2 or nPreempt)
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
 supCards = nHearts ? hearts(south) : spades(south)
 
 lev4 = supCards==4 and keep
-lev5 = supCards==5 and keep
+lev5 = supCards==5 and keep33
 lev6 = supCards>=6 and keep
 
 levelTheDeal = lev4 or lev5 or lev6
