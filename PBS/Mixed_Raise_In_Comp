@@ -29,14 +29,6 @@ wOpens = wRange and wSuit
 
 # North overcalls 1H or 1S and South has 6-10 HCP and 4-Card Support
 
-# Discount value of south's secondary honors in the opened suit
-sTpAdjC = oC ? hascard(south,KC) + hascard(south,QC) + hascard(south,JC) : 0
-sTpAdjD = oD ? hascard(south,KD) + hascard(south,QD) + hascard(south,JD) : 0
-sTpAdjH = oH ? hascard(south,KH) + hascard(south,QH) + hascard(south,JH) : 0
-sTp1    = shape(south,any 1xxx) ? 2 : 0
-sTp0    = shape(south,any 0xxx) ? 3 : 0
-//sTP = hcp(south) - (sTpAdjC + sTpAdjD + sTpAdjH) + sTp1 + sTp0
-
 sTP = hcp(south)
 
 nSpades  = spades(north)>4 and spades(south)>3 and hcp(north,spades)>4
@@ -49,11 +41,25 @@ sRange   = sTP>6 and sTP<10 and controls(south)>1
 
 nOvercalls = (nSpades or nHearts) and nShape and sShape and nRange and sRange and not nPreempt
 
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+
+supCards = nHearts ? hearts(south) : spades(south)
+
+lev4 = supCards==4 and keep
+lev5 = supCards==5 and keep
+lev6 = supCards>=6 and keep
+
+levelTheDeal = lev4 or lev5 or lev6
+
 wOpens and nOvercalls and calmEast
+and levelTheDeal
 
 action
 average "N/S Spades" 100 * nSpades,
 average "N/S Hearts" 100 * nHearts,
+average "4-cards support" 100 * (supCards==4),
+average "5-cards support" 100 * (supCards==5),
+average "6+cards support" 100 * (supCards==6),
 
 `,"W",true)
 Script
