@@ -53,28 +53,31 @@ oS = s>4 and s>=h and s>=d and s>=c
 oH = not oS and h>4 and h>=d and h>=c
 oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
 oC = not (oS or oH or oD)
-oneHeart   = oH and hearts(east)<3      // Avoid Gambling 3N by West and raises by East
-oneDiamond = oD and hcp(west,diamonds)<9 and diamonds(east)<4
-oneClub    = oC and hcp(west,clubs)<9    and clubs(east)<4
+
+# East does not have support for West's opening suit AND West does not have a Gambling 3NT
+oneHeart   = oH and hearts(east)<3
+oneDiamond = oD and diamonds(east)<4 and hcp(west,diamonds)<9
+oneClub    = oC and clubs(east)<4    and hcp(west,clubs)<9    
 
 wSuit = oneHeart or oneDiamond or oneClub
 wRange = hcp(west)>11 and hcp(west)<15
 wOpens = wRange and wSuit
 
-# North overcalls 1H or 1S and South has 6-10 HCP and 4-Card Support
-
-sTP = hcp(south)
-
+# North overcalls 1H or 1S and South has 6-10 HCP and 4+ Card Support
 nSpades  = spades(north)>4 and spades(south)>3 and hcp(north,spades)>4
 nHearts  = hearts(north)>4 and hearts(south)>3 and hcp(north,hearts)>4
-nShape   = shape(north,xxxx-any 76xx-any 75xx- any 65xx- any 55xx)  // Kill the 2-suited hands
+nShape   = shape(north,xxxx -any 76xx -any 75xx -any 65xx - any 55xx)  // No 2-suited hands
+nRange   = hcp(north)>7 and hcp(north)<15
+
 nWeak2   = shape(north,any 6xxx) and hcp(north)<11              // GIB plays WJO and Preempts as 7-10 HCP.
 nPreempt = shape(north,any 8xxx +any 7xxx) and hcp(north)<11
-sShape   = shape(south,any 0xxx +any 1xxx -any 4333)
-nRange   = hcp(north)>7 and hcp(north)<15
-sRange   = sTP>6 and sTP<10 and controls(south)>1
+nOvercalls = (nSpades or nHearts) and nShape and nRange and not (nWeak2 or nPreempt)
 
-nOvercalls = (nSpades or nHearts) and nShape and sShape and nRange and sRange and not (nWeak2 or nPreempt)
+# South has 4+ Card Support and 7-9 HCP
+sShape   = shape(south,xxxx -any 4333)
+sRange   = hcp(south)>6 and hcp(south)<10 and controls(south)>1
+
+sRaises = sShape and sRange
 
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
@@ -117,18 +120,28 @@ keep0  = 0
 
 supCards = nHearts ? hearts(south) : spades(south)
 
-lev4 = supCards==4 and keep
-lev5 = supCards==5 and keep33
-lev6 = supCards>=6 and keep
+void = shape(south,any 0xxx)
+sing = shape(south,any 1xxx)
 
-levelTheDeal = lev4 or lev5 or lev6
+lev0 = void               and keep
+lev1 = sing               and keep
+lev2 = not (void or sing) and keep
 
-wOpens and nOvercalls and calmEast
+lev4 = supCards==4        and keep
+lev5 = supCards==5        and keep
+lev6 = supCards>=6        and keep
+
+levelTheDeal = lev2 or lev0 or lev1 or lev4 or lev5 or lev6
+
+wOpens and nOvercalls and sRaises // and calmEast
 and levelTheDeal
 
 action
-average "N/S Spades" 100 * nSpades,
-average "N/S Hearts" 100 * nHearts,
+average "N/S Spades     " 100 * nSpades,
+average "N/S Hearts     " 100 * nHearts,
+average "no shortness   " 100 * lev2,
+average "singleton      " 100 * lev1,
+average "void           " 100 * lev0,
 average "4-cards support" 100 * (supCards==4),
 average "5-cards support" 100 * (supCards==5),
 average "6+cards support" 100 * (supCards==6),
