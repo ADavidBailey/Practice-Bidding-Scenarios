@@ -73,9 +73,9 @@ nWeak2   = shape(north,any 6xxx) and hcp(north)<11              // GIB plays WJO
 nPreempt = shape(north,any 8xxx +any 7xxx) and hcp(north)<11
 nOvercalls = (nSpades or nHearts) and nShape and nRange and not (nWeak2 or nPreempt)
 
-# South has 4+ Card Support and 7-9 HCP
-sShape   = shape(south,xxxx -any 4333)
-sRange   = hcp(south)>6 and hcp(south)<10 and controls(south)>1
+# South has 4+ Card Support and 2+ Controls (A=2, K=1) and at least 1 short-suit point
+sShape   = shape(south,xxxx -any 4333 +any 2xxx +any 1xxx +any 0xxx)
+sRange   = hcp(south)>5 and hcp(south)<10 and controls(south)>1
 
 sRaises = sShape and sRange
 
