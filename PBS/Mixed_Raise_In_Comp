@@ -32,7 +32,7 @@ wOpens = wRange and wSuit
 # North overcalls 1H or 1S and South has 6-10 HCP and 4+ Card Support
 nSpades  = spades(north)>4 and spades(south)>3 and hcp(north,spades)>4
 nHearts  = hearts(north)>4 and hearts(south)>3 and hcp(north,hearts)>4
-nShape   = shape(north,xxxx -any 76xx -any 75xx -any 65xx - any 55xx)  // No 2-suited hands
+nShape   = shape(north,xxxx -any 76xx -any 75xx -any 66xx -any 65xx - any 55xx)  // No 2-suited hands
 nRange   = hcp(north)>7 and hcp(north)<15
 
 nWeak2   = shape(north,any 6xxx) and hcp(north)<11              // GIB plays WJO and Preempts as 7-10 HCP.
@@ -62,7 +62,7 @@ lev6 = supCards>=6        and keep
 
 levelTheDeal = lev2 or lev0 or lev1 or lev4 or lev5 or lev6
 
-wOpens and nOvercalls and sRaises // and calmEast
+wOpens and nOvercalls and sRaises and calmEast
 and levelTheDeal
 
 action
