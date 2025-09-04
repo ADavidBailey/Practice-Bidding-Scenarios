@@ -37,6 +37,28 @@ calmOpps = calmEast and calmWest
 ##### End of Imported Script: Define Calm Opponents #####
 
 # Defines calmEast
+##### Imported Script - Calculate Total Points for South #####
+
+## Calculate TP for South
+# Calculate South's Short-Suit Penalty Points
+sSp = spades(south)<3 and hcp(south,spades)>1     ? 1 : 0
+sHp = hearts(south)<3 and hcp(south,hearts)>1     ? 1 : 0
+sDp = diamonds(south)<3 and hcp(south,diamonds)>1 ? 1 : 0
+sCp = clubs(south)<3 and hcp(south,clubs)>1       ? 1 : 0
+
+# Calculate South's Short-Suit Points
+v1 = shape(south, any 0xxx) ? 3 : 0
+s1 = shape(south, any 1xxx) ? 2 : 0 // allow for 2 singletons
+s2 = shape(south, any 11xx) ? 2 : 0
+d1 = shape(south, any 2xxx) ? 1 : 0 // allow for 3 doubletons
+d2 = shape(south, any 22xx) ? 1 : 0
+d3 = shape(south, any 222x) ? 1 : 0
+
+# Calculate South's Total Points
+sTP = hcp(south) + v1+s1+s2+d1+d2+d3 -sSp-sHp-sDp-sCp
+
+### End of Calculate TP for South ###
+# Defines sTP
 
 # Predict West's opening 1C, 1D, 1H
 s = spades(west)
@@ -66,24 +88,6 @@ nRange   = hcp(north)>7 and hcp(north)<15
 nWeak2   = shape(north,any 6xxx) and hcp(north)<11              // GIB plays WJO and Preempts as 7-10 HCP.
 nPreempt = shape(north,any 8xxx +any 7xxx) and hcp(north)<11
 nOvercalls = (nSpades or nHearts) and nShape and nRange and not (nWeak2 or nPreempt)
-
-## Calculate TP for South
-# Calculate South's Short-Suit Penalty
-sSp = spades(south)<3 and hcp(south,spades)>1 ? 1 :0
-sHp = hearts(south)<3 and hcp(south,hearts)>1 ? 1 :0
-sDp = diamonds(south)<3 and hcp(south,diamonds)>1 ? 1 :0
-sCp = clubs(south)<3 and hcp(south,clubs)>1 ? 1 : 0
-
-# Calculate South's Short-Suit Points
-v1 = shape(south, any 0xxx) ? 3 : 0
-s1 = shape(south, any 1xxx) ? 2 : 0 // allow for 2 singletons
-s2 = shape(south, any 11xx) ? 2 : 0
-d1 = shape(south, any 2xxx) ? 1 : 0 // allow for 3 doubletons
-d2 = shape(south, any 22xx) ? 1 : 0
-d3 = shape(south, any 222x) ? 1 : 0
-
-# Calculate South's Total Points
-sTP = hcp(south) + v1+s1+s2+d1+d2+d3 -sSp-sHp-sDp-sCp
 
 # South has 4+ Card Support and 2+ Controls (A=2, K=1) and at least 1 short-suit point
 sShape   = shape(south,xxxx -any 4333 +any 2xxx +any 1xxx +any 0xxx)
