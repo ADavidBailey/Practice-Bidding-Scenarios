@@ -18,7 +18,7 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 oneMajor = (oneSpade or oneHeart) and hcp(south)>11 and hcp(south)<20 and not gibNT
 
 # Define Direct Raises
-oneM2M = ((oneSpade and spades(north)>2) or (oneHeart and hearts(north)>2)) and nTP > 6 and nTP < 11
+oneM2M = ((oneSpade and spades(north)>2) or (oneHeart and hearts(north)>2)) and nTP > 5 and nTP < 11
 oneM3M = ((oneSpade and spades(north)>3) or (oneHeart and hearts(north)>3)) and nTP > 9 and nTP < 13
 oneM4M = ((oneSpade and spades(north)>4) or (oneHeart and hearts(north)>4)) and nTP > 3 and hcp(north)<9
 noDirectRaise = not (oneM2M or oneM3M or oneM4M)
