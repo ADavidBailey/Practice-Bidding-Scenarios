@@ -122,7 +122,13 @@ nTP = hcp(north) + v1+s1+s2+d1+d2+d3 -nSp-nHp-nDp-nCp
 # South opens 1H or 1S
 oneMajor = (oneSpade or oneHeart) and hcp(south)>11 and hcp(south)<20 and not gibNT
 
-# Defining fit
+# Define Direct Raises
+oneM2M = ((oneSpade and spades(north)>2) or (oneHeart and hearts(north)>2)) and nTP > 6 and nTP < 11
+oneM3M = ((oneSpade and spades(north)>3) or (oneHeart and hearts(north)>3)) and nTP > 9 and nTP < 13
+oneM4M = ((oneSpade and spades(north)>4) or (oneHeart and hearts(north)>4)) and nTP > 3 and hcp(north)<9
+noDirectRaise = not (oneM2M or oneM3M or oneM4M)
+
+# Define other fits
 spadeFit = oneSpade and spades(north)>2
 heartFit = oneHeart and hearts(north)>2
 fit = spadeFit or heartFit
@@ -146,7 +152,7 @@ wFit = fit and wRange
 iFit = fit and iRange
 lMin = noFit and ngfRange and longMinor  // overlaps w/3-under inv jump
 nFit = noFit and ngfRange and not lMin
-forcingNT = (wFit or iFit or lMin or nFit) and noSpadeBid
+forcingNT = (wFit or iFit or lMin or nFit) and noSpadeBid and noDirectRaise
 
 # Defining Opener's rebids
 rebidM  = shape(south, any 7xxx+any 6xxx)
@@ -197,15 +203,15 @@ keep0  = 0
 # Level Responses
 wFitLev = wFit and keep
 iFitLev = iFit and keep //81
-lMinLev = lMin and keep //89
-nFitLev = nFit and keep11
+lMinLev = lMin and keep86
+nFitLev = nFit and keep03 //06 //11
 levelResponse = wFitLev or nFitLev or iFitLev or lMinLev
 
 # Level Rebids
-rMajLev = rebidM  and keep11 //19 //25 //015
-rNTLev  = rebidN  and keep //47 //25
+rMajLev = rebidM  and keep06 //11 //19 //25 //015
+rNTLev  = rebidN  and keep75 //81 //47 //25
 rRevLev = reverse and keep
-rNSLev  = newSuit and keep06 //11 //015
+rNSLev  = newSuit and keep03 //045 //06 //11 //015
 levelRebid = rMajLev or rNTLev or rRevLev or rNSLev
 
 levelTheDeal = levelResponse and levelRebid
