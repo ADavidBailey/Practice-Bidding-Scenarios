@@ -132,7 +132,11 @@ noDirectRaise = not (oneM2M or oneM3M or oneM4M)
 spadeFit = oneSpade and spades(north)>2
 heartFit = oneHeart and hearts(north)>2
 fit = spadeFit or heartFit
-noFit = not fit
+
+spadeFit3 = spadeFit and spades(north)==3
+heartFit3 = heartFit and hearts(north)==3
+fit3 = spadeFit3 or heartFit3
+noFit = not fit and not fit3
 
 # Define 3-level invites
 threeClubs = clubs(north)>5       and hcp(north,clubs)>1 
@@ -154,11 +158,11 @@ iRange = nTP>10 and nTP<13
 ngfRange = hcp(north)>5 and hcp(north)<12 and nTP<13
 
 # Defining hand types for Forcing NT
-wFit = fit and wRange
-iFit = fit and iRange
+wFit = fit  and wRange
+iFit = fit3 and iRange
 lMin = noFit and ngfRange and longMinor  // overlaps w/3-under inv jump
 nFit = noFit and ngfRange and not lMin
-forcingNT = (wFit or iFit or lMin or nFit) and noSpadeBid and noDirectRaise and noInvite and hcp(north)>5
+forcingNT = (wFit or iFit or lMin or nFit) and noSpadeBid and noDirectRaise and noInvite
 
 # Defining Opener's rebids
 rebidM  = shape(south, any 7xxx+any 6xxx)
@@ -208,9 +212,9 @@ keep0  = 0
 
 # Level Responses
 wFitLev = wFit and keep
-iFitLev = iFit and keep
-lMinLev = lMin and keep86
-nFitLev = nFit and keep03
+iFitLev = iFit and keep75
+lMinLev = lMin and keep75
+nFitLev = nFit and keep015
 levelResponse = wFitLev or nFitLev or iFitLev or lMinLev
 
 # Level Rebids
@@ -229,7 +233,7 @@ and levelTheDeal
 
 action
 average "fit 5-7 TP         " 100 * wFit,
-average "fit 11-12 TP       " 100 * iFit,
+average "fit 11-12 TP w/3   " 100 * iFit,
 average "no fit, long minor " 100 * lMin,
 average "no fit 6-12 HCP    " 100 * nFit,
 average "-------------------" 100 * (wFit + iFit + lMin + nFit),
