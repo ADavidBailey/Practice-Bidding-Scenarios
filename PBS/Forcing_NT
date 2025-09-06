@@ -77,7 +77,7 @@ levelResponse = wFitLev or nFitLev or iFitLev or lMinLev
 
 # Level Rebids
 rMajLev = rebidM  and keep06
-rNTLev  = rebidN  and keep75
+rNTLev  = rebidN  and keep47
 rRevLev = reverse and keep
 rNSLev  = newSuit and keep03
 levelRebid = rMajLev or rNTLev or rRevLev or rNSLev
@@ -91,7 +91,7 @@ and levelTheDeal
 
 produce 5000
 action
-average "fit 5-7 TP         " 100 * wFit,
+average "fit 5-7 TP w/3+    " 100 * wFit,
 average "fit 11-12 TP w/3   " 100 * iFit,
 average "no fit, long minor " 100 * lMin,
 average "no fit 6-12 HCP    " 100 * nFit,
@@ -108,7 +108,7 @@ Button,Forcing NT (Lev),\n\
 --- Forcing NT (Leveled)\n\
 Partner opens an Responder has a non-Game Forcing hand with...\n\
 • 5-7 TP with fit\n\
-• 11-12 TP with fit\n\
+• 11-12 TP with 3-card fit\n\
 • Long minor without fit\n\
 • 6-12 HCP without fit\n\
 Then Opener Rebids...\n\
@@ -116,5 +116,5 @@ Then Opener Rebids...\n\
 • 2NT\n\
 • Reverse\n\
 • New Suit\n\
-These are leveled such that the responses and rebids at about the same frequency.\n\
+These are leveled so that the responses and rebids at about the same frequency.\n\
 %ForcingNT%

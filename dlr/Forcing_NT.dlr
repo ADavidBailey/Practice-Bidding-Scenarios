@@ -219,7 +219,7 @@ levelResponse = wFitLev or nFitLev or iFitLev or lMinLev
 
 # Level Rebids
 rMajLev = rebidM  and keep06
-rNTLev  = rebidN  and keep75
+rNTLev  = rebidN  and keep47
 rRevLev = reverse and keep
 rNSLev  = newSuit and keep03
 levelRebid = rMajLev or rNTLev or rRevLev or rNSLev
@@ -232,7 +232,7 @@ oneMajor and forcingNT and openerRebid and calmWest
 and levelTheDeal
 
 action
-average "fit 5-7 TP         " 100 * wFit,
+average "fit 5-7 TP w/3+    " 100 * wFit,
 average "fit 11-12 TP w/3   " 100 * iFit,
 average "no fit, long minor " 100 * lMin,
 average "no fit 6-12 HCP    " 100 * nFit,
