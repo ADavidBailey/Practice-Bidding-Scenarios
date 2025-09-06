@@ -158,7 +158,7 @@ wFit = fit and wRange
 iFit = fit and iRange
 lMin = noFit and ngfRange and longMinor  // overlaps w/3-under inv jump
 nFit = noFit and ngfRange and not lMin
-forcingNT = (wFit or iFit or lMin or nFit) and noSpadeBid and noDirectRaise and noInvite
+forcingNT = (wFit or iFit or lMin or nFit) and noSpadeBid and noDirectRaise and noInvite and hcp(north)>5
 
 # Defining Opener's rebids
 rebidM  = shape(south, any 7xxx+any 6xxx)
