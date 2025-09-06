@@ -34,10 +34,11 @@ fit3 = spadeFit3 or heartFit3
 noFit = not fit and not fit3
 
 # Define 3-level invites
-threeClubs = clubs(north)>5       and hcp(north,clubs)>1 
+threeClubs    = clubs(north)>5    and hcp(north,clubs)>1 
 threeDiamonds = diamonds(north)>5 and hcp(north,diamonds)>1
-threeHearts = hearts(north)>5     and hcp(north,hearts)>1 and oneSpade
-noInvite = not (noFit and (threeClubs or threeDiamonds or threeHearts) and hcp(north)>8 and hcp(north)<12)
+threeHearts   = hearts(north)>5   and hcp(north,hearts)>1   and oneSpade
+invite = noFit and (threeClubs or threeDiamonds or threeHearts) and hcp(north)>8 and hcp(north)<12
+noInvite = not invite
 
 # Avoid 1H - 1S
 noSpadeBid = not(oneHeart and spades(north)>3)
