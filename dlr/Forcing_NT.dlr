@@ -24,17 +24,11 @@ chw = top4(west,hearts)<2
 csw = top4(west,spades)<2
 noConWest = ccw and cdw and chw and csw
 
-#unbalEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
-#unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+balEast    = shape(east,any 4432 +any 4333)
+unbalEast  = shape(east,xxxx -any 4432 -any 4333 -any 9xxx -any 8xxx -any 7xxx)
 
-#balEast   = shape(east,any 4333 +any 4432)
-#balWest   = shape(west,any 4333 +any 4432)
-
-balEast    = shape(east,any 4432+any 4333)
-unbalEast  = not balEast
-
-balWest    = shape(west,any 4432+any 4333)
-unbalWest  = not balWest
+balWest    = shape(west,any 4432 +any 4333)
+unbalWest  = shape(west,xxxx -any 4432 -any 4333 -any 9xxx -any 8xxx -any 7xxx)
 
 calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<12)
 calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<12)
@@ -102,13 +96,28 @@ oneClub    = oC
 ##### End of Imported Script -- Predict Opening 1-Bid #####
 # defines oneSpade, oneHeart, gibNT
 
-# Calculate Total Points for North (tp)
-v1 = shape(north, any 0xxx) ? 5 : 0
-s1 = shape(north, any 1xxx) ? 3 : 0
+##### Imported Script - Calculate Total Points for North #####
+
+## Calculate TP for North
+# Calculate South's Short-Suit Penalty Points
+nSp = spades(north)<3   and hcp(north,spades)>1   ? 1 : 0
+nHp = hearts(north)<3   and hcp(north,hearts)>1   ? 1 : 0
+nDp = diamonds(north)<3 and hcp(north,diamonds)>1 ? 1 : 0
+nCp = clubs(north)<3    and hcp(north,clubs)>1    ? 1 : 0
+
+# Calculate South's Short-Suit Points
+v1 = shape(north, any 0xxx) ? 3 : 0
+s1 = shape(north, any 1xxx) ? 2 : 0 // allow for 2 singletons
+s2 = shape(north, any 11xx) ? 2 : 0
 d1 = shape(north, any 2xxx) ? 1 : 0 // allow for 3 doubletons
 d2 = shape(north, any 22xx) ? 1 : 0
 d3 = shape(north, any 222x) ? 1 : 0
-tp = v1+s1+d1+d2+d3 + hcp(north)
+
+# Calculate South's Total Pointsac
+nTP = hcp(north) + v1+s1+s2+d1+d2+d3 -sSp-sHp-sDp-sCp
+
+### End of Calculate TP for North ###
+# defines nTP
 
 # South opens 1H or 1S
 oneMajor = (oneSpade or oneHeart) and hcp(south)>11 and hcp(south)<20 and not gibNT
@@ -128,8 +137,8 @@ longD = diamonds(north)>5
 longMinor = (longC or longD)
 
 # Define ranges - TP for raises; otherwise HCP
-wRange = tp>4 and tp<8
-iRange = tp>10 and tp<13
+wRange = nTP>4 and nTP<8
+iRange = nTP>10 and nTP<13
 ngfRange = hcp(north)>5 and hcp(north)<13
 
 # Defining hand types for Forcing NT

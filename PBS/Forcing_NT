@@ -11,13 +11,8 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 # defines oneSpade, oneHeart, gibNT
 
-# Calculate Total Points for North (tp)
-v1 = shape(north, any 0xxx) ? 5 : 0
-s1 = shape(north, any 1xxx) ? 3 : 0
-d1 = shape(north, any 2xxx) ? 1 : 0 // allow for 3 doubletons
-d2 = shape(north, any 22xx) ? 1 : 0
-d3 = shape(north, any 222x) ? 1 : 0
-tp = v1+s1+d1+d2+d3 + hcp(north)
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-North
+# defines nTP
 
 # South opens 1H or 1S
 oneMajor = (oneSpade or oneHeart) and hcp(south)>11 and hcp(south)<20 and not gibNT
@@ -37,8 +32,8 @@ longD = diamonds(north)>5
 longMinor = (longC or longD)
 
 # Define ranges - TP for raises; otherwise HCP
-wRange = tp>4 and tp<8
-iRange = tp>10 and tp<13
+wRange = nTP>4 and nTP<8
+iRange = nTP>10 and nTP<13
 ngfRange = hcp(north)>5 and hcp(north)<13
 
 # Defining hand types for Forcing NT
