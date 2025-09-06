@@ -29,6 +29,12 @@ heartFit = oneHeart and hearts(north)>2
 fit = spadeFit or heartFit
 noFit = not fit
 
+# Define 3-level invites
+threeClubs = clubs(north)>5       and hcp(north,clubs)>1 
+threeDiamonds = diamonds(north)>5 and hcp(north,diamonds)>1
+threeHearts = hearts(north)>5     and hcp(north,hearts)>1 and oneSpade
+noInvite = not (noFit and (threeClubs or threeDiamonds or threeHearts) and hcp(north)>8 and hcp(north)<12)
+
 # Avoid 1H - 1S
 noSpadeBid = not(oneHeart and spades(north)>3)
 
@@ -47,7 +53,7 @@ wFit = fit and wRange
 iFit = fit and iRange
 lMin = noFit and ngfRange and longMinor  // overlaps w/3-under inv jump
 nFit = noFit and ngfRange and not lMin
-forcingNT = (wFit or iFit or lMin or nFit) and noSpadeBid and noDirectRaise
+forcingNT = (wFit or iFit or lMin or nFit) and noSpadeBid and noDirectRaise and noInvite
 
 # Defining Opener's rebids
 rebidM  = shape(south, any 7xxx+any 6xxx)
