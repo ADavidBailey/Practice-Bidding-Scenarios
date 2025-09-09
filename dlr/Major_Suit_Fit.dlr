@@ -69,6 +69,29 @@ oneClub    = oC
 ##### End of Imported Script -- Predict Opening 1-Bid #####
 # Returns oS & oH
 
+##### Imported Script - Calculate Total Points for North #####
+
+## Calculate TP for North
+# Calculate South's Short-Suit Penalty Points
+nSp = spades(north)<3   and hcp(north,spades)>1   ? 1 : 0
+nHp = hearts(north)<3   and hcp(north,hearts)>1   ? 1 : 0
+nDp = diamonds(north)<3 and hcp(north,diamonds)>1 ? 1 : 0
+nCp = clubs(north)<3    and hcp(north,clubs)>1    ? 1 : 0
+
+# Calculate South's Short-Suit Points
+v1 = shape(north, any 0xxx) ? 3 : 0
+s1 = shape(north, any 1xxx) ? 2 : 0 // allow for 2 singletons
+s2 = shape(north, any 11xx) ? 2 : 0
+d1 = shape(north, any 2xxx) ? 1 : 0 // allow for 3 doubletons
+d2 = shape(north, any 22xx) ? 1 : 0
+d3 = shape(north, any 222x) ? 1 : 0
+
+# Calculate South's Total Pointsac
+nTP = hcp(north) + v1+s1+s2+d1+d2+d3 -nSp-nHp-nDp-nCp
+
+### End of Calculate TP for North ###
+# Returns nTP
+
 # South opens 1 Major and North has a fit
 S_ = oS and spades(north)>2
 H_ = oH and hearts(north)>2
@@ -88,21 +111,17 @@ heartFit4 = H_ and hearts(north)>3
 heartFit5 = H_ and hearts(north)>4
 fit4 = spadeFit4 or heartFit4
 
-# Calculate North's Total Points: HCP + shape (and +1 for 4+ support unless 4333)
-v1 = shape(north, any 0xxx) ? 3 : 0
-s1 = shape(north, any 1xxx) ? 2 : 0
-d1 = shape(north, any 2xxx) ? 1 : 0 // allow for 2 doubletons
-d2 = shape(north, any 22xx) ? 1 : 0
-nTP = v1+s1+d1+d2 + hcp(north) + (fit4 and shape(north,xxxx-any 4333))
+# Calculate North's Total Points: nTP + +1 for 4+ support unless 4333
+nP = nTP + (fit4 and shape(north,xxxx-any 4333))
 
 # Avoid Splinter
-Splinter = fit4 and shape(north,any 0xxx +any 1xxx) and nTP>10 and nTP<16
+Splinter = fit4 and shape(north,any 0xxx +any 1xxx) and nP>10 and nP<16
 
-preempt = nTP<8             and (spadeFit5 or heartFit5)
-faulty  = nTP>3  and nTP<8  and (S_ or H_) and not preempt
-simple  = nTP>7  and nTP<11 and (S_ or H_)
-invite3 = nTP>10 and nTP<13 and (spadeFit3 or heartFit3) 
-invite4 = nTP>10 and nTP<13 and (spadeFit4 or heartFit4)
+preempt = nP<8            and (spadeFit5 or heartFit5)
+faulty  = nP>3  and nP<8  and (S_ or H_) and not preempt
+simple  = nP>7  and nP<11 and (S_ or H_)
+invite3 = nP>10 and nP<13 and (spadeFit3 or heartFit3) 
+invite4 = nP>10 and nP<13 and (spadeFit4 or heartFit4)
 
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
