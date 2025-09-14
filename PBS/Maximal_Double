@@ -30,8 +30,8 @@ eMaxOC = (e2D or e2H) and eRange and eShape
 
 # Define East Takeout Double
 eHCP = hcp(east,spades)<7 and hcp(east,hearts)<7 and hcp(east,diamonds)<7 and hcp(east,clubs)<7  // no concentration
-eHX = H_ and hearts(east)<2 and shape(east,any 5440 +any 5431 +any 4441 -5xxx) and hcp(east,hearts)<2
-eSX = S_ and spades(east)<2 and shape(east,any 5440 +any 5431 +any 4441 -x5xx) and hcp(east,spades)<2
+eHX = H_ and hearts(east)<2 and shape(east,any 5440 +any 5431 +any 4441 -5xxx) and hcp(east,hearts)<2 and spades(west)<4
+eSX = S_ and spades(east)<2 and shape(east,any 5440 +any 5431 +any 4441 -x5xx) and hcp(east,spades)<2 and hearts(west)<4
 eX = (eHX or eSX) and eHCP and hcp(east)>10 and hcp(east)<15 and not eMaxOC
 
 # avoid other overcalls
