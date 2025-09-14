@@ -29,8 +29,8 @@ eRange = hcp(east)>10 and hcp(east)<14 and controls(east)>2
 eMaxOC = (e2D or e2H) and eRange and eShape
 
 # Define East Takeout Double
-eHX = H_ and hearts(east)<2 and shape(east,any 5440 +any 5431 +any 4441 -5xxx)
-eSX = S_ and spades(east)<2 and shape(east,any 5440 +any 5431 +any 4441 -x5xx)
+eHX = H_ and hearts(east)<2 and shape(east,any 5440 +any 5431 +any 4441 -5xxx) and hcp(east,hearts)<2
+eSX = S_ and spades(east)<2 and shape(east,any 5440 +any 5431 +any 4441 -x5xx) and hcp(east,spades)<2
 eX = (eHX or eSX) and hcp(east)>10 and hcp(east)<15 and not eMaxOC
 
 # avoid other overcalls
