@@ -84,9 +84,12 @@ produce 5000
 action
 average "south TP       " sTP,
 average "north TP       " nTP,
-average "north 11-13 TP " nMin,
-average "north 14-15 TP " nMid,
-average "north 16+   TP " nMax,
+average "raise          " 100 * wRaise,
+average "response to X  " 100 * wRespToX,
+average "free bid       " 100 * wFreeBid,
+average "north 11-13 TP " 100 * nMin,
+average "north 14-15 TP " 100 * nMid,
+average "north 16+   TP " 100 * nMax,
 
 `, "N", true)
 Script
