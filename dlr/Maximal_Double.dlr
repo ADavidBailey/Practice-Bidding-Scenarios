@@ -142,15 +142,13 @@ keep0  = 0
 ### End of Imported Leveling Code ###
 
 
-nMin = nTP<14
-nMid = nTP>13 and nTP<16
-nMax = nTP>15
+nMin = nTP<15
+nMax = nTP>14
 
 levMax = nMax and keep //70
-levMid = nMid and keep //67
 levMin = nMin and keep
 
-levelTheDeal = (levMax or levMid or levMin)
+levelTheDeal = (levMax or levMin)
 
 # Now do it
 n1M and eBids and sRaise and w3Max
@@ -162,9 +160,8 @@ average "north TP       " nTP,
 average "raise          " 100 * wRaise,
 average "response to X  " 100 * wRespToX,
 average "free bid       " 100 * wFreeBid,
-average "north 11-13 TP " 100 * nMin,
-average "north 14-15 TP " 100 * nMid,
-average "north 16+   TP " 100 * nMax,
+average "north 12-14 TP " 100 * nMin,
+average "north 15+   TP " 100 * nMax,
 
 
 printpbn
