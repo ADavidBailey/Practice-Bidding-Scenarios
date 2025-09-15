@@ -62,16 +62,20 @@ eShape = shape(east,any 7xxx+ any 6xxx - any 76xx - any 75xx - any 65xx)
 eRange = hcp(east)>10 and hcp(east)<14 and controls(east)>2
 eMaxOC = (e2D or e2H) and eRange and eShape
 
+# avoid other overcalls
+eWJS    = shape(east,any 9xxx +any 8xxx +any 7xxx +any 6xxx) and hcp(east)<11
+e2suits = shape(east,any 85xx +any 76xx + any 75xx +any 65xx +any 55xx)
+HS = spades(east)>4 and hcp(east)>5
+HC = clubs(east)>4 and hcp(east)>9
+SC = spades(east)>4 and hcp(east)>9
+SD = diamonds(east)>4 and hcp(east)>9
+ePass = not (eWJS or e2suits or HS or HC or SC or SD)
+
 # Define East Takeout Double
 eHCP = hcp(east,spades)<7 and hcp(east,hearts)<7 and hcp(east,diamonds)<7 and hcp(east,clubs)<7  // no concentration
 eHX = H_ and hearts(east)<2 and shape(east,any 5440 +any 5431 +any 4441 -5xxx) and hcp(east,hearts)<2 and spades(west)<4
 eSX = S_ and spades(east)<2 and shape(east,any 5440 +any 5431 +any 4441 -x5xx) and hcp(east,spades)<2 and hearts(west)<4
 eX = (eHX or eSX) and eHCP and hcp(east)>10 and hcp(east)<15 and not eMaxOC
-
-# avoid other overcalls
-eWJS    = shape(east,any 9xxx +any 8xxx +any 7xxx +any 6xxx) and hcp(east)<11
-e2suits = shape(east,any 85xx +any 76xx + any 75xx +any 65xx +any 55xx)
-ePass = not (eWJS or e2suits)
 
 # Define East bids
 eBids = ePass or eX or eMaxOC
