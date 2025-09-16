@@ -76,10 +76,19 @@ eX = (eHX or eSX) and eHCP and hcp(east)>10 and hcp(east)<15 and not eMaxOC
 # Define East bids
 eBids = ePass or eX or eMaxOC
 
-# Define South's major suit raises with 3/4-cards
+# Define South's major suit raises
 spadeFit = S_ and shape(south,3xxx+4xxx) and hcp(south,spades)>1 and (controls(south)-controls(south,spades)==1)
 heartFit = H_ and shape(south,x3xx+x4xx) and hcp(south,hearts)>1 and (controls(south)-controls(south,hearts)==1) and spades(south)<4
-sRaise = (spadeFit or heartFit) and sTP>5 and sTP<10 and hcp(south)<10 and shape(south,xxxx -any 4333)
+
+# Define South's major suit jump raises 
+# 3=Free jump raise  -- 4+ cards; 8- HCP; 7+ total points
+# 4=Preemptive raise -- 4+ cards; 9- HCP; 6+ total points
+sJump = spadeFit and spades(south)>4
+hJump = heartFit and hearts(south)>4
+jRaise   = (sJump or hJump) and sTP>5 and hcp(south)<10
+
+# Define South's major suit raises with 3/4-cards
+sRaise   = (spadeFit or heartFit) and sTP>5 and sTP<11 and hcp(south)<10 and shape(south,xxxx -any 4333) and not jRaise
 
 # Define West's raise of Maximal overcall
 wHR = e2H and shape(west,x3xx+x4xx) and hcp(west,hearts)>1
