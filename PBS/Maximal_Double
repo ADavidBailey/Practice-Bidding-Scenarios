@@ -52,8 +52,8 @@ heartFit = H_ and shape(south,x3xx+x4xx) and hcp(south,hearts)>1 and (controls(s
 sRaise = (spadeFit or heartFit) and sTP>5 and sTP<10 and hcp(south)<10 and shape(south,xxxx -any 4333)
 
 # Define West's raise of Maximal overcall
-wHR = e2H and hearts(west)==3   and hcp(west,hearts)>1
-wDR = e2D and diamonds(west)==3 and hcp(west,diamonds)>1
+wHR = e2H and shape(west,x3xx+x4xx) and hcp(west,hearts)>1
+wDR = e2D and shape(west,xx3x+xx4x) and hcp(west,diamonds)>1
 wRaise = (wHR or wDR) and hcp(west)>6 and hcp(west)<11
 
 # Define West's response to X
@@ -62,8 +62,8 @@ wH = spadeFit and hearts(west)>4
 wRespToX = eX and (wD or wH) and shape(west,xxxx-any 76xx -any 75xx -any 65xx -any 55xx) and hcp(west)>6 and hcp(west)<11
 
 # Define West's free bid of Maximal suit.  //Include 2 of opener's suit to avoid X
-wGD = heartFit and top5(west,diamonds)>2  and shape(west,xx6x)
-wGH = spadeFit and top5(west,hearts)>2    and shape(west,x6xx)
+wGD = heartFit and top4(west,diamonds)>2  and shape(west,xx6x)
+wGH = spadeFit and top4(west,hearts)>2    and shape(west,x6xx)
 wFreeBid = ePass and (wGD or wGH) and shape(west,any 0xxx +any 1xxx -any 76xx -any 75xx -any 66xx -any 65xx) and hcp(west)>10 and hcp(west)<14
 
 # Define West's 3 of the Maximal suit
@@ -74,7 +74,7 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 nMin = nTP<15
 nMax = nTP>14
 
-levMax = nMax and keep //70
+levMax = nMax and keep
 levMin = nMin and keep
 
 levelTheDeal = (levMax or levMin)
