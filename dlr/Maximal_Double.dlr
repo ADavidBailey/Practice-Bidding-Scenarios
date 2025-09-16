@@ -46,7 +46,7 @@ gibNT = nt1 or nt2
 # North opens 1M
 S_ = spades(north)>4 and hearts(north)<5 and diamonds(north)<=5 and clubs(north)<=5
 H_ = hearts(north)>4 and spades(north)<5 and diamonds(north)<=5 and clubs(north)<=5
-n1M = (S_ or H_) and hcp(north)>11 and hcp(north)<22 and losers(north)<8 and not gibNT
+n1M = (S_ or H_) and hcp(north)>11 and hcp(north)<22 and losers(north)>3 and losers(north)<8 and not gibNT
 
 nLP = S_ ? spades(north) - 4 : hearts(north) - 4
 nTP = hcp(north) + nLP
@@ -156,7 +156,7 @@ average "raise          " 100 * wRaise,
 average "response to X  " 100 * wRespToX,
 average "north 12-14 TP " 100 * nMin,
 average "north 15+   TP " 100 * nMax,
-frequency "HCP North    "  (nTP ,  11, 23),
+frequency "HCP North    "  (nTP, 11, 23),
 
 
 printpbn
