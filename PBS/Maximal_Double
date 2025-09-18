@@ -5,6 +5,12 @@ setDealerCode(`
 # convention-card: 21GF-MaximalDouble
 # auction-filter: 1H .* 2H 3D|1S .* 2S 3H
 
+# Continuations P3X4: HCP 1[2-9](?:.*\n){12}(1H (\d.|Pass|X) 2H 3D|1S (\d.|Pass|X) 2S 3H)\n[P3X45] // 84+121+51+74+00 = 330
+# West Max Raise    :  (1H 2D 2H 3H|1S 2H 2S 3H)\n[P3X45]                                          // 20+33+04+13+00  =  74
+# West Max resp to X:  (1H X 2H 3D|1S X 2S 3H)\n[P3X45]                                            // 06+06+00+02+00  =   9
+# West Free Bid     :  (1H Pass 2H 3D|1S Pass 2S 3H)\n[P3X45]                                      // 34+67+52+69+01  = 230
+# None of the above :Auction.....\n(?!(1H 2D 2H 3D|1S 2H 2S 3H)\n[P3X45]|(1H X 2H 3D|1S X 2S 3H)|(1H Pass 2H 3D|1S Pass 2S 3H)\n[P3X45])  // 170
+
 # Maximal Overcall Double
 dealer north
 
@@ -29,11 +35,18 @@ n1M = (S_ or H_) and hcp(north)>11 and hcp(north)<22 and losers(north)>3 and los
 nLP = S_ ? spades(north) - 4 : hearts(north) - 4
 nTP = hcp(north) + nLP
 
+# Define East's Total Points -- discount short-suit points
+eSp = spades(east)<3   and hcp(east,spades)>1   ? 1 : 0
+eHp = hearts(east)<3   and hcp(east,hearts)>1   ? 1 : 0
+eDp = diamonds(east)<3 and hcp(east,diamonds)>1 ? 1 : 0
+eCp = clubs(east)<3    and hcp(east,clubs)>1    ? 1 : 0
+eTP = hcp(east) - eSp - eHp - eDp - eCp
+
 # Define East overcalls in Maximal suit
 e2D = H_ and diamonds(east)>5 and top3(east,diamonds)>1 and spades(east)<5
 e2H = S_ and hearts(east)>5   and top3(east,hearts)>1
 eShape = shape(east,any 7xxx +any 6xxx -any 76xx -any 75xx -any 66xx -any 65xx)
-eRange = hcp(east)>10 and hcp(east)<14 and controls(east)>2
+eRange = eTP>10 and eTP<14 and controls(east)>2
 eMaxOC = (e2D or e2H) and eRange and eShape
 
 # avoid other overcalls
@@ -45,46 +58,69 @@ SC = spades(east)>4 and hcp(east)>9
 SD = diamonds(east)>4 and hcp(east)>9
 ePass = not (eWJS or e2suits or HS or HC or SC or SD)
 
-# Define East Takeout Double
+# Define East Takeout Double for West's max response
 eHCP = hcp(east,spades)<7 and hcp(east,hearts)<7 and hcp(east,diamonds)<7 and hcp(east,clubs)<7  // no concentration
-eHX = H_ and hearts(east)<2 and shape(east,any 5440 +any 5431 +any 4441 -5xxx) and hcp(east,hearts)<2 and spades(west)<4
-eSX = S_ and spades(east)<2 and shape(east,any 5440 +any 5431 +any 4441 -x5xx) and hcp(east,spades)<2 and hearts(west)<4
-eX = (eHX or eSX) and eHCP and hcp(east)>10 and hcp(east)<15 and not eMaxOC
+eHX = H_ and hearts(east)<3 and shape(east,any 5440 +any 5431 +any 5332 +any 4441 -5xxx) and hcp(east,hearts)==0 and spades(west)<4
+eSX = S_ and spades(east)<3 and shape(east,any 5440 +any 5431 +any 5332 +any 4441 -x5xx) and hcp(east,spades)==0 and hearts(west)<4
+eX = (eHX or eSX) and eHCP and hcp(east)>11 and not eMaxOC
 
 # Define East bids
 eBids = ePass or eX or eMaxOC
 
+# Define South's fits:  3+, 4+, and 5+
+sFit3  = S_ and spades(south)>2
+hFit3  = H_ and hearts(south)>2
+fit3   = sFit3 or hFit3 and spades(south)<5
+sFit4  = S_ and spades(south)>3
+hFit4  = H_ and hearts(south)>3
+fit4   = sFit4 or hFit4 and spades(south)<5
+sFit5  = S_ and spades(south)>4
+hFit5  = H_ and hearts(south)>4
+fit5   = sFit5 or hFit5 and spades(south)<5
+
 # Define South's major suit raises
-spadeFit = S_ and shape(south,3xxx+4xxx) and hcp(south,spades)>1 and (controls(south)-controls(south,spades)==1)
-heartFit = H_ and shape(south,x3xx+x4xx) and hcp(south,hearts)>1 and (controls(south)-controls(south,hearts)==1) and spades(south)<4
+# Preemptive raise 1M-?-4M -- 5+ cards; 9- HCP; 6+ total points
+PR      = fit5 and hcp(south)<10 and sTP>5
 
-# Define South's major suit jump raises 
-# 3=Free jump raise  -- 4+ cards; 8- HCP; 7+ total points
-# 4=Preemptive raise -- 4+ cards; 9- HCP; 6+ total points
-sJump = spadeFit and spades(south)>4
-hJump = heartFit and hearts(south)>4
-jRaise   = (sJump or hJump) and sTP>5 and hcp(south)<10
+# Free jump raise  1M-X-3M -- 4+ cards; 8- HCP; 7+ total points
+FJR    = fit4 and hcp(south)<9 and sTP>6 and eMaxOC
 
-# Define South's major suit raises with 3/4-cards
-sRaise   = (spadeFit or heartFit) and sTP>5 and sTP<11 and hcp(south)<10 and shape(south,xxxx -any 4333) and not jRaise
+# Free Major raise 1M-X-2M -- 3+ cards;       ; 6-10 total points
+FMR    = fit3 and sTP>5 and sTP<11 and eMaxOC and not FJR
+
+# Limit raise     1M-P-3M -- 4+ cards; 10-12 total points
+LR     = fit4 and sTP>9 and sTP<13 and ePass
+
+# Simple raise     1M-P-2M -- 3+ cards; 7-10 total points
+SR     = fit3 and sTP>6 and sTP<11 and not shape(south,any 4333) and not LR
+
+# Define South's 2-level raise
+sRaise = (SR or FMR) and controls(south)>1 and not PR and shape(south,xxxx -any 7xxx -any 6xxx)
+
+# Define West's Total Points -- discount short-suit points
+wSp = spades(west)<3   and hcp(west,spades)>1   ? 1 : 0
+wHp = hearts(west)<3   and hcp(west,hearts)>1   ? 1 : 0
+wDp = diamonds(west)<3 and hcp(west,diamonds)>1 ? 1 : 0
+wCp = clubs(west)<3    and hcp(west,clubs)>1    ? 1 : 0
+wTP = hcp(west) - wSp - wHp - wDp - wCp
 
 # Define West's raise of Maximal overcall
-wHR = e2H and shape(west,x3xx+x4xx) and hcp(west,hearts)>1
+wHR = e2H and shape(west,x3xx+x4xx) and wTP>1
 wDR = e2D and shape(west,xx3x+xx4x) and hcp(west,diamonds)>1
-wRaise = (wHR or wDR) and hcp(west)>6 and hcp(west)<11
+wRaise = (wHR or wDR) and wTP>6 and wTP<11 and shape(west,xxxx -5xxx -x5xx -any 7xxx -any 6xxx) // avoid new suit
 
-# Define West's response to X
-wD = heartFit and diamonds(west)>4
-wH = spadeFit and hearts(west)>4
-wRespToX = eX and (wD or wH) and shape(west,xxxx-any 76xx -any 75xx -any 65xx -any 55xx) and hcp(west)>6 and hcp(west)<11
+# Define West's response to X     // avoid preference to 4-card major
+wD = H_ and diamonds(west)>4
+wH = S_ and hearts(west)>4
+wRespToX = eX and (wD or wH) and shape(west,xxxx -4xxx -x4xx -any 76xx -any 75xx -any 65xx -any 55xx) and wTP>6 and wTP<11
 
 # Define West's free bid of Maximal suit.
-wGD = heartFit and top4(west,diamonds)>2  and shape(west,xx6x)
-wGH = spadeFit and top4(west,hearts)>2    and shape(west,x6xx)
-wFreeBid = ePass and (wGD or wGH) and shape(west,any 0xxx +any 1xxx -any 76xx -any 75xx -any 66xx -any 65xx) and hcp(west)>10 and hcp(west)<14
+wGD = H_ and top4(west,diamonds)>2  and shape(west,xx6x)
+wGH = S_ and top4(west,hearts)>2    and shape(west,x6xx)
+wFreeBid = ePass and (wGD or wGH) and shape(west,any 0xxx +any 1xxx -any 76xx -any 75xx -any 66xx -any 65xx) and wTP>10 and wTP<14
 
 # Define West's 3 of the Maximal suit
-w3Max = (wRaise or wRespToX or wFreeBid)
+w3Max = (wRaise or wRespToX or wFreeBid) 
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
