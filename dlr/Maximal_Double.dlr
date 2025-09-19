@@ -66,20 +66,20 @@ eTP = hcp(east) -eSp -eHp -eDp -eCp
 
 # Define East Takeout Double for West's max response
 eHCP = hcp(east,spades)<7 and hcp(east,hearts)<7 and hcp(east,diamonds)<7 and hcp(east,clubs)<7  // no concentration
-eHX = H_ and hearts(east)<2 and shape(east,any 5440 +any 5431 +any 4441 -5xxx) and hcp(east,hearts)==0
-eSX = S_ and spades(east)<2 and shape(east,any 5440 +any 5431 +any 4441 -x5xx) and hcp(east,spades)==0
+eHX = H_ and hearts(east)<3 and shape(east,any 5440 +any 5431 +any 5332 +any 4441 +any 4432 -5xxx) and hcp(east,hearts)==0
+eSX = S_ and spades(east)<3 and shape(east,any 5440 +any 5431 +any 5332 +any 4441 +any 4432 -x5xx) and hcp(east,spades)==0
 eX = (eHX or eSX) and eHCP and eTP>11
 
 # Define East overcalls in Maximal suit
-e2D = H_ and shape(east,xx6x) and top3(east,diamonds)>1
-e2H = S_ and shape(east,x6xx) and top3(east,hearts)>1
-eShape = shape(east,any 6322 + any 6331)
-eRange = eTP>11 and eTP<19 and controls(east)>2
+e2D = H_ and shape(east,xx5x +xx6x) and top3(east,diamonds)>1
+e2H = S_ and shape(east,x5xx +x6xx) and top3(east,hearts)>1
+eShape = shape(east,any 6322 + any 6331 +any 6430 +any 5332 +any 5431)
+eRange = hcp(east)>9 and eTP>11 and eTP<19 and controls(east)>2      // BBA requires HCP>12, I think
 eMaxOC = (e2D or e2H) and eShape and eRange and not eX
 
 # avoid other overcalls
 eWJS    = shape(east,any 9xxx +any 8xxx +any 7xxx +any 6xxx) and hcp(east)<11
-e2suits = shape(east,any 85xx +any 76xx + any 75xx +any 65xx +any 55xx) and eTP>11
+e2suits = shape(east,any 85xx +any 76xx + any 75xx +any 65xx +any 55xx) and eTP>8
 HS = H_ and spades(east)>4   and eTP>5
 HC = H_ and clubs(east)>4    and eTP>9
 SD = S_ and diamonds(east)>4 and eTP>9
@@ -108,7 +108,7 @@ PR      = fit5 and hcp(south)<10 and sTP>5
 FJR    = fit4 and hcp(south)<9 and sTP>6 and eMaxOC
 
 # Free Major raise 1M-X-2M -- 3+ cards;       ; 6-10 total points
-FMR    = fit3 and sTP>5 and sTP<11 and eMaxOC and not FJR
+FMR    = fit3 and sTP>5 and sTP<12 and eMaxOC and not FJR
 
 # Limit raise     1M-P-3M -- 4+ cards; 10-12 total points
 LR     = fit4 and sTP>9 and sTP<13 and ePass
@@ -127,9 +127,9 @@ wCp = clubs(west)<3    and hcp(west,clubs)>1    ? 1 : 0
 wTP = hcp(west) - wSp - wHp - wDp - wCp
 
 # Define West's raise of Maximal overcall
-wHR = e2H and shape(west,x3xx+x4xx) and hcp(west,hearts)>1
-wDR = e2D and shape(west,xx3x+xx4x) and hcp(west,diamonds)>1
-wRaise = (wHR or wDR) and wTP>8 and wTP<12 and shape(west,xxxx -5xxx -x5xx -any 7xxx -any 6xxx) // avoid new suit
+wHR = H_ and shape(west,x3xx+x4xx) and hcp(west,hearts)>1
+wDR = S_ and shape(west,xx3x+xx4x) and hcp(west,diamonds)>1
+wRaise = eMaxOC and (wHR or wDR) and wTP>5 and wTP<11 and shape(west,xxxx -5xxx -x5xx -any 7xxx -any 6xxx) // avoid new suit
 
 # Define West's response to X     // avoid preference to 4-card major
 wD = H_ and diamonds(west)>4
@@ -189,7 +189,11 @@ nMax = nTP>14
 levMax = nMax and keep
 levMin = nMin and keep
 
-levelTheDeal = (levMax or levMin)
+levR = wRaise   and keep67
+levX = wRespToX and keep
+levF = wFreeBid and keep25
+
+levelTheDeal = (levR or levX or levF)
 
 # Now do it
 n1M and eBids and sRaise and w3Max
