@@ -8,11 +8,11 @@ dealer north
 # convention-card: 21GF-MaximalDouble
 # auction-filter: 1H .* 2H 3D|1S .* 2S 3H
 
-# Continuations P3X4: HCP 1[2-9](?:.*\n){12}(1H (\d.|Pass|X) 2H 3D|1S (\d.|Pass|X) 2S 3H)\n[P3X45] // 28+66+55+54+00 = 326
-# West Max Raise    :  (1H 2D 2H 3H|1S 2H 2S 3H)\n[P3X45]                                          // 20+33+04+13+00 =  74
-# West Max resp to X:  (1H X 2H 3D|1S X 2S 3H)\n[P3X45]                                            // 06+06+00+02+00 =   9
-# West Free Bid     :  (1H Pass 2H 3D|1S Pass 2S 3H)\n[P3X45]                                      // 34+67+52+69+01 = 227
-# None of the above :Auction.....\n(?!(1H 2D 2H 3D|1S 2H 2S 3H)\n[P3X45]|(1H X 2H 3D|1S X 2S 3H)|(1H Pass 2H 3D|1S Pass 2S 3H)\n[P3X45])
+# Continuations P3X4: HCP 1[2-9](?:.*\n){12}(1H (\d.|Pass|X) 2H 3D|1S (\d.|Pass|X) 2S 3H)\n[P3X45] // 84+121+51+74+00 = 330
+# West Max Raise    :  (1H 2D 2H 3H|1S 2H 2S 3H)\n[P3X45]                                          // 20+33+04+13+00  =  74
+# West Max resp to X:  (1H X 2H 3D|1S X 2S 3H)\n[P3X45]                                            // 06+06+00+02+00  =   9
+# West Free Bid     :  (1H Pass 2H 3D|1S Pass 2S 3H)\n[P3X45]                                      // 34+67+52+69+01  = 230
+# None of the above :Auction.....\n(?!(1H 2D 2H 3D|1S 2H 2S 3H)\n[P3X45]|(1H X 2H 3D|1S X 2S 3H)|(1H Pass 2H 3D|1S Pass 2S 3H)\n[P3X45])  // 170
 
 # Maximal Overcall Double
 
@@ -62,42 +62,42 @@ eSp = spades(east)<3   and hcp(east,spades)>1   ? 1 : 0
 eHp = hearts(east)<3   and hcp(east,hearts)>1   ? 1 : 0
 eDp = diamonds(east)<3 and hcp(east,diamonds)>1 ? 1 : 0
 eCp = clubs(east)<3    and hcp(east,clubs)>1    ? 1 : 0
-eTP = hcp(east) - eSp - eHp - eDp - eCp
-
-# Define East overcalls in Maximal suit
-e2D = H_ and diamonds(east)>5 and top3(east,diamonds)>1 and spades(east)<5
-e2H = S_ and hearts(east)>5   and top3(east,hearts)>1
-eShape = shape(east,any 7xxx +any 6xxx -any 76xx -any 75xx -any 66xx -any 65xx)
-eRange = eTP>10 and eTP<14 and controls(east)>2
-eMaxOC = (e2D or e2H) and eRange and eShape
-
-# avoid other overcalls
-eWJS    = shape(east,any 9xxx +any 8xxx +any 7xxx +any 6xxx) and hcp(east)<11
-e2suits = shape(east,any 85xx +any 76xx + any 75xx +any 65xx +any 55xx)
-HS = spades(east)>4 and hcp(east)>5
-HC = clubs(east)>4 and hcp(east)>9
-SC = spades(east)>4 and hcp(east)>9
-SD = diamonds(east)>4 and hcp(east)>9
-ePass = not (eWJS or e2suits or HS or HC or SC or SD)
+eTP = hcp(east) -eSp -eHp -eDp -eCp
 
 # Define East Takeout Double for West's max response
 eHCP = hcp(east,spades)<7 and hcp(east,hearts)<7 and hcp(east,diamonds)<7 and hcp(east,clubs)<7  // no concentration
-eHX = H_ and hearts(east)<3 and shape(east,any 5440 +any 5431 +any 5332 +any 4441 -5xxx) and hcp(east,hearts)==0 and spades(west)<4
-eSX = S_ and spades(east)<3 and shape(east,any 5440 +any 5431 +any 5332 +any 4441 -x5xx) and hcp(east,spades)==0 and hearts(west)<4
-eX = (eHX or eSX) and eHCP and hcp(east)>11 and not eMaxOC
+eHX = H_ and hearts(east)<2 and shape(east,any 5440 +any 5431 +any 4441 -5xxx) and hcp(east,hearts)==0
+eSX = S_ and spades(east)<2 and shape(east,any 5440 +any 5431 +any 4441 -x5xx) and hcp(east,spades)==0
+eX = (eHX or eSX) and eHCP and eTP>11
+
+# Define East overcalls in Maximal suit
+e2D = H_ and shape(east,xx6x +xx5x) and top3(east,diamonds)>1
+e2H = S_ and shape(east,x6xx +x5xx) and top3(east,hearts)>1
+eShape = shape(east,xxxx -any 9xxx -any 8xxx - any 7xxx -any 66xx -any 65xx -any 55xx)
+eRange = eTP>10 and eTP<19 and controls(east)>2
+eMaxOC = (e2D or e2H) and eShape and eRange and not eX
+
+# avoid other overcalls
+eWJS    = shape(east,any 9xxx +any 8xxx +any 7xxx +any 6xxx) and hcp(east)<11 and eTP>4
+e2suits = shape(east,any 85xx +any 76xx + any 75xx +any 65xx +any 55xx) and eTP>11
+HS = H_ and spades(east)>4   and eTP>5
+HC = H_ and clubs(east)>4    and eTP>9
+SD = S_ and diamonds(east)>4 and eTP>9
+SH = S_ and hearts(east)>4   and eTP>9
+ePass = not (eWJS or e2suits or HS or HC or SD or SH)
 
 # Define East bids
-eBids = ePass or eX or eMaxOC
+eBids = eX or eMaxOC or ePass
 
 # Define South's fits:  3+, 4+, and 5+
 sFit3  = S_ and spades(south)>2
-hFit3  = H_ and hearts(south)>2
+hFit3  = H_ and hearts(south)>2 and spades(south)<4
 fit3   = sFit3 or hFit3 and spades(south)<5
 sFit4  = S_ and spades(south)>3
-hFit4  = H_ and hearts(south)>3
+hFit4  = H_ and hearts(south)>3 and spades(south)<4
 fit4   = sFit4 or hFit4 and spades(south)<5
 sFit5  = S_ and spades(south)>4
-hFit5  = H_ and hearts(south)>4
+hFit5  = H_ and hearts(south)>4 and spades(south)<4
 fit5   = sFit5 or hFit5 and spades(south)<5
 
 # Define South's major suit raises
@@ -117,7 +117,7 @@ LR     = fit4 and sTP>9 and sTP<13 and ePass
 SR     = fit3 and sTP>6 and sTP<11 and not shape(south,any 4333) and not LR
 
 # Define South's 2-level raise
-sRaise = (SR or FMR) and controls(south)>1 and not PR and shape(south,xxxx -any 7xxx -any 6xxx)
+sRaise = (SR or FMR) and controls(south)>1 and not PR and shape(south,xxxx -any 7xxx -any 6xxx -any 4333)
 
 # Define West's Total Points -- discount short-suit points
 wSp = spades(west)<3   and hcp(west,spades)>1   ? 1 : 0
@@ -134,12 +134,12 @@ wRaise = (wHR or wDR) and wTP>6 and wTP<11 and shape(west,xxxx -5xxx -x5xx -any 
 # Define West's response to X     // avoid preference to 4-card major
 wD = H_ and diamonds(west)>4
 wH = S_ and hearts(west)>4
-wRespToX = eX and (wD or wH) and shape(west,xxxx -4xxx -x4xx -any 76xx -any 75xx -any 65xx -any 55xx) and wTP>6 and wTP<11
+wRespToX = eX and (wD or wH) and shape(west,xxxx -any 76xx -any 75xx -any 65xx -any 55xx) and wTP>6 and wTP<11
 
 # Define West's free bid of Maximal suit.
-wGD = H_ and top4(west,diamonds)>2  and shape(west,xx6x)
-wGH = S_ and top4(west,hearts)>2    and shape(west,x6xx)
-wFreeBid = ePass and (wGD or wGH) and shape(west,any 0xxx +any 1xxx -any 76xx -any 75xx -any 66xx -any 65xx) and wTP>10 and wTP<14
+wGD = H_ and top4(west,diamonds)>2  and diamonds(west)>5
+wGH = S_ and top4(west,hearts)>2    and hearts(west)>5
+wFreeBid = ePass and (wGD or wGH) and shape(west,any 0xxx +any 1xxx -any 85xx -any 76xx -any 75xx -any 66xx -any 65xx) and wTP>10 and wTP<18
 
 # Define West's 3 of the Maximal suit
 w3Max = (wRaise or wRespToX or wFreeBid) 
