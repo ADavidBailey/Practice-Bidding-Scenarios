@@ -6,13 +6,13 @@ dealer north
 
 # Add 1M - 3M inviting, add Maximal Doubles, kill Reverse Bergen, Kill Support 1N, kill Two-way game tries
 # convention-card: 21GF-MaximalDouble
-# auction-filter: 1H .* 2H 3D|1S .* 2S 3H
+# auction-filter: Auction.....\\n1H .* 2H 3D|1S .* 2S 3H
 
-# Continuations P3X4: HCP 1[2-9](?:.*\n){12}(1H (\d.|Pass|X) 2H 3D|1S (\d.|Pass|X) 2S 3H)\n[P3X45] // 84+121+51+74+00 = 330
-# West Max Raise    :  (1H 2D 2H 3H|1S 2H 2S 3H)\n[P3X45]                                          // 20+33+04+13+00  =  74
-# West Max resp to X:  (1H X 2H 3D|1S X 2S 3H)\n[P3X45]                                            // 06+06+00+02+00  =   9
-# West Free Bid     :  (1H Pass 2H 3D|1S Pass 2S 3H)\n[P3X45]                                      // 34+67+52+69+01  = 230
-# None of the above :Auction.....\n(?!(1H 2D 2H 3D|1S 2H 2S 3H)\n[P3X45]|(1H X 2H 3D|1S X 2S 3H)|(1H Pass 2H 3D|1S Pass 2S 3H)\n[P3X45])  // 170
+# Continuations P3X4: HCP 1[2-9](?:.*\\n){12}(1H (\\d.|Pass|X) 2H 3D|1S (\\d.|Pass|X) 2S 3H)\\n[P3X45] // 57+81+35+55+00 = 228
+# West Max Raise    :                                           // 29+25+01+04+00 =  59
+# West Max resp to X:  (1H X 2H 3D|1S X 2S 3H)\\n[P3X45]                                            // 06+06+00+02+00 =   9
+# West Free Bid     :  (1H Pass 2H 3D|1S Pass 2S 3H)\\n[P3X45]                                      // 26+49+34+48+00 = 157
+# None of the above :Auction.....\\n(?!(1H 2D 2H 3D|1S 2H 2S 3H)\\n[P3X45]|(1H X 2H 3D|1S X 2S 3H)|(1H Pass 2H 3D|1S Pass 2S 3H)\\n[P3X45])  // 170
 
 # Maximal Overcall Double
 
@@ -71,10 +71,10 @@ eSX = S_ and spades(east)<2 and shape(east,any 5440 +any 5431 +any 4441 -x5xx) a
 eX = (eHX or eSX) and eHCP and eTP>11
 
 # Define East overcalls in Maximal suit
-e2D = H_ and shape(east,xx6x +xx5x) and top3(east,diamonds)>1
-e2H = S_ and shape(east,x6xx +x5xx) and top3(east,hearts)>1
+e2D = H_ and shape(east,xx6x +xx5x) and top3(east,diamonds)>1 and spades(east)<4
+e2H = S_ and shape(east,x6xx +x5xx) and top3(east,hearts)>1   and hearts(east)<4
 eShape = shape(east,xxxx -any 9xxx -any 8xxx - any 7xxx -any 66xx -any 65xx -any 55xx)
-eRange = eTP>10 and eTP<19 and controls(east)>2
+eRange = eTP>11 and eTP<19 and controls(east)>2
 eMaxOC = (e2D or e2H) and eShape and eRange and not eX
 
 # avoid other overcalls

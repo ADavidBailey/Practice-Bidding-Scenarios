@@ -49,10 +49,10 @@ eSX = S_ and spades(east)<2 and shape(east,any 5440 +any 5431 +any 4441 -x5xx) a
 eX = (eHX or eSX) and eHCP and eTP>11
 
 # Define East overcalls in Maximal suit
-e2D = H_ and shape(east,xx6x +xx5x) and top3(east,diamonds)>1
-e2H = S_ and shape(east,x6xx +x5xx) and top3(east,hearts)>1
+e2D = H_ and shape(east,xx6x +xx5x) and top3(east,diamonds)>1 and spades(east)<4
+e2H = S_ and shape(east,x6xx +x5xx) and top3(east,hearts)>1   and hearts(east)<4
 eShape = shape(east,xxxx -any 9xxx -any 8xxx - any 7xxx -any 66xx -any 65xx -any 55xx)
-eRange = eTP>10 and eTP<19 and controls(east)>2
+eRange = eTP>11 and eTP<19 and controls(east)>2
 eMaxOC = (e2D or e2H) and eShape and eRange and not eX
 
 # avoid other overcalls
