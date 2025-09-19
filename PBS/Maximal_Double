@@ -3,13 +3,13 @@ setDealerCode(`
 
 # Add 1M - 3M inviting, add Maximal Doubles, kill Reverse Bergen, Kill Support 1N, kill Two-way game tries
 # convention-card: 21GF-MaximalDouble
-# auction-filter: 1H .* 2H 3D|1S .* 2S 3H
+# auction-filter: Auction.....\\n1H .* 2H 3D|1S .* 2S 3H
 
-# Continuations P3X4: HCP 1[2-9](?:.*\n){12}(1H (\d.|Pass|X) 2H 3D|1S (\d.|Pass|X) 2S 3H)\n[P3X45] // 57+81+35+55+00 = 228
-# West Max Raise    :  (1H 2D 2H 3H|1S 2H 2S 3H)\n[P3X45]                                          // 29+25+01+04+00 =  59
-# West Max resp to X:  (1H X 2H 3D|1S X 2S 3H)\n[P3X45]                                            // 06+06+00+02+00 =   9
-# West Free Bid     :  (1H Pass 2H 3D|1S Pass 2S 3H)\n[P3X45]                                      // 26+49+34+48+00 = 157
-# None of the above :Auction.....\n(?!(1H 2D 2H 3D|1S 2H 2S 3H)\n[P3X45]|(1H X 2H 3D|1S X 2S 3H)|(1H Pass 2H 3D|1S Pass 2S 3H)\n[P3X45])  // 170
+# Continuations P3X4: HCP 1[2-9](?:.*\\n){12}(1H (\\d.|Pass|X) 2H 3D|1S (\\d.|Pass|X) 2S 3H)\\n[P3X45] // 57+81+35+55+00 = 228
+# West Max Raise    :                                           // 29+25+01+04+00 =  59
+# West Max resp to X:  (1H X 2H 3D|1S X 2S 3H)\\n[P3X45]                                            // 06+06+00+02+00 =   9
+# West Free Bid     :  (1H Pass 2H 3D|1S Pass 2S 3H)\\n[P3X45]                                      // 26+49+34+48+00 = 157
+# None of the above :Auction.....\\n(?!(1H 2D 2H 3D|1S 2H 2S 3H)\\n[P3X45]|(1H X 2H 3D|1S X 2S 3H)|(1H Pass 2H 3D|1S Pass 2S 3H)\\n[P3X45])  // 170
 
 # Maximal Overcall Double
 dealer north
