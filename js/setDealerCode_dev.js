@@ -91,7 +91,7 @@ window.setDealerCode = function (dealerCode, dealer = "S", rotateDeals = true) {
                 case 7:
                     // Fill text area with new code
                     txtar.focus();
-                    txtar.value = dealerCode.replaceAll("\\n", "\n");
+                    txtar.value = dealerCode.replaceAll("\n", "\\n");    
                     txtar.focus();
                     break;
                 case 8:
