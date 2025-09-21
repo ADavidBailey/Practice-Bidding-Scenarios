@@ -5,14 +5,16 @@ dealer north
 
 
 # Add 1M - 3M inviting, add Maximal Doubles, kill Reverse Bergen, Kill Support 1N, kill Two-way game tries
+/*
 # convention-card: 21GF-MaximalDouble
-# auction-filter: Auction.....\\n1H .* 2H 3D|1S .* 2S 3H
+# auction-filter: Auction.....\n1H .* 2H 3D|1S .* 2S 3H
 
-# Continuations P3X4: HCP 1[2-9](?:.*\\n){12}(1H (\\d.|Pass|X) 2H 3D|1S (\\d.|Pass|X) 2S 3H)\\n[P3X45] // 57+105+44+42+00 = 248
-# West Max Raise    :  (1H 2D 2H 3D|1S 2H 2S 3H)\\n[P3X45]                                             // 24+025+11+04+00 =  64
-# West Max resp to X:  (1H X 2H 3D|1S X 2S 3H)\\n[P3X45]                                               // 11+038+00+06+00 =  55
-# West Free Bid     :  (1H Pass 2H 3D|1S Pass 2S 3H)\\n[P3X45]                                         // 22+042+33+32+00 = 129
-# None of the above :Auction.....\\n(?!(1H 2D 2H 3D|1S 2H 2S 3H)\\n[P3X45]|(1H X 2H 3D|1S X 2S 3H)|(1H Pass 2H 3D|1S Pass 2S 3H)\\n[P3X45])  // 170
+Continuations P3X4: HCP 1[2-9](?:.*\n){12}(1H (\d.|Pass|X) 2H 3D|1S (\d.|Pass|X) 2S 3H)\n[P3X45] // 57+105+44+42+00 = 248
+West Max Raise    :  (1H 2D 2H 3D|1S 2H 2S 3H)\n[P3X45]                                             // 24+025+11+04+00 =  64
+West Max resp to X:  (1H X 2H 3D|1S X 2S 3H)\n[P3X45]                                               // 11+038+00+06+00 =  55
+West Free Bid     :  (1H Pass 2H 3D|1S Pass 2S 3H)\n[P3X45]                                         // 22+042+33+32+00 = 129
+None of the above :Auction.....\n(?!(1H 2D 2H 3D|1S 2H 2S 3H)\n[P3X45]|(1H X 2H 3D|1S X 2S 3H)|(1H Pass 2H 3D|1S Pass 2S 3H)\n[P3X45])  // 170
+*/
 
 # Maximal Overcall Double
 
@@ -20,10 +22,10 @@ dealer north
 
 ## Calculate TP for South
 # Calculate South's Short-Suit Penalty Points
-sSp = spades(south)<3 and hcp(south,spades)>1     ? 1 : 0
-sHp = hearts(south)<3 and hcp(south,hearts)>1     ? 1 : 0
-sDp = diamonds(south)<3 and hcp(south,diamonds)>1 ? 1 : 0
-sCp = clubs(south)<3 and hcp(south,clubs)>1       ? 1 : 0
+sSp = spades(south)<3 and hcp(south,spades)>0     ? 1 : 0
+sHp = hearts(south)<3 and hcp(south,hearts)>0     ? 1 : 0
+sDp = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
+sCp = clubs(south)<3 and hcp(south,clubs)>0       ? 1 : 0
 
 # Calculate South's Short-Suit Points
 v1 = shape(south, any 0xxx) ? 3 : 0
