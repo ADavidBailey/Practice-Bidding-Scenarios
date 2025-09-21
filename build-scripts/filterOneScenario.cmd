@@ -63,13 +63,52 @@ exit /b
 :: Store the input parameter
 set inputString="%this_filter%"
 
+:: Put the chatGPT code after this line ---------------
+@echo off
+setlocal enabledelayedexpansion
 
-:: Replace \\n with a real newline (using a caret and actual newlines)
-set outputString=!inputString:\\n=\r?\n!
-rem Yay!!  Either of these strings work; [\s\S][\s\S] or \r?\n
+:: Define the input string, simulating newlines with literal "\\n" characters.
+set "inputString=Auction.....\\n1NT Pass 2C.* Pass\\n2D"
 
-:: echo inputString: !inputString!
-:: echo outputString: !outputString!
+:: Check if \\n exists in the input string
+echo !inputString! | findstr /C:"\\n" >nul
+if %errorlevel% equ 0 (
+    :: If \\n exists, replace it with \r?\n!
+    set "outputString=!inputString!"
+    set "outputString=!outputString:\\n=\r?\n!!"
+    echo After replacement of \\n: !outputString!
+) else (
+    :: If no \\n exists, handle actual newlines in the string.
+    set "outputString="
+    
+    :: Loop over each line of the input string.
+    for /f "tokens=* delims=" %%a in ('echo(!inputString!') do (
+        set "line=%%a"
+        
+        :: Replace real newlines (line breaks) with \r?\n!
+        set "line=!line!\r?\n!"
+        
+        :: Output each line (debugging output)
+        echo Inside loop - Current line: !line!
+        
+        :: Concatenate the result into outputString
+        set "outputString=!outputString!!line!"
+    )
+    :: After loop debugging
+    echo After loop - final outputString: !outputString!
+)
+
+:: Display the final result
+echo Final outputString after loop: !outputString!
+
+:: ----------------------------------
+
+:: Echo the values of inputString and outputString after all blocks.
+echo inputString: !inputString!
+echo outputString: !outputString!
+
+::endlocal
+
 
 :: ------------------ Thank You, ChatGPT! --------------------------------
 
@@ -79,4 +118,4 @@ cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn !outputString! P:\bba-filtere
 
 endlocal
 
-exit /b
+exit
