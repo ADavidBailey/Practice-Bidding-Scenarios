@@ -91,7 +91,16 @@ window.setDealerCode = function (dealerCode, dealer = "S", rotateDeals = true) {
                 case 7:
                     // Fill text area with new code
                     txtar.focus();
-                    txtar.value = dealerCode.replaceAll("\\n", "\\\n");    
+                    // Split the dealerCode into an array of lines
+                    let lines = dealerCode.split("\n");
+
+                    // Loop through each line and replace "\\n" with "\\\n" in each line
+                    for (let i = 0; i < lines.length; i++) {
+                        lines[i] = lines[i].replaceAll("\\n", "\\\n");
+                    }
+
+                    // Join the lines back together with newline characters
+                    txtar.value = lines.join("\n");    
                     txtar.focus();
                     break;
                 case 8:

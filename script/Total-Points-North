@@ -2,10 +2,10 @@
 
 ## Calculate TP for North
 # Calculate South's Short-Suit Penalty Points
-nSp = spades(north)<3   and hcp(north,spades)>1   ? 1 : 0
-nHp = hearts(north)<3   and hcp(north,hearts)>1   ? 1 : 0
-nDp = diamonds(north)<3 and hcp(north,diamonds)>1 ? 1 : 0
-nCp = clubs(north)<3    and hcp(north,clubs)>1    ? 1 : 0
+nSp = spades(north)<3   and hcp(north,spades)>0   ? 1 : 0
+nHp = hearts(north)<3   and hcp(north,hearts)>0   ? 1 : 0
+nDp = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
+nCp = clubs(north)<3    and hcp(north,clubs)>0    ? 1 : 0
 
 # Calculate South's Short-Suit Points
 v1 = shape(north, any 0xxx) ? 3 : 0
