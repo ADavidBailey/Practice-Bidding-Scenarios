@@ -96,7 +96,7 @@ window.setDealerCode = function (dealerCode, dealer = "S", rotateDeals = true) {
 
                     // Loop through each line and replace "\\n" with "\\\n" in each line
                     for (let i = 0; i < lines.length; i++) {
-                        lines[i] = lines[i].replaceAll("\\n", "\\\n");
+                        lines[i] = lines[i].replaceAll("\\n", "\\\n");
                     }
 
                     // Join the lines back together with newline characters
