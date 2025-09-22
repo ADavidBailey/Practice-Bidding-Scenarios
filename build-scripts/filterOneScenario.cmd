@@ -113,8 +113,8 @@ echo outputString: !outputString!
 :: ------------------ Thank You, ChatGPT! --------------------------------
 
 :: echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn !outputString! P:\bba-filtered\%scenario%.pbn --PDF /noui
-cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn !outputString! P:\bba-filtered\%scenario%.pbn --PDF /noui >nul
-cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn !outputString! P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui >nul
+cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered\%scenario%.pbn --PDF /noui >nul
+cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui >nul
 
 endlocal
 
