@@ -58,59 +58,23 @@ exit /b
 
 :foundFilter
 
-:: ----------------- Replace all \\n with \r?\n --------------------
+:: ----------------- Replace all \\n and \n with \r?\n --------------------
 
 :: Store the input parameter
 set inputString="%this_filter%"
 
-:: Put the chatGPT code after this line ---------------@echo off
-::setlocal enabledelayedexpansion
+:: Replace \\n and \n with a real newline (using a caret and actual newlines)
+:: the back-tick (`) is a character that cannot occur in the inputString
+set "outputString=!inputString:\\n=`!"
+set "outputString=!outputString:\n=`!"
+set "outputString=!outputString:`=\r?\n!!"
 
-:: Simulated test inputs
-rem set "inputString=Auction.....\n1NT Pass 2C.* Pass\n2D"
-set "inputString=Auction.....\\n1NT Pass 2C.* Pass\\n2D"
-rem (to test real line breaks, paste a multi-line string instead)
-
-:: ---- Decide which case we have ----
-set "outputString="
-
-:: Case A: Double-escaped (\\n present)
-echo !inputString! | findstr /C:"\\n" >nul
-if !errorlevel! equ 0 (
-    echo Detected double-escaped \\n
-    set "temp=!inputString:\\n=\n!"
-    set "outputString=!temp:\n=\r?\n!!"
-    goto :done
-)
-
-:: Case B: Single-escaped (\n present)
-echo !inputString! | findstr /C:"\n" >nul
-if !errorlevel! equ 0 (
-    echo Detected single-escaped \n
-    set "outputString=!inputString:\n=\r?\n!!"
-    goto :done
-)
-
-:: Case C: Actual multi-line input (no \n at all)
-echo Detected real newlines
-for /f "tokens=* delims=" %%a in ('echo(!inputString!') do (
-    set "line=%%a"
-    set "outputString=!outputString!!line!\r?\n!"
-)
-
-:done
-echo.
 echo Input:  !inputString!
 echo Output: !outputString!
 
-::endlocal
-
-
-:: ------------------ Thank You, ChatGPT! --------------------------------
-
 :: echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn !outputString! P:\bba-filtered\%scenario%.pbn --PDF /noui
-cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered\%scenario%.pbn --PDF /noui >nul
-cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn "!outputString!" P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui >nul
+cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn !outputString! P:\bba-filtered\%scenario%.pbn --PDF /noui >nul
+cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn !outputString! P:\bba-filtered-out\%scenario%.pbn --INVERSE --PDF /noui >nul
 
 endlocal
 
