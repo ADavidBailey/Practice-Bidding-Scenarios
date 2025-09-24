@@ -69,8 +69,8 @@ set "outputString=!inputString:\\n=`!"
 set "outputString=!outputString:\n=`!"
 set "outputString=!outputString:`=\r?\n!!"
 
-echo Input:  !inputString!
-echo Output: !outputString!
+::echo Input:  !inputString!
+::echo Output: !outputString!
 
 :: echo cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn !outputString! P:\bba-filtered\%scenario%.pbn --PDF /noui
 cscript /nologo S:\Filter.js P:\bba\%scenario%.pbn !outputString! P:\bba-filtered\%scenario%.pbn --PDF /noui >nul
