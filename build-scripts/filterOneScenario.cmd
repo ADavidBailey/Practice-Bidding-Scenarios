@@ -63,49 +63,45 @@ exit /b
 :: Store the input parameter
 set inputString="%this_filter%"
 
-:: Put the chatGPT code after this line ---------------
-@echo off
-setlocal enabledelayedexpansion
+:: Put the chatGPT code after this line ---------------@echo off
+::setlocal enabledelayedexpansion
 
-:: Define the input string, simulating newlines with literal "\\n" characters.
+:: Simulated test inputs
+rem set "inputString=Auction.....\n1NT Pass 2C.* Pass\n2D"
 set "inputString=Auction.....\\n1NT Pass 2C.* Pass\\n2D"
+rem (to test real line breaks, paste a multi-line string instead)
 
-:: Check if \\n exists in the input string
+:: ---- Decide which case we have ----
+set "outputString="
+
+:: Case A: Double-escaped (\\n present)
 echo !inputString! | findstr /C:"\\n" >nul
-if %errorlevel% equ 0 (
-    :: If \\n exists, replace it with \r?\n!
-    set "outputString=!inputString!"
-    set "outputString=!outputString:\\n=\r?\n!!"
-    echo After replacement of \\n: !outputString!
-) else (
-    :: If no \\n exists, handle actual newlines in the string.
-    set "outputString="
-    
-    :: Loop over each line of the input string.
-    for /f "tokens=* delims=" %%a in ('echo(!inputString!') do (
-        set "line=%%a"
-        
-        :: Replace real newlines (line breaks) with \r?\n!
-        set "line=!line!\r?\n!"
-        
-        :: Output each line (debugging output)
-        echo Inside loop - Current line: !line!
-        
-        :: Concatenate the result into outputString
-        set "outputString=!outputString!!line!"
-    )
-    :: After loop debugging
-    echo After loop - final outputString: !outputString!
+if !errorlevel! equ 0 (
+    echo Detected double-escaped \\n
+    set "temp=!inputString:\\n=\n!"
+    set "outputString=!temp:\n=\r?\n!!"
+    goto :done
 )
 
-:: Display the final result
-echo Final outputString after loop: !outputString!
+:: Case B: Single-escaped (\n present)
+echo !inputString! | findstr /C:"\n" >nul
+if !errorlevel! equ 0 (
+    echo Detected single-escaped \n
+    set "outputString=!inputString:\n=\r?\n!!"
+    goto :done
+)
 
-:: ----------------------------------
+:: Case C: Actual multi-line input (no \n at all)
+echo Detected real newlines
+for /f "tokens=* delims=" %%a in ('echo(!inputString!') do (
+    set "line=%%a"
+    set "outputString=!outputString!!line!\r?\n!"
+)
 
-:: Echo the values of inputString and outputString after all blocks.
-echo inputString: !inputString!
-echo outputString: !outputString!
+:done
+echo.
+echo Input:  !inputString!
+echo Output: !outputString!
 
 ::endlocal
 
