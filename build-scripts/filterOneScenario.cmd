@@ -63,11 +63,9 @@ exit /b
 :: Store the input parameter
 set inputString="%this_filter%"
 
-:: Replace \\n and \n with a real newline (using a caret and actual newlines)
-:: the back-tick (`) is a character that cannot occur in the inputString
-set "outputString=!inputString:\\n=`!"
-set "outputString=!outputString:\n=`!"
-set "outputString=!outputString:`=\r?\n!!"
+:: Replace \\n and \n with a newline
+set "outputString=!inputString:\\n=\n!"
+set "outputString=!outputString:\n=\r?\n!!"
 
 ::echo Input:  !inputString!
 ::echo Output: !outputString!
