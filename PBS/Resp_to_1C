@@ -1,0 +1,41 @@
+Script,RespTo1C
+setDealerCode(`
+
+/*
+South opens 1C and North has any 4+D and a 4-card major
+
+auction-filter: Auction.....\n1C.Pass
+*/
+
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Defines calmWest
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# Defines oneClub
+
+
+# South bids 1C and North responds
+nD = diamonds(north)>4
+nH = hearts(north)==4
+nS = spade(north)==4
+
+nShape = shape(north,any 5440+ any 5431 +any 5422)
+
+nRange1 = hcp(north)>5 and hcp(north)<11
+nRange2 = hcp(north)>10 and hcp(north)<13
+nRange3 = hcp(north)>12
+nRange = nRange1 or nRange2 or nRange3
+
+oneClub and nD and (nH or nS) and nShape and nRange and calmWest
+
+action
+
+`, "S", false)
+Script
+
+Button,After 1C (Pass),\n\
+--- Responses to 1C\n\
+South opens 1!C.  North has 5+!D and one or both 4-card majors\n\
+These do not use 'Randomly rotate' -- go to 'Deal source' to change it.\n\ 
+%RespTo1C%
