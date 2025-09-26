@@ -1,14 +1,16 @@
 Script,NtAfter1m
 setDealerCode(`
 
-# South opens 1C or 1D with no other constraints
-# North has any 4333 hand with the following ranges
-#
-#  6-9  with at least Qxx in each unbid suit -- no requirement for opener's suit
-# 10-12 with at least Kxx or QJx in each unbid suit AND at least Qxx in the opener's suit
-# 13-15 same as 10-12
+/*
+South opens 1C or 1D with no other constraints
+North has any 4333 hand with the following ranges
 
-# auction-filter: Auction.....\\n1[CD].Pass.[123]NT
+ 6-9  with at least Qxx in each unbid suit -- no requirement for opener's suit
+10-12 with at least Kxx or QJx in each unbid suit AND at least Qxx in the opener's suit
+13-15 same as 10-12
+
+auction-filter: Auction.....\n1[CD].Pass.[123]NT
+*/
 
 dealer south
 
@@ -28,7 +30,7 @@ nM3 = hcp(north,hearts)>2 and hcp(north,spades)>2
 # Define North's response ranges
 n1 = hcp(north)>5  and hcp(north)<10
 n2 = hcp(north)>9  and hcp(north)<13
-n3 = hcp(north)>13 and hcp(north)<16
+n3 = hcp(north)>12 and hcp(north)<16
 
 # South bids 1C or 1D and North responds 1N or 2/3N
 s1Cn1N = oneClub    and nD2 and nM2 and n1           // 1C - 1N with 2 hcp in unbid suits
