@@ -52,8 +52,9 @@ function Perform-Action {
             & Python P:\py\oneSummary.py --scenario $Scenario
         }
         "title" {
-            echo "--------- setOneTitle: Setting title for pbn\$Scenario.pbn"
-            & P:\build-scripts\setOneTitle.ps1 $Scenario
+#            echo "--------- setOneTitle: Setting title for pbn\$Scenario.pbn"
+#            & P:\build-scripts\setOneTitle.ps1 $Scenario
+            echo "--------- setOneTitle: Skipping"
         }
         "filter" {
             echo "--------- filterOneScenario.cmd: Creating bba-filtered\ and bba-filtered-out from bba\$Scenario.pbn"
