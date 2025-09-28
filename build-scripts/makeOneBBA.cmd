@@ -21,6 +21,5 @@ IF defined propertyvalue ( SET "conventionCard=%propertyvalue%" ) ELSE ( SET "co
 del %outputFilePath%.pbn
 
 BBA.exe --HAND %inputFilePath% --ARCHIVE_FILE %outputFilePath% --CC1 P:\bbsa\%conventionCard%.bbsa --CC2 P:\bbsa\%conventionCard%.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE > nul
-:: BBA.exe --TEAM1 2 --HAND %inputFilePath% --ARCHIVE_FILE %outputFilePath% --CC1 P:\bbsa\%conventionCard%.bbsa --CC2 P:\bbsa\%conventionCard%.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE > nul
 
 :exitbat
