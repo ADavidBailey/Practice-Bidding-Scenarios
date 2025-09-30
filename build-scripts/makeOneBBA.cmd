@@ -19,7 +19,6 @@ IF defined propertyvalue ( SET "conventionCard=%propertyvalue%" ) ELSE ( SET "co
 
 :: Invoke BBA to create a bba file from a pbn file
 del %outputFilePath%.pbn
-
-BBA.exe --HAND %inputFilePath% --ARCHIVE_FILE %outputFilePath% --CC1 P:\bbsa\%conventionCard%.bbsa --CC2 P:\bbsa\%conventionCard%.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE > nul
+BBA.exe --HAND %inputFilePath% --ARCHIVE_FILE %outputFilePath% --ARCHIVE_TYPE 4 --CC1 P:\bbsa\%conventionCard%.bbsa --CC2 P:\bbsa\%conventionCard%.bbsa --DD 0 --SD 1 --AUTOBID --AUTOCLOSE > nul
 
 :exitbat
