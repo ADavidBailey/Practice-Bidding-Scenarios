@@ -3,7 +3,7 @@ setDealerCode(`
 
 /*
 South opens 1C and North has any 4+D and a 4-card major
-
+convention-card: 21GF-Walsh
 auction-filter: Auction.....\n1C +Pass +1[DHS] +
 */
 
@@ -22,6 +22,9 @@ sClubs = clubs(south)<7
 nD = diamonds(north)>4
 nH = hearts(north)==4
 nS = spade(north)==4
+nDH = nD and nH
+nDS = nD and nS
+nDHS = nD and nH and nS
 
 nShape = shape(north,any 5440+ any 5431 +any 5422)
 
@@ -30,9 +33,12 @@ nRange2 = hcp(north)>10 and hcp(north)<13
 nRange3 = hcp(north)>12
 nRange = nRange1 or nRange2 or nRange3
 
-oneClub and sRange and sClubs and (nD or nH or nS) and nShape and nRange and calmWest
+oneClub and sRange and sClubs and (nDH or nDS or nDHS) and nShape and nRange and calmWest
 
 action
+average "D + H    " 100 * nDH,
+average "D + S    " 100 * nDS,
+average "D + H + S" 100 * nDHS,
 
 `, "S", false)
 Script
