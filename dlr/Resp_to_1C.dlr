@@ -7,7 +7,7 @@ dealer south
 /*
 South opens 1C and North has any 4+D and a 4-card major
 
-auction-filter: Auction.....\n1C.Pass
+auction-filter: Auction.....\n1C +Pass +1[DHS] +
 */
 
 
@@ -100,7 +100,10 @@ oneClub    = oC
 # Defines oneClub
 
 
-# South bids 1C and North responds
+# South bids 1C and North responds with 5+D and one or both 4-card majors
+sRange = hcp(south)>11 and hcp(south)<19
+sClubs = clubs(south)<7
+
 nD = diamonds(north)>4
 nH = hearts(north)==4
 nS = spade(north)==4
@@ -112,7 +115,7 @@ nRange2 = hcp(north)>10 and hcp(north)<13
 nRange3 = hcp(north)>12
 nRange = nRange1 or nRange2 or nRange3
 
-oneClub and nD and (nH or nS) and nShape and nRange and calmWest
+oneClub and sRange and sClubs and nD and (nH or nS) and nShape and nRange and calmWest
 
 action
 
