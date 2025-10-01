@@ -13,6 +13,8 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 # Defines calmWest
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 # Defines oneClub
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-North
+# Defines nTP
 
 
 # South bids 1C and North responds with 5+D and one or both 4-card majors
@@ -28,9 +30,9 @@ nDHS = nD and nH and nS
 
 nShape = shape(north,any 64xx +any 5440+ any 5431 +any 5422)
 
-nRange1 = hcp(north)>5 and hcp(north)<11
-nRange2 = hcp(north)>10 and hcp(north)<13
-nRange3 = hcp(north)>12
+nRange1 = nTP>5 and nTP<11
+nRange2 = nTP>10 and nTP<13
+nRange3 = nTP>12
 nRange = nRange1 or nRange2 or nRange3
 
 oneClub and sRange and sClubs and (nDH or nDS or nDHS) and nShape and nRange and calmWest
