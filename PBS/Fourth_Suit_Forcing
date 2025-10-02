@@ -13,7 +13,6 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-North
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 
-
 ###### Define Bidding Sequences #####
 # These variables are defined in the imported script
 # The number of cards South has in each suit: s, h, d, c
@@ -30,9 +29,9 @@ cN = clubs(north)
 
 # North responds in D, H, or S (Walsh style), or raises C.  longer than C to avoid 2/1
 
-# Predict North's responding suit
-nS  =  nP<11 ? sN>3 and sN>hN : sN>3 and sN>hN and sN>=dN and sN>=cN               // avoid 2/1 in minor
-nH  = (nP<11 ? hN>3           : hN>3           and hN>=dN and hN>=cN) and not (nS)
+# Predict North's responding strain -- bid up the line with 12-
+nS  =  nP<13 ? sN>3 and sN>hN : sN>3 and sN>=hN and sN>=dN and sN>=cN               // avoid 2/1 in minor
+nH  = (nP<13 ? hN>3           : hN>3            and hN>=dN and hN>=cN) and not nS
 nD  = dN>3           and dN>=cN and not (nS or nH)
 nC  = cN>4           and cN>4   and not (nS or nH or nD)
 nN  = not (nS or nH or nD or nC)
@@ -122,10 +121,12 @@ HNN = HN and sRN and not (HNC or HND or HNH or HNS)
 
 ##### End of Define Bidding Sequences #####
 
+noMajorFit = (oH and hearts(north)>2) or (oS and spades(north)>2)
+
 ##### Select appropriate 4SF bidding sequences #####
 noReverse = (CDH or CDS or CHS or DHS or DHC or DSC or HSC or HSD) and sP>11 and sP<17 // Avoid Jump Shifts
 isReverse = (CHD or CSD or CSH or DSH) and sP>16
-allSequences = noReverse or isReverse and not CDH     // CDH is ommited.  Many consider it natural and F1
+allSequences = noReverse or isReverse and noMajorFit
 
 # North's constraints
 nShape = shape(north,any 7xxx+any 6xxx+any 5xxx-any 74xx-any 64xx-any 5332-any 4432-any 4333) 
