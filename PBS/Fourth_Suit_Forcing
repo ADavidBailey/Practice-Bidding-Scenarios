@@ -1,13 +1,16 @@
 Script,FourthSuitForcing
 setDealerCode(`
 
-# convention-card:
-# auction-filter: Note...:Fourth.suit
+/*
+convention-card: 21GF-Walsh
+auction-filter: Note...:Fourth.suit
+*/
 
 produce 100
 dealer south
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-North
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 
 
@@ -17,7 +20,7 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 # South's predicted opening suit: oC, oD, oH, oS 
 
 sP = hcp(south)
-nP = hcp(north)
+nP = nTP
 
 # Predict North's 1-level response
 sN = spades(north)
