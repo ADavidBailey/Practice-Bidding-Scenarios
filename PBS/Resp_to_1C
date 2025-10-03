@@ -13,12 +13,14 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 # Defines calmWest
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 # Defines oneClub
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-South
+# Defines sTP
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-North
 # Defines nTP
 
 
 # South bids 1C and North responds with 5+D and one or both 4-card majors
-sRange = hcp(south)>11 and hcp(south)<19
+sRange = hcp(south)>10 and hcp(south)<22 and sTP>11 and sTP<23
 sClubs = clubs(south)<7
 
 nD = diamonds(north)>4
