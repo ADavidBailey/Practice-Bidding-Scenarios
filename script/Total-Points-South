@@ -3,7 +3,7 @@
 ## Calculate TP for South
 # Calculate South's Short-Suit Penalty Points
 sSP = spades(south)<3 and hcp(south,spades)>0     ? 1 : 0
-sHP= hearts(south)<3 and hcp(south,hearts)>0     ? 1 : 0
+sHP = hearts(south)<3 and hcp(south,hearts)>0     ? 1 : 0
 sDP = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
 sCP = clubs(south)<3 and hcp(south,clubs)>0       ? 1 : 0
 
