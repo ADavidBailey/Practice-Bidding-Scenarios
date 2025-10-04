@@ -2,11 +2,12 @@ Script,Bids
 setDealerCode(`
 
 /*
-South opens 1C and North responds 1D, 1H, or 1S  //the " +" insures that the response from North
+South opens 1C and North responds 1D, 1H, 1S, 1N, or 2C
+
+The trailing " +" in the filter insures that the response is from North.
 
 convention-card: 21GF-GIB
-auction-filter: 1C +Pass +(1[DHSN]|2C) +
-
+auction-filter: Auction.....\n1C +Pass +(1[DHSN]|2C) +
 */
 
 dealer south
@@ -43,9 +44,7 @@ rD = nD>3 and not(rS or rH)
 
 rN = not (rS or rH or rD) and nTP<13
 
-r2N = not (rS or rH or rD or rN) and nTP>12
-
-rC = clubs(north)>3 and not(rS or rH or rD or rN or r2N)
+rC = clubs(north)>3 and not(rS or rH or rD or rN)
 
 nResponds = rD or rH or rS or rN or rC
 
