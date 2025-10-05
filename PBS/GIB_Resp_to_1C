@@ -1,0 +1,88 @@
+Script,GibRespTo1C
+setDealerCode(`
+
+/*
+South opens 1C and North responds 1D, 1H, 1S, 1N, or 2C.
+
+convention-card: 21GF-GIB
+auction-filter: Auction.....\n1C .*Pass .*(1[DHS]|1NT?|2C|2NT?|3[CDHS]|3NT?) +
+
+*/
+
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Defines calmOpps
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# Defines oneClub
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-South
+# Defines sTP
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-North
+# Defines nTP
+
+# South bids 1C and North responds
+sRange = hcp(south)>10 and hcp(south)<22 and sTP>11 and sTP<23
+sClubs = oneClub and clubs(south)<7
+
+nRange = nTP>5 and nTP<16    // avoid strong jump shifts
+
+# Define responses to 1C
+nD = diamonds(north)
+nH = hearts(north)
+nS = spades(north)
+
+rS1 = nS>4 and nS>=nH             // higher ranking of 5+card suits
+rS2 = nTP<13 and nS==4 and nS>nH  // skip longer D w/<13 and bid up the line with 4
+rS3 = shape(north,4xxx -any 7xxx -any 6xxx) and nS>nH and nD<5
+r1S = rS1 or rS2 or rS3
+
+rH1 = nH>4 and nH>nS
+rH2 = nTP<13 and nH==4 and nH>=nS
+rH3 = shape(north,x4xx -any 7xxx) and nD<5
+r1H = (rH1 or rH2 or rH3) and not r1S
+
+rHS = r1H or r1S
+
+# Define stoppers
+dStop = hcp(north,diamonds)>0 or nD==4
+hStop = hcp(north,hearts)>0
+sStop = hcp(north,spades)>0
+stops = dStop and hStop and sStop
+
+nClubs = clubs(north)>4 and shape(north,any 1xxx) and nD<5   // prefer 2C
+nBal   = shape(north, any 4432 +any 4333 -xxx4)              // prefer NT
+
+r1N = nBal and hcp(north)>5  and hcp(north)<11 and not rHS
+r2N = nBal and hcp(north)>10 and hcp(north)<13 and not rHS and stops
+r3N = nBal and hcp(north)>12 and hcp(north)<16 and not rHS and stops
+rNT = (r1N or r2N or r3N)
+
+r3x = clubs(north)>4 and shape(north,any 0xxx +any 1xxx) and nTP>13 and not rHS //splinter
+r2C = nClubs and hcp(north)>9 and nTP<14 and not(rHS or r3x)
+r3C = clubs(north)>4 and hcp(north)<10 and nTP>4 and not(rHS) and clubs(north)>nD
+rC  = (r2C or r3C or r3x)
+
+r1D = nD>3 and not (r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N)
+
+nResponds = 1 //r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N
+
+oneClub and sClubs and sRange and nRange and nResponds and calmOpps
+
+action
+average "CD " 100 * r1D,
+average "CH " 100 * r1H,
+average "CS " 100 * r1S,
+average "CN " 100 * r1N,
+average "2C " 100 * r2C,
+average "2N " 100 * r2N,
+average "3x " 100 * r3x,
+average "3N " 100 * r3N,
+
+`, "S", false)
+Script
+
+Button,GIB after 1C!,\n\
+--- GIB responses to 1C\n\
+South opens 1!C and North responds w/anything other than Soloway JS.\n\
+Theis does not use 'Randomly rotate' -- go to 'Deal source' to change it.\n\ 
+%GibRespTo1C%
