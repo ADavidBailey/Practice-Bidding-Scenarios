@@ -33,12 +33,12 @@ nS = spades(north)
 
 rS1 = nS>4 and nS>=nH             // higher ranking of 5+card suits
 rS2 = nTP<13 and nS==4 and nS>nH  // skip longer D w/<13 and bid up the line with 4
-rS3 = shape(north,4xxx -any 7xxx -any 6xxx) and nS>nH and nD<5
+rS3 = shape(north,4xxx) and nS>nH and nD<5
 r1S = rS1 or rS2 or rS3
 
 rH1 = nH>4 and nH>nS
 rH2 = nTP<13 and nH==4 and nH>=nS
-rH3 = shape(north,x4xx -any 7xxx) and nD<5
+rH3 = shape(north,x4xx) and nD<5
 r1H = (rH1 or rH2 or rH3) and not r1S
 
 rHS = r1H or r1S
