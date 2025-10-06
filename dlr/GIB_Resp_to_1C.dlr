@@ -169,9 +169,9 @@ r1H = (rH1 or rH2 or rH3) and not r1S
 rHS = r1H or r1S
 
 # Define stoppers
-dStop = hcp(north,diamonds)>0 or nD==4
-hStop = hcp(north,hearts)>0
-sStop = hcp(north,spades)>0
+dStop = (hcp(north,diamonds) + nD)>4
+hStop = (hcp(north,hearts)   + nH)>4
+sStop = (hcp(north,spades)   + nS)>4
 stops = dStop and hStop and sStop
 
 nClubs = clubs(north)>4 and shape(north,any 1xxx) and nD<5   // prefer 2C
@@ -182,9 +182,9 @@ r2N = nBal and hcp(north)>10 and hcp(north)<13 and stops and not rHS
 r3N = nBal and hcp(north)>12 and hcp(north)<16 and stops and not rHS
 rNT = (r1N or r2N or r3N)
 
-r3x = clubs(north)>4 and shape(north,any 0xxx +any 1xxx) and nTP>13 and not rHS //splinter
-r2C = nClubs and hcp(north)>9 and not(rHS or r3x)
-r3C = clubs(north)>4 and hcp(north)<10 and nTP>4 and not(rHS) and clubs(north)>nD
+r3x = clubs(north)>4 and shape(north,any 0xxx +any 1xxx) and nTP>13  and not rHS //splinter
+r2C = nClubs and hcp(north)>9                                        and not(rHS or r3x)
+r3C = clubs(north)>4 and hcp(north)<10 and nTP>4 and clubs(north)>nD and not(rHS or r3x)
 rC  = (r2C or r3C or r3x)
 
 r1D = nD>3 and not (r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N)
