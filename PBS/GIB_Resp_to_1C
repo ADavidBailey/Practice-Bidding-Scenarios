@@ -50,11 +50,11 @@ sStop = hcp(north,spades)>0
 stops = dStop and hStop and sStop
 
 nClubs = clubs(north)>4 and shape(north,any 1xxx) and nD<5   // prefer 2C
-nBal   = shape(north, any 4432 +any 4333 -xxx4)              // prefer NT
+nBal   = shape(north, any 4432 +any 4333)                    // prefer NT
 
-r1N = nBal and hcp(north)>5  and hcp(north)<11 and not rHS
-r2N = nBal and hcp(north)>10 and hcp(north)<13 and not rHS and stops
-r3N = nBal and hcp(north)>12 and hcp(north)<16 and not rHS and stops
+r1N = nBal and hcp(north)>5  and hcp(north)<11           and not rHS
+r2N = nBal and hcp(north)>10 and hcp(north)<13 and stops and not rHS
+r3N = nBal and hcp(north)>12 and hcp(north)<16 and stops and not rHS
 rNT = (r1N or r2N or r3N)
 
 r3x = clubs(north)>4 and shape(north,any 0xxx +any 1xxx) and nTP>13 and not rHS //splinter
@@ -84,5 +84,5 @@ Script
 Button,GIB after 1!C,\n\
 --- GIB responses to 1C\n\
 South opens 1!C and North responds w/anything other than Soloway JS.\n\
-Theis does not use 'Randomly rotate' -- go to 'Deal source' to change it.\n\ 
+This does not use 'Randomly rotate' -- go to 'Deal source' to change it.\n\ 
 %GibRespTo1C%
