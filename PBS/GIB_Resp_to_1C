@@ -43,10 +43,10 @@ r1H = (rH1 or rH2 or rH3) and not r1S
 
 rHS = r1H or r1S
 
-# Define stoppers
-dStop = (hcp(north,diamonds) + nD)>4
-hStop = (hcp(north,hearts)   + nH)>4
-sStop = (hcp(north,spades)   + nS)>4
+# Define partial stops
+dStop = (hcp(north,diamonds) + nD)>3
+hStop = (hcp(north,hearts)   + nH)>3
+sStop = (hcp(north,spades)   + nS)>3
 stops = dStop and hStop and sStop
 
 nClubs = clubs(north)>4 and shape(north,any 1xxx) and nD<5   // prefer 2C
