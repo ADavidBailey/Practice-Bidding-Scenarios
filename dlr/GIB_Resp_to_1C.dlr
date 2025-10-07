@@ -188,9 +188,12 @@ rC   = r2C or r3C or r3x
 
 ## 3. Notrump
 
+n4432 = shape(north,any 4432)
+n4333 = shape(north,any 4333)
+
 r1N = nBal and hcp(north)>5  and hcp(north)<11              and not (rM or rC)
-r2N = nBal and hcp(north)>10 and hcp(north)<13 and stops==3 and not (rM or rC)
-r3N = nBal and hcp(north)>12 and hcp(north)<16 and stops==3 and not (rM or rC)
+r2N = n4432 and hcp(north)>10 and hcp(north)<13 and stops==3 and not (rM or rC)
+r3N = n4333 and hcp(north)>12 and hcp(north)<16 and stops==3 and not (rM or rC)
 rN = r1N or r2N or r3N
 
 ## 4. Diamonds
