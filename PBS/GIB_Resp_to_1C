@@ -50,7 +50,7 @@ hStop = (hcp(north,hearts)   + nH)>3
 sStop = (hcp(north,spades)   + nS)>3
 stops = (dStop + hStop + sStop)
 
-nBal   = shape(north, any 4432 +any 4333)
+nBal  = shape(north, any 4432 +any 4333)
 
 ## 2. Club support
 
@@ -63,12 +63,9 @@ rC   = r2C or r3C or r3x
 
 ## 3. Notrump
 
-n4432 = shape(north,any 4432)
-n4333 = shape(north,any 4333)
-
 r1N = nBal and hcp(north)>5  and hcp(north)<11              and not (rM or rC)
-r2N = n4432 and hcp(north)>10 and hcp(north)<13 and stops==3 and not (rM or rC)
-r3N = n4333 and hcp(north)>12 and hcp(north)<16 and stops==3 and not (rM or rC)
+r2N = nBal and hcp(north)>10 and hcp(north)<13 and stops==3 and not (rM or rC)
+r3N = nBal and hcp(north)>12 and hcp(north)<16 and stops==3 and not (rM or rC)
 rN = r1N or r2N or r3N
 
 ## 4. Diamonds
@@ -76,7 +73,7 @@ r1D = nD>3 and not (rM or rC or rN)
 
 #### Change the following line to get the responses you want
 
-nResponds = 1 //r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N
+nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N
 
 #### -------------------------------------------------------
 
