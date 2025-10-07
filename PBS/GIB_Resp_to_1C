@@ -44,6 +44,12 @@ r1H = (rH1 or rH2 or rH3) and not r1S
 
 rHS = r1H or r1S
 
+# GIB defines partial stop: length+HCP = 4 (Qx or Jxx)
+dStop = (hcp(north,diamonds) + nD)>3
+hStop = (hcp(north,hearts)   + nH)>3
+sStop = (hcp(north,spades)   + nS)>3
+stops = dStop and hStop and sStop
+
 nBal   = shape(north, any 4432 +any 4333)
 
 ## 2. Club support
@@ -51,16 +57,11 @@ nClubs1 = (nBal and clubs(north)==4)
 nClubs2 = (clubs(north)>4 and nTP>hcp(north) and nD<5)
 
 r3x = clubs(north)>4 and shape(north,any 0xxx +any 1xxx) and nTP>13  and not rHS //splinter
-r2C = (nClubs1 or nClubs2) and hcp(north)>9                          and not(rHS or r3x)
+r2C = (nClubs1 and hcp(north)>10) or (nClubs2 and hcp(north)>9)      and not(rHS or r3x)
 r3C = nClubs2 and hcp(north)<10 and nTP>4 and clubs(north)>nD        and not(rHS or r3x)
 rC  = r2C or r3C or r3x
 
 ## 3. Notrump
-# GIB defines partial stop: length+HCP = 4 (Qx or Jxx)
-dStop = (hcp(north,diamonds) + nD)>3
-hStop = (hcp(north,hearts)   + nH)>3
-sStop = (hcp(north,spades)   + nS)>3
-stops = dStop and hStop and sStop
 
 r1N = nBal and hcp(north)>5  and hcp(north)<11           and not (rHS or rC)
 r2N = nBal and hcp(north)>10 and hcp(north)<13 and stops and not (rHS or rC)
