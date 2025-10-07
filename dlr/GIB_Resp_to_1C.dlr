@@ -156,6 +156,7 @@ nD = diamonds(north)
 nH = hearts(north)
 nS = spades(north)
 
+## 1. Major suit opening
 rS1 = nS>4 and nS>=nH                       // higher ranking of 5+card suits
 rS2 = nTP<13 and nS==4 and nS>nH            // skip longer D w/<13
 rS3 = shape(north,4xxx) and nS>nH and nD<5  // prefer 4-card H/S to 4-card D
@@ -168,25 +169,31 @@ r1H = (rH1 or rH2 or rH3) and not r1S
 
 rHS = r1H or r1S
 
-nClubs = clubs(north)>4 and nTP>hcp(north) and nD<5   // prefer Clubs with shape
-nBal   = shape(north, any 4432 +any 4333)             // prefer NT
+nBal   = shape(north, any 4432 +any 4333)
 
+## 2. Club support
+nClubs1 = (nBal and clubs(north)==4)
+nClubs2 = (clubs(north)>4 and nTP>hcp(north) and nD<5)
+
+r3x = clubs(north)>4 and shape(north,any 0xxx +any 1xxx) and nTP>13  and not rHS //splinter
+r2C = (nClubs1 or nClubs2) and hcp(north)>9                          and not(rHS or r3x)
+r3C = nClubs1 and hcp(north)<10 and nTP>4 and clubs(north)>nD        and not(rHS or r3x)
+rC  = (r2C or r3C or r3x)
+
+## 3. Notrump
 # GIB defines partial stop: length+HCP = 4 (Qx or Jxx)
 dStop = (hcp(north,diamonds) + nD)>3
 hStop = (hcp(north,hearts)   + nH)>3
 sStop = (hcp(north,spades)   + nS)>3
 stops = dStop and hStop and sStop
 
-r1N = nBal and hcp(north)>5  and hcp(north)<11           and not rHS
-r2N = nBal and hcp(north)>10 and hcp(north)<13 and stops and not rHS
-r3N = nBal and hcp(north)>12 and hcp(north)<16 and stops and not rHS
+r1N = nBal and hcp(north)>5  and hcp(north)<11           and not (rHS or rC)
+r2N = nBal and hcp(north)>10 and hcp(north)<13 and stops and not (rHS or rC)
+r3N = nBal and hcp(north)>12 and hcp(north)<16 and stops and not (rHS or rC)
 rN = (r1N or r2N or r3N)
 
-r3x = clubs(north)>4 and shape(north,any 0xxx +any 1xxx) and nTP>13  and not rHS //splinter
-r2C = nClubs and hcp(north)>9                                        and not(rHS or r3x)
-r3C = nClubs and hcp(north)<10 and nTP>4 and clubs(north)>nD and     not(rHS or r3x)
-rC  = (r2C or r3C or r3x)
-r1D = nD>3 and not (rHS or rN or rC)
+## 4. Diamonds
+r1D = nD>3 and not (rHS or rC or rN)
 
 nResponds = 1 //r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N
 
