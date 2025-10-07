@@ -180,8 +180,8 @@ nBal   = shape(north, any 4432 +any 4333)
 ## 2. Club support
 
 r3x  = clubs(north)>4 and shape(north,any 0xxx +any 1xxx) and nTP>13  and not rHS //splinter
-nC2a = nBal and clubs(north)==4 and hcp(north)>10 and not stops
-nC2b = clubs(north)>4 and nTP>hcp(north) and nD<5 and hcp(north)>9            and not r3x
+nC2a = nBal and clubs(north)==4 and hcp(north)>10 and not stops       and not rHS
+nC2b = clubs(north)>4 and nTP>hcp(north) and nD<5 and hcp(north)>9    and not rHS  and not r3x
 r2C  = nC2a or nC2b
 r3C  = clubs(north)>4 and nTP>hcp(north) and nD<5 and hcp(north)<10 and nTP>4 and not r3x
 rC   = r2C or r3C or r3x
