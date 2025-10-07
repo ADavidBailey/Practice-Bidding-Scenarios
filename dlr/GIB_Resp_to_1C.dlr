@@ -177,8 +177,8 @@ nClubs2 = (clubs(north)>4 and nTP>hcp(north) and nD<5)
 
 r3x = clubs(north)>4 and shape(north,any 0xxx +any 1xxx) and nTP>13  and not rHS //splinter
 r2C = (nClubs1 or nClubs2) and hcp(north)>9                          and not(rHS or r3x)
-r3C = nClubs1 and hcp(north)<10 and nTP>4 and clubs(north)>nD        and not(rHS or r3x)
-rC  = (r2C or r3C or r3x)
+r3C = nClubs2 and hcp(north)<10 and nTP>4 and clubs(north)>nD        and not(rHS or r3x)
+rC  = r2C or r3C or r3x
 
 ## 3. Notrump
 # GIB defines partial stop: length+HCP = 4 (Qx or Jxx)
@@ -190,12 +190,14 @@ stops = dStop and hStop and sStop
 r1N = nBal and hcp(north)>5  and hcp(north)<11           and not (rHS or rC)
 r2N = nBal and hcp(north)>10 and hcp(north)<13 and stops and not (rHS or rC)
 r3N = nBal and hcp(north)>12 and hcp(north)<16 and stops and not (rHS or rC)
-rN = (r1N or r2N or r3N)
+rN = r1N or r2N or r3N
 
 ## 4. Diamonds
 r1D = nD>3 and not (rHS or rC or rN)
 
+#### Change the following line to get the responses you want
 nResponds = 1 //r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N
+#### -------------------------------------------------------
 
 oneClub and sClubs and sRange and nRange and nResponds and calmOpps
 
