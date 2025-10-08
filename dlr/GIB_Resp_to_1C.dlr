@@ -1,4 +1,4 @@
-# button-text: GIB after 1!C
+# button-text: GIB after 1C
 # scenario-title: GIB responses to 1C
 # GIB_Resp_to_1C
 dealer south
@@ -180,7 +180,7 @@ nBal  = shape(north, any 4432 +any 4333)
 ## 2. Club support
 
 r3x  = clubs(north)>4 and shape(north,any 0xxx +any 1xxx) and nTP>13  and not rM //splinter
-r2Ca = nBal and clubs(north)==4 and hcp(north)>10 and stops<3         and not rM
+r2Ca = nBal and clubs(north)==4 and hcp(north)>10                     and not rM
 r2Cb = clubs(north)>4 and nD<5  and hcp(north)>9                      and not (rM or r3x)
 r2C  = r2Ca or r2Cb
 r3C  = clubs(north)>4 and nD<5  and hcp(north)<10 and nTP>4           and not (rM or r3x)
@@ -198,11 +198,11 @@ r1D = nD>3 and not (rM or rC or rN)
 
 // Change the following line to get the responses you want --------
 //
-nResp = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N
+nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N
 //
 // ----------------------------------------------------------------
 
-oneClub and sClubs and sRange and nRange and nResp and calmOpps
+oneClub and sClubs and sRange and nRange and nResponds and calmOpps
 
 action
 average "CD " 100 * r1D,
