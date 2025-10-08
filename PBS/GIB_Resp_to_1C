@@ -21,8 +21,8 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 # Defines nTP
 
 # South bids 1C and North responds
-sRange = hcp(south)>10 and hcp(south)<22 and sTP>11 and sTP<23
-sClubs = oneClub and clubs(south)<7
+sRange = hcp(south)>11 and hcp(south)<22 and sTP>11 and sTP<23
+sClubs = oneClub and spades(south)<5 and hearts(south)<5
 
 nRange = nTP>5 and nTP<16    // avoid strong jump shifts
 
@@ -77,7 +77,7 @@ nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N
 //
 // ----------------------------------------------------------------
 
-oneClub and sClubs and sRange and nRange and nResponds and calmOpps
+sClubs and sRange and nRange and nResponds and calmOpps
 
 action
 average "CD " 100 * r1D,
