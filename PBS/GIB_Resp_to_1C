@@ -64,7 +64,7 @@ rC   = r2C or r3C or r3x
 ## 3. Notrump
 
 r1N = nBal and hcp(north)>5  and hcp(north)<11           and not (rM or rC)
-r2N = nBal and hcp(north)>10 and hcp(north)<13 and stops and not (rM or rC)
+r2N = nBal and hcp(north)>10 and hcp(north)<13           and not (rM or rC) and clubs(north)==4// and stops
 r3N = nBal and hcp(north)>12 and hcp(north)<16 and stops and not (rM or rC)
 rN = r1N or r2N or r3N
 
