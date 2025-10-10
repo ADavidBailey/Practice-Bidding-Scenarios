@@ -45,12 +45,11 @@ r1H = (rH1 or rH2 or rH3) and not r1S
 rM = r1H or r1S
 
 # GIB defines partial stop: length+HCP = 4 (Qx or Jxx)
-dStop = (hcp(north,diamonds) + nD)>3 ? 2 : 0
+dStop = (hcp(north,diamonds) + nD)>3 ? 2 : 0      // Dealer doesn't allow fractions; so 2 pts for an honor
 hStop = (hcp(north,hearts)   + nH)>3 ? 2 : 0
 sStop = (hcp(north,spades)   + nS)>3 ? 2 : 0
 
-
-dHalf = (hcp(north,diamonds)>0 + nD)==3 ? 1 : 0   // xxx or honor doubleton
+dHalf = (hcp(north,diamonds)>0 + nD)==3 ? 1 : 0   // and 1 pt for 3-cards or honor doubleton
 hHalf = (hcp(north,hearts)>0   + nH)==3 ? 1 : 0
 sHalf = (hcp(north,spades)>0   + nS)==3 ? 1 : 0
 half  = (dHalf or hHalf or sHalf)
