@@ -73,11 +73,11 @@ rN = r1N or r2N or r3N
 ## 4. Diamonds
 r1D = nD>3 and not (rM or rN or rC)
 
-rO  = not (r1D or rM or rN or rC)
+rOther  = not (r1D or rM or rN or rC)
 
 // Change the following line to get the responses you want --------
 //
-nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N or rO
+nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N or rOther
 //
 // ----------------------------------------------------------------
 
@@ -93,7 +93,7 @@ average "2N " 100 * r2N,
 average "3C " 100 * r3C,
 average "3x " 100 * r3x,
 average "3N " 100 * r3N,
-average "?  " 100 * rO,
+average "?  " 100 * rOther,
 
 `, "S", false)
 Script
