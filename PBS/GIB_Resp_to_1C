@@ -52,7 +52,7 @@ sStop = (hcp(north,spades)   + nS)>3 ? 2 : 0
 dHalf = (hcp(north,diamonds)>0 + nD)==3 ? 1 : 0   // and 1 pt for 3-cards or honor doubleton
 hHalf = (hcp(north,hearts)>0   + nH)==3 ? 1 : 0
 sHalf = (hcp(north,spades)>0   + nS)==3 ? 1 : 0
-half  = (dHalf or hHalf or sHalf)
+half  = (dHalf + hHalf + sHalf)
 
 stops = dStop + hStop + sStop + half
 
