@@ -54,13 +54,14 @@ nBal  = shape(north, any 4432 +any 4333)
 
 ## 2. Club support
 
-r3x  = clubs(north)>4 and shape(north,any 0xxx +any 1xxx) and nTP>13              and not rM          // splinter
-r2Ca = nBal and shape(north,3334+xx44) and hcp(north)>10 and hcp(north)<13 and stops<3 and not rM 
-r2Cb = nBal and shape(north,xxx4) and hcp(north)>12 and hcp(north)<16             and not rM          // GIB goes through 2C w/a bal 13-15
-r2Cc = clubs(north)>4 and nD<5  and hcp(north)>9                                  and not (rM or r3x)
-r2C  = r2Ca or r2Cb or r2Cc
-r3C  = clubs(north)>4 and nD<5  and hcp(north)<10 and nTP>4                       and not (rM or r3x)
-rC   = r2C or r3C or r3x
+r3x   = clubs(north)>4 and shape(north,any 0xxx +any 1xxx) and nTP>13              and not rM          // splinter
+r2C34 = nBal and shape(north,3334) and hcp(north)>10 and hcp(north)<13 and stops<3 and not rM
+r2C44 = nBal and shape(north,xx44) and hcp(north)>10 and hcp(north)<13 and stops<3 and not rM
+r2C3N = nBal and shape(north,xxx4) and hcp(north)>12 and hcp(north)<16             and not rM          // GIB goes through 2C w/a bal 13-15
+r2Cx5 = clubs(north)>4 and nD<5  and hcp(north)>9                                  and not (rM or r3x)
+r2C   = r2C34 or r2C44 or r2C3N or r2Cx5
+r3C   = clubs(north)>4 and nD<5  and hcp(north)<10 and nTP>4                       and not (rM or r3x)
+rC    = r2C34 or r2C44 or r2C3N or r2Cx5 or r3C or r3x
 
 ## 3. Notrump
 
