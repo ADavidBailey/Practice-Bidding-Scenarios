@@ -48,7 +48,7 @@ rM = r1H or r1S
 dStop = (hcp(north,diamonds) + nD)>3
 hStop = (hcp(north,hearts)   + nH)>3
 sStop = (hcp(north,spades)   + nS)>3
-stops = (dStop + hStop + sStop) ==3
+stops = (dStop + hStop + sStop) == 3
 
 nBal  = shape(north, any 4432 +any 4333)
 
@@ -63,21 +63,21 @@ rC   = r2C or r3C or r3x
 
 ## 3. Notrump
 
-r1N  = nBal and hcp(north)>5  and hcp(north)<11           and not (rM or rC)
-r2Na = nBal and hcp(north)>10 and hcp(north)<13 and stops and not (rM or rC)
-r2Nb = nBal and hcp(north)>10 and hcp(north)<13           and not (rM or rC)
-r2N  = r2Na or r2Nb
-r3N  = nBal and hcp(north)>12 and hcp(north)<16  and stops and not (rM or rC)
+r1N = nBal and hcp(north)>5  and hcp(north)<11           and not (rM or rC)
+r2N = nBal and hcp(north)>10 and hcp(north)<13 and stops and not (rM or rC)
+r3N = nBal and hcp(north)>12 and hcp(north)<16  and stops and not (rM or rC)
 
-rN = r1N or r2Na or r2Nb or r3N
+rN = r1N or r2N or r3N
 
 
 ## 4. Diamonds
 r1D = nD>3 and not (rM or rN or rC)
 
+rO  = not (r1D or rM or rN or rC)
+
 // Change the following line to get the responses you want --------
 //
-nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N
+nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N or rO
 //
 // ----------------------------------------------------------------
 
@@ -93,6 +93,7 @@ average "2N " 100 * r2N,
 average "3C " 100 * r3C,
 average "3x " 100 * r3x,
 average "3N " 100 * r3N,
+average "?  " 100 * rO,
 
 `, "S", false)
 Script
