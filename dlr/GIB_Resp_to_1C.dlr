@@ -183,13 +183,13 @@ sHalf = not sStop and (hcp(north,spades)>0   + nS)==3 ? 1 : 0
 
 stops = dStop + hStop + sStop + dHalf + hHalf +sHalf
 
-r2C34 = shape(north,3334) and hcp(north)>10 and hcp(north)<13 and stops<4 and not rM
-r2C44 = shape(north,xx44) and hcp(north)>10 and hcp(north)<13 and stops<4 and not rM
-r2C3N = shape(north,xxx4) and hcp(north)>12 and hcp(north)<16             and not rM          // GIB goes through 2C w/a bal 13-15
-r3x   = clubs(north)>4 and shape(north,any 0xxx +any 1xxx) and nTP>13     and not rM          // splinter
-r2Cx5 = clubs(north)>4 and nD<5  and hcp(north)>9                         and not (rM or r3x)
+r2C34 = shape(north,3334)           and hcp(north)>10 and hcp(north)<13 and stops<4 and not rM
+r2C44 = shape(north,3244+2344)      and hcp(north)>10 and hcp(north)<13 and stops<4 and not rM
+r2C3N = shape(north,3334+3244+2344) and hcp(north)>12 and hcp(north)<16             and not rM          // GIB goes through 2C w/a bal 13-15
+r3x   = clubs(north)>4 and shape(north,any 0xxx +any 1xxx) and nTP>13               and not rM          // splinter
+r2Cx5 = clubs(north)>4 and nD<5  and hcp(north)>9                                   and not (rM or r3x)
 r2C   = r2C34 or r2C44 or r2C3N or r2Cx5
-r3C   = clubs(north)>4 and nD<5  and hcp(north)<10 and nTP>4              and not (rM or r3x)
+r3C   = clubs(north)>4 and nD<5  and hcp(north)<10 and nTP>4                        and not (rM or r3x)
 rC    = r2C34 or r2C44 or r2C3N or r2Cx5 or r3C or r3x
 
 ## 3. Notrump
