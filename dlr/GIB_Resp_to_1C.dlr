@@ -157,6 +157,7 @@ nH = hearts(north)
 nS = spades(north)
 
 ## 1. Major suit opening
+
 rS1 = nS>4 and nS>=nH                       // higher ranking of 5+card suits
 rS2 = nTP<13 and nS==4 and nS>nH            // skip longer D w/<13
 rS3 = shape(north,4xxx) and nS>nH and nD<5  // prefer 4-card H/S to 4-card D
@@ -169,36 +170,35 @@ r1H = (rH1 or rH2 or rH3) and not r1S
 
 rM = r1H or r1S
 
+## 2. Club support
+
 # GIB defines partial stop: length+HCP = 4 (Qx or Jxx)
-dStop = (hcp(north,diamonds) + nD)>3 ? 2 : 0      // Dealer doesn't allow fractions; so 2 pts for an honor
+dStop = (hcp(north,diamonds) + nD)>3 ? 2 : 0      // Dealer doesn't allow fractions; so 2 pts for stop
 hStop = (hcp(north,hearts)   + nH)>3 ? 2 : 0
 sStop = (hcp(north,spades)   + nS)>3 ? 2 : 0
 
-dHalf = not dStop and (hcp(north,diamonds)>0 + nD)==3 ? 1 : 0   // and 1 pt for any 3-cards or honor doubleton
-hHalf = not hStop and (hcp(north,hearts)>0   + nH)==3 ? 1 : 0
+dHalf = not dStop and (hcp(north,diamonds)>0 + nD)==3 ? 1 : 0   // and 1 pt for half-stop: any 3-cards or honor doubleton
+hHalf = not hStop and (hcp(north,hearts)>0   + nH)==3 ? 1 : 0   // GIB dose not mention this, but it/s needed.
 sHalf = not sStop and (hcp(north,spades)>0   + nS)==3 ? 1 : 0
-half  = (dHalf + hHalf + sHalf)
 
-stops = dStop + hStop + sStop + half
+stops = dStop + hStop + sStop + dHalf + hHalf +sHalf
 
-nBal  = shape(north, any 4432 +any 4333)
-
-## 2. Club support
-
-r3x   = clubs(north)>4 and shape(north,any 0xxx +any 1xxx) and nTP>13              and not rM          // splinter
-r2C34 = nBal and shape(north,3334) and hcp(north)>10 and hcp(north)<13 and stops<4 and not rM
-r2C44 = nBal and shape(north,xx44) and hcp(north)>10 and hcp(north)<13 and stops<4 and not rM
-r2C3N = nBal and shape(north,xxx4) and hcp(north)>12 and hcp(north)<16             and not rM          // GIB goes through 2C w/a bal 13-15
-r2Cx5 = clubs(north)>4 and nD<5  and hcp(north)>9                                  and not (rM or r3x)
+r2C34 = shape(north,3334) and hcp(north)>10 and hcp(north)<13 and stops<4 and not rM
+r2C44 = shape(north,xx44) and hcp(north)>10 and hcp(north)<13 and stops<4 and not rM
+r2C3N = shape(north,xxx4) and hcp(north)>12 and hcp(north)<16             and not rM          // GIB goes through 2C w/a bal 13-15
+r3x   = clubs(north)>4 and shape(north,any 0xxx +any 1xxx) and nTP>13     and not rM          // splinter
+r2Cx5 = clubs(north)>4 and nD<5  and hcp(north)>9                         and not (rM or r3x)
 r2C   = r2C34 or r2C44 or r2C3N or r2Cx5
-r3C   = clubs(north)>4 and nD<5  and hcp(north)<10 and nTP>4                       and not (rM or r3x)
+r3C   = clubs(north)>4 and nD<5  and hcp(north)<10 and nTP>4              and not (rM or r3x)
 rC    = r2C34 or r2C44 or r2C3N or r2Cx5 or r3C or r3x
 
 ## 3. Notrump
 
-r1N = nBal and hcp(north)>5  and hcp(north)<11                                      and not (rM or rC)
-r2N = nBal and hcp(north)>10 and hcp(north)<13 and ((stops>4 and nD<4) or stops==6) and not (rM or rC)
-r3N = nBal and hcp(north)>12 and hcp(north)<16 and stops==6                         and not (rM or rC)
+nBal  = shape(north, any 4432 +any 4333) and not (rM or rC)
+
+r1N = nBal and hcp(north)>5  and hcp(north)<11
+r2N = nBal and hcp(north)>10 and hcp(north)<13 and ((stops>4 and nD<4) or stops==6)
+r3N = nBal and hcp(north)>12 and hcp(north)<16 and stops==6
 rN = r1N or r2N or r3N
 
 ## 4. Diamonds
