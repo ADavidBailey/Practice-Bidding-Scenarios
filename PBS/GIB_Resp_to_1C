@@ -20,6 +20,9 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-North
 # Defines nTP
 
+TOD = (balWest and hcp(west)>10 and shape(west,xxx2)) or (balEast and hcp(east)>10 and shape(east,xxx2))
+oppsPass = calmOpps and not TOD
+
 # South bids 1C and North responds
 sRange = hcp(south)>11 and hcp(south)<22 and sTP>11 and sTP<23
 sClubs = oneClub and spades(south)<5 and hearts(south)<5
@@ -87,7 +90,7 @@ nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N or rOthe
 //
 // ----------------------------------------------------------------
 
-sClubs and sRange and nRange and nResponds and calmOpps
+sClubs and sRange and nRange and nResponds and oppsPass
 
 action
 average "CD   " 100 * r1D,
