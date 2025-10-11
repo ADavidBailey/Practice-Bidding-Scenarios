@@ -47,19 +47,19 @@ rM = r1H or r1S
 
 ## 2. Club support
 
-# GIB defines partial stop: length+HCP = 4 (Qx or Jxx)
+# GIB defines partial stop: length+HCP = 4 (Qx or Jxx).  But, it bids differently with 3-cards or honor doubleton
 dStop = (hcp(north,diamonds) + nD)>3 ? 2 : 0      // Dealer doesn't allow fractions; so 2 pts for stop
 hStop = (hcp(north,hearts)   + nH)>3 ? 2 : 0
 sStop = (hcp(north,spades)   + nS)>3 ? 2 : 0
 
-dHalf = not dStop and (hcp(north,diamonds)>0 + nD)==3 ? 1 : 0   // and 1 pt for half-stop: any 3-cards or honor doubleton
-hHalf = not hStop and (hcp(north,hearts)>0   + nH)==3 ? 1 : 0   // GIB dose not mention this, but it/s needed.
-sHalf = not sStop and (hcp(north,spades)>0   + nS)==3 ? 1 : 0
+dHalf = not dStop and ((hcp(north,diamonds)>0) + nD)==3   // and 1 pt for half-stop: any 3-cards or honor doubleton
+hHalf = not hStop and ((hcp(north,hearts)>0)   + nH)==3
+sHalf = not sStop and ((hcp(north,spades)>0)   + nS)==3
 
 stops = dStop + hStop + sStop + dHalf + hHalf +sHalf
 
 r2C34 = shape(north,3334)           and hcp(north)>10 and hcp(north)<13 and stops<4 and not rM
-r2C44 = shape(north,3244+2344)      and hcp(north)>10 and hcp(north)<13 and stops<4 and not rM
+r2C44 = shape(north,3244+2344)      and hcp(north)>10 and hcp(north)<13 and stops<5 and not rM
 r2C3N = shape(north,3334+3244+2344) and hcp(north)>12 and hcp(north)<16             and not rM          // GIB goes through 2C w/a bal 13-15
 r3x   = clubs(north)>4 and shape(north,any 0xxx +any 1xxx) and nTP>13               and not rM          // splinter
 r2Cx5 = clubs(north)>4 and nD<5  and hcp(north)>9                                   and not (rM or r3x)
