@@ -20,8 +20,8 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-North
 # Defines nTP
 
-TOD = (balWest and hcp(west)>10 and shape(west,xxx2)) or (balEast and hcp(east)>10 and shape(east,xxx2))
-oppsPass = calmOpps and not TOD
+TakeOutDouble = (balWest and hcp(west)>10 and shape(west,xxx2)) or (balEast and hcp(east)>10 and shape(east,xxx2))  // Must know opening suit
+oppsPass = calmOpps and not TakeOutDouble
 
 # South bids 1C and North responds
 sRange = hcp(south)>11 and hcp(south)<22 and sTP>11 and sTP<23
@@ -50,7 +50,7 @@ rM = r1H or r1S
 
 ## 2. Club support
 
-# GIB defines partial stop: length+HCP = 4 (Qx or Jxx).  But, it bids differently with 3-cards or honor doubleton
+ GIB defines partial stop: length+HCP = 4 (Qx or Jxx).  But, it bids differently with 3-cards or honor doubleton
 dStop = (hcp(north,diamonds) + nD)>3 ? 2 : 0      // Dealer doesn't allow fractions; so 2 pts for stop
 hStop = (hcp(north,hearts)   + nH)>3 ? 2 : 0
 sStop = (hcp(north,spades)   + nS)>3 ? 2 : 0
@@ -59,7 +59,7 @@ dHalf = not dStop and ((hcp(north,diamonds)>0) + nD)==3   // and 1 pt for half-s
 hHalf = not hStop and ((hcp(north,hearts)>0)   + nH)==3
 sHalf = not sStop and ((hcp(north,spades)>0)   + nS)==3
 
-stops = dStop + hStop + sStop + dHalf + hHalf +sHalf
+stops = dStop + hStop + sStop + dHalf + hHalf +sHalf#
 
 r2C34 = shape(north,3334)           and hcp(north)>10 and hcp(north)<13 and stops<5 and not rM
 r2C44 = shape(north,3244+2344)      and hcp(north)>10 and hcp(north)<13 and stops<4 and not rM
@@ -75,12 +75,15 @@ rC    = r2C34 or r2C44 or r2C3N or r2Cx5 or r3C or r3x
 nBal  = shape(north, any 4432 +any 4333) and not (rM or rC)
 
 r1N = nBal and hcp(north)>5  and hcp(north)<11
-r2N = nBal and hcp(north)>10 and hcp(north)<13 and ((stops>2 and stops<5  and nD==4) or (stops>4 and nD<4) or stops==6)
+r2N = nBal and hcp(north)>10 and hcp(north)<13 and ((stops>3 and nD==4) or (stops>4 and nD<4) or stops==6)
 r3N = nBal and hcp(north)>12 and hcp(north)<16 and stops==6
 rN = r1N or r2N or r3N
 
 ## 4. Diamonds
+
 r1D = nD>3 and not (rM or rN or rC)
+
+## 5. Check for leaks
 
 rOther  = not (r1D or rM or rN or rC)
 
