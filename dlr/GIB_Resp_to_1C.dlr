@@ -145,8 +145,8 @@ nTP = hcp(north) + nv1+ns1+ns2+nd1+nd2+nd3 -nSP-nHP-nDP-nCP
 ### End of Calculate TP for North ###
 # Defines nTP
 
-TOD = (balWest and hcp(west)>10 and shape(west,xxx2)) or (balEast and hcp(east)>10 and shape(east,xxx2))
-oppsPass = calmOpps and not TOD
+TakeOutDouble = (balWest and hcp(west)>10 and shape(west,xxx2)) or (balEast and hcp(east)>10 and shape(east,xxx2))  // Must know opening suit
+oppsPass = calmOpps and not TakeOutDouble
 
 # South bids 1C and North responds
 sRange = hcp(south)>11 and hcp(south)<22 and sTP>11 and sTP<23
@@ -205,7 +205,10 @@ r3N = nBal and hcp(north)>12 and hcp(north)<16 and stops==6
 rN = r1N or r2N or r3N
 
 ## 4. Diamonds
+
 r1D = nD>3 and not (rM or rN or rC)
+
+## 5. Check for leaks
 
 rOther  = not (r1D or rM or rN or rC)
 
