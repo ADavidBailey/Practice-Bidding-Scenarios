@@ -46,7 +46,7 @@ stops = dStop + hStop + sStop + dHalf + hHalf +sHalf
 s3334 = nS==3 and nH==3  and nD==3
 s3343 = nS==3 and nH==3  and nD==4
 sxx44 = (nS==3 or nS==2) and nD==4 and nC==4  // 3244 or 2344
-nBal  = (s3334 or s3343 or sxx44)
+nBal  = (s3334 or s3343 or sxx44)  // no 4-card major
 
 ## Define South's 1C opening and North's responses
 
@@ -83,7 +83,7 @@ rC  = r2C34 or r2C44 or r2C3N or r2Cx5 or r3C or r3x
 
 ## 3. Notrump responses
 
-r1N  = hcp(north)>5  and hcp(north)<11 and not (rM or rC)
+r1N  = hcp(north)>5  and hcp(north)<11 and nBal and not rC
 
 r2Na = hcp(north)>10 and hcp(north)<13 and sxx44 and stops>3 and hcp(north,diamonds)>0 and not rC // prefer 1D or 2C
 r2Nb = hcp(north)>10 and hcp(north)<13 and s3334 and stops>4                           and not rC // no alternative
