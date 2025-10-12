@@ -24,7 +24,7 @@ dOpener = mOpener and (diamonds(south) >= clubs(south) or shape(south, xx32))
 cOpener = mOpener and not dOpener
 
 
-# Define strong rebiddable suit
+# Define strong rebiddable suit    GIB defines rebiddable as (5 cards or (4 cards with 3 of the top 5 and more than 4 8421 points)) + 1 card
 Gs = spades(north)>5 and top5(north,spades)>3 and not sOpener
 Gh = hearts(north)>5 and top5(north,hearts)>3 and (dOpener or cOpener)
 Gd = diamonds(north)>5 and top5(north,diamonds)>3 and cOpener
