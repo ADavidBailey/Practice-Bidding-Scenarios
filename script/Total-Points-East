@@ -1,7 +1,7 @@
 ##### Imported Script - Calculate Total Points for East #####
 
 ## Calculate TP for East
-# Calculate Nouth's Short-Suit Penalty Points
+# Calculate East's Short-Suit Penalty Points
 eSP = spades(east)<3   and hcp(east,spades)>0   ? 1 : 0
 eHP = hearts(east)<3   and hcp(east,hearts)>0   ? 1 : 0
 eDP = diamonds(east)<3 and hcp(east,diamonds)>0 ? 1 : 0
@@ -15,7 +15,7 @@ ed1 = shape(east, any 2xxx) ? 1 : 0 // allow for 3 doubletons
 ed2 = shape(east, any 22xx) ? 1 : 0
 ed3 = shape(east, any 222x) ? 1 : 0
 
-# Calculate South's Total Points
-eTP = hcp(east) + nv1+ns1+ns2+nd1+nd2+nd3 -nSP-nHP-nDP-nCP
+# Calculate East's Total Points
+eTP = hcp(east) + ev1+es1+es2+ed1+ed2+ed3 -eSP-3HP-eDP-eCP
 
 ### End of Calculate TP for East ###
