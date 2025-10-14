@@ -2,20 +2,20 @@
 
 ## Calculate TP for East
 # Calculate Nouth's Short-Suit Penalty Points
-nSP = spades(east)<3   and hcp(east,spades)>0   ? 1 : 0
-nHP = hearts(east)<3   and hcp(east,hearts)>0   ? 1 : 0
-nDP = diamonds(east)<3 and hcp(east,diamonds)>0 ? 1 : 0
-nCP = clubs(east)<3    and hcp(east,clubs)>0    ? 1 : 0
+eSP = spades(east)<3   and hcp(east,spades)>0   ? 1 : 0
+eHP = hearts(east)<3   and hcp(east,hearts)>0   ? 1 : 0
+eDP = diamonds(east)<3 and hcp(east,diamonds)>0 ? 1 : 0
+eCP = clubs(east)<3    and hcp(east,clubs)>0    ? 1 : 0
 
 # Calculate East's Short-Suit Points
-nv1 = shape(east, any 0xxx) ? 3 : 0 // allow for 1 void
-ns1 = shape(east, any 1xxx) ? 2 : 0 // allow for 2 singletons
-ns2 = shape(east, any 11xx) ? 2 : 0
-nd1 = shape(east, any 2xxx) ? 1 : 0 // allow for 3 doubletons
-nd2 = shape(east, any 22xx) ? 1 : 0
-nd3 = shape(east, any 222x) ? 1 : 0
+ev1 = shape(east, any 0xxx) ? 3 : 0 // allow for 1 void
+es1 = shape(east, any 1xxx) ? 2 : 0 // allow for 2 singletons
+es2 = shape(east, any 11xx) ? 2 : 0
+ed1 = shape(east, any 2xxx) ? 1 : 0 // allow for 3 doubletons
+ed2 = shape(east, any 22xx) ? 1 : 0
+ed3 = shape(east, any 222x) ? 1 : 0
 
 # Calculate South's Total Points
-nTP = hcp(east) + nv1+ns1+ns2+nd1+nd2+nd3 -nSP-nHP-nDP-nCP
+eTP = hcp(east) + nv1+ns1+ns2+nd1+nd2+nd3 -nSP-nHP-nDP-nCP
 
 ### End of Calculate TP for East ###
