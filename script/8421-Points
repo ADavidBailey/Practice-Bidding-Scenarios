@@ -1,0 +1,25 @@
+#### Define 8421 Points
+
+nSA = hascards(north, AS) ? 8 : 0
+nSK = hascards(north, KS) ? 4 : 0
+nSQ = hascards(north, QS) ? 2 : 0
+nSJ = hascards(north, JS) ? 1 : 0
+n8421 = nSA + nSK + nSQ + nSJ
+
+eSA = hascards(east, AS) ? 8 : 0
+eSK = hascards(east, KS) ? 4 : 0
+eSQ = hascards(east, QS) ? 2 : 0
+eSJ = hascards(east, JS) ? 1 : 0
+e8421 = eSA + eSK + eSQ + eSJ
+
+sSA = hascards(south, AS) ? 8 : 0
+sSK = hascards(south, KS) ? 4 : 0
+sSQ = hascards(south, QS) ? 2 : 0
+sSJ = hascards(south, JS) ? 1 : 0
+s8421 = sSA + sSK + sSQ + sSJ
+
+wSA = hascards(west, AS) ? 8 : 0
+wSK = hascards(west, KS) ? 4 : 0     
+wSQ = hascards(west, QS) ? 2 : 0     
+wSJ = hascards(west, JS) ? 1 : 0
+w8421 = wSA + wSK + wSQ + wSJ

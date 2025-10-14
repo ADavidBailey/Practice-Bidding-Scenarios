@@ -1,0 +1,112 @@
+Script,GIB-1N-P-2C-Bid
+
+setDealerCode(`
+
+# auction-filter: Auction.....\\n1NT Pass 2C
+
+# Stayman
+dealer south
+
+# 1 Notrump Opening
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+# Defines gibNT
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Defines calmWest
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-East
+# Defines eTP
+
+# Define various 2C bids
+dropDeadStayman = shape(north,4441+4450) and hcp(north)<8
+crawlingStayman = shape(north,4414+4405) and hcp(north)<8
+majorInvite = shape(north,54xx+45xx) and hcp(north)>7 and hcp(north)<10  // GIB doesn't play this part
+smolen = shape(north,54xx+45xx) and hcp(north)>9
+stayman = shape(north,4xxx+x4xx-any 0xxx-any 1xxx) and hcp(north)>7 and not (majorInvite or smolen)
+n2Clubs = stayman or dropDeadStayman or crawlingStayman or majorInvite or smolen
+
+# Define East's twice biddable suits: (5+cards or 4 cards with 3 of top 5 or more than 4  8421 points) + 2 cards
+eC8 = hascard(east,AC) ? 8 : 0
+eC4 = hascard(east,KC) ? 4 : 0
+eC2 = hascard(east,QC) ? 2 : 0
+eC1 = hascard(east,JC) ? 1 : 0
+eC8421 = eC8+eC4+eC2+eC1
+
+eD8 = hascard(east,AD) ? 8 : 0
+eD4 = hascard(east,KD) ? 4 : 0
+eD2 = hascard(east,QD) ? 2 : 0
+eD1 = hascard(east,JD) ? 1 : 0
+eD8421 = eD8+eD4+eD2+eD1
+
+eH8 = hascard(east,AH) ? 8 : 0
+eH4 = hascard(east,KH) ? 4 : 0
+eH2 = hascard(east,QH) ? 2 : 0
+eH1 = hascard(east,JH) ? 1 : 0
+eH8421 = eH8+eH4+eH2+eH1
+
+eS8 = hascard(east,AS) ? 8 : 0
+eS4 = hascard(east,KS) ? 4 : 0
+eS2 = hascard(east,QS) ? 2 : 0
+eS1 = hascard(east,JS) ? 1 : 0 
+eS8421 = eS8+eS4+eS2+eS1
+
+eTBC = clubs(east)>6    or (clubs(east)>5    and (top5(east,clubs)>3    or eC8421>4))
+eTBD = diamonds(east)>6 or (diamonds(east)>5 and (top5(east,diamonds)>3 or eD8421>4))
+eTBH = hearts(east)>6   or (hearts(east)>5   and (top5(east,hearts)>3   or eH8421>4))
+eTBS = spades(east)>6   or (spades(east)>5   and (top5(east,spades)>3   or eS8421>4))
+
+# Define East's bids over 2C
+e2D = eTBD and eTP>10
+e2H = eTBH and eTP>10
+e2S = eTBS and eTP>10
+e2N = hcp(east)>23 and stops==8
+eB2 = e2D or e2H or e2S or e2N
+
+e3C = clubs(east)>6    and eTP>10
+e3D = diamonds(east)>6 and eTP>10
+e3H = hearts(east)>6   and eTP>10
+e3S = spades(east)>6   and eTP>10
+e3N = hcp(east>24 and hcp(east<33 and spades(east)<5 and hearts(east)<5
+eB3 = e3C or e3D or e3H or e3S
+
+e4C = clubs(east)>6    and eTP>2
+e4D = diamonds(east)>6 and eTP>2
+e4H = hearts(east)>6   and eTP>2
+e4S = spades(east)>6   and eTP>2
+eB4 = e4C or e4D or e4H or e4S
+
+gibNT and calmWest and n2Clubs (eB2 or eB3 or eB4)
+
+action
+average "dropDead    " 100 * dropDeadStayman,
+average "crawling    " 100 * crawlingStayman,
+average "45xx Invite " 100 * (majorInvite and shape(north,45xx)),
+average "54xx Invite " 100 * (majorInvite and shape(north,54xx)),
+average "smolen      " 100 * smolen,
+average "stayman     " 100 * stayman,
+average "2D          " 100 * e2D,
+average "2H          " 100 * e2H,
+average "2S          " 100 * e2S,
+average "2N          " 100 * e2N,
+average "3C          " 100 * e3C,
+average "3D          " 100 * e3D,
+average "3H          " 100 * e3H,
+average "3S          " 100 * e3S,
+average "3N          " 100 * e3N,
+average "4C          " 100 * e4C,
+average "4D          " 100 * e4D,
+average "4H          " 100 * e4H,
+average "4S          " 100 * e4S,
+
+`,"S",true)
+Script
+Button,Stayman,\n\
+--- Stayman asks the opener for a 4-card major.  Responses are as follow...\n\
+• 2!D - No 4-card major\n\
+• 2!H - 4+!H，may also have 4!S\n\
+• 2!S - 4+!S and denies 4!H\n\
+Normally，Stayman shows 8+HCP; but，if you're willing to pass anything that your\n\
+partner might bid，you may bid 2!C with any strength.\n\
+https://www.bridgebum.com/stayman.php\n\
+https://www.bridgebum.com/crawling_stayman.php\n\
+
+
+%GIB-1N-P-2C-Bid%
