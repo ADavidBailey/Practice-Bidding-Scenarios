@@ -1,4 +1,4 @@
-Script,Stayman
+Script,GibStayman
 setDealerCode(`
 
 /*
@@ -14,17 +14,27 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
 # Defines calmWest
 
-dropDeadStayman = shape(north,4441+4450) and hcp(north)<8
-crawlingStayman = shape(north,4414+4405) and hcp(north)<8
-majorInvite = shape(north,54xx+45xx) and hcp(north)>7 and hcp(north)<10  // GIB doesn't play this part
-smolen = shape(north,54xx+45xx) and hcp(north)>9
-stayman = shape(north,4xxx+x4xx-any 0xxx-any 1xxx) and hcp(north)>7 and not (majorInvite or smolen)
+# Calculate North's Short-Suit Penalty Points
+nSP = spades(north)<3 and hcp(north,spades)>0     ? 1 : 0
+nHP = hearts(north)<3 and hcp(north,hearts)>0     ? 1 : 0
+nDP = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
+nCP = clubs(north)<3 and hcp(north,clubs)>0       ? 1 : 0
+nTP = hcp(north) -nSP -nHP -nDP -nCP
 
-gibNT and (stayman or dropDeadStayman or crawlingStayman or majorInvite or smolen) and calmWest
+# Boost quality of North's major
+nQS = spades(north)==4 and hcp(north,spades)>1
+nQH = hearts(north)==4 and hcp(north,hearts)>1
+nQ  = nQS or nQH
+
+# Define various 2C bids -- GIB does not play Drop Dead or Crawlling Stayman
+smolen      = shape(north,54xx +45xx) and nTP>9
+majorInvite = shape(north,54xx +45xx) and nTP>7 and nTP<10
+stayman     = shape(north,4xxx +x4xx -any 4441 - any 4450 - any 9xxx -any 8xxx -any 7xxx -any 6xxx) and nTP>7 and nQ and not smolen  // avoid splinter
+n2Clubs = stayman or majorInvite or smolen
+
+gibNT and n2Clubs and calmWest
 
 action
-average "dropDead    " 100 * dropDeadStayman,
-average "crawling    " 100 * crawlingStayman,
 average "45xx Invite " 100 * (majorInvite and shape(north,45xx)),
 average "54xx Invite " 100 * (majorInvite and shape(north,54xx)),
 average "smolen      " 100 * smolen,
@@ -32,7 +42,7 @@ average "stayman     " 100 * stayman,
 
 `,"S",true)
 Script
-Button,Stayman,\n\
+Button,GIB Stayman,\n\
 --- Stayman asks the opener for a 4-card major.  Responses are as follow...\n\
 • 2!D - No 4-card major\n\
 • 2!H - 4+!H，may also have 4!S\n\
@@ -41,4 +51,4 @@ Normally，Stayman shows 8+HCP; but，if you're willing to pass anything that yo
 partner might bid，you may bid 2!C with any strength.\n\
 https://www.bridgebum.com/stayman.php\n\
 https://www.bridgebum.com/crawling_stayman.php\n\
-%Stayman%
+%GibStayman%
