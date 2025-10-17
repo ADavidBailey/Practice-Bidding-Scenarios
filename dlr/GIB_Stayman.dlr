@@ -68,8 +68,8 @@ nQ  = nQS or nQH
 
 # Define various 2C bids -- GIB does not play Drop Dead or Crawlling Stayman
 smolen      = shape(north,54xx +45xx) and nTP>9
-majorInvite = shape(north,54xx +45xx) and nTP>7 and hcp(north)<10
-stayman     = shape(north,4xxx +x4xx -any 4441 - any 4450 - any 9xxx -any 8xxx -any 7xxx -any 6xxx) and nTP>7 and nQ and not (smolen or majorInvite)
+majorInvite = shape(north,54xx +45xx) and nTP>6 and nTP<10 and hcp(north)<10
+stayman     = shape(north,4xxx +x4xx +any 4432) and nTP>7 and nQ and not (smolen or majorInvite)
 n2Clubs = stayman or majorInvite or smolen
 
 gibNT and n2Clubs and calmWest
