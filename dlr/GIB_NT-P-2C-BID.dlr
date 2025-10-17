@@ -5,7 +5,7 @@ dealer south
 
 
 /*
-auction-filter: Auction.....\n1NT?.* Pass.* 2C.* [2-4]
+auction-filter: Auction.....\n1NT?.* P.* 2C.* [2-7][DHS]\n
 */
 
 # Stayman
@@ -164,13 +164,11 @@ eTBH5 = hearts(east)>3   and (top5(east,hearts)==5)
 eTBS5 = spades(east)>3   and (top5(east,spades)==5)
 eTB5  = eTBD5 or eTBH5 or eTBS5
 
-
-# Define East's bids over 2C -- Twice Bdiddable with extra strength
-
-
 eSuits  = ((eTB3 and eTP>14) or (eTB4 and eTP>13) or (eTB5 and eTP>12))
+
 e2Range = hcp(east)>9 and eTP<17
 
+# Define East's bids over 2C -- Twice Bdiddable with extra strength
 e2D = diamonds(east)==6 and e2Range and eSuits
 e2H = hearts(east)==6   and e2Range and eSuits
 e2S = spades(east)==6   and e2Range and eSuits
