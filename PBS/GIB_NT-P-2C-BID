@@ -3,7 +3,7 @@ Script,GIB-1N-P-2C-Bid
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\n1NT?.* P.* 2C.* [2-7][DHS]\n
+auction-filter: Auction.....\n1NT?.* P.* 2C.* [2-7][CDHS]\n
 */
 
 # Stayman
@@ -33,8 +33,9 @@ nQ  = nQS or nQH
 
 # Define various 2C bids -- GIB does not play Drop Dead or Crawlling Stayman
 smolen  = shape(north,54xx +45xx) and hcp(north)>9
-stayman = shape(north,4xxx +x4xx -any 4441 - any 4450 - any 9xxx -any 8xxx -any 7xxx -any 6xxx) and nTP>7 and nQ and not smolen  // avoid splinter
-n2Clubs = stayman or smolen
+majorInvite = shape(north,54xx) and nTP>6 and nTP<10 and hcp(north)<10  // 2C & correct D to S
+stayman = shape(north,4xxx +x4xx -any 4441 - any 4450 - any 9xxx -any 8xxx -any 7xxx -any 6xxx) and nTP>7 and nQ and not (majorInvite or smolen)  // avoid splinter
+n2Clubs = stayman or smolen or majorInvite
 
 # Define East's 8421 Points for each suit
 eC8 = hascard(east,AC) ? 8 : 0
@@ -65,29 +66,32 @@ eS8421 = eS8+eS4+eS2+eS1
 # Only quality suits count for 2-level bids
 
 # East has one 6+card D, H, or S suit, less than 5 clubs (avoid X), no second suit longer than 4-cards, a singleton or void
-eShape = shape(east, any 9xxx +any 8xxx+ any 7xxx +any 6xxx -any 85xx -any 76xx -any 66xx -any 65xx) and shape(east, any 1xxx +any 0xxx) and clubs(south)<5
+eShape = shape(east, any 9xxx +any 8xxx+ any 7xxx +any 6xxx -any 85xx -any 76xx -any 66xx -any 65xx) and shape(east, any 1xxx +any 0xxx) and (clubs(south)<5 or clubs(south)>6)
 
 # Twice Biddable suits w/3 of top 5
+eTBC3 = eShape and clubs(east)>5    and (top5(east,clubs)==3    or eC8421>4)
 eTBD3 = eShape and diamonds(east)>5 and (top5(east,diamonds)==3 or eD8421>4)
 eTBH3 = eShape and hearts(east)>5   and (top5(east,hearts)==3   or eH8421>4)
 eTBS3 = eShape and spades(east)>5   and (top5(east,spades)==3   or eS8421>4)
-eTB3  = eTBD3 or eTBH3 or eTBS3
+eTB3  = eTBC3 or eTBD3 or eTBH3 or eTBS3
 
 # Twice Biddable suits w/4 of top 5 -- this is also Strong Rebiddable & 8421 must be >4
+eTBC4 = clubs(east)>3    and (top5(east,clubs)==4)
 eTBD4 = diamonds(east)>3 and (top5(east,diamonds)==4)
 eTBH4 = hearts(east)>3   and (top5(east,hearts)==4)
 eTBS4 = spades(east)>3   and (top5(east,spades)==4)
-eTB4  = eTBD4 or eTBH4 or eTBS4
+eTB4  = eTBC4 or eTBD4 or eTBH4 or eTBS4
 
 # Twice Biddable suits w/5 of top 5 -- this is also Strong Rebiddable
+eTBC5 = clubs(east)>3    and (top5(east,clubs)==5)
 eTBD5 = diamonds(east)>3 and (top5(east,diamonds)==5)
 eTBH5 = hearts(east)>3   and (top5(east,hearts)==5)
 eTBS5 = spades(east)>3   and (top5(east,spades)==5)
-eTB5  = eTBD5 or eTBH5 or eTBS5
+eTB5  = eTBC5 or eTBD5 or eTBH5 or eTBS5
 
 eSuits  = ((eTB3 and eTP>14) or (eTB4 and eTP>13) or (eTB5 and eTP>12))
 
-e2Range = hcp(east)>9 and eTP<17
+e2Range = hcp(east)>9 and eTP>10 and eTP<17
 
 # Define East's bids over 2C -- Twice Bdiddable with extra strength
 e2D = diamonds(east)==6 and e2Range and eSuits
@@ -96,21 +100,24 @@ e2S = spades(east)==6   and e2Range and eSuits
 e2B = e2D or e2H or e2S
 
 # 3- and 4-level suits require length and may have suit-quality
-e3Range = hcp(east)>9 and eTP<17
+e3Range = hcp(east)>9 and eTP>10 and eTP<17
+e3C = clubs(east)>6    and eSuits and e3Range
 e3D = diamonds(east)>6 and eSuits and e3Range and not e2D
 e3H = hearts(east)>6   and eSuits and e3Range and not e2H
 e3S = spades(east)>6   and eSuits and e3Range and not e2S
-e3B = e3D or e3H or e3S
+e3B = e3C or e3D or e3H or e3S
 
 # Define East's 4-level weak bids
-e4wRange = hcp(east)<10 and eTP>9
-e4Dw = diamonds(east)>7 and top4(east,diamonds)>2 and e4wRange and not (e2D or e3D)
-e4Hw = hearts(east)>7   and top4(east,hearts)>2   and e4wRange and not (e2H or e3H)
-e4Sw = spades(east)>7   and top4(east,spades)>2   and e4wRange and not (e2S or e3S)
+e4wRange = hcp(east)<10
+e4Cw = clubs(east)>8    and e4wRange
+e4Dw = diamonds(east)>7 and e4wRange and not (e2D or e3D)
+e4Hw = hearts(east)>7   and e4wRange and not (e2H or e3H)
+e4Sw = spades(east)>7   and e4wRange and not (e2S or e3S)
 e4Bw = e4Dw or e4Hw or e4Sw
 
 # Define East's 4-level strong bids
-e4sRange = hcp(east)>9 and eTP>16
+e4sRange = hcp(east)>9
+e4Cs = clubs(east)>7    and top4(east,clubs)>2    and e4sRange and not e3C
 e4Ds = diamonds(east)>7 and top4(east,diamonds)>2 and e4sRange and not (e2D or e3D)
 e4Hs = hearts(east)>7   and top4(east,hearts)>2   and e4sRange and not (e2H or e3H)
 e4Ss = spades(east)>7   and top4(east,spades)>2   and e4sRange and not (e2S or e3S)
@@ -127,9 +134,11 @@ gibNT and sTP<19 and calmWest and n2Clubs and eShape and (e2B or e3B or e4B)
 action
 average "smolen      " 100 * smolen,
 average "stayman     " 100 * stayman,
+average "major invite" 100 * majorInvite,
 average "2D          " 100 * e2D,
 average "2H          " 100 * e2H,
 average "2S          " 100 * e2S,
+average "3C          " 100 * e3C,
 average "3D          " 100 * e3D,
 average "3H          " 100 * e3H,
 average "3S          " 100 * e3S,
