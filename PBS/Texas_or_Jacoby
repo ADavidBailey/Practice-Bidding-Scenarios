@@ -4,30 +4,24 @@ setDealerCode(`
 # Stayman or Jacoby
 dealer north
 
-# auction-filter: (1NT Pass 2[DH])|(1NT Pass 4[DH])
+/*
+auction-filter: (1NT?.* Pass.* 2[DH] +)|(1NT?.* Pass.* 4[DH] +)
+*/
 
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+# Defines gibNT
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
 # Defines calmEast
 
-# GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
-ntP = hcp(north) + shape(north,5xxx+x5xx)
-nt1 = shape(north, any 5332+any 4432+any 4333) and hcp(north)>14 and ntP<18
-
-# GIB does not open with 5422 and a 5-card major
-# GIB does not open with 5422 and the strength to reverse
-nt2 = shape(north, 4252+4225+2452+2425+2254+2245) and hcp(north)>14 and hcp(north)<17
-
-gibNT = nt1 or nt2
-
 # South has a 5+card major w/o 4 in other major and (no slam interest or intending to RKC)
-sS = shape(south,7xxx+6xxx+5xxx) and hearts(south)<4   // avoid Smolen
-sH = shape(south,x7xx+x6xx+x5xx) and spades(south)<4
+sS = shape(north,7xxx+6xxx+5xxx) and hearts( north)<4   // avoid Smolen
+sH = shape(north,x7xx+x6xx+x5xx) and spades( north)<4
 sM = (sS or sH)
 
 # North has Robot 1 Notrump Opening and South Transfers
 gibNT and sM and calmEast
 
-`,"N",false)
+`,"S",false)
 Script
 Button,Jacoby or Texas,\n\
 ---  Jacoby or Texas\n\
