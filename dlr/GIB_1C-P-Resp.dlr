@@ -215,9 +215,7 @@ r2Nb = hcp(north)>10 and hcp(north)<13 and s3334 and stops>4                    
 r2Nc = hcp(north)>10 and hcp(north)<13 and s3343 and stops>5                           and not rC // prefer 1D
 r2N = r2Na or r2Nb or r2Nc
 
-r3N = hcp(north)>12 and hcp(north)<16  and nBal  and stops>5                           and not rC
-
-rN  = r1N or r2N or r3N
+rN  = r1N or r2N
 
 ## 4. Diamonds
 
@@ -229,7 +227,7 @@ rOther  = not (r1D or rM or rN or rC)
 
 // Change the following line to get the responses you want --------
 //
-nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N or rOther
+nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or rOther
 //
 // ----------------------------------------------------------------
 
@@ -244,7 +242,6 @@ average "2C   " 100 * r2C,
 average "2N   " 100 * r2N,
 average "3C   " 100 * r3C,
 average "3x   " 100 * r3x,
-average "3N   " 100 * r3N,
 average "other" 100 * rOther,
 
 
