@@ -4,7 +4,6 @@ setDealerCode(`
 # convention-card: 21GF-Gambling
 # auction-filter: Auction.....\\n3N.
 
-
 dealer south
 
 # Gambling 3N
@@ -15,11 +14,12 @@ and
 or
 (top3(south,clubs)==3 and clubs(south)>6)
 )
+and shape(south,any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
 
 `,"S",true)
 Script
 Button,Gambling 3N,\n\
 --- Gambling 3N\n\
-A gambling 3N opening bid shows a solid 7+-card minor suit and less than a K outside.\n\
+A gambling 3N opening bid shows a solid 7 or 8-card minor suit and less than a K outside.\n\
 https://www.bridgebum.com/gambling_3nt.php\n\
 %Gambling3N%

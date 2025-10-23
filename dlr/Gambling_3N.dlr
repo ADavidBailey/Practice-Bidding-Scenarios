@@ -8,7 +8,6 @@ dealer south
 # auction-filter: Auction.....\\n3N.
 
 
-
 # Gambling 3N
 hcp(south)>8 and hcp(south)<12  // could have a Q or two J's outside
 and
@@ -17,6 +16,7 @@ and
 or
 (top3(south,clubs)==3 and clubs(south)>6)
 )
+and shape(south,any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
 
 
 action printpbn
