@@ -2,7 +2,9 @@ Script,Cappelletti
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\n1NT?....[X2]
+
+auction-filter: Note....Cappelletti
+
 */
 
 # Cappelletti
@@ -10,23 +12,38 @@ auction-filter: Auction.....\n1NT?....[X2]
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
 # Defines gibNT
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-West
-# Defines wTP
+# Defines wTP, wPP
 
 # Define minimum suit quality
-wC = top5(west,clubs)>2    or hcp(west,clubs)>4
-wD = top5(west,diamonds)>2 or hcp(west,diamonds)>4
-wH = top5(west,hearts)>2   or hcp(west,hearts)>4
-wS = top5(west,spades)>2   or hcp(west,spades)>4
+wC = controls(west,clubs)>0    and hcp(west,clubs)>4
+wD = controls(west,diamonds)>0 and hcp(west,diamonds)>4
+wH = controls(west,hearts)>0   and hcp(west,hearts)>4
+wS = controls(west,spades)>0   and hcp(west,spades)>4
+
+A1 = (wC or wD or wH or wS) and shape(west,any 9xxx +any 8xxx +any 7xxx -any 85xx -any 76xx -any 75xx -any 66xx -any 65xx)
+HS = wH and spades(west)>3  and hearts(west)>3 and (spades(west) - hearts(west))==(1 or -1)
+Hm = wH and hearts(west)>4  and ((wD and diamonds(west)>4) or (wC and clubs(west)>4))
+Sm = wS and spades(west)>4  and ((wD and diamonds(west)>4) or (wC and clubs(west)>4))
+mm = wC and clubs(west)>4   and wD and diamonds(west)>4
 
 # Define actions
-wX  = hcp(west)>15
-w2C = (wC or wD or wH or wS) and shape(west,any 7xxx +any 6xxx) and hcp(west)<15 and wTP>9
-w2D = wH and spades(west)>3 and hearts(west)>3 and (spades(west) - hearts(west))==(1 or -1) and wTP>10
-w2H = wH and hearts(west)>4 and ((wD and diamonds(west)>4) or (wC and clubs(west)>4)) and wTP>10
-w2S = wS and spades(west)>4 and ((wD and diamonds(west)>4) or (wC and clubs(west)>4)) and wTP>10
-w2N = diamonds(west)>4 and clubs(west)>4 and wTP>14
+w2C = A1 and ((wC and wTP>14) or wTP>11)
+w2D = HS and wTP>10 and not (w2C)
+w2H = Hm and wTP>10 and not (w2C or w2D)
+w2S = Sm and wTP>10 and not (w2C or w2D or w2H)
+w2N = mm and wTP>14 and not (w2C or w2D or w2H or w2S)
+wX  = hcp(west)>15  and not (w2C or w2D or w2H or w2S or w2N) 
 
-gibNT and (wX and w2C or w2D or w2H or w2S or w2N)
+gibNT and (wX or w2C or w2D or w2H or w2S or w2N)
+
+action
+
+average "X   " 100 * wX,
+average "2C  " 100 * w2C,
+average "2D  " 100 * w2D,
+average "2H  " 100 * w2H,
+average "2S  " 100 * w2S,
+average "2N  " 100 * w2N,
 
 `,"S",true);
 Script
