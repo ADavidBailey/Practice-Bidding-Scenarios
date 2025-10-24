@@ -6,7 +6,7 @@ dealer east
 
 /*
 
-auction-filter: Auction.....\n1N....[X2-7]
+auction-filter: Auction.....\n1NT?....[X2-7]
 
 */
 
@@ -54,7 +54,7 @@ sD = controls(south,diamonds)>0 and hcp(south,diamonds)>4
 sH = controls(south,hearts)>0   and hcp(south,hearts)>4
 sS = controls(south,spades)>0   and hcp(south,spades)>4
 
-A1 = (sC or sD or sH or sS) and shape(south,any 9xxx +any 8xxx +any 7xxx -any 85xx -any 76xx -any 75xx -any 66xx -any 65xx)
+A1 = (sC or sD or sH or sS) and shape(south,any 9xxx +any 8xxx +any 7xxx +any 6xxx -any 85xx -any 76xx -any 75xx -any 66xx -any 65xx)
 HS = sH and spades(south)>3  and hearts(south)>3 and (spades(south) - hearts(south))==(1 or -1)
 Hm = sH and hearts(south)>4  and ((sD and diamonds(south)>4) or (sC and clubs(south)>4))
 Sm = sS and spades(south)>4  and ((sD and diamonds(south)>4) or (sC and clubs(south)>4))
