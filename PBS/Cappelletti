@@ -1,0 +1,35 @@
+Script,Cappelletti
+setDealerCode(`
+
+/*
+auction-filter: Auction.....\n(1C.* 1D.* (X|2H) +||1C.* 1H.* (X|2S) +)
+*/
+
+# Roudi:  After 1m (1S) 2m shows 7-10 HCP w/5H
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+# Defines gibNT
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-West
+# Defines wTP
+
+wX  = hcp(west)>15
+w2C = shape(west,any 7xxx +any 6xxx) and hcp(west)<15 and wTP>9
+w2D = spades(west)>3 and hearts(west)>3 and (spades(west) - hearts(west))==(1 or -1) and wTP>10
+w2H = hearts(west)>4 and (diamonds(west>4 or clubs(west)>4) and wTP>10
+w2S = spades(west)>4 and (diamonds(west)>4 or clubs(west)>4) and wTP>10
+w2N = diamonds(west)>4 and clubs(west)>4 and wTP>14
+
+gibNT and (wX and w2C or w2D or w2H or w2S or w2N)
+
+`,"S",true);
+Script
+
+Button,Cappelletti,\n\
+--- After 1NT...
+X  = 15+ HCP
+2!C = 10+ TP and any 6+card suit
+2!D = 11+ TP and 5/4 or better !H and !S
+2!H = 11+ TP and 5/5 or better !H and a minor
+2!S = 15+ TP and 5/5 or better !S and a minor
+%Cappelletti%
+

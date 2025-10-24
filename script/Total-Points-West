@@ -1,0 +1,21 @@
+##### Imported Script - Calculate Total Points for West #####
+
+## Calculate TP for West
+# Calculate West's Short-Suit Penalty Points
+wSP = spades(west)<3   and hcp(west,spades)>0   ? 1 : 0
+wHP = hearts(west)<3   and hcp(west,hearts)>0   ? 1 : 0
+wDP = diamonds(west)<3 and hcp(west,diamonds)>0 ? 1 : 0
+wCP = clubs(west)<3    and hcp(west,clubs)>0    ? 1 : 0
+
+# Calculate West's Short-Suit Points
+wv1 = shape(west, any 0xxx) ? 3 : 0 // allow for 1 void
+ws1 = shape(west, any 1xxx) ? 2 : 0 // allow for 2 singletons
+ws2 = shape(west, any 11xx) ? 2 : 0
+wd1 = shape(west, any 2xxx) ? 1 : 0 // allow for 3 doubletons
+wd2 = shape(west, any 22xx) ? 1 : 0
+wd3 = shape(west, any 222x) ? 1 : 0
+
+# Calculate West's Total Points
+wTP = hcp(west) + wv1+ws1+ws2+wd1+wd2+wd3 -wSP-wHP-wDP-wCP
+
+### End of Calculate TP for West ###
