@@ -2,21 +2,28 @@ Script,Cappelletti
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\n(1C.* 1D.* (X|2H) +||1C.* 1H.* (X|2S) +)
+auction-filter: Auction.....\n1NT?....[X2]
 */
 
-# Roudi:  After 1m (1S) 2m shows 7-10 HCP w/5H
+# Cappelletti
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
 # Defines gibNT
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-West
 # Defines wTP
 
+# Define minimum suit quality
+wC = top5(west,clubs)>2    or hcp(west,clubs)>4
+wD = top5(west,diamonds)>2 or hcp(west,diamonds)>4
+wH = top5(west,hearts)>2   or hcp(west,hearts)>4
+wS = top5(west,spades)>2   or hcp(west,spades)>4
+
+# Define actions
 wX  = hcp(west)>15
-w2C = shape(west,any 7xxx +any 6xxx) and hcp(west)<15 and wTP>9
-w2D = spades(west)>3 and hearts(west)>3 and (spades(west) - hearts(west))==(1 or -1) and wTP>10
-w2H = hearts(west)>4 and (diamonds(west>4 or clubs(west)>4) and wTP>10
-w2S = spades(west)>4 and (diamonds(west)>4 or clubs(west)>4) and wTP>10
+w2C = (wC or wD or wH or wS) and shape(west,any 7xxx +any 6xxx) and hcp(west)<15 and wTP>9
+w2D = wH and spades(west)>3 and hearts(west)>3 and (spades(west) - hearts(west))==(1 or -1) and wTP>10
+w2H = wH and hearts(west)>4 and ((wD and diamonds(west)>4) or (wC and clubs(west)>4)) and wTP>10
+w2S = wS and spades(west)>4 and ((wD and diamonds(west)>4) or (wC and clubs(west)>4)) and wTP>10
 w2N = diamonds(west)>4 and clubs(west)>4 and wTP>14
 
 gibNT and (wX and w2C or w2D or w2H or w2S or w2N)
