@@ -31,8 +31,13 @@ sD = controls(south,diamonds)>0 and hcp(south,diamonds)>4
 sH = controls(south,hearts)>0   and hcp(south,hearts)>4
 sS = controls(south,spades)>0   and hcp(south,spades)>4
 
-A1 = (sC or sD or sH or sS) and shape(south,any 9xxx +any 8xxx +any 7xxx +any 6xxx -any 85xx -any 76xx -any 75xx -any 66xx -any 65xx)
-HS = sH and spades(south)>3  and hearts(south)>3 and (spades(south) - hearts(south))==(1 or -1)
+C1 = sC and clubs(south)>4
+D1 = sD and diamonds(south)>4
+H1 = sH and hearts(south)>4
+S1 = sS and spades(south)>4
+
+A1 = (C1 or D1 or H1 or S1) and shape(south,any 9xxx +any 8xxx +any 7xxx +any 6xxx -any 85xx -any 76xx -any 75xx -any 66xx -any 65xx)
+HS = sH and sS and spades(south)>3  and hearts(south)>3 and (spades(south) - hearts(south))>-1 and (spades(south) - hearts(south))<1
 Hm = sH and hearts(south)>4  and ((sD and diamonds(south)>4) or (sC and clubs(south)>4))
 Sm = sS and spades(south)>4  and ((sD and diamonds(south)>4) or (sC and clubs(south)>4))
 mm = sC and clubs(south)>4   and sD and diamonds(south)>4
