@@ -1,6 +1,8 @@
 Script,Cappelletti
 setDealerCode(`
 
+# Cappelletti
+
 /*
 
 convention-card: 21GF-GIB
@@ -8,7 +10,6 @@ auction-filter: Auction.....\n1NT?....[X2-7]
 
 */
 
-# Cappelletti
 
 ##### Imported Script -- GIB 1 Notrump Rotated for East#####
 
@@ -24,43 +25,36 @@ gibNT = nt1 or nt2
 
 ### End of GIB 1 Notrump ###
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-South
-# Defines nTP
-
-# Define minimum suit quality
-sC = controls(south,clubs)>0    and hcp(south,clubs)>3    and hcp(south,clubs)<9    and top4(south,clubs)>1
-sD = controls(south,diamonds)>0 and hcp(south,diamonds)>3 and hcp(south,diamonds)<9 and top4(south,diamonds)>1
-sH = controls(south,hearts)>0   and hcp(south,hearts)>3   and hcp(south,hearts)<9   and top4(south,hearts)>1
-sS = controls(south,spades)>0   and hcp(south,spades)>3   and hcp(south,spades)<9   and top4(south,spades)>1
+# Defines sTP
 
 # Define possible single-suits -- at least 6-cards
-c1 = sC and clubs(south)>5
-d1 = sD and diamonds(south)>5
-h1 = sH and hearts(south)>5
-s1 = sS and spades(south)>5
+c1s = controls(south,clubs)>0    and hcp(south,clubs)>3    and top4(south,clubs)>1    and clubs(south)>5
+d1s = controls(south,diamonds)>0 and hcp(south,diamonds)>3 and top4(south,diamonds)>1 and diamonds(south)>5
+h1s = controls(south,hearts)>0   and hcp(south,hearts)>3   and top4(south,hearts)>1   and hearts(south)>5
+s1s = controls(south,spades)>0   and hcp(south,spades)>3   and top4(south,spades)>1   and spades(south)>5
 
-a1 = (c1 or d1 or h1 or s1)
+a1s = (c1s or d1s or h1s or s1s)
 
-# Define possible double-suits -- at least 4-cards
-c2 = sC and clubs(south)>3
-d2 = sD and diamonds(south)>3
-h2 = sH and hearts(south)>3
-s2 = sS and spades(south)>3
+# Define possible suits for 2-suited hands -- at least 4-cards
+c2s = top4(south,clubs)>1    and clubs(south)>3    and (hcp(south,clubs) + clubs(south))>8
+d2s = top4(south,diamonds)>1 and diamonds(south)>3 and (hcp(south,diamonds) + diamonds(south))>8
+h2s = top4(south,hearts)>1   and hearts(south)>3   and (hcp(south,hearts) + hearts(south))>8
+s2s = top4(south,spades)>1   and spades(south)>3   and (hcp(south,spades) + spades(south))>8
 
 # 2-suited hands are 5/4 or better
-HS = h2 and s2 and (hearts(south) + spades(south))>8
-Hm = (h2 and d2 and (hearts(south) + (diamonds(south))>8)) or (h2 and c2 and (hearts(south) + clubs(south))>8) and not HS
-Sm = (s2 and d2 and (spades(south) + (diamonds(south))>8)) or (s2 and c2 and (spades(south) + clubs(south))>8) and not (HS or Hm)
-mm = c2 and d2 and clubs(south)>4 and diamonds(south)>4  // minors must be 5/5 or better
-
+HS = h2s and s2s and (hearts(south) + spades(south))>8
+Hm = (h2s and d2s and (hearts(south) + (diamonds(south))>8)) or (h2s and c2s and (hearts(south) + clubs(south))>8) and not HS
+Sm = (s2s and d2s and (spades(south) + (diamonds(south))>8)) or (s2s and c2s and (spades(south) + clubs(south))>8) and not (HS or Hm)
+mm = c2s and d2s and clubs(south)>4 and diamonds(south)>4 and hcp(south)<16  // minors must be 5/5 or better
 
 # Define 2-suited actions
-s2D = HS and sTP>10
-s2H = Hm and sTP>10 and not s2D
-s2S = Sm and sTP>10 and not (s2D or s2H)
-s2N = mm and sTP>14 and not (s2D or s2H or s2S)
+s2D = HS and sTP>10 and sTP<18 and hcp(south)<15
+s2H = Hm and sTP>10 and sTP<18 and hcp(south)<15 not s2D
+s2S = Sm and sTP>10 and sTP<18 and hcp(south)<15 not (s2D or s2H)
+s2N = mm and sTP>14 and sTP<18 and hcp(south)<15 not (s2D or s2H or s2S)
 
-# If there are not 2-suits, then 1-suit
-s2C = a1 and hcp(south)<15 and ((sC and sTP>14) or sTP>11) and not (s2D or s2H or s2S or s2N)
+# If there are not 2-suits, then 1-suit  (clubs requires a better hand because it will have to be played at the 3-level)
+s2C = a1s and ((c1s and sTP>14) or sTP>9) and hcp(south)<15 and not (s2D or s2H or s2S or s2N)
 
 # or Double
 sX  = hcp(south)>15 and not (s2C or s2D or s2H or s2S or s2N) 
