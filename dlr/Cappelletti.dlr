@@ -50,28 +50,41 @@ sTP = hcp(south) + sv1+ss1+ss2+sd1+sd2+sd3 -sSP-sHP-sDP-sCP
 # Defines nTP
 
 # Define minimum suit quality
-sC = controls(south,clubs)>0    and hcp(south,clubs)>4
-sD = controls(south,diamonds)>0 and hcp(south,diamonds)>4
-sH = controls(south,hearts)>0   and hcp(south,hearts)>4
-sS = controls(south,spades)>0   and hcp(south,spades)>4
+sC = controls(south,clubs)>0    and hcp(south,clubs)>4    and hcp(south,clubs)<9
+sD = controls(south,diamonds)>0 and hcp(south,diamonds)>4 and hcp(south,diamonds)<9
+sH = controls(south,hearts)>0   and hcp(south,hearts)>4   and hcp(south,hearts)<9
+sS = controls(south,spades)>0   and hcp(south,spades)>4   and hcp(south,spades)<9
 
-C1 = sC and clubs(south)>3
-D1 = sD and diamonds(south)>3
-H1 = sH and hearts(south)>3
-S1 = sS and spades(south)>3
+# Define possible single-suits -- at least 6-cards
+c1 = sC and clubs(south)>5
+d1 = sD and diamonds(south)>5
+h1 = sH and hearts(south)>5
+s1 = sS and spades(south)>5
 
-A1 = (C1 or D1 or H1 or S1) and shape(south,any 9xxx +any 8xxx +any 7xxx +any 6xxx -any 85xx -any 76xx -any 75xx -any 66xx -any 65xx -any 5xxx)
-HS = H1 and S1 and (hearts(south) or spades(south))>4 and (spades(south) - hearts(south))>-1 and (spades(south) - hearts(south))<1
-Hm = H1 and hearts(south)>4  and ((D1 and diamonds(south)>4) or (C1 and clubs(south)>4))
-Sm = S1 and spades(south)>4  and ((D1 and diamonds(south)>4) or (C1 and clubs(south)>4))
-mm = C1 and clubs(south)>4   and D1 and diamonds(south)>4
+# Define possible double-suits -- at least 4-cards
+c2 = sC and clubs(south)>3
+d2 = sD and diamonds(south)>3
+h2 = sH and hearts(south)>3
+s2 = sS and spades(south)>3
 
-# Define actions
-s2C = A1 and ((sC and sTP>14) or sTP>11)
-s2D = HS and sTP>10 and not (s2C)
-s2H = Hm and sTP>10 and not (s2C or s2D)
-s2S = Sm and sTP>10 and not (s2C or s2D or s2H)
-s2N = mm and sTP>14 and not (s2C or s2D or s2H or s2S)
+a1 = (c1 or d1 or h1 or s1)
+
+# 2-suited hands are 5/4 or better
+HS = h2 and s2 and (hearts(south) + spades(south))>8
+Hm = h2 and (d2 or c2) and (hearts(south) + (diamonds(south) or clubs(south))>8)
+Sm = s2 and (d2 or c2) and (spades(south) + (diamonds(south) or clubs(south))>8)
+mm = c2 and d2 and clubs(south)>4 and diamonds(south)>4  // minors must be 5/5 or better
+
+# Define 2-suited actions
+s2D = HS and sTP>10
+s2H = Hm and sTP>10 and not s2D
+s2S = Sm and sTP>10 and not (s2D or s2H)
+s2N = mm and sTP>14 and not (s2D or s2H or s2S)
+
+# If there are not 2-suits, then 1-suit
+s2C = a1 and hcp(south)<15 and ((sC and sTP>14) or sTP>11) and not (s2D or s2H or s2S or s2N)
+
+# or Double
 sX  = hcp(south)>15  and not (s2C or s2D or s2H or s2S or s2N) 
 
 gibNT and (sX or s2C or s2D or s2H or s2S or s2N)
