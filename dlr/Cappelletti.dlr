@@ -14,7 +14,7 @@ auction-filter: Auction.....\n1NT?....[X2-7]
 */
 
 
-##### Imported Script -- GIB 1 Notrump Rotated for East#####
+##### Imported Script -- GIB 1 Notrump (Rotated for East) #####
 
 # GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
 ntP = hcp(east) + shape(east,5xxx+x5xx)
@@ -57,7 +57,6 @@ h1s = controls(south,hearts)>0   and hcp(south,hearts)>3   and top4(south,hearts
 s1s = controls(south,spades)>0   and hcp(south,spades)>3   and top4(south,spades)>1   and spades(south)>5
 
 a1s = (c1s or d1s or h1s or s1s)
-
 
 # Define possible suits for 2-suited hands -- at least 4-cards
 c2s = top4(south,clubs)>1    and clubs(south)>3    and (hcp(south,clubs) + clubs(south))>8
