@@ -1,0 +1,127 @@
+Script,SandwichNtBPH
+setDealerCode(`
+
+/*
+convention-card: 21GF-GIB
+auction-filter: Auction.....\nPass +1[CDH] +Pass +1[DHS]\n
+*/
+
+dealer south
+
+##### Imported Script - Calculate Total Points for South #####
+
+## Calculate TP for South
+# Calculate South's Short-Suit Penalty Points
+sSP = spades(south)<3 and hcp(south,spades)>0     ? 1 : 0
+sHP = hearts(south)<3 and hcp(south,hearts)>0     ? 1 : 0
+sDP = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
+sCP = clubs(south)<3 and hcp(south,clubs)>0       ? 1 : 0
+
+# Calculate South's Short-Suit Points
+sv1 = shape(south, any 0xxx) ? 3 : 0
+ss1 = shape(south, any 1xxx) ? 2 : 0 // allow for 2 singletons
+ss2 = shape(south, any 11xx) ? 2 : 0
+sd1 = shape(south, any 2xxx) ? 1 : 0 // allow for 3 doubletons
+sd2 = shape(south, any 22xx) ? 1 : 0
+sd3 = shape(south, any 222x) ? 1 : 0
+
+# Calculate South's Total Points
+sTP = hcp(south) + sv1+ss1+ss2+sd1+sd2+sd3 -sSP-sHP-sDP-sCP
+
+### End of Calculate TP for South ###
+
+##### Imported Script - Calculate Total Points for West #####
+
+## Calculate TP for West
+# Calculate West's Short-Suit Penalty Points
+wSP = spades(west)<3   and hcp(west,spades)>0   ? 1 : 0
+wHP = hearts(west)<3   and hcp(west,hearts)>0   ? 1 : 0
+wDP = diamonds(west)<3 and hcp(west,diamonds)>0 ? 1 : 0
+wCP = clubs(west)<3    and hcp(west,clubs)>0    ? 1 : 0
+
+# Calculate West's Short-Suit Points
+wv1 = shape(west, any 0xxx) ? 3 : 0 // allow for 1 void
+ws1 = shape(west, any 1xxx) ? 2 : 0 // allow for 2 singletons
+ws2 = shape(west, any 11xx) ? 2 : 0
+wd1 = shape(west, any 2xxx) ? 1 : 0 // allow for 3 doubletons
+wd2 = shape(west, any 22xx) ? 1 : 0
+wd3 = shape(west, any 222x) ? 1 : 0
+
+# Calculate West's Total Points
+wTP = hcp(west) + wv1+ws1+ws2+wd1+wd2+wd3 -wSP-wHP-wDP-wCP
+
+### End of Calculate TP for West ###
+
+##### Imported Script - Calculate Total Points for North #####
+
+## Calculate TP for North
+# Calculate Nouth's Short-Suit Penalty Points
+nSP = spades(north)<3   and hcp(north,spades)>0   ? 1 : 0
+nHP = hearts(north)<3   and hcp(north,hearts)>0   ? 1 : 0
+nDP = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
+nCP = clubs(north)<3    and hcp(north,clubs)>0    ? 1 : 0
+
+# Calculate North's Short-Suit Points
+nv1 = shape(north, any 0xxx) ? 3 : 0 // allow for 1 void
+ns1 = shape(north, any 1xxx) ? 2 : 0 // allow for 2 singletons
+ns2 = shape(north, any 11xx) ? 2 : 0
+nd1 = shape(north, any 2xxx) ? 1 : 0 // allow for 3 doubletons
+nd2 = shape(north, any 22xx) ? 1 : 0
+nd3 = shape(north, any 222x) ? 1 : 0
+
+# Calculate South's Total Points
+nTP = hcp(north) + nv1+ns1+ns2+nd1+nd2+nd3 -nSP-nHP-nDP-nCP
+
+### End of Calculate TP for North ###
+
+# Define South's good suits -- KJTxx or QJTxxx or better
+sGS = top5(south,spades)  >2 and spades(south)  >4 and (hcp(south,spades)   + spades(south)>8)
+sGH = top5(south,hearts)  >2 and hearts(south)  >4 and (hcp(south,hearts)   + hearts(south)>8)
+sGD = top5(south,diamonds)>2 and diamonds(south)>4 and (hcp(south,diamonds) + diamonds(south)>8)
+sGC = top5(south,clubs)   >2 and clubs(south)   >4 and (hcp(south,clubs)    + clubs(south)>8)
+
+# Predict West's opening suit
+s = spades(west)
+h = hearts(west)
+d = diamonds(west)
+c = clubs(west)
+wRange = hcp(west)>11 and wTP>11 and hcp(west)<15
+oS = s>4 and s>=h and s>=d and s>=c and wRange 
+oH = not oS and h>4 and h>=d and h>=c and wRange
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and wRange
+oC = not (oS or oH or oD) and wRange
+
+# Define East's responses
+eD  = hcp(east)>5 and hcp(east)<11 and diamonds(east)>3 and diamonds(east)<6 and spades(east)<4 //and shape(east,-any 7xxx -any 6xxx)
+eH  = hcp(east)>5 and hcp(east)<11 and (hearts(east)==4 and spades(east)<5) or (hearts(east)>4 and hearts(east)>spades(east)) //and shape(east,-any 7xxx -any 6xxx)
+eS  = hcp(east)>5 and hcp(east)<11 and spades(east)>3 and not eH //and shape(east,-any 7xxx -any 6xxx)
+
+# Define East's response and South's good suits
+CD = oC and eD and sGH and sGS
+CH = oC and eH and sGD and sGS
+CS = oC and eS and sGD and sGH
+DH = oD and eH and sGC and sGS
+DS = oD and eS and sGC and sGH
+HS = oH and eS and sGC and sGD and hearts(east)<4
+
+sRange = hcp(south)<11 and sTP>9 and sTP<13  // Not a GIB opening hand
+
+# Avoid North's Preempt, Weak 2, Overcall, or Takeout Double
+nPreempt  = nTP>2                   and shape(north,any 9xxx + any 8xxx+ any 7xxx)
+nWeak2    = hcp(north)>4            and shape(north,any 6xxx)
+nOvercall = hcp(north)>7 and nTP>8  and shape(north,any 5xxx)
+nDouble   = hcp(north)>12
+nHand = not (nPreempt or nWeak2 or nOvercall or nDouble)
+
+sRange and nHand and (CD or CH or CS or DH or DS or HS)
+
+# Generate Statistics
+produce 40
+action
+printoneline,
+
+`,"S",true)
+Script
+Button,Sandwich 1N BPH,\n\
+--- A Sandwich 1N by a passed hand shows the two unbid suits.\n\
+%SandwichNtBPH%
