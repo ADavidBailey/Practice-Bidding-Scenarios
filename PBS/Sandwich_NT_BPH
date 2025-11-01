@@ -92,9 +92,9 @@ oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and wRange
 oC = not (oS or oH or oD) and wRange
 
 # Define East's responses
-eD  = hcp(east)>5 and hcp(east)<11 and diamonds(east)>3 and diamonds(east)<6 and spades(east)<4 //and shape(east,-any 7xxx -any 6xxx)
-eH  = hcp(east)>5 and hcp(east)<11 and (hearts(east)==4 and spades(east)<5) or (hearts(east)>4 and hearts(east)>spades(east)) //and shape(east,-any 7xxx -any 6xxx)
-eS  = hcp(east)>5 and hcp(east)<11 and spades(east)>3 and not eH //and shape(east,-any 7xxx -any 6xxx)
+eD  = diamonds(east)>3 and hearts(east)<4 and spades(east)<4
+eH  = (hearts(east)==4 and spades(east)<5) or (hearts(east)>4 and hearts(east)>spades(east))
+eS  = spades(east)>3 and not eH
 
 # Define East's response and South's good suits
 CD = oC and eD and sGH and sGS
@@ -102,18 +102,20 @@ CH = oC and eH and sGD and sGS
 CS = oC and eS and sGD and sGH
 DH = oD and eH and sGC and sGS
 DS = oD and eS and sGC and sGH
-HS = oH and eS and sGC and sGD and hearts(east)<4
+HS = oH and eS and sGC and sGD and hearts(east)<4  //avoid a H raise
 
 sRange = hcp(south)<11 and sTP>9 and sTP<13  // Not a GIB opening hand
 
 # Avoid North's Preempt, Weak 2, Overcall, or Takeout Double
-nPreempt  = nTP>2                   and shape(north,any 9xxx + any 8xxx+ any 7xxx)
-nWeak2    = hcp(north)>4            and shape(north,any 6xxx)
-nOvercall = hcp(north)>7 and nTP>8  and shape(north,any 5xxx)
-nDouble   = hcp(north)>12
-nHand = not (nPreempt or nWeak2 or nOvercall or nDouble)
+nPreempt  = nTP>2                  and shape(north, any 9xxx +any 8xxx +any 7xxx)
+nWeak2    = hcp(north)>4           and shape(north, any 7xxx +any 6xxx)
+nOvercall = hcp(north)>7 and nTP>8 and shape(north, any 9xxx +any 8xxx +any 7xxx +any 6xxx +any 5xxx)
+nDouble   = nTP>11 and shape(north, any 4432 +any 4441 +any 5332 +any 54xx)
+nHand     = not (nPreempt or nWeak2 or nOvercall or nDouble)
 
-sRange and nHand and (CD or CH or CS or DH or DS or HS)
+eHand     = shape(east, xxxx -any 8xxx -any 7xxx -any 6xxx -any 4333) and hcp(east)>5 and hcp(east)<11
+
+sRange and nHand and eHand and (CD or CH or CS or DH or DS or HS)
 
 # Generate Statistics
 produce 40
