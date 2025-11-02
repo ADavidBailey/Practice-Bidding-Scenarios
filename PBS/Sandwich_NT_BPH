@@ -75,10 +75,10 @@ nTP = hcp(north) + nv1+ns1+ns2+nd1+nd2+nd3 -nSP-nHP-nDP-nCP
 ### End of Calculate TP for North ###
 
 # Define South's good suits -- KJTxx or QJTxxx or better
-sGS = top5(south,spades)  >2 and shape(south,5xxx+6xxx) //and (hcp(south,spades)   + spades(south)>8)
-sGH = top5(south,hearts)  >2 and shape(south,x5xx+x6xx) //and (hcp(south,hearts)   + hearts(south)>8)
-sGD = top5(south,diamonds)>2 and shape(south,xx5x+xx6x) //and (hcp(south,diamonds) + diamonds(south)>8)
-sGC = top5(south,clubs)   >2 and shape(south,xxx5+xxx6) //and (hcp(south,clubs)    + clubs(south)>8)
+sGS = top5(south,spades)  >2 and shape(south,5xxx+6xxx)
+sGH = top5(south,hearts)  >2 and shape(south,x5xx+x6xx)
+sGD = top5(south,diamonds)>2 and shape(south,xx5x+xx6x)
+sGC = top5(south,clubs)   >2 and shape(south,xxx5+xxx6)
 
 # Predict West's opening suit
 s = spades(west)
@@ -106,11 +106,16 @@ HS = oH and eS and sGC and sGD and hearts(east)<4  //avoid a H raise
 
 sRange = hcp(south)<11 and sTP>9 and sTP<13  // Not a GIB opening hand
 
+# Define possible North overcalls
+nDO =  oC              and diamonds(north)==5
+nHO = (oC or oD)       and hearts(north)==5
+nSO = (oC or oD or oH) and spades(north)==5
+
 # Avoid North's Preempt, Weak 2, Overcall, or Takeout Double
 nLongSuit = shape(north, any 9xxx +any 8xxx +any 7xxx +any 6xxx)
-nOvercall = hcp(north)>7 and nTP>8 and shape(north, any 5xxx)
+nOvercall = (nDO or nHO or nSO) and hcp(north)>7 and nTP>8
 nDouble   = nTP>11 and shape(north, any 4333 +any 4432 +any 4441 +any 5332 +any 54xx)
-nHand     = not (nLongSuit or nOvercall or nDouble)
+nHand     = hcp(north)<10 and not (nLongSuit or nOvercall or nDouble)
 
 eNT       = shape(east, any 4333) 
 eLongSuit = shape(east, any 9xxx +any 8xxx +any 7xxx +any 6xxx)
