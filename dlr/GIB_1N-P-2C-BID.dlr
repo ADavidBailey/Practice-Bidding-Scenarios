@@ -78,6 +78,28 @@ sTP = hcp(south) + sv1+ss1+ss2+sd1+sd2+sd3 -sSP-sHP-sDP-sCP
 
 ### End of Calculate TP for South ###
 # Defines sTP
+##### Imported Script - Calculate Total Points for North #####
+
+## Calculate TP for North
+# Calculate Nouth's Short-Suit Penalty Points
+nSP = spades(north)<3   and hcp(north,spades)>0   ? 1 : 0
+nHP = hearts(north)<3   and hcp(north,hearts)>0   ? 1 : 0
+nDP = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
+nCP = clubs(north)<3    and hcp(north,clubs)>0    ? 1 : 0
+
+# Calculate North's Short-Suit Points
+nv1 = shape(north, any 0xxx) ? 3 : 0 // allow for 1 void
+ns1 = shape(north, any 1xxx) ? 2 : 0 // allow for 2 singletons
+ns2 = shape(north, any 11xx) ? 2 : 0
+nd1 = shape(north, any 2xxx) ? 1 : 0 // allow for 3 doubletons
+nd2 = shape(north, any 22xx) ? 1 : 0
+nd3 = shape(north, any 222x) ? 1 : 0
+
+# Calculate South's Total Points
+nTP = hcp(north) + nv1+ns1+ns2+nd1+nd2+nd3 -nSP-nHP-nDP-nCP
+
+### End of Calculate TP for North ###
+# Defines nTP
 ##### Imported Script - Calculate Total Points for East #####
 
 ## Calculate TP for East
@@ -101,23 +123,29 @@ eTP = hcp(east) + ev1+es1+es2+ed1+ed2+ed3 -eSP-eHP-eDP-eCP
 ### End of Calculate TP for East ###
 # Defines eTP
 
-# Calculate North's Short-Suit Penalty Points
-nSP = spades(north)<3 and hcp(north,spades)>0     ? 1 : 0
-nHP = hearts(north)<3 and hcp(north,hearts)>0     ? 1 : 0
-nDP = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
-nCP = clubs(north)<3 and hcp(north,clubs)>0       ? 1 : 0
-nTP = hcp(north) -nSP -nHP -nDP -nCP
-
 # Boost quality of North's major
 nQS = spades(north)==4 and hcp(north,spades)>1
 nQH = hearts(north)==4 and hcp(north,hearts)>1
 nQ  = nQS or nQH
 
-# Define various 2C bids -- GIB does not play Drop Dead or Crawlling Stayman
-smolen  = shape(north,54xx +45xx) and hcp(north)>9
-majorInvite = shape(north,54xx) and nTP>6 and nTP<10 and hcp(north)<10  // 2C & correct D to S
+# Define splinter
+splinter = shape(north, 4405 + 4450 + any 4441 -xxx1 -xxx0) and nTP>9
+
+# Define mSS and mST
+mss = diamonds(north)>3 and clubs(north)>3 and (diamonds(north) + clubs(north))>8 and nTP>9
+mst = (clubs(north)>5 or diamonds(north)>5) and not mss
+
+# Define various 2C bids -- GIB does not play Drop Dead or Crawling Stayman
+M54 = hearts(north)>3 and spades(north)>3 and (hearts(north) + spades(north))==9  // running out of shapes
+smolen = M54 and hcp(north)>9 and not splinter
+majorInvite = M54 and nTP>6 and nTP<10 and hcp(north)<10  // 2C & correct D to S
 stayman = shape(north,4xxx +x4xx -any 4441 - any 4450 - any 9xxx -any 8xxx -any 7xxx -any 6xxx) and nTP>7 and nQ and not (majorInvite or smolen)  // avoid splinter
-n2Clubs = stayman or smolen or majorInvite
+
+# Define Texas, Jacoby, & Splinter responses
+texas  = (spades(north)>5 or hearts(north)>5) and nTP>9 and not splinter
+jacoby = (spades(north)>4 or hearts(north)>4) and not (splinter or texas or smolen)
+
+n2Clubs = (stayman or smolen or majorInvite) and not (splinter or mss or mst or texas or jacoby)
 
 # Define East's 8421 Points for each suit
 eC8 = hascard(east,AC) ? 8 : 0
