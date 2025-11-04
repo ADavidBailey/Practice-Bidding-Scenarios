@@ -17,7 +17,7 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 dropDeadStayman = shape(north,4441+4450) and hcp(north)<8
 crawlingStayman = shape(north,4414+4405) and hcp(north)<8
 
-gibNT and (dropDeadStayman or crawlingStayman) and calmWest
+gibNT and (dropDeadStayman or crawlingStayman) and calmWest and dropDeadStayman
 
 action
 average "dropDead    " 100 * dropDeadStayman,

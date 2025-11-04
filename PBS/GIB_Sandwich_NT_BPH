@@ -74,7 +74,7 @@ nTP = hcp(north) + nv1+ns1+ns2+nd1+nd2+nd3 -nSP-nHP-nDP-nCP
 
 ### End of Calculate TP for North ###
 
-# Define South's good suits -- KJTxx or QJTxxx or better
+# Define South's good suits -- QJTxx or better
 sGS = top5(south,spades)  >2 and shape(south,5xxx+6xxx)
 sGH = top5(south,hearts)  >2 and shape(south,x5xx+x6xx)
 sGD = top5(south,diamonds)>2 and shape(south,xx5x+xx6x)
