@@ -80,6 +80,12 @@ sGH = top5(south,hearts)  >2 and shape(south,x5xx+x6xx)
 sGD = top5(south,diamonds)>2 and shape(south,xx5x+xx6x)
 sGC = top5(south,clubs)   >2 and shape(south,xxx5+xxx6)
 
+# Both suits can't be of minimum quality
+sGSpts = hcp(south,spades)
+sGHpts = hcp(south,hearts)
+sGDpts = hcp(south,diamonds)
+sGCpts = hcp(south,clubs)
+
 # Predict West's opening suit
 s = spades(west)
 h = hearts(west)
@@ -96,12 +102,12 @@ eD  = diamonds(east)>3 and hearts(east)<4 and spades(east)<4
 eH  = (hearts(east)==4 and spades(east)<5) or (hearts(east)>4 and hearts(east)>spades(east))
 eS  = spades(east)>3 and not eH
 
-# Define East's response and South's good suits
-CD = oC and eD and sGH and sGS
-CH = oC and eH and sGD and sGS
-CS = oC and eS and sGD and sGH
-DH = oD and eH and sGC and sGS
-DS = oD and eS and sGC and sGH
+# Define East's response and South's good suits -- can't be min suit quality AND min strength
+CD = oC and eD and sGH and sGS and ((sGSpts + sGHpts)>6 or sTP>10)
+CH = oC and eH and sGD and sGS and ((sGSpts + sGDpts)>6 or sTP>10)
+CS = oC and eS and sGD and sGH and ((sGDpts + sGHpts)>6 or sTP>10)
+DH = oD and eH and sGC and sGS and ((sGCpts + sGSpts)>6 or sTP>10)
+DS = oD and eS and sGC and sGH and ((sGCpts + sGHpts)>6 or sTP>10)
 HS = oH and eS and sGC and sGD and hearts(east)<4  //avoid a H raise
 
 sRange = hcp(south)<11 and sTP>9 and sTP<13  // Not a GIB opening hand
