@@ -189,7 +189,7 @@ r1S = rS1 or rS2 or rS3
 
 rH1 = nH>4 and nH>nS
 rH2 = nTP<13 and nH==4 and nH>=nS
-rH3 = shape(north,x4xx) and nD<5  
+rH3 = nH==4 and nD<5  
 r1H = (rH1 or rH2 or rH3) and not r1S
 
 rM = r1H or r1S
@@ -197,12 +197,12 @@ rM = r1H or r1S
 ## 2. Club responses
 
 r3x   = nC>4 and shape(north,any 0xxx +any 1xxx) and nTP>13               and not rM          // splinter
-r2C34 = s3334             and hcp(north)>10 and hcp(north)<13 and stops<5 and not rM
-r2C44 = sxx44             and hcp(north)>10 and hcp(north)<13 and stops<4 and not rM
-r2C3N = s3334+s3343+sxx44 and hcp(north)>12 and hcp(north)<16             and not rM          // GIB goes through 2C w/a bal 13-15
-r2Cx5 = nC>4              and nD<5 and hcp(north)>9                       and not (rM or r3x)
+r2C34 = s3334       and hcp(north)>9  and hcp(north)<13 and stops<5 and not rM
+r2C44 = sxx44       and hcp(north)>9  and hcp(north)<13 and stops<4 and not rM
+r2C3N = s3334+sxx44 and hcp(north)>12 and hcp(north)<16             and not rM          // GIB goes through 2C w/a bal 13-15
+r2Cx5 = nC>4        and nD<5 and hcp(north)>9                       and not (rM or r3x)
 r2C = r2C34 or r2C44 or r2C3N or r2Cx5
-r3C = nC>4 and nD<5       and hcp(north)<10 and nTP>4                     and not (rM or r3x)
+r3C = nC>4 and nD<5 and hcp(north)<10 and nTP>4                     and not (rM or r3x)
 
 rC  = r2C34 or r2C44 or r2C3N or r2Cx5 or r3C or r3x
 
