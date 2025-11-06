@@ -196,7 +196,7 @@ rM = r1H or r1S
 
 ## 2. Club responses
 
-r3x   = nC>4 and shape(north,any 0xxx +any 1xxx) and nTP>13               and not rM          // splinter
+r3x   = nC>4 and shape(north,any 0xxx +any 1xxx) and nTP>13         and not rM          // splinter
 r2C34 = s3334       and hcp(north)>9  and hcp(north)<13 and stops<5 and not rM
 r2C44 = sxx44       and hcp(north)>9  and hcp(north)<13 and stops<4 and not rM
 r2C3N = s3334+sxx44 and hcp(north)>12 and hcp(north)<16             and not rM          // GIB goes through 2C w/a bal 13-15
@@ -215,7 +215,9 @@ r2Nb = hcp(north)>10 and hcp(north)<13 and s3334 and stops>4                    
 r2Nc = hcp(north)>10 and hcp(north)<13 and s3343 and stops>5                           and not rC // prefer 1D
 r2N = r2Na or r2Nb or r2Nc
 
-rN  = r1N or r2N
+r3N = s3343 and hcp(north)>12 and hcp(north)<16  and nBal  and stops>5                 and not rC
+
+rN  = r1N or r2N or r3N
 
 ## 4. Diamonds
 
@@ -227,7 +229,7 @@ rOther  = not (r1D or rM or rN or rC)
 
 // Change the following line to get the responses you want --------
 //
-nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or rOther
+nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N or rOther
 //
 // ----------------------------------------------------------------
 
@@ -242,6 +244,7 @@ average "2C   " 100 * r2C,
 average "2N   " 100 * r2N,
 average "3C   " 100 * r3C,
 average "3x   " 100 * r3x,
+average "3N   " 100 * r3N,
 average "other" 100 * rOther,
 
 
