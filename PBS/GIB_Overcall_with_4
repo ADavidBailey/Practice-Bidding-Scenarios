@@ -13,6 +13,8 @@ dealer south
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 # Defines oneClub, oneDiamond, and oneHeart
+#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-West
+# Defines wTP
 
 # Define suits suitable for 4-card overcall
 wAS = hascard(west,AS)
@@ -42,10 +44,10 @@ wH4 = (wAH and wKH) or (wAH and wQH and (wJH or wTH or w9H)) or (wAH and wJH and
 wD4 = (wAD and wKD) or (wAD and wQD and (wJD or wTD or w9D)) or (wAD and wJD and wTD and w9D) or (wKD and wQD and (wJD or wTD))
 wss = (wS4 and wH4) or (wS4 and wD4) or (wH4 or wD4) 
 
-hxC = clubs(west)==2 and hcp(west,clubs)>1
-hxH = hearts(west)==2 and hcp(west,hearts)>1
-hxS = spades(west)==2 and hcp(west,spades)>1
-hxD = diamonds(west)==2 and hcp(west,diamonds)>1
+hxC = clubs(west)==2 and hcp(west,clubs)>0
+hxH = hearts(west)==2 and hcp(west,hearts)>0
+hxS = spades(west)==2 and hcp(west,spades)>0
+hxD = diamonds(west)==2 and hcp(west,diamonds)>0
 hx  = hxC or hxH or hxS or hxD
 
 cOC = oneClub    and (wD4 or wH4 or wS4) and clubs(west)==3    and hcp(west,clubs)<2
