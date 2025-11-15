@@ -1,0 +1,76 @@
+Script,GibOcW4
+setDealerCode(`
+
+/*
+South opens 1C, 1D, or 1H and West overcalls at the 1-level in a 4-card suit.
+
+convention-card: 21GF-GIB
+auction-filter: Auction.....\n1[CDH]
+
+*/
+
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# Defines oneClub, oneDiamond, and oneHeart
+
+# Define suits suitable for 4-card overcall
+wAS = hascard(west,AS)
+wKS = hascard(west,KS)
+wQS = hascard(west,QS)
+wJS = hascard(west,JS)
+wTS = hascard(west,TS)
+w9S = hascard(west,9S)
+
+wAH = hascard(west,AH)
+wKH = hascard(west,KH)
+wQH = hascard(west,QH)
+wJH = hascard(west,JH)
+wTH = hascard(west,TH)
+w9H = hascard(west,9H)
+
+wAD = hascard(west,AD)
+wKD = hascard(west,KD)
+wQD = hascard(west,QD)
+wJD = hascard(west,JD)
+wTD = hascard(west,TD)
+w9D = hascard(west,9D)
+
+# AKxx，AQJx，AQTx，AQ9x，AJT9，KQJx，or KQTx
+wS4 = (wAS and wKS) or (wAS and wQS and (wJS or wTS or w9S)) or (wAS and wJS and wTS and w9S) or (wKS and wQS and (wJS or wTS))
+wH4 = (wAH and wKH) or (wAH and wQH and (wJH or wTH or w9H)) or (wAH and wJH and wTH and w9H) or (wKH and wQH and (wJH or wTH))
+wD4 = (wAD and wKD) or (wAD and wQD and (wJD or wTD or w9D)) or (wAD and wJD and wTD and w9D) or (wKD and wQD and (wJD or wTD))
+wss = (wS4 and wH4) or (wS4 and wD4) or (wH4 or wD4) 
+
+hxC = clubs(west)==2 and hcp(west,clubs)>1
+hxH = hearts(west)==2 and hcp(west,hearts)>1
+hxS = spades(west)==2 and hcp(west,spades)>1
+hxD = diamonds(west)==2 and hcp(west,diamonds)>1
+hx  = hxC or hxH or hxS or hxD
+
+cOC = oneClub    and (wD4 or wH4 or wS4) and clubs(west)==3    and hcp(west,clubs)<2
+dOC = oneDiamond and (wH4 or wS4)        and diamonds(west)==3 and hcp(west,diamonds)<2
+hOC = oneHeart   and wS4                 and hearts(west)==3   and hcp(west,hearts)<2
+wOvercalls = (cOC or dOC or hOC) and hcp(west)>10 and hcp(west)<15 and shape(west,any 4432) and not hx
+
+sOpens = hcp(south)>11 and hcp(south)<15
+
+# Now do it.
+sOpens and wOvercalls
+
+
+action
+average "1C   " 100 * cOC,
+average "1D   " 100 * dOC,
+average "1H   " 100 * hOC,
+
+`, "S", false)
+Script
+
+Button,GIB OC w/4-cards,\n\
+--- GIB overcalls in a 4-card suit\n\
+South opens and West makes a 1-level overcall with a 4-card suit.\n\
+The required suit quality is AKxx，AQJx，AQTx，AQ9x，AJT9，KQJx，KQTx，or better.\n\
+West's shape is 4432 with 3-cards in opener's suit and West's HCP is 11-14\n\
+West does not have Ax，Kx，or Qx.\n\
+%GibOcW4%
