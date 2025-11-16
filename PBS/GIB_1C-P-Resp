@@ -19,8 +19,66 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 # Defines sTP
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-North
 # Defines nTP
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-West
+# Defines wTP
 
-TakeOutDouble = (balWest and hcp(west)>10 and shape(west,xxx2)) or (balEast and hcp(east)>10 and shape(east,xxx2))  // Must know opening suit
+# GIB does not open some 12 HCP hands
+# Define suits that are OK for opening
+top6C = top5(south,clubs) + hascard(south,9C)
+cAT  = hascard(south,AC) and top5(south,clubs)>1            // AT or better
+cKJ  = hascard(south,KC) and top4(south,clubs)>1            // KJ or better
+cQJ9 = hascard(south,QC) and hascard(south,JC) and top6C>2  // QJ9 or better
+cOK = cAT or cKJ or cQJ9
+
+top6D = top5(south,diamonds) + hascard(south,9D)
+dAT  = hascard(south,AD) and top5(south,diamonds)>1
+dKJ  = hascard(south,KD) and top4(south,diamonds)>1
+dQJ9 = hascard(south,QD) and hascard(south,JD) and top6D>2
+dOK = dAT or dKJ or dQJ9
+
+okToOpen = shape(south,1345 + 3145) and hcp(south)==12 ? cOK and dOK : 1
+
+# Define suits suitable for 4-card overcall
+wAS = hascard(west,AS)
+wKS = hascard(west,KS)
+wQS = hascard(west,QS)
+wJS = hascard(west,JS)
+wTS = hascard(west,TS)
+w9S = hascard(west,9S)
+
+wAH = hascard(west,AH)
+wKH = hascard(west,KH)
+wQH = hascard(west,QH)
+wJH = hascard(west,JH)
+wTH = hascard(west,TH)
+w9H = hascard(west,9H)
+
+wAD = hascard(west,AD)
+wKD = hascard(west,KD)
+wQD = hascard(west,QD)
+wJD = hascard(west,JD)
+wTD = hascard(west,TD)
+w9D = hascard(west,9D)
+
+# Define West's possible overcall suits: AKxx，AQJx，AQTx，AQ9x，AJT9，KQJx，or KQTx
+wS4 = ((wAS and wKS) or (wAS and wQS and (wJS or wTS or w9S)) or (wAS and wJS and wTS and w9S) or (wKS and wQS and (wJS or wTS))) and spades(west)==4
+wH4 = ((wAH and wKH) or (wAH and wQH and (wJH or wTH or w9H)) or (wAH and wJH and wTH and w9H) or (wKH and wQH and (wJH or wTH))) and hearts(west)==4
+wD4 = ((wAD and wKD) or (wAD and wQD and (wJD or wTD or w9D)) or (wAD and wJD and wTD and w9D) or (wKD and wQD and (wJD or wTD))) and diamonds(west)==4
+wss = (wS4 and wH4) or (wS4 and wD4) or (wH4 or wD4) 
+
+# Avoid Takeout Double -- 13/14 HCP and equal length in the majors
+X = (hcp(west)==13 or hcp(west)==14) and spades(west)==hearts(west)==(3 or 4)  // I'm out of 'shape' statements
+
+wRange = wTP>=12 and wTP<=14 and not X
+
+# Define West's overcalls
+cOC = oneClub    and (wD4 or wH4 or wS4) and clubs(west)==3    and okToOpen
+dOC = oneDiamond and (wH4 or wS4)        and diamonds(west)==3
+hOC = oneHeart   and wS4                 and hearts(west)==3
+wOvercalls = (cOC or dOC or hOC) and wRange and shape(west,any 4432 +any 4333)
+
+
+TakeOutDouble = (balWest and hcp(west)>10 and clubs(west)==2) or (balEast and hcp(east)>10 and clubs(east)==2)  // Must know opening suit
 oppsPass = calmOpps and not TakeOutDouble
 
 ## Define things...
@@ -58,7 +116,7 @@ nBal  = (s3334 or s3343 or sxx44)  // no 4-card major
 ## Define South's 1C opening and North's responses
 
 sRange = hcp(south)>11 and hcp(south)<22 and sTP>11 and sTP<23  // avoid strong 2C
-sClubs = oneClub //and nS<5 and nH<5
+sClubs = oneClub and okToOpen
 nRange = nRebiddableSuit ? nTP>5 and nTP<17 : nTP>5   // no upper range without rebiddable suit
 
 ## 1. Major responses
@@ -110,7 +168,7 @@ nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N
 //
 // ----------------------------------------------------------------
 
-sClubs and sRange and nRange and nResponds and oppsPass
+sClubs and sRange and not wOvercalls and nRange and nResponds and oppsPass
 
 action
 average "1D   " 100 * r1D,
