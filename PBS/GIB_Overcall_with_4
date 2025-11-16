@@ -13,7 +13,7 @@ dealer south
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 # Defines oneClub, oneDiamond, and oneHeart
-#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-West
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-West
 # Defines wTP
 
 # Define suits suitable for 4-card overcall
@@ -38,22 +38,22 @@ wJD = hascard(west,JD)
 wTD = hascard(west,TD)
 w9D = hascard(west,9D)
 
-# AKxx，AQJx，AQTx，AQ9x，AJT9，KQJx，or KQTx
-wS4 = (wAS and wKS) or (wAS and wQS and (wJS or wTS or w9S)) or (wAS and wJS and wTS and w9S) or (wKS and wQS and (wJS or wTS))
-wH4 = (wAH and wKH) or (wAH and wQH and (wJH or wTH or w9H)) or (wAH and wJH and wTH and w9H) or (wKH and wQH and (wJH or wTH))
-wD4 = (wAD and wKD) or (wAD and wQD and (wJD or wTD or w9D)) or (wAD and wJD and wTD and w9D) or (wKD and wQD and (wJD or wTD))
+# Define West's possible overcall suits: AKxx，AQJx，AQTx，AQ9x，AJT9，KQJx，or KQTx
+wS4 = ((wAS and wKS) or (wAS and wQS and (wJS or wTS or w9S)) or (wAS and wJS and wTS and w9S) or (wKS and wQS and (wJS or wTS))) and shape(west,4xxx)
+wH4 = ((wAH and wKH) or (wAH and wQH and (wJH or wTH or w9H)) or (wAH and wJH and wTH and w9H) or (wKH and wQH and (wJH or wTH))) and shape(west,x4xx)
+wD4 = ((wAD and wKD) or (wAD and wQD and (wJD or wTD or w9D)) or (wAD and wJD and wTD and w9D) or (wKD and wQD and (wJD or wTD))) and shape(west,xx4x)
 wss = (wS4 and wH4) or (wS4 and wD4) or (wH4 or wD4) 
 
-hxC = clubs(west)==2 and hcp(west,clubs)>0
-hxH = hearts(west)==2 and hcp(west,hearts)>0
-hxS = spades(west)==2 and hcp(west,spades)>0
-hxD = diamonds(west)==2 and hcp(west,diamonds)>0
-hx  = hxC or hxH or hxS or hxD
+# Avoid Takeout Double -- 13/14 HCP and equal length in the majors
+X = (hcp(west)==13 or hcp(west)==14) and shape(west,44xx+33xx)
 
-cOC = oneClub    and (wD4 or wH4 or wS4) and clubs(west)==3    and hcp(west,clubs)<2
-dOC = oneDiamond and (wH4 or wS4)        and diamonds(west)==3 and hcp(west,diamonds)<2
-hOC = oneHeart   and wS4                 and hearts(west)==3   and hcp(west,hearts)<2
-wOvercalls = (cOC or dOC or hOC) and hcp(west)>10 and hcp(west)<15 and shape(west,any 4432) and not hx
+wRange = wTP>=12 and wTP<=14 and not X
+
+# Define West's overcalls
+cOC = oneClub    and (wD4 or wH4 or wS4) and clubs(west)==3    //and hcp(west,clubs)==0
+dOC = oneDiamond and (wH4 or wS4)        and diamonds(west)==3 //and hcp(west,diamonds)==0
+hOC = oneHeart   and wS4                 and hearts(west)==3   //and hcp(west,hearts)==0
+wOvercalls = (cOC or dOC or hOC) and wRange and shape(west,any 4432 +any 4333)
 
 sOpens = hcp(south)>11 and hcp(south)<15
 
@@ -62,9 +62,12 @@ sOpens and wOvercalls
 
 
 action
-average "1C   " 100 * cOC,
-average "1D   " 100 * dOC,
-average "1H   " 100 * hOC,
+average "1C-1D   " 100 * (cOC and wD4),
+average "1C-1H   " 100 * (cOC and wH4),
+average "1C-1S   " 100 * (cOC and wS4),
+average "1D-1H   " 100 * (dOC and wH4),
+average "1D-1S   " 100 * (dOC and wS4),
+average "1H-1S   " 100 * (hOC and wS4),
 
 `, "S", false)
 Script
@@ -73,6 +76,7 @@ Button,GIB OC w/4-cards,\n\
 --- GIB overcalls in a 4-card suit\n\
 South opens and West makes a 1-level overcall with a 4-card suit.\n\
 The required suit quality is AKxx，AQJx，AQTx，AQ9x，AJT9，KQJx，KQTx，or better.\n\
-West's shape is 4432 with 3-cards in opener's suit and West's HCP is 11-14\n\
-West does not have Ax，Kx，Qx，or Jx.\n\
+West's shape is either 4333 or 4432.\n\
+West's lower limit is 12 TP -- can be 11 HCP w/a small doubleton.\n\
+West's upper limit is 13 HCP with 44/33 in the majors，otherwise 14 HCP.\n\
 %GibOcW4%
