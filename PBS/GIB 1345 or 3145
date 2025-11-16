@@ -1,0 +1,14 @@
+
+
+# Define suits that are OK for opening
+cAT  = hascard(south,AC) and top5(south,clubs)>1            // AT or better
+cKJ  = hascard(south,KC) and top4(south,clubs)>1            // KJ or better
+cQJ9 = hascard(south,QC) and hascard(south,JC) and top6C>2  // QJ9 or better
+cOK = cAT or cKJ or cQJ9
+
+dAT  = hascard(south,AD) and top5(south,diamonds)>1
+dKJ  = hascard(south,KD) and top4(south,diamonds)>1
+dQJ9 = hascard(south,QD) and hascard(south,JD) and top6D>2
+dOK = dAT or dKJ or dQJ9
+
+okToOpen = shape(south,1345 + 3145) and hcp(south)==12 ? cOK and dOK : 1

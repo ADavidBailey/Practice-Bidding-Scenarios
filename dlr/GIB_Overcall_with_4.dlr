@@ -95,6 +95,23 @@ wTP = hcp(west) + wv1+ws1+ws2+wd1+wd2+wd3 -wSP-wHP-wDP-wCP
 ### End of Calculate TP for West ###
 # Defines wTP
 
+# GIB does not open some 12 HCP hands
+# Define suits that are OK for opening
+top6C = top5(south,clubs) + hascard(south,9C)
+cAT  = hascard(south,AC) and top5(south,clubs)>1            // AT or better
+cKJ  = hascard(south,KC) and top4(south,clubs)>1            // KJ or better
+cQJ9 = hascard(south,QC) and hascard(south,JC) and top6C>2  // QJ9 or better
+cOK = cAT or cKJ or cQJ9
+
+top6D = top5(south,diamonds) + hascard(south,9D)
+dAT  = hascard(south,AD) and top5(south,diamonds)>1
+dKJ  = hascard(south,KD) and top4(south,diamonds)>1
+dQJ9 = hascard(south,QD) and hascard(south,JD) and top6D>2
+dOK = dAT or dKJ or dQJ9
+
+okToOpen = shape(south,1345 + 3145) and hcp(south)==12 ? cOK and dOK : 1
+
+
 # Define suits suitable for 4-card overcall
 wAS = hascard(west,AS)
 wKS = hascard(west,KS)
@@ -129,9 +146,9 @@ X = (hcp(west)==13 or hcp(west)==14) and shape(west,44xx+33xx)
 wRange = wTP>=12 and wTP<=14 and not X
 
 # Define West's overcalls
-cOC = oneClub    and (wD4 or wH4 or wS4) and clubs(west)==3    //and hcp(west,clubs)==0
-dOC = oneDiamond and (wH4 or wS4)        and diamonds(west)==3 //and hcp(west,diamonds)==0
-hOC = oneHeart   and wS4                 and hearts(west)==3   //and hcp(west,hearts)==0
+cOC = oneClub    and (wD4 or wH4 or wS4) and clubs(west)==3    and okToOpen
+dOC = oneDiamond and (wH4 or wS4)        and diamonds(west)==3
+hOC = oneHeart   and wS4                 and hearts(west)==3
 wOvercalls = (cOC or dOC or hOC) and wRange and shape(west,any 4432 +any 4333)
 
 sOpens = hcp(south)>11 and hcp(south)<15
