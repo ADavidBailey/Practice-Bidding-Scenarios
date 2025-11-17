@@ -112,7 +112,6 @@ eTP = hcp(east) + ev1+es1+es2+ed1+ed2+ed3 -eSP-eHP-eDP-eCP
 ### End of Calculate TP for East ###
 # Defines eTP
 
-##### Imported Script -- GIB 1 Notrump ##### ---- Changed to use sTP rather than hcp(south) because GIB discounts Hx
 
 # GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
 ntP = hcp(south) + shape(south,5xxx+x5xx)
@@ -127,7 +126,9 @@ xxH = hearts(south)==2   and hcp(south,hearts)<3
 xxD = diamonds(south)==2 and hcp(south,diamonds)<3
 xxC = clubs(south)==2    and hcp(south,clubs)<3
 xx = xxS + xxH + xxD + xxC
-nt2 = shape(south, 2245+2254+2425+2452) and (hcp(south) -xx)>14 and hcp(south)<17
+
+//Note: I don't get any 2245 or 2425.  Any idea why?
+nt2 = shape(south, 2245+2254+2425+2452) and (hcp(south) -xx)>14 and hcp(south)<17  // less than the strength to reverse
 
 gibNT = nt1 or nt2
 
@@ -153,7 +154,7 @@ stayman = shape(north,4xxx +x4xx -any 9xxx -any 8xxx -any 7xxx -any 6xxx) and nT
 
 # Define Texas, Jacoby, & Splinter responses
 texas  = (spades(north)>5 or hearts(north)>5) and nTP>9 and not splinter
-jacoby = (spades(north)>4 or hearts(north)>4) and not (splinter or texas or smolen)
+jacoby = (spades(north)>4 or hearts(north)>4) and not (splinter or texas or smolen or majorInvite)
 
 n2Clubs = (stayman or smolen or majorInvite) and not (splinter or mss or mst or texas or jacoby)
 

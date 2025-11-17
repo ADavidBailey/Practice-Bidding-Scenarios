@@ -67,7 +67,7 @@ stayman = shape(north,4xxx +x4xx -any 9xxx -any 8xxx -any 7xxx -any 6xxx) and nT
 
 # Define Texas, Jacoby, & Splinter responses
 texas  = (spades(north)>5 or hearts(north)>5) and nTP>9 and not splinter
-jacoby = (spades(north)>4 or hearts(north)>4) and not (splinter or texas or smolen)
+jacoby = (spades(north)>4 or hearts(north)>4) and not (splinter or texas or smolen or majorInvite)
 
 n2Clubs = (stayman or smolen or majorInvite) and not (splinter or mss or mst or texas or jacoby)
 
