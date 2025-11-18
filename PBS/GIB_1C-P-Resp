@@ -68,6 +68,7 @@ wss = (wS4 and wH4) or (wS4 and wD4) or (wH4 or wD4)
 
 # Avoid Takeout Double -- 13/14 HCP and equal length in the majors
 X = (hcp(west)==13 or hcp(west)==14) and spades(west)==hearts(west)==(3 or 4)  // I'm out of 'shape' statements
+reverse = shape(south,45xx+x45x+xx45) and hcp(south(>16)
 
 wRange = wTP>=12 and wTP<=14 and not X
 
