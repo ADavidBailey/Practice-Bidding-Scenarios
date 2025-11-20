@@ -3,7 +3,7 @@
 
 ## Calculate TP for North
 # Calculate North's Short-Suit Penalty Points
-nSP = spades(north)  <3 and hcp(north,spades)♠️>0 ? 1 : 0
+nSP = spades(north)  <3 and hcp(north,spades)  >0 ? 1 : 0
 nHP = hearts(north)  <3 and hcp(north,hearts)  >0 ? 1 : 0
 nDP = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
 nCP = clubs(north)   <3 and hcp(north,clubs)   >0 ? 1 : 0

@@ -16,6 +16,34 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 
 #Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/TP
 # Defines tpNorth, tpEast, tpSouth, tpWest
+### Imported script: TP (Total Points)
+
+
+
+## Calculate TP for South
+# Calculate South's Short-Suit Penalty Points
+sSP = spades(south)  <3 and hcp(south,spades)  >0 ? 1 : 0
+sHP = hearts(south)  <3 and hcp(south,hearts)  >0 ? 1 : 0
+sDP = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
+sCP = clubs(south)   <3 and hcp(south,clubs)   >0 ? 1 : 0
+
+# Calculate South's Short-Suit Points
+sv = spades(south)==0 + hearts(south)==0 + diamonds(south)==0 + clubs(south)==0
+ss = spades(south)==1 + hearts(south)==1 + diamonds(south)==1 + clubs(south)==1
+sd = spades(south)==2 + hearts(south)==2 + diamonds(south)==2 + clubs(south)==2
+sv1 = sv==1 ? 3 : 0
+sv2 = sv==2 ? 6 : 0
+ss1 = ss==1 ? 2 : 0
+ss2 = ss==2 ? 4 : 0
+ss3 = ss==3 ? 6 : 0
+sd1 = sd==1 ? 1 : 0
+sd2 = sd==2 ? 2 : 0
+sd3 = sd==3 ? 3 : 0
+tpSouth = hcp(south) + sv1+sv2+ss1+ss2+ss3+sd1+sd2+sd3 -sSP-sHP-sDP-sCP
+
+
+### End of Imported Script: TP
+
 
 
 # Now do it
