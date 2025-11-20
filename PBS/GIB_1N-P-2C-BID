@@ -16,19 +16,19 @@ dealer south
 #Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
 # Defines gibNT
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
-# Defines calmWest
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-South
-# Defines sTP
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-North
-# Defines nTP
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-East
-# Defines eTP
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/TP
+# Defines tpNorth, tpSouth, tpEast, tpWest
 
+# Define calmWest
+west4x = shape(west,any 9xxx+any 8xxx+any 7xxx-any 6xxx-any 5xxx-any 4xxx)  and tpWest<3
+west2C = shape(west,any 9xxx+any 8xxx+any 7xxx +any 6xxx-any 5xxx-any 4xxx) and tpWest<10
+west2N = clubs(west)>4 and diamonds(west)>4                                 and tpWest<15
+west2other = shape(west,any 76xx +any +any 75xx +any 74xx +any 66xx +any 65xx +any 64xx+ any 55xx) and tpWest<11
+calmWest = not (west4x or west2C or west2N or west2other)
 
 # GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
 ntP = hcp(south) + shape(south,5xxx+x5xx)
-nt1 = shape(south, any 5332+any 4432+any 4333) and hcp(south)>14 and sTP>14 and ntP<18
+nt1 = shape(south, any 5332+any 4432+any 4333) and hcp(south)>14 and tpSouth>14 and ntP<18
 
 # GIB does not open with 5422 and a 5-card major or with 4 spades
 # GIB does not open with 5422 and the strength to reverse
@@ -53,20 +53,20 @@ nQH = hearts(north)==4 and hcp(north,hearts)>2
 nQ  = nQS or nQH
 
 # Define splinter
-splinter = shape(north, 4405 + any 4441 -xxx1) and nTP>11
+splinter = shape(north, 4405 + any 4441 -xxx1) and tpNorth>11
 
 # Define mSS and mST
-mss = diamonds(north)>3 and clubs(north)>3 and (diamonds(north) + clubs(north))>8 and nTP>9
+mss = diamonds(north)>3 and clubs(north)>3 and (diamonds(north) + clubs(north))>8 and tpNorth>9
 mst = (clubs(north)>5 or diamonds(north)>5) and not mss
 
 # Define various 2C bids -- GIB does not play Drop Dead or Crawling Stayman
 M54 = hearts(north)>3 and spades(north)>3 and (hearts(north) + spades(north))==9  // running out of shapes
 smolen = M54 and hcp(north)>9 and not splinter
-majorInvite = M54 and nTP>7 and nTP<10 and hcp(north)<10  // 2C & correct D to S     Note: 4333 with 8 HCP doesn't bid Stayman
-stayman = shape(north,4xxx +x4xx -any 9xxx -any 8xxx -any 7xxx -any 6xxx) and nTP>8 and hcp(north)>7 and nQ and not (majorInvite or smolen or splinter)
+majorInvite = M54 and tpNorth>7 and tpNorth<10 and hcp(north)<10  // 2C & correct D to S     Note: 4333 with 8 HCP doesn't bid Stayman
+stayman = shape(north,4xxx +x4xx -any 9xxx -any 8xxx -any 7xxx -any 6xxx) and tpNorth>8 and hcp(north)>7 and nQ and not (majorInvite or smolen or splinter)
 
 # Define Texas, Jacoby, & Splinter responses
-texas  = (spades(north)>5 or hearts(north)>5) and nTP>9 and not splinter
+texas  = (spades(north)>5 or hearts(north)>5) and tpNorth>9 and not splinter
 jacoby = (spades(north)>4 or hearts(north)>4) and not (splinter or texas or smolen or majorInvite)
 
 n2Clubs = (stayman or smolen or majorInvite) and not (splinter or mss or mst or texas or jacoby)
@@ -123,9 +123,9 @@ eTBH5 = hearts(east)>3   and (top5(east,hearts)==5)
 eTBS5 = spades(east)>3   and (top5(east,spades)==5)
 eTB5  = eTBC5 or eTBD5 or eTBH5 or eTBS5
 
-eSuits  = ((eTB3 and eTP>14) or (eTB4 and eTP>13) or (eTB5 and eTP>12))
+eSuits  = ((eTB3 and tpEast>14) or (eTB4 and tpEast>13) or (eTB5 and tpEast>12))
 
-e2Range = hcp(east)>9 and eTP>10 and eTP<17
+e2Range = hcp(east)>9 and tpEast>10 and tpEast<17
 
 # Define East's bids over 2C -- Twice Bdiddable with extra strength
 e2D = diamonds(east)==6 and e2Range and eSuits
@@ -134,7 +134,7 @@ e2S = spades(east)==6   and e2Range and eSuits
 e2B = e2D or e2H or e2S
 
 # 3- and 4-level suits require length and may have suit-quality
-e3Range = hcp(east)>9 and eTP>10 and eTP<17
+e3Range = hcp(east)>9 and tpEast>10 and tpEast<17
 e3C = clubs(east)>6    and eSuits and e3Range
 e3D = diamonds(east)>6 and eSuits and e3Range and not e2D
 e3H = hearts(east)>6   and eSuits and e3Range and not e2H
@@ -163,7 +163,7 @@ e4B = e4Bw or e4Bs
 eBOther = shape(east,any 9xxx +any 8xxx +any 7xxx +any 6xxx) and clubs(east)<6 and not (e2B or e3B or e4B)
 
 # Now do it
-gibNT and sTP<19 and calmWest and n2Clubs and eShape and (e2B or e3B or e4B)
+gibNT and tpSouth<19 and calmWest and n2Clubs and eShape and (e2B or e3B or e4B)
 
 action
 average "smolen      " 100 * smolen,
