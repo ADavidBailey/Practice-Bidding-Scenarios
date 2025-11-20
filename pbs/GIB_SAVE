@@ -1,0 +1,31 @@
+Script,GIB-1N-P-2C-Bid
+setDealerCode(`
+
+/*
+South opens 1N and North responds 2C and East bids.
+
+convention-card: 21GF-GIB
+auction-filter: Auction.....\n1NT? +Pass +2C =.= +[2-7][CDHS]\n
+*/
+
+dealer south
+
+# 1 Notrump Opening
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+# Defines gibNT
+
+#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/TP
+# Defines tpNorth, tpEast, tpSouth, tpWest
+
+
+# Now do it
+gibNT and tpSouth<18
+
+
+action
+
+`,"S",true)
+Script
+Button,GIB NT-P-2C-bid,\n\
+--- After 1NT-P-2C-bid...  What now???\n\
+%GIB-1N-P-2C-Bid%
