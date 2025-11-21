@@ -45,7 +45,7 @@ mst = (clubs(north)>5 or diamonds(north)>5) and not mss
 
 # NOTE:  GIB does NOT bid Stayman with 4-3-3-3 and 8 HCP
 smolen      = shape(north,54xx +45xx)         and tpNorth>9
-majorInvite = shape(north,54xx) and tpNorth>7 and tpNorth<10 and hcp(north)<10    // 2C & correct D to S 
+majorInvite = shape(north,54xx) and tpNorth>8 and tpNorth<11 and hcp(north)<10    // 2C & correct D to S 
 stayman     = shape(north,44xx +4xxx +x4xx -any 9xxx -any 8xxx -any 7xxx -any 6xxx -5xxx -x5xx) and hcp(north)>7 and tpNorth>8 and nQ and not (majorInvite or smolen or splinter)
 
 # Define Texas, Jacoby, & Splinter responses
