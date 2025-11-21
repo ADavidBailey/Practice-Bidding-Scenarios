@@ -6,25 +6,148 @@ setDealerCode(`
 South opens 1N and North responds 2C and East bids.
 
 convention-card: 21GF-GIB
-auction-filter: Auction.....\n1NT?.* P.* 2C.* [2-7][CDHS]\n
+auction-filter: Auction.....\n(1NT? +Pass +2C .* +[PX2-7])
 */
 
-# Stayman
 dealer south
 
 # 1 Notrump Opening
 #Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
 # Defines gibNT
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/TP
+#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/TP
 # Defines tpNorth, tpSouth, tpEast, tpWest
+### Imported script: TP (Total Points)
 
-# Define calmWest
-west4x = shape(west,any 9xxx+any 8xxx+any 7xxx-any 6xxx-any 5xxx-any 4xxx)  and tpWest<3
-west2C = shape(west,any 9xxx+any 8xxx+any 7xxx +any 6xxx-any 5xxx-any 4xxx) and tpWest<10
-west2N = clubs(west)>4 and diamonds(west)>4                                 and tpWest<15
-west2other = shape(west,any 76xx +any +any 75xx +any 74xx +any 66xx +any 65xx +any 64xx+ any 55xx) and tpWest<11
-calmWest = not (west4x or west2C or west2N or west2other)
+//   Note:  My initial implementation used shape staments for counting voids, singletons, and doubletons.
+//   Dealer has a limit 32, so I eliminated the shape statements in this script.
+
+## Calculate TP for North
+# Calculate North's Short-Suit Penalty Points
+nsPP = spades(north)  <3 and hcp(north,spades)  >0 ? 1 : 0
+nhPP = hearts(north)  <3 and hcp(north,hearts)  >0 ? 1 : 0
+ndPP = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
+ncPP = clubs(north)   <3 and hcp(north,clubs)   >0 ? 1 : 0
+nPP = nsPP+nhPP+ndPP+ncPP
+
+# Calculate North's Short-Suit Points
+ns0 = spades(north)  ==0 ? 3 : 0   // 3 for each void
+nh0 = hearts(north)  ==0 ? 3 : 0
+nd0 = diamonds(north)==0 ? 3 : 0
+nc0 = clubs(north)   ==0 ? 3 : 0
+
+ns1 = spades(north)  ==1 ? 2 : 0   // 2 for each singleton
+nh1 = hearts(north)  ==1 ? 2 : 0
+nd1 = diamonds(north)==1 ? 2 : 0
+nc1 = clubs(north)   ==1 ? 2 : 0
+
+ns2 = spades(north)  ==2 ? 1 : 0   // 1 for each doubleton
+nh2 = hearts(north)  ==2 ? 1 : 0
+nd2 = diamonds(north)==2 ? 1 : 0
+nc2 = clubs(north)   ==2 ? 1 : 0
+
+nSSP = ns0+nh0+nd0+nc0+ns1+nh1+nd1+nc1+ns2+nh2+nd2+nc2
+
+tpNorth = hcp(north) + nSSP - nPP
+
+## Calculate TP for East
+# Calculate East's Short-Suit Penalty Points
+esPP = spades(east)  <3 and hcp(east,spades)  >0 ? 1 : 0
+ehPP = hearts(east)  <3 and hcp(east,hearts)  >0 ? 1 : 0
+edPP = diamonds(east)<3 and hcp(east,diamonds)>0 ? 1 : 0
+ecPP = clubs(east)   <3 and hcp(east,clubs)   >0 ? 1 : 0
+ePP = esPP+ehPP+edPP+ecPP
+
+# Calculate East's Short-Suit Points
+es0 = spades(east)==0     ? 3 : 0
+eh0 = hearts(east)==0     ? 3 : 0
+ed0 = diamonds(east)==0   ? 3 : 0
+ec0 = clubs(east)==0      ? 3 : 0
+
+es1 = spades(east)==1     ? 2 : 0
+eh1 = hearts(east)==1     ? 2 : 0    
+ed1 = diamonds(east)==1   ? 2 : 0
+ec1 = clubs(east)==1      ? 2 : 0
+
+es2 = spades(east)==2     ? 1 : 0
+eh2 = hearts(east)==2     ? 1 : 0
+ed2 = diamonds(east)==2   ? 1 : 0
+ec2 = clubs(east)==2      ? 1 : 0
+
+eSSP = es0+eh0+ed0+ec0+es1+eh1+ed1+ec1+es2+eh2+ed2+ec2
+
+tpEast = hcp(east) + eSSP - ePP
+
+
+## Calculate TP for South
+# Calculate South's Short-Suit Penalty Points
+ssPP = spades(south)  <3 and hcp(south,spades)  >0 ? 1 : 0   
+shPP = hearts(south)  <3 and hcp(south,hearts)  >0 ? 1 : 0
+sdPP = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
+scPP = clubs(south)   <3 and hcp(south,clubs)   >0 ? 1 : 0
+sPP = ssPP+shPP+sdPP+scPP
+
+# Calculate South's Short-Suit Points
+ss0 = spades(south)==0     ? 3 : 0
+sh0 = hearts(south)==0     ? 3 : 0
+sd0 = diamonds(south)==0   ? 3 : 0
+sc0 = clubs(south)==0      ? 3 : 0   
+
+ss1 = spades(south)==1     ? 2 : 0
+sh1 = hearts(south)==1     ? 2 : 0
+sd1 = diamonds(south)==1   ? 2 : 0
+sc1 = clubs(south)==1      ? 2 : 0
+
+ss2 = spades(south)==2     ? 1 : 0
+sh2 = hearts(south)==2     ? 1 : 0
+sd2 = diamonds(south)==2   ? 1 : 0
+sc2 = clubs(south)==2      ? 1 : 0
+
+sSSP = ss0+sh0+sd0+sc0+ss1+sh1+sd1+sc1+ss2+sh2+sd2+sc2
+
+tpSouth = hcp(south) + sSSP - sPP
+
+
+## Calculate TP for West
+# Calculate West's Short-Suit Penalty Points
+wsPP = spades(west)  <3 and hcp(west,spades)  >0 ? 1 : 0
+whPP = hearts(west)  <3 and hcp(west,hearts)  >0 ? 1 : 0
+wdPP = diamonds(west)<3 and hcp(west,diamonds)>0 ? 1 : 0
+wcPP = clubs(west)   <3 and hcp(west,clubs)   >0 ? 1 : 0
+wPP = wsPP+whPP+wdPP+wcPP
+
+# Calculate West's Short-Suit Points
+ws0 = spades(west)==0     ? 3 : 0
+wh0 = hearts(west)==0     ? 3 : 0
+wd0 = diamonds(west)==0   ? 3 : 0
+wc0 = clubs(west)==0      ? 3 : 0
+
+ws1 = spades(west)==1     ? 2 : 0
+wh1 = hearts(west)==1     ? 2 : 0
+wd1 = diamonds(west)==1   ? 2 : 0
+wc1 = clubs(west)==1      ? 2 : 0
+
+ws2 = spades(west)==2     ? 1 : 0
+wh2 = hearts(west)==2     ? 1 : 0
+wd2 = diamonds(west)==2   ? 1 : 0
+wc2 = clubs(west)==2      ? 1 : 0
+
+wSSP = ws0+wh0+wd0+wc0+ws1+wh1+wd1+wc1+ws2+wh2+wd2+wc2
+
+tpWest = hcp(west) + wSSP - wPP
+
+### End of Imported Script: TP
+
+# Define West's Cappellitti actions
+west4x     = shape(west,any 9xxx +any 8xxx +any 7xxx -any 6xxx -any 5xxx -any 4xxx)                     and tpWest>2
+west2C     = shape(west,any 9xxx +any 8xxx +any 7xxx +any 6xxx -any 5xxx)                               and tpWest>9
+west2D     = spades(west)>3 and hearts(west)>3 and (spades(west) + hearts(west))>8                      and tpWest>10
+west2other = shape(west,any 76xx +any 75xx +any 74xx +any 66xx +any 65xx +any 64xx+ any 55xx +any 54xx) and tpWest>10
+west3x     = shape(west,any 9xxx +any 8xxx +any 7xxx +any 6xxx -any 5xxx -any 4xxx)                     and tpWest>12 and tpWest<17
+minorCards = clubs(west) + diamonds(west)
+west2N     = clubs(west)>4 and diamonds(west)>4                                                         and (tpWest + minorCards - 9)>14
+westX      = hcp(west)>15
+calmWest   = not (west4x or west2C or west2D or west2other or west3x or west2N or westX)
 
 # GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
 ntP = hcp(south) + shape(south,5xxx+x5xx)
@@ -60,14 +183,15 @@ mss = diamonds(north)>3 and clubs(north)>3 and (diamonds(north) + clubs(north))>
 mst = (clubs(north)>5 or diamonds(north)>5) and not mss
 
 # Define various 2C bids -- GIB does not play Drop Dead or Crawling Stayman
-M54 = hearts(north)>3 and spades(north)>3 and (hearts(north) + spades(north))==9  // running out of shapes
-smolen = M54 and hcp(north)>9 and not splinter
-majorInvite = M54 and tpNorth>7 and tpNorth<10 and hcp(north)<10  // 2C & correct D to S     Note: 4333 with 8 HCP doesn't bid Stayman
-stayman = shape(north,4xxx +x4xx -any 9xxx -any 8xxx -any 7xxx -any 6xxx) and tpNorth>8 and hcp(north)>7 and nQ and not (majorInvite or smolen or splinter)
+minStayman = shape(north,4333+3433) ? 9 : 8     // Note: 4333 with 8 HCP doesn't bid Stayman
+
+smolen      = shape(north,54xx +45xx)         and tpNorth>9
+majorInvite = shape(north,54xx) and tpNorth>7 and tpNorth<10 and hcp(north)<10    // 2C & correct D to S 
+stayman     = shape(north,44xx +4xxx +x4xx -any 9xxx -any 8xxx -any 7xxx -any 6xxx -5xxx -x5xx) and hcp(north)>7 and tpNorth>8 and nQ and not (majorInvite or smolen or splinter)
 
 # Define Texas, Jacoby, & Splinter responses
-texas  = (spades(north)>5 or hearts(north)>5) and tpNorth>9 and not splinter
-jacoby = (spades(north)>4 or hearts(north)>4) and not (splinter or texas or smolen or majorInvite)
+texas  = (spades(north)>5 or hearts(north)>5) and tpNorth>9
+jacoby = (spades(north)>4 or hearts(north)>4) and not (texas or smolen or majorInvite)
 
 n2Clubs = (stayman or smolen or majorInvite) and not (splinter or mss or mst or texas or jacoby)
 
@@ -124,7 +248,7 @@ eTBS5 = spades(east)>3   and (top5(east,spades)==5)
 eTB5  = eTBC5 or eTBD5 or eTBH5 or eTBS5
 
 eSuits  = ((eTB3 and tpEast>14) or (eTB4 and tpEast>13) or (eTB5 and tpEast>12))
-
+eX      = (clubs(east)==4 and ((top4(east,clubs)>2 and eC8421>3)) or clubs(east)>4)
 e2Range = hcp(east)>9 and tpEast>10 and tpEast<17
 
 # Define East's bids over 2C -- Twice Bdiddable with extra strength
@@ -169,6 +293,7 @@ action
 average "smolen      " 100 * smolen,
 average "stayman     " 100 * stayman,
 average "major invite" 100 * majorInvite,
+average "X           " 100 * eX,
 average "2D          " 100 * e2D,
 average "2H          " 100 * e2H,
 average "2S          " 100 * e2S,
@@ -178,6 +303,7 @@ average "3H          " 100 * e3H,
 average "3S          " 100 * e3S,
 average "4 weak      " 100 * e4Bw,
 average "4 strong    " 100 * e4Bs,
+
 `,"S",true)
 Script
 Button,GIB NT-P-2C-bid,\n\

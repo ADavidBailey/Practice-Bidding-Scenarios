@@ -1,91 +1,120 @@
 ### Imported script: TP (Total Points)
 
+//   Note:  My initial implementation used shape staments for counting voids, singletons, and doubletons.
+//   Dealer has a limit 32, so I eliminated the shape statements in this script.
 
-## Calculate TP for North 
+## Calculate TP for North
 # Calculate North's Short-Suit Penalty Points
-nSP = spades(north)  <3 and hcp(north,spades)  >0 ? 1 : 0
-nHP = hearts(north)  <3 and hcp(north,hearts)  >0 ? 1 : 0
-nDP = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
-nCP = clubs(north)   <3 and hcp(north,clubs)   >0 ? 1 : 0
+nsPP = spades(north)  <3 and hcp(north,spades)  >0 ? 1 : 0
+nhPP = hearts(north)  <3 and hcp(north,hearts)  >0 ? 1 : 0
+ndPP = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
+ncPP = clubs(north)   <3 and hcp(north,clubs)   >0 ? 1 : 0
+nPP = nsPP+nhPP+ndPP+ncPP
 
 # Calculate North's Short-Suit Points
-n0 = spades(north)==0 + hearts(north)==0 + diamonds(north)==0 + clubs(north)==0
-n1 = spades(north)==1 + hearts(north)==1 + diamonds(north)==1 + clubs(north)==1
-n2 = spades(north)==2 + hearts(north)==2 + diamonds(north)==2 + clubs(north)==2
-n01 = n0==1 ? 3 : 0  // 3 points for each void
-n02 = n0==2 ? 6 : 0
-n11 = n1==1 ? 2 : 0  // 2 points for each singleton
-n12 = n1==2 ? 4 : 0
-n13 = n1==3 ? 6 : 0
-n21 = n2==1 ? 1 : 0  // 1 point for each doubleton
-n22 = n2==2 ? 2 : 0
-n23 = n2==3 ? 3 : 0
-tpNorth = hcp(north) + n01+n02+n11+n12+n13+n21+n22+n23 -nSP-nHP-nDP-nCP
+ns0 = spades(north)  ==0 ? 3 : 0   // 3 for each void
+nh0 = hearts(north)  ==0 ? 3 : 0
+nd0 = diamonds(north)==0 ? 3 : 0
+nc0 = clubs(north)   ==0 ? 3 : 0
 
+ns1 = spades(north)  ==1 ? 2 : 0   // 2 for each singleton
+nh1 = hearts(north)  ==1 ? 2 : 0
+nd1 = diamonds(north)==1 ? 2 : 0
+nc1 = clubs(north)   ==1 ? 2 : 0
+
+ns2 = spades(north)  ==2 ? 1 : 0   // 1 for each doubleton
+nh2 = hearts(north)  ==2 ? 1 : 0
+nd2 = diamonds(north)==2 ? 1 : 0
+nc2 = clubs(north)   ==2 ? 1 : 0
+
+nSSP = ns0+nh0+nd0+nc0+ns1+nh1+nd1+nc1+ns2+nh2+nd2+nc2
+
+tpNorth = hcp(north) + nSSP - nPP
 
 ## Calculate TP for East
 # Calculate East's Short-Suit Penalty Points
-eSP = spades(east)  <3 and hcp(east,spades)  >0 ? 1 : 0
-eHP = hearts(east)  <3 and hcp(east,hearts)  >0 ? 1 : 0
-eDP = diamonds(east)<3 and hcp(east,diamonds)>0 ? 1 : 0
-eCP = clubs(east)   <3 and hcp(east,clubs)   >0 ? 1 : 0
+esPP = spades(east)  <3 and hcp(east,spades)  >0 ? 1 : 0
+ehPP = hearts(east)  <3 and hcp(east,hearts)  >0 ? 1 : 0
+edPP = diamonds(east)<3 and hcp(east,diamonds)>0 ? 1 : 0
+ecPP = clubs(east)   <3 and hcp(east,clubs)   >0 ? 1 : 0
+ePP = esPP+ehPP+edPP+ecPP
 
 # Calculate East's Short-Suit Points
-e0 = spades(east)==0 + hearts(east)==0 + diamonds(east)==0 + clubs(east)==0
-e1 = spades(east)==1 + hearts(east)==1 + diamonds(east)==1 + clubs(east)==1
-e2 = spades(east)==2 + hearts(east)==2 + diamonds(east)==2 + clubs(east)==2
-e01 = e0==1 ? 3 : 0
-e02 = e0==2 ? 6 : 0
-e11 = e1==1 ? 2 : 0
-e12 = e1==2 ? 4 : 0
-e13 = e1==3 ? 6 : 0
-e21 = e2==1 ? 1 : 0
-e22 = e2==2 ? 2 : 0
-e23 = e2==3 ? 3 : 0
-tpEast = hcp(east) + e01+e02+e11+e12+e13+e21+e22+e23 -eSP-eHP-eDP-eCP
+es0 = spades(east)==0     ? 3 : 0
+eh0 = hearts(east)==0     ? 3 : 0
+ed0 = diamonds(east)==0   ? 3 : 0
+ec0 = clubs(east)==0      ? 3 : 0
+
+es1 = spades(east)==1     ? 2 : 0
+eh1 = hearts(east)==1     ? 2 : 0    
+ed1 = diamonds(east)==1   ? 2 : 0
+ec1 = clubs(east)==1      ? 2 : 0
+
+es2 = spades(east)==2     ? 1 : 0
+eh2 = hearts(east)==2     ? 1 : 0
+ed2 = diamonds(east)==2   ? 1 : 0
+ec2 = clubs(east)==2      ? 1 : 0
+
+eSSP = es0+eh0+ed0+ec0+es1+eh1+ed1+ec1+es2+eh2+ed2+ec2
+
+tpEast = hcp(east) + eSSP - ePP
 
 
 ## Calculate TP for South
 # Calculate South's Short-Suit Penalty Points
-sSP = spades(south)<3 and hcp(south,spades)>0     ? 1 : 0
-sHP = hearts(south)<3 and hcp(south,hearts)>0     ? 1 : 0
-sDP = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
-sCP = clubs(south)<3 and hcp(south,clubs)>0       ? 1 : 0
+ssPP = spades(south)  <3 and hcp(south,spades)  >0 ? 1 : 0   
+shPP = hearts(south)  <3 and hcp(south,hearts)  >0 ? 1 : 0
+sdPP = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
+scPP = clubs(south)   <3 and hcp(south,clubs)   >0 ? 1 : 0
+sPP = ssPP+shPP+sdPP+scPP
 
 # Calculate South's Short-Suit Points
-s0 = spades(south)==0 + hearts(south)==0 + diamonds(south)==0 + clubs(south)==0
-s1 = spades(south)==1 + hearts(south)==1 + diamonds(south)==1 + clubs(south)==1
-s2 = spades(south)==2 + hearts(south)==2 + diamonds(south)==2 + clubs(south)==2
-s01 = s0==1 ? 3 : 0
-s02 = s0==2 ? 6 : 0
-s11 = s1==1 ? 2 : 0
-s12 = s1==2 ? 4 : 0
-s13 = s1==3 ? 6 : 0
-s21 = s2==1 ? 1 : 0
-s22 = s2==2 ? 2 : 0
-s23 = s2==3 ? 3 : 0
-tpSouth = hcp(south) + s01+s02+s11+s12+s13+s21+s22+s23 -sSP-sHP-sDP-sCP
+ss0 = spades(south)==0     ? 3 : 0
+sh0 = hearts(south)==0     ? 3 : 0
+sd0 = diamonds(south)==0   ? 3 : 0
+sc0 = clubs(south)==0      ? 3 : 0   
+
+ss1 = spades(south)==1     ? 2 : 0
+sh1 = hearts(south)==1     ? 2 : 0
+sd1 = diamonds(south)==1   ? 2 : 0
+sc1 = clubs(south)==1      ? 2 : 0
+
+ss2 = spades(south)==2     ? 1 : 0
+sh2 = hearts(south)==2     ? 1 : 0
+sd2 = diamonds(south)==2   ? 1 : 0
+sc2 = clubs(south)==2      ? 1 : 0
+
+sSSP = ss0+sh0+sd0+sc0+ss1+sh1+sd1+sc1+ss2+sh2+sd2+sc2
+
+tpSouth = hcp(south) + sSSP - sPP
 
 
 ## Calculate TP for West
 # Calculate West's Short-Suit Penalty Points
-wSP = spades(west)<3 and hcp(west,spades)>0     ? 1 : 0
-wHP = hearts(west)<3 and hcp(west,hearts)>0     ? 1 : 0
-wDP = diamonds(west)<3 and hcp(west,diamonds)>0 ? 1 : 0
-wCP = clubs(west)<3 and hcp(west,clubs)>0       ? 1 : 0
+wsPP = spades(west)  <3 and hcp(west,spades)  >0 ? 1 : 0
+whPP = hearts(west)  <3 and hcp(west,hearts)  >0 ? 1 : 0
+wdPP = diamonds(west)<3 and hcp(west,diamonds)>0 ? 1 : 0
+wcPP = clubs(west)   <3 and hcp(west,clubs)   >0 ? 1 : 0
+wPP = wsPP+whPP+wdPP+wcPP
 
 # Calculate West's Short-Suit Points
-w0 = spades(west)==0 + hearts(west)==0 + diamonds(west)==0 + clubs(west)==0
-w1 = spades(west)==1 + hearts(west)==1 + diamonds(west)==1 + clubs(west)==1
-w2 = spades(west)==2 + hearts(west)==2 + diamonds(west)==2 + clubs(west)==2
-w01 = w0==1 ? 3 : 0
-w02 = w0==2 ? 6 : 0
-w11 = w1==1 ? 2 : 0
-w12 = w1==2 ? 4 : 0
-w13 = w1==3 ? 6 : 0
-w21 = w2==1 ? 1 : 0
-w22 = w2==2 ? 2 : 0
-w23 = w2==3 ? 3 : 0
-tpWest = hcp(west) + w01+w02+w11+w12+w13+w21+w22+w23 -wSP-wHP-wDP-wCP
+ws0 = spades(west)==0     ? 3 : 0
+wh0 = hearts(west)==0     ? 3 : 0
+wd0 = diamonds(west)==0   ? 3 : 0
+wc0 = clubs(west)==0      ? 3 : 0
+
+ws1 = spades(west)==1     ? 2 : 0
+wh1 = hearts(west)==1     ? 2 : 0
+wd1 = diamonds(west)==1   ? 2 : 0
+wc1 = clubs(west)==1      ? 2 : 0
+
+ws2 = spades(west)==2     ? 1 : 0
+wh2 = hearts(west)==2     ? 1 : 0
+wd2 = diamonds(west)==2   ? 1 : 0
+wc2 = clubs(west)==2      ? 1 : 0
+
+wSSP = ws0+wh0+wd0+wc0+ws1+wh1+wd1+wc1+ws2+wh2+wd2+wc2
+
+tpWest = hcp(west) + wSSP - wPP
 
 ### End of Imported Script: TP
