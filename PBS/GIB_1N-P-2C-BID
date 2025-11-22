@@ -155,30 +155,41 @@ e4Bs = e4Ds or e4Hs or e4Ss
 
 e4B = e4Bw or e4Bs
 
-# Define East's other hands w/long-suits
-eBOther = shape(east,any 9xxx +any 8xxx +any 7xxx +any 6xxx) and clubs(east)<6 and not (e2B or e3B or e4B)
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+
+levX  = eX  and keep11
+lev2B = e2B and keep33
+lev3B = e3B and keep44
+lev4B = e4B and keep
+levelTheDeal = lev2B or lev3B or lev4B or levX
 
 # Now do it
 gibNT and tpSouth<19 and calmWest and n2Clubs and (eShape or eX) and (e2B or e3B or e4B or eX)
+and levelTheDeal
 
 action
 average "smolen      " 100 * smolen,
 average "stayman     " 100 * stayman,
 average "major invite" 100 * majorInvite,
+average "Any 2C-Resp-" 100 * (smolen or stayman or majorInvite),
 average "X           " 100 * eX,
 average "2D          " 100 * e2D,
 average "2H          " 100 * e2H,
 average "2S          " 100 * e2S,
+average "Any 2-Bid---" 100 * e2B,
 average "3C          " 100 * e3C,
 average "3D          " 100 * e3D,
 average "3H          " 100 * e3H,
 average "3S          " 100 * e3S,
+average "Any 3-Bid---" 100 * e3B,
 average "4 weak      " 100 * e4Bw,
 average "4 strong    " 100 * e4Bs,
-average "other       " 100 * eBOther,
+average "Any 4-Bid---" 100 * (e4Bw or e4Bs),
 
 `,"S",true)
 Script
-Button,GIB NT-P-2C-bid,\n\
+Button,GIB NT-P-2C-bid (lev),\n\
 --- After 1NT-P-2C-bid...  What now???\n\
+Continuations after 1NT-P-2C... are leveled so that they occur at about 
+the same frequency.\n\
 %GIB-1N-P-2C-Bid%

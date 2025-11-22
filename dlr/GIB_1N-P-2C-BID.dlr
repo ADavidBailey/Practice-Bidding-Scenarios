@@ -1,4 +1,4 @@
-# button-text: GIB NT-P-2C-bid
+# button-text: GIB NT-P-2C-bid (lev)
 # scenario-title: After 1NT-P-2C-bid...  What now???
 # GIB_1N-P-2C-BID
 dealer south
@@ -287,27 +287,73 @@ e4Bs = e4Ds or e4Hs or e4Ss
 
 e4B = e4Bw or e4Bs
 
-# Define East's other hands w/long-suits
-eBOther = shape(east,any 9xxx +any 8xxx +any 7xxx +any 6xxx) and clubs(east)<6 and not (e2B or e3B or e4B)
+### Imported Leveling Code ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep015 = keep06 and c3
+keep03 = keep06 and keep44
+keep045 = keep06 and not c3
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep955 = not keep045
+keep97 = not keep03
+keep985 = not keep015
+keep   = 1
+keep0  = 0
+### End of Imported Leveling Code ###
+
+
+levX  = eX  and keep11
+lev2B = e2B and keep33
+lev3B = e3B and keep44
+lev4B = e4B and keep
+levelTheDeal = lev2B or lev3B or lev4B or levX
 
 # Now do it
 gibNT and tpSouth<19 and calmWest and n2Clubs and (eShape or eX) and (e2B or e3B or e4B or eX)
+and levelTheDeal
 
 action
 average "smolen      " 100 * smolen,
 average "stayman     " 100 * stayman,
 average "major invite" 100 * majorInvite,
+average "Any 2C-Resp-" 100 * (smolen or stayman or majorInvite),
 average "X           " 100 * eX,
 average "2D          " 100 * e2D,
 average "2H          " 100 * e2H,
 average "2S          " 100 * e2S,
+average "Any 2-Bid---" 100 * e2B,
 average "3C          " 100 * e3C,
 average "3D          " 100 * e3D,
 average "3H          " 100 * e3H,
 average "3S          " 100 * e3S,
+average "Any 3-Bid---" 100 * e3B,
 average "4 weak      " 100 * e4Bw,
 average "4 strong    " 100 * e4Bs,
-average "other       " 100 * eBOther,
+average "Any 4-Bid---" 100 * (e4Bw or e4Bs),
 
 
 printpbn
