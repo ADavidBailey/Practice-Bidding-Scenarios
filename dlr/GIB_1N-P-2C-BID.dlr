@@ -8,7 +8,7 @@ dealer south
 South opens 1N and North responds 2C and East bids.
 
 convention-card: 21GF-GIB
-auction-filter: Auction.....\n(1NT? +Pass +2C .* +[X2-7])
+auction-filter: Auction.....\n(1NT? +Pass +2C.* +[X2-7])
 */
 
 
@@ -239,7 +239,20 @@ eTBS5 = spades(east)>3   and (top5(east,spades)==5)
 eTB5  = eTBC5 or eTBD5 or eTBH5 or eTBS5
 
 eSuits  = ((eTB3 and tpEast>14) or (eTB4 and tpEast>13) or (eTB5 and tpEast>12))
-eX      = (clubs(east)==4 and ((top4(east,clubs)>2 and eC8421>3)) or clubs(east)>4)
+
+# Define Biddable Clubs and Rebiddable Clubs
+eBC = clubs(east)>4 or (clubs(east)>3 and (top4(east,clubs)>2 or eC8421>3))  // East Biddable
+eRC = clubs(east)>5 or (clubs(east)>4 and (top4(east,clubs)>2 or eC8421>3))  // East Rebiddable
+
+eCforX = eRC and top3(east,clubs)>1 and top5(east,clubs)>2
+eTPforX = hcp(east)>5 and tpEast>6 and (clubs(east)<7 or tpEast<11)
+
+eX6 = clubs(east)>5  and tpEast>6 and tpEast<11 and eRC and top4(east,clubs)>1 and top5(east,clubs)>2 
+eX5 = clubs(east)==5 and tpEast>6               and eRC and top4(east,clubs)>1 and top5(east,clubs)>2 and hcp(east,clubs)>5
+
+# Define East's X
+eX = (eX6 or eX5) and shape(east, xxxx -any 9xxx -any 8xxx -any 76xx -any 75xx -any 74xx -any 66xx -any 65xx -any 64xx -any 55xx -any 54xx)
+
 e2Range = hcp(east)>9 and tpEast>10 and tpEast<17
 
 # Define East's bids over 2C -- Twice Bdiddable with extra strength
@@ -278,7 +291,7 @@ e4B = e4Bw or e4Bs
 eBOther = shape(east,any 9xxx +any 8xxx +any 7xxx +any 6xxx) and clubs(east)<6 and not (e2B or e3B or e4B)
 
 # Now do it
-gibNT and tpSouth<19 and calmWest and n2Clubs and eShape and (e2B or e3B or e4B)
+gibNT and tpSouth<19 and calmWest and n2Clubs and (eShape or eX) and (e2B or e3B or e4B or eX)
 
 action
 average "smolen      " 100 * smolen,
@@ -294,6 +307,7 @@ average "3H          " 100 * e3H,
 average "3S          " 100 * e3S,
 average "4 weak      " 100 * e4Bw,
 average "4 strong    " 100 * e4Bs,
+average "other       " 100 * eBOther,
 
 
 printpbn
