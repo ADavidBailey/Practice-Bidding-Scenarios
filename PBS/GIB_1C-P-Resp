@@ -15,12 +15,8 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 # Defines calmOpps
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 # Defines oneClub
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-South
-# Defines sTP
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-North
-# Defines nTP
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-West
-# Defines wTP
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/TP
+# Defines tpSouth, tpWest, tpNorth
 
 # GIB does not open some 12 HCP hands
 # Define suits that are OK for opening
@@ -68,9 +64,9 @@ wss = (wS4 and wH4) or (wS4 and wD4) or (wH4 or wD4)
 
 # Avoid Takeout Double -- 13/14 HCP and equal length in the majors
 X = (hcp(west)==13 or hcp(west)==14) and spades(west)==hearts(west)==(3 or 4)  // I'm out of 'shape' statements
-reverse = shape(south,45xx+x45x+xx45) and hcp(south(>16)
+reverse = shape(south,45xx+x45x+xx45) and hcp(south)>16
 
-wRange = wTP>=12 and wTP<=14 and not X
+wRange = tpWest>=12 and tpWest<=14 and not X
 
 # Define West's overcalls
 cOC = oneClub    and (wD4 or wH4 or wS4) and clubs(west)==3    and okToOpen
@@ -116,19 +112,19 @@ nBal  = (s3334 or s3343 or sxx44)  // no 4-card major
 
 ## Define South's 1C opening and North's responses
 
-sRange = hcp(south)>11 and hcp(south)<22 and sTP>11 and sTP<23  // avoid strong 2C
+sRange = hcp(south)>11 and hcp(south)<22 and tpSouth>11 and tpSouth<23  // avoid strong 2C
 sClubs = oneClub and okToOpen
-nRange = nRebiddableSuit ? nTP>5 and nTP<17 : nTP>5   // no upper range without rebiddable suit
+nRange = nRebiddableSuit ? tpNorth>5 and tpNorth<17 : tpNorth>5   // no upper range without rebiddable suit
 
 ## 1. Major responses
 
 rS1 = nS>4 and nS>=nH                   // higher ranking of 5+card suits
-rS2 = nTP<13 and nS==4 and nS>nH        // skip longer D w/<13
+rS2 = tpNorth<13 and nS==4 and nS>nH        // skip longer D w/<13
 rS3 = nS==4 and nS>nH and nD<5          // prefer 4-card H/S to 4-card D
 r1S = rS1 or rS2 or rS3
 
 rH1 = nH>4 and nH>nS
-rH2 = nTP<13 and nH==4 and nH>=nS
+rH2 = tpNorth<13 and nH==4 and nH>=nS
 rH3 = nH==4 and nD<5  
 r1H = (rH1 or rH2 or rH3) and not r1S
 
@@ -136,13 +132,13 @@ rM = r1H or r1S
 
 ## 2. Club responses
 
-r3x   = nC>4 and shape(north,any 0xxx +any 1xxx) and nTP>13         and not rM          // splinter
+r3x   = nC>4 and shape(north,any 0xxx +any 1xxx) and tpNorth>13         and not rM          // splinter
 r2C34 = s3334       and hcp(north)>9  and hcp(north)<13 and stops<5 and not rM
 r2C44 = sxx44       and hcp(north)>9  and hcp(north)<13 and stops<4 and not rM
 r2C3N = s3334+sxx44 and hcp(north)>12 and hcp(north)<16             and not rM          // GIB goes through 2C w/a bal 13-15
 r2Cx5 = nC>4        and nD<5 and hcp(north)>9                       and not (rM or r3x)
 r2C = r2C34 or r2C44 or r2C3N or r2Cx5
-r3C = nC>4 and nD<5 and hcp(north)<10 and nTP>4                     and not (rM or r3x)
+r3C = nC>4 and nD<5 and hcp(north)<10 and tpNorth>4                     and not (rM or r3x)
 
 rC  = r2C34 or r2C44 or r2C3N or r2Cx5 or r3C or r3x
 
@@ -186,7 +182,7 @@ average "3N   " 100 * r3N,
 Script
 
 Button,GIB after 1C,\n\
---- GIB responses to 1C\n\
+--- GIB responses to 1!C\n\
 South opens 1!C and North responds w/anything other than Soloway JS.\n\
 This does not use 'Randomly rotate' -- go to 'Deal source' to change it.\n\
 You may also go to 'Deal source' to get specific responses. Near the bottom\n\

@@ -1,5 +1,5 @@
 # button-text: GIB after 1C
-# scenario-title: GIB responses to 1C
+# scenario-title: GIB responses to 1!C
 # GIB_1C-P-Resp
 dealer south
 
@@ -100,72 +100,127 @@ oneClub    = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
 # Defines oneClub
-##### Imported Script - Calculate Total Points for South #####
+### Imported script: TP (Total Points)
+
+//   Note:  My initial implementation used shape staments for counting voids, singletons, and doubletons.
+//   Dealer has a limit 32, so I eliminated the shape statements in this script.
+
+## Calculate TP for North
+# Calculate North's Short-Suit Penalty Points
+nsPP = spades(north)  <3 and hcp(north,spades)  >0 ? 1 : 0
+nhPP = hearts(north)  <3 and hcp(north,hearts)  >0 ? 1 : 0
+ndPP = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
+ncPP = clubs(north)   <3 and hcp(north,clubs)   >0 ? 1 : 0
+nPP = nsPP+nhPP+ndPP+ncPP
+
+# Calculate North's Short-Suit Points
+ns0 = spades(north)  ==0 ? 3 : 0   // 3 for each void
+nh0 = hearts(north)  ==0 ? 3 : 0
+nd0 = diamonds(north)==0 ? 3 : 0
+nc0 = clubs(north)   ==0 ? 3 : 0
+
+ns1 = spades(north)  ==1 ? 2 : 0   // 2 for each singleton
+nh1 = hearts(north)  ==1 ? 2 : 0
+nd1 = diamonds(north)==1 ? 2 : 0
+nc1 = clubs(north)   ==1 ? 2 : 0
+
+ns2 = spades(north)  ==2 ? 1 : 0   // 1 for each doubleton
+nh2 = hearts(north)  ==2 ? 1 : 0
+nd2 = diamonds(north)==2 ? 1 : 0
+nc2 = clubs(north)   ==2 ? 1 : 0
+
+nSSP = ns0+nh0+nd0+nc0+ns1+nh1+nd1+nc1+ns2+nh2+nd2+nc2
+
+tpNorth = hcp(north) + nSSP - nPP
+
+## Calculate TP for East
+# Calculate East's Short-Suit Penalty Points
+esPP = spades(east)  <3 and hcp(east,spades)  >0 ? 1 : 0
+ehPP = hearts(east)  <3 and hcp(east,hearts)  >0 ? 1 : 0
+edPP = diamonds(east)<3 and hcp(east,diamonds)>0 ? 1 : 0
+ecPP = clubs(east)   <3 and hcp(east,clubs)   >0 ? 1 : 0
+ePP = esPP+ehPP+edPP+ecPP
+
+# Calculate East's Short-Suit Points
+es0 = spades(east)==0     ? 3 : 0
+eh0 = hearts(east)==0     ? 3 : 0
+ed0 = diamonds(east)==0   ? 3 : 0
+ec0 = clubs(east)==0      ? 3 : 0
+
+es1 = spades(east)==1     ? 2 : 0
+eh1 = hearts(east)==1     ? 2 : 0    
+ed1 = diamonds(east)==1   ? 2 : 0
+ec1 = clubs(east)==1      ? 2 : 0
+
+es2 = spades(east)==2     ? 1 : 0
+eh2 = hearts(east)==2     ? 1 : 0
+ed2 = diamonds(east)==2   ? 1 : 0
+ec2 = clubs(east)==2      ? 1 : 0
+
+eSSP = es0+eh0+ed0+ec0+es1+eh1+ed1+ec1+es2+eh2+ed2+ec2
+
+tpEast = hcp(east) + eSSP - ePP
+
 
 ## Calculate TP for South
 # Calculate South's Short-Suit Penalty Points
-sSP = spades(south)<3 and hcp(south,spades)>0     ? 1 : 0
-sHP = hearts(south)<3 and hcp(south,hearts)>0     ? 1 : 0
-sDP = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
-sCP = clubs(south)<3 and hcp(south,clubs)>0       ? 1 : 0
+ssPP = spades(south)  <3 and hcp(south,spades)  >0 ? 1 : 0   
+shPP = hearts(south)  <3 and hcp(south,hearts)  >0 ? 1 : 0
+sdPP = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
+scPP = clubs(south)   <3 and hcp(south,clubs)   >0 ? 1 : 0
+sPP = ssPP+shPP+sdPP+scPP
 
 # Calculate South's Short-Suit Points
-sv1 = shape(south, any 0xxx) ? 3 : 0
-ss1 = shape(south, any 1xxx) ? 2 : 0 // allow for 2 singletons
-ss2 = shape(south, any 11xx) ? 2 : 0
-sd1 = shape(south, any 2xxx) ? 1 : 0 // allow for 3 doubletons
-sd2 = shape(south, any 22xx) ? 1 : 0
-sd3 = shape(south, any 222x) ? 1 : 0
+ss0 = spades(south)==0     ? 3 : 0
+sh0 = hearts(south)==0     ? 3 : 0
+sd0 = diamonds(south)==0   ? 3 : 0
+sc0 = clubs(south)==0      ? 3 : 0   
 
-# Calculate South's Total Points
-sTP = hcp(south) + sv1+ss1+ss2+sd1+sd2+sd3 -sSP-sHP-sDP-sCP
+ss1 = spades(south)==1     ? 2 : 0
+sh1 = hearts(south)==1     ? 2 : 0
+sd1 = diamonds(south)==1   ? 2 : 0
+sc1 = clubs(south)==1      ? 2 : 0
 
-### End of Calculate TP for South ###
-# Defines sTP
-##### Imported Script - Calculate Total Points for North #####
+ss2 = spades(south)==2     ? 1 : 0
+sh2 = hearts(south)==2     ? 1 : 0
+sd2 = diamonds(south)==2   ? 1 : 0
+sc2 = clubs(south)==2      ? 1 : 0
 
-## Calculate TP for North
-# Calculate Nouth's Short-Suit Penalty Points
-nSP = spades(north)<3   and hcp(north,spades)>0   ? 1 : 0
-nHP = hearts(north)<3   and hcp(north,hearts)>0   ? 1 : 0
-nDP = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
-nCP = clubs(north)<3    and hcp(north,clubs)>0    ? 1 : 0
+sSSP = ss0+sh0+sd0+sc0+ss1+sh1+sd1+sc1+ss2+sh2+sd2+sc2
 
-# Calculate North's Short-Suit Points
-nv1 = shape(north, any 0xxx) ? 3 : 0 // allow for 1 void
-ns1 = shape(north, any 1xxx) ? 2 : 0 // allow for 2 singletons
-ns2 = shape(north, any 11xx) ? 2 : 0
-nd1 = shape(north, any 2xxx) ? 1 : 0 // allow for 3 doubletons
-nd2 = shape(north, any 22xx) ? 1 : 0
-nd3 = shape(north, any 222x) ? 1 : 0
+tpSouth = hcp(south) + sSSP - sPP
 
-# Calculate South's Total Points
-nTP = hcp(north) + nv1+ns1+ns2+nd1+nd2+nd3 -nSP-nHP-nDP-nCP
-
-### End of Calculate TP for North ###
-# Defines nTP
-##### Imported Script - Calculate Total Points for West #####
 
 ## Calculate TP for West
 # Calculate West's Short-Suit Penalty Points
-wSP = spades(west)<3   and hcp(west,spades)>0   ? 1 : 0
-wHP = hearts(west)<3   and hcp(west,hearts)>0   ? 1 : 0
-wDP = diamonds(west)<3 and hcp(west,diamonds)>0 ? 1 : 0
-wCP = clubs(west)<3    and hcp(west,clubs)>0    ? 1 : 0
+wsPP = spades(west)  <3 and hcp(west,spades)  >0 ? 1 : 0
+whPP = hearts(west)  <3 and hcp(west,hearts)  >0 ? 1 : 0
+wdPP = diamonds(west)<3 and hcp(west,diamonds)>0 ? 1 : 0
+wcPP = clubs(west)   <3 and hcp(west,clubs)   >0 ? 1 : 0
+wPP = wsPP+whPP+wdPP+wcPP
 
 # Calculate West's Short-Suit Points
-wv1 = shape(west, any 0xxx) ? 3 : 0 // allow for 1 void
-ws1 = shape(west, any 1xxx) ? 2 : 0 // allow for 2 singletons
-ws2 = shape(west, any 11xx) ? 2 : 0
-wd1 = shape(west, any 2xxx) ? 1 : 0 // allow for 3 doubletons
-wd2 = shape(west, any 22xx) ? 1 : 0
-wd3 = shape(west, any 222x) ? 1 : 0
+ws0 = spades(west)==0     ? 3 : 0
+wh0 = hearts(west)==0     ? 3 : 0
+wd0 = diamonds(west)==0   ? 3 : 0
+wc0 = clubs(west)==0      ? 3 : 0
 
-# Calculate West's Total Points
-wTP = hcp(west) + wv1+ws1+ws2+wd1+wd2+wd3 -wSP-wHP-wDP-wCP
+ws1 = spades(west)==1     ? 2 : 0
+wh1 = hearts(west)==1     ? 2 : 0
+wd1 = diamonds(west)==1   ? 2 : 0
+wc1 = clubs(west)==1      ? 2 : 0
 
-### End of Calculate TP for West ###
-# Defines wTP
+ws2 = spades(west)==2     ? 1 : 0
+wh2 = hearts(west)==2     ? 1 : 0
+wd2 = diamonds(west)==2   ? 1 : 0
+wc2 = clubs(west)==2      ? 1 : 0
+
+wSSP = ws0+wh0+wd0+wc0+ws1+wh1+wd1+wc1+ws2+wh2+wd2+wc2
+
+tpWest = hcp(west) + wSSP - wPP
+
+### End of Imported Script: TP
+# Defines tpSouth, tpWest, tpNorth
 
 # GIB does not open some 12 HCP hands
 # Define suits that are OK for opening
@@ -213,8 +268,9 @@ wss = (wS4 and wH4) or (wS4 and wD4) or (wH4 or wD4)
 
 # Avoid Takeout Double -- 13/14 HCP and equal length in the majors
 X = (hcp(west)==13 or hcp(west)==14) and spades(west)==hearts(west)==(3 or 4)  // I'm out of 'shape' statements
+reverse = shape(south,45xx+x45x+xx45) and hcp(south)>16
 
-wRange = wTP>=12 and wTP<=14 and not X
+wRange = tpWest>=12 and tpWest<=14 and not X
 
 # Define West's overcalls
 cOC = oneClub    and (wD4 or wH4 or wS4) and clubs(west)==3    and okToOpen
@@ -260,19 +316,19 @@ nBal  = (s3334 or s3343 or sxx44)  // no 4-card major
 
 ## Define South's 1C opening and North's responses
 
-sRange = hcp(south)>11 and hcp(south)<22 and sTP>11 and sTP<23  // avoid strong 2C
+sRange = hcp(south)>11 and hcp(south)<22 and tpSouth>11 and tpSouth<23  // avoid strong 2C
 sClubs = oneClub and okToOpen
-nRange = nRebiddableSuit ? nTP>5 and nTP<17 : nTP>5   // no upper range without rebiddable suit
+nRange = nRebiddableSuit ? tpNorth>5 and tpNorth<17 : tpNorth>5   // no upper range without rebiddable suit
 
 ## 1. Major responses
 
 rS1 = nS>4 and nS>=nH                   // higher ranking of 5+card suits
-rS2 = nTP<13 and nS==4 and nS>nH        // skip longer D w/<13
+rS2 = tpNorth<13 and nS==4 and nS>nH        // skip longer D w/<13
 rS3 = nS==4 and nS>nH and nD<5          // prefer 4-card H/S to 4-card D
 r1S = rS1 or rS2 or rS3
 
 rH1 = nH>4 and nH>nS
-rH2 = nTP<13 and nH==4 and nH>=nS
+rH2 = tpNorth<13 and nH==4 and nH>=nS
 rH3 = nH==4 and nD<5  
 r1H = (rH1 or rH2 or rH3) and not r1S
 
@@ -280,13 +336,13 @@ rM = r1H or r1S
 
 ## 2. Club responses
 
-r3x   = nC>4 and shape(north,any 0xxx +any 1xxx) and nTP>13         and not rM          // splinter
+r3x   = nC>4 and shape(north,any 0xxx +any 1xxx) and tpNorth>13         and not rM          // splinter
 r2C34 = s3334       and hcp(north)>9  and hcp(north)<13 and stops<5 and not rM
 r2C44 = sxx44       and hcp(north)>9  and hcp(north)<13 and stops<4 and not rM
 r2C3N = s3334+sxx44 and hcp(north)>12 and hcp(north)<16             and not rM          // GIB goes through 2C w/a bal 13-15
 r2Cx5 = nC>4        and nD<5 and hcp(north)>9                       and not (rM or r3x)
 r2C = r2C34 or r2C44 or r2C3N or r2Cx5
-r3C = nC>4 and nD<5 and hcp(north)<10 and nTP>4                     and not (rM or r3x)
+r3C = nC>4 and nD<5 and hcp(north)<10 and tpNorth>4                     and not (rM or r3x)
 
 rC  = r2C34 or r2C44 or r2C3N or r2Cx5 or r3C or r3x
 
