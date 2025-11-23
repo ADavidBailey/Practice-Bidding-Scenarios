@@ -86,13 +86,15 @@ s2S = Sm and tpSouth>10 and hcp(south)<15 not (s2D or s2H)
 s2N = mm and tpSouth>14 and hcp(south)<15 not (s2D or s2H or s2S)
 
 # If there are not 2-suits, then 1-suit  (clubs requires a better hand because it will have to be played at the 3-level)
-s2C = sTB and ((sTBC and tpSouth>14) or tpSouth>9) and hcp(south)<15 and not (s2D or s2H or s2S or s2N)
+sShape = shape(south,any 9xxx +any 8xxx +any 7xxx +any 6xxx -any 5xxx -any 4xxx)
+
+s2C = sTB and ((sTBC and tpSouth>14) or tpSouth>9) and hcp(south)<15 and sShape
 s2  = s2C or s2D or s2H or s2S
 
-s3C = sSRC and tpSouth>13 and tpSouth<17 and hcp(south)>14 and not s2C
-s3D = sSRD and tpSouth>13 and tpSouth<17 and hcp(south)>14 and not s2C
-s3H = sSRH and tpSouth>13 and tpSouth<17 and hcp(south)>14 and not s2C
-s3S = sSRS and tpSouth>13 and tpSouth<17 and hcp(south)>14 and not s2C
+s3C = sSRC and tpSouth>13 and tpSouth<17 and hcp(south)<16 and hcp(south)>14 and not s2C and sShape
+s3D = sSRD and tpSouth>13 and tpSouth<17 and hcp(south)<16 and not s2C                   and sShape
+s3H = sSRH and tpSouth>13 and tpSouth<17 and hcp(south)<16 and not s2C                   and sShape
+s3S = sSRS and tpSouth>13 and tpSouth<17 and hcp(south)<16 and not s2C                   and sShape
 s3  = s3C or s3D or s3H or s3S
 
 # or Double
