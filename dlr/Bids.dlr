@@ -8,7 +8,7 @@ dealer south
 South opens 1C and North responds 1D, 1H, 1S, 1N, or 2C.
 
 convention-card: 21GF-GIB
-auction-filter: Auction.....\n1C .*Pass .*(1[DHS]|1NT?|2C|2NT?|3[CDHS]|3NT?) +
+auction-filter: Auction.....\n1C +Pass +(1[DHS]|1NT?|2C|2NT?|3[CDHS]|3NT?) +
 
 */
 
@@ -265,7 +265,7 @@ r3C = nClubs and hcp(north)<10 and tpNorth>4 and clubs(north)>nD and     not(rHS
 rC  = (r2C or r3C or r3x)
 r1D = nD>3 and not (rHS or rN or rC)
 
-nResponds = rN    //r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N
+nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N
 
 oneClub and sClubs and sRange and nRange and nResponds and calmOpps
 
