@@ -24,8 +24,8 @@ nt2 = shape(east, any 5422-5xxx-x5xx-4xxx) and hcp(east)>14 and hcp(east)<17
 gibNT = nt1 or nt2
 
 ### End of GIB 1 Notrump ###
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-South
-# Defines sTP
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/TP
+# Defines tpSouth
 
 # Define possible single-suits -- at least 6-cards
 c1s = controls(south,clubs)>0    and hcp(south,clubs)>3    and top4(south,clubs)>1    and clubs(south)>5
@@ -48,13 +48,13 @@ Sm = (s2s and d2s and (spades(south) + (diamonds(south))>8)) or (s2s and c2s and
 mm = c2s and d2s and clubs(south)>4 and diamonds(south)>4 and hcp(south)<16  // minors must be 5/5 or better
 
 # Define 2-suited actions
-s2D = HS and sTP>10 and sTP<18 and hcp(south)<15
-s2H = Hm and sTP>10 and sTP<18 and hcp(south)<15 not s2D
-s2S = Sm and sTP>10 and sTP<18 and hcp(south)<15 not (s2D or s2H)
-s2N = mm and sTP>14 and sTP<18 and hcp(south)<15 not (s2D or s2H or s2S)
+s2D = HS and tpSouth>10 and tpSouth<18 and hcp(south)<15
+s2H = Hm and tpSouth>10 and tpSouth<18 and hcp(south)<15 not s2D
+s2S = Sm and tpSouth>10 and tpSouth<18 and hcp(south)<15 not (s2D or s2H)
+s2N = mm and tpSouth>14 and tpSouth<18 and hcp(south)<15 not (s2D or s2H or s2S)
 
 # If there are not 2-suits, then 1-suit  (clubs requires a better hand because it will have to be played at the 3-level)
-s2C = a1s and ((c1s and sTP>14) or sTP>9) and hcp(south)<15 and not (s2D or s2H or s2S or s2N)
+s2C = a1s and ((c1s and tpSouth>14) or tpSouth>9) and hcp(south)<15 and not (s2D or s2H or s2S or s2N)
 
 # or Double
 sX  = hcp(south)>15 and not (s2C or s2D or s2H or s2S or s2N) 

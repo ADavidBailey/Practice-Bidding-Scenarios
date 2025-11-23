@@ -11,16 +11,16 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 # defines oneSpade, oneHeart, gibNT
 
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-North
-# defines nTP
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/TP
+# defines tpNorth
 
 # South opens 1H or 1S
 oneMajor = (oneSpade or oneHeart) and hcp(south)>11 and hcp(south)<20 and not gibNT
 
 # Define Direct Raises
-oneM2M = ((oneSpade and spades(north)>2) or (oneHeart and hearts(north)>2)) and nTP > 5 and nTP < 11
-oneM3M = ((oneSpade and spades(north)>3) or (oneHeart and hearts(north)>3)) and nTP > 9 and nTP < 13
-oneM4M = ((oneSpade and spades(north)>4) or (oneHeart and hearts(north)>4)) and nTP > 3 and hcp(north)<9
+oneM2M = ((oneSpade and spades(north)>2) or (oneHeart and hearts(north)>2)) and tpNorth > 5 and tpNorth < 11
+oneM3M = ((oneSpade and spades(north)>3) or (oneHeart and hearts(north)>3)) and tpNorth > 9 and tpNorth < 13
+oneM4M = ((oneSpade and spades(north)>4) or (oneHeart and hearts(north)>4)) and tpNorth > 3 and hcp(north)<9
 noDirectRaise = not (oneM2M or oneM3M or oneM4M)
 
 # Define other fits
@@ -49,9 +49,9 @@ longD = diamonds(north)>5
 longMinor = (longC or longD)
 
 # Define ranges - TP for raises; otherwise HCP
-wRange = nTP>4 and nTP<8
-iRange = nTP>10 and nTP<13
-ngfRange = hcp(north)>5 and hcp(north)<12 and nTP<13
+wRange = tpNorth>4 and tpNorth<8
+iRange = tpNorth>10 and tpNorth<13
+ngfRange = hcp(north)>5 and hcp(north)<12 and tpNorth<13
 
 # Defining hand types for Forcing NT
 wFit = fit  and wRange

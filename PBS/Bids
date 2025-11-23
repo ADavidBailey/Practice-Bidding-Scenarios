@@ -5,7 +5,7 @@ setDealerCode(`
 South opens 1C and North responds 1D, 1H, 1S, 1N, or 2C.
 
 convention-card: 21GF-GIB
-auction-filter: Auction.....\n1C .*Pass .*(1[DHS]|1NT?|2C|2NT?|3[CDHS]|3NT?) +
+auction-filter: Auction.....\n1C +Pass +(1[DHS]|1NT?|2C|2NT?|3[CDHS]|3NT?) +
 
 */
 
@@ -15,16 +15,14 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 # Defines calmOpps
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 # Defines oneClub
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-South
-# Defines sTP
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Total-Points-North
-# Defines nTP
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/TP
+# Defines tpSouth, tpNorth
 
 # South bids 1C and North responds
-sRange = hcp(south)>10 and hcp(south)<22 and sTP>11 and sTP<23
+sRange = hcp(south)>10 and hcp(south)<22 and tpSouth>11 and tpSouth<23
 sClubs = oneClub and clubs(south)<7
 
-nRange = nTP>5 and nTP<16    // avoid strong jump shifts
+nRange = tpNorth>5 and tpNorth<16    // avoid strong jump shifts
 
 # Define responses to 1C
 nD = diamonds(north)
@@ -32,12 +30,12 @@ nH = hearts(north)
 nS = spades(north)
 
 rS1 = nS>4 and nS>=nH             // higher ranking of 5+card suits
-rS2 = nTP<13 and nS==4 and nS>nH  // skip longer D w/<13 and bid up the line with 4
+rS2 = tpNorth<13 and nS==4 and nS>nH  // skip longer D w/<13 and bid up the line with 4
 rS3 = shape(north,4xxx) and nS>nH and nD<5
 r1S = rS1 or rS2 or rS3
 
 rH1 = nH>4 and nH>nS
-rH2 = nTP<13 and nH==4 and nH>=nS
+rH2 = tpNorth<13 and nH==4 and nH>=nS
 rH3 = shape(north,x4xx) and nD<5
 r1H = (rH1 or rH2 or rH3) and not r1S
 
@@ -57,9 +55,9 @@ r2N = nBal and hcp(north)>10 and hcp(north)<13 and stops and not rHS
 r3N = nBal and hcp(north)>12 and hcp(north)<16 and stops and not rHS
 rN = (r1N or r2N or r3N)
 
-r3x = clubs(north)>4 and shape(north,any 0xxx +any 1xxx) and nTP>13  and not rHS //splinter
+r3x = clubs(north)>4 and shape(north,any 0xxx +any 1xxx) and tpNorth>13  and not rHS //splinter
 r2C = nClubs and hcp(north)>9                                        and not(rHS or r3x)
-r3C = nClubs and hcp(north)<10 and nTP>4 and clubs(north)>nD and     not(rHS or r3x)
+r3C = nClubs and hcp(north)<10 and tpNorth>4 and clubs(north)>nD and     not(rHS or r3x)
 rC  = (r2C or r3C or r3x)
 r1D = nD>3 and not (rHS or rN or rC)
 
