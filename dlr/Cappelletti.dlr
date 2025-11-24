@@ -188,11 +188,11 @@ sTBS = spades(south)>3   and (top5(south,spades)==3   or sS8421>4) and not s3S
 
 # 2-suited hands are 5/4 or better
 SH =  sTBS and sTBH and (spades(south) + hearts(south)  )>8
-SD =  sTBS and sTBD and (spades(south) + diamonds(south))>8
-SC =  sTBS and sTBC and (spades(south) + clubs(south)   )>8
+SD =  sTBS and sTBD and (spades(south) + diamonds(south))>8 and hearts(south)<4  // less than 4 of the other Major
+SC =  sTBS and sTBC and (spades(south) + clubs(south)   )>8 and hearts(south)<4
 
-HD =  sTBH and sTBD and (hearts(south) + diamonds(south))>8
-HC =  sTBH and sTBC and (hearts(south) + clubs(south)   )>8
+HD =  sTBH and sTBD and (hearts(south) + diamonds(south))>8 and spades(south)<4  // less than 4 of the other Major
+HC =  sTBH and sTBC and (hearts(south) + clubs(south)   )>8 and spades(south)<4
 
 DC =  sTBD and sTBC and clubs(south)>4 and diamonds(south)>4  // minor are 5-5 or better
 
@@ -211,9 +211,9 @@ s2N = DC and tpSouth>14 and hcp(south)<15 not (s2D or s2H or s2S)
 ssShape = shape(south,any 9xxx +any 8xxx +any 7xxx +any 6xxx -any 5xxx -any 4xxx)
 
 # All of the 3-level actions -- Strong Rebiddable suits
-s3 = (s3C or s3D or s3H or s3S) and tpSouth>13 and tpSouth<18 and hcp(south)<16 and ssShape
+s3 = (s3C or s3D or s3H or s3S) and tpSouth>13 and tpSouth<17 and ssShape
 # All of the 2-level 1-suited start with 2C
-s2C = (sTBC or sTBD or sTBH or sTBS) and tpSouth>9                              and ssShape and not s3
+s2C = (sTBC or sTBD or sTBH or sTBS) and tpSouth>9            and ssShape and not (s2D or s2H or s2S or s2N or s3)
 
 # All of the 2-level actions
 s2 = s2C or s2D or s2H or s2S or s2N
