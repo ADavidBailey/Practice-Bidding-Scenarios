@@ -1,5 +1,5 @@
-# button-text: Opps Bal Unusual NT
-# scenario-title: Opponents Balance with Unusual 
+# button-text: Opps Bal w/Unusual NT
+# scenario-title: Opponents Bal with Unusual NT
 # Opps_Bal_Unusual_2N
 dealer south
 
@@ -208,8 +208,8 @@ GoodD = diamonds(west)>3 and top5(west,diamonds)>2
 GoodC = clubs(west)>3    and top5(west,clubs)>2
 
 # Intervener is 54 or 45 in the minors
-wDC = GoodD and GoodC and shape(west,xx54 +xx45)              // West can have 2 to 4 in openers Major
-wRange = losers(west)<8 and hcp(west)<12 and tpWest>hcp(west) // avoid honors in short suits
+wDC = GoodD and GoodC and shape(west,xx54 +xx45)                             // West can have 2 to 4 in openers Major
+wRange = losers(west)<8 and hcp(west)<12 and tpWest>hcp(west) and tpWest>10  // avoid honors in short suits
 
 eHand = spades(east)<5 and hearts(east)<5 and tpEast<12       // East must start with a Pass
 
