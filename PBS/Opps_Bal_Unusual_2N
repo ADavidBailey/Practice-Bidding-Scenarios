@@ -1,0 +1,48 @@
+Script,OppsBalUnusualNT
+setDealerCode(`
+
+# Opponent's Balancing Unusual NT
+dealer south
+produce 1000
+
+/*
+auction-filter: Auction.....\\n1[CDHS] +Pass +2[CDHSN] +Pass\nPass
+*/
+
+predeal west DT9,CT9
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/TP
+# Defines tpNorth, tpSouth, tpWest, tpEast
+
+# The bidding starts: 1M - P - 2M - P - P
+oneS = oS and spades(north)==3 and spades(west)>1
+oneH = oH and hearts(north)==3 and hearts(west)>1
+
+# Then, in balancing seat, we get a balancing 2NT
+
+# Define good suits
+GoodD = diamonds(west)>3 and top5(west,diamonds)>2
+GoodC = clubs(west)>3    and top5(west,clubs)>2
+
+# Intervener is 54 or 45 in the minors -- each requires at least QJT; so, at least 6 HCP for the intervener 
+wDC = GoodD and GoodC and shape(west,xx54 +xx45)              // West can have 2 to 4 in openers Major
+wRange = losers(west)<8 and hcp(west)<12 and tpWest>hcp(west) // West must start with a Pass
+
+eHand = spades(east)<5 and hearts(east)<5 and tpEast<12    // East must start with a Pass
+
+oSuit = (oneS or oneH) and shape(south,any xxxx-8xxx-7xxx-6xxx)
+oRange = hcp(south)>11 and hcp(south)<15 and tpSouth>11 and tpSouth<16
+
+# Responder's minimum HCP
+nRange = tpNorth>6 and tpNorth<11
+
+### Now do it
+oSuit and oRange and nRange and wDC and wRange and eHand
+
+
+`, "S", true)
+Script
+Button,Opps Bal Unusual NT,\n\
+--- Opponents Balance with Unusual \n\
+%OppsBalUnusualNT%
