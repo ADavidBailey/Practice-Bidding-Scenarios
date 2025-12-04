@@ -7,7 +7,7 @@ dealer south
 # Opponent's Balancing Unusual NT
 
 /*
-auction-filter: Auction.....\\n1[CDHS] +Pass +2[CDHSN] +Pass\nPass
+auction-filter: Auction.....\n1[CDHS] +Pass +2[CDHSN] +Pass\nPass
 */
 
 predeal west DT9,CT9
@@ -193,9 +193,11 @@ tpWest = hcp(west) + wSSP - wPP
 # Defines tpNorth, tpSouth, tpWest, tpEast
 
 # The bidding starts: 1M - P - 2M - P - P
-s3 = spades(north)==3 and tpNorth>6 and tpNorth<11
-s4 = spades(north)==4 and tpNorth>6 and tpNorth<9   // avoid jump raise
-h3 = hearts(north)==3 and tpNorth>6 and tpNorth<11
+ForcingNT = hcp(north)<7 or hcp(north)>9   // faulty raise of invitational raise
+
+s3 = spades(north)==3 and tpNorth>6 and tpNorth<11 and not ForcingNT
+s4 = spades(north)==4 and tpNorth>6 and tpNorth<9                   // avoid jump raise
+h3 = hearts(north)==3 and tpNorth>6 and tpNorth<11 and not ForcingNT
 h4 = hearts(north)==4 and tpNorth>6 and tpNorth<9
 
 oneS = oS and (s3 or s4) and spades(west)>1
@@ -209,7 +211,7 @@ GoodC = clubs(west)>3    and top5(west,clubs)>2
 
 # Intervener is 54 or 45 in the minors
 wDC = GoodD and GoodC and shape(west,xx54 +xx45)                             // West can have 2 to 4 in openers Major
-wRange = losers(west)<8 and hcp(west)<12 and tpWest>hcp(west) and tpWest>10  // avoid honors in short suits
+wRange = losers(west)<8 and hcp(west)<12 and tpWest>hcp(west) and tpWest>11  // avoid honors in short suits
 
 eHand = spades(east)<5 and hearts(east)<5 and tpEast<12       // East must start with a Pass
 
