@@ -9,7 +9,7 @@ North has any 4333 hand with the following ranges
 10-12 with at least Kxx or QJx in each unbid suit AND at least Qxx in the opener's suit
 13-15 same as 10-12
 
-auction-filter: Auction.....\n1[CD].* Pass.* [123]NT? +
+auction-filter: Auction.....\n1[CD] +Pass +
 */
 
 dealer south
@@ -18,6 +18,8 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 # Defines calmWest
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 # Defines oneClub, oneDiamond
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/TP
+# Defines tpSouth
 
 # Define suit quality for NT -- Qxx opener's suit and Kxx or QJx in unbid suits
 nC2 = hcp(north,clubs)>1         // at least Qxx
@@ -48,8 +50,10 @@ s1m3N  = s1Cn3N or s1Dn3N
 nAny4   = shape(north,any 4333)   // any 4333
 nMajor4 = shape(north,4333+3433)  // either major
 
+sRange = tpSouth>11 and hcp(south)>10 and tpSouth<22 and hcp(south)<23
+
 # Now do it
-(s1m1N or s1m2N or s1m3N) and calmWest and (nAny4 or nMajor4)
+(s1m1N or s1m2N or s1m3N) and sRange and calmWest and (nAny4 or nMajor4)
 
 action
 

@@ -1,16 +1,19 @@
 Script,InvitationalJump3Under
 setDealerCode(`
 
-# No WJS
-# convention-card: 21GF-3-Under-Inv-Jump
-# auction-filter: 1D.Pass.3C|1H.Pass.3[CD]|1S.Pass.3[CDH]
+/*
+convention-card: 21GF-3-Under-Inv-Jump
+auction-filter: (1D +Pass +3C|1H +Pass +3[CD]|1S +Pass +3[CDH])
 
 # Robot 3 Under Invitational Jump (9-11 HCP)
+*/
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 # Defines oneClub, oneSpade, oneHeart, oneDiamond
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
 # Defines calmWest
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/TP
+# Defines tpSouth
 
 # Define NoFit
 sFit = oneSpade and spades(north)>2
@@ -20,9 +23,9 @@ noFit = not (sFit or hFit or dFit)
 
 # Define North's good suits -- 6+ cards with at least AK, AQ, or KQJ
 #predeal north H9, D9, C9
-goodHearts   = hearts(north)>5   and hcp(north,hearts)>2   and hcp(north,hearts)<7   and top5(north,hearts)==3
-goodDiamonds = diamonds(north)>5 and hcp(north,diamonds)>2 and hcp(north,diamonds)<7 and top5(north,diamonds)==3
-goodClubs    = clubs(north)>5    and hcp(north,clubs)>2    and hcp(north,clubs)<7    and top5(north,clubs)==3
+goodHearts   = hearts(north)>5   and hcp(north,hearts)>1   //2 and hcp(north,hearts)<7   and top5(north,hearts)==3
+goodDiamonds = diamonds(north)>5 and hcp(north,diamonds)>1 //2 and hcp(north,diamonds)<7 and top5(north,diamonds)==3
+goodClubs    = clubs(north)>5    and hcp(north,clubs)>1    //2 and hcp(north,clubs)<7    and top5(north,clubs)==3
 
 # north does NOT have a major
 noMajorNorth = spades(north)<4 and hearts(north)<4
@@ -30,10 +33,14 @@ noMajorNorth = spades(north)<4 and hearts(north)<4
 n3C = (oneDiamond or oneHeart or oneSpade) and goodClubs and noMajorNorth
 n3D = (oneHeart or oneSpade) and goodDiamonds and noMajorNorth
 n3H = (oneSpade) and goodHearts
+nHand = (n3C or n3D or n3H) and shape(north,any 9xxx +any 8xxx +any 7xxx +any 6xxx -any 85xx -any 76xx -any 66xx -any 5xxx)
 
 # (Predict South's opening bid sometimes opens w/10hcp
+sRange = hcp(south)>10 and tpSouth>11 and hcp(south)<22 and tpSouth<23
+
+
 # Now do it 
-(n3C or n3D or n3H) and calmWest and noFit and hcp(north)>8 and hcp(north)<12 and hcp(south)>10
+nHand and calmWest and noFit and hcp(north)>8 and hcp(north)<12 and sRange
 
 produce 1000
 action
@@ -46,7 +53,7 @@ average "1S-3C        " 100 * (oneSpade and n3C),
 average "1S-3D        " 100 * (oneSpade and n3D),
 average "1S-3H        " 100 * (oneSpade and n3H),
 
-`, "S", true);
+`,"S",true);
 Script
 Button,3-under Inv. Jump,\n\
 --- 3 Under Invitational Jump\n\
@@ -55,5 +62,5 @@ Button,3-under Inv. Jump,\n\
 • 1!D - 3!C\n\
 Shows a good 6+ card suit with 9-11 HCP.\n\
 - denies 3-card support for opener’s major\n\
-- denies 4-cards in another major\n\
+- denies 4-cards in other major\n\
 %InvitationalJump3Under%
