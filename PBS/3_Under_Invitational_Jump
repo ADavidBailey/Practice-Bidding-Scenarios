@@ -23,9 +23,13 @@ noFit = not (sFit or hFit or dFit)
 
 # Define North's good suits -- 6+ cards with at least AK, AQ, or KQJ
 #predeal north H9, D9, C9
-goodHearts   = hearts(north)>5   and hcp(north,hearts)>1   //2 and hcp(north,hearts)<7   and top5(north,hearts)==3
-goodDiamonds = diamonds(north)>5 and hcp(north,diamonds)>1 //2 and hcp(north,diamonds)<7 and top5(north,diamonds)==3
-goodClubs    = clubs(north)>5    and hcp(north,clubs)>1    //2 and hcp(north,clubs)<7    and top5(north,clubs)==3
+goodHearts   = hearts(north)>5   and hcp(north,hearts)>2   //2 and hcp(north,hearts)<7   and top5(north,hearts)==3
+goodDiamonds = diamonds(north)>5 and hcp(north,diamonds)>2 //2 and hcp(north,diamonds)<7 and top5(north,diamonds)==3
+goodClubs    = clubs(north)>5    and hcp(north,clubs)>2    //2 and hcp(north,clubs)<7    and top5(north,clubs)==3
+minHearts    = hearts(north)>5   and hcp(north,hearts)>1
+minDiamonds  = diamonds(north)>5 and hcp(north,diamonds)>1
+minClubs     = clubs(north)>5    and hcp(north,clubs)>1
+nMinHCP = (goodHearts or goodDiamonds or goodClubs) ? 8 : 9  // Better HCP w/minimum suit
 
 # north does NOT have a major
 noMajorNorth = spades(north)<4 and hearts(north)<4
@@ -37,10 +41,11 @@ nHand = (n3C or n3D or n3H) and shape(north,any 9xxx +any 8xxx +any 7xxx +any 6x
 
 # (Predict South's opening bid sometimes opens w/10hcp
 sRange = hcp(south)>10 and tpSouth>11 and hcp(south)<22 and tpSouth<23
+nRange = hcp(north)>nMinHCP and hcp(north)<12
 
 
 # Now do it 
-nHand and calmWest and noFit and hcp(north)>8 and hcp(north)<12 and sRange
+nHand and calmWest and noFit and nRange and sRange
 
 produce 1000
 action
