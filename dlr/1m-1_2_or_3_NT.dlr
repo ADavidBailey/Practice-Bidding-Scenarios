@@ -238,6 +238,10 @@ n1 = hcp(north)>5  and hcp(north)<10
 n2 = hcp(north)>9  and hcp(north)<13
 n3 = hcp(north)>12 and hcp(north)<16
 
+# For opening with minimum values, require extra suit length
+sMin = hcp(south)<12 and tpSouth<13
+sShape = sMin ? shape(south,any 7xxx+any 6xxx) : shape(south, xxxx)
+
 # South bids 1C or 1D and North responds 1N or 2/3N
 s1Cn1N = oneClub    and nD2 and nM2 and n1           // 1C - 1N with 2 hcp in unbid suits
 s1Dn1N = oneDiamond and nC2 and nM2 and n1           // 1D - 1N  
@@ -257,7 +261,7 @@ nMajor4 = shape(north,4333+3433)  // either major
 sRange = tpSouth>11 and hcp(south)>10 and tpSouth<22 and hcp(south)<23
 
 # Now do it
-(s1m1N or s1m2N or s1m3N) and sRange and calmWest and (nAny4 or nMajor4)
+(s1m1N or s1m2N or s1m3N) and sRange and sShape and calmWest and (nAny4 or nMajor4)
 
 action
 
