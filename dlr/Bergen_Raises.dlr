@@ -4,9 +4,11 @@
 dealer north
 
 
-# Select Bergen, 1M 3M blocking, and turn off 1N opening shape 5422
-# convention-card: 21GF-Bergen
-# auction-filter: Auction.....\\n1[HS].Pass.3[CDHSN]
+/*
+Select Bergen, 1M 3M blocking, and turn off 1N opening shape 5422
+convention-card: 21GF-Bergen
+auction-filter: Auction.....\n1[HS] +Pass +3[CDHSN]
+*/
 
 # Bergen Raises
 
@@ -25,17 +27,11 @@ chw = top4(west,hearts)<2
 csw = top4(west,spades)<2
 noConWest = ccw and cdw and chw and csw
 
-#unbalEast = shape(east,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
-#unbalWest = shape(west,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+balEast    = shape(east,any 4432 +any 4333)
+unbalEast  = shape(east,xxxx -any 4432 -any 4333 -any 9xxx -any 8xxx -any 7xxx-any 6xxx -any 55xx)
 
-#balEast   = shape(east,any 4333 +any 4432)
-#balWest   = shape(west,any 4333 +any 4432)
-
-balEast    = shape(east,any 4432+any 4333)
-unbalEast  = not balEast
-
-balWest    = shape(west,any 4432+any 4333)
-unbalWest  = not balWest
+balWest    = shape(west,any 4432 +any 4333)
+unbalWest  = shape(west,xxxx -any 4432 -any 4333 -any 9xxx -any 8xxx -any 7xxx-any 6xxx -any 55xx)
 
 calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<12)
 calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<12)
