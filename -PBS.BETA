@@ -529,21 +529,21 @@ Button,Start Teaching Tbl,%setTeachingTable%,width=34% backgroundColor=lightgree
 Button,Deal Source,%reviewCurrentCode%,width=25% backgroundColor=lightgreen
 Button,RR,%togglePBSrandomRotation%,width=10% backgroundColor=lightgreen
 
-Script,reviewCurrentCode,setDealerCode("");
-
 Script,onDataLoad,window.PBSrandomRotation=true;
 Script,togglePBSrandomRotation
 var b = $("button").filter(function() {
     return $(this).text() === "RR";
 });
 if ($(b).css("background-color")=='rgb(144, 238, 144)') {
-    $(b).css("background-color",'rgb(255, 128, 128)');
+    $(b).css("background-color",'rgba(255, 128, 128, 1)');
     window.PBSrandomRotation=false;
 } else {
     $(b).css("background-color",'rgb(144, 238, 144)');
     window.PBSrandomRotation=true;
 }
 Script
+
+Script,reviewCurrentCode,setDealerCode("");
 
 Button,Minor Suit Sequences,,width=100% backgroundColor=lightblue
 
