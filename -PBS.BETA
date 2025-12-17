@@ -527,9 +527,10 @@ Button,Bidding Scenarios (click headers to open/close),,width=100% backgroundCol
 Button,Start Bidding Tbl,%setBiddingTable%,width=31% backgroundColor=lightgreen
 Button,Start Teaching Tbl,%setTeachingTable%,width=34% backgroundColor=lightgreen
 Button,Deal Source,%reviewCurrentCode%,width=25% backgroundColor=lightgreen
-Button,RR,%togglePBSRandomRotate%,width=10% backgroundColor=lightgreen color=white
+Button,RR,%togglePBSrandomRotate%,width=10% backgroundColor=lightgreen color=white
 
 Script,reviewCurrentCode,setDealerCode("");
+
 
 
 Script,onDataLoad,window.PBSrandomRotation=true;
@@ -545,6 +546,8 @@ if ($(b).css("background-color")=='rgb(0, 128, 0)') {
     window.PBSrandomRotation=true;
 }
 Script
+
+
 
 Button,Minor Suit Sequences,,width=100% backgroundColor=lightblue
 
