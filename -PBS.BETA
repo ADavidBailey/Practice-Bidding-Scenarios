@@ -1,8 +1,9 @@
 //BBOalert, Bidding Scenarios
 //BBOalert, Bidding Scenarios - version 3.0
-//Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/setDealerCode.js
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
-Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/autoRedeal.js
+//Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
+Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
+Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/PBStooltips.js
 
 // Pause
 Script,onLogin,setTimeout(setOptionsOff, 200);
@@ -296,6 +297,7 @@ Import,GibNt,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/mai
 Import,GibNt5422,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/GIB_1N5422
 Import,GibNtP2C,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/GIB_1N-P-2C
 Import,GibNtP2CBid,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/GIB_1N-P-2C-BID
+Import,GibOcW4,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/GIB_Overcall_with_4
 Import,GibRespTo1C,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/GIB_1C-P-Resp
 Import,GoingForBlood,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Going_for_Blood
 Import,GoodBad2N,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Good_Bad_2N
@@ -380,6 +382,7 @@ Import,OpenInFourth15,https://github.com/ADavidBailey/Practice-Bidding-Scenarios
 Import,OpenInFourth16,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Open_In_Fourth_16
 Import,OppRedoubles,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Opp_Redoubles
 Import,Opps2-suitedOvercalls,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Opps_2-Suited_Overcalls
+Import,OppsBalUnusualNT,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Opps_Bal_Unusual_2N
 Import,OppsBidOverGF2C,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Opps_Bid_Over_GF_2C
 Import,OppsGambling,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Opps_Gambling_3N
 Import,OppsMulti2D,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Opps_Multi_2D
@@ -414,6 +417,7 @@ Import,RobotFreeBid,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/b
 #Import,RuleOf16,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Rule_of_16
 Import,RuleOf2,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Rule_of_2
 Import,Runout,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Runout_after_1N_X
+Import,SandwichNtBPH,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/GIB_Sandwich_NT_BPH
 Import,Scrambling2NT,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Scrambling_2NT
 Import,SemiConstructiveRaise,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Gavin_Semi-Constructive_Raise
 Import,SemiForcingNT,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Gavin_Semi-Forcing_NT_with_Fit
@@ -521,11 +525,27 @@ Option,Practice Table
 
 Button,Bidding Scenarios (click headers to open/close),,width=100% backgroundColor=LemonChiffon
 
-Button,Start Bidding Tbl,%setBiddingTable%,width=35% backgroundColor=lightgreen
-Button,Start Teaching Tbl,%setTeachingTable%,width=38% backgroundColor=lightgreen
-Button,Deal Source,%reviewCurrentCode%,width=27% backgroundColor=lightgreen
+Button,Start Bidding Tbl,%setBiddingTable%,width=31% backgroundColor=lightgreen
+Button,Start Teaching Tbl,%setTeachingTable%,width=34% backgroundColor=lightgreen
+Button,Deal Source,%reviewCurrentCode%,width=25% backgroundColor=lightgreen
+Button,RR,%toggleRandomRotate%,width=10% backgroundColor=green color=white
 
 Script,reviewCurrentCode,setDealerCode("");
+
+
+Script,onDataLoad,window.PBSrandomRotation=true;
+Script,togglePBSrandomRotation
+var b = $("button").filter(function() {
+    return $(this).text() === "RR";
+});
+if ($(b).css("background-color")=='rgb(0, 128, 0)') {
+    $(b).css("background-color",'rgb(128, 0, 0)');
+    window.PBSrandomRotation=false;
+} else {
+    $(b).css("background-color",'rgb(0, 128, 0)');
+    window.PBSrandomRotation=true;
+}
+Script
 
 Button,Minor Suit Sequences,,width=100% backgroundColor=lightblue
 
@@ -725,7 +745,8 @@ Import,Balancing
 Button,---
 Import,OBARBIDS
 Import,OBARBIDS11
-Import,Scrambling2NT
+Import,Scrambling_2NT
+Import,SandwichNtBPH
 Button,---
 Import,AfterPartnerOvercalls
 Import,JumpOvercalls
@@ -808,7 +829,8 @@ Import,XferAfter1MX
 Import,EqualLevConv
 Import,ResponsiveDouble
 Import,OppsTakeoutXWeXX
-Button,---
+Import,GibOcW4
+#Button,---
 Import,OppsOvercall1NT
 Import,After1x1N
 Import,MitchellStayman
@@ -828,6 +850,8 @@ Import,OppsBidOverGF2C
 Import,GoodBad2N
 Import,ForcingPass
 Import,GibNtP2CBid
+Button,---
+Import,OppsBalUnusualNT
 
 Button,Bidding with BBO Robots,,width=100% backgroundColor=lightblue
 Import,Drury
