@@ -531,23 +531,19 @@ Button,RR,%togglePBSrandomRotation%,width=10% backgroundColor=lightgreen
 
 Script,reviewCurrentCode,setDealerCode("");
 
-
-
 Script,onDataLoad,window.PBSrandomRotation=true;
 Script,togglePBSrandomRotation
 var b = $("button").filter(function() {
     return $(this).text() === "RR";
 });
-if ($(b).css("background-color")=='rgb(0, 128, 0)') {
-    $(b).css("background-color",'rgb(128, 0, 0)');
+if ($(b).css("background-color")=='rgb(144, 238, 144)') {
+    $(b).css("background-color",'rgb(255, 128, 128)');
     window.PBSrandomRotation=false;
 } else {
-    $(b).css("background-color",'rgb(0, 128, 0)');
+    $(b).css("background-color",'rgb(144, 238, 144)');
     window.PBSrandomRotation=true;
 }
 Script
-
-
 
 Button,Minor Suit Sequences,,width=100% backgroundColor=lightblue
 
