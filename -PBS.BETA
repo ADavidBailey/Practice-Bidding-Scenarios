@@ -524,12 +524,12 @@ Option,Practice Table
 
 Button,Bidding Scenarios (click headers to open/close),,width=100% backgroundColor=LemonChiffon
 
-Button,Start Bidding Tbl,%setBiddingTable%,width=33% backgroundColor=lightgreen
+Button,Start Bidding Tbl,%setBiddingTable%,width=32% backgroundColor=lightgreen
 Button,Start Teaching Tbl,%setTeachingTable%,width=36% backgroundColor=lightgreen
 Button,Deal Source,%reviewCurrentCode%,width=25% backgroundColor=lightgreen
 
 
-Button,↻,%togglePBSrandomRotation%,backgroundColor=green color=white width=6%
+Button,↻,%togglePBSrandomRotation%,backgroundColor=green color=white width=9%
 Script,onDataLoad,window.PBSrandomRotation=false;
 Script,togglePBSrandomRotation
 var b = $("button").filter(function() {
