@@ -530,7 +530,7 @@ Button,Deal Source,%reviewCurrentCode%,width=25% backgroundColor=lightgreen
 
 
 Button,↻,%togglePBSrandomRotation%,backgroundColor=green color=white width=9%
-Script,onDataLoad,window.PBSrandomRotation=true;
+Script,onDataLoad,window.PBSrandomRotation=false;
 Script,togglePBSrandomRotation
 var b = $("button").filter(function() {
     return $(this).text() === "↻";
