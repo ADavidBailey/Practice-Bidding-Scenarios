@@ -16,8 +16,8 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 # Defines tpSouth
 
 # Define NoFit
-sFit = oneSpade and spades(north)>2
-hFit = oneHeart and hearts(north)>2
+sFit = oneSpade   and spades(north)>2
+hFit = oneHeart   and hearts(north)>2
 dFit = oneDiamond and diamonds(north)>3
 noFit = not (sFit or hFit or dFit)
 
@@ -71,5 +71,5 @@ Button,3-Under Inv Jump,\n\
 • 1!H - 3!C or 3!D\n\
 • 1!D - 3!C\n\
 Shows a 6+ card suit w/Q or better and 9-11 HCP and denies\n\
-3-card support for opener or 4-cards in other major.\n\
+support for opener's suit or 4-cards in either major.\n\
 %InvJump3Under%
