@@ -20,23 +20,28 @@ sFit = spades(south)>=sLen and hearts(south)<5 and spades(north)==4
 hFit = hearts(south)>=sLen and spades(south)<5 and hearts(north)==4
 fit = sFit or hFit
 
-strong2 = hcp(south)>21 or tpSouth>22 or losers(south)<5
-gib2N   = shape(south, any 5332) and (hcp(south)==20 or hcp(south)==21)
+strong2  = hcp(south)>21 or tpSouth>22 or losers(south)<5
+gib2N    = shape(south, any 5332) and (hcp(south)==20 or hcp(south)==21)
 
 sShape = shape(south,any 8xxx +any 7xxx +any 6xxx +any 5xxx -any 85xx -any 76xx -any 75xx -any 65xx)
 sOpens = hcp(south)>10 and tpSouth>11 and sShape and not (strong2 or gibNT or gib2N)
 
+/*
 # North Splinters w/4-card support and shortness that's not an A, K, or Q
 cSpl = shape(north, xxx1+xxx0) and hcp(north,clubs)<2
 dSpl = shape(north, xx1x+xx0x) and hcp(north,diamonds)<2
 hSpl = shape(north, x1xx+x0xx) and hcp(north,hearts)<2
 sSpl = shape(north, 1xxx+0xxx) and hcp(north,spades)<2
 nonAKQshortness = cSpl or dSpl or hSpl or sSpl
+*/
+
+# GIB uses a Jacoby 2N response with 16 TP and a singleton
+jacoby2N = shape(north,any 1xxx) and tpNorth==16
 
 # North Splinters w/4-card support and any shortness
 anyShortness = shape(north,any 1xxx +any 0xxx)
 
-nSplinters = tpNorth>12 and tpNorth<17 and anyShortness
+nSplinters = tpNorth>12 and tpNorth<17 and anyShortness and not jacoby2N
 
 game1 = tpSouth==12 or tpSouth==13
 game2 = tpSouth==14 or tpSouth==15
