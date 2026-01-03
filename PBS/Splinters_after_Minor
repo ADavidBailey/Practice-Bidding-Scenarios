@@ -41,14 +41,14 @@ anyShortness = shape(north,any 1xxx +any 0xxx)
 
 nSplinters = fit and tpNorth>13 and anyShortness and not balInvite
 
-part  = (tpNorth + tpSouth)<28
-game  = (tpNorth + tpSouth)<34 and not part
-slam  = (tpNorth + tpSouth)<38 and not (part or game)
+part  = (tpNorth + tpSouth)<26
+game  = (tpNorth + tpSouth)<33 and not part
+slam  = (tpNorth + tpSouth)<37 and not (part or game)
 grand =                            not (part or game or slam)
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 lev1 = part  and keep
-lev2 = game  and keep44
+lev2 = game  and keep70
 lev3 = slam  and keep
 lev4 = grand and keep
 levelTheDeal = lev1 or lev2 or lev3 or lev4
