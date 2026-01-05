@@ -1,0 +1,209 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Practice Bidding Scenario",
+	"patterns": [
+		{ "include": "#script-header" },
+		{ "include": "#script-footer" },
+		{ "include": "#setdealercode-start" },
+		{ "include": "#setdealercode-end" },
+		{ "include": "#button-definition" },
+		{ "include": "#import-statement" },
+		{ "include": "#script-reference" },
+		{ "include": "#block-comments" },
+		{ "include": "#line-comments" },
+		{ "include": "#strings" },
+		{ "include": "#section-headers" },
+		{ "include": "#keywords" },
+		{ "include": "#players" },
+		{ "include": "#suits" },
+		{ "include": "#functions" },
+		{ "include": "#operators" },
+		{ "include": "#shape-patterns" },
+		{ "include": "#numbers" },
+		{ "include": "#variables" }
+	],
+	"repository": {
+		"script-header": {
+			"match": "^(Script),([A-Za-z0-9_]+)$",
+			"captures": {
+				"1": { "name": "keyword.control.pbs" },
+				"2": { "name": "entity.name.function.definition.pbs" }
+			}
+		},
+		"script-footer": {
+			"match": "^(Script)$",
+			"captures": {
+				"1": { "name": "keyword.control.pbs" }
+			}
+		},
+		"setdealercode-start": {
+			"match": "(setDealerCode)\\s*\\(\\s*`",
+			"captures": {
+				"1": { "name": "entity.name.function.pbs" }
+			}
+		},
+		"setdealercode-end": {
+			"match": "`\\s*,\\s*(\"[NSEW]\")\\s*,\\s*(true|false)\\s*\\)\\s*;?",
+			"captures": {
+				"1": { "name": "string.quoted.double.pbs" },
+				"2": { "name": "constant.language.boolean.pbs" }
+			}
+		},
+		"button-definition": {
+			"begin": "^(Button),",
+			"beginCaptures": {
+				"1": { "name": "keyword.control.pbs" }
+			},
+			"end": "$",
+			"patterns": [
+				{ "include": "#script-reference" },
+				{ "include": "#button-styling" },
+				{
+					"name": "string.unquoted.pbs",
+					"match": "[^,%\\\\\\n]+"
+				}
+			]
+		},
+		"import-statement": {
+			"match": "^(Import),(.+)$",
+			"captures": {
+				"1": { "name": "keyword.control.import.pbs" },
+				"2": { "name": "string.unquoted.pbs" }
+			}
+		},
+		"script-reference": {
+			"match": "%([A-Za-z0-9_]+)%",
+			"captures": {
+				"0": { "name": "variable.other.reference.pbs" },
+				"1": { "name": "entity.name.function.pbs" }
+			}
+		},
+		"button-styling": {
+			"patterns": [
+				{
+					"match": "(backgroundColor)=(\\w+)",
+					"captures": {
+						"1": { "name": "support.type.property-name.pbs" },
+						"2": { "name": "support.constant.color.pbs" }
+					}
+				},
+				{
+					"match": "(width)=(\\d+%?)",
+					"captures": {
+						"1": { "name": "support.type.property-name.pbs" },
+						"2": { "name": "constant.numeric.pbs" }
+					}
+				}
+			]
+		},
+		"block-comments": {
+			"name": "comment.block.pbs",
+			"begin": "/\\*",
+			"end": "\\*/"
+		},
+		"line-comments": {
+			"patterns": [
+				{
+					"name": "comment.line.hash.pbs",
+					"match": "#.*$"
+				},
+				{
+					"name": "comment.line.double-slash.pbs",
+					"match": "//.*$"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.pbs",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.pbs",
+					"match": "\\\\."
+				}
+			]
+		},
+		"section-headers": {
+			"name": "markup.heading.pbs",
+			"match": "#{3,}.*#{3,}"
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.pbs",
+					"match": "\\b(dealer|condition|action|generate|produce|printpbn|printcompact|printew|printoneline|printes|printall|predeal)\\b"
+				},
+				{
+					"name": "keyword.other.pbs",
+					"match": "\\b(vulnerability|vul)\\b"
+				}
+			]
+		},
+		"players": {
+			"patterns": [
+				{
+					"name": "entity.name.class.pbs",
+					"match": "\\b(north|south|east|west)\\b"
+				}
+			]
+		},
+		"suits": {
+			"patterns": [
+				{
+					"name": "support.type.pbs",
+					"match": "\\b(spades|hearts|diamonds|clubs)\\b"
+				}
+			]
+		},
+		"functions": {
+			"patterns": [
+				{
+					"name": "entity.name.function.pbs",
+					"match": "\\b(shape|hcp|controls|losers|cccc|quality|tricks|top[0-9]|pt[0-9]|loser|winner|hascard|imps|average|frequency)\\b"
+				}
+			]
+		},
+		"operators": {
+			"patterns": [
+				{
+					"name": "keyword.operator.logical.pbs",
+					"match": "\\b(and|or|not)\\b"
+				},
+				{
+					"name": "keyword.operator.pbs",
+					"match": "(==|!=|<=|>=|<|>|\\+|-|\\*|/|%|\\?|:)"
+				}
+			]
+		},
+		"shape-patterns": {
+			"patterns": [
+				{
+					"name": "constant.other.shape.pbs",
+					"match": "\\b(any)\\b"
+				},
+				{
+					"name": "constant.numeric.shape.pbs",
+					"match": "\\b[0-9x]{4}\\b"
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"name": "constant.numeric.pbs",
+					"match": "\\b[0-9]+\\b"
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"name": "variable.other.pbs",
+					"match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+				}
+			]
+		}
+	},
+	"scopeName": "source.pbs"
+}

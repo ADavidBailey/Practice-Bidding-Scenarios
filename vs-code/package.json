@@ -1,0 +1,250 @@
+{
+  "name": "practice-bidding-scenarios",
+  "displayName": "Practice Bidding Scenarios",
+  "description": "A VS Code extension for managing Practice Bidding Scenarios (PBS) files for bridge bidding practice",
+  "version": "0.1.0",
+  "publisher": "practice-bidding-scenarios",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ADavidBailey/Practice-Bidding-Scenarios"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "workspaceContains:**/*.pbs",
+    "workspaceContains:PBS/*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "dlr",
+        "aliases": ["Bridge Dealer Script", "dlr"],
+        "extensions": [".dlr"],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "pbs",
+        "aliases": ["Practice Bidding Scenario", "pbs"],
+        "extensions": [".pbs"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "dlr",
+        "scopeName": "source.dlr",
+        "path": "./syntaxes/dlr.tmLanguage.json"
+      },
+      {
+        "language": "pbs",
+        "scopeName": "source.pbs",
+        "path": "./syntaxes/pbs.tmLanguage.json"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "pbs-explorer",
+          "title": "PBS Button Panel",
+          "icon": "resources/pbs-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "pbs-explorer": [
+        {
+          "id": "pbsButtonPanel",
+          "name": "Tree View",
+          "contextualTitle": "PBS Tree View"
+        },
+        {
+          "id": "pbsButtonGrid",
+          "name": "Button Grid",
+          "type": "webview",
+          "contextualTitle": "PBS Button Grid"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "pbs.refreshButtonPanel",
+        "title": "Refresh Button Panel",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "pbs.refreshButtonGrid",
+        "title": "Refresh Button Grid",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "pbs.openPbsFile",
+        "title": "Open PBS File"
+      },
+      {
+        "command": "pbs.runAll",
+        "title": "All Operations",
+        "icon": "$(run-all)"
+      },
+      {
+        "command": "pbs.runDlr",
+        "title": "dlr"
+      },
+      {
+        "command": "pbs.runDlrPlus",
+        "title": "dlr+"
+      },
+      {
+        "command": "pbs.runPbn",
+        "title": "pbn"
+      },
+      {
+        "command": "pbs.runPbnPlus",
+        "title": "pbn+"
+      },
+      {
+        "command": "pbs.runRotate",
+        "title": "rotate"
+      },
+      {
+        "command": "pbs.runRotatePlus",
+        "title": "rotate+"
+      },
+      {
+        "command": "pbs.runBba",
+        "title": "bba"
+      },
+      {
+        "command": "pbs.runBbaPlus",
+        "title": "bba+"
+      },
+      {
+        "command": "pbs.runFilter",
+        "title": "filter"
+      },
+      {
+        "command": "pbs.runFilterPlus",
+        "title": "filter+"
+      },
+      {
+        "command": "pbs.runFilterStats",
+        "title": "filterStats"
+      },
+      {
+        "command": "pbs.runFilterStatsPlus",
+        "title": "filterStats+"
+      },
+      {
+        "command": "pbs.runBiddingSheet",
+        "title": "biddingSheet"
+      }
+    ],
+    "submenus": [
+      {
+        "id": "pbs.pipelineMenu",
+        "label": "PBS Pipeline",
+        "icon": "$(run-all)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "pbs.refreshButtonPanel",
+          "when": "view == pbsButtonPanel",
+          "group": "navigation"
+        },
+        {
+          "command": "pbs.refreshButtonGrid",
+          "when": "view == pbsButtonGrid",
+          "group": "navigation"
+        }
+      ],
+      "editor/title": [
+        {
+          "submenu": "pbs.pipelineMenu",
+          "when": "resourceDirname =~ /PBS$/",
+          "group": "navigation"
+        }
+      ],
+      "pbs.pipelineMenu": [
+        {
+          "command": "pbs.runAll",
+          "group": "1_all"
+        },
+        {
+          "command": "pbs.runDlr",
+          "group": "2_operations@1"
+        },
+        {
+          "command": "pbs.runDlrPlus",
+          "group": "2_operations@2"
+        },
+        {
+          "command": "pbs.runPbn",
+          "group": "2_operations@3"
+        },
+        {
+          "command": "pbs.runPbnPlus",
+          "group": "2_operations@4"
+        },
+        {
+          "command": "pbs.runRotate",
+          "group": "2_operations@5"
+        },
+        {
+          "command": "pbs.runRotatePlus",
+          "group": "2_operations@6"
+        },
+        {
+          "command": "pbs.runBba",
+          "group": "2_operations@7"
+        },
+        {
+          "command": "pbs.runBbaPlus",
+          "group": "2_operations@8"
+        },
+        {
+          "command": "pbs.runFilter",
+          "group": "2_operations@9"
+        },
+        {
+          "command": "pbs.runFilterPlus",
+          "group": "2_operations@10"
+        },
+        {
+          "command": "pbs.runFilterStats",
+          "group": "2_operations@11"
+        },
+        {
+          "command": "pbs.runFilterStatsPlus",
+          "group": "2_operations@12"
+        },
+        {
+          "command": "pbs.runBiddingSheet",
+          "group": "2_operations@13"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.0"
+  }
+}
