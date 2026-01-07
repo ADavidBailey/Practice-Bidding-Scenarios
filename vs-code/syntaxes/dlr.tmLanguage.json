@@ -1,0 +1,87 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "DLR",
+  "scopeName": "source.dlr",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#keywords" },
+    { "include": "#suits" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#operators" },
+    { "include": "#functions" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.dlr",
+          "match": "//.*$"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.dlr",
+          "match": "\\b(generate|produce|condition|action|predeal|dealer|vulnerable)\\b"
+        },
+        {
+          "name": "constant.language.dlr",
+          "match": "\\b(north|south|east|west|N|S|E|W)\\b"
+        },
+        {
+          "name": "storage.type.dlr",
+          "match": "\\b(spades|hearts|diamonds|clubs|hcp|shape|controls|losers|quality|cccc|pt|tricks)\\b"
+        }
+      ]
+    },
+    "suits": {
+      "patterns": [
+        {
+          "name": "entity.name.tag.suit.dlr",
+          "match": "\\b(spades|hearts|diamonds|clubs)\\b"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.dlr",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.dlr",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.dlr",
+          "match": "\\b\\d+\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.dlr",
+          "match": "(==|!=|>=|<=|>|<|&&|\\|\\||\\+|-|\\*|/|=|\\?|:)"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "name": "entity.name.function.dlr",
+          "match": "\\b(shape|hcp|spades|hearts|diamonds|clubs|controls|losers|quality|cccc|pt|tricks)\\s*\\("
+        }
+      ]
+    }
+  }
+}

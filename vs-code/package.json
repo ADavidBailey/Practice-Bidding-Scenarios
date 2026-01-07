@@ -1,0 +1,242 @@
+{
+  "name": "pbs-dev",
+  "displayName": "PBS Development",
+  "description": "Practice Bidding Scenarios development tools - button panel, syntax highlighting, and pipeline runner",
+  "version": "0.0.1",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "workspaceContains:PBS",
+    "workspaceContains:-PBS.txt"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "views": {
+      "pbs-sidebar": [
+        {
+          "id": "pbsButtonPanel",
+          "name": "Scenarios",
+          "type": "tree"
+        },
+        {
+          "id": "pbsButtonGrid",
+          "name": "Button Grid",
+          "type": "webview"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "pbs-sidebar",
+          "title": "PBS",
+          "icon": "$(symbol-misc)"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "pbs.refreshButtonPanel",
+        "title": "Refresh PBS Tree View",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "pbs.refreshButtonGrid",
+        "title": "Refresh PBS Button Grid",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "pbs.openPbsFile",
+        "title": "Open PBS File"
+      },
+      {
+        "command": "pbs.runAll",
+        "title": "PBS: Run All Operations",
+        "icon": "$(play)"
+      },
+      {
+        "command": "pbs.runDlr",
+        "title": "PBS: Run DLR"
+      },
+      {
+        "command": "pbs.runPbn",
+        "title": "PBS: Run PBN"
+      },
+      {
+        "command": "pbs.runRotate",
+        "title": "PBS: Run Rotate"
+      },
+      {
+        "command": "pbs.runBba",
+        "title": "PBS: Run BBA"
+      },
+      {
+        "command": "pbs.runFilter",
+        "title": "PBS: Run Filter"
+      },
+      {
+        "command": "pbs.runFilterStats",
+        "title": "PBS: Run Filter Stats"
+      },
+      {
+        "command": "pbs.runBiddingSheet",
+        "title": "PBS: Run Bidding Sheet"
+      },
+      {
+        "command": "pbs.runDlrPlus",
+        "title": "PBS: Run DLR+"
+      },
+      {
+        "command": "pbs.runPbnPlus",
+        "title": "PBS: Run PBN+"
+      },
+      {
+        "command": "pbs.runRotatePlus",
+        "title": "PBS: Run Rotate+"
+      },
+      {
+        "command": "pbs.runBbaPlus",
+        "title": "PBS: Run BBA+"
+      },
+      {
+        "command": "pbs.runFilterPlus",
+        "title": "PBS: Run Filter+"
+      },
+      {
+        "command": "pbs.runFilterStatsPlus",
+        "title": "PBS: Run FilterStats+"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "pbs.refreshButtonPanel",
+          "when": "view == pbsButtonPanel",
+          "group": "navigation"
+        },
+        {
+          "command": "pbs.refreshButtonGrid",
+          "when": "view == pbsButtonGrid",
+          "group": "navigation"
+        }
+      ],
+      "editor/title": [
+        {
+          "submenu": "pbs.pipeline",
+          "when": "resourcePath =~ /PBS/",
+          "group": "navigation"
+        }
+      ],
+      "pbs.pipeline": [
+        {
+          "command": "pbs.runAll",
+          "group": "1_all"
+        },
+        {
+          "command": "pbs.runDlr",
+          "group": "2_individual"
+        },
+        {
+          "command": "pbs.runPbn",
+          "group": "2_individual"
+        },
+        {
+          "command": "pbs.runRotate",
+          "group": "2_individual"
+        },
+        {
+          "command": "pbs.runBba",
+          "group": "2_individual"
+        },
+        {
+          "command": "pbs.runFilter",
+          "group": "2_individual"
+        },
+        {
+          "command": "pbs.runFilterStats",
+          "group": "2_individual"
+        },
+        {
+          "command": "pbs.runBiddingSheet",
+          "group": "2_individual"
+        },
+        {
+          "command": "pbs.runDlrPlus",
+          "group": "3_plus"
+        },
+        {
+          "command": "pbs.runPbnPlus",
+          "group": "3_plus"
+        },
+        {
+          "command": "pbs.runRotatePlus",
+          "group": "3_plus"
+        },
+        {
+          "command": "pbs.runBbaPlus",
+          "group": "3_plus"
+        },
+        {
+          "command": "pbs.runFilterPlus",
+          "group": "3_plus"
+        },
+        {
+          "command": "pbs.runFilterStatsPlus",
+          "group": "3_plus"
+        }
+      ]
+    },
+    "submenus": [
+      {
+        "id": "pbs.pipeline",
+        "label": "PBS Pipeline",
+        "icon": "$(play)"
+      }
+    ],
+    "languages": [
+      {
+        "id": "pbs",
+        "aliases": ["PBS", "Practice Bidding Scenario"],
+        "extensions": [".pbs"],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "dlr",
+        "aliases": ["DLR", "Dealer"],
+        "extensions": [".dlr"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "pbs",
+        "scopeName": "source.pbs",
+        "path": "./syntaxes/pbs.tmLanguage.json"
+      },
+      {
+        "language": "dlr",
+        "scopeName": "source.dlr",
+        "path": "./syntaxes/dlr.tmLanguage.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.2"
+  }
+}
