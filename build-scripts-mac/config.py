@@ -8,17 +8,17 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Windows VM SSH configuration
 # Set these environment variables in your ~/.zshrc:
-#   export PBS_WINDOWS_HOST="your-windows-ip"
-#   export PBS_WINDOWS_USER="your-windows-username"
-WINDOWS_SSH_HOST = os.environ.get("PBS_WINDOWS_HOST")
-WINDOWS_SSH_USER = os.environ.get("PBS_WINDOWS_USER")
+#   export WINDOWS_HOST="your-windows-ip"
+#   export WINDOWS_USER="your-windows-username"
+WINDOWS_SSH_HOST = os.environ.get("WINDOWS_HOST")
+WINDOWS_SSH_USER = os.environ.get("WINDOWS_USER")
 
 if not WINDOWS_SSH_HOST or not WINDOWS_SSH_USER:
     import sys
     print("Error: Missing required environment variables.")
     print("Add these to your ~/.zshrc:")
-    print('  export PBS_WINDOWS_HOST="your-windows-ip"')
-    print('  export PBS_WINDOWS_USER="your-windows-username"')
+    print('  export WINDOWS_HOST="your-windows-ip"')
+    print('  export WINDOWS_USER="your-windows-username"')
     print("Then run: source ~/.zshrc")
     sys.exit(1)
 

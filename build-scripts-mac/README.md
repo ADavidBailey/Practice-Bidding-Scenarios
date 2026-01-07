@@ -87,8 +87,8 @@ Add these to your `~/.zshrc`:
 
 ```bash
 # Windows VM connection (required)
-export PBS_WINDOWS_HOST="your-windows-ip"    # e.g., "10.211.55.5"
-export PBS_WINDOWS_USER="your-username"       # Your Windows username
+export WINDOWS_HOST="your-windows-ip"    # e.g., "10.211.55.5"
+export WINDOWS_USER="your-username"       # Your Windows username
 ```
 
 Then run `source ~/.zshrc` to apply.
@@ -145,7 +145,7 @@ Since BBA.exe requires a GUI session, it uses a file-based queue:
 ### SSH connection fails
 ```bash
 # Test SSH manually (use your Windows IP and username)
-ssh $PBS_WINDOWS_USER@$PBS_WINDOWS_HOST "echo hello"
+ssh $WINDOWS_USER@$WINDOWS_HOST "echo hello"
 
 # If it fails, ensure OpenSSH Server is enabled on Windows
 ```
