@@ -19,9 +19,9 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 # Defines tpSouth, tpWest, tpNorth
 
 ## Define South's 1C opening -- GIB doesn't open all 11 HCP hands
-cOK1  = hcp(south)==11   and tpSouth==13 and spades(south)==4
-cOK2  = hcp(south)==11   and tpSouth==13 and clubs(south)>5
-cOK3  = hcp(south)>11
+cOK1 = hcp(south)==11 and tpSouth==13 and spades(south)==4
+cOK2 = hcp(south)==11 and tpSouth==13 and clubs(south)>5
+cOK3 = hcp(south)>11
 sRange = (cOK1 or cOK2 or cOK3) and hcp(south)<22 and tpSouth>11 and tpSouth<21  // avoid strong 2C
 sClubs = oneClub and sRange
 
