@@ -1,6 +1,8 @@
 """
-BBA operation: Generate BBA file from PBN using BBA.exe (Windows).
-Uses a watch folder approach since BBA.exe is a GUI app that can't run over SSH.
+BBA operation: Generate BBA file from PBN using BBA on Windows.
+Supports two modes:
+  - CLI mode (default): Uses bba-cli.exe via SSH directly
+  - GUI mode: Uses BBA.exe with a watch folder approach (legacy)
 Then run oneSummary.py locally to create summary.
 """
 import os
@@ -11,21 +13,106 @@ import time
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from config import FOLDERS, MAC_TOOLS, DEFAULT_CC2, PROJECT_ROOT, WINDOWS_SSH_HOST, WINDOWS_SSH_USER
+from config import FOLDERS, MAC_TOOLS, DEFAULT_CC2, PROJECT_ROOT
+from ssh_runner import run_windows_command, mac_to_windows_path
 from utils.properties import get_convention_card
 
-# BBA queue folder for watch-folder approach
+# Set to True to use legacy GUI-based BBA.exe with watcher, False for CLI mode
+USE_GUI_MODE = False
+
+# BBA-CLI path on Windows
+BBA_CLI_PATH = r"C:\BBA-CLI\bba-cli"
+
+# BBA queue folder for watch-folder approach (GUI mode only)
 BBA_QUEUE = os.path.join(PROJECT_ROOT, "bba-queue")
 
 # Timeouts
 WATCHER_TIMEOUT = 5   # seconds to wait for .starting file before trying to start watcher
-BBA_TIMEOUT = 120     # seconds to wait for .done file (BBA completion)
+BBA_TIMEOUT = 300     # seconds to wait for BBA completion (increased for CLI mode)
+
+
+def run_bba_cli(scenario: str, verbose: bool = True) -> bool:
+    """
+    Generate BBA file from PBN file using bba-cli.exe on Windows via SSH.
+
+    pbn/{scenario}.pbn -> bba/{scenario}.pbn
+
+    Args:
+        scenario: Scenario name (e.g., "Smolen")
+        verbose: Whether to print progress
+
+    Returns:
+        True if successful, False otherwise
+    """
+    if verbose:
+        print(f"--------- bba-cli: Creating bba/{scenario}.pbn from pbn/{scenario}.pbn")
+
+    # Check that PBN file exists
+    pbn_path = os.path.join(FOLDERS["pbn"], f"{scenario}.pbn")
+    if not os.path.exists(pbn_path):
+        print(f"Error: PBN file not found: {pbn_path}")
+        return False
+
+    # Get convention card from DLR properties
+    cc1 = get_convention_card(scenario)
+    cc2 = DEFAULT_CC2
+
+    if verbose:
+        print(f"  Convention cards: {cc1} vs {cc2}")
+
+    # First delete existing output if present
+    bba_output = os.path.join(FOLDERS["bba"], f"{scenario}.pbn")
+    if os.path.exists(bba_output):
+        os.remove(bba_output)
+
+    # Build the bba-cli command using path conversion
+    input_file = mac_to_windows_path(os.path.join(FOLDERS["pbn"], f"{scenario}.pbn"))
+    output_file = mac_to_windows_path(os.path.join(FOLDERS["bba"], f"{scenario}.pbn"))
+    cc1_file = mac_to_windows_path(os.path.join(FOLDERS["bbsa"], f"{cc1}.bbsa"))
+    cc2_file = mac_to_windows_path(os.path.join(FOLDERS["bbsa"], f"{cc2}.bbsa"))
+
+    bba_cmd = f'{BBA_CLI_PATH} --input "{input_file}" --output "{output_file}" --ns-conventions "{cc1_file}" --ew-conventions "{cc2_file}"'
+
+    if verbose:
+        print(f"  Running: {bba_cmd}")
+
+    # Run via SSH
+    try:
+        start_time = time.time()
+        returncode, stdout, stderr = run_windows_command(bba_cmd, timeout=BBA_TIMEOUT, verbose=False)
+        elapsed = time.time() - start_time
+
+        if returncode != 0:
+            print(f"Error: bba-cli failed with exit code {returncode}")
+            if stderr:
+                print(f"  {stderr}")
+            return False
+
+        if verbose:
+            print(f"  BBA completed successfully in {int(elapsed)}s")
+            if stdout:
+                print(f"  {stdout.strip()}")
+
+    except TimeoutError:
+        print(f"Error: bba-cli timed out after {BBA_TIMEOUT} seconds")
+        return False
+    except Exception as e:
+        print(f"Error running bba-cli: {e}")
+        return False
+
+    # Verify BBA output was created
+    if not os.path.exists(bba_output):
+        print(f"Error: BBA output was not created: {bba_output}")
+        return False
+
+    # Run oneSummary.py locally
+    return run_summary(scenario, verbose)
 
 
 def start_bba_watcher(verbose: bool = True) -> bool:
     """
     Start the BBA watcher on Windows via SSH.
-    Uses Start-Process to launch it detached so SSH can return immediately.
+    Uses scheduled task to run in the user's interactive session.
 
     Returns:
         True if command was sent successfully
@@ -33,14 +120,12 @@ def start_bba_watcher(verbose: bool = True) -> bool:
     if verbose:
         print("  Starting BBA watcher on Windows...")
 
-    ssh_cmd = [
-        "ssh",
-        f"{WINDOWS_SSH_USER}@{WINDOWS_SSH_HOST}",
-        "powershell -Command \"Start-Process powershell -ArgumentList '-WindowStyle Minimized -File P:\\build-scripts\\BBAWatcher.ps1'\""
-    ]
+    # Use scheduled task to run in the user's interactive session
+    watcher_script = mac_to_windows_path(os.path.join(PROJECT_ROOT, "build-scripts", "BBAWatcher.ps1"))
+    schtasks_cmd = f'schtasks /Create /TN BBAWatcher /TR "powershell -ExecutionPolicy Bypass -File {watcher_script}" /SC ONCE /ST 00:00 /F && schtasks /Run /TN BBAWatcher'
 
     try:
-        subprocess.run(ssh_cmd, capture_output=True, timeout=10)
+        run_windows_command(schtasks_cmd, timeout=10, verbose=False, check=False)
         # Give watcher a moment to start up
         time.sleep(2)
         return True
@@ -49,9 +134,9 @@ def start_bba_watcher(verbose: bool = True) -> bool:
         return False
 
 
-def run_bba(scenario: str, verbose: bool = True) -> bool:
+def run_bba_gui(scenario: str, verbose: bool = True) -> bool:
     """
-    Generate BBA file from PBN file using BBA.exe on Windows.
+    Generate BBA file from PBN file using BBA.exe on Windows (GUI mode).
 
     Uses watch folder approach:
     1. Write .request file with BBA arguments
@@ -164,7 +249,21 @@ def run_bba(scenario: str, verbose: bool = True) -> bool:
         print(f"Error: BBA output was not created: {bba_output}")
         return False
 
-    # Step 2: Run oneSummary.py locally
+    # Run oneSummary.py locally
+    return run_summary(scenario, verbose)
+
+
+def run_summary(scenario: str, verbose: bool = True) -> bool:
+    """
+    Run oneSummary.py to create the summary file.
+
+    Args:
+        scenario: Scenario name
+        verbose: Whether to print progress
+
+    Returns:
+        True if successful (or if summary fails but BBA succeeded)
+    """
     if verbose:
         print(f"--------- oneSummary.py: Creating bba-summary/{scenario}.txt")
 
@@ -197,6 +296,25 @@ def run_bba(scenario: str, verbose: bool = True) -> bool:
     return True
 
 
+def run_bba(scenario: str, verbose: bool = True) -> bool:
+    """
+    Generate BBA file from PBN file.
+
+    Dispatches to either CLI mode or GUI mode based on USE_GUI_MODE flag.
+
+    Args:
+        scenario: Scenario name (e.g., "Smolen")
+        verbose: Whether to print progress
+
+    Returns:
+        True if successful, False otherwise
+    """
+    if USE_GUI_MODE:
+        return run_bba_gui(scenario, verbose)
+    else:
+        return run_bba_cli(scenario, verbose)
+
+
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         scenario = sys.argv[1]
@@ -204,5 +322,6 @@ if __name__ == "__main__":
         scenario = "Smolen"
 
     print(f"Testing BBA operation with scenario: {scenario}\n")
+    print(f"Mode: {'GUI (BBA.exe watcher)' if USE_GUI_MODE else 'CLI (bba-cli)'}\n")
     success = run_bba(scenario)
     print(f"\nResult: {'Success' if success else 'Failed'}")

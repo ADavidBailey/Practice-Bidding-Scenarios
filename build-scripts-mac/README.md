@@ -29,10 +29,9 @@ python3 pbs-pipeline-mac.py "*" "*"
 
 ### Windows VM
 - OpenSSH Server enabled
-- P: drive mapped to `\\Mac\Home\Developer\GitHub\Practice-Bidding-Scenarios`
-- S: drive mapped to `\\Mac\Home\Documents\BCScript\2024-11-13` (BridgeComposer scripts)
+- Drive mappings are handled automatically via `net use` commands (configured via `PBS_UNC_PREFIX` env var)
 - BBA.exe installed and in PATH (C:\BBA\)
-- BBAWatcher.ps1 running (required for BBA operation)
+- BBAWatcher.ps1 running (required for BBA operation in GUI mode)
 
 ### Starting the BBA Watcher (Windows)
 BBA.exe is a GUI application that can't run over SSH. A watcher script handles BBA requests:
@@ -86,9 +85,13 @@ bidding-sheets/{scenario} Bidding Sheets.pdf
 Add these to your `~/.zshrc`:
 
 ```bash
-# Windows VM connection (required)
+# Windows VM connection
 export WINDOWS_HOST="your-windows-ip"    # e.g., "10.211.55.5"
 export WINDOWS_USER="your-username"       # Your Windows username
+
+# Path mappings for Mac ↔ Windows file access
+export PBS_UNC_PREFIX="\\\\Mac\\Home"     # For Parallels; VMware might use "\\\\vmware-host\\Shared Folders"
+export PBS_BCSCRIPT_PATH="~/Documents/BCScript/2024-11-13"  # Path to BridgeComposer scripts
 ```
 
 Then run `source ~/.zshrc` to apply.

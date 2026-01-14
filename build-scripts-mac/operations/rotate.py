@@ -68,9 +68,9 @@ def run_rotate(scenario: str, verbose: bool = True) -> bool:
         return False
 
     # Step 3: Move the rotated files to the correct folders
-    # The script creates files with -NESW suffix in the same folder
-    nesw_pbn = os.path.join(FOLDERS["pbn"], f"{scenario}-NESW.pbn")
-    nesw_lin = os.path.join(FOLDERS["pbn"], f"{scenario}-NESW.lin")
+    # The script creates files with " - NESW" suffix (space-hyphen-space) in the same folder
+    nesw_pbn = os.path.join(FOLDERS["pbn"], f"{scenario} - NESW.pbn")
+    nesw_lin = os.path.join(FOLDERS["pbn"], f"{scenario} - NESW.lin")
 
     # Destination paths
     dest_pbn = os.path.join(FOLDERS["pbn_rotated"], f"{scenario}.pbn")
