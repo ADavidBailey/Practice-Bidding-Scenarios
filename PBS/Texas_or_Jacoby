@@ -2,7 +2,7 @@ Script,JacobyOrTexas
 setDealerCode(`
 
 # Stayman or Jacoby
-dealer north
+dealer south
 
 /*
 auction-filter: (1NT?.* Pass.* 2[DH] +)|(1NT?.* Pass.* 4[DH] +)
@@ -11,15 +11,15 @@ auction-filter: (1NT?.* Pass.* 2[DH] +)|(1NT?.* Pass.* 4[DH] +)
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
 # Defines gibNT
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
-# Defines calmEast
+# Defines calmWest
 
-# South has a 5+card major w/o 4 in other major and (no slam interest or intending to RKC)
-sS = shape(north,7xxx+6xxx+5xxx) and hearts( north)<4   // avoid Smolen
-sH = shape(north,x7xx+x6xx+x5xx) and spades( north)<4
-sM = (sS or sH)
+# North has a 5+card major w/o 4 in other major and (no slam interest or intending to RKC)
+nS = shape(north,7xxx+6xxx+5xxx) and hearts( north)<4   // avoid Smolen
+nH = shape(north,x7xx+x6xx+x5xx) and spades( north)<4
+nM = (nS or nH)
 
 # North has Robot 1 Notrump Opening and South Transfers
-gibNT and sM and calmEast
+gibNT and nM and calmWest
 
 `,"S",false)
 Script

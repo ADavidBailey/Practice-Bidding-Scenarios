@@ -45,21 +45,21 @@ unbalEast  = shape(east,xxxx -any 4432 -any 4333 -any 9xxx -any 8xxx -any 7xxx-a
 balWest    = shape(west,any 4432 +any 4333)
 unbalWest  = shape(west,xxxx -any 4432 -any 4333 -any 9xxx -any 8xxx -any 7xxx-any 6xxx -any 55xx)
 
-calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<12)
-calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<12)
+calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<11)
+calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<11)
 calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
 
-# Defines calmEast
+# Defines calmWest
 
-# South has a 5+card major w/o 4 in other major and (no slam interest or intending to RKC)
-sS = shape(north,7xxx+6xxx+5xxx) and hearts( north)<4   // avoid Smolen
-sH = shape(north,x7xx+x6xx+x5xx) and spades( north)<4
-sM = (sS or sH)
+# North has a 5+card major w/o 4 in other major and (no slam interest or intending to RKC)
+nS = shape(north,7xxx+6xxx+5xxx) and hearts( north)<4   // avoid Smolen
+nH = shape(north,x7xx+x6xx+x5xx) and spades( north)<4
+nM = (nS or nH)
 
 # North has Robot 1 Notrump Opening and South Transfers
-gibNT and sM and calmEast
+gibNT and nM and calmWest
 
 
 action printpbn
