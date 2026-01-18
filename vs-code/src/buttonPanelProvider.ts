@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
-import { PbsButton, PbsSection, parsePbsDirectory, parseButtonFromFile, parseMainPbsConfig } from './pbsParser';
+import { PbsButton, PbsSection, parsePbsDirectory, parseMainPbsConfig } from './pbsParser';
 
 /**
  * Tree item representing either a section header or a button
@@ -57,7 +57,6 @@ export class PbsTreeItem extends vscode.TreeItem {
                 .replace(/!H/g, '\u2665')  // Heart
                 .replace(/!D/g, '\u2666')  // Diamond
                 .replace(/!C/g, '\u2663'); // Club
-
             md.appendText(description);
             md.appendMarkdown('\n\n');
         }
@@ -108,7 +107,8 @@ export class ButtonPanelProvider implements vscode.TreeDataProvider<PbsTreeItem>
 
         // Index buttons by script ID and by filename (for fallback matching)
         this.buttonsByScriptId.clear();
-        const buttonsByFilename: Map<string, PbsButton> = new Map();
+        const buttonsByFilename = new Map<string, PbsButton>();
+
         for (const button of buttons) {
             if (button.scriptId) {
                 this.buttonsByScriptId.set(button.scriptId, button);
@@ -126,7 +126,7 @@ export class ButtonPanelProvider implements vscode.TreeDataProvider<PbsTreeItem>
             this.sections = parseMainPbsConfig(mainConfigPath);
 
             // Resolve file paths for imported buttons and track which files are mapped
-            const mappedFilePaths: Set<string> = new Set();
+            const mappedFilePaths = new Set<string>();
 
             for (const section of this.sections) {
                 for (let i = 0; i < section.buttons.length; i++) {
@@ -163,6 +163,7 @@ export class ButtonPanelProvider implements vscode.TreeDataProvider<PbsTreeItem>
                                     }
                                 }
                             }
+
                             resolvedButton = bestMatch;
                         }
 
@@ -208,9 +209,11 @@ export class ButtonPanelProvider implements vscode.TreeDataProvider<PbsTreeItem>
 
         if (!element) {
             // Root level - return sections plus Unmapped section if there are unmapped files
-            const validSections = this.sections.filter(section => section.title && section.title.trim() !== '');
+            const validSections = this.sections.filter(section =>
+                section.title && section.title.trim() !== ''
+            );
 
-            const items = validSections
+            const items: PbsTreeItem[] = validSections
                 .map(section => new PbsTreeItem(
                     section.title,
                     vscode.TreeItemCollapsibleState.Collapsed,

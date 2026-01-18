@@ -5,11 +5,11 @@ export interface PbsButton {
     label: string;
     description: string;
     scriptId: string;
-    targetFilename?: string;  // Target filename from Import URL for matching
     backgroundColor?: string;
     width?: string;
-    filePath: string;
-    lineNumber: number;
+    filePath?: string;
+    lineNumber?: number;
+    targetFilename?: string;
 }
 
 export interface PbsSection {
@@ -67,7 +67,7 @@ export function parseButtonDefinition(content: string, filePath: string, startLi
 /**
  * Parse a single button line (may span multiple lines with \n\ continuation)
  */
-export function parseButtonLine(buttonContent: string, filePath: string, lineNumber: number): PbsButton | null {
+export function parseButtonLine(buttonContent: string, filePath?: string, lineNumber?: number): PbsButton | null {
     // Remove the "Button," prefix
     if (!buttonContent.startsWith('Button,')) {
         return null;
@@ -198,7 +198,6 @@ export function parseButtonFromFile(content: string, filePath: string): PbsButto
                 j++;
                 buttonContent += '\n' + lines[j];
             }
-
             const button = parseButtonLine(buttonContent, filePath, i + 1);
             if (button && button.label && button.label !== '---') {
                 return button;
@@ -223,7 +222,7 @@ export function parseMainPbsConfig(configPath: string): PbsSection[] {
     const lines = content.split('\n');
 
     // First pass: collect import declarations with URLs (scriptId -> targetFilename mapping)
-    const importDeclarations: Map<string, string> = new Map();
+    const importDeclarations = new Map<string, string>();
     for (const line of lines) {
         const trimmedLine = line.trim();
         if (trimmedLine.startsWith('Import,')) {
@@ -296,8 +295,8 @@ export function parseMainPbsConfig(configPath: string): PbsSection[] {
                     label: scriptId,
                     description: '',
                     scriptId: scriptId,
-                    targetFilename: targetFilename,  // Store target filename for matching
-                    filePath: '',  // Will be resolved later
+                    targetFilename: targetFilename, // Store target filename for matching
+                    filePath: '', // Will be resolved later
                     lineNumber: i + 1
                 });
             }

@@ -12,7 +12,7 @@ export class ButtonGridProvider implements vscode.WebviewViewProvider {
 
     constructor(
         private readonly _extensionUri: vscode.Uri,
-        private workspaceRoot: string | undefined
+        private readonly workspaceRoot: string | undefined
     ) {
         this.loadData();
     }
@@ -62,7 +62,7 @@ export class ButtonGridProvider implements vscode.WebviewViewProvider {
         }
     }
 
-    private async loadData(): Promise<void> {
+    private async loadData() {
         if (!this.workspaceRoot) {
             return;
         }
@@ -73,7 +73,8 @@ export class ButtonGridProvider implements vscode.WebviewViewProvider {
 
         // Index buttons by script ID and by filename (for fallback matching)
         this.buttonsByScriptId.clear();
-        const buttonsByFilename: Map<string, PbsButton> = new Map();
+        const buttonsByFilename = new Map<string, PbsButton>();
+
         for (const button of buttons) {
             if (button.scriptId) {
                 this.buttonsByScriptId.set(button.scriptId, button);
@@ -130,6 +131,7 @@ export class ButtonGridProvider implements vscode.WebviewViewProvider {
                                     }
                                 }
                             }
+
                             resolvedButton = bestMatch;
                         }
 
@@ -172,7 +174,7 @@ export class ButtonGridProvider implements vscode.WebviewViewProvider {
                             width = button.width;
                         }
                     } else if (labelLength <= 2) {
-                        width = '32px';  // Very short labels (1, 2, 3, 4)
+                        width = '32px'; // Very short labels (1, 2, 3, 4)
                     } else {
                         width = 'calc(50% - 4px)'; // Default 2 per row
                     }

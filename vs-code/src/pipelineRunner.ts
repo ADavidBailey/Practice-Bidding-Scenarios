@@ -2,22 +2,59 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 
 /**
+ * Artifact directories that contain scenario outputs
+ */
+const ARTIFACT_DIRS = [
+    'PBS',
+    'dlr',
+    'pbn',
+    'pbn-rotated-for-4-players',
+    'bba',
+    'bba-filtered',
+    'bba-filtered-out',
+    'bba-summary',
+    'bidding-sheets',
+    'lin',
+    'lin-rotated-for-4-players'
+];
+
+/**
  * Get the scenario name from a file path.
+ * Works for PBS files and artifact files in any of the artifact directories.
  * The scenario name is the filename without extension.
  */
-function getScenarioFromPath(filePath: string): string | undefined {
+function getScenarioFromPath(filePath: string | undefined): string | undefined {
     if (!filePath) {
         return undefined;
     }
 
-    // Check if file is in PBS directory
     const dir = path.dirname(filePath);
-    if (!dir.endsWith('PBS')) {
+    const dirName = path.basename(dir);
+
+    // Check if file is in PBS directory or any artifact directory
+    if (!ARTIFACT_DIRS.includes(dirName)) {
         return undefined;
     }
 
-    // Return filename (PBS files don't have extensions)
-    return path.basename(filePath);
+    // Get filename and remove extension (if any)
+    const fileName = path.basename(filePath);
+
+    // For PBS files, there's no extension
+    if (dirName === 'PBS') {
+        return fileName;
+    }
+
+    // For artifact files, remove the extension to get scenario name
+    // Handle compound extensions like ".pbn", ".pdf", ".html", ".txt", ".lin"
+    const baseName = fileName.replace(/\.(pbn|dlr|pdf|html|txt|lin)$/i, '');
+
+    // Also handle bidding sheet names like "1N Bidding Sheets.pdf" -> "1N"
+    const biddingSheetMatch = baseName.match(/^(.+?)\s+Bidding Sheets?$/i);
+    if (biddingSheetMatch) {
+        return biddingSheetMatch[1];
+    }
+
+    return baseName;
 }
 
 /**
@@ -64,11 +101,7 @@ async function runPipeline(scenario: string, operations: string): Promise<void> 
 /**
  * Register a pipeline command
  */
-function registerCommand(
-    context: vscode.ExtensionContext,
-    commandId: string,
-    operations: string
-): void {
+function registerCommand(context: vscode.ExtensionContext, commandId: string, operations: string): void {
     context.subscriptions.push(
         vscode.commands.registerCommand(commandId, async () => {
             const scenario = getCurrentScenario();
@@ -107,7 +140,7 @@ export function registerPipelineCommands(context: vscode.ExtensionContext): void
 /**
  * Status bar item showing current scenario
  */
-let statusBarItem: vscode.StatusBarItem | undefined;
+let statusBarItem: vscode.StatusBarItem;
 
 export function createStatusBar(context: vscode.ExtensionContext): void {
     statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);

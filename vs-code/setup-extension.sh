@@ -1,14 +1,14 @@
 #!/bin/bash
-# Setup script for Practice Bidding Scenarios VS Code extension
-# Creates a symlink for local development
 
-set -e
+# Setup script for PBS Development VS Code extension
+# This creates a symlink in the VS Code extensions directory
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-EXTENSION_NAME="practice-bidding-scenarios"
+EXTENSION_NAME="pbs-dev"
 VSCODE_EXTENSIONS_DIR="$HOME/.vscode/extensions"
 
-echo "Setting up PBS VS Code extension for local development..."
+echo "PBS Development Extension Setup"
+echo "================================"
 
 # Check if VS Code extensions directory exists
 if [ ! -d "$VSCODE_EXTENSIONS_DIR" ]; then
@@ -16,30 +16,34 @@ if [ ! -d "$VSCODE_EXTENSIONS_DIR" ]; then
     mkdir -p "$VSCODE_EXTENSIONS_DIR"
 fi
 
-# Check if symlink or directory already exists
-LINK_PATH="$VSCODE_EXTENSIONS_DIR/$EXTENSION_NAME"
-if [ -L "$LINK_PATH" ]; then
+# Target symlink path
+SYMLINK_PATH="$VSCODE_EXTENSIONS_DIR/$EXTENSION_NAME"
+
+# Remove existing symlink or directory if it exists
+if [ -L "$SYMLINK_PATH" ]; then
     echo "Removing existing symlink..."
-    rm "$LINK_PATH"
-elif [ -d "$LINK_PATH" ]; then
-    echo "Warning: A directory already exists at $LINK_PATH"
-    echo "Please remove it manually and run this script again."
-    exit 1
+    rm "$SYMLINK_PATH"
+elif [ -d "$SYMLINK_PATH" ]; then
+    echo "Removing existing directory..."
+    rm -rf "$SYMLINK_PATH"
 fi
 
 # Create symlink
-echo "Creating symlink..."
-ln -sf "$SCRIPT_DIR" "$LINK_PATH"
+echo "Creating symlink: $SYMLINK_PATH -> $SCRIPT_DIR"
+ln -s "$SCRIPT_DIR" "$SYMLINK_PATH"
 
-echo ""
-echo "Success! Extension symlinked to: $LINK_PATH"
-echo ""
-echo "Next steps:"
-echo "  1. cd to the vs-code directory: cd \"$SCRIPT_DIR\""
-echo "  2. Install dependencies: npm install"
-echo "  3. Compile the extension: npm run compile"
-echo "  4. Restart VS Code to load the extension"
-echo ""
-echo "For development:"
-echo "  - Run 'npm run watch' to auto-compile on changes"
-echo "  - After code changes, reload VS Code window (Cmd+Shift+P > 'Developer: Reload Window')"
+if [ $? -eq 0 ]; then
+    echo ""
+    echo "✓ Extension installed successfully!"
+    echo ""
+    echo "Next steps:"
+    echo "1. Run 'npm install' in $SCRIPT_DIR (if not already done)"
+    echo "2. Run 'npm run compile' to build the extension"
+    echo "3. Reload VS Code (Cmd+Shift+P -> 'Developer: Reload Window')"
+    echo ""
+    echo "The PBS sidebar should appear in the Activity Bar."
+else
+    echo ""
+    echo "✗ Failed to create symlink"
+    exit 1
+fi

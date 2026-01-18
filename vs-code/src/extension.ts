@@ -1,12 +1,22 @@
 import * as vscode from 'vscode';
 import { ButtonPanelProvider } from './buttonPanelProvider';
 import { ButtonGridProvider } from './buttonGridProvider';
+import { CurrentScenarioProvider, ScenarioTreeItem } from './currentScenarioProvider';
 import { registerPipelineCommands, createStatusBar } from './pipelineRunner';
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('Practice Bidding Scenarios extension is now active');
 
     const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+
+    // Create the current scenario provider (shows focused scenario with artifact status)
+    const currentScenarioProvider = new CurrentScenarioProvider(workspaceRoot);
+
+    // Register the current scenario tree view
+    const currentScenarioView = vscode.window.createTreeView('pbsCurrentScenario', {
+        treeDataProvider: currentScenarioProvider,
+        showCollapseAll: false
+    });
 
     // Create the button panel provider (tree view)
     const buttonPanelProvider = new ButtonPanelProvider(workspaceRoot);
@@ -36,6 +46,13 @@ export function activate(context: vscode.ExtensionContext) {
     const refreshGridCommand = vscode.commands.registerCommand('pbs.refreshButtonGrid', () => {
         buttonGridProvider.refresh();
         vscode.window.showInformationMessage('PBS Button Grid refreshed');
+    });
+
+    // Register rebuild artifact command (for right-click context menu)
+    const rebuildArtifactCommand = vscode.commands.registerCommand('pbs.rebuildArtifact', async (item: ScenarioTreeItem) => {
+        if (item?.artifactInfo?.command) {
+            await vscode.commands.executeCommand(item.artifactInfo.command);
+        }
     });
 
     // Register open file command
@@ -68,14 +85,17 @@ export function activate(context: vscode.ExtensionContext) {
     pbsWatcher.onDidChange(() => {
         buttonPanelProvider.refresh();
         buttonGridProvider.refresh();
+        currentScenarioProvider.refresh();
     });
     pbsWatcher.onDidCreate(() => {
         buttonPanelProvider.refresh();
         buttonGridProvider.refresh();
+        currentScenarioProvider.refresh();
     });
     pbsWatcher.onDidDelete(() => {
         buttonPanelProvider.refresh();
         buttonGridProvider.refresh();
+        currentScenarioProvider.refresh();
     });
 
     // Also watch the main config file
@@ -85,14 +105,23 @@ export function activate(context: vscode.ExtensionContext) {
         buttonGridProvider.refresh();
     });
 
+    // Watch artifact directories for current scenario status updates
+    const artifactWatcher = vscode.workspace.createFileSystemWatcher('**/{dlr,pbn,pbn-rotated-for-4-players,bba,bba-filtered,bidding-sheets}/*');
+    artifactWatcher.onDidChange(() => currentScenarioProvider.refresh());
+    artifactWatcher.onDidCreate(() => currentScenarioProvider.refresh());
+    artifactWatcher.onDidDelete(() => currentScenarioProvider.refresh());
+
     context.subscriptions.push(
+        currentScenarioView,
         treeView,
         webviewProvider,
         refreshCommand,
         refreshGridCommand,
+        rebuildArtifactCommand,
         openFileCommand,
         pbsWatcher,
-        configWatcher
+        configWatcher,
+        artifactWatcher
     );
 
     // Register pipeline commands and status bar
