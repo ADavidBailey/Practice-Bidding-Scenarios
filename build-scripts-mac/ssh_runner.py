@@ -31,8 +31,8 @@ def mac_to_windows_path(mac_path: str) -> str:
     # Normalize the path
     mac_path = mac_path.replace("\\", "/")
 
-    # Find the matching drive mapping
-    for mac_base, (windows_drive, unc_path) in DRIVE_MAPPINGS.items():
+    # Find the matching drive mapping (sort by path length descending to match most specific first)
+    for mac_base, (windows_drive, unc_path) in sorted(DRIVE_MAPPINGS.items(), key=lambda x: len(x[0]), reverse=True):
         if mac_path.startswith(mac_base):
             # Replace Mac base with Windows drive and convert slashes
             relative_path = mac_path[len(mac_base):]

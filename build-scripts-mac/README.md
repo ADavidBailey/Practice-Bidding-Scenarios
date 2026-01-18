@@ -82,7 +82,7 @@ bidding-sheets/{scenario} Bidding Sheets.pdf
 
 ### Environment Variables (required)
 
-Add these to your `~/.zshrc`:
+Add these to your `~/.zshenv` (not `~/.zshrc`) so they're available to non-interactive shells like VSCode:
 
 ```bash
 # Windows VM connection
@@ -94,7 +94,7 @@ export PBS_UNC_PREFIX="\\\\Mac\\Home"     # For Parallels; VMware might use "\\\
 export PBS_BCSCRIPT_PATH="~/Documents/BCScript/2024-11-13"  # Path to BridgeComposer scripts
 ```
 
-Then run `source ~/.zshrc` to apply.
+Restart your terminal or VSCode for the changes to take effect.
 
 ### Environment Variables (optional)
 

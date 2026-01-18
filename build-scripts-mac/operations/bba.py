@@ -71,7 +71,7 @@ def run_bba_cli(scenario: str, verbose: bool = True) -> bool:
     cc1_file = mac_to_windows_path(os.path.join(FOLDERS["bbsa"], f"{cc1}.bbsa"))
     cc2_file = mac_to_windows_path(os.path.join(FOLDERS["bbsa"], f"{cc2}.bbsa"))
 
-    bba_cmd = f'{BBA_CLI_PATH} --input "{input_file}" --output "{output_file}" --ns-conventions "{cc1_file}" --ew-conventions "{cc2_file}"'
+    bba_cmd = f'{BBA_CLI_PATH} --auto-update --input "{input_file}" --output "{output_file}" --ns-conventions "{cc1_file}" --ew-conventions "{cc2_file}"'
 
     if verbose:
         print(f"  Running: {bba_cmd}")

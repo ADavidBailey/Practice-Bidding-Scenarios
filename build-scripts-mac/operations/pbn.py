@@ -43,8 +43,11 @@ def run_pbn(scenario: str, verbose: bool = True) -> bool:
         dealer_cmd = [
             MAC_TOOLS["dealer"],
             "-s", str(DEALER_SEED),
+            "-g", str(DEALER_GENERATE),
             "-p", str(DEALER_PRODUCE),
-            "-m"
+            "-m",
+            "-v",        # Include stats output at end of file
+            "--legacy",  # Match Windows dealer.exe output format
         ]
 
         if verbose:

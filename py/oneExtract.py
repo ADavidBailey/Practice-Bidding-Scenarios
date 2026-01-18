@@ -116,14 +116,14 @@ def process_extracted_text(extracted_text, dealer):
 if scenario != "*":
     # Do a single scenario
     filename = scenario
-    file_path = os.path.join('..', '/pbs/', filename)
+    file_path = os.path.join('..', 'pbs', filename)
     if os.path.isfile(file_path):
         extract_text_in_backticks(file_path)
 else:
     # List all files in the directory
     n_files = 0
-    for filename in os.listdir(os.path.join('..' + '/pbs/')):
-        file_path = os.path.join('..', '/pbs/', filename)
+    for filename in os.listdir(os.path.join('..', 'pbs')):
+        file_path = os.path.join('..', 'pbs', filename)
     
         # Check if it's a file
         if os.path.isfile(file_path) and not file_path.endswith('.DS_Store'):

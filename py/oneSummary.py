@@ -28,6 +28,14 @@ def process_scenario():
         auction = False
         par = ''
         optimum = False
+        # Initialize variables for each board (in case some tags are missing)
+        board_number = ''
+        dealer = ''
+        the_deal = ''
+        declarer = ''
+        contract = ''
+        score = ''
+        bidding = ''
         f.write('brd# dlr contract score  par     north            east             south            west             | auction...   | notes\n')
         f.write('---- --- -------- -----  ------  ---------------- ---------------- ---------------- ---------------- | ------------------------- \n')
         for line in lines:
@@ -69,17 +77,20 @@ def process_scenario():
             if line.startswith('[Optimum'):
                 optimum = True
             if line.strip() == '':
-                # I've got everything needed; so, write it out.
-                summary = board_number.ljust(5) + dealer.ljust(4)  + (contract + '-' + declarer).ljust(9) + score.rjust(5) + '  ' + par.ljust(8) + the_deal + ' | ' + bidding + this_note
-                f.write(summary + '\n')
-                result = bidding + this_note
-                if result not in results:
-                    results[result] = 1
-                else:
-                    results[result] += 1
-                
+                # I've got everything needed; so, write it out (only if we have a valid board).
+                if board_number:
+                    summary = board_number.ljust(5) + dealer.ljust(4)  + (contract + '-' + declarer).ljust(9) + score.rjust(5) + '  ' + par.ljust(8) + the_deal + ' | ' + bidding + this_note
+                    f.write(summary + '\n')
+                    result = bidding + this_note
+                    if result not in results:
+                        results[result] = 1
+                    else:
+                        results[result] += 1
+
+                # Reset for next board
                 this_note = ''
                 this_auction = ''
+                board_number = ''
 
     if this_auction != '':
         summary = board_number.ljust(5) + dealer.ljust(4)  + (contract + '-' + declarer).ljust(9) + score.rjust(5) + '  ' + par.ljust(8) + the_deal + ' | ' + bidding + this_note

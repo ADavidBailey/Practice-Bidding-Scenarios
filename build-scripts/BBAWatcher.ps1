@@ -65,12 +65,15 @@ while ($true) {
 
             Write-Host "  Running: BBA.exe $args"
 
-            # Run BBA.exe and wait for completion
+            # Run BBA.exe and wait for completion, measuring elapsed time
+            $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
             $process = Start-Process -FilePath "BBA.exe" -ArgumentList $args -Wait -PassThru
+            $stopwatch.Stop()
+            $elapsed = $stopwatch.Elapsed.ToString("mm\:ss")
 
             if ($process.ExitCode -eq 0) {
                 [System.IO.File]::WriteAllText($donePath, "OK")
-                Write-Host "  Completed successfully"
+                Write-Host "  Completed successfully in $elapsed"
             } else {
                 [System.IO.File]::WriteAllText($donePath, "ERROR: BBA.exe exited with code $($process.ExitCode)")
                 Write-Host "  Failed with exit code $($process.ExitCode)"
