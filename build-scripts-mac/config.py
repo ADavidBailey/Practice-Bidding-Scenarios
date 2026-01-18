@@ -94,7 +94,7 @@ WINDOWS_TOOLS = {
 MAC_TOOLS = {
     "python": "python3",
     "wkhtmltopdf": "/opt/homebrew/bin/wkhtmltopdf",  # Adjust if installed elsewhere
-    "dealer": "/Applications/dealer3",  # Mac version of dealer
+    "dealer": "/Applications/Bridge Utilities/dealer3",  # Mac version of dealer
 }
 
 # Where to run dealer: "mac" (default) or "windows"
