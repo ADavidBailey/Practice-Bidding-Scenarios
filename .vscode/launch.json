@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run PBS Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/vs-code",
+        "${workspaceFolder}/pbs-dev.code-workspace"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/vs-code/out/**/*.js"
+      ],
+      "preLaunchTask": "npm: compile - vs-code"
+    }
+  ]
+}
