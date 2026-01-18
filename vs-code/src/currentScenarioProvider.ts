@@ -209,7 +209,29 @@ export class CurrentScenarioProvider implements vscode.TreeDataProvider<Scenario
         }
 
         if (element.isRoot) {
-            // Return artifact children
+            // First add the PBS source file
+            const pbsPath = path.join(this.workspaceRoot!, 'PBS', this.currentScenario!);
+            const pbsExists = fs.existsSync(pbsPath);
+            const pbsItem = new ScenarioTreeItem(
+                'PBS',
+                vscode.TreeItemCollapsibleState.None,
+                false,
+                undefined  // No artifactInfo - this is the source
+            );
+            pbsItem.iconPath = new vscode.ThemeIcon('file-code');
+            pbsItem.contextValue = 'source';
+            if (pbsExists) {
+                pbsItem.command = {
+                    command: 'pbs.openPbsFile',
+                    title: 'Open PBS source',
+                    arguments: [pbsPath]
+                };
+                pbsItem.tooltip = new vscode.MarkdownString(`**PBS Source**\n\n\`${pbsPath}\`\n\n*Click to open*`);
+            } else {
+                pbsItem.tooltip = new vscode.MarkdownString(`**PBS Source**\n\nNot found: \`${pbsPath}\``);
+            }
+
+            // Then add artifact children
             const artifacts = ARTIFACTS.map(artifact => {
                 const info = this.getArtifactInfo(artifact, this.currentScenario!, this.workspaceRoot!);
                 return new ScenarioTreeItem(
@@ -219,7 +241,7 @@ export class CurrentScenarioProvider implements vscode.TreeDataProvider<Scenario
                     info
                 );
             });
-            return Promise.resolve(artifacts);
+            return Promise.resolve([pbsItem, ...artifacts]);
         }
 
         return Promise.resolve([]);
