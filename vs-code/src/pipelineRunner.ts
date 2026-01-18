@@ -2,7 +2,25 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 
 /**
+ * Artifact directories that contain scenario outputs
+ */
+const ARTIFACT_DIRS = [
+    'PBS',
+    'dlr',
+    'pbn',
+    'pbn-rotated-for-4-players',
+    'bba',
+    'bba-filtered',
+    'bba-filtered-out',
+    'bba-summary',
+    'bidding-sheets',
+    'lin',
+    'lin-rotated-for-4-players'
+];
+
+/**
  * Get the scenario name from a file path.
+ * Works for PBS files and artifact files in any of the artifact directories.
  * The scenario name is the filename without extension.
  */
 function getScenarioFromPath(filePath: string | undefined): string | undefined {
@@ -10,14 +28,33 @@ function getScenarioFromPath(filePath: string | undefined): string | undefined {
         return undefined;
     }
 
-    // Check if file is in PBS directory
     const dir = path.dirname(filePath);
-    if (!dir.endsWith('PBS')) {
+    const dirName = path.basename(dir);
+
+    // Check if file is in PBS directory or any artifact directory
+    if (!ARTIFACT_DIRS.includes(dirName)) {
         return undefined;
     }
 
-    // Return filename (PBS files don't have extensions)
-    return path.basename(filePath);
+    // Get filename and remove extension (if any)
+    const fileName = path.basename(filePath);
+
+    // For PBS files, there's no extension
+    if (dirName === 'PBS') {
+        return fileName;
+    }
+
+    // For artifact files, remove the extension to get scenario name
+    // Handle compound extensions like ".pbn", ".pdf", ".html", ".txt", ".lin"
+    const baseName = fileName.replace(/\.(pbn|dlr|pdf|html|txt|lin)$/i, '');
+
+    // Also handle bidding sheet names like "1N Bidding Sheets.pdf" -> "1N"
+    const biddingSheetMatch = baseName.match(/^(.+?)\s+Bidding Sheets?$/i);
+    if (biddingSheetMatch) {
+        return biddingSheetMatch[1];
+    }
+
+    return baseName;
 }
 
 /**

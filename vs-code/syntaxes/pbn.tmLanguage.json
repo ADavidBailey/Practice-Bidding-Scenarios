@@ -1,0 +1,126 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "PBN",
+  "scopeName": "source.pbn",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#tags" },
+    { "include": "#braces" },
+    { "include": "#bids" },
+    { "include": "#deal" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.percent.pbn",
+          "match": "^%.*$"
+        }
+      ]
+    },
+    "tags": {
+      "patterns": [
+        {
+          "name": "meta.tag.pbn",
+          "begin": "\\[",
+          "end": "\\]",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.tag.begin.pbn" }
+          },
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.tag.end.pbn" }
+          },
+          "patterns": [
+            {
+              "match": "^\\s*(Event|Site|Date|Board|North|East|South|West|Room|Dealer|Vulnerable|Deal|Declarer|Contract|Result|Score|Scoring|Auction|Play|BidSystemNS|BidSystemEW|Description|Generator|Application|Competition|Round|Stage|Table|HomeTeam|VisitTeam|Annotator|AnnotatorNA|TimeControl|TimePerMove|TimeUsed|FENSetup|PlyCount|PlyCount|Termination)\\b",
+              "captures": {
+                "1": { "name": "keyword.control.tag.pbn" }
+              }
+            },
+            {
+              "name": "string.quoted.double.pbn",
+              "begin": "\"",
+              "end": "\"",
+              "patterns": [
+                { "include": "#deal-string" },
+                {
+                  "name": "constant.character.escape.pbn",
+                  "match": "\\\\."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "deal-string": {
+      "patterns": [
+        {
+          "name": "constant.language.direction.pbn",
+          "match": "\\b[NESW]:"
+        },
+        {
+          "name": "entity.name.tag.suit.pbn",
+          "match": "\\."
+        }
+      ]
+    },
+    "braces": {
+      "patterns": [
+        {
+          "name": "comment.block.annotation.pbn",
+          "begin": "\\{",
+          "end": "\\}",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.comment.begin.pbn" }
+          },
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.comment.end.pbn" }
+          },
+          "patterns": [
+            {
+              "name": "storage.type.annotation.pbn",
+              "match": "\\b(Shape|HCP|Losers)\\b"
+            },
+            {
+              "name": "constant.numeric.pbn",
+              "match": "\\b\\d+\\b"
+            }
+          ]
+        }
+      ]
+    },
+    "bids": {
+      "patterns": [
+        {
+          "name": "constant.numeric.bid.pbn",
+          "match": "\\b[1-7][CDHSN]T?\\b"
+        },
+        {
+          "name": "keyword.operator.bid.pass.pbn",
+          "match": "\\bPass\\b"
+        },
+        {
+          "name": "keyword.operator.bid.double.pbn",
+          "match": "\\b(Double|Redouble|X|XX)\\b"
+        },
+        {
+          "name": "constant.language.alert.pbn",
+          "match": "=\\d+="
+        },
+        {
+          "name": "punctuation.separator.continuation.pbn",
+          "match": "\\*"
+        }
+      ]
+    },
+    "deal": {
+      "patterns": [
+        {
+          "name": "variable.other.card.pbn",
+          "match": "\\b[AKQJT98765432]+\\b"
+        }
+      ]
+    }
+  }
+}
