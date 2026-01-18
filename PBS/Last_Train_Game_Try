@@ -17,7 +17,7 @@ sNCH = shape(south,xxx3+xxx4) and top4(south,clubs)   ==0
 sNDH = shape(south,xx3x+xx4x) and top4(south,diamonds)==0
 sNHH = shape(south,x3xx+x4xx) and top4(south,hearts)  ==0
 sNSH = shape(south,3xxx+4xxx) and top4(south,spades)  ==0
-sNH  = sNCH or sNDH or sNHH or sNSH and shape(south,any 5332+any 5431+any 5422)
+sNH  = (sNCH or sNDH or sNHH or sNSH) and shape(south,any 5332+any 5431+any 5422)
 
 nNCH = shape(north,xxx3+xxx4) and top4(north,clubs)   ==0
 nNDH = shape(north,xx3x+xx4x) and top4(north,diamonds)==0

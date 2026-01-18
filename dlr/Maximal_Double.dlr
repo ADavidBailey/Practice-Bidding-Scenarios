@@ -88,13 +88,13 @@ eBids = eX or eMaxOC or ePass
 # Define South's fits:  3+, 4+, and 5+
 sFit3  = S_ and spades(south)>2
 hFit3  = H_ and hearts(south)>2 and spades(south)<4
-fit3   = sFit3 or hFit3 and spades(south)<5
+fit3   = (sFit3 or hFit3) and spades(south)<5
 sFit4  = S_ and spades(south)>3
 hFit4  = H_ and hearts(south)>3 and spades(south)<4
-fit4   = sFit4 or hFit4 and spades(south)<5
+fit4   = (sFit4 or hFit4) and spades(south)<5
 sFit5  = S_ and spades(south)>4
 hFit5  = H_ and hearts(south)>4 and spades(south)<4
-fit5   = sFit5 or hFit5 and spades(south)<5
+fit5   = (sFit5 or hFit5) and spades(south)<5
 
 # Define South's major suit raises
 # Preemptive raise 1M-?-4M -- 5+ cards; 9- HCP; 6+ total points

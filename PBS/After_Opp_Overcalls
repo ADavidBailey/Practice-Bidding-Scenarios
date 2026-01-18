@@ -12,7 +12,7 @@ produce 10000
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
 
 # North has a fit for opener's suit
-nFit = (oC and clubs(north))>4 or oD and diamonds(north)>3 or oH and hearts(north)>2 or oS and spades(north)>2
+nFit = (oC and clubs(north))>4 or (oD and diamonds(north)>3) or (oH and hearts(north)>2) or (oS and spades(north)>2)
 
 # North Support Points
 v1 = shape(north, any 0xxx) ? 5 : 0  // allow 1 void

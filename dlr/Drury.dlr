@@ -173,7 +173,7 @@ nNT = shape(north,any 4333+any 4432+any 5332) and hcp(north)>14 and hcp(north)<1
 
 //nMin = tpNorth==12 and hcp(north)==11
 nSpade = spades(north)>4 and hearts(north)<5 and diamonds(north)<5 and clubs(north)<5 and spades(south)>2 and hearts(south)<5
-nHeart = hearts(north)>4 and spades(north)<5 and diamonds(north)<5 and clubs(north)>5 and hearts(south)>2 and spades(south)<5
+nHeart = hearts(north)>4 and spades(north)<5 and diamonds(north)<5 and clubs(north)<5 and hearts(south)>2 and spades(south)<5
 len = hearts(north)>spades(north) ? hearts(north) : spades(north)
 nMin = len == 5 ? 12 : 11
 
