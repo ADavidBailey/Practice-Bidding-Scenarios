@@ -40,8 +40,8 @@ eTP = hcp(east) -eSp -eHp -eDp -eCp
 
 # Define East Takeout Double for West's max response
 eHCP = hcp(east,spades)<7 and hcp(east,hearts)<7 and hcp(east,diamonds)<7 and hcp(east,clubs)<7  // no concentration
-eHX = H_ and hearts(east)<3 and shape(east,any 5440 +any 5431 +any 5332 +any 4441 +any 4432 -5xxx) and hcp(east,hearts)==0
-eSX = S_ and spades(east)<3 and shape(east,any 5440 +any 5431 +any 5332 +any 4441 +any 4432 -x5xx) and hcp(east,spades)==0
+eHX = H_ and hearts(east)<3 and shape(east,any 5440 +any 5431 +any 5332 +any 4441 +any 4432 -5xxx) and hcp(east,hearts)==0 and hearts(west)>3
+eSX = S_ and spades(east)<3 and shape(east,any 5440 +any 5431 +any 5332 +any 4441 +any 4432 -x5xx) and hcp(east,spades)==0 and diamonds(west)>4
 eX = (eHX or eSX) and eHCP and eTP>11
 
 # Define East overcalls in Maximal suit
