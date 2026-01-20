@@ -3,6 +3,28 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { PbsButton, PbsSection, parsePbsDirectory, parseMainPbsConfig } from './pbsParser';
 
+/**
+ * Find the PBS directory (handles both 'PBS' and 'pbs' case)
+ */
+function findPbsDir(workspaceRoot: string): string {
+    const upperPath = path.join(workspaceRoot, 'PBS');
+    const lowerPath = path.join(workspaceRoot, 'pbs');
+    if (fs.existsSync(upperPath)) {
+        return upperPath;
+    }
+    if (fs.existsSync(lowerPath)) {
+        return lowerPath;
+    }
+    return upperPath; // default to uppercase if neither exists
+}
+
+/**
+ * Check if a path contains a PBS directory (case-insensitive)
+ */
+function containsPbsDir(filePath: string): boolean {
+    return filePath.includes('/PBS/') || filePath.includes('/pbs/');
+}
+
 export class ButtonGridProvider implements vscode.WebviewViewProvider {
     public static readonly viewType = 'pbsButtonGrid';
 
@@ -40,7 +62,7 @@ export class ButtonGridProvider implements vscode.WebviewViewProvider {
                         const editor = await vscode.window.showTextDocument(document);
 
                         // Set language mode to 'pbs' for files in the PBS directory
-                        if (data.filePath.includes('/PBS/')) {
+                        if (containsPbsDir(data.filePath)) {
                             await vscode.languages.setTextDocumentLanguage(document, 'pbs');
                         }
 
@@ -68,7 +90,7 @@ export class ButtonGridProvider implements vscode.WebviewViewProvider {
         }
 
         // First, load all buttons from PBS directory
-        const pbsDir = path.join(this.workspaceRoot, 'PBS');
+        const pbsDir = findPbsDir(this.workspaceRoot);
         const buttons = await parsePbsDirectory(pbsDir);
 
         // Index buttons by script ID and by filename (for fallback matching)

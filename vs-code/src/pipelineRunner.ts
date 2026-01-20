@@ -2,10 +2,18 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 
 /**
+ * Check if a directory name is a PBS directory (case-insensitive)
+ */
+function isPbsDir(dirName: string): boolean {
+    return dirName.toLowerCase() === 'pbs';
+}
+
+/**
  * Artifact directories that contain scenario outputs
  */
 const ARTIFACT_DIRS = [
     'PBS',
+    'pbs',
     'dlr',
     'pbn',
     'pbn-rotated-for-4-players',
@@ -40,7 +48,7 @@ function getScenarioFromPath(filePath: string | undefined): string | undefined {
     const fileName = path.basename(filePath);
 
     // For PBS files, there's no extension
-    if (dirName === 'PBS') {
+    if (isPbsDir(dirName)) {
         return fileName;
     }
 

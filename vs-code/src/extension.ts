@@ -4,6 +4,13 @@ import { ButtonGridProvider } from './buttonGridProvider';
 import { CurrentScenarioProvider, ScenarioTreeItem } from './currentScenarioProvider';
 import { registerPipelineCommands, createStatusBar } from './pipelineRunner';
 
+/**
+ * Check if a path contains a PBS directory (case-insensitive)
+ */
+function containsPbsDir(filePath: string): boolean {
+    return filePath.includes('/PBS/') || filePath.includes('/pbs/');
+}
+
 export function activate(context: vscode.ExtensionContext) {
     console.log('Practice Bidding Scenarios extension is now active');
 
@@ -66,7 +73,7 @@ export function activate(context: vscode.ExtensionContext) {
             const editor = await vscode.window.showTextDocument(document);
 
             // Set language mode to 'pbs' for files in the PBS directory
-            if (filePath.includes('/PBS/')) {
+            if (containsPbsDir(filePath)) {
                 await vscode.languages.setTextDocumentLanguage(document, 'pbs');
             }
 
@@ -80,8 +87,8 @@ export function activate(context: vscode.ExtensionContext) {
         }
     });
 
-    // Watch for PBS file changes
-    const pbsWatcher = vscode.workspace.createFileSystemWatcher('**/PBS/*');
+    // Watch for PBS file changes (both cases)
+    const pbsWatcher = vscode.workspace.createFileSystemWatcher('**/{PBS,pbs}/*');
     pbsWatcher.onDidChange(() => {
         buttonPanelProvider.refresh();
         buttonGridProvider.refresh();

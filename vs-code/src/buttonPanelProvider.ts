@@ -4,6 +4,21 @@ import * as fs from 'fs';
 import { PbsButton, PbsSection, parsePbsDirectory, parseMainPbsConfig } from './pbsParser';
 
 /**
+ * Find the PBS directory (handles both 'PBS' and 'pbs' case)
+ */
+function findPbsDir(workspaceRoot: string): string {
+    const upperPath = path.join(workspaceRoot, 'PBS');
+    const lowerPath = path.join(workspaceRoot, 'pbs');
+    if (fs.existsSync(upperPath)) {
+        return upperPath;
+    }
+    if (fs.existsSync(lowerPath)) {
+        return lowerPath;
+    }
+    return upperPath; // default to uppercase if neither exists
+}
+
+/**
  * Tree item representing either a section header or a button
  */
 export class PbsTreeItem extends vscode.TreeItem {
@@ -102,7 +117,7 @@ export class ButtonPanelProvider implements vscode.TreeDataProvider<PbsTreeItem>
         }
 
         // First, load all buttons from PBS directory
-        const pbsDir = path.join(this.workspaceRoot, 'PBS');
+        const pbsDir = findPbsDir(this.workspaceRoot);
         const buttons = await parsePbsDirectory(pbsDir);
 
         // Index buttons by script ID and by filename (for fallback matching)

@@ -2,13 +2,35 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 
+/**
+ * Find the PBS directory (handles both 'PBS' and 'pbs' case)
+ */
+function findPbsDir(workspaceRoot: string): string {
+    const upperPath = path.join(workspaceRoot, 'PBS');
+    const lowerPath = path.join(workspaceRoot, 'pbs');
+    if (fs.existsSync(upperPath)) {
+        return upperPath;
+    }
+    if (fs.existsSync(lowerPath)) {
+        return lowerPath;
+    }
+    return upperPath; // default to uppercase if neither exists
+}
+
+/**
+ * Check if a directory name is a PBS directory (case-insensitive)
+ */
+function isPbsDir(dirName: string): boolean {
+    return dirName.toLowerCase() === 'pbs';
+}
+
 // Define all artifacts in pipeline order with their dependencies
 const ARTIFACTS = [
     {
         name: 'dlr',
         shortName: 'dlr',
         getPath: (s: string, r: string) => path.join(r, 'dlr', `${s}.dlr`),
-        getSourcePath: (s: string, r: string) => path.join(r, 'PBS', s),
+        getSourcePath: (s: string, r: string) => path.join(findPbsDir(r), s),
         command: 'pbs.runDlr'
     },
     {
@@ -67,7 +89,7 @@ function getScenarioFromPath(filePath: string): string | undefined {
     const parentDir = path.basename(dirName);
 
     // Check each known directory type
-    if (parentDir === 'PBS') {
+    if (isPbsDir(parentDir)) {
         // PBS files have no extension
         return baseName;
     }
@@ -210,7 +232,7 @@ export class CurrentScenarioProvider implements vscode.TreeDataProvider<Scenario
 
         if (element.isRoot) {
             // First add the PBS source file
-            const pbsPath = path.join(this.workspaceRoot!, 'PBS', this.currentScenario!);
+            const pbsPath = path.join(findPbsDir(this.workspaceRoot!), this.currentScenario!);
             const pbsExists = fs.existsSync(pbsPath);
             const pbsItem = new ScenarioTreeItem(
                 'PBS',
