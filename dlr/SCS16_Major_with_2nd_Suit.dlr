@@ -1,0 +1,28 @@
+# button-text: Major w/2nd Suit 9-14
+# scenario-title: Major with 2nd Suit (9-14 HCP)
+# SCS16_Major_with_2nd_Suit
+dealer south
+
+
+# convention-card: Precision
+# auction-filter: Auction.....[\s\S][\s\S]?1[HS]
+
+
+# Predict South's Opening Suit
+s = spades(south)
+h = hearts(south)
+d = diamonds(south)
+c = clubs(south)
+oS = s>4 and s>=h and s>=d and s>=c
+oH = not oS and h>4 and h>=d and h>=c
+
+# South opens 1H or 1S with 9-14 and a second suit of at least 5-cards
+(oS or oH)                                                         // open 1H or 1S
+and hcp(south)>8 and hcp(south)<15                                 // 9-14 HCP
+and shape(south, any 85xx +any 76xx +any 75xx +any 65xx +any 55xx) // any two 5+ card suits
+
+# and North has 12+
+and hcp(north)>11                                                  // responder has 12+
+
+
+action printpbn

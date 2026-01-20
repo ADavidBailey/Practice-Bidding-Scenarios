@@ -1,0 +1,21 @@
+Script,StrongClubAny57Resp16
+setDealerCode(`
+
+# convention-card: Precision
+# auction-filter: Auction.....[\s\S][\s\S]?1C
+
+
+# Strong C & any 8+ response
+dealer south
+
+# South has 16+
+hcp(south)>15
+
+# North has 8+
+and hcp(north)>4 and hcp(north)<8
+
+`, "S", true);
+Script
+Button,Strong Club & 5-7 Resp 16+,\n\
+--- Strong Club with any 5-7 Response (16+ HCP)\n\
+%StrongClubAny57Resp16%,backgroundColor=lightpink

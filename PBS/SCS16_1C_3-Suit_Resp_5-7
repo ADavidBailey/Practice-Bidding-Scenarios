@@ -1,0 +1,24 @@
+Script,StrongClub3Suit5716
+setDealerCode(`
+
+# convention-card: Precision
+# auction-filter: Auction.....[\s\S][\s\S]?1C
+
+
+# Strong Club System: 1C & 3 suited response
+dealer south
+
+# South has 16+
+hcp(south)>15
+
+# North has 5-7 HCP
+and hcp(north)>4 and hcp(north)<8
+
+# North has specific shapes
+and shape(north, any 4441 + any 5440)
+
+`, "S", true);
+Script
+Button,Strong Club 3-Suit 5-7 16+,\n\
+--- Strong Club with 3-Suit Response w/5-7 HCP (16+ HCP)\n\
+%StrongClub3Suit5716%,backgroundColor=lightpink

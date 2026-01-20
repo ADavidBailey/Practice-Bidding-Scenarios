@@ -1,0 +1,22 @@
+# button-text: 1C 3-Suit 16+
+# scenario-title: 1C with 3-Suit Response (16+ HCP)
+# SCS16_1C_3-Suit_Resp
+dealer south
+
+
+# convention-card: Precision
+# auction-filter: Auction.....[\s\S][\s\S]?1C
+
+# Strong Club System: 1C & 3 suited response 8+ HCP
+
+# South has 16+
+hcp(south)>15
+
+# North has 8+
+and hcp(north)>7
+
+# North has specific shapes
+and shape(north, any 4441 + any 5440)
+
+
+action printpbn

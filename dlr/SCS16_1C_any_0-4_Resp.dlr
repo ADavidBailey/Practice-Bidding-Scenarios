@@ -1,0 +1,19 @@
+# button-text: Strong Club & 0-4 Resp 16+
+# scenario-title: Strong Club with any 0-4 Response (16+ HCP)
+# SCS16_1C_any_0-4_Resp
+dealer south
+
+
+# convention-card: Precision
+# auction-filter: Auction.....[\s\S][\s\S]?1C
+
+
+
+# South has 16+
+hcp(south)>15
+
+# North has 0-4
+and hcp(north)<5
+
+
+action printpbn
