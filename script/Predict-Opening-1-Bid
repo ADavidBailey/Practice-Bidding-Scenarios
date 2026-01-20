@@ -12,7 +12,7 @@ nt2 = shape(south, any 5422 -5xxx-x5xx-4xxx) and hcp(south)>14 and hcp(south)<17
 
 gibNT = nt1 or nt2
 
-## Calculate TP for South
+## Calculate TP for South -- NOTE:  This uses different variable names than TP to avoid conflicts when both are used.
 # Calculate South's Short-Suit Penalty Points
 ssp = spades(south)<3 and hcp(south,spades)>0     ? 1 : 0
 shp = hearts(south)<3 and hcp(south,hearts)>0     ? 1 : 0
