@@ -57,26 +57,44 @@ gameForce2C = (case1 or case2 or case3) and not threeNT
 P1 = gameForce2C
 P2 = P1 or threeNT or twoNT or oneNT
 
+# Define quality and length lower limits for 10 HCP openers
+
+q2of3 = (top3(south,spades)>1 or top3(south,hearts)>1) and controls(south)>3
+lgt5  = (spades(south)>4 or hearts(south)>4) and shape(south,any 7xxx +any 64xx +any 55xx +any 1xxx+any 0xxx -any 8xxx -any 54xx) and sTP>(hcp(south) +2)
+
 # Predict South's Opening suit
-##Define ranges for 1C, 1D, and 1H/S
-## Define South's 1C opening -- GIB doesn't open all 11 HCP hands
-
-MRange = (hcp(south)>11 or (hcp(south)==11 and (spades(south)>5 or hearts(south)>5))) and not P2
-dRange = hcp(south)>11 and (diamonds(south)>3 or shape(south, 4432)) and not P2
-cOK1 = hcp(south)==11 and sTP==13 and spades(south)==4
-cOK2 = hcp(south)==11 and sTP==13 and clubs(south)>5
-cOK3 = hcp(south)>11 and clubs(south)>2 and not dRange
-cRange = (cOK1 or cOK2 or cOK3) and clubs(south)>2 and clubs(south)>diamonds(south) and not P2
-
+# What's the longest suit?
 s = spades(south)
 h = hearts(south)
 d = diamonds(south)
 c = clubs(south)
-s1Range = suitPoints>11 and hcp(south)>9
-oS = s>4 and s>=h and s>=d and s>=c and MRange and not P2
-oH = not oS and h>4 and h>=d and h>=c and MRange and not P2
-oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and dRange and not P2
-oC = not (oS or oH or oD) and cRange and not P2
+
+## GIB has different requirements for 1H/S, 1D, and 1C openings 
+#Define range for 1 H/S
+lS = s>4 and s>=h and s>=d and s>=c
+lH = h>4 and h>s and h>=d and h>=c
+lM = lS or lH
+
+hsRange1 = lM and hcp(south)>11
+hsRange2 = lM and hcp(south)>10 and sTP>12 and not hsRange1
+hsRange3 = lM and hcp(south)>9  and lgt5 and q2of3 and not (hsRange1 or hsRange2)
+hsRange = (hsRange1 or hsRange2 or hsRange3) and not P2
+
+# Define 1D Range
+dOK1 = hcp(south)>11 and (diamonds(south)>3 or shape(south, 4432))
+dOK2 = hcp(south)>9  and sTP>12 and diamonds(south)>5
+dRange = (dOK1 or dOK2) and not P2
+
+# Define 1C Range
+cOK1 = hcp(south)>10 and sTP>12 and spades(south)==4
+cOK2 = hcp(south)>9  and sTP>12 and clubs(south)>5
+cOK3 = hcp(south)>11 and clubs(south)>2 and not dRange
+cRange = (cOK1 or cOK2 or cOK3) and clubs(south)>2 and clubs(south)>diamonds(south) and not P2
+
+oS = s>4 and s>=h and s>=d and s>=c and hsRange
+oH = not oS and h>4 and h>=d and h>=c and hsRange
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and dRange
+oC = not (oS or oH or oD) and cRange
 openingSuit = (oS or oH or oD or oC)
 oneSpade   = oS
 oneHeart   = oH
