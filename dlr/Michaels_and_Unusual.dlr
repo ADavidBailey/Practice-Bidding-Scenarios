@@ -1,4 +1,4 @@
-# button-text: Michaels & Unusual
+# button-text: Michaels and Unusual
 # scenario-title: Michaels Cuebid and Unusual NT
 # Michaels_and_Unusual
 dealer east
@@ -261,14 +261,14 @@ sMCB = oS and (HD or HC)
 hMCB = oH and (SD or SC)
 dMCB = oD and (SH)
 cMCB = oC    and (SH)
-MCB  = sMCB or hMCB or dMCB or cMCB
+MCB  = (sMCB or hMCB or dMCB or cMCB) and tpSouth>8
 
 # Define 2-Suits for Unusual NT
 sUNT = oS and DC
 hUNT = oH and DC
 dUNT = oD and HC
 cUNT = oC and HD
-UNT  = sUNT or hUNT or dUNT or cUNT
+UNT  = (sUNT or hUNT or dUNT or cUNT) and tpSouth>11
 
 
 oSuit = (MCB or UNT) and shape(east,any xxxx-8xxx-7xxx-6xxx)
