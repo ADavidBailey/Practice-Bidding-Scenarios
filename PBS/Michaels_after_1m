@@ -12,22 +12,8 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 
 predeal west HT9,ST9
 
-
-# Define GIB's 1C opening -- GIB doesn't open all 11 HCP hands
-## Define South's 1C opening -- GIB doesn't open all 11 HCP hands
-cOK1  = hcp(south)==11 and tpSouth<=13 and spades(south)==4
-cOK2  = hcp(south)==11 and tpSouth<=13 and clubs(south)>5
-cOK3  = hcp(south)>11
-cRange = (cOK1 or cOK2 or cOK3) and hcp(south)<22 and tpSouth>11 and tpSouth<21  // avoid strong 2C
 sClubs = oneClub and cRange and clubs(north)>3 and clubs(north)>diamonds(north)
-
-# Define Souths 1D opening
-//dOK1  = hcp(south)==11 and tpSouth==13 and hearts(south)==4
-dOK2  = hcp(south)==11 and tpSouth<=13 and diamonds(south)>5
-dOK3  = hcp(south)>11
-dRange = (dOK2 or dOK3) and hcp(south)<22 and tpSouth>11 and tpSouth<21  // avoid strong 2C
 sDiamonds = oneDiamond and dRange and diamonds(north)>3 and diamonds(north)>clubs(north)
-
 southOpens = (sDiamonds or sClubs)
 
 # Define West's Michaels Cuebid
