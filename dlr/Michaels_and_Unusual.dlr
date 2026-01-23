@@ -1,5 +1,5 @@
-# button-text: None
-# scenario-title: None
+# button-text: MichaelsAndUnusual
+# scenario-title: Michaels Cuebid and Unusual NT
 # Michaels_and_Unusual
 dealer east
 
@@ -132,113 +132,113 @@ tpWest = hcp(west) + wSSP - wPP
 ### End of Imported Script: TP
 # Defines tpSouth, tpWest, tpNorth, tpEast
 
-##### Imported Script -- Predict Opening 1-Bid East #####
-# 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
-# 03/30/2025 -- Changed to use gibNT
-
-# GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
-ntP = hcp(east) + shape(east,5xxx+x5xx)
-nt1 = shape(east, any 5332+any 4432+any 4333) and hcp(east)>14 and ntP<18
-
-# GIB does not open with 5422 and a 5-card major
-# GIB does not open with 5422 and the strength to reverse
-nt2 = shape(east, any 5422 -5xxx-x5xx-4xxx) and hcp(east)>14 and hcp(east)<17
-
-gibNT = nt1 or nt2
-
-## Calculate TP for East -- NOTE:  This uses different variable names than TP to avoid conflicts when both are used.
-# Calculate East's Short-Suit Penalty Points
-ssp = spades(east)<3 and hcp(east,spades)>0     ? 1 : 0
-shp = hearts(east)<3 and hcp(east,hearts)>0     ? 1 : 0
-sdp = diamonds(east)<3 and hcp(east,diamonds)>0 ? 1 : 0
-scp = clubs(east)<3 and hcp(east,clubs)>0       ? 1 : 0
-
-# Calculate East's Short-Suit Points
-sv01 = shape(east, any 0xxx) ? 3 : 0
-ss01 = shape(east, any 1xxx) ? 2 : 0 // allow for 2 singletons
-ss02 = shape(east, any 11xx) ? 2 : 0
-sd01 = shape(east, any 2xxx) ? 1 : 0 // allow for 3 doubletons
-sd02 = shape(east, any 22xx) ? 1 : 0
-sd03 = shape(east, any 222x) ? 1 : 0
-
-# Calculate East's Total Points
-sTP = hcp(east) + sv01+ss01+ss02+sd01+sd02+sd03 -ssp-shp-sdp-scp
-
-# Calculate length points for East (lengthPoints)
-lp1 = spades(east)>4 ? spades(east)-4 : 0
-lp2 = hearts(east)>4 ? hearts(east)-4 : 0
-lp3 = diamonds(east)>4 ? diamonds(east)-4 : 0
-lp4 = clubs(east)>4 ? clubs(east)-4 : 0
-lengthPoints = lp1 + lp2 + lp3 + lp4
-
-# Define suit points for east (suitPoints)
-suitPoints = hcp(east) + lengthPoints
-
-TwoNtShape = shape(east, any 4333 +any 4432 +any 5332 +any 5422)
-
-# Define ntPoint ranges
-oneNT   = gibNT
-twoNT   = TwoNtShape and hcp(east)>19 and hcp(east)<22
-
-# Define Gambling 3N
-g3Shape = shape(east,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(east,clubs)==3 and clubs(east)>6) or (top3(east,diamonds)==3 and diamonds(east)>6) and hcp(east)<12 and g3Shape
-
-# Define Game Forcing 2C
-case1 = hcp(east)>18 and sTP>21
-case2 = hcp(east)>18 and sTP>19 and losers(east)<5 and (spades(east)>5 or hearts(east)>5)
-case3 = hcp(east)>18 and sTP>19 and losers(east)<4 and (diamonds(east)>5 or clubs(east)>5)
-gameForce2C = (case1 or case2 or case3)
-
-### Predict East's opening BID
-P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
-
-# Define quality and length lower limits for 10 HCP openers
-
-q2of3 = (top3(east,spades)>1 or top3(east,hearts)>1) and controls(east)>3
-lgt5  = (spades(east)>4 or hearts(east)>4) and shape(east,any 7xxx +any 64xx +any 55xx +any 1xxx+any 0xxx -any 8xxx -any 54xx) and sTP>(hcp(east) +2)
-
-# Predict East's Opening suit
-# What's the longest suit?
-s = spades(east)
-h = hearts(east)
-d = diamonds(east)
-c = clubs(east)
-
-## GIB has different requirements for 1H/S, 1D, and 1C openings
-#Define range for 1 H/S
-lS = s>4 and s>=h and s>=d and s>=c
-lH = h>4 and h>s and h>=d and h>=c
-lM = lS or lH
-
-hsRange1 = lM and hcp(east)>11
-hsRange2 = lM and hcp(east)>10 and sTP>12 and not hsRange1
-hsRange3 = lM and hcp(east)>9  and lgt5 and q2of3 and not (hsRange1 or hsRange2)
-hsRange = (hsRange1 or hsRange2 or hsRange3) and not P2
-
-# Define 1D Range
-dOK1 = hcp(east)>11 and (diamonds(east)>3 or shape(east, 4432))
-dOK2 = hcp(east)>9  and sTP>12 and diamonds(east)>5
-dRange = (dOK1 or dOK2) and not P2
-
-# Define 1C Range
-cOK1 = hcp(east)>10 and sTP>12 and spades(east)==4
-cOK2 = hcp(east)>9  and sTP>12 and clubs(east)>5
-cOK3 = hcp(east)>11 and clubs(east)>2 and not dRange
-cRange = (cOK1 or cOK2 or cOK3) and clubs(east)>2 and clubs(east)>diamonds(east) and not P2
-
-oS = s>4 and s>=h and s>=d and s>=c and hsRange
-oH = not oS and h>4 and h>=d and h>=c and hsRange
-oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and dRange
-oC = not (oS or oH or oD) and cRange
-openingSuit = (oS or oH or oD or oC)
-oneSpade   = oS
-oneHeart   = oH
-oneDiamond = oD
-oneClub    = oC
-
-##### End of Imported Script -- Predict Opening 1-Bid-East #####
+##### Imported Script -- Predict Opening 1-Bid East #####
+# 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
+# 03/30/2025 -- Changed to use gibNT
+
+# GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
+ntP = hcp(east) + shape(east,5xxx+x5xx)
+nt1 = shape(east, any 5332+any 4432+any 4333) and hcp(east)>14 and ntP<18
+
+# GIB does not open with 5422 and a 5-card major
+# GIB does not open with 5422 and the strength to reverse
+nt2 = shape(east, any 5422 -5xxx-x5xx-4xxx) and hcp(east)>14 and hcp(east)<17
+
+gibNT = nt1 or nt2
+
+## Calculate TP for East -- NOTE:  This uses different variable names than TP to avoid conflicts when both are used.
+# Calculate East's Short-Suit Penalty Points
+ssp = spades(east)<3 and hcp(east,spades)>0     ? 1 : 0
+shp = hearts(east)<3 and hcp(east,hearts)>0     ? 1 : 0
+sdp = diamonds(east)<3 and hcp(east,diamonds)>0 ? 1 : 0
+scp = clubs(east)<3 and hcp(east,clubs)>0       ? 1 : 0
+
+# Calculate East's Short-Suit Points
+sv01 = shape(east, any 0xxx) ? 3 : 0
+ss01 = shape(east, any 1xxx) ? 2 : 0 // allow for 2 singletons
+ss02 = shape(east, any 11xx) ? 2 : 0
+sd01 = shape(east, any 2xxx) ? 1 : 0 // allow for 3 doubletons
+sd02 = shape(east, any 22xx) ? 1 : 0
+sd03 = shape(east, any 222x) ? 1 : 0
+
+# Calculate East's Total Points
+sTP = hcp(east) + sv01+ss01+ss02+sd01+sd02+sd03 -ssp-shp-sdp-scp
+
+# Calculate length points for East (lengthPoints)
+lp1 = spades(east)>4 ? spades(east)-4 : 0
+lp2 = hearts(east)>4 ? hearts(east)-4 : 0
+lp3 = diamonds(east)>4 ? diamonds(east)-4 : 0
+lp4 = clubs(east)>4 ? clubs(east)-4 : 0
+lengthPoints = lp1 + lp2 + lp3 + lp4
+
+# Define suit points for east (suitPoints)
+suitPoints = hcp(east) + lengthPoints
+
+TwoNtShape = shape(east, any 4333 +any 4432 +any 5332 +any 5422)
+
+# Define ntPoint ranges
+oneNT   = gibNT
+twoNT   = TwoNtShape and hcp(east)>19 and hcp(east)<22
+
+# Define Gambling 3N
+g3Shape = shape(east,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
+gamble3 = (top3(east,clubs)==3 and clubs(east)>6) or (top3(east,diamonds)==3 and diamonds(east)>6) and hcp(east)<12 and g3Shape
+
+# Define Game Forcing 2C
+case1 = hcp(east)>18 and sTP>21
+case2 = hcp(east)>18 and sTP>19 and losers(east)<5 and (spades(east)>5 or hearts(east)>5)
+case3 = hcp(east)>18 and sTP>19 and losers(east)<4 and (diamonds(east)>5 or clubs(east)>5)
+gameForce2C = (case1 or case2 or case3)
+
+### Predict East's opening BID
+P1 = gameForce2C
+P2 = P1 or gamble3 or twoNT or oneNT
+
+# Define quality and length lower limits for 10 HCP openers
+
+q2of3 = (top3(east,spades)>1 or top3(east,hearts)>1) and controls(east)>3
+lgt5  = (spades(east)>4 or hearts(east)>4) and shape(east,any 7xxx +any 64xx +any 55xx +any 1xxx+any 0xxx -any 8xxx -any 54xx) and sTP>(hcp(east) +2)
+
+# Predict East's Opening suit
+# What's the longest suit?
+s = spades(east)
+h = hearts(east)
+d = diamonds(east)
+c = clubs(east)
+
+## GIB has different requirements for 1H/S, 1D, and 1C openings
+#Define range for 1 H/S
+lS = s>4 and s>=h and s>=d and s>=c
+lH = h>4 and h>s and h>=d and h>=c
+lM = lS or lH
+
+hsRange1 = lM and hcp(east)>11
+hsRange2 = lM and hcp(east)>10 and sTP>12 and not hsRange1
+hsRange3 = lM and hcp(east)>9  and lgt5 and q2of3 and not (hsRange1 or hsRange2)
+hsRange = (hsRange1 or hsRange2 or hsRange3) and not P2
+
+# Define 1D Range
+dOK1 = hcp(east)>11 and (diamonds(east)>3 or shape(east, 4432))
+dOK2 = hcp(east)>9  and sTP>12 and diamonds(east)>5
+dRange = (dOK1 or dOK2) and not P2
+
+# Define 1C Range
+cOK1 = hcp(east)>10 and sTP>12 and spades(east)==4
+cOK2 = hcp(east)>9  and sTP>12 and clubs(east)>5
+cOK3 = hcp(east)>11 and clubs(east)>2 and not dRange
+cRange = (cOK1 or cOK2 or cOK3) and clubs(east)>2 and clubs(east)>diamonds(east) and not P2
+
+oS = s>4 and s>=h and s>=d and s>=c and hsRange
+oH = not oS and h>4 and h>=d and h>=c and hsRange
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and dRange
+oC = not (oS or oH or oD) and cRange
+openingSuit = (oS or oH or oD or oC)
+oneSpade   = oS
+oneHeart   = oH
+oneDiamond = oD
+oneClub    = oC
+
+##### End of Imported Script -- Predict Opening 1-Bid-East #####
 
 # Defines oneClub, oneDiamond, oneHeart, oneSpade, gibNT
 
