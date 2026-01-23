@@ -133,7 +133,7 @@ tpWest = hcp(west) + wSSP - wPP
 ### End of Imported Script: TP
 # Defines tpWest, tpSouth
 
-##### Imported Script -- Predict Opening 1-Bid-East #####
+##### Imported Script -- Predict Opening 1-Bid East #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
 # 03/30/2025 -- Changed to use gibNT
 
@@ -183,17 +183,17 @@ twoNT   = TwoNtShape and hcp(east)>19 and hcp(east)<22
 
 # Define Gambling 3N
 g3Shape = shape(east,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-threeNT = (top3(east,clubs)==3 and clubs(east)>6) or (top3(east,diamonds)==3 and diamonds(east)>6) and hcp(east)<12 and g3Shape
+gambling3NT = (top3(east,clubs)==3 and clubs(east)>6) or (top3(east,diamonds)==3 and diamonds(east)>6) and hcp(east)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(east)>18 and sTP>21
 case2 = hcp(east)>18 and sTP>19 and losers(east)<5 and (spades(east)>5 or hearts(east)>5)
 case3 = hcp(east)>18 and sTP>19 and losers(east)<4 and (diamonds(east)>5 or clubs(east)>5)
-gameForce2C = (case1 or case2 or case3) and not threeNT
+gameForce2C = (case1 or case2 or case3)
 
 ### Predict East's opening BID
 P1 = gameForce2C
-P2 = P1 or threeNT or twoNT or oneNT
+P2 = P1 or gambling3NT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 

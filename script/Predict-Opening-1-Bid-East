@@ -48,7 +48,7 @@ twoNT   = TwoNtShape and hcp(east)>19 and hcp(east)<22
 
 # Define Gambling 3N
 g3Shape = shape(east,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gambling3NT = (top3(east,clubs)==3 and clubs(east)>6) or (top3(east,diamonds)==3 and diamonds(east)>6) and hcp(east)<12 and g3Shape
+gamb3NT = (top3(east,clubs)==3 and clubs(east)>6) or (top3(east,diamonds)==3 and diamonds(east)>6) and hcp(east)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(east)>18 and sTP>21
@@ -58,7 +58,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict East's opening BID
 P1 = gameForce2C
-P2 = P1 or gambling3NT or twoNT or oneNT
+P2 = P1 or gamb3NT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
