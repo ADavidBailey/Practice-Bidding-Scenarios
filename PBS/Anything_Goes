@@ -2,11 +2,13 @@ Script,AnythingGoes
 setDealerCode(`
 
 /*
+
+Anything Goes
+
 convention-card:
 auction-filter: Auction.....\n(?!P)
 */
 
-# Anything Goes
 dealer south
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
@@ -38,7 +40,7 @@ average "3C    " 100 * threeC,
 average "3D    " 100 * threeD,
 average "3H    " 100 * threeH,
 average "3S    " 100 * threeS,
-average "3NT   " 100 * threeNT,
+average "3NT   " 100 * gamble3,
 
 
 `,"S",true);
