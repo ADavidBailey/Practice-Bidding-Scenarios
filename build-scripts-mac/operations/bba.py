@@ -18,7 +18,7 @@ from ssh_runner import run_windows_command, mac_to_windows_path
 from utils.properties import get_convention_card
 
 # Set to True to use legacy GUI-based BBA.exe with watcher, False for CLI mode
-USE_GUI_MODE = False
+USE_GUI_MODE = True
 
 # BBA-CLI path on Windows
 BBA_CLI_PATH = r"C:\BBA-CLI\bba-cli"

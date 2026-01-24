@@ -47,7 +47,6 @@ def run_pbn(scenario: str, verbose: bool = True) -> bool:
             "-p", str(DEALER_PRODUCE),
             "-m",
             "-v",        # Include stats output at end of file
-            "--legacy",  # Match Windows dealer.exe output format
         ]
 
         if verbose:
