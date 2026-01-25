@@ -169,12 +169,12 @@ def run_operations(scenario: str, operations: list, verbose: bool = True) -> boo
             elapsed = time.time() - start_time
             durations[op] = elapsed
             if not result:
-                print(f"Operation {op} failed for {scenario}")
+                print(f"Operation {op} failed for {scenario} ({format_duration(elapsed)})")
                 success = False
         except Exception as e:
             elapsed = time.time() - start_time
             durations[op] = elapsed
-            print(f"Error in operation {op} for {scenario}: {e}")
+            print(f"Error in operation {op} for {scenario}: {e} ({format_duration(elapsed)})")
             success = False
 
     # Print duration summary
