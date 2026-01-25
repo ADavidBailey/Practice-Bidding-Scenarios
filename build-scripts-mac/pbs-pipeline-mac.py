@@ -17,6 +17,7 @@ import argparse
 import fnmatch
 import os
 import sys
+import time
 
 from config import FOLDERS, OPERATIONS_ORDER
 from ssh_runner import test_ssh_connection
@@ -132,6 +133,15 @@ def expand_operations(operation_spec: str) -> list:
     return valid_ops
 
 
+def format_duration(seconds: float) -> str:
+    """Format duration in human-readable form."""
+    if seconds < 60:
+        return f"{seconds:.1f}s"
+    minutes = int(seconds // 60)
+    secs = seconds % 60
+    return f"{minutes}m {secs:.1f}s"
+
+
 def run_operations(scenario: str, operations: list, verbose: bool = True) -> bool:
     """
     Run a list of operations on a scenario.
@@ -145,6 +155,7 @@ def run_operations(scenario: str, operations: list, verbose: bool = True) -> boo
         True if all operations succeeded
     """
     success = True
+    durations = {}
 
     for op in operations:
         if op not in OPERATIONS:
@@ -152,14 +163,28 @@ def run_operations(scenario: str, operations: list, verbose: bool = True) -> boo
             continue
 
         op_func = OPERATIONS[op]
+        start_time = time.time()
         try:
             result = op_func(scenario, verbose=verbose)
+            elapsed = time.time() - start_time
+            durations[op] = elapsed
             if not result:
                 print(f"Operation {op} failed for {scenario}")
                 success = False
         except Exception as e:
+            elapsed = time.time() - start_time
+            durations[op] = elapsed
             print(f"Error in operation {op} for {scenario}: {e}")
             success = False
+
+    # Print duration summary
+    if durations and verbose:
+        total = sum(durations.values())
+        print(f"\n  Duration summary:")
+        for op, dur in durations.items():
+            print(f"    {op:15} {format_duration(dur):>10}")
+        print(f"    {'─' * 26}")
+        print(f"    {'Total':15} {format_duration(total):>10}")
 
     return success
 
