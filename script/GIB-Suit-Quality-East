@@ -1,0 +1,64 @@
+## GIB Suit Quality Definitions for East
+## Based on https://doc.bridgebase.com/lobbynews/gib_descriptions.html
+
+# 8421 Points per suit (A=8, K=4, Q=2, J=1)
+e8421S = (hascard(east,AS)?8:0) + (hascard(east,KS)?4:0) + (hascard(east,QS)?2:0) + (hascard(east,JS)?1:0)
+e8421H = (hascard(east,AH)?8:0) + (hascard(east,KH)?4:0) + (hascard(east,QH)?2:0) + (hascard(east,JH)?1:0)
+e8421D = (hascard(east,AD)?8:0) + (hascard(east,KD)?4:0) + (hascard(east,QD)?2:0) + (hascard(east,JD)?1:0)
+e8421C = (hascard(east,AC)?8:0) + (hascard(east,KC)?4:0) + (hascard(east,QC)?2:0) + (hascard(east,JC)?1:0)
+
+# 3-card: exactly 3 cards
+e3S = spades(east)==3
+e3H = hearts(east)==3
+e3D = diamonds(east)==3
+e3C = clubs(east)==3
+
+# 4-card: exactly 4 cards
+e4S = spades(east)==4
+e4H = hearts(east)==4
+e4D = diamonds(east)==4
+e4C = clubs(east)==4
+
+# Biddable: 5+ cards, OR 4 cards with (3+ of top 5 honors OR more than 4 8421 points)
+eBidS = spades(east)>4 or (spades(east)==4 and (top5(east,spades)>2 or e8421S>4))
+eBidH = hearts(east)>4 or (hearts(east)==4 and (top5(east,hearts)>2 or e8421H>4))
+eBidD = diamonds(east)>4 or (diamonds(east)==4 and (top5(east,diamonds)>2 or e8421D>4))
+eBidC = clubs(east)>4 or (clubs(east)==4 and (top5(east,clubs)>2 or e8421C>4))
+
+# Rebiddable: biddable + 1 card (6+ or 5 with quality)
+eRebidS = spades(east)>5 or (spades(east)==5 and (top5(east,spades)>2 or e8421S>4))
+eRebidH = hearts(east)>5 or (hearts(east)==5 and (top5(east,hearts)>2 or e8421H>4))
+eRebidD = diamonds(east)>5 or (diamonds(east)==5 and (top5(east,diamonds)>2 or e8421D>4))
+eRebidC = clubs(east)>5 or (clubs(east)==5 and (top5(east,clubs)>2 or e8421C>4))
+
+# Twice Rebiddable: rebiddable + 1 card (7+ or 6 with quality)
+e2RebidS = spades(east)>6 or (spades(east)==6 and (top5(east,spades)>2 or e8421S>4))
+e2RebidH = hearts(east)>6 or (hearts(east)==6 and (top5(east,hearts)>2 or e8421H>4))
+e2RebidD = diamonds(east)>6 or (diamonds(east)==6 and (top5(east,diamonds)>2 or e8421D>4))
+e2RebidC = clubs(east)>6 or (clubs(east)==6 and (top5(east,clubs)>2 or e8421C>4))
+
+# Strong Rebiddable: twice rebiddable with 4 of 5 honors or AKQ
+eStrongS = e2RebidS and (top5(east,spades)>3 or top3(east,spades)==3)
+eStrongH = e2RebidH and (top5(east,hearts)>3 or top3(east,hearts)==3)
+eStrongD = e2RebidD and (top5(east,diamonds)>3 or top3(east,diamonds)==3)
+eStrongC = e2RebidC and (top5(east,clubs)>3 or top3(east,clubs)==3)
+
+# Solid 6-card: AKQTxx or AKQJxx (6 cards with AKQ and T or J)
+eSolid6S = spades(east)==6 and top3(east,spades)==3 and (hascard(east,TS) or hascard(east,JS))
+eSolid6H = hearts(east)==6 and top3(east,hearts)==3 and (hascard(east,TH) or hascard(east,JH))
+eSolid6D = diamonds(east)==6 and top3(east,diamonds)==3 and (hascard(east,TD) or hascard(east,JD))
+eSolid6C = clubs(east)==6 and top3(east,clubs)==3 and (hascard(east,TC) or hascard(east,JC))
+
+# Solid 7-card: AKQxxxx (7 cards with AKQ)
+eSolid7S = spades(east)==7 and top3(east,spades)==3
+eSolid7H = hearts(east)==7 and top3(east,hearts)==3
+eSolid7D = diamonds(east)==7 and top3(east,diamonds)==3
+eSolid7C = clubs(east)==7 and top3(east,clubs)==3
+
+# Solid 8-card: AKJxxxxx or AKxxxxxxx or better (8 cards with AK and J, or 8+ with AK)
+eSolid8S = spades(east)>7 and hascard(east,AS) and hascard(east,KS) and (hascard(east,JS) or spades(east)>8)
+eSolid8H = hearts(east)>7 and hascard(east,AH) and hascard(east,KH) and (hascard(east,JH) or hearts(east)>8)
+eSolid8D = diamonds(east)>7 and hascard(east,AD) and hascard(east,KD) and (hascard(east,JD) or diamonds(east)>8)
+eSolid8C = clubs(east)>7 and hascard(east,AC) and hascard(east,KC) and (hascard(east,JC) or clubs(east)>8)
+
+## End of GIB Suit Quality Definitions
