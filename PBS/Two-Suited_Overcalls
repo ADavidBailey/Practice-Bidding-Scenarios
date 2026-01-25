@@ -7,64 +7,7 @@ setDealerCode(`
 dealer east
 produce 1000
 
-## Imported Script -- Predict Opening Bid ##
-
-# Calculate length points for east (lengthPoints)
-lp1 = spades(east)>4 ? spades(east)-4 : 0
-lp2 = hearts(east)>4 ? hearts(east)-4 : 0
-lp3 = diamonds(east)>4 ? diamonds(east)-4 : 0
-lp4 = clubs(east)>4 ? clubs(east)-4 : 0
-lengthPoints = lp1 + lp2 + lp3 + lp4
-
-# Calculate doubleton honor NT downgrade(s) for east -- 2 cards, 1 honor, not the Ace
-S2H = spades(east)==2 and top4(east,spades)==1 and not hascard(east,AS) ? 1 : 0
-H2H = hearts(east)==2 and top4(east,hearts)==1 and not hascard(east,AH) ? 1 : 0
-D2H = diamonds(east)==2 and top4(east,diamonds)==1 and not hascard(east,AD) ? 1 : 0
-C2H = clubs(east)==2 and top4(east,clubs)==1 and not hascard(east,AC) ? 1 : 0
-ntDownGrade = S2H + H2H + D2H + C2H
-
-# Define notrump points for east (ntPoints)
-ntPoints = hcp(east) + lengthPoints - ntDownGrade
-
-# Define suit points for east (suitPoints)
-suitPoints = hcp(east) + lengthPoints
-
-# Define robot notrump shape and exclude any 5card 
-ntShape = shape(east, any 4333 +any 4432 +any 5332 +any 5422 -5xxx -x5xx)
-
-# Define ntPoint ranges
-oneNT   = ntShape and ntPoints>14 and ntPoints<18
-twoNT   = ntShape and ntPoints>19 and ntPoints<22
-threeNT = ntShape and ntPoints>25 and ntPoints<28
-weakNT  = ntShape and ntPoints>10 and ntPoints<15
-
-# Define Game Forcing 2C
-case1 = hcp(east)>22
-case2 = hcp(east)>18 and losers(east)<5 and (spades(east)>5 or hearts(east)>5)
-case3 = hcp(east)>18 and losers(east)<4 and (diamonds(east)>5 or clubs(east)>5)
-gameForce2C = (case1 or case2 or case3) and not threeNT
-
-### Predict east's opening BID
-P1 = gameForce2C
-P2 = P1 or threeNT or twoNT or oneNT // or weakNT  weakNT will be duplicated diamond and club openings
-
-# Predict east's Opening suit
-s = spades(east)
-h = hearts(east)
-d = diamonds(east)
-c = clubs(east)
-s1Range = suitPoints>11 and hcp(east)>9
-oS = s>4 and s>=h and s>=d and s>=c and s1Range and not P2
-oH = not oS and h>4 and h>=d and h>=c and s1Range and not P2
-oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and s1Range and not P2
-oC = not (oS or oH or oD) and s1Range and not P2
-openingSuit = (oS or oH or oD or oC)
-oneSpade = oS
-oneHeart = oH
-oneDiamond = oD                                                              // duplicates weakNT
-oneClub = oC                                                                 // duplicates weakNT
-
-### End of Predict-Opening-Bid ###
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid-East
 
 
 # 2-suited overcalls
