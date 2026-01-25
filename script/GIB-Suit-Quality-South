@@ -1,0 +1,64 @@
+## GIB Suit Quality Definitions for South
+## Based on https://doc.bridgebase.com/lobbynews/gib_descriptions.html
+
+# 8421 Points per suit (A=8, K=4, Q=2, J=1)
+s8421S = (hascard(south,AS)?8:0) + (hascard(south,KS)?4:0) + (hascard(south,QS)?2:0) + (hascard(south,JS)?1:0)
+s8421H = (hascard(south,AH)?8:0) + (hascard(south,KH)?4:0) + (hascard(south,QH)?2:0) + (hascard(south,JH)?1:0)
+s8421D = (hascard(south,AD)?8:0) + (hascard(south,KD)?4:0) + (hascard(south,QD)?2:0) + (hascard(south,JD)?1:0)
+s8421C = (hascard(south,AC)?8:0) + (hascard(south,KC)?4:0) + (hascard(south,QC)?2:0) + (hascard(south,JC)?1:0)
+
+# 3-card: exactly 3 cards
+s3S = spades(south)==3
+s3H = hearts(south)==3
+s3D = diamonds(south)==3
+s3C = clubs(south)==3
+
+# 4-card: exactly 4 cards
+s4S = spades(south)==4
+s4H = hearts(south)==4
+s4D = diamonds(south)==4
+s4C = clubs(south)==4
+
+# Biddable: 5+ cards, OR 4 cards with (3+ of top 5 honors OR more than 4 8421 points)
+sBidS = spades(south)>4 or (spades(south)==4 and (top5(south,spades)>2 or s8421S>4))
+sBidH = hearts(south)>4 or (hearts(south)==4 and (top5(south,hearts)>2 or s8421H>4))
+sBidD = diamonds(south)>4 or (diamonds(south)==4 and (top5(south,diamonds)>2 or s8421D>4))
+sBidC = clubs(south)>4 or (clubs(south)==4 and (top5(south,clubs)>2 or s8421C>4))
+
+# Rebiddable: biddable + 1 card (6+ or 5 with quality)
+sRebidS = spades(south)>5 or (spades(south)==5 and (top5(south,spades)>2 or s8421S>4))
+sRebidH = hearts(south)>5 or (hearts(south)==5 and (top5(south,hearts)>2 or s8421H>4))
+sRebidD = diamonds(south)>5 or (diamonds(south)==5 and (top5(south,diamonds)>2 or s8421D>4))
+sRebidC = clubs(south)>5 or (clubs(south)==5 and (top5(south,clubs)>2 or s8421C>4))
+
+# Twice Rebiddable: rebiddable + 1 card (7+ or 6 with quality)
+s2RebidS = spades(south)>6 or (spades(south)==6 and (top5(south,spades)>2 or s8421S>4))
+s2RebidH = hearts(south)>6 or (hearts(south)==6 and (top5(south,hearts)>2 or s8421H>4))
+s2RebidD = diamonds(south)>6 or (diamonds(south)==6 and (top5(south,diamonds)>2 or s8421D>4))
+s2RebidC = clubs(south)>6 or (clubs(south)==6 and (top5(south,clubs)>2 or s8421C>4))
+
+# Strong Rebiddable: twice rebiddable with 4 of 5 honors or AKQ
+sStrongS = s2RebidS and (top5(south,spades)>3 or top3(south,spades)==3)
+sStrongH = s2RebidH and (top5(south,hearts)>3 or top3(south,hearts)==3)
+sStrongD = s2RebidD and (top5(south,diamonds)>3 or top3(south,diamonds)==3)
+sStrongC = s2RebidC and (top5(south,clubs)>3 or top3(south,clubs)==3)
+
+# Solid 6-card: AKQTxx or AKQJxx (6 cards with AKQ and T or J)
+sSolid6S = spades(south)==6 and top3(south,spades)==3 and (hascard(south,TS) or hascard(south,JS))
+sSolid6H = hearts(south)==6 and top3(south,hearts)==3 and (hascard(south,TH) or hascard(south,JH))
+sSolid6D = diamonds(south)==6 and top3(south,diamonds)==3 and (hascard(south,TD) or hascard(south,JD))
+sSolid6C = clubs(south)==6 and top3(south,clubs)==3 and (hascard(south,TC) or hascard(south,JC))
+
+# Solid 7-card: AKQxxxx (7 cards with AKQ)
+sSolid7S = spades(south)==7 and top3(south,spades)==3
+sSolid7H = hearts(south)==7 and top3(south,hearts)==3
+sSolid7D = diamonds(south)==7 and top3(south,diamonds)==3
+sSolid7C = clubs(south)==7 and top3(south,clubs)==3
+
+# Solid 8-card: AKJxxxxx or AKxxxxxxx or better (8 cards with AK and J, or 8+ with AK)
+sSolid8S = spades(south)>7 and hascard(south,AS) and hascard(south,KS) and (hascard(south,JS) or spades(south)>8)
+sSolid8H = hearts(south)>7 and hascard(south,AH) and hascard(south,KH) and (hascard(south,JH) or hearts(south)>8)
+sSolid8D = diamonds(south)>7 and hascard(south,AD) and hascard(south,KD) and (hascard(south,JD) or diamonds(south)>8)
+sSolid8C = clubs(south)>7 and hascard(south,AC) and hascard(south,KC) and (hascard(south,JC) or clubs(south)>8)
+
+## End of GIB Suit Quality Definitions
