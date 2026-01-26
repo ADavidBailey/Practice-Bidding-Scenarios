@@ -352,5 +352,14 @@ nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N
 
 oneClub and not wOvercalls and nRange and nResponds and oppsPass
 
+action
+average "1C Pass 1D" 100 * r1D,
+average "1C Pass 1H" 100 * r1H,
+average "1C Pass 1S" 100 * r1S,
+average "1C Pass 2C" 100 * r2C,
+average "1C Pass 2N" 100 * r2N,
+average "1C Pass 3C" 100 * r3C,
+average "1C Pass 3x" 100 * r3x,
+average "1C Pass 3N" 100 * r3N,
 
-action printpbn
+printpbn
