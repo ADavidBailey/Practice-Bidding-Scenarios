@@ -274,7 +274,7 @@ Operations (in order):
 
     # Run operations on each scenario
     verbose = not args.quiet
-    all_success = True
+    failed_scenarios = []
 
     for scenario in scenarios:
         print(f"{'=' * 60}")
@@ -282,18 +282,20 @@ Operations (in order):
         print(f"{'=' * 60}")
 
         if not run_operations(scenario, operations, verbose=verbose):
-            all_success = False
-            print_error(f"\nFailed: {scenario}")
+            failed_scenarios.append(scenario)
+            print_error(f"\nFailed: {scenario} - continuing with next scenario")
         else:
             print(f"\nCompleted: {scenario}")
 
         print()
 
     # Summary
-    if all_success:
+    if not failed_scenarios:
         print("All scenarios completed successfully!")
     else:
-        print_error("Some scenarios had errors.")
+        print_error(f"\n{len(failed_scenarios)} scenario(s) had errors:")
+        for s in failed_scenarios:
+            print_error(f"  - {s}")
         sys.exit(1)
 
 

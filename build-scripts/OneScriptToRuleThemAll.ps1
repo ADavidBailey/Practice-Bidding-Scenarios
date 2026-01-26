@@ -150,6 +150,7 @@ $onlyFilterAll = ($OperationList.count -eq 0) -and ($OperationList -eq "filterSt
 
 # Get files matching the wildcard specification
 $files = Get-ChildItem -Path p:\pbs -Recurse -File | Where-Object { $_.Name -like $WildcardScenarioSpec } | Sort-Object Name
+$failedScenarios = @()
 
 foreach ($file in $files) {
 	if (-not $onlyFilterAll) {
@@ -158,19 +159,24 @@ foreach ($file in $files) {
 		if ($OperationList -eq "*") {
 			$success = Perform-Actions -File $file.FullName
 			if ($success -eq $false) {
-				echo "Pipeline stopped due to error for $($file.Name)"
-				exit 1
+				echo "ERROR: Pipeline failed for $($file.Name) - continuing with next scenario"
+				$failedScenarios += $file.Name
+				continue
 			}
 		} else {
 			# Loop through each item in the array and perform an action
+			$scenarioFailed = $false
 			foreach ($Operation in $OperationList) {
 				#Write-Output "========= Processing Operation: $Operation ========="
 				$success = Perform-Action -Operation $Operation -File $file.FullName
 				if ($success -eq $false) {
-					echo "Pipeline stopped due to error in $Operation for $($file.Name)"
-					exit 1
+					echo "ERROR: Operation $Operation failed for $($file.Name) - continuing with next scenario"
+					$failedScenarios += $file.Name
+					$scenarioFailed = $true
+					break
 				}
 			}
+			if ($scenarioFailed) { continue }
 		}
 	}
 }
@@ -181,5 +187,19 @@ foreach ($file in $files) {
 if ($filterAll) {
 	echo "Writing all filter stats to P:\build-scripts\filterStats.csv . . ."
 	& P:\build-scripts\getFilterStats.ps1
+}
+
+# Summary of failed scenarios
+if ($failedScenarios.Count -gt 0) {
+	echo ""
+	echo "=========================================="
+	echo "$($failedScenarios.Count) scenario(s) had errors:"
+	foreach ($s in $failedScenarios) {
+		echo "  - $s"
+	}
+	exit 1
+} else {
+	echo ""
+	echo "All scenarios completed successfully!"
 }
 
