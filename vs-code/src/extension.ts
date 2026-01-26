@@ -3,6 +3,10 @@ import { ButtonPanelProvider } from './buttonPanelProvider';
 import { ButtonGridProvider } from './buttonGridProvider';
 import { CurrentScenarioProvider, ScenarioTreeItem } from './currentScenarioProvider';
 import { registerPipelineCommands, createStatusBar } from './pipelineRunner';
+import { ActivityLogger } from './activityLogger';
+
+// Export logger instance for use by other modules (e.g., pipelineRunner)
+export let activityLogger: ActivityLogger | undefined;
 
 /**
  * Check if a path contains a PBS directory (case-insensitive)
@@ -15,6 +19,27 @@ export function activate(context: vscode.ExtensionContext) {
     console.log('Practice Bidding Scenarios extension is now active');
 
     const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+
+    // Initialize activity logger and start session
+    activityLogger = new ActivityLogger(workspaceRoot);
+    activityLogger.startSession();
+
+    // Register dispose callback to end session when extension deactivates
+    context.subscriptions.push({
+        dispose: () => {
+            if (activityLogger) {
+                activityLogger.endSession();
+            }
+        }
+    });
+
+    // Log file saves for activity tracking
+    const saveWatcher = vscode.workspace.onDidSaveTextDocument(document => {
+        if (activityLogger) {
+            activityLogger.logFileSave(document);
+        }
+    });
+    context.subscriptions.push(saveWatcher);
 
     // Create the current scenario provider (shows focused scenario with artifact status)
     const currentScenarioProvider = new CurrentScenarioProvider(workspaceRoot);

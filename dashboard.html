@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PBS Scenarios Dashboard</title>
+    <title>PBS Activity Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 900px;
+            max-width: 1100px;
             margin: 40px auto;
             padding: 20px;
             background: #f5f5f5;
@@ -23,32 +23,115 @@
             color: #666;
             margin-bottom: 30px;
         }
-        .chart-container {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
         .stats {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
         }
         .stat-box {
             background: white;
             border-radius: 8px;
-            padding: 20px 40px;
+            padding: 20px;
             text-align: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .stat-value {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: bold;
             color: #2563eb;
         }
         .stat-label {
             color: #666;
             margin-top: 5px;
+            font-size: 14px;
+        }
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .chart-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .chart-card h3 {
+            margin: 0 0 15px 0;
+            color: #333;
+            font-size: 16px;
+        }
+        .activity-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .activity-card h3 {
+            margin: 0 0 15px 0;
+            color: #333;
+        }
+        .activity-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .activity-list {
+            max-height: 250px;
+            overflow-y: auto;
+        }
+        .activity-item {
+            padding: 8px 12px;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        .activity-type {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        .type-file_save { background: #dbeafe; color: #1d4ed8; }
+        .type-pipeline_run { background: #dcfce7; color: #166534; }
+        .type-session_start { background: #fef3c7; color: #92400e; }
+        .type-session_end { background: #fee2e2; color: #991b1b; }
+        .activity-time {
+            color: #999;
+            font-size: 11px;
+        }
+        .commit-item {
+            padding: 8px 12px;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+        }
+        .commit-item:last-child {
+            border-bottom: none;
+        }
+        .commit-hash {
+            font-family: monospace;
+            color: #6366f1;
+            font-size: 12px;
+        }
+        .commit-message {
+            color: #333;
+            margin-left: 8px;
+        }
+        .commit-date {
+            color: #999;
+            font-size: 11px;
+            display: block;
+            margin-top: 4px;
         }
         .footer {
             text-align: center;
@@ -56,73 +139,342 @@
             color: #999;
             font-size: 14px;
         }
+        .no-data {
+            color: #999;
+            font-style: italic;
+            text-align: center;
+            padding: 20px;
+        }
+        @media (max-width: 768px) {
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .chart-grid { grid-template-columns: 1fr; }
+            .activity-grid { grid-template-columns: 1fr; }
+        }
     </style>
+    <script>
+const DASHBOARD_DATA = {
+  "generatedAt": "2026-01-26T15:04:32.871808",
+  "summary": {
+    "totalScenarios": 295,
+    "totalFileSaves": 0,
+    "totalPipelineRuns": 0,
+    "totalSessionMinutes": 0,
+    "totalCommits": 1008
+  },
+  "charts": {
+    "labels": [
+      "Jan 25",
+      "Mar 25",
+      "Apr 25",
+      "May 25",
+      "May 25",
+      "Jun 25",
+      "Jul 25",
+      "Aug 25",
+      "Sep 25",
+      "Oct 25",
+      "Nov 25",
+      "Dec 25",
+      "Jan 26"
+    ],
+    "fileSaves": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "pipelineRuns": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "commits": [
+      10,
+      132,
+      116,
+      65,
+      65,
+      66,
+      30,
+      21,
+      93,
+      159,
+      80,
+      62,
+      94
+    ]
+  },
+  "recentActivity": [],
+  "recentCommits": [
+    {
+      "hash": "fb73032a",
+      "date": "2026-01-26 14:06:12 -0600",
+      "message": "Update GIB bidding"
+    },
+    {
+      "hash": "1380ed5e",
+      "date": "2026-01-26 13:32:07 -0600",
+      "message": "Create dashboard.html"
+    },
+    {
+      "hash": "c3ccf6d4",
+      "date": "2026-01-26 13:00:22 -0600",
+      "message": "add stats"
+    },
+    {
+      "hash": "606909a3",
+      "date": "2026-01-26 12:33:51 -0600",
+      "message": "-"
+    },
+    {
+      "hash": "23b7b9f3",
+      "date": "2026-01-26 12:07:17 -0600",
+      "message": "Continue processing remaining scenarios after error"
+    },
+    {
+      "hash": "a1e02fed",
+      "date": "2026-01-26 12:04:12 -0600",
+      "message": "Add pipeline error handling and simplify GIB scenarios"
+    },
+    {
+      "hash": "24dc3494",
+      "date": "2026-01-26 11:24:29 -0600",
+      "message": "Refactor opening bid prediction to use mutually exclusive conditions"
+    },
+    {
+      "hash": "58e80996",
+      "date": "2026-01-25 14:28:31 -0600",
+      "message": "Add GIB Suit Quality definitions for East"
+    },
+    {
+      "hash": "dd5d9cef",
+      "date": "2026-01-25 13:28:50 -0600",
+      "message": "Re-capture GIB bidding"
+    },
+    {
+      "hash": "e25bb678",
+      "date": "2026-01-25 13:00:07 -0600",
+      "message": "tighten up the short-suit point calculation."
+    }
+  ]
+};
+    </script>
 </head>
 <body>
     <h1>Practice Bidding Scenarios</h1>
-    <p class="subtitle">Scenario file count over the past year</p>
-
-    <div class="chart-container">
-        <canvas id="scenarioChart"></canvas>
-    </div>
+    <p class="subtitle">Development Activity Dashboard</p>
 
     <div class="stats">
         <div class="stat-box">
-            <div class="stat-value">295</div>
-            <div class="stat-label">Current Scenarios</div>
+            <div class="stat-value" id="scenarioCount">-</div>
+            <div class="stat-label">Scenarios</div>
         </div>
         <div class="stat-box">
-            <div class="stat-value">+70</div>
-            <div class="stat-label">Added This Year</div>
+            <div class="stat-value" id="commitCount">-</div>
+            <div class="stat-label">Commits (Year)</div>
         </div>
         <div class="stat-box">
-            <div class="stat-value">+31%</div>
-            <div class="stat-label">Growth</div>
+            <div class="stat-value" id="sessionHours">-</div>
+            <div class="stat-label">Hours in VSCode</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-value" id="pipelineRuns">-</div>
+            <div class="stat-label">Pipeline Runs</div>
         </div>
     </div>
 
-    <p class="footer">Last updated: January 26, 2026</p>
+    <div class="chart-grid">
+        <div class="chart-card">
+            <h3>Git Commits</h3>
+            <canvas id="commitsChart"></canvas>
+        </div>
+        <div class="chart-card">
+            <h3>File Edits</h3>
+            <canvas id="editsChart"></canvas>
+        </div>
+        <div class="chart-card">
+            <h3>Pipeline Runs</h3>
+            <canvas id="pipelineChart"></canvas>
+        </div>
+        <div class="chart-card">
+            <h3>VSCode Session Time (Minutes)</h3>
+            <canvas id="sessionChart"></canvas>
+        </div>
+    </div>
+
+    <div class="activity-grid">
+        <div class="activity-card">
+            <h3>Recent Activity</h3>
+            <div class="activity-list" id="recentActivity">
+                <div class="no-data">No activity logged yet</div>
+            </div>
+        </div>
+        <div class="activity-card">
+            <h3>Recent Commits</h3>
+            <div class="activity-list" id="recentCommits">
+                <div class="no-data">No commits found</div>
+            </div>
+        </div>
+    </div>
+
+    <p class="footer">
+        Last updated: <span id="lastUpdated">-</span>
+        <br>
+        <small>Run <code>python3 py/generateDashboardData.py</code> to refresh</small>
+    </p>
 
     <script>
-        const ctx = document.getElementById('scenarioChart').getContext('2d');
-
-        const data = {
-            labels: ['Jan 25', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan 26'],
-            datasets: [{
-                label: 'Scenario Files',
-                data: [225, 237, 248, 252, 257, 259, 259, 260, 262, 274, 276, 282, 295],
-                fill: true,
-                backgroundColor: 'rgba(37, 99, 235, 0.1)',
-                borderColor: 'rgba(37, 99, 235, 1)',
-                borderWidth: 2,
-                tension: 0.3,
-                pointBackgroundColor: 'rgba(37, 99, 235, 1)',
-                pointRadius: 4
-            }]
-        };
-
-        new Chart(ctx, {
-            type: 'line',
-            data: data,
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: false,
-                        min: 200,
-                        max: 320,
-                        ticks: {
-                            stepSize: 20
-                        }
-                    }
+        // Chart configuration defaults
+        const chartDefaults = {
+            responsive: true,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { stepSize: 1 }
                 }
             }
-        });
+        };
+
+        function createChart(canvasId, label, data, color) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            return new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.labels || [],
+                    datasets: [{
+                        label: label,
+                        data: data.values || [],
+                        backgroundColor: color + '40',
+                        borderColor: color,
+                        borderWidth: 1
+                    }]
+                },
+                options: chartDefaults
+            });
+        }
+
+        function formatTime(isoString) {
+            try {
+                const date = new Date(isoString);
+                return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            } catch {
+                return isoString;
+            }
+        }
+
+        function formatActivityDetails(event) {
+            const details = event.details || {};
+            switch (event.type) {
+                case 'file_save':
+                    return details.filePath || 'Unknown file';
+                case 'pipeline_run':
+                    return `${details.scenario || '?'} - ${details.operation || '?'}`;
+                case 'session_start':
+                    return 'Session started';
+                case 'session_end':
+                    const mins = details.durationMinutes;
+                    return mins ? `Session ended (${mins} min)` : 'Session ended';
+                default:
+                    return event.type;
+            }
+        }
+
+        function renderDashboard(data) {
+            if (!data) {
+                console.warn('No dashboard data available');
+                return;
+            }
+
+            // Update summary stats
+            const summary = data.summary || {};
+            document.getElementById('scenarioCount').textContent = summary.totalScenarios || 0;
+            document.getElementById('commitCount').textContent = summary.totalCommits || 0;
+            document.getElementById('sessionHours').textContent =
+                summary.totalSessionMinutes ? Math.round(summary.totalSessionMinutes / 60) : 0;
+            document.getElementById('pipelineRuns').textContent = summary.totalPipelineRuns || 0;
+
+            // Update charts
+            const charts = data.charts || {};
+            const labels = charts.labels || [];
+
+            createChart('commitsChart', 'Commits',
+                { labels, values: charts.commits || [] }, '#6366f1');
+            createChart('editsChart', 'File Saves',
+                { labels, values: charts.fileSaves || [] }, '#2563eb');
+            createChart('pipelineChart', 'Pipeline Runs',
+                { labels, values: charts.pipelineRuns || [] }, '#16a34a');
+
+            // Session chart shows aggregate session time by month (would need separate tracking)
+            // For now, show file saves as a proxy for activity
+            createChart('sessionChart', 'Minutes',
+                { labels, values: charts.fileSaves || [] }, '#ea580c');
+
+            // Render recent activity
+            const activityList = document.getElementById('recentActivity');
+            const recentActivity = (data.recentActivity || []).slice().reverse();
+            if (recentActivity.length > 0) {
+                activityList.innerHTML = recentActivity.map(event => `
+                    <div class="activity-item">
+                        <div>
+                            <span class="activity-type type-${event.type}">${event.type.replace('_', ' ')}</span>
+                            <span style="margin-left: 8px;">${formatActivityDetails(event)}</span>
+                        </div>
+                        <span class="activity-time">${formatTime(event.timestamp)}</span>
+                    </div>
+                `).join('');
+            }
+
+            // Render recent commits
+            const commitsList = document.getElementById('recentCommits');
+            const recentCommits = data.recentCommits || [];
+            if (recentCommits.length > 0) {
+                commitsList.innerHTML = recentCommits.map(commit => `
+                    <div class="commit-item">
+                        <span class="commit-hash">${commit.hash}</span>
+                        <span class="commit-message">${commit.message}</span>
+                        <span class="commit-date">${commit.date}</span>
+                    </div>
+                `).join('');
+            }
+
+            // Update timestamp
+            if (data.generatedAt) {
+                document.getElementById('lastUpdated').textContent = formatTime(data.generatedAt);
+            }
+        }
+
+        // Load dashboard data
+        if (typeof DASHBOARD_DATA !== 'undefined') {
+            renderDashboard(DASHBOARD_DATA);
+        } else {
+            // Try to fetch from JSON file (works with local server)
+            fetch('dashboard-data.json')
+                .then(r => r.json())
+                .then(renderDashboard)
+                .catch(() => console.warn('No dashboard data available. Run generateDashboardData.py'));
+        }
     </script>
 </body>
 </html>

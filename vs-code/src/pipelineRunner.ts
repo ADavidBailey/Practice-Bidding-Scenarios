@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
+import { activityLogger } from './extension';
 
 /**
  * Check if a directory name is a PBS directory (case-insensitive)
@@ -103,6 +104,12 @@ async function runPipeline(scenario: string, operations: string): Promise<void> 
     }
 
     terminal.show();
+
+    // Log pipeline run for activity tracking
+    if (activityLogger) {
+        activityLogger.logPipelineRun(scenario, operations);
+    }
+
     terminal.sendText(`cd "${workspaceFolder.uri.fsPath}" && python3 "${scriptPath}" "${scenario}" "${operations}"`);
 }
 
