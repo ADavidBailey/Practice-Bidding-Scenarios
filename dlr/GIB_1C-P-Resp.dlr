@@ -121,20 +121,20 @@ lS = s>4 and s>=h and s>=d and s>=c
 lH = h>4 and h>s and h>=d and h>=c
 lM = lS or lH
 
-hsRange1 = lM and hcp(south)>11
-hsRange2 = lM and hcp(south)>10 and sTP>12 and not hsRange1
-hsRange3 = lM and hcp(south)>9  and lgt5 and q2of3 and not (hsRange1 or hsRange2)
-hsRange = (hsRange1 or hsRange2 or hsRange3) and not P2
+hsOK1 = lM and hcp(south)>11
+hsOK2 = lM and hcp(south)>10 and sTP>12 and not hsOK1
+hsOK3 = lM and hcp(south)>9  and lgt5 and q2of3 and not (hsOK1 or hsOK2)
+hsRange = (hsOK1 or hsOK2 or hsOK3) and not P2
 
 # Define 1D Range
 dOK1 = hcp(south)>11 and (diamonds(south)>3 or shape(south, 4432))
-dOK2 = hcp(south)>9  and sTP>12 and diamonds(south)>5
+dOK2 = hcp(south)>9  and sTP>12 and diamonds(south)>5 and not dOK1
 dRange = (dOK1 or dOK2) and not P2
 
 # Define 1C Range
 cOK1 = hcp(south)>10 and sTP>12 and spades(south)==4
-cOK2 = hcp(south)>9  and sTP>12 and clubs(south)>5
-cOK3 = hcp(south)>11 and clubs(south)>2 and not dRange
+cOK2 = hcp(south)>9  and sTP>12 and clubs(south)>5 and not cOK1
+cOK3 = hcp(south)>11 and clubs(south)>2            and not (cOK1 or cOK2)
 cRange = (cOK1 or cOK2 or cOK3) and clubs(south)>2 and clubs(south)>diamonds(south) and not P2
 
 oS = s>4 and s>=h and s>=d and s>=c and hsRange
@@ -221,7 +221,7 @@ tpNS = tpNorth + tpSouth
 tpEW = tpEast + tpWest
 
 ### End of Imported Script: TP
-# Defines tpSouth, tpWest, tpNorth
+# Defines tpWest, tpNorth
 
 # Define suits suitable for 4-card overcall
 wAS = hascard(west,AS)
