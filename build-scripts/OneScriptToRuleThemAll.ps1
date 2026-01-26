@@ -4,24 +4,27 @@ param (
 )
 
 # Function to perform actions on the file
+# Returns $true if all successful, $false if any failed
 function Perform-Actions {
     param (
         [string]$File
     )
     ###echo "Performing actions on $File"                 # redundant  Processing file...
-    Perform-Action -Operation "dlr" -File $File
-    Perform-Action -Operation "pbn" -File $File
+    if ((Perform-Action -Operation "dlr" -File $File) -eq $false) { return $false }
+    if ((Perform-Action -Operation "pbn" -File $File) -eq $false) { return $false }
     ###Perform-Action -Operation "comment" -File $File    # combined with pbn
-    Perform-Action -Operation "rotate" -File $File
-    Perform-Action -Operation "bba" -File $File
+    if ((Perform-Action -Operation "rotate" -File $File) -eq $false) { return $false }
+    if ((Perform-Action -Operation "bba" -File $File) -eq $false) { return $false }
     ###Perform-Action -Operation "bbaSummary" -File $File # combined with bba
-    Perform-Action -Operation "title" -File $File
-    Perform-Action -Operation "filter" -File $File
-    Perform-Action -Operation "filterStats" -File $File
-    Perform-Action -Operation "biddingSheet" -File $File
+    if ((Perform-Action -Operation "title" -File $File) -eq $false) { return $false }
+    if ((Perform-Action -Operation "filter" -File $File) -eq $false) { return $false }
+    if ((Perform-Action -Operation "filterStats" -File $File) -eq $false) { return $false }
+    if ((Perform-Action -Operation "biddingSheet" -File $File) -eq $false) { return $false }
+    return $true
 }
 
 # Function to perform a specific action on the file
+# Returns $true if successful, $false if failed
 function Perform-Action {
     param (
         [string]$Operation,
@@ -34,22 +37,31 @@ function Perform-Action {
         "dlr" {
             echo "--------- OneExtract.py: Creating dlr\$Scenario from pbs\$Scenario"
             & python3 P:\py\OneExtract.py --scenario $Scenario
+            if ($LASTEXITCODE -ne 0) { return $false }
         }
         "pbn" {
             echo "--------- makeOnePBN.cmd: Creating pbn\$Scenario.pbn from dlr\$Scenario.dlr"
             & P:\build-scripts\makeOnePBN.cmd $Scenario
+            if ($LASTEXITCODE -ne 0) {
+                echo "ERROR: makeOnePBN.cmd failed for $Scenario - stopping pipeline"
+                return $false
+            }
             echo "--------- oneComment.py: Changing statistics to comments in pbn\$Scenario.pbn"
             & python3 P:\py\oneComment.py --scenario $Scenario
+            if ($LASTEXITCODE -ne 0) { return $false }
         }
         "rotate" {
             echo "--------- makeOneRotated.cmd: creating pbn-rotated-for-4-players and lin-rotated-for-4-players\$Scenario from pbn\$Scenario"
             & P:\build-scripts\makeOneRotated.cmd $Scenario
+            if ($LASTEXITCODE -ne 0) { return $false }
         }
         "bba" {
             echo "--------- makeOneBBA.cmd:Creating bba\$Scenario.pbn from pbn\$Scenario.pbn"
             & P:\build-scripts\makeOneBBA.cmd $Scenario
+            if ($LASTEXITCODE -ne 0) { return $false }
             echo "--------- oneSummary.py: Creating bba-summary\$Scenario.pbn from bba\$Scenario.pbn"
             & Python P:\py\oneSummary.py --scenario $Scenario
+            if ($LASTEXITCODE -ne 0) { return $false }
         }
         "title" {
 #            echo "--------- setOneTitle: Setting title for pbn\$Scenario.pbn"
@@ -59,6 +71,7 @@ function Perform-Action {
         "filter" {
             echo "--------- filterOneScenario.cmd: Creating bba-filtered\ and bba-filtered-out from bba\$Scenario.pbn"
             & P:\build-scripts\filterOneScenario.cmd $Scenario
+            if ($LASTEXITCODE -ne 0) { return $false }
         }
         "filterStats" {
 			if ($WildCardScenarioSpec -ne "*") {
@@ -69,11 +82,13 @@ function Perform-Action {
         "biddingSheet" {
             echo "--------- makeOneBiddingSheet.cmd: Creating bidding-sheets\$Scenario.pbn and bba\$Scenario.pdf from bba\$Scenario.pbn"
             & P:\build-scripts\makeOneBiddingSheet.cmd $Scenario
+            if ($LASTEXITCODE -ne 0) { return $false }
         }
         default {
             echo "--------- Unknown operation: $Operation"
         }
     }
+    return $true
 }
 # Main script execution
 if (-not $WildcardScenarioSpec -or -not $OperationList) {
@@ -141,13 +156,21 @@ foreach ($file in $files) {
 		echo "Processing file: $file"
 
 		if ($OperationList -eq "*") {
-			Perform-Actions -File $file.FullName
+			$success = Perform-Actions -File $file.FullName
+			if ($success -eq $false) {
+				echo "Pipeline stopped due to error for $($file.Name)"
+				exit 1
+			}
 		} else {
 			# Loop through each item in the array and perform an action
 			foreach ($Operation in $OperationList) {
 				#Write-Output "========= Processing Operation: $Operation ========="
-				Perform-Action -Operation $Operation -File $file.FullName
-			}		
+				$success = Perform-Action -Operation $Operation -File $file.FullName
+				if ($success -eq $false) {
+					echo "Pipeline stopped due to error in $Operation for $($file.Name)"
+					exit 1
+				}
+			}
 		}
 	}
 }

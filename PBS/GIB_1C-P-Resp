@@ -18,13 +18,6 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/TP
 # Defines tpSouth, tpWest, tpNorth
 
-## Define South's 1C opening -- GIB doesn't open all 11 HCP hands
-cOK1 = hcp(south)==11 and tpSouth==13 and spades(south)==4
-cOK2 = hcp(south)==11 and tpSouth==13 and clubs(south)>5
-cOK3 = hcp(south)>11
-sRange = (cOK1 or cOK2 or cOK3) and hcp(south)<22 and tpSouth>11 and tpSouth<21  // avoid strong 2C
-sClubs = oneClub and sRange
-
 # Define suits suitable for 4-card overcall
 wAS = hascard(west,AS)
 wKS = hascard(west,KS)
@@ -59,15 +52,14 @@ reverse = shape(south,45xx+x45x+xx45) and hcp(south)>16
 
 wRange = tpWest>=12 and tpWest<=14 and not X
 
-# Define West's overcalls
-cOC = sClubs     and (wD4 or wH4 or wS4) and clubs(west)==3
+# Define West's actions
+cOC = oneClub    and (wD4 or wH4 or wS4) and clubs(west)==3
 dOC = oneDiamond and (wH4 or wS4)        and diamonds(west)==3
 hOC = oneHeart   and wS4                 and hearts(west)==3
 wOvercalls = (cOC or dOC or hOC) and wRange and shape(west,any 4432 +any 4333)
 
-
-TakeOutDouble = (balWest and hcp(west)>10 and clubs(west)==2) or (balEast and hcp(east)>10 and clubs(east)==2)  // Must know opening suit
-oppsPass = calmOpps and not TakeOutDouble
+wTakeOutDouble = (balWest and hcp(west)>10 and clubs(west)==2) or (balEast and hcp(east)>10 and clubs(east)==2)  // Must know opening suit
+oppsPass = calmOpps and not (wOvercalls or wTakeOutDouble)
 
 ## Define things...
 
@@ -153,18 +145,7 @@ nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N
 //
 // ----------------------------------------------------------------
 
-sClubs and sRange and not wOvercalls and nRange and nResponds and oppsPass
-
-action
-average "1D   " 100 * r1D,
-average "1H   " 100 * r1H,
-average "1S   " 100 * r1S,
-average "1N   " 100 * r1N,
-average "2C   " 100 * r2C,
-average "2N   " 100 * r2N,
-average "3C   " 100 * r3C,
-average "3x   " 100 * r3x,
-average "3N   " 100 * r3N,
+oneClub and not wOvercalls and nRange and nResponds and oppsPass
 
 `, "S", false)
 Script

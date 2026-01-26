@@ -22,6 +22,15 @@ import time
 from config import FOLDERS, OPERATIONS_ORDER
 from ssh_runner import test_ssh_connection
 
+# ANSI color codes
+RED = '\033[91m'
+RESET = '\033[0m'
+
+
+def print_error(msg: str):
+    """Print error message in red."""
+    print(f"{RED}{msg}{RESET}")
+
 # Import operations
 from operations.dlr import run_dlr
 from operations.pbn import run_pbn
@@ -169,13 +178,15 @@ def run_operations(scenario: str, operations: list, verbose: bool = True) -> boo
             elapsed = time.time() - start_time
             durations[op] = elapsed
             if not result:
-                print(f"Operation {op} failed for {scenario} ({format_duration(elapsed)})")
+                print_error(f"Operation {op} failed for {scenario} ({format_duration(elapsed)})")
                 success = False
+                break  # Stop on first failure
         except Exception as e:
             elapsed = time.time() - start_time
             durations[op] = elapsed
-            print(f"Error in operation {op} for {scenario}: {e} ({format_duration(elapsed)})")
+            print_error(f"Error in operation {op} for {scenario}: {e} ({format_duration(elapsed)})")
             success = False
+            break  # Stop on first failure
 
     # Print duration summary
     if durations and verbose:
@@ -272,7 +283,7 @@ Operations (in order):
 
         if not run_operations(scenario, operations, verbose=verbose):
             all_success = False
-            print(f"\nFailed: {scenario}")
+            print_error(f"\nFailed: {scenario}")
         else:
             print(f"\nCompleted: {scenario}")
 
@@ -282,7 +293,7 @@ Operations (in order):
     if all_success:
         print("All scenarios completed successfully!")
     else:
-        print("Some scenarios had errors.")
+        print_error("Some scenarios had errors.")
         sys.exit(1)
 
 
