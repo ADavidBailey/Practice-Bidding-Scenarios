@@ -1,0 +1,29 @@
+# button-text: 1/2 Clubs
+# scenario-title: Strong Club: 1C = 16+ w/6+Clubs or 2C = 11-15 HCP w/6+Clubs
+# SCS16_1or2C
+dealer south
+
+/*
+Strong Club System
+
+1C (16+) or 2C(11-15)
+
+convention-card: Precision
+auction-filter: Auction.....\n[12]C
+*/
+
+
+s = spades(south)
+h = hearts(south)
+d = diamonds(south)
+c = clubs(south)
+
+range1C = hcp(south)>15 and hcp(south)<16
+range2C = hcp(south)<15
+range = range1C or range2C
+suit = clubs(south)>5 and clubs(south)>diamonds(south)
+
+range and suit
+
+
+action printpbn
