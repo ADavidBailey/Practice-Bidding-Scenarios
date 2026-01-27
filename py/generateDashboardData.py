@@ -230,16 +230,42 @@ def generate_dashboard_data():
     # Get last 12 months for consistent chart labels
     months = get_last_12_months()
 
-    # Aggregate data
+    # Aggregate data from activity log
     pipeline_runs_by_month = aggregate_events_by_month(events, 'pipeline_run')
     commits_by_month = aggregate_commits_by_month(commits)
+    file_saves_by_month = aggregate_events_by_month(events, 'file_save')
 
-    # Estimate session hours and file edits from git commits
-    session_hours_data = estimate_session_hours_from_git()
-    session_hours_by_month = session_hours_data['monthly']
+    # Aggregate session hours from activity log
+    session_hours_from_log = defaultdict(int)
+    for event in events:
+        if event.get('type') == 'session_end':
+            duration = event.get('details', {}).get('durationMinutes', 0)
+            if duration:
+                ts = event.get('timestamp', '')
+                if ts:
+                    month = ts[:7]
+                    session_hours_from_log[month] += duration // 60  # Convert to hours
 
-    file_edits_data = estimate_file_edits_from_git()
-    file_edits_by_month = file_edits_data['monthly']
+    # Get git-based estimates for historical data
+    session_hours_from_git = estimate_session_hours_from_git()
+    file_edits_from_git = estimate_file_edits_from_git()
+
+    # Combine: use activity log data where available, git estimates for the rest
+    session_hours_by_month = {}
+    file_edits_by_month = {}
+
+    for m in months:
+        # Session hours: prefer activity log if we have data for that month
+        if session_hours_from_log.get(m, 0) > 0:
+            session_hours_by_month[m] = session_hours_from_log[m]
+        else:
+            session_hours_by_month[m] = session_hours_from_git['monthly'].get(m, 0)
+
+        # File edits: prefer activity log file saves if we have data for that month
+        if file_saves_by_month.get(m, 0) > 0:
+            file_edits_by_month[m] = file_saves_by_month[m]
+        else:
+            file_edits_by_month[m] = file_edits_from_git['monthly'].get(m, 0)
 
     # Fill in zeros for months with no data
     for m in months:
@@ -247,6 +273,10 @@ def generate_dashboard_data():
         commits_by_month.setdefault(m, 0)
         session_hours_by_month.setdefault(m, 0)
         file_edits_by_month.setdefault(m, 0)
+
+    # Calculate totals (sum of combined monthly data)
+    total_session_hours = sum(session_hours_by_month.values())
+    total_file_edits = sum(file_edits_by_month.values())
 
     # Sort and extract values for charts
     sorted_months = sorted(months)
@@ -256,9 +286,9 @@ def generate_dashboard_data():
         "generatedAt": datetime.now().isoformat(),
         "summary": {
             "totalScenarios": get_scenario_count(),
-            "totalFileEdits": file_edits_data['total'],
+            "totalFileEdits": total_file_edits,
             "totalPipelineRuns": len([e for e in events if e.get('type') == 'pipeline_run']),
-            "totalSessionHours": session_hours_data['total'],
+            "totalSessionHours": total_session_hours,
             "totalCommits": len(commits)
         },
         "charts": {
