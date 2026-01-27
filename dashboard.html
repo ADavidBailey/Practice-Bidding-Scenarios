@@ -153,13 +153,13 @@
     </style>
     <script>
 const DASHBOARD_DATA = {
-  "generatedAt": "2026-01-27T16:26:51.314515",
+  "generatedAt": "2026-01-27T16:56:24.039752",
   "summary": {
     "totalScenarios": 297,
     "totalFileSaves": 8,
     "totalPipelineRuns": 5,
-    "totalSessionMinutes": 9,
-    "totalCommits": 1032
+    "totalSessionHours": 971,
+    "totalCommits": 1033
   },
   "charts": {
     "labels": [
@@ -220,7 +220,22 @@ const DASHBOARD_DATA = {
       159,
       80,
       62,
-      118
+      119
+    ],
+    "sessionHours": [
+      76,
+      83,
+      112,
+      58,
+      70,
+      37,
+      37,
+      35,
+      100,
+      131,
+      102,
+      69,
+      90
     ]
   },
   "recentActivity": [
@@ -355,6 +370,11 @@ const DASHBOARD_DATA = {
   ],
   "recentCommits": [
     {
+      "hash": "d89aadeb",
+      "date": "2026-01-27 16:31:05 -0600",
+      "message": "Update dashboard with activity data"
+    },
+    {
       "hash": "96ba0af5",
       "date": "2026-01-27 15:43:48 -0600",
       "message": "capture GIB bidding for Open in Fourth Seat"
@@ -398,11 +418,6 @@ const DASHBOARD_DATA = {
       "hash": "8c88179f",
       "date": "2026-01-27 08:27:00 -0600",
       "message": "Shorten text for SCS16 Buttons"
-    },
-    {
-      "hash": "705410da",
-      "date": "2026-01-27 08:03:58 -0600",
-      "message": "Create & Install SCS16_1or2C"
     }
   ]
 };
@@ -445,7 +460,7 @@ const DASHBOARD_DATA = {
             <canvas id="pipelineChart"></canvas>
         </div>
         <div class="chart-card">
-            <h3>VSCode Session Time (Minutes)</h3>
+            <h3>VSCode Session Time (Hours)</h3>
             <canvas id="sessionChart"></canvas>
         </div>
     </div>
@@ -541,7 +556,7 @@ const DASHBOARD_DATA = {
             document.getElementById('scenarioCount').textContent = summary.totalScenarios || 0;
             document.getElementById('commitCount').textContent = summary.totalCommits || 0;
             document.getElementById('sessionHours').textContent =
-                summary.totalSessionMinutes ? Math.round(summary.totalSessionMinutes / 60) : 0;
+                summary.totalSessionHours || 0;
             document.getElementById('pipelineRuns').textContent = summary.totalPipelineRuns || 0;
 
             // Update charts
@@ -555,10 +570,9 @@ const DASHBOARD_DATA = {
             createChart('pipelineChart', 'Pipeline Runs',
                 { labels, values: charts.pipelineRuns || [] }, '#16a34a');
 
-            // Session chart shows aggregate session time by month (would need separate tracking)
-            // For now, show file saves as a proxy for activity
-            createChart('sessionChart', 'Minutes',
-                { labels, values: charts.fileSaves || [] }, '#ea580c');
+            // Session hours estimated from git commit patterns
+            createChart('sessionChart', 'Hours',
+                { labels, values: charts.sessionHours || [] }, '#ea580c');
 
             // Render recent activity
             const activityList = document.getElementById('recentActivity');

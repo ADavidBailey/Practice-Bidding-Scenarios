@@ -88,7 +88,7 @@ def aggregate_commits_by_month(commits):
 
 
 def calculate_session_stats(events):
-    """Calculate total session time in minutes"""
+    """Calculate total session time in minutes from activity log"""
     total_minutes = 0
     for event in events:
         if event.get('type') == 'session_end':
@@ -96,6 +96,61 @@ def calculate_session_stats(events):
             if duration:
                 total_minutes += duration
     return total_minutes
+
+
+def estimate_session_hours_from_git(days=365):
+    """
+    Estimate VS Code session hours from git commit patterns.
+    For each day with commits, estimates hours based on time span between
+    first and last commit (minimum 1 hour, capped at 8 hours per day).
+    Returns dict with monthly totals and overall total.
+    """
+    since_date = (datetime.now() - timedelta(days=days)).strftime('%Y-%m-%d')
+    try:
+        result = subprocess.run(
+            ['git', 'log', f'--since={since_date}', '--format=%ai'],
+            cwd=PROJECT_ROOT,
+            capture_output=True,
+            text=True
+        )
+
+        # Track first and last commit hour per day
+        daily_first = {}
+        daily_last = {}
+
+        for line in result.stdout.strip().split('\n'):
+            if line:
+                # Format: "2026-01-26 14:30:00 -0500"
+                parts = line.split()
+                if len(parts) >= 2:
+                    date = parts[0]
+                    time_parts = parts[1].split(':')
+                    if len(time_parts) >= 1:
+                        hour = int(time_parts[0])
+                        if date not in daily_first or hour < daily_first[date]:
+                            daily_first[date] = hour
+                        if date not in daily_last or hour > daily_last[date]:
+                            daily_last[date] = hour
+
+        # Calculate hours per day and aggregate by month
+        monthly_hours = defaultdict(int)
+        total_hours = 0
+
+        for date in daily_first:
+            # Hours = span from first to last commit + 1, capped at 8
+            span = daily_last[date] - daily_first[date] + 1
+            hours = max(1, min(span, 8))
+            month = date[:7]
+            monthly_hours[month] += hours
+            total_hours += hours
+
+        return {
+            'monthly': dict(sorted(monthly_hours.items())),
+            'total': total_hours
+        }
+    except Exception as e:
+        print(f"Error estimating session hours: {e}")
+        return {'monthly': {}, 'total': 0}
 
 
 def get_last_12_months():
@@ -134,11 +189,16 @@ def generate_dashboard_data():
     pipeline_runs_by_month = aggregate_events_by_month(events, 'pipeline_run')
     commits_by_month = aggregate_commits_by_month(commits)
 
+    # Estimate session hours from git commits
+    session_hours_data = estimate_session_hours_from_git()
+    session_hours_by_month = session_hours_data['monthly']
+
     # Fill in zeros for months with no data
     for m in months:
         file_saves_by_month.setdefault(m, 0)
         pipeline_runs_by_month.setdefault(m, 0)
         commits_by_month.setdefault(m, 0)
+        session_hours_by_month.setdefault(m, 0)
 
     # Sort and extract values for charts
     sorted_months = sorted(months)
@@ -150,14 +210,15 @@ def generate_dashboard_data():
             "totalScenarios": get_scenario_count(),
             "totalFileSaves": len([e for e in events if e.get('type') == 'file_save']),
             "totalPipelineRuns": len([e for e in events if e.get('type') == 'pipeline_run']),
-            "totalSessionMinutes": calculate_session_stats(events),
+            "totalSessionHours": session_hours_data['total'],
             "totalCommits": len(commits)
         },
         "charts": {
             "labels": labels,
             "fileSaves": [file_saves_by_month.get(m, 0) for m in sorted_months],
             "pipelineRuns": [pipeline_runs_by_month.get(m, 0) for m in sorted_months],
-            "commits": [commits_by_month.get(m, 0) for m in sorted_months]
+            "commits": [commits_by_month.get(m, 0) for m in sorted_months],
+            "sessionHours": [session_hours_by_month.get(m, 0) for m in sorted_months]
         },
         "recentActivity": events[-20:] if events else [],
         "recentCommits": commits[:10] if commits else []
@@ -209,7 +270,7 @@ def main():
     print(f"  Scenarios: {summary['totalScenarios']}")
     print(f"  File saves logged: {summary['totalFileSaves']}")
     print(f"  Pipeline runs logged: {summary['totalPipelineRuns']}")
-    print(f"  Session time: {summary['totalSessionMinutes']} minutes")
+    print(f"  Estimated VS Code hours (past year): {summary['totalSessionHours']}")
     print(f"  Git commits (past year): {summary['totalCommits']}")
 
 
