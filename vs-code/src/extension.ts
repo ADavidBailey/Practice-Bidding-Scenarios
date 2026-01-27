@@ -159,6 +159,15 @@ export function activate(context: vscode.ExtensionContext) {
     // Register pipeline commands and status bar
     registerPipelineCommands(context);
     createStatusBar(context);
+
+    // Explicit startup refresh to catch changes made while VS Code was closed
+    // Small delay ensures views are fully registered before refreshing
+    setTimeout(() => {
+        buttonPanelProvider.refresh();
+        buttonGridProvider.refresh();
+        currentScenarioProvider.refresh();
+        console.log('PBS Dashboard refreshed on startup');
+    }, 500);
 }
 
 export function deactivate() {}
