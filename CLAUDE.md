@@ -196,6 +196,7 @@ Central configuration in [build-scripts-mac/config.py](build-scripts-mac/config.
   - Optional filtering rules for auction patterns
 - The `-PBS.txt` file lists all scenarios and their organization
 - When creating new scenarios, follow the existing PBS format structure
+- **Wide commas in scenario chat**: In the `Button,` section, the chat text content (the descriptive text after the button name) must use wide commas (，) instead of regular commas (,). The structural commas used as PBS syntax delimiters remain as regular commas. When editing PBS files, automatically replace any regular commas in the chat text with wide commas.
 
 ### Working with the Pipeline
 
