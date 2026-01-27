@@ -18,8 +18,8 @@ h = hearts(south)
 d = diamonds(south)
 c = clubs(south)
 
-range1C = hcp(south)>15 and hcp(south)<16
-range2C = hcp(south)<15
+range1C = hcp(south)>15
+range2C = hcp(south)>10 and hcp(south)<16
 range = range1C or range2C
 suit = clubs(south)>5 and clubs(south)>diamonds(south)
 
