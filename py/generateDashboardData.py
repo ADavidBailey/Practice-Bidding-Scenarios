@@ -98,6 +98,52 @@ def calculate_session_stats(events):
     return total_minutes
 
 
+def estimate_file_edits_from_git(days=365):
+    """
+    Estimate file edits from git commit history.
+    Counts number of files changed per commit, aggregated by month.
+    Returns dict with monthly totals and overall total.
+    """
+    since_date = (datetime.now() - timedelta(days=days)).strftime('%Y-%m-%d')
+    try:
+        # Get commit dates with file change counts
+        result = subprocess.run(
+            ['git', 'log', f'--since={since_date}', '--format=%ai', '--shortstat'],
+            cwd=PROJECT_ROOT,
+            capture_output=True,
+            text=True
+        )
+
+        monthly_edits = defaultdict(int)
+        total_edits = 0
+        current_month = None
+
+        for line in result.stdout.split('\n'):
+            line = line.strip()
+            if not line:
+                continue
+
+            # Check if this is a date line (e.g., "2026-01-26 14:30:00 -0500")
+            if line and line[0].isdigit() and len(line) >= 10 and line[4] == '-':
+                current_month = line[:7]
+            # Check if this is a stat line (e.g., "3 files changed, 10 insertions(+)")
+            elif 'file' in line and 'changed' in line:
+                # Extract number of files changed
+                match = re.search(r'(\d+) file', line)
+                if match and current_month:
+                    files_changed = int(match.group(1))
+                    monthly_edits[current_month] += files_changed
+                    total_edits += files_changed
+
+        return {
+            'monthly': dict(sorted(monthly_edits.items())),
+            'total': total_edits
+        }
+    except Exception as e:
+        print(f"Error estimating file edits: {e}")
+        return {'monthly': {}, 'total': 0}
+
+
 def estimate_session_hours_from_git(days=365):
     """
     Estimate VS Code session hours from git commit patterns.
@@ -185,20 +231,22 @@ def generate_dashboard_data():
     months = get_last_12_months()
 
     # Aggregate data
-    file_saves_by_month = aggregate_events_by_month(events, 'file_save')
     pipeline_runs_by_month = aggregate_events_by_month(events, 'pipeline_run')
     commits_by_month = aggregate_commits_by_month(commits)
 
-    # Estimate session hours from git commits
+    # Estimate session hours and file edits from git commits
     session_hours_data = estimate_session_hours_from_git()
     session_hours_by_month = session_hours_data['monthly']
 
+    file_edits_data = estimate_file_edits_from_git()
+    file_edits_by_month = file_edits_data['monthly']
+
     # Fill in zeros for months with no data
     for m in months:
-        file_saves_by_month.setdefault(m, 0)
         pipeline_runs_by_month.setdefault(m, 0)
         commits_by_month.setdefault(m, 0)
         session_hours_by_month.setdefault(m, 0)
+        file_edits_by_month.setdefault(m, 0)
 
     # Sort and extract values for charts
     sorted_months = sorted(months)
@@ -208,14 +256,14 @@ def generate_dashboard_data():
         "generatedAt": datetime.now().isoformat(),
         "summary": {
             "totalScenarios": get_scenario_count(),
-            "totalFileSaves": len([e for e in events if e.get('type') == 'file_save']),
+            "totalFileEdits": file_edits_data['total'],
             "totalPipelineRuns": len([e for e in events if e.get('type') == 'pipeline_run']),
             "totalSessionHours": session_hours_data['total'],
             "totalCommits": len(commits)
         },
         "charts": {
             "labels": labels,
-            "fileSaves": [file_saves_by_month.get(m, 0) for m in sorted_months],
+            "fileEdits": [file_edits_by_month.get(m, 0) for m in sorted_months],
             "pipelineRuns": [pipeline_runs_by_month.get(m, 0) for m in sorted_months],
             "commits": [commits_by_month.get(m, 0) for m in sorted_months],
             "sessionHours": [session_hours_by_month.get(m, 0) for m in sorted_months]
@@ -268,7 +316,7 @@ def main():
     summary = dashboard_data['summary']
     print(f"\nSummary:")
     print(f"  Scenarios: {summary['totalScenarios']}")
-    print(f"  File saves logged: {summary['totalFileSaves']}")
+    print(f"  File edits (past year): {summary['totalFileEdits']}")
     print(f"  Pipeline runs logged: {summary['totalPipelineRuns']}")
     print(f"  Estimated VS Code hours (past year): {summary['totalSessionHours']}")
     print(f"  Git commits (past year): {summary['totalCommits']}")

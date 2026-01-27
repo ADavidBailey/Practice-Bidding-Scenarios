@@ -153,13 +153,13 @@
     </style>
     <script>
 const DASHBOARD_DATA = {
-  "generatedAt": "2026-01-27T16:56:24.039752",
+  "generatedAt": "2026-01-27T17:04:36.266050",
   "summary": {
     "totalScenarios": 297,
-    "totalFileSaves": 8,
+    "totalFileEdits": 14726,
     "totalPipelineRuns": 5,
     "totalSessionHours": 971,
-    "totalCommits": 1033
+    "totalCommits": 1034
   },
   "charts": {
     "labels": [
@@ -177,20 +177,20 @@ const DASHBOARD_DATA = {
       "Dec 25",
       "Jan 26"
     ],
-    "fileSaves": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      8
+    "fileEdits": [
+      819,
+      1572,
+      1508,
+      3782,
+      595,
+      314,
+      314,
+      250,
+      870,
+      1779,
+      678,
+      506,
+      1942
     ],
     "pipelineRuns": [
       0,
@@ -220,7 +220,7 @@ const DASHBOARD_DATA = {
       159,
       80,
       62,
-      119
+      120
     ],
     "sessionHours": [
       76,
@@ -370,6 +370,11 @@ const DASHBOARD_DATA = {
   ],
   "recentCommits": [
     {
+      "hash": "87bcb952",
+      "date": "2026-01-27 16:57:55 -0600",
+      "message": "update dashboard"
+    },
+    {
       "hash": "d89aadeb",
       "date": "2026-01-27 16:31:05 -0600",
       "message": "Update dashboard with activity data"
@@ -413,11 +418,6 @@ const DASHBOARD_DATA = {
       "hash": "e1f99e00",
       "date": "2026-01-27 08:41:37 -0600",
       "message": "clean up"
-    },
-    {
-      "hash": "8c88179f",
-      "date": "2026-01-27 08:27:00 -0600",
-      "message": "Shorten text for SCS16 Buttons"
     }
   ]
 };
@@ -565,8 +565,8 @@ const DASHBOARD_DATA = {
 
             createChart('commitsChart', 'Commits',
                 { labels, values: charts.commits || [] }, '#6366f1');
-            createChart('editsChart', 'File Saves',
-                { labels, values: charts.fileSaves || [] }, '#2563eb');
+            createChart('editsChart', 'File Edits',
+                { labels, values: charts.fileEdits || [] }, '#2563eb');
             createChart('pipelineChart', 'Pipeline Runs',
                 { labels, values: charts.pipelineRuns || [] }, '#16a34a');
 
