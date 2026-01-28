@@ -10,24 +10,12 @@ dealer east
 
 # Define East's 1N Opener
 
-## Novice NT
-noviceNT = shape(east, any 5332+any 4432+any 4333) and hcp(east)>14 and hcp(east)<18
-
-/*  I decided to use a 'Novice 1NT' for Alan's class.
-##### Imported Script -- GIB 1 Notrump -- Rotated for East #####
-
-# GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
-ntP = hcp(east) + shape(east,5xxx+x5xx)
-nt1 = shape(east, any 5332+any 4432+any 4333) and hcp(east)>14 and ntP<18
-
-# GIB does not open with 5422 and a 5-card major or with 4 spades
-# GIB does not open with 5422 and the strength to reverse
-nt2 = shape(east, any 5422-5xxx-x5xx-4xxx) and hcp(east)>14 and hcp(east)<17
-
-gibNT = nt1 or nt2
+/*
+## I used a simple 1NT for Alan's class.
+gibNT = shape(east, any 5332+any 4432+any 4333) and hcp(east)>14 and hcp(east)<18
 */
 
-### End of GIB 1 Notrump ###
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N-East
 # Defines gibNT
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/TP
@@ -40,7 +28,7 @@ sGD = controls(south,diamonds)>0 and top5(south,diamonds)>2 and diamonds(south)>
 sGC = controls(south,clubs)>0    and top5(south,clubs)>2    and clubs(south)>4
 
 # Define South's shapes
-oneSuit = shape(south,any 9xxx +any 8xxx +any 7xxx +any 6xxx -any 76xx -any 66xx -any 5xxx)
+oneSuit = shape(south,7xxx +any 6xxx -any 9xxx -any 8xxx -any 76xx -any 66xx -any 5xxx)
 
 maxWithSpades = sGS and tpSouth>10
 minWithSpades = sGS and tpSouth<11
@@ -63,7 +51,7 @@ lS = c2S and keep03
 levelTheDeal = lX or lC or lD or lH or lS
 
 # Now OPEN 1NT
-noviceNT and (cX or c2C or c2D or c2H or c2S) and tpSouth>8
+gibNT and (cX or c2C or c2D or c2H or c2S) and tpSouth>8
 and levelTheDeal
 
 # Generate Statistics
@@ -82,7 +70,7 @@ Button,DONT (Lev),\n\
   • 2!C = !C and a higher ranking suit\n\
   • 2!D = !D and a higher ranking suit\n\
   • 2!H = !H and !S\n\
-  • 2!S = 5+ !S，natural\n\
+  • 2!S = 5+ !S，natural and less than 11 TP\n\
 The DONT actions are leveled.  The NT opener is not leveled.\n\
 https://www.bridgebum.com/dont.php\n\
 %DONT%,backgroundColor=lightpink
