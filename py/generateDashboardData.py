@@ -98,12 +98,14 @@ def get_scenarios_worked_from_git(days=1095):
     # Current: "3_Under_Invitational_Jump", Historical: "Dealer: 3 Under Invitational Jump.gdoc"
     def normalize_name(name):
         """Normalize a name for matching (lowercase, replace spaces with underscores)."""
-        # Remove common prefixes
-        for prefix in ['Dealer-', 'Dealer: ', 'Dealer:  ', 'Gavin-', 'Gavin: ', 'Gavin:  ', 'Basic-']:
+        # Remove common prefixes (longer prefixes first to avoid partial matches)
+        for prefix in ['Dealer:  ', 'Dealer: ', 'Dealer-', 'Dealer ',
+                       'Gavin:  ', 'Gavin: ', 'Gavin-', 'Gavin ',
+                       'Basic-', 'Basic ']:
             if name.startswith(prefix):
                 name = name[len(prefix):]
         # Remove extensions
-        for ext in ['.gdoc', '.dlr', '.pbn', '.pdf', '.bba', '.lin']:
+        for ext in ['.gdoc', '.dlr', '.pbn', '.pdf', '.bba', '.lin', '.txt']:
             if name.lower().endswith(ext):
                 name = name[:-len(ext)]
         # Normalize: replace spaces with underscores, lowercase
