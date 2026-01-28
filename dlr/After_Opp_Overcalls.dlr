@@ -10,7 +10,7 @@ dealer south
 # After Opponent Overcalls partner's opening bid
 
 
-##### Imported Script -- Predict Opening 1-Bid #####
+##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
 # 03/30/2025 -- Changed to use gibNT
 
@@ -57,17 +57,20 @@ TwoNtShape = shape(south, any 4333 +any 4432 +any 5332 +any 5422)
 # Define ntPoint ranges
 oneNT   = gibNT
 twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
-threeNT = TwoNtShape and hcp(south)>24 and hcp(south)<28
+
+# Define Gambling 3N
+g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
+gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
 case2 = hcp(south)>18 and sTP>19 and losers(south)<5 and (spades(south)>5 or hearts(south)>5)
 case3 = hcp(south)>18 and sTP>19 and losers(south)<4 and (diamonds(south)>5 or clubs(south)>5)
-gameForce2C = (case1 or case2 or case3) and not threeNT
+gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or threeNT or twoNT or oneNT
+P2 = P1 or gamble3 or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -87,20 +90,20 @@ lS = s>4 and s>=h and s>=d and s>=c
 lH = h>4 and h>s and h>=d and h>=c
 lM = lS or lH
 
-hsRange1 = lM and hcp(south)>11
-hsRange2 = lM and hcp(south)>10 and sTP>12 and not hsRange1
-hsRange3 = lM and hcp(south)>9  and lgt5 and q2of3 and not (hsRange1 or hsRange2)
-hsRange = (hsRange1 or hsRange2 or hsRange3) and not P2
+hsOK1 = lM and hcp(south)>11
+hsOK2 = lM and hcp(south)>10 and sTP>12 and not hsOK1
+hsOK3 = lM and hcp(south)>9  and lgt5 and q2of3 and not (hsOK1 or hsOK2)
+hsRange = (hsOK1 or hsOK2 or hsOK3) and not P2
 
 # Define 1D Range
 dOK1 = hcp(south)>11 and (diamonds(south)>3 or shape(south, 4432))
-dOK2 = hcp(south)>9  and sTP>12 and diamonds(south)>5
+dOK2 = hcp(south)>9  and sTP>12 and diamonds(south)>5 and not dOK1
 dRange = (dOK1 or dOK2) and not P2
 
 # Define 1C Range
 cOK1 = hcp(south)>10 and sTP>12 and spades(south)==4
-cOK2 = hcp(south)>9  and sTP>12 and clubs(south)>5
-cOK3 = hcp(south)>11 and clubs(south)>2 and not dRange
+cOK2 = hcp(south)>9  and sTP>12 and clubs(south)>5 and not cOK1
+cOK3 = hcp(south)>11 and clubs(south)>2            and not (cOK1 or cOK2)
 cRange = (cOK1 or cOK2 or cOK3) and clubs(south)>2 and clubs(south)>diamonds(south) and not P2
 
 oS = s>4 and s>=h and s>=d and s>=c and hsRange
