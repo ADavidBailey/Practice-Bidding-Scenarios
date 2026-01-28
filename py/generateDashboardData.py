@@ -74,6 +74,117 @@ def get_unique_scenarios_worked(events):
     return len(scenarios)
 
 
+def get_scenarios_worked_from_git(days=1095):
+    """
+    Get cumulative unique scenarios worked on per month from git history.
+    Looks at commits that modified files in scenario directories (PBS, dlr, pbn, etc.)
+    and also at root level files from earlier project structure.
+    Only counts scenarios that currently exist in the PBS folder.
+    Returns dict with monthly cumulative scenario counts and total unique scenarios.
+    """
+    since_date = (datetime.now() - timedelta(days=days)).strftime('%Y-%m-%d')
+    scenario_dirs = ['PBS/', 'dlr/', 'pbn/', 'bba/', 'bba-filtered/', 'bidding-sheets/']
+
+    # Get the set of current valid scenario names from PBS folder
+    pbs_dir = os.path.join(PROJECT_ROOT, 'PBS')
+    valid_scenarios = set()
+    if os.path.exists(pbs_dir):
+        for f in os.listdir(pbs_dir):
+            file_path = os.path.join(pbs_dir, f)
+            if os.path.isfile(file_path) and not f.startswith('.'):
+                valid_scenarios.add(f)
+
+    # Build a normalized lookup for matching historical names to current names
+    # Current: "3_Under_Invitational_Jump", Historical: "Dealer: 3 Under Invitational Jump.gdoc"
+    def normalize_name(name):
+        """Normalize a name for matching (lowercase, replace spaces with underscores)."""
+        # Remove common prefixes
+        for prefix in ['Dealer-', 'Dealer: ', 'Dealer:  ', 'Gavin-', 'Gavin: ', 'Gavin:  ', 'Basic-']:
+            if name.startswith(prefix):
+                name = name[len(prefix):]
+        # Remove extensions
+        for ext in ['.gdoc', '.dlr', '.pbn', '.pdf', '.bba', '.lin']:
+            if name.lower().endswith(ext):
+                name = name[:-len(ext)]
+        # Normalize: replace spaces with underscores, lowercase
+        return name.replace(' ', '_').replace('-', '_').lower()
+
+    # Build normalized lookup from valid scenarios
+    normalized_to_scenario = {}
+    for scenario in valid_scenarios:
+        normalized_to_scenario[normalize_name(scenario)] = scenario
+
+    def extract_scenario_name(filepath):
+        """Extract and match scenario name from various file formats."""
+        # Get just the filename
+        filename = filepath.split('/')[-1] if '/' in filepath else filepath
+        normalized = normalize_name(filename)
+        # Return the actual scenario name if it matches
+        return normalized_to_scenario.get(normalized)
+
+    try:
+        # Get commits with their dates and changed files
+        result = subprocess.run(
+            ['git', 'log', f'--since={since_date}', '--format=%ai', '--name-only'],
+            cwd=PROJECT_ROOT,
+            capture_output=True,
+            text=True
+        )
+
+        monthly_scenarios = defaultdict(set)  # month -> set of scenario names
+        all_scenarios = set()
+        current_month = None
+
+        for line in result.stdout.split('\n'):
+            line = line.strip()
+            if not line:
+                continue
+
+            # Check if this is a date line (e.g., "2026-01-26 14:30:00 -0500")
+            if line[0].isdigit() and len(line) >= 10 and line[4] == '-':
+                current_month = line[:7]
+            elif current_month:
+                scenario = None
+
+                # Check if this is a file path in a scenario directory
+                for dir_prefix in scenario_dirs:
+                    if line.startswith(dir_prefix):
+                        filename = line[len(dir_prefix):]
+                        base_name = filename.split('.')[0] if '.' in filename else filename
+                        if base_name in valid_scenarios:
+                            scenario = base_name
+                        else:
+                            # Try normalized matching
+                            scenario = extract_scenario_name(filename)
+                        break
+
+                # Also check root level files (historical format)
+                if not scenario and '/' not in line:
+                    scenario = extract_scenario_name(line)
+
+                # Add if we found a valid scenario
+                if scenario:
+                    monthly_scenarios[current_month].add(scenario)
+                    all_scenarios.add(scenario)
+
+        # Build cumulative counts by month
+        sorted_months = sorted(monthly_scenarios.keys())
+        cumulative_scenarios = set()
+        cumulative_counts = {}
+
+        for month in sorted_months:
+            cumulative_scenarios.update(monthly_scenarios[month])
+            cumulative_counts[month] = len(cumulative_scenarios)
+
+        return {
+            'monthly': cumulative_counts,
+            'total': len(all_scenarios)
+        }
+    except Exception as e:
+        print(f"Error getting scenarios worked from git: {e}")
+        return {'monthly': {}, 'total': 0}
+
+
 def aggregate_events_by_month(events, type_filter=None):
     """Aggregate events by month (YYYY-MM format)"""
     monthly = defaultdict(int)
@@ -211,11 +322,11 @@ def estimate_session_hours_from_git(days=365):
         return {'monthly': {}, 'total': 0}
 
 
-def get_last_12_months():
-    """Get list of last 12 month labels"""
+def get_last_n_months(n=12):
+    """Get list of last N month labels"""
     months = []
     now = datetime.now()
-    for i in range(12, -1, -1):
+    for i in range(n, -1, -1):
         date = now - timedelta(days=i * 30)
         months.append(date.strftime('%Y-%m'))
     return months
@@ -237,10 +348,10 @@ def generate_dashboard_data():
     """Generate all dashboard data"""
     log = load_activity_log()
     events = log.get('events', [])
-    commits = get_git_commits()
+    commits = get_git_commits(days=850)  # ~28 months back to Sep 2023
 
-    # Get last 12 months for consistent chart labels
-    months = get_last_12_months()
+    # Get last 28 months (Sep 2023 to Jan 2026) for consistent chart labels
+    months = get_last_n_months(28)
 
     # Aggregate data from activity log
     pipeline_runs_by_month = aggregate_events_by_month(events, 'pipeline_run')
@@ -258,9 +369,10 @@ def generate_dashboard_data():
                     month = ts[:7]
                     session_hours_from_log[month] += duration // 60  # Convert to hours
 
-    # Get git-based estimates for historical data
-    session_hours_from_git = estimate_session_hours_from_git()
-    file_edits_from_git = estimate_file_edits_from_git()
+    # Get git-based estimates for historical data (~28 months)
+    session_hours_from_git = estimate_session_hours_from_git(days=850)
+    file_edits_from_git = estimate_file_edits_from_git(days=850)
+    scenarios_worked_from_git = get_scenarios_worked_from_git(days=850)
 
     # Combine: use activity log data where available, git estimates for the rest
     session_hours_by_month = {}
@@ -279,6 +391,9 @@ def generate_dashboard_data():
         else:
             file_edits_by_month[m] = file_edits_from_git['monthly'].get(m, 0)
 
+    # Get cumulative scenarios worked per month
+    scenarios_worked_by_month = scenarios_worked_from_git['monthly']
+
     # Fill in zeros for months with no data
     for m in months:
         pipeline_runs_by_month.setdefault(m, 0)
@@ -286,9 +401,19 @@ def generate_dashboard_data():
         session_hours_by_month.setdefault(m, 0)
         file_edits_by_month.setdefault(m, 0)
 
+    # For cumulative scenarios, carry forward previous value for missing months
+    sorted_months = sorted(months)
+    prev_value = 0
+    for m in sorted_months:
+        if m in scenarios_worked_by_month:
+            prev_value = scenarios_worked_by_month[m]
+        else:
+            scenarios_worked_by_month[m] = prev_value
+
     # Calculate totals (sum of combined monthly data)
     total_session_hours = sum(session_hours_by_month.values())
     total_file_edits = sum(file_edits_by_month.values())
+    total_scenarios_worked = scenarios_worked_from_git['total']
 
     # Sort and extract values for charts
     sorted_months = sorted(months)
@@ -298,7 +423,7 @@ def generate_dashboard_data():
         "generatedAt": datetime.now().isoformat(),
         "summary": {
             "totalScenarios": get_scenario_count(),
-            "scenariosWorked": get_unique_scenarios_worked(events),
+            "scenariosWorked": total_scenarios_worked,
             "totalFileEdits": total_file_edits,
             "totalPipelineRuns": len([e for e in events if e.get('type') == 'pipeline_run']),
             "totalSessionHours": total_session_hours,
@@ -309,7 +434,8 @@ def generate_dashboard_data():
             "fileEdits": [file_edits_by_month.get(m, 0) for m in sorted_months],
             "pipelineRuns": [pipeline_runs_by_month.get(m, 0) for m in sorted_months],
             "commits": [commits_by_month.get(m, 0) for m in sorted_months],
-            "sessionHours": [session_hours_by_month.get(m, 0) for m in sorted_months]
+            "sessionHours": [session_hours_by_month.get(m, 0) for m in sorted_months],
+            "scenariosWorked": [scenarios_worked_by_month.get(m, 0) for m in sorted_months]
         },
         "recentActivity": events[-20:] if events else [],
         "recentCommits": commits[:10] if commits else []
@@ -357,13 +483,13 @@ def main():
 
     # Print summary
     summary = dashboard_data['summary']
-    print(f"\nSummary:")
-    print(f"  Scenarios: {summary['totalScenarios']}")
+    print(f"\nSummary (since Sep 2023):")
+    print(f"  Total scenarios: {summary['totalScenarios']}")
     print(f"  Scenarios worked on: {summary['scenariosWorked']}")
-    print(f"  File edits (past year): {summary['totalFileEdits']}")
+    print(f"  File edits: {summary['totalFileEdits']}")
     print(f"  Pipeline runs logged: {summary['totalPipelineRuns']}")
-    print(f"  Estimated VS Code hours (past year): {summary['totalSessionHours']}")
-    print(f"  Git commits (past year): {summary['totalCommits']}")
+    print(f"  Estimated VS Code hours: {summary['totalSessionHours']}")
+    print(f"  Git commits: {summary['totalCommits']}")
 
 
 if __name__ == '__main__':

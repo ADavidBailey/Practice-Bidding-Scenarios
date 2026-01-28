@@ -156,17 +156,33 @@
     </style>
     <script>
 const DASHBOARD_DATA = {
-  "generatedAt": "2026-01-27T19:38:38.985052",
+  "generatedAt": "2026-01-27T20:09:11.616128",
   "summary": {
     "totalScenarios": 297,
-    "scenariosWorked": 2,
-    "totalFileEdits": 12681,
+    "scenariosWorked": 297,
+    "totalFileEdits": 50550,
     "totalPipelineRuns": 5,
-    "totalSessionHours": 963,
-    "totalCommits": 1038
+    "totalSessionHours": 3077,
+    "totalCommits": 5517
   },
   "charts": {
     "labels": [
+      "Oct 23",
+      "Nov 23",
+      "Dec 23",
+      "Jan 24",
+      "Feb 24",
+      "Mar 24",
+      "Apr 24",
+      "May 24",
+      "Jun 24",
+      "Jul 24",
+      "Aug 24",
+      "Sep 24",
+      "Oct 24",
+      "Nov 24",
+      "Dec 24",
+      "Jan 25",
       "Feb 25",
       "Mar 25",
       "Apr 25",
@@ -182,6 +198,22 @@ const DASHBOARD_DATA = {
       "Jan 26"
     ],
     "fileEdits": [
+      598,
+      450,
+      423,
+      253,
+      292,
+      377,
+      243,
+      4406,
+      5419,
+      2185,
+      232,
+      767,
+      12932,
+      7709,
+      585,
+      998,
       819,
       1572,
       1508,
@@ -209,9 +241,41 @@ const DASHBOARD_DATA = {
       0,
       0,
       0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
       5
     ],
     "commits": [
+      657,
+      502,
+      441,
+      259,
+      304,
+      391,
+      255,
+      82,
+      209,
+      187,
+      41,
+      175,
+      297,
+      490,
+      111,
+      87,
       80,
       132,
       116,
@@ -224,9 +288,25 @@ const DASHBOARD_DATA = {
       159,
       80,
       62,
-      124
+      125
     ],
     "sessionHours": [
+      189,
+      145,
+      171,
+      75,
+      140,
+      158,
+      83,
+      66,
+      143,
+      158,
+      47,
+      141,
+      204,
+      206,
+      113,
+      75,
       76,
       83,
       112,
@@ -240,6 +320,37 @@ const DASHBOARD_DATA = {
       102,
       69,
       90
+    ],
+    "scenariosWorked": [
+      4,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      129,
+      131,
+      166,
+      167,
+      174,
+      181,
+      197,
+      209,
+      216,
+      226,
+      239,
+      246,
+      254,
+      258,
+      258,
+      258,
+      259,
+      261,
+      272,
+      275,
+      281,
+      297
     ]
   },
   "recentActivity": [
@@ -374,6 +485,11 @@ const DASHBOARD_DATA = {
   ],
   "recentCommits": [
     {
+      "hash": "c4203324",
+      "date": "2026-01-27 19:40:35 -0600",
+      "message": "Add Scenarios Worked count to dashboard"
+    },
+    {
       "hash": "82a7e5a0",
       "date": "2026-01-27 17:29:52 -0600",
       "message": "update dashboard"
@@ -417,11 +533,6 @@ const DASHBOARD_DATA = {
       "hash": "09862a20",
       "date": "2026-01-27 13:00:24 -0600",
       "message": "Remove redundant 'Opps ' prefix from button text in They Compete section"
-    },
-    {
-      "hash": "d775c7ed",
-      "date": "2026-01-27 12:22:10 -0600",
-      "message": "Replace comma with wide comma in scenario chat"
     }
   ]
 };
@@ -438,7 +549,7 @@ const DASHBOARD_DATA = {
         </div>
         <div class="stat-box">
             <div class="stat-value" id="scenariosWorked">-</div>
-            <div class="stat-label">Scenarios Worked</div>
+            <div class="stat-label">Scenarios</div>
         </div>
         <div class="stat-box">
             <div class="stat-value" id="commitCount">-</div>
@@ -452,6 +563,11 @@ const DASHBOARD_DATA = {
             <div class="stat-value" id="pipelineRuns">-</div>
             <div class="stat-label">Pipeline Runs</div>
         </div>
+    </div>
+
+    <div class="chart-card" style="margin-bottom: 20px;">
+        <h3>Cumulative Scenarios</h3>
+        <canvas id="scenariosChart"></canvas>
     </div>
 
     <div class="chart-grid">
@@ -582,6 +698,10 @@ const DASHBOARD_DATA = {
             // Session hours estimated from git commit patterns
             createChart('sessionChart', 'Hours',
                 { labels, values: charts.sessionHours || [] }, '#ea580c');
+
+            // Scenarios worked over time
+            createChart('scenariosChart', 'Scenarios',
+                { labels, values: charts.scenariosWorked || [] }, '#8b5cf6');
 
             // Render recent activity
             const activityList = document.getElementById('recentActivity');
