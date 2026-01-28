@@ -25,7 +25,7 @@
         }
         .stats {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
             margin-bottom: 30px;
         }
@@ -548,10 +548,6 @@ const DASHBOARD_DATA = {
             <div class="stat-label">Scenarios</div>
         </div>
         <div class="stat-box">
-            <div class="stat-value" id="scenariosWorked">-</div>
-            <div class="stat-label">Scenarios</div>
-        </div>
-        <div class="stat-box">
             <div class="stat-value" id="commitCount">-</div>
             <div class="stat-label">Commits (Year)</div>
         </div>
@@ -678,7 +674,6 @@ const DASHBOARD_DATA = {
             // Update summary stats
             const summary = data.summary || {};
             document.getElementById('scenarioCount').textContent = summary.totalScenarios || 0;
-            document.getElementById('scenariosWorked').textContent = summary.scenariosWorked || 0;
             document.getElementById('commitCount').textContent = summary.totalCommits || 0;
             document.getElementById('sessionHours').textContent =
                 summary.totalSessionHours || 0;
