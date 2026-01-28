@@ -14,24 +14,26 @@ Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/scri
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/TP
 # Defines tpSouth
 
-# Define South's good suits -- 4+ cards with KJT or better
-sGS = controls(south,spades)>0   and top5(south,spades)>2   and spades(south)>4
-sGH = controls(south,hearts)>0   and top5(south,hearts)>2   and hearts(south)>4
-sGD = controls(south,diamonds)>0 and top5(south,diamonds)>2 and diamonds(south)>4
-sGC = controls(south,clubs)>0    and top5(south,clubs)>2    and clubs(south)>4
+# Define South's good suits -- 4+ cards with KQT or better
+sGS = spades(south)>4   and top3(south,spades)>1   and top5(south,spades)>2  //and controls(south,spades)>0
+sGH = hearts(south)>4   and top3(south,hearts)>1   and top5(south,spades)>2  //and controls(south,hearts)>0
+sGD = diamonds(south)>4 and top3(south,diamonds)>1 and top5(south,spades)>2  //and controls(south,diamonds)>0
+sGC = clubs(south)>4    and top3(south,clubs)>1    and top5(south,spades)>2  //and controls(south,clubs)>0
 
 # Define South's shapes
 oneSuit = shape(south,7xxx +any 6xxx -any 9xxx -any 8xxx -any 76xx -any 66xx -any 5xxx)
+sGoodSuit = oneSuit and sGS and spades(south)>5
+oGoodSuit = oneSuit and (sGH or sGD or sGC)
 
-maxWithSpades = sGS and tpSouth>10
-minWithSpades = sGS and tpSouth<11
+maxWithSpades = sGoodSuit and tpSouth>10
+minWithSpades = sGoodSuit and tpSouth<11
 
 # Define South's DONT actions
-cX  = oneSuit and (sGC or sGD or sGH or maxWithSpades)
+cX  = oGoodSuit or maxWithSpades
 c2C = (sGC    and (sGD or sGH or sGS)) and not cX
-c2D = (sGD    and (sGH or sGS)) and not (cX or c2C) 
-c2H = (sGH    and sGS)          and not (cX or c2C or c2D) 
-c2S = oneSuit and minWithSpades and not (cX or c2C or c2D or c2H) 
+c2D = (sGD    and (sGH or sGS))        and not (cX or c2C) 
+c2H = (sGH    and sGS)                 and not (cX or c2C or c2D) 
+c2S = minWithSpades                    and not (cX or c2C or c2D or c2H) 
 
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
 
