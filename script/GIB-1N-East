@@ -1,0 +1,13 @@
+##### Imported Script -- GIB 1 Notrump (East) #####
+
+# GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
+ntP = hcp(east) + shape(east,5xxx+x5xx)
+nt1 = shape(east, any 5332+any 4432+any 4333) and hcp(east)>14 and ntP<18
+
+# GIB does not open with 5422 and a 5-card major or with 4 spades
+# GIB does not open with 5422 and the strength to reverse
+nt2 = shape(east, any 5422-5xxx-x5xx-4xxx) and hcp(east)>14 and hcp(east)<17
+
+gibNT = nt1 or nt2
+
+### End of GIB 1 Notrump (East) ###
