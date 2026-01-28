@@ -25,7 +25,7 @@
         }
         .stats {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: 15px;
             margin-bottom: 30px;
         }
@@ -145,7 +145,10 @@
             text-align: center;
             padding: 20px;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
+            .stats { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 600px) {
             .stats { grid-template-columns: repeat(2, 1fr); }
             .chart-grid { grid-template-columns: 1fr; }
             .activity-grid { grid-template-columns: 1fr; }
@@ -153,13 +156,14 @@
     </style>
     <script>
 const DASHBOARD_DATA = {
-  "generatedAt": "2026-01-27T17:22:08.838481",
+  "generatedAt": "2026-01-27T19:38:38.985052",
   "summary": {
     "totalScenarios": 297,
+    "scenariosWorked": 2,
     "totalFileEdits": 12681,
     "totalPipelineRuns": 5,
     "totalSessionHours": 963,
-    "totalCommits": 1036
+    "totalCommits": 1038
   },
   "charts": {
     "labels": [
@@ -220,7 +224,7 @@ const DASHBOARD_DATA = {
       159,
       80,
       62,
-      122
+      124
     ],
     "sessionHours": [
       76,
@@ -370,6 +374,16 @@ const DASHBOARD_DATA = {
   ],
   "recentCommits": [
     {
+      "hash": "82a7e5a0",
+      "date": "2026-01-27 17:29:52 -0600",
+      "message": "update dashboard"
+    },
+    {
+      "hash": "d72b4871",
+      "date": "2026-01-27 17:22:16 -0600",
+      "message": "Daily dashboard update"
+    },
+    {
       "hash": "7024387a",
       "date": "2026-01-27 17:12:04 -0600",
       "message": "Use activity log data where available, git history for the rest"
@@ -408,16 +422,6 @@ const DASHBOARD_DATA = {
       "hash": "d775c7ed",
       "date": "2026-01-27 12:22:10 -0600",
       "message": "Replace comma with wide comma in scenario chat"
-    },
-    {
-      "hash": "aa8e6b0b",
-      "date": "2026-01-27 12:16:28 -0600",
-      "message": "Add Opps_Michaels_and_Unusual scenario"
-    },
-    {
-      "hash": "ae1b85b9",
-      "date": "2026-01-27 10:31:25 -0600",
-      "message": "update on VSCode reatart"
     }
   ]
 };
@@ -431,6 +435,10 @@ const DASHBOARD_DATA = {
         <div class="stat-box">
             <div class="stat-value" id="scenarioCount">-</div>
             <div class="stat-label">Scenarios</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-value" id="scenariosWorked">-</div>
+            <div class="stat-label">Scenarios Worked</div>
         </div>
         <div class="stat-box">
             <div class="stat-value" id="commitCount">-</div>
@@ -554,6 +562,7 @@ const DASHBOARD_DATA = {
             // Update summary stats
             const summary = data.summary || {};
             document.getElementById('scenarioCount').textContent = summary.totalScenarios || 0;
+            document.getElementById('scenariosWorked').textContent = summary.scenariosWorked || 0;
             document.getElementById('commitCount').textContent = summary.totalCommits || 0;
             document.getElementById('sessionHours').textContent =
                 summary.totalSessionHours || 0;

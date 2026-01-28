@@ -62,6 +62,18 @@ def get_scenario_count():
     return 0
 
 
+def get_unique_scenarios_worked(events):
+    """Count unique scenarios that have been worked on (file saves or pipeline runs)"""
+    scenarios = set()
+    for event in events:
+        event_type = event.get('type')
+        if event_type in ('file_save', 'pipeline_run'):
+            scenario = event.get('details', {}).get('scenario')
+            if scenario:
+                scenarios.add(scenario)
+    return len(scenarios)
+
+
 def aggregate_events_by_month(events, type_filter=None):
     """Aggregate events by month (YYYY-MM format)"""
     monthly = defaultdict(int)
@@ -286,6 +298,7 @@ def generate_dashboard_data():
         "generatedAt": datetime.now().isoformat(),
         "summary": {
             "totalScenarios": get_scenario_count(),
+            "scenariosWorked": get_unique_scenarios_worked(events),
             "totalFileEdits": total_file_edits,
             "totalPipelineRuns": len([e for e in events if e.get('type') == 'pipeline_run']),
             "totalSessionHours": total_session_hours,
@@ -346,6 +359,7 @@ def main():
     summary = dashboard_data['summary']
     print(f"\nSummary:")
     print(f"  Scenarios: {summary['totalScenarios']}")
+    print(f"  Scenarios worked on: {summary['scenariosWorked']}")
     print(f"  File edits (past year): {summary['totalFileEdits']}")
     print(f"  Pipeline runs logged: {summary['totalPipelineRuns']}")
     print(f"  Estimated VS Code hours (past year): {summary['totalSessionHours']}")
