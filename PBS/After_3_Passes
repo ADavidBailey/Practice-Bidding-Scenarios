@@ -1,11 +1,18 @@
 Script,After3Passes
 setDealerCode(`
 
+/*
+After 3 Passes
 
-# include Passout ("), Negative (-) or Positive ([1-9]) scores opened in 4th seat (Pass.Pass.Pass.)
-# auction-filter: Score..("|NS.(-|[1-9])).*\\n.Auction.....\\nPass.Pass.Pass.
+Use the following to get Passout, Negative, or Positive scores opened in 4th seat (Pass.Pass.Pass.)
 
-# All Pass...
+Auction.....\nPass +Pass +Pass +Pass
+Score..NS.-.*\n.*\n.Auction.....\nPass +Pass +Pass.
+Score..NS.[1-9].*\n.*\n.Auction.....\nPass +Pass +Pass.
+
+auction-filter: Auction.....\nPass +Pass +Pass.
+*/
+
 
 # Avoid concentration of values in long suits -- no AK, AQ, or KQ
 ccw = top5(west ,clubs   )<3 and hcp(west ,clubs   )<5
