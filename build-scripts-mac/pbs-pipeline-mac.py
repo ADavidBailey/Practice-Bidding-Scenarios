@@ -225,6 +225,9 @@ Operations (in order):
     filter      - Filter by auction pattern (Windows: Filter.js)
     filterStats - Show filter statistics
     biddingSheet - Generate bidding sheets PDF
+
+Standalone operations (not in "*"):
+    btnToPbs    - Generate PBS file from BTN file (outputs to pbs-test/)
         """,
     )
 
