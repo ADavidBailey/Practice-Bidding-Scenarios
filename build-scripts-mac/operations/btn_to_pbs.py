@@ -11,8 +11,8 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from config import FOLDERS, PROJECT_ROOT
 
-# GitHub base URL for imports
-GITHUB_BASE = "https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main"
+# Script directory for inlining includes
+SCRIPT_DIR = os.path.join(PROJECT_ROOT, "script")
 
 
 def parse_btn_file(btn_path: str) -> dict:
@@ -86,19 +86,45 @@ def parse_btn_file(btn_path: str) -> dict:
     return result
 
 
-def transform_includes_to_imports(dealer_code: str) -> str:
+def inline_includes(dealer_code: str) -> str:
     """
-    Transform #include "script/..." directives to Import,URL statements.
+    Inline #include "script/..." directives by reading the referenced files.
     """
     def replace_include(match):
         path = match.group(1)
-        # Convert local path to GitHub URL
-        url = f"{GITHUB_BASE}/{path}"
-        return f"Import,{url}"
+        # Resolve the path relative to project root
+        full_path = os.path.join(PROJECT_ROOT, path)
+
+        if os.path.exists(full_path):
+            with open(full_path, 'r', encoding='utf-8') as f:
+                content = f.read().rstrip()
+            return content
+        else:
+            # If file not found, leave a comment
+            return f"# ERROR: Could not find {path}"
 
     # Match #include "path"
     pattern = r'#include\s+"([^"]+)"'
     return re.sub(pattern, replace_include, dealer_code)
+
+
+def generate_logging_code(alias: str) -> str:
+    """
+    Generate the scenario logging JavaScript code.
+    """
+    return f"""window.currentPBSScenario = '{alias}';
+console.log('PBS: Logging scenario selection for {alias}');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {{
+    method: 'POST',
+    headers: {{
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    }},
+    body: JSON.stringify({{
+        scenario: '{alias}',
+        user: whoAmI() || 'anonymous'
+    }})
+}}).then(function(r){{ console.log('PBS: Server response', r.status); }}).catch(function(e){{ console.log('PBS: Fetch error', e); }});"""
 
 
 def generate_pbs(parsed: dict) -> str:
@@ -109,8 +135,8 @@ def generate_pbs(parsed: dict) -> str:
     button_text = parsed['button_text'] or alias
     dealer_position = parsed['dealer_position'] or 'S'
 
-    # Transform includes to imports in dealer code
-    dealer_code = transform_includes_to_imports(parsed['dealer_code'])
+    # Inline includes in dealer code
+    dealer_code = inline_includes(parsed['dealer_code'])
 
     # Remove "action printpbn" line - not needed in PBS
     dealer_code = re.sub(r'\n*action\s+printpbn\s*\n*', '\n', dealer_code)
@@ -118,8 +144,9 @@ def generate_pbs(parsed: dict) -> str:
     # Build the PBS content
     lines = []
 
-    # Script block
+    # Script block with logging code
     lines.append(f"Script,{alias}")
+    lines.append(generate_logging_code(alias))
     lines.append("setDealerCode(`")
 
     # Add auction filter if present (as block comment)
