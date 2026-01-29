@@ -1,4 +1,7 @@
-//BBOalert, Bidding Scenarios TEST
+
+//BBOalert, Bidding Scenarios
+//BBOalert, Bidding Scenarios - version 3.0
+Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
 //Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
@@ -247,6 +250,26 @@ function delay(duration) {
 }
 //Script
 
+// Log PBS scenario selection for analytics
+Script,logPBS
+if (window._pbsScenario) {
+    window.currentPBSScenario = window._pbsScenario;
+    fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Client-Version': '1.0.0'
+        },
+        body: JSON.stringify({
+            scenario: window._pbsScenario,
+            user: whoAmI() || 'anonymous'
+        })
+    }).catch(function(){});
+    window._pbsScenario = undefined;
+}
+R='';
+Script
+
 
 For each individual doc file where the code is defined you should :
 - add BBOalert code to define the script and the button
@@ -318,6 +341,9 @@ Import,JumpCuebidStrong,https://github.com/ADavidBailey/Practice-Bidding-Scenari
 Import,JumpCuebidWeak,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Jump_Cuebid_Weak
 Import,JumpOvercalls,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Jump_Overcalls
 Import,KokishRelay,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Kokish_Relay
+Import,LastTrain,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Last_Train_Game_Try
+Import,LastTrain2,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Last_Train_GT2
+
 Import,LeapingMichaels,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Leaping_Michaels
 Import,LebensohlVsW2Bal,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Lebensohl_vs_Opps_W2_Bal
 Import,LebensohlVsW2Combo,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Lebensohl_vs_Opps_W2_Bal_or_Dir
@@ -331,7 +357,10 @@ Import,MajorSuitFit,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/b
 Import,MaximalDouble,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Maximal_Double
 Import,McCabeOverWeak2,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/McCabe_After_Weak_2
 Import,McCabeOverWJO,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/McCabe_after_WJO
-Import,Meckwell,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Meckwell
+Import,MichaelsAfter1m,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Michaels_after_1m
+Import,MichaelsAndUnusual,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Michaels_and_Unusual
+Import,MichaelsCuebid,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Michaels_Cuebid
+Import,Meckwell,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/
 Import,MiniMaxiRoman,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Mini-Maxi_Roman_2D
 Import,MinorGameOrSlam,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Minor_Game_Or_Slam
 Import,MinorOpener,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Minor_Suit_Opener
@@ -384,6 +413,8 @@ Import,Opps2-suitedOvercalls,https://github.com/ADavidBailey/Practice-Bidding-Sc
 Import,OppsBalUnusualNT,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Opps_Bal_Unusual_2N
 Import,OppsBidOverGF2C,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Opps_Bid_Over_GF_2C
 Import,OppsGambling,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Opps_Gambling_3N
+Import,OppsMichaelsAndUnusual,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Opps_Michaels_and_Unusual
+Import,OppsMichaelsCuebid,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Opps_Michaels_Cuebid
 Import,OppsMulti2D,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Opps_Multi_2D
 Import,OppsOpen1N,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Opps_Open_1N_15-17
 Import,OppsOvercall1NT,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Opps_Overcall_1NT
@@ -439,6 +470,7 @@ Import,SolowayJumpShiftType4,https://github.com/ADavidBailey/Practice-Bidding-Sc
 Import,Spear,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Spear
 Import,SpiralRaise,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Spiral_Raise
 Import,SpiralRaise3only,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Spiral_Raises_with_3
+Import,SplinterAfterMinor,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Splinters_after_Minor
 Import,SplinterByOpener,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Splinters_By_Opener
 Import,Splinters,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Splinters
 Import,DropDeadCrawling,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/DropDead_Crawling
@@ -519,32 +551,26 @@ Import,WeakNT9to12,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/bl
 Import,WeakNT9to15,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/Weak_NT_09-15
 ### End of Strong Club System
 
+### Strong Club System 16+ HCP
+Import,scs161or2C,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/SCS16_1or2C
+Import,scs16Major2SuitResp,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/SCS16_Major_Open_2-Suit_Resp
+Import,scs16MajorWith2ndSuit,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/SCS16_Major_with_2nd_Suit
+Import,scs16StrongClub3Suit,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/SCS16_1C_3-Suit_Resp
+Import,scs16StrongClub3Suit57,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/SCS16_1C_3-Suit_Resp_5-7
+Import,scs16StrongClub54,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/SCS16_1C_54_Resp
+Import,scs16StrongClub55Plus,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/SCS16_1C_55_Resp
+Import,scs16StrongClubAny04Resp,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/SCS16_1C_any_0-4_Resp
+Import,scs16StrongClubAny57Resp,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/SCS16_1C_any_5-7_Resp
+Import,scs16StrongClubAny8PlusResp,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS/SCS16_1C_any_8plus_Resp
+### End of Strong Club System 16+ HCP
 
 Option,Practice Table
 
 Button,Bidding Scenarios (click headers to open/close),,width=100% backgroundColor=LemonChiffon
 
-Button,Start Bidding Tbl,%setBiddingTable%,width=32% backgroundColor=lightgreen
-Button,Start Teaching Tbl,%setTeachingTable%,width=35% backgroundColor=lightgreen
-Button,Deal Source,%reviewCurrentCode%,width=24% backgroundColor=lightgreen
-
-
-Button,↻,%togglePBSrandomRotation%,backgroundColor=green color=white width=9%
-Script,onDataLoad,window.PBSrandomRotation=false;
-Script,togglePBSrandomRotation
-var b = $("button").filter(function() {
-    return $(this).text() === "↻";
-});
-if ($(b).css("background-color")=='rgb(0, 128, 0)') {
-    $(b).css("background-color",'rgb(128, 0, 0)');
-    window.PBSrandomRotation=false;
-} else {
-    $(b).css("background-color",'rgb(0, 128, 0)');
-    window.PBSrandomRotation=true;
-}
-Script
-
-
+Button,Start Bidding Tbl,%setBiddingTable%,width=35% backgroundColor=lightgreen
+Button,Start Teaching Tbl,%setTeachingTable%,width=38% backgroundColor=lightgreen
+Button,Deal Source,%reviewCurrentCode%,width=27% backgroundColor=lightgreen
 
 Script,reviewCurrentCode,setDealerCode("");
 
@@ -554,7 +580,8 @@ Import,MinorOpener
 Import,OneMinorTwoMinor
 Import,InvertedMinors
 Import,MinorGameOrSlam
-#Button,---
+Import,SplinterAfterMinor
+Button,---
 
 Button,Minor/Major Sequences,,width=100% backgroundColor=lightblue
 
@@ -630,6 +657,10 @@ Import,GameForce2C
 Import,Benjamin2D
 Import,GerberByResponder
 Import,GerberByOpener
+Button,---
+Button,---
+Import,LastTrain
+Import,LastTrain2
 
 Import,SolowayJumpShift
 #Button,---
@@ -740,6 +771,9 @@ Import,Overcalls
 Import,Snapdragon
 Import,SupportXbyAdvancer
 Button,---
+Import,MichaelsCuebid
+Import,MichaelsAndUnusual
+#Button,---
 Import,TooStrongForOvercall
 Import,TooStrongForOvercall4th
 Import,Balancing
@@ -832,6 +866,8 @@ Import,ResponsiveDouble
 Import,OppsTakeoutXWeXX
 Import,GibOcW4
 #Button,---
+Import,OppsMichaelsAndUnusual
+Button,---
 Import,OppsOvercall1NT
 Import,After1x1N
 Import,MitchellStayman
@@ -851,8 +887,10 @@ Import,OppsBidOverGF2C
 Import,GoodBad2N
 Import,ForcingPass
 Import,GibNtP2CBid
-Button,---
+#Button,---
 Import,OppsBalUnusualNT
+Import,MichaelsAfter1m
+Import,OppsMichaelsCuebid
 
 Button,Bidding with BBO Robots,,width=100% backgroundColor=lightblue
 Import,Drury
@@ -925,6 +963,27 @@ Button,---
 Import,scsMajorWith2ndSuit
 Import,scsMajor2SuitResp
 Import,scsStrongClub
+
+Button,Strong Club 16+,,width=100% backgroundColor=lightblue
+
+Import,scs16StrongClub54
+Import,scs16StrongClub55Plus
+Import,scs16StrongClub3Suit
+Import,scs16StrongClub3Suit57
+
+Import,scs16StrongClubAny04Resp
+Import,scs16StrongClubAny57Resp
+Import,scs16StrongClubAny8PlusResp
+Button,---
+Button,---
+Button,---
+
+Import,scs161or2C
+Button,---
+Button,---
+Button,---
+Import,scs16MajorWith2ndSuit
+Import,scs16Major2SuitResp
 
 Button,Beyond BBO Robots,,width=100% backgroundColor=lightblue
 Import,Notrump5431
