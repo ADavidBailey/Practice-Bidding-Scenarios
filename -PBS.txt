@@ -248,6 +248,26 @@ function delay(duration) {
 }
 //Script
 
+// Log PBS scenario selection for analytics
+Script,logPBS
+if (window._pbsScenario) {
+    window.currentPBSScenario = window._pbsScenario;
+    fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Client-Version': '1.0.0'
+        },
+        body: JSON.stringify({
+            scenario: window._pbsScenario,
+            user: whoAmI() || 'anonymous'
+        })
+    }).catch(function(){});
+    window._pbsScenario = undefined;
+}
+R='';
+Script
+
 
 For each individual doc file where the code is defined you should :
 - add BBOalert code to define the script and the button
