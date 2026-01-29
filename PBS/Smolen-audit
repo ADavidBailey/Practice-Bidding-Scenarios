@@ -1,5 +1,6 @@
 Script,Smolen
 window.currentPBSScenario = 'Smolen';
+console.log('PBS: Logging scenario selection for Smolen');
 fetch('https://bba-server.bridgebidding.ai/api/scenario/select', {
     method: 'POST',
     headers: {
@@ -10,7 +11,7 @@ fetch('https://bba-server.bridgebidding.ai/api/scenario/select', {
         scenario: 'Smolen',
         user: whoAmI() || 'anonymous'
     })
-}).catch(function(){});
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
 setDealerCode(`
 
 /*
