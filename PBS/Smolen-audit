@@ -1,6 +1,16 @@
 Script,Smolen
-window._pbsScenario = 'Smolen';
-%logPBS%
+window.currentPBSScenario = 'Smolen';
+fetch('https://bba-server.bridgebidding.ai/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'Smolen',
+        user: whoAmI() || 'anonymous'
+    })
+}).catch(function(){});
 setDealerCode(`
 
 /*
