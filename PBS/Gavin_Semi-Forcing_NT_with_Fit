@@ -23,8 +23,7 @@ MajorFit = (SpadeFit or HeartFit)
 NT = hcp(north)>14 and hcp(north)<18 and shape(north, any 4333 +any 4432 +any 5332)
 
 # North opens 1 H/S and South has a 3-card fit and 5-7 Total Points
-hcp(north)>11 and hcp(north)<20 and not NT and
-MajorFit  and tp>4 and tp<8
+hcp(north)>11 and hcp(north)<20 and not NT and MajorFit and tp>4 and tp<8
 
 `, "N", true);
 Script
