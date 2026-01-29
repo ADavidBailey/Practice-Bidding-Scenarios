@@ -100,6 +100,9 @@ tpEW = tpEast + tpWest
 ### End of Imported Script: TP
 # Defines tpSouth
 
+//s = spades(south)>4
+
+
 # Define South's good suits -- 4+ cards with KQT or better
 sGS = spades(south)>4   and top3(south,spades)>1   and top5(south,spades)>2  //and controls(south,spades)>0
 sGH = hearts(south)>4   and top3(south,hearts)>1   and top5(south,spades)>2  //and controls(south,hearts)>0
