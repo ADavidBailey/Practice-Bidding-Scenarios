@@ -39,15 +39,16 @@ from operations.bba import run_bba
 from operations.filter import run_filter
 from operations.filter_stats import run_filter_stats
 from operations.bidding_sheet import run_bidding_sheet
+from operations.title import run_title
 
 
 # Map operation names to functions
 OPERATIONS = {
     "dlr": run_dlr,
     "pbn": run_pbn,
+    "title": run_title,
     "rotate": run_rotate,
     "bba": run_bba,
-    "title": lambda scenario, verbose=True: True,  # Skip title (not implemented)
     "filter": run_filter,
     "filterStats": run_filter_stats,
     "biddingSheet": run_bidding_sheet,
@@ -188,8 +189,8 @@ def run_operations(scenario: str, operations: list, verbose: bool = True) -> boo
             success = False
             break  # Stop on first failure
 
-    # Print duration summary
-    if durations and verbose:
+    # Print duration summary (always shown, even in quiet mode)
+    if durations:
         total = sum(durations.values())
         print(f"\n  Duration summary:")
         for op, dur in durations.items():
@@ -245,16 +246,20 @@ Operations (in order):
 
     args = parser.parse_args()
 
+    verbose = not args.quiet
+
     # Check SSH connection unless skipped
     if not args.no_ssh_check:
-        print("Checking SSH connection to Windows VM...")
+        if verbose:
+            print("Checking SSH connection to Windows VM...")
         if not test_ssh_connection():
             print("\nSSH connection failed. Options:")
             print("  1. Ensure Windows VM is running")
             print("  2. Check SSH server is enabled on Windows")
             print("  3. Use --no-ssh-check to skip this test")
             sys.exit(1)
-        print("  SSH connection OK\n")
+        if verbose:
+            print("  SSH connection OK\n")
 
     # Get scenarios
     scenarios = get_scenarios(args.scenario_pattern)
@@ -268,35 +273,37 @@ Operations (in order):
         print(f"No valid operations specified: {args.operations}")
         sys.exit(1)
 
-    print(f"Scenarios: {', '.join(scenarios)}")
-    print(f"Operations: {', '.join(operations)}")
-    print()
+    if verbose:
+        print(f"Scenarios: {', '.join(scenarios)}")
+        print(f"Operations: {', '.join(operations)}")
+        print()
 
     # Run operations on each scenario
-    verbose = not args.quiet
     failed_scenarios = []
 
     for scenario in scenarios:
-        print(f"{'=' * 60}")
-        print(f"Processing: {scenario}")
-        print(f"{'=' * 60}")
+        if verbose:
+            print(f"{'=' * 60}")
+            print(f"Processing: {scenario}")
+            print(f"{'=' * 60}")
 
         if not run_operations(scenario, operations, verbose=verbose):
             failed_scenarios.append(scenario)
             print_error(f"\nFailed: {scenario} - continuing with next scenario")
-        else:
+        elif verbose:
             print(f"\nCompleted: {scenario}")
 
-        print()
+        if verbose:
+            print()
 
     # Summary
-    if not failed_scenarios:
-        print("All scenarios completed successfully!")
-    else:
+    if failed_scenarios:
         print_error(f"\n{len(failed_scenarios)} scenario(s) had errors:")
         for s in failed_scenarios:
             print_error(f"  - {s}")
         sys.exit(1)
+    elif verbose:
+        print("All scenarios completed successfully!")
 
 
 if __name__ == "__main__":

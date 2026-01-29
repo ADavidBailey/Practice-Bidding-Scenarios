@@ -22,13 +22,41 @@
           "match": "//.*$"
         },
         {
+          "name": "comment.line.hash.section.pbs",
+          "match": "(###+)\\s*(.*)$",
+          "captures": {
+            "1": { "name": "punctuation.definition.comment.pbs" },
+            "2": { "name": "entity.name.section.pbs" }
+          }
+        },
+        {
+          "name": "comment.line.hash.metadata.pbs",
+          "match": "(#)\\s*(Import|button-text|scenario-title|[a-zA-Z-]+)\\s+(.*)$",
+          "captures": {
+            "1": { "name": "punctuation.definition.comment.pbs" },
+            "2": { "name": "entity.name.tag.pbs" },
+            "3": { "name": "string.unquoted.pbs" }
+          }
+        },
+        {
           "name": "comment.line.hash.pbs",
           "match": "#.*$"
         },
         {
           "name": "comment.block.pbs",
           "begin": "/\\*",
-          "end": "\\*/"
+          "end": "\\*/",
+          "patterns": [
+            {
+              "name": "meta.directive.pbs",
+              "match": "(convention-card|auction-filter)(:)\\s*(.*)",
+              "captures": {
+                "1": { "name": "entity.name.tag.pbs" },
+                "2": { "name": "punctuation.separator.pbs" },
+                "3": { "name": "string.unquoted.pbs" }
+              }
+            }
+          ]
         }
       ]
     },

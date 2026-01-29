@@ -4,8 +4,12 @@ Supports two modes:
   - CLI mode (default): Uses bba-cli.exe via SSH directly
   - GUI mode: Uses BBA.exe with a watch folder approach (legacy)
 Then run oneSummary.py locally to create summary.
+
+After BBA completes, restores header comments and fixes Event tags
+that BBA strips or overwrites.
 """
 import os
+import re
 import subprocess
 import sys
 import time
@@ -16,6 +20,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from config import FOLDERS, MAC_TOOLS, DEFAULT_CC2, PROJECT_ROOT
 from ssh_runner import run_windows_command, mac_to_windows_path
 from utils.properties import get_convention_card
+from operations.title import get_title_from_pbs
 
 # Set to True to use legacy GUI-based BBA.exe with watcher, False for CLI mode
 USE_GUI_MODE = True
@@ -29,6 +34,74 @@ BBA_QUEUE = os.path.join(PROJECT_ROOT, "bba-queue")
 # Timeouts
 WATCHER_TIMEOUT = 5   # seconds to wait for .starting file before trying to start watcher
 BBA_TIMEOUT = 300     # seconds to wait for BBA completion (increased for CLI mode)
+
+
+def fix_event_tags(scenario: str, file_path: str, verbose: bool = True) -> bool:
+    """
+    Fix title metadata in a PBN file with the correct title from PBS.
+
+    BBA overwrites Event tags with Windows paths like "P:\\bba\\scenario".
+    This function:
+    - Adds/updates %HRTitleEvent header comment (used by pbn-to-pdf)
+    - Replaces all [Event "..."] tags with the proper title
+
+    Args:
+        scenario: Scenario name
+        file_path: Path to the PBN file to fix
+        verbose: Whether to print progress
+
+    Returns:
+        True if successful, False otherwise
+    """
+    title = get_title_from_pbs(scenario)
+
+    try:
+        with open(file_path, "r") as f:
+            lines = f.readlines()
+
+        # Update or add %HRTitleEvent in header
+        hr_title_line = f'%HRTitleEvent "{title}"\n'
+        hr_pattern = re.compile(r'^%HRTitleEvent\s')
+        found_hr_title = False
+        insert_pos = 0
+
+        for i, line in enumerate(lines):
+            if hr_pattern.match(line):
+                # Replace existing %HRTitleEvent
+                lines[i] = hr_title_line
+                found_hr_title = True
+                break
+            elif line.startswith('%'):
+                # Track last header comment position
+                insert_pos = i + 1
+            elif line.startswith('['):
+                # Reached first board, stop looking
+                break
+
+        if not found_hr_title:
+            # Insert %HRTitleEvent after other header comments
+            lines.insert(insert_pos, hr_title_line)
+
+        # Join lines back to content
+        content = ''.join(lines)
+
+        # Replace all [Event "..."] tags with the correct title
+        pattern = r'\[Event "[^"]*"\]'
+        replacement = f'[Event "{title}"]'
+        updated_content = re.sub(pattern, replacement, content)
+
+        with open(file_path, "w") as f:
+            f.write(updated_content)
+
+        if verbose:
+            count = len(re.findall(pattern, content))
+            print(f"  Fixed {count} Event tags with title: {title}")
+
+        return True
+
+    except Exception as e:
+        print(f"Error fixing Event tags: {e}")
+        return False
 
 
 def run_bba_cli(scenario: str, verbose: bool = True) -> bool:
@@ -104,6 +177,9 @@ def run_bba_cli(scenario: str, verbose: bool = True) -> bool:
     if not os.path.exists(bba_output):
         print(f"Error: BBA output was not created: {bba_output}")
         return False
+
+    # Fix Event tags with correct title from PBS
+    fix_event_tags(scenario, bba_output, verbose)
 
     # Run oneSummary.py locally
     return run_summary(scenario, verbose)
@@ -248,6 +324,9 @@ def run_bba_gui(scenario: str, verbose: bool = True) -> bool:
     if not os.path.exists(bba_output):
         print(f"Error: BBA output was not created: {bba_output}")
         return False
+
+    # Fix Event tags with correct title from PBS
+    fix_event_tags(scenario, bba_output, verbose)
 
     # Run oneSummary.py locally
     return run_summary(scenario, verbose)

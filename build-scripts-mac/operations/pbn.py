@@ -1,6 +1,7 @@
 """
 PBN operation: Generate PBN file from DLR using dealer (Mac or Windows).
 Then run oneComment.py locally to add comments.
+Finally, set correct Event tags using title from PBS file.
 """
 import os
 import re
@@ -13,6 +14,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from config import FOLDERS, MAC_TOOLS, WINDOWS_TOOLS, DEALER_SEED, DEALER_GENERATE, DEALER_PRODUCE, DEALER_PLATFORM
 from ssh_runner import run_windows_command, mac_to_windows_path
+from operations.title import run_title
 
 # ANSI color codes
 RED = '\033[91m'
@@ -247,11 +249,14 @@ def run_pbn(scenario: str, verbose: bool = True) -> bool:
 
     # Verify output was created
     pbn_path = os.path.join(FOLDERS["pbn"], f"{scenario}.pbn")
-    if os.path.exists(pbn_path):
-        return True
-    else:
+    if not os.path.exists(pbn_path):
         print_error(f"Error: PBN file was not created: {pbn_path}")
         return False
+
+    # Step 3: Set correct Event tags from PBS file
+    run_title(scenario, verbose)
+
+    return True
 
 
 if __name__ == "__main__":

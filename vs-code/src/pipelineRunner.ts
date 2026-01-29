@@ -110,7 +110,7 @@ async function runPipeline(scenario: string, operations: string): Promise<void> 
         activityLogger.logPipelineRun(scenario, operations);
     }
 
-    terminal.sendText(`cd "${workspaceFolder.uri.fsPath}" && python3 "${scriptPath}" "${scenario}" "${operations}"`);
+    terminal.sendText(`cd "${workspaceFolder.uri.fsPath}" && python3 "${scriptPath}" "${scenario}" "${operations}" -q`);
 }
 
 /**

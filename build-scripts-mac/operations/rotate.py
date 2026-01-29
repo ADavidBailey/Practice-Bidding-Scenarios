@@ -1,16 +1,16 @@
 """
 Rotate operation: Create rotated PBN and LIN files for 4-player practice.
-Uses SetDealerMulti.js on Windows via SSH.
+Uses bridge-wrangler rotate-deals and to-lin commands.
 """
 import os
 import shutil
+import subprocess
 import sys
 
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from config import FOLDERS, WINDOWS_TOOLS
-from ssh_runner import run_windows_command, mac_to_windows_path
+from config import FOLDERS, MAC_TOOLS
 
 
 def run_rotate(scenario: str, verbose: bool = True) -> bool:
@@ -28,7 +28,7 @@ def run_rotate(scenario: str, verbose: bool = True) -> bool:
         True if successful, False otherwise
     """
     if verbose:
-        print(f"--------- SetDealerMulti.js: Creating rotated files for {scenario}")
+        print(f"--------- bridge-wrangler: Creating rotated files for {scenario}")
 
     # Check that PBN file exists
     pbn_path = os.path.join(FOLDERS["pbn"], f"{scenario}.pbn")
@@ -36,64 +36,62 @@ def run_rotate(scenario: str, verbose: bool = True) -> bool:
         print(f"Error: PBN file not found: {pbn_path}")
         return False
 
-    # Windows paths
-    win_pbn = mac_to_windows_path(pbn_path)
-    # Remove .pbn extension for the base path
-    win_pbn_base = win_pbn[:-4]
+    bridge_wrangler = MAC_TOOLS["bridge_wrangler"]
 
     # Step 1: Create rotated PBN (NESW rotation)
-    # cscript S:\SetDealerMulti.js {input}.pbn NESW Dealer /noui
-    cmd1 = f'cscript {WINDOWS_TOOLS["set_dealer_multi_js"]} {win_pbn} NESW Dealer /noui'
-
-    try:
-        returncode, stdout, stderr = run_windows_command(cmd1, verbose=verbose)
-        if returncode != 0:
-            print(f"Error: SetDealerMulti.js (PBN) failed")
-            return False
-    except Exception as e:
-        print(f"Error running SetDealerMulti.js: {e}")
-        return False
-
-    # Step 2: Create rotated LIN
-    # cscript S:\SetDealerMulti.js {input}.pbn NESW Dealer NoPBN LIN /noui
-    cmd2 = f'cscript {WINDOWS_TOOLS["set_dealer_multi_js"]} {win_pbn} NESW Dealer NoPBN LIN /noui'
-
-    try:
-        returncode, stdout, stderr = run_windows_command(cmd2, verbose=verbose)
-        if returncode != 0:
-            print(f"Error: SetDealerMulti.js (LIN) failed")
-            return False
-    except Exception as e:
-        print(f"Error running SetDealerMulti.js: {e}")
-        return False
-
-    # Step 3: Move the rotated files to the correct folders
-    # The script creates files with " - NESW" suffix (space-hyphen-space) in the same folder
-    nesw_pbn = os.path.join(FOLDERS["pbn"], f"{scenario} - NESW.pbn")
-    nesw_lin = os.path.join(FOLDERS["pbn"], f"{scenario} - NESW.lin")
-
-    # Destination paths
+    # bridge-wrangler rotate-deals -i input.pbn -p NESW -o output.pbn
     dest_pbn = os.path.join(FOLDERS["pbn_rotated"], f"{scenario}.pbn")
+
+    cmd1 = [
+        bridge_wrangler, "rotate-deals",
+        "-i", pbn_path,
+        "-p", "NESW",
+        "-o", dest_pbn
+    ]
+
+    if verbose:
+        print(f"  Rotating PBN to NESW...")
+
+    try:
+        result = subprocess.run(cmd1, capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f"Error: bridge-wrangler rotate-deals (PBN) failed")
+            if result.stderr:
+                print(result.stderr)
+            return False
+    except Exception as e:
+        print(f"Error running bridge-wrangler rotate-deals: {e}")
+        return False
+
+    if verbose:
+        print(f"  Created: {dest_pbn}")
+
+    # Step 2: Create rotated LIN from the rotated PBN
+    # bridge-wrangler to-lin -i input.pbn -o output.lin
     dest_lin = os.path.join(FOLDERS["lin_rotated"], f"{scenario}.lin")
 
+    cmd2 = [
+        bridge_wrangler, "to-lin",
+        "-i", dest_pbn,
+        "-o", dest_lin
+    ]
+
+    if verbose:
+        print(f"  Converting to LIN...")
+
     try:
-        if os.path.exists(nesw_pbn):
-            shutil.move(nesw_pbn, dest_pbn)
-            if verbose:
-                print(f"  Moved to {dest_pbn}")
-        else:
-            print(f"Warning: Rotated PBN not found: {nesw_pbn}")
-
-        if os.path.exists(nesw_lin):
-            shutil.move(nesw_lin, dest_lin)
-            if verbose:
-                print(f"  Moved to {dest_lin}")
-        else:
-            print(f"Warning: Rotated LIN not found: {nesw_lin}")
-
+        result = subprocess.run(cmd2, capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f"Error: bridge-wrangler to-lin failed")
+            if result.stderr:
+                print(result.stderr)
+            return False
     except Exception as e:
-        print(f"Error moving rotated files: {e}")
+        print(f"Error running bridge-wrangler to-lin: {e}")
         return False
+
+    if verbose:
+        print(f"  Created: {dest_lin}")
 
     return True
 

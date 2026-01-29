@@ -1,27 +1,42 @@
 """
 Filter operation: Filter BBA file based on auction patterns.
-Uses Filter.js on Windows via SSH.
+Uses bridge-wrangler filter command.
 """
 import os
-import re
+import subprocess
 import sys
 
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from config import FOLDERS, WINDOWS_TOOLS
-from ssh_runner import run_windows_command, mac_to_windows_path
+from config import FOLDERS, MAC_TOOLS
 from utils.properties import get_auction_filter
 
 
-def normalize_filter_newlines(filter_expr: str) -> str:
+def normalize_filter_for_bridge_wrangler(filter_expr: str) -> str:
     """
-    Normalize newline escapes in filter expression.
-    Replace \\n and \n with \r?\n for regex matching.
+    Normalize filter expression for bridge-wrangler.
+
+    - Adds (?s) flag to enable dotall mode (. matches newlines)
+    - Converts escaped \\n sequences to actual newlines
+    - Converts \\r?\\n to just newlines (bridge-wrangler handles line endings)
+    - Converts single spaces to \\s+ to match variable whitespace in PBN files
     """
-    # Replace \\n with \n first, then \n with \r?\n
-    result = filter_expr.replace("\\\\n", "\\n")
-    result = result.replace("\\n", "\\r?\\n")
+    result = filter_expr
+
+    # Convert escaped newlines to actual newlines
+    # Handle both \\n and \n patterns
+    result = result.replace("\\r?\\n", "\n")
+    result = result.replace("\\n", "\n")
+
+    # Replace single spaces with \s+ to match variable whitespace in PBN files
+    # (PBN auctions have multiple spaces between bids like "1D    Pass  1S")
+    result = result.replace(" ", r"\s+")
+
+    # Add (?s) flag at the beginning for dotall mode
+    if not result.startswith("(?s)"):
+        result = "(?s)" + result
+
     return result
 
 
@@ -40,7 +55,7 @@ def run_filter(scenario: str, verbose: bool = True) -> bool:
         True if successful, False otherwise
     """
     if verbose:
-        print(f"--------- Filter.js: Filtering bba/{scenario}.pbn")
+        print(f"--------- bridge-wrangler filter: Filtering bba/{scenario}.pbn")
 
     # Check that BBA file exists
     bba_path = os.path.join(FOLDERS["bba"], f"{scenario}.pbn")
@@ -58,42 +73,37 @@ def run_filter(scenario: str, verbose: bool = True) -> bool:
     if verbose:
         print(f"  Filter: {filter_expr}")
 
-    # Normalize newlines in filter expression
-    filter_expr = normalize_filter_newlines(filter_expr)
+    # Normalize filter expression for bridge-wrangler
+    filter_expr = normalize_filter_for_bridge_wrangler(filter_expr)
 
-    # Build Windows paths
-    win_input = mac_to_windows_path(bba_path)
-    win_output_filtered = mac_to_windows_path(os.path.join(FOLDERS["bba_filtered"], f"{scenario}.pbn"))
-    win_output_inverse = mac_to_windows_path(os.path.join(FOLDERS["bba_filtered_out"], f"{scenario}.pbn"))
+    bridge_wrangler = MAC_TOOLS["bridge_wrangler"]
+    output_filtered = os.path.join(FOLDERS["bba_filtered"], f"{scenario}.pbn")
+    output_inverse = os.path.join(FOLDERS["bba_filtered_out"], f"{scenario}.pbn")
 
-    # Step 1: Filter matching hands
-    # cscript /nologo S:\Filter.js {input}.pbn {filter} {output}.pbn --PDF /noui
-    cmd1 = f'cscript /nologo {WINDOWS_TOOLS["filter_js"]} {win_input} "{filter_expr}" {win_output_filtered} --PDF /noui'
-
-    try:
-        returncode, stdout, stderr = run_windows_command(cmd1, verbose=verbose)
-        if returncode != 0:
-            print(f"Error: Filter.js failed")
-            if stderr:
-                print(stderr)
-            return False
-    except Exception as e:
-        print(f"Error running Filter.js: {e}")
-        return False
-
-    # Step 2: Filter non-matching hands (inverse)
-    cmd2 = f'cscript /nologo {WINDOWS_TOOLS["filter_js"]} {win_input} "{filter_expr}" {win_output_inverse} --INVERSE --PDF /noui'
+    # Run filter with both matched and not-matched outputs
+    # bridge-wrangler filter -i input.pbn -p "pattern" -m matched.pbn -n not-matched.pbn
+    cmd = [
+        bridge_wrangler, "filter",
+        "-i", bba_path,
+        "-p", filter_expr,
+        "-m", output_filtered,
+        "-n", output_inverse
+    ]
 
     try:
-        returncode, stdout, stderr = run_windows_command(cmd2, verbose=verbose)
-        if returncode != 0:
-            print(f"Error: Filter.js (inverse) failed")
-            if stderr:
-                print(stderr)
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f"Error: bridge-wrangler filter failed")
+            if result.stderr:
+                print(result.stderr)
             return False
     except Exception as e:
-        print(f"Error running Filter.js: {e}")
+        print(f"Error running bridge-wrangler filter: {e}")
         return False
+
+    if verbose:
+        print(f"  Created: {output_filtered}")
+        print(f"  Created: {output_inverse}")
 
     return True
 
