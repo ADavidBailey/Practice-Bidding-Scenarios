@@ -148,7 +148,7 @@
       "editor/title": [
         {
           "submenu": "pbs.pipeline",
-          "when": "resourcePath =~ /\\/([Pp][Bb][Ss]|dlr|pbn|pbn-rotated-for-4-players|bba|bba-filtered|bba-filtered-out|bba-summary|bidding-sheets|lin|lin-rotated-for-4-players)\\/[^/]+$/",
+          "when": "resourcePath =~ /\\/([Pp][Bb][Ss]|btn|dlr|pbn|pbn-rotated-for-4-players|bba|bba-filtered|bba-filtered-out|bba-summary|bidding-sheets|lin|lin-rotated-for-4-players)\\/[^/]+$/",
           "group": "navigation"
         }
       ],
@@ -230,6 +230,13 @@
         "configuration": "./language-configuration.json"
       },
       {
+        "id": "btn",
+        "aliases": ["BTN", "Button"],
+        "extensions": [".btn"],
+        "filenamePatterns": ["**/btn/*"],
+        "configuration": "./language-configuration.json"
+      },
+      {
         "id": "dlr",
         "aliases": ["DLR", "Dealer"],
         "extensions": [".dlr"],
@@ -247,6 +254,11 @@
         "language": "pbs",
         "scopeName": "source.pbs",
         "path": "./syntaxes/pbs.tmLanguage.json"
+      },
+      {
+        "language": "btn",
+        "scopeName": "source.btn",
+        "path": "./syntaxes/btn.tmLanguage.json"
       },
       {
         "language": "dlr",
