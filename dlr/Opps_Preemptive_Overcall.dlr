@@ -1,4 +1,4 @@
-# button-text: Opps Preempt Overcall
+# button-text: Preempt Overcall
 # scenario-title: Opponents Preemptive Overcall
 # Opps_Preemptive_Overcall
 dealer north
@@ -14,10 +14,10 @@ PHE = hearts(east)>5 and top4(east,hearts)==2
 PDE = diamonds(east)>6 and top4(east,diamonds)==2
 PCE = clubs(east)>6 and top4(east,clubs)==2
 
-hcp(north)>11 and hcp(north)<15 and (hcp(north) + hcp(south)) >19 and
-# spades(north)<5 and hearts(north)<5 and 
-hcp(east)>5 and hcp(east)<9 and
-(PCE or PDE or PHE or PSE)
+# spades(north)<5 and hearts(north)<5 and
+nOpens = hcp(north)>11 and hcp(north)<15 and (hcp(north) + hcp(south)) >19
+ePreempts = hcp(east)>5 and hcp(east)<9 and (PCE or PDE or PHE or PSE)
+nOpens and ePreempts
 
 
 action printpbn
