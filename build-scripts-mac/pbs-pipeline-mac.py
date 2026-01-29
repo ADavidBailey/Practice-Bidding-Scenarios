@@ -39,7 +39,6 @@ from operations.bba import run_bba
 from operations.filter import run_filter
 from operations.filter_stats import run_filter_stats
 from operations.bidding_sheet import run_bidding_sheet
-from operations.title import run_title
 from operations.btn_to_pbs import run_btn_to_pbs
 
 
@@ -47,14 +46,13 @@ from operations.btn_to_pbs import run_btn_to_pbs
 OPERATIONS = {
     "dlr": run_dlr,
     "pbn": run_pbn,
-    "title": run_title,
     "rotate": run_rotate,
     "bba": run_bba,
     "filter": run_filter,
     "filterStats": run_filter_stats,
     "biddingSheet": run_bidding_sheet,
     # Standalone operations (not in default pipeline)
-    "btnToPbs": run_btn_to_pbs,
+    "pbs": run_btn_to_pbs,
 }
 
 # Create case-insensitive lookup: lowercase -> canonical name
@@ -221,13 +219,12 @@ Operations (in order):
     pbn         - Generate PBN from DLR (Windows: dealer.exe)
     rotate      - Create rotated files for 4-player (Windows: SetDealerMulti.js)
     bba         - Generate BBA with bidding (Windows: BBA.exe)
-    title       - Set title (skipped)
     filter      - Filter by auction pattern (Windows: Filter.js)
     filterStats - Show filter statistics
     biddingSheet - Generate bidding sheets PDF
 
 Standalone operations (not in "*"):
-    btnToPbs    - Generate PBS file from BTN file (outputs to pbs-test/)
+    pbs         - Generate PBS file from BTN file (outputs to pbs-test/)
         """,
     )
 
