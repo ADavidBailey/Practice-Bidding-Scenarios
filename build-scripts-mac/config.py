@@ -65,7 +65,9 @@ DRIVE_MAPPINGS = {
 
 # Folder structure within the project
 FOLDERS = {
+    "btn": os.path.join(PROJECT_ROOT, "btn"),
     "pbs": os.path.join(PROJECT_ROOT, "PBS"),
+    "pbs_test": os.path.join(PROJECT_ROOT, "pbs-test"),
     "dlr": os.path.join(PROJECT_ROOT, "dlr"),
     "pbn": os.path.join(PROJECT_ROOT, "pbn"),
     "pbn_rotated": os.path.join(PROJECT_ROOT, "pbn-rotated-for-4-players"),

@@ -40,6 +40,7 @@ from operations.filter import run_filter
 from operations.filter_stats import run_filter_stats
 from operations.bidding_sheet import run_bidding_sheet
 from operations.title import run_title
+from operations.btn_to_pbs import run_btn_to_pbs
 
 
 # Map operation names to functions
@@ -52,6 +53,8 @@ OPERATIONS = {
     "filter": run_filter,
     "filterStats": run_filter_stats,
     "biddingSheet": run_bidding_sheet,
+    # Standalone operations (not in default pipeline)
+    "btnToPbs": run_btn_to_pbs,
 }
 
 # Create case-insensitive lookup: lowercase -> canonical name
