@@ -33,7 +33,7 @@ def run_rotate(scenario: str, verbose: bool = True) -> bool:
     # Check that PBN file exists
     pbn_path = os.path.join(FOLDERS["pbn"], f"{scenario}.pbn")
     if not os.path.exists(pbn_path):
-        print(f"Error: PBN file not found: {pbn_path}")
+        print(f"Error: rotate: PBN file not found: {pbn_path}")
         return False
 
     bridge_wrangler = MAC_TOOLS["bridge_wrangler"]
@@ -55,12 +55,12 @@ def run_rotate(scenario: str, verbose: bool = True) -> bool:
     try:
         result = subprocess.run(cmd1, capture_output=True, text=True)
         if result.returncode != 0:
-            print(f"Error: bridge-wrangler rotate-deals (PBN) failed")
+            print(f"Error: rotate: bridge-wrangler rotate-deals failed")
             if result.stderr:
-                print(result.stderr)
+                print(f"  {result.stderr.strip()}")
             return False
     except Exception as e:
-        print(f"Error running bridge-wrangler rotate-deals: {e}")
+        print(f"Error: rotate: bridge-wrangler rotate-deals: {e}")
         return False
 
     if verbose:
@@ -82,12 +82,12 @@ def run_rotate(scenario: str, verbose: bool = True) -> bool:
     try:
         result = subprocess.run(cmd2, capture_output=True, text=True)
         if result.returncode != 0:
-            print(f"Error: bridge-wrangler to-lin failed")
+            print(f"Error: rotate: bridge-wrangler to-lin failed")
             if result.stderr:
-                print(result.stderr)
+                print(f"  {result.stderr.strip()}")
             return False
     except Exception as e:
-        print(f"Error running bridge-wrangler to-lin: {e}")
+        print(f"Error: rotate: bridge-wrangler to-lin: {e}")
         return False
 
     if verbose:
