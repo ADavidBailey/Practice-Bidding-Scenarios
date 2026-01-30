@@ -1,14 +1,16 @@
 # Button Layout Configuration
 # Format:
-#   [Major] Title           - Major header (LemonChiffon)
+#   [Major] Title           - Major header (LemonChiffon background)
 #   [Section] Title         - Section header (lightblue, collapsible)
 #   [Action] Text|script|width - Action button (lightgreen)
 #   ---                     - Separator row
-#   file1, file2, ...       - Button row (BTN filenames without .btn)
+#   file1, file2            - Button row (2 buttons at 50% each - default)
+#   file:38%                - Button with explicit width
+#   file:12%:blue           - Button with width and color override
 #   # comment               - Comment line
 #
-# Each line of button names represents a visual row in the BBO panel.
-# Group related scenarios together (typically 2-5 per row).
+# BBOalert assumes 2 buttons per row at 50% width each.
+# Rows should sum to ~100% width.
 
 [Major] Bidding Scenarios (click headers to open/close)
 [Action] Start Bidding Tbl|%setBiddingTable%|35
@@ -16,61 +18,79 @@
 [Action] Deal Source|%reviewCurrentCode%|27
 
 [Section] Minor Suit Sequences
-Minor_Suit_Opener, 1m_1x_2m, Inverted_Minors, Minor_Game_Or_Slam, Splinters_after_Minor
+Minor_Suit_Opener, 1m_1x_2m
+Inverted_Minors, Minor_Game_Or_Slam
+Splinters_after_Minor
 ---
 
 [Section] Minor/Major Sequences
-GIB_1C-P-Resp, Resp_to_1C, Fourth_Suit_Forcing, Fourth_Bid_Inviting, New_Minor_Forcing
+GIB_1C-P-Resp, Resp_to_1C
+Fourth_Suit_Forcing, Fourth_Bid_Inviting
+New_Minor_Forcing
 ---
 After_2_Passes, After_3_Passes
-Open_In_Fourth_Seat, Open_In_Fourth_13, Open_In_Fourth_14, Open_In_Fourth_15, Open_In_Fourth_16
-XYZ, Two-Way_New_Minor_Forcing_aka_xyNT, Weak_Jump_Shift, 3_Under_Invitational_Jump
-Reverse_By_Opener, Reverse_By_Responder, Reverse_After_Two_Over_One
+Open_In_Fourth_Seat, Open_In_Fourth_13:12%:blue, Open_In_Fourth_14:12%:blue, Open_In_Fourth_15:13%:blue, Open_In_Fourth_16:13%:blue
+XYZ, Two-Way_New_Minor_Forcing_aka_xyNT
+Weak_Jump_Shift, 3_Under_Invitational_Jump
+Reverse_By_Opener, Reverse_By_Responder
+Reverse_After_Two_Over_One
 ---
 Notrump_18-19, Splinters_By_Opener
-Misfit, Misfit_06-10, Misfit_11-12, Misfit_13-Plus
-Preemptive_Raise, Goulash, Transfer_Advances
+Misfit, Misfit_06-10:17%:blue, Misfit_11-12:17%:blue, Misfit_13-Plus:16%:blue
+Preemptive_Raise, Goulash
+Transfer_Advances
 
 [Section] Major Suit Sequences
-Major_Opener, Major_Suit_Fit, Exclusion_After_1M
+Major_Opener, Major_Suit_Fit
+Exclusion_After_1M
 ---
 Forcing_NT
 ---
 Grand_Slam_Force, Slam_After_Major_Fit
-Impossible_2S, After_1M_2M, Flannery
+Impossible_2S, After_1M_2M
+Flannery
 ---
 Spiral_Raise, Spiral_Raises_with_3
-Two-Way_Game_Try, Bergen_Raises, Xfer_after_1M_X, Drury
+Two-Way_Game_Try, Bergen_Raises
+Xfer_after_1M_X, Drury
 
 [Section] Game Forcing Sequences
 Two_Over_One, Serious
-Jacoby_2N, Jacoby_2N_Leveled, Jacoby_2N_4x_void, Jacoby_2N_4x_void_Leveled
+Jacoby_2N:38%, Jacoby_2N_Leveled:12%:blue
+Jacoby_2N_4x_void:38%, Jacoby_2N_4x_void_Leveled:12%:blue
 Splinters
 ---
-Game_Forcing_2C, Benjamin_2D, Gerber_By_Responder, Gerber_By_Opener
+Game_Forcing_2C, Benjamin_2D
+Gerber_By_Responder, Gerber_By_Opener
 ---
 ---
 Last_Train_Game_Try, Last_Train_GT2
-Soloway_Jump_Shift
-Soloway_Jump_Shift_Type-1, Soloway_Jump_Shift_Type-2, Soloway_Jump_Shift_Type-3, Soloway_Jump_Shift_Type-4
+Soloway_Jump_Shift, Soloway_Jump_Shift_Type-1:13%:blue, Soloway_Jump_Shift_Type-2:12%:blue, Soloway_Jump_Shift_Type-3:13%:blue, Soloway_Jump_Shift_Type-4:12%:blue
 
 [Section] Notrump Sequences
-GIB_1N, GIB_1N5422, GIB_1N-P-2C
+GIB_1N, GIB_1N5422
+GIB_1N-P-2C
 ---
-Jacoby_Transfer, Jacoby_Super-Accept, Texas_Transfer, Texas_or_Jacoby
-Minor_Suit_Stayman, Minor_Suit_Transfer, MST_or_MSS
+Jacoby_Transfer, Jacoby_Super-Accept
+Texas_Transfer, Texas_or_Jacoby
+Minor_Suit_Stayman, Minor_Suit_Transfer
+MST_or_MSS
 ---
-Smolen, NT_Splinter, Runout_after_1N_X
+Smolen, NT_Splinter
+Runout_after_1N_X
 ---
 ---
 ---
-1N, 1N_with_Singleton, DropDead_Crawling
+1N, 1N_with_Singleton
+DropDead_Crawling
 Size_Asking_Minor_Suit_Stayman, Smolen_Invitational
 1N_5M_and_6m
 ---
 ---
-Grand_Slam_Invite, Slam_after_NT, Slam_after_Stayman, Slam_after_Transfer
-Slam_after_Stayman_or_Jacoby_w30plus, Slam_after_Stayman_or_Jacoby_w31plus, Exclusion_After_Sta_Jac
+Grand_Slam_Invite, Slam_after_NT
+Slam_after_Stayman, Slam_after_Transfer
+Slam_after_Stayman_or_Jacoby_w30plus, Slam_after_Stayman_or_Jacoby_w31plus
+Exclusion_After_Sta_Jac
 ---
 ---
 ---
@@ -80,55 +100,68 @@ Notrump_18-19
 ---
 2N
 2N_and_3C_Response
-2N_Smolen, 2N_Puppet, 2N_and_Balanced, 2N_and_Transfers
-2N_and_MSS, 2N_and_1_Minor, Two_NT_in_Fourth_Seat
+2N_Smolen, 2N_Puppet
+2N_and_Balanced, 2N_and_Transfers
+2N_and_MSS, 2N_and_1_Minor
+Two_NT_in_Fourth_Seat
 ---
 ---
 ---
 3N
 
 [Section] Preempts
-Weak_2_Bids, Weak_2_Bids_Leveled, Weak_2_Bids_Lax, Weak_2_Bids_Lax_Leveled
+Weak_2_Bids:38%, Weak_2_Bids_Leveled:12%:blue
+Weak_2_Bids_Lax:38%, Weak_2_Bids_Lax_Leveled:12%:blue
 Muiderberg_Two_Bids
 ---
 Opps_Weak_Two, McCabe_After_Weak_2
-Multi_2D, Opps_Multi_2D, Preempts, Opps_Preempt
+Multi_2D, Opps_Multi_2D
+Preempts, Opps_Preempt
 Preempt_Keycard, Slam_after_Preempt
 Gambling_3N, Opps_Gambling_3N
 3N_over_RHO_3x, 3N_over_LHO_3x
 
 [Section] We Compete in Their Auctions
-Overcalls, Snapdragon_Double, SupportX_by_Advancer
+Overcalls, Snapdragon_Double
+SupportX_by_Advancer
 ---
 Michaels_Cuebid, Michaels_and_Unusual
-Too_Strong_for_Overcall, Too_Strong_for_Overcall4th, Balancing
+Too_Strong_for_Overcall, Too_Strong_for_Overcall4th
+Balancing
 ---
-OBAR_BIDS, OBAR_BIDS11, Scrambling_2NT, GIB_Sandwich_NT_BPH
+OBAR_BIDS, OBAR_BIDS11
+Scrambling_2NT, GIB_Sandwich_NT_BPH
 ---
 After_Partner_Overcalls, Jump_Overcalls
-Jump_Cuebid_Weak, Jump_Cuebid_Strong, McCabe_after_WJO, Game_Overcalls
+Jump_Cuebid_Weak, Jump_Cuebid_Strong
+McCabe_after_WJO, Game_Overcalls
 ---
 ---
 We_Overcall_1N
 We_Overcall_1N_then_Gerber, We_Overcall_NT_then_Stayman
 We_Overcall_NT_then_Jacoby, We_Overcall_NT_then_Smolen
-We_Overcall_NT_then_Texas, We_Overcall_NT_then_MSS, We_Overcall_NT_then_MST
+We_Overcall_NT_then_Texas, We_Overcall_NT_then_MSS
+We_Overcall_NT_then_MST
 ---
 ---
 We_Overcall_Their_2C
 ---
-Takeout_Double, Opp_Redoubles, Double_Showing_2_Suits, Double_by_Advancer
+Takeout_Double, Opp_Redoubles
+Double_Showing_2_Suits, Double_by_Advancer
 Trap_Pass_Opener, Trap_Pass_Opener_Maybe
 W2_X_XX, Preempt_X_XX
 Two-Suited_Overcalls, Leaping_Michaels
 Non_Leaping_Michaels_After_3-Bid, Non_Leaping_Michaels_After_2-Bid
 Power_Double_Balanced, Power_Double_Unbalanced
-Lebensohl_vs_Opps_W2_Dir, Lebensohl_vs_Opps_W2_Bal, Lebensohl_vs_Opps_W2_Bal_or_Dir
+Lebensohl_vs_Opps_W2_Dir, Lebensohl_vs_Opps_W2_Bal
+Lebensohl_vs_Opps_W2_Bal_or_Dir
 Better_Minor_Lebensohl
 ---
 ---
-Cappelletti, Opps_Open_1N_15-17, Multi_Landy
-Meckwell, DONT, Suction
+Cappelletti, Opps_Open_1N_15-17
+Multi_Landy
+Meckwell, DONT
+Suction
 ---
 ---
 Rule_of_2, Mixed_Raise_In_Comp
@@ -136,35 +169,44 @@ Rule_of_2, Mixed_Raise_In_Comp
 We_X_Opps_Weak_2, We_X_Opps_Preempt
 
 [Section] They Compete in Our Auctions
-Support_Double, Negative_Double, Double_double, Maximal_Double
+Support_Double, Negative_Double
+Double_double, Maximal_Double
 After_Opp_Overcalls
 ---
 Trap_Pass, Trap_Pass_Maybe
 Dealing_with_Overcalls_Weak, Dealing_with_Ovecalls_Strong
 Opps_Takeout_X, Xfer_after_1M_X
-Equal_Level_Conversion, Responsive_Double, Opps_Takeout_X_We_XX
+Equal_Level_Conversion, Responsive_Double
+Opps_Takeout_X_We_XX
 GIB_Overcall_with_4
 Opps_Michaels_and_Unusual
 ---
-Opps_Overcall_1NT, After_1x_1N, Mitchell_Stayman
+Opps_Overcall_1NT, After_1x_1N
+Mitchell_Stayman
 Opps_2-Suited_Overcalls
 Bergen_Thrump_X_after_Preempt, Tislevoll_after_Opps_Preempt
 Opps_Preemptive_Overcall, Going_for_Blood
 Jordan_2N
-Opps_Double_1_NT, Exit_Transfers, Opps_Double_Stayman
+Opps_Double_1_NT, Exit_Transfers
+Opps_Double_Stayman
 Opps_Double_Jacoby, Opps_Overcall_Stayman_or_Jacoby
 Lebensohl
-Opps_Bid_Over_GF_2C, Good_Bad_2N, Forcing_Pass
+Opps_Bid_Over_GF_2C, Good_Bad_2N
+Forcing_Pass
 GIB_1N-P-2C-BID
-Opps_Bal_Unusual_2N, Michaels_after_1m, Opps_Michaels_Cuebid
+Opps_Bal_Unusual_2N, Michaels_after_1m
+Opps_Michaels_Cuebid
 
 [Section] Bidding with BBO Robots
-Drury, Two-Way_Game_Try, 3_Under_Invitational_Jump
+Drury, Two-Way_Game_Try
+3_Under_Invitational_Jump
 Soloway_Jump_Shift, Robot_Free_Bid
 ---
-Minor_Suit_Stayman, Minor_Suit_Transfer, NT_Splinter
+Minor_Suit_Stayman, Minor_Suit_Transfer
+NT_Splinter
 ---
-Lebensohl, Lebensohl_vs_Opps_W2_Bal_or_Dir, Mixed_Raise_In_Comp
+Lebensohl, Lebensohl_vs_Opps_W2_Bal_or_Dir
+Mixed_Raise_In_Comp
 ---
 Power_Double_Balanced, Power_Double_Unbalanced
 
@@ -172,12 +214,15 @@ Power_Double_Balanced, Power_Double_Unbalanced
 
 [Section] Gavin's Major Suit Response Structure
 Gavin_Semi-Forcing_NT_with_Fit, Gavin_Semi-Constructive_Raise
-Gavin_3-Card_Limit_Raise, Gavin_Mixed_Raise, Gavin_4-Card_Limit_Raise
-Gavin_Weak_Splinter, Gavin_Strong_Splinter, Gavin_3_Under_Invitational_Jump
+Gavin_3-Card_Limit_Raise, Gavin_Mixed_Raise
+Gavin_4-Card_Limit_Raise
+Gavin_Weak_Splinter, Gavin_Strong_Splinter
+Gavin_3_Under_Invitational_Jump
 Gavin_Passed_Hand_Response_Structure
 
 [Section] Gavin's Transfer After 2N Rebid
-Gavin_Transfers_after_2N_Rebid_Bal, Gavin_Transfers_after_2N_Rebid_Unb, Gavin_Transfers_after_2N_Rebid_Weak
+Gavin_Transfers_after_2N_Rebid_Bal, Gavin_Transfers_after_2N_Rebid_Unb
+Gavin_Transfers_after_2N_Rebid_Weak
 
 [Section] Gavin's Power Doubles
 Power_Double_Balanced, Power_Double_Unbalanced
@@ -187,17 +232,24 @@ Minor_Suit_Opener_Balanced_Response, Minor_Suit_Opener_Mixed_Raise
 Minor_Suit_Opener_Inv_Raise, Minor_Suit_Opener_Resp_Structure
 
 [Section] Strong Club
-Weak_NT_09-12, Weak_NT_09-15, Weak_NT_10-12, Weak_NT_10-13, Weak_NT_11-16
+Weak_NT_09-12, Weak_NT_09-15
+Weak_NT_10-12, Weak_NT_10-13
+Weak_NT_11-16
 ---
 Weak_NT_13-15, Weak_NT_14-15
-SCS_1C_54_Resp, SCS_1C_55_Resp, SCS_1C_3-Suit_Resp, SCS_1C_3-Suit_Resp_5-7
-SCS_1C_any_0-4_Resp, SCS_1C_any_5-7_Resp, SCS_1C_any_8plus_Resp
+SCS_1C_54_Resp, SCS_1C_55_Resp
+SCS_1C_3-Suit_Resp, SCS_1C_3-Suit_Resp_5-7
+SCS_1C_any_0-4_Resp, SCS_1C_any_5-7_Resp
+SCS_1C_any_8plus_Resp
 ---
-SCS_Major_with_2nd_Suit, SCS_Major_Open_2-Suit_Resp, SCS_Two_Clubs
+SCS_Major_with_2nd_Suit, SCS_Major_Open_2-Suit_Resp
+SCS_Two_Clubs
 
 [Section] Strong Club 16+
-SCS16_1C_54_Resp, SCS16_1C_55_Resp, SCS16_1C_3-Suit_Resp, SCS16_1C_3-Suit_Resp_5-7
-SCS16_1C_any_0-4_Resp, SCS16_1C_any_5-7_Resp, SCS16_1C_any_8plus_Resp
+SCS16_1C_54_Resp, SCS16_1C_55_Resp
+SCS16_1C_3-Suit_Resp, SCS16_1C_3-Suit_Resp_5-7
+SCS16_1C_any_0-4_Resp, SCS16_1C_any_5-7_Resp
+SCS16_1C_any_8plus_Resp
 ---
 ---
 ---
@@ -210,12 +262,14 @@ SCS16_Major_with_2nd_Suit, SCS16_Major_Open_2-Suit_Resp
 [Section] Beyond BBO Robots
 5431_After_NT, 1m-1_2_or_3_NT
 Gazzilli, Transfer_Walsh
-Ned_Weak_Two, Ned_Weak_Two_Leveled, Ned_2S, Ned_3-Level_Resp_to_1N
+Ned_Weak_Two, Ned_Weak_Two_Leveled
+Ned_2S, Ned_3-Level_Resp_to_1N
 Namyats
 ---
 Kokish_Relay, Losing_Trick_Count
 Responsive_Double, Negative_Free_Bid
 Vics_2C_Relay, Vics_Bal_Resp_to_1m
-Any_5422_with_15-17, Mini-Maxi_Roman_2D, Spear, Reverse_Flannery
+Any_5422_with_15-17, Mini-Maxi_Roman_2D
+Spear, Reverse_Flannery
 
 [Major] -- Facebook: Practice Bidding Scenarios --

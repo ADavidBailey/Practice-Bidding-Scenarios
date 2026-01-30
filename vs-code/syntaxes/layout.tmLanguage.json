@@ -69,10 +69,27 @@
       "patterns": [
         {
           "name": "meta.button-row.layout",
-          "match": "^([A-Za-z0-9_-]+(?:\\s*,\\s*[A-Za-z0-9_-]+)*)$",
-          "captures": {
-            "1": { "name": "entity.name.function.scenario.layout" }
-          }
+          "begin": "^(?=[A-Za-z0-9_-])",
+          "end": "$",
+          "patterns": [
+            {
+              "name": "meta.button.styled.layout",
+              "match": "([A-Za-z0-9_-]+):(\\d+(?:\\.\\d+)?%)(?::(\\w+))?",
+              "captures": {
+                "1": { "name": "entity.name.function.scenario.layout" },
+                "2": { "name": "constant.numeric.width.layout" },
+                "3": { "name": "constant.other.color.layout" }
+              }
+            },
+            {
+              "name": "entity.name.function.scenario.layout",
+              "match": "[A-Za-z0-9_-]+"
+            },
+            {
+              "name": "punctuation.separator.comma.layout",
+              "match": ","
+            }
+          ]
         }
       ]
     }
