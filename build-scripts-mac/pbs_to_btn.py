@@ -138,6 +138,8 @@ def generate_btn(parsed: dict) -> str:
     lines.append("# bba-works: true")
     if parsed['auction_filter']:
         lines.append(f"# auction-filter: {parsed['auction_filter']}")
+    if parsed['convention_card']:
+        lines.append(f"# convention-card: {parsed['convention_card']}")
 
     lines.append("")
 

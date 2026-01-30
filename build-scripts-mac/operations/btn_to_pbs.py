@@ -33,12 +33,13 @@ def parse_btn_file(btn_path: str) -> dict:
         'gib_works': True,
         'bba_works': True,
         'auction_filter': None,
+        'convention_card': None,
         'chat': None,
         'dealer_code': None,
     }
 
     # Parse single-line metadata: # key: value
-    metadata_pattern = r'^#\s*(alias|button-text|dealer-position|gib-works|bba-works|auction-filter):\s*(.*)$'
+    metadata_pattern = r'^#\s*(alias|button-text|dealer-position|gib-works|bba-works|auction-filter|convention-card):\s*(.*)$'
     for match in re.finditer(metadata_pattern, content, re.MULTILINE):
         key = match.group(1).lower().replace('-', '_')
         value = match.group(2).strip()
@@ -150,11 +151,14 @@ def generate_pbs(parsed: dict, scenario_filename: str) -> str:
     lines.append(generate_logging_code(alias, scenario_filename))
     lines.append("setDealerCode(`")
 
-    # Add auction filter if present (as block comment)
-    if parsed['auction_filter']:
+    # Add auction filter and convention card if present (as block comment)
+    if parsed['auction_filter'] or parsed['convention_card']:
         lines.append("")
         lines.append("/*")
-        lines.append(f"auction-filter: {parsed['auction_filter']}")
+        if parsed['convention_card']:
+            lines.append(f"convention-card: {parsed['convention_card']}")
+        if parsed['auction_filter']:
+            lines.append(f"auction-filter: {parsed['auction_filter']}")
         lines.append("*/")
 
     # Add dealer code
