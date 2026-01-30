@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from config import PROJECT_ROOT
 
 # GitHub base URL for PBS files
-GITHUB_BASE = "https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/PBS"
+GITHUB_BASE = "https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/pbs-test"
 
 
 def parse_btn_metadata(btn_path):
@@ -184,6 +184,9 @@ def generate_pbs(layout_path, btn_metadata, output_path):
                 # Button row
                 buttons = parse_layout_line(stripped, btn_metadata)
                 for btn in buttons:
+                    # Skip separators
+                    if btn['name'] == '---':
+                        continue
                     if btn['name'] not in [s['name'] for s in scenarios]:
                         scenarios.append(btn)
                 layout_items.append({'type': 'buttons', 'buttons': buttons})
@@ -198,7 +201,7 @@ def generate_pbs(layout_path, btn_metadata, output_path):
     for scenario in scenarios:
         alias = scenario['alias']
         name = scenario['name']
-        import_lines.append(f"Import,{alias},{GITHUB_BASE}/{name}")
+        import_lines.append(f"Import,{alias},{GITHUB_BASE}/{name}.pbs")
 
     # Generate button section
     button_lines = []
