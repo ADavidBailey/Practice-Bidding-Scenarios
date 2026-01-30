@@ -1,0 +1,30 @@
+Script,TwoN4thSeat
+setDealerCode(`
+
+# convention-card:
+# auction-filter: Auction.....\\nPass.Pass.Pass.2NT
+
+# Open In Fourth Seat
+dealer west
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Defines calmOpps
+
+# North passes
+nPasses = hcp(north)<12 and shape(north,xxxx-any 7xxx-any 6xxx-any 55xx)
+
+# South opens 2NT
+s2N = (hcp(south)>19 and hcp(south)<22) and shape(south,any 5422+any 5332+any 4432+any 4333)
+
+# Now do it
+calmOpps and nPasses and s2N
+
+produce 500
+action
+average "south 2N" s2N,
+
+`,"W",true)
+Script
+Button,2NT in 4th Seat,\n\
+--- 2N in 4th Seat shows 20-21 HCP.\n\
+%TwoN4thSeat%

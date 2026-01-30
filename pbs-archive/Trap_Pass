@@ -1,0 +1,88 @@
+Script,TrapPass
+setDealerCode(`
+
+# auction-filter: Auction.....\\n1[CDHS] [1-4][CDHS] 
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# Defines oneClub, oneDiamond, oneHeart, oneSpade, s, h, d, c
+
+dealer south
+
+# North does not have a fit with South (avoid raise) and North is short in West's suit
+# and West is NOT short in North's suit (avoid X)
+s1S = oneSpade   and spades(north)<3   and spades(west)>2
+s1H = oneHeart   and hearts(north)<3   and hearts(west)>2
+s1D = oneDiamond and diamonds(north)<3 and diamonds(west)>2
+s1C = oneClub    and clubs(north)<3    and clubs(west)>2
+sOpens = (s1S or s1H or s1D or s1C) and shape(south,any 5431 any 5440) and hcp(south)>11 and hcp(south)<15
+
+# Calculate South's Rank
+sRS = s1S ? 4 : 0
+sRH = s1H ? 3 : 0
+sRD = s1D ? 2 : 0
+sRC = s1C ? 1 : 0
+southRank = sRS+sRH+sRD+sRC   // all except one are zero
+
+# Determine West's longest suit
+sw = spades(west)
+hw = hearts(west)
+dw = diamonds(west)
+cw = clubs(west)
+wS = sw>=hw and sw>=dw and sw>=cw
+wH = not wS and hw>=dw and hw>=cw
+wD = not wS and not wH and dw>=cw
+wC = not wS and not wH and not wD
+
+# Calculate West's Rank
+wRS = wS ? 4 : 0
+wRH = wH ? 3 : 0
+wRD = wD ? 2 : 0
+wRC = wC ? 1 : 0
+westRank = wRS+wRH+wRD+wRC   // all except one are zero
+
+rankOK = westRank<southRank  // force a 2-level overcall
+
+# West has a good suit, North has a stack, and South has a take-out double
+w1S = wS and top3(west,spades)==2   and spades(north)==5   and top5(north,spades)==3
+w1H = wH and top3(west,hearts)==2   and hearts(north)==5   and top5(north,hearts)==3
+w1D = wD and top3(west,diamonds)==2 and diamonds(north)==5 and top5(north,diamonds)==3
+w1C = wC and top3(west,clubs)==2    and clubs(north)==5    and top5(north,clubs)==3
+wGoodSuitNorthStack = (w1S or w1H or w1D or w1C) and shape(south,any 5431 any 5440)
+
+# West has a good suit and North does NOT have a stack
+w2S = wS and top3(west,spades)==2
+w2H = wH and top3(west,hearts)==2
+w2D = wD and top3(west,diamonds)==2
+w2C = wC and top3(west,clubs)==2
+wGoodSuitNorthNoStack = (w2S or w2H or w2D or w2C)
+
+wRangeAndShape = hcp(west)>11 and hcp(west)<15 and shape(west,any 6xxx +any 5xxx -any 65xx -any 55xx)
+wOvercallTrap = wGoodSuitNorthStack   and wRangeAndShape and hcp(north)>9
+wOvercallWeak = wGoodSuitNorthNoStack and wRangeAndShape and hcp(north)<10
+
+wOvercalls = rankOK and wRangeAndShape and (wOvercallTrap or wOvercallWeak)
+
+# East is quiet
+eQuiet = shape(east,xxxx-any 7xxx -any 6xxx) and hcp(east)<9
+
+# Define leveling
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+
+lWeakPass = wOvercallWeak and keep0
+lTrapPass = wOvercallTrap and keep
+levelTheDeal = lWeakPass or lTrapPass
+
+# Now do it
+sOpens and wOvercalls and eQuiet
+and levelTheDeal
+
+action
+average "Trap Pass" 100 * wOvercallTrap,
+average "Weak Pass" 100 * wOvercallWeak,
+
+`,"S",true)
+Script
+Button,Trap Pass,\n\
+--- Trap Pass\n\
+After 1x，(overcall)，Pass，(Pass)，consider reopening with DOUBLE.\n\
+%TrapPass%

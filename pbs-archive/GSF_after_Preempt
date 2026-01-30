@@ -1,0 +1,38 @@
+Script,GSFafterPreempt
+setDealerCode(`
+
+# auction-filter: Auction.....\\n(1H Pass 2D|1S Pass 2[DH])
+
+# Grand Slam Force after Preempt
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Defines calmOpps
+
+# North has 6 tricks outside of the opener's suit.
+
+# Preempt is restricted to a major; so, we can predeal cards in the minors.
+predeal north CAKQ,DAKQ,H,S
+
+# South opens 3H or 3S and North has 3-card support with 1 of the top 3 -- North can see 11, 12, or 13 sure tricks.
+southH = hearts(south)>6 and hearts(north)>2 and top3(north,hearts)==1 and losers(north,spades) == 0
+southS = spades(south)>6 and spades(north)>2 and top3(north,spades)==1 and losers(north,hearts) == 0
+southPreempts = (southH or southS) and hcp(south)>6 and hcp(south)<11
+
+# So, if South has 2 of the top 3 in his suit, North can count 13 tricks -- in NT.
+# If opener has 1 of the top 3, 12 tricks in the suit are certain.
+southPreempts
+
+action
+average "H " 100 * southH,
+average "S " 100 * southS,
+
+`,"S",true)
+Script
+Button,GSF after Preempt,\n\
+--- Grand Slam Force after Preempt.  Does partner have 2 of the top 3 honors?\n\
+Any free five-no-trump bid in the opening or responding hand is a forcing bid.  If a suit\n\
+has not been agreed the 5N bid confirms the previously bid suit.  Partner must bid\n\
+7 of the agreed suit when holding 2 of the top 3 honors suit.\n\
+https://www.bridgebum.com/grand_slam_force.php\n\
+%GSFafterPreempt%

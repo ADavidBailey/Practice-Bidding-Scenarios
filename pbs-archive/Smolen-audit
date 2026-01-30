@@ -1,0 +1,40 @@
+Script,Smolen
+window.currentPBSScenario = 'Smolen';
+console.log('PBS: Logging scenario selection for Smolen');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'Smolen',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+auction-filter: Auction.....\n1NT? .*Pass .*2C .*Pass\n2D
+*/
+
+# Smolen
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+# Defines gibNT
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Defines calmWest
+
+oneNT = gibNT and shape(south, 23xx+32xx+33xx-xxx1-xx1x-xx6x-xxx6)
+smolen = shape(north, 54xx+45xx) and hcp(north) > 9
+
+oneNT and smolen and calmWest        // It's OK for East to X with decent clubs -- system's on
+
+`, "S", true)
+Script
+Button,Smolen,\n\
+--- Smolen\n\
+With game forcing values and 5-4 in the majors，start with 2!C.\n\
+If partner bids 2!D，jump to 3 of your 4-card major.\n\
+%Smolen%

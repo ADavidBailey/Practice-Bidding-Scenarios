@@ -1,0 +1,51 @@
+Script,ReverseByResponder
+setDealerCode(`
+
+# auction-filter: (1C Pass 1H.*\\n(1NT|2C)|(1C Pass 1D .*\\n(1NT|2C) Pass 2[HS])|(1C Pass 1H .*\\n(1NT|2C) Pass 2S)|(1D Pass 1H .*\\n(1NT|2C|2D) Pass 2S))
+
+# 1C P 1D P 1S/1N/2C 2H : (1C Pass 1D .*\\n(1S|1NT|2C) Pass 2H)
+# 1C P 1D P 1N/2C 2H/S  : (1C Pass 1D .*\\n(1NT|2C) Pass 2[HS])
+# 1C P 1H P 1N/2C 2S    : (1C Pass 1H .*\\n(1NT|2C) Pass 2S)
+# 1D P 1H P 1N/2C 2S    : (1D Pass 1H .*\\n(1NT|2C|2D) Pass 2S) 
+
+# (1C Pass 1H.*\\n(1NT|2C)|(1C Pass 1D .*\\n(1NT|2C) Pass 2[HS])|(1C Pass 1H .*\\n(1NT|2C) Pass 2S)|(1D Pass 1H .*\\n(1NT|2C|2D) Pass 2S)
+
+# Reverse by Resoponder
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Response-to-1-Bid
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Openers-Rebid
+
+CDNHorS = CDN and shape(north,4x5x+x45x+4x6x+x46x)
+CHNS    = CHN and shape(north,45xx+46xx)
+CDCHorS = CDC and shape(north,4x5x+x45x+4x6x+x46x)
+CHCS    = CHC and shape(north,45xx+46xx)
+DHNS    = DHN and shape(north,45xx+46xx)
+DHDS    = DHD and shape(north,45xx+46xx)
+
+(CDNHorS or CHNS or CDCHorS or CHCS or DHNS or DHDS) and hcp(south)>11 and hcp(south)<15 and hcp(north)>12 and calmOpps
+
+action
+average "CDNHorS " 100 * CDNHorS,
+average "CHNS    " 100 * CHNS,
+average "CDCHorS " 100 * CDCHorS,
+average "CHCS    " 100 * CHCS,
+average "DHNS    " 100 * DHNS,
+average "DHDS    " 100 * DHDS,
+
+
+`)
+Script
+Button,Reverse By Responder,\n\
+--- Reverse By Responder\n\
+Reverses by responder show 4+ cards in the first suit and usually 4+ cards in the suit rebid.\n\
+They are natural and Game Forcing.  Possible Reverses by Responder are...\n\
+• 1!C - 1!D - 1N - 2!H or 2!S\n\
+• 1!C - 1!H - 1N - 2!S\n\
+• 1!C - 1!D - 2!C - 2!H or 2!S\n\
+• 1!D - 1!H - 1N - 2!S\n\
+• 1!D - 1!H - 2!D - 2!S\n\
+Reverses are NOT a convention.  If you don't have  Game Forcing strength，don't reverse.\n\
+%ReverseByResponder%

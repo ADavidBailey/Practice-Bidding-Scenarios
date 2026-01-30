@@ -1,0 +1,38 @@
+Script,LastTrainGT2
+setDealerCode(`
+
+# auction-filter: .
+
+# Last Train Game Try
+
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Response-to-1-Bid
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Openers-Rebid
+
+# Define CHH, CSS
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Defines calmOpps
+
+CDD and hascard(north,KS)
+CHH and clubs(north)==3 and hascard(north,KC) and hcp(north,diamonds)<2
+CSS and clubs(north)==3 and hascard(north,KC) and hcp(north,hearts)<2
+(CDD or CHH or CSS) and hcp(north)>8 and hcp(north)<12  and hcp(south)>11 and hcp(south)<15 and calmOpps
+
+
+action
+average "hcp south" hcp(south),
+average "hcp north" hcp(north),
+average "combined " (hcp(south) + hcp(north)),
+
+`, "S", true)
+Script
+Button,Last Train GT2,\n\
+--- Last Train Game Try\n\
+Any time there is only one call that indicates game interest or further game interest\n\
+without raising the partnership's level of commitment，it is a Last Train game-try， unrelated\n\
+to the strain named (unless followed by an uninvited further action).\n\
+https://en.wikipedia.org/wiki/Last_Train_(bridge)\n\
+%LastTrainGT2%,backgroundColor=lightpink

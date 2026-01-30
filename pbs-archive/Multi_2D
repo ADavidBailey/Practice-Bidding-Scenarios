@@ -1,0 +1,31 @@
+Script,Multi2D
+setDealerCode(`
+
+# convention-card: 21GF-Multi
+# auction-filter: Auction.....\\n(2D)
+
+# Multi 2D
+dealer south
+
+# Define South weak 2 bids
+w2S = spades(south)==6 and top5(south,spades)>2 and hcp(south,spades)>4 and hearts(south)<4
+w2H = hearts(south)==6 and top5(south,hearts)>2 and hcp(south,hearts)>4 and spades(south)<4
+
+hcp(south)>5 and hcp(south)<11 and 
+
+# Weak Two Bid
+(w2S or w2H)
+
+or
+
+# 17-24 HCP with 4441
+(hcp(south)>16 and hcp(south)<25 and shape(south, any 4441))
+
+`,"S",true)
+Script
+Button,Multi 2D,\n\
+--- Multi 2!D\n\
+A Multi 2!D bid shows either a weak two in !H or !S or a 17-24 HCP 4441 hand.\n\
+See Bridge Bum's Multi 2!D:\n\
+https://www.bridgebum.com/multi_2d.php\n\
+%Multi2D%,backgroundColor=lightpink

@@ -1,0 +1,57 @@
+Script,TooStrongForOvercall
+setDealerCode(`
+
+# auction-filter: Auction.....\\n1[CDHS] X
+
+# X then Bid a new suit
+dealer east
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+# defines gibNT
+
+# Define good suits
+GoodS = spades(south)>4 and top5(south,spades)>2
+GoodH = hearts(south)>4 and top5(south,hearts)>2
+GoodD = diamonds(south)>4 and top5(south,diamonds)>2
+GoodC = clubs(south)>4 and top5(south,clubs)>2
+
+# Predict East's opening suit
+s = spades(east)
+h = hearts(east)
+d = diamonds(east)
+c = clubs(east)
+oS = s>4 and s>=h and s>=d and s>=c
+oH = not oS and h>4 and h>=d and h>=c
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
+oC = not (oS or oH or oD)
+openingSuit = (oS or oH or oD or oC)
+
+# Avoid a natural Take-out Double
+oneSpade = oS and spades(south)==3
+oneHeart = oH and hearts(south)==3
+oneDiamond = oD and diamonds(south)==3
+oneClub = oC and clubs(south)==3
+
+# East opens
+eOpens = (oneSpade or oneHeart or oneDiamond or oneClub) and hcp(east)>11 and hcp(east)<15
+
+# South has a decent suit, too strong to overcall and NOT a NT hand
+sDoubles = (GoodS or GoodH or GoodD or GoodC) and hcp(south)>17 and not gibNT
+
+eOpens and sDoubles
+
+action
+average "(hcp east)  " hcp(east),
+average "(hcp south) " hcp(south),
+
+
+`, "E", true);
+Script
+Button,Overcalls??,\n\
+--- Overcalls??  Some hands are too strong for an overcall.\n\
+Simple overcalls -- those at the same level as the opening bid -- show\n\
+• 7-17 at the 1-level\n\
+• 11-17 at the 2-level\n\
+With stronger hands，start with a double.  Double then new suit shows 18+.\n\
+Overcall then Double is take-out in the 15-17 range.\n\
+%TooStrongForOvercall%

@@ -1,0 +1,42 @@
+Script,MinorSuitTransfer
+setDealerCode(`
+
+# MST only is the default.  Note, his is not how we bid MST.  It's how GIB bids those hands.
+# convention-card: 21GF-MST
+# auction-filter: 1NT Pass (2N|3C)
+
+# Minor Suit Transfer
+dealer south
+
+# enable both MSS and MST
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+# Defines gibNT
+
+# West passes
+
+# North transfers to Clubs(2S) or Diamonds (2N)
+nResponds = (shape(north,xxx7+xxx6+xx7x+xx6x) and hcp(north)>7) or (shape(north,xxx9+xxx8+xx9x+xx8x) and hcp(north)>5)
+
+# Now do it
+gibNT and nResponds and shape(north,xxxx-4xxx-5xxx-x4xx-x5xx)  // Kill the major suits
+
+produce 1000
+action
+average "9xxx" 100 * shape(north,any 9xxx),
+average "8xxx" 100 * shape(north,any 8xxx),
+average "7xxx" 100 * shape(north,any 7xxx),
+average "6xxx" 100 * shape(north,any 6xxx),
+
+`, "S", true);
+Script
+Button,Minor Suit Transfer,\n\
+--- Minor Suit Transfer\n\
+There are multiple ways to play MST; this is how GIB plays it...\n\
+After partner opens 1NT，responder bids the strain below their minor...\n\
+• 2N for !C\n\
+• 3!C for !D.\n\
+After partner opens 1NT，responder bids the strain below their minor...\n\
+After partner opens 1NT，responder bids the strain below their minor...\n\
+This lets GIB play both MSS and MST，together.  Here's an alternative:\n\
+https://www.bridgebum.com/minor_suit_transfers.php\n\
+%MinorSuitTransfer%

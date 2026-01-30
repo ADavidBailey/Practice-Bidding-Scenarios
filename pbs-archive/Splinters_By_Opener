@@ -1,0 +1,125 @@
+Script,SplinterByOpener
+setDealerCode(`
+
+# auction-filter: (1[CDH] Pass 1S Pass\\n4[CDH])|(1[CD] Pass 1H Pass\\n(3S|4[CD]))
+
+dealer south
+produce 1000
+
+# Splinters by Opener
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+
+###### Define Bidding Sequences #####
+# These variables are defined in the imported script
+# The number of cards South has in each suit: s, h, d, c
+# South's predicted opening suit: oC, oD, oH, oS 
+
+sP = hcp(south)
+nP = hcp(north)
+
+# Predict North's 1-level response
+sN = spades(north)
+hN = hearts(north)
+dN = diamonds(north)
+cN = clubs(north)
+
+# North responds in D, H, or S (Walsh style), or raises C.  longer than C to avoid 2/1
+
+# Predict North's responding suit
+nRS  =  nP<11 ? sN>3 and sN>hN : sN>3 and sN>hN and sN>=dN and sN>=cN               // avoid 2/1 in minor
+nRH  = (nP<11 ? hN>3           : hN>3           and hN>=dN and hN>=cN) and not (nRS)
+nRD = dN>3           and dN>=cN and not (nRS or nRH)
+nRC = cN>4           and cN>4   and not (nRS or nRH or nRD)
+nRN = not (nRS or nRH or nRD or nRC)
+
+# Define South's possible rebids
+sRC = clubs(south)>3
+sRD = diamonds(south)>3
+sRH = hearts(south)>3
+sRS = spades(south)>3
+sRN = shape(south,any 4333+any 4432+any 5332)
+
+# Defining South's opening (not NT) & North's non-GF response
+CD = oC and nRD
+CH = oC and nRH
+CS = oC and nRS
+CN = oC and nRN
+CC = oC and nRC
+
+DH = oD and nRH
+DS = oD and nRS
+DN = oD and nRN
+DD = oD and not (DH or DS or DN)
+
+HS = sP<11 ? oH and nRS and hN<3 : oH and nRS and hN<4     // no Jacoby 2N
+HN = oH and nRN
+HH = oH and not (HS or HN)
+##### End of Define Bidding Sequences #####
+
+# Don't include a singleton K, Q, or J
+Cshort = (shape(south,xxx1) and (top4(south,clubs)   ==0 or hascard(south,AC)) or shape(south,xxx0))
+Dshort = (shape(south,xx1x) and (top4(south,diamonds)==0 or hascard(south,AD)) or shape(south,xx0x))
+Hshort = (shape(south,x1xx) and (top4(south,hearts)  ==0 or hascard(south,AH)) or shape(south,x0xx))
+Sshort = (shape(south,1xxx) and (top4(south,spades)  ==0 or hascard(south,AS)) or shape(south,0xxx))
+
+# Responder does NOT have direct support for Opener's suit
+##   I may need to add this   ##
+
+# Define splinter sequences
+CH3D = CH and h>3 and Dshort  // invite
+CH3S = CH and h>3 and Sshort
+CS3D = CS and s>3 and Dshort  // invite
+CS3H = CS and s>3 and Hshort  // invite
+DH4C = DH and h>3 and Cshort
+DH3S = DH and h>3 and Sshort
+DS4C = DS and s>3 and Cshort
+DS3H = DS and s>3 and Hshort  // invite
+HS4C = HS and s>3 and Cshort
+HS4D = HS and s>3 and Dshort
+jReverse   = (CH3D or CS3D or CS3H or DS3H) and hcp(south)>12 and hcp(south)<22
+jJumpShift = (CH3S or DH4C or DH3S or DS4C or HS4C or HS4D) and hcp(south)>15 and hcp(south)<19
+
+# North does not have direct support for south
+northOK = 1
+
+sOpens = jReverse or jJumpShift
+
+northRange = hcp(north)>5  and hcp(north)<17  // no jump shifts
+
+# Now do it
+sOpens and northRange and calmOpps
+
+action
+average "CH " 100 * CH,
+average "  3D     " 100 * CH3D,
+average "  3S     " 100 * CH3S,
+average "CS " 100 * CS,
+average "  3D     " 100 * CS3D,
+average "  3H     " 100 * CS3H,
+average "DH " 100 * DH,
+average "  4C     " 100 * DH4C,
+average "  3S     " 100 * DH3S,
+average "DS " 100 * DS,
+average "  3H     " 100 * DS3H,
+average "  4C     " 100 * DS4C,
+average "HS " 100 * HS,
+average "  4C     " 100 * HS4C,
+average "  4D     " 100 * HS4D,
+
+average "GI " 100 * jReverse,
+average "GF " 100 * jJumpShift,
+
+`,"S",true)
+Script
+Button,Splinter by Opener,\n\
+--- Splinter by Opener\n\
+An unusual jump is a splinter.\n\
+A Jump Reverse is unusual.  Billy Miller refers to these 3-level splinters as 'splimit'.\n\
+They're always below the 3-level or responder's suit and they're invitational to game.\n\
+https://tinyurl.com/Billy-Miller-SpLimit-Bids\n\
+Double jumpshifts are also unusual. They're above the 3-level of responder's suit; thus，game forcing.\n\
+Many also play that Jump's in 2/1 auctions are splinters. (Not Included Here)\n\
+NOTE: The Robots play these 3-level splinters as GAME FORCING.\n\
+%SplinterByOpener%

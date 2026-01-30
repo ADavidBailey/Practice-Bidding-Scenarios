@@ -1,0 +1,112 @@
+Script,FourthBidInviting
+setDealerCode(`
+
+# auction-filter: \\n1[CDHS].Pass.1[DHSN].*Pass\\n[12][HSCDN].*Pass.[123][CDHSN].
+
+
+# Invite after xyz[12]
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# returns calmOpps
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# returns oS
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Response-to-1-Bid
+# returns nN
+
+SN = oS and nN
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Openers-Rebid
+# returns a bunch of variables.  S,H,D,C,and N stand for Spades, Hearts, Diamonds, Clubs, and NT respectively
+# for example SNC means 1S (P) 1N (P) 2C
+SNC = SN and sRC
+SND = SN and sRD and not (SNC)
+SNH = SN and sRH and not (SNC or SND)
+SNS = SN and sRS and not (SNC or SND or SNH)
+SNN = SN and sRN and not (SNC or SND or SNH or SNS)
+
+strength = hcp(south)>11 and hcp(south)<15 and hcp(north)>10 and hcp(north)<13
+sShape = shape(south,any 5422 +any 5431 +any 4432 +any 4333)
+nShape = shape(north,any 64xx +any 63xx +any 54xx +any 5332 +any 4432 +any 4441)
+
+# Define north's short suits
+s012 = shape(north,0xxx+1xxx+2xxx)
+h012 = shape(north,x0xx+x1xx+x2xx)
+d012 = shape(north,xx0x+xx1x+xx2x)
+c012 = shape(north,xxx0+xxx1+xxx2)
+
+# north is short in the 3rd or 4th suit and does not have 4-card support for opener's major
+cdh = CDH and s012
+cds = CDS and h012
+cdn = CDN and (s012 or h012)
+chs = CHS and d012           and hearts(south)<4
+chn = CHN and (d012 or s012) and hearts(south)<4
+csn = CSN and (d012 or h012) and spades(south)<4
+
+dhs = DHS and c012           and hearts(south)<4
+dhn = DHN and (s012 or c012) and hearts(south)<4
+dhc = DHC and s012           and hearts(south)<4
+dsn = DSN and (c012 or h012) and spades(south)<4
+dsc = DSC and h012           and spades(south)<4
+   
+hsn = HSN and (c012 or d012) and spades(south)<4
+hsc = HSC and d012           and spades(south)<4
+hsd = HSD and c012           and spades(south)<4
+
+snc = SNC and (d012 or h012)
+snd = SND and c012
+snh = SNH and (d012 or c012)
+
+xyz = (cdh or cds or cdn or chs or chn or csn or dhs or dhn or dhc or dsn or dsc or hsn or hsc or hsd or snc or snd or snh)
+
+xyz and strength and calmOpps and sShape and nShape
+
+produce 100
+action
+
+average "64xx" 100 * shape(north,any 64xx),
+average "63xx" 100 * shape(north,any 63xx),
+average "5422" 100 * shape(north,any 5422),
+average "5431" 100 * shape(north,any 5431),
+average "5440" 100 * shape(north,any 5440),
+average "5332" 100 * shape(north,any 5332),
+average "4432" 100 * shape(north,any 4432),
+average "4441" 100 * shape(north,any 4441),
+average "nD  " 100 * nD,
+average "nH  " 100 * nH,
+average "nS  " 100 * nS,
+average "nN  " 100 * nN,
+average "CD  " 100 * CD,
+average "CH  " 100 * CH,
+average "CS  " 100 * CS,
+average "CN  " 100 * CN,
+average "DH  " 100 * DH,
+average "DS  " 100 * DS,
+average "DN  " 100 * DN,
+average "HS  " 100 * HS,
+average "HN  " 100 * HN,
+average "SN  " 100 * SN,
+average "CDH " 100 * CDH,
+average "CDS " 100 * CDS,
+average "CDN " 100 * CDN,
+average "CHS " 100 * CHS,
+average "CHN " 100 * CHN,
+average "CSN " 100 * CSN,
+average "DHS " 100 * DHS,
+average "DHN " 100 * DHN,
+average "DHC " 100 * DHC,
+average "DSN " 100 * DSN,
+average "DSC " 100 * DSC,
+average "HSN " 100 * HSN,
+average "HSC " 100 * HSC,
+average "HSD " 100 * HSD,
+average "SNC " 100 * SNC,
+average "SND " 100 * SND,
+average "SNH " 100 * SNH,
+
+`,"S",true)
+Script
+Button,4th Bid Inviting,\n\
+--- Fourth Bid Inviting\n\
+After 3 bids，responder scrambles w/11-12.\n\
+%FourthBidInviting%

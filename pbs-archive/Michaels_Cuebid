@@ -1,0 +1,62 @@
+Script,MichaelsCuebid
+setDealerCode(`
+
+/*
+Michaels Cuebid
+
+auction-filter: Auction.....\n(1C +2C|1D +2D|1H +2H|1S +2S)
+*/
+
+dealer east
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/TP
+# Defines tpWest, tpSouth
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid-East
+# Defines oneClub, oneDiamond, oneHeart, oneSpade, oneNT, twoNT, threeNT
+
+
+# Define South's suits for Michaels Cuebid
+sS = top5(south,spades)>2   and spades(south)>4
+sH = top5(south,hearts)>2   and hearts(south)>4
+sD = top5(south,diamonds)>2 and diamonds(south)>4
+sC = top5(south,clubs)>2    and clubs(south)>4
+
+# Define East's opening bids
+eOC = oC and sH and sS
+eOD = oD and sH and sS
+eOH = oH and (sS and (sC or sD))
+eOS = oS and (sH and (sC or sD))
+eOpens = (eOC or eOD or eOH or eOS) and hcp(east)>11
+
+# Define ranges for West's continuations
+force   = tpWest>=13
+invite  = tpWest>=10 and not force
+compete = tpWest>=7  and not (force or invite)
+preempt = tpWest>=4  and not (force or invite or compete)  
+wRange  = force or invite or compete or preempt
+
+sMCB= shape(south,any 76xx +any 67xx +any 66xx +any 65xx +any 56xx +any 55xx) and hcp(south)>9 and tpSouth<19 // avoid strong TO X
+
+levPreempt = preempt and hascard(north,2C) or hascard(north,2D) // keep only 44% of preempts
+
+eOpens and sMCB and wRange
+and (force or invite or compete or levPreempt)
+
+action
+average "TP >=13 " 100 * force,
+average "TP >=10 " 100 * invite,
+average "TP >= 7 " 100 * compete,
+average "TP >= 4 " 100 * preempt,
+
+`,"E",false)
+Script
+Button,Michaels Cuebid,\n\
+---  Michaels Cuebid.\n\
+Two-suited OR a good hand.\n\
+  • 1!C - 2!C = 5+!H & 5+!S\n\
+  • 1!D - 2!D = 5+!H & 5+!S\n\
+  • 1!H - 2!H = 5+!S & 5+(!C or !D)\n\
+  • 1!S - 2!S = 5+!H & 5+(!C or !D)\n\
+https://www.bridgebum.com/michaels_cuebid.php\n\
+%MichaelsCuebid%

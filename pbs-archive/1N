@@ -1,0 +1,43 @@
+Script,Notrump
+setDealerCode(`
+
+/*
+convention-card:
+auction-filter: Auction.....\n1NT?
+*/
+
+# Import Define-1N and Leveling
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Define-1N
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+
+# Level it
+levMin = ntMin and keep56
+levAvg = ntAvg and keep75
+levMax = ntMax and keep97
+levelTheDeal = levMin or levAvg or levMax
+
+### Ready for Leveling
+
+# Now OPEN 1NT
+
+NT
+and levelTheDeal
+
+# Generate Statistics
+action
+
+average "Minimum     " 100 * ntMin,
+average "Avg         " 100 * ntAvg,
+average "Max         " 100 * ntMax,
+
+frequency  "HCP South "  (hcp(south) , 14, 18),
+frequency  "ntPoints  "  (ntPoints   , 14, 18),
+
+`,"S",true)
+Script
+Button,15-17 NT (Lev),\n\
+---  15-17 Notrump Opening\n\
+2452+2425+2245+2254+4522 +any 4333，4432，or 5332 distribution.\n\
+Those 5422 hands are the ones where you are likely to have to reverse to show your suits.\n\
+HCP adjusted +1 for any 5-card suit unless you have Kx，Qx，or Jx doubleton.\n\
+%Notrump%,backgroundColor=lightpink

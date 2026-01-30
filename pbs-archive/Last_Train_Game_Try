@@ -1,0 +1,65 @@
+Script,LastTrainGT
+setDealerCode(`
+
+# auction-filter: .
+
+# Last Train Game Try
+
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# Defines oneClub, oneDiamond, oneHeart and oneSpade
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Defines calmOpps
+
+# Define suit's which need help
+sNCH = shape(south,xxx3+xxx4) and top4(south,clubs)   ==0
+sNDH = shape(south,xx3x+xx4x) and top4(south,diamonds)==0
+sNHH = shape(south,x3xx+x4xx) and top4(south,hearts)  ==0
+sNSH = shape(south,3xxx+4xxx) and top4(south,spades)  ==0
+sNH  = (sNCH or sNDH or sNHH or sNSH) and shape(south,any 5332+any 5431+any 5422)
+
+nNCH = shape(north,xxx3+xxx4) and top4(north,clubs)   ==0
+nNDH = shape(north,xx3x+xx4x) and top4(north,diamonds)==0
+nNHH = shape(north,x3xx+x4xx) and top4(north,hearts)  ==0
+nNSH = shape(north,3xxx+4xxx) and top4(north,spades)  ==0
+nNH  = nNCH or nNDH or nNSH or nNSH
+
+# Both North and South need help
+NH = sNH and nNH
+
+# Define fits
+hFit = (hearts(north) + hearts(south)) > 7
+sFit = (spades(north) + spades(south)) > 7
+Mfit = hFit or sFit
+
+cFit = (clubs(north)    + clubs(south)   ) > 8 and not Mfit
+dFit = (diamonds(north) + diamonds(south)) > 8 and not Mfit
+mFit = (cFit or dFit) and (shape(north,any 0xxx+ any 1xxx) or shape(south,any 0xxx+any 1xxx)) 
+
+fit = mFit or Mfit
+
+nRange = hcp(north)>5  and hcp(north)<12  // not game forcing
+
+lowLimit = Mfit ? 23 : 26
+invite = (hcp(south) + hcp(north)) > lowLimit
+
+sOpens = (oneClub or oneDiamond or oneHeart or oneSpade) and hcp(south)<15
+nBids  = nRange
+
+sOpens and nBids and fit and NH and invite and calmOpps
+
+action
+average "hcp south" hcp(south),
+average "hcp north" hcp(north),
+average "combined " (hcp(south) + hcp(north)),
+
+`, "S", true)
+Script
+Button,Last Train GT1,\n\
+--- Last Train Game Try\n\
+Any time there is only one call that indicates game interest or further game interest\n\
+without raising the partnership's level of commitment，it is a Last Train game-try， unrelated\n\
+to the strain named (unless followed by an uninvited further action).\n\
+https://en.wikipedia.org/wiki/Last_Train_(bridge)\n\
+%LastTrainGT%,backgroundColor=lightpink

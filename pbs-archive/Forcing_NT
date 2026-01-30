@@ -1,0 +1,121 @@
+Script,ForcingNT
+setDealerCode(`
+
+# convention-card: 21GF-ADB
+# auction-filter: Note....forcing.1NT
+
+# Forcing NT Leveled
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# defines oneSpade, oneHeart, gibNT
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/TP
+# defines tpNorth
+
+# South opens 1H or 1S
+oneMajor = (oneSpade or oneHeart) and hcp(south)>11 and hcp(south)<20 and not gibNT
+
+# Define Direct Raises
+oneM2M = ((oneSpade and spades(north)>2) or (oneHeart and hearts(north)>2)) and tpNorth > 5 and tpNorth < 11
+oneM3M = ((oneSpade and spades(north)>3) or (oneHeart and hearts(north)>3)) and tpNorth > 9 and tpNorth < 13
+oneM4M = ((oneSpade and spades(north)>4) or (oneHeart and hearts(north)>4)) and tpNorth > 3 and hcp(north)<9
+noDirectRaise = not (oneM2M or oneM3M or oneM4M)
+
+# Define other fits
+spadeFit = oneSpade and spades(north)>2
+heartFit = oneHeart and hearts(north)>2
+fit = spadeFit or heartFit
+
+spadeFit3 = spadeFit and spades(north)==3
+heartFit3 = heartFit and hearts(north)==3
+fit3 = spadeFit3 or heartFit3
+noFit = not fit and not fit3
+
+# Define 3-level invites
+threeClubs    = clubs(north)>5    and hcp(north,clubs)>1 
+threeDiamonds = diamonds(north)>5 and hcp(north,diamonds)>1
+threeHearts   = hearts(north)>5   and hcp(north,hearts)>1   and oneSpade
+invite = noFit and (threeClubs or threeDiamonds or threeHearts) and hcp(north)>8 and hcp(north)<12
+noInvite = not invite
+
+# Avoid 1H - 1S
+noSpadeBid = not(oneHeart and spades(north)>3)
+
+# Long minor
+longC = clubs(north)>5
+longD = diamonds(north)>5
+longMinor = (longC or longD)
+
+# Define ranges - TP for raises; otherwise HCP
+wRange = tpNorth>4 and tpNorth<8
+iRange = tpNorth>10 and tpNorth<13
+ngfRange = hcp(north)>5 and hcp(north)<12 and tpNorth<13
+
+# Defining hand types for Forcing NT
+wFit = fit  and wRange
+iFit = fit3 and iRange
+lMin = noFit and ngfRange and longMinor  // overlaps w/3-under inv jump
+nFit = noFit and ngfRange and not lMin
+forcingNT = (wFit or iFit or lMin or nFit) and noSpadeBid and noDirectRaise and noInvite
+
+# Defining Opener's rebids
+rebidM  = shape(south, any 7xxx+any 6xxx)
+rebidN  = shape(south, any 5332+any 5422) and hcp(south)>17 and hcp(south)<20 and not rebidM
+reverse = shape(south, 45xx+46xx+56xx) and hcp(south)>16 and hcp(south)<22    and not (rebidM or rebidN)
+newSuit = not(rebidM or rebidN or reverse)
+openerRebid = rebidM or rebidN or reverse or newSuit
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+
+# Level Responses
+wFitLev = wFit and keep
+iFitLev = iFit and keep75
+lMinLev = lMin and keep75
+nFitLev = nFit and keep015
+levelResponse = wFitLev or nFitLev or iFitLev or lMinLev
+
+# Level Rebids
+rMajLev = rebidM  and keep06
+rNTLev  = rebidN  and keep47
+rRevLev = reverse and keep
+rNSLev  = newSuit and keep03
+levelRebid = rMajLev or rNTLev or rRevLev or rNSLev
+
+levelTheDeal = levelResponse and levelRebid
+
+## Now Do it
+# South opens 1 H/S and North bids 1N Forcing and South Rebids
+oneMajor and forcingNT and openerRebid and calmWest
+and levelTheDeal
+
+produce 5000
+action
+average "fit 5-7 TP w/3+    " 100 * wFit,
+average "fit 11-12 TP w/3   " 100 * iFit,
+average "no fit, long minor " 100 * lMin,
+average "no fit 6-12 HCP    " 100 * nFit,
+average "-------------------" 100 * (wFit + iFit + lMin + nFit),
+average "rebid Major        " 100 * rebidM,
+average "rebid NT           " 100 * rebidN,
+average "rebid Reverse      " 100 * reverse,
+average "rebid New Suit     " 100 * newSuit,
+average "-------------------" 100 * (rebidM + rebidN + newSuit + reverse),
+
+`, "S", true);
+Script
+Button,Forcing NT (Lev),\n\
+--- Forcing NT (Leveled)\n\
+Partner opens an Responder has a non-Game Forcing hand with...\n\
+• 5-7 TP with fit\n\
+• 11-12 TP with 3-card fit\n\
+• Long minor without fit\n\
+• 6-12 HCP without fit\n\
+Then Opener Rebids...\n\
+• Major\n\
+• 2NT\n\
+• Reverse\n\
+• New Suit\n\
+These are leveled so that the responses and rebids at about the same frequency.\n\
+%ForcingNT%

@@ -1,0 +1,74 @@
+Script,Gazzilli
+setDealerCode(`
+
+# Gazzilli
+
+# convention-card: Gazzilli
+# auction-filter: Auction.....\\n(1[HS].Pass.1NT.*Pass\\n[23][CDHS])
+
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+# Defines calmOpps
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# Defines oneHeart, oneSpade, gibNT
+
+# South opens 1M and north responds 1N -- avoid 1S - 3H and 1H - 1S
+sSpades = oneSpade and spades(north)<3 and hearts(north)<6
+sHearts = oneHeart and hearts(north)<3 and spades(north)<4
+nRange  = hcp(north) > 5 and hcp(north) < 12
+sMajor  = sSpades or sHearts
+
+# Define ranges for various openings/rebids
+s2xRange  = hcp(south) > 10 and hcp(south) < 16
+s3xRange  = hcp(south) > 13 and hcp(south) < 16
+s2CRange  = hcp(south) > 15 and hcp(south) < 22
+s2NRange  = hcp(south) > 16 and hcp(south) < 20
+
+# Define various openings/rebids
+s2N = s2NRange and sMajor and shape(south,any 5332+any 5422)
+s2C = s2CRange and sMajor and not s2N
+s3x = s3xRange and sMajor and shape(south,any 65xx+any 55xx)
+s2x = s2xRange and sMajor and not shape(south,any 6xxx) and not s3x   // avoid 1H - 2H and 1S - 2S 
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+
+lev2x = s2x and keep06
+lev3x = s3x and keep
+lev2C = s2C and keep25
+lev2N = s2N and keep11
+levelTheDeal = lev2x or lev3x or lev2C or lev2N
+
+(s2x or s3x or s2C or s2N) and calmOpps and nRange and not gibNT 
+and levelTheDeal
+
+# produce 1000
+action
+average "2x 11-15          " 100 * lev2x,
+average "3x 13-15 2-suits  " 100 * lev3x,
+average "2C 16+            " 100 * lev2C,
+average "2N 18-19 balanced " 100 * lev2N,
+
+`,"S",true)
+Script
+Button,Gazzilli (Lev),\n\
+--- Gazzilli 2!C rebid after a Major opening and 1NT response\n\
+  • 1M - 1N\n\
+    • 2C  - artifical Gazzilli relay - 16+ or *** natural 11-14 w/6+M ***\n\
+        • 2D - 8+ artificial\n\
+            • 2M  - 11-14 with 6+M *** NF ***\n\
+            • 2oM - artificial some 4-card suit (relay to ask LMH)\n\
+            • 2N  - 6+M and some 4+card side suit (relay to ask LMH)\n\
+            • 3C  - 5+C 16-21\n\
+            • 3D  - 5+D 16-21\n\
+            • 3M  - strong and natural 16-20\n\
+            • 3oM - 5+oM 16-21\n\
+    • 2D  - 11-15 with 4+D\n\
+    • 2oM - 11-15 with 4+oM\n\
+    • 2M  - 11-14 with 5+M and 4+C\n\
+    • 2N  - 17-19 balanced\n\
+    • 3x  - 13-15 with 5x and 5+M  (x = New Suit)\n\
+https://www.advinbridge.com/this-week-in-bridge/488\n\
+%Gazzilli%,backgroundColor=lightpink
+

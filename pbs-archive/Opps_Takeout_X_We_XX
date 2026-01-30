@@ -1,0 +1,25 @@
+Script,OppsTakeoutDoubleXX
+setDealerCode(`
+
+# auction-filter: Auction.....\\n1[HS] X.*XX
+
+# Opponents Takeout Double
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+
+# Defining South opens a Major, West has 12-15 and short spades, and South has 10+ and no fit 
+openSpade = oneSpade and spades(north)<3 and spades(west)<2
+openHeart = oneHeart and hearts(north)<3 and hearts(west)<2
+
+openMajor = (openSpade or openHeart) and shape(west,any 5440 +any 5431 +any 4441 -5xxx -x5xx)
+
+# South opens 1M
+openMajor and hcp(north)>9 and hcp(west)>12 and hcp(west)<16
+
+`)
+Script
+Button,Takeout X We XX,\n\
+--- Opponents Takeout X We XX\n\
+We have no fit and 10+ HCP.\n\
+%OppsTakeoutDoubleXX%

@@ -1,0 +1,46 @@
+Script,NewMinorForce
+setDealerCode(`
+
+# auction-filter: Note...:New Minor Forcing
+
+produce 1000
+dealer south
+
+# New Minor Forcing
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+
+### End of Boiler Plate ###
+
+# South opens 1C, 1D, or 1H, a 12-15 hcp balanced hand, and no fit for responder's major
+sOpens = (oC or oD or oH) and shape(south,any 5332+any 4432+any 4333-4xxx-x4xx) and hcp(south)>11 and hcp(south)<15
+
+# North responds 1H or 1S with a 5-card major, an invitational hand and no fit for opener's major
+
+nH = shape(north,x5xx)
+nS = shape(north,5xxx)
+sHasFit = (nH and hearts(south)==3) or (nS and spades(south)==3)
+
+nResponds = (((oC or oD) and (nH or nS)) or (oH and nS)) and shape(north,xxxx-any 55xx-any 65xx-any 75xx) and hcp(north)>10 and hcp(north)<13
+
+# South rebids 1N
+sOpens and nResponds and calmOpps
+
+action
+printoneline,
+average "1C     " 100 * oC,
+average "1D     " 100 * oD,
+average "1H     " 100 * oH,
+average "   - 1H" 100 * nH,
+average "   - 1S" 100 * nS,
+average "fit    " 100 * sHasFit,
+
+`,"S",true)
+Script
+Button,New Minor Force,\n\
+--- New Minor Forcing\n\
+Partner opens 1!C，1!D， or 1!H\n\
+You respond 1!H or 1!S with a 5-card suit\n\
+Partner rebids 1N\n\
+%NewMinorForce%

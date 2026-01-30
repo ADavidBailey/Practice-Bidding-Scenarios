@@ -1,0 +1,154 @@
+Script,GIB-1N-P-2C-Bid
+
+setDealerCode(`
+
+/*
+South opens 1N and North responds 2C and East bids.
+
+convention-card: 21GF-GIB
+auction-filter: Auction.....\n(1NT? +Pass +2C.* +[X2-7])
+*/
+
+dealer south
+
+# 1 Notrump Opening
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+# Defines gibNT
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/TP
+# Defines tpNorth, tpSouth, tpEast, tpWest
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-Suit-Quality-East
+# Defines e8421S/H/D/C, eRebidS/H/D/C, e2Rebid/S/H/D/C, and eStrongS/H/D/C
+
+# Define West's Cappellitti actions
+west4x     = shape(west,any 9xxx +any 8xxx +any 7xxx -any 6xxx -any 5xxx -any 4xxx)                     and tpWest>2
+west2C     = shape(west,any 9xxx +any 8xxx +any 7xxx +any 6xxx -any 5xxx)                               and tpWest>9
+west2D     = spades(west)>3 and hearts(west)>3 and (spades(west) + hearts(west))>8                      and tpWest>10
+west2other = shape(west,any 76xx +any 75xx +any 74xx +any 66xx +any 65xx +any 64xx+ any 55xx +any 54xx) and tpWest>10
+west3x     = shape(west,any 9xxx +any 8xxx +any 7xxx +any 6xxx -any 5xxx -any 4xxx)                     and tpWest>12 and tpWest<17
+minorCards = clubs(west) + diamonds(west)
+west2N     = clubs(west)>4 and diamonds(west)>4                                                         and (tpWest + minorCards - 9)>14
+westX      = hcp(west)>15
+calmWest   = not (west4x or west2C or west2D or west2other or west3x or west2N or westX)
+
+# Boost quality of North's major
+nQS = spades(north)==4 and hcp(north,spades)>2
+nQH = hearts(north)==4 and hcp(north,hearts)>2
+nQ  = nQS or nQH
+
+# Define splinter
+splinter = shape(north, 4405 + any 4441 -xxx1) and tpNorth>11
+
+# Define mSS and mST
+mss = diamonds(north)>3 and clubs(north)>3 and (diamonds(north) + clubs(north))>8 and tpNorth>9
+mst = (clubs(north)>5 or diamonds(north)>5) and not mss
+
+# Define various 2C bids -- GIB does not play Drop Dead or Crawling Stayman
+
+# NOTE:  GIB does NOT bid Stayman with 4-3-3-3 and 8 HCP
+smolen      = shape(north,54xx +45xx)         and tpNorth>9
+majorInvite = shape(north,54xx) and tpNorth>8 and tpNorth<11 and hcp(north)<10    // 2C & correct D to S 
+stayman     = shape(north,44xx +4xxx +x4xx -any 9xxx -any 8xxx -any 7xxx -any 6xxx -5xxx -x5xx) and hcp(north)>7 and tpNorth>8 and nQ and not (majorInvite or smolen or splinter)
+
+# Define Texas, Jacoby, & Splinter responses
+texas  = (spades(north)>5 or hearts(north)>5) and tpNorth>9
+jacoby = (spades(north)>4 or hearts(north)>4) and not (texas or smolen or majorInvite)
+
+n2Clubs = (stayman or smolen or majorInvite) and not (splinter or mss or mst or texas or jacoby)
+
+# Define East's twice biddable suits: (5 cards or 4 cards with (3 of top 5 or more than 4  8421 points)) + 2 cards
+# Only quality suits count for 2-level bids
+
+# East has one 6+card D, H, or S suit, less than 5 clubs (avoid X), no second suit longer than 4-cards, a singleton or void
+eShape = shape(east, any 9xxx +any 8xxx+ any 7xxx +any 6xxx -any 85xx -any 76xx -any 66xx -any 65xx) and shape(east, any 1xxx +any 0xxx) and (clubs(south)<5 or clubs(south)>6)
+
+eRebid  = (eRebidS  or eRebidH  or eRebidD  or eRebidC)  and tpEast>14
+e2Rebid = (e2RebidS or e2RebidH or e2RebidD or e2RebidC) and tpEast>13
+eStrong = (eStrongS or eStrongH or eStrongD or eStrongC) and tpEast>12
+
+eSuits  = eRebid or e2Rebid or eStrong
+
+eCforX = eRebidC
+eTPforX = hcp(east)>5 and tpEast>6
+
+eX6 = tpEast>6 and tpEast<11 and e2RebidC and top4(east,clubs)>1 and top5(east,clubs)>2 
+eX5 = tpEast>6               and eRebidC  and top4(east,clubs)>1 and top5(east,clubs)>2 and hcp(east,clubs)>5
+
+# Define East's X
+eX = (eX6 or eX5) and shape(east, xxxx -any 9xxx -any 8xxx -any 76xx -any 75xx -any 74xx -any 66xx -any 65xx -any 64xx -any 55xx -any 54xx)
+
+# Define East's bids over 2C -- Twice Bdiddable with extra strength
+e2Range = tpEast>10 and tpEast<17
+
+e2D = diamonds(east)==6 and e2Range and eSuits
+e2H = hearts(east)==6   and e2Range and eSuits
+e2S = spades(east)==6   and e2Range and eSuits
+e2B = e2D or e2H or e2S
+
+# 3- and 4-level suits require length and may have suit-quality
+e3Range = hcp(east)>9 and tpEast>10 and tpEast<17
+
+e3C = clubs(east)>6    and eSuits and e3Range
+e3D = diamonds(east)>6 and eSuits and e3Range and not e2D
+e3H = hearts(east)>6   and eSuits and e3Range and not e2H
+e3S = spades(east)>6   and eSuits and e3Range and not e2S
+e3B = e3C or e3D or e3H or e3S
+
+# Define East's 4-level weak bids
+e4wRange = hcp(east)<10
+
+e4Cw = clubs(east)>8    and e4wRange
+e4Dw = diamonds(east)>7 and e4wRange and not (e2D or e3D)
+e4Hw = hearts(east)>7   and e4wRange and not (e2H or e3H)
+e4Sw = spades(east)>7   and e4wRange and not (e2S or e3S)
+e4Bw = e4Dw or e4Hw or e4Sw
+
+# Define East's 4-level strong bids
+e4sRange = hcp(east)>9
+e4Cs = eSolid8C and not e3C
+e4Ds = eSolid8D and not (e2D or e3D)
+e4Hs = eSolid8H and not (e2H or e3H)
+e4Ss = eSolid8S and not (e2S or e3S)
+e4Bs = e4Ds or e4Hs or e4Ss
+
+e4B = e4Bw or e4Bs
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+
+levX  = eX  and keep11
+lev2B = e2B and keep33
+lev3B = e3B and keep44
+lev4B = e4B and keep
+levelTheDeal = lev2B or lev3B or lev4B or levX
+
+# Now do it
+gibNT and tpSouth<19 and calmWest and n2Clubs and (eShape or eX) and (e2B or e3B or e4B or eX)
+and levelTheDeal
+
+action
+average "smolen      " 100 * smolen,
+average "stayman     " 100 * stayman,
+average "major invite" 100 * majorInvite,
+average "Any 2C-Resp-" 100 * (smolen or stayman or majorInvite),
+average "X           " 100 * eX,
+average "2D          " 100 * e2D,
+average "2H          " 100 * e2H,
+average "2S          " 100 * e2S,
+average "Any 2-Bid---" 100 * e2B,
+average "3C          " 100 * e3C,
+average "3D          " 100 * e3D,
+average "3H          " 100 * e3H,
+average "3S          " 100 * e3S,
+average "Any 3-Bid---" 100 * e3B,
+average "4 weak      " 100 * e4Bw,
+average "4 strong    " 100 * e4Bs,
+average "Any 4-Bid---" 100 * (e4Bw or e4Bs),
+
+`,"S",true)
+Script
+Button,GIB NT-P-2C-bid (lev),\n\
+--- After 1NT-P-2C-bid...  What now???\n\
+Continuations after 1NT-P-2C... are leveled so that they occur at about\n\
+the same frequency.\n\
+%GIB-1N-P-2C-Bid%

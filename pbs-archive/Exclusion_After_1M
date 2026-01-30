@@ -1,0 +1,60 @@
+Script,ExclusionAfter1M-3M
+setDealerCode(`
+
+# auction-filter: Note....Exclusion
+# convention-card: 21GF-Exclusion
+# 1M-3M Inviting, Inviting Jump Shifts
+
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# Defines oneSpade, oneHeart
+
+sBid = oneSpade and spades(north)>3
+hBid = oneHeart and hearts(north)>3
+
+sShape  = shape(south,any 0xxx+any 1xxx)
+
+sStrength = hcp(south) +6 - losers(south)
+sRange = sStrength>18 and sStrength<23
+
+sOpens = (sBid or hBid) and sShape and sRange 
+
+nStrength = hcp(north) +6 - losers(north)
+
+# Define a 4-card raise
+jacoby2n = sOpens and nStrength>12 
+splinter = sOpens and shape(north,any 0xxx+any 1xxx) and nStrength>11 and nStrength<15 and not jacoby2n
+invite   = sOpens and nStrength>10 and nStrength<13 and not (jacoby2n or splinter)
+
+# Define unbalanced preemptive raises
+hPreempt = oneHeart and hearts(north)>4
+sPreempt = oneSpade and spades(north)>4
+unBalRaise = shape(north,any 0xxx+any 1xxx) and (hPreempt or sPreempt)
+preempt  = sOpens and unBalRaise and not (jacoby2n or splinter or invite) // any strength
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+levJ2n = jacoby2n and keep25
+levSpl = splinter and keep
+levInv = invite   and keep25
+levPre = preempt  and keep06
+levelTheDeal = levJ2n or levSpl or levInv or levPre
+
+(jacoby2n or splinter or invite or preempt)
+and levelTheDeal
+
+
+action
+average "hcp south " hcp(south),
+average "hcp north " hcp(north),
+average "hcp total " (hcp(north)+hcp(south)),
+average "jacoby 2N " 100 * jacoby2n,
+average "splinter  " 100 * splinter,
+average "inv raise " 100 * invite,
+average "preempt   " 100 * preempt,
+
+`,"S",true)
+Script
+Button,Exclusion 1M-3M,\n\
+--- Exclusion Blackwood after 1M - 3M\n\
+%ExclusionAfter1M-3M%,backgroundColor=lightpink

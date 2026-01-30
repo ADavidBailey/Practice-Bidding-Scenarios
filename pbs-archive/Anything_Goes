@@ -1,0 +1,51 @@
+Script,AnythingGoes
+setDealerCode(`
+
+/*
+
+Anything Goes
+
+convention-card:
+auction-filter: Auction.....\n(?!P)
+*/
+
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+
+twoD = shape(south,xx6x - any 7xxx -any 66xx -any 65xx) and hcp(south)<11
+twoH = shape(south,x6xx - any 7xxx -any 66xx -any 65xx) and hcp(south)<11
+twoS = shape(south,6xxx - any 7xxx -any 66xx -any 65xx) and hcp(south)<11
+
+threeC = shape(south,xxx7 + xxx8 + xxx9 -any 94xx -any 85xx -any 76xx -any 75xx) and hcp(south)<11
+threeD = shape(south,xx7x + xx8x + xx9x -any 94xx -any 85xx -any 76xx -any 75xx) and hcp(south)<11
+threeH = shape(south,x7xx + x8xx + x9xx -any 94xx -any 85xx -any 76xx -any 75xx) and hcp(south)<11
+threeS = shape(south,7xxx + 8xxx + 9xxx -any 94xx -any 85xx -any 76xx -any 75xx) and hcp(south)<11
+
+1
+
+
+action
+average "1C    " 100 * oC,
+average "1D    " 100 * oD,
+average "1H    " 100 * oH,
+average "1S    " 100 * oS,
+average "1NT   " 100 * gibNT,
+average "2C    " 100 * gameForce2C,
+average "2D    " 100 * twoD,
+average "2H    " 100 * twoH,
+average "2S    " 100 * twoS,
+average "2NT   " 100 * twoNT,
+average "3C    " 100 * threeC,
+average "3D    " 100 * threeD,
+average "3H    " 100 * threeH,
+average "3S    " 100 * threeS,
+average "3NT   " 100 * gamble3,
+
+
+`,"S",true);
+Script
+
+Button,Anything Goes,\n\
+--- South Opens...\n\
+%AnythingGoes%

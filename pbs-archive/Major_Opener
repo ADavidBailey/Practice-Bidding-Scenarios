@@ -1,0 +1,20 @@
+Script,MajorOpener
+setDealerCode(`
+
+# auction-filter: Auction.....\\n1[HS]
+
+# South opens 1 Major
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# Defines oS and oH
+
+# South opens 1M
+(oS or oH) and hcp(south)>11 and hcp(south)<20
+
+
+`,"S",true)
+Script
+Button,Major Opener,\n\
+--- Major Opener\n\
+%MajorOpener%

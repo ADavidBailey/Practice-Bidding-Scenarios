@@ -1,0 +1,34 @@
+Script,ReverseByOpener
+setDealerCode(`
+
+# auction-filter: (1C Pass 1[HSN].*\\n2D)|(1D Pass 1[SN].*\\n2H)|(1H Pass 1NT.*\\n2S)
+
+# Reverse By Opener
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Calm-Opponents
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Response-to-1-Bid
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Openers-Rebid
+
+sShape = shape(south,any 54xx+any 64xx)
+reverse = (HNS or DSH or DNH or DNS or CHD or CSD or CSH or CND or CNH or CNS) and sShape
+reverse and hcp(south)>16 and hcp(south)<22 and hcp(north)>5 and hcp(north)<13 and calmOpps
+
+`)
+Script
+Button,Reverse By Opener,\n\
+--- Reverse By Opener\n\
+Reverses show 5+ cards in the suit opened and 4+ cards (usually) in the suit rebid.  They are natural\n\
+and strong -- in the 17-21 range -- a 1-round force.  Possible Reverses by Opener are...\n\
+  • 1!H - 1N - 2!S\n\
+  • 1!D - 1!S - 2!H\n\
+  • 1!D - 1N - 2!H/2!S\n\
+  • 1!C - 1!H - 2!D\n\
+  • 1!C - 1!S - 2!D/2!H\n\
+  • 1!C - 1N - 2!D/2!H/1!S\n\
+Reverses are NOT a convention.  If you don't have the extra strength，don't reverse.  Some play lebensohl\n\
+after reverses -- second link below.\n\
+https://www.bridgebum.com/reverse_bids.php\n\
+https://www.advinbridge.com/this-week-in-bridge/417\n\
+%ReverseByOpener%

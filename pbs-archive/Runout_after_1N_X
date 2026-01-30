@@ -1,0 +1,24 @@
+Script,Runout
+setDealerCode(`
+
+/*
+auction-filter: Auction.....\n1NT?.* X.* XX +
+*/
+
+# Runout after 1N Doubled
+dealer south
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+# Defines gibNT
+
+wX = shape(west, any 5332 +any 4432 +any 4333) and hcp(west)>15
+
+nXX = hcp(north)<6 and (clubs(north)>4 or diamonds(north)>4)
+
+gibNT and wX and nXX
+
+`,"S",true)
+Script
+Button,Runout after 1NX,\n\
+--- Runout after 1NX\n\
+%Runout%

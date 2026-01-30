@@ -1,0 +1,43 @@
+Script,ExclusionStaJac
+setDealerCode(`
+
+# auction-filter: Note....Exclusion
+# convention-card: 21GF-Exclusion
+
+dealer south
+produce 1000
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/GIB-1N
+# Defines gibNT
+
+hFit4 = hearts(north)==4 and hearts(south)>3   // 4-4 or 4-5
+sFit4 = spades(north)==4 and spades(south)>3
+hFit5 = hearts(north)==5 and hearts(south)>2   // 5-3, 5-4, or 5-5
+sFit5 = spades(north)==5 and spades(south)>2
+jac = shape(north, 5xxx + x5xx -54xx -45xx)    // exclude smolen
+jacFit = jac and (hFit5 or sFit5)
+sta = shape(north, 4xxx + x4xx)                // includes smolen
+staFit = sta and (hFit4 or sFit4)
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+
+# Define Leveling
+case1  = jacFit    and keep70
+case2  = staFit    and keep
+levelTheDeal = case1 or case2
+
+# Do it
+gibNT and hcp(north)>13 and shape(north,any 0xxx) and (case1 or case2)
+and levelTheDeal
+
+action
+average "Jac + Fit " 100 * jacFit,
+average "Sta + Fit " 100 * staFit,
+average "hcp south " hcp(south),
+
+`,"S",true)
+Script
+Button,Exclusion Sta/Jac,\n\
+--- Exclusion Blackwood after Stayman or Jacoby\n\
+Leveled for Stayman vs Jacoby.\n\
+%ExclusionStaJac%,backgroundColor=lightpink

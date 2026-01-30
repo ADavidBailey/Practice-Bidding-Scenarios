@@ -1,0 +1,20 @@
+Script,StrongClub3Suit
+setDealerCode(`
+
+# convention-card: Precision
+# auction-filter: Auction.....[\s\S][\s\S]?1C
+
+# Strong Club System: 1C & 3 suited response 8+ HCP
+dealer south
+
+# South has 15+ and north has 8+ and any 4441 or any 5440
+hcp(south)>14 and hcp(north)>7 and shape(north, any 4441 + any 5440)
+
+`, "S", true);
+Script
+Button,1C 3-Suit,\n\
+--- 1C with 3-Suit Response\n\
+1!C is 15+ HCP，artificial and forcing.\n\
+Is there anything you want here.  I often include a link to a description.\n\
+http://clairebridge.com/textes/karensrules.pdf\n\
+%StrongClub3Suit%,backgroundColor=lightpink

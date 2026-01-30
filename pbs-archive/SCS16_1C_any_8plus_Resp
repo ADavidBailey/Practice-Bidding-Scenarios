@@ -1,0 +1,22 @@
+Script,scs16StrongClubAny8PlusResp
+setDealerCode(
+`
+
+# convention-card: Precision
+# auction-filter: Auction.....[\s\S][\s\S]?1C
+
+
+produce 1000
+dealer south
+
+# South has 16+
+hcp(south)>15
+
+# North has 8+
+and hcp(north)>8
+
+`, "S", true);
+Script
+Button,8+ Resp 16+,\n\
+--- Any 8+ Response (16+ HCP)\n\
+%scs16StrongClubAny8PlusResp%,backgroundColor=lightpink

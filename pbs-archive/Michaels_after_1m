@@ -1,0 +1,60 @@
+Script,MichaelsAfter1m
+setDealerCode(`
+
+/*
+auction-filter: Auction.....\n(1C +2C|1D +2D|1H +2H|1S +2S)
+*/
+
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/TP
+# Defines tpSouth, tpNorth
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Predict-Opening-1-Bid
+# Defines oneClub, oneDiamond, oneHeart, oneSpade
+
+predeal west HT9,ST9
+
+sClubs = oneClub and cRange and clubs(north)>3 and clubs(north)>diamonds(north)
+sDiamonds = oneDiamond and dRange and diamonds(north)>3 and diamonds(north)>clubs(north)
+southOpens = (sDiamonds or sClubs)
+
+# Define West's Michaels Cuebid
+wSuits = top5(west,spades)>2 and top5(west,hearts)>2
+westMCB= shape(west,76xx +67xx +66xx +65xx +56xx +55xx) and wSuits and tpWest>8
+
+#Define Forcing Raise 13+ -- 3S  // extra strength or extra length
+cForceR = sClubs    and ((clubs(north)   ==4 and tpNorth>=16) or (clubs(north)   >=5 and tpNorth>=13))
+dForceR = sDiamonds and ((diamonds(north)==4 and tpNorth>=16) or (diamonds(north)>=5 and tpNorth>=13))
+force = (cForceR or dForceR)
+
+# Define Limit Raise or better 10+ -- 2H
+cLimitR = sClubs    and ((clubs(north)   ==4 and tpNorth>=12) or (clubs(north)   >=5 and tpNorth>=10)) and not cForceR
+dLimitR = sDiamonds and ((diamonds(north)==4 and tpNorth>=12) or (diamonds(north)>=5 and tpNorth>=10)) and not dForceR
+limit = (cLimitR or dLimitR)
+
+# Define Competitive Raise 7-9 -- 3C/D
+cCompR = sClubs    and ((clubs(north)   ==4 and tpNorth>=8) or (clubs(north)   >=5 and tpNorth>=7)) and not (cForceR or cLimitR)
+dCompR = sDiamonds and ((diamonds(north)==4 and tpNorth>=8) or (diamonds(north)>=5 and tpNorth>=7)) and not (dForceR or dLimitR)
+comp = (cCompR or dCompR)   
+
+# Define Preemptive Raise 4-6 -- 4 or 5 C/D
+cPremR = sClubs    and (clubs(north)   >=7 and tpNorth>=4) and not (cForceR or cLimitR or cCompR)
+dPremR = sDiamonds and (diamonds(north)>=6 and tpNorth>=4) and not (dForceR or dLimitR or dCompR)
+prem = (cPremR or dPremR)
+
+northResponds = (force or limit or comp or prem)
+
+southOpens and westMCB and northResponds
+
+action
+average "force" 100 * force,
+average "limit" 100 * limit,
+average "comp " 100 * comp,
+average "prem " 100 * prem,
+
+`,"S",false)
+Script
+Button,Michaels after 1m,\n\
+---  Michaels Cuebid after 1m\n\
+  • 1!C - 2!C = 5+!H & 5+!S，or a good hand\n\
+  • 1!D - 2!D = 5+!H & 5+!S\n\
+https://www.bridgebum.com/michaels_cuebid.php\n\
+%MichaelsAfter1m%
