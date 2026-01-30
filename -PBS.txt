@@ -3,11 +3,7 @@
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
 //Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
-Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
 Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/PBStooltips.js
-
-// Start BBA Auction Compare panel (called by Auction Compare button)
-Script,startBBACompare,window.startBBACompare(); R='';
 
 // Pause
 Script,onLogin,setTimeout(setOptionsOff, 200);
@@ -572,7 +568,9 @@ Button,Bidding Scenarios (click headers to open/close),,width=100% backgroundCol
 
 Button,Start Bidding Tbl,%setBiddingTable%,width=35% backgroundColor=lightgreen
 Button,Start Teaching Tbl,%setTeachingTable%,width=38% backgroundColor=lightgreen
-Button,Auction Compare,%startBBACompare%,width=27% backgroundColor=lightgreen
+Button,Deal Source,%reviewCurrentCode%,width=27% backgroundColor=lightgreen
+
+Script,reviewCurrentCode,setDealerCode("");
 
 Button,Minor Suit Sequences,,width=100% backgroundColor=lightblue
 
