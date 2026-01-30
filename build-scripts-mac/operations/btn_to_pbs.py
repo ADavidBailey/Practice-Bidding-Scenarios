@@ -287,11 +287,11 @@ def generate_pbs(parsed: dict, scenario_filename: str) -> str:
     if scenario_style.get('width'):
         style_parts.append(f"width={scenario_style['width']}")
 
-    # Background color: layout color, or lightpink if GIB doesn't work
+    # Color: lightpink background if GIB doesn't work, else text color from layout
     if not parsed['gib_works']:
         style_parts.append("backgroundColor=lightpink")
     elif scenario_style.get('color'):
-        style_parts.append(f"backgroundColor={scenario_style['color']}")
+        style_parts.append(f"color={scenario_style['color']}")
 
     style_str = " ".join(style_parts)
     if style_str:
