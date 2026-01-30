@@ -4,13 +4,13 @@
 #   [Section] Title         - Section header (lightblue, collapsible)
 #   [Action] Text|script|width - Action button (lightgreen)
 #   ---                     - Separator row
-#   file1, file2            - Button row (2 buttons at 50% each - default)
-#   file:38%                - Button with explicit width
-#   file:12%:blue           - Button with width and color override
+#   file1, file2            - Button row (2 buttons at 50% each)
+#   file1, (file2:blue, file3:blue) - file1 at 50%, grouped buttons share 50%
 #   # comment               - Comment line
 #
 # BBOalert assumes 2 buttons per row at 50% width each.
-# Rows should sum to ~100% width.
+# Use (...) to group multiple buttons into one 50% slot.
+# The PBS builder calculates actual widths for grouped buttons.
 
 [Major] Bidding Scenarios (click headers to open/close)
 [Action] Start Bidding Tbl|%setBiddingTable%|35
@@ -29,14 +29,14 @@ Fourth_Suit_Forcing, Fourth_Bid_Inviting
 New_Minor_Forcing
 ---
 After_2_Passes, After_3_Passes
-Open_In_Fourth_Seat, Open_In_Fourth_13:12%:blue, Open_In_Fourth_14:12%:blue, Open_In_Fourth_15:13%:blue, Open_In_Fourth_16:13%:blue
+Open_In_Fourth_Seat, (Open_In_Fourth_13:blue, Open_In_Fourth_14:blue, Open_In_Fourth_15:blue, Open_In_Fourth_16:blue)
 XYZ, Two-Way_New_Minor_Forcing_aka_xyNT
 Weak_Jump_Shift, 3_Under_Invitational_Jump
 Reverse_By_Opener, Reverse_By_Responder
 Reverse_After_Two_Over_One
 ---
 Notrump_18-19, Splinters_By_Opener
-Misfit, Misfit_06-10:17%:blue, Misfit_11-12:17%:blue, Misfit_13-Plus:16%:blue
+Misfit, (Misfit_06-10:blue, Misfit_11-12:blue, Misfit_13-Plus:blue)
 Preemptive_Raise, Goulash
 Transfer_Advances
 
@@ -56,8 +56,8 @@ Xfer_after_1M_X, Drury
 
 [Section] Game Forcing Sequences
 Two_Over_One, Serious
-Jacoby_2N:38%, Jacoby_2N_Leveled:12%:blue
-Jacoby_2N_4x_void:38%, Jacoby_2N_4x_void_Leveled:12%:blue
+Jacoby_2N, (Jacoby_2N_Leveled:blue)
+Jacoby_2N_4x_void, (Jacoby_2N_4x_void_Leveled:blue)
 Splinters
 ---
 Game_Forcing_2C, Benjamin_2D
@@ -65,7 +65,7 @@ Gerber_By_Responder, Gerber_By_Opener
 ---
 ---
 Last_Train_Game_Try, Last_Train_GT2
-Soloway_Jump_Shift, Soloway_Jump_Shift_Type-1:13%:blue, Soloway_Jump_Shift_Type-2:12%:blue, Soloway_Jump_Shift_Type-3:13%:blue, Soloway_Jump_Shift_Type-4:12%:blue
+Soloway_Jump_Shift, (Soloway_Jump_Shift_Type-1:blue, Soloway_Jump_Shift_Type-2:blue, Soloway_Jump_Shift_Type-3:blue, Soloway_Jump_Shift_Type-4:blue)
 
 [Section] Notrump Sequences
 GIB_1N, GIB_1N5422
@@ -110,8 +110,8 @@ Two_NT_in_Fourth_Seat
 3N
 
 [Section] Preempts
-Weak_2_Bids:38%, Weak_2_Bids_Leveled:12%:blue
-Weak_2_Bids_Lax:38%, Weak_2_Bids_Lax_Leveled:12%:blue
+Weak_2_Bids, (Weak_2_Bids_Leveled:blue)
+Weak_2_Bids_Lax, (Weak_2_Bids_Lax_Leveled:blue)
 Muiderberg_Two_Bids
 ---
 Opps_Weak_Two, McCabe_After_Weak_2

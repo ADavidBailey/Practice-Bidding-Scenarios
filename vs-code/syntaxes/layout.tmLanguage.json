@@ -69,17 +69,37 @@
       "patterns": [
         {
           "name": "meta.button-row.layout",
-          "begin": "^(?=[A-Za-z0-9_-])",
+          "begin": "^(?=[A-Za-z0-9_-(])",
           "end": "$",
           "patterns": [
             {
-              "name": "meta.button.styled.layout",
-              "match": "([A-Za-z0-9_-]+):(\\d+(?:\\.\\d+)?%)(?::(\\w+))?",
-              "captures": {
-                "1": { "name": "entity.name.function.scenario.layout" },
-                "2": { "name": "constant.numeric.width.layout" },
-                "3": { "name": "constant.other.color.layout" }
-              }
+              "name": "meta.button-group.layout",
+              "begin": "\\(",
+              "end": "\\)",
+              "beginCaptures": {
+                "0": { "name": "punctuation.definition.group.begin.layout" }
+              },
+              "endCaptures": {
+                "0": { "name": "punctuation.definition.group.end.layout" }
+              },
+              "patterns": [
+                {
+                  "name": "meta.button.colored.layout",
+                  "match": "([A-Za-z0-9_-]+):(\\w+)",
+                  "captures": {
+                    "1": { "name": "entity.name.function.scenario.grouped.layout" },
+                    "2": { "name": "constant.other.color.layout" }
+                  }
+                },
+                {
+                  "name": "entity.name.function.scenario.grouped.layout",
+                  "match": "[A-Za-z0-9_-]+"
+                },
+                {
+                  "name": "punctuation.separator.comma.layout",
+                  "match": ","
+                }
+              ]
             },
             {
               "name": "entity.name.function.scenario.layout",
