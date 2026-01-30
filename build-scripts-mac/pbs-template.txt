@@ -16,6 +16,25 @@ Script,onLogin,parent.$('.verticalClass')[0].click();
 // Hide the Char, Word, All backspace buttons
 Script,onDataLoad,$("#adpanel2 button:lt(3)").hide();
 
+// Fix button row heights - make adjacent buttons equal height
+Script,onDataLoad
+var style = document.createElement('style');
+style.textContent = `
+  #adpanel2 {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: stretch !important;
+  }
+  #adpanel2 button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+`;
+document.head.appendChild(style);
+Script
+
 // Redirect chat so it doesn't go to Lobby
 Script,onDataLoad
 sendPrivateChat(whoAmI(),"");
