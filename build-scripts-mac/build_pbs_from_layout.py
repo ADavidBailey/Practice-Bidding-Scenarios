@@ -56,11 +56,19 @@ def load_all_btn_metadata(btn_dir):
 
 
 def parse_button_item(item, btn_metadata):
-    """Parse a button item like 'file' or 'file:blue'."""
+    """Parse a button item like 'file', 'file:blue', 'file:38%', or 'file:blue:12%'."""
     item = item.strip()
     parts = item.split(':')
     name = parts[0]
-    color = parts[1] if len(parts) > 1 else None
+    color = None
+    width = None
+
+    # Parse remaining parts - could be color, width, or both
+    for part in parts[1:]:
+        if part.endswith('%'):
+            width = part
+        else:
+            color = part
 
     # Get metadata from BTN file
     meta = btn_metadata.get(name, {})
@@ -71,7 +79,7 @@ def parse_button_item(item, btn_metadata):
         'button_text': meta.get('button_text', name),
         'gib_works': meta.get('gib_works', True),
         'color': color or meta.get('button_color'),
-        'width': meta.get('button_width'),
+        'width': width or meta.get('button_width'),
     }
 
 

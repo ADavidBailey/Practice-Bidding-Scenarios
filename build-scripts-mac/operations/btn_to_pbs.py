@@ -93,15 +93,29 @@ def parse_layout_buttons(line):
             for i, item in enumerate(group_items):
                 item_parts = item.split(':')
                 name = item_parts[0]
-                color = item_parts[1] if len(item_parts) > 1 else None
-                width = f"{base_width + (1 if i >= n - remainder else 0)}%"
-                buttons.append({'name': name, 'width': width, 'color': color, 'grouped': True})
+                color = None
+                item_width = None
+                for p in item_parts[1:]:
+                    if p.endswith('%'):
+                        item_width = p
+                    else:
+                        color = p
+                # Use explicit width if provided, otherwise calculate
+                if item_width is None:
+                    item_width = f"{base_width + (1 if i >= n - remainder else 0)}%"
+                buttons.append({'name': name, 'width': item_width, 'color': color, 'grouped': True})
         else:
-            # Regular button
+            # Regular button - may have explicit width like file:blue:38%
             item_parts = part.split(':')
             name = item_parts[0]
-            color = item_parts[1] if len(item_parts) > 1 else None
-            buttons.append({'name': name, 'width': None, 'color': color, 'grouped': False})
+            color = None
+            width = None
+            for p in item_parts[1:]:
+                if p.endswith('%'):
+                    width = p
+                else:
+                    color = p
+            buttons.append({'name': name, 'width': width, 'color': color, 'grouped': False})
 
     # Calculate widths for non-grouped buttons
     non_grouped = [b for b in buttons if not b.get('grouped')]

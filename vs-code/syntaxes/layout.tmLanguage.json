@@ -85,6 +85,32 @@
               },
               "patterns": [
                 {
+                  "name": "meta.button.colored-width.layout",
+                  "match": "([A-Za-z0-9_-]+):(blue):(\\d+%)",
+                  "captures": {
+                    "1": { "name": "entity.name.function.scenario.grouped.layout" },
+                    "2": { "name": "constant.language.color.blue.layout" },
+                    "3": { "name": "constant.numeric.width.layout" }
+                  }
+                },
+                {
+                  "name": "meta.button.colored-width.layout",
+                  "match": "([A-Za-z0-9_-]+):(\\w+):(\\d+%)",
+                  "captures": {
+                    "1": { "name": "entity.name.function.scenario.grouped.layout" },
+                    "2": { "name": "constant.other.color.layout" },
+                    "3": { "name": "constant.numeric.width.layout" }
+                  }
+                },
+                {
+                  "name": "meta.button.width.layout",
+                  "match": "([A-Za-z0-9_-]+):(\\d+%)",
+                  "captures": {
+                    "1": { "name": "entity.name.function.scenario.grouped.layout" },
+                    "2": { "name": "constant.numeric.width.layout" }
+                  }
+                },
+                {
                   "name": "meta.button.colored.layout",
                   "match": "([A-Za-z0-9_-]+):(blue)",
                   "captures": {
@@ -109,6 +135,32 @@
                   "match": ","
                 }
               ]
+            },
+            {
+              "name": "meta.button.colored-width.layout",
+              "match": "([A-Za-z0-9_-]+):(blue):(\\d+%)",
+              "captures": {
+                "1": { "name": "entity.name.function.scenario.layout" },
+                "2": { "name": "constant.language.color.blue.layout" },
+                "3": { "name": "constant.numeric.width.layout" }
+              }
+            },
+            {
+              "name": "meta.button.colored-width.layout",
+              "match": "([A-Za-z0-9_-]+):(\\w+):(\\d+%)",
+              "captures": {
+                "1": { "name": "entity.name.function.scenario.layout" },
+                "2": { "name": "constant.other.color.layout" },
+                "3": { "name": "constant.numeric.width.layout" }
+              }
+            },
+            {
+              "name": "meta.button.width.layout",
+              "match": "([A-Za-z0-9_-]+):(\\d+%)",
+              "captures": {
+                "1": { "name": "entity.name.function.scenario.layout" },
+                "2": { "name": "constant.numeric.width.layout" }
+              }
             },
             {
               "name": "entity.name.function.scenario.layout",

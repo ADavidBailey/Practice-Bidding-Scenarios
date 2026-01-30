@@ -6,11 +6,12 @@
 #   ---                     - Separator row
 #   file1, file2            - Button row (2 buttons at 50% each)
 #   file1, (file2:blue, file3:blue) - file1 at 50%, grouped buttons share 50%
+#   file:blue:12%           - Explicit color and width
 #   # comment               - Comment line
 #
 # BBOalert assumes 2 buttons per row at 50% width each.
 # Use (...) to group multiple buttons into one 50% slot.
-# The PBS builder calculates actual widths for grouped buttons.
+# Use :width% suffix for explicit width control (e.g., 38%+12%+38%+12%=100%).
 
 [Major] Bidding Scenarios (click headers to open/close)
 [Action] Start Bidding Tbl|%setBiddingTable%|35
@@ -50,7 +51,7 @@ Xfer_after_1M_X,                      Drury
 
 [Section] Game Forcing Sequences
 Two_Over_One,                         Serious
-(Jacoby_2N, Jacoby_2N_Leveled:blue), (Jacoby_2N_4x_void, Jacoby_2N_4x_void_Leveled:blue)
+Jacoby_2N:38%, Jacoby_2N_Leveled:blue:12%, Jacoby_2N_4x_void:38%, Jacoby_2N_4x_void_Leveled:blue:12%
 Splinters,                            ---
 Game_Forcing_2C,                      Benjamin_2D
 Gerber_By_Responder,                  Gerber_By_Opener
@@ -88,7 +89,7 @@ Two_NT_in_Fourth_Seat,                ---
 3N,                                   ---
 
 [Section] Preempts
-(Weak_2_Bids, Weak_2_Bids_Leveled:blue), (Weak_2_Bids_Lax, Weak_2_Bids_Lax_Leveled:blue)
+Weak_2_Bids:38%, Weak_2_Bids_Leveled:blue:12%, Weak_2_Bids_Lax:38%, Weak_2_Bids_Lax_Leveled:blue:12%
 Muiderberg_Two_Bids,                  ---
 Opps_Weak_Two,                        McCabe_After_Weak_2
 Multi_2D,                             Opps_Multi_2D
