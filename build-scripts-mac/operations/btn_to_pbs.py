@@ -108,11 +108,12 @@ def inline_includes(dealer_code: str) -> str:
     return re.sub(pattern, replace_include, dealer_code)
 
 
-def generate_logging_code(alias: str) -> str:
+def generate_logging_code(alias: str, scenario_filename: str) -> str:
     """
     Generate the scenario logging JavaScript code.
     """
     return f"""window.currentPBSScenario = '{alias}';
+window.currentPBSScenarioFilename = '{scenario_filename}';
 console.log('PBS: Logging scenario selection for {alias}');
 fetch('https://bba.harmonicsystems.com/api/scenario/select', {{
     method: 'POST',
@@ -127,7 +128,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {{
 }}).then(function(r){{ console.log('PBS: Server response', r.status); }}).catch(function(e){{ console.log('PBS: Fetch error', e); }});"""
 
 
-def generate_pbs(parsed: dict) -> str:
+def generate_pbs(parsed: dict, scenario_filename: str) -> str:
     """
     Generate PBS file content from parsed BTN data.
     """
@@ -146,7 +147,7 @@ def generate_pbs(parsed: dict) -> str:
 
     # Script block with logging code
     lines.append(f"Script,{alias}")
-    lines.append(generate_logging_code(alias))
+    lines.append(generate_logging_code(alias, scenario_filename))
     lines.append("setDealerCode(`")
 
     # Add auction filter if present (as block comment)
@@ -214,7 +215,7 @@ def run_btn_to_pbs(scenario: str, verbose: bool = True) -> bool:
         parsed = parse_btn_file(btn_path)
 
         # Generate PBS content
-        pbs_content = generate_pbs(parsed)
+        pbs_content = generate_pbs(parsed, scenario)
 
         # Write PBS file with .pbs extension
         pbs_path = os.path.join(FOLDERS["pbs_test"], f"{scenario}.pbs")

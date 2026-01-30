@@ -1,5 +1,6 @@
 Script,Notrump
 window.currentPBSScenario = 'Notrump';
+window.currentPBSScenarioFilename = '1N';
 console.log('PBS: Logging scenario selection for Notrump');
 fetch('https://bba.harmonicsystems.com/api/scenario/select', {
     method: 'POST',

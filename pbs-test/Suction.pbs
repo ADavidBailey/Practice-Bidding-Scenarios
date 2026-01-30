@@ -1,5 +1,6 @@
 Script,Suction
 window.currentPBSScenario = 'Suction';
+window.currentPBSScenarioFilename = 'Suction';
 console.log('PBS: Logging scenario selection for Suction');
 fetch('https://bba.harmonicsystems.com/api/scenario/select', {
     method: 'POST',
