@@ -1,0 +1,22 @@
+# alias: MajorOpener
+# button-text: Major Opener
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\\n1[HS]
+
+/*@chat
+--- Major Opener
+@chat*/
+
+# South opens 1 Major
+dealer south
+
+#include "script/Predict-Opening-1-Bid"
+# Defines oS and oH
+
+# South opens 1M
+(oS or oH) and hcp(south)>11 and hcp(south)<20
+
+
+action printpbn

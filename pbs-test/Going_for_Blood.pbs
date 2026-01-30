@@ -1,0 +1,25 @@
+Script,GoingForBlood
+window.currentPBSScenario = 'GoingForBlood';
+console.log('PBS: Logging scenario selection for GoingForBlood');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'GoingForBlood',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+auction-filter: Auction.....\n1[CDHS] +X
+*/
+
+`, "S", true)
+Script
+Button,Going for Blood,\n\
+--- Going for Blood\n\
+%GoingForBlood%

@@ -1,0 +1,21 @@
+# alias: StrongClub55
+# button-text: StrongClub55
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....[\s\S][\s\S]?1C
+
+# Strong C & two-suited response
+dealer south
+
+# South has 15+
+hcp(south)>14
+
+# North has 8+
+and hcp(north)>7
+
+# North has 5-5 or better
+and shape(north, any 85xx+ any 76xx +any 75xx +any 65xx +any 55xx)
+
+
+action printpbn

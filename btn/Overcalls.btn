@@ -1,0 +1,110 @@
+# alias: Overcalls
+# button-text: Overcalls
+# dealer-position: E
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\\n(1C 1[DHS]|1D (1[HS]|2C)|1H (1S|2[CD])|1S 2[CDH])
+
+/*@chat
+--- Overcalls
+@chat*/
+
+# Overcalls
+dealer east
+
+#include "script/GIB-1N"
+# Defines gibNT
+
+# Predict East's opening suit -- east will be limited to 12-14 HCP
+s = spades(east)
+h = hearts(east)
+d = diamonds(east)
+c = clubs(east)
+oS = s>4 and s>=h and s>=d and s>=c
+oH = not oS and h>4 and h>=d and h>=c
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
+oC = not (oS or oH or oD)
+openingSuit = (oS or oH or oD or oC)
+
+# Calculate East's Rank
+eRS = oS ? 4 : 0
+eRH = oH ? 3 : 0
+eRD = oD ? 2 : 0
+eRC = oC ? 1 : 0
+eRank = eRS+eRH+eRD+eRC
+
+# Define good suits
+sGoodS = spades(south)>4   and top4(south,spades)==3   and not oS
+sGoodH = hearts(south)>4   and top4(south,hearts)==3   and not oH
+sGoodD = diamonds(south)>4 and top4(south,diamonds)==3 and not oD
+sGoodC = clubs(south)>4    and top4(south,clubs)==3    and not oC
+
+sShape = shape(south,any 8xxx + any 7xxx + any 6xxx + any 5xxx - any 85xx - any 76xx - any 75xx - any 65xx - any 55xx)
+
+# Calculate South's Rank
+sRS = sGoodS ? 4 : 0
+sRH = sGoodH ? 3 : 0
+sRD = sGoodD ? 2 : 0
+sRC = sGoodC ? 1 : 0
+sRank = sRS + sRH + sRD + sRC
+
+# Define working points for South: hcp - points for secondary honors in opponents suit
+sSP = oS and hascard(south,AS) ? hcp(south,spades)-4   : hcp(south,spades)
+sHP = oH and hascard(south,AH) ? hcp(south,hearts)-4   : hcp(south,hearts)
+sDP = oD and hascard(south,AD) ? hcp(south,diamonds)-4 : hcp(south,diamonds)
+sCP = oC and hascard(south,AC) ? hcp(south,clubs)-4    : hcp(south,clubs)
+WP = hcp(south) - sSP - sHP - sDP - sCP // only one will be non-zero
+
+# Define suitPoints for South: 1 point for every card over 5
+sSSP = sGoodS ? spades(south)-5   : 0
+sHSP = sGoodH ? hearts(south)-5   : 0
+sDSP = sGoodD ? diamonds(south)-5 : 0
+sCSP = sGoodC ? clubs(south)-5    : 0
+sSuitPoints = hcp(south) + sSSP + sHSP + sDSP + sCSP
+
+sTP = WP + sSuitPoints
+
+# require 12+ WP for lower rank suit and 8+ WP for higher rank. Use WP for lower limit.
+sMin = sRank>eRank ? sTP>=8 : sTP>=13
+sMax = sTP<18     // avoid too strong to overcall.
+sRange = sMin and sMax
+
+# avoid take-out double
+shortS = oS and spades(south)<3
+shortH = oH and hearts(south)<3
+shortD = oD and diamonds(south)<3
+shortC = oC and clubs(south)<3
+shortOS = shortS or shortH or shortD or shortC
+sX = shape(south,any 7330 +any 6430 +any 6331 +any 5431 +any 5440 +any 5332) and shortOS and hcp(south)>10
+
+# avoid weak jump overcalls/preempts
+sJump = shape(south,any 8xxx +any 7xxx +any 6xxx) and hcp(south)>5 and hcp(south)<11
+
+# avoid Michaels & Unusual 2NT
+sTwoSuits = shape(south,any 76xx+any 75xx+any 66xx+any 65xx+any 55xx)
+
+# East opens
+eOpens = (oC or oD or oH or oS) and hcp(east)>11 and hcp(east)<15
+
+sOvercalls = (sGoodS or sGoodH or sGoodD or sGoodC) and sShape and sRange and not (sX or sJump or sTwoSuits or gibNT)
+
+# Now do it
+eOpens and sOvercalls
+
+
+action
+average "CD  " 100 * (oC and sGoodD),
+average "CH  " 100 * (oC and sGoodH),
+average "CS  " 100 * (oC and sGoodS),
+average "DH  " 100 * (oD and sGoodH),
+average "DS  " 100 * (oD and sGoodS),
+average "DC  " 100 * (oD and sGoodC),
+average "HS  " 100 * (oH and sGoodS),
+average "HC  " 100 * (oH and sGoodC),
+average "HD  " 100 * (oH and sGoodD),
+average "SC  " 100 * (oS and sGoodC),
+average "SD  " 100 * (oS and sGoodD),
+average "SH  " 100 * (oS and sGoodH),
+
+
+action printpbn

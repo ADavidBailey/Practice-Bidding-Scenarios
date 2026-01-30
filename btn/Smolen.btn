@@ -3,7 +3,7 @@
 # dealer-position: S
 # gib-works: true
 # bba-works: true
-# auction-filter: Auction.....\n1NT? .*Pass .*2C .*Pass\n2D
+# auction-filter: Auction.....\n1N +Pass +2C +Pass\n2D
 
 /*@chat
 --- Smolen
@@ -16,7 +16,6 @@ dealer south
 
 #include "script/GIB-1N"
 # Defines gibNT
-
 #include "script/Calm-Opponents"
 # Defines calmWest
 

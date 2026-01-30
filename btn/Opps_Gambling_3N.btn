@@ -1,0 +1,25 @@
+# alias: OppsGambling3N
+# button-text: Gambling 3N
+# dealer-position: E
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\\n3NT
+
+/*@chat
+--- Opponents Gambling 3N
+A gambling 3N opening bid shows a solid 7+-card minor suit and less than a K outside.
+@chat*/
+
+# Opps Gambling 3N
+dealer east
+
+hcp(east)>8 and hcp(east)<12  // could have a Q or two J's outside
+and
+(
+(top3(east,diamonds)==3 and diamonds(east)>6)
+or
+(top3(east,clubs)==3 and clubs(east)>6)
+)
+
+
+action printpbn

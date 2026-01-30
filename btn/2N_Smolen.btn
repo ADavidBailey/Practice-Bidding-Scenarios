@@ -1,0 +1,63 @@
+# alias: TwoNTSmolen
+# button-text: 2NT - Smolen
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n2NT?.*Pass.*3C.*\n3D
+
+/*@chat
+---  20-21 Notrump with Smolen response.
+The responder's strength -- game or slam -- is leveled.
+@chat*/
+
+### 2N - Smolen
+
+#include "script/Predict-Opening-1-Bid"
+
+### NORTH ###
+# Calculate strength for North -- hcp plus 1 for every card over 4 in any suit 
+nlp1 = spades(north)>4 ? spades(north)-4 : 0
+nlp2 = hearts(north)>4 ? hearts(north)-4 : 0
+nlp3 = diamonds(north)>4 ? diamonds(north)-4 : 0
+nlp4 = clubs(north)>4 ? clubs(north)-4 : 0
+strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
+
+# Define objective
+weak = strength<5
+game = strength>4 and strength<12
+slam = strength>11
+
+# Define One Minor and Both Minors
+cN = clubs(north)
+dN = diamonds(north)
+hN = hearts(north)
+sN = spades(north)
+cSuit  = cN>5 and hcp(north,clubs)>2    and dN<4 and shape(north,xxxx-any 66xx-any 65xx)
+dSuit  = dN>5 and hcp(north,diamonds)>2 and cN<4 and shape(north,xxxx-any 66xx-any 65xx)
+minor2 = ((cN>4 and dN>3) or (dN>4 and cN>3)) and (hcp(north,clubs) + hcp(north,diamonds))>2
+
+# Define Responses
+smolen = shape(north,54xx+45xx-any 7xxx-any 6xxx-any 55xx) and shape(south,33xx+32xx+23xx)
+
+#include "script/Leveling"
+
+##### Level the deal #####
+levPart = weak and keep0
+levGame = game and keep19
+levSlam = slam and keep
+levelTheDeal = levPart or levGame or levSlam
+
+### Do it ###
+twoNT and smolen
+and levelTheDeal
+
+### Generate Statistics ###
+action
+#printoneline,
+
+average "Partscore    " 100 * weak,
+average "Game         " 100 * game,
+average "Slam         " 100 * slam,
+
+
+action printpbn

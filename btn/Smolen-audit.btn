@@ -1,0 +1,28 @@
+# alias: Smolen
+# button-text: Smolen
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n1NT? .*Pass .*2C .*Pass\n2D
+
+/*@chat
+--- Smolen
+With game forcing values and 5-4 in the majors, start with 2!C.
+If partner bids 2!D, jump to 3 of your 4-card major.
+@chat*/
+
+# Smolen
+dealer south
+
+#include "script/GIB-1N"
+# Defines gibNT
+#include "script/Calm-Opponents"
+# Defines calmWest
+
+oneNT = gibNT and shape(south, 23xx+32xx+33xx-xxx1-xx1x-xx6x-xxx6)
+smolen = shape(north, 54xx+45xx) and hcp(north) > 9
+
+oneNT and smolen and calmWest        // It's OK for East to X with decent clubs -- system's on
+
+
+action printpbn

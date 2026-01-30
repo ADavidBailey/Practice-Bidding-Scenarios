@@ -1,0 +1,106 @@
+# alias: TwoSuitedOvercalls
+# button-text: 2-Suit Overcalls
+# dealer-position: E
+# gib-works: true
+# bba-works: true
+# auction-filter: (1C 2C)|(1D 2D)|(1H 2H)|(1S 2S)|(1[CDHS] 2N)
+
+/*@chat
+Please note:  This scenario includes all two-suited hands. Specific major/minor combinations
+are problematic -- Michaels Cuebids and Top & Bottom Cuebids can't be played together.
+·
+You may want to practice with the Michaels and Unusual NT scenario instead.
+·
+Let me know if you want to practice with Top & Bottom and Unusual NT.
+--- 2-Suit Overcalls
+@chat*/
+
+# Two-Suited Overcalls
+dealer east
+produce 1000
+
+#include "script/Predict-Opening-1-Bid-East"
+
+
+# 2-suited overcalls
+
+# Define good suits
+GoodS = spades(south)>4 and top5(south,spades)>2
+GoodH = hearts(south)>4 and top5(south,hearts)>2
+GoodD = diamonds(south)>4 and top5(south,diamonds)>2
+GoodC = clubs(south)>4 and top5(south,clubs)>2
+
+# Define 2-suits
+SH = (GoodS and GoodH)
+SD = (GoodS and GoodD)
+SC = (GoodS and GoodC)
+HD = (GoodH and GoodD)
+HC = (GoodH and GoodC)
+DC = (GoodD and GoodC)
+
+# Define 2-Suits -- not opener's suit
+oneS = oS and (HD or HC or DC)  // Michaels or Michaels or Unusual NT
+oneH = oH and (SD or SC or DC)  // Michaels or Michaels or Unusual NT
+oneD = oD and (SH or HC or SC)  // Michaels or Unusual NT or ???? - no way to show SC
+oneC = oC and (SH or HD or SD)  // Michaels or Unusual NT or ???? - no way to show SD
+
+oSuit = (oneS or oneH or oneD or oneC) and shape(east,any xxxx-8xxx-7xxx-6xxx)
+oRange = hcp(east)>11 and hcp(east)<15
+
+# Intervener is weak or strong
+iWeak   = losers(south)<8 and hcp(south)>7  and hcp(south)<12
+iStrong = losers(south)<5 and hcp(south)>14 and hcp(south)<20
+iRange = iWeak or iStrong
+
+# This is an attempt to get stats for overcaller weak/strong.  I don't think I can get it to work.
+wHCP    = iWeak   ? hcp(south)    : 0
+wLosers = iWeak   ? losers(south) : 0
+sHCP    = iStrong ? hcp(south)    : 0
+sLosers = iStrong ? losers(south) : 0
+
+# Responder's minimum HCP -- you might try adjusting this
+rRange = hcp(west)>7
+
+### Now do it
+oSuit and iRange and rRange
+
+# To get stats for south weak/strong uncomment one of the following
+#and iWeak
+#and iStrong
+
+# You might also play with choseing south's suits
+#and SC or SD  // If you just want the problematic ones
+
+action
+#printoneline,
+
+average "Weak       " 100 * iWeak,
+average "  HCP      "     wHCP,
+average "  Losers   "     wLosers,
+average "Strong     " 100 * iStrong,
+average "  HCP      "     sHCP,
+average "  Losers   "     sLosers,
+
+average "1S         " 100 * (oneS and (HD or HC or DC)),
+average "   (2S)  HD" 100 * (oneS and HD),
+average "   (2S)  HC" 100 * (oneS and HC),
+average "   (2N)  DC" 100 * (oneS and DC),
+average "1H         " 100 * (oneH and (SD or SC or DC)),
+average "   (2H)  SD" 100 * (oneH and SD),
+average "   (2H)  SC" 100 * (oneH and SC),
+average "   (2N)  DC" 100 * (oneH and DC),
+average "1D         " 100 * (oneD and (SH or HC or SC)),
+average "   (2D)  SH" 100 * (oneD and SH),
+average "   (2N)  HC" 100 * (oneD and HC),
+average "         SC" 100 * (oneD and SC),
+average "1C         " 100 * (oneC and (SH or HD or SD)),
+average "   (2C)  SH" 100 * (oneC and SH),
+average "   (2N)  HD" 100 * (oneC and HD),
+average "         SD" 100 * (oneC and SD),
+
+frequency "Opener HCP    " (hcp(east),12,14),
+frequency "Intervener HCP" (hcp(south),8,19),
+frequency "Responder HCP " (hcp(west),6,17),
+
+
+action printpbn

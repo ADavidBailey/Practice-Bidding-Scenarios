@@ -1,0 +1,28 @@
+# alias: scs16StrongClub55Plus
+# button-text: 5/5+ Resp 16+
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....[\s\S][\s\S]?1C
+
+/*@chat
+--- 5/5 or better Response (16+ HCP)
+1!C is 16+ HCP, artificial and forcing.
+Is there anything you want here.  I often include a link to a description.
+http://clairebridge.com/textes/karensrules.pdf
+@chat*/
+
+# Strong C & two-suited response
+dealer south
+
+# South has 16+
+hcp(south)>15
+
+# North has 8+
+and hcp(north)>7
+
+# North has 5-5 or better
+and shape(north, any 85xx+ any 76xx +any 75xx +any 65xx +any 55xx)
+
+
+action printpbn

@@ -1,0 +1,44 @@
+# alias: Rule15
+# button-text: =15
+# dealer-position: N
+# gib-works: true
+# bba-works: true
+# auction-filter: 1NT Pass
+
+/*@chat
+---  The Rule of 16 -- Opener has 15 HCP & responder has 15 R16 points.
+@chat*/
+
+# Rule of 16 = 15
+dealer north
+
+
+# East passes
+#include "script/Calm-Opponents"
+
+# Calculate the Rule of 16 for South (cards>7 + HCP)
+r16S = top5(south,spades)   + hascard(south,9S) + hascard(south,8S) 
+r16H = top5(south,hearts)   + hascard(south,9H) + hascard(south,8H)
+r16D = top5(south,diamonds) + hascard(south,9D) + hascard(south,8D)
+r16C = top5(south,clubs)    + hascard(south,9C) + hascard(south,8C)
+r16  = r16S + r16H + r16D + r16C + hcp(south)
+
+########## Place the Club 4 based on the Rule of 16 ##########
+club4 = r16>15 ? hascard(south,4C) : hascard(north,4C)
+
+# North opens 1N with 15 HCP
+nOpens = shape(north,any 4333+any 4432+any 5332-5xxx-x5xx) and hcp(north)==15
+
+# South has 8-9 HCP and more than 13 R16 points
+sActs = shape(south, any 4333+any 4432+any 5332+any 5422-5xxx-x5xx) and hcp(south)>7 and hcp(south)<10 and r16==15
+
+# North opens 1N, East passes, and south has 8-9 HCP and an exact number of R16 points
+nOpens and calmEast and sActs and club4
+
+produce 1000
+action
+#printoneline,
+frequency "R16 points" (r16,13,19),
+
+
+action printpbn

@@ -1,0 +1,42 @@
+# alias: After1M2M
+# button-text: After 1M - 2M
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: (1H.Pass.2H.)|(1S.Pass.2S.)
+
+/*@chat
+---  After 1M - 2M
+• 18+ bid game
+• 15+ bid help suit
+• 12-14 pass
+@chat*/
+
+#include "script/Predict-Opening-1-Bid"
+# defines oneSpade, oneHeart, suitPoints, gibNT
+#include "script/Calm-Opponents"
+# defines calmOpps
+
+# Calculate North's Short Suit Points
+v1 = shape(north, any 0xxx) ? 5 : 0
+s1 = shape(north, any 1xxx) ? 3 : 0
+d1 = shape(north, any 2xxx) ? 1 : 0 // allow for 3 doubletons
+d2 = shape(north, any 22xx) ? 1 : 0
+d3 = shape(north, any 222x) ? 1 : 0
+shortSuitPoints = (v1+s1+d1+d2+d3)>2 ? 3 : (v1+s1+d1+d2+d3) // limit to number of trumps
+
+openS = oneSpade and spades(north)==3
+openH = oneHeart and hearts(north)==3 and spades(north)<4
+HorS = (openS or openH) and not gibNT
+
+# Now do it
+HorS and suitPoints>11 and suitPoints<18 and shortSuitPoints>0 and hcp(north)>4 and hcp(north)<10 and calmOpps
+
+produce 1000
+action
+average "1S" 100 * oneSpade,
+average "1H" 100 * oneHeart,
+frequency "ShortSuitPoints" (shortSuitPoints,1,5),
+
+
+action printpbn

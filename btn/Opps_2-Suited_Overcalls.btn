@@ -1,0 +1,91 @@
+# alias: OppsTwoSuitedOvercalls
+# button-text: 2-Suit Overcalls
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\\n1[CDHS] 2[CDHSN]
+
+/*@chat
+--- Opponents 2-Suit Overcalls
+double is penalty oriented
+raise is natural (about 7-10)
+a jump raise is preemptive
+bidding new (unshown) suit is natural & not forcing
+with 1 known opponent suit -- a cue bid is a limit+ raise
+with 2 known opponent suits -- cue lower for lower & higher for higher
+https://www.bridgebum.com/unusual_vs_unusual.php
+https://www.bridgebum.com/defense_to_michaels.php
+@chat*/
+
+# Opponent's Two-Suited Overcalls
+dealer south
+produce 1000
+
+
+#include "script/Predict-Opening-1-Bid"
+
+# Opponents 2-suited overcalls
+
+# Define good suits
+GoodS = spades(west)>4 and top5(west,spades)>2
+GoodH = hearts(west)>4 and top5(west,hearts)>2
+GoodD = diamonds(west)>4 and top5(west,diamonds)>2
+GoodC = clubs(west)>4 and top5(west,clubs)>2
+
+# Intervener is 2-suited -- all require at least QJT; so, at least 6 HCP for the intervener 
+SH = (GoodS and GoodH)
+SD = (GoodS and GoodD)
+SC = (GoodS and GoodC)
+HD = (GoodH and GoodD)
+HC = (GoodH and GoodC)
+DC = (GoodD and GoodC)
+
+# Intervener's 2-Suits -- NOT opener's suit
+oneS = oS and (HD or HC or DC)  // Michaels, Michaels/Top&Bottom, Unusual NT
+oneH = oH and (SD or SC or DC)  // Michaels, Michaels/Top&Bottom, Unusual NT
+oneD = oD and (SH or SC or HC)  // Michaels, Top&Bottom, Unusual NT
+oneC = oC and (SH or SD or HD)  // Michaels, Top&Bottom, Unusual NT
+
+oSuit = (oneS or oneH or oneD or oneC) and shape(south,any xxxx-8xxx-7xxx-6xxx)
+oRange = hcp(south)>11 and hcp(south)<22
+
+# West is weak or strong, 6-11 or 15-19
+iWeak   = losers(west)<8 and hcp(west)>5  and hcp(west)<12
+iStrong = losers(west)<5 and hcp(west)>14 and hcp(west)<20
+iRange = iWeak or iStrong
+
+# Responder's minimum HCP
+rRange = hcp(north)>6
+
+### Now do it
+oSuit and oRange and iRange and rRange
+
+# You might play with chosing west's suits
+#and SC or SD  // If you just want the problematic ones
+
+#  Michaels Cue Bid (MCB), Unusual 2NT (U2N), Top & Bottom Cue Bid (T&B)
+
+action
+average "1S         " 100 * (oneS and (HD or HC or DC)),
+average "   (2S MCB     = HD) " 100 * (oneS and HD),
+average "   (2S MCB/T&B = HC) " 100 * (oneS and HC),
+average "   (2N U2N     = DC) " 100 * (oneS and DC),
+average "1H         " 100 * (oneH and (SD or SC or DC)),
+average "   (2H MCB     = SD) " 100 * (oneH and SD),
+average "   (2H MCB/T&B = SC) " 100 * (oneH and SC),
+average "   (2N U2N     = DC) " 100 * (oneH and DC),
+average "1D         " 100 * (oneD and (SH or HC or SC)),
+average "   (2D MCB     = SH) " 100 * (oneD and SH),
+average "   (2N 2NT     = HC) " 100 * (oneD and HC),
+average "   (2D T&B     = SC) " 100 * (oneD and SC),
+average "1C         " 100 * (oneC and (SH or HD or SD)),
+average "   (2C MCB     = SH) " 100 * (oneC and SH),
+average "   (2N U2N     = DC) " 100 * (oneC and HD),
+average "   (2C T&B     = SD) " 100 * (oneC and SD),
+
+frequency "Opener HCP"     (hcp(south),12,21),
+frequency "Intervener HCP" (hcp(west),6,19),
+frequency "Responder HCP"  (hcp(north),6,19),
+
+
+action printpbn

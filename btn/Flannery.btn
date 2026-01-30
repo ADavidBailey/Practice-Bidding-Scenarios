@@ -1,0 +1,29 @@
+# alias: Flannery
+# button-text: Flannery
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\\n1H.
+
+/*@chat
+--- Flannery 2D
+A Flannery 2D opener shows 11-15 HCP, 5!H, and 4!S.
+https://www.bridgebum.com/flannery_2d.php
+@chat*/
+
+# Flannery
+
+dealer south
+
+# South has 11-15 HCP, 5 Hearts and 4 Spades
+flannery = hcp(south)>10 and hcp(south)<16 and shape(south, 45xx)
+
+# Now do it
+flannery
+
+action
+average "HCP North=" hcp(north),
+average "HCP South=" hcp(south),
+
+
+action printpbn

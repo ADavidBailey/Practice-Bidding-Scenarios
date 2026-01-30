@@ -1,0 +1,37 @@
+# alias: Any5422w15
+# button-text: Any5422w15
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\\n1NT.
+
+dealer south
+
+# any 5422 w/15-16 HCP
+
+hcp(south)>14 and hcp(south)<17 and shape(south,any 5422)
+
+produce 5000
+action
+average "hcp        " hcp(south),
+# 5 Spades
+average "5422       " 100 * shape(south,5422),
+average "5242       " 100 * shape(south,5242),
+average "5224       " 100 * shape(south,5224),
+# 5 Hearts
+average "4522       " 100 * shape(south,4522),
+average "2542       " 100 * shape(south,2542),
+average "2524       " 100 * shape(south,2524),
+# 5 Diamonds
+average "4252       " 100 * shape(south,4252),
+average "2452       " 100 * shape(south,2452),
+average "2254       " 100 * shape(south,2254),
+# 5 Clubs
+average "4225       " 100 * shape(south,4225),
+average "2425       " 100 * shape(south,2425),
+average "2245       " 100 * shape(south,2245),
+
+average "any 5422   " 100 * shape(south,any 5422),
+
+
+action printpbn

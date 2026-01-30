@@ -1,0 +1,33 @@
+Script,ReverseByResponder
+window.currentPBSScenario = 'ReverseByResponder';
+console.log('PBS: Logging scenario selection for ReverseByResponder');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'ReverseByResponder',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+auction-filter: (1C Pass 1H.*\\n(1NT|2C)|(1C Pass 1D .*\\n(1NT|2C) Pass 2[HS])|(1C Pass 1H .*\\n(1NT|2C) Pass 2S)|(1D Pass 1H .*\\n(1NT|2C|2D) Pass 2S))
+*/
+
+`, "S", true)
+Script
+Button,Reverse By Responder,\n\
+--- Reverse By Responder\n\
+Reverses by responder show 4+ cards in the first suit and usually 4+ cards in the suit rebid.\n\
+They are natural and Game Forcing.  Possible Reverses by Responder are...\n\
+• 1!C - 1!D - 1N - 2!H or 2!S\n\
+• 1!C - 1!H - 1N - 2!S\n\
+• 1!C - 1!D - 2!C - 2!H or 2!S\n\
+• 1!D - 1!H - 1N - 2!S\n\
+• 1!D - 1!H - 2!D - 2!S\n\
+Reverses are NOT a convention.  If you don't have  Game Forcing strength，don't reverse.\n\
+%ReverseByResponder%

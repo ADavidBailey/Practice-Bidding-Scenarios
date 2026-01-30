@@ -1,0 +1,36 @@
+# alias: JacobyTransfer
+# button-text: GIB NT & Jacoby
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\\n1NT Pass 2[DH]
+
+/*@chat
+---  Jacoby Transfer
+South opens 1N w/2452+2425+2245+2254+4522 or any 4333, 4432, or 5332 distribution.
+Those 5422 hands are the ones where you are likely to have to reverse to show your suits.
+HCP adjusted +1 for any 5-card suit unless you have Kx, Qx, or Jx doubleton.
+North transfers to Hearts or Spades.
+@chat*/
+
+# Import Define-1N and Calm Opponents
+#include "script/GIB-1N"
+# Defines gibNT
+#include "script/Calm-Opponents"
+
+# Define North's Jacoby Transfer and South's Super Accept (not Smolen, allow 6-card suits, avoid Texas)
+nSps = shape(north,6xxx) and hearts(north)<4 and hcp(north)<7  // PartScore
+nHps = shape(north,x6xx) and spades(north)<4 and hcp(north)<7
+nSgf = shape(north,5xxx) and hearts(north)<4 and hcp(north)>8 // GameForce
+nHgf = shape(north,x5xx) and spades(north)<4 and hcp(north)>8
+
+# Now OPEN 1NT
+gibNT and (nSps or nHps or nSgf or nHgf) and calmWest
+
+# Generate Statistics
+action
+average "Heart Fit" 100 * (nHps or nHgf),
+average "Spade Fit" 100 * (nSps or nSgf),
+
+
+action printpbn

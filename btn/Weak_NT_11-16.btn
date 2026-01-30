@@ -1,0 +1,29 @@
+# alias: WeakNT11
+# button-text: WeakNT11
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\\n1NT.
+
+produce 1000
+dealer south
+
+hcp1113 = hcp(south)>10 and hcp(south)<14
+hcp1416 = hcp(south)>13 and hcp(south)<17
+#include "script/Leveling"
+
+lev1113 = hcp1113 and keep56
+lev1416 = hcp1416 and keep
+levelTheDeal = lev1113 or lev1416
+
+# South has a semi-balanced hand with 9-12 HCP and not 5/4 in majors
+shape(south,any 4333 +any 4432 +any 5332 +any 5422 -54xx -45xx) and hcp(south)>10 and hcp(south)<17
+and levelTheDeal
+
+produce 5000
+action
+average "11-13 " 100 * hcp1113,
+average "14-16 " 100 * hcp1416,
+
+
+action printpbn

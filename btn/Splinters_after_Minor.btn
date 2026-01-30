@@ -1,0 +1,69 @@
+# alias: Splinters_after_Minor
+# button-text: Splinters after Minor
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Note..1.Splinter
+
+/*@chat
+--- Splinter Bids are double jumps.  They show a singleton or void in the suit bid and support
+in support of opener's minor (at least 9-cards).
+GIB splinters with a singleton A, K, or Q.  Some players do NOT.
+• After 1!C a jump to 3!D, 3!H, or 3!S
+• After 1!D a jump to 3!H, 3!S, or 4!C
+@chat*/
+
+# Splinters
+dealer south
+
+#include "script/Calm-Opponents"
+# Defines calmWest
+#include "script/TP"
+# Defines tpSouth, tpNorth
+#include "script/Predict-Opening-1-Bid"
+# Defines oneClub, oneDiamond, gibNT
+
+# Define things to exclude for North
+jacobyJS  = diamonds(north)>4 and tpNorth>16    // Jacoby Jumpshift to 2D
+major     = spades(north)>3 or hearts(north)>3  // a Major suit response
+balInvite = shape(north,any 1xxx) and (hcp(north)==11 or hcp(north)==12)  // 2N is Balanced Invite w/11-12 HCP & a singleton
+nExcludes = jacobyJS or major or balInvite
+
+# Define things to exclude for South
+strong2   = hcp(south)>21 or tpSouth>22 or losers(south)<5   
+gib2NT    = shape(south, any 5332 +any 4432 +any 4333) and (hcp(south)==20 or hcp(south)==21)
+sExcludes = gibNT or gib2NT or strong2
+
+sOpens = ((hcp(south)==11 and tpSouth>12) or hcp(south)>11) and not sExcludes  // min HCP requires extra TP or length
+
+# North Splinters w/4-card support and any shortness
+anyShortness = shape(north,any 1xxx +any 0xxx)
+cFit = oneClub    and clubs(north)>5
+dFit = oneDiamond and diamonds(north)>4
+fit = cFit or dFit
+
+nSplinters = fit and tpNorth>13 and anyShortness and not nExcludes
+
+part  = (tpNorth + tpSouth)<26
+game  = (tpNorth + tpSouth)<33 and not part
+slam  = (tpNorth + tpSouth)<37 and not (part or game)
+grand =                            not (part or game or slam)
+
+#include "script/Leveling"
+lev1 = part  and keep
+lev2 = game  and keep70
+lev3 = slam  and keep
+lev4 = grand and keep
+levelTheDeal = lev1 or lev2 or lev3 or lev4
+
+sOpens and calmWest and nSplinters
+and levelTheDeal
+
+action
+average "Part Score" 100 * part,
+average "Game"       100 * game,
+average "Slam"       100 * slam,
+average "Grand"      100 * grand,
+
+
+action printpbn

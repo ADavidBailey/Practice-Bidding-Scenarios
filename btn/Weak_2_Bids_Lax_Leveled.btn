@@ -1,0 +1,96 @@
+# alias: WeakTwoBidsLaxLev
+# button-text: (Lev)
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: 2[DHS]
+
+/*@chat
+--- Weak Two Bids may have 4-card major - Leveled
+Opener has a 6-card suit and may have a 4-card side major, at least half of the HCP
+are in the suit, less than 11 HCP and less than 7 losers.  This script is leveled.
+Meaning that responder is equally likely to have a pass, raise, invite, or force.
+https://www.bridgebum.com/weak_two.php
+@chat*/
+
+dealer south
+
+# Define South's Weak 2 Bids w/any 4-card suit -- Loose
+
+     // at least half of south's points are in the suit
+     // allow 4-card side major
+
+tp = hcp(south)
+sp = hcp(south,spades)
+hp = hcp(south,hearts)
+dp = hcp(south,diamonds)
+ 
+w2s = shape(south,6xxx-x6xx-x5xx) and 2 * sp > tp    
+w2h = shape(south,x6xx-6xxx-5xxx) and 2 * hp > tp
+w2d = shape(south,xx6x-x6xx-x5xx-6xxx-5xxx) and 2* dp > tp
+ 
+w2Range = tp>4 and tp<11 and losers(south)<7
+ 
+weakTwo = (w2s or w2h or w2d) and w2Range
+
+# Define responders hand types
+
+# Responder Raises
+sFit = w2s and spades(north)>2
+hFit = w2s and hearts(north)>2
+dFit = w2s and diamonds(north)>2
+fit = sFit or hFit or dFit
+
+# Define Feature -- an Ace or King outside the trump suit
+sAK = top2(south,spades)==1 and not sFit
+hAK = top2(south,hearts)==1 and not hFit
+dAK = top2(south,diamonds)==1 and not dFit
+cAK = top2(south,clubs)==1
+oHonor = (sAK or hAK or dAK or cAK)
+
+rPass = hcp(north)<15 and not fit
+rRaise = fit and hcp(north)<14             // Extend the preempt
+rInvite = fit and hcp(north)>13            // 2N
+rForce = hcp(north)>16 and not rInvite     // Do something
+
+# Responder bids new suit
+rGS = (spades(north)==5 && top5(north,spades)>3) or (spades(north)>5 and top5(north,spades) >2)
+rGH = (hearts(north)==5 && top5(north,hearts)>3) or (hearts(north)>5 and top5(north,hearts) >2)
+rGD = (diamonds(north)==5 && top5(north,diamonds)>3) or (diamonds(north)>5 and top5(north,diamonds) >2)
+rGC = (clubs(north)==5 && top5(north,clubs)>3) or (clubs(north)>5 and top5(north,clubs) >2)
+rGSuit = rGS or rGH or rGD or rGC
+rNewSuit = rForce and rGSuit
+
+# Opener shows feature
+oFeature = rInvite and hcp(south)>8 and oHonor
+
+# Opener rebids suit
+oRebid = rInvite and not oFeature
+
+#include "script/Leveling"
+
+# Level the deal
+case1 = rPass and keep11
+case2 = rRaise and keep19
+case3 = rInvite and keep70
+case4 = rForce and keep
+
+# do it
+weakTwo
+
+# Level out responses:
+and (case1 or case2 or case3 or case4)
+
+action
+average "Responder pass          " 100 * rPass,
+average "Responder raise         " 100 * rRaise,
+average "Responder invite        " 100 * rInvite,
+average "Responder force         " 100 * rForce,
+
+average "2NT/Opener rebids major " 100 * oRebid,
+average "2NT/Opener shows feature" 100 * oFeature,
+average "New suit response       " 100 * rNewSuit,
+average "Trump fit               " 100 * fit,
+
+
+action printpbn

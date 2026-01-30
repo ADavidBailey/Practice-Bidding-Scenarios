@@ -1,0 +1,34 @@
+# alias: Losers
+# button-text: loser south
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n
+
+/*@chat
+--- loser south
+@chat*/
+
+dealer south
+
+#include "script/Predict-Opening-1-Bid"
+
+1
+
+
+action
+
+average "1C    " 100 * oC,
+average "1D    " 100 * oD,
+average "1H    " 100 * oH,
+average "1S    " 100 * oS,
+average "1NT   " 100 * oneNT,
+average "2C    " 100 * gameForce2C,
+average "2NT   " 100 * twoNT,
+average "3NT   " 100 * threeNT,
+
+frequency "loser(south)" (loser(south), 0, 12),
+frequency "hcp(south)" (hcp(south), 0, 30),
+
+
+action printpbn

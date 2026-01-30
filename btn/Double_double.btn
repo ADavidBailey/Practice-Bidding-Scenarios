@@ -1,0 +1,82 @@
+# alias: DoubleDouble
+# button-text: Double double...
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\\n1. [12]. X.2.\\n.* .* X
+
+/*@chat
+--- Double, double toil and trouble...
+After x (y), X is a Negative Double.  It's for takeout. At the 1-level
+it promises 4-Cards in each unbid major. At higher levels you need a backup
+plan if partner doesn't have your major -- maybe a tolerance for opener's suit.
+If you double again, it's a scrambling takeout double.
+@chat*/
+
+# Double, double toil and trouble
+
+dealer south
+
+#include "script/Predict-Opening-1-Bid"
+
+# Predict West's overcall
+sW = spades(west)
+hW = hearts(west)
+dW = diamonds(west)
+cW = clubs(west)
+wS = sW>=hW and sW>=dW and sW>=cW
+wH = not wS and hW>=dW and hW>=cW
+wD = not (wS or wH)    and (dW>=cW or cW==3)
+wC = not (wS or wH or wD)
+
+# Define West's good 5+ card suit and East's 3-card fit
+ewSfit = wS and top3(west,spades)==2   and spades(west)==5   and spades(east)>2
+ewHfit = wH and top3(west,hearts)==2   and hearts(west)==5   and hearts(east)>2
+ewDfit = wD and top3(west,diamonds)==2 and diamonds(west)==5 and diamonds(east)>2
+ewCfit = wC and top3(west,clubs)==2    and clubs(west)==5    and clubs(east)>2
+
+w1suit = shape(west,any 5xxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+ewFit = (ewSfit or ewHfit or ewDfit or ewCfit) and w1suit
+
+# Define North/South fit -- no direct raise -- secondary support
+nsCfit = oC and clubs(north)==3
+nsDfit = oD and diamonds(north)==3
+nsHfit = oH and hearts(north)==2
+nsSfit = oS and spades(north)==2
+nsFit = nsCfit or nsDfit or nsHfit or nsSfit
+
+# Define north's two suits with room for secondary support and South has no direct raise
+nsh = shape(north,44xx +45xx +54xx) and spades(south)<4   and hearts(south)<4    // S & H
+nsd = shape(north,4x4x +4x5x)       and spades(south)<4   and diamonds(south)<4  // S & D
+nsc = shape(north,4xx4 +4xx5)       and spades(south)<4   and clubs(south)<4     // S & C
+nhd = shape(north,x44x +x45x)       and hearts(south)<4   and diamonds(south)<4  // H & D
+nhc = shape(north,x4x4 +x4x5)       and hearts(south)<4   and clubs(south)<4     // H & C
+ndc = shape(north,xx44 +xx45 +xx54) and diamonds(south)<4 and clubs(south)<4     // D & C
+
+# North has the other two suits
+cd = oC and ewDfit and nsh
+ch = oC and ewHfit and nsd
+cs = oC and ewSfit and nhd
+dh = oD and ewHfit and nsc
+ds = oD and ewSfit and nhc
+hs = oH and ewSfit and ndc
+
+# South Opens, West Overcalls at the 1-level, and North has the other two suits. 
+sOpens = (cd or ch or cs or dh or ds or hs) and shape(south,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx)
+
+lRanges = hcp(south)>=11 and hcp(west)>=8  and hcp(north)>=10 and hcp(east)>=5
+uRanges = hcp(south)<=13 and hcp(west)<=10                    and hcp(east)<=8
+
+sOpens and nsFit and ewFit and lRanges and uRanges
+
+action
+#printoneline,
+average "1C (1D) " 100 * cd,
+average "1C (1H) " 100 * ch,
+average "1C (1S) " 100 * cs,
+average "1D (1H) " 100 * dh,
+average "1D (1S) " 100 * ds,
+average "1H (1S) " 100 * hs,
+
+
+action printpbn

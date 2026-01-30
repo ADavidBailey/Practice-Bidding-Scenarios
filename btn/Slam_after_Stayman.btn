@@ -1,0 +1,28 @@
+# alias: SlamAfterStayman
+# button-text: Slam after Stayman
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\\n1NT.Pass.2C
+
+/*@chat
+--- Slam after Stayman or Smolen.
+@chat*/
+
+produce 1000
+dealer south
+
+#include "script/Calm-Opponents"
+# Defines calmWest
+
+# Slam after Stayman or Jacoby
+#include "script/GIB-1N"
+# Defines gibNT
+
+staymanOrSmolen = shape(north, 54xx+45xx+44xx+43xx+34xx)  // Stayman and/or Smolen
+nRange = hcp(north)>15
+
+gibNT and staymanOrSmolen and nRange and calmWest
+
+
+action printpbn

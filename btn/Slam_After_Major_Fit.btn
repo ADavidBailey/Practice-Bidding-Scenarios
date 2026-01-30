@@ -1,0 +1,36 @@
+# alias: SlamAfterMajor
+# button-text: Major Suit Slam
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\\n1[HS]
+
+/*@chat
+--- Slam w/Major Suit Fit -- N/S have 29+ HCP
+Responder's hand has at least 3-card support.  Its strength is wide ranging.
+@chat*/
+
+# Major_Suit_Fit
+dealer south
+
+#include "script/Calm-Opponents"
+# Returns calmWest
+
+#include "script/GIB-1N"
+# Returns gibNT
+
+heartFit = shape(south,x7xx + x6xx + x5xx -any 65xx -any 55xx) and hearts(north)>2
+spadeFit = shape(south,7xxx + 6xxx + 5xxx -any 65xx -any 55xx) and spades(north)>2
+
+# North opens 1 Major and South has a fit
+oneM = (heartFit or spadeFit) and not gibNT
+
+oneM and hcp(south)>11 and hcp(south)<20 and hcp(north)>5 and (hcp(north)+hcp(south))>28 and calmWest
+
+action
+average "hcp south  " 100 * hcp(south),
+average "hcp north  " 100 * hcp(north),
+average "hcp total  " 100 * (hcp(north)+hcp(south)),
+
+
+action printpbn

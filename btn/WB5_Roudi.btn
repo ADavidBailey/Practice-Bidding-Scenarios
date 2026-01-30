@@ -1,0 +1,45 @@
+# alias: WB5Roudi
+# button-text: Roudi
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n(1[CDH].* Pass.* 1[DHS].*\n1NT?)
+
+/*@chat
+--- After 1x (P) 1y (P) 1NT, 2!C is an artificial asking bid.
+2!D shows a min opening and no major fit.
+2!H shows a min opening and 3-card in responder's major.
+2!S shows a max opening and 3-card in responder's major.
+2N shows a max opening and no major fit.
+3m shows a max opening and 3-card in responder's major & 5-cards in the suit bid.
+@chat*/
+
+/*
+auction-filter: Auction.....\n(1[CDH].* Pass.* 1[DHS].*\n1NT?)
+
+*/
+
+# Roudi:  After 1m (1S) 2m shows 7-10 HCP w/5H
+
+#include "script/Predict-Opening-1-Bid"
+#include "script/Predict-Response-to-1-Bid"
+#include "script/Calm-Opponents"
+# Defines calmOpps
+#include "script/Total-Points-North"
+# Defines nTP
+
+CDN = CD and h<4 and s<4 and c<6 and d<4
+CHN = CH and s<4 and c<6 and h<4
+CSN = CS and c<6 and s<4
+DHN = DH and s<4 and c<4 and d<6 and h<4
+DSN = DS and c<4 and d<6 and s<4
+HSN = HS and c<4 and d<4 and h<6 and s<4
+
+sRange = hcp(south)>11 and hcp(south)<16
+nRange = nTP>10 and nTP<13
+xyn = ((CDN or CHN or CSN) and clubs(north)<4) or ((DHN or DSN) and diamonds(north)<4) or (HSN and hearts(north)<3)
+
+xyn and sRange and calmOpps and nRange
+
+
+action printpbn

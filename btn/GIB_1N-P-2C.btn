@@ -1,0 +1,62 @@
+# alias: GibStayman
+# button-text: GIB NT & 2C Response
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n1NT? +Pass +2C +
+
+/*@chat
+--- Stayman asks the opener for a 4-card major.  Responses are as follow...
+• 2!D - No 4-card major
+• 2!H - 4+!H, may also have 4!S
+• 2!S - 4+!S and denies 4!H
+Normally, Stayman shows 8+HCP; but, if you're willing to pass anything that your
+partner might bid, you may bid 2!C with any strength.
+https://www.bridgebum.com/stayman.php
+https://www.bridgebum.com/crawling_stayman.php
+@chat*/
+
+/*
+GIB deducts 1 point for each short suit in the responder's hand and fails to bid Stayman with really weak major suits.
+
+convention-card: 21GF-GIB
+auction-filter: Auction.....\n1NT? +Pass +2C +
+*/
+
+# Stayman
+dealer south
+
+# 1 Notrump Opening
+#include "script/GIB-1N"
+# Defines gibNT
+#include "script/Calm-Opponents"
+# Defines calmWest
+#include "script/TP"
+# Defines tpNorth
+
+# Boost quality of North's major
+nMajorQual  = hcp(north,spades) + hcp(north,hearts)>3
+
+# Define North's Splinter bids so we can exclude them
+splinter = shape(north,4405 + 4450 + 4045 + 4054 + 0445 +0454 + any 4441 -xxx1) and tpNorth>11
+n3NT = shape(north,2344 +3244) and hcp(north)>9 and hcp(north)<16
+n7NT = shape(north,any 4432 +any 4333) and hcp(north)>19
+avoid = not (splinter or n3NT or n7NT)
+
+# Define various 2C bids -- GIB does not play Drop Dead or Crawlling Stayman
+# GIB does not bid 2C with less than 9 Total Points
+smolen      = shape(north,54xx +45xx)
+majorInvite = shape(north,54xx +45xx) and tpNorth<10 and hcp(north)<10 and not smolen
+stayman     = shape(north,4xxx +x4xx +4432 +4342 +3442 -xx2x -any 7xxx -any 6xxx) and not (smolen or majorInvite)
+n2Clubs = (stayman or majorInvite or smolen) and nMajorQual and hcp(north)>6 and hcp(north)<20 and tpNorth>8 and avoid
+
+gibNT and n2Clubs and calmWest
+
+action
+average "45xx Invite " 100 * (majorInvite and shape(north,45xx)),
+average "54xx Invite " 100 * (majorInvite and shape(north,54xx)),
+average "smolen      " 100 * smolen,
+average "stayman     " 100 * stayman,
+
+
+action printpbn

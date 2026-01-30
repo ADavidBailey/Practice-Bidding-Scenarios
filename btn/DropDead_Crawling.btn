@@ -1,0 +1,40 @@
+# alias: DropDeadCrawling
+# button-text: Drop Dead/Crawling
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n1NT? +Pass +2C +
+
+/*@chat
+--- Drop Dead/Crawling Stayman
+2!C asks the opener for a 4-card major.  Responses are as follow...
+• 2!D - No 4-card major
+• 2!H - 4+!H, may also have 4!S
+• 2!S - 4+!S and denies 4!H
+Normally, Stayman requires 8+HCP; but, Drop Dead Stayman and Crawling Stayman are exceptions.
+With Drop Dead Stayman, responder will pass anything that opener bids.
+With Crawling Stayman, responder will correct 2!D to 2!H showing a weak 3-suited hand w/short !D.
+https://www.bridgebum.com/stayman.php
+https://www.bridgebum.com/crawling_stayman.php
+@chat*/
+
+# Stayman
+dealer south
+
+# 1 Notrump Opening
+#include "script/GIB-1N"
+# Defines gibNT
+#include "script/Calm-Opponents"
+# Defines calmWest
+
+dropDeadStayman = shape(north,4441+4450) and hcp(north)<8
+crawlingStayman = shape(north,4414+4405) and hcp(north)<8
+
+gibNT and (dropDeadStayman or crawlingStayman) and calmWest
+
+action
+average "dropDead    " 100 * dropDeadStayman,
+average "crawling    " 100 * crawlingStayman,
+
+
+action printpbn

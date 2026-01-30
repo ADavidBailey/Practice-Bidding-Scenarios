@@ -1,0 +1,39 @@
+# alias: JacobySuperAccept
+# button-text: Jacoby Super-Accept
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Note.* acceptance after NT
+
+/*@chat
+---  Jacoby Super-Accept
+South opens 1N w/17 HCP and 2452+2425+2245+2254+4522 or any 4432 or 5332.
+Those 5422 hands are the ones where you are likely to have to reverse to show your suits.
+North transfers to Hearts or Spades and South has 4- or 5-card support.
+@chat*/
+
+# Import Define-1N and Calm Opponents
+#include "script/Calm-Opponents"
+# Defines calmWest
+
+#include "script/GIB-1N"
+# Defines gibNT
+
+# Define North's Jacoby Transfer and South's Super Accept (not Smolen, allow 6-card suits, avoid Texas)
+nSwq = shape(north,6xxx) and hearts(north)<4 and spades(south)>3 and hcp(north)<8  // avoid Texas
+nHwq = shape(north,x6xx) and spades(north)<4 and hearts(south)>3 and hcp(north)<8
+nS5  = shape(north,5xxx) and hearts(north)<4 and spades(south)>3
+nH5  = shape(north,x5xx) and spades(north)<4 and hearts(south)>3
+
+# Now OPEN 1NT
+gibNT and (nSwq or nHwq or nS5 or nH5) and calmWest and shape(south,xxxx-any 4333) and hcp(south)==17
+
+# Generate Statistics
+action
+average "Heart Fit" 100 *(nHwq or nH5),
+average "Spade Fit" 100 * (nSwq or nS5),
+average "any 5422" 100 * shape(north,any 5422),
+average "not 5422" 100 * (not shape(north,any 5422)),
+
+
+action printpbn

@@ -1,0 +1,88 @@
+# alias: AllPass
+# button-text: All...
+# dealer-position: W
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\\nPass.Pass.Pass.Pass
+
+/*@chat
+--- All Pass...
+Should you open in 4th seat?  The Rule of 15 says if your hcp plus the
+number of spades is less than 15, you should Pass.  Try your luck.
+@chat*/
+
+# All Pass...
+
+# Avoid concentration of values in long suits -- no AK, AQ, or KQ
+ccw = top5(west ,clubs   )<3 and hcp(west ,clubs   )<5
+cdw = top5(west ,diamonds)<3 and hcp(west ,diamonds)<5
+chw = top5(west ,hearts  )<3 and hcp(west ,hearts  )<5
+csw = top5(west ,spades  )<3 and hcp(west ,spades  )<5
+noConWest = ccw and cdw and chw and csw
+
+ccn = top5(north,clubs   )<3 and hcp(north,clubs   )<5
+cdn = top5(north,diamonds)<3 and hcp(north,diamonds)<5
+chn = top5(north,hearts  )<3 and hcp(north,hearts  )<5
+csn = top5(north,spades  )<3 and hcp(north,spades  )<5
+noConNorth = ccn and cdn and chn and csn
+
+cce = top5(east ,clubs   )<3 and hcp(east ,clubs   )<5
+cde = top5(east ,diamonds)<3 and hcp(east ,diamonds)<5
+che = top5(east ,hearts  )<3 and hcp(east ,hearts  )<5
+cse = top5(east ,spades  )<3 and hcp(east ,spades  )<5
+noConEast = cce and cde and che and cse
+
+ccs = top5(south,clubs   )<3 and hcp(south,clubs   )<5
+cds = top5(south,diamonds)<3 and hcp(south,diamonds)<5
+chs = top5(south,hearts  )<3 and hcp(south,hearts  )<5
+css = top5(south,spades  )<3 and hcp(south,spades  )<5
+noConSouth = ccs and cds and chs and css
+
+# Hands with 5+ cards and no concentrateion of values are seldom opened with 8 or less HCP
+length5or6West  = shape(west ,xxxx -any 8xxx -any 7xxx -any 65xx -any 55xx)
+length5or6North = shape(north,xxxx -any 8xxx -any 7xxx -any 65xx -any 55xx)
+length5or6East  = shape(east ,xxxx -any 8xxx -any 7xxx -any 65xx -any 55xx)
+length5or6South = shape(south,xxxx -any 8xxx -any 7xxx -any 65xx -any 55xx)
+
+# Hands with 5+ cards are often opened with 11 HCP
+length4West   = shape(west ,any 4333 +any 44xx)
+length4North  = shape(north,any 4333 +any 44xx)
+length4East   = shape(east ,any 4333 +any 44xx)
+length4South  = shape(south,any 4333 +any 44xx)
+
+calmWest  = ((length5or6West  and noConWest  and hcp(west) <9) or (length4West  and hcp(west) <12)) and controls(west) <5
+calmNorth = ((length5or6North and noConNorth and hcp(north)<9) or (length4North and hcp(north)<12)) and controls(north)<5
+calmEast  = ((length5or6East  and noConEast  and hcp(east) <9) or (length4East  and hcp(east) <12)) and controls(east) <5
+calmSouth = ((length5or6South and noConSouth and hcp(south)<9) or (length4South and hcp(south)<12)) and controls(south)<5
+
+# For 4th seat, the rule points of 15 applies -- it should be less than 15 for a pass-out.
+r15 = hcp(south) + spades(south)
+
+dealer west
+# comment the line below to get random hands in various seats -- everything following the first // is a comment
+# to practice 4th seat decisions, use the range of r15 values
+//1 //and calmWest //and calmNorth //and calmEast //and calmSouth //and r15<15 //and (r15>13 and r15<17)
+
+1 and calmWest and calmNorth and calmEast and calmSouth and r15<15
+
+generate 30000000
+produce 20000
+action
+
+average "hcp W     " hcp(west),
+average "hcp N     " hcp(north),
+average "hcp E     " hcp(east),
+average "hcp S     " hcp(south),
+
+average "controls W" controls(west),
+average "controls N" controls(north),
+average "controls E" controls(east),
+average "controls S" controls(south),
+
+average "losers W  " losers(west),
+average "losers N  " losers(north),
+average "losers E  " losers(east),
+average "losers S  " losers(south),
+
+
+action printpbn

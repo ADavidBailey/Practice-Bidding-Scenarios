@@ -1,0 +1,25 @@
+# alias: Overcalls
+# button-text: Overcalls
+# dealer-position: E
+# gib-works: true
+# bba-works: true
+# auction-filter: 1[CDHS] (1[DHS]|2[CDH])
+
+/*@chat
+--- Overcalls
+@chat*/
+
+# Overcalls
+dealer east
+
+# Define good suits
+GoodS = spades(south)>4 and top5(south,spades)>2
+GoodH = hearts(south)>4 and top5(south,hearts)>2
+GoodD = diamonds(south)>4 and top5(south,diamonds)>2
+GoodC = clubs(south)>4 and top5(south,clubs)>2
+
+# East opens, South has a decent suit and is constructive or better
+hcp(east)>11 and hcp(east)<15 and (GoodS or GoodH or GoodD or GoodC) and hcp(south)>8
+
+
+action printpbn

@@ -1,0 +1,62 @@
+# alias: TwoNTandXfer
+# button-text: 2NT - Jacoby/Texas
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n2NT?.*Pass.*[34][DH] +
+
+/*@chat
+---  20-21 Notrump and a Jacoby or Texas Transfer response.  The responder's hand is
+leveled to make Jacoby or Texas Transfer AND game or slam at about the same frequency.
+@chat*/
+
+### 2N and Transfers ###
+
+#include "script/Predict-Opening-1-Bid"
+
+### NORTH ###
+
+# Define suit lengths
+cN = clubs(north)
+dN = diamonds(north)
+hN = hearts(north)
+sN = spades(north)
+
+# Calculate strength for North -- hcp plus 1 for every card over 4 in any suit 
+nlp1 = sN>4 ? sN-4 : 0
+nlp2 = hN>4 ? hN-4 : 0
+nlp3 = dN>4 ? dN-4 : 0
+nlp4 = cN>4 ? cN-4 : 0
+strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
+
+# Define objective
+weak = strength<5
+game = strength>4 and strength<12
+slam = strength>11
+
+# Define Responses
+texas    = (sN>5 or hN>5) and (game or slam)
+jacoby   = ((sN>4 and hN<4) or (hN>4 and sN<4)) and not texas  // no strength requirement
+
+#include "script/Leveling"
+
+levJacoby = jacoby and keep44
+levTexas  = texas  and keep
+levGame   = game   and keep19
+levSlam   = slam   and keep
+
+### Do it ###
+twoNT and (levJacoby or levTexas) and (levGame or levSlam)
+
+### Generate Statistics
+produce 5000
+action
+#printoneline,
+
+average "Jacoby       " 100 * jacoby,
+average "Texas        " 100 * texas,
+average "Game         " 100 * game,
+average "Slam         " 100 * slam,
+
+
+action printpbn

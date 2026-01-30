@@ -1,0 +1,35 @@
+# alias: MinorSuitStayman
+# button-text: Minor Suit Stayman
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: 1NT Pass 2S
+
+/*@chat
+--- Minor Suit Stayman after 1NT
+There are multiple ways to play it; this is how GIB plays it.
+2!S is MSS; then...
+• 2N - denies a 4-card minor
+• 3!C - Shows a 4+!C (may have 4!D)
+• 3!D - Shows a 4+!D and denies 4!C
+https://www.bridgebum.com/minor_suit_stayman.php
+@chat*/
+
+# Enable both MST and MSS
+
+# Minor Suit Stayman
+dealer south
+
+#include "script/GIB-1N"
+# Defines gibNT
+
+# West passes
+
+# North has 5-4 or better in the minors
+sR = hcp(north)>10 and shape(north, xx66+xx65+xx56+xx55+xx54+xx45)
+
+# Now do it
+gibNT and sR
+
+
+action printpbn

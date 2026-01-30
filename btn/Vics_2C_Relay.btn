@@ -1,0 +1,53 @@
+# alias: VicsMajRespStr
+# button-text: Vic's 2C Relay
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: 1[HS] Pass
+
+/*@chat
+---  Vic's Non-Force NT & 2!C Relay. After 1M (P)...
+• 1N, is Not Forcing 8-11. Continuations are natural.
+• 2!C is a relay to 2!D. Continuations are
+··· 2M is a 3-card invitational raise.
+··· 3M is a 3-card Game Forcing raise.
+··· any other call is natural and game forcing.
+• A new suit (2!D or 2!H) is a natural Game Force.
+This is described in Vic's Views, March 2024 ACBL Bulletin, p66.
+https://www.nxtbook.com/acbl/bridgebulletin/2024_03/index.php#/p/66
+@chat*/
+
+dealer south
+  
+#include "script/Calm-Opponents"
+#include "script/Predict-Opening-1-Bid"
+
+#type_0 = ((oneHeart && hearts(north)<4 || (oneSpade && spades(north)<4)) && hcp(south)>11 && hcp(north)>6 // less than 4-card support and 7+
+
+# 3-card support and 10-12
+type_1 = ((oneHeart && hearts(north)==3 && spades(north)<4) || (oneSpade && spades(north)==3)) && hcp(south)>11 && hcp(north)>9 && hcp(north)<13
+
+# no support, no 5-card suit and 13+ 
+type_2 = ((oneSpade && spades(north)<3) || (oneHeart && hearts(north)<3 && spades(north)<4)) && hcp(south)>11 && hcp(north)>12 && spades(north)<5 && hearts(north)<5 && diamonds(north)<5 && clubs(north)<5
+
+# 5+ clubs and 13+
+type_3 = (oneSpade || oneHeart) && hcp(south)>12 && hcp(north)>12 && clubs(north)>4
+
+#include "script/Leveling"
+
+# Do the leveling
+level_type_1 = type_1 and keep19
+level_type_2 = type_2 and keep
+level_type_3 = type_3 and keep44
+levelTheDeal = level_type_1 || level_type_2 || level_type_3
+
+( type_1 || type_2 || type_3 ) and calmOpps
+&& levelTheDeal
+
+action
+average "Type 1" 100 * type_1,
+average "Type 2" 100 * type_2,
+average "Type 3" 100 * type_3,
+
+
+action printpbn

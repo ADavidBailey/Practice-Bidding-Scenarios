@@ -1,0 +1,62 @@
+# alias: TwoNTPuppet
+# button-text: 2N - Puppet
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Note....2N-3C Puppet
+
+/*@chat
+--- 20-21 Notrump with Puppet and any continuation.
+The responder's strength -- game or slam -- is leveled.
+@chat*/
+
+### 2N w/Puppet and any response
+
+#include "script/Predict-Opening-1-Bid"
+
+### NORTH ###
+
+# Define suit lengths
+cN = clubs(north)
+dN = diamonds(north)
+hN = hearts(north)
+sN = spades(north)
+
+# Calculate strength for North -- hcp plus 1 for every card over 4 in any suit 
+nlp1 = sN>4 ? sN-4 : 0
+nlp2 = hN>4 ? hN-4 : 0
+nlp3 = dN>4 ? dN-4 : 0
+nlp4 = cN>4 ? cN-4 : 0
+strength = nlp1 + nlp2 + nlp3 + nlp4 + hcp(north)
+
+# Define objective
+weak = strength<5
+game = strength>4 and strength<12
+slam = strength>11
+
+# Define responses
+puppet = shape(north,44xx+43xx+42xx+34xx+33xx+32xx+23xx -any 8xxx -any 7xxx -any 6xxx)
+
+#include "script/Leveling"
+
+##### Level the deal #####
+levGame = game and keep11
+levSlam = slam and keep
+levelTheDeal = levGame or levSlam
+
+### Do it ###
+twoNT and puppet
+and levelTheDeal
+
+### Generate Statistics ###
+generate 20000000
+produce 1000
+
+action
+#printoneline,
+
+average "Game         " 100 * game,
+average "Slam         " 100 * slam,
+
+
+action printpbn

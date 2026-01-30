@@ -1,0 +1,63 @@
+Script,NLMAfter2Bid
+window.currentPBSScenario = 'NLMAfter2Bid';
+console.log('PBS: Logging scenario selection for NLMAfter2Bid');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'NLMAfter2Bid',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+auction-filter: Note.*Michaels
+*/
+produce 1000
+dealer east
+
+# Define Good suits North -- 5+ cards with at least 2 of the top 3
+gS = spades(north)>4   and top5(north,spades)>2
+gH = hearts(north)>4   and top5(north,hearts)>2
+gD = diamonds(north)>4 and top5(north,diamonds)>2
+gC = clubs(north)>4    and top5(north,clubs)>2
+
+# Define Good 2 Suits North
+g2notS = (gH and gD) or (gH and gC) or (gD and gC)
+g2notH = (gS and gD) or (gS and gC) or (gC and gD)
+g2notD = (gS and gH) or (gS and gC) or (gH and gC)
+//northActs = losers(north)>4 and hcp(north)>11
+
+eastHCP = hcp(east)>5 and hcp(east)<10
+
+# Define East's 2-level Preempt with West's support and North's 2 good suits and less than 7 losers
+sE = top3(east,spades)>1   and spades(east)==6   and spades(west)==3   and g2notS
+hE = top3(east,hearts)>1   and hearts(east)==6   and hearts(west)==3   and g2notH 
+dE = top3(east,diamonds)>1 and diamonds(east)==6 and diamonds(west)==3 and g2notD
+
+southPass = shape(south,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx) and hcp(south)<10
+westRaise = hcp(west)>3 and hcp(west)<10 and shape(west, any 0xxx +any 1xxx +any 22xx)
+eastBids = eastHCP and (sE or hE or dE) and shape(east,any 6xxx -any 66xx -any 65xx -4xxx-x4xx)
+
+east2Bid = eastBids and southPass and westRaise //and northActs
+
+# Now do it
+east2Bid
+
+action
+
+average "2D           " 100 * dE,
+average "2H           " 100 * hE,
+average "2S           " 100 * sE,
+average "hcp(north)   " hcp(north),
+average "losers(north)" losers(north),
+`, "E", true)
+Script
+Button,NLM after 2-Bid & Raise,\n\
+--- Non-Leaping Michaels after a Weak 2 & Raise\n\
+http://tinyurl.com/Leaping-Michaels\n\
+%NLMAfter2Bid%

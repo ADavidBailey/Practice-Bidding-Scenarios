@@ -1,0 +1,36 @@
+# alias: NotrumpX
+# button-text: X Notrump
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\\n1NT X
+
+/*@chat
+--- Opponents X Notrump
+@chat*/
+
+# Opponent doubles 1NT
+dealer south
+
+# Define good suits with a likely outside entry
+GS = spades(west)>4 and top5(west,spades)>3 and (top2(west,hearts)==1 or top2(west,diamonds)==1 or top2(west,clubs)==1)
+GH = hearts(west)>4 and top5(west,hearts)>3 and (top2(west,diamonds)==1 or top2(west,clubs)==1 or top2(west,spades)==1)
+GD = diamonds(west)>4 and top5(west,diamonds)>3 and (top2(west,spades)==1 or top2(west,hearts)==1 or top2(west,clubs)==1)
+GC = clubs(west)>4 and top5(west,clubs)>3 and (top2(west,spades)==1 or top2(west,hearts)==1 or top2(west,diamonds)==1) 
+
+# South opens 1NT 
+shape(south, any 4333 +any 4432 +any 5332) and
+hcp(south) >14 and hcp(south)<18 and
+
+# West has a balanced hand
+(shape(west, any 4333 +any 4432 +any 5332)
+or
+# Unbalanced hand with a likely outside entry
+(GC or GD or GH or GS)
+) and
+
+# West has 15+ points
+hcp(west) >14
+
+
+action printpbn

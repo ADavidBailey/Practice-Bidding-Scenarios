@@ -1,0 +1,48 @@
+# alias: Misfit11to12
+# button-text: 11-12
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: 1[CDHS] Pass
+
+/*@chat
+--- South opens and North has a misfit with 11-12 HCP.
+@chat*/
+
+dealer south
+produce 1000
+
+### Import 'canned' code for Leveling, Calm Opponents, and Predict Opening Bid 
+#include "script/Calm-Opponents"
+#include "script/Predict-Opening-1-Bid"
+
+# Define misfits
+sMF = oneSpade   and spades(north)  <2
+hMF = oneHeart   and hearts(north)  <2
+dMF = oneDiamond and diamonds(north)<2
+cMF = oneClub    and clubs(north)   <2
+
+sOpens = (sMF or hMF or dMF or cMF) and hcp(south)>11
+nMin = hcp(north)>5  and hcp(north)<11
+nMid = hcp(north)>10 and hcp(north)<13
+nMax = hcp(north)>12
+
+# Level the deal
+##include "script/Leveling"
+
+lMin = nMin and 0
+lMid = nMid and 1
+lMax = nMax and 0
+
+levelTheDeal = (lMin or lMid or lMax)
+
+sOpens and (nMin or nMid or nMax) and calmOpps
+and levelTheDeal
+
+action
+average "Min" 100 * nMin,
+average "Mid" 100 * nMid,
+average "Max" 100 * nMax,
+
+
+action printpbn

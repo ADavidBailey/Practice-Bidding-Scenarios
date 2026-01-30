@@ -186,7 +186,7 @@ def run_btn_to_pbs(scenario: str, verbose: bool = True) -> bool:
     """
     Generate PBS file from BTN file.
 
-    btn/{scenario}.btn -> pbs-test/{scenario}
+    btn/{scenario}.btn -> pbs-test/{scenario}.pbs
 
     Args:
         scenario: Scenario name (e.g., "Smolen")
@@ -216,8 +216,8 @@ def run_btn_to_pbs(scenario: str, verbose: bool = True) -> bool:
         # Generate PBS content
         pbs_content = generate_pbs(parsed)
 
-        # Write PBS file (no extension, matching existing PBS files)
-        pbs_path = os.path.join(FOLDERS["pbs_test"], scenario)
+        # Write PBS file with .pbs extension
+        pbs_path = os.path.join(FOLDERS["pbs_test"], f"{scenario}.pbs")
         with open(pbs_path, 'w', encoding='utf-8') as f:
             f.write(pbs_content)
 

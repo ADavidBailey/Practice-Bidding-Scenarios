@@ -1,0 +1,44 @@
+# alias: MinorOpenerInvRaise
+# button-text: 1m & Inv Raise
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\\n(1C Pass 2C)|(1D Pass 2D)
+
+/*@chat
+--- Minor Opening w/Invitational Raise
+1!C - 2!S shows 5+ card support and invitational values 11-12 HCP
+1!D - 2!S shows 4+ card support and invitational values 11-12 HCP
+Note:  Responder has no new suit to bid at the 1-level, 2+ Dummy
+Points, and opener's suit is responder's longest suit.
+@chat*/
+
+# Minor Opening w/Invitational Raise
+dealer south
+
+#include "script/Calm-Opponents"
+#include "script/Predict-Opening-1-Bid"
+
+# Define 1 Minor and Mixed Raise -- no 1-level suit or NT response 
+cRaise = oC and clubs(north)>4    and spades(north)<4 and hearts(north)<4 and diamonds(north)<4                    //  5+ card support
+dRaise = oD and diamonds(north)>3 and spades(north)<4 and hearts(north)<4 and diamonds(north)>clubs(north)         //  4+ card support
+range = hcp(north)>10 and hcp(north)<13
+shortness = shape(north, any 0xxx+any 1xxx+any 2xxx)
+
+inviteRaise = (cRaise or dRaise) and range and shortness
+
+# Now do it
+inviteRaise and calmOpps and hcp(south)<22  // some are included in imported code
+
+produce 1000
+action
+average "1 Club        " 100 * oC,
+average "1 Diamond     " 100 * oD,
+average "hcp north     "       hcp(north),
+average "any void      " 100 * shape(north,any 0xxx),
+average "any singleton " 100 * shape(north,any 1xxx),
+average "any doubleton " 100 * shape(north,any 2xxx),
+frequency "HCP north" (hcp(north),11,12),
+
+
+action printpbn

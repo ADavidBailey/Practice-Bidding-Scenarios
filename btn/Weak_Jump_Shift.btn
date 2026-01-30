@@ -1,0 +1,91 @@
+# alias: WeakJumpShift
+# button-text: Weak Jump Shift (Lev)
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Note...:Weak Jump Shift
+
+/*@chat
+--- Weak Jump Shift
+South opens, West passes, and North jumps -- a single jump.
+• at the 2-level showing 2-5 HCP and 6+ cards -- too weak for the 1-level.
+• at the 3-level showing 2-7 HCP and 7+ cards in the suit bid
+ Leveled: Opener's Force, Rebid, New Suit, (Pass or Raise) occur at about the same frequency.
+https://www.bridgebum.com/weak_jump_shifts.php
+@chat*/
+
+# Weak Jump Shift
+# South Open's 1C, 1D, or 1H and North has 5 or less HCP and a 6-card suit
+produce 1000
+
+#include "script/Calm-Opponents"
+# Defines calmWest
+
+#include "script/Predict-Opening-1-Bid"
+# Defines oneSpade, oneHeart, oneDiamond, oneClub, gibNT
+
+# Define north's WJS suits
+nC = clubs(north)>6    and top4(north,clubs)>1
+nD = diamonds(north)>5 and top4(north,diamonds)>1
+nH = hearts(north)>5   and top4(north,hearts)>1
+nS = spades(north)>5   and top4(north,spades)>1
+
+# Define weak jump shifts -- they're usually at the 2-level
+s1C = oneClub    and (nD or nH or nS)
+s1D = oneDiamond and (nH or nS)
+s1H = oneHeart   and nS
+
+# sometimes at the 3-level
+s1S3 = oneSpade   and (nC or nD or nH)
+s1H3 = oneHeart   and (nC or nD)
+s1D3 = oneDiamond and nC
+
+#  A Weak Jump Shift at the 2-level is too weak to make a 1-level response
+WJS2 = (s1C or s1D or s1H) and hcp(north)>1 and hcp(north)<6
+
+#  at the 3-level it needs extra length and might be a little stronger
+WJS3 = (s1S3 or s1D3 or s1H3) and hcp(north)>1 and hcp(north)<8 and shape(north,any 8xxx+any 7xxx)
+
+# Define opener's rebids
+cFit = nC and clubs(south)>2
+dFit = nD and diamonds(south)>2
+hFit = nH and hearts(south)>2
+sFit = nS and spades(south)>2
+fit = (cFit or dFit or hFit or sFit)
+
+s1Suit = shape(south,any 8xxx+any 7xxx)
+s2Suit = shape(south, any 76xx+any 75xx+any 65xx+any 55xx)
+
+force1  = hcp(south)>17 and fit    // 2N -- continuations like after 2N response to a Weak Two Bid
+force2  = hcp(south)>19 and not (fit or force1)
+rebid   = s1Suit        and not (fit or force1 or force2)
+newSuit = s2Suit        and not (fit or force1 or force2 or rebid) 
+other   = not (force1 or force2 or rebid or newSuit)
+
+# Level the deal
+#include "script/Leveling"
+
+levForce1  = force1  and keep75
+levForce2  = force2  and keep
+levRebid   = rebid   and keep
+levNewSuit = newSuit and keep56
+levOther   = other   and keep06
+levelTheDeal = levForce1 or levForce2 or levRebid or levNewSuit or levOther
+
+# Now do it
+# South opens, West passes, and North makes a Weak Jump Shift
+(WJS2 or WJS3) and calmWest and not gibNT and hcp(south)>11 and hcp(south)<22
+and levelTheDeal
+
+action
+average "force w/fit  " 100 * force1,
+average "force w/o fit" 100 * force2,
+average "rebid        " 100 * rebid,
+average "newSuit      " 100 * newSuit,
+average "raise or pass" 100 * other,
+average "-------------" 100 * (force1+force2+rebid+newSuit+other),
+average "hcp(south)   " hcp(south),
+average "hcp(north)   " hcp(north),
+
+
+action printpbn

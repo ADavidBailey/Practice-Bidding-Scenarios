@@ -1,0 +1,88 @@
+# alias: MixedRaiseInComp
+# button-text: Mixed Raise in Comp
+# dealer-position: W
+# gib-works: true
+# bba-works: true
+# auction-filter: Note....Mixed raise
+
+/*@chat
+---  Opponents open 1C/1D/1H.  We overcall one 1H/1S. Partner has
+4-card support with 7-9 TP and makes a mixed raise.
+@chat*/
+
+# Changed default CC to include Mixed Raise and 1X-(Y)-2Z forcing. 
+
+dealer west
+
+#include "script/Calm-Opponents"
+# Defines calmEast
+#include "script/Total-Points-South"
+# Defines sTP
+
+# Predict West's opening 1C, 1D, 1H
+s = spades(west)
+h = hearts(west)
+d = diamonds(west)
+c = clubs(west)
+oS = s>4 and s>=h and s>=d and s>=c
+oH = not oS and h>4 and h>=d and h>=c
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
+oC = not (oS or oH or oD)
+
+# East does not have support for West's opening suit AND West does not have a Gambling 3NT
+oneHeart   = oH and hearts(east)<3
+oneDiamond = oD and diamonds(east)<4 and hcp(west,diamonds)<9
+oneClub    = oC and clubs(east)<4    and hcp(west,clubs)<9    
+
+wSuit = oneHeart or oneDiamond or oneClub
+wRange = hcp(west)>11 and hcp(west)<15
+wOpens = wRange and wSuit
+
+# North overcalls 1H or 1S and South has 6-10 HCP and 4+ Card Support
+nSpades  = spades(north)>4 and spades(south)>3 and hcp(north,spades)>4
+nHearts  = hearts(north)>4 and hearts(south)>3 and hcp(north,hearts)>4
+nShape   = shape(north,xxxx -any 76xx -any 75xx -any 66xx -any 65xx - any 55xx)  // No 2-suited hands
+nRange   = hcp(north)>7 and hcp(north)<15
+
+nWeak2   = shape(north,any 6xxx) and hcp(north)<11              // GIB plays WJO and Preempts as 7-10 HCP.
+nPreempt = shape(north,any 8xxx +any 7xxx) and hcp(north)<11
+nOvercalls = (nSpades or nHearts) and nShape and nRange and not (nWeak2 or nPreempt)
+
+# South has 4+ Card Support and 2+ Controls (A=2, K=1) and at least 1 short-suit point
+sShape   = shape(south,xxxx -any 4333 +any 2xxx +any 1xxx +any 0xxx)
+sRange   = sTP>6 and sTP<10 and controls(south)>1   // BBO defines Mixed Raise as 7-9 TP
+
+sRaises = sShape and sRange
+
+#include "script/Leveling"
+
+supCards = nHearts ? hearts(south) : spades(south)
+
+void = shape(south,any 0xxx)
+sing = shape(south,any 1xxx)
+
+lev0 = void               and keep
+lev1 = sing               and keep
+lev2 = not (void or sing) and keep
+
+lev4 = supCards==4        and keep
+lev5 = supCards==5        and keep
+lev6 = supCards>=6        and keep
+
+levelTheDeal = lev2 or lev0 or lev1 or lev4 or lev5 or lev6
+
+wOpens and nOvercalls and sRaises and calmEast
+and levelTheDeal
+
+action
+average "N/S Spades     " 100 * nSpades,
+average "N/S Hearts     " 100 * nHearts,
+average "no shortness   " 100 * lev2,
+average "singleton      " 100 * lev1,
+average "void           " 100 * lev0,
+average "4-cards support" 100 * (supCards==4),
+average "5-cards support" 100 * (supCards==5),
+average "6+cards support" 100 * (supCards==6),
+
+
+action printpbn

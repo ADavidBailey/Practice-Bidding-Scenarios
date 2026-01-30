@@ -1,0 +1,95 @@
+# alias: AfterOppOvercalls
+# button-text: After Opp Overcalls
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: 1[CDHS].[12][CDHSN].
+
+/*@chat
+--- After Partner Overcalls
+• Raising a minor denies a 4-card Major and shows a fit and 7-9 TP
+• Double denies a Major fit and shows at least 4-cards in the unbid major suits and 6+ HCP
+• Raising a Major shows a fit and 6-10 TP
+• Cue Biddding RHO's suit shows a fit and 11+ TP
+• New Suit denies a fit and shows 10+ HCP
+@chat*/
+
+# After Opponent Overcalls partner's opening bid
+
+dealer south
+produce 10000
+
+#include "script/Predict-Opening-1-Bid"
+
+# North has a fit for opener's suit
+nFit = (oC and clubs(north)>4) or (oD and diamonds(north)>3) or (oH and hearts(north)>2) or (oS and spades(north)>2)
+
+# North Support Points
+v1 = shape(north, any 0xxx) ? 5 : 0  // allow 1 void
+s1 = shape(north, any 1xxx) ? 3 : 0  // allow 2 singletons
+s2 = shape(north, any 11xx) ? 3 : 0
+d1 = shape(north, any 2xxx) ? 1 : 0  // allow 3 doubletons
+d2 = shape(north, any 22xx) ? 1 : 0
+d3 = shape(north, any 222x) ? 1 : 0
+nssp = v1 + s1 + s2 + d1 + d2 + d3
+nsp = nssp>2 ? hcp(north) + 3 : hcp(north) + nssp   // Limit Dummy Points to 3
+
+# Define Good Suits for West (not in South's opening suit)
+gS = spades(west)>4   and top3(west,spades)>1   and not oS
+gH = hearts(west)>4   and top3(west,hearts)>1   and not oH
+gD = diamonds(west)>4 and top3(west,diamonds)>1 and not oD
+gC = clubs(west)>4    and top3(west,clubs)>1    and not oC
+
+# Predict West's overcall
+sW = spades(west)
+hW = hearts(west)
+dW = diamonds(west)
+cW = clubs(west)
+wS = sW>=hW and sW>=dW and sW>=cW
+wH = not wS and hW>=dW and hW>=cW
+wD = not (wS or wH) and (dW>=cW or cW==3)
+wC = not (wS or wH or wD)
+
+# South Opens
+sOpens = (oS or oH or oD or oC) and hcp(south)>11 and hcp(south)<15
+
+# West overcalls with a single-suited hand
+wOvercalls = (wD or wH or wS or wC) and (gS or gH or gD or gC) and shape(west,any 6xxx+any 5xxx-any 65xx -any 55xx) and hcp(west)>10
+
+p1 = hcp(north)>5
+p2 = hcp(north)>9
+p3 = hcp(north)>11
+
+# North doubles
+nM = shape(north,44xx+45xx+54xx)
+nH = shape(north,x4xx) and not nM
+nS = shape(north,4xxx) and not nM
+x1 = oC and wD         ? nM and p1 : 0
+f1 = oC and wD         ? (nH or nS) and p1 : 0 // What if Partner bids the wrong M?
+x2 = oC and wH         ? nS and p1 : 0
+x3 = oC and wS         ? nH and p1 : 0
+x4 = oD and wH         ? nS and p1 : 0
+x5 = oD and wS         ? nH and p1 : 0
+x6 = oD and wC         ? nM and p2 : 0
+f2 = oD and wC         ? (nH or nS) and p2 : 0 // What if Partner bids the wrong M?
+x7 = oH and (wC or wD) ? nS and p2 : 0
+x8 = oS and (wC or wD) ? nH and p2 : 0
+
+nDoubles = (((x1 or x2 or f1) and p1) or ((x3 or x4 or x5) and p2) or ((x6 or f2 or x7 or x8) and p3))
+nRaisesMajor = (oH or oS) and nFit and nsp>7 and nsp<11
+nCueBids     = (oH or oS) and nFit and nsp>10
+nNewSuit     = not(nFit or nDoubles) and (spades(north)>4 or hearts(north)>4 or diamonds(north)>4 or clubs(north)>4)
+nRaisesMinor = (oC or oD) and nFit and (wD or wH) nsp>5
+
+nActs = nCueBids or nRaisesMajor or nDoubles or nRaisesMinor // or nNewSuit 
+sOpens and wOvercalls and nActs
+
+action
+average "cue bids  " 100 * nCueBids,
+average "raise M   " 100 * nRaisesMajor,
+average "neg double" 100 * nDoubles,
+average "new suit  " 100 * nNewSuit,
+average "raises m  " 100 * nRaisesMinor,
+
+
+action printpbn

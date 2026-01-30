@@ -1,0 +1,46 @@
+# alias: PreemptiveRaise
+# button-text: Preemptive Raise
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\\n(1C.[PX12].* 5C|1D.[PX12].* 5D|1H.[PX12].* 5H|1S.[PX12].* 5S)
+
+/*@chat
+--- South opens and North, with 3-6 HCP and an 11+ card minor fit or a 10+ major fit, 
+makes a game-level preemptive raise.  When opponents intervene, an invitational raise
+is often more effective.
+@chat*/
+
+# Preemptive Raise
+
+
+dealer south
+
+#include "script/Predict-Opening-1-Bid"
+# Defines oneClub, oneDiamond, oneHeart, oneSpade
+
+# Define 10+ card fits
+nClubs    = oneClub    and clubs(north)>7
+nDiamonds = oneDiamond and diamonds(north)>6
+nHearts   = oneHeart   and hearts(north)>4
+nSpades   = oneSpade   and spades(north)>4
+
+nPreempts = hcp(north)>2 and hcp(north)<7
+
+# South open's 1C/D/H/S and North makes a preemptive raise
+(nClubs or nDiamonds or nHearts or nSpades) and nPreempts
+
+#  produce 40
+
+action
+#  printoneline,
+average "1C  " 100 * nClubs,
+average "1D  " 100 * nDiamonds,
+average "1H  " 100 * nHearts,
+average "1S  " 100 * nSpades,
+
+
+# Spaces don't work for indentation. Using the small bullet is as good as I've found
+
+
+action printpbn

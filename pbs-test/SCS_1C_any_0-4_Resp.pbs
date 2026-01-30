@@ -1,0 +1,25 @@
+Script,StrongClubAny04Resp
+window.currentPBSScenario = 'StrongClubAny04Resp';
+console.log('PBS: Logging scenario selection for StrongClubAny04Resp');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'StrongClubAny04Resp',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+auction-filter: Auction.....[\s\S][\s\S]?1C
+*/
+
+`, "S", true)
+Script
+Button,Strong Club & 0-4 Resp,\n\
+--- Strong Club with any 0-4 Response\n\
+%StrongClubAny04Resp%
