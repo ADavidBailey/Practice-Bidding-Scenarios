@@ -253,6 +253,12 @@
         "aliases": ["PBS Layout", "Button Layout"],
         "filenames": ["-layout.txt"],
         "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "bboalert",
+        "aliases": ["BBOalert", "PBS Master"],
+        "filenames": ["-PBS-logging.txt", "-PBS-logging-test.txt", "pbs-template.txt"],
+        "configuration": "./language-configuration.json"
       }
     ],
     "grammars": [
@@ -280,6 +286,11 @@
         "language": "pbs-layout",
         "scopeName": "source.pbs-layout",
         "path": "./syntaxes/layout.tmLanguage.json"
+      },
+      {
+        "language": "bboalert",
+        "scopeName": "source.bboalert",
+        "path": "./syntaxes/bboalert.tmLanguage.json"
       }
     ],
     "configurationDefaults": {

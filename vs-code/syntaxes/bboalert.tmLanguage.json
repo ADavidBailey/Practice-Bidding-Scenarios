@@ -1,0 +1,127 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "BBOalert",
+  "scopeName": "source.bboalert",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#template-placeholder" },
+    { "include": "#section-header" },
+    { "include": "#import" },
+    { "include": "#javascript" },
+    { "include": "#script-block" },
+    { "include": "#script-inline" },
+    { "include": "#option" },
+    { "include": "#button" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.bboalert",
+          "match": "^//.*$"
+        },
+        {
+          "name": "comment.line.hash.bboalert",
+          "match": "^#[^#].*$"
+        }
+      ]
+    },
+    "template-placeholder": {
+      "patterns": [
+        {
+          "name": "variable.other.placeholder.bboalert",
+          "match": "\\{\\{[A-Z_]+\\}\\}"
+        }
+      ]
+    },
+    "section-header": {
+      "patterns": [
+        {
+          "name": "entity.name.section.bboalert",
+          "match": "^###.*$"
+        }
+      ]
+    },
+    "import": {
+      "patterns": [
+        {
+          "name": "meta.import.bboalert",
+          "match": "^(Import),([^,]+)(?:,(.+))?$",
+          "captures": {
+            "1": { "name": "keyword.control.import.bboalert" },
+            "2": { "name": "entity.name.tag.alias.bboalert" },
+            "3": { "name": "string.unquoted.url.bboalert" }
+          }
+        }
+      ]
+    },
+    "javascript": {
+      "patterns": [
+        {
+          "name": "meta.javascript.bboalert",
+          "match": "^(Javascript),(.+)$",
+          "captures": {
+            "1": { "name": "keyword.control.javascript.bboalert" },
+            "2": { "name": "string.unquoted.url.bboalert" }
+          }
+        }
+      ]
+    },
+    "script-block": {
+      "patterns": [
+        {
+          "name": "meta.script.block.bboalert",
+          "begin": "^(Script),([A-Za-z0-9_]+)$",
+          "end": "^(Script)$",
+          "beginCaptures": {
+            "1": { "name": "keyword.control.script.bboalert" },
+            "2": { "name": "entity.name.function.script.bboalert" }
+          },
+          "endCaptures": {
+            "1": { "name": "keyword.control.script.bboalert" }
+          },
+          "contentName": "source.js.embedded.bboalert"
+        }
+      ]
+    },
+    "script-inline": {
+      "patterns": [
+        {
+          "name": "meta.script.inline.bboalert",
+          "match": "^(Script),([A-Za-z0-9_]+),(.+)$",
+          "captures": {
+            "1": { "name": "keyword.control.script.bboalert" },
+            "2": { "name": "entity.name.function.script.bboalert" },
+            "3": { "name": "source.js.embedded.bboalert" }
+          }
+        }
+      ]
+    },
+    "option": {
+      "patterns": [
+        {
+          "name": "meta.option.bboalert",
+          "match": "^(Option)(?:,(.+))?$",
+          "captures": {
+            "1": { "name": "keyword.control.option.bboalert" },
+            "2": { "name": "string.unquoted.option-name.bboalert" }
+          }
+        }
+      ]
+    },
+    "button": {
+      "patterns": [
+        {
+          "name": "meta.button.bboalert",
+          "match": "^(Button),([^,]*)(,([^,]*))?(?:,(.+))?$",
+          "captures": {
+            "1": { "name": "keyword.control.button.bboalert" },
+            "2": { "name": "string.unquoted.button-text.bboalert" },
+            "4": { "name": "variable.other.script-ref.bboalert" },
+            "5": { "name": "constant.other.styles.bboalert" }
+          }
+        }
+      ]
+    }
+  }
+}
