@@ -169,6 +169,9 @@ def generate_pbs(parsed: dict, scenario_filename: str) -> str:
     lines.append("Script")
 
     # Button definition
+    # Add lightpink background for scenarios that don't work with GIB bots
+    bg_style = ",backgroundColor=lightpink" if not parsed['gib_works'] else ""
+
     if parsed['chat']:
         # Convert regular commas to wide commas in chat content
         # Replace ", " with "，" (wide comma absorbs the trailing space)
@@ -178,9 +181,9 @@ def generate_pbs(parsed: dict, scenario_filename: str) -> str:
         chat_formatted = '\\n\\\n'.join(chat_lines)
         lines.append(f"Button,{button_text},\\n\\")
         lines.append(f"{chat_formatted}\\n\\")
-        lines.append(f"%{alias}%")
+        lines.append(f"%{alias}%{bg_style}")
     else:
-        lines.append(f"Button,{button_text},%{alias}%")
+        lines.append(f"Button,{button_text},%{alias}%{bg_style}")
 
     lines.append("")  # trailing newline
 
