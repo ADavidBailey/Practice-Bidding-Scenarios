@@ -281,7 +281,19 @@
         "scopeName": "source.pbs-layout",
         "path": "./syntaxes/layout.tmLanguage.json"
       }
-    ]
+    ],
+    "configurationDefaults": {
+      "editor.tokenColorCustomizations": {
+        "textMateRules": [
+          {
+            "scope": "constant.language.color.blue.layout",
+            "settings": {
+              "foreground": "#4a9eff"
+            }
+          }
+        ]
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

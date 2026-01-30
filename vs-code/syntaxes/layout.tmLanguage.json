@@ -61,7 +61,7 @@
       "patterns": [
         {
           "name": "punctuation.separator.layout",
-          "match": "^---$"
+          "match": "---"
         }
       ]
     },
@@ -69,9 +69,10 @@
       "patterns": [
         {
           "name": "meta.button-row.layout",
-          "begin": "^(?=[A-Za-z0-9_-(])",
+          "begin": "^(?=[A-Za-z0-9_-]|---)",
           "end": "$",
           "patterns": [
+            { "include": "#separator" },
             {
               "name": "meta.button-group.layout",
               "begin": "\\(",
@@ -83,6 +84,14 @@
                 "0": { "name": "punctuation.definition.group.end.layout" }
               },
               "patterns": [
+                {
+                  "name": "meta.button.colored.layout",
+                  "match": "([A-Za-z0-9_-]+):(blue)",
+                  "captures": {
+                    "1": { "name": "entity.name.function.scenario.grouped.layout" },
+                    "2": { "name": "constant.language.color.blue.layout" }
+                  }
+                },
                 {
                   "name": "meta.button.colored.layout",
                   "match": "([A-Za-z0-9_-]+):(\\w+)",

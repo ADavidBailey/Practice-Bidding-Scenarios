@@ -1,6 +1,7 @@
 """
 BTN to PBS operation: Generate PBS file from BTN file.
 Transforms .btn format (with #include directives and metadata) into .pbs format.
+Button width and color are derived from the layout file, not the BTN file.
 """
 import os
 import re
@@ -13,6 +14,111 @@ from config import FOLDERS, PROJECT_ROOT
 
 # Script directory for inlining includes
 SCRIPT_DIR = os.path.join(PROJECT_ROOT, "script")
+
+# Cache for layout styles (loaded once)
+_layout_styles = None
+
+
+def load_layout_styles():
+    """
+    Parse the layout file and extract button width/color for each scenario.
+    Returns dict mapping scenario name -> {'width': '12%', 'color': 'blue'}
+    """
+    global _layout_styles
+    if _layout_styles is not None:
+        return _layout_styles
+
+    _layout_styles = {}
+    layout_path = os.path.join(FOLDERS["btn"], "-layout.txt")
+
+    if not os.path.exists(layout_path):
+        return _layout_styles
+
+    with open(layout_path, 'r', encoding='utf-8') as f:
+        for line in f:
+            stripped = line.strip()
+            if not stripped or stripped.startswith('#') or stripped.startswith('[') or stripped == '---':
+                continue
+
+            # Parse button row, handling groups
+            buttons = parse_layout_buttons(stripped)
+            for btn in buttons:
+                name = btn['name']
+                if btn.get('width') or btn.get('color'):
+                    _layout_styles[name] = {
+                        'width': btn.get('width'),
+                        'color': btn.get('color'),
+                    }
+
+    return _layout_styles
+
+
+def parse_layout_buttons(line):
+    """Parse a button row line from layout file, handling groups."""
+    buttons = []
+
+    # Split by comma but respect parentheses
+    parts = []
+    current = ""
+    paren_depth = 0
+
+    for char in line:
+        if char == '(':
+            paren_depth += 1
+            current += char
+        elif char == ')':
+            paren_depth -= 1
+            current += char
+        elif char == ',' and paren_depth == 0:
+            parts.append(current.strip())
+            current = ""
+        else:
+            current += char
+    if current.strip():
+        parts.append(current.strip())
+
+    for part in parts:
+        part = part.strip()
+        if part.startswith('(') and part.endswith(')'):
+            # Grouped buttons - they share 50% width
+            group_content = part[1:-1]
+            group_items = [s.strip() for s in group_content.split(',')]
+
+            # Calculate width for each button in group
+            total_width = 50
+            n = len(group_items)
+            base_width = total_width // n
+            remainder = total_width % n
+
+            for i, item in enumerate(group_items):
+                item_parts = item.split(':')
+                name = item_parts[0]
+                color = item_parts[1] if len(item_parts) > 1 else None
+                width = f"{base_width + (1 if i >= n - remainder else 0)}%"
+                buttons.append({'name': name, 'width': width, 'color': color, 'grouped': True})
+        else:
+            # Regular button
+            item_parts = part.split(':')
+            name = item_parts[0]
+            color = item_parts[1] if len(item_parts) > 1 else None
+            buttons.append({'name': name, 'width': None, 'color': color, 'grouped': False})
+
+    # Calculate widths for non-grouped buttons
+    non_grouped = [b for b in buttons if not b.get('grouped')]
+    grouped = [b for b in buttons if b.get('grouped')]
+
+    if len(non_grouped) == 1 and len(grouped) == 0:
+        non_grouped[0]['width'] = '100%'
+    elif len(non_grouped) == 2 and len(grouped) == 0:
+        for b in non_grouped:
+            b['width'] = '50%'
+    elif len(non_grouped) == 1 and len(grouped) > 0:
+        non_grouped[0]['width'] = '50%'
+    elif len(non_grouped) == 2:
+        for b in non_grouped:
+            b['width'] = '50%'
+
+    return buttons
 
 
 def parse_btn_file(btn_path: str) -> dict:
@@ -132,10 +238,15 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {{
 def generate_pbs(parsed: dict, scenario_filename: str) -> str:
     """
     Generate PBS file content from parsed BTN data.
+    Button width and color are derived from the layout file, not the BTN file.
     """
     alias = parsed['alias'] or 'Unknown'
     button_text = parsed['button_text'] or alias
     dealer_position = parsed['dealer_position'] or 'S'
+
+    # Get layout styles for this scenario
+    layout_styles = load_layout_styles()
+    scenario_style = layout_styles.get(scenario_filename, {})
 
     # Inline includes in dealer code
     dealer_code = inline_includes(parsed['dealer_code'])
@@ -169,8 +280,22 @@ def generate_pbs(parsed: dict, scenario_filename: str) -> str:
     lines.append("Script")
 
     # Button definition
-    # Add lightpink background for scenarios that don't work with GIB bots
-    bg_style = ",backgroundColor=lightpink" if not parsed['gib_works'] else ""
+    # Build style string from layout file (width and color)
+    style_parts = []
+
+    # Width from layout file
+    if scenario_style.get('width'):
+        style_parts.append(f"width={scenario_style['width']}")
+
+    # Background color: layout color, or lightpink if GIB doesn't work
+    if not parsed['gib_works']:
+        style_parts.append("backgroundColor=lightpink")
+    elif scenario_style.get('color'):
+        style_parts.append(f"backgroundColor={scenario_style['color']}")
+
+    style_str = " ".join(style_parts)
+    if style_str:
+        style_str = "," + style_str
 
     if parsed['chat']:
         # Convert regular commas to wide commas in chat content
@@ -181,9 +306,9 @@ def generate_pbs(parsed: dict, scenario_filename: str) -> str:
         chat_formatted = '\\n\\\n'.join(chat_lines)
         lines.append(f"Button,{button_text},\\n\\")
         lines.append(f"{chat_formatted}\\n\\")
-        lines.append(f"%{alias}%{bg_style}")
+        lines.append(f"%{alias}%{style_str}")
     else:
-        lines.append(f"Button,{button_text},%{alias}%{bg_style}")
+        lines.append(f"Button,{button_text},%{alias}%{style_str}")
 
     lines.append("")  # trailing newline
 

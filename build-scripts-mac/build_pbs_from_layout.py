@@ -374,13 +374,9 @@ def main():
     btn_metadata = load_all_btn_metadata(btn_dir)
     print(f"  Loaded {len(btn_metadata)} BTN files")
 
-    # Update BTN files with calculated widths from layout
-    print("Updating BTN widths from layout...")
-    updated = update_btn_widths(layout_path, btn_dir, btn_metadata)
-    print(f"  Updated {updated} BTN files")
-
-    # Reload metadata after updates
-    btn_metadata = load_all_btn_metadata(btn_dir)
+    # Note: Button widths and colors are NOT stored in BTN files.
+    # They are derived from the layout file at PBS generation time.
+    # This allows changing layouts without regenerating BTN files.
 
     # Generate PBS
     print("Generating PBS...")
