@@ -220,8 +220,11 @@ def generate_pbs(layout_path, btn_metadata, output_path):
             button_lines.append("Button,---")
         elif item['type'] == 'buttons':
             for btn in item['buttons']:
-                alias = btn['alias']
-                button_lines.append(f"Import,{alias}")
+                if btn['name'] == '---':
+                    button_lines.append("Button,---")
+                else:
+                    alias = btn['alias']
+                    button_lines.append(f"Import,{alias}")
 
     # Substitute into template
     output = template.replace('{{SCENARIO_IMPORTS}}', '\n'.join(import_lines))
