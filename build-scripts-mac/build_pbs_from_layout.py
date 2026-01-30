@@ -188,103 +188,45 @@ def generate_pbs(layout_path, btn_metadata, output_path):
                         scenarios.append(btn)
                 layout_items.append({'type': 'buttons', 'buttons': buttons})
 
-    # Generate output
-    lines = []
+    # Load template
+    template_path = os.path.join(os.path.dirname(__file__), 'pbs-template.txt')
+    with open(template_path, 'r', encoding='utf-8') as f:
+        template = f.read()
 
-    # Header
-    lines.append("//BBOalert, Bidding Scenarios")
-    lines.append("//BBOalert, Bidding Scenarios - Generated from -layout.txt")
-    lines.append("Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js")
-    lines.append("Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js")
-    lines.append("Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/PBStooltips.js")
-    lines.append("")
-
-    # Standard scripts
-    lines.append("// Pause")
-    lines.append("Script,onLogin,setTimeout(setOptionsOff, 200);")
-    lines.append("")
-    lines.append("// Open BBOalert Shortcuts")
-    lines.append("Script,onDataLoad,$('#bttab-buttons').click();")
-    lines.append("")
-    lines.append("// Open usual BBO side panel")
-    lines.append("Script,onLogin,parent.$('.verticalClass')[0].click();")
-    lines.append("")
-    lines.append("// Hide the Char, Word, All backspace buttons")
-    lines.append('Script,onDataLoad,$("#adpanel2 button:lt(3)").hide();')
-    lines.append("")
-
-    # setBiddingTable script
-    lines.append("Script,setBiddingTable")
-    lines.append("var delayValue = 500;")
-    lines.append("Promise.resolve()")
-    lines.append('    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(4).click())')
-    lines.append("    .then(() => delay(delayValue))")
-    lines.append('    .then(() => $(".menuGrid navigation-list-button .navClass:visible", BBOcontext()).eq(0).click())')
-    lines.append("    .then(() => delay(delayValue))")
-    lines.append('    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(4).click())')
-    lines.append("    .then(() => delay(delayValue))")
-    lines.append('    .then(() => $("start-table-screen .buttonRowClass button", BBOcontext()).eq(2).click())')
-    lines.append("function delay(duration) { return new Promise((resolve) => { setTimeout(resolve, duration); }); }")
-    lines.append("Script")
-    lines.append("")
-
-    # setTeachingTable script
-    lines.append("Script,setTeachingTable")
-    lines.append("var delayValue = 500;")
-    lines.append("Promise.resolve()")
-    lines.append('    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(4).click())')
-    lines.append("    .then(() => delay(delayValue))")
-    lines.append('    .then(() => $(".menuGrid navigation-list-button .navClass:visible", BBOcontext()).eq(1).click())')
-    lines.append("    .then(() => delay(delayValue))")
-    lines.append('    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(4).click())')
-    lines.append("    .then(() => delay(delayValue))")
-    lines.append('    .then(() => $("start-table-screen .buttonRowClass button", BBOcontext()).eq(2).click())')
-    lines.append("function delay(duration) { return new Promise((resolve) => { setTimeout(resolve, duration); }); }")
-    lines.append("Script")
-    lines.append("")
-
-    # reviewCurrentCode script
-    lines.append('Script,reviewCurrentCode,setDealerCode("");')
-    lines.append("")
-
-    # Import declarations for all scenarios
-    lines.append("### Scenario Imports")
+    # Generate scenario imports
+    import_lines = []
     for scenario in scenarios:
         alias = scenario['alias']
         name = scenario['name']
-        lines.append(f"Import,{alias},{GITHUB_BASE}/{name}")
-    lines.append("")
+        import_lines.append(f"Import,{alias},{GITHUB_BASE}/{name}")
 
-    # Option section with buttons
-    lines.append("Option,Practice Table")
-    lines.append("")
-
+    # Generate button section
+    button_lines = []
     for item in layout_items:
         if item['type'] == 'empty':
-            lines.append("")
+            button_lines.append("")
         elif item['type'] == 'major':
-            lines.append(f"Button,{item['title']},,width=100% backgroundColor=LemonChiffon")
-            lines.append("")
+            button_lines.append(f"Button,{item['title']},,width=100% backgroundColor=LemonChiffon")
+            button_lines.append("")
         elif item['type'] == 'section':
-            lines.append(f"Button,{item['title']},,width=100% backgroundColor=lightblue")
-            lines.append("")
+            button_lines.append(f"Button,{item['title']},,width=100% backgroundColor=lightblue")
+            button_lines.append("")
         elif item['type'] == 'action':
-            lines.append(f"Button,{item['text']},{item['script']},width={item['width']}% backgroundColor=lightgreen")
+            button_lines.append(f"Button,{item['text']},{item['script']},width={item['width']}% backgroundColor=lightgreen")
         elif item['type'] == 'separator':
-            lines.append("Button,---")
+            button_lines.append("Button,---")
         elif item['type'] == 'buttons':
             for btn in item['buttons']:
                 alias = btn['alias']
-                # Just use Import,alias - styling comes from individual PBS files
-                lines.append(f"Import,{alias}")
+                button_lines.append(f"Import,{alias}")
 
-    lines.append("")
-    lines.append("Option")
-    lines.append("")
+    # Substitute into template
+    output = template.replace('{{SCENARIO_IMPORTS}}', '\n'.join(import_lines))
+    output = output.replace('{{BUTTONS}}', '\n'.join(button_lines))
 
     # Write output
     with open(output_path, 'w', encoding='utf-8') as f:
-        f.write('\n'.join(lines))
+        f.write(output)
 
     print(f"Generated: {output_path}")
     print(f"  Scenarios: {len(scenarios)}")
