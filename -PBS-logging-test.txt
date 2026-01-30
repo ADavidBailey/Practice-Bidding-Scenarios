@@ -17,6 +17,7 @@ Script,onLogin,parent.$('.verticalClass')[0].click();
 Script,onDataLoad,$("#adpanel2 button:lt(3)").hide();
 
 // Fix button row heights - make adjacent buttons equal height
+// Also hide the first 3 default buttons (Char, Word, All) via CSS
 Script,onDataLoad
 var style = document.createElement('style');
 style.textContent = `
@@ -30,6 +31,11 @@ style.textContent = `
     align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
+  }
+  #adpanel2 button:nth-child(1),
+  #adpanel2 button:nth-child(2),
+  #adpanel2 button:nth-child(3) {
+    display: none !important;
   }
 `;
 document.head.appendChild(style);
