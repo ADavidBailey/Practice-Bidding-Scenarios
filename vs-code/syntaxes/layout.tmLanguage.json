@@ -1,0 +1,80 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "PBS Layout",
+  "scopeName": "source.pbs-layout",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#major-header" },
+    { "include": "#section-header" },
+    { "include": "#action-button" },
+    { "include": "#separator" },
+    { "include": "#button-row" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.hash.layout",
+          "match": "^\\s*#.*$"
+        }
+      ]
+    },
+    "major-header": {
+      "patterns": [
+        {
+          "name": "meta.header.major.layout",
+          "match": "^(\\[Major\\])\\s*(.*)$",
+          "captures": {
+            "1": { "name": "keyword.control.major.layout" },
+            "2": { "name": "entity.name.section.major.layout" }
+          }
+        }
+      ]
+    },
+    "section-header": {
+      "patterns": [
+        {
+          "name": "meta.header.section.layout",
+          "match": "^(\\[Section\\])\\s*(.*)$",
+          "captures": {
+            "1": { "name": "keyword.control.section.layout" },
+            "2": { "name": "entity.name.section.layout" }
+          }
+        }
+      ]
+    },
+    "action-button": {
+      "patterns": [
+        {
+          "name": "meta.action.layout",
+          "match": "^(\\[Action\\])\\s*([^|]+)\\|(%[^%]+%)\\|(\\d+)$",
+          "captures": {
+            "1": { "name": "keyword.control.action.layout" },
+            "2": { "name": "string.unquoted.button-text.layout" },
+            "3": { "name": "variable.other.script.layout" },
+            "4": { "name": "constant.numeric.width.layout" }
+          }
+        }
+      ]
+    },
+    "separator": {
+      "patterns": [
+        {
+          "name": "punctuation.separator.layout",
+          "match": "^---$"
+        }
+      ]
+    },
+    "button-row": {
+      "patterns": [
+        {
+          "name": "meta.button-row.layout",
+          "match": "^([A-Za-z0-9_-]+(?:\\s*,\\s*[A-Za-z0-9_-]+)*)$",
+          "captures": {
+            "1": { "name": "entity.name.function.scenario.layout" }
+          }
+        }
+      ]
+    }
+  }
+}

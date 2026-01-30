@@ -247,6 +247,12 @@
         "aliases": ["PBN", "Portable Bridge Notation"],
         "extensions": [".pbn"],
         "configuration": "./pbn-language-configuration.json"
+      },
+      {
+        "id": "pbs-layout",
+        "aliases": ["PBS Layout", "Button Layout"],
+        "filenames": ["-layout.txt"],
+        "configuration": "./language-configuration.json"
       }
     ],
     "grammars": [
@@ -269,6 +275,11 @@
         "language": "pbn",
         "scopeName": "source.pbn",
         "path": "./syntaxes/pbn.tmLanguage.json"
+      },
+      {
+        "language": "pbs-layout",
+        "scopeName": "source.pbs-layout",
+        "path": "./syntaxes/layout.tmLanguage.json"
       }
     ]
   },
