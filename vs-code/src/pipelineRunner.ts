@@ -3,16 +3,19 @@ import * as path from 'path';
 import { activityLogger } from './extension';
 
 /**
- * Check if a directory name is a PBS directory (case-insensitive)
+ * Check if a directory name is a source directory (btn or PBS - case-insensitive)
  */
-function isPbsDir(dirName: string): boolean {
-    return dirName.toLowerCase() === 'pbs';
+function isSourceDir(dirName: string): boolean {
+    const lower = dirName.toLowerCase();
+    return lower === 'pbs' || lower === 'btn';
 }
 
 /**
  * Artifact directories that contain scenario outputs
  */
 const ARTIFACT_DIRS = [
+    'btn',
+    'pbs-test',
     'PBS',
     'pbs',
     'dlr',
@@ -48,14 +51,14 @@ function getScenarioFromPath(filePath: string | undefined): string | undefined {
     // Get filename and remove extension (if any)
     const fileName = path.basename(filePath);
 
-    // For PBS files, there's no extension
-    if (isPbsDir(dirName)) {
+    // For PBS files (legacy), there's no extension
+    if (dirName.toLowerCase() === 'pbs') {
         return fileName;
     }
 
     // For artifact files, remove the extension to get scenario name
-    // Handle compound extensions like ".pbn", ".pdf", ".html", ".txt", ".lin"
-    const baseName = fileName.replace(/\.(pbn|dlr|pdf|html|txt|lin)$/i, '');
+    // Handle compound extensions like ".btn", ".pbs", ".pbn", ".pdf", ".html", ".txt", ".lin"
+    const baseName = fileName.replace(/\.(btn|pbs|pbn|dlr|pdf|html|txt|lin)$/i, '');
 
     // Also handle bidding sheet names like "1N Bidding Sheets.pdf" -> "1N"
     const biddingSheetMatch = baseName.match(/^(.+?)\s+Bidding Sheets?$/i);
@@ -134,8 +137,8 @@ export function registerPipelineCommands(context: vscode.ExtensionContext): void
     // All operations
     registerCommand(context, 'pbs.runAll', '*');
 
-    // Individual operations
-    registerCommand(context, 'pbs.runDlr', 'dlr');
+    // Individual operations (pbs is first, generates PBS and DLR from BTN)
+    registerCommand(context, 'pbs.runPbsOp', 'pbs');
     registerCommand(context, 'pbs.runPbn', 'pbn');
     registerCommand(context, 'pbs.runRotate', 'rotate');
     registerCommand(context, 'pbs.runBba', 'bba');
@@ -144,7 +147,7 @@ export function registerPipelineCommands(context: vscode.ExtensionContext): void
     registerCommand(context, 'pbs.runBiddingSheet', 'biddingSheet');
 
     // Plus operations (from X through end)
-    registerCommand(context, 'pbs.runDlrPlus', 'dlr+');
+    registerCommand(context, 'pbs.runPbsOpPlus', 'pbs+');
     registerCommand(context, 'pbs.runPbnPlus', 'pbn+');
     registerCommand(context, 'pbs.runRotatePlus', 'rotate+');
     registerCommand(context, 'pbs.runBbaPlus', 'bba+');

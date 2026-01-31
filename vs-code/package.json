@@ -68,8 +68,8 @@
         "icon": "$(play)"
       },
       {
-        "command": "pbs.runDlr",
-        "title": "PBS: Run DLR"
+        "command": "pbs.runPbsOp",
+        "title": "PBS: Generate PBS/DLR"
       },
       {
         "command": "pbs.runPbn",
@@ -96,8 +96,8 @@
         "title": "PBS: Run Bidding Sheet"
       },
       {
-        "command": "pbs.runDlrPlus",
-        "title": "PBS: Run DLR+"
+        "command": "pbs.runPbsOpPlus",
+        "title": "PBS: Run PBS+"
       },
       {
         "command": "pbs.runPbnPlus",
@@ -148,7 +148,7 @@
       "editor/title": [
         {
           "submenu": "pbs.pipeline",
-          "when": "resourcePath =~ /\\/([Pp][Bb][Ss]|btn|dlr|pbn|pbn-rotated-for-4-players|bba|bba-filtered|bba-filtered-out|bba-summary|bidding-sheets|lin|lin-rotated-for-4-players)\\/[^/]+$/",
+          "when": "resourcePath =~ /\\/([Pp][Bb][Ss]|btn|pbs-test|dlr|pbn|pbn-rotated-for-4-players|bba|bba-filtered|bba-filtered-out|bba-summary|bidding-sheets|lin|lin-rotated-for-4-players)\\/[^/]+$/",
           "group": "navigation"
         }
       ],
@@ -158,7 +158,7 @@
           "group": "1_all"
         },
         {
-          "command": "pbs.runDlr",
+          "command": "pbs.runPbsOp",
           "group": "2_individual@1"
         },
         {
@@ -186,7 +186,7 @@
           "group": "2_individual@7"
         },
         {
-          "command": "pbs.runDlrPlus",
+          "command": "pbs.runPbsOpPlus",
           "group": "3_plus@1"
         },
         {
