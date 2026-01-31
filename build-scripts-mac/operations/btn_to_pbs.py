@@ -1,6 +1,8 @@
 """
-BTN to PBS operation: Generate PBS file from BTN file.
-Transforms .btn format (with #include directives and metadata) into .pbs format.
+BTN to PBS operation: Generate PBS and DLR files from BTN file.
+Transforms .btn format (with #include directives and metadata) into:
+  - .pbs format (for BBOalert button definitions)
+  - .dlr format (for dealer hand generation)
 Button width and color are derived from the layout file, not the BTN file.
 """
 import os
@@ -329,11 +331,62 @@ def generate_pbs(parsed: dict, scenario_filename: str) -> str:
     return '\n'.join(lines)
 
 
+def generate_dlr(parsed: dict, scenario: str) -> str:
+    """
+    Generate DLR file content from parsed BTN data.
+    """
+    dealer_position = parsed['dealer_position'] or 'S'
+    button_text = parsed['button_text'] or scenario
+
+    # Map dealer position to full name
+    dealer_map = {'S': 'south', 'N': 'north', 'E': 'east', 'W': 'west'}
+    dealer_name = dealer_map.get(dealer_position.upper(), 'south')
+
+    # Inline includes in dealer code
+    dealer_code = inline_includes(parsed['dealer_code'])
+
+    lines = []
+
+    # Header comments
+    lines.append(f"# button-text: {button_text}")
+    lines.append(f"# scenario-title: {parsed.get('chat', '').split(chr(10))[0] if parsed.get('chat') else ''}")
+    lines.append(f"# {scenario}")
+    lines.append(f"dealer {dealer_name}")
+
+    # Process dealer code - remove dealer/generate/produce/printoneline statements
+    has_action = False
+    for line in dealer_code.split('\n'):
+        stripped = line.strip()
+        # Skip these lines - they'll be added by the pipeline
+        if stripped.startswith('dealer '):
+            continue
+        if stripped.startswith('generate '):
+            continue
+        if stripped.startswith('produce '):
+            continue
+        if stripped.startswith('printoneline'):
+            continue
+        if stripped.startswith('action'):
+            has_action = True
+        lines.append(line)
+
+    # Add action if not present
+    if not has_action:
+        lines.append("action printpbn")
+    else:
+        lines.append("printpbn")
+
+    lines.append("")  # trailing newline
+
+    return '\n'.join(lines)
+
+
 def run_btn_to_pbs(scenario: str, verbose: bool = True) -> bool:
     """
-    Generate PBS file from BTN file.
+    Generate PBS and DLR files from BTN file.
 
     btn/{scenario}.btn -> pbs-test/{scenario}.pbs
+    btn/{scenario}.btn -> dlr/{scenario}.dlr
 
     Args:
         scenario: Scenario name (e.g., "Smolen")
@@ -343,7 +396,7 @@ def run_btn_to_pbs(scenario: str, verbose: bool = True) -> bool:
         True if successful, False otherwise
     """
     if verbose:
-        print(f"--------- Generating PBS from BTN for {scenario}")
+        print(f"--------- Generating PBS and DLR from BTN for {scenario}")
 
     # Check that BTN file exists
     btn_path = os.path.join(FOLDERS["btn"], f"{scenario}.btn")
@@ -351,8 +404,9 @@ def run_btn_to_pbs(scenario: str, verbose: bool = True) -> bool:
         print(f"Error: btnToPbs: BTN file not found: {btn_path}")
         return False
 
-    # Ensure output folder exists
+    # Ensure output folders exist
     os.makedirs(FOLDERS["pbs_test"], exist_ok=True)
+    os.makedirs(FOLDERS["dlr"], exist_ok=True)
 
     try:
         # Parse BTN file
@@ -371,10 +425,23 @@ def run_btn_to_pbs(scenario: str, verbose: bool = True) -> bool:
         if verbose:
             print(f"  Created: {pbs_path}")
 
+        # Generate DLR content
+        dlr_content = generate_dlr(parsed, scenario)
+
+        # Write DLR file
+        dlr_path = os.path.join(FOLDERS["dlr"], f"{scenario}.dlr")
+        with open(dlr_path, 'w', encoding='utf-8') as f:
+            f.write(dlr_content)
+
+        if verbose:
+            print(f"  Created: {dlr_path}")
+
         return True
 
     except Exception as e:
         print(f"Error: btnToPbs: {e}")
+        import traceback
+        traceback.print_exc()
         return False
 
 

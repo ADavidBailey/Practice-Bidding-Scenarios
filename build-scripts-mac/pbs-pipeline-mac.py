@@ -32,7 +32,6 @@ def print_error(msg: str):
     print(f"{RED}{msg}{RESET}")
 
 # Import operations
-from operations.dlr import run_dlr
 from operations.pbn import run_pbn
 from operations.rotate import run_rotate
 from operations.bba import run_bba
@@ -44,15 +43,13 @@ from operations.btn_to_pbs import run_btn_to_pbs
 
 # Map operation names to functions
 OPERATIONS = {
-    "dlr": run_dlr,
+    "pbs": run_btn_to_pbs,  # Generates both PBS and DLR from BTN
     "pbn": run_pbn,
     "rotate": run_rotate,
     "bba": run_bba,
     "filter": run_filter,
     "filterStats": run_filter_stats,
     "biddingSheet": run_bidding_sheet,
-    # Standalone operations (not in default pipeline)
-    "pbs": run_btn_to_pbs,
 }
 
 # Create case-insensitive lookup: lowercase -> canonical name
@@ -68,32 +65,33 @@ def normalize_operation(op: str) -> str:
 def get_scenarios(pattern: str) -> list:
     """
     Get list of scenarios matching the pattern.
+    Scenarios are discovered from the btn/ folder (.btn files).
 
     Args:
         pattern: Scenario name or wildcard pattern (e.g., "Smolen", "*", "1N*")
 
     Returns:
-        List of scenario names
+        List of scenario names (without .btn extension)
     """
-    pbs_dir = FOLDERS["pbs"]
+    btn_dir = FOLDERS["btn"]
+
+    # Get all .btn files
+    btn_files = [f[:-4] for f in os.listdir(btn_dir)
+                 if f.endswith('.btn') and not f.startswith('.') and not f.startswith('-')]
 
     if pattern == "*":
         # All scenarios
-        scenarios = []
-        for f in os.listdir(pbs_dir):
-            if not f.startswith("."):  # Skip hidden files
-                scenarios.append(f)
-        return sorted(scenarios)
+        return sorted(btn_files)
     elif "*" in pattern or "?" in pattern:
         # Wildcard pattern
         scenarios = []
-        for f in os.listdir(pbs_dir):
-            if fnmatch.fnmatch(f, pattern) and not f.startswith("."):
+        for f in btn_files:
+            if fnmatch.fnmatch(f, pattern):
                 scenarios.append(f)
         return sorted(scenarios)
     else:
-        # Single scenario - find the actual folder name with correct case
-        for f in os.listdir(pbs_dir):
+        # Single scenario - find with correct case
+        for f in btn_files:
             if f.lower() == pattern.lower():
                 return [f]
         # No match found, return as-is (will fail later with clear error)
@@ -215,16 +213,13 @@ Examples:
     python build.py "1N*" "*"            # Pattern match scenarios
 
 Operations (in order):
-    dlr         - Extract dealer code from PBS file
-    pbn         - Generate PBN from DLR (Windows: dealer.exe)
+    pbs         - Generate PBS and DLR from BTN file (outputs to pbs-test/ and dlr/)
+    pbn         - Generate PBN from DLR (Mac: dealer3, Windows: dealer.exe)
     rotate      - Create rotated files for 4-player (Windows: SetDealerMulti.js)
     bba         - Generate BBA with bidding (Windows: BBA.exe)
     filter      - Filter by auction pattern (Windows: Filter.js)
     filterStats - Show filter statistics
     biddingSheet - Generate bidding sheets PDF
-
-Standalone operations (not in "*"):
-    pbs         - Generate PBS file from BTN file (outputs to pbs-test/)
         """,
     )
 

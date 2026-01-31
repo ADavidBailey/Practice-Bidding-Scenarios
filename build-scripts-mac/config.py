@@ -114,7 +114,7 @@ DEALER_PRODUCE = 500
 
 # Pipeline operations in order
 OPERATIONS_ORDER = [
-    "dlr",
+    "pbs",      # Generate PBS from BTN (also generates DLR)
     "pbn",
     "rotate",
     "bba",
