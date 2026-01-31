@@ -171,11 +171,21 @@ def generate_pbs(layout_path, btn_metadata, output_path):
                 continue
 
             if stripped.startswith('[Major]'):
-                title = stripped[7:].strip()
-                layout_items.append({'type': 'major', 'title': title})
+                content = stripped[7:].strip()
+                # Support URL: [Major] Title|URL
+                if '|' in content:
+                    title, url = content.split('|', 1)
+                    layout_items.append({'type': 'major', 'title': title.strip(), 'url': url.strip()})
+                else:
+                    layout_items.append({'type': 'major', 'title': content})
             elif stripped.startswith('[Section]'):
-                title = stripped[9:].strip()
-                layout_items.append({'type': 'section', 'title': title})
+                content = stripped[9:].strip()
+                # Support URL: [Section] Title|URL
+                if '|' in content:
+                    title, url = content.split('|', 1)
+                    layout_items.append({'type': 'section', 'title': title.strip(), 'url': url.strip()})
+                else:
+                    layout_items.append({'type': 'section', 'title': content})
             elif stripped.startswith('[Action]'):
                 # Format: [Action] Text|script|width
                 content = stripped[8:].strip()
@@ -217,10 +227,19 @@ def generate_pbs(layout_path, btn_metadata, output_path):
         if item['type'] == 'empty':
             button_lines.append("")
         elif item['type'] == 'major':
-            button_lines.append(f"Button,{item['title']},,width=100% backgroundColor=LemonChiffon")
+            url = item.get('url', '')
+            if url:
+                # URL with \n makes it clickable
+                button_lines.append(f"Button,{item['title']},{url}\\n,width=100% backgroundColor=LemonChiffon")
+            else:
+                button_lines.append(f"Button,{item['title']},,width=100% backgroundColor=LemonChiffon")
             button_lines.append("")
         elif item['type'] == 'section':
-            button_lines.append(f"Button,{item['title']},,width=100% backgroundColor=lightblue")
+            url = item.get('url', '')
+            if url:
+                button_lines.append(f"Button,{item['title']},{url}\\n,width=100% backgroundColor=lightblue")
+            else:
+                button_lines.append(f"Button,{item['title']},,width=100% backgroundColor=lightblue")
             button_lines.append("")
         elif item['type'] == 'action':
             button_lines.append(f"Button,{item['text']},{item['script']},width={item['width']}% backgroundColor=lightgreen")
