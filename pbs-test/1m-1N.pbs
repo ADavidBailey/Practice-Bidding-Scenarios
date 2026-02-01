@@ -1,7 +1,7 @@
 Script,oneMinor1NT
-window.currentPBSScenario = 'NtAfter1m';
+window.currentPBSScenario = 'oneMinor1NT';
 window.currentPBSScenarioFilename = '1m-1N';
-console.log('PBS: Logging scenario selection for NtAfter1m');
+console.log('PBS: Logging scenario selection for oneMinor1NT');
 fetch('https://bba.harmonicsystems.com/api/scenario/select', {
     method: 'POST',
     headers: {
@@ -9,7 +9,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
         'X-Client-Version': '1.0.0'
     },
     body: JSON.stringify({
-        scenario: 'NtAfter1m',
+        scenario: 'oneMinor1NT',
         user: whoAmI() || 'anonymous'
     })
 }).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
@@ -297,10 +297,10 @@ average "      3334 " 100 * shape(north,3334),
 frequency "losers(south)" (losers(south), 0, 12),
 `, "S", true)
 Script
-Button,1m - 1|2|3 NT,\n\
+Button,1m - 1NT,\n\
 --- 1m - 1NT，2NT，or 3NT\n\
 South opens 1!C or 1!D.  North has any 4333 hand with stuff in every other suit.\n\
 Should North skip over a 4-card suit to bid NT?\n\
 1NT is 6-9，2NT is 10-12，3NT is 13-15\n\
 These do not use 'Randomly rotate' -- go to 'Deal source' to change it.\n\
-%NtAfter1m%,backgroundColor=lightpink
+%oneMinor1NT%,backgroundColor=lightpink
