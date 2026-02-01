@@ -81,6 +81,13 @@ const ARTIFACTS = [
         getPath: (s: string, r: string) => path.join(r, 'bidding-sheets', `${s} Bidding Sheets.pdf`),
         getSourcePath: (s: string, r: string) => path.join(r, 'bba-filtered', `${s}.pbn`),
         command: 'pbs.runBiddingSheet'
+    },
+    {
+        name: 'quiz',
+        shortName: 'quiz',
+        getPath: (s: string, r: string) => path.join(r, 'quiz', `${s}.pdf`),
+        getSourcePath: (s: string, r: string) => path.join(r, 'bba-filtered', `${s}.pbn`),
+        command: 'pbs.runQuiz'
     }
 ];
 
@@ -127,6 +134,11 @@ function getScenarioFromPath(filePath: string): string | undefined {
         parentDir === 'bba' || parentDir === 'bba-filtered') {
         // pbn/Scenario.pbn
         return baseName.replace(/\.pbn$/, '');
+    }
+
+    if (parentDir === 'quiz') {
+        // quiz/Scenario.pbn or quiz/Scenario.pdf
+        return baseName.replace(/\.(pbn|pdf)$/, '');
     }
 
     if (parentDir === 'bidding-sheets') {

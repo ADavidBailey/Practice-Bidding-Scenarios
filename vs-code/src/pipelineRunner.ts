@@ -27,7 +27,8 @@ const ARTIFACT_DIRS = [
     'bba-summary',
     'bidding-sheets',
     'lin',
-    'lin-rotated-for-4-players'
+    'lin-rotated-for-4-players',
+    'quiz'
 ];
 
 /**
@@ -145,6 +146,7 @@ export function registerPipelineCommands(context: vscode.ExtensionContext): void
     registerCommand(context, 'pbs.runFilter', 'filter');
     registerCommand(context, 'pbs.runFilterStats', 'filterStats');
     registerCommand(context, 'pbs.runBiddingSheet', 'biddingSheet');
+    registerCommand(context, 'pbs.runQuiz', 'quiz');
 
     // Plus operations (from X through end)
     registerCommand(context, 'pbs.runPbsOpPlus', 'pbs+');
@@ -153,6 +155,7 @@ export function registerPipelineCommands(context: vscode.ExtensionContext): void
     registerCommand(context, 'pbs.runBbaPlus', 'bba+');
     registerCommand(context, 'pbs.runFilterPlus', 'filter+');
     registerCommand(context, 'pbs.runFilterStatsPlus', 'filterStats+');
+    registerCommand(context, 'pbs.runQuizPlus', 'quiz+');
 }
 
 /**

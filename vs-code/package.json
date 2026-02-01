@@ -120,6 +120,14 @@
         "title": "PBS: Run FilterStats+"
       },
       {
+        "command": "pbs.runQuiz",
+        "title": "PBS: Run Quiz"
+      },
+      {
+        "command": "pbs.runQuizPlus",
+        "title": "PBS: Run Quiz+"
+      },
+      {
         "command": "pbs.rebuildArtifact",
         "title": "Rebuild",
         "icon": "$(play)"
@@ -148,7 +156,7 @@
       "editor/title": [
         {
           "submenu": "pbs.pipeline",
-          "when": "resourcePath =~ /\\/([Pp][Bb][Ss]|btn|pbs-test|dlr|pbn|pbn-rotated-for-4-players|bba|bba-filtered|bba-filtered-out|bba-summary|bidding-sheets|lin|lin-rotated-for-4-players)\\/[^/]+$/",
+          "when": "resourcePath =~ /\\/([Pp][Bb][Ss]|btn|pbs-test|dlr|pbn|pbn-rotated-for-4-players|bba|bba-filtered|bba-filtered-out|bba-summary|bidding-sheets|lin|lin-rotated-for-4-players|quiz)\\/[^/]+$/",
           "group": "navigation"
         }
       ],
@@ -186,6 +194,10 @@
           "group": "2_individual@7"
         },
         {
+          "command": "pbs.runQuiz",
+          "group": "2_individual@8"
+        },
+        {
           "command": "pbs.runPbsOpPlus",
           "group": "3_plus@1"
         },
@@ -208,6 +220,10 @@
         {
           "command": "pbs.runFilterStatsPlus",
           "group": "3_plus@6"
+        },
+        {
+          "command": "pbs.runQuizPlus",
+          "group": "3_plus@7"
         }
       ]
     },
