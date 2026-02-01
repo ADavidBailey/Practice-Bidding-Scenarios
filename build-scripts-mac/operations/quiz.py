@@ -526,47 +526,161 @@ def format_auction_for_pbn(prefix: List[str], include_plus: bool = True) -> str:
     return result
 
 
-def generate_quiz_pbn(quizzes: List[Dict], scenario: str) -> str:
-    """Generate complete PBN file content for all quizzes."""
-    # Check if any quizzes have interference - if not, use two-column auctions
-    any_interference = any(has_interference(q['prefix']) for q in quizzes)
-    lines = [generate_pbn_header(scenario, use_two_col=not any_interference)]
+def number_to_word(n: int) -> str:
+    """Convert a number to its word form (1 -> One, 2 -> Two, etc.)."""
+    words = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven',
+             'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen',
+             'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen', 'Twenty']
+    if n < len(words):
+        return words[n]
+    return str(n)
 
-    for quiz_num, quiz in enumerate(quizzes, 1):
-        bidder = quiz['bidder']
-        prefix = quiz['prefix']
-        prompt = quiz['prompt']
 
-        # Convert suit symbols in prompt
-        prompt_pbn = convert_suits_for_pbn(prompt)
+def generate_exercise_title(quiz: Dict, scenario: str) -> str:
+    """Generate a descriptive exercise title based on the auction context."""
+    bidder = quiz['bidder']
+    prefix = quiz['prefix']
 
-        # Determine which seat shows the hand
-        show_seat = 'S' if bidder == 'opener' else 'N'
-        hidden = 'NEW' if show_seat == 'S' else 'ESW'
+    if not prefix:
+        if bidder == 'opener':
+            return "Opening Bids"
+        else:
+            return "Responding to Partner's Opening"
 
-        # Determine if we need to show auction (skip if prompt describes it fully)
-        # Show auction only if there's interference or complex bidding
-        show_auction = prefix and has_interference(prefix)
+    # Build title based on auction context
+    prefix_display = [b.replace('N', 'NT') for b in prefix]
 
-        # Quiz header board with instructions
-        lines.append(f'[Event "{scenario} Quiz {quiz_num}"]')
+    if len(prefix) == 2:  # After opening + pass (e.g., 1NT - Pass)
+        opening = prefix_display[0]
+        return f"Responding to {opening}"
+
+    elif len(prefix) == 4:  # After opening + pass + response + pass
+        opening = prefix_display[0]
+        response = prefix_display[2]
+        if bidder == 'opener':
+            return f"Opener's Rebid after {response}"
+        else:
+            return f"Responder's Rebid"
+
+    elif len(prefix) >= 6:
+        # Deeper in the auction
+        if bidder == 'opener':
+            return "Opener's Continuation"
+        else:
+            return "Responder's Continuation"
+
+    return f"{scenario} Bidding"
+
+
+def add_spacer(lines: List[str], num_lines: int = 15):
+    """Add a spacer board to force page break."""
+    lines.append('[Event ""]')
+    lines.append('[Site ""]')
+    lines.append('[Date ""]')
+    lines.append('[Board "spacer"]')
+    lines.append('[West ""]')
+    lines.append('[North ""]')
+    lines.append('[East ""]')
+    lines.append('[South ""]')
+    lines.append('[Dealer "N"]')
+    lines.append('[Vulnerable "None"]')
+    lines.append('[Deal ""]')
+    lines.append('[Scoring ""]')
+    lines.append('[Declarer ""]')
+    lines.append('[Contract ""]')
+    lines.append('[Result ""]')
+    lines.append('{')
+    for _ in range(num_lines):
+        lines.append('')
+    lines.append(' }')
+    lines.append('[BCFlags "17"]')
+    lines.append('')
+
+
+def generate_quiz_boards(quiz: Dict, quiz_num: int, scenario: str) -> List[str]:
+    """Generate PBN boards for a single quiz (header + hands)."""
+    lines = []
+    bidder = quiz['bidder']
+    prefix = quiz['prefix']
+    prompt = quiz['prompt']
+
+    # Generate exercise title
+    exercise_title = generate_exercise_title(quiz, scenario)
+    exercise_name = f"Exercise {number_to_word(quiz_num)} — {exercise_title}"
+
+    # Convert suit symbols in prompt
+    prompt_pbn = convert_suits_for_pbn(prompt)
+
+    # Determine which seat shows the hand
+    show_seat = 'S' if bidder == 'opener' else 'N'
+    hidden = 'NEW' if show_seat == 'S' else 'ESW'
+
+    # Determine if we need to show auction
+    show_auction = prefix and has_interference(prefix)
+
+    # Quiz header board with title and description
+    lines.append(f'[Event "{exercise_name}"]')
+    lines.append('[Site ""]')
+    lines.append('[Date ""]')
+    # Title bold, then description on new line
+    lines.append('{<b>' + exercise_name + '</b>\n\n' + prompt_pbn + '}')
+    lines.append(f'[Board "{quiz_num}"]')
+    lines.append('[West ""]')
+    lines.append('[North ""]')
+    lines.append('[East ""]')
+    lines.append('[South ""]')
+    lines.append('[Dealer "S"]')
+    lines.append('[Vulnerable "None"]')
+    lines.append('[Deal ""]')
+    lines.append('[Scoring ""]')
+    lines.append('[Declarer ""]')
+    lines.append('[Contract ""]')
+    lines.append('[Result ""]')
+    lines.append('[BCFlags "600023"]')
+    lines.append('[Hidden "NESW"]')
+
+    # Add auction context only if there's interference
+    if show_auction:
+        lines.append('[Auction "S"]')
+        lines.append(format_auction_for_pbn(prefix) + ' $2')
+
+    lines.append('')
+
+    # Individual hand boards
+    for hand_num, (hand, correct_bid) in enumerate(quiz['hands'], 1):
+        board_id = f"{quiz_num}-{hand_num}"
+
+        # Get the hand string for the seat we're showing
+        hand_str = hand.hands.get(show_seat, '...')
+
+        # Format deal string - show only the relevant hand
+        if show_seat == 'S':
+            deal_str = f'S:{hand_str} ... ... ...'
+        else:  # N
+            deal_str = f'N:{hand_str} ... ... ...'
+
+        # Format the answer with suit symbol
+        answer_bid = correct_bid.replace('N', 'NT')
+        answer_pbn = convert_suits_for_pbn(answer_bid)
+
+        lines.append('[Event ""]')
         lines.append('[Site ""]')
         lines.append('[Date ""]')
-        lines.append('{<b>' + prompt_pbn + '</b>}')
-        lines.append(f'[Board "{quiz_num}"]')
+        lines.append(f'[Board "{board_id}"]')
         lines.append('[West ""]')
         lines.append('[North ""]')
         lines.append('[East ""]')
         lines.append('[South ""]')
         lines.append('[Dealer "S"]')
         lines.append('[Vulnerable "None"]')
-        lines.append('[Deal ""]')
+        lines.append(f'[Deal "{deal_str}"]')
         lines.append('[Scoring ""]')
         lines.append('[Declarer ""]')
         lines.append('[Contract ""]')
         lines.append('[Result ""]')
-        lines.append('[BCFlags "600023"]')
-        lines.append('[Hidden "NESW"]')
+        lines.append('{<i>' + answer_pbn + '</i>}')
+        lines.append('[BCFlags "60001b"]')
+        lines.append(f'[Hidden "{hidden}"]')
 
         # Add auction context only if there's interference
         if show_auction:
@@ -575,54 +689,48 @@ def generate_quiz_pbn(quizzes: List[Dict], scenario: str) -> str:
 
         lines.append('')
 
-        # Individual hand boards
-        for hand_num, (hand, correct_bid) in enumerate(quiz['hands'], 1):
-            board_id = f"{quiz_num}-{hand_num}"
+    return lines
 
-            # Get the hand string for the seat we're showing
-            hand_str = hand.hands.get(show_seat, '...')
 
-            # Format deal string - show only the relevant hand
-            if show_seat == 'S':
-                deal_str = f'S:{hand_str} ... ... ...'
-            else:  # N
-                deal_str = f'N:{hand_str} ... ... ...'
+def generate_answer_boards(quiz: Dict, quiz_num: int, scenario: str) -> List[str]:
+    """Generate PBN boards for answer sheet."""
+    lines = []
 
-            # Format the answer with suit symbol
-            answer_bid = correct_bid.replace('N', 'NT')
-            answer_pbn = convert_suits_for_pbn(answer_bid)
+    # Generate exercise title for answers
+    exercise_title = generate_exercise_title(quiz, scenario)
+    answer_title = f"Exercise {number_to_word(quiz_num)} Answers"
 
-            lines.append('[Event ""]')
-            lines.append('[Site ""]')
-            lines.append('[Date ""]')
-            lines.append(f'[Board "{board_id}"]')
-            lines.append('[West ""]')
-            lines.append('[North ""]')
-            lines.append('[East ""]')
-            lines.append('[South ""]')
-            lines.append('[Dealer "S"]')
-            lines.append('[Vulnerable "None"]')
-            lines.append(f'[Deal "{deal_str}"]')
-            lines.append('[Scoring ""]')
-            lines.append('[Declarer ""]')
-            lines.append('[Contract ""]')
-            lines.append('[Result ""]')
-            lines.append('{<i>' + answer_pbn + '</i>}')
-            lines.append('[BCFlags "60001b"]')
-            lines.append(f'[Hidden "{hidden}"]')
+    # Answer header
+    lines.append('[Event ""]')
+    lines.append('[Site ""]')
+    lines.append('[Date ""]')
+    lines.append('{<b><i>' + answer_title + '</i></b>}')
+    lines.append(f'[Board "{quiz_num}"]')
+    lines.append('[West ""]')
+    lines.append('[North ""]')
+    lines.append('[East ""]')
+    lines.append('[South ""]')
+    lines.append('[Dealer "S"]')
+    lines.append('[Vulnerable "None"]')
+    lines.append('[Deal ""]')
+    lines.append('[Scoring ""]')
+    lines.append('[Declarer ""]')
+    lines.append('[Contract ""]')
+    lines.append('[Result ""]')
+    lines.append('[BCFlags "600023"]')
+    lines.append('[Hidden "NESW"]')
+    lines.append('')
 
-            # Add auction context only if there's interference
-            if show_auction:
-                lines.append('[Auction "S"]')
-                lines.append(format_auction_for_pbn(prefix) + ' $2')
+    # Individual answer entries
+    for hand_num, (hand, correct_bid) in enumerate(quiz['hands'], 1):
+        board_id = f"{quiz_num}-{hand_num}"
+        answer_bid = correct_bid.replace('N', 'NT')
+        answer_pbn = convert_suits_for_pbn(answer_bid)
 
-            lines.append('')
-
-        # Add spacer board between quiz and answers
         lines.append('[Event ""]')
         lines.append('[Site ""]')
         lines.append('[Date ""]')
-        lines.append('[Board "spacer"]')
+        lines.append(f'[Board "{board_id}"]')
         lines.append('[West ""]')
         lines.append('[North ""]')
         lines.append('[East ""]')
@@ -634,86 +742,49 @@ def generate_quiz_pbn(quizzes: List[Dict], scenario: str) -> str:
         lines.append('[Declarer ""]')
         lines.append('[Contract ""]')
         lines.append('[Result ""]')
-        lines.append('{')
-        for _ in range(12):
-            lines.append('')
-        lines.append(' }')
+        lines.append('{<b>' + board_id + ')</b> <i>' + answer_pbn + '</i>}')
         lines.append('[BCFlags "17"]')
         lines.append('')
 
-        # ========== ANSWER SHEET ==========
-        # Answer header
-        lines.append('[Event ""]')
-        lines.append('[Site ""]')
-        lines.append('[Date ""]')
-        lines.append('{<b><i>Quiz ' + str(quiz_num) + ' Answers</i></b>}')
-        lines.append(f'[Board "{quiz_num}"]')
-        lines.append('[West ""]')
-        lines.append('[North ""]')
-        lines.append('[East ""]')
-        lines.append('[South ""]')
-        lines.append('[Dealer "S"]')
-        lines.append('[Vulnerable "None"]')
-        lines.append('[Deal ""]')
-        lines.append('[Scoring ""]')
-        lines.append('[Declarer ""]')
-        lines.append('[Contract ""]')
-        lines.append('[Result ""]')
-        lines.append('[BCFlags "600023"]')
-        lines.append('[Hidden "NESW"]')
-        lines.append('')
+    return lines
 
-        # Individual answer entries
-        for hand_num, (hand, correct_bid) in enumerate(quiz['hands'], 1):
-            board_id = f"{quiz_num}-{hand_num}"
-            answer_bid = correct_bid.replace('N', 'NT')
-            answer_pbn = convert_suits_for_pbn(answer_bid)
 
-            # Format the full auction for the answer
-            full_auction = ' - '.join(b.replace('N', 'NT') for b in hand.auction)
-            full_auction_pbn = convert_suits_for_pbn(full_auction)
+def generate_quiz_pbn(quizzes: List[Dict], scenario: str) -> str:
+    """
+    Generate complete PBN file content for all quizzes.
 
-            lines.append('[Event ""]')
-            lines.append('[Site ""]')
-            lines.append('[Date ""]')
-            lines.append(f'[Board "{board_id}"]')
-            lines.append('[West ""]')
-            lines.append('[North ""]')
-            lines.append('[East ""]')
-            lines.append('[South ""]')
-            lines.append('[Dealer "N"]')
-            lines.append('[Vulnerable "None"]')
-            lines.append('[Deal ""]')
-            lines.append('[Scoring ""]')
-            lines.append('[Declarer ""]')
-            lines.append('[Contract ""]')
-            lines.append('[Result ""]')
-            lines.append('{<b>' + board_id + ')</b> <i>' + answer_pbn + '</i>}')
-            lines.append('[BCFlags "17"]')
-            lines.append('')
+    Layout: Quizzes on one page, answers on the next.
+    - Page 1: Exercise 1, Exercise 2
+    - Page 2: Exercise 1 Answers, Exercise 2 Answers
+    - Page 3: Exercise 3, Exercise 4
+    - Page 4: Exercise 3 Answers, Exercise 4 Answers
+    - etc.
+    """
+    # Check if any quizzes have interference - if not, use two-column auctions
+    any_interference = any(has_interference(q['prefix']) for q in quizzes)
+    lines = [generate_pbn_header(scenario, use_two_col=not any_interference)]
 
-        # Spacer after answers
-        lines.append('[Event ""]')
-        lines.append('[Site ""]')
-        lines.append('[Date ""]')
-        lines.append('[Board "spacer"]')
-        lines.append('[West ""]')
-        lines.append('[North ""]')
-        lines.append('[East ""]')
-        lines.append('[South ""]')
-        lines.append('[Dealer "N"]')
-        lines.append('[Vulnerable "None"]')
-        lines.append('[Deal ""]')
-        lines.append('[Scoring ""]')
-        lines.append('[Declarer ""]')
-        lines.append('[Contract ""]')
-        lines.append('[Result ""]')
-        lines.append('{')
-        for _ in range(18):
-            lines.append('')
-        lines.append(' }')
-        lines.append('[BCFlags "17"]')
-        lines.append('')
+    # Process quizzes in pairs (2 per page)
+    quizzes_per_page = 2
+
+    for i in range(0, len(quizzes), quizzes_per_page):
+        page_quizzes = quizzes[i:i + quizzes_per_page]
+
+        # Generate quiz boards for this page
+        for j, quiz in enumerate(page_quizzes):
+            quiz_num = i + j + 1
+            lines.extend(generate_quiz_boards(quiz, quiz_num, scenario))
+
+        # Add spacer to force page break before answers
+        add_spacer(lines, 15)
+
+        # Generate answer boards for this page's quizzes
+        for j, quiz in enumerate(page_quizzes):
+            quiz_num = i + j + 1
+            lines.extend(generate_answer_boards(quiz, quiz_num, scenario))
+
+        # Add spacer after answers (before next set of quizzes)
+        add_spacer(lines, 18)
 
     return '\n'.join(lines)
 
