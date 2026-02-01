@@ -16,19 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\n1[CD] +Pass +
+auction-filter: Auction.....\n1[CD] +Pass +1N
 */
-/*
-South opens 1C or 1D with no other constraints
-North has any 4333 hand with the following ranges
-
- 6-9  with at least Qxx in each unbid suit -- no requirement for opener's suit
-10-12 with at least Kxx or QJx in each unbid suit AND at least Qxx in the opener's suit
-13-15 same as 10-12
-
-auction-filter: Auction.....\n1[CD] +Pass +
-*/
-
 dealer south
 
 ##### Imported Script: Define Calm Opponents #####
@@ -298,9 +287,8 @@ frequency "losers(south)" (losers(south), 0, 12),
 `, "S", true)
 Script
 Button,1m - 1NT,\n\
---- 1m - 1NT，2NT，or 3NT\n\
+--- 1m - 1NT (6-9)\n\
 South opens 1!C or 1!D.  North has any 4333 hand with stuff in every other suit.\n\
 Should North skip over a 4-card suit to bid NT?\n\
-1NT is 6-9，2NT is 10-12，3NT is 13-15\n\
 These do not use 'Randomly rotate' -- go to 'Deal source' to change it.\n\
 %oneMinor1NT%,width=50% backgroundColor=lightpink
