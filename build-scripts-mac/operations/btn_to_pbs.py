@@ -350,6 +350,10 @@ def generate_dlr(parsed: dict, scenario: str) -> str:
     # Header comments
     lines.append(f"# button-text: {button_text}")
     lines.append(f"# scenario-title: {parsed.get('chat', '').split(chr(10))[0] if parsed.get('chat') else ''}")
+    if parsed.get('auction_filter'):
+        lines.append(f"# auction-filter: {parsed['auction_filter']}")
+    if parsed.get('convention_card'):
+        lines.append(f"# convention-card: {parsed['convention_card']}")
     lines.append(f"# {scenario}")
     lines.append(f"dealer {dealer_name}")
 
