@@ -451,12 +451,38 @@ def display_quiz(quiz: Dict, quiz_num: int):
         print()
 
 
-def generate_pbn_header(scenario: str) -> str:
+def convert_suits_for_pbn(text: str) -> str:
+    """Convert suit bids in text to PBN suit symbols (\\S, \\H, \\D, \\C)."""
+    # Convert bid patterns like 1NT, 2H, 3S, etc.
+    # Also handle standalone suit mentions
+    result = text
+
+    # Replace bids with suit - match patterns like "1H", "2S", "3D", "4C"
+    # and also "opens 1H", "responds 2C", etc.
+    result = re.sub(r'\b(\d)S\b', r'\1\\S', result)
+    result = re.sub(r'\b(\d)H\b', r'\1\\H', result)
+    result = re.sub(r'\b(\d)D\b', r'\1\\D', result)
+    result = re.sub(r'\b(\d)C\b', r'\1\\C', result)
+
+    return result
+
+
+def has_interference(prefix: List[str]) -> bool:
+    """Check if the auction prefix contains any non-pass opponent bids."""
+    for i, bid in enumerate(prefix):
+        bidder = get_bidder_at_level('S', i)
+        if bidder in ('lho', 'rho') and bid != 'Pass':
+            return True
+    return False
+
+
+def generate_pbn_header(scenario: str, use_two_col: bool = True) -> str:
     """Generate PBN file header with formatting settings for quiz layout."""
+    two_col = " TwoColAuctions" if use_two_col else ""
     return f"""% PBN 2.1
 % EXPORT
 %Content-type: text/x-pbn; charset=UTF-8
-%BCOptions Center GutterH GutterV Justify PageHeader STBorder STShade
+%BCOptions Center GutterH GutterV Justify PageHeader STBorder STShade{two_col}
 %BidAndCardSpacing Thin
 %BoardsPerPage fit,2
 %CardTableColors #008000,#ffffff,#aaaaaa
@@ -502,22 +528,31 @@ def format_auction_for_pbn(prefix: List[str], include_plus: bool = True) -> str:
 
 def generate_quiz_pbn(quizzes: List[Dict], scenario: str) -> str:
     """Generate complete PBN file content for all quizzes."""
-    lines = [generate_pbn_header(scenario)]
+    # Check if any quizzes have interference - if not, use two-column auctions
+    any_interference = any(has_interference(q['prefix']) for q in quizzes)
+    lines = [generate_pbn_header(scenario, use_two_col=not any_interference)]
 
     for quiz_num, quiz in enumerate(quizzes, 1):
         bidder = quiz['bidder']
         prefix = quiz['prefix']
         prompt = quiz['prompt']
 
+        # Convert suit symbols in prompt
+        prompt_pbn = convert_suits_for_pbn(prompt)
+
         # Determine which seat shows the hand
         show_seat = 'S' if bidder == 'opener' else 'N'
         hidden = 'NEW' if show_seat == 'S' else 'ESW'
+
+        # Determine if we need to show auction (skip if prompt describes it fully)
+        # Show auction only if there's interference or complex bidding
+        show_auction = prefix and has_interference(prefix)
 
         # Quiz header board with instructions
         lines.append(f'[Event "{scenario} Quiz {quiz_num}"]')
         lines.append('[Site ""]')
         lines.append('[Date ""]')
-        lines.append('{<b>' + prompt + '</b>}')
+        lines.append('{<b>' + prompt_pbn + '</b>}')
         lines.append(f'[Board "{quiz_num}"]')
         lines.append('[West ""]')
         lines.append('[North ""]')
@@ -531,12 +566,12 @@ def generate_quiz_pbn(quizzes: List[Dict], scenario: str) -> str:
         lines.append('[Contract ""]')
         lines.append('[Result ""]')
         lines.append('[BCFlags "600023"]')
-        lines.append(f'[Hidden "NESW"]')
+        lines.append('[Hidden "NESW"]')
 
-        # Add auction context if there's a prefix
-        if prefix:
+        # Add auction context only if there's interference
+        if show_auction:
             lines.append('[Auction "S"]')
-            lines.append(format_auction_for_pbn(prefix))
+            lines.append(format_auction_for_pbn(prefix) + ' $2')
 
         lines.append('')
 
@@ -553,8 +588,9 @@ def generate_quiz_pbn(quizzes: List[Dict], scenario: str) -> str:
             else:  # N
                 deal_str = f'N:{hand_str} ... ... ...'
 
-            # Format the answer
+            # Format the answer with suit symbol
             answer_bid = correct_bid.replace('N', 'NT')
+            answer_pbn = convert_suits_for_pbn(answer_bid)
 
             lines.append('[Event ""]')
             lines.append('[Site ""]')
@@ -571,18 +607,18 @@ def generate_quiz_pbn(quizzes: List[Dict], scenario: str) -> str:
             lines.append('[Declarer ""]')
             lines.append('[Contract ""]')
             lines.append('[Result ""]')
-            lines.append('{<i>' + answer_bid + '</i>}')
+            lines.append('{<i>' + answer_pbn + '</i>}')
             lines.append('[BCFlags "60001b"]')
             lines.append(f'[Hidden "{hidden}"]')
 
-            # Add auction context
-            if prefix:
+            # Add auction context only if there's interference
+            if show_auction:
                 lines.append('[Auction "S"]')
-                lines.append(format_auction_for_pbn(prefix))
+                lines.append(format_auction_for_pbn(prefix) + ' $2')
 
             lines.append('')
 
-        # Add spacer board between quizzes
+        # Add spacer board between quiz and answers
         lines.append('[Event ""]')
         lines.append('[Site ""]')
         lines.append('[Date ""]')
@@ -599,7 +635,81 @@ def generate_quiz_pbn(quizzes: List[Dict], scenario: str) -> str:
         lines.append('[Contract ""]')
         lines.append('[Result ""]')
         lines.append('{')
-        for _ in range(15):
+        for _ in range(12):
+            lines.append('')
+        lines.append(' }')
+        lines.append('[BCFlags "17"]')
+        lines.append('')
+
+        # ========== ANSWER SHEET ==========
+        # Answer header
+        lines.append('[Event ""]')
+        lines.append('[Site ""]')
+        lines.append('[Date ""]')
+        lines.append('{<b><i>Quiz ' + str(quiz_num) + ' Answers</i></b>}')
+        lines.append(f'[Board "{quiz_num}"]')
+        lines.append('[West ""]')
+        lines.append('[North ""]')
+        lines.append('[East ""]')
+        lines.append('[South ""]')
+        lines.append('[Dealer "S"]')
+        lines.append('[Vulnerable "None"]')
+        lines.append('[Deal ""]')
+        lines.append('[Scoring ""]')
+        lines.append('[Declarer ""]')
+        lines.append('[Contract ""]')
+        lines.append('[Result ""]')
+        lines.append('[BCFlags "600023"]')
+        lines.append('[Hidden "NESW"]')
+        lines.append('')
+
+        # Individual answer entries
+        for hand_num, (hand, correct_bid) in enumerate(quiz['hands'], 1):
+            board_id = f"{quiz_num}-{hand_num}"
+            answer_bid = correct_bid.replace('N', 'NT')
+            answer_pbn = convert_suits_for_pbn(answer_bid)
+
+            # Format the full auction for the answer
+            full_auction = ' - '.join(b.replace('N', 'NT') for b in hand.auction)
+            full_auction_pbn = convert_suits_for_pbn(full_auction)
+
+            lines.append('[Event ""]')
+            lines.append('[Site ""]')
+            lines.append('[Date ""]')
+            lines.append(f'[Board "{board_id}"]')
+            lines.append('[West ""]')
+            lines.append('[North ""]')
+            lines.append('[East ""]')
+            lines.append('[South ""]')
+            lines.append('[Dealer "N"]')
+            lines.append('[Vulnerable "None"]')
+            lines.append('[Deal ""]')
+            lines.append('[Scoring ""]')
+            lines.append('[Declarer ""]')
+            lines.append('[Contract ""]')
+            lines.append('[Result ""]')
+            lines.append('{<b>' + board_id + ')</b> <i>' + answer_pbn + '</i>}')
+            lines.append('[BCFlags "17"]')
+            lines.append('')
+
+        # Spacer after answers
+        lines.append('[Event ""]')
+        lines.append('[Site ""]')
+        lines.append('[Date ""]')
+        lines.append('[Board "spacer"]')
+        lines.append('[West ""]')
+        lines.append('[North ""]')
+        lines.append('[East ""]')
+        lines.append('[South ""]')
+        lines.append('[Dealer "N"]')
+        lines.append('[Vulnerable "None"]')
+        lines.append('[Deal ""]')
+        lines.append('[Scoring ""]')
+        lines.append('[Declarer ""]')
+        lines.append('[Contract ""]')
+        lines.append('[Result ""]')
+        lines.append('{')
+        for _ in range(18):
             lines.append('')
         lines.append(' }')
         lines.append('[BCFlags "17"]')
