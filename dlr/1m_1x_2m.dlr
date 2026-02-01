@@ -1,14 +1,8 @@
 # button-text: 1m-1x-2m
-# scenario-title: 1m-1x-2m
+# scenario-title: --- 1m-1x-2m
+# auction-filter: Auction.....\n(1C Pass 1.* Pass\n2C|1D Pass 1.* Pass)
 # 1m_1x_2m
 dealer south
-
-
-/*
-convention-card:
-auction-filter: Auction.....\n(1C Pass 1.* Pass\n2C|1D Pass 1.* Pass)
-*/
-
 # South Open's 1 of a Minor
 
 ##### Imported Script: Define Calm Opponents #####
@@ -38,7 +32,6 @@ calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
 
-
 NT = shape(north,any 4432+any 4333+any 5332-5xxx-x5xx)
 jumpNT = NT and hcp(north)>10 // and hearts(north)<4 and spades(north)<4
 twoOverOne = hcp(north)>12
@@ -56,5 +49,7 @@ average "hcp(south)      " hcp(south),
 average "hcp(north)      " hcp(north),
 average "south length    " sLength,
 
+
+action printpbn
 
 printpbn
