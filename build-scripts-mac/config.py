@@ -77,6 +77,7 @@ FOLDERS = {
     "bba_filtered": os.path.join(PROJECT_ROOT, "bba-filtered"),
     "bba_filtered_out": os.path.join(PROJECT_ROOT, "bba-filtered-out"),
     "bidding_sheets": os.path.join(PROJECT_ROOT, "bidding-sheets"),
+    "quiz": os.path.join(PROJECT_ROOT, "quiz"),
     "bbsa": os.path.join(PROJECT_ROOT, "bbsa"),
     "py": os.path.join(PROJECT_ROOT, "py"),
 }
@@ -121,4 +122,5 @@ OPERATIONS_ORDER = [
     "filter",
     "filterStats",
     "biddingSheet",
+    "quiz",     # Generate quiz PBN/PDF from filtered BBA
 ]

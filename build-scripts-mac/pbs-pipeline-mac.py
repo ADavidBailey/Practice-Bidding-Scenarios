@@ -39,6 +39,7 @@ from operations.filter import run_filter
 from operations.filter_stats import run_filter_stats
 from operations.bidding_sheet import run_bidding_sheet
 from operations.btn_to_pbs import run_btn_to_pbs
+from operations.quiz import run_quiz
 
 
 # Map operation names to functions
@@ -50,6 +51,7 @@ OPERATIONS = {
     "filter": run_filter,
     "filterStats": run_filter_stats,
     "biddingSheet": run_bidding_sheet,
+    "quiz": run_quiz,
 }
 
 # Create case-insensitive lookup: lowercase -> canonical name
@@ -220,6 +222,7 @@ Operations (in order):
     filter      - Filter by auction pattern (Windows: Filter.js)
     filterStats - Show filter statistics
     biddingSheet - Generate bidding sheets PDF
+    quiz        - Generate quiz PBN/PDF from filtered BBA
         """,
     )
 
