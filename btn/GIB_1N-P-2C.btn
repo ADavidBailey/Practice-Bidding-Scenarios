@@ -17,13 +17,6 @@ https://www.bridgebum.com/stayman.php
 https://www.bridgebum.com/crawling_stayman.php
 @chat*/
 
-/*
-GIB deducts 1 point for each short suit in the responder's hand and fails to bid Stayman with really weak major suits.
-
-convention-card: 21GF-GIB
-auction-filter: Auction.....\n1NT? +Pass +2C +
-*/
-
 # Stayman
 dealer south
 
@@ -58,6 +51,3 @@ average "45xx Invite " 100 * (majorInvite and shape(north,45xx)),
 average "54xx Invite " 100 * (majorInvite and shape(north,54xx)),
 average "smolen      " 100 * smolen,
 average "stayman     " 100 * stayman,
-
-
-action printpbn
