@@ -679,9 +679,14 @@ def generate_quiz_boards(quiz: Dict, quiz_num: int, scenario: str) -> List[str]:
     # Convert suit symbols in prompt
     prompt_pbn = convert_suits_for_pbn(prompt)
 
-    # Determine which seat shows the hand
-    show_seat = 'S' if bidder == 'opener' else 'N'
-    hidden = 'NEW' if show_seat == 'S' else 'ESW'
+    # Determine which seat's hand to get (opener=S, responder=N)
+    # but always display it as South so user sees their hand in the South position
+    source_seat = 'S' if bidder == 'opener' else 'N'
+    hidden = 'NEW'  # Always hide N, E, W - show only South
+
+    # Dealer seat: for opener quizzes, South deals; for responder quizzes, North deals
+    # (because we rotate the deal so responder appears in South position)
+    dealer_seat = 'S' if bidder == 'opener' else 'N'
 
     # Show auction if there's interference OR if auctions vary between hands
     show_header_auction = prefix and has_interference(prefix) and not auctions_vary
@@ -698,7 +703,7 @@ def generate_quiz_boards(quiz: Dict, quiz_num: int, scenario: str) -> List[str]:
     lines.append('[North ""]')
     lines.append('[East ""]')
     lines.append('[South ""]')
-    lines.append('[Dealer "S"]')
+    lines.append(f'[Dealer "{dealer_seat}"]')
     lines.append('[Vulnerable "None"]')
     lines.append('[Deal ""]')
     lines.append('[Scoring ""]')
@@ -710,7 +715,7 @@ def generate_quiz_boards(quiz: Dict, quiz_num: int, scenario: str) -> List[str]:
 
     # Add auction context in header only if fixed (not varying)
     if show_header_auction:
-        lines.append('[Auction "S"]')
+        lines.append(f'[Auction "{dealer_seat}"]')
         lines.append(format_auction_for_pbn(prefix))
 
     lines.append('')
@@ -719,14 +724,10 @@ def generate_quiz_boards(quiz: Dict, quiz_num: int, scenario: str) -> List[str]:
     for hand_num, (hand, correct_bid) in enumerate(quiz['hands'], 1):
         board_id = f"{quiz_num}-{hand_num}"
 
-        # Get the hand string for the seat we're showing
-        hand_str = hand.hands.get(show_seat, '...')
-
-        # Format deal string - show only the relevant hand
-        if show_seat == 'S':
-            deal_str = f'S:{hand_str} ... ... ...'
-        else:  # N
-            deal_str = f'N:{hand_str} ... ... ...'
+        # Get the hand string from the source seat (S for opener, N for responder)
+        # but always display it in the South position
+        hand_str = hand.hands.get(source_seat, '...')
+        deal_str = f'S:{hand_str} ... ... ...'
 
         # Format the answer with suit symbol
         answer_bid = correct_bid.replace('N', 'NT')
@@ -747,7 +748,7 @@ def generate_quiz_boards(quiz: Dict, quiz_num: int, scenario: str) -> List[str]:
         lines.append('[North ""]')
         lines.append('[East ""]')
         lines.append('[South ""]')
-        lines.append('[Dealer "S"]')
+        lines.append(f'[Dealer "{dealer_seat}"]')
         lines.append('[Vulnerable "None"]')
         lines.append(f'[Deal "{deal_str}"]')
         lines.append('[Scoring ""]')
@@ -760,7 +761,7 @@ def generate_quiz_boards(quiz: Dict, quiz_num: int, scenario: str) -> List[str]:
 
         # Add auction for each hand if auctions vary
         if show_hand_auctions:
-            lines.append('[Auction "S"]')
+            lines.append(f'[Auction "{dealer_seat}"]')
             lines.append(hand_prefix_pbn)
 
         lines.append('')
@@ -771,6 +772,10 @@ def generate_quiz_boards(quiz: Dict, quiz_num: int, scenario: str) -> List[str]:
 def generate_answer_boards(quiz: Dict, quiz_num: int, scenario: str) -> List[str]:
     """Generate PBN boards for answer sheet."""
     lines = []
+    bidder = quiz['bidder']
+
+    # Dealer seat: for opener quizzes, South deals; for responder quizzes, North deals
+    dealer_seat = 'S' if bidder == 'opener' else 'N'
 
     # Generate exercise title for answers
     exercise_title = generate_exercise_title(quiz, scenario)
@@ -786,7 +791,7 @@ def generate_answer_boards(quiz: Dict, quiz_num: int, scenario: str) -> List[str
     lines.append('[North ""]')
     lines.append('[East ""]')
     lines.append('[South ""]')
-    lines.append('[Dealer "S"]')
+    lines.append(f'[Dealer "{dealer_seat}"]')
     lines.append('[Vulnerable "None"]')
     lines.append('[Deal ""]')
     lines.append('[Scoring ""]')
@@ -836,10 +841,8 @@ def generate_quiz_pbn(quizzes: List[Dict], scenario: str) -> str:
     - Page 4: Exercise 3 Answers, Exercise 4 Answers
     - etc.
     """
-    # Check if any quizzes have varying auctions - if so, don't use two-column
-    # (TwoColAuctions puts N on left, S on right, which reads backwards)
-    any_varying = any(q.get('auctions_vary', False) or q.get('round', 0) >= 3 for q in quizzes)
-    lines = [generate_pbn_header(scenario, use_two_col=not any_varying)]
+    # Always use TwoColAuctions - bridge-wrangler should handle rendering correctly
+    lines = [generate_pbn_header(scenario, use_two_col=True)]
 
     # Process quizzes in pairs (2 per page)
     quizzes_per_page = 2
