@@ -105,6 +105,28 @@ def run_filter(scenario: str, verbose: bool = True) -> bool:
         print(f"  Created: {output_filtered}")
         print(f"  Created: {output_inverse}")
 
+    # Generate PDFs for both filtered and filtered-out outputs
+    for pbn_file, pdf_folder in [(output_filtered, FOLDERS["bba_filtered"]),
+                                  (output_inverse, FOLDERS["bba_filtered_out"])]:
+        output_pdf = os.path.join(pdf_folder, f"{scenario}.pdf")
+        pdf_cmd = [
+            bridge_wrangler, "to-pdf",
+            "-i", pbn_file,
+            "-o", output_pdf
+        ]
+
+        try:
+            result = subprocess.run(pdf_cmd, capture_output=True, text=True)
+            if result.returncode != 0:
+                print(f"  Warning: PDF generation failed for {pbn_file}")
+                if result.stderr:
+                    print(f"    {result.stderr}")
+                # Don't fail the whole operation for PDF generation failure
+            elif verbose:
+                print(f"  Created: {output_pdf}")
+        except Exception as e:
+            print(f"  Warning: PDF generation failed: {e}")
+
     return True
 
 
