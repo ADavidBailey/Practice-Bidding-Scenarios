@@ -711,7 +711,7 @@ def generate_quiz_boards(quiz: Dict, quiz_num: int, scenario: str) -> List[str]:
     # Add auction context in header only if fixed (not varying)
     if show_header_auction:
         lines.append('[Auction "S"]')
-        lines.append(format_auction_for_pbn(prefix) + ' $2')
+        lines.append(format_auction_for_pbn(prefix))
 
     lines.append('')
 
@@ -761,7 +761,7 @@ def generate_quiz_boards(quiz: Dict, quiz_num: int, scenario: str) -> List[str]:
         # Add auction for each hand if auctions vary
         if show_hand_auctions:
             lines.append('[Auction "S"]')
-            lines.append(hand_prefix_pbn + ' $2')
+            lines.append(hand_prefix_pbn)
 
         lines.append('')
 
@@ -836,9 +836,10 @@ def generate_quiz_pbn(quizzes: List[Dict], scenario: str) -> str:
     - Page 4: Exercise 3 Answers, Exercise 4 Answers
     - etc.
     """
-    # Check if any quizzes have interference - if not, use two-column auctions
-    any_interference = any(has_interference(q['prefix']) for q in quizzes)
-    lines = [generate_pbn_header(scenario, use_two_col=not any_interference)]
+    # Check if any quizzes have varying auctions - if so, don't use two-column
+    # (TwoColAuctions puts N on left, S on right, which reads backwards)
+    any_varying = any(q.get('auctions_vary', False) or q.get('round', 0) >= 3 for q in quizzes)
+    lines = [generate_pbn_header(scenario, use_two_col=not any_varying)]
 
     # Process quizzes in pairs (2 per page)
     quizzes_per_page = 2
