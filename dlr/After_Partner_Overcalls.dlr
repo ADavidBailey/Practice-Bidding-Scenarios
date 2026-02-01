@@ -1,12 +1,8 @@
 # button-text: After Partner Overcalls
-# scenario-title: After Partner Overcalls
+# scenario-title: --- After Partner Overcalls
+# auction-filter: Auction.....\n(1C +1[DHS]|1D +(1[HS]|2C)|1H +(1S|2[CD])|1S +2[CDH]) +Pass
 # After_Partner_Overcalls
 dealer east
-
-
-# convention-card:
-# auction-filter: Auction.....\\n(1C 1[DHS]|1D (1[HS]|2C)|1H (1S|2[CD])|1S 2[CDH]) Pass
-
 # After Partner Overcalls
 
 
@@ -160,7 +156,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 levelRaise = nRaises  and keep67
 levelCue   = nCueBids and keep
 levelSuit  = nNewSuit and keep25
@@ -180,5 +175,7 @@ average "NewSuit " 100 * nNewSuit,
 average "NoTrump " 100 * nNotrump,
 average "Punts   " 100 * nPunts,
 
+
+action printpbn
 
 printpbn

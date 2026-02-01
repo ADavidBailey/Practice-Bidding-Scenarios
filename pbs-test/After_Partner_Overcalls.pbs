@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\\n(1C 1[DHS]|1D (1[HS]|2C)|1H (1S|2[CD])|1S 2[CDH]) Pass
+auction-filter: Auction.....\n(1C +1[DHS]|1D +(1[HS]|2C)|1H +(1S|2[CD])|1S +2[CDH]) +Pass
 */
 # After Partner Overcalls
 
@@ -199,4 +199,4 @@ Button,After Partner Overcalls,\n\
 • Jump raises are preemptive\n\
 • Cue Biddding opener's suit shows 11+ TP\n\
 • New Suit denies support and shows 10+ HCP\n\
-%AfterPartnerOvercalls%
+%AfterPartnerOvercalls%,width=50%

@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\\n(1C 1[DHS] 2C|1D 1[HS] 2D|1H 1S 2H) X
+auction-filter: Auction.....\n(1C +1[DHS] +2C|1D +1[HS] +2D|1H +1S +2H) +X
 */
 dealer west
 
@@ -109,4 +109,4 @@ Script
 Button,X by Advancer,\n\
 --- Responsive Double by Advancer\n\
 After 1x (1y) 2x，(X) shows the other two suits.\n\
-%DoubleByAdvancer%
+%DoubleByAdvancer%,width=50%

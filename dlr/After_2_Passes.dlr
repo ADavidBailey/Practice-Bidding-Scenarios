@@ -1,11 +1,8 @@
 # button-text: After 2 Passes...
-# scenario-title: After 2 Passs...
+# scenario-title: --- After 2 Passs...
+# auction-filter: Auction.....\nPass +Pass +(?!Pass)
 # After_2_Passes
 dealer north
-
-
-# auction-filter: Auction.....\\nPass.Pass.
-
 # After 2 Passes...
 
 
@@ -73,7 +70,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 levShaded = shaded and keep
 levFull   = full   and keep53
 levelTheDeal = levShaded or levFull
@@ -92,5 +88,7 @@ average "hcp W   " hcp(west),
 average "hcp N   " hcp(north),
 average "hcp E   " hcp(east),
 
+
+action printpbn
 
 printpbn

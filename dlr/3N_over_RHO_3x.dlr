@@ -1,11 +1,8 @@
 # button-text: 3NT over RHO's 3x (Lev)
-# scenario-title: 3N over RHO's 3x Preempt.
+# scenario-title: ---  3N over RHO's 3x Preempt.
+# auction-filter: Auction.....\n3[CDHS] +3N
 # 3N_over_RHO_3x
 dealer east
-
-
-# auction-filter: Auction.....\\n3[CDHS].3N.
-
 ### 3N over RHO's 3x ###
 
 # define south's controls for each suit
@@ -113,7 +110,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 # Level it
 level1 = case1 and keep06
 level2 = case2 and keep81
@@ -129,5 +125,7 @@ average "1 Stop and >17             " 100 * case1,
 average "1 Stop, good suit, and >15 " 100 * case2,
 average "2 Stop and >15             " 100 * case3,
 
+
+action printpbn
 
 printpbn

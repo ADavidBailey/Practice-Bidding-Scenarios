@@ -1,12 +1,8 @@
 # button-text: Double w/2 Suits
-# scenario-title: Double Showing 2 Suits
+# scenario-title: --- Double Showing 2 Suits
+# auction-filter: Auction.....\n((1C +Pass +1[DHS]|1D +Pass +1[HS]|1H +Pass +1S|1[CDH] +1[DHS] +2[CDH]) +X)
 # Double_Showing_2_Suits
 dealer west
-
-
-# convention-card:
-# auction-filter: Auction.....\\n((1C Pass 1[DHS]|1D Pass 1[HS]|1H Pass 1S|1[CDH] 1[DHS] 2[CDH]) X)
-
 
 ##### Double Showing 2 Suits #####
 # a.  West Opens, North Passes, East Bids a new suit at the 1-level, and South has the other 2 suits.
@@ -132,7 +128,6 @@ keep985 = not keep015
 keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
-
 levNBids = northBids   and keep0  // It's very hard to get North to bid.  Keeping only .015 of the passes produces less than 10 bids.
 levNPass = northPasses and keep
 levelTheDeal = levNBids or levNPass
@@ -151,5 +146,7 @@ average "C&S   " 100 * sCS,
 average "C&H   " 100 * sCH,
 average "C&D   " 100 * sCD,
 
+
+action printpbn
 
 printpbn

@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\\n((1C Pass 1[DHS]|1D Pass 1[HS]|1H Pass 1S|1[CDH] 1[DHS] 2[CDH]) X)
+auction-filter: Auction.....\n((1C +Pass +1[DHS]|1D +Pass +1[HS]|1H +Pass +1S|1[CDH] +1[DHS] +2[CDH]) +X)
 */
 dealer west
 
@@ -166,4 +166,4 @@ Script
 Button,Double w/2 Suits,\n\
 --- Double Showing 2 Suits\n\
 After 1x (P) 1y，(X) shows the other two suits.\n\
-%DoubleShowing2Suits%
+%DoubleShowing2Suits%,width=50%

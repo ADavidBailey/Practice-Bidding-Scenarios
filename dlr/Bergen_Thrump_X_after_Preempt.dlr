@@ -1,12 +1,8 @@
 # button-text: Preempt/Thrump X
-# scenario-title: Opps Preempt/Bergen Thrump X
+# scenario-title: --- Opps Preempt/Bergen Thrump X
+# auction-filter: Auction.....\n1[CDHS] +3[DHS]
 # Bergen_Thrump_X_after_Preempt
-dealer north
-
-
-# convention-card:
-# auction-filter: Auction.....\\n1[CDHS].3[DHS].
-
+dealer south
 # Bergen Thrump X after Preempt
 
 # Opponents preempt 3D, 3H, or 3S and South does not have a stopper
@@ -33,5 +29,7 @@ action
 average "hcp(north)" hcp(north),
 average "hcp(south)" hcp(south),
 
+
+action printpbn
 
 printpbn
