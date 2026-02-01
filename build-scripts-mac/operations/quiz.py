@@ -330,78 +330,140 @@ def select_quiz_hands(hands_by_bid: Dict[str, List[Hand]],
     return selected[:num_hands]
 
 
+def get_bidding_round(level: int) -> int:
+    """
+    Get the bidding round number (1-based) for our side.
+    Round 1 = first response (level 2)
+    Round 2 = opener's rebid (level 4)
+    Round 3 = responder's rebid (level 6)
+    Round 4 = opener's second rebid (level 8)
+    etc.
+    """
+    # Our side bids at levels 0, 2, 4, 6, 8... (opener) and 2, 6, 10... (responder from N's view)
+    # Actually opener at 0, 4, 8... responder at 2, 6, 10...
+    if level == 0:
+        return 0  # Opening bid
+    elif level == 2:
+        return 1  # First response
+    elif level == 4:
+        return 2  # Opener's rebid
+    elif level == 6:
+        return 3  # Responder's rebid
+    elif level == 8:
+        return 4  # Opener's second rebid
+    else:
+        return (level // 2)
+
+
 def generate_quizzes(hands: List[Hand],
                      num_per_quiz: int = 6,
                      min_frequency: float = 0.05,
                      verbose: bool = True) -> List[Dict]:
     """
-    Generate quiz sets from the hands.
+    Generate quiz sets from the hands, grouped by bidding round.
 
-    Returns a list of quiz dictionaries, each containing:
-    - 'level': The auction level being quizzed
-    - 'prefix': The auction prefix (previous bids)
-    - 'bidder': 'opener' or 'responder'
-    - 'prompt': The quiz prompt text
-    - 'hands': List of (Hand, correct_bid) tuples
-    - 'bid_distribution': Dict of bid -> count
+    For rounds 1-2, group by exact prefix.
+    For rounds 3+, combine all prefixes at that level into one quiz.
+
+    Returns a list of quiz dictionaries.
     """
     quizzes = []
     level_data = analyze_auction_tree(hands)
 
-    # Process each decision point
-    processed_prefixes = set()
+    # Group decision points by bidding round
+    rounds_data = defaultdict(lambda: {'hands_by_bid': defaultdict(list), 'prefixes': set()})
 
-    for prefix, bids_dict in sorted(level_data.items(), key=lambda x: len(x[0])):
-        if prefix in processed_prefixes:
-            continue
-        processed_prefixes.add(prefix)
-
+    for prefix, bids_dict in level_data.items():
         level = len(prefix)
-        bidder = get_bidder_at_level('S', level)  # Assume South is dealer
+        bidder = get_bidder_at_level('S', level)
 
-        # Skip opponent bids - we only quiz our side
+        # Skip opponent bids
         if bidder in ('lho', 'rho'):
             continue
 
-        # Count total hands at this decision point
-        total_hands = sum(len(h) for h in bids_dict.values())
+        round_num = get_bidding_round(level)
+
+        # For rounds 1-2, use exact prefix as key
+        # For rounds 3+, group all prefixes at that level together
+        if round_num <= 2:
+            round_key = (round_num, prefix)
+        else:
+            round_key = (round_num, None)  # Group all at this round
+
+        rounds_data[round_key]['prefixes'].add(prefix)
+        rounds_data[round_key]['bidder'] = bidder
+        rounds_data[round_key]['level'] = level
+        rounds_data[round_key]['round'] = round_num
+
+        for bid, bid_hands in bids_dict.items():
+            rounds_data[round_key]['hands_by_bid'][bid].extend(bid_hands)
+
+    # Process each round
+    for round_key in sorted(rounds_data.keys()):
+        data = rounds_data[round_key]
+        round_num = data['round']
+        bidder = data['bidder']
+        level = data['level']
+        hands_by_bid = data['hands_by_bid']
+        prefixes = data['prefixes']
+
+        # Count total hands
+        total_hands = sum(len(h) for h in hands_by_bid.values())
         if total_hands == 0:
             continue
 
         # Filter bids by frequency
         significant_bids = {}
-        for bid, bid_hands in bids_dict.items():
+        for bid, bid_hands in hands_by_bid.items():
             frequency = len(bid_hands) / total_hands
             if frequency >= min_frequency:
                 significant_bids[bid] = bid_hands
 
-        # Skip if only one significant bid (no decision to make)
+        # Skip if only one significant bid
         if len(significant_bids) <= 1:
             if verbose:
-                prefix_str = format_auction_prefix(list(prefix))
                 if significant_bids:
                     bid = list(significant_bids.keys())[0]
-                    print(f"  Level {level} after [{prefix_str}]: Only one bid ({bid}) - skipping")
+                    print(f"  Round {round_num} (level {level}): Only one bid ({bid}) - skipping")
             continue
 
-        # Skip if all remaining auctions end (all Pass)
+        # Skip if all passes
         non_pass_bids = {b: h for b, h in significant_bids.items() if b != 'Pass'}
         if not non_pass_bids and 'Pass' in significant_bids:
-            # Only passes remain - these are terminal positions
             continue
 
-        # Generate the quiz
-        prompt = generate_quiz_prompt(bidder, list(prefix))
+        # Get a representative prefix for rounds 1-2
+        prefix = list(list(prefixes)[0]) if prefixes else []
+
+        # Determine if auctions vary (for display purposes)
+        auctions_vary = len(prefixes) > 1
+
+        # Generate prompt based on round
+        if round_num == 1:
+            prompt = generate_quiz_prompt(bidder, prefix)
+        elif round_num == 2:
+            prompt = generate_quiz_prompt(bidder, prefix)
+        else:
+            # Simpler prompts for later rounds
+            if bidder == 'responder':
+                prompt = "As responder, what will you rebid with each of these hands?"
+            else:
+                prompt = "As opener, what will you rebid with each of these hands?"
+
+        # Select hands
         quiz_hands = select_quiz_hands(significant_bids, num_per_quiz, bidder)
 
         if len(quiz_hands) < 2:
             continue
 
-        bid_distribution = {bid: len(hands) for bid, hands in significant_bids.items()}
+        bid_distribution = {bid: len(h) for bid, h in significant_bids.items()}
 
         quiz = {
             'level': level,
-            'prefix': list(prefix),
+            'round': round_num,
+            'prefix': prefix,
+            'prefixes': prefixes,  # All prefixes if they vary
+            'auctions_vary': auctions_vary,
             'bidder': bidder,
             'prompt': prompt,
             'hands': quiz_hands,
@@ -540,6 +602,7 @@ def generate_exercise_title(quiz: Dict, scenario: str) -> str:
     """Generate a descriptive exercise title based on the auction context."""
     bidder = quiz['bidder']
     prefix = quiz['prefix']
+    round_num = quiz.get('round', 0)
 
     if not prefix:
         if bidder == 'opener':
@@ -547,29 +610,32 @@ def generate_exercise_title(quiz: Dict, scenario: str) -> str:
         else:
             return "Responding to Partner's Opening"
 
-    # Build title based on auction context
+    # Build title based on round number
     prefix_display = [b.replace('N', 'NT') for b in prefix]
 
-    if len(prefix) == 2:  # After opening + pass (e.g., 1NT - Pass)
+    if round_num == 1:  # First response
         opening = prefix_display[0]
-        return f"Responding to {opening}"
-
-    elif len(prefix) == 4:  # After opening + pass + response + pass
-        opening = prefix_display[0]
-        response = prefix_display[2]
+        title = f"Responding to {opening}"
+    elif round_num == 2:  # Opener's rebid
+        response = prefix_display[2] if len(prefix_display) > 2 else "response"
+        title = f"Opener's Rebid after {response}"
+    elif round_num == 3:  # Responder's rebid
+        title = "Responder's Rebid"
+    elif round_num == 4:  # Opener's second rebid
+        title = "Opener's Second Rebid"
+    elif round_num == 5:  # Responder's third bid
+        title = "Responder's Third Bid"
+    elif round_num >= 6:
         if bidder == 'opener':
-            return f"Opener's Rebid after {response}"
+            title = "Opener's Continuation"
         else:
-            return f"Responder's Rebid"
+            title = "Responder's Continuation"
+    else:
+        title = f"{scenario} Bidding"
 
-    elif len(prefix) >= 6:
-        # Deeper in the auction
-        if bidder == 'opener':
-            return "Opener's Continuation"
-        else:
-            return "Responder's Continuation"
-
-    return f"{scenario} Bidding"
+    # Apply suit symbols to the title
+    title = convert_suits_for_pbn(title)
+    return title
 
 
 def add_spacer(lines: List[str], num_lines: int = 15):
@@ -603,6 +669,8 @@ def generate_quiz_boards(quiz: Dict, quiz_num: int, scenario: str) -> List[str]:
     bidder = quiz['bidder']
     prefix = quiz['prefix']
     prompt = quiz['prompt']
+    auctions_vary = quiz.get('auctions_vary', False)
+    round_num = quiz.get('round', 0)
 
     # Generate exercise title
     exercise_title = generate_exercise_title(quiz, scenario)
@@ -615,8 +683,9 @@ def generate_quiz_boards(quiz: Dict, quiz_num: int, scenario: str) -> List[str]:
     show_seat = 'S' if bidder == 'opener' else 'N'
     hidden = 'NEW' if show_seat == 'S' else 'ESW'
 
-    # Determine if we need to show auction
-    show_auction = prefix and has_interference(prefix)
+    # Show auction if there's interference OR if auctions vary between hands
+    show_header_auction = prefix and has_interference(prefix) and not auctions_vary
+    show_hand_auctions = auctions_vary or round_num >= 3
 
     # Quiz header board with title and description
     lines.append(f'[Event "{exercise_name}"]')
@@ -639,8 +708,8 @@ def generate_quiz_boards(quiz: Dict, quiz_num: int, scenario: str) -> List[str]:
     lines.append('[BCFlags "600023"]')
     lines.append('[Hidden "NESW"]')
 
-    # Add auction context only if there's interference
-    if show_auction:
+    # Add auction context in header only if fixed (not varying)
+    if show_header_auction:
         lines.append('[Auction "S"]')
         lines.append(format_auction_for_pbn(prefix) + ' $2')
 
@@ -663,6 +732,13 @@ def generate_quiz_boards(quiz: Dict, quiz_num: int, scenario: str) -> List[str]:
         answer_bid = correct_bid.replace('N', 'NT')
         answer_pbn = convert_suits_for_pbn(answer_bid)
 
+        # For varying auctions, get this hand's auction prefix
+        if show_hand_auctions:
+            # Get auction up to the decision point
+            level = quiz['level']
+            hand_prefix = hand.auction[:level]
+            hand_prefix_pbn = format_auction_for_pbn(hand_prefix)
+
         lines.append('[Event ""]')
         lines.append('[Site ""]')
         lines.append('[Date ""]')
@@ -682,10 +758,10 @@ def generate_quiz_boards(quiz: Dict, quiz_num: int, scenario: str) -> List[str]:
         lines.append('[BCFlags "60001b"]')
         lines.append(f'[Hidden "{hidden}"]')
 
-        # Add auction context only if there's interference
-        if show_auction:
+        # Add auction for each hand if auctions vary
+        if show_hand_auctions:
             lines.append('[Auction "S"]')
-            lines.append(format_auction_for_pbn(prefix) + ' $2')
+            lines.append(hand_prefix_pbn + ' $2')
 
         lines.append('')
 
