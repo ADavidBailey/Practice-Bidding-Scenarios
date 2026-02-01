@@ -1,7 +1,10 @@
 # button-text: After 1C (Pass)
-# scenario-title: Responses to 1C
+# scenario-title: --- Responses to 1C
+# auction-filter: Auction.....\n1C +Pass +(1[DHS]|1NT?|2C|2NT?|3[CDHS]|3NT?) +
+# convention-card: 21GF-GIB
 # Bids
 dealer south
+# convention-card: 21GF-GIB
 
 
 /*
@@ -39,7 +42,6 @@ calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<1
 calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
-
 # Defines calmOpps
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -281,5 +283,7 @@ average "3C " 100 * r3C,
 average "3x " 100 * r3x,
 average "3N " 100 * r3N,
 
+
+action printpbn
 
 printpbn
