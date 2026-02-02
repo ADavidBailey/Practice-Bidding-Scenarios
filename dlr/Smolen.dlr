@@ -1,13 +1,11 @@
 # button-text: Smolen
-# scenario-title: Smolen
+# scenario-title: --- Smolen
+# auction-filter: Note....SMOLEN
+# convention-card: 21GF-GIB
 # Smolen
 dealer south
+# convention-card: 21GF-GIB
 
-
-/*
-convention-card: 21GF-GIB
-auction-filter: Auction.....\n1N +Pass +2C +Pass\n2D
-*/
 
 # Smolen
 
@@ -51,7 +49,6 @@ calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<1
 calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
-
 # Defines calmWest
 
 oneNT = gibNT and shape(south, 23xx+32xx+33xx-xxx1-xx1x-xx6x-xxx6)
@@ -61,3 +58,5 @@ oneNT and smolen and calmWest        // It's OK for East to X with decent clubs 
 
 
 action printpbn
+
+printpbn

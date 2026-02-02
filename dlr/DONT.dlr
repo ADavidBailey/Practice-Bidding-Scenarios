@@ -1,13 +1,11 @@
 # button-text: DONT (Lev)
-# scenario-title: 15-17 Notrump Opening and DONT action
+# scenario-title: --- 15-17 Notrump Opening and DONT action
+# auction-filter: Auction.....\n1N +[X23]
+# convention-card: 21GF-GIB
 # DONT
 dealer east
+# convention-card: 21GF-GIB
 
-
-/*
-convention-card: 21GF-GIB
-auction-filter: Auction.....\n1N +[X23]
-*/
 
 
 ##### Imported Script -- GIB 1 Notrump (East) #####
@@ -23,7 +21,6 @@ nt2 = shape(east, any 5422-5xxx-x5xx-4xxx) and hcp(east)>14 and hcp(east)<17
 gibNT = nt1 or nt2
 
 ### End of GIB 1 Notrump (East) ###
-
 # Defines gibNT
 
 ### Imported script: TP (Total Points)
@@ -159,7 +156,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 # Define Leveling
 lX = cX  and keep03
 lC = c2C and keep19
@@ -180,5 +176,7 @@ average "2D   " 100 * c2D,
 average "2H   " 100 * c2H,
 average "2S   " 100 * c2S,
 
+
+action printpbn
 
 printpbn
