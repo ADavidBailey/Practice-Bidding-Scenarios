@@ -1,5 +1,5 @@
 //BBOalert, Bidding Scenarios - Dynamic Layout
-//BBOalert, Bidding Scenarios - Dynamic Layout - version 1.0
+//BBOalert, Bidding Scenarios - Dynamic Layout - version 1.1
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
 Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
@@ -178,9 +178,9 @@ Script,reviewCurrentCode,setDealerCode("");
 
 Option,Practice Table
 
-// Dynamic Layout System
-// This script fetches and parses the layout configuration at runtime
-// and dynamically generates buttons based on the layout
+// Dynamic Layout System v1.1
+// Fetches layout configuration and PBS metadata at runtime
+// Properly extracts button text and styles from PBS files
 Script,onDataLoad
 (function() {
     // Configuration for PBS Dynamic Layout
@@ -190,20 +190,70 @@ Script,onDataLoad
     };
 
     // Register plugin config for test mode toggle
-    pbsConfig = addConfigBox('PBS Dynamic Layout', pbsConfig) || pbsConfig;
+    var savedConfig = addConfigBox('PBS Dynamic Layout', pbsConfig);
+    if (savedConfig) pbsConfig = savedConfig;
+
+    // Track previous config state for refresh detection
+    var prevTestMode = window._pbsPrevTestMode;
+    window._pbsPrevTestMode = pbsConfig.Enable_Test_Mode;
 
     // GitHub URLs
     var GITHUB_OWNER = 'ADavidBailey';
     var GITHUB_REPO = 'Practice-Bidding-Scenarios';
     var LAYOUT_URL = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/btn/-layout.txt';
     var PBS_TEST_API = 'https://api.github.com/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/pbs-test';
-    var PBS_PROD_URL = 'https://github.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/blob/main/pbs';
-    var PBS_TEST_URL = 'https://github.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/blob/main/pbs-test';
+    var PBS_RAW_BASE = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/pbs-test';
 
-    // Cache for loaded scenario scripts
-    window._pbsScriptCache = window._pbsScriptCache || {};
+    // Cache for PBS metadata and layout
+    window._pbsMetadataCache = window._pbsMetadataCache || {};
     window._pbsTestFiles = window._pbsTestFiles || null;
     window._pbsLayoutData = window._pbsLayoutData || null;
+
+    // Fetch and parse PBS file metadata (button text and style)
+    function fetchPbsMetadata(name) {
+        if (window._pbsMetadataCache[name]) {
+            return Promise.resolve(window._pbsMetadataCache[name]);
+        }
+
+        var rawUrl = PBS_RAW_BASE + '/' + name + '.pbs';
+        return fetch(rawUrl)
+            .then(function(response) { return response.text(); })
+            .then(function(content) {
+                var metadata = parsePbsButton(content, name);
+                window._pbsMetadataCache[name] = metadata;
+                return metadata;
+            })
+            .catch(function(err) {
+                console.warn('PBS Dynamic: Failed to fetch metadata for', name);
+                return { text: name.replace(/_/g, ' '), style: {} };
+            });
+    }
+
+    // Parse Button line from PBS content
+    function parsePbsButton(content, name) {
+        var result = { text: name.replace(/_/g, ' '), style: {} };
+
+        // Find the Button line - format: Button,<text>,<multiline chat>%alias%,<style>
+        var buttonMatch = content.match(/^Button,([^,\n]+)/m);
+        if (buttonMatch) {
+            result.text = buttonMatch[1].trim();
+        }
+
+        // Find style after %alias% - look for the pattern %...%,<style>
+        var styleMatch = content.match(/%[^%]+%,([^\n]+)$/m);
+        if (styleMatch) {
+            var styleStr = styleMatch[1].trim();
+            var styleParts = styleStr.split(/\s+/);
+            for (var i = 0; i < styleParts.length; i++) {
+                var kv = styleParts[i].split('=');
+                if (kv.length === 2) {
+                    result.style[kv[0]] = kv[1];
+                }
+            }
+        }
+
+        return result;
+    }
 
     // Parse button item from layout line
     function parseButtonItem(item) {
@@ -253,7 +303,6 @@ Script,onDataLoad
         for (var j = 0; j < parts.length; j++) {
             var part = parts[j].trim();
             if (part.startsWith('(') && part.endsWith(')')) {
-                // Grouped buttons share 50%
                 var groupContent = part.slice(1, -1);
                 var groupItems = groupContent.split(',').map(function(s) { return s.trim(); });
                 var totalWidth = 50;
@@ -274,7 +323,6 @@ Script,onDataLoad
             }
         }
 
-        // Calculate widths for non-grouped buttons
         var nonGrouped = buttons.filter(function(b) { return !b.grouped; });
         var grouped = buttons.filter(function(b) { return b.grouped; });
 
@@ -292,7 +340,7 @@ Script,onDataLoad
     }
 
     // Create a button element
-    function createButton(text, action, style) {
+    function createButton(text, action, style, insertBefore) {
         var adPanel = document.getElementById('adpanel2');
         if (!adPanel) return null;
 
@@ -307,85 +355,72 @@ Script,onDataLoad
         bt.style.width = style.width || '50%';
 
         if (action && action.startsWith('%') && action.endsWith('%')) {
-            bt.onclick = function() {
-                execUserScript(action);
-            };
+            bt.onclick = function() { execUserScript(action); };
         } else if (action && action.startsWith('http')) {
-            bt.onclick = function() {
-                window.open(action, '_blank');
-            };
+            bt.onclick = function() { window.open(action, '_blank'); };
         }
 
-        adPanel.appendChild(bt);
+        if (insertBefore) {
+            adPanel.insertBefore(bt, insertBefore);
+        } else {
+            adPanel.appendChild(bt);
+        }
         return bt;
     }
 
-    // Create a scenario button that loads and executes PBS content
-    function createScenarioButton(name, text, style, pbsUrl) {
-        var adPanel = document.getElementById('adpanel2');
-        if (!adPanel) return null;
+    // Create a scenario button with fetched metadata
+    function createScenarioButtonAsync(name, layoutStyle, insertBefore) {
+        return fetchPbsMetadata(name).then(function(meta) {
+            var adPanel = document.getElementById('adpanel2');
+            if (!adPanel) return null;
 
-        var bt = document.createElement('button');
-        bt.textContent = text || name.replace(/_/g, ' ');
-        bt.style.backgroundColor = style.backgroundColor || 'white';
-        bt.style.color = style.color || 'black';
-        bt.style.textAlign = 'center';
-        bt.style.display = 'inline';
-        bt.style.fontSize = '20px';
-        bt.style.width = style.width || '50%';
-        bt.setAttribute('data-scenario', name);
-        bt.setAttribute('data-pbs-url', pbsUrl);
+            var bt = document.createElement('button');
+            bt.textContent = meta.text;
 
-        bt.onclick = function() {
-            var scenarioName = this.getAttribute('data-scenario');
-            var url = this.getAttribute('data-pbs-url');
+            // Merge layout style with PBS style (PBS style takes precedence for backgroundColor)
+            var bgColor = meta.style.backgroundColor || layoutStyle.backgroundColor || 'white';
+            var textColor = layoutStyle.color || meta.style.color || 'black';
+            var width = layoutStyle.width || meta.style.width || '50%';
 
-            // Convert GitHub URL to raw URL
-            var rawUrl = url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
+            bt.style.backgroundColor = bgColor;
+            bt.style.color = textColor;
+            bt.style.textAlign = 'center';
+            bt.style.display = 'inline';
+            bt.style.fontSize = '20px';
+            bt.style.width = width;
+            bt.setAttribute('data-scenario', name);
+            bt.setAttribute('data-pbs-url', PBS_RAW_BASE + '/' + name + '.pbs');
 
-            console.log('PBS Dynamic: Loading scenario', scenarioName, 'from', rawUrl);
+            bt.onclick = function() {
+                var scenarioName = this.getAttribute('data-scenario');
+                var url = this.getAttribute('data-pbs-url');
+                console.log('PBS Dynamic: Loading scenario', scenarioName);
 
-            // Fetch and execute the PBS file
-            fetch(rawUrl)
-                .then(function(response) { return response.text(); })
-                .then(function(content) {
-                    // Parse and execute the PBS content
-                    // Look for Script block and extract setDealerCode call
-                    var match = content.match(/setDealerCode\(`([\s\S]*?)`,\s*"([NSEW])",\s*(true|false)\)/);
-                    if (match) {
-                        var dealerCode = match[1];
-                        var dealer = match[2];
-                        var refresh = match[3] === 'true';
+                fetch(url)
+                    .then(function(response) { return response.text(); })
+                    .then(function(content) {
+                        var match = content.match(/setDealerCode\(`([\s\S]*?)`,\s*"([NSEW])",\s*(true|false)\)/);
+                        if (match) {
+                            window.currentPBSScenario = scenarioName;
+                            window.currentPBSScenarioFilename = scenarioName;
+                            fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json', 'X-Client-Version': '1.0.0' },
+                                body: JSON.stringify({ scenario: scenarioName, user: whoAmI() || 'anonymous' })
+                            }).catch(function() {});
+                            setDealerCode(match[1], match[2], match[3] === 'true');
+                        }
+                    })
+                    .catch(function(err) { console.error('PBS Dynamic: Failed to load', scenarioName, err); });
+            };
 
-                        // Log scenario selection
-                        window.currentPBSScenario = scenarioName;
-                        window.currentPBSScenarioFilename = scenarioName;
-                        console.log('PBS: Logging scenario selection for', scenarioName);
-                        fetch('https://bba.harmonicsystems.com/api/scenario/select', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-Client-Version': '1.0.0'
-                            },
-                            body: JSON.stringify({
-                                scenario: scenarioName,
-                                user: whoAmI() || 'anonymous'
-                            })
-                        }).catch(function() {});
-
-                        // Execute setDealerCode
-                        setDealerCode(dealerCode, dealer, refresh);
-                    } else {
-                        console.warn('PBS Dynamic: Could not parse setDealerCode from', scenarioName);
-                    }
-                })
-                .catch(function(err) {
-                    console.error('PBS Dynamic: Failed to load', scenarioName, err);
-                });
-        };
-
-        adPanel.appendChild(bt);
-        return bt;
+            if (insertBefore) {
+                adPanel.insertBefore(bt, insertBefore);
+            } else {
+                adPanel.appendChild(bt);
+            }
+            return bt;
+        });
     }
 
     // Load test files from GitHub API
@@ -399,7 +434,8 @@ Script,onDataLoad
             .then(function(files) {
                 window._pbsTestFiles = files
                     .filter(function(f) { return f.name.endsWith('.pbs'); })
-                    .map(function(f) { return f.name.replace('.pbs', ''); });
+                    .map(function(f) { return f.name.replace('.pbs', ''); })
+                    .sort();
                 console.log('PBS Dynamic: Loaded', window._pbsTestFiles.length, 'test files');
                 return window._pbsTestFiles;
             })
@@ -410,7 +446,7 @@ Script,onDataLoad
             });
     }
 
-    // Add test mode buttons at top of panel
+    // Add test mode buttons with collapsible blue header
     function addTestModeButtons() {
         if (!pbsConfig.Enable_Test_Mode) return Promise.resolve();
 
@@ -418,95 +454,90 @@ Script,onDataLoad
             var adPanel = document.getElementById('adpanel2');
             if (!adPanel) return;
 
-            // Find insertion point (after the first 3 hidden backspace buttons)
             var btns = adPanel.querySelectorAll('button');
             var insertBefore = btns[3] || null;
 
-            // Create test mode header
+            // Create collapsible test section header (blue like other sections)
             var headerBtn = document.createElement('button');
-            headerBtn.textContent = '=== TEST MODE: pbs-test/ ===';
+            headerBtn.textContent = 'TEST: pbs-test/ (click to collapse)';
             headerBtn.style.width = '100%';
-            headerBtn.style.backgroundColor = 'orange';
+            headerBtn.style.backgroundColor = 'lightblue';
             headerBtn.style.color = 'black';
             headerBtn.style.fontWeight = 'bold';
             headerBtn.style.display = 'inline';
             headerBtn.style.fontSize = '18px';
+            headerBtn.setAttribute('data-test-header', 'true');
             adPanel.insertBefore(headerBtn, insertBefore);
 
-            // Create buttons for each test file (2 per row)
-            var testButtonsPerRow = 2;
-            for (var i = 0; i < testFiles.length; i++) {
-                var name = testFiles[i];
-                var pbsUrl = PBS_TEST_URL + '/' + name + '.pbs';
+            // Create test buttons with PBS metadata
+            var buttonPromises = testFiles.map(function(name) {
+                return fetchPbsMetadata(name).then(function(meta) {
+                    var bt = document.createElement('button');
+                    bt.textContent = meta.text;
+                    var bgColor = meta.style.backgroundColor || 'lightyellow';
+                    var textColor = meta.style.color || 'black';
+                    bt.style.backgroundColor = bgColor;
+                    bt.style.color = textColor;
+                    bt.style.textAlign = 'center';
+                    bt.style.display = 'inline';
+                    bt.style.fontSize = '18px';
+                    bt.style.width = '50%';
+                    bt.setAttribute('data-scenario', name);
+                    bt.setAttribute('data-test-button', 'true');
 
-                var bt = document.createElement('button');
-                bt.textContent = name.replace(/_/g, ' ');
-                bt.style.backgroundColor = 'lightyellow';
-                bt.style.color = 'black';
-                bt.style.textAlign = 'center';
-                bt.style.display = 'inline';
-                bt.style.fontSize = '18px';
-                bt.style.width = '50%';
-                bt.setAttribute('data-scenario', name);
-                bt.setAttribute('data-pbs-url', pbsUrl);
-                bt.setAttribute('data-test-button', 'true');
+                    bt.onclick = function() {
+                        var scenarioName = this.getAttribute('data-scenario');
+                        var url = PBS_RAW_BASE + '/' + scenarioName + '.pbs';
+                        fetch(url)
+                            .then(function(response) { return response.text(); })
+                            .then(function(content) {
+                                var match = content.match(/setDealerCode\(`([\s\S]*?)`,\s*"([NSEW])",\s*(true|false)\)/);
+                                if (match) {
+                                    window.currentPBSScenario = scenarioName;
+                                    setDealerCode(match[1], match[2], match[3] === 'true');
+                                }
+                            })
+                            .catch(function(err) { console.error('PBS (TEST):', err); });
+                    };
 
-                bt.onclick = function() {
-                    var scenarioName = this.getAttribute('data-scenario');
-                    var url = this.getAttribute('data-pbs-url');
-                    var rawUrl = url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
+                    adPanel.insertBefore(bt, insertBefore);
+                    return bt;
+                });
+            });
 
-                    console.log('PBS Dynamic (TEST): Loading scenario', scenarioName, 'from', rawUrl);
-
-                    fetch(rawUrl)
-                        .then(function(response) { return response.text(); })
-                        .then(function(content) {
-                            var match = content.match(/setDealerCode\(`([\s\S]*?)`,\s*"([NSEW])",\s*(true|false)\)/);
-                            if (match) {
-                                var dealerCode = match[1];
-                                var dealer = match[2];
-                                var refresh = match[3] === 'true';
-
-                                window.currentPBSScenario = scenarioName;
-                                window.currentPBSScenarioFilename = scenarioName;
-                                console.log('PBS (TEST): Logging scenario selection for', scenarioName);
-
-                                setDealerCode(dealerCode, dealer, refresh);
-                            }
-                        })
-                        .catch(function(err) {
-                            console.error('PBS Dynamic (TEST): Failed to load', scenarioName, err);
-                        });
+            return Promise.all(buttonPromises).then(function() {
+                // Add click handler for collapse/expand
+                headerBtn.onclick = function() {
+                    var testBtns = adPanel.querySelectorAll('[data-test-button]');
+                    for (var i = 0; i < testBtns.length; i++) {
+                        $(testBtns[i]).toggle();
+                    }
                 };
 
-                adPanel.insertBefore(bt, insertBefore);
-            }
-
-            // Add separator after test buttons
-            var sepBtn = document.createElement('button');
-            sepBtn.textContent = '=== PRODUCTION BUTTONS ===';
-            sepBtn.style.width = '100%';
-            sepBtn.style.backgroundColor = 'lightgreen';
-            sepBtn.style.color = 'black';
-            sepBtn.style.fontWeight = 'bold';
-            sepBtn.style.display = 'inline';
-            sepBtn.style.fontSize = '18px';
-            adPanel.insertBefore(sepBtn, insertBefore);
+                // Add production section header
+                var prodBtn = document.createElement('button');
+                prodBtn.textContent = 'PRODUCTION BUTTONS';
+                prodBtn.style.width = '100%';
+                prodBtn.style.backgroundColor = 'LemonChiffon';
+                prodBtn.style.color = 'black';
+                prodBtn.style.fontWeight = 'bold';
+                prodBtn.style.display = 'inline';
+                prodBtn.style.fontSize = '18px';
+                adPanel.insertBefore(prodBtn, insertBefore);
+            });
         });
     }
 
-    // Parse and render layout
+    // Parse and render layout with async button creation
     function renderLayout(layoutText) {
         var lines = layoutText.split('\n');
-        var pbsFolder = pbsConfig.Use_pbs_test_folder ? PBS_TEST_URL : PBS_PROD_URL;
+        var buttonPromises = [];
 
         for (var i = 0; i < lines.length; i++) {
             var line = lines[i].trim();
 
-            // Skip comments and empty lines
             if (!line || line.startsWith('#')) continue;
 
-            // Major header
             if (line.startsWith('[Major]')) {
                 var content = line.slice(7).trim();
                 var title = content;
@@ -516,14 +547,10 @@ Script,onDataLoad
                     title = parts[0].trim();
                     url = parts[1].trim();
                 }
-                createButton(title, url ? url + '\\n' : '', {
-                    width: '100%',
-                    backgroundColor: 'LemonChiffon'
-                });
+                createButton(title, url ? url + '\\n' : '', { width: '100%', backgroundColor: 'LemonChiffon' });
                 continue;
             }
 
-            // Section header
             if (line.startsWith('[Section]')) {
                 var content = line.slice(9).trim();
                 var title = content;
@@ -533,15 +560,11 @@ Script,onDataLoad
                     title = parts[0].trim();
                     url = parts[1].trim();
                 }
-                var btn = createButton(title, url ? url + '\\n' : '', {
-                    width: '100%',
-                    backgroundColor: 'lightblue'
-                });
-                // Add collapse/expand functionality
+                var btn = createButton(title, url ? url + '\\n' : '', { width: '100%', backgroundColor: 'lightblue' });
                 if (btn) {
                     btn.onclick = function() {
                         var next = $(this).next();
-                        while (next.length && (next[0].style.backgroundColor === 'white' || next[0].style.backgroundColor === 'lightpink')) {
+                        while (next.length && (next[0].style.backgroundColor === 'white' || next[0].style.backgroundColor === 'lightpink' || next[0].style.backgroundColor === 'lightyellow')) {
                             $(next).toggle();
                             next = $(next).next();
                         }
@@ -550,74 +573,71 @@ Script,onDataLoad
                 continue;
             }
 
-            // Action button
             if (line.startsWith('[Action]')) {
                 var content = line.slice(8).trim();
                 var parts = content.split('|');
                 var text = parts[0].trim();
                 var script = parts[1] ? parts[1].trim() : '';
                 var width = parts[2] ? parts[2].trim() + '%' : '50%';
-                createButton(text, script, {
-                    width: width,
-                    backgroundColor: 'lightgreen'
-                });
+                createButton(text, script, { width: width, backgroundColor: 'lightgreen' });
                 continue;
             }
 
-            // Separator
             if (line === '---') {
                 createButton('---', '', { width: '100%', backgroundColor: 'white' });
                 continue;
             }
 
-            // Button row
+            // Button row - create buttons async to fetch metadata
             var buttons = parseLayoutLine(line);
             for (var j = 0; j < buttons.length; j++) {
-                var btn = buttons[j];
-                if (btn.name === '---') {
-                    createButton('---', '', { width: btn.width || '50%', backgroundColor: 'white' });
+                var layoutBtn = buttons[j];
+                if (layoutBtn.name === '---') {
+                    createButton('---', '', { width: layoutBtn.width || '50%', backgroundColor: 'white' });
                 } else {
-                    var pbsUrl = pbsFolder + '/' + btn.name + '.pbs';
-                    var style = {
-                        width: btn.width || '50%',
-                        backgroundColor: 'white'
-                    };
-                    if (btn.color) {
-                        style.color = btn.color;
-                    }
-                    createScenarioButton(btn.name, null, style, pbsUrl);
+                    var style = { width: layoutBtn.width || '50%' };
+                    if (layoutBtn.color) style.color = layoutBtn.color;
+                    buttonPromises.push(createScenarioButtonAsync(layoutBtn.name, style, null));
                 }
             }
         }
+
+        return Promise.all(buttonPromises);
     }
 
     // Main initialization
     function init() {
-        console.log('PBS Dynamic: Initializing...');
+        console.log('PBS Dynamic v1.1: Initializing...');
         console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
-        console.log('PBS Dynamic: Use pbs-test =', pbsConfig.Use_pbs_test_folder);
 
-        // First add test buttons if enabled
+        // Check if test mode changed - if so, we need to reload
+        if (prevTestMode !== undefined && prevTestMode !== pbsConfig.Enable_Test_Mode) {
+            console.log('PBS Dynamic: Test mode changed, clearing caches');
+            window._pbsLayoutData = null;
+            // Force page refresh to rebuild buttons
+            location.reload();
+            return;
+        }
+
         addTestModeButtons().then(function() {
-            // Then fetch and render layout
             if (window._pbsLayoutData) {
-                renderLayout(window._pbsLayoutData);
+                return renderLayout(window._pbsLayoutData);
             } else {
-                fetch(LAYOUT_URL)
+                return fetch(LAYOUT_URL)
                     .then(function(response) { return response.text(); })
                     .then(function(layoutText) {
                         window._pbsLayoutData = layoutText;
                         console.log('PBS Dynamic: Layout loaded,', layoutText.split('\n').length, 'lines');
-                        renderLayout(layoutText);
-                    })
-                    .catch(function(err) {
-                        console.error('PBS Dynamic: Failed to load layout', err);
+                        return renderLayout(layoutText);
                     });
             }
+        }).then(function() {
+            console.log('PBS Dynamic: Initialization complete');
+        }).catch(function(err) {
+            console.error('PBS Dynamic: Initialization failed', err);
         });
     }
 
-    // Run after a short delay to let DOM settle
     setTimeout(init, 100);
 })();
 Script
