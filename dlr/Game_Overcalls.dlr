@@ -1,12 +1,8 @@
 # button-text: We Jump to Game
-# scenario-title: We Jump to Game
+# scenario-title: --- We Jump to Game
+# auction-filter: Auction.....\n1[CDHS] +(4[HS]|5[CD])
 # Game_Overcalls
 dealer east
-
-
-# convention-card:
-# auction-filter: Auction.....\\n1[CDHS].(4[HS]|5[CD])
-
 # They open and We Bid Game
 
 # Define long suits headed by A, KQ, or KJ
@@ -31,5 +27,7 @@ average "Heart Game    " 100 * sH,
 average "Diamond Game  " 100 * sD,
 average "Club Game     " 100 * sC,
 
+
+action printpbn
 
 printpbn

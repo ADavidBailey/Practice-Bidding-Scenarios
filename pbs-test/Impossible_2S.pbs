@@ -17,7 +17,7 @@ setDealerCode(`
 
 /*
 convention-card: 21GF-Impossible2S
-auction-filter: Auction.....\\n(1H Pass 1NT =.= Pass\\n2[CD] Pass 2S =.=)
+auction-filter: Auction.....\n(1H +Pass +1NT?.* Pass\n2[CD] +Pass +2S)
 */
 # convention-card: 21GF-Impossible2S
 
@@ -72,14 +72,95 @@ gibNT = nt1 or nt2
 ### End of GIB 1 Notrump ###
 # Defines gibNT
 
+### Imported script: TP (Total Points)
+//   Total Points = HCP + Short-Suit Points - Penalty Points
+//   Short-Suit Points: 3 for void, 2 for singleton, 1 for doubleton
+//   Penalty Points: 1 for each honor (K/Q/J) in a short suit (devalues wasted honors like Kx, Qx)
+
+## Calculate TP for North
+# Short-Suit Points: void=3, singleton=2, doubleton=1
+nSpadeSSP = spades(north)<3   ? 3-spades(north)   : 0
+nHeartSSP = hearts(north)<3   ? 3-hearts(north)   : 0
+nDiamSSP  = diamonds(north)<3 ? 3-diamonds(north) : 0
+nClubSSP  = clubs(north)<3    ? 3-clubs(north)    : 0
+nSSP = nSpadeSSP + nHeartSSP + nDiamSSP + nClubSSP
+
+# Penalty Points: deduct 1 for honors in short suits
+nSpadePP = spades(north)<3   and hcp(north,spades)>0   ? 1 : 0
+nHeartPP = hearts(north)<3   and hcp(north,hearts)>0   ? 1 : 0
+nDiamPP  = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
+nClubPP  = clubs(north)<3    and hcp(north,clubs)>0    ? 1 : 0
+nPP = nSpadePP + nHeartPP + nDiamPP + nClubPP
+
+tpNorth = hcp(north) + nSSP - nPP
+
+## Calculate TP for East
+eSpadeSSP = spades(east)<3   ? 3-spades(east)   : 0
+eHeartSSP = hearts(east)<3   ? 3-hearts(east)   : 0
+eDiamSSP  = diamonds(east)<3 ? 3-diamonds(east) : 0
+eClubSSP  = clubs(east)<3    ? 3-clubs(east)    : 0
+eSSP = eSpadeSSP + eHeartSSP + eDiamSSP + eClubSSP
+
+eSpadePP = spades(east)<3   and hcp(east,spades)>0   ? 1 : 0
+eHeartPP = hearts(east)<3   and hcp(east,hearts)>0   ? 1 : 0
+eDiamPP  = diamonds(east)<3 and hcp(east,diamonds)>0 ? 1 : 0
+eClubPP  = clubs(east)<3    and hcp(east,clubs)>0    ? 1 : 0
+ePP = eSpadePP + eHeartPP + eDiamPP + eClubPP
+
+tpEast = hcp(east) + eSSP - ePP
+
+## Calculate TP for South
+sSpadeSSP = spades(south)<3   ? 3-spades(south)   : 0
+sHeartSSP = hearts(south)<3   ? 3-hearts(south)   : 0
+sDiamSSP  = diamonds(south)<3 ? 3-diamonds(south) : 0
+sClubSSP  = clubs(south)<3    ? 3-clubs(south)    : 0
+sSSP = sSpadeSSP + sHeartSSP + sDiamSSP + sClubSSP
+
+sSpadePP = spades(south)<3   and hcp(south,spades)>0   ? 1 : 0
+sHeartPP = hearts(south)<3   and hcp(south,hearts)>0   ? 1 : 0
+sDiamPP  = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
+sClubPP  = clubs(south)<3    and hcp(south,clubs)>0    ? 1 : 0
+sPP = sSpadePP + sHeartPP + sDiamPP + sClubPP
+
+tpSouth = hcp(south) + sSSP - sPP
+
+## Calculate TP for West
+wSpadeSSP = spades(west)<3   ? 3-spades(west)   : 0
+wHeartSSP = hearts(west)<3   ? 3-hearts(west)   : 0
+wDiamSSP  = diamonds(west)<3 ? 3-diamonds(west) : 0
+wClubSSP  = clubs(west)<3    ? 3-clubs(west)    : 0
+wSSP = wSpadeSSP + wHeartSSP + wDiamSSP + wClubSSP
+
+wSpadePP = spades(west)<3   and hcp(west,spades)>0   ? 1 : 0
+wHeartPP = hearts(west)<3   and hcp(west,hearts)>0   ? 1 : 0
+wDiamPP  = diamonds(west)<3 and hcp(west,diamonds)>0 ? 1 : 0
+wClubPP  = clubs(west)<3    and hcp(west,clubs)>0    ? 1 : 0
+wPP = wSpadePP + wHeartPP + wDiamPP + wClubPP
+
+tpWest = hcp(west) + wSSP - wPP
+
+## Partnership Totals
+tpNS = tpNorth + tpSouth
+tpEW = tpEast + tpWest
+
+### End of Imported Script: TP
+# Defines tpNorth
+
 # allow for extreme shapes -- if south rebids 2H, north needs 6/5+ in the minors to bid the impossible 2S
 hSouth = hearts(south)==5 or (hearts(south)>5 and shape(north,2065+2056+1165+1156) and (hcp(north,spades)+hcp(north,hearts))==0)
 
 # limit spades to avoid a reverse and limit HCP to avoid a jump shift
-oneH = hSouth and spade(south)<4 and diamonds(south)<6 and clubs(south)<6 and hcp(south)>11 and hcp(south)<19 and not gibNT
+oneH = hSouth and spade(south)<4 and diamonds(south)<6 and clubs(south)<6 and hcp(south)>10 and tpSouth>11 and tpSouth<18 and not gibNT
+
+# Things to avoid...
+twoOver1 = hcp(north)>12 and tpNorth>13
+
+cNorth = clubs(north)>5 and hcp(north,clubs)>1
+dNorth = diamonds(north)>5 and hcp(north,diamonds)>1
+invJump = (cNorth or dNorth) and hcp(north)>8 and hcp(north)<12
 
 # North is invitational with <4 spades and <3 hearts support
-oneN = spades(north)<4 and hearts(north)<3 and hcp(north)>10 and hcp(north)<13
+oneN = spades(north)<4 and hearts(north)<3 and hcp(north)>10 and not (twoOver1 or invJump) 
 
 # South rebids a minor and North has support
 rebidC = clubs(south)>=diamonds(south) and clubs(north)>3    and clubs(north)>diamonds(north)
@@ -108,4 +189,4 @@ HCP.  With only 5!H South rebids a minor.  North has support for South's\n\
 minor and rebids the Impossible 2!S.  If South rebids 2!H，North needs\n\
 6/5 or better in the minors to bid the Impossible 2!S.\n\
 http://kivabridgeclub.com/images/Impossible%202%20Spade.pdf\n\
-%Impossible2S%
+%Impossible2S%,width=50%

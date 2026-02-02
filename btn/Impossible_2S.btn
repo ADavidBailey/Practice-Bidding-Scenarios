@@ -3,7 +3,7 @@
 # dealer-position: S
 # gib-works: true
 # bba-works: true
-# auction-filter: Auction.....\\n(1H Pass 1NT =.= Pass\\n2[CD] Pass 2S =.=)
+# auction-filter: Auction.....\n(1H +Pass +1NT?.* Pass\n2[CD] +Pass +2S)
 # convention-card: 21GF-Impossible2S
 
 /*@chat
@@ -29,14 +29,24 @@ dealer south
 #include "script/GIB-1N"
 # Defines gibNT
 
+#include "script/TP"
+# Defines tpNorth
+
 # allow for extreme shapes -- if south rebids 2H, north needs 6/5+ in the minors to bid the impossible 2S
 hSouth = hearts(south)==5 or (hearts(south)>5 and shape(north,2065+2056+1165+1156) and (hcp(north,spades)+hcp(north,hearts))==0)
 
 # limit spades to avoid a reverse and limit HCP to avoid a jump shift
-oneH = hSouth and spade(south)<4 and diamonds(south)<6 and clubs(south)<6 and hcp(south)>11 and hcp(south)<19 and not gibNT
+oneH = hSouth and spade(south)<4 and diamonds(south)<6 and clubs(south)<6 and hcp(south)>10 and tpSouth>11 and tpSouth<18 and not gibNT
+
+# Things to avoid...
+twoOver1 = hcp(north)>12 and tpNorth>13
+
+cNorth = clubs(north)>5 and hcp(north,clubs)>1
+dNorth = diamonds(north)>5 and hcp(north,diamonds)>1
+invJump = (cNorth or dNorth) and hcp(north)>8 and hcp(north)<12
 
 # North is invitational with <4 spades and <3 hearts support
-oneN = spades(north)<4 and hearts(north)<3 and hcp(north)>10 and hcp(north)<13
+oneN = spades(north)<4 and hearts(north)<3 and hcp(north)>10 and not (twoOver1 or invJump) 
 
 # South rebids a minor and North has support
 rebidC = clubs(south)>=diamonds(south) and clubs(north)>3    and clubs(north)>diamonds(north)
@@ -55,6 +65,5 @@ average "South H > 5  " 100 * (hearts(south)>5),
 average "North 0/1 S  " 100 * (spades(north)<2),
 average "North 0/1 H  " 100 * (hearts(north)<2),
 average "North 6/5+CD " 100 * (clubs(north)>4 and diamonds(north)>4 and clubs(north)+diamonds(north)>10),
-
 
 action printpbn
