@@ -1,12 +1,13 @@
 # button-text: then  MSS
-# scenario-title: After we Overcall 1NT，partner bids Minor Suit Stayman.
+# scenario-title: --- After we Overcall 1NT, partner bids Minor Suit Stayman.
+# auction-filter: Auction.....\n1. +1N +Pass +2[CD]
+# convention-card: 21GF-MSTandMSS
 # We_Overcall_NT_then_MSS
 dealer east
+# convention-card: 21GF-MSTandMSS
 
 
 # Enable both MST and MSS
-# convention-card: 21GF-MSTandMSS
-# auction-filter: Note...:Minor Suit Stayman
 
 # We Overcall 1NT then Minor Suit Stayman (MSS)
 
@@ -43,5 +44,6 @@ n2S = (shape(north,xx55+xx54+xx45) and hcp(north)>7) or (shape(north, xx75+xx65+
 eOpens and sNT and n2S
 
 
-
 action printpbn
+
+printpbn

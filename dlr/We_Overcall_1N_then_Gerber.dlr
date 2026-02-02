@@ -1,12 +1,13 @@
 # button-text: then Gerber
-# scenario-title: We Overcall 1NT then partner bids 4!C
+# scenario-title: --- We Overcall 1NT then partner bids 4!C
+# auction-filter: 1[CDHS] +1N +Pass
+# convention-card: 21GF-Gerber
 # We_Overcall_1N_then_Gerber
 dealer east
+# convention-card: 21GF-Gerber
 
 
 # No MSS, MST, Texas, or "Gerber only for 1NT and 2NT opening"
-# convention-card: 21GF-Gerber
-# auction-filter: 1[CDHS] 1NT Pass 4C
 
 # Predeal West low cards to increase the produce/generate ratio.  Without this
 # it produces only a handfull of deals.  I chose 3-cards in each major because
@@ -77,5 +78,7 @@ frequency "losers south " (losers(south),5,9),
 frequency "covers north " (covers,5,9),
 frequency "net losers   " (netLosers,0,3),
 
+
+action printpbn
 
 printpbn
