@@ -1,0 +1,626 @@
+//BBOalert, Bidding Scenarios - Dynamic Layout
+//BBOalert, Bidding Scenarios - Dynamic Layout - version 1.0
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
+Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
+Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
+Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/PBStooltips.js
+
+// Start BBA Auction Compare panel (called by Auction Compare button)
+Script,startBBACompare,window.startBBACompare(); R='';
+
+// Pause
+Script,onLogin,setTimeout(setOptionsOff, 200);
+
+// Open BBOalert Shortcuts
+Script,onDataLoad,$('#bttab-buttons').click();
+
+// Open usual BBO side panel
+Script,onLogin,parent.$('.verticalClass')[0].click();
+
+// Hide the Char, Word, All backspace buttons
+Script,onDataLoad,$("#adpanel2 button:lt(3)").hide();
+
+// Fix button row heights - make adjacent buttons equal height
+Script,onDataLoad
+var style = document.createElement('style');
+style.textContent = `
+  #adpanel2 {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: stretch !important;
+    align-content: flex-start !important;
+  }
+  #adpanel2 button {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+`;
+document.head.appendChild(style);
+Script
+
+// Redirect chat so it doesn't go to Lobby
+Script,onDataLoad
+sendPrivateChat(whoAmI(),"");
+setTimeout(function() {
+   setChatDestination(whoAmI());
+   },1000);
+Script
+
+//Script,setBiddingTable
+var delayValue = 500;
+Promise.resolve()
+    .then(() => {
+         const homeButton = $("nav-bar button", BBOcontext()).eq(0);
+         const isDisabled = homeButton.prop('disabled');
+         if (isDisabled) {
+            console.log("The home button is disabled.");
+         } else {
+            console.log("The home button is enabled.");
+            homeFound = true;
+            alert("You must be at the BBO Home page to start a table.")
+            throw new Error("Go Home.");
+         }
+    })
+    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(4).click())
+    .then(() => delay(delayValue))
+    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(tableType).click())
+    .then(() => $(".menuGrid navigation-list-button .navClass:visible", BBOcontext()).eq(0).click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(0).click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(1).click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(2).click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(3).click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(4).click())
+    .then(() => delay(delayValue))
+    .then(() => $("start-table-screen .buttonRowClass button", BBOcontext()).eq(2).click())
+    .then(() => delay(3000))
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(0).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(1).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(2).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(3).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+function delay(duration) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, duration);
+    });
+}
+//Script
+
+//Script,setTeachingTable
+var delayValue = 500;
+Promise.resolve()
+    .then(() => {
+         const homeButton = $("nav-bar button", BBOcontext()).eq(0);
+         const isDisabled = homeButton.prop('disabled');
+         if (isDisabled) {
+            console.log("The home button is disabled.");
+         } else {
+            console.log("The home button is enabled.");
+            homeFound = true;
+            alert("You must be at the BBO Home page to start a table.")
+            throw new Error("Go Home.");
+         }
+    })
+    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(4).click())
+    .then(() => delay(delayValue))
+    .then(() => $(".menuGrid navigation-list-button .navClass:visible", BBOcontext()).eq(1).click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(0).click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(1).click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(2).click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(3).click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(4).click())
+    .then(() => delay(delayValue))
+    .then(() => $("start-table-screen .buttonRowClass button", BBOcontext()).eq(2).click())
+    .then(() => delay(3000))
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(0).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(1).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(2).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(3).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+function delay(duration) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, duration);
+    });
+}
+//Script
+
+// Log PBS scenario selection for analytics
+Script,logPBS
+if (window._pbsScenario) {
+    window.currentPBSScenario = window._pbsScenario;
+    fetch('https://bba-server.bridgebidding.ai/api/scenario/select', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Client-Version': '1.0.0'
+        },
+        body: JSON.stringify({
+            scenario: window._pbsScenario,
+            user: whoAmI() || 'anonymous'
+        })
+    }).catch(function(){});
+    window._pbsScenario = undefined;
+}
+R='';
+Script
+
+Script,reviewCurrentCode,setDealerCode("");
+
+Option,Practice Table
+
+// Dynamic Layout System
+// This script fetches and parses the layout configuration at runtime
+// and dynamically generates buttons based on the layout
+Script,onDataLoad
+(function() {
+    // Configuration for PBS Dynamic Layout
+    var pbsConfig = {
+        Enable_Test_Mode: false,
+        Use_pbs_test_folder: true
+    };
+
+    // Register plugin config for test mode toggle
+    pbsConfig = addConfigBox('PBS Dynamic Layout', pbsConfig) || pbsConfig;
+
+    // GitHub URLs
+    var GITHUB_OWNER = 'ADavidBailey';
+    var GITHUB_REPO = 'Practice-Bidding-Scenarios';
+    var LAYOUT_URL = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/btn/-layout.txt';
+    var PBS_TEST_API = 'https://api.github.com/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/pbs-test';
+    var PBS_PROD_URL = 'https://github.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/blob/main/pbs';
+    var PBS_TEST_URL = 'https://github.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/blob/main/pbs-test';
+
+    // Cache for loaded scenario scripts
+    window._pbsScriptCache = window._pbsScriptCache || {};
+    window._pbsTestFiles = window._pbsTestFiles || null;
+    window._pbsLayoutData = window._pbsLayoutData || null;
+
+    // Parse button item from layout line
+    function parseButtonItem(item) {
+        item = item.trim();
+        var parts = item.split(':');
+        var name = parts[0];
+        var color = null;
+        var width = null;
+
+        for (var i = 1; i < parts.length; i++) {
+            if (parts[i].endsWith('%')) {
+                width = parts[i];
+            } else {
+                color = parts[i];
+            }
+        }
+
+        return { name: name, color: color, width: width };
+    }
+
+    // Parse layout line into button array
+    function parseLayoutLine(line) {
+        var buttons = [];
+        var parts = [];
+        var current = '';
+        var parenDepth = 0;
+
+        for (var i = 0; i < line.length; i++) {
+            var char = line[i];
+            if (char === '(') {
+                parenDepth++;
+                current += char;
+            } else if (char === ')') {
+                parenDepth--;
+                current += char;
+            } else if (char === ',' && parenDepth === 0) {
+                parts.push(current.trim());
+                current = '';
+            } else {
+                current += char;
+            }
+        }
+        if (current.trim()) {
+            parts.push(current.trim());
+        }
+
+        for (var j = 0; j < parts.length; j++) {
+            var part = parts[j].trim();
+            if (part.startsWith('(') && part.endsWith(')')) {
+                // Grouped buttons share 50%
+                var groupContent = part.slice(1, -1);
+                var groupItems = groupContent.split(',').map(function(s) { return s.trim(); });
+                var totalWidth = 50;
+                var n = groupItems.length;
+                var baseWidth = Math.floor(totalWidth / n);
+                var remainder = totalWidth % n;
+
+                for (var k = 0; k < groupItems.length; k++) {
+                    var btn = parseButtonItem(groupItems[k]);
+                    btn.width = btn.width || (baseWidth + (k >= n - remainder ? 1 : 0)) + '%';
+                    btn.grouped = true;
+                    buttons.push(btn);
+                }
+            } else {
+                var btn = parseButtonItem(part);
+                btn.grouped = false;
+                buttons.push(btn);
+            }
+        }
+
+        // Calculate widths for non-grouped buttons
+        var nonGrouped = buttons.filter(function(b) { return !b.grouped; });
+        var grouped = buttons.filter(function(b) { return b.grouped; });
+
+        if (nonGrouped.length === 1 && grouped.length === 0) {
+            if (!nonGrouped[0].width) nonGrouped[0].width = '100%';
+        } else if (nonGrouped.length === 2 && grouped.length === 0) {
+            nonGrouped.forEach(function(b) { if (!b.width) b.width = '50%'; });
+        } else if (nonGrouped.length === 1 && grouped.length > 0) {
+            if (!nonGrouped[0].width) nonGrouped[0].width = '50%';
+        } else if (nonGrouped.length === 2) {
+            nonGrouped.forEach(function(b) { if (!b.width) b.width = '50%'; });
+        }
+
+        return buttons;
+    }
+
+    // Create a button element
+    function createButton(text, action, style) {
+        var adPanel = document.getElementById('adpanel2');
+        if (!adPanel) return null;
+
+        var bt = document.createElement('button');
+        bt.textContent = text;
+        bt.value = action || '';
+        bt.style.backgroundColor = style.backgroundColor || 'white';
+        bt.style.color = style.color || 'black';
+        bt.style.textAlign = 'center';
+        bt.style.display = 'inline';
+        bt.style.fontSize = '20px';
+        bt.style.width = style.width || '50%';
+
+        if (action && action.startsWith('%') && action.endsWith('%')) {
+            bt.onclick = function() {
+                execUserScript(action);
+            };
+        } else if (action && action.startsWith('http')) {
+            bt.onclick = function() {
+                window.open(action, '_blank');
+            };
+        }
+
+        adPanel.appendChild(bt);
+        return bt;
+    }
+
+    // Create a scenario button that loads and executes PBS content
+    function createScenarioButton(name, text, style, pbsUrl) {
+        var adPanel = document.getElementById('adpanel2');
+        if (!adPanel) return null;
+
+        var bt = document.createElement('button');
+        bt.textContent = text || name.replace(/_/g, ' ');
+        bt.style.backgroundColor = style.backgroundColor || 'white';
+        bt.style.color = style.color || 'black';
+        bt.style.textAlign = 'center';
+        bt.style.display = 'inline';
+        bt.style.fontSize = '20px';
+        bt.style.width = style.width || '50%';
+        bt.setAttribute('data-scenario', name);
+        bt.setAttribute('data-pbs-url', pbsUrl);
+
+        bt.onclick = function() {
+            var scenarioName = this.getAttribute('data-scenario');
+            var url = this.getAttribute('data-pbs-url');
+
+            // Convert GitHub URL to raw URL
+            var rawUrl = url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
+
+            console.log('PBS Dynamic: Loading scenario', scenarioName, 'from', rawUrl);
+
+            // Fetch and execute the PBS file
+            fetch(rawUrl)
+                .then(function(response) { return response.text(); })
+                .then(function(content) {
+                    // Parse and execute the PBS content
+                    // Look for Script block and extract setDealerCode call
+                    var match = content.match(/setDealerCode\(`([\s\S]*?)`,\s*"([NSEW])",\s*(true|false)\)/);
+                    if (match) {
+                        var dealerCode = match[1];
+                        var dealer = match[2];
+                        var refresh = match[3] === 'true';
+
+                        // Log scenario selection
+                        window.currentPBSScenario = scenarioName;
+                        window.currentPBSScenarioFilename = scenarioName;
+                        console.log('PBS: Logging scenario selection for', scenarioName);
+                        fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-Client-Version': '1.0.0'
+                            },
+                            body: JSON.stringify({
+                                scenario: scenarioName,
+                                user: whoAmI() || 'anonymous'
+                            })
+                        }).catch(function() {});
+
+                        // Execute setDealerCode
+                        setDealerCode(dealerCode, dealer, refresh);
+                    } else {
+                        console.warn('PBS Dynamic: Could not parse setDealerCode from', scenarioName);
+                    }
+                })
+                .catch(function(err) {
+                    console.error('PBS Dynamic: Failed to load', scenarioName, err);
+                });
+        };
+
+        adPanel.appendChild(bt);
+        return bt;
+    }
+
+    // Load test files from GitHub API
+    function loadTestFiles() {
+        if (window._pbsTestFiles !== null) {
+            return Promise.resolve(window._pbsTestFiles);
+        }
+
+        return fetch(PBS_TEST_API)
+            .then(function(response) { return response.json(); })
+            .then(function(files) {
+                window._pbsTestFiles = files
+                    .filter(function(f) { return f.name.endsWith('.pbs'); })
+                    .map(function(f) { return f.name.replace('.pbs', ''); });
+                console.log('PBS Dynamic: Loaded', window._pbsTestFiles.length, 'test files');
+                return window._pbsTestFiles;
+            })
+            .catch(function(err) {
+                console.error('PBS Dynamic: Failed to load test files', err);
+                window._pbsTestFiles = [];
+                return [];
+            });
+    }
+
+    // Add test mode buttons at top of panel
+    function addTestModeButtons() {
+        if (!pbsConfig.Enable_Test_Mode) return Promise.resolve();
+
+        return loadTestFiles().then(function(testFiles) {
+            var adPanel = document.getElementById('adpanel2');
+            if (!adPanel) return;
+
+            // Find insertion point (after the first 3 hidden backspace buttons)
+            var btns = adPanel.querySelectorAll('button');
+            var insertBefore = btns[3] || null;
+
+            // Create test mode header
+            var headerBtn = document.createElement('button');
+            headerBtn.textContent = '=== TEST MODE: pbs-test/ ===';
+            headerBtn.style.width = '100%';
+            headerBtn.style.backgroundColor = 'orange';
+            headerBtn.style.color = 'black';
+            headerBtn.style.fontWeight = 'bold';
+            headerBtn.style.display = 'inline';
+            headerBtn.style.fontSize = '18px';
+            adPanel.insertBefore(headerBtn, insertBefore);
+
+            // Create buttons for each test file (2 per row)
+            var testButtonsPerRow = 2;
+            for (var i = 0; i < testFiles.length; i++) {
+                var name = testFiles[i];
+                var pbsUrl = PBS_TEST_URL + '/' + name + '.pbs';
+
+                var bt = document.createElement('button');
+                bt.textContent = name.replace(/_/g, ' ');
+                bt.style.backgroundColor = 'lightyellow';
+                bt.style.color = 'black';
+                bt.style.textAlign = 'center';
+                bt.style.display = 'inline';
+                bt.style.fontSize = '18px';
+                bt.style.width = '50%';
+                bt.setAttribute('data-scenario', name);
+                bt.setAttribute('data-pbs-url', pbsUrl);
+                bt.setAttribute('data-test-button', 'true');
+
+                bt.onclick = function() {
+                    var scenarioName = this.getAttribute('data-scenario');
+                    var url = this.getAttribute('data-pbs-url');
+                    var rawUrl = url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
+
+                    console.log('PBS Dynamic (TEST): Loading scenario', scenarioName, 'from', rawUrl);
+
+                    fetch(rawUrl)
+                        .then(function(response) { return response.text(); })
+                        .then(function(content) {
+                            var match = content.match(/setDealerCode\(`([\s\S]*?)`,\s*"([NSEW])",\s*(true|false)\)/);
+                            if (match) {
+                                var dealerCode = match[1];
+                                var dealer = match[2];
+                                var refresh = match[3] === 'true';
+
+                                window.currentPBSScenario = scenarioName;
+                                window.currentPBSScenarioFilename = scenarioName;
+                                console.log('PBS (TEST): Logging scenario selection for', scenarioName);
+
+                                setDealerCode(dealerCode, dealer, refresh);
+                            }
+                        })
+                        .catch(function(err) {
+                            console.error('PBS Dynamic (TEST): Failed to load', scenarioName, err);
+                        });
+                };
+
+                adPanel.insertBefore(bt, insertBefore);
+            }
+
+            // Add separator after test buttons
+            var sepBtn = document.createElement('button');
+            sepBtn.textContent = '=== PRODUCTION BUTTONS ===';
+            sepBtn.style.width = '100%';
+            sepBtn.style.backgroundColor = 'lightgreen';
+            sepBtn.style.color = 'black';
+            sepBtn.style.fontWeight = 'bold';
+            sepBtn.style.display = 'inline';
+            sepBtn.style.fontSize = '18px';
+            adPanel.insertBefore(sepBtn, insertBefore);
+        });
+    }
+
+    // Parse and render layout
+    function renderLayout(layoutText) {
+        var lines = layoutText.split('\n');
+        var pbsFolder = pbsConfig.Use_pbs_test_folder ? PBS_TEST_URL : PBS_PROD_URL;
+
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i].trim();
+
+            // Skip comments and empty lines
+            if (!line || line.startsWith('#')) continue;
+
+            // Major header
+            if (line.startsWith('[Major]')) {
+                var content = line.slice(7).trim();
+                var title = content;
+                var url = null;
+                if (content.indexOf('|') !== -1) {
+                    var parts = content.split('|');
+                    title = parts[0].trim();
+                    url = parts[1].trim();
+                }
+                createButton(title, url ? url + '\\n' : '', {
+                    width: '100%',
+                    backgroundColor: 'LemonChiffon'
+                });
+                continue;
+            }
+
+            // Section header
+            if (line.startsWith('[Section]')) {
+                var content = line.slice(9).trim();
+                var title = content;
+                var url = null;
+                if (content.indexOf('|') !== -1) {
+                    var parts = content.split('|');
+                    title = parts[0].trim();
+                    url = parts[1].trim();
+                }
+                var btn = createButton(title, url ? url + '\\n' : '', {
+                    width: '100%',
+                    backgroundColor: 'lightblue'
+                });
+                // Add collapse/expand functionality
+                if (btn) {
+                    btn.onclick = function() {
+                        var next = $(this).next();
+                        while (next.length && (next[0].style.backgroundColor === 'white' || next[0].style.backgroundColor === 'lightpink')) {
+                            $(next).toggle();
+                            next = $(next).next();
+                        }
+                    };
+                }
+                continue;
+            }
+
+            // Action button
+            if (line.startsWith('[Action]')) {
+                var content = line.slice(8).trim();
+                var parts = content.split('|');
+                var text = parts[0].trim();
+                var script = parts[1] ? parts[1].trim() : '';
+                var width = parts[2] ? parts[2].trim() + '%' : '50%';
+                createButton(text, script, {
+                    width: width,
+                    backgroundColor: 'lightgreen'
+                });
+                continue;
+            }
+
+            // Separator
+            if (line === '---') {
+                createButton('---', '', { width: '100%', backgroundColor: 'white' });
+                continue;
+            }
+
+            // Button row
+            var buttons = parseLayoutLine(line);
+            for (var j = 0; j < buttons.length; j++) {
+                var btn = buttons[j];
+                if (btn.name === '---') {
+                    createButton('---', '', { width: btn.width || '50%', backgroundColor: 'white' });
+                } else {
+                    var pbsUrl = pbsFolder + '/' + btn.name + '.pbs';
+                    var style = {
+                        width: btn.width || '50%',
+                        backgroundColor: 'white'
+                    };
+                    if (btn.color) {
+                        style.color = btn.color;
+                    }
+                    createScenarioButton(btn.name, null, style, pbsUrl);
+                }
+            }
+        }
+    }
+
+    // Main initialization
+    function init() {
+        console.log('PBS Dynamic: Initializing...');
+        console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
+        console.log('PBS Dynamic: Use pbs-test =', pbsConfig.Use_pbs_test_folder);
+
+        // First add test buttons if enabled
+        addTestModeButtons().then(function() {
+            // Then fetch and render layout
+            if (window._pbsLayoutData) {
+                renderLayout(window._pbsLayoutData);
+            } else {
+                fetch(LAYOUT_URL)
+                    .then(function(response) { return response.text(); })
+                    .then(function(layoutText) {
+                        window._pbsLayoutData = layoutText;
+                        console.log('PBS Dynamic: Layout loaded,', layoutText.split('\n').length, 'lines');
+                        renderLayout(layoutText);
+                    })
+                    .catch(function(err) {
+                        console.error('PBS Dynamic: Failed to load layout', err);
+                    });
+            }
+        });
+    }
+
+    // Run after a short delay to let DOM settle
+    setTimeout(init, 100);
+})();
+Script
+
+Option
+
