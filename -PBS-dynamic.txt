@@ -1,5 +1,5 @@
 //BBOalert, Bidding Scenarios - Dynamic Layout
-//BBOalert, Bidding Scenarios - Dynamic Layout - version 1.1
+//BBOalert, Bidding Scenarios - Dynamic Layout - version 1.2
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
 Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
@@ -178,24 +178,19 @@ Script,reviewCurrentCode,setDealerCode("");
 
 Option,Practice Table
 
-// Dynamic Layout System v1.1
+// Dynamic Layout System v1.2
 // Fetches layout configuration and PBS metadata at runtime
-// Properly extracts button text and styles from PBS files
+// Always fetches fresh data - no caching
 Script,onDataLoad
 (function() {
     // Configuration for PBS Dynamic Layout
     var pbsConfig = {
-        Enable_Test_Mode: false,
-        Use_pbs_test_folder: true
+        Enable_Test_Mode: false
     };
 
     // Register plugin config for test mode toggle
     var savedConfig = addConfigBox('PBS Dynamic Layout', pbsConfig);
     if (savedConfig) pbsConfig = savedConfig;
-
-    // Track previous config state for refresh detection
-    var prevTestMode = window._pbsPrevTestMode;
-    window._pbsPrevTestMode = pbsConfig.Enable_Test_Mode;
 
     // GitHub URLs
     var GITHUB_OWNER = 'ADavidBailey';
@@ -204,24 +199,13 @@ Script,onDataLoad
     var PBS_TEST_API = 'https://api.github.com/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/pbs-test';
     var PBS_RAW_BASE = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/pbs-test';
 
-    // Cache for PBS metadata and layout
-    window._pbsMetadataCache = window._pbsMetadataCache || {};
-    window._pbsTestFiles = window._pbsTestFiles || null;
-    window._pbsLayoutData = window._pbsLayoutData || null;
-
     // Fetch and parse PBS file metadata (button text and style)
     function fetchPbsMetadata(name) {
-        if (window._pbsMetadataCache[name]) {
-            return Promise.resolve(window._pbsMetadataCache[name]);
-        }
-
         var rawUrl = PBS_RAW_BASE + '/' + name + '.pbs';
         return fetch(rawUrl)
             .then(function(response) { return response.text(); })
             .then(function(content) {
-                var metadata = parsePbsButton(content, name);
-                window._pbsMetadataCache[name] = metadata;
-                return metadata;
+                return parsePbsButton(content, name);
             })
             .catch(function(err) {
                 console.warn('PBS Dynamic: Failed to fetch metadata for', name);
@@ -425,23 +409,18 @@ Script,onDataLoad
 
     // Load test files from GitHub API
     function loadTestFiles() {
-        if (window._pbsTestFiles !== null) {
-            return Promise.resolve(window._pbsTestFiles);
-        }
-
         return fetch(PBS_TEST_API)
             .then(function(response) { return response.json(); })
             .then(function(files) {
-                window._pbsTestFiles = files
+                var testFiles = files
                     .filter(function(f) { return f.name.endsWith('.pbs'); })
                     .map(function(f) { return f.name.replace('.pbs', ''); })
                     .sort();
-                console.log('PBS Dynamic: Loaded', window._pbsTestFiles.length, 'test files');
-                return window._pbsTestFiles;
+                console.log('PBS Dynamic: Found', testFiles.length, 'test files');
+                return testFiles;
             })
             .catch(function(err) {
                 console.error('PBS Dynamic: Failed to load test files', err);
-                window._pbsTestFiles = [];
                 return [];
             });
     }
@@ -607,30 +586,16 @@ Script,onDataLoad
 
     // Main initialization
     function init() {
-        console.log('PBS Dynamic v1.1: Initializing...');
+        console.log('PBS Dynamic v1.2: Initializing...');
         console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
 
-        // Check if test mode changed - if so, we need to reload
-        if (prevTestMode !== undefined && prevTestMode !== pbsConfig.Enable_Test_Mode) {
-            console.log('PBS Dynamic: Test mode changed, clearing caches');
-            window._pbsLayoutData = null;
-            // Force page refresh to rebuild buttons
-            location.reload();
-            return;
-        }
-
         addTestModeButtons().then(function() {
-            if (window._pbsLayoutData) {
-                return renderLayout(window._pbsLayoutData);
-            } else {
-                return fetch(LAYOUT_URL)
-                    .then(function(response) { return response.text(); })
-                    .then(function(layoutText) {
-                        window._pbsLayoutData = layoutText;
-                        console.log('PBS Dynamic: Layout loaded,', layoutText.split('\n').length, 'lines');
-                        return renderLayout(layoutText);
-                    });
-            }
+            return fetch(LAYOUT_URL)
+                .then(function(response) { return response.text(); })
+                .then(function(layoutText) {
+                    console.log('PBS Dynamic: Layout loaded,', layoutText.split('\n').length, 'lines');
+                    return renderLayout(layoutText);
+                });
         }).then(function() {
             console.log('PBS Dynamic: Initialization complete');
         }).catch(function(err) {
