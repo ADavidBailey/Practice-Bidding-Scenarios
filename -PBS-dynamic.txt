@@ -1,5 +1,5 @@
 //BBOalert, Bidding Scenarios - Dynamic Layout
-//BBOalert, Bidding Scenarios - Dynamic Layout - version 1.4
+//BBOalert, Bidding Scenarios - Dynamic Layout - version 1.5
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
 Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
@@ -198,13 +198,12 @@ Script,onDataLoad
     var LAYOUT_URL = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/btn/-layout.txt';
     var PBS_TEST_API = 'https://api.github.com/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/pbs-test';
     var PBS_TEST_BASE = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/pbs-test';
-    var PBS_PROD_BASE = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/PBS';
+    var PBS_BETA_BASE = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/pbs-beta';
 
     // Fetch and parse PBS file metadata (button text and style)
-    // Production files: PBS/<name> (no extension)
-    // Test files: pbs-test/<name>.pbs (has extension)
-    function fetchPbsMetadata(name, baseUrl, hasExtension) {
-        var rawUrl = baseUrl + '/' + name + (hasExtension ? '.pbs' : '');
+    // Both pbs-beta and pbs-test use .pbs extension
+    function fetchPbsMetadata(name, baseUrl) {
+        var rawUrl = baseUrl + '/' + name + '.pbs';
         return fetch(rawUrl)
             .then(function(response) { return response.text(); })
             .then(function(content) {
@@ -370,13 +369,13 @@ Script,onDataLoad
         bt.style.fontSize = '20px';
         bt.style.width = layoutStyle.width || '50%';
         bt.setAttribute('data-scenario', name);
-        bt.setAttribute('data-pbs-url', PBS_PROD_BASE + '/' + name);
+        bt.setAttribute('data-pbs-url', PBS_BETA_BASE + '/' + name + '.pbs');
 
         // Add button to panel immediately (sync)
         adPanel.appendChild(bt);
 
-        // Fetch metadata async and update button (production files have no extension)
-        fetchPbsMetadata(name, PBS_PROD_BASE, false).then(function(meta) {
+        // Fetch metadata async and update button
+        fetchPbsMetadata(name, PBS_BETA_BASE).then(function(meta) {
             bt.textContent = meta.text;
             if (meta.style.backgroundColor) bt.style.backgroundColor = meta.style.backgroundColor;
             if (meta.style.color && !layoutStyle.color) bt.style.color = meta.style.color;
@@ -464,8 +463,8 @@ Script,onDataLoad
                 bt.setAttribute('data-test-button', 'true');
                 adPanel.insertBefore(bt, insertBefore);
 
-                // Load metadata async and update button (test files have .pbs extension)
-                fetchPbsMetadata(name, PBS_TEST_BASE, true).then(function(meta) {
+                // Load metadata async and update button
+                fetchPbsMetadata(name, PBS_TEST_BASE).then(function(meta) {
                     bt.textContent = meta.text;
                     if (meta.style.backgroundColor) bt.style.backgroundColor = meta.style.backgroundColor;
                     if (meta.style.color) bt.style.color = meta.style.color;
@@ -584,7 +583,7 @@ Script,onDataLoad
 
     // Main initialization
     function init() {
-        console.log('PBS Dynamic v1.4: Initializing...');
+        console.log('PBS Dynamic v1.5: Initializing...');
         console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
 
         addTestModeButtons().then(function() {

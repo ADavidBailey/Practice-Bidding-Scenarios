@@ -1,0 +1,116 @@
+Script,PreemptXRX
+window.currentPBSScenario = 'PreemptXRX';
+window.currentPBSScenarioFilename = 'Preempt_X_XX';
+console.log('PBS: Logging scenario selection for PreemptXRX');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'PreemptXRX',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+auction-filter: Auction.....\\n3[CDHS] X
+*/
+# Opps Preempt, we X and they XX
+dealer east
+produce 1000
+
+# Define East preempt at the 3- or 4-level
+wS = shape(east,9xxx+8xxx+7xxx) and top3(east,spades)>1   and spades(west)>1
+wH = shape(east,x9xx+x8xx+x7xx) and top3(east,hearts)>1   and hearts(west)>1
+wD = shape(east,xx9x+xx8x+xx7x) and top3(east,diamonds)>1 and diamonds(west)>1
+wC = shape(east,xxx9+xxx8+xxx7) and top3(east,clubs)>1    and clubs(west)>1
+
+lS = wS ? spades(east)   : 0
+lH = wH ? hearts(east)   : 0
+lD = wD ? diamonds(east) : 0
+lC = wC ? clubs(east)    : 0
+length = lS + lH + lD + lC
+
+# South is short in East's suit
+sShortS = wS and spades(south)<2
+sShortH = wH and hearts(south)<2
+sShortD = wD and diamonds(south)<2
+sShortC = wC and clubs(south)<2
+sShort = (sShortS or sShortH or sShortD or sShortC)
+
+sDouble1 = hcp(south)>14 and sShort
+sDouble2 = hcp(south)>17
+sDoubles = (sDouble1 or sDouble2) and shape(south,xxxx-5xxx-x5xx) and controls(south)>3
+
+# East opens 4, South doubles, and West Redoubles
+eOpens = (wS or wH or wD or wC) and hcp(east)>3 and hcp(east)<10
+
+# West Redoubles
+wXX = hcp(west)>10
+
+# Define leveling
+### Imported Leveling Code ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep015 = keep06 and c3
+keep03 = keep06 and keep44
+keep045 = keep06 and not c3
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep955 = not keep045
+keep97 = not keep03
+keep985 = not keep015
+keep   = 1
+keep0  = 0
+### End of Imported Leveling Code ###
+
+lev7 = length==7 and keep19
+lev8 = length==8 and keep81
+lev9 = length==9 and keep
+levelTheDeal = lev7 or lev8 or lev9
+
+eOpens and sDoubles and wXX
+and levelTheDeal
+
+action
+average "hcp East " hcp(east),
+average "hcp North" hcp(north),
+average "hcp West " hcp(west),
+average "hcp South" hcp(south),
+average "hcp N/S  " hcp(north) + hcp(south),
+average "hcp E/W  " hcp(east) + hcp(west),
+
+frequency "length " (length, 6, 10),
+`, "E", true)
+Script
+Button,Preempt (X) XX (Lev),\n\
+--- Preempt (X) XX (Now What?)\n\
+After a 3-level or 4-level preempt，(X)，XX，what do we do?  The deals are leveled\n\
+so that the 7-card and 8-card preempts occur with about the same frequency.\n\
+%PreemptXRX%

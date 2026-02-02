@@ -1,0 +1,45 @@
+Script,OppCompOverGF2C
+window.currentPBSScenario = 'OppCompOverGF2C';
+window.currentPBSScenarioFilename = 'Opps_Bid_Over_GF_2C';
+console.log('PBS: Logging scenario selection for OppCompOverGF2C');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'OppCompOverGF2C',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+auction-filter: Auction.....\n2C ... +[X2-7]
+*/
+# Opponents Bid over our Game Forcing 2C
+dealer south
+
+# Game Forcing 2C
+case1 = hcp(south)>22
+case2 = hcp(south)>18 and losers(south)<5 and (spades(south)>5 or hearts(south)>5)
+case3 = hcp(south)>18 and losers(south)<4 and (diamonds(south)>5 or clubs(south)>5)
+s2C = (case1 or case2 or case3)
+
+# West overcalls
+wS = spades(west)>5   and top5(west,spades)>2
+wH = hearts(west)>5   and top5(west,hearts)>2
+wD = diamonds(west)>5 and top5(west,diamonds)>2
+wC = clubs(west)>5    and top5(west,clubs)>2
+wOvercalls = (wS or wH or wD or wC) and shape(west,any 93xx +any 84xx +any 75xx+any +any 66xx)
+
+s2C //and wOvercalls
+
+action
+printoneline,
+`, "S", true)
+Script
+Button,Bid Over GF 2C,\n\
+--- Opponents Bid over our Game Forcing 2C.\n\
+%OppCompOverGF2C%,width=50%

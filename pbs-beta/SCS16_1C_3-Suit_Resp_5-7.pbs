@@ -1,0 +1,40 @@
+Script,scs16StrongClub3Suit57
+window.currentPBSScenario = 'scs16StrongClub3Suit57';
+window.currentPBSScenarioFilename = 'SCS16_1C_3-Suit_Resp_5-7';
+console.log('PBS: Logging scenario selection for scs16StrongClub3Suit57');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'scs16StrongClub3Suit57',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+convention-card: Precision
+auction-filter: Auction.....[\s\S][\s\S]?1C
+*/
+# convention-card: Precision
+
+
+# Strong Club System: 1C & 3 suited response
+dealer south
+
+# South has 16+
+hcp(south)>15
+
+# North has 5-7 HCP
+and hcp(north)>4 and hcp(north)<8
+
+# North has specific shapes
+and shape(north, any 4441 + any 5440)
+`, "S", true)
+Script
+Button,3-Suit 5-7 16+,\n\
+--- 3-Suit Response w/5-7 HCP (16+ HCP)\n\
+%scs16StrongClub3Suit57%,backgroundColor=lightpink

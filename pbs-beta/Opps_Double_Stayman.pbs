@@ -1,0 +1,26 @@
+Script,StaymanX
+window.currentPBSScenario = 'StaymanX';
+window.currentPBSScenarioFilename = 'Opps_Double_Stayman';
+console.log('PBS: Logging scenario selection for StaymanX');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'StaymanX',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+auction-filter: Auction.....\\n1NT Pass 2C.*X
+*/
+
+`, "S", true)
+Script
+Button,X Stayman,\n\
+--- Opponents X Stayman\n\
+%StaymanX%

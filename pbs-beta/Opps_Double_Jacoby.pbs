@@ -1,0 +1,29 @@
+Script,JacobyX
+window.currentPBSScenario = 'JacobyX';
+window.currentPBSScenarioFilename = 'Opps_Double_Jacoby';
+console.log('PBS: Logging scenario selection for JacobyX');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'JacobyX',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+auction-filter: Auction.....\\n1NT Pass 2[DH] X
+*/
+
+`, "S", true)
+Script
+Button,X Jacoby,\n\
+--- Opponents X Jacoby\n\
+The BBO Robots complete the transfer with 3+ support，otherwise they pass.\n\
+A recent ACBL Bulletin article recommended completing the transfer with either 3+ support or a\n\
+stop in opponent's suit.  Then，responder can safely invite with 2NT or force to game with 3NT.\n\
+%JacobyX%

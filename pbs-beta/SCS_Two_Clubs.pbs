@@ -1,0 +1,27 @@
+Script,scsTwoClubs
+window.currentPBSScenario = 'scsTwoClubs';
+window.currentPBSScenarioFilename = 'SCS_Two_Clubs';
+console.log('PBS: Logging scenario selection for scsTwoClubs');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'scsTwoClubs',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+convention-card: Precision
+auction-filter: Auction.....[\s\S][\s\S]?2C
+*/
+# convention-card: Precision
+`, "S", true)
+Script
+Button,Two Clubs 11-16,\n\
+--- Strong Club System: 2C = 11-16 HCP and 5+Clubs\n\
+%scsTwoClubs%,backgroundColor=lightpink
