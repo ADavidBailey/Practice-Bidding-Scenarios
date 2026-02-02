@@ -1,5 +1,5 @@
 //BBOalert, Bidding Scenarios - Dynamic Layout
-//BBOalert, Bidding Scenarios - Dynamic Layout - version 1.8
+//BBOalert, Bidding Scenarios - Dynamic Layout - version 1.9
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
 Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
@@ -185,7 +185,8 @@ Script,onDataLoad
 (function() {
     // Configuration for PBS Dynamic Layout
     var pbsConfig = {
-        Enable_Test_Mode: false
+        Enable_Test_Mode: false,
+        Use_Beta_Layout: false
     };
 
     // Register plugin config for test mode toggle
@@ -195,23 +196,41 @@ Script,onDataLoad
     // GitHub URLs
     var GITHUB_OWNER = 'ADavidBailey';
     var GITHUB_REPO = 'Practice-Bidding-Scenarios';
-    var LAYOUT_URL = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/btn/-layout.txt';
+    var LAYOUT_RELEASE_URL = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/btn/-button-layout-release.txt';
+    var LAYOUT_BETA_URL = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/btn/-button-layout-beta.txt';
     var PBS_TEST_API = 'https://api.github.com/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/pbs-test';
+    var PBS_BETA_API = 'https://api.github.com/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/pbs-beta';
     var PBS_TEST_BASE = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/pbs-test';
     var PBS_BETA_BASE = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/pbs-beta';
 
+    // Track referenced buttons and missing PBS files
+    var referencedScenarios = [];
+    var missingPbsFiles = [];
+
     // Fetch and parse PBS file metadata (button text and style)
     // Both pbs-beta and pbs-test use .pbs extension
+    // Returns { text, style, missing: boolean }
     function fetchPbsMetadata(name, baseUrl) {
         var rawUrl = baseUrl + '/' + name + '.pbs';
         return fetch(rawUrl)
-            .then(function(response) { return response.text(); })
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error('File not found');
+                }
+                return response.text();
+            })
             .then(function(content) {
-                return parsePbsButton(content, name);
+                // Check if it's a 404 page (GitHub returns HTML for missing raw files)
+                if (content.includes('<!DOCTYPE html>') || content.includes('404: Not Found')) {
+                    throw new Error('File not found');
+                }
+                var result = parsePbsButton(content, name);
+                result.missing = false;
+                return result;
             })
             .catch(function(err) {
                 console.warn('PBS Dynamic: Failed to fetch metadata for', name);
-                return { text: name.replace(/_/g, ' '), style: {} };
+                return { text: name.replace(/_/g, ' '), style: {}, missing: true };
             });
     }
 
@@ -359,6 +378,9 @@ Script,onDataLoad
         var adPanel = document.getElementById('adpanel2');
         if (!adPanel) return null;
 
+        // Track this scenario as referenced by the layout
+        referencedScenarios.push(name);
+
         var bt = document.createElement('button');
         // Start with filename as text, will be updated when metadata loads
         bt.textContent = name.replace(/_/g, ' ');
@@ -377,9 +399,16 @@ Script,onDataLoad
         // Fetch metadata async and update button
         fetchPbsMetadata(name, PBS_BETA_BASE).then(function(meta) {
             bt.textContent = meta.text;
-            if (meta.style.backgroundColor) bt.style.backgroundColor = meta.style.backgroundColor;
-            if (meta.style.color && !layoutStyle.color) bt.style.color = meta.style.color;
-            if (meta.style.width && !layoutStyle.width) bt.style.width = meta.style.width;
+            if (meta.missing) {
+                // Show missing files with red text
+                bt.style.color = 'red';
+                bt.setAttribute('data-missing', 'true');
+                missingPbsFiles.push(name);
+            } else {
+                if (meta.style.backgroundColor) bt.style.backgroundColor = meta.style.backgroundColor;
+                if (meta.style.color && !layoutStyle.color) bt.style.color = meta.style.color;
+                if (meta.style.width && !layoutStyle.width) bt.style.width = meta.style.width;
+            }
         });
 
         bt.onclick = function() {
@@ -422,6 +451,24 @@ Script,onDataLoad
             })
             .catch(function(err) {
                 console.error('PBS Dynamic: Failed to load test files', err);
+                return [];
+            });
+    }
+
+    // Load pbs-beta files from GitHub API
+    function loadBetaFiles() {
+        return fetch(PBS_BETA_API)
+            .then(function(response) { return response.json(); })
+            .then(function(files) {
+                var betaFiles = files
+                    .filter(function(f) { return f.name.endsWith('.pbs'); })
+                    .map(function(f) { return f.name.replace('.pbs', ''); })
+                    .sort();
+                console.log('PBS Dynamic: Found', betaFiles.length, 'beta files');
+                return betaFiles;
+            })
+            .catch(function(err) {
+                console.error('PBS Dynamic: Failed to load beta files', err);
                 return [];
             });
     }
@@ -623,13 +670,132 @@ Script,onDataLoad
         }).hide();
     }
 
+    // Add diagnostic sections for missing/orphan files (only in test mode)
+    function addDiagnosticSections() {
+        if (!pbsConfig.Enable_Test_Mode) return Promise.resolve();
+
+        var adPanel = document.getElementById('adpanel2');
+        if (!adPanel) return Promise.resolve();
+
+        // Find the first section header to insert before
+        var allBtns = adPanel.querySelectorAll('button');
+        var insertBefore = null;
+        for (var i = 0; i < allBtns.length; i++) {
+            if (allBtns[i].style.backgroundColor === 'lightblue' && allBtns[i].style.width === '100%') {
+                insertBefore = allBtns[i];
+                break;
+            }
+        }
+
+        // Add "Buttons missing PBS" section if there are any
+        if (missingPbsFiles.length > 0) {
+            var missingHeader = document.createElement('button');
+            missingHeader.textContent = 'MISSING PBS FILES (' + missingPbsFiles.length + ')';
+            missingHeader.style.width = '100%';
+            missingHeader.style.backgroundColor = 'lightsalmon';
+            missingHeader.style.color = 'black';
+            missingHeader.style.fontWeight = 'bold';
+            missingHeader.style.display = 'inline';
+            missingHeader.style.fontSize = '18px';
+            adPanel.insertBefore(missingHeader, insertBefore);
+
+            missingPbsFiles.forEach(function(name) {
+                var bt = document.createElement('button');
+                bt.textContent = name;
+                bt.style.backgroundColor = 'white';
+                bt.style.color = 'red';
+                bt.style.textAlign = 'center';
+                bt.style.display = 'inline';
+                bt.style.fontSize = '18px';
+                bt.style.width = '50%';
+                bt.setAttribute('data-missing-btn', 'true');
+                adPanel.insertBefore(bt, insertBefore);
+            });
+
+            missingHeader.onclick = function() {
+                var btns = adPanel.querySelectorAll('[data-missing-btn]');
+                for (var i = 0; i < btns.length; i++) {
+                    $(btns[i]).toggle();
+                }
+            };
+        }
+
+        // Load beta files and find orphans
+        return loadBetaFiles().then(function(betaFiles) {
+            var orphans = betaFiles.filter(function(name) {
+                return referencedScenarios.indexOf(name) === -1;
+            });
+
+            if (orphans.length > 0) {
+                var orphanHeader = document.createElement('button');
+                orphanHeader.textContent = 'ORPHAN SCENARIOS (' + orphans.length + ')';
+                orphanHeader.style.width = '100%';
+                orphanHeader.style.backgroundColor = 'plum';
+                orphanHeader.style.color = 'black';
+                orphanHeader.style.fontWeight = 'bold';
+                orphanHeader.style.display = 'inline';
+                orphanHeader.style.fontSize = '18px';
+                adPanel.insertBefore(orphanHeader, insertBefore);
+
+                orphans.forEach(function(name) {
+                    var bt = document.createElement('button');
+                    bt.textContent = name.replace(/_/g, ' ');
+                    bt.style.backgroundColor = 'white';
+                    bt.style.color = 'purple';
+                    bt.style.textAlign = 'center';
+                    bt.style.display = 'inline';
+                    bt.style.fontSize = '18px';
+                    bt.style.width = '50%';
+                    bt.setAttribute('data-scenario', name);
+                    bt.setAttribute('data-orphan-btn', 'true');
+                    bt.setAttribute('data-pbs-url', PBS_BETA_BASE + '/' + name + '.pbs');
+                    adPanel.insertBefore(bt, insertBefore);
+
+                    // Load metadata for orphan buttons
+                    fetchPbsMetadata(name, PBS_BETA_BASE).then(function(meta) {
+                        bt.textContent = meta.text;
+                        if (meta.style.backgroundColor) bt.style.backgroundColor = meta.style.backgroundColor;
+                    });
+
+                    bt.onclick = function() {
+                        var scenarioName = this.getAttribute('data-scenario');
+                        var url = this.getAttribute('data-pbs-url');
+                        fetch(url)
+                            .then(function(response) { return response.text(); })
+                            .then(function(content) {
+                                var match = content.match(/setDealerCode\(`([\s\S]*?)`,\s*"([NSEW])",\s*(true|false)\)/);
+                                if (match) {
+                                    window.currentPBSScenario = scenarioName;
+                                    setDealerCode(match[1], match[2], match[3] === 'true');
+                                }
+                            })
+                            .catch(function(err) { console.error('PBS (orphan):', err); });
+                    };
+                });
+
+                orphanHeader.onclick = function() {
+                    var btns = adPanel.querySelectorAll('[data-orphan-btn]');
+                    for (var i = 0; i < btns.length; i++) {
+                        $(btns[i]).toggle();
+                    }
+                };
+
+                console.log('PBS Dynamic: Found', orphans.length, 'orphan scenarios');
+            }
+        });
+    }
+
     // Main initialization
     function init() {
-        console.log('PBS Dynamic v1.8: Initializing...');
+        console.log('PBS Dynamic v1.9: Initializing...');
         console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
+        console.log('PBS Dynamic: Beta layout =', pbsConfig.Use_Beta_Layout);
+
+        // Choose layout URL based on setting
+        var layoutUrl = pbsConfig.Use_Beta_Layout ? LAYOUT_BETA_URL : LAYOUT_RELEASE_URL;
 
         // First render the layout (major header, action buttons, sections)
-        fetch(LAYOUT_URL)
+        fetch(layoutUrl)
             .then(function(response) { return response.text(); })
             .then(function(layoutText) {
                 console.log('PBS Dynamic: Layout loaded,', layoutText.split('\n').length, 'lines');
@@ -638,6 +804,13 @@ Script,onDataLoad
             .then(function() {
                 // Then insert test buttons after action buttons, before first section
                 return addTestModeButtons();
+            })
+            .then(function() {
+                // Wait a moment for metadata fetches to complete, then add diagnostic sections
+                return new Promise(function(resolve) { setTimeout(resolve, 2000); });
+            })
+            .then(function() {
+                return addDiagnosticSections();
             })
             .then(function() {
                 // Set up expand/collapse after all buttons are rendered
