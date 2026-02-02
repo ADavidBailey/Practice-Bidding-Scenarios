@@ -1,5 +1,5 @@
 //BBOalert, Bidding Scenarios - Dynamic Layout
-//BBOalert, Bidding Scenarios - Dynamic Layout - version 1.7
+//BBOalert, Bidding Scenarios - Dynamic Layout - version 1.8
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
 Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
@@ -448,7 +448,7 @@ Script,onDataLoad
 
             // Create collapsible test section header (blue like other sections)
             var headerBtn = document.createElement('button');
-            headerBtn.textContent = 'TEST: pbs-test/ (click to collapse)';
+            headerBtn.textContent = 'TEST: pbs-test/';
             headerBtn.style.width = '100%';
             headerBtn.style.backgroundColor = 'lightblue';
             headerBtn.style.color = 'black';
@@ -579,9 +579,53 @@ Script,onDataLoad
         }
     }
 
+    // Set up expand/collapse functionality for sections and master header
+    function setupExpandCollapse() {
+        var adPanel = document.getElementById('adpanel2');
+        if (!adPanel) return;
+
+        // Add click handlers to all lightblue section headers
+        $("#adpanel2 button").filter(function() {
+            return this.style.backgroundColor === 'lightblue';
+        }).each(function() {
+            var header = this;
+            header.onclick = function() {
+                var next = $(this).next();
+                while (next.length && (next[0].style.backgroundColor === 'white' || next[0].style.backgroundColor === 'lightpink')) {
+                    $(next).toggle();
+                    next = $(next).next();
+                }
+            };
+        });
+
+        // Set up master expand/collapse on the first LemonChiffon button (yellow header)
+        var masterBtn = $("#adpanel2 button").filter(function() {
+            return this.style.backgroundColor === 'lemonchiffon' || this.style.backgroundColor === 'LemonChiffon';
+        }).first();
+
+        if (masterBtn.length) {
+            masterBtn[0].showAll = false; // Start collapsed
+            masterBtn[0].onclick = function() {
+                this.showAll = !this.showAll;
+                var toShow = this.showAll;
+                $("#adpanel2 button").filter(function() {
+                    return this.style.backgroundColor === 'white' || this.style.backgroundColor === 'lightpink';
+                }).each(function() {
+                    if (toShow) $(this).show();
+                    else $(this).hide();
+                });
+            };
+        }
+
+        // Initially collapse all white/pink buttons (start collapsed)
+        $("#adpanel2 button").filter(function() {
+            return this.style.backgroundColor === 'white' || this.style.backgroundColor === 'lightpink';
+        }).hide();
+    }
+
     // Main initialization
     function init() {
-        console.log('PBS Dynamic v1.7: Initializing...');
+        console.log('PBS Dynamic v1.8: Initializing...');
         console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
 
         // First render the layout (major header, action buttons, sections)
@@ -596,6 +640,8 @@ Script,onDataLoad
                 return addTestModeButtons();
             })
             .then(function() {
+                // Set up expand/collapse after all buttons are rendered
+                setupExpandCollapse();
                 console.log('PBS Dynamic: Initialization complete');
             })
             .catch(function(err) {
