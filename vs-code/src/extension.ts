@@ -1,9 +1,11 @@
 import * as vscode from 'vscode';
+import * as path from 'path';
 import { ButtonPanelProvider } from './buttonPanelProvider';
 import { ButtonGridProvider } from './buttonGridProvider';
 import { CurrentScenarioProvider, ScenarioTreeItem } from './currentScenarioProvider';
 import { registerPipelineCommands, createStatusBar } from './pipelineRunner';
 import { ActivityLogger } from './activityLogger';
+import { getBtnMetadata, clearMetadataCache } from './btnParser';
 
 // Export logger instance for use by other modules (e.g., pipelineRunner)
 export let activityLogger: ActivityLogger | undefined;
@@ -13,6 +15,69 @@ export let activityLogger: ActivityLogger | undefined;
  */
 function containsPbsDir(filePath: string): boolean {
     return filePath.includes('/PBS/') || filePath.includes('/pbs/');
+}
+
+/**
+ * Artifact directories that contain scenario outputs
+ */
+const ARTIFACT_DIRS = [
+    'btn', 'pbs-test', 'PBS', 'pbs', 'dlr', 'pbn', 'pbn-rotated-for-4-players',
+    'bba', 'bba-filtered', 'bba-filtered-out', 'bba-summary', 'bidding-sheets',
+    'lin', 'lin-rotated-for-4-players', 'quiz'
+];
+
+/**
+ * Get scenario name from a file path
+ */
+function getScenarioFromPath(filePath: string | undefined): string | undefined {
+    if (!filePath) {
+        return undefined;
+    }
+
+    const dir = path.dirname(filePath);
+    const dirName = path.basename(dir);
+
+    if (!ARTIFACT_DIRS.includes(dirName)) {
+        return undefined;
+    }
+
+    const fileName = path.basename(filePath);
+
+    // For PBS files (legacy), there's no extension
+    if (dirName.toLowerCase() === 'pbs') {
+        return fileName;
+    }
+
+    // Remove extension
+    const baseName = fileName.replace(/\.(btn|pbs|pbn|dlr|pdf|html|txt|lin)$/i, '');
+
+    // Handle bidding sheet names
+    const biddingSheetMatch = baseName.match(/^(.+?)\s+Bidding Sheets?$/i);
+    if (biddingSheetMatch) {
+        return biddingSheetMatch[1];
+    }
+
+    return baseName;
+}
+
+/**
+ * Update the pbs.bbaWorks context variable based on current editor
+ */
+function updateBbaWorksContext(editor: vscode.TextEditor | undefined, workspaceRoot: string | undefined): void {
+    if (!workspaceRoot || !editor) {
+        vscode.commands.executeCommand('setContext', 'pbs.bbaWorks', false);
+        return;
+    }
+
+    const scenario = getScenarioFromPath(editor.document.uri.fsPath);
+    if (!scenario) {
+        // Not a scenario file - default to false (hide BBA options)
+        vscode.commands.executeCommand('setContext', 'pbs.bbaWorks', false);
+        return;
+    }
+
+    const metadata = getBtnMetadata(scenario, workspaceRoot);
+    vscode.commands.executeCommand('setContext', 'pbs.bbaWorks', metadata.bbaWorks);
 }
 
 export function activate(context: vscode.ExtensionContext) {
@@ -49,6 +114,31 @@ export function activate(context: vscode.ExtensionContext) {
         treeDataProvider: currentScenarioProvider,
         showCollapseAll: false
     });
+
+    // Update bbaWorks context when active editor changes
+    const editorChangeListener = vscode.window.onDidChangeActiveTextEditor(editor => {
+        updateBbaWorksContext(editor, workspaceRoot);
+    });
+    context.subscriptions.push(editorChangeListener);
+
+    // Initial context update
+    updateBbaWorksContext(vscode.window.activeTextEditor, workspaceRoot);
+
+    // Watch for BTN file changes to clear metadata cache and update context
+    const btnWatcher = vscode.workspace.createFileSystemWatcher('**/btn/*.btn');
+    btnWatcher.onDidChange(() => {
+        clearMetadataCache();
+        updateBbaWorksContext(vscode.window.activeTextEditor, workspaceRoot);
+    });
+    btnWatcher.onDidCreate(() => {
+        clearMetadataCache();
+        updateBbaWorksContext(vscode.window.activeTextEditor, workspaceRoot);
+    });
+    btnWatcher.onDidDelete(() => {
+        clearMetadataCache();
+        updateBbaWorksContext(vscode.window.activeTextEditor, workspaceRoot);
+    });
+    context.subscriptions.push(btnWatcher);
 
     // Create the button panel provider (tree view)
     const buttonPanelProvider = new ButtonPanelProvider(workspaceRoot);

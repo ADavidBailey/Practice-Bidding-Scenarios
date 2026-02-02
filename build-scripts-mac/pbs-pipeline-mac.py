@@ -21,6 +21,7 @@ import time
 
 from config import FOLDERS, OPERATIONS_ORDER
 from ssh_runner import test_ssh_connection
+from utils.properties import get_bba_works
 
 # ANSI color codes
 RED = '\033[91m'
@@ -153,6 +154,28 @@ def format_duration(seconds: float) -> str:
     return f"{minutes}m {secs:.1f}s"
 
 
+# BBA and downstream operations that require bba-works=true
+BBA_AND_DOWNSTREAM = {'bba', 'filter', 'filterStats', 'biddingSheet', 'quiz'}
+
+
+def filter_operations_for_scenario(scenario: str, operations: list) -> list:
+    """
+    Filter operations based on scenario capabilities.
+    For scenarios with bba-works=false, exclude bba and downstream operations.
+
+    Args:
+        scenario: Scenario name
+        operations: List of operation names
+
+    Returns:
+        Filtered list of operations
+    """
+    if get_bba_works(scenario):
+        return operations
+
+    return [op for op in operations if op not in BBA_AND_DOWNSTREAM]
+
+
 def run_operations(scenario: str, operations: list, verbose: bool = True) -> bool:
     """
     Run a list of operations on a scenario.
@@ -165,10 +188,22 @@ def run_operations(scenario: str, operations: list, verbose: bool = True) -> boo
     Returns:
         True if all operations succeeded
     """
+    # Filter operations based on scenario capabilities
+    filtered_ops = filter_operations_for_scenario(scenario, operations)
+
+    if verbose and len(filtered_ops) < len(operations):
+        skipped = [op for op in operations if op not in filtered_ops]
+        print(f"  Skipping BBA+ operations (bba-works=false): {', '.join(skipped)}")
+
+    if not filtered_ops:
+        if verbose:
+            print("  No operations to run after filtering")
+        return True
+
     success = True
     durations = {}
 
-    for op in operations:
+    for op in filtered_ops:
         if op not in OPERATIONS:
             print(f"Unknown operation: {op}")
             continue

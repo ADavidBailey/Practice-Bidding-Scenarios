@@ -92,6 +92,37 @@ def get_scenario_title(scenario: str) -> Optional[str]:
     return fetch_property(scenario, "scenario-title")
 
 
+def get_bba_works(scenario: str) -> bool:
+    """
+    Check if BBA analysis works for a scenario.
+    Reads directly from BTN file (source of truth).
+
+    Args:
+        scenario: Scenario name (e.g., "Smolen")
+
+    Returns:
+        True only if bba-works is explicitly set to true.
+        False if BTN file doesn't exist, bba-works line is missing, or bba-works is false.
+    """
+    btn_path = os.path.join(FOLDERS["btn"], f"{scenario}.btn")
+
+    if not os.path.exists(btn_path):
+        return False  # Default to false if BTN not found
+
+    pattern = re.compile(r'^#\s*bba-works:\s*(.+)$', re.IGNORECASE)
+
+    try:
+        with open(btn_path, "r") as f:
+            for line in f:
+                match = pattern.match(line.strip())
+                if match:
+                    return match.group(1).strip().lower() == 'true'
+    except Exception:
+        pass
+
+    return False  # Default to false if bba-works line not found
+
+
 if __name__ == "__main__":
     # Test with a sample scenario
     import glob
