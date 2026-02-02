@@ -1,5 +1,5 @@
 //BBOalert, Bidding Scenarios - Dynamic Layout
-//BBOalert, Bidding Scenarios - Dynamic Layout - version 1.9
+//BBOalert, Bidding Scenarios - Dynamic Layout - version 2.0
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
 Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
@@ -178,9 +178,9 @@ Script,reviewCurrentCode,setDealerCode("");
 
 Option,Practice Table
 
-// Dynamic Layout System v1.2
+// Dynamic Layout System v2.0
 // Fetches layout configuration and PBS metadata at runtime
-// Always fetches fresh data - no caching
+// Rebuilds buttons immediately when config changes
 Script,onDataLoad
 (function() {
     // Configuration for PBS Dynamic Layout
@@ -192,6 +192,15 @@ Script,onDataLoad
     // Register plugin config for test mode toggle
     var savedConfig = addConfigBox('PBS Dynamic Layout', pbsConfig);
     if (savedConfig) pbsConfig = savedConfig;
+
+    // Store current config state for change detection
+    window._pbsDynamicLastConfig = {
+        Enable_Test_Mode: pbsConfig.Enable_Test_Mode,
+        Use_Beta_Layout: pbsConfig.Use_Beta_Layout
+    };
+
+    // Flag to prevent multiple simultaneous rebuilds
+    window._pbsDynamicBuilding = false;
 
     // GitHub URLs
     var GITHUB_OWNER = 'ADavidBailey';
@@ -785,9 +794,63 @@ Script,onDataLoad
         });
     }
 
+    // Clear all dynamically created buttons (everything after first 3 hidden buttons)
+    function clearDynamicButtons() {
+        var adPanel = document.getElementById('adpanel2');
+        if (!adPanel) return;
+
+        // Remove all buttons except the first 3 (Char, Word, All backspace buttons)
+        var buttons = adPanel.querySelectorAll('button');
+        for (var i = buttons.length - 1; i >= 3; i--) {
+            buttons[i].remove();
+        }
+
+        // Reset tracking arrays
+        referencedScenarios = [];
+        missingPbsFiles = [];
+
+        console.log('PBS Dynamic: Cleared all dynamic buttons');
+    }
+
+    // Rebuild buttons (called on config change)
+    function rebuildButtons() {
+        if (window._pbsDynamicBuilding) {
+            console.log('PBS Dynamic: Build already in progress, skipping');
+            return;
+        }
+
+        window._pbsDynamicBuilding = true;
+        console.log('PBS Dynamic: Rebuilding buttons...');
+
+        // Re-read config from localStorage
+        var stored = localStorage.getItem('BBOalertPlugin PBS Dynamic Layout');
+        if (stored) {
+            var newConfig = JSON.parse(stored);
+            pbsConfig.Enable_Test_Mode = newConfig.Enable_Test_Mode;
+            pbsConfig.Use_Beta_Layout = newConfig.Use_Beta_Layout;
+        }
+
+        // Update stored state
+        window._pbsDynamicLastConfig = {
+            Enable_Test_Mode: pbsConfig.Enable_Test_Mode,
+            Use_Beta_Layout: pbsConfig.Use_Beta_Layout
+        };
+
+        // Clear and rebuild
+        clearDynamicButtons();
+        runInit();
+    }
+
+    // Expose rebuild function globally for config change detection
+    window._pbsDynamicRebuild = rebuildButtons;
+
     // Main initialization
     function init() {
-        console.log('PBS Dynamic v1.9: Initializing...');
+        runInit();
+    }
+
+    function runInit() {
+        console.log('PBS Dynamic v2.0: Initializing...');
         console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
         console.log('PBS Dynamic: Beta layout =', pbsConfig.Use_Beta_Layout);
 
@@ -815,14 +878,37 @@ Script,onDataLoad
             .then(function() {
                 // Set up expand/collapse after all buttons are rendered
                 setupExpandCollapse();
+                window._pbsDynamicBuilding = false;
                 console.log('PBS Dynamic: Initialization complete');
             })
             .catch(function(err) {
                 console.error('PBS Dynamic: Initialization failed', err);
+                window._pbsDynamicBuilding = false;
             });
     }
 
     setTimeout(init, 100);
+})();
+Script
+
+// Config change detection - rebuilds buttons when settings change
+Script,onAnyMutation
+(function() {
+    // Check if config has changed
+    var stored = localStorage.getItem('BBOalertPlugin PBS Dynamic Layout');
+    if (!stored || !window._pbsDynamicLastConfig) return;
+
+    var currentConfig = JSON.parse(stored);
+    var lastConfig = window._pbsDynamicLastConfig;
+
+    // Compare config values
+    if (currentConfig.Enable_Test_Mode !== lastConfig.Enable_Test_Mode ||
+        currentConfig.Use_Beta_Layout !== lastConfig.Use_Beta_Layout) {
+        console.log('PBS Dynamic: Config changed, triggering rebuild');
+        if (window._pbsDynamicRebuild) {
+            window._pbsDynamicRebuild();
+        }
+    }
 })();
 Script
 
