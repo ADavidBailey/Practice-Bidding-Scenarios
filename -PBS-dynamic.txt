@@ -1,5 +1,5 @@
 //BBOalert, Bidding Scenarios - Dynamic Layout
-//BBOalert, Bidding Scenarios - Dynamic Layout - version 1.5
+//BBOalert, Bidding Scenarios - Dynamic Layout - version 1.6
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
 Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
@@ -453,7 +453,7 @@ Script,onDataLoad
             testFiles.forEach(function(name) {
                 var bt = document.createElement('button');
                 bt.textContent = name.replace(/_/g, ' ');
-                bt.style.backgroundColor = 'lightyellow';
+                bt.style.backgroundColor = 'white';
                 bt.style.color = 'black';
                 bt.style.textAlign = 'center';
                 bt.style.display = 'inline';
@@ -498,7 +498,7 @@ Script,onDataLoad
             var prodBtn = document.createElement('button');
             prodBtn.textContent = 'PRODUCTION BUTTONS';
             prodBtn.style.width = '100%';
-            prodBtn.style.backgroundColor = 'LemonChiffon';
+            prodBtn.style.backgroundColor = 'lightblue';
             prodBtn.style.color = 'black';
             prodBtn.style.fontWeight = 'bold';
             prodBtn.style.display = 'inline';
@@ -583,7 +583,7 @@ Script,onDataLoad
 
     // Main initialization
     function init() {
-        console.log('PBS Dynamic v1.5: Initializing...');
+        console.log('PBS Dynamic v1.6: Initializing...');
         console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
 
         addTestModeButtons().then(function() {
