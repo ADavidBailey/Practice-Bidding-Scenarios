@@ -1,5 +1,5 @@
 //BBOalert, Bidding Scenarios - Dynamic Layout
-//BBOalert, Bidding Scenarios - Dynamic Layout - version 1.6
+//BBOalert, Bidding Scenarios - Dynamic Layout - version 1.7
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
 Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
@@ -426,7 +426,7 @@ Script,onDataLoad
             });
     }
 
-    // Add test mode buttons with collapsible blue header
+    // Add test mode buttons - inserts after action buttons, before first section
     function addTestModeButtons() {
         if (!pbsConfig.Enable_Test_Mode) return Promise.resolve();
 
@@ -434,8 +434,17 @@ Script,onDataLoad
             var adPanel = document.getElementById('adpanel2');
             if (!adPanel) return;
 
-            var btns = adPanel.querySelectorAll('button');
-            var insertBefore = btns[3] || null;
+            // Find the first section header (lightblue that's not an action button)
+            // Section headers have lightblue background and 100% width
+            var allBtns = adPanel.querySelectorAll('button');
+            var insertBefore = null;
+            for (var i = 0; i < allBtns.length; i++) {
+                var btn = allBtns[i];
+                if (btn.style.backgroundColor === 'lightblue' && btn.style.width === '100%') {
+                    insertBefore = btn;
+                    break;
+                }
+            }
 
             // Create collapsible test section header (blue like other sections)
             var headerBtn = document.createElement('button');
@@ -493,17 +502,6 @@ Script,onDataLoad
                     $(testBtns[i]).toggle();
                 }
             };
-
-            // Add production section header
-            var prodBtn = document.createElement('button');
-            prodBtn.textContent = 'PRODUCTION BUTTONS';
-            prodBtn.style.width = '100%';
-            prodBtn.style.backgroundColor = 'lightblue';
-            prodBtn.style.color = 'black';
-            prodBtn.style.fontWeight = 'bold';
-            prodBtn.style.display = 'inline';
-            prodBtn.style.fontSize = '18px';
-            adPanel.insertBefore(prodBtn, insertBefore);
         });
     }
 
@@ -583,21 +581,26 @@ Script,onDataLoad
 
     // Main initialization
     function init() {
-        console.log('PBS Dynamic v1.6: Initializing...');
+        console.log('PBS Dynamic v1.7: Initializing...');
         console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
 
-        addTestModeButtons().then(function() {
-            return fetch(LAYOUT_URL)
-                .then(function(response) { return response.text(); })
-                .then(function(layoutText) {
-                    console.log('PBS Dynamic: Layout loaded,', layoutText.split('\n').length, 'lines');
-                    return renderLayout(layoutText);
-                });
-        }).then(function() {
-            console.log('PBS Dynamic: Initialization complete');
-        }).catch(function(err) {
-            console.error('PBS Dynamic: Initialization failed', err);
-        });
+        // First render the layout (major header, action buttons, sections)
+        fetch(LAYOUT_URL)
+            .then(function(response) { return response.text(); })
+            .then(function(layoutText) {
+                console.log('PBS Dynamic: Layout loaded,', layoutText.split('\n').length, 'lines');
+                renderLayout(layoutText);
+            })
+            .then(function() {
+                // Then insert test buttons after action buttons, before first section
+                return addTestModeButtons();
+            })
+            .then(function() {
+                console.log('PBS Dynamic: Initialization complete');
+            })
+            .catch(function(err) {
+                console.error('PBS Dynamic: Initialization failed', err);
+            });
     }
 
     setTimeout(init, 100);
