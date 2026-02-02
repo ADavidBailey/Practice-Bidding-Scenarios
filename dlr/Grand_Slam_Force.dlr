@@ -1,13 +1,9 @@
 # button-text: Grand Slam Force
-# scenario-title: Grand Slam Force.  Does opener have 2 or the top 3?
+# scenario-title: --- Grand Slam Force.  Does partner have 2 of the top 3 honors?
+# auction-filter: .
 # Grand_Slam_Force
 dealer south
-
-
-# auction-filter: Auction.....\\n1[HS] Pass 5N
-
 # South opens 1 Major
-
 
 H_ = shape(south,x7xx + x6xx + x5xx -any 75xx -any 65xx -any 55xx) and hearts(north)==4 and top3(north,hearts)==1 and losers(north,spades)==0
 S_ = shape(south,7xxx + 6xxx + 5xxx -any 75xx -any 65xx -any 55xx) and spades(north)==4 and top3(north,spades)==1 and losers(north,hearts)==0
@@ -26,3 +22,5 @@ n3Minor        = n3Diamonds or n3Clubs
 
 
 action printpbn
+
+printpbn

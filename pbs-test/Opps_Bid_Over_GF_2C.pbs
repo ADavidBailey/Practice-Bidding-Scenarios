@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\\n2C [1234567X]
+auction-filter: Auction.....\n2C ... +[X2-7]
 */
 # Opponents Bid over our Game Forcing 2C
 dealer south
@@ -28,13 +28,13 @@ case3 = hcp(south)>18 and losers(south)<4 and (diamonds(south)>5 or clubs(south)
 s2C = (case1 or case2 or case3)
 
 # West overcalls
-wS = spades(west)>5   and top4(west,spades)>2
-wH = hearts(west)>5   and top4(west,hearts)>2
-wD = diamonds(west)>5 and top4(west,diamonds)>2
-wC = clubs(west)>6    and top4(west,clubs)>2
-wOvercalls = (wS or wH or wD or wC) and shape(west,any 75xx+any 74xx+any 73xx+any 65xx+any 64xx)
+wS = spades(west)>5   and top5(west,spades)>2
+wH = hearts(west)>5   and top5(west,hearts)>2
+wD = diamonds(west)>5 and top5(west,diamonds)>2
+wC = clubs(west)>5    and top5(west,clubs)>2
+wOvercalls = (wS or wH or wD or wC) and shape(west,any 93xx +any 84xx +any 75xx+any +any 66xx)
 
-s2C and wOvercalls
+s2C //and wOvercalls
 
 action
 printoneline,
@@ -42,4 +42,4 @@ printoneline,
 Script
 Button,Bid Over GF 2C,\n\
 --- Opponents Bid over our Game Forcing 2C.\n\
-%OppCompOverGF2C%
+%OppCompOverGF2C%,width=50%
