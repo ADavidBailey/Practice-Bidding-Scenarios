@@ -1,5 +1,5 @@
 //BBOalert, Bidding Scenarios - Dynamic Layout
-//BBOalert, Bidding Scenarios - Dynamic Layout - version 1.2
+//BBOalert, Bidding Scenarios - Dynamic Layout - version 1.3
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
 Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
@@ -197,11 +197,12 @@ Script,onDataLoad
     var GITHUB_REPO = 'Practice-Bidding-Scenarios';
     var LAYOUT_URL = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/btn/-layout.txt';
     var PBS_TEST_API = 'https://api.github.com/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/pbs-test';
-    var PBS_RAW_BASE = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/pbs-test';
+    var PBS_TEST_BASE = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/pbs-test';
+    var PBS_PROD_BASE = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/pbs';
 
     // Fetch and parse PBS file metadata (button text and style)
-    function fetchPbsMetadata(name) {
-        var rawUrl = PBS_RAW_BASE + '/' + name + '.pbs';
+    function fetchPbsMetadata(name, baseUrl) {
+        var rawUrl = baseUrl + '/' + name + '.pbs';
         return fetch(rawUrl)
             .then(function(response) { return response.text(); })
             .then(function(content) {
@@ -352,59 +353,58 @@ Script,onDataLoad
         return bt;
     }
 
-    // Create a scenario button with fetched metadata
-    function createScenarioButtonAsync(name, layoutStyle, insertBefore) {
-        return fetchPbsMetadata(name).then(function(meta) {
-            var adPanel = document.getElementById('adpanel2');
-            if (!adPanel) return null;
+    // Create a scenario button - button created sync, metadata loaded async
+    function createScenarioButton(name, layoutStyle) {
+        var adPanel = document.getElementById('adpanel2');
+        if (!adPanel) return null;
 
-            var bt = document.createElement('button');
+        var bt = document.createElement('button');
+        // Start with filename as text, will be updated when metadata loads
+        bt.textContent = name.replace(/_/g, ' ');
+        bt.style.backgroundColor = layoutStyle.backgroundColor || 'white';
+        bt.style.color = layoutStyle.color || 'black';
+        bt.style.textAlign = 'center';
+        bt.style.display = 'inline';
+        bt.style.fontSize = '20px';
+        bt.style.width = layoutStyle.width || '50%';
+        bt.setAttribute('data-scenario', name);
+        bt.setAttribute('data-pbs-url', PBS_PROD_BASE + '/' + name + '.pbs');
+
+        // Add button to panel immediately (sync)
+        adPanel.appendChild(bt);
+
+        // Fetch metadata async and update button
+        fetchPbsMetadata(name, PBS_PROD_BASE).then(function(meta) {
             bt.textContent = meta.text;
-
-            // Merge layout style with PBS style (PBS style takes precedence for backgroundColor)
-            var bgColor = meta.style.backgroundColor || layoutStyle.backgroundColor || 'white';
-            var textColor = layoutStyle.color || meta.style.color || 'black';
-            var width = layoutStyle.width || meta.style.width || '50%';
-
-            bt.style.backgroundColor = bgColor;
-            bt.style.color = textColor;
-            bt.style.textAlign = 'center';
-            bt.style.display = 'inline';
-            bt.style.fontSize = '20px';
-            bt.style.width = width;
-            bt.setAttribute('data-scenario', name);
-            bt.setAttribute('data-pbs-url', PBS_RAW_BASE + '/' + name + '.pbs');
-
-            bt.onclick = function() {
-                var scenarioName = this.getAttribute('data-scenario');
-                var url = this.getAttribute('data-pbs-url');
-                console.log('PBS Dynamic: Loading scenario', scenarioName);
-
-                fetch(url)
-                    .then(function(response) { return response.text(); })
-                    .then(function(content) {
-                        var match = content.match(/setDealerCode\(`([\s\S]*?)`,\s*"([NSEW])",\s*(true|false)\)/);
-                        if (match) {
-                            window.currentPBSScenario = scenarioName;
-                            window.currentPBSScenarioFilename = scenarioName;
-                            fetch('https://bba.harmonicsystems.com/api/scenario/select', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json', 'X-Client-Version': '1.0.0' },
-                                body: JSON.stringify({ scenario: scenarioName, user: whoAmI() || 'anonymous' })
-                            }).catch(function() {});
-                            setDealerCode(match[1], match[2], match[3] === 'true');
-                        }
-                    })
-                    .catch(function(err) { console.error('PBS Dynamic: Failed to load', scenarioName, err); });
-            };
-
-            if (insertBefore) {
-                adPanel.insertBefore(bt, insertBefore);
-            } else {
-                adPanel.appendChild(bt);
-            }
-            return bt;
+            if (meta.style.backgroundColor) bt.style.backgroundColor = meta.style.backgroundColor;
+            if (meta.style.color && !layoutStyle.color) bt.style.color = meta.style.color;
+            if (meta.style.width && !layoutStyle.width) bt.style.width = meta.style.width;
         });
+
+        bt.onclick = function() {
+            var scenarioName = this.getAttribute('data-scenario');
+            var url = this.getAttribute('data-pbs-url');
+            console.log('PBS Dynamic: Loading scenario', scenarioName);
+
+            fetch(url)
+                .then(function(response) { return response.text(); })
+                .then(function(content) {
+                    var match = content.match(/setDealerCode\(`([\s\S]*?)`,\s*"([NSEW])",\s*(true|false)\)/);
+                    if (match) {
+                        window.currentPBSScenario = scenarioName;
+                        window.currentPBSScenarioFilename = scenarioName;
+                        fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'X-Client-Version': '1.0.0' },
+                            body: JSON.stringify({ scenario: scenarioName, user: whoAmI() || 'anonymous' })
+                        }).catch(function() {});
+                        setDealerCode(match[1], match[2], match[3] === 'true');
+                    }
+                })
+                .catch(function(err) { console.error('PBS Dynamic: Failed to load', scenarioName, err); });
+        };
+
+        return bt;
     }
 
     // Load test files from GitHub API
@@ -448,69 +448,67 @@ Script,onDataLoad
             headerBtn.setAttribute('data-test-header', 'true');
             adPanel.insertBefore(headerBtn, insertBefore);
 
-            // Create test buttons with PBS metadata
-            var buttonPromises = testFiles.map(function(name) {
-                return fetchPbsMetadata(name).then(function(meta) {
-                    var bt = document.createElement('button');
+            // Create test buttons sync, load metadata async
+            testFiles.forEach(function(name) {
+                var bt = document.createElement('button');
+                bt.textContent = name.replace(/_/g, ' ');
+                bt.style.backgroundColor = 'lightyellow';
+                bt.style.color = 'black';
+                bt.style.textAlign = 'center';
+                bt.style.display = 'inline';
+                bt.style.fontSize = '18px';
+                bt.style.width = '50%';
+                bt.setAttribute('data-scenario', name);
+                bt.setAttribute('data-test-button', 'true');
+                adPanel.insertBefore(bt, insertBefore);
+
+                // Load metadata async and update button
+                fetchPbsMetadata(name, PBS_TEST_BASE).then(function(meta) {
                     bt.textContent = meta.text;
-                    var bgColor = meta.style.backgroundColor || 'lightyellow';
-                    var textColor = meta.style.color || 'black';
-                    bt.style.backgroundColor = bgColor;
-                    bt.style.color = textColor;
-                    bt.style.textAlign = 'center';
-                    bt.style.display = 'inline';
-                    bt.style.fontSize = '18px';
-                    bt.style.width = '50%';
-                    bt.setAttribute('data-scenario', name);
-                    bt.setAttribute('data-test-button', 'true');
-
-                    bt.onclick = function() {
-                        var scenarioName = this.getAttribute('data-scenario');
-                        var url = PBS_RAW_BASE + '/' + scenarioName + '.pbs';
-                        fetch(url)
-                            .then(function(response) { return response.text(); })
-                            .then(function(content) {
-                                var match = content.match(/setDealerCode\(`([\s\S]*?)`,\s*"([NSEW])",\s*(true|false)\)/);
-                                if (match) {
-                                    window.currentPBSScenario = scenarioName;
-                                    setDealerCode(match[1], match[2], match[3] === 'true');
-                                }
-                            })
-                            .catch(function(err) { console.error('PBS (TEST):', err); });
-                    };
-
-                    adPanel.insertBefore(bt, insertBefore);
-                    return bt;
+                    if (meta.style.backgroundColor) bt.style.backgroundColor = meta.style.backgroundColor;
+                    if (meta.style.color) bt.style.color = meta.style.color;
                 });
-            });
 
-            return Promise.all(buttonPromises).then(function() {
-                // Add click handler for collapse/expand
-                headerBtn.onclick = function() {
-                    var testBtns = adPanel.querySelectorAll('[data-test-button]');
-                    for (var i = 0; i < testBtns.length; i++) {
-                        $(testBtns[i]).toggle();
-                    }
+                bt.onclick = function() {
+                    var scenarioName = this.getAttribute('data-scenario');
+                    var url = PBS_TEST_BASE + '/' + scenarioName + '.pbs';
+                    fetch(url)
+                        .then(function(response) { return response.text(); })
+                        .then(function(content) {
+                            var match = content.match(/setDealerCode\(`([\s\S]*?)`,\s*"([NSEW])",\s*(true|false)\)/);
+                            if (match) {
+                                window.currentPBSScenario = scenarioName;
+                                setDealerCode(match[1], match[2], match[3] === 'true');
+                            }
+                        })
+                        .catch(function(err) { console.error('PBS (TEST):', err); });
                 };
-
-                // Add production section header
-                var prodBtn = document.createElement('button');
-                prodBtn.textContent = 'PRODUCTION BUTTONS';
-                prodBtn.style.width = '100%';
-                prodBtn.style.backgroundColor = 'LemonChiffon';
-                prodBtn.style.color = 'black';
-                prodBtn.style.fontWeight = 'bold';
-                prodBtn.style.display = 'inline';
-                prodBtn.style.fontSize = '18px';
-                adPanel.insertBefore(prodBtn, insertBefore);
             });
+
+            // Add click handler for collapse/expand
+            headerBtn.onclick = function() {
+                var testBtns = adPanel.querySelectorAll('[data-test-button]');
+                for (var i = 0; i < testBtns.length; i++) {
+                    $(testBtns[i]).toggle();
+                }
+            };
+
+            // Add production section header
+            var prodBtn = document.createElement('button');
+            prodBtn.textContent = 'PRODUCTION BUTTONS';
+            prodBtn.style.width = '100%';
+            prodBtn.style.backgroundColor = 'LemonChiffon';
+            prodBtn.style.color = 'black';
+            prodBtn.style.fontWeight = 'bold';
+            prodBtn.style.display = 'inline';
+            prodBtn.style.fontSize = '18px';
+            adPanel.insertBefore(prodBtn, insertBefore);
         });
     }
 
-    // Parse and render layout with async button creation
+    // Parse and render layout - buttons created sync, metadata loaded async
     function renderLayout(layoutText) {
         var lines = layoutText.split('\n');
-        var buttonPromises = [];
 
         for (var i = 0; i < lines.length; i++) {
             var line = lines[i].trim();
@@ -567,7 +565,7 @@ Script,onDataLoad
                 continue;
             }
 
-            // Button row - create buttons async to fetch metadata
+            // Button row - create buttons sync, metadata loaded async
             var buttons = parseLayoutLine(line);
             for (var j = 0; j < buttons.length; j++) {
                 var layoutBtn = buttons[j];
@@ -576,17 +574,15 @@ Script,onDataLoad
                 } else {
                     var style = { width: layoutBtn.width || '50%' };
                     if (layoutBtn.color) style.color = layoutBtn.color;
-                    buttonPromises.push(createScenarioButtonAsync(layoutBtn.name, style, null));
+                    createScenarioButton(layoutBtn.name, style);
                 }
             }
         }
-
-        return Promise.all(buttonPromises);
     }
 
     // Main initialization
     function init() {
-        console.log('PBS Dynamic v1.2: Initializing...');
+        console.log('PBS Dynamic v1.3: Initializing...');
         console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
 
         addTestModeButtons().then(function() {
