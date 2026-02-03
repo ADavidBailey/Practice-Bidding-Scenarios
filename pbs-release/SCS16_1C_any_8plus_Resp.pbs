@@ -20,8 +20,19 @@ convention-card: Precision
 auction-filter: Auction.....[\s\S][\s\S]?1C
 */
 # convention-card: Precision
+
+
+
+# Strong C & any 8+ response
+dealer south
+
+# South has 16+
+hcp(south)>15
+
+# North has 8+
+and hcp(north)>4 and hcp(north)>7
 `, "S", true)
 Script
 Button,8+ Resp 16+,\n\
 --- Any 8+ Response (16+ HCP)\n\
-%scs16StrongClubAny8PlusResp%,backgroundColor=lightpink
+%scs16StrongClubAny8PlusResp%,width=50% backgroundColor=lightpink
