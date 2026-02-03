@@ -1,6 +1,6 @@
 # button-text: 8+ Resp 16+
 # scenario-title: --- Any 8+ Response (16+ HCP)
-# auction-filter: Auction.....[\s\S][\s\S]?1C
+# auction-filter: Auction.....\n1C
 # convention-card: Precision
 # SCS16_1C_any_8plus_Resp
 dealer south
@@ -10,11 +10,8 @@ dealer south
 
 # Strong C & any 8+ response
 
-# South has 16+
-hcp(south)>15
-
-# North has 8+
-and hcp(north)>4 and hcp(north)>7
+# South has 16+ and North has 8+
+hcp(south)>15 and hcp(north)>7
 
 
 action printpbn
