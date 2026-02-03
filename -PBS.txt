@@ -1,5 +1,5 @@
 //BBOalert, Bidding Scenarios
-//BBOalert, Bidding Scenarios - version 4.1
+//BBOalert, Bidding Scenarios - version 4.1.1
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
 Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
@@ -455,10 +455,14 @@ Script,onDataLoad
                 if (meta.style.backgroundColor) bt.style.backgroundColor = meta.style.backgroundColor;
                 if (meta.style.color && !layoutStyle.color) bt.style.color = meta.style.color;
                 if (meta.style.width && !layoutStyle.width) bt.style.width = meta.style.width;
-                // Set value for tooltip (chat text + %alias% format expected by PBStooltips.js)
+                // Set tooltip and chat data
                 if (meta.chat) {
                     bt.value = meta.chat + '%' + meta.alias + '%';
                     bt.setAttribute('data-chat', meta.chat);
+                    // Set title directly for tooltip (PBStooltips.js runs before buttons exist)
+                    // Remove leading \n--- prefix if present
+                    var tooltipText = meta.chat.replace(/^\n?---\s*/, '').trim();
+                    bt.title = tooltipText;
                 }
             }
         });
@@ -582,10 +586,13 @@ Script,onDataLoad
                     bt.textContent = meta.text;
                     if (meta.style.backgroundColor) bt.style.backgroundColor = meta.style.backgroundColor;
                     if (meta.style.color) bt.style.color = meta.style.color;
-                    // Set value for tooltip and chat
+                    // Set tooltip and chat data
                     if (meta.chat) {
                         bt.value = meta.chat + '%' + meta.alias + '%';
                         bt.setAttribute('data-chat', meta.chat);
+                        // Set title directly for tooltip
+                        var tooltipText = meta.chat.replace(/^\n?---\s*/, '').trim();
+                        bt.title = tooltipText;
                     }
                 });
 
@@ -911,7 +918,7 @@ Script,onDataLoad
     }
 
     function runInit() {
-        console.log('PBS v4.1: Initializing...');
+        console.log('PBS v4.1.1: Initializing...');
         console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
         console.log('PBS Dynamic: Beta layout =', pbsConfig.Use_Beta_Layout);
 
