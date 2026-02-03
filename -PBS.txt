@@ -1,5 +1,5 @@
 //BBOalert, Bidding Scenarios
-//BBOalert, Bidding Scenarios - version 4.0
+//BBOalert, Bidding Scenarios - version 4.1
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
 Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
@@ -178,7 +178,7 @@ Script,reviewCurrentCode,setDealerCode("");
 
 Option,Practice Table
 
-// Dynamic Layout System v4.0
+// Dynamic Layout System v4.1
 // Fetches layout configuration and PBS metadata at runtime
 // Rebuilds buttons immediately when config changes
 Script,onDataLoad
@@ -244,25 +244,63 @@ Script,onDataLoad
     }
 
     // Parse Button line from PBS content
+    // Format: Button,<text>,<chat/tooltip>%alias%,<style>
+    // The chat/tooltip is multiline text that gets displayed in chat and as hover tooltip
     function parsePbsButton(content, name) {
-        var result = { text: name.replace(/_/g, ' '), style: {} };
+        var result = { text: name.replace(/_/g, ' '), style: {}, chat: '', alias: name };
 
-        // Find the Button line - format: Button,<text>,<multiline chat>%alias%,<style>
-        var buttonMatch = content.match(/^Button,([^,\n]+)/m);
-        if (buttonMatch) {
-            result.text = buttonMatch[1].trim();
-        }
+        // Find the full Button line(s) - may span multiple lines with \n\ continuations
+        var buttonLineMatch = content.match(/^Button,(.*)$/m);
+        if (buttonLineMatch) {
+            var buttonLine = buttonLineMatch[1];
 
-        // Find style after %alias% - look for the pattern %...%,<style>
-        var styleMatch = content.match(/%[^%]+%,([^\n]+)$/m);
-        if (styleMatch) {
-            var styleStr = styleMatch[1].trim();
-            var styleParts = styleStr.split(/\s+/);
-            for (var i = 0; i < styleParts.length; i++) {
-                var kv = styleParts[i].split('=');
-                if (kv.length === 2) {
-                    result.style[kv[0]] = kv[1];
+            // Handle line continuations (lines ending with \n\)
+            var lines = content.split('\n');
+            var inButton = false;
+            var fullButtonContent = '';
+            for (var i = 0; i < lines.length; i++) {
+                var line = lines[i];
+                if (line.startsWith('Button,')) {
+                    inButton = true;
+                    fullButtonContent = line.substring(7); // Remove 'Button,'
+                } else if (inButton) {
+                    fullButtonContent += line;
+                    if (!line.endsWith('\\')) {
+                        break; // End of button line
+                    }
                 }
+            }
+
+            // Parse: text,chat%alias%,style
+            // First comma separates button text from the rest
+            var firstComma = fullButtonContent.indexOf(',');
+            if (firstComma > 0) {
+                result.text = fullButtonContent.substring(0, firstComma).trim();
+                var rest = fullButtonContent.substring(firstComma + 1);
+
+                // Find %alias% pattern
+                var aliasMatch = rest.match(/%([^%]+)%/);
+                if (aliasMatch) {
+                    result.alias = aliasMatch[1];
+                    // Chat text is everything before %alias%
+                    var aliasStart = rest.indexOf('%' + aliasMatch[1] + '%');
+                    result.chat = rest.substring(0, aliasStart).replace(/\\n\\/g, '\n').replace(/\\n/g, '\n');
+
+                    // Style is after %alias%,
+                    var afterAlias = rest.substring(aliasStart + aliasMatch[0].length);
+                    if (afterAlias.startsWith(',')) {
+                        var styleStr = afterAlias.substring(1).trim();
+                        var styleParts = styleStr.split(/\s+/);
+                        for (var j = 0; j < styleParts.length; j++) {
+                            var kv = styleParts[j].split('=');
+                            if (kv.length === 2) {
+                                result.style[kv[0]] = kv[1];
+                            }
+                        }
+                    }
+                }
+            } else {
+                result.text = fullButtonContent.trim();
             }
         }
 
@@ -405,7 +443,7 @@ Script,onDataLoad
         // Add button to panel immediately (sync)
         adPanel.appendChild(bt);
 
-        // Fetch metadata async and update button
+        // Fetch metadata async and update button text, style, and tooltip
         fetchPbsMetadata(name, PBS_RELEASE_BASE).then(function(meta) {
             bt.textContent = meta.text;
             if (meta.missing) {
@@ -417,13 +455,24 @@ Script,onDataLoad
                 if (meta.style.backgroundColor) bt.style.backgroundColor = meta.style.backgroundColor;
                 if (meta.style.color && !layoutStyle.color) bt.style.color = meta.style.color;
                 if (meta.style.width && !layoutStyle.width) bt.style.width = meta.style.width;
+                // Set value for tooltip (chat text + %alias% format expected by PBStooltips.js)
+                if (meta.chat) {
+                    bt.value = meta.chat + '%' + meta.alias + '%';
+                    bt.setAttribute('data-chat', meta.chat);
+                }
             }
         });
 
         bt.onclick = function() {
             var scenarioName = this.getAttribute('data-scenario');
             var url = this.getAttribute('data-pbs-url');
+            var chatText = this.getAttribute('data-chat');
             console.log('PBS Dynamic: Loading scenario', scenarioName);
+
+            // Send chat message to self (scenario description)
+            if (chatText) {
+                sendPrivateChat(whoAmI(), chatText);
+            }
 
             fetch(url)
                 .then(function(response) { return response.text(); })
@@ -528,16 +577,28 @@ Script,onDataLoad
                 bt.setAttribute('data-test-button', 'true');
                 adPanel.insertBefore(bt, insertBefore);
 
-                // Load metadata async and update button
+                // Load metadata async and update button text, style, and tooltip
                 fetchPbsMetadata(name, PBS_TEST_BASE).then(function(meta) {
                     bt.textContent = meta.text;
                     if (meta.style.backgroundColor) bt.style.backgroundColor = meta.style.backgroundColor;
                     if (meta.style.color) bt.style.color = meta.style.color;
+                    // Set value for tooltip and chat
+                    if (meta.chat) {
+                        bt.value = meta.chat + '%' + meta.alias + '%';
+                        bt.setAttribute('data-chat', meta.chat);
+                    }
                 });
 
                 bt.onclick = function() {
                     var scenarioName = this.getAttribute('data-scenario');
+                    var chatText = this.getAttribute('data-chat');
                     var url = PBS_TEST_BASE + '/' + scenarioName + '.pbs';
+
+                    // Send chat message to self (scenario description)
+                    if (chatText) {
+                        sendPrivateChat(whoAmI(), chatText);
+                    }
+
                     fetch(url)
                         .then(function(response) { return response.text(); })
                         .then(function(content) {
@@ -850,7 +911,7 @@ Script,onDataLoad
     }
 
     function runInit() {
-        console.log('PBS v4.0: Initializing...');
+        console.log('PBS v4.1: Initializing...');
         console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
         console.log('PBS Dynamic: Beta layout =', pbsConfig.Use_Beta_Layout);
 
