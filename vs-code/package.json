@@ -153,6 +153,11 @@
         "command": "pbs.releaseSelected",
         "title": "Release to Production",
         "icon": "$(cloud-upload)"
+      },
+      {
+        "command": "pbs.runReleaseLayout",
+        "title": "PBS: Release Layout to Production",
+        "icon": "$(cloud-upload)"
       }
     ],
     "menus": {
@@ -189,6 +194,11 @@
         {
           "submenu": "pbs.pipeline",
           "when": "resourcePath =~ /\\/([Pp][Bb][Ss]|btn|pbs-test|dlr|pbn|pbn-rotated-for-4-players|bba|bba-filtered|bba-filtered-out|bba-summary|bidding-sheets|lin|lin-rotated-for-4-players|quiz)\\/[^/]+$/",
+          "group": "navigation"
+        },
+        {
+          "command": "pbs.runReleaseLayout",
+          "when": "resourceFilename == -button-layout-beta.txt",
           "group": "navigation"
         }
       ],

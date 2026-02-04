@@ -160,6 +160,24 @@ export function registerPipelineCommands(context: vscode.ExtensionContext): void
     // Release operation (not included in wildcards - must be explicit)
     registerCommand(context, 'pbs.runRelease', 'release');
 
+    // Release layout operation (copies beta layout to release)
+    context.subscriptions.push(
+        vscode.commands.registerCommand('pbs.runReleaseLayout', async () => {
+            const confirm = await vscode.window.showInformationMessage(
+                'Release button layout to production?',
+                { modal: true },
+                'Release'
+            );
+
+            if (confirm !== 'Release') {
+                return;
+            }
+
+            // Pass "layout" as dummy scenario - the operation ignores it
+            await runPipeline('layout', 'release-layout');
+        })
+    );
+
     // Release selected scenarios from tree view (supports multi-select)
     context.subscriptions.push(
         vscode.commands.registerCommand('pbs.releaseSelected', async (...args: any[]) => {
