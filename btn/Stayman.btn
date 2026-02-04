@@ -1,5 +1,5 @@
 # alias: Stayman
-# button-text: Stayman Basics
+# button-text: Basic Stayman
 # dealer-position: S
 # gib-works: true
 # bba-works: true
@@ -55,8 +55,11 @@ leveledNorth = (nWeak and keep33) or (nNormal and keep30)
 # North's hand requirements
 northHand = nHasMajor and nHCPRange and leveledNorth
 
+# disallow 14-point hands that might open with 5-card minor:
+true15to17 = hcp(south)>14 and hcp(south)<18
+
 # Combine all conditions
-NT and northHand and calmOpps
+condition NT and northHand and calmOpps and true15to17
 
 # Generate Statistics
 action

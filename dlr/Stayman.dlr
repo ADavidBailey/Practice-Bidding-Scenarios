@@ -1,4 +1,4 @@
-# button-text: Stayman Basics
+# button-text: Basic Stayman
 # scenario-title: --- Stayman Convention (Basics)
 # auction-filter: Auction.....\n1NT? +Pass +(Pass|2C)
 # Stayman
@@ -123,8 +123,11 @@ leveledNorth = (nWeak and keep33) or (nNormal and keep30)
 # North's hand requirements
 northHand = nHasMajor and nHCPRange and leveledNorth
 
+# disallow 14-point hands that might open with 5-card minor:
+true15to17 = hcp(south)>14 and hcp(south)<18
+
 # Combine all conditions
-NT and northHand and calmOpps
+condition NT and northHand and calmOpps and true15to17
 
 # Generate Statistics
 action
@@ -135,3 +138,5 @@ average "Normal (8+) " 100 * nNormal,
 
 frequency "HCP South " (hcp(south), 14, 18),
 frequency "HCP North " (hcp(north), 4, 12),
+
+printpbn
