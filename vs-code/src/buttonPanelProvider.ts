@@ -12,15 +12,9 @@ export class PbsTreeItem extends vscode.TreeItem {
         public readonly collapsibleState: vscode.TreeItemCollapsibleState,
         public readonly button?: PbsButton,
         public readonly isSection: boolean = false,
-        public readonly sectionColor?: string,
-        public readonly isPendingRelease: boolean = false
+        public readonly sectionColor?: string
     ) {
         super(label, collapsibleState);
-
-        // Set contextValue for pending release items (enables context menu)
-        if (isPendingRelease && !isSection) {
-            this.contextValue = 'pendingRelease';
-        }
 
         if (button && button.filePath) {
             this.tooltip = this.createTooltip(button);
@@ -89,7 +83,6 @@ export class ButtonPanelProvider implements vscode.TreeDataProvider<PbsTreeItem>
     private sections: PbsSection[] = [];
     private buttonsByScriptId: Map<string, PbsButton> = new Map();
     private unmappedButtons: PbsButton[] = [];
-    private pendingReleaseButtons: PbsButton[] = [];
 
     constructor(private workspaceRoot: string | undefined) {
         this.loadData().then(() => {
@@ -116,9 +109,6 @@ export class ButtonPanelProvider implements vscode.TreeDataProvider<PbsTreeItem>
         // Load from both directories, with pbs-test taking precedence
         const releaseButtons = await parsePbsDirectory(pbsReleaseDir);
         const testButtons = await parsePbsDirectory(pbsTestDir);
-
-        // Store pbs-test buttons for "Pending Release" section
-        this.pendingReleaseButtons = testButtons;
 
         // Merge: pbs-test overrides pbs-release for same scenario
         const buttonMap = new Map<string, PbsButton>();
@@ -248,18 +238,6 @@ export class ButtonPanelProvider implements vscode.TreeDataProvider<PbsTreeItem>
             // Root level - return sections
             const items: PbsTreeItem[] = [];
 
-            // Add "Pending Release" section at the top if there are pbs-test files
-            if (this.pendingReleaseButtons.length > 0) {
-                const item = new PbsTreeItem(
-                    `Pending Release (${this.pendingReleaseButtons.length})`,
-                    vscode.TreeItemCollapsibleState.Expanded,
-                    undefined,
-                    true,
-                    'orange'
-                );
-                items.push(item);
-            }
-
             // Add regular sections
             const validSections = this.sections.filter(section =>
                 section.title && section.title.trim() !== ''
@@ -287,23 +265,6 @@ export class ButtonPanelProvider implements vscode.TreeDataProvider<PbsTreeItem>
             }
 
             return Promise.resolve(items);
-        }
-
-        // Check if this is the Pending Release section
-        if (element.label?.startsWith('Pending Release')) {
-            return Promise.resolve(
-                this.pendingReleaseButtons
-                    .filter(button => button.label && button.label.trim() !== '' && button.label !== '---')
-                    .sort((a, b) => a.label.localeCompare(b.label))
-                    .map(button => new PbsTreeItem(
-                        button.label,
-                        vscode.TreeItemCollapsibleState.None,
-                        button,
-                        false,
-                        undefined,
-                        true  // isPendingRelease = true for context menu
-                    ))
-            );
         }
 
         // Check if this is the Unmapped section

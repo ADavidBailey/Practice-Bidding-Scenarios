@@ -25,6 +25,13 @@
           "initialSize": 1
         },
         {
+          "id": "pbsPendingRelease",
+          "name": "Pending Release",
+          "type": "tree",
+          "initialSize": 1,
+          "canSelectMany": true
+        },
+        {
           "id": "pbsButtonPanel",
           "name": "Scenarios",
           "type": "tree",
@@ -57,6 +64,11 @@
       {
         "command": "pbs.refreshButtonGrid",
         "title": "Refresh PBS Button Grid",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "pbs.refreshPendingRelease",
+        "title": "Refresh Pending Release",
         "icon": "$(refresh)"
       },
       {
@@ -151,6 +163,11 @@
           "group": "navigation"
         },
         {
+          "command": "pbs.refreshPendingRelease",
+          "when": "view == pbsPendingRelease",
+          "group": "navigation"
+        },
+        {
           "command": "pbs.refreshButtonGrid",
           "when": "view == pbsButtonGrid",
           "group": "navigation"
@@ -164,7 +181,7 @@
         },
         {
           "command": "pbs.releaseSelected",
-          "when": "view == pbsButtonPanel && viewItem == pendingRelease",
+          "when": "view == pbsPendingRelease && viewItem == pendingRelease",
           "group": "inline"
         }
       ],

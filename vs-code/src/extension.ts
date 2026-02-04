@@ -3,6 +3,7 @@ import * as path from 'path';
 import { ButtonPanelProvider } from './buttonPanelProvider';
 import { ButtonGridProvider } from './buttonGridProvider';
 import { CurrentScenarioProvider, ScenarioTreeItem } from './currentScenarioProvider';
+import { PendingReleaseProvider } from './pendingReleaseProvider';
 import { registerPipelineCommands, createStatusBar } from './pipelineRunner';
 import { ActivityLogger } from './activityLogger';
 import { getBtnMetadata, clearMetadataCache } from './btnParser';
@@ -115,6 +116,16 @@ export function activate(context: vscode.ExtensionContext) {
         showCollapseAll: false
     });
 
+    // Create the pending release provider (shows scenarios awaiting release)
+    const pendingReleaseProvider = new PendingReleaseProvider(workspaceRoot);
+
+    // Register the pending release tree view
+    const pendingReleaseView = vscode.window.createTreeView('pbsPendingRelease', {
+        treeDataProvider: pendingReleaseProvider,
+        showCollapseAll: false,
+        canSelectMany: true
+    });
+
     // Update bbaWorks context when active editor changes
     const editorChangeListener = vscode.window.onDidChangeActiveTextEditor(editor => {
         updateBbaWorksContext(editor, workspaceRoot);
@@ -168,6 +179,12 @@ export function activate(context: vscode.ExtensionContext) {
     const refreshGridCommand = vscode.commands.registerCommand('pbs.refreshButtonGrid', () => {
         buttonGridProvider.refresh();
         vscode.window.showInformationMessage('PBS Button Grid refreshed');
+    });
+
+    // Register refresh command for pending release view
+    const refreshPendingReleaseCommand = vscode.commands.registerCommand('pbs.refreshPendingRelease', () => {
+        pendingReleaseProvider.refresh();
+        vscode.window.showInformationMessage('Pending Release refreshed');
     });
 
     // Register rebuild artifact command (for right-click context menu)
@@ -233,17 +250,38 @@ export function activate(context: vscode.ExtensionContext) {
     artifactWatcher.onDidCreate(() => currentScenarioProvider.refresh());
     artifactWatcher.onDidDelete(() => currentScenarioProvider.refresh());
 
+    // Watch pbs-test directory for pending release updates
+    const pbsTestWatcher = vscode.workspace.createFileSystemWatcher('**/pbs-test/*.pbs');
+    pbsTestWatcher.onDidChange(() => {
+        pendingReleaseProvider.refresh();
+        buttonPanelProvider.refresh();
+        currentScenarioProvider.refresh();
+    });
+    pbsTestWatcher.onDidCreate(() => {
+        pendingReleaseProvider.refresh();
+        buttonPanelProvider.refresh();
+        currentScenarioProvider.refresh();
+    });
+    pbsTestWatcher.onDidDelete(() => {
+        pendingReleaseProvider.refresh();
+        buttonPanelProvider.refresh();
+        currentScenarioProvider.refresh();
+    });
+
     context.subscriptions.push(
         currentScenarioView,
+        pendingReleaseView,
         treeView,
         webviewProvider,
         refreshCommand,
         refreshGridCommand,
+        refreshPendingReleaseCommand,
         rebuildArtifactCommand,
         openFileCommand,
         pbsWatcher,
         configWatcher,
-        artifactWatcher
+        artifactWatcher,
+        pbsTestWatcher
     );
 
     // Register pipeline commands and status bar
@@ -256,6 +294,7 @@ export function activate(context: vscode.ExtensionContext) {
         buttonPanelProvider.refresh();
         buttonGridProvider.refresh();
         currentScenarioProvider.refresh();
+        pendingReleaseProvider.refresh();
         console.log('PBS Dashboard refreshed on startup');
     }, 500);
 }
