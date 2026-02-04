@@ -26,15 +26,20 @@ dealer south
 #include "script/Predict-Opening-1-Bid"
 # Defines oneClub, oneDiamond
 
+#include "script/TP"
+# Defines tpWest, tpNorth
+
+/*
 # Calculate South's TP
 sC = clubs(south) >4   ? clubs(south) - 4    : 0
 sD = diamonds(south)>4 ? diamonds(south) - 4 : 0
 sH = hearts(south)>4   ? hearts(south) - 4   : 0
 sS = spades(south)>4   ? spades(south) - 4   : 0
 sTP = hcp(south) + sC + sD + sH + sS
+*/
 
 # Define suit quality for NT -- Qxx opener's suit and Kxx or QJx in unbid suits
-cQ = hcp(north,clubs)>0 and hcp(north,diamonds)>2  // 10-12 doesn't all room for 3-points in each suit
+cQ = hcp(north,clubs)>0 and hcp(north,diamonds)>2  // 10-12 doesn't have room for 3-points in each suit
 dQ = hcp(north,diamonds)>0 and hcp(north,clubs)>2
 mQ = hcp(north,hearts)>2 and hcp(north,spades)>2
 
@@ -42,7 +47,7 @@ mQ = hcp(north,hearts)>2 and hcp(north,spades)>2
 s1C = oneClub and dQ and clubs(south)>5
 s1D = oneDiamond and cQ and diamonds(south)>5   // north doesn't have the strength for 2/1
 s1mShape = shape(south,any 7xxx+any 6xxx)       // south shape upgrades required for TP
-s1mRange = sTP>21 and hcp(south)<22
+s1mRange = tpSouth>21 and hcp(south)<22
 n1mRange = hcp(north)>10 and hcp(north)<13      // north responds 2N (I hope!)
 n1mShape = shape(north,any 4xxx)
 
