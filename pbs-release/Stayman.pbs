@@ -139,8 +139,11 @@ leveledNorth = (nWeak and keep33) or (nNormal and keep30)
 # North's hand requirements
 northHand = nHasMajor and nHCPRange and leveledNorth
 
+# disallow 14-point hands that might open with 5-card minor:
+true15to17 = hcp(south)>14 and hcp(south)<18
+
 # Combine all conditions
-NT and northHand and calmOpps
+condition NT and northHand and calmOpps and true15to17
 
 # Generate Statistics
 action
@@ -153,17 +156,17 @@ frequency "HCP South " (hcp(south), 14, 18),
 frequency "HCP North " (hcp(north), 4, 12),
 `, "S", true)
 Script
-Button,Stayman Basics,\n\
+Button,Basic Stayman,\n\
 --- Stayman Convention (Basics)\n\
 Stayman (2!C) asks partner for a 4-card major after a 1NT opening.\n\
 • 2!D - No 4-card major\n\
-• 2!H - 4+!H， may also have 4!S\n\
+• 2!H - 4+!H，may also have 4!S\n\
 • 2!S - 4+!S and denies 4!H\n\
 \n\
 Requirements to bid Stayman:\n\
 • At least one 4-card major\n\
 • 8+ HCP for invitational hands\n\
-• With weak hands (< 8 HCP)， only bid 2!C if you can pass any response\n\
+• With weak hands (< 8 HCP)，only bid 2!C if you can pass any response\n\
 \n\
 Hands without a 4-card major or with fewer than 8 HCP usually pass 1NT.\n\
 https://www.bridgebum.com/stayman.php\n\
