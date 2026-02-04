@@ -14,6 +14,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
     })
 }).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
 setDealerCode(`
+
+/*
+auction-filter: Auction.....\n[1-7]
+*/
 produce 5000
 dealer south
 
