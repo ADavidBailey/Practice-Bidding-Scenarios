@@ -17,7 +17,7 @@ setDealerCode(`
 
 /*
 convention-card: Precision
-auction-filter: Auction.....[\s\S][\s\S]?1C
+auction-filter: Auction.....\n1C
 */
 # convention-card: Precision
 
@@ -26,11 +26,8 @@ auction-filter: Auction.....[\s\S][\s\S]?1C
 # Strong C & any 8+ response
 dealer south
 
-# South has 16+
-hcp(south)>15
-
-# North has 8+
-and hcp(north)>4 and hcp(north)>7
+# South has 16+ and North has 8+
+hcp(south)>15 and hcp(north)>7 and controls(north)>2
 `, "S", true)
 Script
 Button,8+ Resp 16+,\n\
