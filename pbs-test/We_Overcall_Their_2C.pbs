@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\n2C =.= (X|2[DHS]) +
+auction-filter: Auction.....\n2C =.= +(X|2[DHSN]) +
 */
 # They open 2C (strong) and we overcall or preempt
 
@@ -55,7 +55,7 @@ average "sTwoSuits     " 100 * sTwoSuits,
 average "losers(south) " losersWithTwoSuits,
 average "sOneSuit      " 100 * sOneSuit,
 average "losers(south) " losersWithOneSuit,
-`, "S", true)
+`, "E", true)
 Script
 Button,We Overcall Their 2C,\n\
 ---  They open 2C (strong) and we overcall or preempt.\n\

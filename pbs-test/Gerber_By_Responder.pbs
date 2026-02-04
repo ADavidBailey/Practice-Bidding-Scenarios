@@ -1,8 +1,23 @@
-# button-text: Gerber by Responder (Lev)
-# scenario-title: --- Gerber by Responder (Leveled)
-# auction-filter: Note....Gerber
-# Gerber_By_Responder
-dealer south
+Script,GerberByResponder
+window.currentPBSScenario = 'GerberByResponder';
+window.currentPBSScenarioFilename = 'Gerber_By_Responder';
+console.log('PBS: Logging scenario selection for GerberByResponder');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'GerberByResponder',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+auction-filter: Note....Gerber
+*/
 # These are sequences where 4C-Gerber might be bid by Responder
 # Gerber by Responder
 #
@@ -15,6 +30,7 @@ dealer south
 # 2C 2D 2N - ?
 # 2C 2D 3N - ?
 
+dealer south
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -337,6 +353,7 @@ anyNT and noMfit
 and levelTheDeal
 
 
+produce 10
 action
 average "12 + 21: 1x-1y-1N-? " 100 * nt12,
 average "15 + 18: 1N-?       " 100 * nt15,
@@ -350,8 +367,13 @@ average "hcp N               " hcp(north),
 average "total < 32  " 100 * slamTry,
 average "total 33-36 " 100 * smallSlam,
 average "total > 36  " 100 * grandSlam,
-
-
-action printpbn
-
-printpbn
+`, "S", true)
+Script
+Button,Gerber by Responder (Lev),\n\
+--- Gerber by Responder (Leveled)\n\
+The Notrump Ladder describes the opening sequences for all balanced hands.  These deals，\n\
+allow you to explore for slam. The opener wil have a balanced hand.  The responder will\n\
+have values to investigate slam.  The pair has no 8-card major or 9-card minor fit.  The hands\n\
+are leveled so that the first several ranges of NT ladder occur with approximately the same frequency.\n\
+https://www.bridgebum.com/gerber.php\n\
+%GerberByResponder%,width=50%

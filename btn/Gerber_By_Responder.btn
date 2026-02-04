@@ -29,7 +29,7 @@ https://www.bridgebum.com/gerber.php
 dealer south
 
 #include "script/Predict-Opening-1-Bid"
-# Defines oneNT, twoNT, gameForce2C, threeNT
+# Defines oneNT, twoNT, gameForce2C, gambleNT
 #include "script/Predict-Response-to-1-Bid"
 #include "script/Predict-Openers-Rebid"
 # Defines CDN, CHN, CSN, DHN, DSN, HSN
@@ -64,7 +64,7 @@ nt15 = oneNT   and hcp(south)>=15 and hcp(south)<=17 and hcp(north)>=17 and nort
 nt18 = xyNT    and hcp(south)>=18 and hcp(south)<=19 and hcp(north)>=14 and northBal
 nt20 = twoNT   and hcp(south)>=20 and hcp(south)<=21 and hcp(north)>=12 and northNo4M
 nt22 = gfNT    and hcp(south)>=22 and hcp(south)<=24 and hcp(north)>=10 and northNo4M
-nt25 = threeNT and hcp(south)>=25 and hcp(south)<=27 and hcp(north)>=7  and northNo4M
+nt25 = gambleNT and hcp(south)>=25 and hcp(south)<=27 and hcp(north)>=7  and northNo4M
 nt28 = gfNT    and hcp(south)>=28                    and hcp(north)>=4  and northNo4M
 anyNT = nt12 or nt15 or nt18 or nt20 or nt22 or nt25 or nt28
 
