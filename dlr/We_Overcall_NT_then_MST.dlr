@@ -1,12 +1,13 @@
 # button-text: then MST
-# scenario-title: Minor Suit Transfer
+# scenario-title: --- Minor Suit Transfer
+# auction-filter: Note.....* transfer to [cd]
+# convention-card: 21GF-MSTandMSS
 # We_Overcall_NT_then_MST
 dealer east
+# convention-card: 21GF-MSTandMSS
 
 
 # Enable both MST and MSS
-# convention-card: 21GF-MSTandMSS
-# auction-filter: Note...:Minor Suit Transfers
 
 # We Overcall 1NT then Minor Suit Transfers (MST)
 
@@ -43,5 +44,6 @@ nResponds = (shape(north,xxx7+xxx6+xx7x+xx6x) and hcp(north)>7) or (shape(north,
 eOpens and sNT and nResponds
 
 
-
 action printpbn
+
+printpbn

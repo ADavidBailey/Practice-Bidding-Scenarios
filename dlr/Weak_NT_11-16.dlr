@@ -1,11 +1,10 @@
-# button-text: Weak NT 11-16 (Lev)
-# scenario-title: South has a semi-balanced hand with 11-16 HCP and not 5/4 in the majors.
+# button-text: WeakNT11
+# scenario-title: 
+# auction-filter: Auction.....\n1NT?
+# convention-card: Precision
 # Weak_NT_11-16
 dealer south
-
-
 # convention-card: Precision
-# auction-filter: Auction.....\\n1NT.
 
 
 hcp1113 = hcp(south)>10 and hcp(south)<14
@@ -48,7 +47,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 lev1113 = hcp1113 and keep56
 lev1416 = hcp1416 and keep
 levelTheDeal = lev1113 or lev1416
@@ -61,5 +59,7 @@ action
 average "11-13 " 100 * hcp1113,
 average "14-16 " 100 * hcp1416,
 
+
+action printpbn
 
 printpbn

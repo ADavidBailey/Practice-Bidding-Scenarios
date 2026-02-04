@@ -1,11 +1,8 @@
 # button-text: then Stayman
-# scenario-title: We Overcall 1NT then Stayman.
+# scenario-title: --- We Overcall 1NT then Stayman.
+# auction-filter: Note....Stayman
 # We_Overcall_NT_then_Stayman
 dealer east
-
-
-# auction-filter: 1[CDHS] 1NT Pass 2C.*\\n.* Pass 2[DHS]
-
 # We Overcall 1NT_then_Stayman
 
 # Predict East's opening suit
@@ -41,5 +38,6 @@ n2C = shape(north, 4432+4441+4450) or (shape(north,any 5332+ any 4432+any 4333-5
 eOpens and sNT and n2C
 
 
-
 action printpbn
+
+printpbn

@@ -1,12 +1,10 @@
 # button-text: We Overcall Their 2C
-# scenario-title: They open 2C (strong) and we overcall or preempt.
+# scenario-title: ---  They open 2C (strong) and we overcall or preempt.
+# auction-filter: Auction.....\n2C =.= (X|2[DHS]) +
 # We_Overcall_Their_2C
-dealer east
-
-
+dealer south
 # They open 2C (strong) and we overcall or preempt
 
-# auction-filter: Auction.....\\n2C [234567]
 
 
 eOpens2C = hcp(east)>21
@@ -41,5 +39,7 @@ average "losers(south) " losersWithTwoSuits,
 average "sOneSuit      " 100 * sOneSuit,
 average "losers(south) " losersWithOneSuit,
 
+
+action printpbn
 
 printpbn

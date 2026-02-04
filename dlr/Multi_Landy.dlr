@@ -1,13 +1,11 @@
 # button-text: Multi-Landy (Lev)
-# scenario-title: 15-17 Notrump Opening and Multi-Landy action.
+# scenario-title: ---  15-17 Notrump Opening and Multi-Landy action.
+# auction-filter: Note....Multi-Landy
+# convention-card: 21GF-Multi-Landy
 # Multi_Landy
 dealer east
+# convention-card: 21GF-Multi-Landy
 
-
-/*
-convention-card: 21GF-Multi-Landy
-auction-filter: Auction.....\n1N +[X2-7]
-*/
 
 
 # Define East's 1N Opener
@@ -83,7 +81,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 # Define Leveling
 lC     = c2C   and keep56
 lD     = c2D   and keep70
@@ -121,5 +118,7 @@ average "bal19" 100 * lBal19,
 
 frequency  "HCP South "  (hcp(south) , 11, 19),
 
+
+action printpbn
 
 printpbn

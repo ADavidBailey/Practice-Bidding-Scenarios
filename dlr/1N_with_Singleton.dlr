@@ -1,13 +1,11 @@
 # button-text: 1NT w/Singleton
-# scenario-title: 1 Notrump With Singleton
+# scenario-title: ---  1 Notrump With Singleton
+# auction-filter: Auction.....\n1NT?
+# convention-card: 21GF-1NT-With-Singleton
 # 1N_with_Singleton
 dealer south
+# convention-card: 21GF-1NT-With-Singleton
 
-
-/*
-convention-card:
-auction-filter: Auction.....\n1NT?
-*/
 
 # 1 Notrump Opening with a singleton honor
 
@@ -37,5 +35,7 @@ average "lengthPoints" lengthPoints,
 average "ntDownGrade " 1,
 average "ntPoints    " ntPoints,
 
+
+action printpbn
 
 printpbn
