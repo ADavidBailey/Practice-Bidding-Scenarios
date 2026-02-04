@@ -1,5 +1,5 @@
 //BBOalert, Bidding Scenarios
-//BBOalert, Bidding Scenarios - version 4.1.4
+//BBOalert, Bidding Scenarios - version 4.1.5
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
 Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
@@ -308,7 +308,10 @@ Script,onDataLoad
                     result.alias = aliasMatch[1];
                     // Chat text is everything before %alias%
                     var aliasStart = rest.indexOf('%' + aliasMatch[1] + '%');
-                    result.chat = rest.substring(0, aliasStart).replace(/\\n\\/g, '\n').replace(/\\n/g, '\n');
+                    // Keep raw format for chat (BBO expects \n literals)
+                    result.chatRaw = rest.substring(0, aliasStart);
+                    // Convert for tooltip display
+                    result.chat = result.chatRaw.replace(/\\n\\/g, '\n').replace(/\\n/g, '\n');
 
                     // Style is after %alias%,
                     var afterAlias = rest.substring(aliasStart + aliasMatch[0].length);
@@ -481,11 +484,11 @@ Script,onDataLoad
                 if (meta.style.width && !layoutStyle.width) bt.style.width = meta.style.width;
                 // Set tooltip and chat data
                 if (meta.chat) {
-                    bt.value = meta.chat + '%' + meta.alias + '%';
-                    bt.setAttribute('data-chat', meta.chat);
+                    bt.value = meta.chatRaw + '%' + meta.alias + '%';
+                    bt.setAttribute('data-chat', meta.chatRaw);  // Raw format for BBO chat
                     // Set title directly for tooltip (PBStooltips.js runs before buttons exist)
                     // Remove leading \n--- prefix and convert suit symbols
-                    var tooltipText = meta.chat.replace(/^\n?---\s*/, '').trim()
+                    var tooltipText = meta.chat.replace(/^\n?---\s*/, '').trim()  // Converted format for tooltip
                         .replace(/!S/g, '\u2660')
                         .replace(/!H/g, '\u2665')
                         .replace(/!D/g, '\u2666')
@@ -616,10 +619,10 @@ Script,onDataLoad
                     if (meta.style.color) bt.style.color = meta.style.color;
                     // Set tooltip and chat data
                     if (meta.chat) {
-                        bt.value = meta.chat + '%' + meta.alias + '%';
-                        bt.setAttribute('data-chat', meta.chat);
+                        bt.value = meta.chatRaw + '%' + meta.alias + '%';
+                        bt.setAttribute('data-chat', meta.chatRaw);  // Raw format for BBO chat
                         // Set title directly for tooltip with suit symbols
-                        var tooltipText = meta.chat.replace(/^\n?---\s*/, '').trim()
+                        var tooltipText = meta.chat.replace(/^\n?---\s*/, '').trim()  // Converted for tooltip
                             .replace(/!S/g, '\u2660')
                             .replace(/!H/g, '\u2665')
                             .replace(/!D/g, '\u2666')
@@ -950,7 +953,7 @@ Script,onDataLoad
     }
 
     function runInit() {
-        console.log('PBS v4.1.4: Initializing...');
+        console.log('PBS v4.1.5: Initializing...');
         console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
         console.log('PBS Dynamic: Beta layout =', pbsConfig.Use_Beta_Layout);
 
