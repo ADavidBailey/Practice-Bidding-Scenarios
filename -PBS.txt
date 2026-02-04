@@ -1,5 +1,5 @@
 //BBOalert, Bidding Scenarios
-//BBOalert, Bidding Scenarios - version 4.1.6
+//BBOalert, Bidding Scenarios - version 4.1.7
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
 Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
@@ -302,9 +302,10 @@ Script,onDataLoad
                 result.text = fullButtonContent.substring(0, firstComma).trim();
                 var rest = fullButtonContent.substring(firstComma + 1);
 
-                // Find %alias% pattern - look for LAST valid alias (alphanumeric/underscore)
+                // Find %alias% pattern - look for valid alias (alphanumeric/underscore)
                 // This avoids matching percentages like "08%" in the content
-                var aliasMatch = rest.match(/%([A-Za-z][A-Za-z0-9_]*)%(?:,|$)/);
+                // Use lookahead (?=,|$) so the comma isn't consumed by the match
+                var aliasMatch = rest.match(/%([A-Za-z][A-Za-z0-9_]*)%(?=,|$)/);
                 if (aliasMatch) {
                     result.alias = aliasMatch[1];
                     // Chat text is everything before %alias%
@@ -954,7 +955,7 @@ Script,onDataLoad
     }
 
     function runInit() {
-        console.log('PBS v4.1.6: Initializing...');
+        console.log('PBS v4.1.7: Initializing...');
         console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
         console.log('PBS Dynamic: Beta layout =', pbsConfig.Use_Beta_Layout);
 
