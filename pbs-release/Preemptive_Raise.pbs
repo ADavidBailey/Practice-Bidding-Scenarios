@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\\n(1C.[PX12].* 5C|1D.[PX12].* 5D|1H.[PX12].* 5H|1S.[PX12].* 5S)
+auction-filter: Auction.....\n(1C .* [45]C|1D .* [45]D|1H * [34]H|1S .* [34]S)
 */
 # Preemptive Raise
 
@@ -160,4 +160,4 @@ Button,Preemptive Raise,\n\
 --- South opens and North，with 3-6 HCP and an 11+ card minor fit or a 10+ major fit，\n\
 makes a game-level preemptive raise.  When opponents intervene，an invitational raise\n\
 is often more effective.\n\
-%PreemptiveRaise%
+%PreemptiveRaise%,width=50%
