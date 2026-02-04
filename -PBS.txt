@@ -1,5 +1,5 @@
 //BBOalert, Bidding Scenarios
-//BBOalert, Bidding Scenarios - version 4.1.5
+//BBOalert, Bidding Scenarios - version 4.1.6
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
 Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
@@ -302,16 +302,17 @@ Script,onDataLoad
                 result.text = fullButtonContent.substring(0, firstComma).trim();
                 var rest = fullButtonContent.substring(firstComma + 1);
 
-                // Find %alias% pattern
-                var aliasMatch = rest.match(/%([^%]+)%/);
+                // Find %alias% pattern - look for LAST valid alias (alphanumeric/underscore)
+                // This avoids matching percentages like "08%" in the content
+                var aliasMatch = rest.match(/%([A-Za-z][A-Za-z0-9_]*)%(?:,|$)/);
                 if (aliasMatch) {
                     result.alias = aliasMatch[1];
                     // Chat text is everything before %alias%
-                    var aliasStart = rest.indexOf('%' + aliasMatch[1] + '%');
-                    // Keep raw format for chat (BBO expects \n literals)
-                    result.chatRaw = rest.substring(0, aliasStart);
-                    // Convert for tooltip display
-                    result.chat = result.chatRaw.replace(/\\n\\/g, '\n').replace(/\\n/g, '\n');
+                    var aliasStart = rest.lastIndexOf('%' + aliasMatch[1] + '%');
+                    // Raw format for chat: replace \n\ with \n (strip continuation backslashes)
+                    result.chatRaw = rest.substring(0, aliasStart).replace(/\\n\\/g, '\\n');
+                    // Convert for tooltip display (actual newlines)
+                    result.chat = result.chatRaw.replace(/\\n/g, '\n');
 
                     // Style is after %alias%,
                     var afterAlias = rest.substring(aliasStart + aliasMatch[0].length);
@@ -953,7 +954,7 @@ Script,onDataLoad
     }
 
     function runInit() {
-        console.log('PBS v4.1.5: Initializing...');
+        console.log('PBS v4.1.6: Initializing...');
         console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
         console.log('PBS Dynamic: Beta layout =', pbsConfig.Use_Beta_Layout);
 
