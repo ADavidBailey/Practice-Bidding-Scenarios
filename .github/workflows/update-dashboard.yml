@@ -23,7 +23,7 @@ jobs:
           python-version: '3.11'
 
       - name: Generate dashboard data
-        run: python dashboard/generateDashboardData.py
+        run: python docs/generateDashboardData.py
 
       - name: Commit and push changes
         run: |
@@ -31,11 +31,11 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           # Check if there are changes to commit
-          if git diff --quiet dashboard/; then
+          if git diff --quiet docs/; then
             echo "No changes to commit"
             exit 0
           fi
 
-          git add dashboard/dashboard-data.json dashboard/index.html
+          git add docs/dashboard-data.json docs/index.html
           git commit -m "Update dashboard data [skip ci]"
           git push
