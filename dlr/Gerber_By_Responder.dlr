@@ -66,7 +66,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -76,7 +76,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -123,7 +123,7 @@ oneDiamond = oD
 oneClub    = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
-# Defines oneNT, twoNT, gameForce2C, gambleNT
+# Defines oneNT, twoNT, gameForce2C, threeNT
 ##### Predict Response to 1-Bid ##### 
 
 # These variables are defined in the imported scripts above
@@ -268,7 +268,7 @@ nt15 = oneNT   and hcp(south)>=15 and hcp(south)<=17 and hcp(north)>=17 and nort
 nt18 = xyNT    and hcp(south)>=18 and hcp(south)<=19 and hcp(north)>=14 and northBal
 nt20 = twoNT   and hcp(south)>=20 and hcp(south)<=21 and hcp(north)>=12 and northNo4M
 nt22 = gfNT    and hcp(south)>=22 and hcp(south)<=24 and hcp(north)>=10 and northNo4M
-nt25 = gambleNT and hcp(south)>=25 and hcp(south)<=27 and hcp(north)>=7  and northNo4M
+nt25 = threeNT and hcp(south)>=25 and hcp(south)<=27 and hcp(north)>=7  and northNo4M
 nt28 = gfNT    and hcp(south)>=28                    and hcp(north)>=4  and northNo4M
 anyNT = nt12 or nt15 or nt18 or nt20 or nt22 or nt25 or nt28
 
