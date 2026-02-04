@@ -421,13 +421,34 @@ def run_btn_to_pbs(scenario: str, verbose: bool = True) -> bool:
         # Generate PBS content
         pbs_content = generate_pbs(parsed, scenario)
 
-        # Write PBS file with .pbs extension
-        pbs_path = os.path.join(FOLDERS["pbs_test"], f"{scenario}.pbs")
-        with open(pbs_path, 'w', encoding='utf-8') as f:
-            f.write(pbs_content)
+        # Determine whether to write to pbs-test
+        pbs_test_path = os.path.join(FOLDERS["pbs_test"], f"{scenario}.pbs")
+        pbs_release_path = os.path.join(FOLDERS["pbs_release"], f"{scenario}.pbs")
 
-        if verbose:
-            print(f"  Created: {pbs_path}")
+        # Check if pbs-test file already exists (scenario was already modified)
+        pbs_test_exists = os.path.exists(pbs_test_path)
+
+        # Check if content differs from pbs-release
+        content_differs = True  # Default to True if no release file exists
+        if os.path.exists(pbs_release_path):
+            with open(pbs_release_path, 'r', encoding='utf-8') as f:
+                release_content = f.read()
+            content_differs = (pbs_content != release_content)
+
+        # Only write to pbs-test if:
+        # - pbs-test file already exists (was already modified), OR
+        # - Content differs from pbs-release
+        if pbs_test_exists or content_differs:
+            with open(pbs_test_path, 'w', encoding='utf-8') as f:
+                f.write(pbs_content)
+            if verbose:
+                if not content_differs:
+                    print(f"  Updated: {pbs_test_path} (unchanged from release)")
+                else:
+                    print(f"  Created: {pbs_test_path}")
+        else:
+            if verbose:
+                print(f"  Skipped: {pbs_test_path} (matches release)")
 
         # Generate DLR content
         dlr_content = generate_dlr(parsed, scenario)
