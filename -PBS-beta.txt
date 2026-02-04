@@ -48,7 +48,7 @@ setTimeout(function() {
 Script
 
 // Display HCP for visible hands
-//Script,onDataLoad
+Script,onDataLoad
 displayHCP = function () {
     var HCP = [0,0,0,0];
     var player = ["S", "W", "N", "E"];
@@ -64,10 +64,10 @@ displayHCP = function () {
     })
     $(".navBarClass .titleClass", window.parent.document).text(txt);
 }
-//Script,onAnyMutation
+Script,onAnyMutation
 var l = $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", parent.window.document).length;
 if((l%13) == 0) displayHCP();
-//Script
+Script
 
 //Script,setBiddingTable
 var delayValue = 500;
