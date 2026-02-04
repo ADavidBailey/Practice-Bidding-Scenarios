@@ -1,5 +1,5 @@
 //BBOalert, Bidding Scenarios
-//BBOalert, Bidding Scenarios - version 4.1.2
+//BBOalert, Bidding Scenarios - version 4.1.3
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
 Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
@@ -46,6 +46,28 @@ setTimeout(function() {
    setChatDestination(whoAmI());
    },1000);
 Script
+
+// Display HCP for visible hands
+//Script,onDataLoad
+displayHCP = function () {
+    var HCP = [0,0,0,0];
+    var player = ["S", "W", "N", "E"];
+    $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", parent.window.document).each(function() {
+        if (!isVisible(this)) return;
+        var z = Math.trunc($(this).parent().parent().parent().css("zIndex") / 100) - 1;
+        var v = "JQKA".indexOf($(this).text().charAt(0)) + 1;
+        HCP[z]+=v;
+    })
+    var txt = "";
+    HCP.forEach(function(hcp, idx) {
+        if (HCP[idx] > 0) txt = txt + player[idx] + ":" + HCP[idx] + " ";
+    })
+    $(".navBarClass .titleClass", window.parent.document).text(txt);
+}
+//Script,onAnyMutation
+var l = $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", parent.window.document).length;
+if((l%13) == 0) displayHCP();
+//Script
 
 //Script,setBiddingTable
 var delayValue = 500;
@@ -926,7 +948,7 @@ Script,onDataLoad
     }
 
     function runInit() {
-        console.log('PBS v4.1.2: Initializing...');
+        console.log('PBS v4.1.3: Initializing...');
         console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
         console.log('PBS Dynamic: Beta layout =', pbsConfig.Use_Beta_Layout);
 
