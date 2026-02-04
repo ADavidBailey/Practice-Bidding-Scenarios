@@ -8,7 +8,7 @@ import subprocess
 import tempfile
 
 # Path to tools
-BRIDGE_WRANGLER = "/Applications/Bridge Utilities/bridge-wrangler/bridge-wrangler"
+BRIDGE_WRANGLER = "/Applications/Bridge Utilities/bridge-wrangler"
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
 SUIT_HTML = {
