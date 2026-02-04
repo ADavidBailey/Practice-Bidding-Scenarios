@@ -11,6 +11,7 @@ from datetime import datetime, timedelta
 from collections import defaultdict
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DASHBOARD_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 def load_activity_log():
@@ -445,8 +446,8 @@ def generate_dashboard_data():
 
 
 def embed_data_in_html(dashboard_data):
-    """Update dashboard.html with embedded data"""
-    html_path = os.path.join(PROJECT_ROOT, 'dashboard.html')
+    """Update index.html with embedded data"""
+    html_path = os.path.join(DASHBOARD_DIR, 'index.html')
 
     with open(html_path, 'r') as f:
         html = f.read()
@@ -475,7 +476,7 @@ def main():
     dashboard_data = generate_dashboard_data()
 
     # Save JSON file (for debugging/inspection)
-    json_path = os.path.join(PROJECT_ROOT, 'dashboard-data.json')
+    json_path = os.path.join(DASHBOARD_DIR, 'dashboard-data.json')
     with open(json_path, 'w') as f:
         json.dump(dashboard_data, f, indent=2)
     print(f"Dashboard data saved to {json_path}")
