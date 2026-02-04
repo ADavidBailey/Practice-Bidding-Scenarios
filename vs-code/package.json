@@ -28,7 +28,8 @@
           "id": "pbsButtonPanel",
           "name": "Scenarios",
           "type": "tree",
-          "initialSize": 1
+          "initialSize": 1,
+          "canSelectMany": true
         },
         {
           "id": "pbsButtonGrid",
@@ -135,6 +136,11 @@
       {
         "command": "pbs.runRelease",
         "title": "PBS: Release to Production"
+      },
+      {
+        "command": "pbs.releaseSelected",
+        "title": "Release to Production",
+        "icon": "$(cloud-upload)"
       }
     ],
     "menus": {
@@ -154,6 +160,11 @@
         {
           "command": "pbs.rebuildArtifact",
           "when": "view == pbsCurrentScenario && viewItem == artifact",
+          "group": "inline"
+        },
+        {
+          "command": "pbs.releaseSelected",
+          "when": "view == pbsButtonPanel && viewItem == pendingRelease",
           "group": "inline"
         }
       ],

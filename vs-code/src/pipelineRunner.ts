@@ -159,6 +159,52 @@ export function registerPipelineCommands(context: vscode.ExtensionContext): void
 
     // Release operation (not included in wildcards - must be explicit)
     registerCommand(context, 'pbs.runRelease', 'release');
+
+    // Release selected scenarios from tree view (supports multi-select)
+    context.subscriptions.push(
+        vscode.commands.registerCommand('pbs.releaseSelected', async (...args: any[]) => {
+            // args[0] is the clicked item, args[1] is the array of selected items
+            const selectedItems = args[1] || [args[0]];
+
+            if (!selectedItems || selectedItems.length === 0) {
+                vscode.window.showWarningMessage('No scenarios selected for release');
+                return;
+            }
+
+            // Extract scenario names from the selected items
+            const scenarios: string[] = [];
+            for (const item of selectedItems) {
+                // The item has a button property with scriptId, or we can use the label
+                if (item.button && item.button.scriptId) {
+                    scenarios.push(item.button.scriptId);
+                } else if (item.label && typeof item.label === 'string') {
+                    // Convert label back to scenario name (replace spaces with underscores)
+                    scenarios.push(item.label.replace(/ /g, '_'));
+                }
+            }
+
+            if (scenarios.length === 0) {
+                vscode.window.showWarningMessage('No valid scenarios found in selection');
+                return;
+            }
+
+            // Confirm release
+            const confirm = await vscode.window.showInformationMessage(
+                `Release ${scenarios.length} scenario(s) to production?`,
+                { modal: true },
+                'Release'
+            );
+
+            if (confirm !== 'Release') {
+                return;
+            }
+
+            // Run release for each scenario
+            for (const scenario of scenarios) {
+                await runPipeline(scenario, 'release');
+            }
+        })
+    );
 }
 
 /**
