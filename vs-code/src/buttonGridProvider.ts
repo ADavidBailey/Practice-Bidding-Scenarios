@@ -1,28 +1,14 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
-import { PbsButton, PbsSection, parsePbsDirectory, parseMainPbsConfig } from './pbsParser';
-
-/**
- * Find the PBS directory (handles both 'PBS' and 'pbs' case)
- */
-function findPbsDir(workspaceRoot: string): string {
-    const upperPath = path.join(workspaceRoot, 'PBS');
-    const lowerPath = path.join(workspaceRoot, 'pbs');
-    if (fs.existsSync(upperPath)) {
-        return upperPath;
-    }
-    if (fs.existsSync(lowerPath)) {
-        return lowerPath;
-    }
-    return upperPath; // default to uppercase if neither exists
-}
+import { PbsButton, PbsSection, parsePbsDirectory, parseButtonLayoutFile } from './pbsParser';
 
 /**
  * Check if a path contains a PBS directory (case-insensitive)
  */
 function containsPbsDir(filePath: string): boolean {
-    return filePath.includes('/PBS/') || filePath.includes('/pbs/');
+    return filePath.includes('/PBS/') || filePath.includes('/pbs/') ||
+           filePath.includes('/pbs-release/') || filePath.includes('/pbs-test/');
 }
 
 export class ButtonGridProvider implements vscode.WebviewViewProvider {
@@ -89,9 +75,28 @@ export class ButtonGridProvider implements vscode.WebviewViewProvider {
             return;
         }
 
-        // First, load all buttons from PBS directory
-        const pbsDir = findPbsDir(this.workspaceRoot);
-        const buttons = await parsePbsDirectory(pbsDir);
+        // Load buttons from pbs-release and pbs-test directories (new format with .pbs extension)
+        // pbs-test contains modified scenarios, pbs-release contains production scenarios
+        const pbsReleaseDir = path.join(this.workspaceRoot, 'pbs-release');
+        const pbsTestDir = path.join(this.workspaceRoot, 'pbs-test');
+
+        // Load from both directories, with pbs-test taking precedence
+        const releaseButtons = await parsePbsDirectory(pbsReleaseDir);
+        const testButtons = await parsePbsDirectory(pbsTestDir);
+
+        // Merge: pbs-test overrides pbs-release for same scenario
+        const buttonMap = new Map<string, PbsButton>();
+        for (const btn of releaseButtons) {
+            if (btn.scriptId) {
+                buttonMap.set(btn.scriptId, btn);
+            }
+        }
+        for (const btn of testButtons) {
+            if (btn.scriptId) {
+                buttonMap.set(btn.scriptId, btn); // Override release with test
+            }
+        }
+        const buttons = Array.from(buttonMap.values());
 
         // Index buttons by script ID and by filename (for fallback matching)
         this.buttonsByScriptId.clear();
@@ -108,10 +113,10 @@ export class ButtonGridProvider implements vscode.WebviewViewProvider {
             }
         }
 
-        // Try to load the main config file for section structure
-        const mainConfigPath = path.join(this.workspaceRoot, '-PBS.txt');
-        if (fs.existsSync(mainConfigPath)) {
-            this.sections = parseMainPbsConfig(mainConfigPath);
+        // Load section structure from button layout file
+        const layoutPath = path.join(this.workspaceRoot, 'btn', '-button-layout-release.txt');
+        if (fs.existsSync(layoutPath)) {
+            this.sections = parseButtonLayoutFile(layoutPath);
 
             // Resolve file paths for imported buttons
             for (const section of this.sections) {
