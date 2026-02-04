@@ -344,8 +344,22 @@ export class CurrentScenarioProvider implements vscode.TreeDataProvider<Scenario
     }
 
     private getArtifactInfo(artifact: typeof ARTIFACTS[0], scenario: string, root: string): ArtifactInfo {
-        const artifactPath = artifact.getPath(scenario, root);
+        let artifactPath = artifact.getPath(scenario, root);
         const sourcePath = artifact.getSourcePath(scenario, root);
+
+        // Special case for PBS artifact: check both pbs-test and pbs-release
+        if (artifact.name === 'pbs') {
+            const pbsTestPath = path.join(root, 'pbs-test', `${scenario}.pbs`);
+            const pbsReleasePath = path.join(root, 'pbs-release', `${scenario}.pbs`);
+
+            // Prefer pbs-test if it exists, otherwise use pbs-release
+            if (fs.existsSync(pbsTestPath)) {
+                artifactPath = pbsTestPath;
+            } else if (fs.existsSync(pbsReleasePath)) {
+                artifactPath = pbsReleasePath;
+            }
+            // If neither exists, keep the default pbs-test path (will show as missing)
+        }
 
         let status: ArtifactStatus = 'missing';
 
