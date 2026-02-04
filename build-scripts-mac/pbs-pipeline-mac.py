@@ -41,6 +41,7 @@ from operations.filter_stats import run_filter_stats
 from operations.bidding_sheet import run_bidding_sheet
 from operations.btn_to_pbs import run_btn_to_pbs
 from operations.quiz import run_quiz
+from operations.release import run_release
 
 
 # Map operation names to functions
@@ -53,6 +54,8 @@ OPERATIONS = {
     "filterStats": run_filter_stats,
     "biddingSheet": run_bidding_sheet,
     "quiz": run_quiz,
+    # release is NOT in OPERATIONS_ORDER, so it won't run with "*" or "op+"
+    "release": run_release,
 }
 
 # Create case-insensitive lookup: lowercase -> canonical name

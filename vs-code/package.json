@@ -131,6 +131,10 @@
         "command": "pbs.rebuildArtifact",
         "title": "Rebuild",
         "icon": "$(play)"
+      },
+      {
+        "command": "pbs.runRelease",
+        "title": "PBS: Release to Production"
       }
     ],
     "menus": {
@@ -233,6 +237,10 @@
           "command": "pbs.runQuizPlus",
           "group": "3_plus@7",
           "when": "pbs.bbaWorks"
+        },
+        {
+          "command": "pbs.runRelease",
+          "group": "4_release"
         }
       ]
     },

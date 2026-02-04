@@ -156,6 +156,9 @@ export function registerPipelineCommands(context: vscode.ExtensionContext): void
     registerCommand(context, 'pbs.runFilterPlus', 'filter+');
     registerCommand(context, 'pbs.runFilterStatsPlus', 'filterStats+');
     registerCommand(context, 'pbs.runQuizPlus', 'quiz+');
+
+    // Release operation (not included in wildcards - must be explicit)
+    registerCommand(context, 'pbs.runRelease', 'release');
 }
 
 /**

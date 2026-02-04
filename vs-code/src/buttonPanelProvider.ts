@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
-import { PbsButton, PbsSection, parsePbsDirectory, parseMainPbsConfig } from './pbsParser';
+import { PbsButton, PbsSection, parsePbsDirectory, parseButtonLayoutFile, parseMainPbsConfig } from './pbsParser';
 
 /**
  * Find the PBS directory (handles both 'PBS' and 'pbs' case)
@@ -135,10 +135,18 @@ export class ButtonPanelProvider implements vscode.TreeDataProvider<PbsTreeItem>
             }
         }
 
-        // Try to load the main config file for section structure
+        // Try to load the button layout file for section structure
+        // Prefer btn/-button-layout-release.txt (new format) over -PBS.txt (legacy)
+        const layoutPath = path.join(this.workspaceRoot, 'btn', '-button-layout-release.txt');
         const mainConfigPath = path.join(this.workspaceRoot, '-PBS.txt');
-        if (fs.existsSync(mainConfigPath)) {
+
+        if (fs.existsSync(layoutPath)) {
+            this.sections = parseButtonLayoutFile(layoutPath);
+        } else if (fs.existsSync(mainConfigPath)) {
             this.sections = parseMainPbsConfig(mainConfigPath);
+        }
+
+        if (this.sections.length > 0) {
 
             // Resolve file paths for imported buttons and track which files are mapped
             const mappedFilePaths = new Set<string>();

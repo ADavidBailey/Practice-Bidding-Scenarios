@@ -209,7 +209,160 @@ export function parseButtonFromFile(content: string, filePath: string): PbsButto
 }
 
 /**
+ * Parse the button layout file (btn/-button-layout-release.txt) to understand the panel structure.
+ * Format:
+ *   [Major] Title           - Major header (LemonChiffon background)
+ *   [Section] Title         - Section header (lightblue, collapsible)
+ *   [Action] Text|script|width - Action button (lightgreen)
+ *   ---                     - Separator row
+ *   file1, file2            - Button row (2 buttons at 50% each)
+ *   # comment               - Comment line
+ */
+export function parseButtonLayoutFile(layoutPath: string): PbsSection[] {
+    const sections: PbsSection[] = [];
+
+    if (!fs.existsSync(layoutPath)) {
+        return sections;
+    }
+
+    const content = fs.readFileSync(layoutPath, 'utf-8');
+    const lines = content.split('\n');
+
+    let currentSection: PbsSection | null = null;
+
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+
+        // Skip comments and empty lines
+        if (line.startsWith('#') || line === '') {
+            continue;
+        }
+
+        // Major header: [Major] Title
+        if (line.startsWith('[Major]')) {
+            if (currentSection) {
+                sections.push(currentSection);
+            }
+            const title = line.substring(7).trim();
+            currentSection = {
+                title: title,
+                buttons: [],
+                backgroundColor: 'LemonChiffon'
+            };
+            continue;
+        }
+
+        // Section header: [Section] Title
+        if (line.startsWith('[Section]')) {
+            if (currentSection) {
+                sections.push(currentSection);
+            }
+            const title = line.substring(9).trim();
+            currentSection = {
+                title: title,
+                buttons: [],
+                backgroundColor: 'lightblue'
+            };
+            continue;
+        }
+
+        // Action button: [Action] Text|script|width - skip these for tree view
+        if (line.startsWith('[Action]')) {
+            continue;
+        }
+
+        // Separator: ---
+        if (line === '---') {
+            continue;
+        }
+
+        // Button row: file1, file2 or file1, (file2:blue, file3:blue)
+        if (currentSection) {
+            // Parse button names from the row
+            const buttonNames = parseLayoutRow(line);
+            for (const name of buttonNames) {
+                currentSection.buttons.push({
+                    label: name.replace(/_/g, ' '),
+                    description: '',
+                    scriptId: name,
+                    filePath: '',  // Will be resolved later
+                    lineNumber: i + 1
+                });
+            }
+        }
+    }
+
+    if (currentSection) {
+        sections.push(currentSection);
+    }
+
+    return sections;
+}
+
+/**
+ * Parse a layout row to extract button names.
+ * Handles: file1, file2 and file1, (file2:blue, file3:blue)
+ */
+function parseLayoutRow(line: string): string[] {
+    const names: string[] = [];
+
+    // Split by comma but respect parentheses
+    const parts: string[] = [];
+    let current = '';
+    let parenDepth = 0;
+
+    for (const char of line) {
+        if (char === '(') {
+            parenDepth++;
+            current += char;
+        } else if (char === ')') {
+            parenDepth--;
+            current += char;
+        } else if (char === ',' && parenDepth === 0) {
+            parts.push(current.trim());
+            current = '';
+        } else {
+            current += char;
+        }
+    }
+    if (current.trim()) {
+        parts.push(current.trim());
+    }
+
+    for (const part of parts) {
+        let cleaned = part.trim();
+
+        // Skip separators
+        if (cleaned === '---') {
+            continue;
+        }
+
+        // Handle grouped buttons: (file1:blue, file2:blue)
+        if (cleaned.startsWith('(') && cleaned.endsWith(')')) {
+            const groupContent = cleaned.slice(1, -1);
+            const groupItems = groupContent.split(',').map(s => s.trim());
+            for (const item of groupItems) {
+                // Remove color/width suffixes: file:blue:12% -> file
+                const name = item.split(':')[0].trim();
+                if (name && name !== '---') {
+                    names.push(name);
+                }
+            }
+        } else {
+            // Regular button: file or file:blue:12%
+            const name = cleaned.split(':')[0].trim();
+            if (name && name !== '---') {
+                names.push(name);
+            }
+        }
+    }
+
+    return names;
+}
+
+/**
  * Parse the main PBS configuration file (-PBS.txt) to understand the panel structure
+ * @deprecated Use parseButtonLayoutFile instead for the new layout format
  */
 export function parseMainPbsConfig(configPath: string): PbsSection[] {
     const sections: PbsSection[] = [];
