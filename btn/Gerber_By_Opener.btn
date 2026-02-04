@@ -29,16 +29,18 @@ dealer south
 #include "script/TP"
 # Defines tpSouth
 
+predeal north SQT,HJT,DT98,CJ9
+
 # Define suit quality for NT -- Qxx opener's suit and Kxx or QJx in unbid suits
 dQ = hcp(north,diamonds)>2   // 10-12 doesn't have room for 3-points in each suit
 cQ = hcp(north,clubs)>2
 mK = hcp(north,hearts)>2 and hcp(north,spades)>2
 
 # South opens a minor and North has any 4333 with 10-12 and honor(s)in every suit
-s1C = oneClub    and dK and clubs(south)>5
-s1D = oneDiamond and cK and diamonds(south)>5   // north doesn't have the strength for 2/1
+s1C = oneClub    and dQ and clubs(south)>5
+s1D = oneDiamond and cQ and diamonds(south)>5   // north doesn't have the strength for 2/1
 s1mShape = shape(south,any 0xxx+any 11xx)       // south shape upgrades required for TP
-s1mRange = tpSouth>21 and hcp(south)<22
+s1mRange = tpSouth>20 and hcp(south)<19
 n1mRange = hcp(north)>10 and hcp(north)<13      // north responds 2N (I hope!)
 n1mShape = shape(north,any 4333)
 
