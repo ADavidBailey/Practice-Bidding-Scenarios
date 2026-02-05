@@ -1,12 +1,28 @@
-# button-text: After 1C (Pass)
-# scenario-title: --- Responses to 1C
-# auction-filter: Auction.....\n1C +Pass +(1[DHS]|1NT?|2C|2NT?|3[CDHS]|3NT?) +
+Script,Bids
+window.currentPBSScenario = 'Bids';
+window.currentPBSScenarioFilename = 'Bids';
+console.log('PBS: Logging scenario selection for Bids');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'Bids',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+convention-card: 21GF-GIB
+auction-filter: Auction.....\n1C +Pass +(1[DHS]|1NT?|2C|2NT?|3[CDHS]|3NT?) +
+*/
 # convention-card: 21GF-GIB
-# Bids
+
+
 dealer south
-# convention-card: 21GF-GIB
-
-
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -274,3 +290,10 @@ average "2N " 100 * r2N,
 average "3C " 100 * r3C,
 average "3x " 100 * r3x,
 average "3N " 100 * r3N,
+`, "S", true)
+Script
+Button,After 1C (Pass),\n\
+--- Responses to 1C\n\
+South opens 1!C.  North has 5+!D and one or both 4-card majors\n\
+This does not use 'Randomly rotate' -- go to 'Deal source' to change it.\n\
+%Bids%
