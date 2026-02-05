@@ -1,6 +1,6 @@
 # button-text: 4th Bid Inviting
 # scenario-title: --- Fourth Bid Inviting
-# auction-filter: \n1[CDHS] +Pass +1[DHSN] +Passn[12][HSCDN] +Pass +[123][CDHSN].
+# auction-filter: Auction.....\n1[CDHS] +Pass +1[DHSN] +Pass\n[12][HSCDN] +Pass +[123][CDHSN].
 # Fourth_Bid_Inviting
 dealer south
 # Invite after xyz[12]
@@ -301,7 +301,7 @@ xyz = (cdh or cds or cdn or chs or chn or csn or dhs or dhn or dhc or dsn or dsc
 xyz and strength and calmOpps and sShape and nShape
 
 action
-
+/*
 average "64xx" 100 * shape(north,any 64xx),
 average "63xx" 100 * shape(north,any 63xx),
 average "5422" 100 * shape(north,any 5422),
@@ -310,6 +310,7 @@ average "5440" 100 * shape(north,any 5440),
 average "5332" 100 * shape(north,any 5332),
 average "4432" 100 * shape(north,any 4432),
 average "4441" 100 * shape(north,any 4441),
+*/
 average "nD  " 100 * nD,
 average "nH  " 100 * nH,
 average "nS  " 100 * nS,
