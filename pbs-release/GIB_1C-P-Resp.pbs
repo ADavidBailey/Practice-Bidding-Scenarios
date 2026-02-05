@@ -22,14 +22,6 @@ auction-filter: Auction.....\n1C +Pass +(1[DHS]|[1-3]NT?|[2-3]C|3[CDHS]) +
 # convention-card: 21GF-GIB
 
 
-/*
-South opens 1C and North responds 1D, 1H, 1S, 1N, 2C, 2N, 3C, 3D, 3H, 3S, or 3N.
-
-convention-card: 21GF-GIB
-auction-filter: Auction.....\n1C +Pass +(1[DHS]|[1-3]NT?|[2-3]C|3[CDHS]) +
-
-*/
-
 dealer south
 
 ##### Imported Script: Define Calm Opponents #####
@@ -109,7 +101,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -119,7 +111,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -387,4 +379,4 @@ South opens 1!C and North responds w/anything other than Soloway JS.\n\
 This does not use 'Randomly rotate' -- go to 'Deal source' to change it.\n\
 You may also go to 'Deal source' to get specific responses. Near the bottom\n\
 you'll find the line that starts with nResponds = ... pick the response(s) you want.\n\
-%GibRespTo1C%
+%GibRespTo1C%,width=50%
