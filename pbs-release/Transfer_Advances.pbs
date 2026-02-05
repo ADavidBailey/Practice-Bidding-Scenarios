@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\\n((1C.1[DHS]|1D.(1[HS]|2C)|1H.(1S|2[CD])|1S.2[CDH]))
+auction-filter: Auction.....\n((1C +1[DHS]|1D +(1[HS]|2C)|1H (1S|2[CD])|1S +2[CDH]))
 */
 #Nagyiván Gábor
 #Hi David, I would like to try a simulation (500 deals) with the following parameters:
@@ -194,7 +194,7 @@ average "1C" 100 and wC,
 average "1D" 100 and wD,
 average "1H" 100 and wH,
 average "1S" 100 and wS,
-`, "S", true)
+`, "W", true)
 Script
 Button,Transfer Advances,\n\
 --- Transfer Advances\n\
@@ -207,4 +207,4 @@ the advancer may...\n\
 5. make a natural jump bid above overcaller's suit.\n\
 This is leveled such the opening bid is equally divide amoung the four suits.\n\
 https://bridgewinners.com/article/view/transfer-advances-of-overcalls/\n\
-%TransferAdvances%
+%TransferAdvances%,width=50% backgroundColor=lightpink
