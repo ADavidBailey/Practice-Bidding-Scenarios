@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\\n1NT Pass (2S|3C)
+auction-filter: Auction.....\n1N +Pass (2S|2N)
 */
 # MST only is the default.  Note, his is not how we bid MST.  It's how GIB bids those hands.
 
@@ -61,6 +61,8 @@ gibNT and sA
 Script
 Button,Two-Way Size Ask,\n\
 --- Two-Way Size Ask\n\
-2!S asks for min - !C or balanced\n\
-2N asks for max - !D or balanced\n\
+After a 1NT opening and a Pass，responder can ask about the opener's hand size.\n\
+2!S shows !C or balanced and is size-asking.  Opener bids 3!C if minimum or 3!D if max.\n\
+2N shows!D or balanced and is size-asking.  Opener bids 3C if minimum or 3!D if max.\n\
+https://tinyurl.com/Size-Asking-MSS\n\
 %TwoWaySizeAsk%,backgroundColor=lightpink
