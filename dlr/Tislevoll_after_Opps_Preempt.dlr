@@ -1,11 +1,8 @@
-# button-text: Opps Pre/Tislevoll 4C/4D
-# scenario-title: Tislevoll Slam Try after Preempt
+# button-text: Pre/Tislevoll 4C/4D
+# scenario-title: --- Tislevoll Slam Try after Preempt
+# auction-filter: Auction.....\n1[HS] +3[CDHS] +4[CD]
 # Tislevoll_after_Opps_Preempt
 dealer north
-
-
-# auction-filter: 1[HS] 3[CDHS] 4[CD]
-
 # Opponents preempt our Major
 
 # Preemptive Suits East without control by South
@@ -24,3 +21,5 @@ ePreempts = (PCE or PDE or PHE or PSE) and hcp(east)>5 and hcp(east)<10
 FitWith14Plus = (sFit or hFit) and hcp(south)>13
 
 nOpens and ePreempts and FitWith14Plus
+
+action printpbn
