@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Note....Gerber
+auction-filter: Auction.....\n(2C =1= +Pass +2. +Pass\n4C|1[CD] +Pass +.N +Pass\n4C)
 */
 # These are sequences where 4C-Gerber might be bid by Opener
 
@@ -104,7 +104,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -114,7 +114,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -163,28 +163,97 @@ oneClub    = oC
 ##### End of Imported Script -- Predict Opening 1-Bid #####
 # Defines oneClub, oneDiamond
 
-# Calculate South's TP
-sC = clubs(south) >4   ? clubs(south) - 4    : 0
-sD = diamonds(south)>4 ? diamonds(south) - 4 : 0
-sH = hearts(south)>4   ? hearts(south) - 4   : 0
-sS = spades(south)>4   ? spades(south) - 4   : 0
-sTP = hcp(south) + sC + sD + sH + sS
+### Imported script: TP (Total Points)
+//   Total Points = HCP + Short-Suit Points - Penalty Points
+//   Short-Suit Points: 3 for void, 2 for singleton, 1 for doubleton
+//   Penalty Points: 1 for each honor (K/Q/J) in a short suit (devalues wasted honors like Kx, Qx)
+
+## Calculate TP for North
+# Short-Suit Points: void=3, singleton=2, doubleton=1
+nSpadeSSP = spades(north)<3   ? 3-spades(north)   : 0
+nHeartSSP = hearts(north)<3   ? 3-hearts(north)   : 0
+nDiamSSP  = diamonds(north)<3 ? 3-diamonds(north) : 0
+nClubSSP  = clubs(north)<3    ? 3-clubs(north)    : 0
+nSSP = nSpadeSSP + nHeartSSP + nDiamSSP + nClubSSP
+
+# Penalty Points: deduct 1 for honors in short suits
+nSpadePP = spades(north)<3   and hcp(north,spades)>0   ? 1 : 0
+nHeartPP = hearts(north)<3   and hcp(north,hearts)>0   ? 1 : 0
+nDiamPP  = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
+nClubPP  = clubs(north)<3    and hcp(north,clubs)>0    ? 1 : 0
+nPP = nSpadePP + nHeartPP + nDiamPP + nClubPP
+
+tpNorth = hcp(north) + nSSP - nPP
+
+## Calculate TP for East
+eSpadeSSP = spades(east)<3   ? 3-spades(east)   : 0
+eHeartSSP = hearts(east)<3   ? 3-hearts(east)   : 0
+eDiamSSP  = diamonds(east)<3 ? 3-diamonds(east) : 0
+eClubSSP  = clubs(east)<3    ? 3-clubs(east)    : 0
+eSSP = eSpadeSSP + eHeartSSP + eDiamSSP + eClubSSP
+
+eSpadePP = spades(east)<3   and hcp(east,spades)>0   ? 1 : 0
+eHeartPP = hearts(east)<3   and hcp(east,hearts)>0   ? 1 : 0
+eDiamPP  = diamonds(east)<3 and hcp(east,diamonds)>0 ? 1 : 0
+eClubPP  = clubs(east)<3    and hcp(east,clubs)>0    ? 1 : 0
+ePP = eSpadePP + eHeartPP + eDiamPP + eClubPP
+
+tpEast = hcp(east) + eSSP - ePP
+
+## Calculate TP for South
+sSpadeSSP = spades(south)<3   ? 3-spades(south)   : 0
+sHeartSSP = hearts(south)<3   ? 3-hearts(south)   : 0
+sDiamSSP  = diamonds(south)<3 ? 3-diamonds(south) : 0
+sClubSSP  = clubs(south)<3    ? 3-clubs(south)    : 0
+sSSP = sSpadeSSP + sHeartSSP + sDiamSSP + sClubSSP
+
+sSpadePP = spades(south)<3   and hcp(south,spades)>0   ? 1 : 0
+sHeartPP = hearts(south)<3   and hcp(south,hearts)>0   ? 1 : 0
+sDiamPP  = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
+sClubPP  = clubs(south)<3    and hcp(south,clubs)>0    ? 1 : 0
+sPP = sSpadePP + sHeartPP + sDiamPP + sClubPP
+
+tpSouth = hcp(south) + sSSP - sPP
+
+## Calculate TP for West
+wSpadeSSP = spades(west)<3   ? 3-spades(west)   : 0
+wHeartSSP = hearts(west)<3   ? 3-hearts(west)   : 0
+wDiamSSP  = diamonds(west)<3 ? 3-diamonds(west) : 0
+wClubSSP  = clubs(west)<3    ? 3-clubs(west)    : 0
+wSSP = wSpadeSSP + wHeartSSP + wDiamSSP + wClubSSP
+
+wSpadePP = spades(west)<3   and hcp(west,spades)>0   ? 1 : 0
+wHeartPP = hearts(west)<3   and hcp(west,hearts)>0   ? 1 : 0
+wDiamPP  = diamonds(west)<3 and hcp(west,diamonds)>0 ? 1 : 0
+wClubPP  = clubs(west)<3    and hcp(west,clubs)>0    ? 1 : 0
+wPP = wSpadePP + wHeartPP + wDiamPP + wClubPP
+
+tpWest = hcp(west) + wSSP - wPP
+
+## Partnership Totals
+tpNS = tpNorth + tpSouth
+tpEW = tpEast + tpWest
+
+### End of Imported Script: TP
+# Defines tpSouth
+
+predeal north SQT,HJT,DT98,CJ9
 
 # Define suit quality for NT -- Qxx opener's suit and Kxx or QJx in unbid suits
-cQ = hcp(north,clubs)>0 and hcp(north,diamonds)>2  // 10-12 doesn't all room for 3-points in each suit
-dQ = hcp(north,diamonds)>0 and hcp(north,clubs)>2
-mQ = hcp(north,hearts)>2 and hcp(north,spades)>2
+dQ = hcp(north,diamonds)>2   // 10-12 doesn't have room for 3-points in each suit
+cQ = hcp(north,clubs)>2
+mK = hcp(north,hearts)>2 and hcp(north,spades)>2
 
 # South opens a minor and North has any 4333 with 10-12 and honor(s)in every suit
-s1C = oneClub and dQ and clubs(south)>5
+s1C = oneClub    and dQ and clubs(south)>5
 s1D = oneDiamond and cQ and diamonds(south)>5   // north doesn't have the strength for 2/1
-s1mShape = shape(south,any 7xxx+any 6xxx)       // south shape upgrades required for TP
-s1mRange = sTP>21 and hcp(south)<22
+s1mShape = shape(south,any 0xxx+any 11xx)       // south shape upgrades required for TP
+s1mRange = tpSouth>20 and hcp(south)<19
 n1mRange = hcp(north)>10 and hcp(north)<13      // north responds 2N (I hope!)
-n1mShape = shape(north,any 4xxx)
+n1mShape = shape(north,any 4333)
 
 # South opens 1m and North responds 2N
-s1m = (s1C or s1D) and s1mShape and s1mRange and mQ  and n1mRange
+s1m = (s1C or s1D) and s1mShape and s1mRange and mK  and n1mRange
 
 # South opens 2C and north responds 2N
 n2cRange = hcp(north)>7
