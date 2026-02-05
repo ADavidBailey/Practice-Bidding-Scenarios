@@ -1,11 +1,27 @@
-# button-text: Two-Way Size Ask
-# scenario-title: --- Two-Way Size Ask
-# auction-filter: Auction.....\n1N +Pass (2S|2N)
-# Two-Way_Size_Ask
-dealer south
+Script,TwoWaySizeAsk
+window.currentPBSScenario = 'TwoWaySizeAsk';
+window.currentPBSScenarioFilename = 'Two-Way_Size_Ask';
+console.log('PBS: Logging scenario selection for TwoWaySizeAsk');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'TwoWaySizeAsk',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+auction-filter: Auction.....\n1N +Pass (2S|2N)
+*/
 # MST only is the default.  Note, his is not how we bid MST.  It's how GIB bids those hands.
 
 # Two Way Size Ask
+dealer south
 
 ##### Imported Script -- GIB 1 Notrump #####
 
@@ -41,5 +57,12 @@ iGS2 = hcp(north)==21                         // 21 ask for 15 and bid 6 invite 
 sA = noMajor and (iG or iSS1 or iSS2 or iGS1 or iGS2 or cA or dA)
 
 gibNT and sA
-
-action printpbn
+`, "S", true)
+Script
+Button,Two-Way Size Ask,\n\
+--- Two-Way Size Ask\n\
+After a 1NT opening and a Pass，responder can ask about the opener's hand size.\n\
+2!S shows !C or balanced and is size-asking.  Opener bids 3!C if minimum or 3!D if max.\n\
+2N shows!D or balanced and is size-asking.  Opener bids 3C if minimum or 3!D if max.\n\
+https://tinyurl.com/Size-Asking-MSS\n\
+%TwoWaySizeAsk%
