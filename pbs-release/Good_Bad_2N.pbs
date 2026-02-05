@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\\n1[CDHS] 1[HS] X 2[HS]
+auction-filter: Auction.....\n1[CDHS] +1[HS] +X +2[HS]
 */
 # Good/Bad 2N
 
@@ -88,11 +88,11 @@ average "hcp N" hcp(north),
 average "hcp E" hcp(east),
 average "hcp S" hcp(south),
 average "hcp W" hcp(west),
-`, "S", true)
+`, "N", true)
 Script
 Button,Good/Bad 2N,\n\
 --- Good/Bad 2 Notrump.  After both sides have bid and there have been 3 or\n\
 more non-passes，and the most recent bid is 2x by RHO，2N is forcing and shows\n\
 a hand that wants to compete to the 3-level.  Bidding directly to the 3-level\n\
 is invitational.\n\
-%GoodBad2N%
+%GoodBad2N%,width=50%
