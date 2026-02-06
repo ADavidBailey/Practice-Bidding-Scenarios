@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\\n[2345][CDHS]
+auction-filter: Auction.....\n[2345][CDHS] +
 */
 # Preempts
 dealer south 
@@ -33,4 +33,4 @@ oC = top5(south,clubs)>1    and clubs(south)>6
 Script
 Button,Preempts,\n\
 --- Preempts\n\
-%Preempts%
+%Preempts%,width=50%

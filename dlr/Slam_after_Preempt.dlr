@@ -1,11 +1,8 @@
 # button-text: Slam after Preempt
-# scenario-title: Slam after Preempt
+# scenario-title: --- Slam after Preempt
+# auction-filter: Auction.....\n[2-5][CDHS]
 # Slam_after_Preempt
 dealer south
-
-
-# auction-filter: Auction.....\\n[2345][CDHS]
-
 # Slam after Preempt
 
 sS = spades(south)>5   and top4(south,spades)>1
@@ -31,3 +28,5 @@ average "south hcp       " hcp(south),
 average "south losers    " losers(south),
 average "cover cards     " coverCards,
 average "uncovered losers" uncoveredLosers,
+
+printpbn

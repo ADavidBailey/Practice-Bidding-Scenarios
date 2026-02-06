@@ -1,11 +1,8 @@
 # button-text: McCabe over WJO (Lev)
-# scenario-title: McCabe after Partner's Weak Jump Overcall is Doubled -- Leveled.
+# scenario-title: --- McCabe after Partner's Weak Jump Overcall is Doubled -- Leveled.
+# auction-filter: Auction.....\n1[CDHS] +[23][DHSC] +X
 # McCabe_after_WJO
 dealer east
-
-
-# auction-filter: Auction.....\\n1[CDHS] [23][DHSC] X
-
 # McCabe after Weak Jump Overcall
 # The McCabe Convention gives useful options for Advancer after Partner’s Weak Jump Overcall is doubled.
 
@@ -131,7 +128,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 # Level the deal
 lRule17      = rule17     and keep
 lRule15      = rule15     and keep44
@@ -152,3 +148,5 @@ average "Lead Ask  " 100 * leadAsk,
 average "Raise     " 100 * raise,
 average "mySuit    " 100 * mySuit,
 average "Pass      " 100 * pass,
+
+printpbn

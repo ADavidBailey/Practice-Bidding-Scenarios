@@ -1,12 +1,13 @@
 # button-text: Snapdragon Double
-# scenario-title: Snapdragon Double
+# scenario-title: --- Snapdragon Double
+# auction-filter: (^1C +1D +1[HS])|(^1C +1H +[SD])|(^1C +1S +2[DH])|(^1D +1H +(1S|2C))|(^1D +1S +2[CH])|(^1D +2C +2[HS])
+# convention-card: 21GF-Snapdragon
 # Snapdragon_Double
 dealer east
+# convention-card: 21GF-Snapdragon
 
 
 # kill 1x-(Y)-2Z forcing
-# convention-card: 21GF-Snapdragon
-# auction-filter: (\\n1C.1D.1[HS])|(\\n1C.1H..[SD])|(\\n1C.1S.2[DH])|(\\n1D.1H..[SC])|(\\n1D.1S.2[CH])|(\\n1D.2C.2[HS])
 
 # Overcalls
 
@@ -62,7 +63,43 @@ otherHCP = hcp(south)>7 and hcp(west)>7 and hcp(north)>7
 sequences = (CDHS or CDSH or CHSD or CHDS or CSDH or CSHD or DHSC or DHCS or DSCH or DSHC or DCHS or DCSH)
 
 
-#Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/script/Leveling
+#### Imported Leveling Code ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep015 = keep06 and c3
+keep03 = keep06 and keep44
+keep045 = keep06 and not c3
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep955 = not keep045
+keep97 = not keep03
+keep985 = not keep015
+keep   = 1
+keep0  = 0
+### End of Imported Leveling Code ###
 
 #lCDHS = CDHS and keep25
 #lCDSH = CDSH and keep25
@@ -96,3 +133,5 @@ average "DSCH" 100 * DSCH,
 average "DSHC" 100 * DSHC,
 average "DCHS" 100 * DCHS,
 average "DCSH" 100 * DCSH,
+
+printpbn

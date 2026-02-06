@@ -1,11 +1,8 @@
 # button-text: Preempt Overcall
-# scenario-title: Opponents Preemptive Overcall
+# scenario-title: --- Opponents Preemptive Overcall
+# auction-filter: Auction.....\n1[CDHS] +.[CDHS]
 # Opps_Preemptive_Overcall
 dealer north
-
-
-# auction-filter: Auction.....\\n1[CDHS] [234567][CDHS]
-
 # Opponents preempt overcall
 
 # Preemptive Suits East
@@ -18,3 +15,5 @@ PCE = clubs(east)>6 and top4(east,clubs)==2
 nOpens = hcp(north)>11 and hcp(north)<15 and (hcp(north) + hcp(south)) >19
 ePreempts = hcp(east)>5 and hcp(east)<9 and (PCE or PDE or PHE or PSE)
 nOpens and ePreempts
+
+action printpbn

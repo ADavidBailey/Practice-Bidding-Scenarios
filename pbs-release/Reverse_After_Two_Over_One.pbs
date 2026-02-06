@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: (1D Pass 2C.*\\n2D Pass 2[HS])|(1H Pass 2[CD].*\\n2H Pass 2S)
+auction-filter: (1D +Pass +2C.*\n2D +Pass +2[HS])|(1H +Pass +2[CD].*\\n2H +Pass +2S)
 */
 
 `, "S", true)
@@ -30,4 +30,4 @@ natural and Game Forcing.  Possible Reverses After 2/1 are...\n\
 • 1!H - 2!C - 2!H - 2!S\n\
 • 1!H - 2!D - 2!H - 2!S\n\
 Reverses are NOT a convention.  If you don't have Game Forcing strength，don't reverse.\n\
-%ReverseAfterTwoOverOne%
+%ReverseAfterTwoOverOne%,width=50%

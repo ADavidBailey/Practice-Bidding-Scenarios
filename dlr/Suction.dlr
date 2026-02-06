@@ -1,12 +1,8 @@
 # button-text: Suction
-# scenario-title: 15-17 Notrump Opening and Suction.
+# scenario-title: ---  15-17 Notrump Opening and Suction.
+# auction-filter: Auction.....\n1N +
 # Suction
 dealer east
-
-
-# convention-card:
-# auction-filter: Auction.....\\n1NT.
-
 
 # GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
 ntP = hcp(east) + shape(east,5xxx+x5xx)
@@ -78,3 +74,5 @@ average "H    " 100 * sH,
 average "D    " 100 * sD,
 average "C    " 100 * sC,
 average "-----" 100 * (sS or sH or sD or sC),
+
+printpbn

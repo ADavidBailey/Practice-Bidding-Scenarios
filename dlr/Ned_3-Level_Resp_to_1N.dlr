@@ -1,11 +1,8 @@
 # button-text: Ned's 3-Lev 1N Resp (Lev)
-# scenario-title: Ned's 3-Level Response to 1N.
+# scenario-title: ---  Ned's 3-Level Response to 1N.
+# auction-filter: Auction.....\n1N +Pass
 # Ned_3-Level_Resp_to_1N
 dealer south
-
-
-# auction-filter: Auction.....\\n1NT Pass
-
 
 # Import Define-1N and Leveling
 ### Imported: Define 1 Notrump Opening ###
@@ -35,7 +32,6 @@ ntMax = ntPoints>16
 NT = shape(south, 2452+2425+2245+2254+4522 +any 4333+any 4432+any 5332) and ntPoints>14 and ntPoints<18
 
 ### End of Imported 1 Notrump ###
-
 # Defines NT, ntMin, ntAvt, and ntMax
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
@@ -75,7 +71,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 # North has a good suit and slam interest
 
 # Define Good suits -- 5+ cards with 2 of the top 3
@@ -108,3 +103,5 @@ average "Max         " 100 * ntMax,
 
 frequency  "HCP South "  (hcp(south) , 14, 18),
 frequency  "ntPoints  "  (ntPoints   , 14, 18),
+
+printpbn

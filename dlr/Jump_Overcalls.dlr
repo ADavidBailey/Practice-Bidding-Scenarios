@@ -1,12 +1,8 @@
 # button-text: Jump Overcalls
-# scenario-title: Jump Overcalls
+# scenario-title: --- Jump Overcalls
+# auction-filter: Auction.....\n(1C +2[DHS])|(1D +(2[HS]|3C))|(1H +(2S|3[CD]))|(1S +3[CDH])
 # Jump_Overcalls
 dealer east
-
-
-# convention-card:
-# auction-filter: Auction.....\\n1(C 2[DHS])|(D (2[HS]|3C))|(H (2S|3[CD]))|(S 3[CDH])
-
 
 # Predict East's opening suit
 sE = spades(east)
@@ -42,7 +38,7 @@ sRD = sD ? 2 : 0
 sRC = sC ? 1 : 0
 southRank = sRS+sRH+sRD+sRC   // all except one are zero
 
-# Define south's shapes
+# Define south's shapes 6-cards for higher ranked suit, 7+cards for lower ranked suit
 sShape = southRank>eastRank ? shape(south,any 6xxx -any 76xx -any 5xxx) : shape(south,any 9xxx+any 8xxx+any 7xxx-any 76xx-any 5xxx)
 
 # Define South Weak Jump Overcalls
@@ -57,3 +53,5 @@ hcp(east)>11 and hcp(east)<15
 
 # South makes a Weak Jump Overcall
 and sWeakJumpOvercall
+
+action printpbn

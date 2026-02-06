@@ -1,12 +1,10 @@
 # button-text: Trap Pass Opener?
-# scenario-title: Trap Pass after opener's major or weak 2 (Maybe)
+# scenario-title: --- Trap Pass after opener's major or weak 2 (Maybe)
+# auction-filter: Auction.....\n[1-7][CDHS] +Pass +Pass +X
 # Trap_Pass_Opener_Maybe
 dealer east
-
-
 # Stack in Opponents Suit -- for training Ben
 
-# auction-filter: Auction.....\\n[1-7][CDHS].Pass.Pass.X
 
 # Predict Opening 1-Bid --- rotated to East
 ##### Imported Script -- Predict Opening 1-Bid #####
@@ -139,7 +137,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 l1t = eOpens1 and trap     and keep19
 l1n = eOpens1 and not trap and keep06
 l2t = eOpens2 and trap     and keep
@@ -161,3 +158,5 @@ average "     1-level no trap " 100 * l1n,
 average "---- preempt ----" 100 * eOpens2,
 average "     preempt trap    " 100 * l2t,
 average "     preempt no trap " 100 * l2n,
+
+printpbn

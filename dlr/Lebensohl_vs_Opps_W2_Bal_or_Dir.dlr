@@ -1,11 +1,8 @@
-# button-text: Leb vs W2-Dir/Bal
-# scenario-title: Lebensohl After Opps Weak 2 -- Direct or Balanced Seat.
+# button-text: leb vs W2-Dir/Bal
+# scenario-title: --- lebensohl After Opps Weak 2 -- Direct or Balanced Seat.
+# auction-filter: Auction.....\n2[DHS] +(X|Pass +Pass +X)
 # Lebensohl_vs_Opps_W2_Bal_or_Dir
 dealer west
-
-
-# auction-filter: Auction.....\\n2[DHS] (X|Pass Pass X)
-
 # Lebensohl vs Opponents Weak 2 -- Direct or Balanced
 
 tp = hcp(west)
@@ -88,3 +85,5 @@ wOpensWeak2 and (nActs or sActs)
 action
 average "North X" 100 * nActs,
 average "South X" 100 * sActs,
+
+printpbn

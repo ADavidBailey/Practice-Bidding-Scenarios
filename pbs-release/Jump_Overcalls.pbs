@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\\n1(C 2[DHS])|(D (2[HS]|3C))|(H (2S|3[CD]))|(S 3[CDH])
+auction-filter: Auction.....\n(1C +2[DHS])|(1D +(2[HS]|3C))|(1H +(2S|3[CD]))|(1S +3[CDH])
 */
 dealer east
 produce 1000
@@ -74,4 +74,4 @@ and sWeakJumpOvercall
 Script
 Button,Jump Overcalls,\n\
 --- Jump Overcalls\n\
-%JumpOvercalls%
+%JumpOvercalls%,width=50%

@@ -1,11 +1,8 @@
 # button-text: Preempts
-# scenario-title: Preempts
+# scenario-title: --- Preempts
+# auction-filter: Auction.....\n[2345][CDHS] +
 # Preempts
 dealer south
-
-
-# auction-filter: Auction.....\\n[2345][CDHS]
-
 # Preempts
 
 range = hcp(south)>5 and hcp(south)<11
@@ -16,3 +13,5 @@ oD = top5(south,diamonds)>1 and diamonds(south)>6
 oC = top5(south,clubs)>1    and clubs(south)>6
 
 (oS or oH or oD or oC) and range
+
+action printpbn

@@ -1,11 +1,8 @@
-# button-text: Leb vs W2-Bal Seat
-# scenario-title: Lebensohl After 2x-P-P
+# button-text: leb vs W2-Bal Seat
+# scenario-title: --- lebensohl After 2x-P-P
+# auction-filter: Auction.....\n2[DHS] +Pass +Pass +X
 # Lebensohl_vs_Opps_W2_Bal
 dealer west
-
-
-# auction-filter: Auction.....\\n2[DHS] Pass Pass X
-
 # Lebensohl after (2x) P (P) X
 
 tp = hcp(west)
@@ -89,7 +86,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 # Define leveling
 levWeak   = weak   and keep
 levInvite = invite and keep
@@ -103,3 +99,5 @@ action
 average "Weak  " 100 * weak,
 average "Invite" 100 * invite,
 average "Force " 100 * force,
+
+printpbn

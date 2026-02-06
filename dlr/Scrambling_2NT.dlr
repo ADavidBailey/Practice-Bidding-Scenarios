@@ -1,12 +1,8 @@
 # button-text: Scrambling 2NT
-# scenario-title: Scrambling 2NT.  In a competitive auction，when your'e forced to bid，2NT is Scrambling.
+# scenario-title: --- Scrambling 2NT.  In a competitive auction, when your'e forced to bid, 2NT is Scrambling.
+# auction-filter: Auction.....\n(1H +Pass +2H|1S +Pass +2S) +X\nPass.
 # Scrambling_2NT
 dealer west
-
-
-# convention-card:
-# auction-filter: Auction.....\\n1(H Pass 2H|S Pass 2S) X\\nPass.
-
 # Scrambling 2NT
 
 # West has 1 Major suit
@@ -40,3 +36,5 @@ OBAR and sTOX and (nFreeBid or nScramble)
 action
 average "Free Bid" 100 * nFreeBid,
 average "Scramble" 100 * nScramble,
+
+printpbn

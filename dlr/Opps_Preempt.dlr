@@ -1,11 +1,8 @@
 # button-text: Opps Preempt
-# scenario-title: Opponents Preempt
+# scenario-title: --- Opponents Preempt
+# auction-filter: Auction.....\n[234567][CDHS] +
 # Opps_Preempt
 dealer east
-
-
-# auction-filter: Auction.....\\n[234567][CDHS]
-
 # Opps Preempt
 
 hcp(east)>5 and hcp(east)<11
@@ -19,3 +16,5 @@ or
 or
 (top5(east,clubs)>1 and clubs(east)>6)
 )
+
+action printpbn

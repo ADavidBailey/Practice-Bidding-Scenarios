@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: (\\n1C.*\\n..* [3-7][CDHS])|(\\n1D.*\\n..* [3-7][CDHS])
+auction-filter: (\n1C.*\n..* [3-7][CDHS])|(\n1D.*\n..* [3-7][CDHS])
 */
 # BBA does NOT play Direct Jump Cuebids.  The following filter matches the deals that
 # fit the intent of the scenario -- an agressive preempt over minors.
@@ -63,4 +63,4 @@ Button,Jump Cuebid Weak,\n\
 as if they had opened any other suit.\n\
 Note:  GIB plays this!\n\
 https://tinyurl.com/JumpCueBids\n\
-%JumpCuebidWeak%
+%JumpCuebidWeak%,width=50%

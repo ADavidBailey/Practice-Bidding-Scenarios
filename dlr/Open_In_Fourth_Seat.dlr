@@ -1,12 +1,8 @@
 # button-text: 4th Seat Opener (Lev)
-# scenario-title: To Open or Not to Open
+# scenario-title: --- To Open or Not to Open
+# auction-filter: Auction.....\nPass +Pass +Pass +
 # Open_In_Fourth_Seat
 dealer west
-
-
-# convention-card:
-# auction-filter: Auction.....\\nPass.Pass.Pass.
-
 # Open In Fourth Seat
 
 
@@ -83,7 +79,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 lev13 = r15==13 and keep
 lev14 = r15==14 and keep67
 lev15 = r15==15 and keep47
@@ -98,3 +93,5 @@ action
 average "HCP North=" hcp(north),
 average "HCP South=" hcp(south),
 frequency "r15   " (r15, 13, 16),
+
+printpbn

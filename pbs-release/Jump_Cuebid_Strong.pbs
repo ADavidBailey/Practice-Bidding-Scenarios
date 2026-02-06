@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: (\\n1C.*\\n..* [3-7][CDHS])|(\\n1D.*\\n..* [3-7][CDHS])|(\\n1H.*\\n..* [3-7][CDS])|(\\n1S.*\\n..* [3-7][CDH])
+auction-filter: Auction....n(1C.*\n.* [3-7][CDHS])|(1D.*\n.* [3-7][CDHS])|(\n1H.*\n..* [3-7][CDS])|(\n1S.*\n..* [3-7][CDH])
 */
 # BBA does NOT play Strong Direct Jump Cuebids.  The following filter matches the deals that
 # fit the intent of the scenario
@@ -78,4 +78,4 @@ partner to bid 3N with a stopper in the opponent's suit.  Without a stopper，\n
  • 4!D shows 2+ controls.\n\
 (NOTE:  GIB does NOT play this!)\n\
 https://tinyurl.com/JumpCueBids\n\
-%JumpCuebidStrong%,backgroundColor=lightpink
+%JumpCuebidStrong%,width=50% backgroundColor=lightpink

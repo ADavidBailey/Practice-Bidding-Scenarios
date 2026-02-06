@@ -1,12 +1,8 @@
 # button-text: 13
-# scenario-title: To Open or Not to Open
+# scenario-title: --- To Open or Not to Open
+# auction-filter: Auction.....\nPass +Pass +Pass +
 # Open_In_Fourth_13
 dealer west
-
-
-# convention-card:
-# auction-filter: Auction.....\\nPass.Pass.Pass.
-
 # Open In Fourth Seat
 
 
@@ -85,7 +81,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 lev13 = r15==13 and keep
 lev14 = r15==14 and keep0
 lev15 = r15==15 and keep0
@@ -95,3 +90,5 @@ levelTheDeal = lev13 or lev14 or lev15 or lev16
 # Now do it
 calmWest and calmNorth and calmEast and sSouth and r15>12 and r15<17
 and levelTheDeal
+
+action printpbn

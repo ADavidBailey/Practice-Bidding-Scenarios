@@ -1,0 +1,33 @@
+Script,ReverseAfterTwoOverOne
+window.currentPBSScenario = 'ReverseAfterTwoOverOne';
+window.currentPBSScenarioFilename = 'Reverse_After_Two_Over_One';
+console.log('PBS: Logging scenario selection for ReverseAfterTwoOverOne');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'ReverseAfterTwoOverOne',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+auction-filter: (1D +Pass +2C.*\n2D +Pass +2[HS])|(1H +Pass +2[CD].*\n2H +Pass +2S +)
+*/
+
+`, "S", true)
+Script
+Button,Reverse After 2/1,\n\
+--- Reverse After 2/1 is for those that don't play 2/1 GF\n\
+Reverses show 5+ cards in the suit opened and 4+ cards in the suit rebid.  They are\n\
+natural and Game Forcing.  Possible Reverses After 2/1 are...\n\
+• 1!D - 2!C - 2!D - 2!H\n\
+• 1!D - 2!C - 2!D - 2!S\n\
+• 1!H - 2!C - 2!H - 2!S\n\
+• 1!H - 2!D - 2!H - 2!S\n\
+Reverses are NOT a convention.  If you don't have Game Forcing strength，don't reverse.\n\
+%ReverseAfterTwoOverOne%,width=50%

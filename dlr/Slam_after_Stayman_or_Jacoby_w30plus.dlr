@@ -1,11 +1,8 @@
 # button-text: Sta/Jac w/30+ (Lev)
-# scenario-title: Slam after Stayman/Jacoby w/30+
+# scenario-title: --- Slam after Stayman/Jacoby w/30+
+# auction-filter: Auction.....\n1N +Pass +2[CDH]
 # Slam_after_Stayman_or_Jacoby_w30plus
 dealer south
-
-
-# auction-filter: Auction.....\\n1NT.Pass.2[CDH]
-
 
 ### Imported: Define 1 Notrump Opening ###
 
@@ -34,7 +31,6 @@ ntMax = ntPoints>16
 NT = shape(south, 2452+2425+2245+2254+4522 +any 4333+any 4432+any 5332) and ntPoints>14 and ntPoints<18
 
 ### End of Imported 1 Notrump ###
-
 
 hFit4 = hearts(north)==4 and hearts(south)>3   // 4-4 or 4-5
 sFit4 = spades(north)==4 and spades(south)>3
@@ -85,7 +81,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 # Define Leveling
 case1  = jacFit    and keep47
 case2  = staFit    and keep53
@@ -112,3 +107,5 @@ average "ntMin     " 100 * ntMin,
 average "ntAvg     " 100 * ntAvg,
 average "ntMax     " 100 * ntMax,
 average "hcp south " hcp(south),
+
+printpbn

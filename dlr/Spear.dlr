@@ -1,12 +1,10 @@
 # button-text: Spear
-# scenario-title: Spear: Intervening after 1!C or 1!D (P) 1NT...
+# scenario-title: --- Spear: Intervening after 1!C or 1!D (P) 1NT...
+# auction-filter: Auction.....\n1[CD] +Pass +1N +
 # Spear
 dealer east
-
-
 # Spear Convention
 
-# auction-filter: Auction.....\\n1[CD].Pass.1NT
 
 
 ## Predict Opening 1-Bid rotated to east ##
@@ -144,7 +142,6 @@ keep985 = not keep015
 keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
-
 lev2C = twoC and keep
 lev2D = twoD and keep47
 lev2H = twoH and keep67
@@ -173,3 +170,5 @@ average "2D 5+H/S w/9+     " 100 * twoD,
 average "2H 5+H w/6-11     " 100 * twoH,
 average "2S 5+S w/6-11     " 100 * twoS,
 average "X  bal w/12+      " 100 * X,
+
+printpbn

@@ -1,12 +1,8 @@
 # button-text: Preempt (X) XX (Lev)
-# scenario-title: Preempt (X) XX (Now What?)
+# scenario-title: --- Preempt (X) XX (Now What?)
+# auction-filter: Auction.....\n3[CDHS] +X +
 # Preempt_X_XX
 dealer east
-
-
-# auction-filter: Auction.....\\n3[CDHS] X
-
-
 # Opps Preempt, we X and they XX
 
 # Define East preempt at the 3- or 4-level
@@ -77,7 +73,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 lev7 = length==7 and keep19
 lev8 = length==8 and keep81
 lev9 = length==9 and keep
@@ -95,3 +90,5 @@ average "hcp N/S  " hcp(north) + hcp(south),
 average "hcp E/W  " hcp(east) + hcp(west),
 
 frequency "length " (length, 6, 10),
+
+printpbn

@@ -1,12 +1,8 @@
-# button-text: None
-# scenario-title: None
+# button-text: Opps Gambling 3N
+# scenario-title: --- Opponents Gambling 3N
+# auction-filter: Auction.....\n3NT +
 # Opps_Gambling_3N
 dealer east
-
-
-# convention-card: 
-# auction-filter: Auction.....\\n3NT
-
 # Opps Gambling 3N
 
 hcp(east)>8 and hcp(east)<12  // could have a Q or two J's outside
@@ -16,3 +12,5 @@ and
 or
 (top3(east,clubs)==3 and clubs(east)>6)
 )
+
+action printpbn

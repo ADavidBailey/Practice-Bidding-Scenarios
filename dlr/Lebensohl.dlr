@@ -1,13 +1,14 @@
 # button-text: Lebensohl
-# scenario-title: Lebensohl
+# scenario-title: --- Lebensohl
+# auction-filter: Auction.....\n1N +2[DHS].*(2[HS]|2NT|3[CDHSN])
+# convention-card: 21GF-Multi-Landy
 # Lebensohl
 dealer south
+# convention-card: 21GF-Multi-Landy
 
 
 # Lebensohl
 
-# convention-card: 21GF-Multi-Landy
-# auction-filter: Auction.....\\n1NT 2[DHS].*(2[HS]|2NT|3[CDHSN]) 
 
 # South opens 1N, Robot style
 sOpens = hcp(south)>14 and hcp(south)<18 and shape(south,any 4333 +any 4432 +any 5332 -5xxx-x5xx)
@@ -72,7 +73,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 # Reduce West's 1-suited hands
 levStrong = wStrong and keep
 lev1Suit  = w1Suit  and keep03
@@ -91,3 +91,5 @@ average "North 1 Suit   " 100 * n1Suit,
 average "West Strong    " 100 * wStrong,
 average "West 2-Suited  " 100 * w2Suit,
 average "West 1-Suited  " 100 * w1Suit,
+
+printpbn

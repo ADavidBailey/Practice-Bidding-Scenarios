@@ -1,12 +1,8 @@
 # button-text: McCabe over W2 (Lev)
-# scenario-title: McCabe after Weak 2 (X) -- Leveled
+# scenario-title: --- McCabe after Weak 2 (X) -- Leveled
+# auction-filter: Auction.....\n2[DHS] X
 # McCabe_After_Weak_2
 dealer south
-
-
-# auction-filter: Auction.....\\n2[DHS] X
-
-
 # McCabe after Weak 2
 # The McCabe Convention gives useful options for Responder after Partner’s Weak Two Bid is doubled.
 
@@ -119,7 +115,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 # Level the deal
 lRule17      = rule17     and keep75
 lRule15      = rule15     and keep25
@@ -140,3 +135,5 @@ average "Lead Ask      " 100 * leadAsk,
 average "Raise         " 100 * raise,
 average "mySuit        " 100 * mySuit,
 average "Pass          " 100 * pass,
+
+printpbn

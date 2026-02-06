@@ -1,11 +1,8 @@
 # button-text: Preempt Keycard
-# scenario-title: Keycard after Preempts
+# scenario-title: --- Keycard after Preempts
+# auction-filter: Auction.....\n(2[DHS] +Pass +2NT|3[CDHS] +Pass +4NT)
 # Preempt_Keycard
 dealer south
-
-
-# auction-filter: Auction.....\\n(2[DHS] Pass 2NT|3[CDHS] Pass 4NT)
-
 # Keycard ask after Preempt
 
 range = hcp(south)>5 and hcp(south)<10
@@ -28,3 +25,5 @@ average "hcp south    " hcp(south),
 average "hcp north    " hcp(north),
 average "losers South " losers(south),
 average "losers North " losers(north),
+
+printpbn

@@ -1,12 +1,10 @@
 # button-text: Jump Cuebid Strong
-# scenario-title: Strong Direct Jump Cuebids of any suit.
+# scenario-title: --- Strong Direct Jump Cuebids of any suit.
+# auction-filter: Auction....n(1C.*\n.* [3-7][CDHS])|(1D.*\n.* [3-7][CDHS])|(\n1H.*\n..* [3-7][CDS])|(\n1S.*\n..* [3-7][CDH])
 # Jump_Cuebid_Strong
 dealer east
-
-
 # BBA does NOT play Strong Direct Jump Cuebids.  The following filter matches the deals that
 # fit the intent of the scenario
-# auction-filter: (\\n1C.*\\n..* [3-7][CDHS])|(\\n1D.*\\n..* [3-7][CDHS])|(\\n1H.*\\n..* [3-7][CDS])|(\\n1S.*\\n..* [3-7][CDH])
 
 # Jump Cuebid Strong 
 
@@ -53,3 +51,5 @@ average "Clubs            " 100 * oC,
 average "Diamonds         " 100 * oD,
 average "Hearts           " 100 * oH,
 average "Spades           " 100 * oS,
+
+printpbn

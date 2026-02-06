@@ -1,11 +1,11 @@
 # button-text: Muiderberg 2 Bids
-# scenario-title: Muiderberg Two Bids
+# scenario-title: --- Muiderberg Two Bids
+# auction-filter: Auction.....\n2[HS]
+# convention-card: 21GF-PolishTwoSuiters
 # Muiderberg_Two_Bids
 dealer south
-
-
 # convention-card: 21GF-PolishTwoSuiters
-# auction-filter: Auction.....\\n2[HS]
+
 
 # Muiderberg Two Bids
 
@@ -15,3 +15,5 @@ dS = diamonds(south)>3 and hcp(south,diamonds)>1
 cS = clubs(south)>3 and hcp(south,clubs)>1
 
 (sS or hS) and (dS or cS) and hcp(south)>4 and hcp(south)<11 and shape(south,xxxx-any 5440)
+
+action printpbn

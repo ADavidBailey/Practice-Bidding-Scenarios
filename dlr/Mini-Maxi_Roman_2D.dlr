@@ -1,12 +1,10 @@
 # button-text: Mini-Maxi-Roman
-# scenario-title: Mini-Roman (11-15) Maxi-Roman (19+)
+# scenario-title: --- Mini-Roman (11-15) Maxi-Roman (19+)
+# auction-filter: Auction.....\n1[CD].
 # Mini-Maxi_Roman_2D
 dealer south
-
-
 # Mini-Roman
 
-# auction-filter: Auction.....\\n1[CD].
 
 # Define short suits without an honor
 sS = spades(south)<2   and hcp(south,spades)==0
@@ -28,3 +26,5 @@ average "1S" 100 * spades(south)<2,
 average "1H" 100 * hearts(south)<2,
 average "1D" 100 * diamonds(south)<2,
 average "1C" 100 * clubs(south)<2,
+
+printpbn

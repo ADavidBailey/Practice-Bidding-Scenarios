@@ -1,11 +1,11 @@
 # button-text: OBARBIDS 11+ (Lev)
-# scenario-title: Opponents Bid And Raise -- Bid In Drect Seat.
+# scenario-title: --- Opponents Bid And Raise -- Bid In Drect Seat.
+# auction-filter: Auction.....\n(1C +Pass +2C.* [X2])|(1D +Pass +2D.* [X23])|(1H +Pass +2H.* [X23])|(1S +Pass +2S.* [X3])
+# convention-card: No-Inverted-Minors
 # OBAR_BIDS11
 dealer east
-
-
 # convention-card: No-Inverted-Minors
-# auction-filter: Auction.....\\n(1C Pass 2C.*[X2])|(1D Pass 2D.*[X23])|(1H Pass 2H.[X23])|(1S Pass 2S.[X3])
+
 
 # OBAR -- Opener Bid & Raise, Balance in Direct Seat
 
@@ -90,7 +90,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 levX = n3Suits                          and keep
 lev5 = n1Suit and shape(north,any 5xxx) and keep86
 lev6 = n1Suit and shape(north,any 6xxx) and keep89
@@ -107,3 +106,5 @@ average "5440 or 4441 " 100 * shape(north,any 5440+any 4441),
 average "5-card suit  " 100 * shape(north,any 5xxx-any 6xxx-any 55xx-any 5440),
 average "6-card suit  " 100 * shape(north,any 6xxx-any 5xxx),
 frequency "HCP North  " (hcp(north), 6, 15),
+
+printpbn

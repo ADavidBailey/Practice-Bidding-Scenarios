@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: (Auction.....\\n1NT Pass 2[DH])|(Auction.....\\n1NT Pass 4[DH])
+auction-filter: Auction.....\n(1N +Pass +2[DH]|1N +Pass +4[DH])
 */
 produce 1000
 dealer south
@@ -47,4 +47,4 @@ and hcp(north)>15
 Script
 Button,Slam after Transfer,\n\
 --- Slam after Jacoby/Texas Transfer.\n\
-%SlamAfterTransfer%
+%SlamAfterTransfer%,width=50%

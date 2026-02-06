@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: (1[CDH] Pass 1S Pass\\n4[CDH])|(1[CD] Pass 1H Pass\\n(3S|4[CD]))
+auction-filter: (1[CDH] +Pass +1S +Pass\n4[CDH])|(1[CD] +Pass +1H +Pass\n(3S|4[CD]))
 */
 dealer south
 produce 1000
@@ -99,7 +99,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -109,7 +109,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -267,4 +267,4 @@ https://tinyurl.com/Billy-Miller-SpLimit-Bids\n\
 Double jumpshifts are also unusual. They're above the 3-level of responder's suit; thus，game forcing.\n\
 Many also play that Jump's in 2/1 auctions are splinters. (Not Included Here)\n\
 NOTE: The Robots play these 3-level splinters as GAME FORCING.\n\
-%SplinterByOpener%
+%SplinterByOpener%,width=50%

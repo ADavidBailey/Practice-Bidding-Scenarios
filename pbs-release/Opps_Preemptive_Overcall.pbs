@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\\n1[CDHS] [234567][CDHS]
+auction-filter: Auction.....\n1[CDHS] +.[CDHS]
 */
 # Opponents preempt overcall
 dealer north
@@ -35,4 +35,4 @@ nOpens and ePreempts
 Script
 Button,Preempt Overcall,\n\
 --- Opponents Preemptive Overcall\n\
-%OppsPreemptOvercall%
+%OppsPreemptOvercall%,width=50%

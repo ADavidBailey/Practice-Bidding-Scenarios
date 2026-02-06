@@ -1,0 +1,38 @@
+Script,ReverseByOpener
+window.currentPBSScenario = 'ReverseByOpener';
+window.currentPBSScenarioFilename = 'Reverse_By_Opener';
+console.log('PBS: Logging scenario selection for ReverseByOpener');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'ReverseByOpener',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+auction-filter: (1C +Pass +1[HSN].*\n2D)|(1D +Pass +1[SN].*\n2H)|(1H +Pass +1NT.*\n2S)
+*/
+
+`, "S", true)
+Script
+Button,Reverse By Opener,\n\
+--- Reverse By Opener\n\
+Reverses show 5+ cards in the suit opened and 4+ cards (usually) in the suit rebid.  They are natural\n\
+and strong -- in the 17-21 range -- a 1-round force.  Possible Reverses by Opener are...\n\
+  • 1!H - 1N - 2!S\n\
+  • 1!D - 1!S - 2!H\n\
+  • 1!D - 1N - 2!H/2!S\n\
+  • 1!C - 1!H - 2!D\n\
+  • 1!C - 1!S - 2!D/2!H\n\
+  • 1!C - 1N - 2!D/2!H/1!S\n\
+Reverses are NOT a convention.  If you don't have the extra strength，don't reverse.  Some play lebensohl\n\
+after reverses -- second link below.\n\
+https://www.bridgebum.com/reverse_bids.php\n\
+https://www.advinbridge.com/this-week-in-bridge/417\n\
+%ReverseByOpener%,width=50%
