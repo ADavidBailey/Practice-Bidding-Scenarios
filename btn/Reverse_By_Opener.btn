@@ -3,7 +3,7 @@
 # dealer-position: S
 # gib-works: true
 # bba-works: true
-# auction-filter: (1C +Pass +1[HSN].*\n2D)|(1D +Pass +1[SN].*\n2H)|(1H +Pass +1NT.*\n2S)
+# auction-filter: (1C Pass 1[HSN].*\\n2D)|(1D Pass 1[SN].*\\n2H)|(1H Pass 1NT.*\\n2S)
 
 /*@chat
 --- Reverse By Opener
@@ -20,3 +20,15 @@ after reverses -- second link below.
 https://www.bridgebum.com/reverse_bids.php
 https://www.advinbridge.com/this-week-in-bridge/417
 @chat*/
+
+# Reverse By Opener
+dealer south
+
+#include "script/Calm-Opponents"
+#include "script/Predict-Opening-1-Bid"
+#include "script/Predict-Response-to-1-Bid"
+#include "script/Predict-Openers-Rebid"
+
+sShape = shape(south,any 54xx+any 64xx)
+reverse = (HNS or DSH or DNH or DNS or CHD or CSD or CSH or CND or CNH or CNS) and sShape
+reverse and hcp(south)>16 and hcp(south)<22 and hcp(north)>5 and hcp(north)<13 and calmOpps

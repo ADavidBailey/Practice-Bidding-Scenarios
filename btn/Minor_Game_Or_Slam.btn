@@ -4,6 +4,7 @@
 # gib-works: true
 # bba-works: true
 # auction-filter: Contract..([5-7][CDHSN])
+# convention-card: # auction-filter: Contract..([5-7][CDHSN])
 
 /*@chat
 --- Minor Suit Game or Slam
@@ -17,3 +18,33 @@ As the linked article explains, RKC Minorwood can be extended to other situation
 where the 4m bid cannot be construed as competitive.
 https://tinyurl.com/RKC-Minorwood
 @chat*/
+
+dealer south
+
+# Minor Games and Slams
+
+#include "script/Calm-Opponents"
+# Defines calmOpps
+
+#include "script/Predict-Opening-1-Bid"
+# Defines oneClub, oneDiamond
+
+# Both South and North are unbalanced
+unbal  = shape(north,any 0xxx+any 1xxx) and shape(south,any 0xxx+any 1xxx)
+
+cFit = oneClub    and clubs(north)>4
+dFit = oneDiamond and diamonds(north)>3
+hFit = (hearts(north)+hearts(south))>7
+sFit = (spades(north)+spades(south))>7
+minorFit = (cFit or dFit) and not (hFit or sFit) and unbal
+
+# South opens 1m and North raises to 2m
+minorFit and hcp(south)>11 and (hcp(north)+hcp(south))>28 and calmOpps
+
+produce 1000
+action
+average "hcp south" hcp(south),
+average "hcp north" hcp(north),
+average "hcp total" hcp(south)+hcp(north),
+average "void south" 100 * shape(south,any 0xxx),
+average "void north" 100 * shape(north,any 0xxx),

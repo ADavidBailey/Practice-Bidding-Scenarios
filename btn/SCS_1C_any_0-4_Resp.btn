@@ -1,7 +1,7 @@
 # alias: StrongClubAny04Resp
 # button-text: Strong Club & 0-4 Resp
 # dealer-position: S
-# gib-works: false
+# gib-works: true
 # bba-works: true
 # auction-filter: Auction.....[\s\S][\s\S]?1C
 # convention-card: Precision
@@ -9,3 +9,12 @@
 /*@chat
 --- Strong Club with any 0-4 Response
 @chat*/
+
+produce 1000
+dealer south
+
+# South has 15+
+hcp(south)>14
+
+# North has 0-4
+and hcp(north)<5

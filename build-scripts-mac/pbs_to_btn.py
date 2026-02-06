@@ -61,8 +61,9 @@ def parse_pbs_file(pbs_path: str) -> dict:
     if cc_match:
         result['convention_card'] = cc_match.group(1).strip()
 
-    # Extract dealer code between setDealerCode(` and `, "
-    code_match = re.search(r'setDealerCode\(`\s*(.*?)\s*`,\s*"', content, re.DOTALL)
+    # Extract dealer code between setDealerCode(` and closing `)
+    # Handles both formats: `,"S",true) and `)
+    code_match = re.search(r'setDealerCode\(\s*`\s*(.*?)\s*`\s*(?:,\s*"|[)])', content, re.DOTALL)
     if code_match:
         dealer_code = code_match.group(1)
 
@@ -155,10 +156,6 @@ def generate_btn(parsed: dict) -> str:
     dealer_code = convert_imports_to_includes(dealer_code)
     lines.append(dealer_code)
 
-    # Add action printpbn at the end
-    lines.append("")
-    lines.append("")
-    lines.append("action printpbn")
     lines.append("")
 
     return '\n'.join(lines)
