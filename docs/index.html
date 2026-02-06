@@ -11,16 +11,17 @@
             max-width: 1100px;
             margin: 40px auto;
             padding: 20px;
-            background: #f5f5f5;
+            background: #1a1a2e;
+            color: #e0e0e0;
         }
         h1 {
-            color: #333;
+            color: #e0e0e0;
             text-align: center;
             margin-bottom: 10px;
         }
         .subtitle {
             text-align: center;
-            color: #666;
+            color: #8888aa;
             margin-bottom: 30px;
         }
         .stats {
@@ -30,19 +31,19 @@
             margin-bottom: 30px;
         }
         .stat-box {
-            background: white;
+            background: #16213e;
             border-radius: 8px;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         .stat-value {
             font-size: 32px;
             font-weight: bold;
-            color: #2563eb;
+            color: #5b9aff;
         }
         .stat-label {
-            color: #666;
+            color: #8888aa;
             margin-top: 5px;
             font-size: 14px;
         }
@@ -53,26 +54,26 @@
             margin-bottom: 30px;
         }
         .chart-card {
-            background: white;
+            background: #16213e;
             border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         .chart-card h3 {
             margin: 0 0 15px 0;
-            color: #333;
+            color: #e0e0e0;
             font-size: 16px;
         }
         .activity-card {
-            background: white;
+            background: #16213e;
             border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
             margin-bottom: 20px;
         }
         .activity-card h3 {
             margin: 0 0 15px 0;
-            color: #333;
+            color: #e0e0e0;
         }
         .activity-grid {
             display: grid;
@@ -85,7 +86,7 @@
         }
         .activity-item {
             padding: 8px 12px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #2a2a4a;
             font-size: 13px;
             display: flex;
             justify-content: space-between;
@@ -102,17 +103,17 @@
             font-weight: 500;
             text-transform: uppercase;
         }
-        .type-file_save { background: #dbeafe; color: #1d4ed8; }
-        .type-pipeline_run { background: #dcfce7; color: #166534; }
-        .type-session_start { background: #fef3c7; color: #92400e; }
-        .type-session_end { background: #fee2e2; color: #991b1b; }
+        .type-file_save { background: #1e3a5f; color: #60a5fa; }
+        .type-pipeline_run { background: #1a3a2a; color: #4ade80; }
+        .type-session_start { background: #3a2e1a; color: #fbbf24; }
+        .type-session_end { background: #3a1a1a; color: #f87171; }
         .activity-time {
-            color: #999;
+            color: #6b6b8a;
             font-size: 11px;
         }
         .commit-item {
             padding: 8px 12px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #2a2a4a;
             font-size: 13px;
         }
         .commit-item:last-child {
@@ -120,15 +121,15 @@
         }
         .commit-hash {
             font-family: monospace;
-            color: #6366f1;
+            color: #a78bfa;
             font-size: 12px;
         }
         .commit-message {
-            color: #333;
+            color: #d0d0e0;
             margin-left: 8px;
         }
         .commit-date {
-            color: #999;
+            color: #6b6b8a;
             font-size: 11px;
             display: block;
             margin-top: 4px;
@@ -136,11 +137,17 @@
         .footer {
             text-align: center;
             margin-top: 30px;
-            color: #999;
+            color: #6b6b8a;
             font-size: 14px;
         }
+        .footer code {
+            color: #a78bfa;
+            background: #16213e;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
         .no-data {
-            color: #999;
+            color: #6b6b8a;
             font-style: italic;
             text-align: center;
             padding: 20px;
@@ -156,14 +163,14 @@
     </style>
     <script>
 const DASHBOARD_DATA = {
-  "generatedAt": "2026-02-04T13:01:00.357006",
+  "generatedAt": "2026-02-06T09:01:06.150503",
   "summary": {
     "totalScenarios": 298,
     "scenariosWorked": 298,
-    "totalFileEdits": 50310,
-    "totalPipelineRuns": 67,
-    "totalSessionHours": 3096,
-    "totalCommits": 5386
+    "totalFileEdits": 50626,
+    "totalPipelineRuns": 458,
+    "totalSessionHours": 3123,
+    "totalCommits": 5376
   },
   "charts": {
     "labels": [
@@ -198,7 +205,7 @@ const DASHBOARD_DATA = {
       "Feb 26"
     ],
     "fileEdits": [
-      280,
+      244,
       450,
       423,
       253,
@@ -225,8 +232,8 @@ const DASHBOARD_DATA = {
       1779,
       678,
       506,
-      79,
-      7
+      95,
+      343
     ],
     "pipelineRuns": [
       0,
@@ -256,11 +263,11 @@ const DASHBOARD_DATA = {
       0,
       0,
       0,
-      55,
-      12
+      61,
+      397
     ],
     "commits": [
-      307,
+      266,
       502,
       441,
       259,
@@ -288,10 +295,10 @@ const DASHBOARD_DATA = {
       80,
       62,
       228,
-      116
+      147
     ],
     "sessionHours": [
-      126,
+      118,
       145,
       171,
       75,
@@ -319,7 +326,7 @@ const DASHBOARD_DATA = {
       102,
       69,
       97,
-      75
+      110
     ],
     "scenariosWorked": [
       15,
@@ -355,200 +362,212 @@ const DASHBOARD_DATA = {
   },
   "recentActivity": [
     {
-      "timestamp": "2026-02-04T18:16:38.105Z",
+      "timestamp": "2026-02-06T03:27:51.984Z",
       "type": "file_save",
       "details": {
-        "filePath": "btn/Stayman.btn",
-        "fileType": "btn"
-      }
-    },
-    {
-      "timestamp": "2026-02-04T18:16:41.497Z",
-      "type": "file_save",
-      "details": {
-        "filePath": "btn/Stayman.btn",
-        "fileType": "btn"
-      }
-    },
-    {
-      "timestamp": "2026-02-04T18:16:55.936Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "Stayman",
-        "operation": "pbs"
-      }
-    },
-    {
-      "timestamp": "2026-02-04T18:17:01.483Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "Stayman",
-        "operation": "*"
-      }
-    },
-    {
-      "timestamp": "2026-02-04T18:17:40.618Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "Stayman",
-        "operation": "release"
-      }
-    },
-    {
-      "timestamp": "2026-02-04T18:20:07.826Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "-button-layout-beta",
-        "operation": "release"
-      }
-    },
-    {
-      "timestamp": "2026-02-04T18:22:59.959Z",
-      "type": "session_end",
-      "details": {
-        "durationMinutes": 186
-      }
-    },
-    {
-      "timestamp": "2026-02-04T18:23:01.032Z",
-      "type": "session_start",
-      "details": {}
-    },
-    {
-      "timestamp": "2026-02-04T18:23:05.258Z",
-      "type": "session_end",
-      "details": {
-        "durationMinutes": 0
-      }
-    },
-    {
-      "timestamp": "2026-02-04T18:23:06.205Z",
-      "type": "session_start",
-      "details": {}
-    },
-    {
-      "timestamp": "2026-02-04T18:23:21.410Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "layout",
-        "operation": "release-layout"
-      }
-    },
-    {
-      "timestamp": "2026-02-04T18:34:34.995Z",
-      "type": "file_save",
-      "details": {
-        "filePath": "btn/-button-layout-beta.txt",
+        "filePath": "btn/-button-layout-release.txt",
         "fileType": "txt"
       }
     },
     {
-      "timestamp": "2026-02-04T19:00:10.600Z",
-      "type": "file_save",
+      "timestamp": "2026-02-06T03:28:59.157Z",
+      "type": "pipeline_run",
       "details": {
-        "filePath": "btn/NT_Ladder.btn",
-        "fileType": "btn"
+        "scenario": "Soloway_Jump_Shift_Type-1",
+        "operation": "release"
       }
     },
     {
-      "timestamp": "2026-02-04T19:01:36.573Z",
+      "timestamp": "2026-02-06T03:52:22.546Z",
       "type": "pipeline_run",
       "details": {
-        "scenario": "NT_Ladder",
+        "scenario": "GSF_after_Preempt",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-02-06T11:55:08.472Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "Open_In_Fourth_15",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-02-06T11:57:09.991Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "Open_In_Fourth_15",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-02-06T12:01:46.963Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "SolowayJumpShiftType2",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-02-06T12:01:46.967Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "SolowayJumpShiftType3",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-02-06T12:01:46.968Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "SolowayJumpShiftType4",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-02-06T12:01:46.970Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "SolowayJumpShift",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-02-06T12:04:52.709Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "Soloway_Jump_Shift",
         "operation": "*"
       }
     },
     {
-      "timestamp": "2026-02-04T19:03:56.997Z",
+      "timestamp": "2026-02-06T12:07:51.024Z",
       "type": "pipeline_run",
       "details": {
-        "scenario": "NT_Ladder",
+        "scenario": "SolowayJumpShiftType2",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-02-06T12:07:51.027Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "SolowayJumpShiftType3",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-02-06T12:07:51.028Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "SolowayJumpShiftType4",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-02-06T12:14:07.995Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "GSF_after_Preempt",
         "operation": "*"
       }
     },
     {
-      "timestamp": "2026-02-04T20:13:02.615Z",
+      "timestamp": "2026-02-06T12:14:28.670Z",
       "type": "pipeline_run",
       "details": {
-        "scenario": "layout",
-        "operation": "release-layout"
+        "scenario": "GSF_after_Preempt",
+        "operation": "release"
       }
     },
     {
-      "timestamp": "2026-02-04T20:13:36.854Z",
+      "timestamp": "2026-02-06T12:30:27.883Z",
       "type": "session_end",
       "details": {
-        "durationMinutes": 111
+        "durationMinutes": 965
       }
     },
     {
-      "timestamp": "2026-02-04T20:52:27.314Z",
+      "timestamp": "2026-02-06T12:30:29.955Z",
       "type": "session_start",
       "details": {}
     },
     {
-      "timestamp": "2026-02-04T20:52:40.859Z",
-      "type": "session_end",
+      "timestamp": "2026-02-06T12:38:49.359Z",
+      "type": "pipeline_run",
       "details": {
-        "durationMinutes": 0
+        "scenario": "SlamAfterMajor",
+        "operation": "release"
       }
     },
     {
-      "timestamp": "2026-02-04T20:53:37.579Z",
-      "type": "session_start",
-      "details": {}
+      "timestamp": "2026-02-06T12:38:49.362Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "OppsMulti2D",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-02-06T12:38:49.363Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "Overcalls",
+        "operation": "release"
+      }
     }
   ],
   "recentCommits": [
     {
-      "hash": "631ba43c",
-      "date": "2026-02-04 12:13:03 -0800",
-      "message": "Release button layout to production"
+      "hash": "1cdeada3",
+      "date": "2026-02-06 06:23:10 -0600",
+      "message": "Regenerate pipeline output for GSF_after_Preempt and Soloway_Jump_Shift"
     },
     {
-      "hash": "a7cc6781",
-      "date": "2026-02-04 12:12:34 -0800",
-      "message": "Added documentation on Leveling theory"
+      "hash": "cde60ece",
+      "date": "2026-02-06 05:55:10 -0600",
+      "message": "Release Open_In_Fourth_15 to pbs-release"
     },
     {
-      "hash": "0f4ed097",
-      "date": "2026-02-04 12:11:26 -0800",
-      "message": "Release NT_Ladder to pbs-release"
+      "hash": "a4b37c85",
+      "date": "2026-02-05 21:23:29 -0600",
+      "message": "Release Soloway_Jump_Shift_Type-1 to pbs-release"
     },
     {
-      "hash": "51757da1",
-      "date": "2026-02-04 12:11:22 -0800",
-      "message": "Add NT_Ladder pipeline artifacts"
+      "hash": "186c3183",
+      "date": "2026-02-05 21:18:07 -0600",
+      "message": "Release OBAR_BIDS to pbs-release"
     },
     {
-      "hash": "a75c5bd9",
-      "date": "2026-02-04 11:03:41 -0800",
-      "message": "Add auction-filter for any opening bid by South in NT_Ladder"
+      "hash": "acb7822d",
+      "date": "2026-02-05 21:17:26 -0600",
+      "message": "Release Namyats to pbs-release"
     },
     {
-      "hash": "1635e87c",
-      "date": "2026-02-04 11:01:13 -0800",
-      "message": "Enable GIB and BBA support for NT_Ladder scenario"
+      "hash": "344bc52f",
+      "date": "2026-02-05 21:16:55 -0600",
+      "message": "Release Minor_Suit_Opener_Mixed_Raise to pbs-release"
     },
     {
-      "hash": "9bb6f8a9",
-      "date": "2026-02-04 11:00:53 -0800",
-      "message": "Fix wide commas in NT_Ladder.btn - use regular commas in .btn files"
+      "hash": "84680b3e",
+      "date": "2026-02-05 21:16:26 -0600",
+      "message": "Release Minor_Suit_Opener_Inv_Raise to pbs-release"
     },
     {
-      "hash": "7144d455",
-      "date": "2026-02-04 10:36:40 -0800",
-      "message": "Add NT_Ladder scenario for balanced hand evaluation practice"
+      "hash": "ca7a9633",
+      "date": "2026-02-05 21:15:45 -0600",
+      "message": "Release Bids to pbs-release"
     },
     {
-      "hash": "002245b3",
-      "date": "2026-02-04 10:29:07 -0800",
-      "message": "Fix style parsing by using regex lookahead (v4.1.7)"
+      "hash": "799f0c17",
+      "date": "2026-02-05 21:14:59 -0600",
+      "message": "Release Inverted_Minors to pbs-release"
     },
     {
-      "hash": "a6aaaffd",
-      "date": "2026-02-04 10:23:21 -0800",
-      "message": "Release button layout to production"
+      "hash": "558f2447",
+      "date": "2026-02-05 19:08:28 -0600",
+      "message": "Regenerate pipeline outputs, add quiz and pbs-test directories, remove HTML bidding sheets"
     }
   ]
 };
@@ -632,7 +651,12 @@ const DASHBOARD_DATA = {
             scales: {
                 y: {
                     beginAtZero: true,
-                    ticks: { stepSize: 1 }
+                    ticks: { stepSize: 1, color: '#8888aa' },
+                    grid: { color: '#2a2a4a' }
+                },
+                x: {
+                    ticks: { color: '#8888aa' },
+                    grid: { color: '#2a2a4a' }
                 }
             }
         };
