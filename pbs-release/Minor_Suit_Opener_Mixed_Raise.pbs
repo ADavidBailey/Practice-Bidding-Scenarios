@@ -17,7 +17,7 @@ setDealerCode(`
 
 /*
 convention-card: 21GF-NoInvertedMinor
-auction-filter: (Auction.....\\n1C Pass.3C)|(Auction.....\\n1D Pass.3D)
+auction-filter: Auction.....\n(1C +Pass +3C)|(1D +Pass +3D)
 */
 # convention-card: 21GF-NoInvertedMinor
 
@@ -101,7 +101,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -111,7 +111,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -187,4 +187,4 @@ Button,1m & Mixed Raise,\n\
 1!D - 2!D shows 4+ card support and 6-10 HCP，a Mixed Raise\n\
 Note:  Responder has no new suit to bid at the 1-level，2+ Dummy\n\
 Points，and opener's suit is responder's longest suit.\n\
-%MinorOpenerMixedRaise%,backgroundColor=lightpink
+%MinorOpenerMixedRaise%,width=50% backgroundColor=lightpink
