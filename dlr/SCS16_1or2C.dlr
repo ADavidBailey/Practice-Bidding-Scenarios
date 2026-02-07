@@ -1,7 +1,11 @@
 # button-text: 1/2 Clubs
-# scenario-title: Strong Club: 1C = 16+ w/6+Clubs or 2C = 11-15 HCP w/6+Clubs
+# scenario-title: --- Strong Club: 1C = 16+ w/6+Clubs or 2C = 11-15 HCP w/6+Clubs
+# auction-filter: Auction.....\n[12]C
+# convention-card: Precision
 # SCS16_1or2C
 dealer south
+# convention-card: Precision
+
 
 /*
 Strong Club System
@@ -24,3 +28,5 @@ range = range1C or range2C
 suit = clubs(south)>5 and clubs(south)>diamonds(south)
 
 range and suit
+
+action printpbn
