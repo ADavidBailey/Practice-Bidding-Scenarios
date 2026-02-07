@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\\n1C.[PX1].* (X|1[DHSN]|[23]N)
+auction-filter: Auction.....\n1C +[PX1].* (X|1[DHSN]|[23]N)
 */
 # Transfer Walsh
 
@@ -73,7 +73,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -83,7 +83,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -184,4 +184,4 @@ After 1!C...\n\
 • 1N = 10-12 balanced\n\
 • 2N = 13-15 balanced\n\
 https://en.wikipedia.org/wiki/Transfer_Walsh#\n\
-%TransferWalsh%,backgroundColor=lightpink
+%TransferWalsh%,width=50% backgroundColor=lightpink
