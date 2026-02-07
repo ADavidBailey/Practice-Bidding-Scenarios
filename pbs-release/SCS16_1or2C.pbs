@@ -20,8 +20,32 @@ convention-card: Precision
 auction-filter: Auction.....\n[12]C
 */
 # convention-card: Precision
+
+
+/*
+Strong Club System
+
+1C (16+) or 2C(11-15)
+
+convention-card: Precision
+auction-filter: Auction.....\n[12]C
+*/
+
+dealer south
+
+s = spades(south)
+h = hearts(south)
+d = diamonds(south)
+c = clubs(south)
+
+range1C = hcp(south)>15
+range2C = hcp(south)>10 and hcp(south)<16
+range = range1C or range2C
+suit = clubs(south)>5 and clubs(south)>diamonds(south)
+
+range and suit
 `, "S", true)
 Script
 Button,1/2 Clubs,\n\
 --- Strong Club: 1C = 16+ w/6+Clubs or 2C = 11-15 HCP w/6+Clubs\n\
-%scs161or2C%,backgroundColor=lightpink
+%scs161or2C%,width=50%
