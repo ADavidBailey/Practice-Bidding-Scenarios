@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\\n(1C 1[DHS]|1D (1[HS]|2C)|1H (1S|2[CD])|1S 2[CDH])
+auction-filter: Auction.....\n(1C +1[DHS]|1D +(1[HS]|2C)|1H +(1S|2[CD])|1S +2[CDH])
 */
 # Overcalls
 dealer east
@@ -130,4 +130,4 @@ average "SH  " 100 * (oS and sGoodH),
 Script
 Button,Overcalls,\n\
 --- Overcalls\n\
-%Overcalls%
+%Overcalls%,width=50%
