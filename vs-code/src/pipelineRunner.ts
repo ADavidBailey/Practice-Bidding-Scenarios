@@ -217,9 +217,21 @@ export function registerPipelineCommands(context: vscode.ExtensionContext): void
                 return;
             }
 
-            // Run release for each scenario
+            // Run release for each scenario, continuing on errors
+            const failed: string[] = [];
             for (const scenario of scenarios) {
-                await runPipeline(scenario, 'release');
+                try {
+                    await runPipeline(scenario, 'release');
+                } catch (e) {
+                    failed.push(scenario);
+                    vscode.window.showWarningMessage(`Release failed for ${scenario}: ${e}`);
+                }
+            }
+
+            if (failed.length > 0) {
+                vscode.window.showWarningMessage(
+                    `Release failed for ${failed.length} scenario(s): ${failed.join(', ')}`
+                );
             }
         })
     );

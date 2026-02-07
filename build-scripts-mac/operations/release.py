@@ -66,13 +66,27 @@ def run_release(scenario: str, verbose: bool = True) -> bool:
         os.chdir(PROJECT_ROOT)
 
         try:
-            # Git add the release file (and the removal of test file)
+            # Git add the release file
             subprocess.run(
-                ["git", "add", pbs_release_path, pbs_test_path],
+                ["git", "add", pbs_release_path],
                 check=True,
                 capture_output=True,
                 text=True
             )
+
+            # Stage the pbs-test removal only if git was tracking it
+            tracked = subprocess.run(
+                ["git", "ls-files", "--error-unmatch", pbs_test_path],
+                capture_output=True,
+                text=True
+            )
+            if tracked.returncode == 0:
+                subprocess.run(
+                    ["git", "add", pbs_test_path],
+                    check=True,
+                    capture_output=True,
+                    text=True
+                )
 
             # Commit
             commit_msg = f"Release {scenario} to pbs-release"
