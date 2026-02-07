@@ -17,11 +17,21 @@ setDealerCode(`
 
 /*
 convention-card: Precision
-auction-filter: Auction.....[\s\S][\s\S]?1C
+auction-filter: Auction.....\n1C
 */
 # convention-card: Precision
+
+
+produce 1000
+dealer south
+
+# South has 16+
+hcp(south)>15
+
+# North has 0-4
+and hcp(north)<5
 `, "S", true)
 Script
 Button,0-4 Resp 16+,\n\
 --- Any 0-4 Response (16+ HCP)\n\
-%scs16StrongClubAny04Resp%,backgroundColor=lightpink
+%scs16StrongClubAny04Resp%,width=50%
