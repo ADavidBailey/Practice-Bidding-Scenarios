@@ -518,6 +518,9 @@ Script,onDataLoad
                     if (match) {
                         window.currentPBSScenario = scenarioName;
                         window.currentPBSScenarioFilename = scenarioName;
+                        // Extract convention-card from dealer code comments
+                        var ccMatch = match[1].match(/convention-card:\s*(\S+)/);
+                        window.currentPBSConventionCard = ccMatch ? ccMatch[1] : null;
                         fetch('https://bba.harmonicsystems.com/api/scenario/select', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json', 'X-Client-Version': '1.0.0' },
@@ -649,6 +652,10 @@ Script,onDataLoad
                             var match = content.match(/setDealerCode\(`([\s\S]*?)`,\s*"([NSEW])",\s*(true|false)\)/);
                             if (match) {
                                 window.currentPBSScenario = scenarioName;
+                                window.currentPBSScenarioFilename = scenarioName;
+                                // Extract convention-card from dealer code comments
+                                var ccMatch = match[1].match(/convention-card:\s*(\S+)/);
+                                window.currentPBSConventionCard = ccMatch ? ccMatch[1] : null;
                                 setDealerCode(match[1], match[2], match[3] === 'true');
                             }
                         })
