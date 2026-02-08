@@ -1,6 +1,7 @@
 //BBOalert, Bidding Scenarios
-//BBOalert, Bidding Scenarios - version 4.1.7
+//BBOalert, Bidding Scenarios - version 4.1.8
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/toggleRotate.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
 Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
 Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/PBStooltips.js
@@ -27,10 +28,12 @@ Script
 Script,onAnyMutation
 var l = $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", parent.window.document).length;
 if((l%13) == 0) displayHCP();
+if (window.syncRotateFromDialog) window.syncRotateFromDialog();
 Script
 
 // Start BBA Auction Compare panel (called by Auction Compare button)
 Script,startBBACompare,window.startBBACompare(); R='';
+Script,toggleRotate,window.toggleRandomlyRotate(); R='';
 
 // Pause
 Script,onLogin,setTimeout(setOptionsOff, 200);
@@ -962,7 +965,7 @@ Script,onDataLoad
     }
 
     function runInit() {
-        console.log('PBS v4.1.7: Initializing...');
+        console.log('PBS v4.1.8: Initializing...');
         console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
         console.log('PBS Dynamic: Beta layout =', pbsConfig.Use_Beta_Layout);
 
