@@ -94,4 +94,26 @@ window.toggleRandomlyRotate = function () {
         }
     }, delayValue);
 };
+
+// Sync toggle button when user manually changes the checkbox in Deal source dialog
+window._pbsModalWasOpen = false;
+window._pbsLastCheckboxState = null;
+window.syncRotateFromDialog = function () {
+    var checkbox = $("modal-content mat-checkbox:first", parent.window.document);
+    var modalOpen = checkbox.length > 0;
+
+    if (modalOpen) {
+        // Dialog is open - read the checkbox state
+        window._pbsModalWasOpen = true;
+        window._pbsLastCheckboxState = checkbox.hasClass("mat-checkbox-checked");
+    } else if (window._pbsModalWasOpen) {
+        // Dialog just closed - sync state from last-read checkbox value
+        window._pbsModalWasOpen = false;
+        if (window._pbsLastCheckboxState !== null && window._pbsLastCheckboxState !== window.pbsRotateDeals) {
+            window.pbsRotateDeals = window._pbsLastCheckboxState;
+            window.updateRotateButton();
+        }
+        window._pbsLastCheckboxState = null;
+    }
+};
 //Script
