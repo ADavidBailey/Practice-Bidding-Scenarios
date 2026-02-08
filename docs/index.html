@@ -12,18 +12,18 @@
             max-width: 1100px;
             margin: 40px auto;
             padding: 20px;
-            background: #1a1a2e;
-            color: #e0e0e0;
+            background: #1e1e1e;
+            color: #d4d4d4;
         }
         h1 {
-            color: #e0e0e0;
+            color: #d4d4d4;
             text-align: center;
             margin-bottom: 10px;
             font-size: 22px;
         }
         .subtitle {
             text-align: center;
-            color: #8888aa;
+            color: #969696;
             margin-bottom: 30px;
         }
         .stats {
@@ -33,7 +33,7 @@
             margin-bottom: 30px;
         }
         .stat-box {
-            background: #16213e;
+            background: #252526;
             border-radius: 8px;
             padding: 20px;
             text-align: center;
@@ -42,10 +42,10 @@
         .stat-value {
             font-size: 24px;
             font-weight: bold;
-            color: #5b9aff;
+            color: #4fc1ff;
         }
         .stat-label {
-            color: #8888aa;
+            color: #969696;
             margin-top: 5px;
             font-size: 12px;
         }
@@ -56,18 +56,18 @@
             margin-bottom: 30px;
         }
         .chart-card {
-            background: #16213e;
+            background: #252526;
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         .chart-card h3 {
             margin: 0 0 15px 0;
-            color: #e0e0e0;
+            color: #d4d4d4;
             font-size: 14px;
         }
         .activity-card {
-            background: #16213e;
+            background: #252526;
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.3);
@@ -75,7 +75,7 @@
         }
         .activity-card h3 {
             margin: 0 0 15px 0;
-            color: #e0e0e0;
+            color: #d4d4d4;
         }
         .activity-grid {
             display: grid;
@@ -88,7 +88,7 @@
         }
         .activity-item {
             padding: 6px 10px;
-            border-bottom: 1px solid #2a2a4a;
+            border-bottom: 1px solid #3c3c3c;
             font-size: 11px;
             display: flex;
             justify-content: space-between;
@@ -105,17 +105,17 @@
             font-weight: 500;
             text-transform: uppercase;
         }
-        .type-file_save { background: #1e3a5f; color: #60a5fa; }
-        .type-pipeline_run { background: #1a3a2a; color: #4ade80; }
-        .type-session_start { background: #3a2e1a; color: #fbbf24; }
-        .type-session_end { background: #3a1a1a; color: #f87171; }
+        .type-file_save { background: #1a3350; color: #60a5fa; }
+        .type-pipeline_run { background: #1a3324; color: #4ade80; }
+        .type-session_start { background: #332b1a; color: #fbbf24; }
+        .type-session_end { background: #331a1a; color: #f87171; }
         .activity-time {
-            color: #6b6b8a;
+            color: #808080;
             font-size: 10px;
         }
         .commit-item {
             padding: 6px 10px;
-            border-bottom: 1px solid #2a2a4a;
+            border-bottom: 1px solid #3c3c3c;
             font-size: 11px;
         }
         .commit-item:last-child {
@@ -123,15 +123,15 @@
         }
         .commit-hash {
             font-family: monospace;
-            color: #a78bfa;
+            color: #c792ea;
             font-size: 10px;
         }
         .commit-message {
-            color: #d0d0e0;
+            color: #cccccc;
             margin-left: 8px;
         }
         .commit-date {
-            color: #6b6b8a;
+            color: #808080;
             font-size: 11px;
             display: block;
             margin-top: 4px;
@@ -139,17 +139,17 @@
         .footer {
             text-align: center;
             margin-top: 30px;
-            color: #6b6b8a;
+            color: #808080;
             font-size: 14px;
         }
         .footer code {
-            color: #a78bfa;
-            background: #16213e;
+            color: #c792ea;
+            background: #252526;
             padding: 2px 6px;
             border-radius: 4px;
         }
         .no-data {
-            color: #6b6b8a;
+            color: #808080;
             font-style: italic;
             text-align: center;
             padding: 20px;
@@ -649,12 +649,12 @@ const DASHBOARD_DATA = {
             scales: {
                 y: {
                     beginAtZero: true,
-                    ticks: { stepSize: 1, color: '#8888aa' },
-                    grid: { color: '#2a2a4a' }
+                    ticks: { stepSize: 1, color: '#969696' },
+                    grid: { color: '#3c3c3c' }
                 },
                 x: {
-                    ticks: { color: '#8888aa' },
-                    grid: { color: '#2a2a4a' }
+                    ticks: { color: '#969696' },
+                    grid: { color: '#3c3c3c' }
                 }
             }
         };
@@ -722,19 +722,19 @@ const DASHBOARD_DATA = {
             const labels = charts.labels || [];
 
             createChart('commitsChart', 'Commits',
-                { labels, values: charts.commits || [] }, '#6366f1');
+                { labels, values: charts.commits || [] }, '#569cd6');
             createChart('editsChart', 'File Edits',
-                { labels, values: charts.fileEdits || [] }, '#2563eb');
+                { labels, values: charts.fileEdits || [] }, '#4ec9b0');
             createChart('pipelineChart', 'Pipeline Runs',
-                { labels, values: charts.pipelineRuns || [] }, '#16a34a');
+                { labels, values: charts.pipelineRuns || [] }, '#6a9955');
 
             // Session hours estimated from git commit patterns
             createChart('sessionChart', 'Hours',
-                { labels, values: charts.sessionHours || [] }, '#ea580c');
+                { labels, values: charts.sessionHours || [] }, '#ce9178');
 
             // Scenarios worked over time
             createChart('scenariosChart', 'Scenarios',
-                { labels, values: charts.scenariosWorked || [] }, '#8b5cf6');
+                { labels, values: charts.scenariosWorked || [] }, '#c792ea');
 
             // Render recent activity
             const activityList = document.getElementById('recentActivity');
