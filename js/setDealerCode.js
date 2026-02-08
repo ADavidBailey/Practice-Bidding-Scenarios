@@ -1,5 +1,10 @@
 //Script,onDataLoad
 window.setDealerCode = function (dealerCode, dealer = "S", rotateDeals = true) {
+    // Store dealer state for rotation toggle button
+    window.pbsDealer = dealer;
+    window.pbsRotateDeals = rotateDeals;
+    if (window.updateRotateButton) window.updateRotateButton();
+
     var txtar = null;
     var delayValue = 500;
     var cnt = -1;
@@ -67,8 +72,8 @@ window.setDealerCode = function (dealerCode, dealer = "S", rotateDeals = true) {
                             this.click();
                         } else {
                             if (dealer.includes(dirs.charAt(idx))) {
-                                this.click();                            
-                            }    
+                                this.click();
+                            }
                         }
                     });
                     break;

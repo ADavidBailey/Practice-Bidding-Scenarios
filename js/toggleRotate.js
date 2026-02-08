@@ -1,5 +1,26 @@
 //Script,onDataLoad
+window.updateRotateButton = function () {
+    var singleArrows = { N: '\u2191', E: '\u2192', S: '\u2193', W: '\u2190' };
+    var doubleArrows = { N: '\u2195', E: '\u2194', S: '\u2195', W: '\u2194' };
+    var dealer = window.pbsDealer || 'S';
+    var arrow = window.pbsRotateDeals ? doubleArrows[dealer] : singleArrows[dealer];
+
+    var adPanel = document.getElementById('adpanel2');
+    if (!adPanel) return;
+    var buttons = adPanel.querySelectorAll('button');
+    for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].value === '%toggleRotate%') {
+            buttons[i].textContent = arrow;
+            return;
+        }
+    }
+};
+
 window.toggleRandomlyRotate = function () {
+    // Toggle state and update button
+    window.pbsRotateDeals = !window.pbsRotateDeals;
+    window.updateRotateButton();
+
     var delayValue = 500;
     var cnt = -1;
     var intrv;
@@ -72,5 +93,27 @@ window.toggleRandomlyRotate = function () {
         } catch {
         }
     }, delayValue);
+};
+
+// Sync toggle button when user manually changes the checkbox in Deal source dialog
+window._pbsModalWasOpen = false;
+window._pbsLastCheckboxState = null;
+window.syncRotateFromDialog = function () {
+    var checkbox = $("modal-content mat-checkbox:first", parent.window.document);
+    var modalOpen = checkbox.length > 0;
+
+    if (modalOpen) {
+        // Dialog is open - read the checkbox state
+        window._pbsModalWasOpen = true;
+        window._pbsLastCheckboxState = checkbox.hasClass("mat-checkbox-checked");
+    } else if (window._pbsModalWasOpen) {
+        // Dialog just closed - sync state from last-read checkbox value
+        window._pbsModalWasOpen = false;
+        if (window._pbsLastCheckboxState !== null && window._pbsLastCheckboxState !== window.pbsRotateDeals) {
+            window.pbsRotateDeals = window._pbsLastCheckboxState;
+            window.updateRotateButton();
+        }
+        window._pbsLastCheckboxState = null;
+    }
 };
 //Script
