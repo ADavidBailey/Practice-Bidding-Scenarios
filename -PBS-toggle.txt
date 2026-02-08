@@ -1,7 +1,7 @@
 //BBOalert, Bidding Scenarios
 //BBOalert, Bidding Scenarios - version 4.1.7
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode-test.js
-Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/toggleRotate-test.js
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/toggleRotate.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
 Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
 Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/PBStooltips.js
@@ -217,7 +217,7 @@ Script,onDataLoad
     };
 
     // Register plugin config for test mode toggle
-    var savedConfig = addConfigBox('PBS', pbsConfig);
+    var savedConfig = addConfigBox('PBS-Toggle', pbsConfig);
     if (savedConfig) pbsConfig = savedConfig;
 
     // Store current config state for change detection
@@ -232,7 +232,7 @@ Script,onDataLoad
     // GitHub URLs
     var GITHUB_OWNER = 'ADavidBailey';
     var GITHUB_REPO = 'Practice-Bidding-Scenarios';
-    var LAYOUT_RELEASE_URL = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/btn/-button-layout-test.txt';
+    var LAYOUT_RELEASE_URL = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/btn/-button-layout-release.txt';
     var LAYOUT_BETA_URL = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/btn/-button-layout-beta.txt';
     var PBS_TEST_API = 'https://api.github.com/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/pbs-test';
     var PBS_RELEASE_API = 'https://api.github.com/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/pbs-release';
@@ -521,6 +521,9 @@ Script,onDataLoad
                     if (match) {
                         window.currentPBSScenario = scenarioName;
                         window.currentPBSScenarioFilename = scenarioName;
+                        // Extract convention-card from dealer code comments
+                        var ccMatch = match[1].match(/convention-card:\s*(\S+)/);
+                        window.currentPBSConventionCard = ccMatch ? ccMatch[1] : null;
                         fetch('https://bba.harmonicsystems.com/api/scenario/select', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json', 'X-Client-Version': '1.0.0' },
@@ -652,6 +655,10 @@ Script,onDataLoad
                             var match = content.match(/setDealerCode\(`([\s\S]*?)`,\s*"([NSEW])",\s*(true|false)\)/);
                             if (match) {
                                 window.currentPBSScenario = scenarioName;
+                                window.currentPBSScenarioFilename = scenarioName;
+                                // Extract convention-card from dealer code comments
+                                var ccMatch = match[1].match(/convention-card:\s*(\S+)/);
+                                window.currentPBSConventionCard = ccMatch ? ccMatch[1] : null;
                                 setDealerCode(match[1], match[2], match[3] === 'true');
                             }
                         })
@@ -931,7 +938,7 @@ Script,onDataLoad
         console.log('PBS Dynamic: Rebuilding buttons...');
 
         // Re-read config from localStorage
-        var stored = localStorage.getItem('BBOalertPlugin PBS');
+        var stored = localStorage.getItem('BBOalertPlugin PBS-Toggle');
         if (stored) {
             var newConfig = JSON.parse(stored);
             pbsConfig.Enable_Test_Mode = newConfig.Enable_Test_Mode;
@@ -958,7 +965,7 @@ Script,onDataLoad
     }
 
     function runInit() {
-        console.log('PBS v4.1.7: Initializing...');
+        console.log('PBS-Toggle v4.1.7: Initializing...');
         console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
         console.log('PBS Dynamic: Beta layout =', pbsConfig.Use_Beta_Layout);
 
@@ -1003,7 +1010,7 @@ Script
 Script,onAnyMutation
 (function() {
     // Check if config has changed
-    var stored = localStorage.getItem('BBOalertPlugin PBS');
+    var stored = localStorage.getItem('BBOalertPlugin PBS-Toggle');
     if (!stored || !window._pbsDynamicLastConfig) return;
 
     var currentConfig = JSON.parse(stored);
