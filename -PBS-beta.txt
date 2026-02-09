@@ -9,36 +9,38 @@ Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/PBStooltips.js
 Script,onDataLoad
 displayHCP = function () {
     var HCP = [0,0,0,0];
+    var cardCount = [0,0,0,0];
     var player = ["S", "W", "N", "E"];
+    var suitGroups = [{}, {}, {}, {}];
     $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", parent.window.document).each(function() {
         if (!isVisible(this)) return;
-        var z = Math.trunc($(this).parent().parent().parent().css("zIndex") / 100) - 1;
+        var el = $(this).parent().parent().parent();
+        var z = Math.trunc(el.css("zIndex") / 100) - 1;
         var v = "JQKA".indexOf($(this).text().charAt(0)) + 1;
         HCP[z]+=v;
-    });
-    var tp = [0,0,0,0];
-    HCP.forEach(function(hcp, idx) {
-        if (hcp == 0) return;
-        var zidx = (idx + 1).toString();
-        var hand = $('#navDiv .cardClass .topLeft:visible', parent.window.document).filter(function() {
-            return this.parentElement.parentElement.parentElement.style.zIndex.startsWith(zidx);
-        }).text().replaceAll("10", "T");
-        hand = hand.replace(/[♠♤]/g,"S").replace(/[♥♡]/g,"H").replace(/[♦♢]/g,"D").replace(/[♣♧]/g,"C");
-        var r = hand.split("").reverse().join("");
-        "SHDC".split("").forEach(function(c) {
-            var start = r.indexOf(c);
-            var end = r.lastIndexOf(c);
-            var s = (start >= 0) ? r.substring(start, end + 2).replace(/[SHDC]/g, "") : "";
-            var pts = 3 - Math.min(3, s.length);
-            if (pts > 0 && s.match(/[JQKA]/)) pts--;
-            tp[idx] += pts;
-        });
+        cardCount[z]++;
+        var top = Math.round(parseFloat(el.css("top")));
+        if (isNaN(top)) top = Math.round(parseFloat($(this).parent().parent().css("top")));
+        var key = "" + top;
+        if (!suitGroups[z][key]) suitGroups[z][key] = {count: 0, hasHonor: false};
+        suitGroups[z][key].count++;
+        if (v > 0) suitGroups[z][key].hasHonor = true;
     });
     var txt = "";
     HCP.forEach(function(hcp, idx) {
         if (HCP[idx] > 0) {
+            var sp = 0;
+            if (cardCount[idx] == 13) {
+                var groups = Object.values(suitGroups[idx]);
+                groups.forEach(function(g) {
+                    var pts = 3 - Math.min(3, g.count);
+                    if (pts > 0 && g.hasHonor) pts--;
+                    sp += pts;
+                });
+                sp += (4 - groups.length) * 3;
+            }
             txt = txt + player[idx] + ":" + HCP[idx];
-            if (tp[idx] > 0) txt = txt + "-" + tp[idx];
+            if (sp > 0) txt = txt + "-" + sp;
             txt = txt + " ";
         }
     });
