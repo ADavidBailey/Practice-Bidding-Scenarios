@@ -53,13 +53,15 @@ displayHCP = function () {
                     }
                 }
             }
-            if (idx > 0) txt = txt + "&nbsp;&nbsp;&nbsp;";
+            if (idx > 0) txt = txt + "  ";
             txt = txt + player[idx] + ":" + HCP[idx];
             if (sp > 0) txt = txt + "+" + sp;
             txt = txt + " ";
         }
     });
-    $(".navBarClass .titleClass", window.parent.document).html(txt);
+    var el = $(".navBarClass .titleClass", window.parent.document);
+    el.css("white-space", "pre");
+    el.text(txt);
 };
 Script
 
