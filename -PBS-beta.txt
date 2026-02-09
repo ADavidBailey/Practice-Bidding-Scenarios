@@ -9,16 +9,38 @@ Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/PBStooltips.js
 Script,onDataLoad
 displayHCP = function () {
     var HCP = [0,0,0,0];
+    var cardCount = [0,0,0,0];
     var player = ["S", "W", "N", "E"];
+    var suits = [{}, {}, {}, {}];
     $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", parent.window.document).each(function() {
         if (!isVisible(this)) return;
         var z = Math.trunc($(this).parent().parent().parent().css("zIndex") / 100) - 1;
         var v = "JQKA".indexOf($(this).text().charAt(0)) + 1;
         HCP[z]+=v;
+        cardCount[z]++;
+        var color = $(this).css("color");
+        if (!suits[z][color]) suits[z][color] = {count: 0, hasHonor: false};
+        suits[z][color].count++;
+        if (v > 0) suits[z][color].hasHonor = true;
     });
     var txt = "";
     HCP.forEach(function(hcp, idx) {
-        if (HCP[idx] > 0) txt = txt + player[idx] + ":" + HCP[idx] + " ";
+        if (HCP[idx] > 0) {
+            var sp = 0;
+            if (cardCount[idx] == 13) {
+                Object.values(suits[idx]).forEach(function(s) {
+                    var pts = 0;
+                    if (s.count == 1) pts = 2;
+                    else if (s.count == 2) pts = 1;
+                    if (pts > 0 && s.hasHonor) pts--;
+                    sp += pts;
+                });
+                sp += (4 - Object.keys(suits[idx]).length) * 3;
+            }
+            txt = txt + player[idx] + ":" + HCP[idx];
+            if (sp > 0) txt = txt + "-" + sp;
+            txt = txt + " ";
+        }
     });
     $(".navBarClass .titleClass", window.parent.document).text(txt);
 };
