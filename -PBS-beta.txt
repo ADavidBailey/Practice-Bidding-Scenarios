@@ -53,8 +53,9 @@ displayHCP = function () {
                     }
                 }
             }
+            if (idx > 0) txt = txt + " ";
             txt = txt + player[idx] + ":" + HCP[idx];
-            if (sp > 0) txt = txt + "-" + sp;
+            if (sp > 0) txt = txt + "+" + sp;
             txt = txt + " ";
         }
     });
