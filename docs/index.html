@@ -12,18 +12,18 @@
             max-width: 1100px;
             margin: 40px auto;
             padding: 20px;
-            background: #1e1e1e;
-            color: #d4d4d4;
+            background: #f5f5f5;
+            color: #333333;
         }
         h1 {
-            color: #d4d4d4;
+            color: #222222;
             text-align: center;
             margin-bottom: 10px;
             font-size: 22px;
         }
         .subtitle {
             text-align: center;
-            color: #969696;
+            color: #666666;
             margin-bottom: 30px;
         }
         .stats {
@@ -33,19 +33,19 @@
             margin-bottom: 30px;
         }
         .stat-box {
-            background: #252526;
+            background: #ffffff;
             border-radius: 8px;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
         }
         .stat-value {
             font-size: 24px;
             font-weight: bold;
-            color: #4fc1ff;
+            color: #0077b6;
         }
         .stat-label {
-            color: #969696;
+            color: #666666;
             margin-top: 5px;
             font-size: 12px;
         }
@@ -56,26 +56,26 @@
             margin-bottom: 30px;
         }
         .chart-card {
-            background: #252526;
+            background: #ffffff;
             border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
         }
         .chart-card h3 {
             margin: 0 0 15px 0;
-            color: #d4d4d4;
+            color: #333333;
             font-size: 14px;
         }
         .activity-card {
-            background: #252526;
+            background: #ffffff;
             border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
             margin-bottom: 20px;
         }
         .activity-card h3 {
             margin: 0 0 15px 0;
-            color: #d4d4d4;
+            color: #333333;
         }
         .activity-grid {
             display: grid;
@@ -88,7 +88,7 @@
         }
         .activity-item {
             padding: 6px 10px;
-            border-bottom: 1px solid #3c3c3c;
+            border-bottom: 1px solid #e5e5e5;
             font-size: 11px;
             display: flex;
             justify-content: space-between;
@@ -105,17 +105,17 @@
             font-weight: 500;
             text-transform: uppercase;
         }
-        .type-file_save { background: #1a3350; color: #60a5fa; }
-        .type-pipeline_run { background: #1a3324; color: #4ade80; }
-        .type-session_start { background: #332b1a; color: #fbbf24; }
-        .type-session_end { background: #331a1a; color: #f87171; }
+        .type-file_save { background: #dbeafe; color: #1d4ed8; }
+        .type-pipeline_run { background: #dcfce7; color: #15803d; }
+        .type-session_start { background: #fef3c7; color: #b45309; }
+        .type-session_end { background: #fee2e2; color: #b91c1c; }
         .activity-time {
-            color: #808080;
+            color: #888888;
             font-size: 10px;
         }
         .commit-item {
             padding: 6px 10px;
-            border-bottom: 1px solid #3c3c3c;
+            border-bottom: 1px solid #e5e5e5;
             font-size: 11px;
         }
         .commit-item:last-child {
@@ -123,15 +123,15 @@
         }
         .commit-hash {
             font-family: monospace;
-            color: #c792ea;
+            color: #7c3aed;
             font-size: 10px;
         }
         .commit-message {
-            color: #cccccc;
+            color: #444444;
             margin-left: 8px;
         }
         .commit-date {
-            color: #808080;
+            color: #888888;
             font-size: 11px;
             display: block;
             margin-top: 4px;
@@ -139,17 +139,17 @@
         .footer {
             text-align: center;
             margin-top: 30px;
-            color: #808080;
+            color: #888888;
             font-size: 14px;
         }
         .footer code {
-            color: #c792ea;
-            background: #252526;
+            color: #7c3aed;
+            background: #f0ecf9;
             padding: 2px 6px;
             border-radius: 4px;
         }
         .no-data {
-            color: #808080;
+            color: #888888;
             font-style: italic;
             text-align: center;
             padding: 20px;
@@ -165,14 +165,14 @@
     </style>
     <script>
 const DASHBOARD_DATA = {
-  "generatedAt": "2026-02-08T09:00:55.841449",
+  "generatedAt": "2026-02-08T22:16:04.526159",
   "summary": {
     "totalScenarios": 298,
     "scenariosWorked": 298,
-    "totalFileEdits": 50617,
-    "totalPipelineRuns": 641,
-    "totalSessionHours": 3137,
-    "totalCommits": 5403
+    "totalFileEdits": 50609,
+    "totalPipelineRuns": 642,
+    "totalSessionHours": 3129,
+    "totalCommits": 5401
   },
   "charts": {
     "labels": [
@@ -207,7 +207,7 @@ const DASHBOARD_DATA = {
       "Feb 26"
     ],
     "fileEdits": [
-      215,
+      206,
       450,
       423,
       253,
@@ -235,7 +235,7 @@ const DASHBOARD_DATA = {
       678,
       506,
       95,
-      363
+      364
     ],
     "pipelineRuns": [
       0,
@@ -266,10 +266,10 @@ const DASHBOARD_DATA = {
       0,
       0,
       61,
-      580
+      581
     ],
     "commits": [
-      236,
+      227,
       502,
       441,
       259,
@@ -297,10 +297,10 @@ const DASHBOARD_DATA = {
       80,
       62,
       228,
-      204
+      211
     ],
     "sessionHours": [
-      102,
+      94,
       145,
       171,
       75,
@@ -331,7 +331,7 @@ const DASHBOARD_DATA = {
       140
     ],
     "scenariosWorked": [
-      14,
+      12,
       57,
       72,
       84,
@@ -363,22 +363,6 @@ const DASHBOARD_DATA = {
     ]
   },
   "recentActivity": [
-    {
-      "timestamp": "2026-02-07T16:42:08.899Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "Open_In_Fourth_Seat",
-        "operation": "release"
-      }
-    },
-    {
-      "timestamp": "2026-02-07T17:36:41.082Z",
-      "type": "file_save",
-      "details": {
-        "filePath": "btn/Flannery.btn",
-        "fileType": "btn"
-      }
-    },
     {
       "timestamp": "2026-02-07T17:36:49.476Z",
       "type": "pipeline_run",
@@ -514,9 +498,60 @@ const DASHBOARD_DATA = {
         "filePath": "btn/Resp_to_1C.btn",
         "fileType": "btn"
       }
+    },
+    {
+      "timestamp": "2026-02-08T20:43:11.928Z",
+      "type": "file_save",
+      "details": {
+        "filePath": "btn/-button-layout-beta.txt",
+        "fileType": "txt"
+      }
+    },
+    {
+      "timestamp": "2026-02-08T21:41:11.351Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "layout",
+        "operation": "release-layout"
+      }
     }
   ],
   "recentCommits": [
+    {
+      "hash": "06130e80",
+      "date": "2026-02-08 16:35:32 -0600",
+      "message": "Switch Activity Dashboard from blue-tinted to warm neutral dark theme"
+    },
+    {
+      "hash": "7194c56f",
+      "date": "2026-02-08 15:41:12 -0600",
+      "message": "Release button layout to production"
+    },
+    {
+      "hash": "1ce5b5a9",
+      "date": "2026-02-08 15:39:20 -0600",
+      "message": "Release toggle rotate feature to -PBS.txt (v4.1.8)"
+    },
+    {
+      "hash": "7dbe8bc9",
+      "date": "2026-02-08 13:25:36 -0800",
+      "message": "Add 'Toggle' to BBOalert plugin header for identification"
+    },
+    {
+      "hash": "bdb3860b",
+      "date": "2026-02-08 13:22:29 -0800",
+      "message": "Promote -PBS-toggle.txt to release references and merge scenario changes"
+    },
+    {
+      "hash": "6c74ab62",
+      "date": "2026-02-08 15:09:01 -0600",
+      "message": "Promote -test files to production and clean up dev files"
+    },
+    {
+      "hash": "bff7044a",
+      "date": "2026-02-08 09:00:55 -0600",
+      "message": "Daily dashboard update"
+    },
     {
       "hash": "93fbdf1c",
       "date": "2026-02-07 21:41:49 -0600",
@@ -531,41 +566,6 @@ const DASHBOARD_DATA = {
       "hash": "2022d4cf",
       "date": "2026-02-07 19:52:17 -0600",
       "message": "Adjust action button widths to 98% total to account for inline spacing"
-    },
-    {
-      "hash": "64b3ba1f",
-      "date": "2026-02-07 17:46:22 -0800",
-      "message": "Add convention-card extraction to scenario buttons (v4.1.8)"
-    },
-    {
-      "hash": "c501dfae",
-      "date": "2026-02-07 19:44:58 -0600",
-      "message": "Fix action button widths to sum to 100%"
-    },
-    {
-      "hash": "83a7dc65",
-      "date": "2026-02-07 19:43:22 -0600",
-      "message": "Abbreviate action button labels to give toggle button more room"
-    },
-    {
-      "hash": "4636d3fe",
-      "date": "2026-02-07 19:37:58 -0600",
-      "message": "Widen rotate toggle button to 6% to prevent arrow clipping"
-    },
-    {
-      "hash": "4c4e5570",
-      "date": "2026-02-07 19:35:03 -0600",
-      "message": "Widen rotate toggle button to 5% to prevent arrow clipping"
-    },
-    {
-      "hash": "a3ac5699",
-      "date": "2026-02-07 18:54:51 -0600",
-      "message": "Sync rotate toggle button when user manually changes Deal source checkbox"
-    },
-    {
-      "hash": "fad81e4b",
-      "date": "2026-02-07 18:40:38 -0600",
-      "message": "Point -PBS-toggle.txt to test versions of JS and layout files"
     }
   ]
 };
@@ -649,12 +649,12 @@ const DASHBOARD_DATA = {
             scales: {
                 y: {
                     beginAtZero: true,
-                    ticks: { stepSize: 1, color: '#969696' },
-                    grid: { color: '#3c3c3c' }
+                    ticks: { stepSize: 1, color: '#666666' },
+                    grid: { color: '#e5e5e5' }
                 },
                 x: {
-                    ticks: { color: '#969696' },
-                    grid: { color: '#3c3c3c' }
+                    ticks: { color: '#666666' },
+                    grid: { color: '#e5e5e5' }
                 }
             }
         };
