@@ -53,13 +53,13 @@ displayHCP = function () {
                     }
                 }
             }
-            if (idx > 0) txt = txt + "\u00A0";
+            if (idx > 0) txt = txt + "&nbsp;";
             txt = txt + player[idx] + ":" + HCP[idx];
             if (sp > 0) txt = txt + "+" + sp;
             txt = txt + " ";
         }
     });
-    $(".navBarClass .titleClass", window.parent.document).text(txt);
+    $(".navBarClass .titleClass", window.parent.document).html(txt);
 };
 Script
 
