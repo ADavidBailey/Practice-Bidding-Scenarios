@@ -9,40 +9,18 @@ Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/PBStooltips.js
 Script,onDataLoad
 displayHCP = function () {
     var HCP = [0,0,0,0];
-    var cardCount = [0,0,0,0];
     var player = ["S", "W", "N", "E"];
-    var suitSymbols = ['♠','♥','♦','♣'];
-    var suits = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
-    var suitHonors = [[false,false,false,false],[false,false,false,false],[false,false,false,false],[false,false,false,false]];
     $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", parent.window.document).each(function() {
         if (!isVisible(this)) return;
         var z = Math.trunc($(this).parent().parent().parent().css("zIndex") / 100) - 1;
         var v = "JQKA".indexOf($(this).text().charAt(0)) + 1;
         HCP[z]+=v;
-        cardCount[z]++;
-        var cardText = $(this).parent().text();
-        for (var si = 0; si < 4; si++) {
-            if (cardText.indexOf(suitSymbols[si]) >= 0) {
-                suits[z][si]++;
-                if (v > 0) suitHonors[z][si] = true;
-                break;
-            }
-        }
     });
     var txt = "";
     HCP.forEach(function(hcp, idx) {
         if (HCP[idx] > 0) {
             var sp = 0;
-            if (cardCount[idx] == 13) {
-                for (var si = 0; si < 4; si++) {
-                    var pts = 0;
-                    if (suits[idx][si] == 0) pts = 3;
-                    else if (suits[idx][si] == 1) pts = 2;
-                    else if (suits[idx][si] == 2) pts = 1;
-                    if (pts > 0 && suitHonors[idx][si]) pts--;
-                    sp += pts;
-                }
-            }
+            try { sp = seatTPC(player[idx]) - seatHCP(player[idx]); } catch(e) {}
             txt = txt + player[idx] + ":" + HCP[idx];
             if (sp > 0) txt = txt + "-" + sp;
             txt = txt + " ";
