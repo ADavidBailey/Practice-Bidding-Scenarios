@@ -1,11 +1,10 @@
-# button-text: Strong Club 5/4 Resp 16+
-# scenario-title: Strong Club with 5/4 Response (16+ HCP)
+# button-text: 5/4 Resp w/8+
+# scenario-title: --- 5/4 Response (16+ HCP)
+# auction-filter: Auction.....[\s\S][\s\S]?1C
+# convention-card: Precision
 # SCS16_1C_54_Resp
 dealer south
-
-
 # convention-card: Precision
-# auction-filter: Auction.....[\s\S][\s\S]?1C
 
 
 # Strong C & 5/4, 5/5, or 6/5 H/S
@@ -18,3 +17,5 @@ and hcp(north)>7
 
 # North has specific shapes
 and shape(north, any 54xx+ any 55xx +any 65xx)
+
+action printpbn

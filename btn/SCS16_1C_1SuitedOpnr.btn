@@ -1,9 +1,9 @@
 # alias: SCS16-1SuitedOpnr
-# button-text: 1-Suited Opener
+# button-text: 1-Suited Opnr w/any resp
 # dealer-position: S
 # gib-works: false
 # bba-works: true
-# auction-filter: Auction.....\n1C +Pass +(1[HS]|2[CD])
+# auction-filter: Auction.....\n1C
 # convention-card: Precision
 
 /*@chat
@@ -25,7 +25,7 @@ semiSolidS = spades(south)>5 and top4(south,spades)>2
 semiSolid = (semiSolidC or semiSolidD or semiSolidH or semiSolidS)
 
 # South has 15+
-(solid or semiSolid) and hcp(south)>15 and hcp(north)
+(solid or semiSolid) and hcp(south)>15
 
 # North has 0-4
 and hcp(north)<5

@@ -1,11 +1,11 @@
-# button-text: Major w/2nd Suit 9-14
-# scenario-title: Major with 2nd Suit (9-14 HCP)
+# button-text: 1M w/2nd Suit
+# scenario-title: --- Major with 2nd Suit (9-15 HCP)
+# auction-filter: Auction.....\n1[HS]
+# convention-card: Precision
 # SCS16_Major_with_2nd_Suit
 dealer south
-
-
 # convention-card: Precision
-# auction-filter: Auction.....[\s\S][\s\S]?1[HS]
+
 
 
 # Predict South's Opening Suit
@@ -23,3 +23,5 @@ and shape(south, any 85xx +any 76xx +any 75xx +any 65xx +any 55xx) // any two 5+
 
 # and North has 12+
 and hcp(north)>11                                                  // responder has 12+
+
+action printpbn

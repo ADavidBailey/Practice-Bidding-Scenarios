@@ -1,0 +1,29 @@
+# button-text: 1-Suited Opnr w/any resp
+# scenario-title: --- 16+ w/solid or semi-solid suit
+# auction-filter: Auction.....\n1C
+# convention-card: Precision
+# SCS16_1C_1SuitedOpnr
+dealer south
+# convention-card: Precision
+
+
+
+solidC = clubs(south)>5 and top3(south,clubs)>2
+solidD = diamonds(south)>5 and top3(south,diamonds)>2
+solidH = hearts(south)>5 and top3(south,hearts)>2
+solidS = spades(south)>5 and top3(south,spades)>2
+solid = (solidC or solidD or solidH or solidS)
+
+semiSolidC = clubs(south)>5 and top4(south,clubs)>2
+semiSolidD = diamonds(south)>5 and top4(south,diamonds)>2
+semiSolidH = hearts(south)>5 and top4(south,hearts)>2
+semiSolidS = spades(south)>5 and top4(south,spades)>2
+semiSolid = (semiSolidC or semiSolidD or semiSolidH or semiSolidS)
+
+# South has 15+
+(solid or semiSolid) and hcp(south)>15
+
+# North has 0-4
+and hcp(north)<5
+
+action printpbn
