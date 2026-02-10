@@ -17,7 +17,7 @@ setDealerCode(`
 
 /*
 convention-card: Precision
-auction-filter: Auction.....[\s\S][\s\S]?1C
+auction-filter: Auction.....\n1C
 */
 # convention-card: Precision
 
@@ -35,6 +35,6 @@ and hcp(north)>4 and hcp(north)<8
 and shape(north, any 4441 + any 5440)
 `, "S", true)
 Script
-Button,3-Suit 5-7 16+,\n\
---- 3-Suit Response w/5-7 HCP (16+ HCP)\n\
-%scs16StrongClub3Suit57%,backgroundColor=lightpink
+Button,3-Suited Resp w/5-7,\n\
+--- 3-Suit Response w/5-7 HCP\n\
+%scs16StrongClub3Suit57%,width=50% backgroundColor=lightpink
