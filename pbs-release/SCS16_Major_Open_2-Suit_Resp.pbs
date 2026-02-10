@@ -17,7 +17,7 @@ setDealerCode(`
 
 /*
 convention-card: Precision
-auction-filter: Auction.....[\s\S][\s\S]?1[HS]
+auction-filter: Auction.....\n1[HS]
 */
 # convention-card: Precision
 
@@ -41,8 +41,8 @@ or
 (oH and hearts(north)<5 and shape(north, any 55xx)))
 `, "S", true)
 Script
-Button,1M & 2-Suit Resp,\n\
+Button,1M w/2-Suit Resp,\n\
 --- Major & 2-Suit Response (11-15 HCP)\n\
 1!H or 1!S is 11-15 HCP.\n\
 http://clairebridge.com/textes/karensrules.pdf\n\
-%scs16Major2SuitResp%,backgroundColor=lightpink
+%scs16Major2SuitResp%,width=50% backgroundColor=lightpink
