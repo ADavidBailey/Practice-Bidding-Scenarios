@@ -236,25 +236,25 @@ tpEW = tpEast + tpWest
 ### End of Imported Script: TP
 # Defines tpSouth, tpNorth
 
-# Define openers
-sFit3 = oneSpade and spades(south)==5 and spades(north)==3
-hFit3 = oneHeart and hearts(north)==5 and hearts(north)==3 and spades(north)<4
+# Define openers suitable for a game try
+sFit3 = oneSpade and spades(south)==5 and top4(south,spades)>1 and spades(north)==3
+hFit3 = oneHeart and hearts(north)==5 and top4(south,hearts)>1 and hearts(north)==3 and spades(north)<4
 fit3 = (sFit3 or hFit3) and hcp(north)<10
 
 sFit4 = oneSpade and spades(north)>3
 hFit4 = oneHeart and hearts(north)>3
 fit4 = (sFit4 or hFit4) and hcp(north)<7
 
-fit  = (fit3 or fit4) and tpNorth>5
+fit  = (fit3 or fit4) and tpNorth>4
 
-gameTry = hcp(south)<15 and tpSouth>14 and tpSouth<17 and losers(south)>4
+gameTry = tpSouth==16
 
-fit and gameTry and tpNorth>6 and tpNorth<11 and calmOpps
+fit and gameTry and tpNorth<10 and calmOpps
 
 action
 average "hcp(south)" hcp(south),
 average "hcp(north)" hcp(north),
-frequency "hcp(south)" (hcp(south),14,18),
+frequency "hcp(south)" (hcp(south),10,15),
 `, "S", true)
 Script
 Button,Two-Way Game Try,\n\
