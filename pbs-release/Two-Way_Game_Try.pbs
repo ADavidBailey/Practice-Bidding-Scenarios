@@ -241,7 +241,7 @@ sFit = oneSpade and spades(north)>2 and spades(north)<5 and tpSouth>16 and tpSou
 hFit = oneHeart and hearts(north)>2 and hearts(north)<5 and spades(north)<4
 fit  = (sFit or hFit) and tpNorth>hcp(north)
 
-(sFit or hFit) and tpNorth>6 and tpNorth<11 and calmWest
+(sFit or hFit) and tpSouth<18 and tpNorth>6 and tpNorth<11 and calmWest
 
 action
 average "spade fit" 100 * sFit,
