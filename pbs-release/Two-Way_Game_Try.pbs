@@ -16,10 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: Two-Way-Game-Try
+convention-card: 21GF-Two-Way-Game-Try
 auction-filter: Note "1:Two way game tries
 */
-# convention-card: Two-Way-Game-Try
+# convention-card: 21GF-Two-Way-Game-Try
 
 
 # Select Two-Way Game Tries
@@ -104,7 +104,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -114,7 +114,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -258,4 +258,4 @@ After a single raise of a major\n\
 . any other bid below 3 or the major is a long suit/help suit game try\n\
 . bidding 3 of the major is a general strength game try\n\
  https://www.bridgebase.com/doc/gib_system_notes.php#Two-way_Game_Try\n\
-%TwoWayGameTry%,width=50%
+%TwoWayGameTry%,width=50% backgroundColor=lightpink
