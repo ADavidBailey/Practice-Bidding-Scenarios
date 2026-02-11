@@ -1,15 +1,31 @@
-# button-text: Two-Way Game Try
-# scenario-title: --- Two-Way Game Try
-# auction-filter: Note "1:Two way game tries
-# convention-card: 21GF-Two-Way-Game-Try
-# Two-Way_Game_Try
-dealer south
+Script,TwoWayGameTry
+window.currentPBSScenario = 'TwoWayGameTry';
+window.currentPBSScenarioFilename = 'Two-Way_Game_Try';
+console.log('PBS: Logging scenario selection for TwoWayGameTry');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'TwoWayGameTry',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+convention-card: 21GF-Two-Way-Game-Try
+auction-filter: Note "1:Two way game tries
+*/
 # convention-card: 21GF-Two-Way-Game-Try
 
 
 # Select Two-Way Game Tries
 
 # Two-Way Game Tries
+dealer south
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -239,5 +255,13 @@ action
 average "hcp(south)" hcp(south),
 average "hcp(north)" hcp(north),
 frequency "hcp(south)" (hcp(south),14,18),
-
-printpbn
+`, "S", true)
+Script
+Button,Two-Way Game Try,\n\
+--- Two-Way Game Try\n\
+After a single raise of a major\n\
+. a step bid is a short-suit game try\n\
+. any other bid below 3 or the major is a long suit/help suit game try\n\
+. bidding 3 of the major is a general strength game try\n\
+ https://www.bridgebase.com/doc/gib_system_notes.php#Two-way_Game_Try\n\
+%TwoWayGameTry%,width=50% backgroundColor=lightpink
