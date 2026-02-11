@@ -1,16 +1,27 @@
 # alias: MaximalAfterOvercall
 # button-text: MaximalAfterOvercall
-# dealer-position: S
+# dealer-position: W
 # gib-works: false
 # bba-works: true
 # auction-filter: Auction.....\n(1H .* 2H +3D|1S .* 2S +3H)
 # convention-card: 21GF-MaximalDouble
 
-/*
-convention-card: 21GF-MaximalDouble
-auction-filter: Auction.....\n(1H .* 2H +3D|1S .* 2S +3H)
+/*@chat
+--- Maximal Double after Overcall
+After LHO opens, partner overcalls in a major, and RHO competes in the
+maximal suit -- the suit just under partner's -- we need to distinguish
+between a competitive raise and an invitational raise. The Maximal Double
+is the answer.  After (1?) 1M (2M-1)...
+  • 2M is a competitive raise
+  • X is an invitational raise
+https://www.bridgebum.com/maximal_double.php
+@chat*/
 
-Maximal Double
+/*
+Maximal Double after Overcall
+
+convention-card: 21GF-MaximalDouble
+auction-filter: Auction.....\n(1[CD] +1H +2D +(2H|X)|1[CHD] +1S +2H +(2S|X))
 */
 
 dealer south
@@ -21,54 +32,52 @@ dealer south
 #include "script/TP"
 # tpNorth, tpSouth, tpEast, tpWest
 
-# Define West's actions & East's Maximal suit bid
-wShape = shape(west,xxxx -any 76xx -any 75xx -any 66xx -any 65xx -any 55xx)   // kill the 2-suited hands
-wS = spades(west)>4   and top3(west,spades)>1   and wShape and tpWest>7
-wC = clubs(west)>4    and top4(west,clubs)>2    and wShape and tpWest>10 and hcp(west)>9
-wD = diamonds(west)>4 and top4(west,diamonds)>2 and wShape and tpWest>10 and hcp(west)>9
-wH = hearts(west)>4   and top4(west,hearts)>2   and wShape and tpWest>10 and hcp(west)>9
-wX = shape(west,any 5440 +any 5431 +any 4432 +any 4441) and tpWest>12 and not (wS or wC or wD or wH)
-wP = not (wS or wC or wD or wH or wX)
+# West Opens
+1C (1H) 2D
+1C (1S) 2H
+1D (1H) 2D
+1D (1S) 2H
+1H (1S) 2H
 
-# Define East's ranges for bidding after  X, raise, new suit, free bid.
-respXRange = tpEast<12
-maxDresp   = diamonds(east)>=4 and diamonds(east)>spades(east) and diamonds(east)>hearts(east) and diamonds(east)>clubs(east) and hearts(west)<3 and hcp(east,hearts)==0
-maxHresp   = hearts(east)>=4   and hearts(east)>spades(east)   and hearts(east)>diamonds(east) and hearts(east)>clubs(east)   and spades(west)<3 and hcp(east,spades)==0
-respX = respXRange or maxDresp or maxHresp   // for stats
+# Predict West's opening suit
+s = spades(west)
+h = hearts(west)
+d = diamonds(west)
+c = clubs(west)
 
-raiseRange = tpEast>7 and tpEast<11
-maxDraise  = diamonds(east)>2 and top5(east,diamonds)>1 and raiseRange
-maxHraise  = hearts(east)>2   and top5(east,hearts)>1   and raiseRange
-raise = maxDraise or maxHraise               // for stats
+wS = s>4 and s>=h and s>=d and s>=c
+wH = not wS and h>4 and h>=d and h>=c
+wD = not (wS or wH) and ((d>3 and d>=c) or c<3)
+wC = not (wS or wH or wD)
 
-newSuitRange = tpEast>12 and tpEast<18
-maxDnewsuit = diamonds(east)>5 and top5(east,diamonds)>2 and newSuitRange
-maxHnewsuit = hearts(east)>5   and top5(east,hearts)>2   and newSuitRange
-newsuit = maxDnewsuit or maxHnewsuit         // for stats
+# North overcals 1H or 1S
+nHO = hearts(north)>4 and top4(north,hearts)>1
+nSO = spades(north)>4 and top4(north,spades)>1
 
-freeRange = tpEast>11 and tpEast<18
-maxDfree = diamonds(east)>5 and top3(east,diamonds)>1 and freeRange
-maxHfree = hearts(east)>5   and top3(east,hearts)>1   and freeRange
-freebid = maxDfree or maxHfree               // for stats
+# Define East Maximal Raise and East Maximal Free Bid
+eDR = diamonds(east)>2 and tpEast>6
+eDF = diamonds(east)>5 and tpEast>8 and top5(east,diamonds)>2
+eHR = hearts(east)>2   and tpEast>6
+eHF = hearts(east)>5   and tpEast>8 and top5(east,hearts)>2
 
-maxD = (maxDresp or maxDraise or maxDnewsuit or maxDfree) and hearts(west)<2
-maxH = (maxHresp or maxHraise or maxHnewsuit or maxHfree) and spades(west)<2
+# Define East's range for Raise and Free Bid
+eRangeR = hcp(east)>6
+eRangeF = hcp(east)>8
 
-# South opens 1H or 1S, North raises, and East overcalls in the Maximal suit
-min = hcp(south)<12 and tpSouth<13
-len = min ? 6 : 5
-sRange = hcp(south)>10 and tpSouth>11 and tpSouth<19
-nRange = tpNorth>5 and tpNorth<11
-sH = oneHeart and hearts(south)>=len and sRange and hearts(north)==3 and nRange and maxD
-sS = oneSpade and spades(south)>=len and sRange and spades(north)==3 and nRange and maxH
+# Define sequences
+CHD = wC and nH and eDF and eRangeF
+CSH = wC and nS and eHF and eRangeF
+DHD = wD and nH and eDR and eRangeR
+DSH = wD and nS and eHF and eRangeF
+HSH = wH and nS and eHR and eRangeR
 
-#include "script/Leveling"
+wRange = hcp(west)>11
+nRange = hcp(north)>7
+sRange = hcp(south)>7
 
 # Now do it
-(sH or sS) and wShape
-#and levelTheDeal
+(CHD or CSH or DHD or DSH or HSH) and wRange and nRange
 
-produce 5000
 action
 average "X          " 100 * respX,
 average "raise      " 100 * raise,
