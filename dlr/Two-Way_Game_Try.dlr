@@ -231,13 +231,13 @@ fit4 = (sFit4 or hFit4) and hcp(north)<7
 
 fit  = (fit3 or fit4) and tpNorth>4
 
-gameTry = tpSouth==16
+gameTry = tpSouth==16 and hcp(south)<16
 
 fit and gameTry and tpNorth<10 and calmOpps
 
 action
 average "hcp(south)" hcp(south),
 average "hcp(north)" hcp(north),
-frequency "hcp(south)" (hcp(south),10,15),
+frequency "hcp(south)" (hcp(south),12,17),
 
 printpbn
