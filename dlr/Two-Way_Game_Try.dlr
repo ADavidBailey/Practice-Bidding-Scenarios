@@ -1,10 +1,10 @@
 # button-text: Two-Way Game Try
 # scenario-title: --- Two-Way Game Try
 # auction-filter: Note "1:Two way game tries
-# convention-card: Two-Way-Game-Try
+# convention-card: 21GF-Two-Way-Game-Try
 # Two-Way_Game_Try
 dealer south
-# convention-card: Two-Way-Game-Try
+# convention-card: 21GF-Two-Way-Game-Try
 
 
 # Select Two-Way Game Tries
@@ -88,7 +88,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -98,7 +98,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -221,15 +221,23 @@ tpEW = tpEast + tpWest
 # Defines tpSouth, tpNorth
 
 # Define openers
-sFit = oneSpade and spades(north)>2 and spades(north)<5 and tpSouth>16 and tpSouth<19
-hFit = oneHeart and hearts(north)>2 and hearts(north)<5 and spades(north)<4
-fit  = (sFit or hFit) and tpNorth>hcp(north)
+sFit3 = oneSpade and spades(south)==5 and spades(north)==3
+hFit3 = oneHeart and hearts(north)==5 and hearts(north)==3 and spades(north)<4
+fit3 = (sFit3 or hFit3) and hcp(north)<13
 
-(sFit or hFit) and tpNorth>6 and tpNorth<11 and calmWest
+sFit4 = oneSpade and spades(north)>3
+hFit4 = oneHeart and hearts(north)>3
+fit4 = (sFit4 or hFit4) and hcp(north)<7
+
+fit  = (fit3 or fit4) and hcp(north)>5
+
+gameTry = tpSouth>16 and tpSouth<19
+
+fit and tpSouth>14 and tpSouth<17 and tpNorth>6 and tpNorth<11 and calmWest
 
 action
-average "spade fit" 100 * sFit,
-average "heart fit" 100 * hFit,
 average "hcp(south)" hcp(south),
 average "hcp(north)" hcp(north),
 frequency "hcp(south)" (hcp(south),14,18),
+
+printpbn
