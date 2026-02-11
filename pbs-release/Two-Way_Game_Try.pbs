@@ -239,17 +239,17 @@ tpEW = tpEast + tpWest
 # Define openers
 sFit3 = oneSpade and spades(south)==5 and spades(north)==3
 hFit3 = oneHeart and hearts(north)==5 and hearts(north)==3 and spades(north)<4
-fit3 = (sFit3 or hFit3) and hcp(north)<11
+fit3 = (sFit3 or hFit3) and hcp(north)<10
 
 sFit4 = oneSpade and spades(north)>3
 hFit4 = oneHeart and hearts(north)>3
 fit4 = (sFit4 or hFit4) and hcp(north)<7
 
-fit  = (fit3 or fit4) and hcp(north)>5
+fit  = (fit3 or fit4) and tpNorth>5
 
 gameTry = tpSouth>15 and tpSouth<18
 
-fit and gameTry and tpNorth>6 and tpNorth<11 and calmOpps
+fit and gameTry and tpNorth>6 and tpNorth<12 and calmOpps
 
 action
 average "hcp(south)" hcp(south),
