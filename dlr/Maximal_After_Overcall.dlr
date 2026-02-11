@@ -1,6 +1,6 @@
-# button-text: MaximalAfterOvercall
+# button-text: Maximal after Overcall
 # scenario-title: --- Maximal Double after Overcall
-# auction-filter: Auction.....\n(1H .* 2H +3D|1S .* 2S +3H)
+# auction-filter: Auction.....\n(1. +1S +2H|1. +1H +2D)
 # convention-card: 21GF-MaximalDouble
 # Maximal_After_Overcall
 dealer west
@@ -14,115 +14,6 @@ convention-card: 21GF-MaximalDouble
 auction-filter: Auction.....\n(1[CD] +1H +2D +(2H|X)|1[CHD] +1S +2H +(2S|X))
 */
 
-
-##### Imported Script -- Predict Opening 1-Bid South #####
-# 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
-# 03/30/2025 -- Changed to use gibNT
-
-# GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
-ntP = hcp(south) + shape(south,5xxx+x5xx)
-nt1 = shape(south, any 5332+any 4432+any 4333) and hcp(south)>14 and ntP<18
-
-# GIB does not open with 5422 and a 5-card major
-# GIB does not open with 5422 and the strength to reverse
-nt2 = shape(south, any 5422 -5xxx-x5xx-4xxx) and hcp(south)>14 and hcp(south)<17
-
-gibNT = nt1 or nt2
-
-## Calculate TP for South -- NOTE:  This uses different variable names than TP to avoid conflicts when both are used.
-# Calculate South's Short-Suit Penalty Points
-ssp = spades(south)<3 and hcp(south,spades)>0     ? 1 : 0
-shp = hearts(south)<3 and hcp(south,hearts)>0     ? 1 : 0
-sdp = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
-scp = clubs(south)<3 and hcp(south,clubs)>0       ? 1 : 0
-
-# Calculate South's Short-Suit Points
-sv01 = shape(south, any 0xxx) ? 3 : 0
-ss01 = shape(south, any 1xxx) ? 2 : 0 // allow for 2 singletons
-ss02 = shape(south, any 11xx) ? 2 : 0
-sd01 = shape(south, any 2xxx) ? 1 : 0 // allow for 3 doubletons
-sd02 = shape(south, any 22xx) ? 1 : 0
-sd03 = shape(south, any 222x) ? 1 : 0
-
-# Calculate South's Total Points
-sTP = hcp(south) + sv01+ss01+ss02+sd01+sd02+sd03 -ssp-shp-sdp-scp
-
-# Calculate length points for South (lengthPoints)
-lp1 = spades(south)>4 ? spades(south)-4 : 0
-lp2 = hearts(south)>4 ? hearts(south)-4 : 0
-lp3 = diamonds(south)>4 ? diamonds(south)-4 : 0
-lp4 = clubs(south)>4 ? clubs(south)-4 : 0
-lengthPoints = lp1 + lp2 + lp3 + lp4
-
-# Define suit points for south (suitPoints)
-suitPoints = hcp(south) + lengthPoints
-
-TwoNtShape = shape(south, any 4333 +any 4432 +any 5332 +any 5422)
-
-# Define ntPoint ranges
-oneNT   = gibNT
-twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
-
-# Define Gambling 3N
-g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
-
-# Define Game Forcing 2C
-case1 = hcp(south)>18 and sTP>21
-case2 = hcp(south)>18 and sTP>19 and losers(south)<5 and (spades(south)>5 or hearts(south)>5)
-case3 = hcp(south)>18 and sTP>19 and losers(south)<4 and (diamonds(south)>5 or clubs(south)>5)
-gameForce2C = (case1 or case2 or case3)
-
-### Predict South's opening BID
-P1 = gameForce2C
-P2 = P1 or threeNT or twoNT or oneNT
-
-# Define quality and length lower limits for 10 HCP openers
-
-q2of3 = (top3(south,spades)>1 or top3(south,hearts)>1) and controls(south)>3
-lgt5  = (spades(south)>4 or hearts(south)>4) and shape(south,any 7xxx +any 64xx +any 55xx +any 1xxx+any 0xxx -any 8xxx -any 54xx) and sTP>(hcp(south) +2)
-
-# Predict South's Opening suit
-# What's the longest suit?
-s = spades(south)
-h = hearts(south)
-d = diamonds(south)
-c = clubs(south)
-
-## GIB has different requirements for 1H/S, 1D, and 1C openings 
-#Define range for 1 H/S
-lS = s>4 and s>=h and s>=d and s>=c
-lH = h>4 and h>s and h>=d and h>=c
-lM = lS or lH
-
-hsOK1 = lM and hcp(south)>11
-hsOK2 = lM and hcp(south)>10 and sTP>12 and not hsOK1
-hsOK3 = lM and hcp(south)>9  and lgt5 and q2of3 and not (hsOK1 or hsOK2)
-hsRange = (hsOK1 or hsOK2 or hsOK3) and not P2
-
-# Define 1D Range
-dOK1 = hcp(south)>11 and (diamonds(south)>3 or shape(south, 4432))
-dOK2 = hcp(south)>9  and sTP>12 and diamonds(south)>5 and not dOK1
-dRange = (dOK1 or dOK2) and not P2
-
-# Define 1C Range
-cOK1 = hcp(south)>10 and sTP>12 and spades(south)==4
-cOK2 = hcp(south)>9  and sTP>12 and clubs(south)>5 and not cOK1
-cOK3 = hcp(south)>11 and clubs(south)>2            and not (cOK1 or cOK2)
-cRange = (cOK1 or cOK2 or cOK3) and clubs(south)>2 and clubs(south)>diamonds(south) and not P2
-
-oS = s>4 and s>=h and s>=d and s>=c and hsRange
-oH = not oS and h>4 and h>=d and h>=c and hsRange
-oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and dRange
-oC = not (oS or oH or oD) and cRange
-openingSuit = (oS or oH or oD or oC)
-oneSpade   = oS
-oneHeart   = oH
-oneDiamond = oD
-oneClub    = oC
-
-##### End of Imported Script -- Predict Opening 1-Bid #####
-# oneHeart, oneSpade
 
 ### Imported script: TP (Total Points)
 //   Total Points = HCP + Short-Suit Points - Penalty Points
@@ -198,13 +89,6 @@ tpEW = tpEast + tpWest
 ### End of Imported Script: TP
 # tpNorth, tpSouth, tpEast, tpWest
 
-# West Opens
-1C (1H) 2D
-1C (1S) 2H
-1D (1H) 2D
-1D (1S) 2H
-1H (1S) 2H
-
 # Predict West's opening suit
 s = spades(west)
 h = hearts(west)
@@ -217,37 +101,39 @@ wD = not (wS or wH) and ((d>3 and d>=c) or c<3)
 wC = not (wS or wH or wD)
 
 # North overcals 1H or 1S
-nHO = hearts(north)>4 and top4(north,hearts)>1
-nSO = spades(north)>4 and top4(north,spades)>1
+nHO = hearts(north)>4 and top4(north,hearts)>1 and hearts(north)>4 and hearts(south)>2
+nSO = spades(north)>4 and top4(north,spades)>1 and spades(north)>4 and spades(south)>2
+n1Suit = shape(north,any 7xxx +any 6xxx +any 5xxx -any 76xx -any 66xx -any 65xx -any 55xx)
 
 # Define East Maximal Raise and East Maximal Free Bid
-eDR = diamonds(east)>2 and tpEast>6
-eDF = diamonds(east)>5 and tpEast>8 and top5(east,diamonds)>2
-eHR = hearts(east)>2   and tpEast>6
-eHF = hearts(east)>5   and tpEast>8 and top5(east,hearts)>2
+eDR = diamonds(east)>2 and tpEast>5
+eDF = diamonds(east)>5 and tpEast>9 and top5(east,diamonds)>2
+eHR = hearts(east)>2   and tpEast>5
+eHF = hearts(east)>5   and tpEast>9 and top5(east,hearts)>2
 
 # Define East's range for Raise and Free Bid
 eRangeR = hcp(east)>6
 eRangeF = hcp(east)>8
 
 # Define sequences
-CHD = wC and nH and eDF and eRangeF
-CSH = wC and nS and eHF and eRangeF
-DHD = wD and nH and eDR and eRangeR
-DSH = wD and nS and eHF and eRangeF
-HSH = wH and nS and eHR and eRangeR
+CHD = wC and nHO and eDF and eRangeF
+CSH = wC and nSO and eHF and eRangeF
+DHD = wD and nHO and eDR and eRangeR
+DSH = wD and nSO and eHF and eRangeF
+HSH = wH and nSO and eHR and eRangeR
 
 wRange = hcp(west)>11
-nRange = hcp(north)>7
-sRange = hcp(south)>7
+nRange = tpNorth>10
+sRange = tpSouth>8 and tpSouth<12
 
 # Now do it
-(CHD or CSH or DHD or DSH or HSH) and wRange and nRange
+(CHD or CSH or DHD or DSH or HSH) and wRange and nRange and sRange and n1Suit
 
 action
-average "X          " 100 * respX,
-average "raise      " 100 * raise,
-average "new suit   " 100 * newsuit,
-average "free bid   " 100 * freebid,
+average "CDH" 100 * CHD,
+average "CSH" 100 * CSH,
+average "DHD" 100 * DHD,
+average "DSH" 100 * DSH,
+average "HSH" 100 * HSH,
 
 printpbn
