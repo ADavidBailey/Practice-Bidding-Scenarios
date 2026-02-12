@@ -97,7 +97,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -107,7 +107,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -284,9 +284,8 @@ average "      3343 " 100 * shape(north,3343),
 average "      3334 " 100 * shape(north,3334),
 `, "S", true)
 Script
-Button,1m - 3NT (13-15),\n\
- (13-15)\n\
+Button,1m-3NT (13-15) w/4333,\n\
+--- 1m - 3NT (13-15) w/any 4333 shape\n\
 South opens 1!C or 1!D.  North has any 4333 hand with stuff in every other suit.\n\
 Should North skip over a 4-card suit to bid NT?\n\
-These do not use 'Randomly rotate' -- go to 'Deal source' to change it.\n\
 %oneMinor3NT%,width=50% backgroundColor=lightpink
