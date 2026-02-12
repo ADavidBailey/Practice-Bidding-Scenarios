@@ -349,10 +349,7 @@ def generate_dlr(parsed: dict, scenario: str) -> str:
 
     # Header comments
     lines.append(f"# button-text: {button_text}")
-    # Replace ", " with wide comma in scenario-title (same as PBS chat content)
-    scenario_title = parsed.get('chat', '').split(chr(10))[0] if parsed.get('chat') else ''
-    scenario_title = scenario_title.replace(', ', '，')
-    lines.append(f"# scenario-title: {scenario_title}")
+    lines.append(f"# scenario-title: {parsed.get('chat', '').split(chr(10))[0] if parsed.get('chat') else ''}")
     if parsed.get('auction_filter'):
         lines.append(f"# auction-filter: {parsed['auction_filter']}")
     if parsed.get('convention_card'):
