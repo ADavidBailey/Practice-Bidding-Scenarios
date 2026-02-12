@@ -1,9 +1,24 @@
-# button-text: Maximal X after Overcall
-# scenario-title: --- Maximal Double after Overcall
-# auction-filter: Auction.....\n(1. +1S +2H|1. +1H +2D)
-# convention-card: 21GF-MaximalDouble
-# Maximal_After_Overcall
-dealer west
+Script,MaximalAfterOvercall
+window.currentPBSScenario = 'MaximalAfterOvercall';
+window.currentPBSScenarioFilename = 'Maximal_After_Overcall';
+console.log('PBS: Logging scenario selection for MaximalAfterOvercall');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'MaximalAfterOvercall',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+convention-card: 21GF-MaximalDouble
+auction-filter: Auction.....\n(1. +1S +2H|1. +1H +2D)
+*/
 # convention-card: 21GF-MaximalDouble
 
 
@@ -14,6 +29,7 @@ convention-card: 21GF-MaximalDouble
 auction-filter: Auction.....\n(1[CD] +1H +2D +(2H|X)|1[CHD] +1S +2H +(2S|X))
 */
 
+dealer south
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -142,5 +158,15 @@ sRaises = tpSouth>6 and tpSouth<10 and shape(south,any 0xxx +1xxx +11xx)
 wOpens and nOvercalls and calmEast and sRaises
 
 action
-
-printpbn
+`, "W", true)
+Script
+Button,Maximal X after Overcall,\n\
+--- Maximal Double after Overcall\n\
+After LHO opens，partner overcalls in a major，and RHO competes in the\n\
+maximal suit -- the suit just under partner's -- we need to distinguish\n\
+between a competitive raise and an invitational raise. The Maximal Double\n\
+is the answer.  After (1?) 1M (2M-1)...\n\
+  • 2M is a competitive raise\n\
+  • X is an invitational raise\n\
+https://www.bridgebum.com/maximal_double.php\n\
+%MaximalAfterOvercall%,backgroundColor=lightpink
