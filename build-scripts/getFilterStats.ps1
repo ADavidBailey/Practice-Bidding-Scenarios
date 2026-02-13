@@ -1,1 +1,0 @@
-P:\build-scripts\CountPattern.ps1 -FileSpec "P:\bba-filtered\*.pbn" -Pattern "\[Board" | Out-File -FilePath "P:\build-scripts\FilterStats.csv" -Encoding UTF8
