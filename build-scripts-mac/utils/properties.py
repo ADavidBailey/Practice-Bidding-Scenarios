@@ -5,7 +5,7 @@ Replaces FetchProperty.cmd from Windows.
 import os
 import re
 import sys
-from typing import Optional
+from typing import Dict, Optional
 
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -90,6 +90,36 @@ def get_scenario_title(scenario: str) -> Optional[str]:
         Scenario title if found, None otherwise
     """
     return fetch_property(scenario, "scenario-title")
+
+
+def get_quiz_control(scenario: str) -> Dict[str, object]:
+    """
+    Get the quiz-control settings for a scenario.
+
+    Parses "rounds=3,level=game" format from the quiz-control property.
+
+    Returns:
+        Dict with 'rounds' (int) and 'level' (str) keys.
+        Defaults to {'rounds': 3, 'level': 'game'} if not specified.
+    """
+    defaults = {'rounds': 3, 'level': 'game'}
+    raw = fetch_property(scenario, "quiz-control")
+    if not raw:
+        return defaults
+
+    for part in raw.split(','):
+        key, _, value = part.strip().partition('=')
+        key = key.strip()
+        value = value.strip()
+        if key == 'rounds':
+            try:
+                defaults['rounds'] = int(value)
+            except ValueError:
+                pass
+        elif key == 'level':
+            defaults['level'] = value
+
+    return defaults
 
 
 def get_bba_works(scenario: str) -> bool:

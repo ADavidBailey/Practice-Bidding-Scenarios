@@ -355,15 +355,74 @@ def get_bidding_round(level: int) -> int:
         return (level // 2)
 
 
+SUIT_RANK = {'C': 0, 'D': 1, 'H': 2, 'S': 3, 'N': 4}
+GAME_BIDS = {'3N', '4H', '4S', '5C', '5D'}
+
+
+def bid_rank(bid: str) -> int:
+    """
+    Return numeric rank for a bridge bid for ordering purposes.
+    1C=5, 1D=6, 1H=7, 1S=8, 1N=9, 2C=10, ..., 7N=39.
+    Returns -1 for Pass, X, XX, or unrecognized bids.
+    """
+    if not bid or bid in ('Pass', 'X', 'XX'):
+        return -1
+    if len(bid) < 2:
+        return -1
+    level_char = bid[0]
+    suit_char = bid[1]
+    if level_char.isdigit() and suit_char in SUIT_RANK:
+        return int(level_char) * 5 + SUIT_RANK[suit_char]
+    return -1
+
+
+def is_game_or_above(bid: str) -> bool:
+    """Check if a bid is at game level or above (3NT, 4H, 4S, 5C, 5D, or higher)."""
+    rank = bid_rank(bid)
+    if rank < 0:
+        return False
+    # Game is 3NT (rank 19). Any bid at 3NT or higher is at/above game.
+    return rank >= bid_rank('3N')
+
+
+def prefix_exceeds_level(prefix: list, level_str: str) -> bool:
+    """
+    Check if any bid in the auction prefix is at or above the specified level.
+
+    Args:
+        prefix: List of bids in the auction so far
+        level_str: Either 'game' or a specific contract like '2H'
+
+    Returns:
+        True if the prefix contains a bid at or above the target level
+    """
+    if level_str == 'game':
+        return any(is_game_or_above(bid) for bid in prefix)
+
+    # Specific contract level (e.g., '2H')
+    # Normalize NT to N for comparison
+    target = level_str.replace('NT', 'N')
+    target_rank = bid_rank(target)
+    if target_rank < 0:
+        return False
+    return any(bid_rank(bid) >= target_rank for bid in prefix)
+
+
 def generate_quizzes(hands: List[Hand],
                      num_per_quiz: int = 6,
                      min_frequency: float = 0.05,
-                     verbose: bool = True) -> List[Dict]:
+                     verbose: bool = True,
+                     max_rounds: Optional[int] = None,
+                     max_level: Optional[str] = None) -> List[Dict]:
     """
     Generate quiz sets from the hands, grouped by bidding round.
 
     For rounds 1-2, group by exact prefix.
     For rounds 3+, combine all prefixes at that level into one quiz.
+
+    Args:
+        max_rounds: Stop after this many bidding rounds (e.g., 3 = opening, response, rebid)
+        max_level: Stop when bids reach this level ('game' or specific contract like '2H')
 
     Returns a list of quiz dictionaries.
     """
@@ -406,6 +465,22 @@ def generate_quizzes(hands: List[Hand],
         level = data['level']
         hands_by_bid = data['hands_by_bid']
         prefixes = data['prefixes']
+
+        # Apply round limit: rounds=N means N full bidding rounds (each = opener + responder turn)
+        # Internal round 0,1 = bidding round 1; round 2,3 = bidding round 2; etc.
+        # So rounds=N allows internal rounds 0 through (N*2 - 1)
+        if max_rounds is not None and round_num >= max_rounds * 2:
+            if verbose:
+                print(f"  Round {round_num} (level {level}): Skipping - exceeds {max_rounds} bidding rounds")
+            continue
+
+        # Apply level limit - check if any prefix has reached the target level
+        if max_level is not None:
+            any_prefix_exceeds = any(prefix_exceeds_level(list(p), max_level) for p in prefixes)
+            if any_prefix_exceeds:
+                if verbose:
+                    print(f"  Round {round_num} (level {level}): Skipping - auction reached {max_level} level")
+                continue
 
         # Count total hands
         total_hands = sum(len(h) for h in hands_by_bid.values())
@@ -638,6 +713,11 @@ def generate_exercise_title(quiz: Dict, scenario: str) -> str:
     return title
 
 
+def add_column_break(lines: List[str], num_lines: int = 8):
+    """Add a spacer board to force a column break (push next content to right column)."""
+    add_spacer(lines, num_lines)
+
+
 def add_spacer(lines: List[str], num_lines: int = 15):
     """Add a spacer board to force page break."""
     lines.append('[Event ""]')
@@ -853,6 +933,11 @@ def generate_quiz_pbn(quizzes: List[Dict], scenario: str) -> str:
         # Generate quiz boards for this page
         for j, quiz in enumerate(page_quizzes):
             quiz_num = i + j + 1
+
+            # Add column break before the 2nd quiz if it has a fixed auction header
+            if j == 1 and not quiz.get('auctions_vary', False):
+                add_column_break(lines)
+
             lines.extend(generate_quiz_boards(quiz, quiz_num, scenario))
 
         # Add spacer to force page break before answers
@@ -869,25 +954,30 @@ def generate_quiz_pbn(quizzes: List[Dict], scenario: str) -> str:
     return '\n'.join(lines)
 
 
-def run_quiz(scenario: str, num_per_quiz: int = 6, verbose: bool = True) -> bool:
+def run_quiz(scenario: str, num_per_quiz: int = 6, verbose: bool = False) -> bool:
     """
     Generate quizzes for a scenario.
 
     Args:
         scenario: Scenario name (e.g., "Stayman")
         num_per_quiz: Number of hands per quiz (default 6)
-        verbose: Whether to print progress
+        verbose: Whether to print progress (default False)
 
     Returns:
         True if successful, False otherwise
     """
+    from utils.properties import get_quiz_control
+    quiz_control = get_quiz_control(scenario)
+
     if verbose:
         print(f"--------- Quiz generation for {scenario}")
+        print(f"  quiz-control: rounds={quiz_control['rounds']}, level={quiz_control['level']}")
 
     # Read filtered PBN file
     filtered_path = os.path.join(FOLDERS["bba_filtered"], f"{scenario}.pbn")
     if not os.path.exists(filtered_path):
-        print(f"Error: Filtered file not found: {filtered_path}")
+        if verbose:
+            print(f"Error: Filtered file not found: {filtered_path}")
         return False
 
     if verbose:
@@ -899,22 +989,28 @@ def run_quiz(scenario: str, num_per_quiz: int = 6, verbose: bool = True) -> bool
         print(f"  Parsed {len(hands)} hands")
 
     if not hands:
-        print("  No hands found in file")
+        if verbose:
+            print("  No hands found in file")
         return False
 
     # Generate quizzes
-    print(f"\nAnalyzing auction decision points...")
-    quizzes = generate_quizzes(hands, num_per_quiz, verbose=verbose)
+    if verbose:
+        print(f"\nAnalyzing auction decision points...")
+    quizzes = generate_quizzes(hands, num_per_quiz, verbose=verbose,
+                               max_rounds=quiz_control['rounds'],
+                               max_level=quiz_control['level'])
 
     if not quizzes:
-        print("  No quiz-worthy decision points found")
+        if verbose:
+            print("  No quiz-worthy decision points found")
         return True
 
-    print(f"\nGenerated {len(quizzes)} quiz sets")
+    if verbose:
+        print(f"\nGenerated {len(quizzes)} quiz sets")
 
-    # Display quizzes to console
-    for i, quiz in enumerate(quizzes, 1):
-        display_quiz(quiz, i)
+        # Display quizzes to console
+        for i, quiz in enumerate(quizzes, 1):
+            display_quiz(quiz, i)
 
     # Create quiz output folder
     quiz_folder = os.path.join(PROJECT_ROOT, "quiz")
@@ -955,19 +1051,19 @@ def run_quiz(scenario: str, num_per_quiz: int = 6, verbose: bool = True) -> bool
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        scenario = sys.argv[1]
-    else:
-        scenario = "Stayman"
+    verbose = '--verbose' in sys.argv or '-v' in sys.argv
+    args = [a for a in sys.argv[1:] if a not in ('--verbose', '-v')]
+
+    scenario = args[0] if args else "Stayman"
 
     num_per_quiz = 6
-    if len(sys.argv) > 2:
-        num_per_quiz = int(sys.argv[2])
+    if len(args) > 1:
+        num_per_quiz = int(args[1])
 
     print(f"Quiz Generation Test")
     print(f"Scenario: {scenario}")
     print(f"Hands per quiz: {num_per_quiz}")
     print()
 
-    success = run_quiz(scenario, num_per_quiz)
+    success = run_quiz(scenario, num_per_quiz, verbose=verbose)
     print(f"\nResult: {'Success' if success else 'Failed'}")

@@ -156,12 +156,13 @@ def parse_btn_file(btn_path: str) -> dict:
         'bba_works': True,
         'auction_filter': None,
         'convention_card': None,
+        'quiz_control': None,
         'chat': None,
         'dealer_code': None,
     }
 
     # Parse single-line metadata: # key: value
-    metadata_pattern = r'^#\s*(alias|button-text|dealer-position|gib-works|bba-works|auction-filter|convention-card):\s*(.*)$'
+    metadata_pattern = r'^#\s*(alias|button-text|dealer-position|gib-works|bba-works|auction-filter|convention-card|quiz-control):\s*(.*)$'
     for match in re.finditer(metadata_pattern, content, re.MULTILINE):
         key = match.group(1).lower().replace('-', '_')
         value = match.group(2).strip()
@@ -196,7 +197,7 @@ def parse_btn_file(btn_path: str) -> dict:
 
         # Skip metadata lines at the top
         if not past_metadata:
-            if re.match(r'^#\s*(alias|button-text|dealer-position|gib-works|bba-works|auction-filter):', line):
+            if re.match(r'^#\s*(alias|button-text|dealer-position|gib-works|bba-works|auction-filter|quiz-control):', line):
                 continue
             if line.strip() == '':
                 continue
@@ -354,6 +355,8 @@ def generate_dlr(parsed: dict, scenario: str) -> str:
         lines.append(f"# auction-filter: {parsed['auction_filter']}")
     if parsed.get('convention_card'):
         lines.append(f"# convention-card: {parsed['convention_card']}")
+    if parsed.get('quiz_control'):
+        lines.append(f"# quiz-control: {parsed['quiz_control']}")
     lines.append(f"# {scenario}")
     lines.append(f"dealer {dealer_name}")
 
