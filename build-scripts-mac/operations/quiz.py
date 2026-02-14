@@ -248,7 +248,10 @@ def generate_quiz_prompt(bidder: str, auction_prefix: List[str], dealer: str = '
         parts = []
         for who, bid in formatted_auction:
             if who == 'opener':
-                parts.append(f"You open {bid}")
+                if bid == 'Pass':
+                    parts.append("You initially pass")
+                else:
+                    parts.append(f"You open {bid}")
             elif who == 'responder':
                 parts.append(f"partner responds {bid}")
             elif who in ('lho', 'rho'):
@@ -261,7 +264,10 @@ def generate_quiz_prompt(bidder: str, auction_prefix: List[str], dealer: str = '
         parts = []
         for who, bid in formatted_auction:
             if who == 'opener':
-                parts.append(f"Partner opens {bid}")
+                if bid == 'Pass':
+                    parts.append("Partner initially passes")
+                else:
+                    parts.append(f"Partner opens {bid}")
             elif who == 'responder':
                 parts.append(f"you respond {bid}")
             elif who in ('lho', 'rho'):
