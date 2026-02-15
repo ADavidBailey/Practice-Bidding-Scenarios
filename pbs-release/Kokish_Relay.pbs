@@ -16,14 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-Kokish_Relay
+convention-card: 21GF-Kokish
 auction-filter: Note....Kokish Relay
 */
-# convention-card: 21GF-Kokish_Relay
-
-
 # Kokish Relay
-dealer south
 
 # Kokish relay shows unbal w/5+H and 4 on the side or a 25-27 NT
 sHearts = hcp(south)>21 and hearts(south)>4 and shape(south,any 74xx +any 64xx +any 54xx)
