@@ -17,7 +17,7 @@ setDealerCode(`
 
 /*
 convention-card: 21GF-MaximalDouble
-auction-filter: Auction.....\n(1.* 1H.* 2H\n3D +([34]H|X)|1.* 1S.* 2S\n3H +[34]?[SXP])
+auction-filter: Auction.....\n(1.* +1H .* +2H\n3D +[34]?[HXP|1.* +1S.* +2S\n3H +[34]?[SXP])
 */
 ### Imported script: TP (Total Points)
 //   Total Points = HCP + Short-Suit Points - Penalty Points
@@ -129,7 +129,7 @@ maxD = (wMaxD or ewMaxD)
 ewBID = (maxH or maxD) and hcp(west)>10 and tpWest>12 and hcp(west)<13 and tpEast>7
 
 # Now do it
-nsBid and ewBID
+hcp(west)>10 and tpWest>11 and nsBid and ewBID
 
 generate 1000000
 produce 40
