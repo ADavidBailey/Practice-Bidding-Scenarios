@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Pipeline Report — Error Categories &amp; Performance</title>
+<style>
+  body {
+    font-family: -apple-system, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #000;
+    background: #fff;
+    max-width: 800px;
+    margin: 2em auto;
+    padding: 0 1em;
+  }
+  h3 { margin-top: 1.5em; }
+  table { border-collapse: collapse; width: 100%; margin: 0.5em 0; }
+  th, td { border: 1px solid #000; padding: 4px 8px; text-align: left; }
+  th { background: #eee; }
+  code { font-size: 12px; }
+  p { margin: 0.5em 0; }
+  @media print {
+    body { margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<h3>Error Categories</h3>
+<table>
+<tr><th>Category</th><th>Count</th><th>Details</th></tr>
+<tr><td>No boards after filtering</td><td>28</td><td>BBA auction filter matched 0 boards with new seeds — bidding sheet generation fails</td></tr>
+<tr><td>Missing BBSA file</td><td>5</td><td>Custom convention cards not found: <code>21GF-1NTwith4441</code>, <code>Gazzilli</code>, <code>21GF-Kokish_Relay</code>, <code>21GF-MST</code>, plus a BTN parsing bug in <code>Minor_Game_Or_Slam</code></td></tr>
+<tr><td>Dealer found 0 hands</td><td>2</td><td><code>GIB_1M-P-Resp</code> and <code>Misfit6-5</code> — constraints too tight, 0 qualifying hands in 300M tries</td></tr>
+<tr><td>Filter regex error</td><td>1</td><td><code>After_2_Passes</code> — uses look-behind regex unsupported by bridge-wrangler</td></tr>
+<tr><td>Dealer variable error</td><td>1</td><td><code>Anything_Goes</code> — undefined variable <code>gamble3</code></td></tr>
+<tr><td>Bidding sheet path error</td><td>1</td><td><code>Grand_Slam_Invite</code> — filtered file not found</td></tr>
+</table>
+
+<h3>Failed Scenarios</h3>
+<p><strong>Missing BBSA file (5):</strong><br>
+<code>1N_with_Singleton</code>, <code>Gazzilli</code>, <code>Kokish_Relay</code>, <code>Minor_Game_Or_Slam</code>, <code>Minor_Suit_Transfer</code></p>
+
+<p><strong>No boards after filtering (28):</strong><br>
+<code>After_1M_2M</code>, <code>After_1x_1N</code>, <code>Better_Minor_Lebensohl</code>, <code>Forcing_Pass</code>, <code>Gerber_By_Responder</code>, <code>Maximal_After_Overcall</code>, <code>Minor_Suit_Stayman</code>, <code>Mitchell_Stayman</code>, <code>Opps_Gambling_3N</code>, <code>Opps_Multi_2D</code>, <code>Opps_Overcall_1NT</code>, <code>Power_Double_Unbalanced</code>, <code>Preempt_Keycard</code>, <code>Responsive_Double</code>, <code>Reverse_Flannery</code>, <code>Rule_of_16</code>, <code>Rule_of_16-15</code>, <code>Rule_of_16-16</code>, <code>Rule_of_16-17</code>, <code>Rule_of_16-18</code>, <code>Rule_of_2</code>, <code>Snapdragon_Double</code>, <code>Soloway_Jump_Shift_Type-1</code>, <code>Spiral_Raises_with_3</code>, <code>Support_Double</code>, <code>Vics_Bal_Resp_to_1m</code>, <code>We_Overcall_NT_then_Smolen</code>, <code>Weak_NT_10-12</code></p>
+
+<p><strong>Dealer errors (3):</strong><br>
+<code>GIB_1M-P-Resp</code> (0 hands produced), <code>Misfit6-5</code> (0 hands produced), <code>Anything_Goes</code> (undefined variable)</p>
+
+<p><strong>Other (2):</strong><br>
+<code>After_2_Passes</code> (regex), <code>Grand_Slam_Invite</code> (missing filtered file)</p>
+
+<h3>Slow PBN Generation (&gt;10s)</h3>
+<table>
+<tr><th>Scenario</th><th>PBN time</th></tr>
+<tr><td>Trap_Pass</td><td>2m 19s</td></tr>
+<tr><td>Trap_Pass_Maybe</td><td>2m 18s</td></tr>
+<tr><td>Opps_Bal_Unusual_2N</td><td>2m 9s</td></tr>
+<tr><td>Gerber_By_Opener</td><td>2m 0s</td></tr>
+<tr><td>GIB_1M-P-Resp</td><td>1m 45s (failed)</td></tr>
+<tr><td>GIB_Sandwich_NT_BPH</td><td>1m 45s</td></tr>
+<tr><td>Double_by_Advancer</td><td>1m 40s</td></tr>
+<tr><td>W2_X_XX</td><td>1m 19s</td></tr>
+<tr><td>McCabe_after_WJO</td><td>1m 15s</td></tr>
+<tr><td>Non_Leaping_Michaels_After_2-Bid</td><td>1m 14s</td></tr>
+<tr><td>Misfit6-5</td><td>1m 9s (failed)</td></tr>
+<tr><td>Snapdragon_Double</td><td>46s</td></tr>
+<tr><td>Trap_Pass_Opener</td><td>29s</td></tr>
+<tr><td>1N_5M_and_6m</td><td>28s</td></tr>
+<tr><td>Double_double</td><td>24s</td></tr>
+<tr><td>Impossible_2S</td><td>22s</td></tr>
+<tr><td>Two-Way_Game_Try</td><td>22s</td></tr>
+<tr><td>Forcing_Pass</td><td>21s</td></tr>
+<tr><td>Last_Train_Game_Try</td><td>21s</td></tr>
+<tr><td>Rule_of_16-18</td><td>18s</td></tr>
+<tr><td>Grand_Slam_Force</td><td>18s</td></tr>
+<tr><td>3N_over_LHO_3x</td><td>16s</td></tr>
+<tr><td>We_Overcall_NT_then_Smolen</td><td>14s</td></tr>
+<tr><td>1m-2N</td><td>12s</td></tr>
+<tr><td>McCabe_After_Weak_2</td><td>12s</td></tr>
+<tr><td>Trap_Pass_Opener_Maybe</td><td>12s</td></tr>
+<tr><td>Maximal_Double</td><td>12s</td></tr>
+<tr><td>Jump_Cuebid_Strong</td><td>11s</td></tr>
+<tr><td>Spear</td><td>11s</td></tr>
+<tr><td>Last_Train_GT2</td><td>10s</td></tr>
+</table>
+
+<h3>PBN Duration Distribution</h3>
+<table>
+<tr><th>Range</th><th>Count</th></tr>
+<tr><td>&lt; 1s</td><td>175</td></tr>
+<tr><td>1-5s</td><td>77</td></tr>
+<tr><td>5-10s</td><td>17</td></tr>
+<tr><td>10-30s</td><td>18</td></tr>
+<tr><td>30s-1m</td><td>1</td></tr>
+<tr><td>1-2m</td><td>8</td></tr>
+<tr><td>2-5m</td><td>3</td></tr>
+</table>
+
+<p>Default <code>DEALER_GENERATE</code> is 300,000,000. The slow scenarios have tight constraints (predeals, calm opponents, narrow HCP ranges) that make it hard to find 500 qualifying hands. Options: reduce <code>generate</code>, accept fewer hands, loosen constraints, or add per-scenario <code>generate</code> overrides in BTN metadata.</p>
+
+</body>
+</html>

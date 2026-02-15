@@ -1,11 +1,32 @@
+# alias: Gazzilli
 # button-text: Gazzilli (Lev)
 # scenario-title: --- Gazzilli 2!C rebid after a Major opening and 1NT response
+# dealer-position: S
+# gib-works: false
+# bba-works: true
 # auction-filter: Auction.....\n1[HS] +Pass +1N.* Pass\n2C
-# convention-card: Gazzilli
-# Gazzilli
-dealer south
-# convention-card: Gazzilli
+# convention-card: 21GF-Gazzilli
 
+/*@chat
+--- Gazzilli 2!C rebid after a Major opening and 1NT response
+  • 1M - 1N
+    • 2C  - artifical Gazzilli relay - 16+ or *** natural 11-14 w/6+M ***
+        • 2D - 8+ artificial
+            • 2M  - 11-14 with 6+M *** NF ***
+            • 2oM - artificial some 4-card suit (relay to ask LMH)
+            • 2N  - 6+M and some 4+card side suit (relay to ask LMH)
+            • 3C  - 5+C 16-21
+            • 3D  - 5+D 16-21
+            • 3M  - strong and natural 16-20
+            • 3oM - 5+oM 16-21
+    • 2D  - 11-15 with 4+D
+    • 2oM - 11-15 with 4+oM
+    • 2M  - 11-14 with 5+M and 4+C
+    • 2N  - 17-19 balanced
+    • 3x  - 13-15 with 5x and 5+M  (x = New Suit)
+https://www.advinbridge.com/this-week-in-bridge/488
+@chat*/
+dealer south
 
 # Gazzilli
 
@@ -89,7 +110,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -99,7 +120,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
