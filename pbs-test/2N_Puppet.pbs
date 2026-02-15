@@ -16,8 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: /*@chat
-auction-filter: Auction.....\n2N +Pass +2C
+convention-card: 21GF-Puppet
+auction-filter: Note....2N-3C Puppet
 */
 ### 2N w/Puppet and any response
 
@@ -150,7 +150,7 @@ game = strength>4 and strength<12
 slam = strength>11
 
 # Define responses
-puppet = hcp(north)>4 and shape(north,44xx+43xx+42xx+34xx+33xx+32xx+23xx -any 8xxx -any 7xxx -any 6xxx)
+puppet = shape(north,44xx+43xx+42xx+34xx+33xx+32xx+23xx -any 8xxx -any 7xxx -any 6xxx)
 
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
@@ -200,10 +200,12 @@ twoNT and puppet
 and levelTheDeal
 
 ### Generate Statistics ###
-generate 1000000
-produce 30
+generate 20000000
+produce 1000
+
 action
-printoneline,
+#printoneline,
+
 average "Game         " 100 * game,
 average "Slam         " 100 * slam,
 `, "S", true)
@@ -211,4 +213,4 @@ Script
 Button,2N - Puppet,\n\
 --- 20-21 Notrump with Puppet and any continuation.\n\
 The responder's strength -- game or slam -- is leveled.\n\
-%TwoNTPuppet%,width=50%
+%TwoNTPuppet%,width=50% backgroundColor=lightpink
