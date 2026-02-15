@@ -174,3 +174,36 @@ hint: (e.g., 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 Sat Feb 14 09:00:57 CST 2026: Push complete
 Sat Feb 14 09:00:57 CST 2026: Dashboard update finished
+Sun Feb 15 09:00:04 CST 2026: Starting dashboard update
+Generating dashboard data...
+Dashboard data saved to /Users/adavidbailey/Practice-Bidding-Scenarios/docs/dashboard-data.json
+Traceback (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/sre_parse.py", line 1039, in parse_template
+    this = chr(ESCAPES[this][1])
+KeyError: '\\u'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/adavidbailey/Practice-Bidding-Scenarios/docs/generateDashboardData.py", line 499, in <module>
+    main()
+  File "/Users/adavidbailey/Practice-Bidding-Scenarios/docs/generateDashboardData.py", line 485, in main
+    embed_data_in_html(dashboard_data)
+  File "/Users/adavidbailey/Practice-Bidding-Scenarios/docs/generateDashboardData.py", line 462, in embed_data_in_html
+    html = re.sub(pattern, data_script, html)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/re.py", line 210, in sub
+    return _compile(pattern, flags).sub(repl, string, count)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/re.py", line 327, in _subx
+    template = _compile_repl(template, pattern)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/re.py", line 318, in _compile_repl
+    return sre_parse.parse_template(repl, pattern)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/sre_parse.py", line 1042, in parse_template
+    raise s.error('bad escape %s' % this, len(this))
+re.error: bad escape \u at position 7435 (line 401, column 59)
+Sun Feb 15 09:01:52 CST 2026: Committing and pushing changes
+[main 9ff43d7ce] Daily dashboard update
+ 1 file changed, 87 insertions(+), 86 deletions(-)
+To https://github.com/ADavidBailey/Practice-Bidding-Scenarios.git
+   e150b5ec4..9ff43d7ce  main -> main
+Sun Feb 15 09:01:54 CST 2026: Push complete
+Sun Feb 15 09:01:54 CST 2026: Dashboard update finished

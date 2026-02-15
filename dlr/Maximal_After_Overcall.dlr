@@ -1,11 +1,23 @@
+# alias: MaximalAfterOvercall
 # button-text: Max X after Overcall
 # scenario-title: --- Maximal Double after Overcall
+# dealer-position: W
+# gib-works: false
+# bba-works: true
 # auction-filter: Auction.....\n(1.* 1H.* 2H\n3D +([34]H|X)|1.* 1S.* 2S\n3H +[34]?[SXP])
 # convention-card: 21GF-MaximalDouble
-# Maximal_After_Overcall
-dealer west
-# convention-card: 21GF-MaximalDouble
 
+/*@chat
+--- Maximal Double after Overcall
+After LHO opens, partner overcalls in a major, RHO competes, we make a simple
+raise to the 2-level, and LHO competes at 3 of the maximal suit -- the one just
+under ours -- we need to distinguish between a competitive and invitational rebid
+of our major.  The Maximal Double is the answer.  After (1?) 1M (?) 2M, (3M-1)...
+  • 3M is competitive
+  • X  is invitational
+https://www.bridgebum.com/maximal_double.php
+@chat*/
+dealer west
 
 ### Imported script: TP (Total Points)
 //   Total Points = HCP + Short-Suit Points - Penalty Points
@@ -119,6 +131,7 @@ ewBID = (maxH or maxD) and hcp(west)>10 and tpWest>12 and hcp(west)<13 and tpEas
 # Now do it
 nsBid and ewBID
 
+generate 1000000
+produce 40
 action
-
-printpbn
+printoneline,
