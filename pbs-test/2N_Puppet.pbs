@@ -21,8 +21,9 @@ auction-filter: Note....2N-3C Puppet
 */
 ### 2N w/Puppet and any response
 
-# Define responses
-puppet = hcp(south)>19 and hcp(south)<22 and shape(south,44xx+43xx+42xx+34xx+33xx+32xx+23xx -any 8xxx -any 7xxx -any 6xxx)
+# Define 2NT opener
+twoNT = hcp(south)>19 and hcp(south)<22 
+puppet = shape(north,44xx+43xx+42xx+34xx+33xx+32xx+23xx -any 8xxx -any 7xxx -any 6xxx)
 
 # Define responder's strength
 weak = hcp(north)<5
@@ -73,7 +74,7 @@ levSlam = slam and keep
 levelTheDeal = levGame or levSlam
 
 ### Do it ###
-puppet
+twoNT and puppet
 and levelTheDeal
 
 ### Generate Statistics ###
