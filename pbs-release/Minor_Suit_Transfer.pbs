@@ -16,16 +16,12 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-MST
-auction-filter: 1NT Pass (2N|3C)
+convention-card: 21GF-MSTandMSS
+auction-filter: 1N +Pass +(2N|3C)
 */
-# convention-card: 21GF-MST
-
-
 # MST only is the default.  Note, his is not how we bid MST.  It's how GIB bids those hands.
 
 # Minor Suit Transfer
-dealer south
 
 # enable both MSS and MST
 ##### Imported Script -- GIB 1 Notrump #####
@@ -69,4 +65,4 @@ After partner opens 1NT，responder bids the strain below their minor...\n\
 After partner opens 1NT，responder bids the strain below their minor...\n\
 This lets GIB play both MSS and MST，together.  Here's an alternative:\n\
 https://www.bridgebum.com/minor_suit_transfers.php\n\
-%MinorSuitTransfer%
+%MinorSuitTransfer%,width=50%
