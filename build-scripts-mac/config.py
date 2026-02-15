@@ -100,6 +100,7 @@ MAC_TOOLS = {
     "wkhtmltopdf": "/opt/homebrew/bin/wkhtmltopdf",  # Adjust if installed elsewhere
     "dealer": "/Applications/Bridge Utilities/dealer3",  # Mac version of dealer
     "bridge_wrangler": "/Applications/Bridge Utilities/bridge-wrangler",
+    "bba_cli": "/Applications/Bridge Utilities/bba-cli-mac",
 }
 
 # Where to run dealer: "mac" (default) or "windows"
@@ -110,13 +111,21 @@ DEFAULT_CC1 = "21GF-DEFAULT"
 DEFAULT_CC2 = "21GF-GIB"
 
 # Dealer parameters
-DEALER_SEED = 5
+SEED_OFFSET = 1          # Increment to regenerate all scenarios with fresh deals
 DEALER_GENERATE = 300000000
 DEALER_PRODUCE = 500
 
+
+def dealer_seed(scenario: str) -> int:
+    """Compute a deterministic seed from scenario name and offset. Range: 1-1,000,000."""
+    import hashlib
+    h = hashlib.md5(f"{scenario}:{SEED_OFFSET}".encode()).hexdigest()
+    return (int(h, 16) % 1_000_000) + 1
+
 # Pipeline operations in order
 OPERATIONS_ORDER = [
-    "pbs",      # Generate PBS from BTN (also generates DLR)
+    "dlr",      # Generate DLR from BTN
+    "pbs",      # Generate PBS from DLR
     "pbn",
     "rotate",
     "bba",

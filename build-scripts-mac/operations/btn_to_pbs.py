@@ -1,21 +1,19 @@
 """
-BTN to PBS operation: Generate PBS and DLR files from BTN file.
-Transforms .btn format (with #include directives and metadata) into:
-  - .pbs format (for BBOalert button definitions)
-  - .dlr format (for dealer hand generation)
-Button width and color are derived from the layout file, not the BTN file.
+PBS operation: Generate PBS file from DLR file.
+Pipeline stage: DLR → PBS
+  - Parses metadata and dealer code from DLR
+  - Wraps in BBOalert Script/Button format
+Button width and color are derived from the layout file.
 """
 import os
 import re
+import subprocess
 import sys
 
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from config import FOLDERS, PROJECT_ROOT
-
-# Script directory for inlining includes
-SCRIPT_DIR = os.path.join(PROJECT_ROOT, "script")
 
 # Cache for layout styles (loaded once)
 _layout_styles = None
@@ -137,100 +135,6 @@ def parse_layout_buttons(line):
     return buttons
 
 
-def parse_btn_file(btn_path: str) -> dict:
-    """
-    Parse a .btn file and extract metadata, chat content, and dealer code.
-
-    Returns:
-        dict with keys: alias, button_text, dealer_position, gib_works, bba_works,
-                       auction_filter, chat, dealer_code
-    """
-    with open(btn_path, 'r', encoding='utf-8') as f:
-        content = f.read()
-
-    result = {
-        'alias': None,
-        'button_text': None,
-        'dealer_position': 'S',  # default
-        'gib_works': True,
-        'bba_works': True,
-        'auction_filter': None,
-        'convention_card': None,
-        'quiz_control': None,
-        'chat': None,
-        'dealer_code': None,
-    }
-
-    # Parse single-line metadata: # key: value
-    metadata_pattern = r'^#\s*(alias|button-text|dealer-position|gib-works|bba-works|auction-filter|convention-card|quiz-control):\s*(.*)$'
-    for match in re.finditer(metadata_pattern, content, re.MULTILINE):
-        key = match.group(1).lower().replace('-', '_')
-        value = match.group(2).strip()
-
-        if key in ('gib_works', 'bba_works'):
-            result[key] = value.lower() == 'true'
-        else:
-            result[key] = value
-
-    # Parse chat block: /*@chat ... @chat*/
-    chat_match = re.search(r'/\*@chat\s*\n(.*?)@chat\*/', content, re.DOTALL)
-    if chat_match:
-        result['chat'] = chat_match.group(1).rstrip()
-
-    # Extract dealer code (everything after the metadata/chat, excluding metadata comments)
-    # Find where the actual dealer code starts (after metadata and chat block)
-    lines = content.split('\n')
-    dealer_lines = []
-    in_chat_block = False
-    past_metadata = False
-
-    for line in lines:
-        # Track chat block
-        if '/*@chat' in line:
-            in_chat_block = True
-            continue
-        if '@chat*/' in line:
-            in_chat_block = False
-            continue
-        if in_chat_block:
-            continue
-
-        # Skip metadata lines at the top
-        if not past_metadata:
-            if re.match(r'^#\s*(alias|button-text|dealer-position|gib-works|bba-works|auction-filter|quiz-control):', line):
-                continue
-            if line.strip() == '':
-                continue
-            past_metadata = True
-
-        dealer_lines.append(line)
-
-    result['dealer_code'] = '\n'.join(dealer_lines)
-
-    return result
-
-
-def inline_includes(dealer_code: str) -> str:
-    """
-    Inline #include "script/..." directives by reading the referenced files.
-    """
-    def replace_include(match):
-        path = match.group(1)
-        # Resolve the path relative to project root
-        full_path = os.path.join(PROJECT_ROOT, path)
-
-        if os.path.exists(full_path):
-            with open(full_path, 'r', encoding='utf-8') as f:
-                content = f.read().rstrip()
-            return content
-        else:
-            # If file not found, leave a comment
-            return f"# ERROR: Could not find {path}"
-
-    # Match #include "path"
-    pattern = r'#include\s+"([^"]+)"'
-    return re.sub(pattern, replace_include, dealer_code)
-
 
 def generate_logging_code(alias: str, scenario_filename: str) -> str:
     """
@@ -252,11 +156,84 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {{
 }}).then(function(r){{ console.log('PBS: Server response', r.status); }}).catch(function(e){{ console.log('PBS: Fetch error', e); }});"""
 
 
-def generate_pbs(parsed: dict, scenario_filename: str) -> str:
+def parse_dlr_file(dlr_content: str) -> dict:
     """
-    Generate PBS file content from parsed BTN data.
-    Button width and color are derived from the layout file, not the BTN file.
+    Parse a DLR file's content and extract metadata, chat, and dealer code.
+
+    Returns:
+        dict with keys: alias, button_text, dealer_position, gib_works, bba_works,
+                       auction_filter, convention_card, chat, dealer_code
     """
+    result = {
+        'alias': None,
+        'button_text': None,
+        'dealer_position': 'S',
+        'gib_works': True,
+        'bba_works': True,
+        'auction_filter': None,
+        'convention_card': None,
+        'quiz_control': None,
+        'chat': None,
+        'dealer_code': None,
+    }
+
+    # Parse single-line metadata: # key: value
+    metadata_pattern = r'^#\s*(alias|button-text|scenario-title|dealer-position|gib-works|bba-works|auction-filter|convention-card|quiz-control):\s*(.*)$'
+    for match in re.finditer(metadata_pattern, dlr_content, re.MULTILINE):
+        key = match.group(1).lower().replace('-', '_')
+        value = match.group(2).strip()
+
+        if key in ('gib_works', 'bba_works'):
+            result[key] = value.lower() == 'true'
+        else:
+            result[key] = value
+
+    # Parse chat block: /*@chat ... @chat*/
+    chat_match = re.search(r'/\*@chat\s*\n(.*?)@chat\*/', dlr_content, re.DOTALL)
+    if chat_match:
+        result['chat'] = chat_match.group(1).rstrip()
+
+    # Extract dealer code: everything after metadata, chat block, and dealer statement
+    lines = dlr_content.split('\n')
+    dealer_lines = []
+    in_chat_block = False
+    past_header = False
+
+    for line in lines:
+        if '/*@chat' in line:
+            in_chat_block = True
+            continue
+        if '@chat*/' in line:
+            in_chat_block = False
+            continue
+        if in_chat_block:
+            continue
+
+        if not past_header:
+            # Skip metadata lines
+            if re.match(r'^#\s*(alias|button-text|scenario-title|dealer-position|gib-works|bba-works|auction-filter|convention-card|quiz-control):', line):
+                continue
+            # Skip the dealer statement (PBS uses setDealerCode position arg instead)
+            if re.match(r'^dealer\s+(south|north|east|west)', line.strip()):
+                continue
+            if line.strip() == '':
+                continue
+            past_header = True
+
+        dealer_lines.append(line)
+
+    result['dealer_code'] = '\n'.join(dealer_lines)
+
+    return result
+
+
+def generate_pbs(dlr_content: str, scenario_filename: str) -> str:
+    """
+    Generate PBS file content from DLR file content.
+    Button width and color are derived from the layout file.
+    """
+    parsed = parse_dlr_file(dlr_content)
+
     alias = parsed['alias'] or 'Unknown'
     button_text = parsed['button_text'] or alias
     dealer_position = parsed['dealer_position'] or 'S'
@@ -265,8 +242,8 @@ def generate_pbs(parsed: dict, scenario_filename: str) -> str:
     layout_styles = load_layout_styles()
     scenario_style = layout_styles.get(scenario_filename, {})
 
-    # Inline includes in dealer code
-    dealer_code = inline_includes(parsed['dealer_code'])
+    # Dealer code is already expanded in the DLR (includes inlined)
+    dealer_code = parsed['dealer_code']
 
     # Remove "action printpbn" line - not needed in PBS
     dealer_code = re.sub(r'\n*action\s+printpbn\s*\n*', '\n', dealer_code)
@@ -332,68 +309,64 @@ def generate_pbs(parsed: dict, scenario_filename: str) -> str:
     return '\n'.join(lines)
 
 
-def generate_dlr(parsed: dict, scenario: str) -> str:
+def _git_commit_and_push(pbs_test_path: str, scenario: str, verbose: bool = True) -> None:
+    """Commit and push a pbs-test file for online testing."""
+    original_dir = os.getcwd()
+    os.chdir(PROJECT_ROOT)
+
+    try:
+        # Git add the pbs-test file
+        subprocess.run(
+            ["git", "add", pbs_test_path],
+            check=True,
+            capture_output=True,
+            text=True
+        )
+
+        # Commit
+        commit_msg = f"Update pbs-test/{scenario}.pbs"
+        result = subprocess.run(
+            ["git", "commit", "-m", commit_msg],
+            capture_output=True,
+            text=True
+        )
+
+        if result.returncode != 0:
+            if "nothing to commit" in result.stdout or "nothing to commit" in result.stderr:
+                if verbose:
+                    print(f"  Git: nothing to commit (file unchanged)")
+                return
+            else:
+                print(f"  Git commit failed: {result.stderr}")
+                return
+        else:
+            if verbose:
+                print(f"  Committed: {commit_msg}")
+
+        # Push
+        result = subprocess.run(
+            ["git", "push"],
+            capture_output=True,
+            text=True
+        )
+
+        if result.returncode != 0:
+            print(f"  Git push failed: {result.stderr}")
+        else:
+            if verbose:
+                print(f"  Pushed successfully")
+
+    except Exception as e:
+        print(f"  Git error: {e}")
+    finally:
+        os.chdir(original_dir)
+
+
+def run_pbs(scenario: str, verbose: bool = True) -> bool:
     """
-    Generate DLR file content from parsed BTN data.
-    """
-    dealer_position = parsed['dealer_position'] or 'S'
-    button_text = parsed['button_text'] or scenario
+    Generate PBS file from DLR file.
 
-    # Map dealer position to full name
-    dealer_map = {'S': 'south', 'N': 'north', 'E': 'east', 'W': 'west'}
-    dealer_name = dealer_map.get(dealer_position.upper(), 'south')
-
-    # Inline includes in dealer code
-    dealer_code = inline_includes(parsed['dealer_code'])
-
-    lines = []
-
-    # Header comments
-    lines.append(f"# button-text: {button_text}")
-    lines.append(f"# scenario-title: {parsed.get('chat', '').split(chr(10))[0] if parsed.get('chat') else ''}")
-    if parsed.get('auction_filter'):
-        lines.append(f"# auction-filter: {parsed['auction_filter']}")
-    if parsed.get('convention_card'):
-        lines.append(f"# convention-card: {parsed['convention_card']}")
-    if parsed.get('quiz_control'):
-        lines.append(f"# quiz-control: {parsed['quiz_control']}")
-    lines.append(f"# {scenario}")
-    lines.append(f"dealer {dealer_name}")
-
-    # Process dealer code - remove dealer/generate/produce/printoneline statements
-    has_action = False
-    for line in dealer_code.split('\n'):
-        stripped = line.strip()
-        # Skip these lines - they'll be added by the pipeline
-        if stripped.startswith('dealer '):
-            continue
-        if stripped.startswith('generate '):
-            continue
-        if stripped.startswith('produce '):
-            continue
-        if stripped.startswith('printoneline'):
-            continue
-        if stripped.startswith('action'):
-            has_action = True
-        lines.append(line)
-
-    # Add action if not present
-    if not has_action:
-        lines.append("action printpbn")
-    else:
-        lines.append("printpbn")
-
-    lines.append("")  # trailing newline
-
-    return '\n'.join(lines)
-
-
-def run_btn_to_pbs(scenario: str, verbose: bool = True) -> bool:
-    """
-    Generate PBS and DLR files from BTN file.
-
-    btn/{scenario}.btn -> pbs-test/{scenario}.pbs
-    btn/{scenario}.btn -> dlr/{scenario}.dlr
+    dlr/{scenario}.dlr -> pbs-test/{scenario}.pbs
 
     Args:
         scenario: Scenario name (e.g., "Smolen")
@@ -403,28 +376,26 @@ def run_btn_to_pbs(scenario: str, verbose: bool = True) -> bool:
         True if successful, False otherwise
     """
     if verbose:
-        print(f"--------- Generating PBS and DLR from BTN for {scenario}")
+        print(f"--------- Generating PBS from DLR for {scenario}")
 
-    # Check that BTN file exists
-    btn_path = os.path.join(FOLDERS["btn"], f"{scenario}.btn")
-    if not os.path.exists(btn_path):
-        print(f"Error: btnToPbs: BTN file not found: {btn_path}")
+    # Check that DLR file exists
+    dlr_path = os.path.join(FOLDERS["dlr"], f"{scenario}.dlr")
+    if not os.path.exists(dlr_path):
+        print(f"Error: pbs: DLR file not found: {dlr_path}")
         return False
 
-    # Ensure output folders exist
+    # Ensure output folder exists
     os.makedirs(FOLDERS["pbs_test"], exist_ok=True)
-    os.makedirs(FOLDERS["dlr"], exist_ok=True)
 
     try:
-        # Parse BTN file
         if verbose:
-            print(f"  Parsing: {btn_path}")
-        parsed = parse_btn_file(btn_path)
+            print(f"  Source: {dlr_path}")
 
-        # Generate PBS content
-        pbs_content = generate_pbs(parsed, scenario)
+        with open(dlr_path, 'r', encoding='utf-8') as f:
+            dlr_content = f.read()
 
-        # Determine whether to write to pbs-test
+        pbs_content = generate_pbs(dlr_content, scenario)
+
         pbs_test_path = os.path.join(FOLDERS["pbs_test"], f"{scenario}.pbs")
         pbs_release_path = os.path.join(FOLDERS["pbs_release"], f"{scenario}.pbs")
 
@@ -449,28 +420,24 @@ def run_btn_to_pbs(scenario: str, verbose: bool = True) -> bool:
                     print(f"  Updated: {pbs_test_path} (unchanged from release)")
                 else:
                     print(f"  Created: {pbs_test_path}")
+
+            # Auto-commit and push pbs-test file for online testing
+            _git_commit_and_push(pbs_test_path, scenario, verbose)
         else:
             if verbose:
                 print(f"  Skipped: {pbs_test_path} (matches release)")
 
-        # Generate DLR content
-        dlr_content = generate_dlr(parsed, scenario)
-
-        # Write DLR file
-        dlr_path = os.path.join(FOLDERS["dlr"], f"{scenario}.dlr")
-        with open(dlr_path, 'w', encoding='utf-8') as f:
-            f.write(dlr_content)
-
-        if verbose:
-            print(f"  Created: {dlr_path}")
-
         return True
 
     except Exception as e:
-        print(f"Error: btnToPbs: {e}")
+        print(f"Error: pbs: {e}")
         import traceback
         traceback.print_exc()
         return False
+
+
+# Keep backward-compatible alias
+run_btn_to_pbs = run_pbs
 
 
 if __name__ == "__main__":
@@ -479,6 +446,6 @@ if __name__ == "__main__":
     else:
         scenario = "Smolen"
 
-    print(f"Testing btnToPbs operation with scenario: {scenario}\n")
-    success = run_btn_to_pbs(scenario)
+    print(f"Testing PBS operation with scenario: {scenario}\n")
+    success = run_pbs(scenario)
     print(f"\nResult: {'Success' if success else 'Failed'}")

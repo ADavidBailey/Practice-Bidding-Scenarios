@@ -1,8 +1,9 @@
 """
-BBA operation: Generate BBA file from PBN using BBA on Windows.
-Supports two modes:
-  - CLI mode (default): Uses bba-cli.exe via SSH directly
-  - GUI mode: Uses BBA.exe with a watch folder approach (legacy)
+BBA operation: Generate BBA file from PBN using BBA.
+Supports three modes:
+  - GUI mode: Uses BBA.exe with a watch folder approach (legacy Windows)
+  - CLI mode: Uses bba-cli.exe on Windows via SSH
+  - Mac mode: Uses bba-cli-mac natively on Mac
 Then run oneSummary.py locally to create summary.
 
 After BBA completes, restores header comments and fixes Event tags
@@ -22,11 +23,11 @@ from ssh_runner import run_windows_command, mac_to_windows_path
 from utils.properties import get_convention_card
 from operations.title import get_title_from_pbs
 
-# Set to True to use legacy GUI-based BBA.exe with watcher, False for CLI mode
-USE_GUI_MODE = True
+# BBA mode: "gui" (legacy BBA.exe watcher), "cli" (bba-cli.exe via SSH), "mac" (bba-cli-mac native)
+BBA_MODE = "mac"
 
-# BBA-CLI path on Windows
-BBA_CLI_PATH = r"C:\BBA-CLI\bba-cli"
+# BBA-CLI path on Windows (G: maps to GitHub root)
+BBA_CLI_PATH = r"G:\BBA-CLI\dist\epbot-wrapper\bba-cli.exe"
 
 # BBA queue folder for watch-folder approach (GUI mode only)
 BBA_QUEUE = os.path.join(PROJECT_ROOT, "bba-queue")
@@ -90,6 +91,9 @@ def fix_event_tags(scenario: str, file_path: str, verbose: bool = True) -> bool:
         replacement = f'[Event "{title}"]'
         updated_content = re.sub(pattern, replacement, content)
 
+        # Remove all [Date "..."] lines to avoid spurious diffs
+        updated_content = re.sub(r'\[Date "[^"]*"\]\n?', '', updated_content)
+
         with open(file_path, "w") as f:
             f.write(updated_content)
 
@@ -144,7 +148,8 @@ def run_bba_cli(scenario: str, verbose: bool = True) -> bool:
     cc1_file = mac_to_windows_path(os.path.join(FOLDERS["bbsa"], f"{cc1}.bbsa"))
     cc2_file = mac_to_windows_path(os.path.join(FOLDERS["bbsa"], f"{cc2}.bbsa"))
 
-    bba_cmd = f'{BBA_CLI_PATH} --auto-update --input "{input_file}" --output "{output_file}" --ns-conventions "{cc1_file}" --ew-conventions "{cc2_file}"'
+    event_name = scenario.replace("_", " ")
+    bba_cmd = f'{BBA_CLI_PATH} --input "{input_file}" --output "{output_file}" --ns-conventions "{cc1_file}" --ew-conventions "{cc2_file}" --event "{event_name}"'
 
     if verbose:
         print(f"  Running: {bba_cmd}")
@@ -183,6 +188,111 @@ def run_bba_cli(scenario: str, verbose: bool = True) -> bool:
 
     # Run oneSummary.py locally
     return run_summary(scenario, verbose)
+
+
+def run_bba_mac(scenario: str, verbose: bool = True, output_dir: str = None) -> bool:
+    """
+    Generate BBA file from PBN file using bba-cli-mac natively on Mac.
+
+    pbn/{scenario}.pbn -> bba/{scenario}.pbn (or output_dir/{scenario}.pbn)
+
+    Args:
+        scenario: Scenario name (e.g., "Smolen")
+        verbose: Whether to print progress
+        output_dir: Optional override for output directory (for comparison testing)
+
+    Returns:
+        True if successful, False otherwise
+    """
+    if verbose:
+        print(f"--------- bba-cli-mac: Creating bba/{scenario}.pbn from pbn/{scenario}.pbn")
+
+    bba_cli_mac = MAC_TOOLS.get("bba_cli")
+    if not bba_cli_mac or not os.path.exists(bba_cli_mac):
+        print(f"Error: bba-cli-mac not found at: {bba_cli_mac}")
+        return False
+
+    # Check that PBN file exists
+    pbn_path = os.path.join(FOLDERS["pbn"], f"{scenario}.pbn")
+    if not os.path.exists(pbn_path):
+        print(f"Error: PBN file not found: {pbn_path}")
+        return False
+
+    # Get convention card from DLR properties
+    cc1 = get_convention_card(scenario)
+    cc2 = DEFAULT_CC2
+
+    if verbose:
+        print(f"  Convention cards: {cc1} vs {cc2}")
+
+    # Determine output path
+    if output_dir:
+        os.makedirs(output_dir, exist_ok=True)
+        bba_output = os.path.join(output_dir, f"{scenario}.pbn")
+    else:
+        bba_output = os.path.join(FOLDERS["bba"], f"{scenario}.pbn")
+
+    # Delete existing output if present
+    if os.path.exists(bba_output):
+        os.remove(bba_output)
+
+    # Build convention card paths
+    cc1_file = os.path.join(FOLDERS["bbsa"], f"{cc1}.bbsa")
+    cc2_file = os.path.join(FOLDERS["bbsa"], f"{cc2}.bbsa")
+
+    cmd = [
+        bba_cli_mac,
+        "--input", pbn_path,
+        "--output", bba_output,
+        "--ns-conventions", cc1_file,
+        "--ew-conventions", cc2_file,
+        "--event", scenario.replace("_", " "),
+    ]
+
+    if verbose:
+        print(f"  Running: {' '.join(cmd)}")
+
+    try:
+        start_time = time.time()
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            timeout=BBA_TIMEOUT,
+        )
+        elapsed = time.time() - start_time
+
+        if result.returncode != 0:
+            print(f"Error: bba-cli-mac failed with exit code {result.returncode}")
+            if result.stderr:
+                print(f"  {result.stderr}")
+            return False
+
+        if verbose:
+            print(f"  BBA completed successfully in {int(elapsed)}s")
+            if result.stdout:
+                print(f"  {result.stdout.strip()}")
+
+    except subprocess.TimeoutExpired:
+        print(f"Error: bba-cli-mac timed out after {BBA_TIMEOUT} seconds")
+        return False
+    except Exception as e:
+        print(f"Error running bba-cli-mac: {e}")
+        return False
+
+    # Verify BBA output was created
+    if not os.path.exists(bba_output):
+        print(f"Error: BBA output was not created: {bba_output}")
+        return False
+
+    # Fix Event tags with correct title from PBS
+    fix_event_tags(scenario, bba_output, verbose)
+
+    # Run oneSummary.py locally (only if writing to standard bba folder)
+    if not output_dir:
+        return run_summary(scenario, verbose)
+
+    return True
 
 
 def start_bba_watcher(verbose: bool = True) -> bool:
@@ -379,7 +489,7 @@ def run_bba(scenario: str, verbose: bool = True) -> bool:
     """
     Generate BBA file from PBN file.
 
-    Dispatches to either CLI mode or GUI mode based on USE_GUI_MODE flag.
+    Dispatches based on BBA_MODE: "gui", "cli", or "mac".
 
     Args:
         scenario: Scenario name (e.g., "Smolen")
@@ -388,19 +498,74 @@ def run_bba(scenario: str, verbose: bool = True) -> bool:
     Returns:
         True if successful, False otherwise
     """
-    if USE_GUI_MODE:
-        return run_bba_gui(scenario, verbose)
-    else:
+    if BBA_MODE == "mac":
+        return run_bba_mac(scenario, verbose)
+    elif BBA_MODE == "cli":
         return run_bba_cli(scenario, verbose)
+    else:
+        return run_bba_gui(scenario, verbose)
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        scenario = sys.argv[1]
-    else:
-        scenario = "Smolen"
+    import argparse
+    parser = argparse.ArgumentParser(description="Run BBA analysis on a scenario")
+    parser.add_argument("scenario", nargs="?", default="Smolen", help="Scenario name")
+    parser.add_argument("--mac", action="store_true", help="Use bba-cli-mac (native Mac)")
+    parser.add_argument("--cli", action="store_true", help="Use bba-cli.exe (Windows via SSH)")
+    parser.add_argument("--compare", action="store_true",
+                        help="Run Mac BBA and compare with existing Windows output")
+    args = parser.parse_args()
 
-    print(f"Testing BBA operation with scenario: {scenario}\n")
-    print(f"Mode: {'GUI (BBA.exe watcher)' if USE_GUI_MODE else 'CLI (bba-cli)'}\n")
-    success = run_bba(scenario)
-    print(f"\nResult: {'Success' if success else 'Failed'}")
+    scenario = args.scenario
+
+    if args.compare:
+        # Run Mac BBA to a temp directory and compare with existing bba/ output
+        compare_dir = os.path.join(PROJECT_ROOT, "bba-mac-test")
+        print(f"Running bba-cli-mac on {scenario} (output to bba-mac-test/)...\n")
+        success = run_bba_mac(scenario, verbose=True, output_dir=compare_dir)
+        if success:
+            mac_file = os.path.join(compare_dir, f"{scenario}.pbn")
+            win_file = os.path.join(FOLDERS["bba"], f"{scenario}.pbn")
+            if os.path.exists(win_file):
+                print(f"\nComparing outputs...")
+                print(f"  Windows: {win_file}")
+                print(f"  Mac:     {mac_file}")
+                # Use pbn-diff.py if available, otherwise basic diff
+                pbn_diff = os.path.join(PROJECT_ROOT, "build-scripts-mac", "pbn-diff.py")
+                if os.path.exists(pbn_diff):
+                    result = subprocess.run(
+                        [MAC_TOOLS["python"], pbn_diff, win_file, mac_file],
+                        capture_output=True, text=True)
+                    print(result.stdout)
+                    if result.stderr:
+                        print(result.stderr)
+                else:
+                    # Fallback: count boards and compare auction lines
+                    for label, path in [("Windows", win_file), ("Mac", mac_file)]:
+                        with open(path) as f:
+                            content = f.read()
+                        boards = content.count('[Board "')
+                        auctions = content.count('[Auction "')
+                        print(f"  {label}: {boards} boards, {auctions} auctions")
+            else:
+                print(f"\n  No existing Windows output at {win_file} to compare against.")
+        print(f"\nResult: {'Success' if success else 'Failed'}")
+    else:
+        # Override mode if flags specified
+        if args.mac:
+            mode = "mac"
+        elif args.cli:
+            mode = "cli"
+        else:
+            mode = BBA_MODE
+
+        mode_labels = {"gui": "GUI (BBA.exe watcher)", "cli": "CLI (bba-cli via SSH)", "mac": "Mac (bba-cli-mac native)"}
+        print(f"Testing BBA operation with scenario: {scenario}\n")
+        print(f"Mode: {mode_labels.get(mode, mode)}\n")
+
+        # Temporarily override BBA_MODE for this run
+        old_mode = BBA_MODE
+        globals()['BBA_MODE'] = mode
+        success = run_bba(scenario)
+        globals()['BBA_MODE'] = old_mode
+        print(f"\nResult: {'Success' if success else 'Failed'}")

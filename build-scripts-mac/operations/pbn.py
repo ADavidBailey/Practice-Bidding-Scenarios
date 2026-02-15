@@ -12,7 +12,7 @@ import threading
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from config import FOLDERS, MAC_TOOLS, WINDOWS_TOOLS, DEALER_SEED, DEALER_GENERATE, DEALER_PRODUCE, DEALER_PLATFORM
+from config import FOLDERS, MAC_TOOLS, WINDOWS_TOOLS, dealer_seed, DEALER_GENERATE, DEALER_PRODUCE, DEALER_PLATFORM
 from ssh_runner import run_windows_command, mac_to_windows_path
 from operations.title import run_title
 
@@ -109,13 +109,14 @@ def run_pbn(scenario: str, verbose: bool = True) -> bool:
         if verbose:
             print(f"--------- dealer (Mac): Creating pbn/{scenario}.pbn from dlr/{scenario}.dlr")
 
+        seed = dealer_seed(scenario)
         dealer_cmd = [
             MAC_TOOLS["dealer"],
-            "-s", str(DEALER_SEED),
+            "-s", str(seed),
             "-g", str(DEALER_GENERATE),
             "-p", str(DEALER_PRODUCE),
-            "-m",
-            "-v",        # Include stats output at end of file
+            "-f", "printpbn",
+            "-v",
         ]
 
         if verbose:
@@ -199,9 +200,10 @@ def run_pbn(scenario: str, verbose: bool = True) -> bool:
         win_pbn = mac_to_windows_path(pbn_path)
 
         # Build dealer command
+        seed = dealer_seed(scenario)
         dealer_cmd = (
             f'{WINDOWS_TOOLS["dealer"]} {win_dlr} '
-            f'-s {DEALER_SEED} -g {DEALER_GENERATE} -p {DEALER_PRODUCE} -m '
+            f'-s {seed} -g {DEALER_GENERATE} -p {DEALER_PRODUCE} -m '
             f'>{win_pbn}'
         )
 

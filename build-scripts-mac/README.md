@@ -185,3 +185,92 @@ build-scripts-mac/
     ├── paths.py       # Mac ↔ Windows path conversion
     └── properties.py  # Read properties from .dlr files
 ```
+
+---
+
+## Full Build Report — 2025-02-14
+
+Full rebuild of all 299 scenarios with `pbn+` operations using dynamic per-scenario seeding (SEED_OFFSET=1).
+
+```
+python3 pbs-pipeline-mac.py "*" "pbn+" -q --no-ssh-check
+```
+
+### Results
+
+- **261 succeeded**, **38 failed**
+- Total PBN generation time: **30m 17s**
+
+### Error Categories
+
+| Category | Count | Details |
+|----------|-------|---------|
+| No boards after filtering | 28 | BBA auction filter matched 0 boards with new seeds — bidding sheet generation fails |
+| Missing BBSA file | 5 | Custom convention cards not found: `21GF-1NTwith4441`, `Gazzilli`, `21GF-Kokish_Relay`, `21GF-MST`, plus a BTN parsing bug in `Minor_Game_Or_Slam` |
+| Dealer found 0 hands | 2 | `GIB_1M-P-Resp` and `Misfit6-5` — constraints too tight, 0 qualifying hands in 300M tries |
+| Filter regex error | 1 | `After_2_Passes` — uses look-behind regex unsupported by bridge-wrangler |
+| Dealer variable error | 1 | `Anything_Goes` — undefined variable `gamble3` |
+| Bidding sheet path error | 1 | `Grand_Slam_Invite` — filtered file not found |
+
+### Failed Scenarios
+
+**Missing BBSA file (5):**
+`1N_with_Singleton`, `Gazzilli`, `Kokish_Relay`, `Minor_Game_Or_Slam`, `Minor_Suit_Transfer`
+
+**No boards after filtering (28):**
+`After_1M_2M`, `After_1x_1N`, `Better_Minor_Lebensohl`, `Forcing_Pass`, `Gerber_By_Responder`, `Maximal_After_Overcall`, `Minor_Suit_Stayman`, `Mitchell_Stayman`, `Opps_Gambling_3N`, `Opps_Multi_2D`, `Opps_Overcall_1NT`, `Power_Double_Unbalanced`, `Preempt_Keycard`, `Responsive_Double`, `Reverse_Flannery`, `Rule_of_16`, `Rule_of_16-15`, `Rule_of_16-16`, `Rule_of_16-17`, `Rule_of_16-18`, `Rule_of_2`, `Snapdragon_Double`, `Soloway_Jump_Shift_Type-1`, `Spiral_Raises_with_3`, `Support_Double`, `Vics_Bal_Resp_to_1m`, `We_Overcall_NT_then_Smolen`, `Weak_NT_10-12`
+
+**Dealer errors (3):**
+`GIB_1M-P-Resp` (0 hands produced), `Misfit6-5` (0 hands produced), `Anything_Goes` (undefined variable)
+
+**Other (2):**
+`After_2_Passes` (regex), `Grand_Slam_Invite` (missing filtered file)
+
+### Slow PBN Generation (>10s)
+
+| Scenario | PBN time |
+|----------|----------|
+| Trap_Pass | 2m 19s |
+| Trap_Pass_Maybe | 2m 18s |
+| Opps_Bal_Unusual_2N | 2m 9s |
+| Gerber_By_Opener | 2m 0s |
+| GIB_1M-P-Resp | 1m 45s (failed) |
+| GIB_Sandwich_NT_BPH | 1m 45s |
+| Double_by_Advancer | 1m 40s |
+| W2_X_XX | 1m 19s |
+| McCabe_after_WJO | 1m 15s |
+| Non_Leaping_Michaels_After_2-Bid | 1m 14s |
+| Misfit6-5 | 1m 9s (failed) |
+| Snapdragon_Double | 46s |
+| Trap_Pass_Opener | 29s |
+| 1N_5M_and_6m | 28s |
+| Double_double | 24s |
+| Impossible_2S | 22s |
+| Two-Way_Game_Try | 22s |
+| Forcing_Pass | 21s |
+| Last_Train_Game_Try | 21s |
+| Rule_of_16-18 | 18s |
+| Grand_Slam_Force | 18s |
+| 3N_over_LHO_3x | 16s |
+| We_Overcall_NT_then_Smolen | 14s |
+| 1m-2N | 12s |
+| McCabe_After_Weak_2 | 12s |
+| Trap_Pass_Opener_Maybe | 12s |
+| Maximal_Double | 12s |
+| Jump_Cuebid_Strong | 11s |
+| Spear | 11s |
+| Last_Train_GT2 | 10s |
+
+### PBN Duration Distribution
+
+| Range | Count |
+|-------|-------|
+| < 1s | 175 |
+| 1-5s | 77 |
+| 5-10s | 17 |
+| 10-30s | 18 |
+| 30s-1m | 1 |
+| 1-2m | 8 |
+| 2-5m | 3 |
+
+Default `DEALER_GENERATE` is 300,000,000. The slow scenarios have tight constraints (predeals, calm opponents, narrow HCP ranges) that make it hard to find 500 qualifying hands. Options: reduce `generate`, accept fewer hands, loosen constraints, or add per-scenario `generate` overrides in BTN metadata.

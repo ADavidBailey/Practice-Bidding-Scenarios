@@ -39,7 +39,8 @@ from operations.bba import run_bba
 from operations.filter import run_filter
 from operations.filter_stats import run_filter_stats
 from operations.bidding_sheet import run_bidding_sheet
-from operations.btn_to_pbs import run_btn_to_pbs
+from operations.dlr import run_dlr
+from operations.btn_to_pbs import run_pbs
 from operations.quiz import run_quiz
 from operations.release import run_release
 from operations.release_layout import run_release_layout
@@ -47,7 +48,8 @@ from operations.release_layout import run_release_layout
 
 # Map operation names to functions
 OPERATIONS = {
-    "pbs": run_btn_to_pbs,  # Generates both PBS and DLR from BTN
+    "dlr": run_dlr,         # Generate DLR from BTN
+    "pbs": run_pbs,         # Generate PBS from DLR
     "pbn": run_pbn,
     "rotate": run_rotate,
     "bba": run_bba,
@@ -233,7 +235,7 @@ def run_operations(scenario: str, operations: list, verbose: bool = True) -> boo
     # Print duration summary (always shown, even in quiet mode)
     if durations:
         total = sum(durations.values())
-        print(f"\n  Duration summary:")
+        print(f"\n  {scenario} duration summary:")
         for op, dur in durations.items():
             print(f"    {op:15} {format_duration(dur):>10}")
         print(f"    {'─' * 26}")
@@ -255,11 +257,12 @@ Examples:
     python build.py "1N*" "*"            # Pattern match scenarios
 
 Operations (in order):
-    pbs         - Generate PBS and DLR from BTN file (outputs to pbs-test/ and dlr/)
-    pbn         - Generate PBN from DLR (Mac: dealer3, Windows: dealer.exe)
-    rotate      - Create rotated files for 4-player (Windows: SetDealerMulti.js)
-    bba         - Generate BBA with bidding (Windows: BBA.exe)
-    filter      - Filter by auction pattern (Windows: Filter.js)
+    dlr         - Generate DLR from BTN file (outputs to dlr/)
+    pbs         - Generate PBS from DLR file (outputs to pbs-test/)
+    pbn         - Generate PBN hands from DLR using dealer
+    rotate      - Create rotated PBN/LIN files for 4-player practice
+    bba         - Analyze bidding with BBA
+    filter      - Filter hands by auction pattern
     filterStats - Show filter statistics
     biddingSheet - Generate bidding sheets PDF
     quiz        - Generate quiz PBN/PDF from filtered BBA
@@ -348,4 +351,8 @@ Operations (in order):
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n\nAborted.")
+        sys.exit(130)

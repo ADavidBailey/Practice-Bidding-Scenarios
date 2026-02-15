@@ -10,7 +10,7 @@ import sys
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from config import FOLDERS
+from config import FOLDERS, dealer_seed, SEED_OFFSET
 
 
 def get_title_from_pbs(scenario: str) -> str:
@@ -104,6 +104,25 @@ def run_title(scenario: str, verbose: bool = True) -> bool:
             # Insert %HRTitleEvent after other header comments
             lines.insert(insert_pos, hr_title_line)
 
+        # Add or update %HRSeed comment after %HRTitleEvent
+        seed = dealer_seed(scenario)
+        hr_seed_line = f'%HRSeed {seed} (offset {SEED_OFFSET})\n'
+        hr_seed_pattern = re.compile(r'^%HRSeed\s')
+        found_hr_seed = False
+
+        for i, line in enumerate(lines):
+            if hr_seed_pattern.match(line):
+                lines[i] = hr_seed_line
+                found_hr_seed = True
+                break
+
+        if not found_hr_seed:
+            # Insert after %HRTitleEvent
+            for i, line in enumerate(lines):
+                if line.startswith('%HRTitleEvent'):
+                    lines.insert(i + 1, hr_seed_line)
+                    break
+
         # Join lines back to content
         content = ''.join(lines)
 
@@ -111,6 +130,9 @@ def run_title(scenario: str, verbose: bool = True) -> bool:
         pattern = r'\[Event "[^"]*"\]'
         replacement = f'[Event "{title}"]'
         updated_content = re.sub(pattern, replacement, content)
+
+        # Remove all [Date "..."] lines
+        updated_content = re.sub(r'\[Date "[^"]*"\]\n?', '', updated_content)
 
         with open(pbn_path, "w") as f:
             f.write(updated_content)

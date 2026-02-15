@@ -81,8 +81,12 @@
         "icon": "$(play)"
       },
       {
+        "command": "pbs.runDlr",
+        "title": "PBS: Run DLR"
+      },
+      {
         "command": "pbs.runPbsOp",
-        "title": "PBS: Generate PBS/DLR"
+        "title": "PBS: Run PBS"
       },
       {
         "command": "pbs.runPbn",
@@ -107,6 +111,10 @@
       {
         "command": "pbs.runBiddingSheet",
         "title": "PBS: Run Bidding Sheet"
+      },
+      {
+        "command": "pbs.runDlrPlus",
+        "title": "PBS: Run DLR+"
       },
       {
         "command": "pbs.runPbsOpPlus",
@@ -208,72 +216,80 @@
           "group": "1_all"
         },
         {
-          "command": "pbs.runPbsOp",
+          "command": "pbs.runDlr",
           "group": "2_individual@1"
         },
         {
-          "command": "pbs.runPbn",
+          "command": "pbs.runPbsOp",
           "group": "2_individual@2"
         },
         {
-          "command": "pbs.runRotate",
+          "command": "pbs.runPbn",
           "group": "2_individual@3"
         },
         {
-          "command": "pbs.runBba",
-          "group": "2_individual@4",
-          "when": "pbs.bbaWorks"
+          "command": "pbs.runRotate",
+          "group": "2_individual@4"
         },
         {
-          "command": "pbs.runFilter",
+          "command": "pbs.runBba",
           "group": "2_individual@5",
           "when": "pbs.bbaWorks"
         },
         {
-          "command": "pbs.runFilterStats",
+          "command": "pbs.runFilter",
           "group": "2_individual@6",
           "when": "pbs.bbaWorks"
         },
         {
-          "command": "pbs.runBiddingSheet",
+          "command": "pbs.runFilterStats",
           "group": "2_individual@7",
           "when": "pbs.bbaWorks"
         },
         {
-          "command": "pbs.runQuiz",
+          "command": "pbs.runBiddingSheet",
           "group": "2_individual@8",
           "when": "pbs.bbaWorks"
         },
         {
-          "command": "pbs.runPbsOpPlus",
-          "group": "3_plus@1"
-        },
-        {
-          "command": "pbs.runPbnPlus",
-          "group": "3_plus@2"
-        },
-        {
-          "command": "pbs.runRotatePlus",
-          "group": "3_plus@3"
-        },
-        {
-          "command": "pbs.runBbaPlus",
-          "group": "3_plus@4",
+          "command": "pbs.runQuiz",
+          "group": "2_individual@9",
           "when": "pbs.bbaWorks"
         },
         {
-          "command": "pbs.runFilterPlus",
+          "command": "pbs.runDlrPlus",
+          "group": "3_plus@1"
+        },
+        {
+          "command": "pbs.runPbsOpPlus",
+          "group": "3_plus@2"
+        },
+        {
+          "command": "pbs.runPbnPlus",
+          "group": "3_plus@3"
+        },
+        {
+          "command": "pbs.runRotatePlus",
+          "group": "3_plus@4"
+        },
+        {
+          "command": "pbs.runBbaPlus",
           "group": "3_plus@5",
           "when": "pbs.bbaWorks"
         },
         {
-          "command": "pbs.runFilterStatsPlus",
+          "command": "pbs.runFilterPlus",
           "group": "3_plus@6",
           "when": "pbs.bbaWorks"
         },
         {
-          "command": "pbs.runQuizPlus",
+          "command": "pbs.runFilterStatsPlus",
           "group": "3_plus@7",
+          "when": "pbs.bbaWorks"
+        },
+        {
+          "command": "pbs.runQuizPlus",
+          "group": "3_plus@8",
           "when": "pbs.bbaWorks"
         },
         {

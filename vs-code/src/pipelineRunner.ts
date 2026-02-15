@@ -138,7 +138,8 @@ export function registerPipelineCommands(context: vscode.ExtensionContext): void
     // All operations
     registerCommand(context, 'pbs.runAll', '*');
 
-    // Individual operations (pbs is first, generates PBS and DLR from BTN)
+    // Individual operations
+    registerCommand(context, 'pbs.runDlr', 'dlr');
     registerCommand(context, 'pbs.runPbsOp', 'pbs');
     registerCommand(context, 'pbs.runPbn', 'pbn');
     registerCommand(context, 'pbs.runRotate', 'rotate');
@@ -149,6 +150,7 @@ export function registerPipelineCommands(context: vscode.ExtensionContext): void
     registerCommand(context, 'pbs.runQuiz', 'quiz');
 
     // Plus operations (from X through end)
+    registerCommand(context, 'pbs.runDlrPlus', 'dlr+');
     registerCommand(context, 'pbs.runPbsOpPlus', 'pbs+');
     registerCommand(context, 'pbs.runPbnPlus', 'pbn+');
     registerCommand(context, 'pbs.runRotatePlus', 'rotate+');
