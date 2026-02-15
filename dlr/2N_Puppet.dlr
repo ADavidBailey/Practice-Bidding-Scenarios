@@ -1,13 +1,17 @@
+# alias: TwoNTPuppet
 # button-text: 2N - Puppet
-# scenario-title: 20-21 Notrump with Puppet and any continuation.
-# 2N_Puppet
+# scenario-title: --- 20-21 Notrump with Puppet and any continuation.
+# dealer-position: S
+# gib-works: false
+# bba-works: true
+# auction-filter: Note....2N-3C Puppet
+# convention-card: 21GF-Puppet
+
+/*@chat
+--- 20-21 Notrump with Puppet and any continuation.
+The responder's strength -- game or slam -- is leveled.
+@chat*/
 dealer south
-
-
-/*
-convention-card: 21GF-Puppet
-auction-filter: Note....2N-3C Puppet
-*/
 
 ### 2N w/Puppet and any response
 
@@ -61,7 +65,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -71,7 +75,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -180,7 +184,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 ##### Level the deal #####
 levGame = game and keep11
 levSlam = slam and keep
@@ -191,6 +194,8 @@ twoNT and puppet
 and levelTheDeal
 
 ### Generate Statistics ###
+generate 20000000
+produce 1000
 
 action
 #printoneline,

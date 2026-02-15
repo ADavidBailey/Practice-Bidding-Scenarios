@@ -3,7 +3,7 @@
 # dealer-position: W
 # gib-works: false
 # bba-works: true
-# auction-filter: Auction.....\n(1.* 1H.* 2H\n3D +([34]H|X)|1.* 1S.* 2S\n3H +[34]?[SXP])
+# auction-filter: Auction.....\n(1.* +1H .* +2H\n3D +[34]?[HXP|1.* +1S.* +2S\n3H +[34]?[SXP])
 # convention-card: 21GF-MaximalDouble
 
 /*@chat
@@ -55,8 +55,15 @@ maxH = (wMaxH or ewMaxH)
 maxD = (wMaxD or ewMaxD)
 ewBID = (maxH or maxD) and hcp(west)>10 and tpWest>12 and hcp(west)<13 and tpEast>7
 
+wRange = hcp(west)>12 and tpWest>12
+nRange = hcp(north)>11 and tpNorth>12
+eRange = hcp(east)>5 and tpEast>7
+sRange = hcp(south)>9 and tpSouth>11
+ranges = wRange and nRange and eRange and sRange
+
+
 # Now do it
-nsBid and ewBID
+ranges and nsBid and ewBID
 
 generate 1000000
 produce 40
