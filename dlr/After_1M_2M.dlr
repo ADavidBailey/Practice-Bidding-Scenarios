@@ -1,11 +1,18 @@
+# alias: After1M2M
 # button-text: After 1M - 2M
-# scenario-title: After 1M - 2M
-# After_1M_2M
+# scenario-title: ---  After 1M - 2M
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: (1H +Pass +2H)|(1S +Pass +2S)
+
+/*@chat
+---  After 1M - 2M
+• 18+ bid game
+• 15+ bid help suit
+• 12-14 pass
+@chat*/
 dealer south
-
-
-# convention-card:
-# auction-filter: (1H.Pass.2H.)|(1S.Pass.2S.)
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -57,7 +64,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -67,7 +74,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -141,7 +148,6 @@ calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<1
 calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
-
 # defines calmOpps
 
 # Calculate North's Short Suit Points
@@ -159,6 +165,7 @@ HorS = (openS or openH) and not gibNT
 # Now do it
 HorS and suitPoints>11 and suitPoints<18 and shortSuitPoints>0 and hcp(north)>4 and hcp(north)<10 and calmOpps
 
+produce 1000
 action
 average "1S" 100 * oneSpade,
 average "1H" 100 * oneHeart,

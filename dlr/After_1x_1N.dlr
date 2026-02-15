@@ -1,11 +1,29 @@
+# alias: After1x1N
 # button-text: After 1x (1N)
-# scenario-title: After 1x (1N)
-# After_1x_1N
+# scenario-title: --- After 1x (1N)
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: 1[CDHS] +1N
+
+/*@chat
+--- After 1x (1N)
+• Meckwell vs. 1M (1N)
+  • X - Penalty 10+
+  • 2!C - 4+!C & 4+oM & 5-9
+  • 2!D - 4+!D & 4+oM & 5-9
+  • 2oM - 5+oM & 5-9 Non-Force
+  • 2M - 3+M & 5-9 Non-Force
+• Woolsey vs. 1m (1N)
+  • X - Penalty 10+
+  • 2!C - both Majors (4+ 4+) & 5-9
+  • 2!D - one Major (usually 6+) & 5-9
+  • 2!H - 5+!H & 4+om & 5-9 Non-Force
+  • 2!S - 5+!S & 4+om & 5-9 Non-Force
+  • 2N - 5+ in both minors & 5-9
+  https://www.advinbridge.com/this-week-in-bridge/589
+@chat*/
 dealer south
-
-
-# convention-card:
-# auction-filter: 1[CDHS] 1NT
 
 # After 1x (1N)
 
@@ -60,7 +78,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -70,7 +88,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -234,7 +252,6 @@ keep985 = not keep015
 keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
-
 
 levDouble = nDoubles and keep03
 lev1m2C   = om2C     and keep03

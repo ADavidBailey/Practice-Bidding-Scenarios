@@ -1,8 +1,22 @@
+# alias: GerberByResponder
 # button-text: Gerber by Responder (Lev)
 # scenario-title: --- Gerber by Responder (Leveled)
+# dealer-position: S
+# gib-works: true
+# bba-works: true
 # auction-filter: Note....Gerber
-# Gerber_By_Responder
+# convention-card: 21GF-Gerber
+
+/*@chat
+--- Gerber by Responder (Leveled)
+The Notrump Ladder describes the opening sequences for all balanced hands.  These deals, 
+allow you to explore for slam. The opener has a balanced hand.  The responder will
+have values to investigate slam.  The pair has no 8-card major or 9-card minor fit.  The hands
+are leveled so that the first several ranges of NT ladder occur with approximately the same frequency.
+https://www.bridgebum.com/gerber.php
+@chat*/
 dealer south
+
 # These are sequences where 4C-Gerber might be bid by Responder
 # Gerber by Responder
 #
@@ -337,6 +351,7 @@ anyNT and noMfit
 and levelTheDeal
 
 
+produce 10
 action
 average "12 + 21: 1x-1y-1N-? " 100 * nt12,
 average "15 + 18: 1N-?       " 100 * nt15,

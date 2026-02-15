@@ -1,13 +1,29 @@
+# alias: BetterMinorLebensohl
 # button-text: Better Minor Lebe' (Lev)
-# scenario-title: Better Minor Lebensohl
-# Better_Minor_Lebensohl
+# scenario-title: --- Better Minor Lebensohl
+# dealer-position: E
+# gib-works: true
+# bba-works: true
+# auction-filter: 2[DHS] +X +Pass
+
+/*@chat
+--- Better Minor Lebensohl
+After 2!D/2!H/2!S, (X), Pass, 
+  • A new suit at the 2-level is to play
+   • 2N is Better Minor Lebensohl, you will pass (0-7) or
+    correct (8+) after partner's response.
+  • 3!D shows 5+ cards.  Bidding 2N and correcting partner's 2!C
+    to 3!D shows 8+.
+  • 3 of the other major, shows 4+ cards and 0-7 HCP.  With 8+, 
+    bid 2N and correct to 3OM.
+  Bidding 2N and then pulling partner's rebid to a suit you could
+  have bid directly is stronger.
+https://csbnews.org/conventions-better-minor-lebensohl
+@chat*/
 dealer east
 
-
-# convention-card:
-# auction-filter: 2[DHS].X.Pass.
-
 # Better Minor Lebensohl
+produce 1000
 
 # Define East weak 2 bids w/o 3-card support by west
 tp = hcp(east)
@@ -82,7 +98,6 @@ keep985 = not keep015
 keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
-
 # Define leveling
 levWeak   = weak   and keep89
 levInvite = invite and keep30
