@@ -128,8 +128,15 @@ maxH = (wMaxH or ewMaxH)
 maxD = (wMaxD or ewMaxD)
 ewBID = (maxH or maxD) and hcp(west)>10 and tpWest>12 and hcp(west)<13 and tpEast>7
 
+wRange = hcp(west)>10 and tpWest>11
+nRange = hcp(north)>10 and tpNorth>11
+eRange = hcp(east)>5 and tpEast>7
+sRange = hcp(south)>9 and tpSouth>11
+ranges = wRange and nRange and eRange and sRange
+
+
 # Now do it
-hcp(west)>10 and tpWest>11 and nsBid and ewBID
+ranges and nsBid and ewBID
 
 generate 1000000
 produce 40
