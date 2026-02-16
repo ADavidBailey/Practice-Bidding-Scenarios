@@ -25,9 +25,9 @@ ntRange = hcp(south)>19 and hcp(south)<22
 twoN = ntShape and ntRange
 
 # Define objective
-weak = strength<5
-game = strength>4 and strength<12
-slam = strength>11
+weak = hcp(north)<5
+game = hcp(north)>4 and hcp(north)<12
+slam = hcp(north)>11
 
 # Define responses
 puppet = shape(north,44xx+43xx+42xx+34xx+33xx+32xx+23xx -any 8xxx -any 7xxx -any 6xxx)
@@ -71,8 +71,9 @@ keep0  = 0
 ### End of Imported Leveling Code ###
 
 ##### Level the deal #####
-levGame = game and keep11
+levGame = game and keep06
 levSlam = slam and keep
+levWeak = weak and keep0
 levelTheDeal = levGame or levSlam
 
 ### Do it ###
@@ -80,11 +81,10 @@ twoN and puppet
 and levelTheDeal
 
 ### Generate Statistics ###
-generate 20000000
-produce 1000
-
+generate 100000
+produce 30
 action
-#printoneline,
+printoneline,
 
 average "Game         " 100 * game,
 average "Slam         " 100 * slam,
