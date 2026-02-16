@@ -16,11 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\nPass +Pass +(?!Pass)
+auction-filter: Auction.....\nPass +Pass +[1-7]
 */
 # After 2 Passes...
 
-dealer north
 
 ccn = top5(north,clubs   )<3 and hcp(north,clubs   )<5
 cdn = top5(north,diamonds)<3 and hcp(north,diamonds)<5
