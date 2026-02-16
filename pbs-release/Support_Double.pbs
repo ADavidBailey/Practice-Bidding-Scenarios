@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Note...:Support double
+auction-filter: Auction.....\n.*\nX
 */
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -152,32 +152,32 @@ calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
 
+# Define responder's suits and opener's 3-card support
+nH = hearts(north)>3 and hearts(north)>=spades(north) and hearts(south)==3
+nS = spades(north)>3 and spades(north)>hearts(north)  and spades(south)==3
+nResponds = (nH or nS) and hcp(north)>5
+
 # South opens 1C, 1D, or 1H
+sOpens = (oC or oD or oH) and hcp(south)>11
 
-aD = oD and diamonds(east)<3
-aH = oH and hearts(east)<3
+CH = oC and nH and (spades(east)>3   and diamonds(east)>3 or (spades(east)>4   or diamonds(east)>4))
+CS = oC and nS and (hearts(east)>3   and diamonds(east)>3 or (hearts(east)>4   or diamonds(east)>4))
+DH = oD and nH and (spades(east)>3   and clubs(east)>3    or (spades(east)>4   or clubs(east)>4))
+DS = oD and nS and (hearts(east)>3   and clubs(east)>3    or (hearts(east)>4   or clubs(east)>4))
+HS = oH and nS and (diamonds(east)>3 and clubs(east)>3    or (diamonds(east)>4 or clubs(east)>4))
 
-sOpens = (oC or aD or aH) and shape(south,any 5431+any 5440+any 4441) and hcp(south)>11 and hcp(south)<20
+eBids = (hcp(east)>9 and (CH or DH)) or hcp(east)>11 and (CS or DS or HS)
 
-# North responds 1H or 1S and South has 3-card support and East is short in North's suit
-nS = spades(north)>hearts(north) and shape(north,5xxx+4xxx+44xx) and shape(south,3xxx) and spades(east)<2
-nH = hearts(north)>=spades(north)  and shape(north,x5xx+x4xx+44xx) and shape(south,x3xx) and hearts(east)<3
+sOpens and calmWest and nResponds and eBids
 
-nResponds = (((oC or oD) and (nH or nS)) or (oH and nS)) and shape(north,xxxx-any 65xx-any 55xx-any 8xxx-any 7xxx) and hcp(north)>5
-
-eActs = hcp(east)>10 and shape(east,any 0xxx+any 1xxx+any 22xx-any 66xx- any 65xx-any 55xx)
-
-# South makes a support double
-sOpens and calmWest and nResponds and eActs 
-
-action
 produce 30
+action
 printoneline,
-average "1C     " 100 * oC,
-average "1D     " 100 * oD,
-average "1H     " 100 * oH,
-average "   - 1H" 100 * nH,
-average "   - 1S" 100 * nS,
+average "CH     " 100 * CH,
+average "CS     " 100 * CS,
+average "DH     " 100 * DH,
+average "DS     " 100 * DS,
+average "HS     " 100 * HS,
 `, "S", true)
 Script
 Button,Support Double,\n\
