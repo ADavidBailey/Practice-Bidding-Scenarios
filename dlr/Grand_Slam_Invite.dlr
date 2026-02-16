@@ -1,10 +1,19 @@
+# alias: GrandSlamInviteBal
 # button-text: Grand Slam?
-# scenario-title: Grand Slam Invite (lev)
-# Grand_Slam_Invite
+# scenario-title: --- Grand Slam Invite (lev)
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: .
+
+/*@chat
+--- Grand Slam Invite (lev)
+Both hands are balanced and have a combined hcp very near Grand Slam.
+@chat*/
 dealer south
 
-
 # 1 Notrump GIB
+produce 10000
 
 # Use GIB style 1N for 15-17 NT & just balanced for all other ranges
 
@@ -74,6 +83,7 @@ levelTheDeal = lev1214 or lev1517 or lev1819 or lev2021 or lev2224 or lev2527 or
 ntShape and totalHCP>35
 and levelTheDeal
 
+produce 10000
 
 action
 average "HCP South " hcp(south),
