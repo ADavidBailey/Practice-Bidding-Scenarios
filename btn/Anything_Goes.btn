@@ -3,19 +3,11 @@
 # dealer-position: S
 # gib-works: true
 # bba-works: true
-# auction-filter: Auction.....\n(?!P)
+# auction-filter: .
 
 /*@chat
 --- South Opens...
 @chat*/
-
-/*
-
-Anything Goes
-
-*/
-
-dealer south
 
 #include "script/Predict-Opening-1-Bid"
 
@@ -30,8 +22,10 @@ threeS = shape(south,7xxx + 8xxx + 9xxx -any 94xx -any 85xx -any 76xx -any 75xx)
 
 1
 
-
+generate 1000
+produce 30
 action
+printoneline,
 average "1C    " 100 * oC,
 average "1D    " 100 * oD,
 average "1H    " 100 * oH,
@@ -46,4 +40,4 @@ average "3C    " 100 * threeC,
 average "3D    " 100 * threeD,
 average "3H    " 100 * threeH,
 average "3S    " 100 * threeS,
-average "3NT   " 100 * gamble3,
+average "3NT   " 100 * threeNT,
