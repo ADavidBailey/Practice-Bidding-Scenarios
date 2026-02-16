@@ -1,8 +1,20 @@
+# alias: PreemptKeycard
 # button-text: Preempt Keycard
 # scenario-title: --- Keycard after Preempts
+# dealer-position: S
+# gib-works: false
+# bba-works: false
 # auction-filter: Auction.....\n(2[DHS] +Pass +2NT|3[CDHS] +Pass +4NT)
-# Preempt_Keycard
+
+/*@chat
+--- Keycard after Preempts
+After a preemptive opening, 4!C is keycard-ask. EXCEPTION: After 3!C opening, 4!D is keycard-ask.
+The responses are 0, 1-without, 1-with, 2-without, 2-with.
+After a weak two 4!C Keycard-Ask may be used after a feature-ask sequence such as 2!H - 2N - 3!D - 4!C.
+https://www.advinbridge.com/this-week-in-bridge/578
+@chat*/
 dealer south
+
 # Keycard ask after Preempt
 
 range = hcp(south)>5 and hcp(south)<10
@@ -25,5 +37,3 @@ average "hcp south    " hcp(south),
 average "hcp north    " hcp(north),
 average "losers South " losers(south),
 average "losers North " losers(north),
-
-printpbn
