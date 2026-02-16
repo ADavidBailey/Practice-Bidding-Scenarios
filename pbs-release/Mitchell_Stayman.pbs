@@ -16,10 +16,9 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: 1[CD] 1NT
+auction-filter: 1[CD] +1N
 */
 # Mitchell Stayman
-dealer south
 
 # South opens 1m, West overcalls 1NT, North is 5/4 in the majors and has 6-9 hcp
 sOpens1m = hcp(south)>11 and hcp(south)<15 and spades(south)<5 and hearts(south)<5
@@ -30,6 +29,6 @@ sOpens1m and wOvercalls1NT and nResponds
 Script
 Button,Mitchell Stayman,\n\
 --- Mitchell Stayman\n\
-After 1m - (1N)，2C shows 5/4M and 6-9 HCP\n\
+After 1m (1N)，2C shows 5/4M and 6-9 HCP\n\
 Opener responds 2D with no preference\n\
-%MitchellStayman%,backgroundColor=lightpink
+%MitchellStayman%,width=50% backgroundColor=lightpink
