@@ -16,10 +16,9 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: 1[CDHS] 1NT
+auction-filter: 1[CDHS] +1N
 */
 # Opponents Overcall 1NT
-dealer south
 
 # Predict South's opening suit
 s = spades(south)
@@ -54,4 +53,4 @@ and hcp(west)>14 && hcp(west)<18
 Script
 Button,1NT Overcall,\n\
 --- We open and opponent overcalls 1NT.\n\n\
-%OppsOvercall1NT%
+%OppsOvercall1NT%,width=50%
