@@ -25,7 +25,7 @@ ntRange = hcp(south)>19 and hcp(south)<22
 twoN = ntShape and ntRange
 
 # Define objective
-weak = hcp(north)<5
+part = hcp(north)<5
 game = hcp(north)>4 and hcp(north)<12
 slam = hcp(north)>11
 
@@ -73,8 +73,8 @@ keep0  = 0
 ##### Level the deal #####
 levGame = game and keep06
 levSlam = slam and keep
-levWeak = weak and keep0
-levelTheDeal = levGame or levSlam
+levPart = part and keep0
+levelTheDeal = levGame or levSlam or levWeak
 
 ### Do it ###
 twoN and puppet
@@ -86,6 +86,7 @@ produce 30
 action
 printoneline,
 
+average "Part Score   " 100 * part,
 average "Game         " 100 * game,
 average "Slam         " 100 * slam,
 `, "S", true)
