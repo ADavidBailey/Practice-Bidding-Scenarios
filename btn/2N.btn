@@ -10,8 +10,6 @@
 responses occur at more nearly the same frequency.
 @chat*/
 
-### 2N and any response
-
 #include "script/Predict-Opening-1-Bid"
 
 ### NORTH ###
@@ -72,10 +70,9 @@ twoNT
 and levelTheDeal
 
 ### Generate Statistics ###
-produce 10000
-
+produce 30
 action
-#printoneline,
+printoneline,
 average "Pass                  " 100 * weak,
 average "Balanced, not Stayman " 100 * balanced, // and not puppet, stayman, or MSS
 average "Puppet, not Stayman   " 100 * puppet,   // and not stayman or MSS
