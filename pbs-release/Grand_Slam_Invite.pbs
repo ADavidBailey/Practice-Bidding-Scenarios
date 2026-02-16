@@ -14,6 +14,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
     })
 }).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
 setDealerCode(`
+
+/*
+auction-filter: .
+*/
 # 1 Notrump GIB
 produce 10000
 
@@ -103,4 +107,4 @@ Script
 Button,Grand Slam?,\n\
 --- Grand Slam Invite (lev)\n\
 Both hands are balanced and have a combined hcp very near Grand Slam.\n\
-%GrandSlamInviteBal%
+%GrandSlamInviteBal%,width=50%
