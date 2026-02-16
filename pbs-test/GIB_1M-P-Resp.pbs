@@ -230,7 +230,7 @@ tpEW = tpEast + tpWest
 ### End of Imported Script: TP
 # Defines tpWest, tpNorth
 
-
+# GIB responses to 1H/S -- South opens 1M and North responds
 dealer south
 openHeart = oneHeart and hearts(north)>2
 openSpade = oneSpade and spades(north)>2
@@ -247,6 +247,7 @@ westPasses = westShape and westRange
 eastPasses = (northSpade and tpEast<12) or (northHeart and hcp(east)<10 and tpEast<11)
 
 southPasses = tpSouth<15
+
 
 oneMtwoM and westPasses and eastPasses and southPasses
 
