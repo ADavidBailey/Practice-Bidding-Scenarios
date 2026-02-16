@@ -155,7 +155,7 @@ oneDiamond = oD
 oneClub    = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
-# Defines oneClub
+# Defines oneHeart, oneSpade
 ### Imported script: TP (Total Points)
 //   Total Points = HCP + Short-Suit Points - Penalty Points
 //   Short-Suit Points: 3 for void, 2 for singleton, 1 for doubleton
@@ -232,13 +232,13 @@ tpEW = tpEast + tpWest
 
 # GIB responses to 1H/S -- South opens 1M and North responds
 dealer south
-openHeart = oneHeart and hearts(north)>2
-openSpade = oneSpade and spades(north)>2
+openHeart = oH and hearts(north)>2
+openSpade = oS and spades(north)>2
 
-northCards = openHeart ? hearts(north) : spades(north)
+northCards = oH ? hearts(north) : spades(north)
 northLimit = northCards==3 ? 11 : 10
 
-oneMtwoM = (openHeart or openSpade) and northCards and tpNorth>6 and tpNorth<northLimit and hcp(north)<10
+oneMtwoM = (oH or oS) and northCards and tpNorth>6 and tpNorth<northLimit and hcp(north)<10
 
 westShape = shape(west,xx54,xx45)
 westRange = hcp(west)<10
