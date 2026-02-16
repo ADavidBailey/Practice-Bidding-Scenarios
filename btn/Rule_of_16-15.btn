@@ -3,15 +3,11 @@
 # dealer-position: N
 # gib-works: true
 # bba-works: true
-# auction-filter: 1NT Pass
+# auction-filter: 1N +Pass
 
 /*@chat
----  The Rule of 16 -- Opener has 15 HCP & responder has 15 R16 points.
+---  The Rule of 16 -- Opener has 15 HCP NT & responder has 15 R16 points.
 @chat*/
-
-# Rule of 16 = 15
-dealer north
-
 
 # East passes
 #include "script/Calm-Opponents"
@@ -37,5 +33,5 @@ nOpens and calmEast and sActs and club4
 
 produce 1000
 action
-#printoneline,
+printoneline,
 frequency "R16 points" (r16,13,19),
