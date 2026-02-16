@@ -16,12 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: 1NT Pass
+auction-filter: 1N +Pass
 */
-# Rule of 16 = 15
-dealer north
-
-
 # East passes
 ##### Imported Script: Define Calm Opponents #####
 
@@ -71,10 +67,10 @@ nOpens and calmEast and sActs and club4
 
 produce 1000
 action
-#printoneline,
+printoneline,
 frequency "R16 points" (r16,13,19),
 `, "N", true)
 Script
 Button,=15,\n\
----  The Rule of 16 -- Opener has 15 HCP & responder has 15 R16 points.\n\
+---  The Rule of 16 -- Opener has 15 HCP NT & responder has 15 R16 points.\n\
 %Rule15%
