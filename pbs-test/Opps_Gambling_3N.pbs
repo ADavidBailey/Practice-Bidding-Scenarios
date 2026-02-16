@@ -19,11 +19,11 @@ setDealerCode(`
 convention-card: 21GF-Gambling
 auction-filter: Auction.....\n3NT +
 */
-solidClubs = top3(east,clubs)==3 and clubs(east)>6
+solidClubs    = top3(east,clubs)==3    and clubs(east)>6
 solidDiamonds = top3(east,diamonds)==3 and diamonds(east)>6
 
 # could have a Q or two J's outside
-noOutsideHonor = (hcp(east,clubs)>2) + (hcp(east,diamonds)>2) + (hcp(east,hearts)>2) + (hcp(east,spades)>2)==1
+noOutsideHonor = ((hcp(east,clubs)>2) + (hcp(east,diamonds)>2) + (hcp(east,hearts)>2) + (hcp(east,spades)>2))==1
 
 eastRange = hcp(east)>8 and hcp(east)<12
 
