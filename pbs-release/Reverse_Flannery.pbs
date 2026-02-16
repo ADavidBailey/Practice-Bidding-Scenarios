@@ -19,10 +19,6 @@ setDealerCode(`
 convention-card: 21GF-ReverseFlannery
 auction-filter: Auction.....\n1[CD] +Pass +2H +
 */
-# Spear Convention
-
-
-
 ##### Imported Script: Define Calm Opponents #####
 
 # Avoid concentration of values
@@ -222,9 +218,9 @@ levelTheDeal = lev2S or lev2H
 sOneMinor and calmWest and nRevFlannery
 and levelTheDeal
 
-#  produce 40
+produce 40
 action
-#  printoneline,
+printoneline,
 average "2H min " 100 * twoH,
 average "2S max " 100 * twoS,
 average "4-H " 100 * (hearts(north)==4),
