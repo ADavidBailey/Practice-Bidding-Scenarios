@@ -37,8 +37,20 @@ def run_release(scenario: str, verbose: bool = True) -> bool:
 
     # Check that pbs-test file exists
     if not os.path.exists(pbs_test_path):
+        # No pbs-test file — verify whether current DLR matches the released PBS
+        if os.path.exists(pbs_release_path):
+            from operations.btn_to_pbs import generate_pbs
+            dlr_path = os.path.join(FOLDERS["dlr"], f"{scenario}.dlr")
+            if os.path.exists(dlr_path):
+                with open(dlr_path, 'r', encoding='utf-8') as f:
+                    dlr_content = f.read()
+                with open(pbs_release_path, 'r', encoding='utf-8') as f:
+                    release_content = f.read()
+                generated = generate_pbs(dlr_content, scenario)
+                if generated == release_content:
+                    print(f"  {scenario}: Already up to date (matches released version)")
+                    return True
         print(f"Error: release: No pbs-test file found: {pbs_test_path}")
-        print(f"  (Nothing to release - scenario may already match release)")
         return False
 
     try:
