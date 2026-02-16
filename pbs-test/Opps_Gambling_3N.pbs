@@ -20,7 +20,7 @@ auction-filter: Auction.....\n3NT +
 */
 # Opps Gambling 3N
 
-outsideHonor = hascard(east,AKC,AKD,AKH,AKS)>1
+outsideHonor = (hascard(east,AKC) + hascard(east,AKD) + hascard(east,AKH) + hascard(east,AKS))>1
 
 hcp(east)>8 and hcp(east)<12  // could have a Q or two J's outside
 and
@@ -29,7 +29,7 @@ and
 or
 (top3(east,clubs)==3 and clubs(east)>6)
 )
-and not outsideHonor
+and outsideHonor
 `, "E", true)
 Script
 Button,Opps Gambling 3N,\n\
