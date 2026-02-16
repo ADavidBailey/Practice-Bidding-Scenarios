@@ -20,7 +20,7 @@ auction-filter: Auction.....\n3NT +
 */
 # Opps Gambling 3N
 
-outsideHonor = hcp(east,clubs)>1 + hcp(east,diamonds)>1 + hcp(east,hearts)>1 + hcp(east,spades)>1
+noOutsideHonor = (hcp(east,clubs)>1) + (hcp(east,diamonds)>1) + (hcp(east,hearts)>1) + (hcp(east,spades)>1)==1
 
 hcp(east)>8 and hcp(east)<12  // could have a Q or two J's outside
 and
@@ -29,7 +29,7 @@ and
 or
 (top3(east,clubs)==3 and clubs(east)>6)
 )
-and outsideHonor
+and noOutsideHonor
 
 generate 1000000
 produce 30
