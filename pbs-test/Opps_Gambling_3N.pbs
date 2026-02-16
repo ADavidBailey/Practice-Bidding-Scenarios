@@ -20,16 +20,15 @@ auction-filter: Auction.....\n3NT +
 */
 # Opps Gambling 3N
 
-noOutsideHonor = (hcp(east,clubs)>1) + (hcp(east,diamonds)>1) + (hcp(east,hearts)>1) + (hcp(east,spades)>1)==1
+solidClubs = top3(east,clubs)==3 and clubs(east)>6
+solidDiamonds = top3(east,diammonds)==3 and diamonds(east)>6
 
-hcp(east)>8 and hcp(east)<12  // could have a Q or two J's outside
-and
-(
-(top3(east,diamonds)==3 and diamonds(east)>6)
-or
-(top3(east,clubs)==3 and clubs(east)>6)
-)
-and noOutsideHonor
+# could have a Q or two J's outside
+noOutsideHonor = (hcp(east,clubs)>2) + (hcp(east,diamonds)>2) + (hcp(east,hearts)>2) + (hcp(east,spades)>2)==1
+
+eastRange = hcp(east)>8 and hcp(east)<12
+
+eastRange and (solidClubs or solidDiamonds) and noOutsideHonor
 
 generate 1000000
 produce 30
