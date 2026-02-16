@@ -244,13 +244,14 @@ westShape = shape(west,xx54,xx45)
 westRange = hcp(west)<10
 westPasses = westShape and westRange
 
-eastPasses = (northSpade and tpEast<12) or (northHeart and hcp(east)<10 and tpEast<11)
+eastPasses = (openSpade and tpEast<12) or (openHeart and hcp(east)<10 and tpEast<11)
 
 southPasses = tpSouth<15
 
 
 oneMtwoM and westPasses and eastPasses and southPasses
 
+generate 10000
 produce 20
 action
 printoneline,
