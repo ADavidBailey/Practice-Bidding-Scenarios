@@ -19,8 +19,8 @@ setDealerCode(`
 convention-card: 21GF-Gambling
 auction-filter: Auction.....\n3NT +
 */
-solidClubs    = top3(east,clubs)==3    and clubs(east)>6
-solidDiamonds = top3(east,diamonds)==3 and diamonds(east)>6
+solidClubs    = top3(east,clubs)==3    and shape(east,xxx9 +xxx8 +xxx7)
+solidDiamonds = top3(east,diamonds)==3 and shape(east,xx9x +xx8x +xx7x)
 
 # could have a Q or two J's outside
 eastRange = hcp(east)>8 and hcp(east)<12
@@ -35,5 +35,5 @@ printoneline,
 Script
 Button,Opps Gambling 3N,\n\
 --- Opponents Gambling 3N\n\
-A gambling 3N opening bid shows a solid 7+-card minor suit and less than a K outside.\n\
+A gambling 3N opening bid shows a solid 7+ card minor suit and less than a K outside.\n\
 %OppsGambling3N%,width=50% backgroundColor=lightpink
