@@ -19,12 +19,13 @@ setDealerCode(`
 convention-card: 21GF-Gambling
 auction-filter: Auction.....\n3NT +
 */
-solidClubs    = top3(east,clubs)==3    and shape(east,xxx9 +xxx8 +xxx7)
-solidDiamonds = top3(east,diamonds)==3 and shape(east,xx9x +xx8x +xx7x)
+solidClubs    = top3(east,clubs)==3    and clubs(east)>6
+solidDiamonds = top3(east,diamonds)==3 and diamonds(east)>6
 
-# could have a Q or two J's outside
+# This range leaves room for one Q or two J's outside
 eastRange = hcp(east)>8 and hcp(east)<12
 
+# Now do it
 eastRange and (solidClubs or solidDiamonds)
 
 generate 1000000
