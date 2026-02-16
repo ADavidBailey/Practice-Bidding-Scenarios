@@ -20,7 +20,7 @@ auction-filter: Auction.....\n3NT +
 */
 # Opps Gambling 3N
 
-outsideHonor = (hascard(east,AKC) + hascard(east,AKD) + hascard(east,AKH) + hascard(east,AKS))>1
+outsideHonor = hcp(east,clubs)>1 + hce(east,diamonds)>1 + hcp(east,hearts)>1 + hcp(east,spades)>1
 
 hcp(east)>8 and hcp(east)<12  // could have a Q or two J's outside
 and
