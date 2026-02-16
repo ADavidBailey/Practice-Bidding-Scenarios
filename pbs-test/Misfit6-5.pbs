@@ -18,7 +18,6 @@ setDealerCode(`
 /*
 auction-filter: 1[CDHS] +Pass +[12][DHSC] +Pass
 */
-dealer south
 produce 1000
 
 
@@ -124,10 +123,10 @@ calmOpps = calmEast and calmWest
 # Defines calmOpps
 
 # Define misfits
-sMF = spades(south)>4 ? spades(north)<2 : spades(north)>4
-hMF = hearts(south)>4 ? hearts(north)<2 : hearts(north)>4
-dMF = diamonds(south)>4 ? diamonds(north)<2 : diamonds(north)>4
-cMF = clubs(south)>4 ? clubs(north)<2 : clubs(north)>4
+sMF = spades(south)>4 and spades(north)<2
+hMF = hearts(south)>4 and hearts(north)<2
+dMF = diamonds(south)>4 and diamonds(north)<2
+cMF = clubs(south)>4 and clubs(north)<2
 
 shapes = shape(south,any 76xx +any 66xx +any 65xx) and shape(north,any 76xx +any 66xx +any 65xx)
 ranges = hcp(south)>10 and tpSouth>11 and hcp(north)>10 and tpNorth>11 
