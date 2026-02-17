@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+import os
+os.environ["PYTHONUNBUFFERED"] = "1"
+
 """
 Mac build pipeline for Practice-Bidding-Scenarios.
 Replaces OneScriptToRuleThemAll.ps1 from Windows.
