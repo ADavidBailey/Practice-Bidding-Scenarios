@@ -51,13 +51,12 @@ def get_git_commits(days=365):
 
 def get_scenario_count():
     """Count the number of PBS scenario files"""
-    pbs_dir = os.path.join(PROJECT_ROOT, 'PBS')
+    pbs_dir = os.path.join(PROJECT_ROOT, 'pbs-release')
     if os.path.exists(pbs_dir):
-        # Count files without extensions (PBS format)
         count = 0
         for f in os.listdir(pbs_dir):
             file_path = os.path.join(pbs_dir, f)
-            if os.path.isfile(file_path) and not f.startswith('.'):
+            if os.path.isfile(file_path) and not f.startswith('.') and f.endswith('.pbs'):
                 count += 1
         return count
     return 0
@@ -84,16 +83,17 @@ def get_scenarios_worked_from_git(days=1095):
     Returns dict with monthly cumulative scenario counts and total unique scenarios.
     """
     since_date = (datetime.now() - timedelta(days=days)).strftime('%Y-%m-%d')
-    scenario_dirs = ['PBS/', 'dlr/', 'pbn/', 'bba/', 'bba-filtered/', 'bidding-sheets/']
+    scenario_dirs = ['pbs-release/', 'PBS/', 'dlr/', 'pbn/', 'bba/', 'bba-filtered/', 'bidding-sheets/']
 
-    # Get the set of current valid scenario names from PBS folder
-    pbs_dir = os.path.join(PROJECT_ROOT, 'PBS')
+    # Get the set of current valid scenario names from pbs-release folder
+    pbs_dir = os.path.join(PROJECT_ROOT, 'pbs-release')
     valid_scenarios = set()
     if os.path.exists(pbs_dir):
         for f in os.listdir(pbs_dir):
             file_path = os.path.join(pbs_dir, f)
-            if os.path.isfile(file_path) and not f.startswith('.'):
-                valid_scenarios.add(f)
+            if os.path.isfile(file_path) and not f.startswith('.') and f.endswith('.pbs'):
+                # Store without extension as the canonical name
+                valid_scenarios.add(f[:-4])
 
     # Build a normalized lookup for matching historical names to current names
     # Current: "3_Under_Invitational_Jump", Historical: "Dealer: 3 Under Invitational Jump.gdoc"
@@ -106,7 +106,7 @@ def get_scenarios_worked_from_git(days=1095):
             if name.startswith(prefix):
                 name = name[len(prefix):]
         # Remove extensions
-        for ext in ['.gdoc', '.dlr', '.pbn', '.pdf', '.bba', '.lin', '.txt']:
+        for ext in ['.pbs', '.gdoc', '.dlr', '.pbn', '.pdf', '.bba', '.lin', '.txt']:
             if name.lower().endswith(ext):
                 name = name[:-len(ext)]
         # Normalize: replace spaces with underscores, lowercase
@@ -459,7 +459,8 @@ def embed_data_in_html(dashboard_data):
     # Check if DASHBOARD_DATA already exists and replace it
     pattern = r'const DASHBOARD_DATA = \{[\s\S]*?\};'
     if re.search(pattern, html):
-        html = re.sub(pattern, data_script, html)
+        # Use lambda to avoid interpreting backslashes in data_script as regex escapes
+        html = re.sub(pattern, lambda m: data_script, html)
     else:
         # Insert before closing </head> tag
         html = html.replace('</head>', f'    <script>\n{data_script}\n    </script>\n</head>')
