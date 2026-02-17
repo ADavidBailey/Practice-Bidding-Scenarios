@@ -16,9 +16,9 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Note...:Responsive double
+auction-filter: Auction.....\n(1C +[X1].? +2C|1D +[X1].? +2D|1H +[X1].? +2H|1S +[X1].? +2S)
 */
-# West Opens, North Bids or Doubles, East raises, and South doubles...
+# West Opens, North Bids or Doubles, East raises, and does anything
 
 # Predict West's Opening suit
 s = spades(west)
@@ -53,5 +53,5 @@ printoneline,
 `, "W", true)
 Script
 Button,Responsive Double,\n\
---- Responsive Double\n\
+West Opens，North Bids or Doubles，East raises，and does anything\n\
 %ResponsiveDouble%,width=50% backgroundColor=lightpink
