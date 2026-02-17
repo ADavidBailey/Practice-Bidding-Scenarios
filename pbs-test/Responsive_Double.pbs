@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 auction-filter: Note...:Responsive double
 */
-# West Opens, North Doubles, East raises, and South doubles...
+# West Opens, North Bids or Doubles, East raises, and South doubles...
 
 # Predict West's Opening suit
 s = spades(west)
@@ -32,19 +32,24 @@ oC = not (oS or oH or oD)
 westSuit = (oS or oH or oD or oC)
 
 # Distribution in West's opening suit -- north<3, east has support, west has 4 in unbid major(s) & 3+ in unbid minor(s).
-dS = oS ? spades(north)<3 and spades(east) >2    and spades(north)<3   and hearts(north)==4 and shape(south,1444+2443+2434) : 0
-dH = oH ? hearts(north)<3 and hearts(east) >2    and hearts(north)<3   and spades(north)==4 and shape(south,4144+4243+4234) : 0
-dD = oD ? diamonds(north)<3 and diamonds(east)>3 and diamonds(north)<3 and shape(north,44xx+43xx+34xx) and shape(south,4414+4423)      : 0
-dC = oC ? clubs(north)<3 and clubs(east) >4      and clubs(north)<3    and shape(north,44xx+43xx+34xx) and shape(south,4441+4432)      : 0
+dS = oS ? spades(east)  >2 and spades(north)<3   and hearts(north)==4 and shape(south,1444+2443+2434)       : 0
+dH = oH ? hearts(east)  >2 and hearts(north)<3   and spades(north)==4 and shape(south,4144+4243+4234)       : 0
+dD = oD ? diamonds(east)>3 and diamonds(north)<3 and shape(north,44xx+43xx+34xx) and shape(south,4414+4423) : 0
+dC = oC ? clubs(east)   >4 and clubs(north)<3    and shape(north,44xx+43xx+34xx) and shape(south,4441+4432) : 0
 dAll = (dS or dH or dD or dC) and shape(north,any 5440+any 5431+any 5332+any 4441+any 4432-5xxx-x5xx)
 
-westOpens    = hcp(west)>11 and hcp(west)<15
+westOpens    = hcp(west) >11 and hcp(west)<15
 northDoubles = hcp(north)>11 and hcp(north)<15
-eastRaises   = hcp(east)>5 and hcp(east)<10
+eastRaises   = hcp(east) >5  and hcp(east)<10
 southDoubles = hcp(south)>7
 
 ##### Now do it #####
 westOpens and northDoubles and eastRaises and southDoubles and dAll
+
+generate 10000
+produce 30
+action
+printoneline,
 `, "W", true)
 Script
 Button,Responsive Double,\n\
