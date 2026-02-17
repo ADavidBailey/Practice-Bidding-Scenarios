@@ -111,8 +111,8 @@ ewD = diamonds(east) + diamonds(west)
 
 # Define North's major suits w/South's support for simple raise, and ew shape
 n1Suit = shape(north,any 7xxx +any 6xxx +any 5xxx -any 76xx -any 75xx -any 66xx -any 65xx -any 55xx)
-nsS = spades(north)>4 and top5(north,spades)>2 and spades(south)>2 and ewS<6 and ewH>7
-nsH = hearts(north)>4 and top5(north,hearts)>2 and hearts(south)>2 and ewH<6 and ewD>8
+nsS = spades(north)>4 and top5(north,spades)>2 and spades(south)==3 and ewS<6 and ewH>7
+nsH = hearts(north)>4 and top5(north,hearts)>2 and hearts(south)==3 and ewH<6 and ewD>8
 nsBid = (nsS or nsH) and hcp(north)>11 and tpNorth<14 and tpSouth>5 and tpSouth<11 and n1Suit
 
 ### West has a minimal opener w/good maximal suit: opens 1 and rebids 3
@@ -128,12 +128,11 @@ maxH = (wMaxH or ewMaxH)
 maxD = (wMaxD or ewMaxD)
 ewBID = (maxH or maxD) and hcp(west)>10 and tpWest>12 and hcp(west)<13 and tpEast>7
 
-wRange = hcp(west)>12 and tpWest>14
-nRange = hcp(north)>8 and tpNorth>10
-eRange = hcp(east)>6 and tpEast>7
-sRange = hcp(south)>8 and tpSouth>10
+wRange = hcp(west)>10 and tpWest>11
+nRange = hcp(north)>11
+eRange = hcp(east)>6
+sRange = hcp(south)>6
 ranges = wRange and nRange and eRange and sRange
-
 
 # Now do it
 ranges and nsBid and ewBID
