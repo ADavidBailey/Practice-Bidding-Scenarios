@@ -6,6 +6,14 @@
 # auction-filter: Auction.....\n1[HS] +Pass
 # convention-card: 21GF-GIB
 
+
+/*@chat
+--- GIB after 1M
+South opens 1!H or 1!S and North has support.  
+You may go to 'Deal source' to get specific responses. Near the bottom you'll
+find the line that starts with nResponds = ... pick the response(s) you want.
+@chat*/
+
 # GIB responses to 1H/S -- South opens 1M and North responds
 
 #include "script/Calm-Opponents"
@@ -15,25 +23,21 @@
 #include "script/TP"
 # Defines tpWest, tpNorth
 
-# GIB responses to 1H/S -- South opens 1M and North responds
+# GIB responses to 1H/S -- South opens 1M and North has support
 openHeart = oH and hearts(north)>2
 openSpade = oS and spades(north)>2
 
 northCards = oH ? hearts(north) : spades(north)
 northLimit = northCards==3 ? 11 : 10
 
-oneMtwoM = (oH or oS) and northCards and tpNorth>6 and tpNorth<northLimit and hcp(north)<10
+oneMtwoM = (oH or oS) and northCards and tpNorth>6 and tpNorth<northLimit
 
-westShape = shape(west,xx54,xx45)
-westRange = hcp(west)<10
-westPasses = westShape and westRange
-
-eastPasses = (openSpade and tpEast<12) or (openHeart and hcp(east)<10 and tpEast<11)
+eastPasses = (openSpade and tpEast<12) or (openHeart and spades(east)>4 and tpEast<11)
 
 southPasses = tpSouth<15
 
 
-oneMtwoM and westPasses and eastPasses and southPasses
+oneMtwoM and calmOpps and southPasses
 
 generate 1000
 produce 20
