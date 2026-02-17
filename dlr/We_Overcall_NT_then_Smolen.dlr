@@ -1,9 +1,19 @@
+# alias: WeOvercallNtThenSmolen
 # button-text: then Smolen
 # scenario-title: --- We Overcall 1NT then partner bids Smolen 2!C
-# auction-filter: Auction.....\n1. +1NT +Pass +2C.*\nPass +2D +Pass +3[HS]
-# We_Overcall_NT_then_Smolen
+# dealer-position: E
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n1. +1N +Pass +2C.*\nPass +2D +Pass +3[HS]
+
+/*@chat
+--- We Overcall 1NT then partner bids Smolen 2!C
+After 2!D...
+• 3!H shows 5!S & 4!H
+• 3!S shows 5!H & 4!S
+@chat*/
 dealer east
-# We Overcall 1NT_then_Smolen
+
 
 # Predict East's opening suit
 s = spades(east)
