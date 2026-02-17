@@ -16,20 +16,25 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: Auction.....\n3NT? +
+convention-card: 21GF-Gambling
+auction-filter: Auction.....\n3N +
 */
-# Opps Gambling 3N
+solidClubs    = top3(east,clubs)==3    and clubs(east)>6
+solidDiamonds = top3(east,diamonds)==3 and diamonds(east)>6
 
-hcp(east)>8 and hcp(east)<12  // could have a Q or two J's outside
-and
-(
-(top3(east,diamonds)==3 and diamonds(east)>6)
-or
-(top3(east,clubs)==3 and clubs(east)>6)
-)
+# This range leaves room for one Q or two J's outside
+eastRange = hcp(east)>8 and hcp(east)<12
+
+# Now do it
+eastRange and (solidClubs or solidDiamonds)
+
+generate 1000000
+produce 30
+action
+printoneline,
 `, "E", true)
 Script
 Button,Opps Gambling 3N,\n\
 --- Opponents Gambling 3N\n\
-A gambling 3N opening bid shows a solid 7+-card minor suit and less than a K outside.\n\
-%OppsGambling3N%,width=50%
+A gambling 3N opening bid shows a solid 7+ card minor suit and less than a K outside.\n\
+%OppsGambling3N%,width=50% backgroundColor=lightpink
