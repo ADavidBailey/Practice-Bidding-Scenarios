@@ -32,10 +32,10 @@ oC = not (oS or oH or oD)
 westSuit = (oS or oH or oD or oC)
 
 # Distribution in West's opening suit -- north<3, east has support, west has 4 in unbid major(s) & 3+ in unbid minor(s).
-dS = oS ? spades(east)  >2 and spades(north)<3   and hearts(north)==4 and shape(south,1444+2443+2434)       : 0
-dH = oH ? hearts(east)  >2 and hearts(north)<3   and spades(north)==4 and shape(south,4144+4243+4234)       : 0
-dD = oD ? diamonds(east)>3 and diamonds(north)<3 and shape(north,44xx+43xx+34xx) and shape(south,4414+4423) : 0
-dC = oC ? clubs(east)   >4 and clubs(north)<3    and shape(north,44xx+43xx+34xx) and shape(south,4441+4432) : 0
+dS = oS ? spades(east)  >3 and spades(north)<3   and hearts(north)==4 and shape(south,1444+2443+2434)       : 0
+dH = oH ? hearts(east)  >3 and hearts(north)<3   and spades(north)==4 and shape(south,4144+4243+4234)       : 0
+dD = oD ? diamonds(east)>4 and diamonds(north)<3 and shape(north,44xx+43xx+34xx) and shape(south,4414+4423) : 0
+dC = oC ? clubs(east)   >5 and clubs(north)<3    and shape(north,44xx+43xx+34xx) and shape(south,4441+4432) : 0
 dAll = (dS or dH or dD or dC) and shape(north,any 5440+any 5431+any 5332+any 4441+any 4432-5xxx-x5xx)
 
 westOpens    = hcp(west) >11 and hcp(west) <15
