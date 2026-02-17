@@ -3,7 +3,7 @@
 # dealer-position: W
 # gib-works: false
 # bba-works: true
-# auction-filter: Auction.....\n(1.* +1H .* +2H\n3D +[34]?[HXP|1.* +1S.* +2S\n3H +[34]?[SXP])
+# auction-filter: Auction.....\n(1.* +1H +.* +2H\n3D|1.* +1S +.* +2S\n3H)
 # convention-card: 21GF-MaximalDouble
 
 /*@chat
@@ -31,16 +31,21 @@ wH = not wS and h>4 and h>=d and h>=c
 wD = not (wS or wH) and ((d>3 and d>=c) or c<3)
 wC = not (wS or wH or wD)
 
-ewS = spades(east) + spades(west)
-ewH = hearts(east) + hearts(west)
-ewD = diamonds(east) + diamonds(west)
-ewC = clubs(east) + clubs(west)
+# E/W are short in our suit and have a fit in the maximal suit
+eS = spades(east)
+eH = hearts(east)
+eD = diamonds(east)
+
+
+ewS = eS + spades(west)
+ewH = eH + hearts(west)
+ewD = eD + diamonds(west)
 
 # Define North's major suits w/South's support for simple raise, and ew shape
 n1Suit = shape(north,any 7xxx +any 6xxx +any 5xxx -any 76xx -any 75xx -any 66xx -any 65xx -any 55xx)
 nsS = spades(north)>4 and top5(north,spades)>2 and spades(south)==3 and ewS<6 and ewH>7
-nsH = hearts(north)>4 and top5(north,hearts)>2 and hearts(south)==3 and ewH<6 and ewD>8
-nsBid = (nsS or nsH) and hcp(north)>11 and tpNorth<14 and tpSouth>5 and tpSouth<11 // and n1Suit
+nsH = hearts(north)>4 and top5(north,hearts)>2 and hearts(south)==3 and diamonds(east)>2 and spades(east)<4
+nsBid = (nsS or nsH) and hcp(north)>11 and tpNorth<14 and tpSouth>5 and tpSouth<11 and n1Suit
 
 ### West has a minimal opener w/good maximal suit: opens 1 and rebids 3
 # Twice Rebiddable: rebiddable + 1 card (7+ or 6 with quality)
@@ -55,12 +60,11 @@ maxH = (wMaxH or ewMaxH)
 maxD = (wMaxD or ewMaxD)
 ewBID = (maxH or maxD) and hcp(west)>10 and tpWest>12 and hcp(west)<13 and tpEast>7
 
-wRange = hcp(west)>12 and tpWest>12
-nRange = hcp(north)>11 and tpNorth>12
-eRange = hcp(east)>5 and tpEast>7
-sRange = hcp(south)>9 and tpSouth>11
+wRange = hcp(west)>10 and tpWest>11 and tpWest<14
+nRange = hcp(north)>11
+eRange = hcp(east)>6 and tpEast<11
+sRange = hcp(south)>6
 ranges = wRange and nRange and eRange and sRange
-
 
 # Now do it
 ranges and nsBid and ewBID
