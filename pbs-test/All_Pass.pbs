@@ -65,14 +65,12 @@ calmSouth = ((length5or6South and noConSouth and hcp(south)<9) or (length4South 
 # For 4th seat, the rule points of 15 applies -- it should be less than 15 for a pass-out.
 r15 = hcp(south) + spades(south)
 
-dealer west
 # comment the line below to get random hands in various seats -- everything following the first // is a comment
 # to practice 4th seat decisions, use the range of r15 values
 //1 //and calmWest //and calmNorth //and calmEast //and calmSouth //and r15<15 //and (r15>13 and r15<17)
 
 1 and calmWest and calmNorth and calmEast and calmSouth and r15<15
 
-generate 30000000
 produce 20000
 action
 
