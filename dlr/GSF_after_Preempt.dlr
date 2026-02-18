@@ -1,8 +1,20 @@
+# alias: GSFafterPreempt
 # button-text: GSF after Preempt
 # scenario-title: --- Grand Slam Force after Preempt.  Does partner have 2 of the top 3 honors?
-# auction-filter: Auction.....\n(1H +Pass +2D|1S +Pass +2[DH])
-# GSF_after_Preempt
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Contract..[67]
+
+/*@chat
+--- Grand Slam Force after Preempt.  Does partner have 2 of the top 3 honors?
+Any free five-no-trump bid in the opening or responding hand is a forcing bid.  If a suit
+has not been agreed the 5N bid confirms the previously bid suit.  Partner must bid
+7 of the agreed suit when holding 2 of the top 3 honors suit.
+https://www.bridgebum.com/grand_slam_force.php
+@chat*/
 dealer south
+
 # Grand Slam Force after Preempt
 
 ##### Imported Script: Define Calm Opponents #####
@@ -50,5 +62,3 @@ southPreempts
 action
 average "H " 100 * southH,
 average "S " 100 * southS,
-
-printpbn
