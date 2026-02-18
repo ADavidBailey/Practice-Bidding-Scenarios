@@ -1,12 +1,18 @@
+# alias: WeXOppsWeak2
 # button-text: We X Opps W2
-# scenario-title: We Double Opponents Weak Two opening.
-# We_X_Opps_Weak_2
-dealer east
-
-
+# scenario-title: --- We Double Opponents Weak Two opening.
+# dealer-position: E
+# gib-works: true
+# bba-works: true
 # auction-filter: 2[DHS] X
 
+/*@chat
+--- We Double Opponents Weak Two opening.
+@chat*/
+dealer east
+
 # Opponent Opens Weak 2
+produce 1000
 
 # We Double
 
@@ -86,7 +92,6 @@ keep985 = not keep015
 keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
-
 
 # Define leveling
 levWeak   = weak   and keep33

@@ -1,8 +1,18 @@
+# alias: AllPass
 # button-text: All...
 # scenario-title: --- All Pass...
+# dealer-position: W
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\nPass +Pass +Pass +
-# All_Pass
+
+/*@chat
+--- All Pass...
+Should you open in 4th seat?  The Rule of 15 says if your hcp plus the
+number of spades is less than 15, you should Pass.  Try your luck.
+@chat*/
 dealer west
+
 # All Pass...
 
 # Avoid concentration of values in long suits -- no AK, AQ, or KQ
@@ -56,6 +66,7 @@ r15 = hcp(south) + spades(south)
 
 1 and calmWest and calmNorth and calmEast and calmSouth and r15<15
 
+produce 20000
 action
 
 average "hcp W     " hcp(west),
