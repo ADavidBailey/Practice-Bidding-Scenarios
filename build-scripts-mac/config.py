@@ -133,4 +133,5 @@ OPERATIONS_ORDER = [
     "filterStats",
     "biddingSheet",
     "quiz",     # Generate quiz PBN/PDF from filtered BBA
+    "package",  # Copy artifacts into Bidding Scenarios hierarchy
 ]

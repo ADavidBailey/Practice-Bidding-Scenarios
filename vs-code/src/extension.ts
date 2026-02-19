@@ -250,6 +250,12 @@ export function activate(context: vscode.ExtensionContext) {
     artifactWatcher.onDidCreate(() => currentScenarioProvider.refresh());
     artifactWatcher.onDidDelete(() => currentScenarioProvider.refresh());
 
+    // Watch Bidding Scenarios folder for package artifact status updates
+    const packageWatcher = vscode.workspace.createFileSystemWatcher('**/Bidding Scenarios/**/*');
+    packageWatcher.onDidChange(() => currentScenarioProvider.refresh());
+    packageWatcher.onDidCreate(() => currentScenarioProvider.refresh());
+    packageWatcher.onDidDelete(() => currentScenarioProvider.refresh());
+
     // Watch pbs-test directory for pending release updates
     const pbsTestWatcher = vscode.workspace.createFileSystemWatcher('**/pbs-test/*.pbs');
     pbsTestWatcher.onDidChange(() => {
@@ -281,6 +287,7 @@ export function activate(context: vscode.ExtensionContext) {
         pbsWatcher,
         configWatcher,
         artifactWatcher,
+        packageWatcher,
         pbsTestWatcher
     );
 

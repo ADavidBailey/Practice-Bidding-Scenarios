@@ -149,6 +149,14 @@
         "title": "PBS: Run Quiz+"
       },
       {
+        "command": "pbs.runPackage",
+        "title": "PBS: Run Package"
+      },
+      {
+        "command": "pbs.runPackagePlus",
+        "title": "PBS: Run Package+"
+      },
+      {
         "command": "pbs.rebuildArtifact",
         "title": "Rebuild",
         "icon": "$(play)"
@@ -257,6 +265,10 @@
           "when": "pbs.bbaWorks"
         },
         {
+          "command": "pbs.runPackage",
+          "group": "2_individual@10"
+        },
+        {
           "command": "pbs.runDlrPlus",
           "group": "3_plus@1"
         },
@@ -291,6 +303,10 @@
           "command": "pbs.runQuizPlus",
           "group": "3_plus@8",
           "when": "pbs.bbaWorks"
+        },
+        {
+          "command": "pbs.runPackagePlus",
+          "group": "3_plus@9"
         },
         {
           "command": "pbs.runRelease",

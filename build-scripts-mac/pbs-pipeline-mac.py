@@ -47,6 +47,8 @@ from operations.btn_to_pbs import run_pbs
 from operations.quiz import run_quiz
 from operations.release import run_release
 from operations.release_layout import run_release_layout
+from operations.package import run_package
+from operations.zip_package import run_zip
 
 
 # Map operation names to functions
@@ -60,9 +62,11 @@ OPERATIONS = {
     "filterStats": run_filter_stats,
     "biddingSheet": run_bidding_sheet,
     "quiz": run_quiz,
-    # release and release-layout are NOT in OPERATIONS_ORDER, so they won't run with "*" or "op+"
+    # release, release-layout, and package are NOT in OPERATIONS_ORDER, so they won't run with "*" or "op+"
     "release": run_release,
     "release-layout": run_release_layout,
+    "package": run_package,
+    "zip": run_zip,
 }
 
 # Create case-insensitive lookup: lowercase -> canonical name

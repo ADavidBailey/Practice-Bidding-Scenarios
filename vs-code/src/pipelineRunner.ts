@@ -148,6 +148,7 @@ export function registerPipelineCommands(context: vscode.ExtensionContext): void
     registerCommand(context, 'pbs.runFilterStats', 'filterStats');
     registerCommand(context, 'pbs.runBiddingSheet', 'biddingSheet');
     registerCommand(context, 'pbs.runQuiz', 'quiz');
+    registerCommand(context, 'pbs.runPackage', 'package');
 
     // Plus operations (from X through end)
     registerCommand(context, 'pbs.runDlrPlus', 'dlr+');
@@ -158,6 +159,7 @@ export function registerPipelineCommands(context: vscode.ExtensionContext): void
     registerCommand(context, 'pbs.runFilterPlus', 'filter+');
     registerCommand(context, 'pbs.runFilterStatsPlus', 'filterStats+');
     registerCommand(context, 'pbs.runQuizPlus', 'quiz+');
+    registerCommand(context, 'pbs.runPackagePlus', 'package+');
 
     // Release operation (not included in wildcards - must be explicit)
     registerCommand(context, 'pbs.runRelease', 'release');

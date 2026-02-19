@@ -32,6 +32,28 @@ function isBtnDir(dirName: string): boolean {
     return dirName.toLowerCase() === 'btn';
 }
 
+/**
+ * Find the first packaged PBN file for a scenario in the Bidding Scenarios hierarchy.
+ * Scans Bidding Scenarios/{section}/{scenario}/ for {scenario}.pbn.
+ * Returns the path (which may not exist yet if package hasn't been run).
+ */
+function findPackagePath(scenario: string, root: string): string {
+    const bsDir = path.join(root, 'Bidding Scenarios');
+    if (fs.existsSync(bsDir)) {
+        try {
+            const sections = fs.readdirSync(bsDir).sort();
+            for (const section of sections) {
+                const scenarioDir = path.join(bsDir, section, scenario);
+                if (fs.existsSync(scenarioDir)) {
+                    return path.join(scenarioDir, `${scenario}.pbn`);
+                }
+            }
+        } catch { /* ignore read errors */ }
+    }
+    // Not yet packaged — return a path in a placeholder location
+    return path.join(bsDir, '_', scenario, `${scenario}.pbn`);
+}
+
 // Define all artifacts in pipeline order with their dependencies
 // requiresBba indicates artifacts that need bba-works=true to be shown
 const ARTIFACTS = [
@@ -91,6 +113,19 @@ const ARTIFACTS = [
         getPath: (s: string, r: string) => path.join(r, 'quiz', `${s}.pdf`),
         getSourcePath: (s: string, r: string) => path.join(r, 'bba-filtered', `${s}.pbn`),
         command: 'pbs.runQuiz'
+    },
+    {
+        name: 'package',
+        shortName: 'pkg',
+        requiresBba: false,
+        getPath: (s: string, r: string) => findPackagePath(s, r),
+        getSourcePath: (s: string, r: string) => {
+            // Package copies from bba-filtered (with pbn fallback), so compare against actual source
+            const filtered = path.join(r, 'bba-filtered', `${s}.pbn`);
+            if (fs.existsSync(filtered)) { return filtered; }
+            return path.join(r, 'pbn', `${s}.pbn`);
+        },
+        command: 'pbs.runPackage'
     }
 ];
 
