@@ -126,11 +126,20 @@ oneClub    = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
 
-# Define First Round controls
+predeal north CA,DA,HS,SK
+
+# Define North's First Round controls
 frcC = controls(north,clubs)==2    or clubs(north)==0
 frcD = controls(north,diamonds)==2 or diamonds(north)==0
 frcH = controls(north,hearts)==2   or hearts(north)==0
 frcS = controls(north,spades)==2   or spades(north)==0
+
+# Define North's Kings
+kingC = controls(north,clubs)==1
+kingD = controls(north,diamonds)==1
+kingH = controls(north,hearts)==1
+kingS = controls(north,spades)==1
+nKings = srcC + srcD + srcH + srcS
 
 # For North to bid GSF, they need 1 top honor in trump and first round control in the other 3 suits
 controlsC = top3(north,clubs)==1    and frcD and frcH and frcS
@@ -140,12 +149,12 @@ controlsS = top3(north,spades)==1   and frcC and frcD and frcH
 
 # South opens and North raises...
 cSuit = oC and spades(north)<4 and hearts(north)<4 and clubs(north)>4    and clubs(north)>diamonds(north) and controlsC
-dSuit = oD and spades(north)<4 and hearts(north)<4 and diamonds(north)>4 and diamonds(north)>clubs(north) and controlsD
+dSuit = oD and spades(north)<4 and hearts(north)<4 and diamonds(north)>4 and diamonds(north)>clubs(north) and controlsD 
 hSuit = oH and spades(north)<4 and hearts(north)>3 and controlsH
 sSuit = oS and spades(north)>3 and controlsS
 
-nsFit    = (cSuit or dSuit or hSuit or sSuit)
-nsStrong = hcp(south)>12 and hcp(north)>12 and (hcp(south) + hcp(north))>32
+nsFit    = cSuit or dSuit or hSuit or sSuit
+nsStrong = hcp(south)>12 and  and (hcp(south) + hcp(north))>32 and nKings>1  // north has the 3 outside Aces and at least 2 kings
 nsShape  = shape(south,any 0xxx +any 1xxx)
 
 nsFit and nsStrong and nsShape
