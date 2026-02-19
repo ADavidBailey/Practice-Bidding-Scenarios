@@ -130,9 +130,9 @@ Promise.resolve()
             throw new Error("Go Home.");
          }
     })
-    .then(() => $(".menuGrid navigation-list-button .navClass:contains('Practice')", BBOcontext()).first().click())
+    .then(() => $("button.bbo-phx-navigation:contains('Practice')", BBOcontext()).first().click())
     .then(() => delay(delayValue))
-    .then(() => $(".menuGrid navigation-list-button .navClass:contains('Start a bidding table')", BBOcontext()).first().click())
+    .then(() => $("button.bbo-phx-navigation:contains('Start a bidding table')", BBOcontext()).first().click())
     .then(() => delay(delayValue))
     .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(0).click())
     .then(() => delay(delayValue))
@@ -183,9 +183,9 @@ Promise.resolve()
             throw new Error("Go Home.");
          }
     })
-    .then(() => $(".menuGrid navigation-list-button .navClass:contains('Practice')", BBOcontext()).first().click())
+    .then(() => $("button.bbo-phx-navigation:contains('Practice')", BBOcontext()).first().click())
     .then(() => delay(delayValue))
-    .then(() => $(".menuGrid navigation-list-button .navClass:contains('Start a teaching table')", BBOcontext()).first().click())
+    .then(() => $("button.bbo-phx-navigation:contains('Start a teaching table')", BBOcontext()).first().click())
     .then(() => delay(delayValue))
     .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(0).click())
     .then(() => delay(delayValue))
