@@ -48,7 +48,6 @@ from operations.quiz import run_quiz
 from operations.release import run_release
 from operations.release_layout import run_release_layout
 from operations.package import run_package
-from operations.zip_package import run_zip
 
 
 # Map operation names to functions
@@ -66,7 +65,6 @@ OPERATIONS = {
     "release": run_release,
     "release-layout": run_release_layout,
     "package": run_package,
-    "zip": run_zip,
 }
 
 # Create case-insensitive lookup: lowercase -> canonical name
