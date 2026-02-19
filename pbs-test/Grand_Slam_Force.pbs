@@ -127,22 +127,26 @@ oneClub    = oC
 ##### End of Imported Script -- Predict Opening 1-Bid #####
 
 # Either might ask
-topC = top3(south,clubs)>1    and top3(north,clubs)>0
-topD = top3(south,diamonds)>1 and top3(north,diamonds)>0
-topH = top3(south,hearts)>1   and top3(north,hearts)>0
-topS = top3(south,spades)>1   and top3(north,spades)>0
+akqC = top3(south,clubs)>1    and top3(north,clubs)>0
+akqD = top3(south,diamonds)>1 and top3(north,diamonds)>0
+akqH = top3(south,hearts)>1   and top3(north,hearts)>0
+akqS = top3(south,spades)>1   and top3(north,spades)>0
 
 # South opens and North raises...
-cSuit = oC and north(spades)<4 and north(hearts)<4 and north(clubs)>4    and north(clubs)>north(diamonds) and topC
-dSuit = oD and north(spades)<4 and north(hearts)<4 and north(diamonds)>4 and north(diamonds)>north(clubs) and topD
-hSuit = oH and north(spades)<4 and north(hearts)>3 and topH
-sSuit = oS and north(spades)>3 and topS
+cSuit = oC and spades(north)<4 and hearts(north)<4 and clubs(north)>4    and clubs(north)>diamonds(north) and akqC
+dSuit = oD and spades(north)<4 and hearts(north)<4 and diamonds(north)>4 and diamonds(north)>clubs(north) and akqD
+hSuit = oH and spades(north)<4 and hearts(north)>3 and akqH
+sSuit = oS and spades(north)>3 and akqS
 
 nsFit    = (cSuit or dSuit or hSuit or sSuit)
 nsStrong = hcp(south)>12 and hcp(north)>12 and (hcp(south) + hcp(north))>32
 nsShape  = shape(south,any 0xxx +any 1xxx)
 
 nsFit and nsStrong and nsShape
+
+produce 30
+action
+printoneline,
 `, "S", true)
 Script
 Button,Grand Slam Force,\n\
