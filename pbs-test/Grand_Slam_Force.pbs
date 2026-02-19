@@ -133,14 +133,16 @@ topH = top3(south,hearts)>1   and top3(north,hearts)>0
 topS = top3(south,spades)>1   and top3(north,spades)>0
 
 # South opens and North raises...
-cSuit = oC and north(spades)<4 and north(hearts)<4 and north(clubs)>4    and north(clubs)>north(diamonds) and shape(north,any 0xxx +any 1xxx) and topC
-dSuit = oD and north(spades)<4 and north(hearts)<4 and north(diamonds)>4 and north(diamonds)>north(clubs) and shape(north,any 0xxx +any 1xxx) and topD
+cSuit = oC and north(spades)<4 and north(hearts)<4 and north(clubs)>4    and north(clubs)>north(diamonds) and topC
+dSuit = oD and north(spades)<4 and north(hearts)<4 and north(diamonds)>4 and north(diamonds)>north(clubs) and topD
 hSuit = oH and north(spades)<4 and north(hearts)>3 and topH
 sSuit = oS and north(spades)>3 and topS
-fit = (cSuit or dSuit or hSuit or sSuit)
-strong = hcp(south)>12 and hcp(north)>12 and (hcp(south) + hcp(north))>32
 
-strong and fit
+nsFit    = (cSuit or dSuit or hSuit or sSuit)
+nsStrong = hcp(south)>12 and hcp(north)>12 and (hcp(south) + hcp(north))>32
+nsShape  = shape(south,any 0xxx +any 1xxx)
+
+nsFit and nsStrong and nsShape
 `, "S", true)
 Script
 Button,Grand Slam Force,\n\
