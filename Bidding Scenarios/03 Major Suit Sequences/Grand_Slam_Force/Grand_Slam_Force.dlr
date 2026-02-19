@@ -1,0 +1,33 @@
+# alias: GrandSlamForce
+# button-text: Grand Slam Force
+# scenario-title: --- Grand Slam Force.  Does partner have 2 of the top 3 honors?
+# dealer-position: S
+# gib-works: true
+# bba-works: false
+# auction-filter: .
+
+/*@chat
+--- Grand Slam Force.  Does partner have 2 of the top 3 honors?
+Any free five-no-trump bid in the opening or responding hand is a forcing bid.  If a suit
+has not been agreed the 5N bid confirms the previously bid suit.  Partner must bid
+7 of the agreed suit when holding 2 of the top 3 honors suit.
+https://www.bridgebum.com/grand_slam_force.php
+@chat*/
+dealer south
+
+# South opens 1 Major
+
+H_ = shape(south,x7xx + x6xx + x5xx -any 75xx -any 65xx -any 55xx) and hearts(north)==4 and top3(north,hearts)==1 and losers(north,spades)==0
+S_ = shape(south,7xxx + 6xxx + 5xxx -any 75xx -any 65xx -any 55xx) and spades(north)==4 and top3(north,spades)==1 and losers(north,hearts)==0
+
+predeal north S,H,DAK,CAK
+
+nSolidDiamonds = diamonds(north)>4 and top3(north,diamonds)==3
+nSolidClubs    = clubs(north)>4    and top3(north,clubs)==3
+nSolidMinor    = nSolidDiamonds or nSolidClubs
+
+n3Diamonds     = diamonds(north)==3  // AK were pre-dealt
+n3Clubs        = clubs(north)==3
+n3Minor        = n3Diamonds or n3Clubs
+
+(S_ or H_) and hcp(south)>11 and hcp(south)<15 and nSolidMinor and n3Minor

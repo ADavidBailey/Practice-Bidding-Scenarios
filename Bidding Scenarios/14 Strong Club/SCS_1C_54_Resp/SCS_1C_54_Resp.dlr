@@ -1,0 +1,27 @@
+# alias: StrongClub54
+# button-text: Strong Club 5/4 Resp
+# scenario-title: --- Strong Club with 5/4 Response
+# dealer-position: S
+# gib-works: false
+# bba-works: true
+# auction-filter: Auction.....[\s\S][\s\S]?1C
+# convention-card: Precision
+
+/*@chat
+--- Strong Club with 5/4 Response
+1!C is 15+ HCP, artificial and forcing.
+Is there anything you want here.  I often include a link to a description.
+http://clairebridge.com/textes/karensrules.pdf
+@chat*/
+dealer south
+
+# Strong C & 5/4, 5/5, or 6/5 H/S
+
+# South has 15+
+hcp(south)>14
+
+# North has 8+
+and hcp(north)>7
+
+# North has specific shapes
+and shape(north, any 54xx+ any 55xx +any 65xx)

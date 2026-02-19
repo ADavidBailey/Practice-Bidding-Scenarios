@@ -1,0 +1,24 @@
+# alias: StrongClub3Suit57
+# button-text: Strong Club 3-Suit 5-7
+# scenario-title: --- Strong Club with 3-Suit Response w/5-7 HCP
+# dealer-position: S
+# gib-works: false
+# bba-works: true
+# auction-filter: Auction.....\n1C
+# convention-card: Precision
+
+/*@chat
+--- Strong Club with 3-Suit Response w/5-7 HCP
+@chat*/
+dealer south
+
+# Strong Club System: 1C & 3 suited response
+
+# South has 15+
+hcp(south)>14
+
+# North has 5-7 HCP
+and hcp(north)>4 and hcp(north)<8
+
+# North has specific shapes
+and shape(north, any 4441 + any 5440)

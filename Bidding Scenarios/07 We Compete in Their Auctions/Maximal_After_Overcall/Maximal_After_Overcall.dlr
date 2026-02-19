@@ -1,0 +1,144 @@
+# alias: MaximalAfterOvercall
+# button-text: Max X after Overcall
+# scenario-title: --- Maximal Double after Overcall
+# dealer-position: W
+# gib-works: false
+# bba-works: true
+# auction-filter: Auction.....\n(1.* +1H .* +2H\n3D +[34]?[HXP|1.* +1S.* +2S\n3H +[34]?[SXP])
+# convention-card: 21GF-MaximalDouble
+
+/*@chat
+--- Maximal Double after Overcall
+After LHO opens, partner overcalls in a major, RHO competes, we make a simple
+raise to the 2-level, and LHO competes at 3 of the maximal suit -- the one just
+under ours -- we need to distinguish between a competitive and invitational rebid
+of our major.  The Maximal Double is the answer.  After (1?) 1M (?) 2M, (3M-1)...
+  • 3M is competitive
+  • X  is invitational
+https://www.bridgebum.com/maximal_double.php
+@chat*/
+dealer west
+
+### Imported script: TP (Total Points)
+//   Total Points = HCP + Short-Suit Points - Penalty Points
+//   Short-Suit Points: 3 for void, 2 for singleton, 1 for doubleton
+//   Penalty Points: 1 for each honor (K/Q/J) in a short suit (devalues wasted honors like Kx, Qx)
+
+## Calculate TP for North
+# Short-Suit Points: void=3, singleton=2, doubleton=1
+nSpadeSSP = spades(north)<3   ? 3-spades(north)   : 0
+nHeartSSP = hearts(north)<3   ? 3-hearts(north)   : 0
+nDiamSSP  = diamonds(north)<3 ? 3-diamonds(north) : 0
+nClubSSP  = clubs(north)<3    ? 3-clubs(north)    : 0
+nSSP = nSpadeSSP + nHeartSSP + nDiamSSP + nClubSSP
+
+# Penalty Points: deduct 1 for honors in short suits
+nSpadePP = spades(north)<3   and hcp(north,spades)>0   ? 1 : 0
+nHeartPP = hearts(north)<3   and hcp(north,hearts)>0   ? 1 : 0
+nDiamPP  = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
+nClubPP  = clubs(north)<3    and hcp(north,clubs)>0    ? 1 : 0
+nPP = nSpadePP + nHeartPP + nDiamPP + nClubPP
+
+tpNorth = hcp(north) + nSSP - nPP
+
+## Calculate TP for East
+eSpadeSSP = spades(east)<3   ? 3-spades(east)   : 0
+eHeartSSP = hearts(east)<3   ? 3-hearts(east)   : 0
+eDiamSSP  = diamonds(east)<3 ? 3-diamonds(east) : 0
+eClubSSP  = clubs(east)<3    ? 3-clubs(east)    : 0
+eSSP = eSpadeSSP + eHeartSSP + eDiamSSP + eClubSSP
+
+eSpadePP = spades(east)<3   and hcp(east,spades)>0   ? 1 : 0
+eHeartPP = hearts(east)<3   and hcp(east,hearts)>0   ? 1 : 0
+eDiamPP  = diamonds(east)<3 and hcp(east,diamonds)>0 ? 1 : 0
+eClubPP  = clubs(east)<3    and hcp(east,clubs)>0    ? 1 : 0
+ePP = eSpadePP + eHeartPP + eDiamPP + eClubPP
+
+tpEast = hcp(east) + eSSP - ePP
+
+## Calculate TP for South
+sSpadeSSP = spades(south)<3   ? 3-spades(south)   : 0
+sHeartSSP = hearts(south)<3   ? 3-hearts(south)   : 0
+sDiamSSP  = diamonds(south)<3 ? 3-diamonds(south) : 0
+sClubSSP  = clubs(south)<3    ? 3-clubs(south)    : 0
+sSSP = sSpadeSSP + sHeartSSP + sDiamSSP + sClubSSP
+
+sSpadePP = spades(south)<3   and hcp(south,spades)>0   ? 1 : 0
+sHeartPP = hearts(south)<3   and hcp(south,hearts)>0   ? 1 : 0
+sDiamPP  = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
+sClubPP  = clubs(south)<3    and hcp(south,clubs)>0    ? 1 : 0
+sPP = sSpadePP + sHeartPP + sDiamPP + sClubPP
+
+tpSouth = hcp(south) + sSSP - sPP
+
+## Calculate TP for West
+wSpadeSSP = spades(west)<3   ? 3-spades(west)   : 0
+wHeartSSP = hearts(west)<3   ? 3-hearts(west)   : 0
+wDiamSSP  = diamonds(west)<3 ? 3-diamonds(west) : 0
+wClubSSP  = clubs(west)<3    ? 3-clubs(west)    : 0
+wSSP = wSpadeSSP + wHeartSSP + wDiamSSP + wClubSSP
+
+wSpadePP = spades(west)<3   and hcp(west,spades)>0   ? 1 : 0
+wHeartPP = hearts(west)<3   and hcp(west,hearts)>0   ? 1 : 0
+wDiamPP  = diamonds(west)<3 and hcp(west,diamonds)>0 ? 1 : 0
+wClubPP  = clubs(west)<3    and hcp(west,clubs)>0    ? 1 : 0
+wPP = wSpadePP + wHeartPP + wDiamPP + wClubPP
+
+tpWest = hcp(west) + wSSP - wPP
+
+## Partnership Totals
+tpNS = tpNorth + tpSouth
+tpEW = tpEast + tpWest
+
+### End of Imported Script: TP
+# Defines tpNorth, tpSouth, tpEast, tpWest
+
+# Predict West's opening suit
+s = spades(west)
+h = hearts(west)
+d = diamonds(west)
+c = clubs(west)
+
+wS = s>4 and s>=h and s>=d and s>=c
+wH = not wS and h>4 and h>=d and h>=c
+wD = not (wS or wH) and ((d>3 and d>=c) or c<3)
+wC = not (wS or wH or wD)
+
+ewS = spades(east) + spades(west)
+ewH = hearts(east) + hearts(west)
+ewD = diamonds(east) + diamonds(west)
+ewC = clubs(east) + clubs(west)
+
+# Define North's major suits w/South's support for simple raise, and ew shape
+n1Suit = shape(north,any 7xxx +any 6xxx +any 5xxx -any 76xx -any 75xx -any 66xx -any 65xx -any 55xx)
+nsS = spades(north)>4 and top5(north,spades)>2 and spades(south)==3 and ewS<6 and ewH>7
+nsH = hearts(north)>4 and top5(north,hearts)>2 and hearts(south)==3 and ewH<6 and ewD>8
+nsBid = (nsS or nsH) and hcp(north)>11 and tpNorth<14 and tpSouth>5 and tpSouth<11 // and n1Suit
+
+### West has a minimal opener w/good maximal suit: opens 1 and rebids 3
+# Twice Rebiddable: rebiddable + 1 card (7+ or 6 with quality)
+wMaxH = nsS and wH and (hearts(west)>6   or (hearts(west)>5   and top5(west,hearts)>2)) and hearts(east)>2 and n1Suit
+wMaxD = nsH and wD and (diamonds(west)>6 or (diamonds(west)>5 and top5(west,diamonds)>2)) and diamonds(east)>2 and n1Suit
+
+# West opens a minor, EW each have 4+ cards in maximal suit to compete
+ewMaxH = nsS and not wH and hearts(west)>3   and top3(west,hearts)>0   and hearts(east)>3   and top3(east,hearts)>1
+ewMaxD = nsH and not wD and diamonds(west)>3 and top3(west,diamonds)>0 and diamonds(east)>3 and top3(east,diamonds)>1
+
+maxH = (wMaxH or ewMaxH)
+maxD = (wMaxD or ewMaxD)
+ewBID = (maxH or maxD) and hcp(west)>10 and tpWest>12 and hcp(west)<13 and tpEast>7
+
+wRange = hcp(west)>12 and tpWest>12
+nRange = hcp(north)>11 and tpNorth>12
+eRange = hcp(east)>5 and tpEast>7
+sRange = hcp(south)>9 and tpSouth>11
+ranges = wRange and nRange and eRange and sRange
+
+
+# Now do it
+ranges and nsBid and ewBID
+
+generate 1000000
+produce 40
+action
+printoneline,

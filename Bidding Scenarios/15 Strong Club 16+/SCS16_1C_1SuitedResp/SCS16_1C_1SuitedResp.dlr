@@ -1,0 +1,29 @@
+# alias: SCS16-1SuitedResp
+# button-text: 1-Suited Resp w/8+
+# scenario-title: --- 16+ opener w/solid or semi-solid 1-suited response
+# dealer-position: S
+# gib-works: false
+# bba-works: true
+# auction-filter: Auction.....\n1C
+# convention-card: Precision
+
+/*@chat
+--- 16+ opener w/solid or semi-solid 1-suited response
+@chat*/
+dealer south
+
+
+solidC = clubs(north)>5 and top3(north,clubs)>2
+solidD = diamonds(north)>5 and top3(north,diamonds)>2
+solidH = hearts(north)>5 and top3(north,hearts)>2
+solidS = spades(north)>5 and top3(north,spades)>2
+solid = (solidC or solidD or solidH or solidS) and hcp(north)>7
+
+semiSolidC = clubs(north)>5 and top4(north,clubs)>2
+semiSolidD = diamonds(north)>5 and top4(north,diamonds)>2
+semiSolidH = hearts(north)>5 and top4(north,hearts)>2
+semiSolidS = spades(north)>5 and top4(north,spades)>2
+semiSolid = (semiSolidC or semiSolidD or semiSolidH or semiSolidS) and hcp(north)>8
+
+# South has 16+
+hcp(south)>15 and (solid or semiSolid)

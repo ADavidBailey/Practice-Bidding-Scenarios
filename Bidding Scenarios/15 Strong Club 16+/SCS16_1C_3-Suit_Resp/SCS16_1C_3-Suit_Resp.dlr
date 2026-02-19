@@ -1,0 +1,27 @@
+# alias: scs16StrongClub3Suit
+# button-text: 3-Suited Resp w/8+
+# scenario-title: --- 1C with 3-Suit Response (16+ HCP)
+# dealer-position: S
+# gib-works: false
+# bba-works: true
+# auction-filter: Auction.....[\s\S][\s\S]?1C
+# convention-card: Precision
+
+/*@chat
+--- 1C with 3-Suit Response (16+ HCP)
+1!C is 16+ HCP, artificial and forcing.
+Is there anything you want here.  I often include a link to a description.
+http://clairebridge.com/textes/karensrules.pdf
+@chat*/
+dealer south
+
+# Strong Club System: 1C & 3 suited response 8+ HCP
+
+# South has 16+
+hcp(south)>15
+
+# North has 8+
+and hcp(north)>7
+
+# North has specific shapes
+and shape(north, any 4441 + any 5440)

@@ -1,0 +1,19 @@
+# alias: WeakNT13to15
+# button-text: Weak NT 13-15
+# scenario-title: --- South has a semi-balanced hand with 13-15 HCP and not 5/4 in the majors
+# dealer-position: S
+# gib-works: false
+# bba-works: true
+# auction-filter: Auction.....\n1NT?
+# convention-card: Precision
+
+/*@chat
+--- South has a semi-balanced hand with 13-15 HCP and not 5/4 in the majors
+@chat*/
+dealer south
+
+produce 1000
+
+# South has a semi-balanced hand with 13-15 HCP and not 5/4 in majors
+shape(south,any 4333 +any 4432 +any 5332 +any 5422 -54xx -45xx)
+and hcp(south)>12 and hcp(south)<16

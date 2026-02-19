@@ -1,0 +1,23 @@
+# alias: Preempts
+# button-text: Preempts
+# scenario-title: --- Preempts
+# dealer-position: S
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n[2345][CDHS] +
+
+/*@chat
+--- Preempts
+@chat*/
+dealer south
+
+# Preempts
+
+range = hcp(south)>5 and hcp(south)<11
+
+oS = top5(south,spades)>1   and spades(south)>6
+oH = top5(south,hearts)>1   and hearts(south)>6
+oD = top5(south,diamonds)>1 and diamonds(south)>6
+oC = top5(south,clubs)>1    and clubs(south)>6
+
+(oS or oH or oD or oC) and range
