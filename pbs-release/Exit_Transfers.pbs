@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-Cappelletti
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1NT? X.* Pass .
 */
-# convention-card: 21GF-Cappelletti
-
-
 # Opponent doubles 1NT
 dealer south
 
@@ -57,7 +55,7 @@ nActs   = runout or aHand
 
 gibNT and wX and nActs
 
-action
+action printoneline,
 average "oneSuit   " 100 * oneSuit,
 average "twoSuit   " 100 * twoSuit,
 average "a hand    " 100 * aHand,
