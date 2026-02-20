@@ -16,12 +16,14 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-Gazzilli
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[HS] +Pass +1N.* Pass\n2C
 */
 # Gazzilli
 
 
+dealer south
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -226,7 +228,7 @@ levelTheDeal = lev2x or lev3x or lev2C or lev2N
 and levelTheDeal
 
 # produce 1000
-action
+action printoneline,
 average "2x 11-15          " 100 * lev2x,
 average "3x 13-15 2-suits  " 100 * lev3x,
 average "2C 16+            " 100 * lev2C,
