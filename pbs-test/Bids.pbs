@@ -16,14 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-GIB
+convention-card-ns: 21GF-GIB
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1C +Pass +(1[DHS]|1NT?|2C|2NT?|3[CDHS]|3NT?) +
 */
-# convention-card: 21GF-GIB
-
-
-dealer south
-
 ##### Imported Script: Define Calm Opponents #####
 
 # Avoid concentration of values
@@ -280,7 +276,7 @@ nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N
 
 oneClub and sClubs and sRange and nRange and nResponds and calmOpps
 
-action
+action printoneline,
 average "CD " 100 * r1D,
 average "CH " 100 * r1H,
 average "CS " 100 * r1S,
@@ -294,6 +290,5 @@ average "3N " 100 * r3N,
 Script
 Button,After 1C (Pass),\n\
 --- Responses to 1C\n\
-South opens 1!C.  North has 5+!D and one or both 4-card majors\n\
-This does not use 'Randomly rotate' -- go to 'Deal source' to change it.\n\
+South opens 1!C.  North has 5+!D and one or both 4-card majors.\n\
 %Bids%
