@@ -1,10 +1,11 @@
 # alias: GrandSlamForce
 # button-text: Grand Slam Force
 # scenario-title: --- Grand Slam Force asks partner, Do you have 2 of the top 3 honors?
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: .
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Grand Slam Force asks partner, Do you have 2 of the top 3 honors?
@@ -13,7 +14,6 @@ has not been agreed the 5N bid confirms the previously bid suit.  Partner must b
 7 of the agreed suit when holding 2 of the top 3 honors suit.
 https://www.bridgebum.com/grand_slam_force.php
 @chat*/
-dealer south
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -125,9 +125,6 @@ oneClub    = oC
 
 predeal north CA,DA,HA,SA
 
-# Define North's First Round controls
-frcC = controls(north,clubs)==2 or clubs(north)==0
-
 # Define North's Kings
 kingC = hascard(north,KC)
 kingD = hascard(north,KD)
@@ -150,5 +147,4 @@ nsStrong = hcp(south)>12 and (hcp(south) + hcp(north))>32 and nKings>0  // north
 nsFit and nsStrong
 
 produce 30
-action
-printoneline,
+action printoneline,
