@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n(1C +1[DHS]|1D +(1[HS]|2C)|1H +(1S|2[CD])|1S +2[CDH])
 */
 # Overcalls
@@ -113,7 +115,7 @@ sOvercalls = (sGoodS or sGoodH or sGoodD or sGoodC) and sShape and sRange and no
 eOpens and sOvercalls
 
 
-action
+action printoneline,
 average "CD  " 100 * (oC and sGoodD),
 average "CH  " 100 * (oC and sGoodH),
 average "CS  " 100 * (oC and sGoodS),
