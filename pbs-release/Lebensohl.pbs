@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-Multi-Landy
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1N +2[DHS].*(2[HS]|2NT|3[CDHSN])
 */
-# convention-card: 21GF-Multi-Landy
-
-
 # Lebensohl
 dealer south
 
@@ -99,7 +97,7 @@ levelTheDeal = (levStrong or lev2Suit or lev1Suit)
 sOpens and wCompetes and nForces
 and levelTheDeal
 
-action
+action printoneline,
 average "South HCP      " hcp(south),
 average "North HCP      " hcp(north),
 average "North Balanced " 100 * n0Suit,
