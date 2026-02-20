@@ -16,14 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-3-Under-Inv-Jump
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n(1D Pass +3C|1H +Pass +3[CD]|1S Pass +3[CDH])
 */
-# convention-card: 21GF-3-Under-Inv-Jump
-
-
-dealer north
-
 # Gavin's 3 Under Invitational Jump (11-12 HCP)
 
 ## Predict North's opening bid ##
@@ -100,6 +96,7 @@ and calmEast
 and noMajorFit
 and hcp(south)>10 and hcp(south)<13
 and (goodHearts or goodClubs)         // or goodDiamonds
+action printoneline,
 `, "N", true)
 Script
 Button,3-Under Invitational Jump (11-12 HCP),\n\
