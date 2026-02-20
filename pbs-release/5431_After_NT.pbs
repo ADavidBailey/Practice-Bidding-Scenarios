@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-5431-After-NT
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: Note....5431 after 1NT
 */
-# convention-card: 21GF-5431-After-NT
-
-
 # 5431 after 1NT
 
 # 5431 After NT
@@ -83,7 +81,7 @@ n5431 = (M31 or M30) and nTP>8
 # Now do it
 gibNT and n5431 and calmOpps
 
-action
+action printoneline,
 
 average "HCP S " hcp(south),
 average "HCP N " hcp(north),
