@@ -16,14 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-Multi-Landy
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: Note...:Multi-Landy
 */
-# convention-card: 21GF-Multi-Landy
-
-
-dealer east
-
 ### gibNT changed from south to east
 # GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
 ntP = hcp(east) + shape(east,5xxx+x5xx)
@@ -121,7 +117,7 @@ gibNT and (cX or c2C or c2D or c2H or c2S or c2N) and hcp(south)>9
 and levelTheDeal
 
 # Generate Statistics
-action
+action printoneline,
 average "X    " 100 * cX,
 average "2C   " 100 * c2C,
 average "2D   " 100 * c2D,
@@ -141,4 +137,4 @@ Button,Meckwell (Lev),\n\
   • 2N  = 5-5 or better in !C & !D\n\
 The Meckwell actions are leveled.  The NT opener is not leveled.\n\
 https://www.bridgebum.com/meckwell_defense_to_1nt.php\n\
-%Meckwell%,backgroundColor=lightpink
+%Meckwell%,width=50% backgroundColor=lightpink
