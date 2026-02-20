@@ -16,7 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-Gerber
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: 1. +1NT? +Pass +4C
 */
 # No MSS, MST, Texas, or "Gerber only for 1NT and 2NT opening"
@@ -28,6 +29,7 @@ auction-filter: 1. +1NT? +Pass +4C
 predeal west ST62, HJ73, D84, C95
 
 # We Overcall 1NT_then_Stayman
+dealer east
 
 # Predict East's opening suit
 s = spades(east)
@@ -85,7 +87,7 @@ covers = n0+n1+n2 +cCovers+dCovers+hCovers+sCovers
 netLosers = losers(south) - covers
 
 
-action
+action printoneline,
 frequency "losers south " (losers(south),5,9),
 frequency "covers north " (covers,5,9),
 frequency "net losers   " (netLosers,0,3),
