@@ -16,7 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-Puppet
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: Note....2N-3C Puppet
 */
 ### 2N w/Puppet and any response
@@ -82,8 +83,7 @@ and levelTheDeal
 
 ### Generate Statistics ###\
 produce 30
-action
-printoneline,
+action printoneline,
 
 average "Part Score   " 100 * part,
 average "Game         " 100 * game,
