@@ -16,7 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-1N_with_Singleton
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1NT?
 */
 # 1 Notrump Opening with a singleton honor
@@ -41,7 +42,7 @@ ntShape = shape(south,any 4441) and (oneS or oneH or oneD or oneC)     // one si
 
 ntShape and ntPoints>14 and ntPoints<18
 
-action
+action printoneline,
 average "HCP         " hcp(south),
 // average "lengthPoints" lengthPoints,
 average "ntDownGrade " ntDownGrade,
