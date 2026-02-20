@@ -16,16 +16,12 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-Walsh
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1C +Pass +1[DHS] +
 */
-# convention-card: 21GF-Walsh
-
-
 /*
 South opens 1C and North has any 4+D and a 4-card major
-convention-card: 21GF-Walsh
-auction-filter: Auction.....\n1C +Pass +1[DHS] +
 */
 
 dealer south
@@ -107,7 +103,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -117,7 +113,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -231,7 +227,7 @@ nRange = nRange1 or nRange2 or nRange3
 
 oneClub and sRange and sClubs and (nDH or nDS or nDHS) and nShape and nRange and calmWest
 
-action
+action printoneline,
 average "D + H    " 100 * nDH,
 average "D + S    " 100 * nDS,
 average "D + H + S" 100 * nDHS,
@@ -239,6 +235,5 @@ average "D + H + S" 100 * nDHS,
 Script
 Button,Resp w/5D & 4M,\n\
 --- Resp to 1C w/5-D & 4M\n\
-South opens 1!C.  North has 5+!D and one or both 4-card majors\n\
-These do not use 'Randomly rotate' -- go to 'Deal source' to change it.\n\
-%RespTo1C%
+South opens 1!C.  North has 5+!D and one or both 4-card majors.\n\
+%RespTo1C%,width=50%
