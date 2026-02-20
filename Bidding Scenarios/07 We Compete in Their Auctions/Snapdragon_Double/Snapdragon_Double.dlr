@@ -1,11 +1,11 @@
 # alias: Snapdragon
 # button-text: Snapdragon Double
 # scenario-title: --- Snapdragon Double
-# dealer-position: E
 # gib-works: false
-# bba-works: truec
-# auction-filter: ^(1C +1D +1[HS]|1C +1H +(1S|2D|1C +1S +2[DH]|1D +1H +(1S|2C))|1D +1S +2[CH]|1D +2C +2[HS]|1H +1S +2[CD]) +X
-# convention-card: 21GF-SPECIALS
+# bba-works: true
+# auction-filter: (1C +1D +1[HS]|1C +1H +(1S|2D)|1C +1S +2[DH]|1D +1H +(1S|2C)|1D +1S +2[CH]|1D +2C +2[HS]|1H +1S +2[CD]) +X
+# convention-card-ns: 21GF-SPECIALS
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Snapdragon Double
@@ -14,11 +14,11 @@ is artifical and forcing.  It shows 5+ cards in the lone unbid suit, at least 8 
 and a tolerance for partner's suit.  'Tolerance' ranges from 2 to 3 cards.
 https://www.bridgebum.com/snapdragon_double.php
 @chat*/
-dealer east
 
 # kill 1x-(Y)-2Z forcing
 
 # Overcalls
+dealer east
 
 # Predict East's Opening suit
 es = spades(east)
@@ -88,12 +88,11 @@ sequences = (CDHS or CDSH or CHSD or CHDS or CSDH or CSHD or DHSC or DHCS or DSC
 #lDCSH = DCSH and keep
 #levelTheDeal = (lCDHS or lCDSH or lCHSD or lCHDS or lCSDH or lCSHD or lDHSC or lDHCS or lDSCH or lDSHC or lDCHS or lDCSH)
 
-
 # Now do it
 eOpens and otherHCP and sequences
 #and levelTheDeal
 
-action
+action printoneline,
 average "CDHS" 100 * CDHS,
 average "CDSH" 100 * CDSH,
 average "CHSD" 100 * CHSD,
