@@ -153,54 +153,82 @@ oneClub    = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
 # Defines oneClub
-##### Imported Script - Calculate Total Points for South #####
-
-## Calculate TP for South
-# Calculate South's Short-Suit Penalty Points
-sSP = spades(south)<3 and hcp(south,spades)>0     ? 1 : 0
-sHP = hearts(south)<3 and hcp(south,hearts)>0     ? 1 : 0
-sDP = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
-sCP = clubs(south)<3 and hcp(south,clubs)>0       ? 1 : 0
-
-# Calculate South's Short-Suit Points
-sv1 = shape(south, any 0xxx) ? 3 : 0
-ss1 = shape(south, any 1xxx) ? 2 : 0 // allow for 2 singletons
-ss2 = shape(south, any 11xx) ? 2 : 0
-sd1 = shape(south, any 2xxx) ? 1 : 0 // allow for 3 doubletons
-sd2 = shape(south, any 22xx) ? 1 : 0
-sd3 = shape(south, any 222x) ? 1 : 0
-
-# Calculate South's Total Points
-sTP = hcp(south) + sv1+ss1+ss2+sd1+sd2+sd3 -sSP-sHP-sDP-sCP
-
-### End of Calculate TP for South ###
-# Defines sTP
-##### Imported Script - Calculate Total Points for North #####
+### Imported script: TP (Total Points)
+//   Total Points = HCP + Short-Suit Points - Penalty Points
+//   Short-Suit Points: 3 for void, 2 for singleton, 1 for doubleton
+//   Penalty Points: 1 for each honor (K/Q/J) in a short suit (devalues wasted honors like Kx, Qx)
 
 ## Calculate TP for North
-# Calculate Nouth's Short-Suit Penalty Points
-nSP = spades(north)<3   and hcp(north,spades)>0   ? 1 : 0
-nHP = hearts(north)<3   and hcp(north,hearts)>0   ? 1 : 0
-nDP = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
-nCP = clubs(north)<3    and hcp(north,clubs)>0    ? 1 : 0
+# Short-Suit Points: void=3, singleton=2, doubleton=1
+nSpadeSSP = spades(north)<3   ? 3-spades(north)   : 0
+nHeartSSP = hearts(north)<3   ? 3-hearts(north)   : 0
+nDiamSSP  = diamonds(north)<3 ? 3-diamonds(north) : 0
+nClubSSP  = clubs(north)<3    ? 3-clubs(north)    : 0
+nSSP = nSpadeSSP + nHeartSSP + nDiamSSP + nClubSSP
 
-# Calculate North's Short-Suit Points
-nv1 = shape(north, any 0xxx) ? 3 : 0 // allow for 1 void
-ns1 = shape(north, any 1xxx) ? 2 : 0 // allow for 2 singletons
-ns2 = shape(north, any 11xx) ? 2 : 0
-nd1 = shape(north, any 2xxx) ? 1 : 0 // allow for 3 doubletons
-nd2 = shape(north, any 22xx) ? 1 : 0
-nd3 = shape(north, any 222x) ? 1 : 0
+# Penalty Points: deduct 1 for honors in short suits
+nSpadePP = spades(north)<3   and hcp(north,spades)>0   ? 1 : 0
+nHeartPP = hearts(north)<3   and hcp(north,hearts)>0   ? 1 : 0
+nDiamPP  = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
+nClubPP  = clubs(north)<3    and hcp(north,clubs)>0    ? 1 : 0
+nPP = nSpadePP + nHeartPP + nDiamPP + nClubPP
 
-# Calculate South's Total Points
-nTP = hcp(north) + nv1+ns1+ns2+nd1+nd2+nd3 -nSP-nHP-nDP-nCP
+tpNorth = hcp(north) + nSSP - nPP
 
-### End of Calculate TP for North ###
-# Defines nTP
+## Calculate TP for East
+eSpadeSSP = spades(east)<3   ? 3-spades(east)   : 0
+eHeartSSP = hearts(east)<3   ? 3-hearts(east)   : 0
+eDiamSSP  = diamonds(east)<3 ? 3-diamonds(east) : 0
+eClubSSP  = clubs(east)<3    ? 3-clubs(east)    : 0
+eSSP = eSpadeSSP + eHeartSSP + eDiamSSP + eClubSSP
 
+eSpadePP = spades(east)<3   and hcp(east,spades)>0   ? 1 : 0
+eHeartPP = hearts(east)<3   and hcp(east,hearts)>0   ? 1 : 0
+eDiamPP  = diamonds(east)<3 and hcp(east,diamonds)>0 ? 1 : 0
+eClubPP  = clubs(east)<3    and hcp(east,clubs)>0    ? 1 : 0
+ePP = eSpadePP + eHeartPP + eDiamPP + eClubPP
+
+tpEast = hcp(east) + eSSP - ePP
+
+## Calculate TP for South
+sSpadeSSP = spades(south)<3   ? 3-spades(south)   : 0
+sHeartSSP = hearts(south)<3   ? 3-hearts(south)   : 0
+sDiamSSP  = diamonds(south)<3 ? 3-diamonds(south) : 0
+sClubSSP  = clubs(south)<3    ? 3-clubs(south)    : 0
+sSSP = sSpadeSSP + sHeartSSP + sDiamSSP + sClubSSP
+
+sSpadePP = spades(south)<3   and hcp(south,spades)>0   ? 1 : 0
+sHeartPP = hearts(south)<3   and hcp(south,hearts)>0   ? 1 : 0
+sDiamPP  = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
+sClubPP  = clubs(south)<3    and hcp(south,clubs)>0    ? 1 : 0
+sPP = sSpadePP + sHeartPP + sDiamPP + sClubPP
+
+tpSouth = hcp(south) + sSSP - sPP
+
+## Calculate TP for West
+wSpadeSSP = spades(west)<3   ? 3-spades(west)   : 0
+wHeartSSP = hearts(west)<3   ? 3-hearts(west)   : 0
+wDiamSSP  = diamonds(west)<3 ? 3-diamonds(west) : 0
+wClubSSP  = clubs(west)<3    ? 3-clubs(west)    : 0
+wSSP = wSpadeSSP + wHeartSSP + wDiamSSP + wClubSSP
+
+wSpadePP = spades(west)<3   and hcp(west,spades)>0   ? 1 : 0
+wHeartPP = hearts(west)<3   and hcp(west,hearts)>0   ? 1 : 0
+wDiamPP  = diamonds(west)<3 and hcp(west,diamonds)>0 ? 1 : 0
+wClubPP  = clubs(west)<3    and hcp(west,clubs)>0    ? 1 : 0
+wPP = wSpadePP + wHeartPP + wDiamPP + wClubPP
+
+tpWest = hcp(west) + wSSP - wPP
+
+## Partnership Totals
+tpNS = tpNorth + tpSouth
+tpEW = tpEast + tpWest
+
+### End of Imported Script: TP
+# Defines tpSouth, Defines tpNorth
 
 # South bids 1C and North responds with 5+D and one or both 4-card majors
-sRange = hcp(south)>10 and hcp(south)<22 and sTP>11 and sTP<23
+sRange = hcp(south)>10 and hcp(south)<22 and tpSouth>11 and tpSouth<23
 sClubs = clubs(south)<7
 
 nD = diamonds(north)>4
@@ -212,9 +240,9 @@ nDHS = nD and nH and nS
 
 nShape = shape(north,any 64xx +any 5440+ any 5431 +any 5422)
 
-nRange1 = nTP>5 and nTP<11
-nRange2 = nTP>10 and nTP<13
-nRange3 = nTP>12
+nRange1 = tpNorth>5 and tpNorth<11
+nRange2 = tpNorth>10 and tpNorth<13
+nRange3 = tpNorth>12
 nRange = nRange1 or nRange2 or nRange3
 
 oneClub and sRange and sClubs and (nDH or nDS or nDHS) and nShape and nRange and calmWest
