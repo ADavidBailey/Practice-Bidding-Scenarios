@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[HS] +Pass
 */
 ### Imported script: TP (Total Points)
@@ -129,8 +131,7 @@ ranges = hcp(south)>10 and tpSouth>11 and hcp(north)>10 and tpNorth>11
 (sMF and hMF and dMF and cMF) and shapes and ranges and calmOpps
 
 produce 30
-action
-printoneline,
+action printoneline,
 average "spades" 100*(spades(south)>5),
 average "hearts" 100*(hearts(south)>5),
 `, "S", true)
