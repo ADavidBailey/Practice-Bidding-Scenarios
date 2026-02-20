@@ -16,16 +16,11 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-3-Under-Inv-Jump
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: (1D +Pass +3C|1H +Pass +3[CD]|1S +Pass +3[CDH])
 */
-# convention-card: 21GF-3-Under-Inv-Jump
-
-
 /*
-convention-card: 21GF-3-Under-Inv-Jump
-auction-filter: (1D +Pass +3C|1H +Pass +3[CD]|1S +Pass +3[CDH])
-
 # Robot 3 Under Invitational Jump (9-11 HCP)
 */
 
@@ -79,7 +74,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -89,7 +84,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -245,14 +240,14 @@ dFit = oneDiamond and diamonds(north)>3
 noFit = not (sFit or hFit or dFit)
 
 # Define North's good suits -- 6+ cards with at least QJ or better
-goodHearts   = hearts(north)>5   and hcp(north,hearts)>2
-goodDiamonds = diamonds(north)>5 and hcp(north,diamonds)>2
-goodClubs    = clubs(north)>5    and hcp(north,clubs)>2
+goodHearts   = hearts(north)>5   and top4(north,hearts)>1
+goodDiamonds = diamonds(north)>5 and top4(north,diamonds)>1
+goodClubs    = clubs(north)>5    and top4(north,clubs)>1
 
 # Define North's minimum suits -- 6+ with at least the Q
-minHearts    = hearts(north)>5   and hcp(north,hearts)>1
-minDiamonds  = diamonds(north)>5 and hcp(north,diamonds)>1
-minClubs     = clubs(north)>5    and hcp(north,clubs)>1
+minHearts    = hearts(north)>5   and top5(north,hearts)>1
+minDiamonds  = diamonds(north)>5 and top5(north,diamonds)>1
+minClubs     = clubs(north)>5    and top5(north,clubs)>1
 nMinHCP = (goodHearts or goodDiamonds or goodClubs) ? 8 : 9  // Better HCP w/minimum suit
 
 # north does NOT have a major
@@ -276,7 +271,7 @@ nRange = hcp(north)>nMinHCP and hcp(north)<12
 sShape and sRange and calmWest and noFit and nHand and nRange
 
 produce 1000
-action
+action printoneline,
 average "hcp(south)" hcp(south),
 average "hcp(north)" hcp(north),
 average "1D-3C        " 100 * (oneDiamond and n3C),
@@ -294,4 +289,4 @@ Button,3-Under Inv Jump,\n\
 • 1!D - 3!C\n\
 Shows a 6+ card suit w/Q or better and 9-11 HCP and denies\n\
 support for opener's suit or 4-cards in either major.\n\
-%InvJump3Under%
+%InvJump3Under%,width=50%
