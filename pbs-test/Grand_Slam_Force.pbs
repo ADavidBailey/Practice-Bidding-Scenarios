@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: .
 */
 ##### Imported Script -- Predict Opening 1-Bid South #####
@@ -128,9 +130,6 @@ oneClub    = oC
 
 predeal north CA,DA,HA,SA
 
-# Define North's First Round controls
-frcC = controls(north,clubs)==2 or clubs(north)==0
-
 # Define North's Kings
 kingC = hascard(north,KC)
 kingD = hascard(north,KD)
@@ -153,8 +152,7 @@ nsStrong = hcp(south)>12 and (hcp(south) + hcp(north))>32 and nKings>0  // north
 nsFit and nsStrong
 
 produce 30
-action
-printoneline,
+action printoneline,
 `, "S", true)
 Script
 Button,Grand Slam Force,\n\
