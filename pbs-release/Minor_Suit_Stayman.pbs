@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-MSTandMSS
-auction-filter: 1NT Pass 2S
+convention-card-ns: 21GF-MSTandMSS
+convention-card-ew: 21GF-GIB
+auction-filter: 1N +Pass +2S
 */
-# convention-card: 21GF-MSTandMSS
-
-
 # Enable both MST and MSS
 
 # Minor Suit Stayman
@@ -49,6 +47,7 @@ sR = hcp(north)>10 and shape(north, xx66+xx65+xx56+xx55+xx54+xx45)
 
 # Now do it
 gibNT and sR
+action printoneline,
 `, "S", true)
 Script
 Button,Minor Suit Stayman,\n\
@@ -59,4 +58,4 @@ There are multiple ways to play it; this is how GIB plays it.\n\
 • 3!C - Shows a 4+!C (may have 4!D)\n\
 • 3!D - Shows a 4+!D and denies 4!C\n\
 https://www.bridgebum.com/minor_suit_stayman.php\n\
-%MinorSuitStayman%
+%MinorSuitStayman%,width=50%
