@@ -16,7 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-ReverseFlannery
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[CD] +Pass +2H +
 */
 ##### Imported Script: Define Calm Opponents #####
@@ -219,8 +220,7 @@ sOneMinor and calmWest and nRevFlannery
 and levelTheDeal
 
 produce 40
-action
-printoneline,
+action printoneline,
 average "2H min " 100 * twoH,
 average "2S max " 100 * twoS,
 average "4-H " 100 * (hearts(north)==4),
