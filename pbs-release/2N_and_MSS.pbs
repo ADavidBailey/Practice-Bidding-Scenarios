@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-MSS
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n2NT?.*Pass.*3S +
 */
-# convention-card: 21GF-MSS
-
-
 # Select MSS after 1N and 2N
 
 
@@ -77,7 +75,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -87,7 +85,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -211,7 +209,7 @@ and levelTheDeal
 
 ### Generate Statistics
 
-action
+action printoneline,
 average "Weak         " 100 * weak,
 average "Game         " 100 * game,
 average "Slam         " 100 * slam,
@@ -220,4 +218,4 @@ Script
 Button,2NT - MSS,\n\
 ---  20-21 Notrump and Minor-suit Stayman response.  The responder has at least\n\
 5-4 in the minors.  The responder's strength -- game or slam -- is leveled.\n\
-%TwoNTandMSS%
+%TwoNTandMSS%,width=50%
