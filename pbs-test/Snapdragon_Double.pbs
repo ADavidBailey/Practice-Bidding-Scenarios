@@ -16,8 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-SPECIALS
-auction-filter: ^(1C +1D +1[HS]|1C +1H +(1S|2D)|1C +1S +2[DH]|1D +1H +(1S|2C)|1D +1S +2[CH]|1D +2C +2[HS]) +X
+convention-card: 21GF-SPECIALS.bbsa
+auction-filter: ^(1C +1D +1[HS]|1C +1H +(1S|2D)|1C +1S +2[DH]|1D +1H +(1S|2C)|1D +1S +2[CH]|1D +2C +2[HS]|1H +1S +2[CD]) +X
 */
 # kill 1x-(Y)-2Z forcing
 
@@ -70,14 +70,9 @@ DSHC = oneD and ss and wh and nc  and hcp(west)>10 // 1D - 1S - 2H - 3C
 DCHS = oneD and sc and wh and nss and hcp(west)>10 // 1D - 2C - 2H - 2S
 DCSH = oneD and sc and ws and nh  and hcp(west)>10 // 1D - 2C - 2S - 3H
 
-HSCD = oneH and sd and wc and nss and hcp(west)>10 // 1H - 1S - 2C - 2D
-HSDC = oneH and sd and ws and nc  and hcp(west)>10 // 1H - 1S - 2D - 3C
-HDCS = oneH and sc and wd and nss and hcp(west)>10 // 1H - 2C - 2D - 2S
-HDSC = oneH and sc and ws and nd  and hcp(west)>10 // 1H - 2C - 2S - 3D
-
 # south's makes some weak jump overcalls
 otherHCP = hcp(south)>7 and hcp(west)>7 and hcp(north)>7
-sequences = (CDHS or CDSH or CHSD or CHDS or CSDH or CSHD or DHSC or DHCS or DSCH or DSHC or DCHS or DCSH or HSCD or HSDC or HDCS or HDSC)
+sequences = (CDHS or CDSH or CHSD or CHDS or CSDH or CSHD or DHSC or DHCS or DSCH or DSHC or DCHS or DCSH)
 
 
 ##include "script/Leveling"
