@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-MixedRaise
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: Note....Mixed raise
 */
-# convention-card: 21GF-MixedRaise
-
-
 # Changed default CC to include Mixed Raise and 1X-(Y)-2Z forcing. 
 
 dealer west
@@ -167,7 +165,7 @@ levelTheDeal = lev2 or lev0 or lev1 or lev4 or lev5 or lev6
 wOpens and nOvercalls and sRaises and calmEast
 and levelTheDeal
 
-action
+action printoneline,
 average "N/S Spades     " 100 * nSpades,
 average "N/S Hearts     " 100 * nHearts,
 average "no shortness   " 100 * lev2,
@@ -181,4 +179,4 @@ Script
 Button,Mixed Raise in Comp,\n\
 ---  Opponents open 1C/1D/1H.  We overcall one 1H/1S. Partner has\n\
 4-card support with 7-9 TP and makes a mixed raise.\n\
-%MixedRaiseInComp%
+%MixedRaiseInComp%,width=50%
