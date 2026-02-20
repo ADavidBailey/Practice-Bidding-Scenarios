@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[HS] +Pass
 */
 ### Imported script: TP (Total Points)
@@ -118,20 +120,18 @@ calmOpps = calmEast and calmWest
 ##### End of Imported Script: Define Calm Opponents #####
 
 # Define misfits
-sMF = spades(south)>4   and spades(north)<2
-hMF = hearts(south)>4   and hearts(north)<2
-dMF = diamonds(south)>4 and diamonds(north)<2
-cMF = clubs(south)>4    and clubs(north)<2
+sMF = spades(south)>5   and spades(north)<2
+hMF = hearts(south)>5   and hearts(north)<2
+dMF = diamonds(south)>5 and diamonds(north)<2
+cMF = clubs(south)>5    and clubs(north)<2
 
-shapes = shape(south,any 76xx +any 66xx +any 65xx) and shape(north,any 76xx +any 66xx +any 65xx)
+shapes = shape(south,any 76xx +any 66xx +any 65xx) //and shape(south,any 76xx +any 66xx +any 65xx)
 ranges = hcp(south)>10 and tpSouth>11 and hcp(north)>10 and tpNorth>11 
 
-(sMF and hMF and dMF and cMF) and shapes and ranges and calmOpps
+(sMF or hMF or dMF or cMF) and shapes and ranges and calmOpps
 
-generate 100000
 produce 30
-action
-printoneline,
+action printoneline,
 average "spades" 100*(spades(south)>5),
 average "hearts" 100*(hearts(south)>5),
 `, "S", true)
