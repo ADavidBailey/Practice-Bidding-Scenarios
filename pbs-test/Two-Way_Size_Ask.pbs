@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1N +Pass (2S|2N)
 */
 # MST only is the default.  Note, his is not how we bid MST.  It's how GIB bids those hands.
@@ -57,6 +59,7 @@ iGS2 = hcp(north)==21                         // 21 ask for 15 and bid 6 invite 
 sA = noMajor and (iG or iSS1 or iSS2 or iGS1 or iGS2 or cA or dA)
 
 gibNT and sA
+action printoneline,
 `, "S", true)
 Script
 Button,Two-Way Size Ask,\n\
