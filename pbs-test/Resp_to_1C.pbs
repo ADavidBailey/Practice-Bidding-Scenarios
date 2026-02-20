@@ -233,10 +233,10 @@ tpNS = tpNorth + tpSouth
 tpEW = tpEast + tpWest
 
 ### End of Imported Script: TP
-# Defines sTP, Defines nTP
+# Defines tpSouth, Defines tpNorth
 
 # South bids 1C and North responds with 5+D and one or both 4-card majors
-sRange = hcp(south)>10 and hcp(south)<22 and sTP>11 and sTP<23
+sRange = hcp(south)>10 and hcp(south)<22 and tpSouth>11 and tpSouth<23
 sClubs = clubs(south)<7
 
 nD = diamonds(north)>4
@@ -248,9 +248,9 @@ nDHS = nD and nH and nS
 
 nShape = shape(north,any 64xx +any 5440+ any 5431 +any 5422)
 
-nRange1 = nTP>5 and nTP<11
-nRange2 = nTP>10 and nTP<13
-nRange3 = nTP>12
+nRange1 = tpNorth>5 and tpNorth<11
+nRange2 = tpNorth>10 and tpNorth<13
+nRange3 = tpNorth>12
 nRange = nRange1 or nRange2 or nRange3
 
 oneClub and sRange and sClubs and (nDH or nDS or nDHS) and nShape and nRange and calmWest
