@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-namyats
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n4[CDHS]
 */
-# convention-card: 21GF-namyats
-
-
 # namyatS Weak
 dealer south
 
@@ -36,6 +34,7 @@ Gs = spades(south)>6 and top5(south,spades)>3 and (akH or akD or akC)==0
 Gh = hearts(south)>6 and top5(south,hearts)>3 and (akS or akD or akC)==0
 
 (Gs or Gh) and loser(south)<6 and hcp(south)<18
+action printoneline,
 `, "S", true)
 Script
 Button,namyatS - Weak,\n\
