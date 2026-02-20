@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-MaximalDouble
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1H .* 2H +3D|1S .* 2S +3H
 */
-# convention-card: 21GF-MaximalDouble
-
-
 # Add 1M - 3M inviting, add Maximal Doubles, kill Reverse Bergen, Kill Support 1N, kill Two-way game tries
 
 
@@ -211,7 +209,7 @@ n1M and eBids and sRaise and w3Max
 and levelTheDeal
 
 produce 5000
-action
+action printoneline,
 average "free bid       " 100 * wFreeBid,
 average "raise          " 100 * wRaise,
 average "response to X  " 100 * wRespToX,
@@ -229,4 +227,4 @@ The Maximal Double is the answer:\n\
   • After 1!S (?) 2!S (3!H)，3!S is competitive and X is invitational\n\
 The BBO Robots do NOT play this.\n\
 https://www.nvba.org/novices/Robert_Todd/(195)+Maximal+Doubles.pdf\n\
-%MaximalDouble%,backgroundColor=lightpink
+%MaximalDouble%,width=50% backgroundColor=lightpink
