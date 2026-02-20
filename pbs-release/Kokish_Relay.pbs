@@ -16,10 +16,12 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-Kokish
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: Note....Kokish Relay
 */
 # Kokish Relay
+dealer south
 
 # Kokish relay shows unbal w/5+H and 4 on the side or a 25-27 NT
 sHearts = hcp(south)>21 and hearts(south)>4 and shape(south,any 74xx +any 64xx +any 54xx)
@@ -33,7 +35,7 @@ n2D = hcp(north)<9
 s2C and n2D
 
 produce 5000
-action
+action printoneline,
 average "hearts  " 100 * sHearts,
 average "notrump " 100 * sNT,
 `, "S", true)
