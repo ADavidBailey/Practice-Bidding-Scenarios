@@ -16,7 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-MaximalDouble
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n(1.* +1H +.* +2H\n3D|1.* +1S +.* +2S\n3H)
 */
 ### Imported script: TP (Total Points)
@@ -142,8 +143,7 @@ ranges = wRange and nRange and eRange and sRange
 # Now do it
 ranges and nsBid and ewBID
 produce 40
-action
-printoneline,
+action printoneline,
 `, "W", true)
 Script
 Button,Max X after Overcall,\n\
