@@ -120,12 +120,12 @@ calmOpps = calmEast and calmWest
 ##### End of Imported Script: Define Calm Opponents #####
 
 # Define misfits
-sMF = spades(south)>4   and spades(north)<3
-hMF = hearts(south)>4   and hearts(north)<3
-dMF = diamonds(south)>4 and diamonds(north)<3
-cMF = clubs(south)>4    and clubs(north)<3
+sMF = spades(south)>5   and spades(north)<3
+hMF = hearts(south)>5   and hearts(north)<3
+dMF = diamonds(south)>5 and diamonds(north)<3
+cMF = clubs(south)>5    and clubs(north)<3
 
-shapes = shape(south,any 76xx +any 66xx +any 65xx) and shape(south,any 76xx +any 66xx +any 65xx)
+shapes = shape(south,any 76xx +any 66xx +any 65xx) //and shape(south,any 76xx +any 66xx +any 65xx)
 ranges = hcp(south)>10 and tpSouth>11 and hcp(north)>10 and tpNorth>11 
 
 (sMF and hMF and dMF and cMF) and shapes and ranges and calmOpps
