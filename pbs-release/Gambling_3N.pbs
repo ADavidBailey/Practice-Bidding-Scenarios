@@ -16,14 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-Gambling
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n3NT? +
 */
-# convention-card: 21GF-Gambling
-
-
-dealer south
-
 # Gambling 3N
 hcp(south)>8 and hcp(south)<12  // could have a Q or two J's outside
 and
@@ -33,10 +29,11 @@ or
 (top3(south,clubs)==3 and clubs(south)>6)
 )
 and shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
+action printoneline,
 `, "S", true)
 Script
 Button,Gambling 3N,\n\
 --- Gambling 3N\n\
 A gambling 3N opening bid shows a solid 7 or 8-card minor suit and less than a K outside.\n\
 https://www.bridgebum.com/gambling_3nt.php\n\
-%Gambling3N%
+%Gambling3N%,width=50%
