@@ -1,15 +1,17 @@
 # alias: TwoNTandOneMinor
 # button-text: 2NT - 1m
 # scenario-title: ---  20-21 Notrump and one Minor-suit.
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n2NT?.*Pass.*(3C|[4567][CD]) +
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  20-21 Notrump and one Minor-suit.
 The responder's strength -- game or slam -- is leveled.
 @chat*/
+
 dealer south
 
 # Dealer 2N and 1-Minor
@@ -198,6 +200,6 @@ and levelTheDeal
 
 ### Generate Statistics
 
-action
+action printoneline,
 average "Game         " 100 * game,
 average "Slam         " 100 * slam,

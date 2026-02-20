@@ -1,11 +1,11 @@
 # alias: Splinter_After_NT
 # button-text: Splinter after NT
 # scenario-title: ---  Splinter after GIB Notrump
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Note..1:1N-3[DM] splinter
-# convention-card: 21GF-GIB
+# convention-card-ns: 21GF-GIB
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  Splinter after GIB Notrump
@@ -13,6 +13,7 @@ A 3!D, 3!H, or 3!S response to 1N showing a stiff or void with 4-cards
 in each unbid major and at least 4 in unbid minors. and 12+ TP.
 Note: GIB does splinter with a stiff A, K, or Q.
 @chat*/
+
 dealer south
 
 # Splinter after NT
@@ -86,7 +87,7 @@ splinter = (dSpl or hSpl or sSpl) and tp>11 //and (dAKQ or hAKQ or sAKQ)
 # Now do it
 gibNT and splinter and calmOpps
 produce 1000
-action
+action printoneline,
 
 average "hcp(south)"     hcp(south),
 average "hcp(north)"     hcp(north),

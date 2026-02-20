@@ -1,7 +1,21 @@
+# alias: Notrump
 # button-text: 15-17 NT (Lev)
 # scenario-title: ---  15-17 Notrump Opening
-# 1N
+# gib-works: false
+# bba-works: true
+# auction-filter: Auction.....\n1NT?
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+---  15-17 Notrump Opening
+2452+2425+2245+2254+4522 +any 4333, 4432, or 5332 distribution.
+Those 5422 hands are the ones where you are likely to have to reverse to show your suits.
+HCP adjusted +1 for any 5-card suit unless you have Kx, Qx, or Jx doubleton.
+@chat*/
+
 dealer south
+
 # Import Define-1N and Leveling
 ### Imported: Define 1 Notrump Opening ###
 
@@ -82,7 +96,7 @@ NT
 and levelTheDeal
 
 # Generate Statistics
-action
+action printoneline,
 
 average "Minimum     " 100 * ntMin,
 average "Avg         " 100 * ntAvg,

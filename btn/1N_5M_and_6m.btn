@@ -1,15 +1,18 @@
 # alias: Notrump5M6m
 # button-text: 1NT w/5M-6+m (Lev)
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1NT?.* Pass.* 2[DH].* Pass\n2[HS].*Pass.*3[CD] +
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  15-17 Notrump Opening with 5M and 6+m response.
 GIB opens 1N with any 5332, 4432, or 4333 and (15-17 HCP with no 5-card major or 15-16 with
 a 5-card major) plus any 5422 without a 5-card major and 15-16 HCP (too few points to reverse)
 @chat*/
+
+dealer south
 
 # Import Define-1N and Leveling
 #include "script/Predict-Opening-1-Bid"

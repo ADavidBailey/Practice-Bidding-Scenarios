@@ -1,12 +1,19 @@
+# alias: LeapingMichaels
 # button-text: Leaping Michaels
-# scenario-title: Leaping Michaels
-# Leaping_Michaels
-dealer east
-
-
-# convention-card:
+# scenario-title: --- Leaping Michaels
+# gib-works: false
+# bba-works: true
 # auction-filter: (Note...:Leaping Michaels)|(Note...:Michaels)
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
+/*@chat
+--- Leaping Michaels
+https://www.bridgebum.com/leaping_michaels.php
+@chat*/
+
+produce 1000
+dealer east
 
 # Leaping Michaels
 
@@ -29,7 +36,7 @@ dE = top3(east,diamonds)>1 and diamonds(east)==6 and spades(east)<4 and hearts(e
 # East opens a Weak Two and South has 2 good suits and less than 5 losers
 hcp(east)>5 and hcp(east)<10 and (sE or hE or dE) and hcp(south)>11 and losers(south)<5
 
-action
+action printoneline,
 average "           2S " 100 * sE,
 average "           2H " 100 * hE,
 average "           2D " 100 * dE,

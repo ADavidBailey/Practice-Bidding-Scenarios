@@ -1,7 +1,17 @@
+# alias: DoubleShowing2Suits
 # button-text: Double w/2 Suits
 # scenario-title: --- Double Showing 2 Suits
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n((1C +Pass +1[DHS]|1D +Pass +1[HS]|1H +Pass +1S|1[CDH] +1[DHS] +2[CDH]) +X)
-# Double_Showing_2_Suits
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Double Showing 2 Suits
+After 1x (P) 1y, (X) shows the other two suits.
+@chat*/
+
 dealer west
 
 ##### Double Showing 2 Suits #####
@@ -136,7 +146,7 @@ levelTheDeal = levNBids or levNPass
 westOpens and northActs and eastActs and southActs
 and levelTheDeal
 
-action
+action printoneline,
 average "N bids" 100 * northBids,
 average "N pass" 100 * northPasses,
 average "H&S   " 100 * sHS,

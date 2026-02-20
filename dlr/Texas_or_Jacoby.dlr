@@ -1,14 +1,22 @@
+# alias: JacobyOrTexas
 # button-text: Jacoby or Texas
-# scenario-title: Jacoby or Texas
-# Texas_or_Jacoby
+# scenario-title: ---  Jacoby or Texas
+# gib-works: true
+# bba-works: true
+# auction-filter: (1NT?.* Pass.* 2[DH] +)|(1NT?.* Pass.* 4[DH] +)
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+---  Jacoby or Texas
+Jacoby followed directly by 4N is Quantitative.  Texas then 4N is RKC.
+Jacopy then Splinter has 6+cards and slam interest (small or grand) due to shortness.
+@chat*/
+
+# Stayman or Jacoby
 dealer south
 
 
-# Stayman or Jacoby
-
-/*
-auction-filter: (1NT?.* Pass.* 2[DH] +)|(1NT?.* Pass.* 4[DH] +)
-*/
 
 ##### Imported Script -- GIB 1 Notrump #####
 
@@ -50,7 +58,6 @@ calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<1
 calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
-
 # Defines calmWest
 
 # North has a 5+card major w/o 4 in other major and (no slam interest or intending to RKC)
@@ -60,3 +67,4 @@ nM = (nS or nH)
 
 # North has Robot 1 Notrump Opening and South Transfers
 gibNT and nM and calmWest
+action printoneline,

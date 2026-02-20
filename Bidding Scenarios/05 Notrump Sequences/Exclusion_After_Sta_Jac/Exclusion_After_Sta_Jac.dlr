@@ -1,18 +1,18 @@
 # alias: ExclusionStaJac
 # button-text: Exclusion Sta/Jac
 # scenario-title: --- Exclusion Blackwood after Stayman or Jacoby
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: Note....Exclusion
-# convention-card: 21GF-Exclusion
+# convention-card-ns: 21GF-Exclusion
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Exclusion Blackwood after Stayman or Jacoby
 Leveled for Stayman vs Jacoby.
 @chat*/
-dealer south
 
+dealer south
 produce 1000
 
 ##### Imported Script -- GIB 1 Notrump #####
@@ -86,7 +86,7 @@ levelTheDeal = case1 or case2
 gibNT and hcp(north)>13 and shape(north,any 0xxx) and (case1 or case2)
 and levelTheDeal
 
-action
+action printoneline,
 average "Jac + Fit " 100 * jacFit,
 average "Sta + Fit " 100 * staFit,
 average "hcp south " hcp(south),

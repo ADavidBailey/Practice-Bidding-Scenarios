@@ -1,16 +1,33 @@
+# alias: Cappelletti
 # button-text: Cappelletti
-# scenario-title: After 1NT... Cappelletti is the prefered defense for a Weak NT
-# Cappelletti
-dealer east
+# scenario-title: --- After 1NT... Cappelletti is the prefered defense for a Weak NT
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n1NT? +[X2-7]
+# convention-card-ns: 21GF-GIB
+# convention-card-ew: 21GF-GIB
 
+/*@chat
+--- After 1NT... Cappelletti is the prefered defense for a Weak NT
+because it preserves the penalty double.
+X   = 15+ HCP
+2!C = 10+ TP and any Twice-Biddable 6-card suit
+2!D = 11+ TP and 5/4 or better !H and !S
+2!H = 11+ TP and 5/5 or better !H and a minor
+2!S = 15+ TP and 5/5 or better !S and a minor
+2N = 15+ TP and 5/5 or better in !C and !D
+3!C = 13+ TP w/Strong Rebiddable !C
+3!D = 13+ TP w/Strong Rebiddable !D
+3!H = 13+ TP w/Strong Rebiddable !H
+3!S = 13+ TP w/Strong Rebiddable !S
+@chat*/
+
+dealer east
 
 # Cappelletti
 
 /*
-
-convention-card: 21GF-GIB
-auction-filter: Auction.....\n1NT? +[X2-7]
-
+Cappelletti
 */
 
 
@@ -176,7 +193,7 @@ sX = hcp(south)>15 and not (sStrong1 or s2Suits or s2C)
 
 gibNT and (sX or sStrong1 or s2Suits or s2C)
 
-action
+action printoneline,
 
 average "X   " 100 * sX,
 average "2C  " 100 * s2C,

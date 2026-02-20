@@ -1,19 +1,20 @@
 # alias: WeOvercallTheir2C
 # button-text: We Overcall Their 2C
 # scenario-title: ---  They open 2C (strong) and we overcall or preempt.
-# dealer-position: E
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n2C =.= +(X|2[DHSN]) +
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  They open 2C (strong) and we overcall or preempt.
 @chat*/
-dealer east
 
 # They open 2C (strong) and we overcall or preempt
 
 
+dealer east
 
 eOpens2C = hcp(east)>21
 
@@ -41,7 +42,7 @@ losersWithOneSuit  = sOneSuit  ? losers(south) : 0
 losersWithTwoSuits = sTwoSuits ? losers(south) : 0
 
 produce 500
-action
+action printoneline,
 average "hcp east      " hcp(east),
 average "sTwoSuits     " 100 * sTwoSuits,
 average "losers(south) " losersWithTwoSuits,

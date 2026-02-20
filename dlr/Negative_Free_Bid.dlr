@@ -1,12 +1,22 @@
+# alias: NegativeFreeBid
 # button-text: Negative Free Bid
-# scenario-title: Negative Free Bid
-# Negative_Free_Bid
-dealer north
-
-
+# scenario-title: --- Negative Free Bid
+# gib-works: false
+# bba-works: true
 # auction-filter: 1[CDHS] (1[DHS]|2[CDHS]) [123][CDHS]
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Negative Free Bid
+North Opens & East Overcalls and South has no Major suit fit w/North and
+• 5-9 HCP with a good 5- or any 6-card suit (non-jump) or
+• 10-11 HCP with a good 6+ card suit (jump)
+https://kwbridge.com/bb/nfb-1.htm
+@chat*/
 
 # Negative Free Bid
+dealer north
 
 # Predict North's opening suit
 sN = spades(north)
@@ -106,3 +116,4 @@ southResponds = fitOK and rankOK and (a6g5 or g6)
 
 # Now do it
 northOpens and eastOvercalls and southResponds
+action printoneline,

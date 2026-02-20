@@ -1,10 +1,11 @@
 # alias: Jacoby2N4xVoid
 # button-text: Jacoby 2N (4x-void)
 # scenario-title: --- Jacoby 2N w/4x showing a void
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: Auction.....\n1[HS] +Pass +2N
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Jacoby 2N w/4x showing a void
@@ -16,9 +17,9 @@ are the approximate frequency of occurrence for the various hand types. Use the 
 • 3N (14%) - 15-17 Semi-Balanced
 • 4M (34%) - 12-14 Semi-Balanced
 @chat*/
-dealer south
 
 produce 1000
+dealer south
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -250,7 +251,7 @@ levelTheDeal = lx4 or lx3 or lM3 or lN3 or lM4
 #and levelTheDeal
 
 ##### Generate Statistics #####
-action
+action printoneline,
 average "1. x4" 100 * x4,
 average "2. x3" 100 * x3,
 average "3. M3" 100 * M3,

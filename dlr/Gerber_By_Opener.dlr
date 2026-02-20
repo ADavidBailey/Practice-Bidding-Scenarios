@@ -1,8 +1,19 @@
+# alias: GerberByOpener
 # button-text: Gerber by Opener (Lev)
 # scenario-title: --- Gerber by Opener (Leveled)
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n(2C =1= +Pass +2. +Pass\n4C|1[CD] +Pass +.N +Pass\n4C)
-# Gerber_By_Opener
-dealer south
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Gerber by Opener (Leveled)
+There are two sequences where Gerber might be used -- after 1m - 2N
+or 2!C - 2N and opener has slam interest.  The 1m - 2N sequences are rare.
+https://www.bridgebum.com/gerber.php
+@chat*/
+
 # These are sequences where 4C-Gerber might be bid by Opener
 
 # Gerber by Opener
@@ -10,6 +21,7 @@ dealer south
 # 1m - 2N - ?
 # 2C - 2N - ?
 
+dealer south
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -248,8 +260,6 @@ s2C = hcp(south)>21 and n2cRange and n2cShape and n2cQ
 
 # Now do it
 (s1m and calmWest) or s2C
-action
+action printoneline,
 average "1m - 2N  " 100 * s1m,
 average "2C - 2N  " 100 * s2C,
-
-printpbn

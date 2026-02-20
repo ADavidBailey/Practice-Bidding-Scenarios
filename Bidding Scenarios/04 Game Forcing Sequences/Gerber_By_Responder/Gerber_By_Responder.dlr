@@ -1,11 +1,11 @@
 # alias: GerberByResponder
 # button-text: Gerber by Responder (Lev)
 # scenario-title: --- Gerber by Responder (Leveled)
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Note....A=
-# convention-card: 21GF-Gerber
+# convention-card-ns: 21GF-Gerber
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Gerber by Responder (Leveled)
@@ -15,6 +15,7 @@ investigate slam.  The pair has no 8-card major or 9-card minor fit.  The hands 
 that the first several ranges of NT ladder occur with approximately the same frequency.
 https://www.bridgebum.com/gerber.php
 @chat*/
+
 dealer south
 
 # These are sequences where 4C-Gerber might be bid by Responder
@@ -351,7 +352,7 @@ and levelTheDeal
 
 
 produce 10
-action
+action printoneline,
 average "12 + 21: 1x-1y-1N-? " 100 * nt12,
 average "15 + 18: 1N-?       " 100 * nt15,
 average "18 + 15: 1x-1y-2N-? " 100 * nt18,

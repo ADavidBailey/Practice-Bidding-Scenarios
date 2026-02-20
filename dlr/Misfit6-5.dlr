@@ -1,14 +1,16 @@
 # alias: Misfit65
 # button-text: Misfit 6+5+
 # scenario-title: --- South opens w/any 6-5 or better and North has GF values w/6-5 or better and no fit.
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1[HS] +Pass
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- South opens w/any 6-5 or better and North has GF values w/6-5 or better and no fit.
 @chat*/
+
 dealer south
 
 ### Imported script: TP (Total Points)
@@ -122,7 +124,6 @@ ranges = hcp(south)>10 and tpSouth>11 and hcp(north)>10 and tpNorth>11
 (sMF and hMF and dMF and cMF) and shapes and ranges and calmOpps
 
 produce 30
-action
-printoneline,
+action printoneline,
 average "spades" 100*(spades(south)>5),
 average "hearts" 100*(hearts(south)>5),

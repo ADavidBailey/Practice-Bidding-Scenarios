@@ -1,14 +1,25 @@
+# alias: AfterOppOvercalls
 # button-text: After Opp Overcalls
-# scenario-title: After Partner Overcalls
-# After_Opp_Overcalls
-dealer south
-
-
-# convention-card:
+# scenario-title: --- After Partner Overcalls
+# gib-works: true
+# bba-works: true
 # auction-filter: 1[CDHS].[12][CDHSN].
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- After Partner Overcalls
+• Raising a minor denies a 4-card Major and shows a fit and 7-9 TP
+• Double denies a Major fit and shows at least 4-cards in the unbid major suits and 6+ HCP
+• Raising a Major shows a fit and 6-10 TP
+• Cue Biddding RHO's suit shows a fit and 11+ TP
+• New Suit denies a fit and shows 10+ HCP
+@chat*/
 
 # After Opponent Overcalls partner's opening bid
 
+dealer south
+produce 10000
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -60,7 +71,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -70,7 +81,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -181,7 +192,7 @@ nRaisesMinor = (oC or oD) and nFit and (wD or wH) nsp>5
 nActs = nCueBids or nRaisesMajor or nDoubles or nRaisesMinor // or nNewSuit 
 sOpens and wOvercalls and nActs
 
-action
+action printoneline,
 average "cue bids  " 100 * nCueBids,
 average "raise M   " 100 * nRaisesMajor,
 average "neg double" 100 * nDoubles,

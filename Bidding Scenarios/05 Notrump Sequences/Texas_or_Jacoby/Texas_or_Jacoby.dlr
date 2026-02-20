@@ -1,19 +1,20 @@
 # alias: JacobyOrTexas
 # button-text: Jacoby or Texas
 # scenario-title: ---  Jacoby or Texas
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: (1NT?.* Pass.* 2[DH] +)|(1NT?.* Pass.* 4[DH] +)
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  Jacoby or Texas
 Jacoby followed directly by 4N is Quantitative.  Texas then 4N is RKC.
 Jacopy then Splinter has 6+cards and slam interest (small or grand) due to shortness.
 @chat*/
-dealer south
 
 # Stayman or Jacoby
+dealer south
 
 
 
@@ -66,3 +67,4 @@ nM = (nS or nH)
 
 # North has Robot 1 Notrump Opening and South Transfers
 gibNT and nM and calmWest
+action printoneline,

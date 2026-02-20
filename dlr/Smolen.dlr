@@ -1,13 +1,20 @@
+# alias: Smolen
 # button-text: Smolen
 # scenario-title: --- Smolen
+# gib-works: true
+# bba-works: true
 # auction-filter: Note....SMOLEN
-# convention-card: 21GF-GIB
+# convention-card-ns: 21GF-GIB
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Smolen
+With game forcing values and 5-4 in the majors, start with 2!C.
+If partner bids 2!D, jump to 3 of your 4-card major.
+@chat*/
+
 # Smolen
 dealer south
-# convention-card: 21GF-GIB
-
-
-# Smolen
 
 ##### Imported Script -- GIB 1 Notrump #####
 
@@ -55,5 +62,4 @@ oneNT = gibNT and shape(south, 23xx+32xx+33xx-xxx1-xx1x-xx6x-xxx6)
 smolen = shape(north, 54xx+45xx) and hcp(north) > 9
 
 oneNT and smolen and calmWest        // It's OK for East to X with decent clubs -- system's on
-
-action printpbn
+action printoneline,

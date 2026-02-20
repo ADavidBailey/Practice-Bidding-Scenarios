@@ -1,19 +1,18 @@
 # alias: WeXOppsPreempt
 # button-text: We X Opps Preempt
 # scenario-title: --- We Double Opponents Preemptive opening.
-# dealer-position: E
 # gib-works: true
 # bba-works: true
 # auction-filter: 3[CDHS] X Pass
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- We Double Opponents Preemptive opening.
 @chat*/
+
 dealer east
 
-# Opponent Preempts at 3-level or higher
-generate 100000000
-produce 600
 
 # East Preempts
 
@@ -111,7 +110,8 @@ levelTheDeal = (levWeak or levInvite or levForce or levSX1 or levSX2 or levSX3)
 ePreempts and sX and wPasses and (weak or invite or force)
 and levelTheDeal
 
-action
+produce 40
+action printoneline,
 average "South X 14-15 " 100 * sX1,
 average "South X 16-18 " 100 * sX2,
 average "South X 19+   " 100 * sX3,

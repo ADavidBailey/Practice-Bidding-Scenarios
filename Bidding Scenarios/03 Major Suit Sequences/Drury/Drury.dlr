@@ -1,10 +1,11 @@
 # alias: Drury
 # button-text: Drury
 # scenario-title: --- Drury
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Note...:Reverse.drury
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Drury
@@ -13,10 +14,10 @@ After P (P) 1M (P), 2!C is Drury or Reverse Drury.
 Drury:  2!D denies game interest and 2M shows game interest.
 Reverse Drury: 2!D shows some game interest and 2M denies game interest.
 @chat*/
-dealer south
 
 # Reverse Drury
 
+dealer south
 produce 1000
 
 ##### Imported Script: Define Calm Opponents #####
@@ -145,7 +146,7 @@ sResponds = tpSouth>9 and not sSJS
 # Now do it
 sPasses and nOpens and calmOpps and sResponds
 
-action
+action printoneline,
 average "HCP North " hcp(north),
 average "TP North  " tpNorth,
 average "HCP South " hcp(south),

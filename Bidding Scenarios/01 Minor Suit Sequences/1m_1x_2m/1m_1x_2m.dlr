@@ -1,17 +1,18 @@
 # alias: OneMinorTwoMinor
 # button-text: 1m-1x-2m
 # scenario-title: --- 1m-1x-2m
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n(1C +Pass +1.* Pass\n2C|1D +Pass 1.* Pass\n2D)
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- 1m-1x-2m
 @chat*/
-dealer south
 
 # South Open's 1 of a Minor
+dealer south
 produce 1000
 
 ##### Imported Script: Define Calm Opponents #####
@@ -53,7 +54,7 @@ sLength = clubs(south)>diamonds(south) ? clubs(south) : diamonds(south)
 # Do it
 sMinor and n1Bid and calmOpps
 
-action
+action printoneline,
 average "hcp(south)      " hcp(south),
 average "hcp(north)      " hcp(north),
 average "south length    " sLength,

@@ -1,11 +1,11 @@
 # alias: TwoWayGameTry
 # button-text: Two-Way Game Try
 # scenario-title: --- Two-Way Game Try
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: Note "1:Two way game tries
-# convention-card: 21GF-Two-Way-Game-Try
+# convention-card-ns: 21GF-Two-Way-Game-Try
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Two-Way Game Try
@@ -15,11 +15,11 @@ After a single raise of a major
 . bidding 3 of the major is a general strength game try
  https://www.bridgebase.com/doc/gib_system_notes.php#Two-way_Game_Try
 @chat*/
-dealer south
 
 # Select Two-Way Game Tries
 
 # Two-Way Game Tries
+dealer south
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -245,7 +245,7 @@ gameTry = tpSouth==16 and hcp(south)<16
 
 fit and gameTry and tpNorth<10 and calmOpps
 
-action
+action printoneline,
 average "hcp(south)" hcp(south),
 average "hcp(north)" hcp(north),
 frequency "hcp(south)" (hcp(south),12,17),

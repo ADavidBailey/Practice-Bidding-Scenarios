@@ -1,16 +1,31 @@
+# alias: Balancing
 # button-text: Balancing (Lev)
-# scenario-title: After LHO opening is passed to you...
-# Balancing
-dealer east
+# scenario-title: --- After LHO opening is passed to you...
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n1[CDHS] +Pass +Pass +[PX1-7]
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
+/*@chat
+--- After LHO opening is passed to you...
+• Pass
+• Overcall a suit (7-17 at the 1-level, 11-17 at the 2 level)
+• Balancing NT (11-15)
+• Take-out Double (10+ short in opener's suit w/at least 3 cards in each unbid suit)
+• Jump Overcall (15-17 w/good 6-card suit)
+• Too Strong to Overcall (18+) -- start with double
+• Two-Suits -- cue bid
+• 2NT -- 20-21
+This scenario attempts to offer all options with about the same frequency.
+@chat*/
 
 /*
 Balancing
-
-auction-filter: Auction.....\n1[CDHS] +Pass +Pass +[PX1-7]
 */
 
 # Balancing
+dealer east
 
 # Define North's good suits
 GoodS = spades(north)>4 and top5(north,spades)>2
@@ -143,7 +158,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 levnOC1 = nOC1  and keep03
 levnOC2 = nOC2  and keep045
 levnTOX = nTOX  and keep015
@@ -157,7 +171,8 @@ levelTheDeal = (levnOC1 or levnOC2 or levnTOX or levnOCN or levnJOC or levnTSO o
 eOpens and wPasses and calmSouth and (nOC1 or nOC2 or nTOX or nOCN or nJOC or nTSO or nTS or n2NT)
 and levelTheDeal
 
-action
+produce 5000
+action printoneline,
 average "(hcp east)  " hcp(east),
 average "(hcp north) " hcp(north),
 average "overcall at 1-level    " 100 * nOC1,

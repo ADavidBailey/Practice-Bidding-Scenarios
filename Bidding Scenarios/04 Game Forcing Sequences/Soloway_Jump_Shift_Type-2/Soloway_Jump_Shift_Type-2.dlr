@@ -1,20 +1,20 @@
 # alias: SolowayJumpShiftType2
 # button-text: 2  
 # scenario-title: --- Soloway Jump Shift - Type 2
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: \n(1C +Pass +2[DHS]|1D +Pass +2[HS]|1H +Pass +2S)
-# convention-card: 21GF-SolowayJumpShift
+# convention-card-ns: 21GF-SolowayJumpShift
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Soloway Jump Shift - Type 2
 2. Solid suit w/17+ HCP and 4+ controls and may have a 4-card side suit
 https://www.bridgebase.com/doc/gib_system_notes.php#Soloway_Jump_Shift
 @chat*/
-dealer south
 
 # Soloway Jump Shift
+dealer south
 
 # Calculate Total Points for North (tp) for North
 v1 = shape(north, any 0xxx) ? 5 : 0
@@ -86,3 +86,4 @@ and
 # Type 2
    (solidSuit)
 )
+action printoneline,

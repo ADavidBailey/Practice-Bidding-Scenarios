@@ -1,11 +1,11 @@
 # alias: DONT
 # button-text: DONT (Lev)
 # scenario-title: --- 15-17 Notrump Opening and DONT action
-# dealer-position: E
 # gib-works: true
 # bba-works: false
 # auction-filter: Auction.....\n1N +[X23]
-# convention-card: 21GF-GIB
+# convention-card-ns: 21GF-GIB
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- 15-17 Notrump Opening and DONT action
@@ -17,8 +17,8 @@
 The DONT actions are leveled.  The NT opener is not leveled.
 https://www.bridgebum.com/dont.php
 @chat*/
-dealer east
 
+dealer east
 
 ##### Imported Script -- GIB 1 Notrump (East) #####
 
@@ -181,7 +181,7 @@ gibNT and (cX or c2C or c2D or c2H or c2S) and tpSouth>8
 and levelTheDeal
 
 # Generate Statistics
-action
+action printoneline,
 average "X    " 100 * cX,
 average "2C   " 100 * c2C,
 average "2D   " 100 * c2D,

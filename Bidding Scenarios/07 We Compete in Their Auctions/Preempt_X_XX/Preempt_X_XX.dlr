@@ -1,19 +1,20 @@
 # alias: PreemptXRX
 # button-text: Preempt (X) XX (Lev)
 # scenario-title: --- Preempt (X) XX (Now What?)
-# dealer-position: E
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n3[CDHS] +X +
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Preempt (X) XX (Now What?)
 After a 3-level or 4-level preempt, (X), XX, what do we do?  The deals are leveled
 so that the 7-card and 8-card preempts occur with about the same frequency.
 @chat*/
-dealer east
 
 # Opps Preempt, we X and they XX
+dealer east
 produce 1000
 
 # Define East preempt at the 3- or 4-level
@@ -92,7 +93,7 @@ levelTheDeal = lev7 or lev8 or lev9
 eOpens and sDoubles and wXX
 and levelTheDeal
 
-action
+action printoneline,
 average "hcp East " hcp(east),
 average "hcp North" hcp(north),
 average "hcp West " hcp(west),

@@ -1,10 +1,23 @@
+# alias: JacobyX
 # button-text: X Jacoby
 # scenario-title: --- Opponents X Jacoby
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n1N +Pass +2[DH] +X
-# Opps_Double_Jacoby
-dealer south
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Opponents X Jacoby
+The BBO Robots complete the transfer with 3+ support, otherwise they pass.
+A recent ACBL Bulletin article recommended completing the transfer with either 3+ support or a
+stop in opponent's suit.  Then, responder can safely invite with 2NT or force to game with 3NT.
+@chat*/
+
 # Opps X Jacoby
 
+dealer south
+produce 30
 
 # South opens 1N
 sNT = shape(south,any 4333+any 4432+any 5332-5xxx-x5xx) and hcp(south)>14 and hcp(south)<18
@@ -30,12 +43,10 @@ eDoubles = shape(east,any 6xxx+any 5xxx-any 65xx-any 55xx) and eLength>4 and hcp
 # Now do it
 sNT and wPasses and nTransfers and eDoubles 
 
-action
+action printoneline,
 
 average "South's hcp     " hcp(south),
 average "North's hcp     " hcp(north),
 average "East's hcp      " hcp(east),
 average "East's length=5 " 100 * (eLength==5),
 average "East's length>5 " 100 * (eLength>5),
-
-printpbn

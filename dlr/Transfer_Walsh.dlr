@@ -1,10 +1,11 @@
 # alias: TransferWalsh
 # button-text: Transfer Walsh
 # scenario-title: --- Transfer Walsh w/X-Y-NT
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: Auction.....\n1C +[PX1].* (X|1[DHSN]|[23]N)
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Transfer Walsh w/X-Y-NT
@@ -19,11 +20,11 @@ After 1!C...
 • 2N = 13-15 balanced
 https://en.wikipedia.org/wiki/Transfer_Walsh#
 @chat*/
-dealer south
 
 # Transfer Walsh
 
 
+dealer south
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -159,8 +160,7 @@ oneClub and hcp(south)>11 and nResponds   // BBO does not open most 11s
 
 
 produce 40
-action
-printoneline,
+action printoneline,
 
 average "1D        " 100 * n1D,
 average "1H        " 100 * n1H,

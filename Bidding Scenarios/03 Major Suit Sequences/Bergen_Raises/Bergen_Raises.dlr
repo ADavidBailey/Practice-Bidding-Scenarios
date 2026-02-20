@@ -1,11 +1,11 @@
 # alias: BergenRaises
 # button-text: Bergen Raises (Lev)
 # scenario-title: --- Bergen Raises all show exactly 4-card support.
-# dealer-position: N
 # gib-works: false
 # bba-works: true
 # auction-filter: Auction.....\n1[HS] +Pass +3[CDHSN]
-# convention-card: 21GF-Bergen
+# convention-card-ns: 21GF-Bergen
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Bergen Raises all show exactly 4-card support.
@@ -16,13 +16,13 @@
 • 3N  = 4333 (13-15) HCP
 https://www.bridgebum.com/bergen_raises.php
 @chat*/
-dealer north
 
 /*
 Select Bergen, 1M 3M blocking, and turn off 1N opening shape 5422
 */
 
 # Bergen Raises
+dealer north
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -150,7 +150,7 @@ nOpens and (case3M or case3C or case3oM or case3N or case3D) and calmEast
 and levelTheDeal
 
 produce 5000
-action
+action printoneline,
 average "3C   7-10 TP      " 100 * case3C,
 average "3D  11-12 TP      " 100 * case3D,
 average "3oM 11-13 41/40xx " 100 * case3oM,

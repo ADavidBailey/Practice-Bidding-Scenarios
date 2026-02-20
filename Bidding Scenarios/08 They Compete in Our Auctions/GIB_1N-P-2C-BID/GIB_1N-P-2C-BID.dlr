@@ -1,17 +1,17 @@
 # alias: GibAfterStayman
 # button-text: GIB after Stayman
 # scenario-title: 
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n(1NT? +Pass +2C.* +[X2-7])
-# convention-card: 21GF-GIB
+# convention-card-ns: 21GF-GIB
+# convention-card-ew: 21GF-GIB
 
-dealer south
 /*
 South opens 1N and North responds 2C and East bids.
 */
 
+dealer south
 
 # 1 Notrump Opening
 ##### Imported Script -- GIB 1 Notrump #####
@@ -310,7 +310,7 @@ levelTheDeal = lev2B or lev3B or lev4B or levX
 gibNT and tpSouth<19 and calmWest and n2Clubs and (eShape or eX) and (e2B or e3B or e4B or eX)
 and levelTheDeal
 
-action
+action printoneline,
 average "smolen      " 100 * smolen,
 average "stayman     " 100 * stayman,
 average "major invite" 100 * majorInvite,

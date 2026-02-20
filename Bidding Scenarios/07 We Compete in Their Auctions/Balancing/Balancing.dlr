@@ -1,10 +1,11 @@
 # alias: Balancing
 # button-text: Balancing (Lev)
 # scenario-title: --- After LHO opening is passed to you...
-# dealer-position: E
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1[CDHS] +Pass +Pass +[PX1-7]
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- After LHO opening is passed to you...
@@ -18,13 +19,13 @@
 • 2NT -- 20-21
 This scenario attempts to offer all options with about the same frequency.
 @chat*/
-dealer east
 
 /*
 Balancing
 */
 
 # Balancing
+dealer east
 
 # Define North's good suits
 GoodS = spades(north)>4 and top5(north,spades)>2
@@ -171,7 +172,7 @@ eOpens and wPasses and calmSouth and (nOC1 or nOC2 or nTOX or nOCN or nJOC or nT
 and levelTheDeal
 
 produce 5000
-action
+action printoneline,
 average "(hcp east)  " hcp(east),
 average "(hcp north) " hcp(north),
 average "overcall at 1-level    " 100 * nOC1,

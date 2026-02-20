@@ -1,8 +1,18 @@
+# alias: TrapPassMaybe
 # button-text: Trap Pass?
 # scenario-title: --- Trap Pass, Maybe
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n1[CDHS] +[1-4][CDHS]
-# Trap_Pass_Maybe
-dealer south
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Trap Pass, Maybe
+ After 1x, (overcall), Pass, (Pass), consider reopening with DOUBLE.
+About 33% of South's passes are trap passes.  The others are weak passes.
+@chat*/
+
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
 # 03/30/2025 -- Changed to use gibNT
@@ -112,6 +122,7 @@ oneClub    = oC
 ##### End of Imported Script -- Predict Opening 1-Bid #####
 # Defines oneClub, oneDiamond, oneHeart, oneSpade, s, h, d, c
 
+dealer south
 
 # North does not have a fit with South (avoid raise) and North is short in West's suit
 # and West is NOT short in North's suit (avoid X)
@@ -217,8 +228,6 @@ levelTheDeal = lWeakPass or lTrapPass
 sOpens and wOvercalls and eQuiet
 and levelTheDeal
 
-action
+action printoneline,
 average "Trap Pass" 100 * wOvercallTrap,
 average "Weak Pass" 100 * wOvercallWeak,
-
-printpbn

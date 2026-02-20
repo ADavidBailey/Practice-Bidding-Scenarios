@@ -1,9 +1,18 @@
+# alias: MajorOpener
 # button-text: Major Opener
 # scenario-title: --- Major Opener
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n1[HS]
-# Major_Opener
-dealer south
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Major Opener
+@chat*/
+
 # South opens 1 Major
+dealer south
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -116,5 +125,4 @@ oneClub    = oC
 
 # South opens 1M
 (oS or oH) and hcp(south)>11 and hcp(south)<20
-
-action printpbn
+action printoneline,

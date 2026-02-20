@@ -1,7 +1,17 @@
+# alias: SlamAfterTransfer
 # button-text: Slam after Transfer
 # scenario-title: --- Slam after Jacoby/Texas Transfer.
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n(1N +Pass +2[DH]|1N +Pass +4[DH])
-# Slam_after_Transfer
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Slam after Jacoby/Texas Transfer.
+@chat*/
+
+produce 1000
 dealer south
 
 # Slam after Jacoby/Texas Transfer
@@ -26,5 +36,4 @@ and (spades(north)>4 or hearts(north)>4)    // Jacoby or Texas Transfer
 and shape(north, any 0xxx +any 1xxx +any 2xxx)
 and not shape(north, 54xx+45xx)             // avoid Smolen
 and hcp(north)>15
-
-action printpbn
+action printoneline,

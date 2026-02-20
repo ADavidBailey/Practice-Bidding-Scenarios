@@ -1,15 +1,17 @@
 # alias: TwoNT
 # button-text: 2NT 20-21 (Lev)
 # scenario-title: --- 20-21 Notrump and any response.  Leveled so that the various
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n2NT?
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- 20-21 Notrump and any response.  Leveled so that the various
 responses occur at more nearly the same frequency.
 @chat*/
+
 dealer south
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
@@ -215,8 +217,7 @@ and levelTheDeal
 
 ### Generate Statistics ###
 produce 30
-action
-printoneline,
+action printoneline,
 average "Pass                  " 100 * weak,
 average "Balanced, not Stayman " 100 * balanced, // and not puppet, stayman, or MSS
 average "Puppet, not Stayman   " 100 * puppet,   // and not stayman or MSS

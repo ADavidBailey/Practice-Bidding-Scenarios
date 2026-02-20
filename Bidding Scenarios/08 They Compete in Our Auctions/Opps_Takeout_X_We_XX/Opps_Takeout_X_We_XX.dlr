@@ -1,18 +1,19 @@
 # alias: OppsTakeoutDoubleXX
 # button-text: Takeout X We XX
 # scenario-title: --- Opponents Takeout X We XX
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1[HS] +X.* XX
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Opponents Takeout X We XX
 We have no fit and 10+ HCP.
 @chat*/
-dealer south
 
 # Opponents Takeout Double
+dealer south
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -130,3 +131,4 @@ openMajor = (openSpade or openHeart) and shape(west,any 5440 +any 5431 +any 4441
 
 # South opens 1M
 openMajor and hcp(north)>9 and hcp(west)>12 and hcp(west)<16
+action printoneline,

@@ -1,10 +1,11 @@
 # alias: After3Passes
 # button-text: After 3 Passes...
 # scenario-title: --- After 3 Passes...
-# dealer-position: W
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\nPass +Pass +Pass.
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- After 3 Passes...
@@ -12,7 +13,6 @@ Should you open in 4th seat?  The Rule of 15 says if your hcp plus the
 number of spades is less than 15, you should Pass.  This is leveled so that
 the 4th seat R15 points of 14 or 15 occur at about the same frequency.
 @chat*/
-dealer west
 
 /*
 After 3 Passes
@@ -108,7 +108,8 @@ levelTheDeal = lev14 or lev15
 calmWest and calmNorth and calmEast and hcp(south)>10 and hcp(south)<15 and r15>13 and r15<16
 and levelTheDeal
 
-action
+dealer west
+action printoneline,
 
 average "hcp W     " hcp(west),
 average "hcp N     " hcp(north),

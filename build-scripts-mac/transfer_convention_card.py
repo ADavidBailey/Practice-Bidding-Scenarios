@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Transfer convention-card metadata from PBS files to BTN files.
+Transfer convention-card-ns metadata from PBS files to BTN files.
 Only transfers non-empty values.
 """
 import os
@@ -13,28 +13,28 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from config import FOLDERS
 
 def get_convention_card_from_pbs(pbs_path: str):
-    """Extract convention-card value from PBS file."""
+    """Extract convention-card-ns (or legacy convention-card) value from PBS file."""
     with open(pbs_path, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    # Match convention-card with value on the SAME LINE (not grabbing the next line)
-    # Formats: "# convention-card: value" or "convention-card: value"
-    # Value must be non-empty and not contain "auction-filter" (which would be the next line)
-    match = re.search(r'^#?\s*convention-card:\s*(\S[^\n]*?)$', content, re.MULTILINE)
+    # Try new format first
+    match = re.search(r'^#?\s*convention-card-ns:\s*(\S[^\n]*?)$', content, re.MULTILINE)
+    if not match:
+        # Legacy fallback
+        match = re.search(r'^#?\s*convention-card:\s*(\S[^\n]*?)$', content, re.MULTILINE)
     if match:
         value = match.group(1).strip()
-        # Exclude if it looks like an auction-filter was incorrectly captured
         if value and not value.startswith('auction-filter') and not value.startswith('#'):
             return value
     return None
 
 def add_convention_card_to_btn(btn_path: str, convention_card: str) -> bool:
-    """Add convention-card metadata to BTN file if not already present."""
+    """Add convention-card-ns metadata to BTN file if not already present."""
     with open(btn_path, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    # Check if already has convention-card
-    if re.search(r'^#\s*convention-card:', content, re.MULTILINE):
+    # Check if already has convention-card-ns
+    if re.search(r'^#\s*convention-card-ns:', content, re.MULTILINE):
         return False  # Already has it
 
     # Find where to insert (after auction-filter if present, else after bba-works)
@@ -47,14 +47,14 @@ def add_convention_card_to_btn(btn_path: str, convention_card: str) -> bool:
 
         # Insert after auction-filter line
         if not inserted and line.startswith('# auction-filter:'):
-            new_lines.append(f"# convention-card: {convention_card}")
+            new_lines.append(f"# convention-card-ns: {convention_card}")
             inserted = True
         # Or insert after bba-works line (if no auction-filter)
         elif not inserted and line.startswith('# bba-works:'):
             # Check if next line is auction-filter
             if i + 1 < len(lines) and lines[i + 1].startswith('# auction-filter:'):
                 continue  # Will insert after auction-filter instead
-            new_lines.append(f"# convention-card: {convention_card}")
+            new_lines.append(f"# convention-card-ns: {convention_card}")
             inserted = True
 
     if inserted:

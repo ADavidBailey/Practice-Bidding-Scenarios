@@ -1,10 +1,11 @@
 # alias: After1M2M
 # button-text: After 1M - 2M
 # scenario-title: ---  After 1M - 2M
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: (1H +Pass +2H)|(1S +Pass +2S)
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  After 1M - 2M
@@ -12,6 +13,7 @@
 • 15+ bid help suit
 • 12-14 pass
 @chat*/
+
 dealer south
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
@@ -166,7 +168,7 @@ HorS = (openS or openH) and not gibNT
 HorS and suitPoints>11 and suitPoints<18 and shortSuitPoints>0 and hcp(north)>4 and hcp(north)<10 and calmOpps
 
 produce 1000
-action
+action printoneline,
 average "1S" 100 * oneSpade,
 average "1H" 100 * oneHeart,
 frequency "ShortSuitPoints" (shortSuitPoints,1,5),

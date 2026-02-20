@@ -1,16 +1,28 @@
+# alias: BergenRaises
 # button-text: Bergen Raises (Lev)
-# scenario-title: Bergen Raises all show exactly 4-card support.
-# Bergen_Raises
-dealer north
+# scenario-title: --- Bergen Raises all show exactly 4-card support.
+# gib-works: false
+# bba-works: true
+# auction-filter: Auction.....\n1[HS] +Pass +3[CDHSN]
+# convention-card-ns: 21GF-Bergen
+# convention-card-ew: 21GF-GIB
 
+/*@chat
+--- Bergen Raises all show exactly 4-card support.
+• 3!C = Constructive (7-10) TP
+• 3!D = Limit Raise (11-12) TP
+• 3M  = Preemptive Raise (3-6) TP
+• 3OM = Ambiguous Splinter (12+) TP
+• 3N  = 4333 (13-15) HCP
+https://www.bridgebum.com/bergen_raises.php
+@chat*/
 
 /*
 Select Bergen, 1M 3M blocking, and turn off 1N opening shape 5422
-convention-card: 21GF-Bergen
-auction-filter: Auction.....\n1[HS] +Pass +3[CDHSN]
 */
 
 # Bergen Raises
+dealer north
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -38,7 +50,6 @@ calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<1
 calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
-
 # Defines calmEast
 
 ### changed GIB-1N from South to North
@@ -127,7 +138,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 lC  = case3C  and keep045
 lD  = case3D  and keep11
 loM = case3oM and keep06
@@ -139,7 +149,8 @@ levelTheDeal = lC or lD or loM or lM or lN
 nOpens and (case3M or case3C or case3oM or case3N or case3D) and calmEast
 and levelTheDeal
 
-action
+produce 5000
+action printoneline,
 average "3C   7-10 TP      " 100 * case3C,
 average "3D  11-12 TP      " 100 * case3D,
 average "3oM 11-13 41/40xx " 100 * case3oM,

@@ -1,16 +1,17 @@
 # alias: TwoNTandMSS
 # button-text: 2NT - MSS
 # scenario-title: ---  20-21 Notrump and Minor-suit Stayman response.  The responder has at least
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n2NT?.*Pass.*3S +
-# convention-card: 21GF-MSS
+# convention-card-ns: 21GF-MSS
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  20-21 Notrump and Minor-suit Stayman response.  The responder has at least
 5-4 in the minors.  The responder's strength -- game or slam -- is leveled.
 @chat*/
+
 dealer south
 
 # Select MSS after 1N and 2N
@@ -202,7 +203,7 @@ and levelTheDeal
 
 ### Generate Statistics
 
-action
+action printoneline,
 average "Weak         " 100 * weak,
 average "Game         " 100 * game,
 average "Slam         " 100 * slam,

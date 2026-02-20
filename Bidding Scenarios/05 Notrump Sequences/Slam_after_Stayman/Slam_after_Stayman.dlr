@@ -1,17 +1,18 @@
 # alias: SlamAfterStayman
 # button-text: Slam after Stayman
 # scenario-title: --- Slam after Stayman or Smolen.
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1N +Pass +2C
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Slam after Stayman or Smolen.
 @chat*/
-dealer south
 
 produce 1000
+dealer south
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -61,3 +62,4 @@ staymanOrSmolen = shape(north, 54xx+45xx+44xx+43xx+34xx)  // Stayman and/or Smol
 nRange = hcp(north)>15
 
 gibNT and staymanOrSmolen and nRange and calmWest
+action printoneline,

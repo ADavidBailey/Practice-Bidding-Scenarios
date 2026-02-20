@@ -1,10 +1,22 @@
+# alias: TransferAfter2NRebidWeak
 # button-text: Unbalanced & Weak
-# scenario-title: Transfers after 2N Rebid Unbalanced & Weak
-# Gavin_Transfers_after_2N_Rebid_Weak
-dealer north
-
-
+# scenario-title: --- Transfers after 2N Rebid Unbalanced & Weak
+# gib-works: false
+# bba-works: true
 # auction-filter: .
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Transfers after 2N Rebid Unbalanced & Weak
+In an uncontested 1x - 1y - 2N, 2!C, 2!D, 2!H, and 2!S are Transfers/Relays.
+They Transfer into a suit that might be weak (such as opener's first suit).
+They Relay to a suit that can't be weak.  Accepting a relay shows support.
+IF YOU SKIP IT, YOU DENY IT!
+https://tinyurl.com/bdhtmwxc
+@chat*/
+
+dealer north
 
 # Transfers after 2N Rebid
 
@@ -28,3 +40,4 @@ sR = (MajorFit  and tp>4 and tp<8) or (hcp(south)>5 and hcp(south)<7 and shape(s
 
 # Now do it
 nO and sR
+action printoneline,

@@ -1,11 +1,20 @@
+# alias: TrapPassOpener
 # button-text: Trap Pass Opener
-# scenario-title: Trap Pass after opener's major or weak 2.
-# Trap_Pass_Opener
-dealer east
+# scenario-title: --- Trap Pass after opener's major or weak 2.
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n[1-7][CDHS] +Pass +Pass +X
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Trap Pass after opener's major or weak 2.
+When you have a stack in opener's suit consider passing.
+@chat*/
 
 # Stack in Opponents Suit -- for training Ben
 
-# auction-filter: Auction.....\\n[1-7][CDHS].Pass.Pass.X
+dealer east
 
 # Predict Opening 1-Bid --- rotated to East
 ##### Imported Script -- Predict Opening 1-Bid #####
@@ -127,7 +136,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 l1 = eOpens1 and keep14
 l2 = eOpens2 and keep97
 levelTheDeal = l1 or l2
@@ -139,6 +147,6 @@ nBalances = hcp(north)>10 and shape(north,any 5440+any 5431+any 4441)
 eOpens and wPasses and nBalances
 and levelTheDeal
 
-action
+action printoneline,
 average "---- 1-level ----" 100 * eOpens1,
 average "---- preempt ----" 100 * eOpens2,

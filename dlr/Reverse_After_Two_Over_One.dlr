@@ -1,9 +1,25 @@
+# alias: ReverseAfterTwoOverOne
 # button-text: Reverse After 2/1
 # scenario-title: --- Reverse After 2/1 is for those that don't play 2/1 GF
+# gib-works: true
+# bba-works: true
 # auction-filter: (1D +Pass +2C.*\n2D +Pass +2[HS])|(1H +Pass +2[CD].*\n2H +Pass +2S)
-# Reverse_After_Two_Over_One
-dealer south
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Reverse After 2/1 is for those that don't play 2/1 GF
+Reverses show 5+ cards in the suit opened and 4+ cards in the suit rebid.  They are
+natural and Game Forcing.  Possible Reverses After 2/1 are...
+• 1!D - 2!C - 2!D - 2!H
+• 1!D - 2!C - 2!D - 2!S
+• 1!H - 2!C - 2!H - 2!S
+• 1!H - 2!D - 2!H - 2!S
+Reverses are NOT a convention.  If you don't have Game Forcing strength, don't reverse.
+@chat*/
+
 # Reverse by Resoponder
+dealer south
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -50,8 +66,6 @@ nGF = hcp(north)>13
 # Now do it
 sMin and nGF and (DCDHorS or HCorDS) and calmOpps
 
-action
+action printoneline,
 average "D-C-D-H/S " 100 * DCDHorS,
 average "H-C/D-H-S " 100 * HCorDS,
-
-printpbn

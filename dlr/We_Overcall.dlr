@@ -1,12 +1,18 @@
+# alias: Overcalls
 # button-text: Overcalls
-# scenario-title: Overcalls
-# We_Overcall
-dealer east
-
-
+# scenario-title: --- Overcalls
+# gib-works: true
+# bba-works: true
 # auction-filter: 1[CDHS] (1[DHS]|2[CDH])
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Overcalls
+@chat*/
 
 # Overcalls
+dealer east
 
 # Define good suits
 GoodS = spades(south)>4 and top5(south,spades)>2
@@ -16,3 +22,4 @@ GoodC = clubs(south)>4 and top5(south,clubs)>2
 
 # East opens, South has a decent suit and is constructive or better
 hcp(east)>11 and hcp(east)<15 and (GoodS or GoodH or GoodD or GoodC) and hcp(south)>8
+action printoneline,

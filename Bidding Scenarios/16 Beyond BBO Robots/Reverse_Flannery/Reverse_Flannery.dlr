@@ -1,11 +1,11 @@
 # alias: ReverseFlannery
 # button-text: Reverse Flannery
 # scenario-title: --- After 1!C or 1!D (P)
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: Auction.....\n1[CD] +Pass +2H +
-# convention-card: 21GF-ReverseFlannery
+# convention-card-ns: 21GF-ReverseFlannery
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- After 1!C or 1!D (P)
@@ -23,6 +23,7 @@
 2!S shows 5!S and 4!H and 9-10 HCP w/similar continuations.
 http://www.duralbridge.com/flannery.ing.htm
 @chat*/
+
 dealer south
 
 ##### Imported Script: Define Calm Opponents #####
@@ -225,8 +226,7 @@ sOneMinor and calmWest and nRevFlannery
 and levelTheDeal
 
 produce 40
-action
-printoneline,
+action printoneline,
 average "2H min " 100 * twoH,
 average "2S max " 100 * twoS,
 average "4-H " 100 * (hearts(north)==4),

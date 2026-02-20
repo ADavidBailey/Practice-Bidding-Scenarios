@@ -1,10 +1,11 @@
 # alias: Texas
 # button-text: GIB NT & Texas
 # scenario-title: ---  Texas Transfer
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1N +Pass +4[DH]
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  Texas Transfer
@@ -13,9 +14,9 @@ With a 6+card major an a short suit. Jacoby then splinter shows slam interest (s
 Jacoby followed directly by 4N is Quantitative.  Texas then 4N is RKC without shortness.
 https://www.bridgebum.com/texas_transfer.php
 @chat*/
-dealer south
 
 # Texas Transfer
+dealer south
 
 ##### Imported Script -- GIB 1 Notrump #####
 
@@ -138,3 +139,4 @@ nH = hearts(north)>5 and top5(north,hearts)>2 and spades(north)<4
 nM = (nS or nH)
 
 gibNT and nM and tpNorth>9 and calmWest
+action printoneline,

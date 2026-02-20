@@ -1,10 +1,11 @@
 # alias: NegativeDouble
 # button-text: Negative Double
 # scenario-title: --- Negative Double
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: 1[CDHS] (1[DHS]|2[CDH]) X
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Negative Double
@@ -13,10 +14,10 @@ it promises 4-Cards in each unbid major. At higher levels you need a backup
 plan if partner doesn't have your major -- maybe a tolerance for opener's suit.
 https://www.larryco.com/bridge-articles/negative-doubles
 @chat*/
-dealer south
 
 # Negative Double
 
+dealer south
 produce 10000
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
@@ -168,8 +169,7 @@ nDoubles = (((x1 or x2 or f1) and p1) or ((x3 or x4 or x5) and p2) or ((x6 or f2
 
 sOpens and wOvercalls and nDoubles
 
-action
-#printoneline,
+action printoneline,
 average "1C (1D) H&S " 100 * x1,
 average "1C (1D) H/S " 100 * f1,
 average "1C (1H) S   " 100 * x2,

@@ -1,14 +1,16 @@
 # alias: WeXOppsPreempt
 # button-text: We X Opps Preempt
 # scenario-title: --- We Double Opponents Preemptive opening.
-# dealer-position: E
 # gib-works: true
 # bba-works: true
 # auction-filter: 3[CDHS] X Pass
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- We Double Opponents Preemptive opening.
 @chat*/
+
 dealer east
 
 
@@ -109,7 +111,7 @@ ePreempts and sX and wPasses and (weak or invite or force)
 and levelTheDeal
 
 produce 40
-action
+action printoneline,
 average "South X 14-15 " 100 * sX1,
 average "South X 16-18 " 100 * sX2,
 average "South X 19+   " 100 * sX3,

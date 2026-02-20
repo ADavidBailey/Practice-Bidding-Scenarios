@@ -1,20 +1,20 @@
 # alias: MixedRaiseInComp
 # button-text: Mixed Raise in Comp
 # scenario-title: ---  Opponents open 1C/1D/1H.  We overcall one 1H/1S. Partner has
-# dealer-position: W
 # gib-works: true
 # bba-works: true
 # auction-filter: Note....Mixed raise
-# convention-card: 21GF-MixedRaise
+# convention-card-ns: 21GF-MixedRaise
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  Opponents open 1C/1D/1H.  We overcall one 1H/1S. Partner has
 4-card support with 7-9 TP and makes a mixed raise.
 @chat*/
-dealer west
 
 # Changed default CC to include Mixed Raise and 1X-(Y)-2Z forcing. 
 
+dealer west
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -157,7 +157,7 @@ levelTheDeal = lev2 or lev0 or lev1 or lev4 or lev5 or lev6
 wOpens and nOvercalls and sRaises and calmEast
 and levelTheDeal
 
-action
+action printoneline,
 average "N/S Spades     " 100 * nSpades,
 average "N/S Hearts     " 100 * nHearts,
 average "no shortness   " 100 * lev2,

@@ -1,9 +1,23 @@
+# alias: TooStrongForOvercall4th
 # button-text: Overcalls in 4th??
 # scenario-title: --- Overcalls in 4th??  Some hands are too strong for an overcall in 4th seat.
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n1[CDHS] +Pass +Pass +X
-# Too_Strong_for_Overcall4th
-dealer east
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Overcalls in 4th??  Some hands are too strong for an overcall in 4th seat.
+Simple overcalls -- those at the same level as the opening bid -- show
+• 7-17 at the 1-level
+• 11-17 at the 2-level
+With stronger hands, start with a double.  Double then new suit shows 18+.
+Overcall then Double is take-out in the 15-17 range.
+@chat*/
+
 # X then Bid a new suit
+dealer east
 
 # GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
 ntP = hcp(north) + shape(north,5xxx+x5xx)
@@ -47,8 +61,6 @@ nDoubles = (GoodS or GoodH or GoodD or GoodC) and hcp(north)>17 and not gibNT
 
 eOpens and nDoubles
 
-action
+action printoneline,
 average "(hcp east)  " hcp(east),
 average "(hcp north) " hcp(north),
-
-printpbn

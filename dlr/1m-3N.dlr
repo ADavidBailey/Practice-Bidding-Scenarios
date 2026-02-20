@@ -1,7 +1,18 @@
+# alias: oneMinor3NT
 # button-text: 1m-3NT (13-15) w/4333
 # scenario-title: --- 1m - 3NT (13-15) w/any 4333 shape
+# gib-works: false
+# bba-works: false
 # auction-filter: Auction.....\n1[CD] +Pass +
-# 1m-3N
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- 1m - 3NT (13-15) w/any 4333 shape
+South opens 1!C or 1!D.  North has any 4333 hand with stuff in every other suit.
+Should North skip over a 4-card suit to bid NT?
+@chat*/
+
 dealer south
 
 ##### Imported Script: Define Calm Opponents #####
@@ -251,7 +262,7 @@ sRange = tpSouth>11 and hcp(south)>10 and tpSouth<22 and hcp(south)<23 and not(l
 # Now do it
 s1m3N and sRange and sShape and calmWest and (nAny4 or nMajor4)
 
-action
+action printoneline,
 
 average "1m... 6- 9 " 100 * s1m1N,
 average "     10-12 " 100 * s1m2N,
@@ -266,5 +277,3 @@ average "South 4333 " 100 * shape(north,4333),
 average "      3433 " 100 * shape(north,3433),
 average "      3343 " 100 * shape(north,3343),
 average "      3334 " 100 * shape(north,3334),
-
-printpbn

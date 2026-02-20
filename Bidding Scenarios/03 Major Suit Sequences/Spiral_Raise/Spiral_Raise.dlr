@@ -1,10 +1,11 @@
 # alias: SpiralRaise
 # button-text: Spiral Raise
 # scenario-title: --- Spiral Raise
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: ((1[CD] +Pass +1H +Pass\n2H +Pass +[23])|(1[CD] +Pass +1S +Pass\n2S +Pass +[23]))
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Spiral Raise
@@ -18,9 +19,9 @@ Some use a step-bid instead of 2N as the asking bid
 https://bridgewinners.com/article/view/spiral-raises/
 https://bridgewinners.com/article/view/1m-1m-now-what/
 @chat*/
-dealer south
 
 produce 1000
+dealer south
 
 # Spiral Raises (All Flavors
 
@@ -64,3 +65,4 @@ calmOpps = calmEast and calmWest
 
 # Now do it…
 minorOpening and shortness and northResponds and calmOpps
+action printoneline,

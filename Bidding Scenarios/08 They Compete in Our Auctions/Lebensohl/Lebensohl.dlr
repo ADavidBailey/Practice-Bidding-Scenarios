@@ -1,11 +1,11 @@
 # alias: Lebensohl
 # button-text: Lebensohl
 # scenario-title: --- Lebensohl
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1N +2[DHS].*(2[HS]|2NT|3[CDHSN])
-# convention-card: 21GF-Multi-Landy
+# convention-card-ns: 21GF-Multi-Landy
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Lebensohl
@@ -23,9 +23,9 @@ After we open 1N and RHO overcalls 2!D, 2!H, or 2!S...
 https://www.larryco.com/bridge-articles/lebensohl
 https://www.larryco.com/bridge-articles/transfer-lebensohl
 @chat*/
-dealer south
 
 # Lebensohl
+dealer south
 
 
 # South opens 1N, Robot style
@@ -101,7 +101,7 @@ levelTheDeal = (levStrong or lev2Suit or lev1Suit)
 sOpens and wCompetes and nForces
 and levelTheDeal
 
-action
+action printoneline,
 average "South HCP      " hcp(south),
 average "North HCP      " hcp(north),
 average "North Balanced " 100 * n0Suit,

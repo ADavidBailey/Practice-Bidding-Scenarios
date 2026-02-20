@@ -1,10 +1,11 @@
 # alias: AfterPartnerOvercalls
 # button-text: After Partner Overcalls
 # scenario-title: --- After Partner Overcalls
-# dealer-position: E
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n(1C +1[DHS]|1D +(1[HS]|2C)|1H +(1S|2[CD])|1S +2[CDH]) +Pass
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- After Partner Overcalls
@@ -13,10 +14,10 @@
 • Cue Biddding opener's suit shows 11+ TP
 • New Suit denies support and shows 10+ HCP
 @chat*/
-dealer east
 
 # After Partner Overcalls
 
+dealer east
 produce 1000
 
 ##### Imported Script -- GIB 1 Notrump #####
@@ -181,7 +182,7 @@ levelTheDeal = nRaises or nCueBids or nNewSuit or levelNT or levelPunts
 eOpens and sOvercalls and wPasses and (nRaises or nCueBids or nNewSuit or nNotrump or nPunts)
 and levelTheDeal
 
-action
+action printoneline,
 average "Raises  " 100 * nRaises,
 average "CueBids " 100 * nCueBids,
 average "NewSuit " 100 * nNewSuit,

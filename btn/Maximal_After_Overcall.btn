@@ -1,10 +1,10 @@
 # alias: MaximalAfterOvercall
 # button-text: Max X after Overcall
-# dealer-position: W
 # gib-works: false
 # bba-works: true
 # auction-filter: Auction.....\n(1.* +1H +.* +2H\n3D|1.* +1S +.* +2S\n3H)
-# convention-card: 21GF-MaximalDouble
+# convention-card-ns: 21GF-MaximalDouble
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Maximal Double after Overcall
@@ -16,6 +16,8 @@ of our major.  The Maximal Double is the answer.  After (1?) 1M (?) 2M, (3M-1)..
   • X  is invitational
 https://www.bridgebum.com/maximal_double.php
 @chat*/
+
+dealer west
 
 #include "script/TP"
 # Defines tpNorth, tpSouth, tpEast, tpWest

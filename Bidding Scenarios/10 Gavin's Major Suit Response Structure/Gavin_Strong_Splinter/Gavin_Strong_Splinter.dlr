@@ -1,10 +1,11 @@
 # alias: DirectSplinter
 # button-text: Strong Splinter (12-15 HCP)
 # scenario-title: --- Strong Splinter (12-15 HCP)
-# dealer-position: N
 # gib-works: false
 # bba-works: true
 # auction-filter: .
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Strong Splinter (12-15 HCP)
@@ -12,9 +13,9 @@
   • 1!S - 4!C, 4!D, 4!H
 https://tinyurl.com/4dvh42e7
 @chat*/
-dealer north
 
 # Strong Splinter (12-15 HCP)
+dealer north
 
 # Avoid NT opener
 NT = shape(north, any 4333 +any 4432 +any 5332 +any 5422 -5xxx -x5xx) and hcp(north)>14 and hcp(north)<18
@@ -57,3 +58,4 @@ and calmOpps
 and MajorFit
 and shape(south,any 1xxx +any 0xxx)
 and hcp(south)>11 and hcp(south)<16
+action printoneline,

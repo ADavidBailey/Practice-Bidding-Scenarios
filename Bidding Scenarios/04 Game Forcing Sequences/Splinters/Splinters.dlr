@@ -1,10 +1,11 @@
 # alias: Splinters
 # button-text: Splinters
 # scenario-title: --- Splinter Bids are double jumps.  They show a singleton or void in the suit bid and 4+ cards
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Note..1.Splinter
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Splinter Bids are double jumps.  They show a singleton or void in the suit bid and 4+ cards
@@ -12,9 +13,9 @@ in support of opener's major.  GIB splinters with a singleton A, K, or Q.  Some 
 • After 1!H a jump to 3!S, 4!C, or 4!D
 • After 1!S a jump to 4!C, 4!D, or 4!H
 @chat*/
-dealer south
 
 # Splinters
+dealer south
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -203,7 +204,7 @@ levelTheDeal = lev1 or lev2 or lev3 or lev4
 sOpens and fit and nSplinters and calmWest
 and levelTheDeal
 
-action
+action printoneline,
 average "12-13 & 13-16" 100 * game1,
 average "14-15 & 13-16" 100 * game2,
 average "16-17 & 13-16" 100 * slam1,

@@ -1,11 +1,11 @@
 # alias: SolowayJumpShift
 # button-text: Soloway Jump Shift
 # scenario-title: --- Soloway Jump Shift
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: \n(1C +Pass +2[DHS]|1D +Pass +2[HS]|1H +Pass +2S)
-# convention-card: 21GF-SolowayJumpShift
+# convention-card-ns: 21GF-SolowayJumpShift
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Soloway Jump Shift
@@ -15,9 +15,9 @@
 4. Rebiddable suit w/17+ TP and 4+ controls and 4-card support for openers suit
 https://www.bridgebase.com/doc/gib_system_notes.php#Soloway_Jump_Shift
 @chat*/
-dealer south
 
 # Soloway Jump Shift
+dealer south
 
 # Calculate Total Points for North (tp) for North
 v1 = shape(north, any 0xxx) ? 5 : 0
@@ -86,7 +86,7 @@ southOpens and westPasses and solowayJumpShift
 
 // condition type_1 || type_2 || type_3 || type_4
 
-action
+action printoneline,
 average "Type 1" 100 * type_1,
 average "Type 2" 100 * type_2,
 average "Type 3" 100 * type_3,

@@ -1,11 +1,21 @@
+# alias: GibNt5422
 # button-text: GIB NT w/5422
 # scenario-title: ---  GIB 5422 Notrump Opening
-# GIB_1N5422
-dealer south
-# convention-card: 21GF-GIB
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n1NT?
+# convention-card-ns: 21GF-GIB
+# convention-card-ew: 21GF-GIB
 
+/*@chat
+---  GIB 5422 Notrump Opening
+Any 2254, 2245, 2425, 2452, 4225, or 4252 and 15-16 HCP.
+@chat*/
+
+dealer south
 
 # 1 Notrump GIB
+produce 10000
 
 ##### Imported Script -- GIB 1 Notrump #####
 
@@ -24,7 +34,8 @@ gibNT = nt1 or nt2
 
 gibNT and shape(south,any 5422)  // the gibNT excludes 5-card majors and 17 HCP
 
-action
+produce 10000
+action printoneline,
 
 average "not 5422" 100 * nt1,
 average "5422    " 100 * shape(south,5422),

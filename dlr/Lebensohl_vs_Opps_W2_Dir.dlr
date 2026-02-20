@@ -1,9 +1,31 @@
+# alias: LebensohlVsW2Dir
 # button-text: leb vs W2-Dir Seat
 # scenario-title: --- lebensohl Over Weak 2
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n2[DHS] +X
-# Lebensohl_vs_Opps_W2_Dir
-dealer east
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- lebensohl Over Weak 2
+After 2!D/2!H/2!S, (X), Pass, 
+  • A new suit at the 2-level is natural and weak (0-7).
+  • A non-jump new suit at the 3-level shows 8-10 and no stop.
+  • Cue Bid openers suit to show major suit interest without a stop.
+  • Jump bidding a new suit at the 3-level shows 8-10 and no stop.
+  • 3N shows game forcing values without major suit interest and no stop -- pass or scramble.
+  • Bidding 2N is the Lebensohl relay to 3!C.  After partner's forced 3!C, you may...
+    ◦ Pass or Correct to a new lower ranking suit (0-7).
+    ◦ Cue Bid openers suit to show major suit interest and with a stop.
+    ◦ Correct to a new higher ranking suit is constructive.
+    ◦ Bid 3N to show a balanced hand without major suit interest AND with a stop.
+https://www.bridgebum.com/lebensohl_over_weak_two.php
+@chat*/
+
 # Lebensohl over Weak2 (X)
+dealer east
+produce 1000
 
 tp = hcp(east)
 sp = hcp(east,spades)
@@ -44,9 +66,7 @@ force  = hcp(north)>11
 
 eOpensWeak2 and sDoubles and wPasses and (weak or invite or force)
 
-action
+action printoneline,
 average "North Weak   " 100 * weak,
 average "North Invite " 100 * invite,
 average "North Force  " 100 * force,
-
-printpbn

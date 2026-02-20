@@ -1,17 +1,28 @@
+# alias: Impossible2S
 # button-text: Impossible 2S
 # scenario-title: --- Impossible 2S
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n(1H +Pass +1NT?.* Pass\n2[CD] +Pass +2S)
-# convention-card: 21GF-Impossible2S
-# Impossible_2S
-dealer south
-# convention-card: 21GF-Impossible2S
+# convention-card-ns: 21GF-Impossible2S
+# convention-card-ew: 21GF-GIB
 
+/*@chat
+--- Impossible 2S
+South opens 1H with 12-18 HCP and 5+ !H.  North has an invitational
+minor oriented hand not suitable for NT or !H and responds 1NT with 11-12
+HCP.  With only 5!H South rebids a minor.  North has support for South's
+minor and rebids the Impossible 2!S.  If South rebids 2!H, North needs
+6/5 or better in the minors to bid the Impossible 2!S.
+http://kivabridgeclub.com/images/Impossible%202%20Spade.pdf
+@chat*/
 
 # Turn on 'Imposible 2S' (sic); turn off '1N opening shape 5422'
 
 # To find those that don't match add ?! after the opening parenthesis
 
 # The bidding sequence is 1H Pass 1NT (forcing, semi-forcing, or not forcing) Pass 2C/D Pass 2S
+dealer south
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -157,7 +168,7 @@ nTwoS = shape(north,any 0xxx+any 1xxx)
 # Now do it
 oneH and oneN and sRebid and nTwoS and calmOpps
 
-action
+action printoneline,
 average "South H = 5  " 100 * (hearts(south)==5),
 average "South H > 5  " 100 * (hearts(south)>5),
 average "North 0/1 S  " 100 * (spades(north)<2),

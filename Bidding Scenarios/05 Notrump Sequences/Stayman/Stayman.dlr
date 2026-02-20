@@ -1,10 +1,11 @@
 # alias: Stayman
 # button-text: Basic Stayman
 # scenario-title: --- Stayman Convention (Basics)
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1NT? +Pass +(Pass|2C)
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Stayman Convention (Basics)
@@ -21,9 +22,9 @@ Requirements to bid Stayman:
 Hands without a 4-card major or with fewer than 8 HCP usually pass 1NT.
 https://www.bridgebum.com/stayman.php
 @chat*/
-dealer south
 
 # Stayman Basics - for learning the convention
+dealer south
 
 # Import 1NT opening definition for South
 ### Imported: Define 1 Notrump Opening ###
@@ -150,7 +151,7 @@ true15to17 = hcp(south)>14 and hcp(south)<18
 condition NT and northHand and calmOpps and true15to17
 
 # Generate Statistics
-action
+action printoneline,
 average "One Major   " 100 * nHasOneMajor,
 average "Two Majors  " 100 * nHasTwoMajors,
 average "Weak (<8)   " 100 * nWeak,

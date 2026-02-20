@@ -1,10 +1,11 @@
 # alias: BetterMinorLebensohl
 # button-text: Better Minor Lebe' (Lev)
 # scenario-title: --- Better Minor Lebensohl
-# dealer-position: E
 # gib-works: true
 # bba-works: true
 # auction-filter: 2[DHS] +X +Pass
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Better Minor Lebensohl
@@ -20,9 +21,9 @@ After 2!D/2!H/2!S, (X), Pass,
   have bid directly is stronger.
 https://csbnews.org/conventions-better-minor-lebensohl
 @chat*/
-dealer east
 
 # Better Minor Lebensohl
+dealer east
 produce 1000
 
 # Define East weak 2 bids w/o 3-card support by west
@@ -107,7 +108,7 @@ levelTheDeal = levWeak or levInvite or levForce
 eOpensWeak2 and sDoubles and wPasses and (weak or invite or force)
 and levelTheDeal
 
-action
+action printoneline,
 average "Weak  " 100 * weak,
 average "Invite" 100 * invite,
 average "Force " 100 * force,

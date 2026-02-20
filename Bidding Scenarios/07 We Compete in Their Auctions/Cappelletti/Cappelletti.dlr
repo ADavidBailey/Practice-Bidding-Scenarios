@@ -1,11 +1,11 @@
 # alias: Cappelletti
 # button-text: Cappelletti
 # scenario-title: --- After 1NT... Cappelletti is the prefered defense for a Weak NT
-# dealer-position: E
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1NT? +[X2-7]
-# convention-card: 21GF-GIB
+# convention-card-ns: 21GF-GIB
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- After 1NT... Cappelletti is the prefered defense for a Weak NT
@@ -21,6 +21,7 @@ X   = 15+ HCP
 3!H = 13+ TP w/Strong Rebiddable !H
 3!S = 13+ TP w/Strong Rebiddable !S
 @chat*/
+
 dealer east
 
 # Cappelletti
@@ -192,7 +193,7 @@ sX = hcp(south)>15 and not (sStrong1 or s2Suits or s2C)
 
 gibNT and (sX or sStrong1 or s2Suits or s2C)
 
-action
+action printoneline,
 
 average "X   " 100 * sX,
 average "2C  " 100 * s2C,

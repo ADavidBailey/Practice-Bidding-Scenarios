@@ -1,10 +1,11 @@
 # alias: VicsMajRespStr
 # button-text: Vic's 2C Relay
 # scenario-title: ---  Vic's Non-Force NT & 2!C Relay. After 1M (P)...
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: 1[HS] Pass
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  Vic's Non-Force NT & 2!C Relay. After 1M (P)...
@@ -17,8 +18,8 @@
 This is described in Vic's Views, March 2024 ACBL Bulletin, p66.
 https://www.nxtbook.com/acbl/bridgebulletin/2024_03/index.php#/p/66
 @chat*/
-dealer south
 
+dealer south
   
 ##### Imported Script: Define Calm Opponents #####
 
@@ -212,7 +213,7 @@ levelTheDeal = level_type_1 || level_type_2 || level_type_3
 ( type_1 || type_2 || type_3 ) and calmOpps
 && levelTheDeal
 
-action
+action printoneline,
 average "Type 1" 100 * type_1,
 average "Type 2" 100 * type_2,
 average "Type 3" 100 * type_3,

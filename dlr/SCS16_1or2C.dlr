@@ -1,21 +1,23 @@
+# alias: scs161or2C
 # button-text: 1/2 Club Opener
 # scenario-title: --- Strong Club: 1C = 16+ w/6+Clubs or 2C = 11-15 HCP w/6+Clubs
+# gib-works: false
+# bba-works: true
 # auction-filter: Auction.....\n[12]C
-# convention-card: Precision
-# SCS16_1or2C
-dealer south
-# convention-card: Precision
+# convention-card-ns: Precision
+# convention-card-ew: 21GF-GIB
 
+/*@chat
+--- Strong Club: 1C = 16+ w/6+Clubs or 2C = 11-15 HCP w/6+Clubs
+@chat*/
 
 /*
 Strong Club System
 
 1C (16+) or 2C(11-15)
-
-convention-card: Precision
-auction-filter: Auction.....\n[12]C
 */
 
+dealer south
 
 s = spades(south)
 h = hearts(south)
@@ -28,5 +30,4 @@ range = range1C or range2C
 suit = clubs(south)>5 and clubs(south)>diamonds(south)
 
 range and suit
-
-action printpbn
+action printoneline,

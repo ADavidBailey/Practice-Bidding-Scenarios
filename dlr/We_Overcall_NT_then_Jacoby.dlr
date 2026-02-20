@@ -1,9 +1,18 @@
+# alias: WeOvercallNtThenJacoby
 # button-text: then Jacoby
 # scenario-title: --- We Overcall 1NT then partner transfers to 2!H or 2!S.
+# gib-works: true
+# bba-works: true
 # auction-filter: 1. +1NT? +Pass +2[DH]
-# We_Overcall_NT_then_Jacoby
-dealer east
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- We Overcall 1NT then partner transfers to 2!H or 2!S.
+@chat*/
+
 # We Overcall 1NT_then_Jacoby
+dealer east
 
 # Predict East's opening suit
 s = spades(east)
@@ -36,3 +45,4 @@ n2DorH = shape(north,6xxx+5xxx+x6xx+x5xx-any 64xx-any 54xx)
 
 # Now do it
 eOpens and sNT and n2DorH
+action printoneline,

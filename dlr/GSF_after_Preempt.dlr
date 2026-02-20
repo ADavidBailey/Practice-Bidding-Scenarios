@@ -1,10 +1,11 @@
 # alias: GSFafterPreempt
 # button-text: GSF after Preempt
 # scenario-title: --- Grand Slam Force after Preempt.  Does partner have 2 of the top 3 honors?
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Contract..[67]
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Grand Slam Force after Preempt.  Does partner have 2 of the top 3 honors?
@@ -13,9 +14,9 @@ has not been agreed the 5N bid confirms the previously bid suit.  Partner must b
 7 of the agreed suit when holding 2 of the top 3 honors suit.
 https://www.bridgebum.com/grand_slam_force.php
 @chat*/
-dealer south
 
 # Grand Slam Force after Preempt
+dealer south
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -59,6 +60,6 @@ southPreempts = (southH or southS) and hcp(south)>6 and hcp(south)<11
 # If opener has 1 of the top 3, 12 tricks in the suit are certain.
 southPreempts
 
-action
+action printoneline,
 average "H " 100 * southH,
 average "S " 100 * southS,

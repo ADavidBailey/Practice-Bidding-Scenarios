@@ -1,7 +1,21 @@
+# alias: InvertedMinors
 # button-text: Inverted Minors
 # scenario-title: --- Inverted Minors
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n((1C +Pass +[23]C)|(1D +Pass +[23]D))
-# Inverted_Minors
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Inverted Minors
+NOTE:  Any minor suit raise denies a 4-card major suit.  The normal approach to raising partner's minor suit
+is to raise to 3 with a game invitational hand and to raise to 2 with a fit and less than game invitation.
+Inverted minors merely reverse these responses.  After an inverted raise to 2, opener should show both
+majors stopped by bidding 2N.  With only one stopped, bid the stopped suit.  If you intend to continue to
+3N, it's OK to deny a stop in one of the suits -- no specific agreement -- keep 'em guessing.
+@chat*/
+
 dealer south
 
 # Inverted Minors
@@ -58,5 +72,4 @@ minorRaise = (cFit or dFit) and noMajor and noNT
 # South opens 1m and North raises
 
 minorRaise and hcp(south)>11 and hcp(south)<20 and hcp(north)>5 and hcp(north)<13 and calmOpps
-
-action printpbn
+action printoneline,

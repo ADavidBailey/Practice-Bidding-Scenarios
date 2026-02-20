@@ -1,11 +1,11 @@
 # alias: MultiLandy
 # button-text: Multi-Landy (Lev)
 # scenario-title: ---  15-17 Notrump Opening and Multi-Landy action.
-# dealer-position: E
 # gib-works: false
 # bba-works: true
 # auction-filter: Note....Multi-Landy
-# convention-card: 21GF-Multi-Landy
+# convention-card-ns: 21GF-Multi-Landy
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  15-17 Notrump Opening and Multi-Landy action.
@@ -18,9 +18,9 @@
 The Multi-Landy actions are leveled.  The NT opener is not leveled.
 https://www.bridgebum.com/multi_landy.php
 @chat*/
-dealer east
 
 produce 1000
+dealer east
 
 # Define East's 1N Opener
 ### gibNT changed from south to east
@@ -115,7 +115,7 @@ gibNT and (cX or c2C or c2D or c2H or c2S or c2N) and hcp(south)>10
 and levelTheDeal
 
 # Generate Statistics
-action
+action printoneline,
 
 average "2C   " 100 * c2C,
 average "2D   " 100 * c2D,

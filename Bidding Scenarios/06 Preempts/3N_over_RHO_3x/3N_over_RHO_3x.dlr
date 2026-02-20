@@ -1,10 +1,11 @@
 # alias: NToverRHO3x
 # button-text: 3NT over RHO's 3x (Lev)
 # scenario-title: ---  3N over RHO's 3x Preempt.
-# dealer-position: E
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n3[CDHS] +3N
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  3N over RHO's 3x Preempt.
@@ -13,6 +14,7 @@
 • 16+ and 2 stops
 and a prayer!
 @chat*/
+
 dealer east
 
 ### 3N over RHO's 3x ###
@@ -132,7 +134,7 @@ levelTheDeal = level1 or level2 or level3
 ePreempts and (case1 or case2 or case3)
 and levelTheDeal
 
-action
+action printoneline,
 average "1 Stop and >17             " 100 * case1,
 average "1 Stop, good suit, and >15 " 100 * case2,
 average "2 Stop and >15             " 100 * case3,

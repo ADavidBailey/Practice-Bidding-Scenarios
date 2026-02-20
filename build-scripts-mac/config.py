@@ -115,6 +115,9 @@ SEED_OFFSET = 1          # Increment to regenerate all scenarios with fresh deal
 DEALER_GENERATE = 300000000
 DEALER_PRODUCE = 500
 
+# Bidding sheet parameters
+BIDDING_SHEET_MAX_BOARDS = 50  # Max boards to include in bidding sheets PDF
+
 
 def dealer_seed(scenario: str) -> int:
     """Compute a deterministic seed from scenario name and offset. Range: 1-1,000,000."""

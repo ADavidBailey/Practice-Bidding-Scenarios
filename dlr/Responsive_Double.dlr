@@ -1,14 +1,16 @@
 # alias: ResponsiveDouble
 # button-text: Responsive Double
 # scenario-title: West Opens, North Bids or Doubles, East raises, and South does anything
-# dealer-position: W
 # gib-works: false
 # bba-works: true
 # auction-filter: Auction.....\n(1C +[X1].? +2C|1D +[X1].? +2D|1H +[X1].? +2H|1S +[X1].? +2S)
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 West Opens, North Bids or Doubles, East raises, and South does anything
 @chat*/
+
 dealer west
 
 # Predict West's Opening suit
@@ -38,5 +40,4 @@ southDoubles = hcp(south)>7
 westOpens and northDoubles and eastRaises and southDoubles and dAll
 
 produce 30
-action
-printoneline,
+action printoneline,

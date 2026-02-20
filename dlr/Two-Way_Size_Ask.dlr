@@ -1,11 +1,24 @@
+# alias: TwoWaySizeAsk
 # button-text: Two-Way Size Ask
 # scenario-title: --- Two-Way Size Ask
+# gib-works: false
+# bba-works: false
 # auction-filter: Auction.....\n1N +Pass (2S|2N)
-# Two-Way_Size_Ask
-dealer south
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Two-Way Size Ask
+After a 1NT opening and a Pass, responder can ask about the opener's hand size.
+2!S shows !C or balanced and is size-asking.  Opener bids 3!C if minimum or 3!D if max.
+2N shows!D or balanced and is size-asking.  Opener bids 3C if minimum or 3!D if max.
+https://tinyurl.com/Size-Asking-MSS
+@chat*/
+
 # MST only is the default.  Note, his is not how we bid MST.  It's how GIB bids those hands.
 
 # Two Way Size Ask
+dealer south
 
 ##### Imported Script -- GIB 1 Notrump #####
 
@@ -41,5 +54,4 @@ iGS2 = hcp(north)==21                         // 21 ask for 15 and bid 6 invite 
 sA = noMajor and (iG or iSS1 or iSS2 or iGS1 or iGS2 or cA or dA)
 
 gibNT and sA
-
-action printpbn
+action printoneline,

@@ -1,13 +1,23 @@
+# alias: SolowayJumpShift
 # button-text: Soloway Jump Shift
 # scenario-title: --- Soloway Jump Shift
+# gib-works: true
+# bba-works: true
 # auction-filter: \n(1C +Pass +2[DHS]|1D +Pass +2[HS]|1H +Pass +2S)
-# convention-card: 21GF-SolowayJumpShift
-# Soloway_Jump_Shift
-dealer south
-# convention-card: 21GF-SolowayJumpShift
+# convention-card-ns: 21GF-SolowayJumpShift
+# convention-card-ew: 21GF-GIB
 
+/*@chat
+--- Soloway Jump Shift
+1. Strong rebiddable suit w/17+ HCP and 4+ controls and no side 4-card suit
+2. Solid suit w/17+ HCP and 4+ controls and may have a 4-card side suit
+3. Rebiddable suit w/18+ HCP and 4+ controls and 5332 or 6322 shape
+4. Rebiddable suit w/17+ TP and 4+ controls and 4-card support for openers suit
+https://www.bridgebase.com/doc/gib_system_notes.php#Soloway_Jump_Shift
+@chat*/
 
 # Soloway Jump Shift
+dealer south
 
 # Calculate Total Points for North (tp) for North
 v1 = shape(north, any 0xxx) ? 5 : 0
@@ -76,7 +86,7 @@ southOpens and westPasses and solowayJumpShift
 
 // condition type_1 || type_2 || type_3 || type_4
 
-action
+action printoneline,
 average "Type 1" 100 * type_1,
 average "Type 2" 100 * type_2,
 average "Type 3" 100 * type_3,
@@ -84,5 +94,3 @@ average "Type 4" 100 * type_4,
 average "Type 1 & 2" 100 * ( type_1 && type_2 ),
 average "Type 1 & 3" 100 * ( type_1 && type_3 ),
 average "Type 1 & 4" 100 * ( type_1 && type_4 ),
-
-printpbn

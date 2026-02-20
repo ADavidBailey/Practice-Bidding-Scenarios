@@ -1,22 +1,22 @@
 # alias: RespTo1C
 # button-text: Resp w/5D & 4M
 # scenario-title: --- Resp to 1C w/5-D & 4M
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1C +Pass +1[DHS] +
-# convention-card: 21GF-Walsh
+# convention-card-ns: 21GF-Walsh
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Resp to 1C w/5-D & 4M
 South opens 1!C.  North has 5+!D and one or both 4-card majors.
 @chat*/
-dealer south
 
 /*
 South opens 1C and North has any 4+D and a 4-card major
 */
 
+dealer south
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -219,7 +219,7 @@ nRange = nRange1 or nRange2 or nRange3
 
 oneClub and sRange and sClubs and (nDH or nDS or nDHS) and nShape and nRange and calmWest
 
-action
+action printoneline,
 average "D + H    " 100 * nDH,
 average "D + S    " 100 * nDS,
 average "D + H + S" 100 * nDHS,

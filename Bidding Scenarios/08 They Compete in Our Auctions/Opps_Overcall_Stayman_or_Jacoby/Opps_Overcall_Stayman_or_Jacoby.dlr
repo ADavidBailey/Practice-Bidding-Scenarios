@@ -1,17 +1,18 @@
 # alias: OppsOvercallStaJac
 # button-text: Overcall S/J
 # scenario-title: --- Opponent overcalls our Stayman/Jacoby bid
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1N +Pass +2[CDH] +[123]
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Opponent overcalls our Stayman/Jacoby bid
 @chat*/
-dealer south
 
 # Opponent overcalls stayman or jacoby
+dealer south
 
 
 # Define Good suits east
@@ -39,3 +40,4 @@ shape(north, 54xx+45xx+44xx+4xxx+x4xx) and hcp(north)>8 and (Gc or Gd or Gh or G
 
 # East has values
 hcp(east)>10
+action printoneline,

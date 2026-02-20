@@ -1,9 +1,21 @@
+# alias: EqualLevConv
 # button-text: Equal Level Conv
 # scenario-title: --- Equal Level Conversion.  East opens 1 of a major.  South has 4 of the other major and 5+ !D.
+# gib-works: false
+# bba-works: true
 # auction-filter: Auction.....\n1[HS] +(2D|X) +Pass
-# Equal_Level_Conversion
-dealer east
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Equal Level Conversion.  East opens 1 of a major.  South has 4 of the other major and 5+ !D.
+South X's with the intention of correcting North's 2!C bid to !D, showing nothing extra.
+https://www.bridgebum.com/equal_level_conversion.php
+@chat*/
+
 # Equal Level Conversion
+produce 500
+dealer east
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -58,7 +70,7 @@ sDoubles = hcp(south)>11 and hcp(south)<15 and shape(south,4x5x +4x6x +4x7x +4x8
 # Now do it
 eOpens and sDoubles and calmWest
 
-action
+action printoneline,
 average "4 spades & 5+ diamonds " 100 * shape(south,4xxx),
 average "4x5x" 100 * shape(south,4x5x),
 average "4x6x" 100 * shape(south,4x6x), 

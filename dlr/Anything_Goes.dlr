@@ -1,14 +1,16 @@
 # alias: AnythingGoes
 # button-text: Anything Goes
 # scenario-title: --- South Opens...
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: .
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- South Opens...
 @chat*/
+
 dealer south
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
@@ -131,8 +133,7 @@ threeS = shape(south,7xxx + 8xxx + 9xxx -any 94xx -any 85xx -any 76xx -any 75xx)
 1
 
 produce 30
-action
-printoneline,
+action printoneline,
 average "1C    " 100 * oC,
 average "1D    " 100 * oD,
 average "1H    " 100 * oH,

@@ -1,13 +1,23 @@
-# button-text: Last Train GT
-# scenario-title: Last Train Game Try
-# Last_Train_Game_Try
-dealer south
-
-
+# alias: LastTrainGT
+# button-text: Last Train GT1
+# scenario-title: --- Last Train Game Try
+# gib-works: false
+# bba-works: true
 # auction-filter: .
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Last Train Game Try
+Any time there is only one call that indicates game interest or further game interest
+without raising the partnership's level of commitment, it is a Last Train game-try,  unrelated
+to the strain named (unless followed by an uninvited further action).
+https://en.wikipedia.org/wiki/Last_Train_(bridge)
+@chat*/
 
 # Last Train Game Try
 
+dealer south
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -59,7 +69,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -69,7 +79,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -143,7 +153,6 @@ calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<1
 calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
-
 # Defines calmOpps
 
 # Define suit's which need help
@@ -183,7 +192,7 @@ nBids  = nRange
 
 sOpens and nBids and fit and NH and invite and calmOpps
 
-action
+action printoneline,
 average "hcp south" hcp(south),
 average "hcp north" hcp(north),
 average "combined " (hcp(south) + hcp(north)),

@@ -1,13 +1,26 @@
+# alias: JumpCuebidWeak
 # button-text: Jump Cuebid Weak
 # scenario-title: --- Weak Direct Jump Cuebid of a minor suit.
+# gib-works: true
+# bba-works: true
 # auction-filter: (\n1C.*\n..* [3-7][CDHS])|(\n1D.*\n..* [3-7][CDHS])
-# Jump_Cuebid_Weak
-dealer east
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Weak Direct Jump Cuebid of a minor suit.
+• 1m (3m) shows an aggressive weak jump overcall w/7+m and 0-10 HCP -- just
+as if they had opened any other suit.
+Note:  GIB plays this!
+https://tinyurl.com/JumpCueBids
+@chat*/
+
 # BBA does NOT play Direct Jump Cuebids.  The following filter matches the deals that
 # fit the intent of the scenario -- an agressive preempt over minors.
 
 
 # Jump Cuebid of a Minor is an aggressive preempt
+dealer east
 
 # Define good minor suits -- preempt in their minor
 goodD  = diamonds(south)>6 and hcp(south,diamonds)>5
@@ -32,12 +45,10 @@ eOpens = openMinor and hcp(east)>11 and hcp(east)<15
 
 eOpens and shape(south,any 9xxx+any 8xxx+any 7xxx-any 5xxx)
 
-action
+action printoneline,
 average "hcp(east)     " hcp(east),
 average "hcp(south)    " hcp(south),
 average "losers(south) " 100 * losers(south),
 
 average "clubs      " 100 * oC,
 average "diamonds   " 100 * oD,
-
-printpbn

@@ -1,7 +1,24 @@
+# alias: Jacoby2N
 # button-text: Jacoby 2N (4x-Suit)
 # scenario-title: --- Jacoby 2N
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n1[HS] +Pass +2N
-# Jacoby_2N
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Jacoby 2N
+Five different Opening hands can be described after a major suit open and a Jacoby 2N response. The percentages
+are the approximate frequency of occurrence for the various hand types. Use the (Leveled) script to even that out.
+• 4x (08%) - any strength with a good (5-cards with 2+ of top 3) second suit
+• 3x (43%) - any strength with a singleton/void
+• 3M (03%) - 18+ Semi-Balanced
+• 3N (12%) - 15-17 Semi-Balanced
+• 4M (34%) - 12-14 Semi-Balanced
+@chat*/
+
+produce 2000
 dealer south
 
 # Jacoby 2N Leveled
@@ -56,7 +73,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -66,7 +83,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -222,8 +239,7 @@ condition
 (x4 or x3 or M3 or N3 or M4) and suitPoints>12 and calmWest and hcp(north)>12
 #and levelTheDeal
 
-action
-#printoneline,
+action printoneline,
 average "1. x4" 100 * x4,
 average "2. x3" 100 * x3,
 average "3. M3" 100 * M3,

@@ -1,11 +1,17 @@
+# alias: ThreeNT
 # button-text: 3NT (25-27)
 # scenario-title: ---  25-27 Notrump and any Response.
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n3N
-# convention-card: 21GF-Not-Gambling
-# 3N
-dealer south
-# convention-card: 21GF-Not-Gambling
+# convention-card-ns: 21GF-Not-Gambling
+# convention-card-ew: 21GF-GIB
 
+/*@chat
+---  25-27 Notrump and any Response.
+@chat*/
+
+dealer south
 
 # Three Notrump Opening
 
@@ -44,6 +50,6 @@ partscore = combined<25
 game = combined>24 and combined<33
 slam = combined>32
 
-action
+action printoneline,
 average "Game         " 100 * game,
 average "Slam         " 100 * slam,

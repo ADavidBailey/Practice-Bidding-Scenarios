@@ -1,10 +1,11 @@
 # alias: BergenThrumpX
 # button-text: Preempt/Thrump X
 # scenario-title: --- Opps Preempt/Bergen Thrump X
-# dealer-position: N
 # gib-works: false
 # bba-works: false
 # auction-filter: Auction.....\n1[CDHS] +3[DHS]
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Opps Preempt/Bergen Thrump X
@@ -13,9 +14,9 @@ for North's suit, no 5-card major to bid at the 3-level, and 10+ HCP.
 by special request from Sten Mullervig.
 https://www.bridgebum.com/thrump_double.php
 @chat*/
-dealer north
 
 # Bergen Thrump X after Preempt
+dealer north
 
 # Opponents preempt 3D, 3H, or 3S and South does not have a stopper
 
@@ -38,7 +39,7 @@ sDoubles = noMajorFit and hcp(south)>9
 nOpens and ePreempts and sDoubles
 
 produce 1000
-action
+action printoneline,
 average "hcp(north)" hcp(north),
 average "hcp(south)" hcp(south),
 produce 1000

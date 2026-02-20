@@ -1,10 +1,11 @@
 # alias: LebensohlVsW2Dir
 # button-text: leb vs W2-Dir Seat
 # scenario-title: --- lebensohl Over Weak 2
-# dealer-position: E
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n2[DHS] +X
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- lebensohl Over Weak 2
@@ -21,9 +22,9 @@ After 2!D/2!H/2!S, (X), Pass,
     ◦ Bid 3N to show a balanced hand without major suit interest AND with a stop.
 https://www.bridgebum.com/lebensohl_over_weak_two.php
 @chat*/
-dealer east
 
 # Lebensohl over Weak2 (X)
+dealer east
 produce 1000
 
 tp = hcp(east)
@@ -65,7 +66,7 @@ force  = hcp(north)>11
 
 eOpensWeak2 and sDoubles and wPasses and (weak or invite or force)
 
-action
+action printoneline,
 average "North Weak   " 100 * weak,
 average "North Invite " 100 * invite,
 average "North Force  " 100 * force,

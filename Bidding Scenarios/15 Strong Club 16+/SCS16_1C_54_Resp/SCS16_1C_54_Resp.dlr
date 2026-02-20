@@ -1,11 +1,11 @@
 # alias: scs16StrongClub54
 # button-text: 5/4 Resp w/8+
 # scenario-title: --- 5/4 Response (16+ HCP)
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: Auction.....[\s\S][\s\S]?1C
-# convention-card: Precision
+# convention-card-ns: Precision
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- 5/4 Response (16+ HCP)
@@ -13,9 +13,9 @@
 Is there anything you want here.  I often include a link to a description.
 http://clairebridge.com/textes/karensrules.pdf
 @chat*/
-dealer south
 
 # Strong C & 5/4, 5/5, or 6/5 H/S
+dealer south
 
 # South has 16+
 hcp(south)>15
@@ -25,3 +25,4 @@ and hcp(north)>7
 
 # North has specific shapes
 and shape(north, any 54xx+ any 55xx +any 65xx)
+action printoneline,

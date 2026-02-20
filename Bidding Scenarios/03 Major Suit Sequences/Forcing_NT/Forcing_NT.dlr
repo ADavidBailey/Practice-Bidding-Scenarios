@@ -1,11 +1,11 @@
 # alias: ForcingNT
 # button-text: Forcing NT (Lev)
 # scenario-title: --- Forcing NT (Leveled)
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Note....forcing.1NT
-# convention-card: 21GF-ADB
+# convention-card-ns: 21GF-ADB
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Forcing NT (Leveled)
@@ -21,9 +21,9 @@ Then Opener Rebids...
 • New Suit
 These are leveled so that the responses and rebids at about the same frequency.
 @chat*/
-dealer south
 
 # Forcing NT Leveled
+dealer south
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -347,7 +347,7 @@ oneMajor and forcingNT and openerRebid and calmWest
 and levelTheDeal
 
 produce 5000
-action
+action printoneline,
 average "fit 5-7 TP w/3+    " 100 * wFit,
 average "fit 11-12 TP w/3   " 100 * iFit,
 average "no fit, long minor " 100 * lMin,

@@ -1,11 +1,29 @@
-# button-text: McCabe over W2 (Lev)
+# alias: McCabeAfterWeak2
+# button-text: McCabe over W2 (Lev) 
 # scenario-title: --- McCabe after Weak 2 (X) -- Leveled
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n2[DHS] X
-# McCabe_After_Weak_2
-dealer south
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- McCabe after Weak 2 (X) -- Leveled
+Opener has a 6-card suit without a 4-card side major, at least half of the HCP
+are in the suit, less than 11 HCP and less than 7 losers.  And West doubles.
+After the double, responder has six possible continuations:
+• Bid game - Preempt or Rule of 17
+• Raise below game - a mild preempt
+• Bid a new suit - Please lead this suit.
+• Bid 2N - I'm interested in game.  Do you have a feature?
+• Redouble - I have a long suit of my own
+• Pass - Good Luck!
+@chat*/
+
 # McCabe after Weak 2
 # The McCabe Convention gives useful options for Responder after Partner’s Weak Two Bid is doubled.
 
+dealer south
 
 # Define South's Weak 2 Bids w/o 4-card major side suit -- Strict
 
@@ -128,12 +146,10 @@ levelTheDeal = lRule17 or lRule15 or lLeadAsk or lRaise or lmySuit or lPass
 weakTwo and westX and (rule17 or rule15 or leadAsk or raise or mySuit or pass)
 and levelTheDeal
 
-action
+action printoneline,
 average "Rule of 17    " 100 * rule17,
 average "Rule of 15    " 100 * rule15,
 average "Lead Ask      " 100 * leadAsk,
 average "Raise         " 100 * raise,
 average "mySuit        " 100 * mySuit,
 average "Pass          " 100 * pass,
-
-printpbn

@@ -1,12 +1,20 @@
+# alias: MajorWith2ndSuit
 # button-text: Major w/2nd Suit
-# scenario-title: Major with 2nd Suit
-# SCS_Major_with_2nd_Suit
-dealer south
-
-
-# convention-card: Precision
+# scenario-title: --- Major with 2nd Suit
+# gib-works: false
+# bba-works: true
 # auction-filter: Auction.....[\s\S][\s\S]?1[HS]
+# convention-card-ns: Precision
+# convention-card-ew: 21GF-GIB
 
+/*@chat
+--- Major with 2nd Suit
+South opens 1!H or 1!S with a second suit of at least 5-cards and North has 12+.
+2!C is a game-forcing relay.
+http://clairebridge.com/textes/karensrules.pdf
+@chat*/
+
+dealer south
 
 # Predict South's Opening Suit
 s = spades(south)
@@ -23,3 +31,4 @@ and shape(south, any 85xx +any 76xx +any 75xx +any 65xx +any 55xx) // any two 5+
 
 # and North has 12+
 and hcp(north)>11                                                  // responder has 12+
+action printoneline,

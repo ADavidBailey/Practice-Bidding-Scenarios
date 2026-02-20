@@ -1,10 +1,11 @@
 # alias: TransferAdvances
 # button-text: Transfer Advances
 # scenario-title: --- Transfer Advances
-# dealer-position: W
 # gib-works: false
 # bba-works: false
 # auction-filter: Auction.....\n((1C +1[DHS]|1D +(1[HS]|2C)|1H (1S|2[CD])|1S +2[CDH]))
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Transfer Advances
@@ -18,7 +19,6 @@ the advancer may...
 This is leveled such the opening bid is equally divide amoung the four suits.
 https://bridgewinners.com/article/view/transfer-advances-of-overcalls/
 @chat*/
-dealer west
 
 #Nagyiván Gábor
 #Hi David, I would like to try a simulation (500 deals) with the following parameters:
@@ -35,6 +35,7 @@ dealer west
 
 
 
+dealer west
 
 # Predict West's opening suit
 sW = spades(west)
@@ -153,7 +154,7 @@ westHand and northHand and eastHand and southHand
 and levelTheDeal
 
 produce 2000
-action
+action printoneline,
 
 average "1C" 100 and wC,
 average "1D" 100 and wD,

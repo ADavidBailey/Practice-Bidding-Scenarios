@@ -1,10 +1,11 @@
 # alias: GameForce2C
 # button-text: Game Forcing 2C
 # scenario-title: --- 2C GF: 22+ or 18+ w/(!S/!H and <5 losers) or (!D/!C with <4 losers).
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n2C
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- 2C GF: 22+ or 18+ w/(!S/!H and <5 losers) or (!D/!C with <4 losers).
@@ -16,9 +17,9 @@ Positives responses to 2!C are
 2!D - a waiting bid denying one of the above.
 https://www.bridgebum.com/strong_2c.php
 @chat*/
-dealer south
 
 # Game Forcing 2C
+dealer south
 
 case1 = hcp(south)>22
 case2 = hcp(south)>18 and losers(south)<5 and (spades(south)>5 or hearts(south)>5)
@@ -26,3 +27,4 @@ case3 = hcp(south)>18 and losers(south)<4 and (diamonds(south)>5 or clubs(south)
 s2C = (case1 or case2 or case3)
 
 s2C
+action printoneline,

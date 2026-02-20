@@ -1,17 +1,18 @@
 # alias: TwoN4thSeat
 # button-text: 2NT in 4th Seat
 # scenario-title: --- 2N in 4th Seat shows 20-21 HCP.
-# dealer-position: W
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\nPass +Pass +Pass +2N
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- 2N in 4th Seat shows 20-21 HCP.
 @chat*/
-dealer west
 
 # Open In Fourth Seat
+dealer west
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -51,5 +52,5 @@ s2N = (hcp(south)>19 and hcp(south)<22) and shape(south,any 5422+any 5332+any 44
 calmOpps and nPasses and s2N
 
 produce 500
-action
+action printoneline,
 average "south 2N" s2N,

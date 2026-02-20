@@ -1,11 +1,25 @@
+# alias: GibStayman
 # button-text: GIB NT & 2C Response
 # scenario-title: --- Stayman asks the opener for a 4-card major.  Responses are as follow...
-# GIB_1N-P-2C
-dealer south
-# convention-card: 21GF-GIB
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n1NT? +Pass +2C +
+# convention-card-ns: 21GF-GIB
+# convention-card-ew: 21GF-GIB
 
+/*@chat
+--- Stayman asks the opener for a 4-card major.  Responses are as follow...
+• 2!D - No 4-card major
+• 2!H - 4+!H, may also have 4!S
+• 2!S - 4+!S and denies 4!H
+Normally, Stayman shows 8+HCP; but, if you're willing to pass anything that your
+partner might bid, you may bid 2!C with any strength.
+https://www.bridgebum.com/stayman.php
+https://www.bridgebum.com/crawling_stayman.php
+@chat*/
 
 # Stayman
+dealer south
 
 # 1 Notrump Opening
 ##### Imported Script -- GIB 1 Notrump #####
@@ -141,7 +155,7 @@ n2Clubs = (stayman or majorInvite or smolen) and nMajorQual and hcp(north)>6 and
 
 gibNT and n2Clubs and calmWest
 
-action
+action printoneline,
 average "45xx Invite " 100 * (majorInvite and shape(north,45xx)),
 average "54xx Invite " 100 * (majorInvite and shape(north,54xx)),
 average "smolen      " 100 * smolen,

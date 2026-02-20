@@ -1,10 +1,11 @@
 # alias: ForcingPass
 # button-text: Forcing Pass
 # scenario-title: --- Forcing Pass: When we are in and invitational or better auction and an opponent
-# dealer-position: N
 # gib-works: true
 # bba-works: true
 # auction-filter: .
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Forcing Pass: When we are in and invitational or better auction and an opponent
@@ -12,8 +13,8 @@ intervenes, a pass is forcing.  It shows extra offensive values and interest in
 continuing.  A double denies extra offensive values.  Passing and pulling
 partner's double is stronger than bidding directly.
 @chat*/
-dealer north
 
+dealer north
 # Forcing Pass
 
 # Define NT
@@ -77,7 +78,7 @@ wRaises = hcp(west)>1 and (wSs or wHs or wDs or wCs) and shape(west,any 0xxx+any
 
 nOpens and eBids and sInvites and wRaises and (hcp(north) + hcp(south))>25
 
-action
+action printoneline,
 average "HCP N  " hcp(north),
 average "HCP E  " hcp(east),
 average "HCP S  " hcp(south),

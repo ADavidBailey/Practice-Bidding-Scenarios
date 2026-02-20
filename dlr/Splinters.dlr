@@ -1,12 +1,21 @@
+# alias: Splinters
 # button-text: Splinters
-# scenario-title: Splinter Bids are double jumps.  They show a singleton or void in the suit bid and 4+ cards
+# scenario-title: --- Splinter Bids are double jumps.  They show a singleton or void in the suit bid and 4+ cards
+# gib-works: true
+# bba-works: true
+# auction-filter: Note..1.Splinter
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Splinter Bids are double jumps.  They show a singleton or void in the suit bid and 4+ cards
+in support of opener's major.  GIB splinters with a singleton A, K, or Q.  Some players do NOT.
+• After 1!H a jump to 3!S, 4!C, or 4!D
+• After 1!S a jump to 4!C, 4!D, or 4!H
+@chat*/
+
 # Splinters
 dealer south
-
-
-# auction-filter: Note..1.Splinter
-
-# Splinters
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -34,7 +43,6 @@ calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<1
 calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
-
 # Defines calmWest
 ##### Imported Script -- GIB 1 Notrump #####
 
@@ -51,123 +59,75 @@ gibNT = nt1 or nt2
 ### End of GIB 1 Notrump ###
 # Defines gibNT
 ### Imported script: TP (Total Points)
-
-//   Note:  My initial implementation used shape staments for counting voids, singletons, and doubletons.
-//   Dealer has a limit 32, so I eliminated the shape statements in this script.
+//   Total Points = HCP + Short-Suit Points - Penalty Points
+//   Short-Suit Points: 3 for void, 2 for singleton, 1 for doubleton
+//   Penalty Points: 1 for each honor (K/Q/J) in a short suit (devalues wasted honors like Kx, Qx)
 
 ## Calculate TP for North
-# Calculate North's Short-Suit Penalty Points
-nsPP = spades(north)  <3 and hcp(north,spades)  >0 ? 1 : 0
-nhPP = hearts(north)  <3 and hcp(north,hearts)  >0 ? 1 : 0
-ndPP = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
-ncPP = clubs(north)   <3 and hcp(north,clubs)   >0 ? 1 : 0
-nPP = nsPP+nhPP+ndPP+ncPP
+# Short-Suit Points: void=3, singleton=2, doubleton=1
+nSpadeSSP = spades(north)<3   ? 3-spades(north)   : 0
+nHeartSSP = hearts(north)<3   ? 3-hearts(north)   : 0
+nDiamSSP  = diamonds(north)<3 ? 3-diamonds(north) : 0
+nClubSSP  = clubs(north)<3    ? 3-clubs(north)    : 0
+nSSP = nSpadeSSP + nHeartSSP + nDiamSSP + nClubSSP
 
-# Calculate North's Short-Suit Points
-ns0 = spades(north)  ==0 ? 3 : 0   // 3 for each void
-nh0 = hearts(north)  ==0 ? 3 : 0
-nd0 = diamonds(north)==0 ? 3 : 0
-nc0 = clubs(north)   ==0 ? 3 : 0
-
-ns1 = spades(north)  ==1 ? 2 : 0   // 2 for each singleton
-nh1 = hearts(north)  ==1 ? 2 : 0
-nd1 = diamonds(north)==1 ? 2 : 0
-nc1 = clubs(north)   ==1 ? 2 : 0
-
-ns2 = spades(north)  ==2 ? 1 : 0   // 1 for each doubleton
-nh2 = hearts(north)  ==2 ? 1 : 0
-nd2 = diamonds(north)==2 ? 1 : 0
-nc2 = clubs(north)   ==2 ? 1 : 0
-
-nSSP = ns0+nh0+nd0+nc0+ns1+nh1+nd1+nc1+ns2+nh2+nd2+nc2
+# Penalty Points: deduct 1 for honors in short suits
+nSpadePP = spades(north)<3   and hcp(north,spades)>0   ? 1 : 0
+nHeartPP = hearts(north)<3   and hcp(north,hearts)>0   ? 1 : 0
+nDiamPP  = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
+nClubPP  = clubs(north)<3    and hcp(north,clubs)>0    ? 1 : 0
+nPP = nSpadePP + nHeartPP + nDiamPP + nClubPP
 
 tpNorth = hcp(north) + nSSP - nPP
 
 ## Calculate TP for East
-# Calculate East's Short-Suit Penalty Points
-esPP = spades(east)  <3 and hcp(east,spades)  >0 ? 1 : 0
-ehPP = hearts(east)  <3 and hcp(east,hearts)  >0 ? 1 : 0
-edPP = diamonds(east)<3 and hcp(east,diamonds)>0 ? 1 : 0
-ecPP = clubs(east)   <3 and hcp(east,clubs)   >0 ? 1 : 0
-ePP = esPP+ehPP+edPP+ecPP
+eSpadeSSP = spades(east)<3   ? 3-spades(east)   : 0
+eHeartSSP = hearts(east)<3   ? 3-hearts(east)   : 0
+eDiamSSP  = diamonds(east)<3 ? 3-diamonds(east) : 0
+eClubSSP  = clubs(east)<3    ? 3-clubs(east)    : 0
+eSSP = eSpadeSSP + eHeartSSP + eDiamSSP + eClubSSP
 
-# Calculate East's Short-Suit Points
-es0 = spades(east)==0     ? 3 : 0
-eh0 = hearts(east)==0     ? 3 : 0
-ed0 = diamonds(east)==0   ? 3 : 0
-ec0 = clubs(east)==0      ? 3 : 0
-
-es1 = spades(east)==1     ? 2 : 0
-eh1 = hearts(east)==1     ? 2 : 0    
-ed1 = diamonds(east)==1   ? 2 : 0
-ec1 = clubs(east)==1      ? 2 : 0
-
-es2 = spades(east)==2     ? 1 : 0
-eh2 = hearts(east)==2     ? 1 : 0
-ed2 = diamonds(east)==2   ? 1 : 0
-ec2 = clubs(east)==2      ? 1 : 0
-
-eSSP = es0+eh0+ed0+ec0+es1+eh1+ed1+ec1+es2+eh2+ed2+ec2
+eSpadePP = spades(east)<3   and hcp(east,spades)>0   ? 1 : 0
+eHeartPP = hearts(east)<3   and hcp(east,hearts)>0   ? 1 : 0
+eDiamPP  = diamonds(east)<3 and hcp(east,diamonds)>0 ? 1 : 0
+eClubPP  = clubs(east)<3    and hcp(east,clubs)>0    ? 1 : 0
+ePP = eSpadePP + eHeartPP + eDiamPP + eClubPP
 
 tpEast = hcp(east) + eSSP - ePP
 
-
 ## Calculate TP for South
-# Calculate South's Short-Suit Penalty Points
-ssPP = spades(south)  <3 and hcp(south,spades)  >0 ? 1 : 0   
-shPP = hearts(south)  <3 and hcp(south,hearts)  >0 ? 1 : 0
-sdPP = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
-scPP = clubs(south)   <3 and hcp(south,clubs)   >0 ? 1 : 0
-sPP = ssPP+shPP+sdPP+scPP
+sSpadeSSP = spades(south)<3   ? 3-spades(south)   : 0
+sHeartSSP = hearts(south)<3   ? 3-hearts(south)   : 0
+sDiamSSP  = diamonds(south)<3 ? 3-diamonds(south) : 0
+sClubSSP  = clubs(south)<3    ? 3-clubs(south)    : 0
+sSSP = sSpadeSSP + sHeartSSP + sDiamSSP + sClubSSP
 
-# Calculate South's Short-Suit Points
-ss0 = spades(south)==0     ? 3 : 0
-sh0 = hearts(south)==0     ? 3 : 0
-sd0 = diamonds(south)==0   ? 3 : 0
-sc0 = clubs(south)==0      ? 3 : 0   
-
-ss1 = spades(south)==1     ? 2 : 0
-sh1 = hearts(south)==1     ? 2 : 0
-sd1 = diamonds(south)==1   ? 2 : 0
-sc1 = clubs(south)==1      ? 2 : 0
-
-ss2 = spades(south)==2     ? 1 : 0
-sh2 = hearts(south)==2     ? 1 : 0
-sd2 = diamonds(south)==2   ? 1 : 0
-sc2 = clubs(south)==2      ? 1 : 0
-
-sSSP = ss0+sh0+sd0+sc0+ss1+sh1+sd1+sc1+ss2+sh2+sd2+sc2
+sSpadePP = spades(south)<3   and hcp(south,spades)>0   ? 1 : 0
+sHeartPP = hearts(south)<3   and hcp(south,hearts)>0   ? 1 : 0
+sDiamPP  = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
+sClubPP  = clubs(south)<3    and hcp(south,clubs)>0    ? 1 : 0
+sPP = sSpadePP + sHeartPP + sDiamPP + sClubPP
 
 tpSouth = hcp(south) + sSSP - sPP
 
-
 ## Calculate TP for West
-# Calculate West's Short-Suit Penalty Points
-wsPP = spades(west)  <3 and hcp(west,spades)  >0 ? 1 : 0
-whPP = hearts(west)  <3 and hcp(west,hearts)  >0 ? 1 : 0
-wdPP = diamonds(west)<3 and hcp(west,diamonds)>0 ? 1 : 0
-wcPP = clubs(west)   <3 and hcp(west,clubs)   >0 ? 1 : 0
-wPP = wsPP+whPP+wdPP+wcPP
+wSpadeSSP = spades(west)<3   ? 3-spades(west)   : 0
+wHeartSSP = hearts(west)<3   ? 3-hearts(west)   : 0
+wDiamSSP  = diamonds(west)<3 ? 3-diamonds(west) : 0
+wClubSSP  = clubs(west)<3    ? 3-clubs(west)    : 0
+wSSP = wSpadeSSP + wHeartSSP + wDiamSSP + wClubSSP
 
-# Calculate West's Short-Suit Points
-ws0 = spades(west)==0     ? 3 : 0
-wh0 = hearts(west)==0     ? 3 : 0
-wd0 = diamonds(west)==0   ? 3 : 0
-wc0 = clubs(west)==0      ? 3 : 0
-
-ws1 = spades(west)==1     ? 2 : 0
-wh1 = hearts(west)==1     ? 2 : 0
-wd1 = diamonds(west)==1   ? 2 : 0
-wc1 = clubs(west)==1      ? 2 : 0
-
-ws2 = spades(west)==2     ? 1 : 0
-wh2 = hearts(west)==2     ? 1 : 0
-wd2 = diamonds(west)==2   ? 1 : 0
-wc2 = clubs(west)==2      ? 1 : 0
-
-wSSP = ws0+wh0+wd0+wc0+ws1+wh1+wd1+wc1+ws2+wh2+wd2+wc2
+wSpadePP = spades(west)<3   and hcp(west,spades)>0   ? 1 : 0
+wHeartPP = hearts(west)<3   and hcp(west,hearts)>0   ? 1 : 0
+wDiamPP  = diamonds(west)<3 and hcp(west,diamonds)>0 ? 1 : 0
+wClubPP  = clubs(west)<3    and hcp(west,clubs)>0    ? 1 : 0
+wPP = wSpadePP + wHeartPP + wDiamPP + wClubPP
 
 tpWest = hcp(west) + wSSP - wPP
+
+## Partnership Totals
+tpNS = tpNorth + tpSouth
+tpEW = tpEast + tpWest
 
 ### End of Imported Script: TP
 # Defines tpSouth, tpNorth
@@ -184,15 +144,6 @@ gib2N   = shape(south, any 5332) and (hcp(south)==20 or hcp(south)==21)
 
 sShape = shape(south,any 8xxx +any 7xxx +any 6xxx +any 5xxx -any 85xx -any 76xx -any 75xx -any 65xx)
 sOpens = hcp(south)>10 and tpSouth>11 and sShape and not (strong2 or gibNT or gib2N)
-
-/*
-# North Splinters w/4-card support and shortness that's not an A, K, or Q
-cSpl = shape(north, xxx1+xxx0) and hcp(north,clubs)<2
-dSpl = shape(north, xx1x+xx0x) and hcp(north,diamonds)<2
-hSpl = shape(north, x1xx+x0xx) and hcp(north,hearts)<2
-sSpl = shape(north, 1xxx+0xxx) and hcp(north,spades)<2
-nonAKQshortness = cSpl or dSpl or hSpl or sSpl
-*/
 
 # GIB uses a Jacoby 2N response with 16 TP and a singleton
 jacoby2N = shape(north,any 1xxx) and tpNorth==16
@@ -244,7 +195,6 @@ keep985 = not keep015
 keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
-
 lev1 = game1 and keep25
 lev2 = game2 and keep19
 lev3 = slam1 and keep33
@@ -254,7 +204,7 @@ levelTheDeal = lev1 or lev2 or lev3 or lev4
 sOpens and fit and nSplinters and calmWest
 and levelTheDeal
 
-action
+action printoneline,
 average "12-13 & 13-16" 100 * game1,
 average "14-15 & 13-16" 100 * game2,
 average "16-17 & 13-16" 100 * slam1,

@@ -1,11 +1,11 @@
 # alias: OBARBIDS
 # button-text: OBARBIDS 6-11 (Lev)
 # scenario-title: --- Opponents Bid And Raise -- Balance In Direct Seat.
-# dealer-position: E
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n(1C +Pass +2C.* [X2])|(1D +Pass +2D.* [X23])|(1H +Pass +2H.* [X23])|(1S +Pass +2S.* [X3])
-# convention-card: No-Inverted-Minors
+# convention-card-ns: No-Inverted-Minors
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Opponents Bid And Raise -- Balance In Direct Seat.
@@ -14,9 +14,9 @@ and overcalls are as weak as 6 or 7 HCP.  This is leveled such that North
 is equally likely to have a 6-card suit, a 5-card suit, or a take-out double.
 https://www.bridgebum.com/obar_bids.php
 @chat*/
-dealer east
 
 # OBAR -- Opener Bid & Raise, Balance in Direct Seat
+dealer east
 
 ##### Define calm South -- copied from CalmOpps and modified for South
 # Avoid concentration of values
@@ -107,7 +107,7 @@ levelTheDeal = lev5 or lev6 or levX
 OBAR and BIDS
 and levelTheDeal
 
-action
+action printoneline,
 average "(hcp east)   " hcp(east),
 average "(hcp west)   " hcp(west),
 average "(hcp north)  " hcp(north),

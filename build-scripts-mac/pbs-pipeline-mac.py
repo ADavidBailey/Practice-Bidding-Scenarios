@@ -36,14 +36,14 @@ def print_error(msg: str):
     print(f"{RED}{msg}{RESET}")
 
 # Import operations
-from operations.pbn import run_pbn
+from operations.pbn_from_dlr import run_pbn
 from operations.rotate import run_rotate
-from operations.bba import run_bba
+from operations.bba_from_pbn import run_bba
 from operations.filter import run_filter
 from operations.filter_stats import run_filter_stats
 from operations.bidding_sheet import run_bidding_sheet
-from operations.dlr import run_dlr
-from operations.btn_to_pbs import run_pbs
+from operations.dlr_from_btn import run_dlr
+from operations.pbs_from_dlr import run_pbs
 from operations.quiz import run_quiz
 from operations.release import run_release
 from operations.release_layout import run_release_layout
@@ -246,7 +246,50 @@ def run_operations(scenario: str, operations: list, verbose: bool = True) -> boo
         print(f"    {'─' * 26}")
         print(f"    {'Total':15} {format_duration(total):>10}")
 
-    return success
+    return success, durations
+
+
+def _print_build_summary(all_durations: dict, build_elapsed: float, failed: list):
+    """Print a final build summary with total duration and slow scenarios."""
+    print(f"\n{'=' * 60}")
+    print(f"BUILD SUMMARY")
+    print(f"{'=' * 60}")
+    print(f"Total scenarios: {len(all_durations)}")
+    print(f"Failed: {len(failed)}")
+    print(f"Total build time: {format_duration(build_elapsed)}")
+
+    # Compute per-scenario totals and per-operation totals
+    scenario_totals = {}
+    op_totals = {}
+    for scenario, durations in all_durations.items():
+        scenario_totals[scenario] = sum(durations.values())
+        for op, dur in durations.items():
+            op_totals[op] = op_totals.get(op, 0) + dur
+
+    # Per-operation aggregate
+    print(f"\nTime by operation:")
+    for op, total in sorted(op_totals.items(), key=lambda x: -x[1]):
+        avg = total / len(all_durations) if all_durations else 0
+        print(f"  {op:15} {format_duration(total):>10}  (avg {format_duration(avg)})")
+
+    # Slowest scenarios overall
+    sorted_scenarios = sorted(scenario_totals.items(), key=lambda x: -x[1])
+    print(f"\nSlowest scenarios (top 10):")
+    for scenario, total in sorted_scenarios[:10]:
+        durations = all_durations[scenario]
+        # Find which operation was slowest
+        slowest_op = max(durations, key=durations.get) if durations else "?"
+        slowest_dur = durations.get(slowest_op, 0)
+        print(f"  {scenario:45} {format_duration(total):>10}  ({slowest_op} {format_duration(slowest_dur)})")
+
+    # Slowest per-operation (pbn is usually the bottleneck)
+    for target_op in ['pbn', 'bba']:
+        op_scenarios = [(s, d.get(target_op, 0)) for s, d in all_durations.items() if target_op in d]
+        op_scenarios.sort(key=lambda x: -x[1])
+        if op_scenarios and op_scenarios[0][1] > 10:  # only show if any took > 10s
+            print(f"\nSlowest {target_op} scenarios (top 5):")
+            for scenario, dur in op_scenarios[:5]:
+                print(f"  {scenario:45} {format_duration(dur):>10}")
 
 
 def main():
@@ -329,6 +372,8 @@ Operations (in order):
 
     # Run operations on each scenario
     failed_scenarios = []
+    all_durations = {}  # scenario -> {op: seconds}
+    build_start = time.time()
 
     for scenario in scenarios:
         if verbose:
@@ -336,7 +381,10 @@ Operations (in order):
             print(f"Processing: {scenario}")
             print(f"{'=' * 60}")
 
-        if not run_operations(scenario, operations, verbose=verbose):
+        success, durations = run_operations(scenario, operations, verbose=verbose)
+        all_durations[scenario] = durations
+
+        if not success:
             failed_scenarios.append(scenario)
             print_error(f"\nFailed: {scenario} - continuing with next scenario")
         elif verbose:
@@ -345,7 +393,12 @@ Operations (in order):
         if verbose:
             print()
 
-    # Summary
+    build_elapsed = time.time() - build_start
+
+    # Final summary
+    if len(scenarios) > 1:
+        _print_build_summary(all_durations, build_elapsed, failed_scenarios)
+
     if failed_scenarios:
         print_error(f"\n{len(failed_scenarios)} scenario(s) had errors:")
         for s in failed_scenarios:

@@ -1,12 +1,28 @@
+# alias: JumpCuebidStrong
 # button-text: Jump Cuebid Strong
 # scenario-title: --- Strong Direct Jump Cuebids of any suit.
+# gib-works: false
+# bba-works: true
 # auction-filter: Auction....n(1C.*\n.* [3-7][CDHS])|(1D.*\n.* [3-7][CDHS])|(\n1H.*\n..* [3-7][CDS])|(\n1S.*\n..* [3-7][CDH])
-# Jump_Cuebid_Strong
-dealer east
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Strong Direct Jump Cuebids of any suit.
+1x (3x) shows any other solid suit (usually a minor) with 6+ controls and asks
+partner to bid 3N with a stopper in the opponent's suit.  Without a stopper, 
+ • bidding a new major is natural, 
+ • 4!C shows 0/1 controls, and
+ • 4!D shows 2+ controls.
+(NOTE:  GIB does NOT play this!)
+https://tinyurl.com/JumpCueBids
+@chat*/
+
 # BBA does NOT play Strong Direct Jump Cuebids.  The following filter matches the deals that
 # fit the intent of the scenario
 
 # Jump Cuebid Strong 
+dealer east
 
 # Define solid suits interested in 3N if partner has a stopper
 solidD = diamonds(south)>6 and top4(south,diamonds)==4
@@ -41,7 +57,7 @@ eOpens = openSuit and hcp(east)>11 and hcp(east)<15
 
 eOpens and shape(south,any 9xxx+any 8xxx+any 7xxx-any 5xxx)
 
-action
+action printoneline,
 average "hcp(east)      " hcp(east),
 average "hcp(south)     " hcp(south),
 average "losers(south)  " losers(south),
@@ -51,5 +67,3 @@ average "Clubs            " 100 * oC,
 average "Diamonds         " 100 * oD,
 average "Hearts           " 100 * oH,
 average "Spades           " 100 * oS,
-
-printpbn

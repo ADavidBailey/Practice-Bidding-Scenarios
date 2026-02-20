@@ -1,20 +1,21 @@
 # alias: MiniMaxiRoman
 # button-text: Mini-Maxi-Roman
 # scenario-title: --- Mini-Roman (11-15) Maxi-Roman (19+)
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: Auction.....\n1[CD].
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Mini-Roman (11-15) Maxi-Roman (19+)
 Opener has 4441 or 5440 always with 4!S and never with a 5-card major.
 https://www.acblunit390.org/Simon/mini-roman.htm
 @chat*/
-dealer south
 
 # Mini-Roman
 
+dealer south
 
 # Define short suits without an honor
 sS = spades(south)<2   and hcp(south,spades)==0
@@ -31,7 +32,7 @@ MiniMaxiRoman = shape(south,any 4441+any 5440-5xxx-x5xx) and (sH or sD or sC) an
 # Now do it
 MiniMaxiRoman   // and not maxi
 
-action
+action printoneline,
 average "1S" 100 * spades(south)<2,
 average "1H" 100 * hearts(south)<2,
 average "1D" 100 * diamonds(south)<2,

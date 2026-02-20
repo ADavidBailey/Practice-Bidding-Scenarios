@@ -1,7 +1,17 @@
+# alias: DoubleByAdvancer
 # button-text: X by Advancer
 # scenario-title: --- Responsive Double by Advancer
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n(1C +1[DHS] +2C|1D +1[HS] +2D|1H +1S +2H) +X
-# Double_by_Advancer
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Responsive Double by Advancer
+After 1x (1y) 2x, (X) shows the other two suits.
+@chat*/
+
 dealer west
 
 ##### Double by Advancer #####
@@ -69,7 +79,7 @@ minHCP  = hcp(west)>=12 and hcp(north)>=8 and hcp(east)>=6 and hcp(south)>=12
 ##### Now do it #####
 westOpens and northOvercalls and eastRaises and southActs and minHCP
 
-action
+action printoneline,
 average "W 1C  " 100 * oC,
 average "W 1D  " 100 * oD,
 average "W 1H  " 100 * oH,

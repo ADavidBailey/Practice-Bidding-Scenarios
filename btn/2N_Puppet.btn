@@ -1,15 +1,17 @@
 # alias: TwoNTPuppet
 # button-text: 2N - Puppet
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: Note....2N-3C Puppet
-# convention-card: 21GF-Puppet
+# convention-card-ns: 21GF-Puppet
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- 20-21 Notrump with Puppet and any continuation.
 The responder's strength -- game or slam -- is leveled to about 55/35.
 @chat*/
+
+dealer south
 
 ### 2N w/Puppet and any response
 ntShape = shape(south,any 5422 +any 5332 +any 4432 +any 4333)

@@ -1,9 +1,32 @@
+# alias: LebensohlVsOppsW2Combo
 # button-text: leb vs W2-Dir/Bal
 # scenario-title: --- lebensohl After Opps Weak 2 -- Direct or Balanced Seat.
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n2[DHS] +(X|Pass +Pass +X)
-# Lebensohl_vs_Opps_W2_Bal_or_Dir
-dealer west
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- lebensohl After Opps Weak 2 -- Direct or Balanced Seat.
+After 2!D/2!H/2!S and a Take-Out Double in direct or balancing seat, 
+lebensohl continuations are...
+  • A new suit at the 2-level is natural and weak (0-7).
+  • A non-jump new suit at the 3-level shows 8-10 and no stop.
+  • Cue Bid openers suit to show major suit interest without a stop.
+  • Jump bidding a new suit at the 3-level shows 8-10 and no stop.
+  • 3N shows game forcing values without major suit interest and no stop -- pass or scramble.
+  • Bidding 2N is the Lebensohl relay to 3!C.  After partner's forced 3!C, you may...
+    ◦ Pass or Correct to a new lower ranking suit (0-7).
+    ◦ Cue Bid openers suit to show major suit interest and with a stop.
+    ◦ Correct to a new higher ranking suit is constructive.
+    ◦ Bid 3N to show a balanced hand without major suit interest AND with a stop.
+https://www.bridgebum.com/lebensohl_over_weak_two.php
+@chat*/
+
 # Lebensohl vs Opponents Weak 2 -- Direct or Balanced
+dealer west
+produce 1000
 
 tp = hcp(west)
 sp = hcp(west,spades)
@@ -82,8 +105,6 @@ sActs = ePasses and sDoubles and nResponds
 
 wOpensWeak2 and (nActs or sActs)
 
-action
+action printoneline,
 average "North X" 100 * nActs,
 average "South X" 100 * sActs,
-
-printpbn

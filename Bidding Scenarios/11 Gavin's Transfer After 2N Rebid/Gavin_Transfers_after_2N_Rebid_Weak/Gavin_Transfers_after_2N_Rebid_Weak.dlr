@@ -1,10 +1,11 @@
 # alias: TransferAfter2NRebidWeak
 # button-text: Unbalanced & Weak
 # scenario-title: --- Transfers after 2N Rebid Unbalanced & Weak
-# dealer-position: N
 # gib-works: false
 # bba-works: true
 # auction-filter: .
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Transfers after 2N Rebid Unbalanced & Weak
@@ -14,6 +15,7 @@ They Relay to a suit that can't be weak.  Accepting a relay shows support.
 IF YOU SKIP IT, YOU DENY IT!
 https://tinyurl.com/bdhtmwxc
 @chat*/
+
 dealer north
 
 # Transfers after 2N Rebid
@@ -38,3 +40,4 @@ sR = (MajorFit  and tp>4 and tp<8) or (hcp(south)>5 and hcp(south)<7 and shape(s
 
 # Now do it
 nO and sR
+action printoneline,

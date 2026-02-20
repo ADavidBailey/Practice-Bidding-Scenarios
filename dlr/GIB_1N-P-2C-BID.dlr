@@ -1,16 +1,17 @@
-# button-text: GIB NT-P-2C-bid (lev)
-# scenario-title: After 1NT-P-2C-bid...  What now???
-# GIB_1N-P-2C-BID
-dealer south
-
+# alias: GibAfterStayman
+# button-text: GIB after Stayman
+# scenario-title: 
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n(1NT? +Pass +2C.* +[X2-7])
+# convention-card-ns: 21GF-GIB
+# convention-card-ew: 21GF-GIB
 
 /*
 South opens 1N and North responds 2C and East bids.
-
-convention-card: 21GF-GIB
-auction-filter: Auction.....\n(1NT? +Pass +2C.* +[X2-7])
 */
 
+dealer south
 
 # 1 Notrump Opening
 ##### Imported Script -- GIB 1 Notrump #####
@@ -166,7 +167,6 @@ eSolid8D = diamonds(east)>7 and hascard(east,AD) and hascard(east,KD) and (hasca
 eSolid8C = clubs(east)>7 and hascard(east,AC) and hascard(east,KC) and (hascard(east,JC) or clubs(east)>8)
 
 ## End of GIB Suit Quality Definitions
-
 # Defines e8421S/H/D/C, eRebidS/H/D/C, e2Rebid/S/H/D/C, and eStrongS/H/D/C
 
 # Define West's Cappellitti actions
@@ -300,7 +300,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 levX  = eX  and keep11
 lev2B = e2B and keep33
 lev3B = e3B and keep44
@@ -311,7 +310,7 @@ levelTheDeal = lev2B or lev3B or lev4B or levX
 gibNT and tpSouth<19 and calmWest and n2Clubs and (eShape or eX) and (e2B or e3B or e4B or eX)
 and levelTheDeal
 
-action
+action printoneline,
 average "smolen      " 100 * smolen,
 average "stayman     " 100 * stayman,
 average "major invite" 100 * majorInvite,

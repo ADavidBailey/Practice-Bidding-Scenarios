@@ -1,15 +1,17 @@
 # alias: TwoNTandBalanced
 # button-text: 2NT - Balanced
 # scenario-title: ---  20-21 Notrump and a Balanced response.
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n2NT?
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  20-21 Notrump and a Balanced response.
 The responder's strength -- game or slam -- is leveled.
 @chat*/
+
 dealer south
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
@@ -188,7 +190,7 @@ twoNT and balanced and (levGame or levSlam)
 
 ### Generate Statistics
 
-action
+action printoneline,
 
 average "Game         " 100 * game,
 average "Slam         " 100 * slam,

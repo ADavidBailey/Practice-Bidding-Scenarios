@@ -1,8 +1,18 @@
+# alias: JumpOvercalls
 # button-text: Jump Overcalls
 # scenario-title: --- Jump Overcalls
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n(1C +2[DHS])|(1D +(2[HS]|3C))|(1H +(2S|3[CD]))|(1S +3[CDH])
-# Jump_Overcalls
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Jump Overcalls
+@chat*/
+
 dealer east
+produce 1000
 
 # Predict East's opening suit
 sE = spades(east)
@@ -53,5 +63,4 @@ hcp(east)>11 and hcp(east)<15
 
 # South makes a Weak Jump Overcall
 and sWeakJumpOvercall
-
-action printpbn
+action printoneline,

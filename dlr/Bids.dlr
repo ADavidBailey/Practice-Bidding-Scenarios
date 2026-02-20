@@ -1,12 +1,18 @@
+# alias: Bids
 # button-text: After 1C (Pass)
 # scenario-title: --- Responses to 1C
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n1C +Pass +(1[DHS]|1NT?|2C|2NT?|3[CDHS]|3NT?) +
-# convention-card: 21GF-GIB
-# Bids
+# convention-card-ns: 21GF-GIB
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Responses to 1C
+South opens 1!C.  North has 5+!D and one or both 4-card majors.
+@chat*/
+
 dealer south
-# convention-card: 21GF-GIB
-
-
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -264,7 +270,7 @@ nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N
 
 oneClub and sClubs and sRange and nRange and nResponds and calmOpps
 
-action
+action printoneline,
 average "CD " 100 * r1D,
 average "CH " 100 * r1H,
 average "CS " 100 * r1S,

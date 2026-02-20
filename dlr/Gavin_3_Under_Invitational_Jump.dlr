@@ -1,12 +1,21 @@
+# alias: InvitationalJump
 # button-text: 3-Under Invitational Jump (11-12 HCP)
 # scenario-title: --- 3 Under Invitational Jump (11-12 HCP)
+# gib-works: false
+# bba-works: true
 # auction-filter: Auction.....\n(1D Pass +3C|1H +Pass +3[CD]|1S Pass +3[CDH])
-# convention-card: 21GF-3-Under-Inv-Jump
-# Gavin_3_Under_Invitational_Jump
+# convention-card-ns: 21GF-3-Under-Inv-Jump
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- 3 Under Invitational Jump (11-12 HCP)
+  • 1!H - 3!C
+  • 1!S - 3!C or 3!H
+NOTE: This does not include jumps to 3D which is a 4-card Limit Raise.
+https://tinyurl.com/4dvh42e7
+@chat*/
+
 dealer north
-# convention-card: 21GF-3-Under-Inv-Jump
-
-
 
 # Gavin's 3 Under Invitational Jump (11-12 HCP)
 
@@ -84,3 +93,4 @@ and calmEast
 and noMajorFit
 and hcp(south)>10 and hcp(south)<13
 and (goodHearts or goodClubs)         // or goodDiamonds
+action printoneline,

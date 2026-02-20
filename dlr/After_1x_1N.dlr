@@ -1,10 +1,11 @@
 # alias: After1x1N
 # button-text: After 1x (1N)
 # scenario-title: --- After 1x (1N)
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: 1[CDHS] +1N
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- After 1x (1N)
@@ -23,10 +24,10 @@
   • 2N - 5+ in both minors & 5-9
   https://www.advinbridge.com/this-week-in-bridge/589
 @chat*/
-dealer south
 
 # After 1x (1N)
 
+dealer south
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -278,7 +279,7 @@ levelTheDeal = levDouble or lev1m2C or lev1m2D or lev1m2N or lev1C2H or lev1C2S 
 sOpens and wOvercalls1N and (nDoubles or nBids or nRaises or nPasses)
 and levelTheDeal
 
-action
+action printoneline,
 average "Double " 100 * nDoubles,
 average "om2C   " 100 * om2C,
 average "om2D   " 100 * om2D,

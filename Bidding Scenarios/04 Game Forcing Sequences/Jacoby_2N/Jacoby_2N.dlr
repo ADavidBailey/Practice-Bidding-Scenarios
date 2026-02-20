@@ -1,10 +1,11 @@
 # alias: Jacoby2N
 # button-text: Jacoby 2N (4x-Suit)
 # scenario-title: --- Jacoby 2N
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1[HS] +Pass +2N
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Jacoby 2N
@@ -16,9 +17,9 @@ are the approximate frequency of occurrence for the various hand types. Use the 
 • 3N (12%) - 15-17 Semi-Balanced
 • 4M (34%) - 12-14 Semi-Balanced
 @chat*/
-dealer south
 
 produce 2000
+dealer south
 
 # Jacoby 2N Leveled
 
@@ -238,8 +239,7 @@ condition
 (x4 or x3 or M3 or N3 or M4) and suitPoints>12 and calmWest and hcp(north)>12
 #and levelTheDeal
 
-action
-#printoneline,
+action printoneline,
 average "1. x4" 100 * x4,
 average "2. x3" 100 * x3,
 average "3. M3" 100 * M3,

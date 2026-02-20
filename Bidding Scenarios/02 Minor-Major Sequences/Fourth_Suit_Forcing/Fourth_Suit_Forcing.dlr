@@ -1,11 +1,11 @@
 # alias: FourthSuitForcing
 # button-text: 4th Suit Forcing
 # scenario-title: --- Fourth Suit Forcing
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Note...:Fourth.suit
-# convention-card: 21GF-Walsh
+# convention-card-ns: 21GF-Walsh
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Fourth Suit Forcing
@@ -16,9 +16,9 @@ Some play it as natural and forcing one round.
 Some play it as GF and less than 4 spades and use 2!S for GF with 4 spades. Talk to your partner!
 https://www.bridgebum.com/fourth_suit_forcing.php
 @chat*/
-dealer south
 
 produce 100
+dealer south
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -292,7 +292,7 @@ h3  = h==3 and (CH or DH)
 s3  = s==3 and (CS or DS or HS)
 
 
-action
+action printoneline,
 average "noReverse " 100 * noReverse,
 average "CDH       " 100 * CDH,
 average "CDS       " 100 * CDS,

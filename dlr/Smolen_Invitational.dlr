@@ -1,9 +1,21 @@
+# alias: SmolenInv
 # button-text: Smolen Inv
 # scenario-title: --- Smolen Shape w/Invitational values
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n1N +Pass +((2C.* Pass\n2D +Pass +2S)|(2D +Pass\n2H +Pass +2S))
-# Smolen_Invitational
-dealer south
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Smolen Shape w/Invitational values
+With invitational values and 5-4 in the majors, you can invite.
+• 4!S and 5!H, transfer to 2!H and then bid 2!S.
+• 5!S and 4!H, start with Stayman and correct 2!D to 2!S.
+@chat*/
+
 # Smolen
+dealer south
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -37,5 +49,4 @@ hcp(south) >=15 && hcp(south)<=17 &&
 shape(north, 54xx+45xx) &&
 hcp(north) >= 8 && hcp(north) <= 9 &&
 calmWest        // It's OK for west to X with decent clubs -- system's on
-
-action printpbn
+action printoneline,

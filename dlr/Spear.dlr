@@ -1,11 +1,27 @@
+# alias: Spear
 # button-text: Spear
 # scenario-title: --- Spear: Intervening after 1!C or 1!D (P) 1NT...
+# gib-works: false
+# bba-works: true
 # auction-filter: Auction.....\n1[CD] +Pass +1N +
-# Spear
-dealer east
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Spear: Intervening after 1!C or 1!D (P) 1NT...
+• 2!C = both majors w/6+ HCP
+• 2!D = one major w/12+ HCP
+• 2!H = 5+!H usually less than 12 HCP
+• 2!S = 5+!S usually less than 12 HCP
+• X = Good hand usually balanced 12+
+• 3x = natural good single suited hand
+https://www.advinbridge.com/this-week-in-bridge/571
+@chat*/
+
 # Spear Convention
 
 
+dealer east
 
 ## Predict Opening 1-Bid rotated to east ##
 # GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
@@ -154,8 +170,7 @@ eOneMinor and sPasses and wOneNT and nSpear
 and levelTheDeal
 
 #  produce 40
-action
-#  printoneline,
+action printoneline,
 average "3343" 100 * shape(west,3343),
 average "3334" 100 * shape(west,3334),
 average "3325" 100 * shape(west,3325),
@@ -170,5 +185,3 @@ average "2D 5+H/S w/9+     " 100 * twoD,
 average "2H 5+H w/6-11     " 100 * twoH,
 average "2S 5+S w/6-11     " 100 * twoS,
 average "X  bal w/12+      " 100 * X,
-
-printpbn

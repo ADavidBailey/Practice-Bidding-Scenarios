@@ -1,10 +1,11 @@
 # alias: NedRespTo3N
 # button-text: Ned's 3-Lev 1N Resp (Lev)
 # scenario-title: ---  Ned's 3-Level Response to 1N.
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: Auction.....\n1N +Pass
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  Ned's 3-Level Response to 1N.
@@ -13,9 +14,9 @@ Without a fit, the opener bids 3N.  With a fit, the opener responds with Key-Car
 3N.  If opener does not have a fit, responder can ask for Key-Cards by bidding the first new suit
 (4!D when responder's suit is Clubs; otherwise, 4!C.  This avoids confusion with any subsequent K-Ask).
 @chat*/
-dealer south
 
 produce 1000
+dealer south
 
 # Import Define-1N and Leveling
 ### Imported: Define 1 Notrump Opening ###
@@ -108,7 +109,7 @@ and levelTheDeal
 
 # Generate Statistics
 
-action
+action printoneline,
 
 average "Minimum     " 100 * ntMin,
 average "Avg         " 100 * ntAvg,

@@ -1,17 +1,18 @@
 # alias: OppRedoubles
 # button-text: Opps Redouble
 # scenario-title: --- Opponent Redoubles our Takeout Double
-# dealer-position: E
 # gib-works: true
 # bba-works: true
 # auction-filter: X.*XX
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Opponent Redoubles our Takeout Double
 @chat*/
-dealer east
 
 produce 1000
+dealer east
 
 
 # Opponent Redoubles our Takeout Double
@@ -47,7 +48,7 @@ and hcp(south)>11 and hcp(south)<20
 
 and hcp(west)>10 and shape(west,any 4441 +any 4432)
 
-action
+action printoneline,
 average "East HCP  " hcp(east),
 average "South HCP " hcp(east),
 average "West HCP  " hcp(east),

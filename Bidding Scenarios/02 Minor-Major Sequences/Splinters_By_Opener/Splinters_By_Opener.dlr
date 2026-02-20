@@ -1,10 +1,11 @@
 # alias: SplinterByOpener
 # button-text: Splinter by Opener
 # scenario-title: --- Splinter by Opener
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: (1[CDH] +Pass +1S +Pass\n4[CDH])|(1[CD] +Pass +1H +Pass\n(3S|4[CD]))
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Splinter by Opener
@@ -16,8 +17,8 @@ Double jumpshifts are also unusual. They're above the 3-level of responder's sui
 Many also play that Jump's in 2/1 auctions are splinters. (Not Included Here)
 NOTE: The Robots play these 3-level splinters as GAME FORCING.
 @chat*/
-dealer south
 
+dealer south
 produce 1000
 
 # Splinters by Opener
@@ -236,7 +237,7 @@ northRange = hcp(north)>5  and hcp(north)<17  // no jump shifts
 # Now do it
 sOpens and northRange and calmOpps
 
-action
+action printoneline,
 average "CH " 100 * CH,
 average "  3D     " 100 * CH3D,
 average "  3S     " 100 * CH3S,

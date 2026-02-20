@@ -1,9 +1,10 @@
 # alias: SupportDouble
 # button-text: Support Double
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n.*\nX
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Support Double
@@ -12,6 +13,8 @@ You respond 1!H or 1!S
 Your LHO bids or doubles
 Your partner doubles or redoubles.
 @chat*/
+
+dealer south
 
 #include "script/Predict-Opening-1-Bid"
 #include "script/Calm-Opponents"

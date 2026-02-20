@@ -1,9 +1,19 @@
+# alias: SlamAfterMajor
 # button-text: Major Suit Slam
 # scenario-title: --- Slam w/Major Suit Fit -- N/S have 29+ HCP
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n1[HS]
-# Slam_After_Major_Fit
-dealer south
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Slam w/Major Suit Fit -- N/S have 29+ HCP
+Responder's hand has at least 3-card support.  Its strength is wide ranging.
+@chat*/
+
 # Major_Suit_Fit
+dealer south
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -56,9 +66,7 @@ oneM = (heartFit or spadeFit) and not gibNT
 
 oneM and hcp(south)>11 and hcp(south)<20 and hcp(north)>5 and (hcp(north)+hcp(south))>28 and calmWest
 
-action
+action printoneline,
 average "hcp south  " 100 * hcp(south),
 average "hcp north  " 100 * hcp(north),
 average "hcp total  " 100 * (hcp(north)+hcp(south)),
-
-printpbn

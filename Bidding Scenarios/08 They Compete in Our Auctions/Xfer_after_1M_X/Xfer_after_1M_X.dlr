@@ -1,10 +1,11 @@
 # alias: XferAfter1MX
 # button-text: Xfer after 1M (X)
 # scenario-title: --- Transfers after Opponents double our 1!H or 1!S
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: Auction.....\n1[HS] +X [12]. +
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Transfers after Opponents double our 1!H or 1!S
@@ -20,9 +21,9 @@ Transfers into a new suit show something like a weak 2 or better.
 Transfer & raise is invitational.
 https://www.nxtbook.com/acbl/bridgebulletin/2025_06/index.php#/p/66
 @chat*/
-dealer south
 
 # South opens 1 Major
+dealer south
 
 ##### Imported Script -- GIB 1 Notrump #####
 
@@ -83,7 +84,7 @@ nActsWithoutFit = XX or S1 or N1 or c2
 # Now do it
 southM and westX and (nActsWithFit or nActsWithoutFit)
 
-action
+action printoneline,
 average "----- NO FIT ----- " 100 * nActsWithoutFit,
 average "10+ XX - penalty   " 100 * XX,
 average "6+  1S - spades    " 100 * S1,

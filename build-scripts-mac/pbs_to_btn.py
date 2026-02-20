@@ -36,7 +36,8 @@ def parse_pbs_file(pbs_path: str) -> dict:
         'button_text': None,
         'dealer_position': 'S',
         'auction_filter': None,
-        'convention_card': None,
+        'convention_card_ns': None,
+        'convention_card_ew': None,
         'chat': None,
         'dealer_code': None,
     }
@@ -56,10 +57,18 @@ def parse_pbs_file(pbs_path: str) -> dict:
     if filter_match:
         result['auction_filter'] = filter_match.group(1).strip()
 
-    # Extract convention-card from comment block
-    cc_match = re.search(r'convention-card:\s*(.+?)(?:\n|\*/)', content)
-    if cc_match:
-        result['convention_card'] = cc_match.group(1).strip()
+    # Extract convention-card-ns and convention-card-ew from comment block
+    cc_ns_match = re.search(r'convention-card-ns:\s*(.+?)(?:\n|\*/)', content)
+    if cc_ns_match:
+        result['convention_card_ns'] = cc_ns_match.group(1).strip()
+    else:
+        # Legacy fallback: read old "convention-card:" format as NS
+        cc_match = re.search(r'convention-card:\s*(.+?)(?:\n|\*/)', content)
+        if cc_match:
+            result['convention_card_ns'] = cc_match.group(1).strip()
+    cc_ew_match = re.search(r'convention-card-ew:\s*(.+?)(?:\n|\*/)', content)
+    if cc_ew_match:
+        result['convention_card_ew'] = cc_ew_match.group(1).strip()
 
     # Extract dealer code between setDealerCode(` and closing `)
     # Handles both formats: `,"S",true) and `)
@@ -68,10 +77,10 @@ def parse_pbs_file(pbs_path: str) -> dict:
         dealer_code = code_match.group(1)
 
         # Remove the auction-filter/convention-card comment block from dealer code
-        dealer_code = re.sub(r'/\*\s*\n(?:convention-card:.*?\n)?(?:auction-filter:.*?\n)?\*/', '', dealer_code)
+        dealer_code = re.sub(r'/\*\s*\n(?:convention-card(?:-ns|-ew)?:.*?\n)*(?:auction-filter:.*?\n)?\*/', '', dealer_code)
 
-        # Also remove # convention-card: and # auction-filter: comment lines
-        dealer_code = re.sub(r'^#\s*convention-card:.*\n?', '', dealer_code, flags=re.MULTILINE)
+        # Also remove # convention-card-ns/ew: and # auction-filter: comment lines
+        dealer_code = re.sub(r'^#\s*convention-card(?:-ns|-ew)?:.*\n?', '', dealer_code, flags=re.MULTILINE)
         dealer_code = re.sub(r'^#\s*auction-filter:.*\n?', '', dealer_code, flags=re.MULTILINE)
 
         dealer_code = dealer_code.strip()
@@ -129,18 +138,22 @@ def generate_btn(parsed: dict) -> str:
     button_text = parsed['button_text'] or alias
     dealer_position = parsed['dealer_position'] or 'S'
 
+    # Map position initial to full name for dealer statement
+    position_names = {'S': 'south', 'N': 'north', 'E': 'east', 'W': 'west'}
+
     lines = []
 
     # Metadata comments
     lines.append(f"# alias: {alias}")
     lines.append(f"# button-text: {button_text}")
-    lines.append(f"# dealer-position: {dealer_position}")
     lines.append("# gib-works: true")
     lines.append("# bba-works: true")
     if parsed['auction_filter']:
         lines.append(f"# auction-filter: {parsed['auction_filter']}")
-    if parsed['convention_card']:
-        lines.append(f"# convention-card: {parsed['convention_card']}")
+    if parsed['convention_card_ns']:
+        lines.append(f"# convention-card-ns: {parsed['convention_card_ns']}")
+    if parsed['convention_card_ew']:
+        lines.append(f"# convention-card-ew: {parsed['convention_card_ew']}")
 
     lines.append("")
 
@@ -150,6 +163,9 @@ def generate_btn(parsed: dict) -> str:
         lines.append(parsed['chat'])
         lines.append("@chat*/")
         lines.append("")
+
+    # Dealer statement
+    lines.append(f"dealer {position_names.get(dealer_position, 'south')}")
 
     # Dealer code with #include directives
     dealer_code = parsed['dealer_code'] or ''

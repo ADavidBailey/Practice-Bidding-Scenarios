@@ -1,10 +1,11 @@
 # alias: Splinters_after_Minor
 # button-text: Splinters after Minor
 # scenario-title: --- Splinter Bids are double jumps.  They show a singleton or void in the suit bid and support
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Note..1.Splinter
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Splinter Bids are double jumps.  They show a singleton or void in the suit bid and support
@@ -13,9 +14,9 @@ GIB splinters with a singleton A, K, or Q.  Some players do NOT.
 • After 1!C a jump to 3!D, 3!H, or 3!S
 • After 1!D a jump to 3!H, 3!S, or 4!C
 @chat*/
-dealer south
 
 # Splinters
+dealer south
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -298,7 +299,7 @@ levelTheDeal = lev1 or lev2 or lev3 or lev4
 sOpens and calmWest and nSplinters
 and levelTheDeal
 
-action
+action printoneline,
 average "Part Score" 100 * part,
 average "Game"       100 * game,
 average "Slam"       100 * slam,

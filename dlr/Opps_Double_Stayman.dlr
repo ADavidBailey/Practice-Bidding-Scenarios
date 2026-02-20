@@ -1,12 +1,19 @@
-# button-text: Opps X Stayman
-# scenario-title: Opponents X Stayman
-# Opps_Double_Stayman
-dealer south
+# alias: StaymanX
+# button-text: X Stayman
+# scenario-title: --- Opponents X Stayman
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n1N +Pass +2C.* X
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
-
-# auction-filter: Auction.....\\n1NT Pass 2C.*X
+/*@chat
+--- Opponents X Stayman
+@chat*/
 
 # Opponents Double Stayman
+dealer south
+produce 1000
 
 # Define South's NT opening -- robot style
 sNT = shape(south, any 4333 +any 4432 +any 5332-5xxx-x5xx) and hcp(south)>14 and hcp(south)<18
@@ -56,7 +63,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 # Reduce long club suits
 lev5 = clubs(east)==5 and keep
 levMore = clubs(east)>5 and keep44
@@ -65,7 +71,7 @@ levelTheDeal = lev5 or levMore
 sNT and n2C and eDoubles
 and levelTheDeal
 
-action
+action printoneline,
 
 average "South hcp    " hcp(south),
 average "North hcp    " hcp(north),

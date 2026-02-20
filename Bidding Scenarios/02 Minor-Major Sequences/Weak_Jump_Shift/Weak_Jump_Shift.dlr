@@ -1,11 +1,11 @@
 # alias: WeakJumpShift
 # button-text: Weak Jump Shift (Lev)
 # scenario-title: --- Weak Jump Shift
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: Note...:Weak Jump Shift
-# convention-card: 21GF-WJS-MSS
+# convention-card-ns: 21GF-WJS-MSS
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Weak Jump Shift
@@ -15,6 +15,7 @@ South opens, West passes, and North jumps -- a single jump.
  Leveled: Opener's Force, Rebid, New Suit, (Pass or Raise) occur at about the same frequency.
 https://www.bridgebum.com/weak_jump_shifts.php
 @chat*/
+
 dealer south
 
 # Weak Jump Shift
@@ -247,7 +248,7 @@ levelTheDeal = levForce1 or levForce2 or levRebid or levNewSuit or levOther
 (WJS2 or WJS3) and calmWest and not gibNT and hcp(south)>11 and hcp(south)<22
 and levelTheDeal
 
-action
+action printoneline,
 average "force w/fit  " 100 * force1,
 average "force w/o fit" 100 * force2,
 average "rebid        " 100 * rebid,

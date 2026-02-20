@@ -1,11 +1,11 @@
 # alias: MinorGameOrSlam
 # button-text: Minor Game/Slam
 # scenario-title: --- Minor Suit Game or Slam
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Contract..([5-7][CDHSN])
-# convention-card: 21GF-MSTandMSS
+# convention-card-ns: 21GF-MSTandMSS
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Minor Suit Game or Slam
@@ -19,8 +19,8 @@ As the linked article explains, RKC Minorwood can be extended to other situation
 where the 4m bid cannot be construed as competitive.
 https://tinyurl.com/RKC-Minorwood
 @chat*/
-dealer south
 
+dealer south
 
 # Minor Games and Slams
 
@@ -174,7 +174,7 @@ minorFit = (cFit or dFit) and not (hFit or sFit) and unbal
 minorFit and hcp(south)>11 and (hcp(north)+hcp(south))>28 and calmOpps
 
 produce 1000
-action
+action printoneline,
 average "hcp south" hcp(south),
 average "hcp north" hcp(north),
 average "hcp total" hcp(south)+hcp(north),

@@ -1,9 +1,20 @@
+# alias: W2XRX
 # button-text: Weak2 (X) XX
 # scenario-title: --- Weak2 (X) XX (Now What?)
+# gib-works: true
+# bba-works: true
 # auction-filter: 2[DHS] +X +XX
-# W2_X_XX
-dealer east
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Weak2 (X) XX (Now What?)
+After 2!D/2!H/2!S, (X), XX, 
+Without the Redouble we play lebensohl.  With the Redouble ???.
+@chat*/
+
 # Weak 2 (X) XX
+dealer east
 
 # Define East weak 2 bids
 w2S = spades(east)==6   and (top5(east,spades)>2   or top3(east,spades)>1)   and spades(west)==3   and hcp(west,spades)<2
@@ -33,7 +44,7 @@ wXX = hcp(west)>12 and shape(west,any 4432 +any 4441)
 
 eOpensWeak2 and sDoubles and wXX
 
-action
+action printoneline,
 average "hcp East " hcp(east),
 average "hcp North" hcp(north),
 average "hcp West " hcp(west),

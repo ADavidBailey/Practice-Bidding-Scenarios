@@ -1,11 +1,11 @@
 # alias: GibOcW4
 # button-text: GIB OC w/4-cards
 # scenario-title: --- GIB overcalls in a 4-card suit
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1[CDH]
-# convention-card: 21GF-GIB
+# convention-card-ns: 21GF-GIB
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- GIB overcalls in a 4-card suit
@@ -15,12 +15,12 @@ West's shape is either 4333 or 4432.
 West's lower limit is 12 TP -- can be 11 HCP w/a small doubleton.
 West's upper limit is 13 HCP with 44/33 in the majors, otherwise 14 HCP.
 @chat*/
-dealer south
 
 /*
 South opens 1C, 1D, or 1H and West overcalls at the 1-level in a 4-card suit.
 */
 
+dealer south
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -215,7 +215,7 @@ sOpens = hcp(south)>11 and hcp(south)<15
 sOpens and wOvercalls
 
 
-action
+action printoneline,
 average "1C-1D   " 100 * (cOC and wD4),
 average "1C-1H   " 100 * (cOC and wH4),
 average "1C-1S   " 100 * (cOC and wS4),

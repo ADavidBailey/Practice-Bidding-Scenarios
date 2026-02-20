@@ -1,10 +1,11 @@
 # alias: MichaelsCuebid
 # button-text: Michaels Cuebid
 # scenario-title: ---  Michaels Cuebid.
-# dealer-position: E
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n(1C +2C|1D +2D|1H +2H|1S +2S)
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  Michaels Cuebid.
@@ -15,12 +16,12 @@ Two-suited OR a good hand.
   • 1!S - 2!S = 5+!H & 5+(!C or !D)
 https://www.bridgebum.com/michaels_cuebid.php
 @chat*/
-dealer east
 
 /*
 Michaels Cuebid
 */
 
+dealer east
 
 ### Imported script: TP (Total Points)
 //   Total Points = HCP + Short-Suit Points - Penalty Points
@@ -233,7 +234,7 @@ levPreempt = preempt and hascard(north,2C) or hascard(north,2D) // keep only 44%
 eOpens and sMCB and wRange
 and (force or invite or compete or levPreempt)
 
-action
+action printoneline,
 average "TP >=13 " 100 * force,
 average "TP >=10 " 100 * invite,
 average "TP >= 7 " 100 * compete,

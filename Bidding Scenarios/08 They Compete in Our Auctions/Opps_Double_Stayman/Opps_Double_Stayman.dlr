@@ -1,17 +1,18 @@
 # alias: StaymanX
 # button-text: X Stayman
 # scenario-title: --- Opponents X Stayman
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1N +Pass +2C.* X
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Opponents X Stayman
 @chat*/
-dealer south
 
 # Opponents Double Stayman
+dealer south
 produce 1000
 
 # Define South's NT opening -- robot style
@@ -70,7 +71,7 @@ levelTheDeal = lev5 or levMore
 sNT and n2C and eDoubles
 and levelTheDeal
 
-action
+action printoneline,
 
 average "South hcp    " hcp(south),
 average "North hcp    " hcp(north),

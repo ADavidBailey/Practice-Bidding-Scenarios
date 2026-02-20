@@ -1,9 +1,10 @@
 # alias: JacobyTransfer
 # button-text: GIB NT & Jacoby
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1N +Pass +2[DH]
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  Jacoby Transfer
@@ -12,6 +13,8 @@ Those 5422 hands are the ones where you are likely to have to reverse to show yo
 HCP adjusted +1 for any 5-card suit unless you have Kx, Qx, or Jx doubleton.
 North transfers to Hearts or Spades.
 @chat*/
+
+dealer south
 
 # Import Define-1N and Calm Opponents
 #include "script/GIB-1N"

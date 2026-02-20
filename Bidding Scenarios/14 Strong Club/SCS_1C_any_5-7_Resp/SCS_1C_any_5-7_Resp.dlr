@@ -1,21 +1,22 @@
 # alias: StrongClubAny57Resp
 # button-text: Strong Club & 5-7 Resp
 # scenario-title: --- Strong Club with any 5-7 Response
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: Auction.....[\s\S][\s\S]?1C
-# convention-card: Precision
+# convention-card-ns: Precision
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Strong Club with any 5-7 Response
 @chat*/
-dealer south
 
 # Strong C & any 8+ response
+dealer south
 
 # South has 15+
 hcp(south)>14
 
 # North has 8+
 and hcp(north)>4 and hcp(north)<8
+action printoneline,

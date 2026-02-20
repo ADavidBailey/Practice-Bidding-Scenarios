@@ -1,10 +1,11 @@
 # alias: Scrambling
 # button-text: Scrambling 2NT
 # scenario-title: --- Scrambling 2NT.  In a competitive auction, when your'e forced to bid, 2NT is Scrambling.
-# dealer-position: W
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n(1H +Pass +2H|1S +Pass +2S) +X\nPass.
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Scrambling 2NT.  In a competitive auction, when your'e forced to bid, 2NT is Scrambling.
@@ -12,9 +13,9 @@ Two NT in competition may be Good/Bad or Scrambling.  If you make a free bid, it
 Check the link below for more information.  After (1x) P (2x) X; (P), you must act.
 https://tinyurl.com/Scrambling-vs-Good-Bad-2N
 @chat*/
-dealer west
 
 # Scrambling 2NT
+dealer west
 
 # West has 1 Major suit
 wS = spades(west)>4 and spades(west)>=hearts(west) and spades(west)>=diamonds(west) and spades(west)>=clubs(west)
@@ -44,6 +45,6 @@ nScramble = ((not nMajor and shape(north,xx45 + xx54 + xx44)) or (nMajor and hcp
 
 OBAR and sTOX and (nFreeBid or nScramble)
 
-action
+action printoneline,
 average "Free Bid" 100 * nFreeBid,
 average "Scramble" 100 * nScramble,

@@ -1,10 +1,11 @@
 # alias: RuleOf16
 # button-text: Rule of 16
 # scenario-title: ---  North opens 1N with 15-17 HCP and East passes. South has a balanced hand with 8-9 HCP
-# dealer-position: N
 # gib-works: true
 # bba-works: true
 # auction-filter: 1N +Pass
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  North opens 1N with 15-17 HCP and East passes. South has a balanced hand with 8-9 HCP
@@ -15,9 +16,9 @@ you want, you can test with specific R16 values (15, 16, 17, or 18).  On all of 
 will have exactly 15 HCP -- hands that would not accept an invitation.  Let me know how the
 Rule of 16 works for you.
 @chat*/
-dealer north
 
 # Rule of 16
+dealer north
 
 
 # East passes
@@ -122,8 +123,7 @@ nOpens and calmEast and sActs and club4
 and levelTheDeal
 
 produce 10000
-action
-#printoneline,
+action printoneline,
 average "R16 points = 14 " 100 * (r16==14),
 average "R16 points = 15 " 100 * (r16==15),
 average "R16 points = 16 " 100 * (r16==16),

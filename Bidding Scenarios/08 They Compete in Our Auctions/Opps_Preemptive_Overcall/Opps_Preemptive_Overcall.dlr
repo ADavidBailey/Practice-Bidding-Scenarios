@@ -1,17 +1,18 @@
 # alias: OppsPreemptOvercall
 # button-text: Preempt Overcall
 # scenario-title: --- Opponents Preemptive Overcall
-# dealer-position: N
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1[CDHS] +.[CDHS]
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Opponents Preemptive Overcall
 @chat*/
-dealer north
 
 # Opponents preempt overcall
+dealer north
 
 # Preemptive Suits East
 PSE = spades(east)>5 and top4(east,spades)==2
@@ -23,3 +24,4 @@ PCE = clubs(east)>6 and top4(east,clubs)==2
 nOpens = hcp(north)>11 and hcp(north)<15 and (hcp(north) + hcp(south)) >19
 ePreempts = hcp(east)>5 and hcp(east)<9 and (PCE or PDE or PHE or PSE)
 nOpens and ePreempts
+action printoneline,

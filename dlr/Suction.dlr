@@ -1,8 +1,26 @@
+# alias: Suction
 # button-text: Suction
 # scenario-title: ---  15-17 Notrump Opening and Suction.
+# gib-works: false
+# bba-works: true
 # auction-filter: Auction.....\n1N +
-# Suction
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+---  15-17 Notrump Opening and Suction.
+  • X   = !C and !H -- non-touching
+  • 2!C = !D or (!H and !S)
+  • 2!D = !H or (!S and !C)
+  • 2!H = !S or (!C and !D)
+  • 2!S = !C or (!D and !H)
+  • 2N  = !D and !S -- non-touching
+The 1-suited vs 2-suited ratio is about 65/35.
+https://www.bridgebum.com/suction.php
+@chat*/
+
 dealer east
+produce 10000
 
 # GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
 ntP = hcp(east) + shape(east,5xxx+x5xx)
@@ -52,7 +70,7 @@ c2N =        sDS  and not (cX  or c2C or c2D or c2H or c2S)
 gibNT and (cX or c2C or c2D or c2H or c2S or c2N) and hcp(south)>9 and shape(south,any 0xxx+any 1xxx)
 
 # Generate Statistics
-action
+action printoneline,
 average "X    " 100 * cX,
 average "2C   " 100 * c2C,
 average "2D   " 100 * c2D,
@@ -74,5 +92,3 @@ average "H    " 100 * sH,
 average "D    " 100 * sD,
 average "C    " 100 * sC,
 average "-----" 100 * (sS or sH or sD or sC),
-
-printpbn

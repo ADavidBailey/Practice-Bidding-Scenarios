@@ -1,11 +1,11 @@
 # alias: MSTorMSS
 # button-text: MST or MSS
 # scenario-title: --- After we open 1NT and partner bids Minor Suit Stayman or a Minor Suit Transfer,
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Note....1N-(2[SN]|3C)
-# convention-card: 21GF-MSTandMSS
+# convention-card-ns: 21GF-MSTandMSS
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- After we open 1NT and partner bids Minor Suit Stayman or a Minor Suit Transfer, 
@@ -24,11 +24,11 @@ There are multiple ways to play MSS and MST. GIB plays both together, like this:
 • 2N is a MST to !C showing 6+!C
 • 3!C is a MST to !D showing 6+!D
 @chat*/
-dealer south
 
 # Enable MST and MSS and Exclusion Blackwood
 
 # MinorSuitTransfer or MinorSuitStayman
+dealer south
 
 ##### Imported Script -- GIB 1 Notrump #####
 
@@ -70,7 +70,7 @@ mst  = mstC or mstD
 gibNT and (mss or mst) and noMajor and hcp(north)>14 and losers(north)<5
 
 produce 500
-action
+action printoneline,
 average "mss   " 100 * mss,
 average "mst C " 100 * mstC,
 average "mst D " 100 * mstD,

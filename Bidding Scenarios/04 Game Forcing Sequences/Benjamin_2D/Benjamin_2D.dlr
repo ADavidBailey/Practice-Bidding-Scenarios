@@ -1,11 +1,11 @@
 # alias: Benjamin2D
 # button-text: Benjamin 2 Bid (Lev)
 # scenario-title: --- Benjamin 2 Bid - 2!C strong & 2!D Game Forcing
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: Auction.....\n2[CD] +
-# convention-card: 21GF-Benjamin2D
+# convention-card-ns: 21GF-Benjamin2D
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Benjamin 2 Bid - 2!C strong & 2!D Game Forcing
@@ -14,9 +14,9 @@
 This is leveled so that 2!C and 2!D occur at about the same frequency.
 https://en.wikipedia.org/wiki/Benjamin_Twos
 @chat*/
-dealer south
 
 # Game Forcing Benjamin 2D
+dealer south
 bal = shape(south,any 4333 +any 4432 +any 5332)
 
 gC = clubs(south)>5    and hcp(south,clubs)==9
@@ -80,7 +80,7 @@ levelTheDeal = lev2C or lev2D
 twoC or twoD
 and levelTheDeal
 
-action
+action printoneline,
 
 average "2C" 100 * twoC,
 average "2D" 100 * twoD,

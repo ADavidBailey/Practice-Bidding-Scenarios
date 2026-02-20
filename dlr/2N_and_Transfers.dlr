@@ -1,13 +1,18 @@
+# alias: TwoNTandXfer
 # button-text: 2NT - Jacoby/Texas
-# scenario-title: 20-21 Notrump and a Jacoby or Texas Transfer response.  The responder's hand is
-# 2N_and_Transfers
+# scenario-title: ---  20-21 Notrump and a Jacoby or Texas Transfer response.  The responder's hand is
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n2NT?.*Pass.*[34][DH] +
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+---  20-21 Notrump and a Jacoby or Texas Transfer response.  The responder's hand is
+leveled to make Jacoby or Texas Transfer AND game or slam at about the same frequency.
+@chat*/
+
 dealer south
-
-
-/*
-convention-card:
-auction-filter: Auction.....\n2NT?.*Pass.*[34][DH] +
-*/
 
 ### 2N and Transfers ###
 
@@ -61,7 +66,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -71,7 +76,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -181,7 +186,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 levJacoby = jacoby and keep44
 levTexas  = texas  and keep
 levGame   = game   and keep19
@@ -191,8 +195,8 @@ levSlam   = slam   and keep
 twoNT and (levJacoby or levTexas) and (levGame or levSlam)
 
 ### Generate Statistics
-action
-#printoneline,
+produce 5000
+action printoneline,
 
 average "Jacoby       " 100 * jacoby,
 average "Texas        " 100 * texas,

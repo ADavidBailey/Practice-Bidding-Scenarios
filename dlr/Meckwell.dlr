@@ -1,12 +1,25 @@
+# alias: Meckwell
 # button-text: Meckwell (Lev)
-# scenario-title: 15-17 Notrump Opening and Meckwell action.
-# Meckwell
-dealer east
-
-
-# convention-card: 21GF-Multi-Landy
+# scenario-title: ---  15-17 Notrump Opening and Meckwell action.
+# gib-works: false
+# bba-works: true
 # auction-filter: Note...:Multi-Landy
+# convention-card-ns: 21GF-Multi-Landy
+# convention-card-ew: 21GF-GIB
 
+/*@chat
+---  15-17 Notrump Opening and Meckwell action.
+  • X   = !C, !D, !H & !S, or a good hand
+  • 2!C = !C and a major
+  • 2!D = !D and a major
+  • 2!H = 5+ !H
+  • 2!S = 5+ !S
+  • 2N  = 5-5 or better in !C & !D
+The Meckwell actions are leveled.  The NT opener is not leveled.
+https://www.bridgebum.com/meckwell_defense_to_1nt.php
+@chat*/
+
+dealer east
 
 ### gibNT changed from south to east
 # GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
@@ -91,7 +104,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 # Define Leveling
 lX = cX  and keep03
 lC = c2C and keep89
@@ -106,7 +118,7 @@ gibNT and (cX or c2C or c2D or c2H or c2S or c2N) and hcp(south)>9
 and levelTheDeal
 
 # Generate Statistics
-action
+action printoneline,
 average "X    " 100 * cX,
 average "2C   " 100 * c2C,
 average "2D   " 100 * c2D,

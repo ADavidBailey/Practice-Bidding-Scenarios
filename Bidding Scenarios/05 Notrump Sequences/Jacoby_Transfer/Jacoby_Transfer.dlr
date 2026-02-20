@@ -1,10 +1,11 @@
 # alias: JacobyTransfer
 # button-text: GIB NT & Jacoby
 # scenario-title: ---  Jacoby Transfer
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1N +Pass +2[DH]
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  Jacoby Transfer
@@ -13,6 +14,7 @@ Those 5422 hands are the ones where you are likely to have to reverse to show yo
 HCP adjusted +1 for any 5-card suit unless you have Kx, Qx, or Jx doubleton.
 North transfers to Hearts or Spades.
 @chat*/
+
 dealer south
 
 # Import Define-1N and Calm Opponents
@@ -67,6 +69,6 @@ nHgf = shape(north,x5xx) and spades(north)<4 and hcp(north)>8
 gibNT and (nSps or nHps or nSgf or nHgf) and calmWest
 
 # Generate Statistics
-action
+action printoneline,
 average "Heart Fit" 100 * (nHps or nHgf),
 average "Spade Fit" 100 * (nSps or nSgf),

@@ -1,10 +1,20 @@
+# alias: TrapPassOpenerMaybe
 # button-text: Trap Pass Opener?
 # scenario-title: --- Trap Pass after opener's major or weak 2 (Maybe)
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n[1-7][CDHS] +Pass +Pass +X
-# Trap_Pass_Opener_Maybe
-dealer east
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Trap Pass after opener's major or weak 2 (Maybe)
+About half are trap passes about half are normal passes.
+@chat*/
+
 # Stack in Opponents Suit -- for training Ben
 
+dealer east
 
 # Predict Opening 1-Bid --- rotated to East
 ##### Imported Script -- Predict Opening 1-Bid #####
@@ -151,12 +161,10 @@ nBalances = hcp(north)>10 and shape(north,any 5440+any 5431+any 4441)
 eOpens and wPasses and nBalances
 and levelTheDeal
 
-action
+action printoneline,
 average "---- 1-level ----" 100 * eOpens1,
 average "     1-level trap    " 100 * l1t,
 average "     1-level no trap " 100 * l1n,
 average "---- preempt ----" 100 * eOpens2,
 average "     preempt trap    " 100 * l2t,
 average "     preempt no trap " 100 * l2n,
-
-printpbn

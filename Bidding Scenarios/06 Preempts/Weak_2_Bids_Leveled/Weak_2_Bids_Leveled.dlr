@@ -1,10 +1,11 @@
 # alias: WeakTwoBidsLev
 # button-text: (Lev)
 # scenario-title: --- Weak Two Bids without 4-card major - Leveled
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: 2[DHS]
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Weak Two Bids without 4-card major - Leveled
@@ -13,8 +14,8 @@ are in the suit, less than 11 HCP and less than 7 losers.  This script is levele
 Meaning that responder is equally likely to have a pass, raise, invite, or force.
 https://www.bridgebum.com/weak_two.php
 @chat*/
-dealer south
 
+dealer south
 
 # Define South's Weak 2 Bids w/o 4-card major side suit -- Strict
 
@@ -117,7 +118,7 @@ levelTheDeal = (case1 or case2 or case3 or case4)
 weakTwo
 and levelTheDeal
 
-action
+action printoneline,
 average "Responder pass          " 100 * rPass,
 average "Responder raise         " 100 * rRaise,
 average "Responder invite        " 100 * rInvite,

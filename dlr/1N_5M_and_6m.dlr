@@ -1,13 +1,19 @@
+# alias: Notrump5M6m
 # button-text: 1NT w/5M-6+m (Lev)
-# scenario-title: 15-17 Notrump Opening with 5M and 6+m response.
-# 1N_5M_and_6m
+# scenario-title: ---  15-17 Notrump Opening with 5M and 6+m response.
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n1NT?.* Pass.* 2[DH].* Pass\n2[HS].*Pass.*3[CD] +
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+---  15-17 Notrump Opening with 5M and 6+m response.
+GIB opens 1N with any 5332, 4432, or 4333 and (15-17 HCP with no 5-card major or 15-16 with
+a 5-card major) plus any 5422 without a 5-card major and 15-16 HCP (too few points to reverse)
+@chat*/
+
 dealer south
-
-
-/*
-convention-card:
-auction-filter: Auction.....\n1NT?.* Pass.* 2[DH].* Pass\n2[HS].*Pass.*3[CD] +
-*/
 
 # Import Define-1N and Leveling
 ##### Imported Script -- Predict Opening 1-Bid South #####
@@ -60,7 +66,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -70,7 +76,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -145,7 +151,6 @@ calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<1
 calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
-
 # Defines calmOpps
 
 ### Imported Leveling Code ###
@@ -186,7 +191,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 # Level it
 ntMin = hcp(south)==15
 ntAvg = hcp(south)==16
@@ -204,7 +208,7 @@ gibNT and shape(north, 5xxx+x5xx) and (clubs(north)>5 or diamonds(north)>5) and 
 and levelTheDeal
 
 # Generate Statistics
-action
+action printoneline,
 
 average "Minimum     " 100 * ntMin,
 average "Avg         " 100 * ntAvg,

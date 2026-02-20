@@ -1,8 +1,24 @@
+# alias: ReverseByResponder
 # button-text: Reverse By Responder
 # scenario-title: --- Reverse By Responder
+# gib-works: true
+# bba-works: true
 # auction-filter: (1C +Pass +1H.*\n(1N|2C)|(1C +Pass +1D .*\n(1N|2C) +Pass +2[HS])|(1C +Pass +1H .*\n(1N|2C) +Pass +2S)|(1D +Pass +1H .*\n(1N|2[CD]) +Pass +2S))
-# Reverse_By_Responder
-dealer south
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Reverse By Responder
+Reverses by responder show 4+ cards in the first suit and usually 4+ cards in the suit rebid.
+They are natural and Game Forcing.  Possible Reverses by Responder are...
+• 1!C - 1!D - 1N - 2!H or 2!S
+• 1!C - 1!H - 1N - 2!S
+• 1!C - 1!D - 2!C - 2!H or 2!S
+• 1!D - 1!H - 1N - 2!S
+• 1!D - 1!H - 2!D - 2!S
+Reverses are NOT a convention.  If you don't have  Game Forcing strength, don't reverse.
+@chat*/
+
 # 1C P 1D P 1S/1N/2C 2H : (1C Pass 1D .*\\n(1S|1NT|2C) Pass 2H)
 # 1C P 1D P 1N/2C 2H/S  : (1C Pass 1D .*\\n(1NT|2C) Pass 2[HS])
 # 1C P 1H P 1N/2C 2S    : (1C Pass 1H .*\\n(1NT|2C) Pass 2S)
@@ -11,6 +27,7 @@ dealer south
 # (1C Pass 1H.*\\n(1NT|2C)|(1C Pass 1D .*\\n(1NT|2C) Pass 2[HS])|(1C Pass 1H .*\\n(1NT|2C) Pass 2S)|(1D Pass 1H .*\\n(1NT|2C|2D) Pass 2S)
 
 # Reverse by Resoponder
+dealer south
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -267,12 +284,10 @@ DHDS    = DHD and shape(north,45xx+46xx)
 
 (CDNHorS or CHNS or CDCHorS or CHCS or DHNS or DHDS) and hcp(south)>11 and hcp(south)<15 and hcp(north)>12 and calmOpps
 
-action
+action printoneline,
 average "CDNHorS " 100 * CDNHorS,
 average "CHNS    " 100 * CHNS,
 average "CDCHorS " 100 * CDCHorS,
 average "CHCS    " 100 * CHCS,
 average "DHNS    " 100 * DHNS,
 average "DHDS    " 100 * DHDS,
-
-printpbn

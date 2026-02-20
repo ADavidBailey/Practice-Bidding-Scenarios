@@ -1,10 +1,11 @@
 # alias: DoubleDouble
 # button-text: Double double...
 # scenario-title: --- Double, double toil and trouble...
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1[CDHS] +[12][DHSC] +X
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Double, double toil and trouble...
@@ -13,10 +14,10 @@ it promises 4-Cards in each unbid major. At higher levels you need a backup
 plan if partner doesn't have your major -- maybe a tolerance for opener's suit.
 If you double again, it's a scrambling takeout double.
 @chat*/
-dealer south
 
 # Double, double toil and trouble
 
+dealer south
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -176,8 +177,7 @@ uRanges = hcp(south)<=13 and hcp(west)<=10                    and hcp(east)<=8
 
 sOpens and nsFit and ewFit and lRanges and uRanges
 
-action
-#printoneline,
+action printoneline,
 average "1C (1D) " 100 * cd,
 average "1C (1H) " 100 * ch,
 average "1C (1S) " 100 * cs,

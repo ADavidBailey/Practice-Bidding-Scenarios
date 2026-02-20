@@ -1,10 +1,11 @@
 # alias: xyNT
 # button-text: 2-Way NMF - xyNT (Lev)
 # scenario-title: ---  Two Way New Minor Forcing aka xyNT allows you to describe four different responding hand types.
-# dealer-position: N
 # gib-works: true
 # bba-works: true
 # auction-filter: 1[CDHS] +Pass +1[DHS] +Pass\n1N +Pass
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  Two Way New Minor Forcing aka xyNT allows you to describe four different responding hand types.
@@ -15,9 +16,9 @@
 The deals are leveled so that the hand types occur at about the same frequency.
 https://bridgewinners.com/article/view/two-way-new-minor-forcing-aka-xynt
 @chat*/
-dealer north
 
 produce 300000
+dealer north
 
 # Two Way New Minor Forcing, aka xyNT
 # Predict North's opening suit
@@ -124,7 +125,7 @@ levelTheDeal = (levPartscore or levInvite or levGame or levSlam)
 northOpens and southResponds and calmOpps and (partscore or invite or game or slam)
 and levelTheDeal
 
-action
+action printoneline,
 average "partscore " 100 * partscore,
 average "invite    " 100 * invite,
 average "game      " 100 * game,

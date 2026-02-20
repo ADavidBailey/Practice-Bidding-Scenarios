@@ -1,9 +1,22 @@
+# alias: Serious
 # button-text: Serious/Non-Serious
 # scenario-title: ---  Serious/Non-Serious: When we're in a 2/1 auction and we have a major suit fit
+# gib-works: true
+# bba-works: true
 # auction-filter: (1H +Pass +2[CDN] +Pass\n[34]H)|(1S +Pass +2[CDHN] +Pass\n[34]S)
-# Serious
-dealer north
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+---  Serious/Non-Serious: When we're in a 2/1 auction and we have a major suit fit
+and the bid is at 3 of our major, the step bid (or 3N) says I'm non-serious (or serious).
+it's a partnership agreement.  I prefer non-serious as it doesn't reveal information.
+The deal is leveled so that game and slam occur with about the same frequency.
+@chat*/
+
 # Serious/Non-Serious
+dealer north
+produce 1000
 
 # North's opening suit
 NT = shape(north,any 4333+any 4432+any 5332-5xxx-x5xx) and hcp(north)>14 and hcp(north)<18
@@ -83,9 +96,7 @@ levelTheDeal = levGame or levSlam or levGrand
 nOpens and majorFit and (game or slam or grand) and hcp(north)<16
 and levelTheDeal
 
-action
+action printoneline,
 average "game " 100 * game,
 average "slam " 100 * slam,
 average "grand" 100 * grand,
-
-printpbn

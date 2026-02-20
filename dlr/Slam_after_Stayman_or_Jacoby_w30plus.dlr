@@ -1,8 +1,19 @@
+# alias: SlamAfterStaymanOrJacoby
 # button-text: Sta/Jac w/30+ (Lev)
 # scenario-title: --- Slam after Stayman/Jacoby w/30+
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n1N +Pass +2[CDH]
-# Slam_after_Stayman_or_Jacoby_w30plus
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Slam after Stayman/Jacoby w/30+
+Leveled for Stayman/Jacoby, Fit/NoFit, and NT Range.
+@chat*/
+
 dealer south
+produce 1000
 
 ### Imported: Define 1 Notrump Opening ###
 
@@ -98,7 +109,7 @@ levelTheDeal = levelTheDealNoFit or levelTheDealFit
 NT and hcp(north)>14 and (case1 or case2 or case3 or case4) and (case15 or case16 or case17)
 and levelTheDeal
 
-action
+action printoneline,
 average "Jac + Fit " 100 * jacFit,
 average "Sta + Fit " 100 * staFit,
 average "Jac - Fit " 100 * jacNoFit,
@@ -107,5 +118,3 @@ average "ntMin     " 100 * ntMin,
 average "ntAvg     " 100 * ntAvg,
 average "ntMax     " 100 * ntMax,
 average "hcp south " hcp(south),
-
-printpbn

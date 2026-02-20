@@ -1,16 +1,28 @@
+# alias: MaximalDouble
 # button-text: Maximal Double
-# scenario-title: Maximal Overcall Double:  After we've bid and raised a major suit
-# Maximal_Double
-dealer north
+# scenario-title: --- Maximal Overcall Double:  After we've bid and raised a major suit
+# gib-works: false
+# bba-works: true
+# auction-filter: Auction.....\n1H .* 2H +3D|1S .* 2S +3H
+# convention-card-ns: 21GF-MaximalDouble
+# convention-card-ew: 21GF-GIB
 
+/*@chat
+--- Maximal Overcall Double:  After we've bid and raised a major suit
+and they compete in the suit just under ours (the Maximal suit) we need
+to distinguish between a competitive raise and an invitational raise.
+The Maximal Double is the answer:
+  • After 1!H (?) 2!H (3!D), 3!H is competitive and X is invitational
+  • After 1!S (?) 2!S (3!H), 3!S is competitive and X is invitational
+The BBO Robots do NOT play this.
+https://www.nvba.org/novices/Robert_Todd/(195)+Maximal+Doubles.pdf
+@chat*/
 
 # Add 1M - 3M inviting, add Maximal Doubles, kill Reverse Bergen, Kill Support 1N, kill Two-way game tries
-/*
-convention-card: 21GF-MaximalDouble
-auction-filter: Auction.....\n1H .* 2H +3D|1S .* 2S +3H
-*/
+
 
 # Maximal Overcall Double
+dealer north
 
 ##### Imported Script - Calculate Total Points for South #####
 
@@ -178,7 +190,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 nMin = nTP<15
 nMax = nTP>14
 
@@ -195,7 +206,8 @@ levelTheDeal = (levR or levX or levF)
 n1M and eBids and sRaise and w3Max
 and levelTheDeal
 
-action
+produce 5000
+action printoneline,
 average "free bid       " 100 * wFreeBid,
 average "raise          " 100 * wRaise,
 average "response to X  " 100 * wRespToX,

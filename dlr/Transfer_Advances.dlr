@@ -1,8 +1,25 @@
+# alias: TransferAdvances
 # button-text: Transfer Advances
 # scenario-title: --- Transfer Advances
+# gib-works: false
+# bba-works: false
 # auction-filter: Auction.....\n((1C +1[DHS]|1D +(1[HS]|2C)|1H (1S|2[CD])|1S +2[CDH]))
-# Transfer_Advances
-dealer west
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Transfer Advances
+After an opening suit bid, a non-jump overcall,  and a pass by responder
+the advancer may...
+1. bid NT -- natural and non-forcing.
+2. make a natural and forcing new suit bid below the 2-level of the opening suit.
+3. make a weak raises.
+4. transfer into a new suit or the overcaller's suit -- starting with a cue bid of opener's suit.
+5. make a natural jump bid above overcaller's suit.
+This is leveled such the opening bid is equally divide amoung the four suits.
+https://bridgewinners.com/article/view/transfer-advances-of-overcalls/
+@chat*/
+
 #Nagyiván Gábor
 #Hi David, I would like to try a simulation (500 deals) with the following parameters:
 #1. West = 1. suit opening (natural, standard, 11-14 HCP, max 6 cards) 
@@ -18,6 +35,7 @@ dealer west
 
 
 
+dealer west
 
 # Predict West's opening suit
 sW = spades(west)
@@ -86,43 +104,7 @@ eastHand = eastShape and hcp(east)<6
 
 southHand = hcp(south)>5
 
-#### Imported Leveling Code ###
-c1 = hascard(west,2C)
-c2 = hascard(east,2D)
-c3 = hascard(west,3C)
-c4 = hascard(east,3D)
-
-keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
-keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
-
-keep015 = keep06 and c3
-keep03 = keep06 and keep44
-keep045 = keep06 and not c3
-####06 = c1 and c2
-keep11 = c1 and keep44
-keep14 = c1 and not keep44
-keep19 = c1 and not c2
-keep25 = c1
-keep30 = keep06 or c3
-keep33 = c1 or (c2 and keep44)
-####44 = c3 or c4
-keep47 = keep44 or keep06
-
-keep53 = not keep47
-keep56 = not keep44
-keep67 = not keep33
-keep70 = not keep30
-keep75 = not keep25
-keep81 = not keep19
-keep86 = not keep14
-keep89 = not keep11
-keep94 = not keep06
-keep955 = not keep045
-keep97 = not keep03
-keep985 = not keep015
-keep   = 1
-keep0  = 0
-### End of Imported Leveling Code ###
+##include "script/Leveling"
 
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
@@ -171,11 +153,10 @@ levelTheDeal = levC or levD or levH or levS
 westHand and northHand and eastHand and southHand
 and levelTheDeal
 
-action
+produce 2000
+action printoneline,
 
 average "1C" 100 and wC,
 average "1D" 100 and wD,
 average "1H" 100 and wH,
 average "1S" 100 and wS,
-
-printpbn

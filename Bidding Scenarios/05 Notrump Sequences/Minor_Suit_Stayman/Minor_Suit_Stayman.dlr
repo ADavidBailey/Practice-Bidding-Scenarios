@@ -1,11 +1,11 @@
 # alias: MinorSuitStayman
 # button-text: Minor Suit Stayman
 # scenario-title: --- Minor Suit Stayman after 1NT
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: 1N +Pass +2S
-# convention-card: 21GF-MSTandMSS
+# convention-card-ns: 21GF-MSTandMSS
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Minor Suit Stayman after 1NT
@@ -16,11 +16,11 @@ There are multiple ways to play it; this is how GIB plays it.
 • 3!D - Shows a 4+!D and denies 4!C
 https://www.bridgebum.com/minor_suit_stayman.php
 @chat*/
-dealer south
 
 # Enable both MST and MSS
 
 # Minor Suit Stayman
+dealer south
 
 ##### Imported Script -- GIB 1 Notrump #####
 
@@ -44,3 +44,4 @@ sR = hcp(north)>10 and shape(north, xx66+xx65+xx56+xx55+xx54+xx45)
 
 # Now do it
 gibNT and sR
+action printoneline,

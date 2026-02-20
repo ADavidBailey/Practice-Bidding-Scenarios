@@ -1,17 +1,18 @@
 # alias: OppsPreempt
 # button-text: Opps Preempt
 # scenario-title: --- Opponents Preempt
-# dealer-position: E
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n[234567][CDHS] +
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Opponents Preempt
 @chat*/
-dealer east
 
 # Opps Preempt
+dealer east
 
 hcp(east)>5 and hcp(east)<11
 and
@@ -24,3 +25,4 @@ or
 or
 (top5(east,clubs)>1 and clubs(east)>6)
 )
+action printoneline,

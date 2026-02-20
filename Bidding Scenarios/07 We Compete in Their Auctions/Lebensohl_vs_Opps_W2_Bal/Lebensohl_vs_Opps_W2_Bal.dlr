@@ -1,10 +1,11 @@
 # alias: LebensohlVsW2Bal
 # button-text: leb vs W2-Bal Seat
 # scenario-title: --- lebensohl After 2x-P-P
-# dealer-position: W
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n2[DHS] +Pass +Pass +X
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- lebensohl After 2x-P-P
@@ -21,9 +22,9 @@ After 2!D/2!H/2!S Pass Pass, X is a Lebensohl Double.
     ◦ Bid 3N to show a balanced hand without major suit interest AND with a stop.
 https://www.bridgebum.com/lebensohl_over_weak_two.php
 @chat*/
-dealer west
 
 # Lebensohl after (2x) P (P) X
+dealer west
 produce 1000
 
 tp = hcp(west)
@@ -116,7 +117,7 @@ levelTheDeal = (levWeak or levInvite or levForce)
 wOpensWeak2 and nPasses and ePasses and sDoubles and nResponds
 and levelTheDeal
 
-action
+action printoneline,
 average "Weak  " 100 * weak,
 average "Invite" 100 * invite,
 average "Force " 100 * force,

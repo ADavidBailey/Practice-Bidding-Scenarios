@@ -1,11 +1,11 @@
 # alias: KokishRelay
 # button-text: Kokish Relay
 # scenario-title: --- Kokish Relay
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: Note....Kokish Relay
-# convention-card: 21GF-Kokish
+# convention-card-ns: 21GF-Kokish
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Kokish Relay
@@ -19,9 +19,9 @@ and forcing partner to accept the relay to 2!S.  Then
 3!S = 5+!H and !S
 https://www.bridgebum.com/kokish_relay.php
 @chat*/
-dealer south
 
 # Kokish Relay
+dealer south
 
 # Kokish relay shows unbal w/5+H and 4 on the side or a 25-27 NT
 sHearts = hcp(south)>21 and hearts(south)>4 and shape(south,any 74xx +any 64xx +any 54xx)
@@ -35,6 +35,6 @@ n2D = hcp(north)<9
 s2C and n2D
 
 produce 5000
-action
+action printoneline,
 average "hearts  " 100 * sHearts,
 average "notrump " 100 * sNT,

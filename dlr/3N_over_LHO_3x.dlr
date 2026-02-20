@@ -1,8 +1,22 @@
+# alias: NToverLHO3x
 # button-text: 3NT over LHO's 3x (Lev)
 # scenario-title: ---  3NT over LHO's 3x Preempt.
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n3[CDHS] +Pass +Pass +3N
-# 3N_over_LHO_3x
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+---  3NT over LHO's 3x Preempt.
+• 18+ and 1 stop
+• 16+ and good suit
+• 16+ and 2 stops
+and a prayer!
+@chat*/
+
 dealer west
+
 ### 3N over LHO's 3x ###
 
 # define south's controls for each suit
@@ -125,7 +139,7 @@ levelTheDeal = level1 or level2 or level3
 wPreempts and nPasses and ePasses and (case1 or case2 or case3)
 and levelTheDeal
 
-action
+action printoneline,
 average "1 Stop and >17             " 100 * case1,
 average "1 Stop, good suit, and >15 " 100 * case2,
 average "2 Stop and >15             " 100 * case3,

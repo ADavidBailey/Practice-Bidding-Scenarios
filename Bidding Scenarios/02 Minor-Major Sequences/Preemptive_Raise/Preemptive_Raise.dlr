@@ -1,21 +1,22 @@
 # alias: PreemptiveRaise
 # button-text: Preemptive Raise
 # scenario-title: --- South opens and North, with 3-6 HCP and an 11+ card minor fit or a 10+ major fit,
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n(1C .* [45]C|1D .* [45]D|1H * [34]H|1S .* [34]S)
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- South opens and North, with 3-6 HCP and an 11+ card minor fit or a 10+ major fit, 
 makes a game-level preemptive raise.  When opponents intervene, an invitational raise
 is often more effective.
 @chat*/
-dealer south
 
 # Preemptive Raise
 
 
+dealer south
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -139,7 +140,7 @@ nPreempts = hcp(north)>2 and hcp(north)<7
 
 #  produce 40
 
-action
+action printoneline,
 average "1C  " 100 * nClubs,
 average "1D  " 100 * nDiamonds,
 average "1H  " 100 * nHearts,

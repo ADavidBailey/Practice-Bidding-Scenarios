@@ -1,19 +1,20 @@
 # alias: Any5422w15
 # button-text: Any 5422 w/15-16
 # scenario-title: 
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1N
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
+dealer south
 
 # any 5422 w/15-16 HCP
 
-dealer south
 hcp(south)>14 and hcp(south)<17 and shape(south,any 5422)
 
 produce 5000
-action
+action printoneline,
 average "hcp        " hcp(south),
 # 5 Spades
 average "5422       " 100 * shape(south,5422),

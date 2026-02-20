@@ -1,9 +1,29 @@
+# alias: XferAfter1MX
 # button-text: Xfer after 1M (X)
 # scenario-title: --- Transfers after Opponents double our 1!H or 1!S
+# gib-works: false
+# bba-works: true
 # auction-filter: Auction.....\n1[HS] +X [12]. +
-# Xfer_after_1M_X
-dealer south
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Transfers after Opponents double our 1!H or 1!S
+Transfers start at 1N and end at 2M-1; then skip to 3M-1.
+  • 1N  --> 2!C
+  • 2!C --> 2!D
+  • 2!D --> 2!H
+  • 2!H --> 2!S (only after 1!S opener)
+With less than 3-card support: With 6+, bid 1!S or transfer to !C/!D/!H. With 11+/semi-balanced, XX.
+With 3/4-card support raise (4-7) or transfer (8-10)+ to the 2-level w/3 or 3-level w/4.
+With 5-card support and no slam interest, raise to game.
+Transfers into a new suit show something like a weak 2 or better.
+Transfer & raise is invitational.
+https://www.nxtbook.com/acbl/bridgebulletin/2025_06/index.php#/p/66
+@chat*/
+
 # South opens 1 Major
+dealer south
 
 ##### Imported Script -- GIB 1 Notrump #####
 
@@ -64,7 +84,7 @@ nActsWithoutFit = XX or S1 or N1 or c2
 # Now do it
 southM and westX and (nActsWithFit or nActsWithoutFit)
 
-action
+action printoneline,
 average "----- NO FIT ----- " 100 * nActsWithoutFit,
 average "10+ XX - penalty   " 100 * XX,
 average "6+  1S - spades    " 100 * S1,
@@ -77,5 +97,3 @@ average "8-10  w/3  3M      " 100 * X2,
 average "8-10  w/4  xfr 3M  " 100 * X3,
 average "????  w/5  4M      " 100 * M4,
 average "11+        2NT     " 100 * N2,
-
-printpbn

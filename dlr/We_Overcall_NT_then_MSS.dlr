@@ -1,15 +1,24 @@
+# alias: WeOvercallNtThenMSS
 # button-text: then  MSS
 # scenario-title: --- After we Overcall 1NT, partner bids Minor Suit Stayman.
+# gib-works: true
+# bba-works: true
 # auction-filter: Note "1:1N-2S Minor Suit Stayman
-# convention-card: 21GF-MSTandMSS
-# We_Overcall_NT_then_MSS
-dealer east
-# convention-card: 21GF-MSTandMSS
+# convention-card-ns: 21GF-MSTandMSS
+# convention-card-ew: 21GF-GIB
 
+/*@chat
+--- After we Overcall 1NT, partner bids Minor Suit Stayman.
+There are multiple ways to play MSS; this is how GIB plays it...
+2N is MSS; then...
+• 3!C - Shows a !Club preference.
+• 3!D - Shows a !Diamond preference.
+@chat*/
 
 # Enable both MST and MSS
 
 # We Overcall 1NT then Minor Suit Stayman (MSS)
+dealer east
 
 # Predict East's opening suit
 s = spades(east)
@@ -42,3 +51,4 @@ n2S = (shape(north,xx55+xx54+xx45) and hcp(north)>7) or (shape(north, xx75+xx65+
 
 # Now do it
 eOpens and sNT and n2S
+action printoneline,

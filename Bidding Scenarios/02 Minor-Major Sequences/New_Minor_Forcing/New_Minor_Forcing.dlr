@@ -1,10 +1,11 @@
 # alias: NewMinorForce
 # button-text: New Minor Force
 # scenario-title: --- New Minor Forcing
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Note...:New Minor Forcing
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- New Minor Forcing
@@ -12,9 +13,9 @@ Partner opens 1!C, 1!D,  or 1!H
 You respond 1!H or 1!S with a 5-card suit
 Partner rebids 1N
 @chat*/
-dealer south
 
 produce 1000
+dealer south
 
 # New Minor Forcing
 
@@ -168,8 +169,7 @@ nResponds = (((oC or oD) and (nH or nS)) or (oH and nS)) and shape(north,xxxx-an
 # South rebids 1N
 sOpens and nResponds and calmOpps
 
-action
-printoneline,
+action printoneline,
 average "1C     " 100 * oC,
 average "1D     " 100 * oD,
 average "1H     " 100 * oH,

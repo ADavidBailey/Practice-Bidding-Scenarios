@@ -1,10 +1,11 @@
 # alias: TransferAfter2NRebidBal
 # button-text: Balanced
 # scenario-title: --- Transfers after 2N Rebid Balanced
-# dealer-position: N
 # gib-works: false
 # bba-works: true
 # auction-filter: .
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Transfers after 2N Rebid Balanced
@@ -14,9 +15,9 @@ They Relay to a suit that can't be weak.  Accepting a relay shows support.
 IF YOU SKIP IT, YOU DENY IT!
 https://tinyurl.com/bdhtmwxc
 @chat*/
-dealer north
 
 # Transfers after 2N Rebid
+dealer north
 
 nO = hcp(north)>17 and hcp(north)<20 and shape(north, any 4333 +any 4432 +any 5332 +any 5422)
 
@@ -25,3 +26,4 @@ sR = hcp(south)>5 and hcp(south)<13 and shape(south, any 4333 +any 4432 +any 533
 
 # Now do it
 nO and sR
+action printoneline,

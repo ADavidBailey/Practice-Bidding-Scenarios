@@ -1,10 +1,11 @@
 # alias: Misfit
 # button-text: Misfit (Lev)
 # scenario-title: --- South opens and North has a misfit with various strengths.
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: 1[CDHS] Pass
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- South opens and North has a misfit with various strengths.
@@ -12,8 +13,8 @@
   • 11-12
   • 13+
 @chat*/
-dealer south
 
+dealer south
 
 ### Import 'canned' code for Leveling, Calm Opponents, and Predict Opening Bid 
 ##### Imported Script: Define Calm Opponents #####
@@ -209,7 +210,7 @@ levelTheDeal = (lMin or lMid or lMax)
 sOpens and (nMin or nMid or nMax) and calmOpps
 and levelTheDeal
 
-action
+action printoneline,
 average "Min" 100 * nMin,
 average "Mid" 100 * nMid,
 average "Max" 100 * nMax,

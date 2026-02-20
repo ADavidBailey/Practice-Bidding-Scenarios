@@ -1,11 +1,11 @@
 # alias: ExitTransfers
 # button-text: Exit Transfers
 # scenario-title: --- Exit Transfers are usually runouts after the opponents Double our 1N opener.
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: Auction.....\n1NT? X.* Pass .
-# convention-card: 21GF-Cappelletti
+# convention-card-ns: 21GF-Cappelletti
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Exit Transfers are usually runouts after the opponents Double our 1N opener.
@@ -17,9 +17,9 @@ continuations are like DONT -- 2!C is !C & Higher, 2!D is !D & Higher, and 2!H i
 • 2!H - 5+!S
 https://www.bridgebum.com/exit_transfers.php
 @chat*/
-dealer south
 
 # Opponent doubles 1NT
+dealer south
 
 ##### Imported Script -- GIB 1 Notrump #####
 
@@ -53,7 +53,7 @@ nActs   = runout or aHand
 
 gibNT and wX and nActs
 
-action
+action printoneline,
 average "oneSuit   " 100 * oneSuit,
 average "twoSuit   " 100 * twoSuit,
 average "a hand    " 100 * aHand,

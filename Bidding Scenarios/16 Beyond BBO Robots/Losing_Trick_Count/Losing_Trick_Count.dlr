@@ -1,18 +1,19 @@
 # alias: LosingTrickCount
 # button-text: Losing Trick Count
 # scenario-title: --- Losing Trick Count
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: .
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Losing Trick Count
 This scenario focuses on hands that are opened with Losing Trick Count
 and not with normal opener requirements.
 @chat*/
-dealer south
 
+dealer south 
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -144,7 +145,7 @@ part = coverCards < 4
 
 ltcOpener and not normalOpener
 
-action
+action printoneline,
 average "opener's HCP    " hcp(south),
 average "losers          " losers(south),
 average "responder's HCP " hcp(north),

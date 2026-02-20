@@ -1,10 +1,11 @@
 # alias: GoodBad2N
 # button-text: Good/Bad 2N
 # scenario-title: --- Good/Bad 2 Notrump.  After both sides have bid and there have been 3 or
-# dealer-position: N
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1[CDHS] +1[HS] +X +2[HS]
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Good/Bad 2 Notrump.  After both sides have bid and there have been 3 or
@@ -12,10 +13,10 @@ more non-passes, and the most recent bid is 2x by RHO, 2N is forcing and shows
 a hand that wants to compete to the 3-level.  Bidding directly to the 3-level
 is invitational.
 @chat*/
-dealer north
 
 # Good/Bad 2N
 
+dealer north
 
 # Predict North's opening suit
 sNorth = spades(north)
@@ -76,7 +77,7 @@ wRaises      = hcp(west)>5   and hcp(west)<11
 
 nOpens and eBids1Major and sDoubles and wRaises
 
-action 
+action printoneline,
 average "eastS" 100 * eGS,
 average "eastH" 100 * eGH,
 average "hcp N" hcp(north),

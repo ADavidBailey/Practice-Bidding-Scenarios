@@ -1,13 +1,18 @@
+# alias: TwoNTand3C
 # button-text: 2NT - 3C
-# scenario-title: 20-21 Notrump and a Stayman or Smolen rebid.
-# 2N_and_3C_Response
+# scenario-title: ---  20-21 Notrump and a Stayman or Smolen rebid.
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n2NT?.*Pass.*3C +
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+---  20-21 Notrump and a Stayman or Smolen rebid.
+The responder's strength -- game or slam -- is leveled.
+@chat*/
+
 dealer south
-
-
-/*
-convention-card:
-auction-filter: Auction.....\n2NT?.*Pass.*3C +
-*/
 
 ### 2NT and 3C Response
 
@@ -61,7 +66,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -71,7 +76,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -186,7 +191,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 levGame    = game    and keep14
 levSlam    = slam    and keep
  
@@ -194,8 +198,8 @@ levSlam    = slam    and keep
 twoNT and (smolen or stayman) and (levGame or levSlam)
 
 ### Generate Statistics ###
-action
-#printoneline,
+produce 5000
+action printoneline,
 average "Smolen       " 100 * smolen,
 average "Stayman      " 100 * stayman,
 average "Game         " 100 * game,

@@ -1,13 +1,24 @@
+# alias: Ned2Spade
 # button-text: Ned’s 2 Spades
 # scenario-title: --- Ned’s 2 Spades
+# gib-works: false
+# bba-works: true
 # auction-filter: Note.* transfer to [cd]
-# convention-card: 21GF-MSS
-# Ned_2S
-dealer south
-# convention-card: 21GF-MSS
+# convention-card-ns: 21GF-MSS
+# convention-card-ew: 21GF-GIB
 
+/*@chat
+--- Ned’s 2 Spades
+6+ !C or 6+ !D or both (54) or better
+Opener responds 3!C if !C are longer than !D, otherwise 2N
+Responder can pass, bid 3!C or 3!D to play, or try for slam.
+3!H or 3!S show shortness with both minors -- at least 5/4
+3N = 22(54) w/16 HCP, 4N w/17 HCP, 5N w/20 HCP
+https://tinyurl.com/mtbmccfe
+@chat*/
 
 # Ned's 2S
+dealer south
 
 ##### Imported Script -- GIB 1 Notrump #####
 
@@ -38,3 +49,4 @@ nR2 = mss or mst
 #nR = hcp(north)>5 and shape(north, xxx7+xxx6+xx7x+xx6x+xx66+xx65+xx56+xx55+xx54+xx45) and spades(north)<4 and hearts(north)<4
 
 gibNT and nR2
+action printoneline,

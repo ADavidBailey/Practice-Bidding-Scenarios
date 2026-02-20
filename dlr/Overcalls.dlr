@@ -1,9 +1,18 @@
+# alias: Overcalls
 # button-text: Overcalls
 # scenario-title: --- Overcalls
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\n(1C +1[DHS]|1D +(1[HS]|2C)|1H +(1S|2[CD])|1S +2[CDH])
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Overcalls
+@chat*/
+
 # Overcalls
 dealer east
-# Overcalls
 
 ##### Imported Script -- GIB 1 Notrump #####
 
@@ -97,7 +106,7 @@ sOvercalls = (sGoodS or sGoodH or sGoodD or sGoodC) and sShape and sRange and no
 eOpens and sOvercalls
 
 
-action
+action printoneline,
 average "CD  " 100 * (oC and sGoodD),
 average "CH  " 100 * (oC and sGoodH),
 average "CS  " 100 * (oC and sGoodS),
@@ -110,5 +119,3 @@ average "HD  " 100 * (oH and sGoodD),
 average "SC  " 100 * (oS and sGoodC),
 average "SD  " 100 * (oS and sGoodD),
 average "SH  " 100 * (oS and sGoodH),
-
-printpbn

@@ -1,10 +1,11 @@
 # alias: TooStrongForOvercall
 # button-text: Overcalls??
 # scenario-title: --- Overcalls??  Some hands are too strong for an overcall.
-# dealer-position: E
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1[CDHS] +X
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Overcalls??  Some hands are too strong for an overcall.
@@ -14,9 +15,9 @@ Simple overcalls -- those at the same level as the opening bid -- show
 With stronger hands, start with a double.  Double then new suit shows 18+.
 Overcall then Double is take-out in the 15-17 range.
 @chat*/
-dealer east
 
 # X then Bid a new suit
+dealer east
 
 ##### Imported Script -- GIB 1 Notrump #####
 
@@ -64,6 +65,6 @@ sDoubles = (GoodS or GoodH or GoodD or GoodC) and hcp(south)>17 and not gibNT
 
 eOpens and sDoubles
 
-action
+action printoneline,
 average "(hcp east)  " hcp(east),
 average "(hcp south) " hcp(south),

@@ -1,9 +1,23 @@
+# alias: SizeAskingMSS
 # button-text: Size Asking MSS
 # scenario-title: --- Size Asking Minor Suit Stayman
+# gib-works: false
+# bba-works: false
 # auction-filter: Auction.....\n1N +Pass +2S
-# Size_Asking_Minor_Suit_Stayman
-dealer north
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Size Asking Minor Suit Stayman
+2!S asks for TOP of range and shows !C or balanced -- Ask yourself, do I want to be in game opposite 8 HCP?
+2N is a conditional transfer to !D. You should accept the transfer with better !D than !C; otherwise, bid 3!C.
+With a balanced hand, repeated asking bids of 4N and 5N are invites to 6N and 7N.
+The opener should treat these as 'Pick a Slam'.
+https://tinyurl.com/Size-Asking-MSS
+@chat*/
+
 # Size Asking MSS
+dealer north
 
 # Two Spade Size Ask
 # North opens 1N
@@ -24,5 +38,4 @@ sA = bothMinors or cA or dA or (noMajor and bHCP)
 
 # North opens 1N and south asks for 17
 nO and sA
-
-action printpbn
+action printoneline,

@@ -1,17 +1,18 @@
 # alias: MinorOpener
 # button-text: Minor Opening
 # scenario-title: ---  Minor Opening
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1[CD]
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  Minor Opening
 @chat*/
-dealer south
 
 # Open 1 of a Minor
+dealer south
 
 predeal south C2
 
@@ -24,3 +25,4 @@ notMajor = spades(south)<5 and hearts(south)<5
 hcpRange = hcp(south)>11 and hcp(south)<22
 
 notNT and notMajor and hcpRange
+action printoneline,

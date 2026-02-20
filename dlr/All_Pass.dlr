@@ -1,17 +1,17 @@
 # alias: AllPass
 # button-text: All...
 # scenario-title: --- All Pass...
-# dealer-position: W
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\nPass +Pass +Pass +
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- All Pass...
 Should you open in 4th seat?  The Rule of 15 says if your hcp plus the
 number of spades is less than 15, you should Pass.  Try your luck.
 @chat*/
-dealer west
 
 # All Pass...
 
@@ -60,6 +60,7 @@ calmSouth = ((length5or6South and noConSouth and hcp(south)<9) or (length4South 
 # For 4th seat, the rule points of 15 applies -- it should be less than 15 for a pass-out.
 r15 = hcp(south) + spades(south)
 
+dealer west
 # comment the line below to get random hands in various seats -- everything following the first // is a comment
 # to practice 4th seat decisions, use the range of r15 values
 //1 //and calmWest //and calmNorth //and calmEast //and calmSouth //and r15<15 //and (r15>13 and r15<17)
@@ -67,7 +68,7 @@ r15 = hcp(south) + spades(south)
 1 and calmWest and calmNorth and calmEast and calmSouth and r15<15
 
 produce 20000
-action
+action printoneline,
 
 average "hcp W     " hcp(west),
 average "hcp N     " hcp(north),

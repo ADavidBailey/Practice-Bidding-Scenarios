@@ -1,10 +1,11 @@
 # alias: ReverseByOpener
 # button-text: Reverse By Opener
 # scenario-title: --- Reverse By Opener
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: (1C +Pass +1[HSN].*\n2D)|(1D +Pass +1[SN].*\n2H)|(1H +Pass +1NT.*\n2S)
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Reverse By Opener
@@ -21,9 +22,9 @@ after reverses -- second link below.
 https://www.bridgebum.com/reverse_bids.php
 https://www.advinbridge.com/this-week-in-bridge/417
 @chat*/
-dealer south
 
 # Reverse By Opener
+dealer south
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -274,3 +275,4 @@ HNN = HN and sRN and not (HNC or HND or HNH or HNS)
 sShape = shape(south,any 54xx+any 64xx)
 reverse = (HNS or DSH or DNH or DNS or CHD or CSD or CSH or CND or CNH or CNS) and sShape
 reverse and hcp(south)>16 and hcp(south)<22 and hcp(north)>5 and hcp(north)<13 and calmOpps
+action printoneline,

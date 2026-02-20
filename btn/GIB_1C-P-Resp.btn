@@ -1,10 +1,10 @@
 # alias: GibRespTo1C
 # button-text: GIB after 1C
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1C +Pass +(1[DHS]|[1-3]NT?|[2-3]C|3[CDHS]) +
-# convention-card: 21GF-GIB
+# convention-card-ns: 21GF-GIB
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- GIB responses to 1!C
@@ -12,6 +12,8 @@ South opens 1!C and North responds w/anything other than Soloway JS.
 You may go to 'Deal source' to get specific responses. Near the bottom you'll
 find the line that starts with nResponds = ... pick the response(s) you want.
 @chat*/
+
+dealer south
 
 #include "script/Calm-Opponents"
 # Defines calmOpps

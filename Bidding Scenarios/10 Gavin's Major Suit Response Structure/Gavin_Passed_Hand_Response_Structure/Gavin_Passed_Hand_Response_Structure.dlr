@@ -1,10 +1,11 @@
 # alias: PassedHandRespStr
 # button-text: Passed Hand Response Structure
 # scenario-title: --- Passed Hand Response Structure
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: .
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Passed Hand Response Structure
@@ -20,9 +21,9 @@ After P (P) 1M (P)...
 Responder's rebids of Pass, 1!S, & 1N are excluded.
 https://tinyurl.com/Passed-Hand-Resp-Str
 @chat*/
-dealer south
 
 # Gavin's Passed Hand Response Structure
+dealer south
 produce 30
 
 # Define pesky opps e/w distributions and HCP.  We don’t want them mucking up our auctions
@@ -113,8 +114,7 @@ nOpens = nMajor and hcp(north)>11 and hcp(north)<20 and notNT and shape(north,an
 sPasses and nOpens and calmOpps
 and not (oneSp or nt or pass)
 
-action
-printoneline,
+action printoneline,
 average "raise      4-7 sPts 3+fit                " 100 * raise,
 average "fit jump   8+  sPts 4+fit  good 2nd suit " 100 * fitJump,
 average "splinter1  8+  sHCP 3+fit  singleton     " 100 * splinter1,

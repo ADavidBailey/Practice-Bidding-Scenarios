@@ -1,11 +1,11 @@
 # alias: InvJump3Under
 # button-text: 3-Under Inv Jump
 # scenario-title: --- 3 Under Invitational Jump
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: (1D +Pass +3C|1H +Pass +3[CD]|1S +Pass +3[CDH])
-# convention-card: 21GF-3-Under-Inv-Jump
+# convention-card-ns: 21GF-3-Under-Inv-Jump
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- 3 Under Invitational Jump
@@ -15,6 +15,7 @@
 Shows a 6+ card suit w/Q or better and 9-11 HCP and denies
 support for opener's suit or 4-cards in either major.
 @chat*/
+
 dealer south
 
 /*
@@ -268,7 +269,7 @@ nRange = hcp(north)>nMinHCP and hcp(north)<12
 sShape and sRange and calmWest and noFit and nHand and nRange
 
 produce 1000
-action
+action printoneline,
 average "hcp(south)" hcp(south),
 average "hcp(north)" hcp(north),
 average "1D-3C        " 100 * (oneDiamond and n3C),

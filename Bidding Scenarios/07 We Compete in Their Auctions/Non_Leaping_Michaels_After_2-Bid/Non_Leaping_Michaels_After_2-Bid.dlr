@@ -1,18 +1,19 @@
 # alias: NLMAfter2Bid
 # button-text: NLM after 2-Bid & Raise
 # scenario-title: --- Non-Leaping Michaels after a Weak 2 & Raise
-# dealer-position: E
 # gib-works: false
 # bba-works: true
 # auction-filter: Note.*Michaels
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Non-Leaping Michaels after a Weak 2 & Raise
 http://tinyurl.com/Leaping-Michaels
 @chat*/
-dealer east
 
 produce 1000
+dealer east
 
 # Define Good suits North -- 5+ cards with at least 2 of the top 3
 gS = spades(north)>4   and top5(north,spades)>2
@@ -42,7 +43,7 @@ east2Bid = eastBids and southPass and westRaise //and northActs
 # Now do it
 east2Bid
 
-action
+action printoneline,
 
 average "2D           " 100 * dE,
 average "2H           " 100 * hE,

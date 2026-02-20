@@ -1,14 +1,17 @@
 # alias: TwoNT
 # button-text: 2NT 20-21 (Lev)
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n2NT?
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- 20-21 Notrump and any response.  Leveled so that the various
 responses occur at more nearly the same frequency.
 @chat*/
+
+dealer south
 
 #include "script/Predict-Opening-1-Bid"
 

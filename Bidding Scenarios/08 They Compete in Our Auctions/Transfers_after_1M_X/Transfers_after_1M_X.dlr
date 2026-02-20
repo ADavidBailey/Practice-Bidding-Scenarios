@@ -1,10 +1,11 @@
 # alias: XferAfter1MajorX
 # button-text: Xfer after 1M (X)
 # scenario-title: --- Transfer after 1M (X)
-# dealer-position: N
 # gib-works: false
 # bba-works: true
 # auction-filter: 1[HS] X
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Transfer after 1M (X)
@@ -21,9 +22,9 @@ With a fit and invitional+ values (11+), bid 2NT.
 Finally, XX is Business with less than 3-card support.
 https://www.nxtbook.com/acbl/bridgebulletin/2025_06/index.php#/p/66
 @chat*/
-dealer north
 
 # Transfers after 1M (X)
+dealer north
 
 # North opens 1 Major
 
@@ -44,7 +45,7 @@ XoneH = hcp(east)>11 and spades(east)==4 and hearts(east)<2 and diamonds(east)>2
 
 (oneS and XoneS) or (oneH and XoneH)
 
-action
+action printoneline,
 average "4-7   w/3 " 100 * (hcp(south)>3 and hcp(south)<8  and c3),
 average "4-7   w/4 " 100 * (hcp(south)>3 and hcp(south)<8  and c4),
 average "8-10  w/3 " 100 * (hcp(south)>7 and hcp(south)<11 and c3),

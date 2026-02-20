@@ -1,10 +1,11 @@
 # alias: MichaelsAfter1m
 # button-text: Michaels after 1m
 # scenario-title: ---  Michaels Cuebid after 1m
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n(1C +2C|1D +2D|1H +2H|1S +2S)
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  Michaels Cuebid after 1m
@@ -12,6 +13,7 @@
   • 1!D - 2!D = 5+!H & 5+!S
 https://www.bridgebum.com/michaels_cuebid.php
 @chat*/
+
 dealer south
 
 ### Imported script: TP (Total Points)
@@ -230,7 +232,7 @@ northResponds = (force or limit or comp or prem)
 
 southOpens and westMCB and northResponds
 
-action
+action printoneline,
 average "force" 100 * force,
 average "limit" 100 * limit,
 average "comp " 100 * comp,

@@ -1,16 +1,17 @@
 # alias: TwoNTPuppet
 # button-text: 2N - Puppet
 # scenario-title: --- 20-21 Notrump with Puppet and any continuation.
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: Note....2N-3C Puppet
-# convention-card: 21GF-Puppet
+# convention-card-ns: 21GF-Puppet
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- 20-21 Notrump with Puppet and any continuation.
 The responder's strength -- game or slam -- is leveled to about 55/35.
 @chat*/
+
 dealer south
 
 ### 2N w/Puppet and any response
@@ -76,8 +77,7 @@ and levelTheDeal
 
 ### Generate Statistics ###\
 produce 30
-action
-printoneline,
+action printoneline,
 
 average "Part Score   " 100 * part,
 average "Game         " 100 * game,

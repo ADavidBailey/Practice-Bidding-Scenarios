@@ -1,10 +1,11 @@
 # alias: RobotFreeBid
 # button-text: Robot Free Bid
 # scenario-title: --- Robot Free Bid
-# dealer-position: N
 # gib-works: true
 # bba-works: true
 # auction-filter: 1[CDHS] (1[DHS]|2[CDH]) (X|1[HS]|2[CDH]) .*
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Robot Free Bid
@@ -13,9 +14,9 @@ with a good 6+ card suit
 negative double with unbid 4-card Major
 bids new suit w/11-14 TP or jump new suit w/15-16 TP
 @chat*/
-dealer north
 
 # Robot Free Bid
+dealer north
 
 # North's opening suit
 nS = spades(north)>=hearts(north) and spades(north)>4 and spades(north)>diamonds(north) and spades(north)>clubs(north)
@@ -105,3 +106,4 @@ southResponds = fitOK and rankOK and g6
 
 # Now do it
 northOpens and eastOvercalls and southResponds
+action printoneline,

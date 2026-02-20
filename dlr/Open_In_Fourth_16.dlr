@@ -1,10 +1,22 @@
+# alias: OpenInFourth16
 # button-text: 16
 # scenario-title: --- To Open or Not to Open
+# gib-works: true
+# bba-works: true
 # auction-filter: Auction.....\nPass +Pass +Pass +
-# Open_In_Fourth_16
-dealer west
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- To Open or Not to Open
+After (P) P (P)..., should you open in 4th seat?
+These deals have 16 R15 points.
+https://www.bridgebum.com/pearson_points.php
+@chat*/
+
 # Open In Fourth Seat
 
+dealer west
 
 # Avoid concentration of values
 ccw = top4(west,clubs)<2
@@ -90,5 +102,4 @@ levelTheDeal = lev13 or lev14 or lev15 or lev16
 # Now do it
 calmWest and calmNorth and calmEast and sSouth and r15>12 and r15<17
 and levelTheDeal
-
-action printpbn
+action printoneline,

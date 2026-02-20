@@ -1,12 +1,25 @@
-# button-text: None
-# scenario-title: None
-# Two-Suited_Overcalls
-dealer east
-
-
+# alias: TwoSuitedOvercalls
+# button-text: 2-Suit Overcalls
+# scenario-title: Please note:  This scenario includes all two-suited hands. Specific major/minor combinations
+# gib-works: false
+# bba-works: true
 # auction-filter: (1C 2C)|(1D 2D)|(1H 2H)|(1S 2S)|(1[CDHS] 2N)
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+Please note:  This scenario includes all two-suited hands. Specific major/minor combinations
+are problematic -- Michaels Cuebids and Top & Bottom Cuebids can't be played together.
+·
+You may want to practice with the Michaels and Unusual NT scenario instead.
+·
+Let me know if you want to practice with Top & Bottom and Unusual NT.
+--- 2-Suit Overcalls
+@chat*/
 
 # Two-Suited Overcalls
+dealer east
+produce 1000
 
 ##### Imported Script -- Predict Opening 1-Bid East #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -88,20 +101,20 @@ lS = s>4 and s>=h and s>=d and s>=c
 lH = h>4 and h>s and h>=d and h>=c
 lM = lS or lH
 
-hsRange1 = lM and hcp(east)>11
-hsRange2 = lM and hcp(east)>10 and sTP>12 and not hsRange1
-hsRange3 = lM and hcp(east)>9  and lgt5 and q2of3 and not (hsRange1 or hsRange2)
-hsRange = (hsRange1 or hsRange2 or hsRange3) and not P2
+hsOK1 = lM and hcp(east)>11
+hsOK2 = lM and hcp(east)>10 and sTP>12 and not hsOK1
+hsOK3 = lM and hcp(east)>9  and lgt5 and q2of3 and not (hsOK1 or hsOK2)
+hsRange = (hsOK1 or hsOK2 or hsOK3) and not P2
 
 # Define 1D Range
 dOK1 = hcp(east)>11 and (diamonds(east)>3 or shape(east, 4432))
-dOK2 = hcp(east)>9  and sTP>12 and diamonds(east)>5
+dOK2 = hcp(east)>9  and sTP>12 and diamonds(east)>5 and not dOK1
 dRange = (dOK1 or dOK2) and not P2
 
 # Define 1C Range
 cOK1 = hcp(east)>10 and sTP>12 and spades(east)==4
-cOK2 = hcp(east)>9  and sTP>12 and clubs(east)>5
-cOK3 = hcp(east)>11 and clubs(east)>2 and not dRange
+cOK2 = hcp(east)>9  and sTP>12 and clubs(east)>5 and not cOK1
+cOK3 = hcp(east)>11 and clubs(east)>2            and not (cOK1 or cOK2)
 cRange = (cOK1 or cOK2 or cOK3) and clubs(east)>2 and clubs(east)>diamonds(east) and not P2
 
 oS = s>4 and s>=h and s>=d and s>=c and hsRange
@@ -115,7 +128,6 @@ oneDiamond = oD
 oneClub    = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid-East #####
-
 
 
 # 2-suited overcalls
@@ -167,8 +179,7 @@ oSuit and iRange and rRange
 # You might also play with choseing south's suits
 #and SC or SD  // If you just want the problematic ones
 
-action
-#printoneline,
+action printoneline,
 
 average "Weak       " 100 * iWeak,
 average "  HCP      "     wHCP,

@@ -1,10 +1,11 @@
 # alias: TwoOverOne
 # button-text: Two Over One
 # scenario-title: --- Any 2/1 after 1!D, 1!H, or 1!S opening
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: (1D Pass 2C)|(1H Pass 2[CD])|(1S Pass 2[CDH])
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Any 2/1 after 1!D, 1!H, or 1!S opening
@@ -12,9 +13,9 @@
 1!H - 2!C or 2!D
 1!S - 2!C or 2!D or 2!H
 @chat*/
-dealer south
 
 # Two Over One
+dealer south
 produce 1000
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
@@ -170,7 +171,7 @@ nShape = shape(north,any 6xxx+any 5xxx+any 4441-any 55xx)
 # Now do it.
 (oneS or oneH or oneD) and hcp(south)>11 and hcp(south)<20 and hcp(north)>12 and nShape and calmOpps
 
-action
+action printoneline,
 average "1S     " 100 * oS,
 average "1H     " 100 * oH,
 average "1D     " 100 * oD,

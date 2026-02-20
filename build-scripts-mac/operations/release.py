@@ -39,7 +39,7 @@ def run_release(scenario: str, verbose: bool = True) -> bool:
     if not os.path.exists(pbs_test_path):
         # No pbs-test file — verify whether current DLR matches the released PBS
         if os.path.exists(pbs_release_path):
-            from operations.btn_to_pbs import generate_pbs
+            from operations.pbs_from_dlr import generate_pbs
             dlr_path = os.path.join(FOLDERS["dlr"], f"{scenario}.dlr")
             if os.path.exists(dlr_path):
                 with open(dlr_path, 'r', encoding='utf-8') as f:

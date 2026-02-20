@@ -1,9 +1,10 @@
 # alias: Notrump
 # button-text: 15-17 NT (Lev)
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: Auction.....\n1NT?
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  15-17 Notrump Opening
@@ -11,6 +12,8 @@
 Those 5422 hands are the ones where you are likely to have to reverse to show your suits.
 HCP adjusted +1 for any 5-card suit unless you have Kx, Qx, or Jx doubleton.
 @chat*/
+
+dealer south
 
 # Import Define-1N and Leveling
 #include "script/Define-1N"

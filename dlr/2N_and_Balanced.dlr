@@ -1,13 +1,18 @@
+# alias: TwoNTandBalanced
 # button-text: 2NT - Balanced
-# scenario-title: 20-21 Notrump and a Balanced response.
-# 2N_and_Balanced
+# scenario-title: ---  20-21 Notrump and a Balanced response.
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n2NT?
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+---  20-21 Notrump and a Balanced response.
+The responder's strength -- game or slam -- is leveled.
+@chat*/
+
 dealer south
-
-
-/*
-convention-card:
-auction-filter: Auction.....\n2NT?
-*/
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -59,7 +64,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -69,7 +74,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -177,7 +182,6 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-
 levGame = game and keep11
 levSlam = slam and keep
 
@@ -186,7 +190,7 @@ twoNT and balanced and (levGame or levSlam)
 
 ### Generate Statistics
 
-action
+action printoneline,
 
 average "Game         " 100 * game,
 average "Slam         " 100 * slam,

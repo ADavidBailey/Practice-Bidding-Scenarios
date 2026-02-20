@@ -1,10 +1,11 @@
 # alias: LastTrainGT2
 # button-text: Last Train GT2
 # scenario-title: --- Last Train Game Try
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: .
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Last Train Game Try
@@ -13,10 +14,10 @@ without raising the partnership's level of commitment, it is a Last Train game-t
 to the strain named (unless followed by an uninvited further action).
 https://en.wikipedia.org/wiki/Last_Train_(bridge)
 @chat*/
-dealer south
 
 # Last Train Game Try
 
+dealer south
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -274,7 +275,7 @@ CSS and clubs(north)==3 and hascard(north,KC) and hcp(north,hearts)<2
 (CDD or CHH or CSS) and hcp(north)>8 and hcp(north)<12  and hcp(south)>11 and hcp(south)<15 and calmOpps
 
 
-action
+action printoneline,
 average "hcp south" hcp(south),
 average "hcp north" hcp(north),
 average "combined " (hcp(south) + hcp(north)),

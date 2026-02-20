@@ -1,10 +1,11 @@
 # alias: McCabeAfterWJO
 # button-text: McCabe over WJO (Lev)
 # scenario-title: --- McCabe after Partner's Weak Jump Overcall is Doubled -- Leveled.
-# dealer-position: E
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1[CDHS] +[23][DHSC] +X
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- McCabe after Partner's Weak Jump Overcall is Doubled -- Leveled.
@@ -17,11 +18,11 @@ responder has six possible continuations:
 • Redouble - I have a long suit of my own
 • Pass - Good Luck!
 @chat*/
-dealer east
 
 # McCabe after Weak Jump Overcall
 # The McCabe Convention gives useful options for Advancer after Partner’s Weak Jump Overcall is doubled.
 
+dealer east
 
 # Define East's Opening of 1C, 1D, or 1H
 s = spades(east)
@@ -157,7 +158,7 @@ levelTheDeal = lRule17 or lRule15 or lLeadAsk or lRaise or lmySuit or lPass
 eastOpens and weakJumpOvercall and westX and (rule17 or rule15 or leadAsk or raise or mySuit or pass)
 and levelTheDeal
 
-action
+action printoneline,
 average "Rule of 17" 100 * rule17,
 average "Rule of 15" 100 * rule15,
 average "Lead Ask  " 100 * leadAsk,

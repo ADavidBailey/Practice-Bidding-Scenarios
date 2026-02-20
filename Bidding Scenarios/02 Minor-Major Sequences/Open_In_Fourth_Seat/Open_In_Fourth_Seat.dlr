@@ -1,10 +1,11 @@
 # alias: OpenInFourthSeat
 # button-text: 4th Seat Opener (Lev)
 # scenario-title: --- To Open or Not to Open
-# dealer-position: W
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\nPass +Pass +Pass +
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- To Open or Not to Open
@@ -13,10 +14,10 @@ This is leveled such that pass/bid should occur
 with approximately the same frequency.
 https://www.bridgebum.com/pearson_points.php
 @chat*/
-dealer west
 
 # Open In Fourth Seat
 
+dealer west
 
 # Avoid concentration of values
 ccw = top4(west,clubs)<2
@@ -101,7 +102,7 @@ levelTheDeal = lev13 or lev14 or lev15 or lev16
 calmWest and calmNorth and calmEast and sSouth and r15>12 and r15<17
 and levelTheDeal
 
-action
+action printoneline,
 average "HCP North=" hcp(north),
 average "HCP South=" hcp(south),
 frequency "r15   " (r15, 13, 16),

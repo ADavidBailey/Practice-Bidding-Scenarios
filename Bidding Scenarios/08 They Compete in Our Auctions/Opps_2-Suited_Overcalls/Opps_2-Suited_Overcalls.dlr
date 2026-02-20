@@ -1,10 +1,11 @@
 # alias: OppsTwoSuitedOvercalls
 # button-text: 2-Suit Overcalls
 # scenario-title: --- Opponents 2-Suit Overcalls
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1[CDHS] +2[CDHSN] +
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Opponents 2-Suit Overcalls
@@ -17,9 +18,9 @@ with 2 known opponent suits -- cue lower for lower & higher for higher
 https://www.bridgebum.com/unusual_vs_unusual.php
 https://www.bridgebum.com/defense_to_michaels.php
 @chat*/
-dealer south
 
 # Opponent's Two-Suited Overcalls
+dealer south
 produce 1000
 
 
@@ -172,7 +173,7 @@ oSuit and oRange and iRange and rRange
 
 #  Michaels Cue Bid (MCB), Unusual 2NT (U2N), Top & Bottom Cue Bid (T&B)
 
-action
+action printoneline,
 average "1S         " 100 * (oneS and (HD or HC or DC)),
 average "   (2S MCB     = HD) " 100 * (oneS and HD),
 average "   (2S MCB/T&B = HC) " 100 * (oneS and HC),

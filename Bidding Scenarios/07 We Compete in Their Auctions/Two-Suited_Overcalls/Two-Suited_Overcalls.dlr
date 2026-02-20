@@ -1,10 +1,11 @@
 # alias: TwoSuitedOvercalls
 # button-text: 2-Suit Overcalls
 # scenario-title: Please note:  This scenario includes all two-suited hands. Specific major/minor combinations
-# dealer-position: E
 # gib-works: false
 # bba-works: true
 # auction-filter: (1C 2C)|(1D 2D)|(1H 2H)|(1S 2S)|(1[CDHS] 2N)
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 Please note:  This scenario includes all two-suited hands. Specific major/minor combinations
@@ -15,9 +16,9 @@ You may want to practice with the Michaels and Unusual NT scenario instead.
 Let me know if you want to practice with Top & Bottom and Unusual NT.
 --- 2-Suit Overcalls
 @chat*/
-dealer east
 
 # Two-Suited Overcalls
+dealer east
 produce 1000
 
 ##### Imported Script -- Predict Opening 1-Bid East #####
@@ -178,8 +179,7 @@ oSuit and iRange and rRange
 # You might also play with choseing south's suits
 #and SC or SD  // If you just want the problematic ones
 
-action
-#printoneline,
+action printoneline,
 
 average "Weak       " 100 * iWeak,
 average "  HCP      "     wHCP,

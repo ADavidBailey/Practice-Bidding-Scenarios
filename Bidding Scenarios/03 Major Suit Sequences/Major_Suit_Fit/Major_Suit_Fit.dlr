@@ -1,10 +1,11 @@
 # alias: MajorSuitFit
 # button-text: Major Suit Fit (Lev)
 # scenario-title: --- Major Suit Fit
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n((1H +Pass +[2-7]H)|(1S +Pass +[2-7]S))
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Major Suit Fit
@@ -17,9 +18,9 @@ TP = HCP + short suit points + 1 for 4+ support-not-4333
 Check the link below for more information
 https://www.larryco.com/bridge-articles/major-openings-part-1
 @chat*/
-dealer south
 
 # Major_Suit_Fit
+dealer south
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -235,7 +236,7 @@ nResponds = (preempt or faulty or simple or invite3 or invite4) and not Splinter
 sOpens and wPasses and nResponds
 and levelTheDeal
 
-action
+action printoneline,
 average "faulty raise  " 100 * faulty,
 average "simple raise  " 100 * simple,
 average "3-card invite " 100 * invite3,

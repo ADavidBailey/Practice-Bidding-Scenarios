@@ -1,17 +1,17 @@
 # alias: SCS16-1SuitedOpnr
 # button-text: 1-Suited Opener
 # scenario-title: --- 16+ w/solid or semi-solid 1-suited hand
-# dealer-position: S
 # gib-works: false
 # bba-works: true
 # auction-filter: Auction.....\n1C
-# convention-card: Precision
+# convention-card-ns: Precision
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- 16+ w/solid or semi-solid 1-suited hand
 @chat*/
-dealer south
 
+dealer south
 
 solidC = clubs(south)>5 and top3(south,clubs)>2
 solidD = diamonds(south)>5 and top3(south,diamonds)>2
@@ -30,3 +30,4 @@ semiSolid = (semiSolidC or semiSolidD or semiSolidH or semiSolidS)
 
 # North has 0-4
 and hcp(north)<5
+action printoneline,

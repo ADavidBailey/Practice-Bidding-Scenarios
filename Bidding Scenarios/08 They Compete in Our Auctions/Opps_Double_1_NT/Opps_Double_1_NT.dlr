@@ -1,18 +1,18 @@
 # alias: NotrumpX
 # button-text: X Notrump
 # scenario-title: --- Opponents X Notrump
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1N +X
-# convention-card: 21GF-Cappelletti
+# convention-card-ns: 21GF-Cappelletti
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Opponents X Notrump
 @chat*/
-dealer south
 
 # Opponent doubles 1NT
+dealer south
 
 # Define good suits with a likely outside entry
 GS = spades(west)>4 and top5(west,spades)>3 and (top2(west,hearts)==1 or top2(west,diamonds)==1 or top2(west,clubs)==1)
@@ -33,3 +33,4 @@ or
 
 # West has 15+ points
 hcp(west) >14
+action printoneline,

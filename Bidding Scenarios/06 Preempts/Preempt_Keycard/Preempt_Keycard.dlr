@@ -1,10 +1,11 @@
 # alias: PreemptKeycard
 # button-text: Preempt Keycard
 # scenario-title: --- Keycard after Preempts
-# dealer-position: S
 # gib-works: false
 # bba-works: false
 # auction-filter: Auction.....\n(2[DHS] +Pass +2NT|3[CDHS] +Pass +4NT)
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Keycard after Preempts
@@ -13,9 +14,9 @@ The responses are 0, 1-without, 1-with, 2-without, 2-with.
 After a weak two 4!C Keycard-Ask may be used after a feature-ask sequence such as 2!H - 2N - 3!D - 4!C.
 https://www.advinbridge.com/this-week-in-bridge/578
 @chat*/
-dealer south
 
 # Keycard ask after Preempt
+dealer south 
 
 range = hcp(south)>5 and hcp(south)<10
 
@@ -32,7 +33,7 @@ o3  = o3S or o3H or o3D or o3C
 
 ((o2 and controls(north)>8) or (o3 and controls(north)>7)) and range
 
-action
+action printoneline,
 average "hcp south    " hcp(south),
 average "hcp north    " hcp(north),
 average "losers South " losers(south),

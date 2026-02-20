@@ -1,9 +1,10 @@
 # alias: After1M2M
 # button-text: After 1M - 2M
-# dealer-position: S
 # gib-works: true
 # bba-works: true
 # auction-filter: (1H +Pass +2H)|(1S +Pass +2S)
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 ---  After 1M - 2M
@@ -11,6 +12,8 @@
 • 15+ bid help suit
 • 12-14 pass
 @chat*/
+
+dealer south
 
 #include "script/Predict-Opening-1-Bid"
 # defines oneSpade, oneHeart, suitPoints, gibNT
