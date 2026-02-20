@@ -16,12 +16,14 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-MSTandMSS
+convention-card-ns: 21GF-MSTandMSS
+convention-card-ew: 21GF-GIB
 auction-filter: 1N +Pass +2S
 */
 # Enable both MST and MSS
 
 # Minor Suit Stayman
+dealer south
 
 ##### Imported Script -- GIB 1 Notrump #####
 
@@ -45,6 +47,7 @@ sR = hcp(north)>10 and shape(north, xx66+xx65+xx56+xx55+xx54+xx45)
 
 # Now do it
 gibNT and sR
+action printoneline,
 `, "S", true)
 Script
 Button,Minor Suit Stayman,\n\
