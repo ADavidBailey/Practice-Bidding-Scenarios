@@ -16,7 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-Gambling
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: .
 */
 solidClubs    = top3(east,clubs)==3    and clubs(east)>6
@@ -31,8 +32,7 @@ eastRange and (solidClubs or solidDiamonds)
 # Testing
 
 produce 30
-action
-printoneline,
+action printoneline,
 `, "E", true)
 Script
 Button,Opps Gambling 3N,\n\
