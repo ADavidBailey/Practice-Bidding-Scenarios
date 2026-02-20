@@ -4,7 +4,7 @@
 # gib-works: true
 # bba-works: true
 # auction-filter: (1D +Pass +3C|1H +Pass +3[CD]|1S +Pass +3[CDH])
-# convention-card-ns: 21GF-3-Under-Inv-Jump
+# convention-card-ns: 21GF-DEFAULT
 # convention-card-ew: 21GF-GIB
 
 /*@chat
@@ -238,14 +238,14 @@ dFit = oneDiamond and diamonds(north)>3
 noFit = not (sFit or hFit or dFit)
 
 # Define North's good suits -- 6+ cards with at least QJ or better
-goodHearts   = hearts(north)>5   and hcp(north,hearts)>2
-goodDiamonds = diamonds(north)>5 and hcp(north,diamonds)>2
-goodClubs    = clubs(north)>5    and hcp(north,clubs)>2
+goodHearts   = hearts(north)>5   and top4(north,hearts)>1
+goodDiamonds = diamonds(north)>5 and top4(north,diamonds)>1
+goodClubs    = clubs(north)>5    and top4(north,clubs)>1
 
 # Define North's minimum suits -- 6+ with at least the Q
-minHearts    = hearts(north)>5   and hcp(north,hearts)>1
-minDiamonds  = diamonds(north)>5 and hcp(north,diamonds)>1
-minClubs     = clubs(north)>5    and hcp(north,clubs)>1
+minHearts    = hearts(north)>5   and top5(north,hearts)>1
+minDiamonds  = diamonds(north)>5 and top5(north,diamonds)>1
+minClubs     = clubs(north)>5    and top5(north,clubs)>1
 nMinHCP = (goodHearts or goodDiamonds or goodClubs) ? 8 : 9  // Better HCP w/minimum suit
 
 # north does NOT have a major

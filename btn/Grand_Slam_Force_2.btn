@@ -1,0 +1,48 @@
+# alias: GrandSlamForceOpener
+# button-text: Grand Slam Force by Opener
+# gib-works: true
+# bba-works: true
+# auction-filter: .
+
+/*@chat
+--- Grand Slam Force asks partner, Do you have 2 of the top 3 honors?
+Any free five-no-trump bid in the opening or responding hand is a forcing bid.  If a suit
+has not been agreed the 5N bid confirms the previously bid suit.  Partner must bid
+7 of the agreed suit when holding 2 of the top 3 honors suit.
+https://www.bridgebum.com/grand_slam_force.php
+@chat*/
+
+dealer south
+
+#include "script/Predict-Opening-1-Bid"
+
+predeal south CA,DA,HK,SK
+predeal north CK,DK
+
+range = hcp(south)>16 and hcp(north)
+
+
+# Define North's Kings
+kingC = hascard(north,KC)
+kingD = hascard(north,KD)
+kingH = hascard(north,KH)
+kingS = hascard(north,KS)
+nKings = kingC + kingD + kingH + kingS
+
+# For North to bid GSF, they need 1 top honor in trump and first round control in the other 3 suits
+// north is predealt the four Aces
+
+# South opens and North raises...
+cSuit = oC and spades(north)<3 and hearts(north)<3 and clubs(north)>5    and clubs(north)>diamonds(north) and top3(north,clubs)==1
+dSuit = oD and spades(north)<3 and hearts(north)<3 and diamonds(north)>5 and diamonds(north)>clubs(north) and top3(north,diamonds)==1
+hSuit = oH and spades(north)<3 and hearts(north)>3 and top3(north,hearts)==1 and top3(south,hearts)==1
+sSuit = oS and spades(north)>3 and top3(north,spades)==1 and top3(south,spades)==1
+
+nsFit    = cSuit or dSuit or hSuit or sSuit
+nsStrong = hcp(south)>12 and (hcp(south) + hcp(north))>32 and nKings>0  // north has all four Aces and at least 1 king
+
+nsFit and nsStrong
+
+produce 30
+action
+printoneline,
