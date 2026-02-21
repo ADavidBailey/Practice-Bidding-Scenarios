@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: .
 */
 ##### Imported Script -- Predict Opening 1-Bid South #####
@@ -138,8 +140,7 @@ threeS = shape(south,7xxx + 8xxx + 9xxx -any 94xx -any 85xx -any 76xx -any 75xx)
 1
 
 produce 30
-action
-printoneline,
+action printoneline,
 average "1C    " 100 * oC,
 average "1D    " 100 * oD,
 average "1H    " 100 * oH,
