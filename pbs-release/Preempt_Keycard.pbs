@@ -16,9 +16,12 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n(2[DHS] +Pass +2NT|3[CDHS] +Pass +4NT)
 */
 # Keycard ask after Preempt
+dealer south 
 
 range = hcp(south)>5 and hcp(south)<10
 
@@ -35,7 +38,7 @@ o3  = o3S or o3H or o3D or o3C
 
 ((o2 and controls(north)>8) or (o3 and controls(north)>7)) and range
 
-action
+action printoneline,
 average "hcp south    " hcp(south),
 average "hcp north    " hcp(north),
 average "losers South " losers(south),
