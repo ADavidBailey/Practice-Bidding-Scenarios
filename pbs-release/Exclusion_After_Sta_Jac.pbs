@@ -16,13 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-Exclusion
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: Note....Exclusion
 */
-# convention-card: 21GF-Exclusion
-
-
-dealer south
 produce 1000
 
 ##### Imported Script -- GIB 1 Notrump #####
@@ -96,7 +93,7 @@ levelTheDeal = case1 or case2
 gibNT and hcp(north)>13 and shape(north,any 0xxx) and (case1 or case2)
 and levelTheDeal
 
-action
+action printoneline,
 average "Jac + Fit " 100 * jacFit,
 average "Sta + Fit " 100 * staFit,
 average "hcp south " hcp(south),
@@ -105,4 +102,4 @@ Script
 Button,Exclusion Sta/Jac,\n\
 --- Exclusion Blackwood after Stayman or Jacoby\n\
 Leveled for Stayman vs Jacoby.\n\
-%ExclusionStaJac%,backgroundColor=lightpink
+%ExclusionStaJac%,width=50% backgroundColor=lightpink
