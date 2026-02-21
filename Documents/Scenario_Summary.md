@@ -1,6 +1,6 @@
 # Scenario Summary
 
-Generated: 2026-02-21 16:17
+Generated: 2026-02-21 16:26
 Scenarios: 300
 
 ## Lowest Filter Rate (Filtered / Deals)
@@ -16,7 +16,7 @@ Scenarios: 300
 | 7 | Bergen_Raises | 62 | 500 | 12.4% |
 | 8 | Scrambling_2NT | 64 | 500 | 12.8% |
 | 9 | 1m-1_2_or_3_NT | 70 | 500 | 14.0% |
-| 10 | Exclusion_After_Sta_Jac | 72 | 500 | 14.4% |
+| 10 | Exclusion_After_Sta_Jac | 70 | 500 | 14.0% |
 
 ## Lowest Deal Counts
 
@@ -38,13 +38,13 @@ Scenarios: 300
 | 1 | Trap_Pass | 3m54s |
 | 2 | Gerber_By_Responder | 7.4s |
 | 3 | 2N_Puppet | 4.5s |
-| 4 | Benjamin_2D | 4.4s |
-| 5 | Reverse_Flannery | 4.3s |
-| 6 | Kokish_Relay | 4.3s |
-| 7 | Exclusion_After_1M | 4.3s |
-| 8 | Snapdragon_Double | 4.3s |
-| 9 | Bergen_Raises | 4.3s |
-| 10 | Gazzilli | 4.3s |
+| 4 | Exclusion_After_Sta_Jac | 4.4s |
+| 5 | Benjamin_2D | 4.4s |
+| 6 | Reverse_Flannery | 4.3s |
+| 7 | Kokish_Relay | 4.3s |
+| 8 | Exclusion_After_1M | 4.3s |
+| 9 | Snapdragon_Double | 4.3s |
+| 10 | Bergen_Raises | 4.3s |
 
 | Scenario | Deals | Filtered | Flt-Out | dlr | pbs | pbn | rotate | bba | filter | fStats | bSheet | quiz | package | Total |
 | :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -95,7 +95,7 @@ Scenarios: 300
 | Drury | 500 | 471 | 29 | - | - | - | - | - | - | - | - | - | - | - |
 | Equal_Level_Conversion | 500 | 338 | 162 | - | - | - | - | - | - | - | - | - | - | - |
 | Exclusion_After_1M | 500 | 28 | 472 | - | - | - | - | 4.2s | 0.1s | 0.0s | - | - | - | 4.3s |
-| Exclusion_After_Sta_Jac | 500 | 72 | 428 | - | - | - | - | - | - | - | - | - | - | - |
+| Exclusion_After_Sta_Jac | 500 | 70 | 430 | 0.0s | - | - | - | 4.3s | 0.1s | 0.0s | - | - | - | 4.4s |
 | Exit_Transfers | 500 | 376 | 124 | - | - | - | - | 4.1s | 0.1s | 0.0s | - | - | - | 4.2s |
 | Flannery | 500 | 498 | 2 | - | - | - | - | - | - | - | - | - | - | - |
 | Forcing_NT | 500 | 347 | 153 | 0.0s | - | - | - | 4.1s | 0.1s | 0.0s | 0.0s | 0.0s | 0.0s | 4.3s |
@@ -348,4 +348,4 @@ Scenarios: 300
 | Weak_NT_14-15 | 500 | 334 | 166 | - | - | - | - | - | - | - | - | - | - | - |
 | XYZ | 500 | 387 | 113 | - | - | - | - | - | - | - | - | - | - | - |
 | Xfer_after_1M_X | 500 | 280 | 220 | - | - | - | - | - | - | - | - | - | - | - |
-| **Total** | **148131** | **102558** | **43658** | - | - | - | - | - | - | - | - | - | - | - |
+| **Total** | **148131** | **102556** | **43660** | - | - | - | - | - | - | - | - | - | - | - |
