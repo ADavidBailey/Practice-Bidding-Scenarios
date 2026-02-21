@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-SolowayJumpShift
-auction-filter: \n(1C +Pass +2[DHS]|1D +Pass +2[HS]|1H +Pass +2S)
+convention-card-ns: 21GF-SolowayJumpShift
+convention-card-ew: 21GF-GIB
+auction-filter: Auction.....\n(1C +Pass +2[DHS]|1D +Pass +2[HS]|1H +Pass +2S)
 */
-# convention-card: 21GF-SolowayJumpShift
-
-
 # Soloway Jump Shift
 dealer south
 
@@ -94,6 +92,7 @@ and
 # Type 3
    (rebidAndShape and hcp(north)>17)
  )
+action printoneline,
 `, "S", true)
 Script
 Button,3,\n\
