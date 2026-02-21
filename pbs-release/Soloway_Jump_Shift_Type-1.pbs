@@ -16,8 +16,9 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-SolowayJumpShift
-auction-filter: Note....Soloway Jump Shift
+convention-card-ns: 21GF-SolowayJumpShift
+convention-card-ew: 21GF-GIB
+auction-filter: Auction.....\n(1C +Pass +2[DHS]|1D +Pass +2[HS]|1H +Pass +2S)
 */
 # Calculate Total Points for North (tp) for North
 v1 = shape(north, any 0xxx) ? 5 : 0
@@ -88,6 +89,7 @@ and
 # Type 1
    (goodSuit and shape(north, xxxx -any 4xxx))
 )
+action printoneline,
 `, "S", true)
 Script
 Button,1,\n\
