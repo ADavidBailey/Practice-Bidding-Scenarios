@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-SolowayJumpShift
-auction-filter: \n(1C +Pass +2[DHS]|1D +Pass +2[HS]|1H +Pass +2S)
+convention-card-ns: 21GF-SolowayJumpShift
+convention-card-ew: 21GF-GIB
+auction-filter: Auction.....\n(1C +Pass +2[DHS]|1D +Pass +2[HS]|1H +Pass +2S)
 */
-# convention-card: 21GF-SolowayJumpShift
-
-
 # Soloway Jump Shift
 dealer south
 
@@ -92,7 +90,7 @@ southOpens and westPasses and solowayJumpShift
 
 // condition type_1 || type_2 || type_3 || type_4
 
-action
+action printoneline,
 average "Type 1" 100 * type_1,
 average "Type 2" 100 * type_2,
 average "Type 3" 100 * type_3,
