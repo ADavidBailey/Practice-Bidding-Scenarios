@@ -18,11 +18,12 @@ Examples:
 """
 import argparse
 import fnmatch
+import json
 import os
 import sys
 import time
 
-from config import FOLDERS, OPERATIONS_ORDER
+from config import FOLDERS, OPERATIONS_ORDER, PROJECT_ROOT
 from ssh_runner import test_ssh_connection
 from utils.properties import get_bba_works
 
@@ -48,6 +49,7 @@ from operations.quiz import run_quiz
 from operations.release import run_release
 from operations.release_layout import run_release_layout
 from operations.package import run_package
+from scenario_summary import generate_summary
 
 
 # Map operation names to functions
@@ -188,6 +190,19 @@ def filter_operations_for_scenario(scenario: str, operations: list) -> list:
     return [op for op in operations if op not in BBA_AND_DOWNSTREAM]
 
 
+def _cleanup_filter_outputs(scenario: str, verbose: bool = True):
+    """Remove stale filter output files when bba-works is false."""
+    for folder_key in ['bba_filtered', 'bba_filtered_out']:
+        folder = FOLDERS[folder_key]
+        for ext in ['.pbn', '.pdf']:
+            path = os.path.join(folder, f"{scenario}{ext}")
+            if os.path.exists(path):
+                os.remove(path)
+                if verbose:
+                    folder_name = os.path.basename(folder)
+                    print(f"  Removed stale: {folder_name}/{scenario}{ext}")
+
+
 def run_operations(scenario: str, operations: list, verbose: bool = True) -> bool:
     """
     Run a list of operations on a scenario.
@@ -206,6 +221,10 @@ def run_operations(scenario: str, operations: list, verbose: bool = True) -> boo
     if verbose and len(filtered_ops) < len(operations):
         skipped = [op for op in operations if op not in filtered_ops]
         print(f"  Skipping BBA+ operations (bba-works=false): {', '.join(skipped)}")
+
+    # Clean up stale filter outputs when filter is skipped
+    if 'filter' in set(operations) - set(filtered_ops):
+        _cleanup_filter_outputs(scenario, verbose)
 
     if not filtered_ops:
         if verbose:
@@ -290,6 +309,30 @@ def _print_build_summary(all_durations: dict, build_elapsed: float, failed: list
             print(f"\nSlowest {target_op} scenarios (top 5):")
             for scenario, dur in op_scenarios[:5]:
                 print(f"  {scenario:45} {format_duration(dur):>10}")
+
+
+TIMING_FILE = os.path.join(PROJECT_ROOT, "build-data", "pipeline-timing.json")
+
+
+def _save_timing_data(all_durations: dict):
+    """Save per-scenario timing data to JSON, merging with existing data."""
+    timing_dir = os.path.dirname(TIMING_FILE)
+    os.makedirs(timing_dir, exist_ok=True)
+
+    # Load existing data
+    existing = {}
+    if os.path.exists(TIMING_FILE):
+        with open(TIMING_FILE, "r") as f:
+            existing = json.load(f)
+
+    # Merge at operation level: preserve existing op timings, update only ops that ran
+    for scenario, durations in all_durations.items():
+        if scenario not in existing:
+            existing[scenario] = {}
+        existing[scenario].update(durations)
+
+    with open(TIMING_FILE, "w") as f:
+        json.dump(existing, f, indent=2, sort_keys=True)
 
 
 def main():
@@ -394,6 +437,13 @@ Operations (in order):
             print()
 
     build_elapsed = time.time() - build_start
+
+    # Persist timing data
+    _save_timing_data(all_durations)
+
+    # Update Scenario Summary report (skip for non-pipeline operations like release)
+    if set(operations) & set(OPERATIONS_ORDER):
+        generate_summary()
 
     # Final summary
     if len(scenarios) > 1:
