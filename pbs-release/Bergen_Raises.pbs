@@ -16,16 +16,12 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-Bergen
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[HS] +Pass +3[CDHSN]
 */
-# convention-card: 21GF-Bergen
-
-
 /*
 Select Bergen, 1M 3M blocking, and turn off 1N opening shape 5422
-convention-card: 21GF-Bergen
-auction-filter: Auction.....\n1[HS] +Pass +3[CDHSN]
 */
 
 # Bergen Raises
@@ -157,7 +153,7 @@ nOpens and (case3M or case3C or case3oM or case3N or case3D) and calmEast
 and levelTheDeal
 
 produce 5000
-action
+action printoneline,
 average "3C   7-10 TP      " 100 * case3C,
 average "3D  11-12 TP      " 100 * case3D,
 average "3oM 11-13 41/40xx " 100 * case3oM,
@@ -173,4 +169,4 @@ Button,Bergen Raises (Lev),\n\
 • 3OM = Ambiguous Splinter (12+) TP\n\
 • 3N  = 4333 (13-15) HCP\n\
 https://www.bridgebum.com/bergen_raises.php\n\
-%BergenRaises%,backgroundColor=lightpink
+%BergenRaises%,width=50% backgroundColor=lightpink
