@@ -16,10 +16,12 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-Multi
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-Multi
 auction-filter: Auction.....\n2D +
 */
 # Opps Multi 2D
+dealer east
 
 # Define East weak 2 bids
 w2S = spades(east)==6 and top5(east,spades)>2 and hcp(east,spades)>4 and hearts(east)<4
@@ -33,6 +35,7 @@ and (w2S or w2H)
 # 17-24 HCP with 4441
 hcp(east)>16 and hcp(east)<25 and shape(east, any 4441)
 )
+action printoneline,
 `, "E", true)
 Script
 Button,Opps Multi 2D,\n\
