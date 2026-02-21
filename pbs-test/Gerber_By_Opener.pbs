@@ -252,7 +252,7 @@ s1D = oneDiamond and cQ and diamonds(south)>5   // north doesn't have the streng
 s1mShape = shape(south,any 0xxx+any 11xx)       // south shape upgrades required for TP
 s1mRange = tpSouth>20 and hcp(south)<19
 n1mRange = hcp(north)>10 and hcp(north)<13      // north responds 2N (I hope!)
-n1mShape = shape(north,any 4333)
+n1mShape = shape(north,any 4333 -4xxx -x4xx)
 
 # South opens 1m and North responds 2N
 s1m = (s1C or s1D) and s1mShape and s1mRange and mK  and n1mRange
