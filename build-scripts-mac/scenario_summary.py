@@ -21,7 +21,7 @@ from config import FOLDERS, OPERATIONS_ORDER, PROJECT_ROOT
 from utils.properties import get_bba_works
 
 TIMING_FILE = os.path.join(PROJECT_ROOT, "build-data", "pipeline-timing.json")
-OUTPUT_FILE = os.path.join(PROJECT_ROOT, "Documents", "Scenario_Summary.md")
+OUTPUT_FILE = os.path.join(PROJECT_ROOT, "docs", "Scenario_Summary.md")
 
 # Columns for ET: operation names and their short display headers
 OP_COLUMNS = [
@@ -149,26 +149,28 @@ def generate_summary(pattern: str = "*"):
     lines.append(f"Scenarios: {len(rows)}")
     lines.append("")
 
-    # Top-10 lowest filter rate
-    lines.append("## Lowest Filter Rate (Filtered / Deals)")
+    # Side-by-side summary tables using HTML
+    lines.append('<table width="100%"><tr valign="top"><td>')
     lines.append("")
-    lines.append("| # | Scenario | Filtered | Deals | Rate |")
+    lines.append("### Lowest Filter Rate")
+    lines.append("")
+    lines.append("| # | Scenario | Filt | Deals | Rate |")
     lines.append("| ---: | :--- | ---: | ---: | ---: |")
     for i, (name, pct, filt, deals) in enumerate(lowest_filter, 1):
         lines.append(f"| {i} | {name} | {filt} | {deals} | {pct:.1f}% |")
     lines.append("")
-
-    # Top-10 lowest deal counts
-    lines.append("## Lowest Deal Counts")
+    lines.append('</td><td>&nbsp;&nbsp;</td><td>')
+    lines.append("")
+    lines.append("### Lowest Deal Counts")
     lines.append("")
     lines.append("| # | Scenario | Deals |")
     lines.append("| ---: | :--- | ---: |")
     for i, (name, deals) in enumerate(lowest_deals, 1):
         lines.append(f"| {i} | {name} | {deals} |")
     lines.append("")
-
-    # Top-10 longest ET
-    lines.append("## Longest Total ET")
+    lines.append('</td><td>&nbsp;&nbsp;</td><td>')
+    lines.append("")
+    lines.append("### Longest Total ET")
     lines.append("")
     if longest_et:
         lines.append("| # | Scenario | Total ET |")
@@ -176,7 +178,9 @@ def generate_summary(pattern: str = "*"):
         for i, (name, total) in enumerate(longest_et, 1):
             lines.append(f"| {i} | {name} | {format_et(total)} |")
     else:
-        lines.append("*No timing data available. Run the pipeline to generate.*")
+        lines.append("*No timing data available.*")
+    lines.append("")
+    lines.append('</td></tr></table>')
     lines.append("")
 
     # Main table header

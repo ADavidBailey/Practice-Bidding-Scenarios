@@ -1,11 +1,13 @@
 # Scenario Summary
 
-Generated: 2026-02-21 17:42
+Generated: 2026-02-21 17:56
 Scenarios: 300
 
-## Lowest Filter Rate (Filtered / Deals)
+<table width="100%"><tr valign="top"><td>
 
-| # | Scenario | Filtered | Deals | Rate |
+### Lowest Filter Rate
+
+| # | Scenario | Filt | Deals | Rate |
 | ---: | :--- | ---: | ---: | ---: |
 | 1 | W2_X_XX | 15 | 280 | 5.4% |
 | 2 | 2N_and_MSS | 28 | 500 | 5.6% |
@@ -18,7 +20,9 @@ Scenarios: 300
 | 9 | 1m-1_2_or_3_NT | 70 | 500 | 14.0% |
 | 10 | Exclusion_After_Sta_Jac | 70 | 500 | 14.0% |
 
-## Lowest Deal Counts
+</td><td>&nbsp;&nbsp;</td><td>
+
+### Lowest Deal Counts
 
 | # | Scenario | Deals |
 | ---: | :--- | ---: |
@@ -31,7 +35,9 @@ Scenarios: 300
 | 7 | Opps_Bal_Unusual_2N | 376 |
 | 8 | Non_Leaping_Michaels_After_2-Bid | 455 |
 
-## Longest Total ET
+</td><td>&nbsp;&nbsp;</td><td>
+
+### Longest Total ET
 
 | # | Scenario | Total ET |
 | ---: | :--- | ---: |
@@ -45,6 +51,8 @@ Scenarios: 300
 | 8 | Forcing_NT | 6.9s |
 | 9 | Soloway_Jump_Shift_Type-4 | 6.7s |
 | 10 | Bergen_Raises | 5.9s |
+
+</td></tr></table>
 
 | Scenario | Deals | Filtered | Flt-Out | dlr | pbs | pbn | rotate | bba | filter | fStats | bSheet | quiz | package | Total |
 | :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
