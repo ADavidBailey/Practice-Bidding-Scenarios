@@ -1,9 +1,9 @@
 # alias: GerberByOpener
 # button-text: Gerber by Opener (Lev)
 # gib-works: true
-# bba-works: true
-# auction-filter: Auction.....\n(2C =1= +Pass +2. +Pass\n4C|1[CD] +Pass +.N +Pass\n4C)
-# convention-card-ns: 21GF-DEFAULT
+# bba-works: false
+# auction-filter: Auction.....\n(2C =1= +Pass +2N +Pass\n4C|1[CD] +Pass +2N +Pass\n4C)
+# convention-card-ns: 21GF-GIB
 # convention-card-ew: 21GF-GIB
 
 /*@chat
@@ -33,17 +33,17 @@ dealer south
 predeal north SQT,HJT,DT98,CJ9
 
 # Define suit quality for NT -- Qxx opener's suit and Kxx or QJx in unbid suits
-dQ = hcp(north,diamonds)>2   // 10-12 doesn't have room for 3-points in each suit
-cQ = hcp(north,clubs)>2
+dQ = hcp(north,diamonds)>1   // 10-12 doesn't have room for 3-points in each suit
+cQ = hcp(north,clubs)>1
 mK = hcp(north,hearts)>2 and hcp(north,spades)>2
 
 # South opens a minor and North has any 4333 with 10-12 and honor(s)in every suit
-s1C = oneClub    and dQ and clubs(south)>5
-s1D = oneDiamond and cQ and diamonds(south)>5   // north doesn't have the strength for 2/1
-s1mShape = shape(south,any 0xxx+any 11xx)       // south shape upgrades required for TP
+s1C = oneClub    and dQ and clubs(south)>6
+s1D = oneDiamond and cQ and diamonds(south)>6   // north doesn't have the strength for 2/1
+s1mShape = shape(south,any 83xx +any 74xx -4xxx -x4xx)       // south shape upgrades required for TP
 s1mRange = tpSouth>20 and hcp(south)<19
 n1mRange = hcp(north)>10 and hcp(north)<13      // north responds 2N (I hope!)
-n1mShape = shape(north,any 4333)
+n1mShape = shape(north,any 4333 -4xxx -x4xx)
 
 # South opens 1m and North responds 2N
 s1m = (s1C or s1D) and s1mShape and s1mRange and mK  and n1mRange
@@ -57,6 +57,9 @@ s2C = hcp(south)>21 and n2cRange and n2cShape and n2cQ
 
 # Now do it
 (s1m and calmWest) or s2C
+
+produce 30
 action
+printoneline,
 average "1m - 2N  " 100 * s1m,
 average "2C - 2N  " 100 * s2C,
