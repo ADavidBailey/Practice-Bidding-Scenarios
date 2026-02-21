@@ -16,7 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-Gerber
+convention-card-ns: 21GF-GIB
+convention-card-ew: 21GF-GIB
 auction-filter: Note....A=
 */
 # These are sequences where 4C-Gerber might be bid by Responder
@@ -353,7 +354,7 @@ and levelTheDeal
 
 
 produce 10
-action
+action printoneline,
 average "12 + 21: 1x-1y-1N-? " 100 * nt12,
 average "15 + 18: 1N-?       " 100 * nt15,
 average "18 + 15: 1x-1y-2N-? " 100 * nt18,
