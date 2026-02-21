@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[CDHS] +[1-4][CDHS]
 */
 ##### Imported Script -- Predict Opening 1-Bid South #####
@@ -233,7 +235,7 @@ levelTheDeal = lWeakPass or lTrapPass
 sOpens and wOvercalls and eQuiet
 and levelTheDeal
 
-action
+action printoneline,
 average "Trap Pass" 100 * wOvercallTrap,
 average "Weak Pass" 100 * wOvercallWeak,
 `, "S", true)
