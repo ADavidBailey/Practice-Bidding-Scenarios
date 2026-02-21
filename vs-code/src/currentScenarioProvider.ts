@@ -131,6 +131,12 @@ const ARTIFACTS = [
 
 type ArtifactStatus = 'fresh' | 'stale' | 'missing';
 
+// Tolerance for timestamp comparison (ms). Git checkout/commit resets file
+// timestamps to the same second with random sub-second ordering, which can
+// make a downstream artifact appear older than its source even though both
+// were written in the same pipeline run.
+const FRESHNESS_TOLERANCE_MS = 1000;
+
 interface ArtifactInfo {
     name: string;
     shortName: string;
@@ -393,7 +399,7 @@ export class CurrentScenarioProvider implements vscode.TreeDataProvider<Scenario
             if (fs.existsSync(sourcePath)) {
                 const artifactMtime = fs.statSync(artifactPath).mtimeMs;
                 const sourceMtime = fs.statSync(sourcePath).mtimeMs;
-                status = artifactMtime >= sourceMtime ? 'fresh' : 'stale';
+                status = artifactMtime >= sourceMtime - FRESHNESS_TOLERANCE_MS ? 'fresh' : 'stale';
             } else {
                 // No source to compare against - consider fresh
                 status = 'fresh';
@@ -484,7 +490,7 @@ export class CurrentScenarioProvider implements vscode.TreeDataProvider<Scenario
         if (fs.existsSync(sourcePath)) {
             const fileMtime = fs.statSync(filePath).mtimeMs;
             const sourceMtime = fs.statSync(sourcePath).mtimeMs;
-            return fileMtime >= sourceMtime ? 'fresh' : 'stale';
+            return fileMtime >= sourceMtime - FRESHNESS_TOLERANCE_MS ? 'fresh' : 'stale';
         }
         return 'fresh';
     }
