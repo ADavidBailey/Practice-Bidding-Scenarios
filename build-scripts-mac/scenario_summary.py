@@ -18,7 +18,7 @@ from datetime import datetime, timezone
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from config import FOLDERS, OPERATIONS_ORDER, PROJECT_ROOT
-from utils.properties import get_bba_works
+from utils.properties import get_bba_works, get_btn_property, get_chat_text
 
 TIMING_FILE = os.path.join(PROJECT_ROOT, "build-data", "pipeline-timing.json")
 OUTPUT_FILE = os.path.join(PROJECT_ROOT, "docs", "Scenario_Summary.html")
@@ -77,6 +77,24 @@ def _esc(text: str) -> str:
     return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
+def _esc_attr(text: str) -> str:
+    """Escape text for use in an HTML attribute value."""
+    return _esc(text).replace('"', "&quot;").replace("\n", "&#10;")
+
+
+def _scenario_td(name: str, btn_info: dict, style: str = "") -> str:
+    """Build a <td> with button-text display and CSS hover tooltip."""
+    display = _esc(btn_info.get("button_text") or name)
+    tooltip_parts = [f"{name}.btn"]
+    chat = btn_info.get("chat_text", "")
+    if chat:
+        tooltip_parts.append("")
+        tooltip_parts.append(chat)
+    tooltip = _esc("\n".join(tooltip_parts))
+    style_attr = f' style="{style}"' if style else ""
+    return f'<td{style_attr}><span class="has-tip">{display}<span class="tip">{tooltip}</span></span></td>'
+
+
 def generate_summary(pattern: str = "*"):
     """Generate the Scenario_Summary.html file."""
     scenarios = get_scenarios(pattern)
@@ -113,12 +131,19 @@ def generate_summary(pattern: str = "*"):
 
         rows.append({
             "name": scenario,
+            "btn_info": {
+                "button_text": get_btn_property(scenario, "button-text"),
+                "chat_text": get_chat_text(scenario),
+            },
             "deals": deals,
             "filtered": filtered,
             "filtered_out": filtered_out,
             "op_times": op_times,
             "total_et": format_et(total_et) if total_et > 0 else "-",
         })
+
+    # Build btn_info lookup for summary cards
+    btn_lookup = {row["name"]: row["btn_info"] for row in rows}
 
     # Compute top-10 summaries
     filter_pcts = []
@@ -183,6 +208,13 @@ def generate_summary(pattern: str = "*"):
     h.append('    .totals td { font-weight: bold; border-top: 2px solid #ddd; }')
     h.append('    .summary-card td, .summary-card th { font-size: 12px; }')
     h.append('    .summary-card th { background: transparent; border-bottom: 1px solid #ddd; }')
+    h.append('    .has-tip { position: relative; cursor: help; border-bottom: 1px dotted #999; }')
+    h.append('    .has-tip .tip { display: none; position: absolute; left: 0; top: 100%;')
+    h.append('                    background: #333; color: #fff; padding: 6px 10px; border-radius: 4px;')
+    h.append('                    font-size: 11px; white-space: pre-line; z-index: 100;')
+    h.append('                    min-width: 200px; max-width: 400px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }')
+    h.append('    .has-tip:hover .tip { display: block; animation: fadeIn 0.2s ease-in 0.5s both; }')
+    h.append('    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }')
     h.append('  </style>')
     h.append('</head>')
     h.append('<body>')
@@ -202,7 +234,7 @@ def generate_summary(pattern: str = "*"):
     h.append('      <table>')
     h.append('        <tr><th>#</th><th style="text-align:left">Scenario</th><th>Filt</th><th>Deals</th><th>Rate</th></tr>')
     for i, (name, pct, filt, deals) in enumerate(lowest_filter, 1):
-        h.append(f'        <tr><td>{i}</td><td style="text-align:left">{_esc(name)}</td><td>{filt}</td><td>{deals}</td><td>{pct:.1f}%</td></tr>')
+        h.append(f'        <tr><td>{i}</td>{_scenario_td(name, btn_lookup[name], "text-align:left")}<td>{filt}</td><td>{deals}</td><td>{pct:.1f}%</td></tr>')
     h.append('      </table>')
     h.append('    </div>')
 
@@ -212,7 +244,7 @@ def generate_summary(pattern: str = "*"):
     h.append('      <table>')
     h.append('        <tr><th>#</th><th style="text-align:left">Scenario</th><th>Deals</th></tr>')
     for i, (name, deals) in enumerate(lowest_deals, 1):
-        h.append(f'        <tr><td>{i}</td><td style="text-align:left">{_esc(name)}</td><td>{deals}</td></tr>')
+        h.append(f'        <tr><td>{i}</td>{_scenario_td(name, btn_lookup[name], "text-align:left")}<td>{deals}</td></tr>')
     h.append('      </table>')
     h.append('    </div>')
 
@@ -223,7 +255,7 @@ def generate_summary(pattern: str = "*"):
     if longest_et:
         h.append('        <tr><th>#</th><th style="text-align:left">Scenario</th><th>Total ET</th></tr>')
         for i, (name, total) in enumerate(longest_et, 1):
-            h.append(f'        <tr><td>{i}</td><td style="text-align:left">{_esc(name)}</td><td>{format_et(total)}</td></tr>')
+            h.append(f'        <tr><td>{i}</td>{_scenario_td(name, btn_lookup[name], "text-align:left")}<td>{format_et(total)}</td></tr>')
     else:
         h.append('        <tr><td><em>No timing data available.</em></td></tr>')
     h.append('      </table>')
@@ -256,7 +288,7 @@ def generate_summary(pattern: str = "*"):
         total_filtered_out += row["filtered_out"]
 
         h.append('      <tr>')
-        h.append(f'        <td>{_esc(row["name"])}</td><td>{deals_str}</td><td>{filt_str}</td><td>{fout_str}</td>')
+        h.append(f'        {_scenario_td(row["name"], row["btn_info"])}<td>{deals_str}</td><td>{filt_str}</td><td>{fout_str}</td>')
         for t in row["op_times"]:
             h.append(f'        <td>{t}</td>')
         h.append(f'        <td>{row["total_et"]}</td>')

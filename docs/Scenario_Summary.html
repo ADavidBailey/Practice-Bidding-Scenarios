@@ -36,11 +36,18 @@
     .totals td { font-weight: bold; border-top: 2px solid #ddd; }
     .summary-card td, .summary-card th { font-size: 12px; }
     .summary-card th { background: transparent; border-bottom: 1px solid #ddd; }
+    .has-tip { position: relative; cursor: help; border-bottom: 1px dotted #999; }
+    .has-tip .tip { display: none; position: absolute; left: 0; top: 100%;
+                    background: #333; color: #fff; padding: 6px 10px; border-radius: 4px;
+                    font-size: 11px; white-space: pre-line; z-index: 100;
+                    min-width: 200px; max-width: 400px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    .has-tip:hover .tip { display: block; animation: fadeIn 0.2s ease-in 0.5s both; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   </style>
 </head>
 <body>
   <h1>Scenario Summary</h1>
-  <p class="subtitle">300 scenarios &mdash; Generated <span id="gen-time" data-utc="2026-02-22T04:18:01Z"></span>
+  <p class="subtitle">300 scenarios &mdash; Generated <span id="gen-time" data-utc="2026-02-22T14:13:44Z"></span>
     &mdash; <a class="nav-btn" href="./">Dashboard</a>
     <a class="nav-btn nav-btn-active" href="Scenario_Summary.html">Scenario Summary</a>
     <a class="nav-btn" href="Convention_Card_Summary.html">Convention Cards</a></p>
@@ -49,46 +56,170 @@
       <h3>Lowest Filter Rate</h3>
       <table>
         <tr><th>#</th><th style="text-align:left">Scenario</th><th>Filt</th><th>Deals</th><th>Rate</th></tr>
-        <tr><td>1</td><td style="text-align:left">W2_X_XX</td><td>15</td><td>280</td><td>5.4%</td></tr>
-        <tr><td>2</td><td style="text-align:left">2N_and_MSS</td><td>28</td><td>500</td><td>5.6%</td></tr>
-        <tr><td>3</td><td style="text-align:left">Exclusion_After_1M</td><td>28</td><td>500</td><td>5.6%</td></tr>
-        <tr><td>4</td><td style="text-align:left">Opps_Bid_Over_GF_2C</td><td>41</td><td>500</td><td>8.2%</td></tr>
-        <tr><td>5</td><td style="text-align:left">Runout_after_1N_X</td><td>49</td><td>500</td><td>9.8%</td></tr>
-        <tr><td>6</td><td style="text-align:left">1m-2N</td><td>57</td><td>500</td><td>11.4%</td></tr>
-        <tr><td>7</td><td style="text-align:left">Bergen_Raises</td><td>62</td><td>500</td><td>12.4%</td></tr>
-        <tr><td>8</td><td style="text-align:left">Scrambling_2NT</td><td>64</td><td>500</td><td>12.8%</td></tr>
-        <tr><td>9</td><td style="text-align:left">1m-1_2_or_3_NT</td><td>70</td><td>500</td><td>14.0%</td></tr>
-        <tr><td>10</td><td style="text-align:left">Exclusion_After_Sta_Jac</td><td>70</td><td>500</td><td>14.0%</td></tr>
+        <tr><td>1</td><td style="text-align:left"><span class="has-tip">Weak2 (X) XX<span class="tip">W2_X_XX.btn
+
+Weak2 (X) XX (Now What?)
+After 2!D/2!H/2!S, (X), XX,
+Without the Redouble we play lebensohl.  With the Redouble ???.</span></span></td><td>15</td><td>280</td><td>5.4%</td></tr>
+        <tr><td>2</td><td style="text-align:left"><span class="has-tip">2NT - MSS<span class="tip">2N_and_MSS.btn
+
+20-21 Notrump and Minor-suit Stayman response.  The responder has at least
+5-4 in the minors.  The responder's strength -- game or slam -- is leveled.</span></span></td><td>28</td><td>500</td><td>5.6%</td></tr>
+        <tr><td>3</td><td style="text-align:left"><span class="has-tip">Exclusion After 1M<span class="tip">Exclusion_After_1M.btn</span></span></td><td>28</td><td>500</td><td>5.6%</td></tr>
+        <tr><td>4</td><td style="text-align:left"><span class="has-tip">Bid Over GF 2C<span class="tip">Opps_Bid_Over_GF_2C.btn
+
+Opponents Bid over our Game Forcing 2C.</span></span></td><td>41</td><td>500</td><td>8.2%</td></tr>
+        <tr><td>5</td><td style="text-align:left"><span class="has-tip">Runout after 1NX<span class="tip">Runout_after_1N_X.btn
+
+Runout after 1NX</span></span></td><td>49</td><td>500</td><td>9.8%</td></tr>
+        <tr><td>6</td><td style="text-align:left"><span class="has-tip">1m-2NT (10-12) w/4333<span class="tip">1m-2N.btn
+
+1m - 2NT (10-12) w/any 4333 shape
+South opens 1!C or 1!D.  North has any 4333 hand with stuff in every other suit.
+Should North skip over a 4-card suit to bid NT?</span></span></td><td>57</td><td>500</td><td>11.4%</td></tr>
+        <tr><td>7</td><td style="text-align:left"><span class="has-tip">Bergen Raises (Lev)<span class="tip">Bergen_Raises.btn
+
+Bergen Raises all show exactly 4-card support.
+• 3!C = Constructive (7-10) TP
+• 3!D = Limit Raise (11-12) TP
+• 3M  = Preemptive Raise (3-6) TP
+• 3OM = Ambiguous Splinter (12+) TP
+• 3N  = 4333 (13-15) HCP
+https://www.bridgebum.com/bergen_raises.php</span></span></td><td>62</td><td>500</td><td>12.4%</td></tr>
+        <tr><td>8</td><td style="text-align:left"><span class="has-tip">Scrambling 2NT<span class="tip">Scrambling_2NT.btn
+
+Scrambling 2NT.  In a competitive auction, when your'e forced to bid, 2NT is Scrambling.
+Two NT in competition may be Good/Bad or Scrambling.  If you make a free bid, it's Good/Bad.
+Check the link below for more information.  After (1x) P (2x) X; (P), you must act.
+https://tinyurl.com/Scrambling-vs-Good-Bad-2N</span></span></td><td>64</td><td>500</td><td>12.8%</td></tr>
+        <tr><td>9</td><td style="text-align:left"><span class="has-tip">1m-1|2|3 NT w/4333<span class="tip">1m-1_2_or_3_NT.btn
+
+1m - 1NT, 2NT, or 3NT w/4333 shape
+South opens 1!C or 1!D.  North has any 4333 hand with stuff in every other suit.
+Should North skip over a 4-card suit to bid NT?
+1NT is 6-9, 2NT is 10-12, 3NT is 13-15.</span></span></td><td>70</td><td>500</td><td>14.0%</td></tr>
+        <tr><td>10</td><td style="text-align:left"><span class="has-tip">Exclusion Sta/Jac<span class="tip">Exclusion_After_Sta_Jac.btn
+
+Exclusion Blackwood after Stayman or Jacoby
+Leveled for Stayman vs Jacoby.</span></span></td><td>70</td><td>500</td><td>14.0%</td></tr>
       </table>
     </div>
     <div class="summary-card">
       <h3>Lowest Deal Counts</h3>
       <table>
         <tr><th>#</th><th style="text-align:left">Scenario</th><th>Deals</th></tr>
-        <tr><td>1</td><td style="text-align:left">Trap_Pass</td><td>94</td></tr>
-        <tr><td>2</td><td style="text-align:left">Maximal_After_Overcall</td><td>123</td></tr>
-        <tr><td>3</td><td style="text-align:left">Trap_Pass_Maybe</td><td>170</td></tr>
-        <tr><td>4</td><td style="text-align:left">W2_X_XX</td><td>280</td></tr>
-        <tr><td>5</td><td style="text-align:left">GIB_Sandwich_NT_BPH</td><td>315</td></tr>
-        <tr><td>6</td><td style="text-align:left">Double_by_Advancer</td><td>318</td></tr>
-        <tr><td>7</td><td style="text-align:left">Opps_Bal_Unusual_2N</td><td>376</td></tr>
-        <tr><td>8</td><td style="text-align:left">Non_Leaping_Michaels_After_2-Bid</td><td>455</td></tr>
+        <tr><td>1</td><td style="text-align:left"><span class="has-tip">Trap Pass<span class="tip">Trap_Pass.btn
+
+Trap Pass
+After 1x, (overcall), Pass, (Pass), consider reopening with DOUBLE.</span></span></td><td>94</td></tr>
+        <tr><td>2</td><td style="text-align:left"><span class="has-tip">Max X after Overcall<span class="tip">Maximal_After_Overcall.btn
+
+Maximal Double after Overcall
+After LHO opens, partner overcalls in a major, RHO competes, we make a simple
+raise to the 2-level, and LHO competes at 3 of the maximal suit -- the one just
+under ours -- we need to distinguish between a competitive and invitational rebid
+of our major.  The Maximal Double is the answer.  After (1?) 1M (?) 2M, (3M-1)...
+• 3M is competitive
+• X  is invitational
+https://www.bridgebum.com/maximal_double.php</span></span></td><td>123</td></tr>
+        <tr><td>3</td><td style="text-align:left"><span class="has-tip">Trap Pass?<span class="tip">Trap_Pass_Maybe.btn
+
+Trap Pass, Maybe
+After 1x, (overcall), Pass, (Pass), consider reopening with DOUBLE.
+About 33% of South's passes are trap passes.  The others are weak passes.</span></span></td><td>170</td></tr>
+        <tr><td>4</td><td style="text-align:left"><span class="has-tip">Weak2 (X) XX<span class="tip">W2_X_XX.btn
+
+Weak2 (X) XX (Now What?)
+After 2!D/2!H/2!S, (X), XX,
+Without the Redouble we play lebensohl.  With the Redouble ???.</span></span></td><td>280</td></tr>
+        <tr><td>5</td><td style="text-align:left"><span class="has-tip">Sandwich 1N BPH<span class="tip">GIB_Sandwich_NT_BPH.btn
+
+A Sandwich 1N by a passed hand shows the two unbid suits.</span></span></td><td>315</td></tr>
+        <tr><td>6</td><td style="text-align:left"><span class="has-tip">X by Advancer<span class="tip">Double_by_Advancer.btn
+
+Responsive Double by Advancer
+After 1x (1y) 2x, (X) shows the other two suits.</span></span></td><td>318</td></tr>
+        <tr><td>7</td><td style="text-align:left"><span class="has-tip">Bal w/Unusual NT<span class="tip">Opps_Bal_Unusual_2N.btn
+
+Opponents Bal with Unusual NT
+This shows 5/4 or 4/5 in the minors.</span></span></td><td>376</td></tr>
+        <tr><td>8</td><td style="text-align:left"><span class="has-tip">NLM after 2-Bid &amp; Raise<span class="tip">Non_Leaping_Michaels_After_2-Bid.btn
+
+Non-Leaping Michaels after a Weak 2 &amp; Raise
+http://tinyurl.com/Leaping-Michaels</span></span></td><td>455</td></tr>
       </table>
     </div>
     <div class="summary-card">
       <h3>Longest Total ET</h3>
       <table>
         <tr><th>#</th><th style="text-align:left">Scenario</th><th>Total ET</th></tr>
-        <tr><td>1</td><td style="text-align:left">Trap_Pass</td><td>3m54s</td></tr>
-        <tr><td>2</td><td style="text-align:left">Exclusion_After_Sta_Jac</td><td>11.3s</td></tr>
-        <tr><td>3</td><td style="text-align:left">Soloway_Jump_Shift_Type-2</td><td>8.7s</td></tr>
-        <tr><td>4</td><td style="text-align:left">Soloway_Jump_Shift_Type-1</td><td>7.6s</td></tr>
-        <tr><td>5</td><td style="text-align:left">Gerber_By_Responder</td><td>7.4s</td></tr>
-        <tr><td>6</td><td style="text-align:left">Soloway_Jump_Shift_Type-3</td><td>7.4s</td></tr>
-        <tr><td>7</td><td style="text-align:left">Soloway_Jump_Shift</td><td>7.4s</td></tr>
-        <tr><td>8</td><td style="text-align:left">Forcing_NT</td><td>6.9s</td></tr>
-        <tr><td>9</td><td style="text-align:left">Fourth_Suit_Forcing</td><td>6.9s</td></tr>
-        <tr><td>10</td><td style="text-align:left">Soloway_Jump_Shift_Type-4</td><td>6.7s</td></tr>
+        <tr><td>1</td><td style="text-align:left"><span class="has-tip">Trap Pass<span class="tip">Trap_Pass.btn
+
+Trap Pass
+After 1x, (overcall), Pass, (Pass), consider reopening with DOUBLE.</span></span></td><td>3m54s</td></tr>
+        <tr><td>2</td><td style="text-align:left"><span class="has-tip">Exclusion Sta/Jac<span class="tip">Exclusion_After_Sta_Jac.btn
+
+Exclusion Blackwood after Stayman or Jacoby
+Leveled for Stayman vs Jacoby.</span></span></td><td>11.3s</td></tr>
+        <tr><td>3</td><td style="text-align:left"><span class="has-tip">2<span class="tip">Soloway_Jump_Shift_Type-2.btn
+
+Soloway Jump Shift - Type 2
+2. Solid suit w/17+ HCP and 4+ controls and may have a 4-card side suit
+https://www.bridgebase.com/doc/gib_system_notes.php#Soloway_Jump_Shift</span></span></td><td>8.7s</td></tr>
+        <tr><td>4</td><td style="text-align:left"><span class="has-tip">1<span class="tip">Soloway_Jump_Shift_Type-1.btn
+
+Soloway Jump Shift - Type 1
+1. Strong rebiddable suit w/17+ HCP and 4+ controls and no side 4-card suit
+https://www.bridgebase.com/doc/gib_system_notes.php#Soloway_Jump_Shift</span></span></td><td>7.6s</td></tr>
+        <tr><td>5</td><td style="text-align:left"><span class="has-tip">Gerber by Responder (Lev)<span class="tip">Gerber_By_Responder.btn
+
+Gerber by Responder (Leveled)
+The Notrump Ladder describes the opening sequences for all balanced hands.  These deals, allow
+you to explore for slam. The opener has a balanced hand.  The responder will have values to
+investigate slam.  The pair has no 8-card major or 9-card minor fit.  The hands are leveled so
+that the first several ranges of NT ladder occur with approximately the same frequency.
+https://www.bridgebum.com/gerber.php</span></span></td><td>7.4s</td></tr>
+        <tr><td>6</td><td style="text-align:left"><span class="has-tip">3<span class="tip">Soloway_Jump_Shift_Type-3.btn
+
+Soloway Jump Shift - Type 3
+3. Rebiddable suit w/18+ HCP and 4+ controls and 5332 or 6322 shape
+https://www.bridgebase.com/doc/gib_system_notes.php#Soloway_Jump_Shift</span></span></td><td>7.4s</td></tr>
+        <tr><td>7</td><td style="text-align:left"><span class="has-tip">Soloway Jump Shift<span class="tip">Soloway_Jump_Shift.btn
+
+Soloway Jump Shift
+1. Strong rebiddable suit w/17+ HCP and 4+ controls and no side 4-card suit
+2. Solid suit w/17+ HCP and 4+ controls and may have a 4-card side suit
+3. Rebiddable suit w/18+ HCP and 4+ controls and 5332 or 6322 shape
+4. Rebiddable suit w/17+ TP and 4+ controls and 4-card support for openers suit
+https://www.bridgebase.com/doc/gib_system_notes.php#Soloway_Jump_Shift</span></span></td><td>7.4s</td></tr>
+        <tr><td>8</td><td style="text-align:left"><span class="has-tip">Forcing NT (Lev)<span class="tip">Forcing_NT.btn
+
+Forcing NT (Leveled)
+Partner opens an Responder has a non-Game Forcing hand with...
+• 5-7 TP with fit
+• 11-12 TP with 3-card fit
+• Long minor without fit
+• 6-12 HCP without fit
+Then Opener Rebids...
+• Major
+• 2NT
+• Reverse
+• New Suit
+These are leveled so that the responses and rebids at about the same frequency.</span></span></td><td>6.9s</td></tr>
+        <tr><td>9</td><td style="text-align:left"><span class="has-tip">4th Suit Forcing<span class="tip">Fourth_Suit_Forcing.btn
+
+Fourth Suit Forcing
+After 1!C, 1!D, or 1!H, a suit response at the 1-level, and a new suit by
+opener, the 4th suit is artificial and game forcing.
+NOTE: Many have different agreements about the sequence, 1!C - 1!D - 1!H - 1!S.
+Some play it as natural and forcing one round.
+Some play it as GF and less than 4 spades and use 2!S for GF with 4 spades. Talk to your partner!
+https://www.bridgebum.com/fourth_suit_forcing.php</span></span></td><td>6.9s</td></tr>
+        <tr><td>10</td><td style="text-align:left"><span class="has-tip">4<span class="tip">Soloway_Jump_Shift_Type-4.btn
+
+Soloway Jump Shift - Type 4
+4. Rebiddable suit w/17+ TP and 4+ controls and 4-card support for openers suit
+https://www.bridgebase.com/doc/gib_system_notes.php#Soloway_Jump_Shift</span></span></td><td>6.7s</td></tr>
       </table>
     </div>
   </div>
@@ -109,7 +240,12 @@
         <th>Total</th>
       </tr>
       <tr>
-        <td>1N</td><td>500</td><td>438</td><td>62</td>
+        <td><span class="has-tip">15-17 NT (Lev)<span class="tip">1N.btn
+
+15-17 Notrump Opening
+2452+2425+2245+2254+4522 +any 4333, 4432, or 5332 distribution.
+Those 5422 hands are the ones where you are likely to have to reverse to show your suits.
+HCP adjusted +1 for any 5-card suit unless you have Kx, Qx, or Jx doubleton.</span></span></td><td>500</td><td>438</td><td>62</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -123,7 +259,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>1N_5M_and_6m</td><td>500</td><td>447</td><td>53</td>
+        <td><span class="has-tip">1NT w/5M-6+m (Lev)<span class="tip">1N_5M_and_6m.btn
+
+15-17 Notrump Opening with 5M and 6+m response.
+GIB opens 1N with any 5332, 4432, or 4333 and (15-17 HCP with no 5-card major or 15-16 with
+a 5-card major) plus any 5422 without a 5-card major and 15-16 HCP (too few points to reverse)</span></span></td><td>500</td><td>447</td><td>53</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -137,7 +277,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>1N_with_Singleton</td><td>500</td><td>211</td><td>289</td>
+        <td><span class="has-tip">1NT w/Singleton<span class="tip">1N_with_Singleton.btn
+
+1 Notrump With Singleton
+South has (3451+4351+3415+4315 or any 4441) with a singleton A, K, or Q.
+HCP adjusted +1 for 5-card suit.</span></span></td><td>500</td><td>211</td><td>289</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -151,7 +295,11 @@
         <td>4.2s</td>
       </tr>
       <tr>
-        <td>1m-1N</td><td>500</td><td>132</td><td>368</td>
+        <td><span class="has-tip">1m-1NT (6-9) w/4333<span class="tip">1m-1N.btn
+
+1m - 1NT (6-9) w/any 4333 shape
+South opens 1!C or 1!D.  North has any 4333 hand with stuff in every other suit.
+Should North skip over a 4-card suit to bid NT?</span></span></td><td>500</td><td>132</td><td>368</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -165,7 +313,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>1m-1_2_or_3_NT</td><td>500</td><td>70</td><td>430</td>
+        <td><span class="has-tip">1m-1|2|3 NT w/4333<span class="tip">1m-1_2_or_3_NT.btn
+
+1m - 1NT, 2NT, or 3NT w/4333 shape
+South opens 1!C or 1!D.  North has any 4333 hand with stuff in every other suit.
+Should North skip over a 4-card suit to bid NT?
+1NT is 6-9, 2NT is 10-12, 3NT is 13-15.</span></span></td><td>500</td><td>70</td><td>430</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -179,7 +332,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>1m-2N</td><td>500</td><td>57</td><td>443</td>
+        <td><span class="has-tip">1m-2NT (10-12) w/4333<span class="tip">1m-2N.btn
+
+1m - 2NT (10-12) w/any 4333 shape
+South opens 1!C or 1!D.  North has any 4333 hand with stuff in every other suit.
+Should North skip over a 4-card suit to bid NT?</span></span></td><td>500</td><td>57</td><td>443</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -193,7 +350,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>1m-3N</td><td>500</td><td>-</td><td>-</td>
+        <td><span class="has-tip">1m-3NT (13-15) w/4333<span class="tip">1m-3N.btn
+
+1m - 3NT (13-15) w/any 4333 shape
+South opens 1!C or 1!D.  North has any 4333 hand with stuff in every other suit.
+Should North skip over a 4-card suit to bid NT?</span></span></td><td>500</td><td>-</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -207,7 +368,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>1m_1x_2m</td><td>500</td><td>441</td><td>59</td>
+        <td><span class="has-tip">1m-1x-2m<span class="tip">1m_1x_2m.btn
+
+1m-1x-2m</span></span></td><td>500</td><td>441</td><td>59</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -221,7 +384,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>2N</td><td>500</td><td>449</td><td>51</td>
+        <td><span class="has-tip">2NT 20-21 (Lev)<span class="tip">2N.btn
+
+20-21 Notrump and any response.  Leveled so that the various
+responses occur at more nearly the same frequency.</span></span></td><td>500</td><td>449</td><td>51</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -235,7 +401,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>2N_Puppet</td><td>500</td><td>436</td><td>64</td>
+        <td><span class="has-tip">2N - Puppet<span class="tip">2N_Puppet.btn
+
+20-21 Notrump with Puppet and any continuation.
+The responder's strength -- game or slam -- is leveled to about 55/35.</span></span></td><td>500</td><td>436</td><td>64</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -249,7 +418,10 @@
         <td>4.5s</td>
       </tr>
       <tr>
-        <td>2N_and_1_Minor</td><td>500</td><td>298</td><td>202</td>
+        <td><span class="has-tip">2NT - 1m<span class="tip">2N_and_1_Minor.btn
+
+20-21 Notrump and one Minor-suit.
+The responder's strength -- game or slam -- is leveled.</span></span></td><td>500</td><td>298</td><td>202</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -263,7 +435,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>2N_and_3C_Response</td><td>500</td><td>440</td><td>60</td>
+        <td><span class="has-tip">2NT - 3C<span class="tip">2N_and_3C_Response.btn
+
+20-21 Notrump and a Stayman or Smolen rebid.
+The responder's strength -- game or slam -- is leveled.</span></span></td><td>500</td><td>440</td><td>60</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -277,7 +452,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>2N_and_Balanced</td><td>500</td><td>444</td><td>56</td>
+        <td><span class="has-tip">2NT - Balanced<span class="tip">2N_and_Balanced.btn
+
+20-21 Notrump and a Balanced response.
+The responder's strength -- game or slam -- is leveled.</span></span></td><td>500</td><td>444</td><td>56</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -291,7 +469,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>2N_and_MSS</td><td>500</td><td>28</td><td>472</td>
+        <td><span class="has-tip">2NT - MSS<span class="tip">2N_and_MSS.btn
+
+20-21 Notrump and Minor-suit Stayman response.  The responder has at least
+5-4 in the minors.  The responder's strength -- game or slam -- is leveled.</span></span></td><td>500</td><td>28</td><td>472</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -305,7 +486,10 @@
         <td>4.2s</td>
       </tr>
       <tr>
-        <td>2N_and_Transfers</td><td>500</td><td>459</td><td>41</td>
+        <td><span class="has-tip">2NT - Jacoby/Texas<span class="tip">2N_and_Transfers.btn
+
+20-21 Notrump and a Jacoby or Texas Transfer response.  The responder's hand is
+leveled to make Jacoby or Texas Transfer AND game or slam at about the same frequency.</span></span></td><td>500</td><td>459</td><td>41</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -319,7 +503,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>3N</td><td>500</td><td>369</td><td>131</td>
+        <td><span class="has-tip">3NT (25-27)<span class="tip">3N.btn
+
+25-27 Notrump and any Response.</span></span></td><td>500</td><td>369</td><td>131</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -333,7 +519,13 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>3N_over_LHO_3x</td><td>500</td><td>114</td><td>386</td>
+        <td><span class="has-tip">3NT over LHO's 3x (Lev)<span class="tip">3N_over_LHO_3x.btn
+
+3NT over LHO's 3x Preempt.
+• 18+ and 1 stop
+• 16+ and good suit
+• 16+ and 2 stops
+and a prayer!</span></span></td><td>500</td><td>114</td><td>386</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -347,7 +539,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>3N_over_RHO_3x</td><td>500</td><td>123</td><td>377</td>
+        <td><span class="has-tip">3NT over RHO's 3x (Lev)<span class="tip">3N_over_RHO_3x.btn
+
+3N over RHO's 3x Preempt.
+• 18+ and 1 stop
+• 16+ and good suit
+• 16+ and 2 stops
+and a prayer!</span></span></td><td>500</td><td>123</td><td>377</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -361,7 +559,14 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>3_Under_Invitational_Jump</td><td>500</td><td>314</td><td>186</td>
+        <td><span class="has-tip">3-Under Inv Jump<span class="tip">3_Under_Invitational_Jump.btn
+
+3 Under Invitational Jump
+• 1!S - 3!C, 3!D, or 3!H
+• 1!H - 3!C or 3!D
+• 1!D - 3!C
+Shows a 6+ card suit w/Q or better and 9-11 HCP and denies
+support for opener's suit or 4-cards in either major.</span></span></td><td>500</td><td>314</td><td>186</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -375,7 +580,14 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>5431_After_NT</td><td>500</td><td>483</td><td>17</td>
+        <td><span class="has-tip">5431 After NT<span class="tip">5431_After_NT.btn
+
+5431 After Notrump
+South opens 1N and responder bids 3M, showing
+. a singleton or void in that major,
+. exactly 3-cards in the other major,
+. at least 5-4 in minors,
+. and 9+ HCP (if 1NT 15-17 HCP).</span></span></td><td>500</td><td>483</td><td>17</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -389,7 +601,12 @@
         <td>4.1s</td>
       </tr>
       <tr>
-        <td>After_1M_2M</td><td>500</td><td>468</td><td>32</td>
+        <td><span class="has-tip">After 1M - 2M<span class="tip">After_1M_2M.btn
+
+After 1M - 2M
+• 18+ bid game
+• 15+ bid help suit
+• 12-14 pass</span></span></td><td>500</td><td>468</td><td>32</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -403,7 +620,23 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>After_1x_1N</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">After 1x (1N)<span class="tip">After_1x_1N.btn
+
+After 1x (1N)
+• Meckwell vs. 1M (1N)
+• X - Penalty 10+
+• 2!C - 4+!C &amp; 4+oM &amp; 5-9
+• 2!D - 4+!D &amp; 4+oM &amp; 5-9
+• 2oM - 5+oM &amp; 5-9 Non-Force
+• 2M - 3+M &amp; 5-9 Non-Force
+• Woolsey vs. 1m (1N)
+• X - Penalty 10+
+• 2!C - both Majors (4+ 4+) &amp; 5-9
+• 2!D - one Major (usually 6+) &amp; 5-9
+• 2!H - 5+!H &amp; 4+om &amp; 5-9 Non-Force
+• 2!S - 5+!S &amp; 4+om &amp; 5-9 Non-Force
+• 2N - 5+ in both minors &amp; 5-9
+https://www.advinbridge.com/this-week-in-bridge/589</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -417,7 +650,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>After_2_Passes</td><td>500</td><td>356</td><td>144</td>
+        <td><span class="has-tip">After 2 Passes...<span class="tip">After_2_Passes.btn
+
+After 2 Passs...
+Leveled so 3rd seat shaded vs full opener occur at about the same frequency.
+What should you do in 3rd seat with a marginal hand w/5- or 6-card suit?</span></span></td><td>500</td><td>356</td><td>144</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -431,7 +668,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>After_3_Passes</td><td>500</td><td>380</td><td>120</td>
+        <td><span class="has-tip">After 3 Passes...<span class="tip">After_3_Passes.btn
+
+After 3 Passes...
+Should you open in 4th seat?  The Rule of 15 says if your hcp plus the
+number of spades is less than 15, you should Pass.  This is leveled so that
+the 4th seat R15 points of 14 or 15 occur at about the same frequency.</span></span></td><td>500</td><td>380</td><td>120</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -445,7 +687,14 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>After_Opp_Overcalls</td><td>500</td><td>418</td><td>82</td>
+        <td><span class="has-tip">After Opp Overcalls<span class="tip">After_Opp_Overcalls.btn
+
+After Partner Overcalls
+• Raising a minor denies a 4-card Major and shows a fit and 7-9 TP
+• Double denies a Major fit and shows at least 4-cards in the unbid major suits and 6+ HCP
+• Raising a Major shows a fit and 6-10 TP
+• Cue Biddding RHO's suit shows a fit and 11+ TP
+• New Suit denies a fit and shows 10+ HCP</span></span></td><td>500</td><td>418</td><td>82</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -459,7 +708,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>After_Partner_Overcalls</td><td>500</td><td>445</td><td>55</td>
+        <td><span class="has-tip">After Partner Overcalls<span class="tip">After_Partner_Overcalls.btn
+
+After Partner Overcalls
+• Raise shows 6-10 TP
+• Jump raises are preemptive
+• Cue Biddding opener's suit shows 11+ TP
+• New Suit denies support and shows 10+ HCP</span></span></td><td>500</td><td>445</td><td>55</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -473,7 +728,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>All_Pass</td><td>500</td><td>403</td><td>97</td>
+        <td><span class="has-tip">All...<span class="tip">All_Pass.btn
+
+All Pass...
+Should you open in 4th seat?  The Rule of 15 says if your hcp plus the
+number of spades is less than 15, you should Pass.  Try your luck.</span></span></td><td>500</td><td>403</td><td>97</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -487,7 +746,7 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Any_5422_with_15-16</td><td>500</td><td>100</td><td>400</td>
+        <td><span class="has-tip">Any 5422 w/15-16<span class="tip">Any_5422_with_15-16.btn</span></span></td><td>500</td><td>100</td><td>400</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -501,7 +760,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Any_5422_with_15-17</td><td>500</td><td>83</td><td>417</td>
+        <td><span class="has-tip">Any 5422 w/15-17<span class="tip">Any_5422_with_15-17.btn
+
+15-17 Opening with any 5422 Distribution</span></span></td><td>500</td><td>83</td><td>417</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -515,7 +776,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Anything_Goes</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Anything Goes<span class="tip">Anything_Goes.btn
+
+South Opens...</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -529,7 +792,18 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Balancing</td><td>500</td><td>487</td><td>13</td>
+        <td><span class="has-tip">Balancing (Lev)<span class="tip">Balancing.btn
+
+After LHO opening is passed to you...
+• Pass
+• Overcall a suit (7-17 at the 1-level, 11-17 at the 2 level)
+• Balancing NT (11-15)
+• Take-out Double (10+ short in opener's suit w/at least 3 cards in each unbid suit)
+• Jump Overcall (15-17 w/good 6-card suit)
+• Too Strong to Overcall (18+) -- start with double
+• Two-Suits -- cue bid
+• 2NT -- 20-21
+This scenario attempts to offer all options with about the same frequency.</span></span></td><td>500</td><td>487</td><td>13</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -543,7 +817,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Benjamin_2D</td><td>500</td><td>379</td><td>121</td>
+        <td><span class="has-tip">Benjamin 2 Bid (Lev)<span class="tip">Benjamin_2D.btn
+
+Benjamin 2 Bid - 2!C strong &amp; 2!D Game Forcing
+• 2!C shows 20-23 TP unbalanced - usually w/good suit
+• 2!D shows 24+ HCP balanced or 24+ TP unbalanced
+This is leveled so that 2!C and 2!D occur at about the same frequency.
+https://en.wikipedia.org/wiki/Benjamin_Twos</span></span></td><td>500</td><td>379</td><td>121</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -557,7 +837,15 @@
         <td>4.4s</td>
       </tr>
       <tr>
-        <td>Bergen_Raises</td><td>500</td><td>62</td><td>438</td>
+        <td><span class="has-tip">Bergen Raises (Lev)<span class="tip">Bergen_Raises.btn
+
+Bergen Raises all show exactly 4-card support.
+• 3!C = Constructive (7-10) TP
+• 3!D = Limit Raise (11-12) TP
+• 3M  = Preemptive Raise (3-6) TP
+• 3OM = Ambiguous Splinter (12+) TP
+• 3N  = 4333 (13-15) HCP
+https://www.bridgebum.com/bergen_raises.php</span></span></td><td>500</td><td>62</td><td>438</td>
         <td>0.0s</td>
         <td>0.9s</td>
         <td>0.6s</td>
@@ -571,7 +859,13 @@
         <td>5.9s</td>
       </tr>
       <tr>
-        <td>Bergen_Thrump_X_after_Preempt</td><td>500</td><td>-</td><td>-</td>
+        <td><span class="has-tip">Preempt/Thrump X<span class="tip">Bergen_Thrump_X_after_Preempt.btn
+
+Opps Preempt/Bergen Thrump X
+North opens 1 of any suit, East Preempts 3!D, 3!H, or 3!S.  South has no stop in East's suit, no support
+for North's suit, no 5-card major to bid at the 3-level, and 10+ HCP.
+by special request from Sten Mullervig.
+https://www.bridgebum.com/thrump_double.php</span></span></td><td>500</td><td>-</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -585,7 +879,20 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Better_Minor_Lebensohl</td><td>500</td><td>458</td><td>42</td>
+        <td><span class="has-tip">Better Minor Lebe' (Lev)<span class="tip">Better_Minor_Lebensohl.btn
+
+Better Minor Lebensohl
+After 2!D/2!H/2!S, (X), Pass,
+• A new suit at the 2-level is to play
+• 2N is Better Minor Lebensohl, you will pass (0-7) or
+correct (8+) after partner's response.
+• 3!D shows 5+ cards.  Bidding 2N and correcting partner's 2!C
+to 3!D shows 8+.
+• 3 of the other major, shows 4+ cards and 0-7 HCP.  With 8+,
+bid 2N and correct to 3OM.
+Bidding 2N and then pulling partner's rebid to a suit you could
+have bid directly is stronger.
+https://csbnews.org/conventions-better-minor-lebensohl</span></span></td><td>500</td><td>458</td><td>42</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -599,7 +906,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Bids</td><td>500</td><td>493</td><td>7</td>
+        <td><span class="has-tip">After 1C (Pass)<span class="tip">Bids.btn
+
+Responses to 1C
+South opens 1!C.  North has 5+!D and one or both 4-card majors.</span></span></td><td>500</td><td>493</td><td>7</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -613,7 +923,20 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>Cappelletti</td><td>500</td><td>340</td><td>160</td>
+        <td><span class="has-tip">Cappelletti<span class="tip">Cappelletti.btn
+
+After 1NT... Cappelletti is the prefered defense for a Weak NT
+because it preserves the penalty double.
+X   = 15+ HCP
+2!C = 10+ TP and any Twice-Biddable 6-card suit
+2!D = 11+ TP and 5/4 or better !H and !S
+2!H = 11+ TP and 5/5 or better !H and a minor
+2!S = 15+ TP and 5/5 or better !S and a minor
+2N = 15+ TP and 5/5 or better in !C and !D
+3!C = 13+ TP w/Strong Rebiddable !C
+3!D = 13+ TP w/Strong Rebiddable !D
+3!H = 13+ TP w/Strong Rebiddable !H
+3!S = 13+ TP w/Strong Rebiddable !S</span></span></td><td>500</td><td>340</td><td>160</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -627,7 +950,16 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>DONT</td><td>500</td><td>-</td><td>-</td>
+        <td><span class="has-tip">DONT (Lev)<span class="tip">DONT.btn
+
+15-17 Notrump Opening and DONT action
+• X   = A one-suited hand. Asks partner to bid 2!C
+• 2!C = !C and a higher ranking suit
+• 2!D = !D and a higher ranking suit
+• 2!H = !H and !S
+• 2!S = 5+ !S, natural and less than 11 TP
+The DONT actions are leveled.  The NT opener is not leveled.
+https://www.bridgebum.com/dont.php</span></span></td><td>500</td><td>-</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -641,7 +973,9 @@
         <td>0.0s</td>
       </tr>
       <tr>
-        <td>Dealing_with_Ovecalls_Strong</td><td>500</td><td>367</td><td>133</td>
+        <td><span class="has-tip">Comp over 16+ opener<span class="tip">Dealing_with_Ovecalls_Strong.btn
+
+Competition over  16+ opener</span></span></td><td>500</td><td>367</td><td>133</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -655,7 +989,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Dealing_with_Overcalls_Weak</td><td>500</td><td>414</td><td>86</td>
+        <td><span class="has-tip">Comp over &lt;16 opener<span class="tip">Dealing_with_Overcalls_Weak.btn
+
+Competition over  minimum opener</span></span></td><td>500</td><td>414</td><td>86</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -669,7 +1005,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Double_Showing_2_Suits</td><td>500</td><td>243</td><td>257</td>
+        <td><span class="has-tip">Double w/2 Suits<span class="tip">Double_Showing_2_Suits.btn
+
+Double Showing 2 Suits
+After 1x (P) 1y, (X) shows the other two suits.</span></span></td><td>500</td><td>243</td><td>257</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -683,7 +1022,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Double_by_Advancer</td><td>318</td><td>68</td><td>250</td>
+        <td><span class="has-tip">X by Advancer<span class="tip">Double_by_Advancer.btn
+
+Responsive Double by Advancer
+After 1x (1y) 2x, (X) shows the other two suits.</span></span></td><td>318</td><td>68</td><td>250</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -697,7 +1039,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Double_double</td><td>500</td><td>424</td><td>76</td>
+        <td><span class="has-tip">Double double...<span class="tip">Double_double.btn
+
+Double, double toil and trouble...
+After x (y), X is a Negative Double.  It's for takeout. At the 1-level
+it promises 4-Cards in each unbid major. At higher levels you need a backup
+plan if partner doesn't have your major -- maybe a tolerance for opener's suit.
+If you double again, it's a scrambling takeout double.</span></span></td><td>500</td><td>424</td><td>76</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -711,7 +1059,18 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>DropDead_Crawling</td><td>500</td><td>166</td><td>334</td>
+        <td><span class="has-tip">Drop Dead/Crawling<span class="tip">DropDead_Crawling.btn
+
+Drop Dead/Crawling Stayman
+2!C asks the opener for a 4-card major.  Responses are as follow...
+• 2!D - No 4-card major
+• 2!H - 4+!H, may also have 4!S
+• 2!S - 4+!S and denies 4!H
+Normally, Stayman requires 8+HCP; but, Drop Dead Stayman and Crawling Stayman are exceptions.
+With Drop Dead Stayman, responder will pass anything that opener bids.
+With Crawling Stayman, responder will correct 2!D to 2!H showing a weak 3-suited hand w/short !D.
+https://www.bridgebum.com/stayman.php
+https://www.bridgebum.com/crawling_stayman.php</span></span></td><td>500</td><td>166</td><td>334</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -725,7 +1084,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Drury</td><td>500</td><td>471</td><td>29</td>
+        <td><span class="has-tip">Drury<span class="tip">Drury.btn
+
+Drury
+After P (P) 1M (P), 2!C is Drury or Reverse Drury.
+2!C asks about the opener's hand.
+Drury:  2!D denies game interest and 2M shows game interest.
+Reverse Drury: 2!D shows some game interest and 2M denies game interest.</span></span></td><td>500</td><td>471</td><td>29</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -739,7 +1104,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Equal_Level_Conversion</td><td>500</td><td>338</td><td>162</td>
+        <td><span class="has-tip">Equal Level Conv<span class="tip">Equal_Level_Conversion.btn
+
+Equal Level Conversion.  East opens 1 of a major.  South has 4 of the other major and 5+ !D.
+South X's with the intention of correcting North's 2!C bid to !D, showing nothing extra.
+https://www.bridgebum.com/equal_level_conversion.php</span></span></td><td>500</td><td>338</td><td>162</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -753,7 +1122,7 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Exclusion_After_1M</td><td>500</td><td>28</td><td>472</td>
+        <td><span class="has-tip">Exclusion After 1M<span class="tip">Exclusion_After_1M.btn</span></span></td><td>500</td><td>28</td><td>472</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -767,7 +1136,10 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>Exclusion_After_Sta_Jac</td><td>500</td><td>70</td><td>430</td>
+        <td><span class="has-tip">Exclusion Sta/Jac<span class="tip">Exclusion_After_Sta_Jac.btn
+
+Exclusion Blackwood after Stayman or Jacoby
+Leveled for Stayman vs Jacoby.</span></span></td><td>500</td><td>70</td><td>430</td>
         <td>0.0s</td>
         <td>0.8s</td>
         <td>6.0s</td>
@@ -781,7 +1153,16 @@
         <td>11.3s</td>
       </tr>
       <tr>
-        <td>Exit_Transfers</td><td>500</td><td>376</td><td>124</td>
+        <td><span class="has-tip">Exit Transfers<span class="tip">Exit_Transfers.btn
+
+Exit Transfers are usually runouts after the opponents Double our 1N opener.
+• Pass - Requires partner to make an artificial redouble.  After partner's forced XX,
+continuations are like DONT -- 2!C is !C &amp; Higher, 2!D is !D &amp; Higher, and 2!H is !H &amp; !S.
+• XX - 5+!C
+• 2!C - 5+!D
+• 2!D - 5+!H
+• 2!H - 5+!S
+https://www.bridgebum.com/exit_transfers.php</span></span></td><td>500</td><td>376</td><td>124</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -795,7 +1176,11 @@
         <td>4.2s</td>
       </tr>
       <tr>
-        <td>Flannery</td><td>500</td><td>498</td><td>2</td>
+        <td><span class="has-tip">Flannery<span class="tip">Flannery.btn
+
+Flannery 2D
+A Flannery 2D opener shows 11-15 HCP, 5!H, and 4!S.
+https://www.bridgebum.com/flannery_2d.php</span></span></td><td>500</td><td>498</td><td>2</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -809,7 +1194,20 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Forcing_NT</td><td>500</td><td>347</td><td>153</td>
+        <td><span class="has-tip">Forcing NT (Lev)<span class="tip">Forcing_NT.btn
+
+Forcing NT (Leveled)
+Partner opens an Responder has a non-Game Forcing hand with...
+• 5-7 TP with fit
+• 11-12 TP with 3-card fit
+• Long minor without fit
+• 6-12 HCP without fit
+Then Opener Rebids...
+• Major
+• 2NT
+• Reverse
+• New Suit
+These are leveled so that the responses and rebids at about the same frequency.</span></span></td><td>500</td><td>347</td><td>153</td>
         <td>0.0s</td>
         <td>0.8s</td>
         <td>1.7s</td>
@@ -823,7 +1221,12 @@
         <td>6.9s</td>
       </tr>
       <tr>
-        <td>Forcing_Pass</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Forcing Pass<span class="tip">Forcing_Pass.btn
+
+Forcing Pass: When we are in and invitational or better auction and an opponent
+intervenes, a pass is forcing.  It shows extra offensive values and interest in
+continuing.  A double denies extra offensive values.  Passing and pulling
+partner's double is stronger than bidding directly.</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -837,7 +1240,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Fourth_Bid_Inviting</td><td>500</td><td>443</td><td>57</td>
+        <td><span class="has-tip">4th Bid Inviting<span class="tip">Fourth_Bid_Inviting.btn
+
+Fourth Bid Inviting
+After 3 bids, responder scrambles w/11-12.</span></span></td><td>500</td><td>443</td><td>57</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -851,7 +1257,15 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Fourth_Suit_Forcing</td><td>500</td><td>159</td><td>341</td>
+        <td><span class="has-tip">4th Suit Forcing<span class="tip">Fourth_Suit_Forcing.btn
+
+Fourth Suit Forcing
+After 1!C, 1!D, or 1!H, a suit response at the 1-level, and a new suit by
+opener, the 4th suit is artificial and game forcing.
+NOTE: Many have different agreements about the sequence, 1!C - 1!D - 1!H - 1!S.
+Some play it as natural and forcing one round.
+Some play it as GF and less than 4 spades and use 2!S for GF with 4 spades. Talk to your partner!
+https://www.bridgebum.com/fourth_suit_forcing.php</span></span></td><td>500</td><td>159</td><td>341</td>
         <td>0.0s</td>
         <td>1.0s</td>
         <td>1.5s</td>
@@ -865,7 +1279,12 @@
         <td>6.9s</td>
       </tr>
       <tr>
-        <td>GIB_1C-P-Resp</td><td>500</td><td>495</td><td>5</td>
+        <td><span class="has-tip">GIB after 1C<span class="tip">GIB_1C-P-Resp.btn
+
+GIB responses to 1!C
+South opens 1!C and North responds w/anything other than Soloway JS.
+You may go to 'Deal source' to get specific responses. Near the bottom you'll
+find the line that starts with nResponds = ... pick the response(s) you want.</span></span></td><td>500</td><td>495</td><td>5</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -879,7 +1298,12 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>GIB_1M-P-Resp</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">GIB after 1M<span class="tip">GIB_1M-P-Resp.btn
+
+GIB after 1M
+South opens 1!H or 1!S and North has support.
+You may go to 'Deal source' to get specific responses. Near the bottom you'll
+find the line that starts with nResponds = ... pick the response(s) you want.</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -893,7 +1317,11 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>GIB_1N</td><td>500</td><td>486</td><td>14</td>
+        <td><span class="has-tip">GIB Notrump<span class="tip">GIB_1N.btn
+
+GIB Notrump Opening
+GIB opens 1NT with 4333, 4432,  or 5332 w/15-17 HCP or 15-16 and a 5-card major
+and any 5422 without a 5-card major, without 4!S, and 15-16 HCP (too few points to reverse)</span></span></td><td>500</td><td>486</td><td>14</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -907,7 +1335,16 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>GIB_1N-P-2C</td><td>500</td><td>463</td><td>37</td>
+        <td><span class="has-tip">GIB NT &amp; 2C Response<span class="tip">GIB_1N-P-2C.btn
+
+Stayman asks the opener for a 4-card major.  Responses are as follow...
+• 2!D - No 4-card major
+• 2!H - 4+!H, may also have 4!S
+• 2!S - 4+!S and denies 4!H
+Normally, Stayman shows 8+HCP; but, if you're willing to pass anything that your
+partner might bid, you may bid 2!C with any strength.
+https://www.bridgebum.com/stayman.php
+https://www.bridgebum.com/crawling_stayman.php</span></span></td><td>500</td><td>463</td><td>37</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -921,7 +1358,7 @@
         <td>4.6s</td>
       </tr>
       <tr>
-        <td>GIB_1N-P-2C-BID</td><td>500</td><td>427</td><td>73</td>
+        <td><span class="has-tip">GIB after Stayman<span class="tip">GIB_1N-P-2C-BID.btn</span></span></td><td>500</td><td>427</td><td>73</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -935,7 +1372,10 @@
         <td>4.5s</td>
       </tr>
       <tr>
-        <td>GIB_1N5422</td><td>500</td><td>310</td><td>190</td>
+        <td><span class="has-tip">GIB NT w/5422<span class="tip">GIB_1N5422.btn
+
+GIB 5422 Notrump Opening
+Any 2254, 2245, 2425, 2452, 4225, or 4252 and 15-16 HCP.</span></span></td><td>500</td><td>310</td><td>190</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -949,7 +1389,14 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>GIB_Overcall_with_4</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">GIB OC w/4-cards<span class="tip">GIB_Overcall_with_4.btn
+
+GIB overcalls in a 4-card suit
+South opens and West makes a 1-level overcall with a 4-card suit.
+The required suit quality is AKxx, AQJx, AQTx, AQ9x, AJT9, KQJx, KQTx, or better.
+West's shape is either 4333 or 4432.
+West's lower limit is 12 TP -- can be 11 HCP w/a small doubleton.
+West's upper limit is 13 HCP with 44/33 in the majors, otherwise 14 HCP.</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -963,7 +1410,9 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>GIB_Sandwich_NT_BPH</td><td>315</td><td>296</td><td>19</td>
+        <td><span class="has-tip">Sandwich 1N BPH<span class="tip">GIB_Sandwich_NT_BPH.btn
+
+A Sandwich 1N by a passed hand shows the two unbid suits.</span></span></td><td>315</td><td>296</td><td>19</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -977,7 +1426,13 @@
         <td>2.8s</td>
       </tr>
       <tr>
-        <td>GSF_after_Preempt</td><td>500</td><td>499</td><td>1</td>
+        <td><span class="has-tip">GSF after Preempt<span class="tip">GSF_after_Preempt.btn
+
+Grand Slam Force after Preempt.  Does partner have 2 of the top 3 honors?
+Any free five-no-trump bid in the opening or responding hand is a forcing bid.  If a suit
+has not been agreed the 5N bid confirms the previously bid suit.  Partner must bid
+7 of the agreed suit when holding 2 of the top 3 honors suit.
+https://www.bridgebum.com/grand_slam_force.php</span></span></td><td>500</td><td>499</td><td>1</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -991,7 +1446,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Gambling_3N</td><td>500</td><td>491</td><td>9</td>
+        <td><span class="has-tip">Gambling 3N<span class="tip">Gambling_3N.btn
+
+Gambling 3N
+A gambling 3N opening bid shows a solid 7 or 8-card minor suit and less than a K outside.
+https://www.bridgebum.com/gambling_3nt.php</span></span></td><td>500</td><td>491</td><td>9</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1005,7 +1464,16 @@
         <td>4.1s</td>
       </tr>
       <tr>
-        <td>Game_Forcing_2C</td><td>500</td><td>445</td><td>55</td>
+        <td><span class="has-tip">Game Forcing 2C<span class="tip">Game_Forcing_2C.btn
+
+2C GF: 22+ or 18+ w/(!S/!H and &lt;5 losers) or (!D/!C with &lt;4 losers).
+Positives responses to 2!C are
+2!H = 8+ HCP and 5+!H with 2 of the top 3 honors.
+2!S - 8+ HCP and 5+!S with 2 of the top 3 honers.
+2NT - 8+ HCP and Balanced hand.  (Some respond 2!D with this holding.)
+3!C - 8+ HCP and 5+!C with 2 of the top 3 honors.
+2!D - a waiting bid denying one of the above.
+https://www.bridgebum.com/strong_2c.php</span></span></td><td>500</td><td>445</td><td>55</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1019,7 +1487,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Game_Overcalls</td><td>500</td><td>304</td><td>196</td>
+        <td><span class="has-tip">We Jump to Game<span class="tip">Game_Overcalls.btn
+
+We Jump to Game
+• 8+ Major
+• 9+ Minor
+And 5-11 HCP</span></span></td><td>500</td><td>304</td><td>196</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1033,7 +1506,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Gavin_3-Card_Limit_Raise</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">3-card Limit Raise (11-12 TP) 1N/3M<span class="tip">Gavin_3-Card_Limit_Raise.btn
+
+3-card Limit Raise (11-12 TP) 1N/3M
+https://tinyurl.com/4dvh42e7</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1047,7 +1523,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Gavin_3_Under_Invitational_Jump</td><td>500</td><td>321</td><td>179</td>
+        <td><span class="has-tip">3-Under Invitational Jump (11-12 HCP)<span class="tip">Gavin_3_Under_Invitational_Jump.btn
+
+3 Under Invitational Jump (11-12 HCP)
+• 1!H - 3!C
+• 1!S - 3!C or 3!H
+NOTE: This does not include jumps to 3D which is a 4-card Limit Raise.
+https://tinyurl.com/4dvh42e7</span></span></td><td>500</td><td>321</td><td>179</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1061,7 +1543,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Gavin_4-Card_Limit_Raise</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">4-card Limit Raise (11-12 TP) 3D<span class="tip">Gavin_4-Card_Limit_Raise.btn
+
+4-card Limit Raise (11-12 TP) 3!D
+https://tinyurl.com/4dvh42e7</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1075,7 +1560,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Gavin_Mixed_Raise</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Mixed 4-card Raise (8-10 TP) 3M<span class="tip">Gavin_Mixed_Raise.btn
+
+Mixed 4-card Raise (8-10 TP) 3M
+https://tinyurl.com/4dvh42e7</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1089,7 +1577,20 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Gavin_Passed_Hand_Response_Structure</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Passed Hand Response Structure<span class="tip">Gavin_Passed_Hand_Response_Structure.btn
+
+Passed Hand Response Structure
+After P (P) 1M (P)...
+• a raise shows 4-7 Dummy Points (DP) &amp; 3+ fit
+• 2!C is Reverse Drury showing 8+ DP &amp; 3+ fit
+• a new suit (2!D/!H) shows 10+ HCP, no fit, &amp; a good 5-card suit
+• a jump in a new suit shows 8+ DP, a 4+ fit, &amp; a good 5-card suit
+• 3C shows 8-9 HCP, no fit &amp;, 6+ !C invitational.  Note: Robots bid with 9-10.
+• 3N shows 8+ HCP, 3+ fit, &amp; an unspecified singleton
+• 4X shows 8+ HCP, 3+ fit, &amp; a void
+• other bids are natural
+Responder's rebids of Pass, 1!S, &amp; 1N are excluded.
+https://tinyurl.com/Passed-Hand-Resp-Str</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1103,7 +1604,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Gavin_Semi-Constructive_Raise</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Semi-Constructive 3-card Raise (8-10 TP) 2M<span class="tip">Gavin_Semi-Constructive_Raise.btn
+
+Semi-Constructive 3-card Raise (8-10 TP) 2M
+https://tinyurl.com/4dvh42e7</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1117,7 +1621,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Gavin_Semi-Forcing_NT_with_Fit</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Semi-Force NT w/fit (5-7 TP) 1N/2M<span class="tip">Gavin_Semi-Forcing_NT_with_Fit.btn
+
+Semi-Force NT w/fit (5-7 TP) 1N/2M
+https://tinyurl.com/4dvh42e7</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1131,7 +1638,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Gavin_Strong_Splinter</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Strong Splinter (12-15 HCP)<span class="tip">Gavin_Strong_Splinter.btn
+
+Strong Splinter (12-15 HCP)
+• 1!H - 3!S, 4!C, 4!D
+• 1!S - 4!C, 4!D, 4!H
+https://tinyurl.com/4dvh42e7</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1145,7 +1657,14 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Gavin_Transfers_after_2N_Rebid_Bal</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Balanced<span class="tip">Gavin_Transfers_after_2N_Rebid_Bal.btn
+
+Transfers after 2N Rebid Balanced
+In an uncontested 1x - 1y - 2N, 3!C, 3!D, 3!H, and 3!S are Transfers/Relays.
+They Transfer into a suit that might be weak (such as opener's first suit).
+They Relay to a suit that can't be weak.  Accepting a relay shows support.
+IF YOU SKIP IT, YOU DENY IT!
+https://tinyurl.com/bdhtmwxc</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1159,7 +1678,14 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Gavin_Transfers_after_2N_Rebid_Unb</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Unbalanced<span class="tip">Gavin_Transfers_after_2N_Rebid_Unb.btn
+
+Transfers after 2N Rebid Unbalanced
+In an uncontested 1x - 1y - 2N, 2!C, 2!D, 2!H, and 2!S are Transfers/Relays.
+They Transfer into a suit that might be weak (such as opener's first suit).
+They Relay to a suit that can't be weak.  Accepting a relay shows support.
+IF YOU SKIP IT, YOU DENY IT!
+https://tinyurl.com/bdhtmwxc</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1173,7 +1699,14 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Gavin_Transfers_after_2N_Rebid_Weak</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Unbalanced &amp; Weak<span class="tip">Gavin_Transfers_after_2N_Rebid_Weak.btn
+
+Transfers after 2N Rebid Unbalanced &amp; Weak
+In an uncontested 1x - 1y - 2N, 2!C, 2!D, 2!H, and 2!S are Transfers/Relays.
+They Transfer into a suit that might be weak (such as opener's first suit).
+They Relay to a suit that can't be weak.  Accepting a relay shows support.
+IF YOU SKIP IT, YOU DENY IT!
+https://tinyurl.com/bdhtmwxc</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1187,7 +1720,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Gavin_Weak_Splinter</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Weak Splinter (9-11 HCP)<span class="tip">Gavin_Weak_Splinter.btn
+
+Weak Splinter (9-11 HCP)
+• 1!H - 3!S, 3N asks, answers are low, middle, high
+• 1!S - 3N, 4!C asks, answers are low, middle, high
+https://tinyurl.com/4dvh42e7</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1201,7 +1739,25 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Gazzilli</td><td>500</td><td>262</td><td>238</td>
+        <td><span class="has-tip">Gazzilli (Lev)<span class="tip">Gazzilli.btn
+
+Gazzilli 2!C rebid after a Major opening and 1NT response
+• 1M - 1N
+• 2C  - artifical Gazzilli relay - 16+ or *** natural 11-14 w/6+M ***
+• 2D - 8+ artificial
+• 2M  - 11-14 with 6+M *** NF ***
+• 2oM - artificial some 4-card suit (relay to ask LMH)
+• 2N  - 6+M and some 4+card side suit (relay to ask LMH)
+• 3C  - 5+C 16-21
+• 3D  - 5+D 16-21
+• 3M  - strong and natural 16-20
+• 3oM - 5+oM 16-21
+• 2D  - 11-15 with 4+D
+• 2oM - 11-15 with 4+oM
+• 2M  - 11-14 with 5+M and 4+C
+• 2N  - 17-19 balanced
+• 3x  - 13-15 with 5x and 5+M  (x = New Suit)
+https://www.advinbridge.com/this-week-in-bridge/488</span></span></td><td>500</td><td>262</td><td>238</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1215,7 +1771,12 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>Gerber_By_Opener</td><td>500</td><td>-</td><td>-</td>
+        <td><span class="has-tip">Gerber by Opener (Lev)<span class="tip">Gerber_By_Opener.btn
+
+Gerber by Opener (Leveled)
+There are two sequences where Gerber might be used -- after 1m - 2N
+or 2!C - 2N and opener has slam interest.  The 1m - 2N sequences are rare.
+https://www.bridgebum.com/gerber.php</span></span></td><td>500</td><td>-</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1229,7 +1790,14 @@
         <td>0.0s</td>
       </tr>
       <tr>
-        <td>Gerber_By_Responder</td><td>500</td><td>222</td><td>278</td>
+        <td><span class="has-tip">Gerber by Responder (Lev)<span class="tip">Gerber_By_Responder.btn
+
+Gerber by Responder (Leveled)
+The Notrump Ladder describes the opening sequences for all balanced hands.  These deals, allow
+you to explore for slam. The opener has a balanced hand.  The responder will have values to
+investigate slam.  The pair has no 8-card major or 9-card minor fit.  The hands are leveled so
+that the first several ranges of NT ladder occur with approximately the same frequency.
+https://www.bridgebum.com/gerber.php</span></span></td><td>500</td><td>222</td><td>278</td>
         <td>0.0s</td>
         <td>0.0s</td>
         <td>3.0s</td>
@@ -1243,7 +1811,9 @@
         <td>7.4s</td>
       </tr>
       <tr>
-        <td>Going_for_Blood</td><td>500</td><td>398</td><td>102</td>
+        <td><span class="has-tip">Going for Blood<span class="tip">Going_for_Blood.btn
+
+Going for Blood</span></span></td><td>500</td><td>398</td><td>102</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1257,7 +1827,12 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>Good_Bad_2N</td><td>500</td><td>100</td><td>400</td>
+        <td><span class="has-tip">Good/Bad 2N<span class="tip">Good_Bad_2N.btn
+
+Good/Bad 2 Notrump.  After both sides have bid and there have been 3 or
+more non-passes, and the most recent bid is 2x by RHO, 2N is forcing and shows
+a hand that wants to compete to the 3-level.  Bidding directly to the 3-level
+is invitational.</span></span></td><td>500</td><td>100</td><td>400</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1271,7 +1846,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Goulash</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Goulash<span class="tip">Goulash.btn
+
+Goulash hands hands have wild distribution.
+I have no idea how these deals fit the idea of Goulash.
+I'd like your feedback.</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1285,7 +1864,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Grand_Slam_Force</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Grand Slam Force<span class="tip">Grand_Slam_Force.btn
+
+Grand Slam Force asks partner, Do you have 2 of the top 3 honors?
+Any free five-no-trump bid in the opening or responding hand is a forcing bid.  If a suit
+has not been agreed the 5N bid confirms the previously bid suit.  Partner must bid
+7 of the agreed suit when holding 2 of the top 3 honors suit.
+https://www.bridgebum.com/grand_slam_force.php</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1299,7 +1884,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Grand_Slam_Force_2</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">GSF by Opener<span class="tip">Grand_Slam_Force_2.btn
+
+Grand Slam Force asks partner, Do you have 2 of the top 3 honors?
+Any free five-no-trump bid in the opening or responding hand is a forcing bid.  If a suit
+has not been agreed the 5N bid confirms the previously bid suit.  Partner must bid
+7 of the agreed suit when holding 2 of the top 3 honors suit.
+https://www.bridgebum.com/grand_slam_force.php</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1313,7 +1904,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Grand_Slam_Invite</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Grand Slam?<span class="tip">Grand_Slam_Invite.btn
+
+Grand Slam Invite (lev)
+Both hands are balanced and have a combined hcp very near Grand Slam.</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1327,7 +1921,15 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Impossible_2S</td><td>500</td><td>86</td><td>414</td>
+        <td><span class="has-tip">Impossible 2S<span class="tip">Impossible_2S.btn
+
+Impossible 2S
+South opens 1H with 12-18 HCP and 5+ !H.  North has an invitational
+minor oriented hand not suitable for NT or !H and responds 1NT with 11-12
+HCP.  With only 5!H South rebids a minor.  North has support for South's
+minor and rebids the Impossible 2!S.  If South rebids 2!H, North needs
+6/5 or better in the minors to bid the Impossible 2!S.
+http://kivabridgeclub.com/images/Impossible%202%20Spade.pdf</span></span></td><td>500</td><td>86</td><td>414</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1341,7 +1943,14 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Inverted_Minors</td><td>500</td><td>404</td><td>96</td>
+        <td><span class="has-tip">Inverted Minors<span class="tip">Inverted_Minors.btn
+
+Inverted Minors
+NOTE:  Any minor suit raise denies a 4-card major suit.  The normal approach to raising partner's minor suit
+is to raise to 3 with a game invitational hand and to raise to 2 with a fit and less than game invitation.
+Inverted minors merely reverse these responses.  After an inverted raise to 2, opener should show both
+majors stopped by bidding 2N.  With only one stopped, bid the stopped suit.  If you intend to continue to
+3N, it's OK to deny a stop in one of the suits -- no specific agreement -- keep 'em guessing.</span></span></td><td>500</td><td>404</td><td>96</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1355,7 +1964,16 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Jacoby_2N</td><td>500</td><td>421</td><td>79</td>
+        <td><span class="has-tip">Jacoby 2N (4x-Suit)<span class="tip">Jacoby_2N.btn
+
+Jacoby 2N
+Five different Opening hands can be described after a major suit open and a Jacoby 2N response. The percentages
+are the approximate frequency of occurrence for the various hand types. Use the (Leveled) script to even that out.
+• 4x (08%) - any strength with a good (5-cards with 2+ of top 3) second suit
+• 3x (43%) - any strength with a singleton/void
+• 3M (03%) - 18+ Semi-Balanced
+• 3N (12%) - 15-17 Semi-Balanced
+• 4M (34%) - 12-14 Semi-Balanced</span></span></td><td>500</td><td>421</td><td>79</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1369,7 +1987,16 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Jacoby_2N_4x_void</td><td>500</td><td>416</td><td>84</td>
+        <td><span class="has-tip">Jacoby 2N (4x-void)<span class="tip">Jacoby_2N_4x_void.btn
+
+Jacoby 2N w/4x showing a void
+Five different Opening hands can be described after a major suit open and a Jacoby 2N response. The percentages
+are the approximate frequency of occurrence for the various hand types. Use the (Leveled) script to even that out.
+• 4x (08%) - any strength with a void
+• 3x (40%) - any strength with a singleton
+• 3M (04%) - 18+ Semi-Balanced
+• 3N (14%) - 15-17 Semi-Balanced
+• 4M (34%) - 12-14 Semi-Balanced</span></span></td><td>500</td><td>416</td><td>84</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1383,7 +2010,16 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Jacoby_2N_4x_void_Leveled</td><td>500</td><td>397</td><td>103</td>
+        <td><span class="has-tip">(Lev)<span class="tip">Jacoby_2N_4x_void_Leveled.btn
+
+Jacoby 2N w/4x showing a void (Leveled)
+Five different Opening hands can be described after a major suit open and a Jacoby 2N response. The percentages
+are the approximate frequency of occurrence for the various hand types. Use the (Leveled) script to even that out.
+• 4x (17%) - any strength with a void
+• 3x (22%) - any strength with a singleton
+• 3M (20%) - 18+ Semi-Balanced
+• 3N (24%) - 15-17 Semi-Balanced
+• 4M (17%) - 12-14 Semi-Balanced</span></span></td><td>500</td><td>397</td><td>103</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1397,7 +2033,16 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Jacoby_2N_Leveled</td><td>500</td><td>377</td><td>123</td>
+        <td><span class="has-tip">(Lev)<span class="tip">Jacoby_2N_Leveled.btn
+
+Jacoby 2N (Leveled)
+Five different Opening hands can be described after a major suit open and a Jacoby 2N response. The percentages
+are the approximate frequency of occurrence for the various hand types using this leveled script.
+• 4x (21%) - any strength with a good (5-cards with 2+ of top 3) second suit
+• 3x (23%) - any strength with a singleton/void
+• 3M (20%) - 18+ semi-balanced
+• 3N (20%) - 15-17 semi-balanced
+• 4M (16%) - 12-14 semi-balanced</span></span></td><td>500</td><td>377</td><td>123</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1411,7 +2056,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Jacoby_Super-Accept</td><td>500</td><td>422</td><td>78</td>
+        <td><span class="has-tip">Jacoby Super-Accept<span class="tip">Jacoby_Super-Accept.btn
+
+Jacoby Super-Accept
+South opens 1N w/17 HCP and 2452+2425+2245+2254+4522 or any 4432 or 5332.
+Those 5422 hands are the ones where you are likely to have to reverse to show your suits.
+North transfers to Hearts or Spades and South has 4- or 5-card support.</span></span></td><td>500</td><td>422</td><td>78</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1425,7 +2075,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Jacoby_Transfer</td><td>500</td><td>487</td><td>13</td>
+        <td><span class="has-tip">GIB NT &amp; Jacoby<span class="tip">Jacoby_Transfer.btn
+
+Jacoby Transfer
+South opens 1N w/2452+2425+2245+2254+4522 or any 4333, 4432, or 5332 distribution.
+Those 5422 hands are the ones where you are likely to have to reverse to show your suits.
+HCP adjusted +1 for any 5-card suit unless you have Kx, Qx, or Jx doubleton.
+North transfers to Hearts or Spades.</span></span></td><td>500</td><td>487</td><td>13</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1439,7 +2095,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Jordan_2N</td><td>500</td><td>340</td><td>160</td>
+        <td><span class="has-tip">Jordan 2N<span class="tip">Jordan_2N.btn
+
+Jordan 2N
+After 1M (X), 2N shows 4+ card support and 10+ TP.
+https://www.bridgebum.com/jordan_2nt.php</span></span></td><td>500</td><td>340</td><td>160</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1453,7 +2113,16 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Jump_Cuebid_Strong</td><td>500</td><td>351</td><td>149</td>
+        <td><span class="has-tip">Jump Cuebid Strong<span class="tip">Jump_Cuebid_Strong.btn
+
+Strong Direct Jump Cuebids of any suit.
+1x (3x) shows any other solid suit (usually a minor) with 6+ controls and asks
+partner to bid 3N with a stopper in the opponent's suit.  Without a stopper,
+• bidding a new major is natural,
+• 4!C shows 0/1 controls, and
+• 4!D shows 2+ controls.
+(NOTE:  GIB does NOT play this!)
+https://tinyurl.com/JumpCueBids</span></span></td><td>500</td><td>351</td><td>149</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1467,7 +2136,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Jump_Cuebid_Weak</td><td>500</td><td>393</td><td>107</td>
+        <td><span class="has-tip">Jump Cuebid Weak<span class="tip">Jump_Cuebid_Weak.btn
+
+Weak Direct Jump Cuebid of a minor suit.
+• 1m (3m) shows an aggressive weak jump overcall w/7+m and 0-10 HCP -- just
+as if they had opened any other suit.
+Note:  GIB plays this!
+https://tinyurl.com/JumpCueBids</span></span></td><td>500</td><td>393</td><td>107</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1481,7 +2156,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Jump_Overcalls</td><td>500</td><td>397</td><td>103</td>
+        <td><span class="has-tip">Jump Overcalls<span class="tip">Jump_Overcalls.btn
+
+Jump Overcalls</span></span></td><td>500</td><td>397</td><td>103</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1495,7 +2172,18 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Kokish_Relay</td><td>500</td><td>267</td><td>233</td>
+        <td><span class="has-tip">Kokish Relay<span class="tip">Kokish_Relay.btn
+
+Kokish Relay
+After the sequence 2!C - 2!D - 2!H
+showing 22+ unbal with 5+H or 25-27 balanced GF
+and forcing partner to accept the relay to 2!S.  Then
+2N = 25+ Balanced game forcing
+3!C = 5+!H and !C
+3!D = 5+!H and !D
+3!H = 6+!H
+3!S = 5+!H and !S
+https://www.bridgebum.com/kokish_relay.php</span></span></td><td>500</td><td>267</td><td>233</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1509,7 +2197,13 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>Last_Train_GT2</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Last Train GT2<span class="tip">Last_Train_GT2.btn
+
+Last Train Game Try
+Any time there is only one call that indicates game interest or further game interest
+without raising the partnership's level of commitment, it is a Last Train game-try,  unrelated
+to the strain named (unless followed by an uninvited further action).
+https://en.wikipedia.org/wiki/Last_Train_(bridge)</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1523,7 +2217,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Last_Train_Game_Try</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Last Train GT1<span class="tip">Last_Train_Game_Try.btn
+
+Last Train Game Try
+Any time there is only one call that indicates game interest or further game interest
+without raising the partnership's level of commitment, it is a Last Train game-try,  unrelated
+to the strain named (unless followed by an uninvited further action).
+https://en.wikipedia.org/wiki/Last_Train_(bridge)</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1537,7 +2237,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Leaping_Michaels</td><td>500</td><td>290</td><td>210</td>
+        <td><span class="has-tip">Leaping Michaels<span class="tip">Leaping_Michaels.btn
+
+Leaping Michaels
+https://www.bridgebum.com/leaping_michaels.php</span></span></td><td>500</td><td>290</td><td>210</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1551,7 +2254,22 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Lebensohl</td><td>500</td><td>184</td><td>316</td>
+        <td><span class="has-tip">Lebensohl<span class="tip">Lebensohl.btn
+
+Lebensohl
+After we open 1N and RHO overcalls 2!D, 2!H, or 2!S...
+• A suit at the 2-level is natural and not forcing.
+• 2N is a relay to 3!C and after the opener's 3!C bid...
+◦ Pass to play 3!C.
+◦ A new lower-ranking suit is to play.
+◦ A cue bid is Stayman WITH A STOP.
+◦ A new higher-ranking suit is constructive.
+◦ 3N is to play WITH A STOP.
+• A new suit at the 3-level is game-forcing.
+• A cue bid is Stayman WITHOUT a stop.
+• 3N is natural, WITHOUT a STOP -- opener should pass or scramble.
+https://www.larryco.com/bridge-articles/lebensohl
+https://www.larryco.com/bridge-articles/transfer-lebensohl</span></span></td><td>500</td><td>184</td><td>316</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1565,7 +2283,21 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>Lebensohl_vs_Opps_W2_Bal</td><td>500</td><td>381</td><td>119</td>
+        <td><span class="has-tip">leb vs W2-Bal Seat<span class="tip">Lebensohl_vs_Opps_W2_Bal.btn
+
+lebensohl After 2x-P-P
+After 2!D/2!H/2!S Pass Pass, X is a Lebensohl Double.
+• A new suit at the 2-level is natural and weak (0-7).
+• A non-jump new suit at the 3-level shows 8-10 and no stop.
+• Cue Bid openers suit to show major suit interest without a stop.
+• Jump bidding a new suit at the 3-level shows 8-10 and no stop.
+• 3N shows game forcing values without major suit interest and no stop -- pass or scramble.
+• Bidding 2N is the Lebensohl relay to 3!C.  After partner's forced 3!C, you may...
+◦ Pass or Correct to a new lower ranking suit (0-7).
+◦ Cue Bid openers suit to show major suit interest and with a stop.
+◦ Correct to a new higher ranking suit is constructive.
+◦ Bid 3N to show a balanced hand without major suit interest AND with a stop.
+https://www.bridgebum.com/lebensohl_over_weak_two.php</span></span></td><td>500</td><td>381</td><td>119</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1579,7 +2311,22 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Lebensohl_vs_Opps_W2_Bal_or_Dir</td><td>500</td><td>394</td><td>106</td>
+        <td><span class="has-tip">leb vs W2-Dir/Bal<span class="tip">Lebensohl_vs_Opps_W2_Bal_or_Dir.btn
+
+lebensohl After Opps Weak 2 -- Direct or Balanced Seat.
+After 2!D/2!H/2!S and a Take-Out Double in direct or balancing seat,
+lebensohl continuations are...
+• A new suit at the 2-level is natural and weak (0-7).
+• A non-jump new suit at the 3-level shows 8-10 and no stop.
+• Cue Bid openers suit to show major suit interest without a stop.
+• Jump bidding a new suit at the 3-level shows 8-10 and no stop.
+• 3N shows game forcing values without major suit interest and no stop -- pass or scramble.
+• Bidding 2N is the Lebensohl relay to 3!C.  After partner's forced 3!C, you may...
+◦ Pass or Correct to a new lower ranking suit (0-7).
+◦ Cue Bid openers suit to show major suit interest and with a stop.
+◦ Correct to a new higher ranking suit is constructive.
+◦ Bid 3N to show a balanced hand without major suit interest AND with a stop.
+https://www.bridgebum.com/lebensohl_over_weak_two.php</span></span></td><td>500</td><td>394</td><td>106</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1593,7 +2340,21 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Lebensohl_vs_Opps_W2_Dir</td><td>500</td><td>412</td><td>88</td>
+        <td><span class="has-tip">leb vs W2-Dir Seat<span class="tip">Lebensohl_vs_Opps_W2_Dir.btn
+
+lebensohl Over Weak 2
+After 2!D/2!H/2!S, (X), Pass,
+• A new suit at the 2-level is natural and weak (0-7).
+• A non-jump new suit at the 3-level shows 8-10 and no stop.
+• Cue Bid openers suit to show major suit interest without a stop.
+• Jump bidding a new suit at the 3-level shows 8-10 and no stop.
+• 3N shows game forcing values without major suit interest and no stop -- pass or scramble.
+• Bidding 2N is the Lebensohl relay to 3!C.  After partner's forced 3!C, you may...
+◦ Pass or Correct to a new lower ranking suit (0-7).
+◦ Cue Bid openers suit to show major suit interest and with a stop.
+◦ Correct to a new higher ranking suit is constructive.
+◦ Bid 3N to show a balanced hand without major suit interest AND with a stop.
+https://www.bridgebum.com/lebensohl_over_weak_two.php</span></span></td><td>500</td><td>412</td><td>88</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1607,7 +2368,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Losing_Trick_Count</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Losing Trick Count<span class="tip">Losing_Trick_Count.btn
+
+Losing Trick Count
+This scenario focuses on hands that are opened with Losing Trick Count
+and not with normal opener requirements.</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1621,7 +2386,23 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>MST_or_MSS</td><td>500</td><td>468</td><td>32</td>
+        <td><span class="has-tip">MST or MSS<span class="tip">MST_or_MSS.btn
+
+After we open 1NT and partner bids Minor Suit Stayman or a Minor Suit Transfer,
+minorwood is on: A jump to 4 of the agreed minor is minorwood.  Responses are in steps.
+• 1st step is 1 or 4
+• 2nd step is 2
+• 3rd step is 3
+If the Queen has not been shown or denied, then the first non-trump step asks for the Queen;
+otherwise, it asks for Kings.
+There are multiple ways to play MSS and MST. GIB plays both together, like this:
+• 2!S is MSS; then...
+• ...2N - Denies a 4-card minor
+• ...3!C - Shows a 4 !C (may have 4!D)
+• ...3!D - Shows a 4 !D &amp; denies 4!C
+• ...3N - is a super accept with 17 HCP &amp; 4 cards each minor
+• 2N is a MST to !C showing 6+!C
+• 3!C is a MST to !D showing 6+!D</span></span></td><td>500</td><td>468</td><td>32</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1635,7 +2416,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Major_Opener</td><td>500</td><td>492</td><td>8</td>
+        <td><span class="has-tip">Major Opener<span class="tip">Major_Opener.btn
+
+Major Opener</span></span></td><td>500</td><td>492</td><td>8</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1649,7 +2432,17 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Major_Suit_Fit</td><td>500</td><td>225</td><td>275</td>
+        <td><span class="has-tip">Major Suit Fit (Lev)<span class="tip">Major_Suit_Fit.btn
+
+Major Suit Fit
+• 2M = 8-10 TP and 3+ card support
+• 1N/2M = 4-7 TP and 3+ card support (Forcing/Semi-Forcing NT followed by 2M)
+• 1N/3M = 11-12 TP and 3-card support (Forcing/Semi-Forcing NT followed by 3M)
+• 3M = 11-12 TP and 4+ card support
+• 4M = 0-7 TP and 5+ card support
+TP = HCP + short suit points + 1 for 4+ support-not-4333
+Check the link below for more information
+https://www.larryco.com/bridge-articles/major-openings-part-1</span></span></td><td>500</td><td>225</td><td>275</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1663,7 +2456,16 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Maximal_After_Overcall</td><td>123</td><td>47</td><td>76</td>
+        <td><span class="has-tip">Max X after Overcall<span class="tip">Maximal_After_Overcall.btn
+
+Maximal Double after Overcall
+After LHO opens, partner overcalls in a major, RHO competes, we make a simple
+raise to the 2-level, and LHO competes at 3 of the maximal suit -- the one just
+under ours -- we need to distinguish between a competitive and invitational rebid
+of our major.  The Maximal Double is the answer.  After (1?) 1M (?) 2M, (3M-1)...
+• 3M is competitive
+• X  is invitational
+https://www.bridgebum.com/maximal_double.php</span></span></td><td>123</td><td>47</td><td>76</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1677,7 +2479,16 @@
         <td>1.1s</td>
       </tr>
       <tr>
-        <td>Maximal_Double</td><td>500</td><td>263</td><td>237</td>
+        <td><span class="has-tip">Maximal Double<span class="tip">Maximal_Double.btn
+
+Maximal Overcall Double:  After we've bid and raised a major suit
+and they compete in the suit just under ours (the Maximal suit) we need
+to distinguish between a competitive raise and an invitational raise.
+The Maximal Double is the answer:
+• After 1!H (?) 2!H (3!D), 3!H is competitive and X is invitational
+• After 1!S (?) 2!S (3!H), 3!S is competitive and X is invitational
+The BBO Robots do NOT play this.
+https://www.nvba.org/novices/Robert_Todd/(195)+Maximal+Doubles.pdf</span></span></td><td>500</td><td>263</td><td>237</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1691,7 +2502,18 @@
         <td>4.2s</td>
       </tr>
       <tr>
-        <td>McCabe_After_Weak_2</td><td>500</td><td>452</td><td>48</td>
+        <td><span class="has-tip">McCabe over W2 (Lev)<span class="tip">McCabe_After_Weak_2.btn
+
+McCabe after Weak 2 (X) -- Leveled
+Opener has a 6-card suit without a 4-card side major, at least half of the HCP
+are in the suit, less than 11 HCP and less than 7 losers.  And West doubles.
+After the double, responder has six possible continuations:
+• Bid game - Preempt or Rule of 17
+• Raise below game - a mild preempt
+• Bid a new suit - Please lead this suit.
+• Bid 2N - I'm interested in game.  Do you have a feature?
+• Redouble - I have a long suit of my own
+• Pass - Good Luck!</span></span></td><td>500</td><td>452</td><td>48</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1705,7 +2527,17 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>McCabe_after_WJO</td><td>500</td><td>377</td><td>123</td>
+        <td><span class="has-tip">McCabe over WJO (Lev)<span class="tip">McCabe_after_WJO.btn
+
+McCabe after Partner's Weak Jump Overcall is Doubled -- Leveled.
+After the opponents open and partner's weak jump overcal is doubled...
+responder has six possible continuations:
+• Bid game - Preempt or Rule of 17
+• Raise below game - a mild preempt
+• Bid a new suit - Please lead this suit.
+• Bid 2N - I'm interested in game.  Do you have a feature?
+• Redouble - I have a long suit of my own
+• Pass - Good Luck!</span></span></td><td>500</td><td>377</td><td>123</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1719,7 +2551,17 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Meckwell</td><td>500</td><td>189</td><td>311</td>
+        <td><span class="has-tip">Meckwell (Lev)<span class="tip">Meckwell.btn
+
+15-17 Notrump Opening and Meckwell action.
+• X   = !C, !D, !H &amp; !S, or a good hand
+• 2!C = !C and a major
+• 2!D = !D and a major
+• 2!H = 5+ !H
+• 2!S = 5+ !S
+• 2N  = 5-5 or better in !C &amp; !D
+The Meckwell actions are leveled.  The NT opener is not leveled.
+https://www.bridgebum.com/meckwell_defense_to_1nt.php</span></span></td><td>500</td><td>189</td><td>311</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1733,7 +2575,15 @@
         <td>4.2s</td>
       </tr>
       <tr>
-        <td>Michaels_Cuebid</td><td>500</td><td>453</td><td>47</td>
+        <td><span class="has-tip">Michaels Cuebid<span class="tip">Michaels_Cuebid.btn
+
+Michaels Cuebid.
+Two-suited OR a good hand.
+• 1!C - 2!C = 5+!H &amp; 5+!S
+• 1!D - 2!D = 5+!H &amp; 5+!S
+• 1!H - 2!H = 5+!S &amp; 5+(!C or !D)
+• 1!S - 2!S = 5+!H &amp; 5+(!C or !D)
+https://www.bridgebum.com/michaels_cuebid.php</span></span></td><td>500</td><td>453</td><td>47</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1747,7 +2597,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Michaels_after_1m</td><td>500</td><td>412</td><td>88</td>
+        <td><span class="has-tip">Michaels after 1m<span class="tip">Michaels_after_1m.btn
+
+Michaels Cuebid after 1m
+• 1!C - 2!C = 5+!H &amp; 5+!S, or a good hand
+• 1!D - 2!D = 5+!H &amp; 5+!S
+https://www.bridgebum.com/michaels_cuebid.php</span></span></td><td>500</td><td>412</td><td>88</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1761,7 +2616,16 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Michaels_and_Unusual</td><td>500</td><td>418</td><td>82</td>
+        <td><span class="has-tip">Michaels and Unusual<span class="tip">Michaels_and_Unusual.btn
+
+Michaels Cuebid and Unusual NT
+Michaels Cuebid - 9+ TP:
+• 1!C - 2!C = !H and !S
+• 1!D - 2!D = !H and !S
+• 1!H - 2!H = !S and (!D or !C)
+• 1!S - 2!S = !H and (!D or !C)
+Unusual 2NT - 12+ TP:
+• After any 1-level suit opening, 2NT shows the two lowest ranking unbid suits.</span></span></td><td>500</td><td>418</td><td>82</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1775,7 +2639,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Mini-Maxi_Roman_2D</td><td>500</td><td>466</td><td>34</td>
+        <td><span class="has-tip">Mini-Maxi-Roman<span class="tip">Mini-Maxi_Roman_2D.btn
+
+Mini-Roman (11-15) Maxi-Roman (19+)
+Opener has 4441 or 5440 always with 4!S and never with a 5-card major.
+https://www.acblunit390.org/Simon/mini-roman.htm</span></span></td><td>500</td><td>466</td><td>34</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1789,7 +2657,18 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Minor_Game_Or_Slam</td><td>500</td><td>363</td><td>137</td>
+        <td><span class="has-tip">Minor Game/Slam<span class="tip">Minor_Game_Or_Slam.btn
+
+Minor Suit Game or Slam
+After a Minor Suit.  Minorwood is one of the tools you may need.  A jump raise
+to 4 of the minor is Minorwood.  The step responses are as follows:
+• 1st: 1/4 Keycards
+• 2nd: 0/3 Keycards
+• 3rd: 2 Keycards
+• 4th: 2Keycards + Queen of trump
+As the linked article explains, RKC Minorwood can be extended to other situations
+where the 4m bid cannot be construed as competitive.
+https://tinyurl.com/RKC-Minorwood</span></span></td><td>500</td><td>363</td><td>137</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1803,7 +2682,9 @@
         <td>4.5s</td>
       </tr>
       <tr>
-        <td>Minor_Suit_Opener</td><td>500</td><td>497</td><td>3</td>
+        <td><span class="has-tip">Minor Opening<span class="tip">Minor_Suit_Opener.btn
+
+Minor Opening</span></span></td><td>500</td><td>497</td><td>3</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1817,7 +2698,14 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Minor_Suit_Opener_Balanced_Response</td><td>500</td><td>443</td><td>57</td>
+        <td><span class="has-tip">1m &amp; Bal Resp (Lev)<span class="tip">Minor_Suit_Opener_Balanced_Response.btn
+
+Minor Opening w/Bal Resp (Lev)
+6-10  (21.6%) 1!D, 1!H, 1!S, 1N
+11-12 (20.0%) 2!H
+13-15 (22.8%) 2N, GF
+16-17 (15.4%) 3N
+18-19 (20.2%) 2N, GF+</span></span></td><td>500</td><td>443</td><td>57</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1831,7 +2719,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Minor_Suit_Opener_Inv_Raise</td><td>500</td><td>481</td><td>19</td>
+        <td><span class="has-tip">1m &amp; Inv Raise<span class="tip">Minor_Suit_Opener_Inv_Raise.btn
+
+Minor Opening w/Invitational Raise
+1!C - 2!S shows 5+ card support and invitational values 11-12 HCP
+1!D - 2!S shows 4+ card support and invitational values 11-12 HCP
+Note:  Responder has no new suit to bid at the 1-level, 2+ Dummy
+Points, and opener's suit is responder's longest suit.</span></span></td><td>500</td><td>481</td><td>19</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1845,7 +2739,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Minor_Suit_Opener_Mixed_Raise</td><td>500</td><td>392</td><td>108</td>
+        <td><span class="has-tip">1m &amp; Mixed Raise<span class="tip">Minor_Suit_Opener_Mixed_Raise.btn
+
+Minor Opening w/Mixed Raise
+1!C - 2!C shows 5+ card support and 6-10 HCP, a Mixed Raise
+1!D - 2!D shows 4+ card support and 6-10 HCP, a Mixed Raise
+Note:  Responder has no new suit to bid at the 1-level, 2+ Dummy
+Points, and opener's suit is responder's longest suit.</span></span></td><td>500</td><td>392</td><td>108</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1859,7 +2759,17 @@
         <td>4.2s</td>
       </tr>
       <tr>
-        <td>Minor_Suit_Opener_Resp_Structure</td><td>500</td><td>435</td><td>65</td>
+        <td><span class="has-tip">1m &amp; Raise/Bal (Lev)<span class="tip">Minor_Suit_Opener_Resp_Structure.btn
+
+1 Minor w/Raise OR Balanced Response -- Leveled
+1!C/!D - 1N shows 6-10 HCP balanced
+1!C/!D - 2!C/!D shows 5/4+ card support and 6-10 HCP, a Mixed Raise
+1!C/!D - 2!H shows 11-12 HCP balanced, forcing
+1!C/!D - 2!S shows 5/4+ card support and invitational+ values 11+ HCP, forcing
+1!C/!D - 2N shows 13-15 or 18-19 HCP balanced, GF+
+1!C/!D - 3N shows 16-17 HCP balanced
+This scenario is leveled such that the mixed raise, invitational raise, and
+balanced weak, invitational, and forcing responses occur at about the same frequency.</span></span></td><td>500</td><td>435</td><td>65</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1873,7 +2783,15 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Minor_Suit_Stayman</td><td>500</td><td>438</td><td>62</td>
+        <td><span class="has-tip">Minor Suit Stayman<span class="tip">Minor_Suit_Stayman.btn
+
+Minor Suit Stayman after 1NT
+There are multiple ways to play it; this is how GIB plays it.
+2!S is MSS; then...
+• 2N - denies a 4-card minor
+• 3!C - Shows a 4+!C (may have 4!D)
+• 3!D - Shows a 4+!D and denies 4!C
+https://www.bridgebum.com/minor_suit_stayman.php</span></span></td><td>500</td><td>438</td><td>62</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1887,7 +2805,17 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Minor_Suit_Transfer</td><td>500</td><td>189</td><td>311</td>
+        <td><span class="has-tip">Minor Suit Transfer<span class="tip">Minor_Suit_Transfer.btn
+
+Minor Suit Transfer
+There are multiple ways to play MST; this is how GIB plays it...
+After partner opens 1NT, responder bids the strain below their minor...
+• 2N for !C
+• 3!C for !D.
+After partner opens 1NT, responder bids the strain below their minor...
+After partner opens 1NT, responder bids the strain below their minor...
+This lets GIB play both MSS and MST, together.  Here's an alternative:
+https://www.bridgebum.com/minor_suit_transfers.php</span></span></td><td>500</td><td>189</td><td>311</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1901,7 +2829,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Misfit</td><td>500</td><td>499</td><td>1</td>
+        <td><span class="has-tip">Misfit (Lev)<span class="tip">Misfit.btn
+
+South opens and North has a misfit with various strengths.
+• 6-10
+• 11-12
+• 13+</span></span></td><td>500</td><td>499</td><td>1</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1915,7 +2848,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Misfit6-5</td><td>500</td><td>215</td><td>285</td>
+        <td><span class="has-tip">Misfit 6+5+<span class="tip">Misfit6-5.btn
+
+South opens w/any 6-5 or better and North has GF values w/6-5 or better and no fit.</span></span></td><td>500</td><td>215</td><td>285</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1929,7 +2864,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Misfit_06-10</td><td>500</td><td>488</td><td>12</td>
+        <td><span class="has-tip">6-10<span class="tip">Misfit_06-10.btn
+
+South opens and North has a misfit with 6-10 HCP.</span></span></td><td>500</td><td>488</td><td>12</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1943,7 +2880,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Misfit_11-12</td><td>500</td><td>494</td><td>6</td>
+        <td><span class="has-tip">11-12<span class="tip">Misfit_11-12.btn
+
+South opens and North has a misfit with 11-12 HCP.</span></span></td><td>500</td><td>494</td><td>6</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1957,7 +2896,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Misfit_13-Plus</td><td>500</td><td>495</td><td>5</td>
+        <td><span class="has-tip">13+<span class="tip">Misfit_13-Plus.btn
+
+South opens and North has a misfit with 13+ HCP.</span></span></td><td>500</td><td>495</td><td>5</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1971,7 +2912,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Mitchell_Stayman</td><td>500</td><td>455</td><td>45</td>
+        <td><span class="has-tip">Mitchell Stayman<span class="tip">Mitchell_Stayman.btn
+
+Mitchell Stayman
+After 1m (1N), 2C shows 5/4M and 6-9 HCP
+Opener responds 2D with no preference</span></span></td><td>500</td><td>455</td><td>45</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1985,7 +2930,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Mixed_Raise_In_Comp</td><td>500</td><td>169</td><td>331</td>
+        <td><span class="has-tip">Mixed Raise in Comp<span class="tip">Mixed_Raise_In_Comp.btn
+
+Opponents open 1C/1D/1H.  We overcall one 1H/1S. Partner has
+4-card support with 7-9 TP and makes a mixed raise.</span></span></td><td>500</td><td>169</td><td>331</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1999,7 +2947,13 @@
         <td>4.2s</td>
       </tr>
       <tr>
-        <td>Muiderberg_Two_Bids</td><td>500</td><td>171</td><td>329</td>
+        <td><span class="has-tip">Muiderberg 2 Bids<span class="tip">Muiderberg_Two_Bids.btn
+
+Muiderberg Two Bids
+2!H shows 5-10 HCP with 5 Hearts and an unspecified minor.
+2!S shows 5-10 HCP with 5 Spades and an unspecified minor.
+At unfavorable vulnerability the minor should be 5+ cards.
+https://www.bridgebum.com/muiderberg_two_bids.php</span></span></td><td>500</td><td>171</td><td>329</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2013,7 +2967,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Multi_2D</td><td>500</td><td>385</td><td>115</td>
+        <td><span class="has-tip">Multi 2D<span class="tip">Multi_2D.btn
+
+Multi 2!D
+A Multi 2!D bid shows either a weak two in !H or !S or a 17-24 HCP 4441 hand.
+See Bridge Bum's Multi 2!D:
+https://www.bridgebum.com/multi_2d.php</span></span></td><td>500</td><td>385</td><td>115</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2027,7 +2986,17 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>Multi_Landy</td><td>500</td><td>218</td><td>282</td>
+        <td><span class="has-tip">Multi-Landy (Lev)<span class="tip">Multi_Landy.btn
+
+15-17 Notrump Opening and Multi-Landy action.
+• X  = 4-card !H/!S w/5+!C/!D, a 6+ !C/!D, a 5-card !H/!S, a balanced 19+
+• 2C = at least 5-4 or 4-5 in !H&amp;!S
+• 2D = 6 !H/!S w/o a side suit
+• 2H = 5 !H &amp; 4+ !C/!D
+• 2S = 5 spades &amp; 4+ !C/!D
+• 2N = 5-5 or better in !C/!D
+The Multi-Landy actions are leveled.  The NT opener is not leveled.
+https://www.bridgebum.com/multi_landy.php</span></span></td><td>500</td><td>218</td><td>282</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2041,7 +3010,16 @@
         <td>4.1s</td>
       </tr>
       <tr>
-        <td>NT_Ladder</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">NT Ladder (Lev)<span class="tip">NT_Ladder.btn
+
+NT Ladder (Lev)
+Practice balanced hand evaluation across the full NT opening range.
+Five HCP ranges, leveled to be roughly equal:
+• 12-14 HCP (~21%) - Open 1 of a suit, then rebid 1NT
+• 15-17 HCP (~23%) - Standard 1NT opening
+• 18-19 HCP (~20%) - Too strong for 1NT, open 1x then rebid 2NT
+• 20-21 HCP (~19%) - Open 2NT
+• 22-24 HCP (~17%) - Open 2C then rebid 2NT</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2055,7 +3033,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>NT_Splinter</td><td>500</td><td>371</td><td>129</td>
+        <td><span class="has-tip">Splinter after NT<span class="tip">NT_Splinter.btn
+
+Splinter after GIB Notrump
+A 3!D, 3!H, or 3!S response to 1N showing a stiff or void with 4-cards
+in each unbid major and at least 4 in unbid minors. and 12+ TP.
+Note: GIB does splinter with a stiff A, K, or Q.</span></span></td><td>500</td><td>371</td><td>129</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2069,7 +3052,11 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>Namyats</td><td>500</td><td>320</td><td>180</td>
+        <td><span class="has-tip">namyatS - Weak<span class="tip">Namyats.btn
+
+namyatS - Weak
+4!H = 7+ good !H and 7-8 tricks
+4!S = 7+ good !S and 7-8 tricks</span></span></td><td>500</td><td>320</td><td>180</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2083,7 +3070,15 @@
         <td>4.1s</td>
       </tr>
       <tr>
-        <td>Ned_2S</td><td>500</td><td>134</td><td>366</td>
+        <td><span class="has-tip">Ned’s 2 Spades<span class="tip">Ned_2S.btn
+
+Ned’s 2 Spades
+6+ !C or 6+ !D or both (54) or better
+Opener responds 3!C if !C are longer than !D, otherwise 2N
+Responder can pass, bid 3!C or 3!D to play, or try for slam.
+3!H or 3!S show shortness with both minors -- at least 5/4
+3N = 22(54) w/16 HCP, 4N w/17 HCP, 5N w/20 HCP
+https://tinyurl.com/mtbmccfe</span></span></td><td>500</td><td>134</td><td>366</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2097,7 +3092,13 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>Ned_3-Level_Resp_to_1N</td><td>500</td><td>402</td><td>98</td>
+        <td><span class="has-tip">Ned's 3-Lev 1N Resp (Lev)<span class="tip">Ned_3-Level_Resp_to_1N.btn
+
+Ned's 3-Level Response to 1N.
+North jumps to 3 or his suit with a good suit and more that 16 HCP.
+Without a fit, the opener bids 3N.  With a fit, the opener responds with Key-Cards, skipping around
+3N.  If opener does not have a fit, responder can ask for Key-Cards by bidding the first new suit
+(4!D when responder's suit is Clubs; otherwise, 4!C.  This avoids confusion with any subsequent K-Ask).</span></span></td><td>500</td><td>402</td><td>98</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2111,7 +3112,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Ned_Weak_Two</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Ned’s Weak Two<span class="tip">Ned_Weak_Two.btn
+
+Ned’s Weak Two
+https://rb.gy/kaqcb</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2125,7 +3129,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Ned_Weak_Two_Leveled</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Ned’s Weak Two (Lev)<span class="tip">Ned_Weak_Two_Leveled.btn
+
+Ned’s Weak Two (Leveled)
+The probability of Pass, Invite, and Force is approximately the same
+as is the probability of inviting via a raise or a new suit.
+https://rb.gy/kaqcb</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2139,7 +3148,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Negative_Double</td><td>500</td><td>148</td><td>352</td>
+        <td><span class="has-tip">Negative Double<span class="tip">Negative_Double.btn
+
+Negative Double
+After x (y), X is a Negative Double.  It's for takeout. At the 1-level
+it promises 4-Cards in each unbid major. At higher levels you need a backup
+plan if partner doesn't have your major -- maybe a tolerance for opener's suit.
+https://www.larryco.com/bridge-articles/negative-doubles</span></span></td><td>500</td><td>148</td><td>352</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2153,7 +3168,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Negative_Free_Bid</td><td>500</td><td>164</td><td>336</td>
+        <td><span class="has-tip">Negative Free Bid<span class="tip">Negative_Free_Bid.btn
+
+Negative Free Bid
+North Opens &amp; East Overcalls and South has no Major suit fit w/North and
+• 5-9 HCP with a good 5- or any 6-card suit (non-jump) or
+• 10-11 HCP with a good 6+ card suit (jump)
+https://kwbridge.com/bb/nfb-1.htm</span></span></td><td>500</td><td>164</td><td>336</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2167,7 +3188,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>New_Minor_Forcing</td><td>500</td><td>480</td><td>20</td>
+        <td><span class="has-tip">New Minor Force<span class="tip">New_Minor_Forcing.btn
+
+New Minor Forcing
+Partner opens 1!C, 1!D,  or 1!H
+You respond 1!H or 1!S with a 5-card suit
+Partner rebids 1N</span></span></td><td>500</td><td>480</td><td>20</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2181,7 +3207,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Non_Leaping_Michaels_After_2-Bid</td><td>455</td><td>184</td><td>271</td>
+        <td><span class="has-tip">NLM after 2-Bid &amp; Raise<span class="tip">Non_Leaping_Michaels_After_2-Bid.btn
+
+Non-Leaping Michaels after a Weak 2 &amp; Raise
+http://tinyurl.com/Leaping-Michaels</span></span></td><td>455</td><td>184</td><td>271</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2195,7 +3224,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Non_Leaping_Michaels_After_3-Bid</td><td>500</td><td>91</td><td>409</td>
+        <td><span class="has-tip">Non-Leaping Michaels<span class="tip">Non_Leaping_Michaels_After_3-Bid.btn
+
+Non-Leaping Michaels after 3-level preempt
+https://www.bridgewebs.com/alton/EBU%20-%20Stage%202%20Conventions%20-%20Leaping%20and%20Non-Leaping%20Michaels.pdf</span></span></td><td>500</td><td>91</td><td>409</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2209,7 +3241,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Notrump_18-19</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">18-19 NT Hand<span class="tip">Notrump_18-19.btn
+
+18-19 Notrump, Semi-Balanced (any 4333, 4432, 5332, 5422, or 6322)</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2223,7 +3257,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>OBAR_BIDS</td><td>500</td><td>219</td><td>281</td>
+        <td><span class="has-tip">OBARBIDS 6-11 (Lev)<span class="tip">OBAR_BIDS.btn
+
+Opponents Bid And Raise -- Balance In Direct Seat.
+After opponents bid and raise we balance in direct seat.  Take-out doubles
+and overcalls are as weak as 6 or 7 HCP.  This is leveled such that North
+is equally likely to have a 6-card suit, a 5-card suit, or a take-out double.
+https://www.bridgebum.com/obar_bids.php</span></span></td><td>500</td><td>219</td><td>281</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2237,7 +3277,14 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>OBAR_BIDS11</td><td>500</td><td>269</td><td>231</td>
+        <td><span class="has-tip">OBARBIDS 11+ (Lev)<span class="tip">OBAR_BIDS11.btn
+
+Opponents Bid And Raise -- Bid In Drect Seat.
+After opponents bid and raise we bid in direct seat.  Take-out doubles
+and overcalls are as weak as 11 HCP.  This is leveled such that North
+is equally likely to have a 6-card suit, a 5-card suit, or a take-out double.
+This is NOT described by the linked artical.
+https://www.bridgebum.com/obar_bids.php</span></span></td><td>500</td><td>269</td><td>231</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2251,7 +3298,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Open_In_Fourth_13</td><td>500</td><td>283</td><td>217</td>
+        <td><span class="has-tip">13<span class="tip">Open_In_Fourth_13.btn
+
+To Open or Not to Open
+After (P) P (P)..., should you open in 4th seat?
+These deals have 13 R15 points.
+https://www.bridgebum.com/pearson_points.php</span></span></td><td>500</td><td>283</td><td>217</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2265,7 +3317,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Open_In_Fourth_14</td><td>500</td><td>319</td><td>181</td>
+        <td><span class="has-tip">14<span class="tip">Open_In_Fourth_14.btn
+
+To Open or Not to Open
+After (P) P (P)..., should you open in 4th seat?
+These deals have 14 R15 points.
+https://www.bridgebum.com/pearson_points.php</span></span></td><td>500</td><td>319</td><td>181</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2279,7 +3336,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Open_In_Fourth_15</td><td>500</td><td>330</td><td>170</td>
+        <td><span class="has-tip">15<span class="tip">Open_In_Fourth_15.btn
+
+To Open or Not to Open
+After (P) P (P)..., should you open in 4th seat?
+These deals have 15 R15 points.
+https://www.bridgebum.com/pearson_points.php</span></span></td><td>500</td><td>330</td><td>170</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2293,7 +3355,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Open_In_Fourth_16</td><td>500</td><td>333</td><td>167</td>
+        <td><span class="has-tip">16<span class="tip">Open_In_Fourth_16.btn
+
+To Open or Not to Open
+After (P) P (P)..., should you open in 4th seat?
+These deals have 16 R15 points.
+https://www.bridgebum.com/pearson_points.php</span></span></td><td>500</td><td>333</td><td>167</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2307,7 +3374,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Open_In_Fourth_Seat</td><td>500</td><td>326</td><td>174</td>
+        <td><span class="has-tip">4th Seat Opener (Lev)<span class="tip">Open_In_Fourth_Seat.btn
+
+To Open or Not to Open
+After (P) P (P)..., should you open in 4th seat?
+This is leveled such that pass/bid should occur
+with approximately the same frequency.
+https://www.bridgebum.com/pearson_points.php</span></span></td><td>500</td><td>326</td><td>174</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2321,7 +3394,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Opp_Redoubles</td><td>500</td><td>303</td><td>197</td>
+        <td><span class="has-tip">Opps Redouble<span class="tip">Opp_Redoubles.btn
+
+Opponent Redoubles our Takeout Double</span></span></td><td>500</td><td>303</td><td>197</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2335,7 +3410,17 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Opps_2-Suited_Overcalls</td><td>500</td><td>335</td><td>165</td>
+        <td><span class="has-tip">2-Suit Overcalls<span class="tip">Opps_2-Suited_Overcalls.btn
+
+Opponents 2-Suit Overcalls
+double is penalty oriented
+raise is natural (about 7-10)
+a jump raise is preemptive
+bidding new (unshown) suit is natural &amp; not forcing
+with 1 known opponent suit -- a cue bid is a limit+ raise
+with 2 known opponent suits -- cue lower for lower &amp; higher for higher
+https://www.bridgebum.com/unusual_vs_unusual.php
+https://www.bridgebum.com/defense_to_michaels.php</span></span></td><td>500</td><td>335</td><td>165</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2349,7 +3434,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Opps_Bal_Unusual_2N</td><td>376</td><td>356</td><td>20</td>
+        <td><span class="has-tip">Bal w/Unusual NT<span class="tip">Opps_Bal_Unusual_2N.btn
+
+Opponents Bal with Unusual NT
+This shows 5/4 or 4/5 in the minors.</span></span></td><td>376</td><td>356</td><td>20</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2363,7 +3451,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Opps_Bid_Over_GF_2C</td><td>500</td><td>41</td><td>459</td>
+        <td><span class="has-tip">Bid Over GF 2C<span class="tip">Opps_Bid_Over_GF_2C.btn
+
+Opponents Bid over our Game Forcing 2C.</span></span></td><td>500</td><td>41</td><td>459</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2377,7 +3467,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Opps_Double_1_NT</td><td>500</td><td>400</td><td>100</td>
+        <td><span class="has-tip">X Notrump<span class="tip">Opps_Double_1_NT.btn
+
+Opponents X Notrump</span></span></td><td>500</td><td>400</td><td>100</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2391,7 +3483,12 @@
         <td>4.2s</td>
       </tr>
       <tr>
-        <td>Opps_Double_Jacoby</td><td>500</td><td>415</td><td>85</td>
+        <td><span class="has-tip">X Jacoby<span class="tip">Opps_Double_Jacoby.btn
+
+Opponents X Jacoby
+The BBO Robots complete the transfer with 3+ support, otherwise they pass.
+A recent ACBL Bulletin article recommended completing the transfer with either 3+ support or a
+stop in opponent's suit.  Then, responder can safely invite with 2NT or force to game with 3NT.</span></span></td><td>500</td><td>415</td><td>85</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2405,7 +3502,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Opps_Double_Stayman</td><td>500</td><td>438</td><td>62</td>
+        <td><span class="has-tip">X Stayman<span class="tip">Opps_Double_Stayman.btn
+
+Opponents X Stayman</span></span></td><td>500</td><td>438</td><td>62</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2419,7 +3518,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Opps_Gambling_3N</td><td>500</td><td>428</td><td>72</td>
+        <td><span class="has-tip">Opps Gambling 3N<span class="tip">Opps_Gambling_3N.btn
+
+Opponents Gambling 3N
+A gambling 3N opening bid shows a solid 7+ card minor suit and less than a K outside.</span></span></td><td>500</td><td>428</td><td>72</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2433,7 +3535,15 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Opps_Michaels_Cuebid</td><td>500</td><td>450</td><td>50</td>
+        <td><span class="has-tip">Michaels Cuebid<span class="tip">Opps_Michaels_Cuebid.btn
+
+Opponents Michaels Cuebid.
+Two-suited OR a good hand.
+• 1!C - 2!C = 5+!H &amp; 5+!S
+• 1!D - 2!D = 5+!H &amp; 5+!S
+• 1!H - 2!H = 5+!S &amp; 5+(!C or !D)
+• 1!S - 2!S = 5+!H &amp; 5+(!C or !D)
+https://www.bridgebum.com/michaels_cuebid.php</span></span></td><td>500</td><td>450</td><td>50</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2447,7 +3557,16 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Opps_Michaels_and_Unusual</td><td>500</td><td>402</td><td>98</td>
+        <td><span class="has-tip">Michaels and Unusual<span class="tip">Opps_Michaels_and_Unusual.btn
+
+Opps Michaels Cuebid and Unusual NT
+Michaels Cuebid - 9+ TP:
+• 1!C - 2!C = !H and !S
+• 1!D - 2!D = !H and !S
+• 1!H - 2!H = !S and (!D or !C)
+• 1!S - 2!S = !H and (!D or !C)
+Unusual 2NT - 12+ TP:
+• After any 1-level suit opening, 2NT shows the two lowest ranking unbid suits.</span></span></td><td>500</td><td>402</td><td>98</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2461,7 +3580,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Opps_Multi_2D</td><td>500</td><td>377</td><td>123</td>
+        <td><span class="has-tip">Opps Multi 2D<span class="tip">Opps_Multi_2D.btn
+
+Opponents Multi 2!D
+A Multi 2!D bid shows either a weak two in !H or !S or a 17-24 HCP 4441 hand.
+See Bridge Bum's Defense to Multi 2!D:
+https://www.bridgebum.com/defense_to_multi_2d_b.php</span></span></td><td>500</td><td>377</td><td>123</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2475,7 +3599,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Opps_Open_1N_15-17</td><td>500</td><td>462</td><td>38</td>
+        <td><span class="has-tip">Open 1NT<span class="tip">Opps_Open_1N_15-17.btn
+
+Opponents Open 1NT 15-17</span></span></td><td>500</td><td>462</td><td>38</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2489,7 +3615,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Opps_Overcall_1NT</td><td>500</td><td>463</td><td>37</td>
+        <td><span class="has-tip">1NT Overcall<span class="tip">Opps_Overcall_1NT.btn
+
+We open and opponent overcalls 1NT.\n</span></span></td><td>500</td><td>463</td><td>37</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2503,7 +3631,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Opps_Overcall_Stayman_or_Jacoby</td><td>500</td><td>257</td><td>243</td>
+        <td><span class="has-tip">Overcall S/J<span class="tip">Opps_Overcall_Stayman_or_Jacoby.btn
+
+Opponent overcalls our Stayman/Jacoby bid</span></span></td><td>500</td><td>257</td><td>243</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2517,7 +3647,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Opps_Preempt</td><td>500</td><td>442</td><td>58</td>
+        <td><span class="has-tip">Opps Preempt<span class="tip">Opps_Preempt.btn
+
+Opponents Preempt</span></span></td><td>500</td><td>442</td><td>58</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2531,7 +3663,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Opps_Preemptive_Overcall</td><td>500</td><td>439</td><td>61</td>
+        <td><span class="has-tip">Preempt Overcall<span class="tip">Opps_Preemptive_Overcall.btn
+
+Opponents Preemptive Overcall</span></span></td><td>500</td><td>439</td><td>61</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2545,7 +3679,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Opps_Takeout_X</td><td>500</td><td>493</td><td>7</td>
+        <td><span class="has-tip">Takeout X<span class="tip">Opps_Takeout_X.btn
+
+Opponents Takeout X
+We have no fit and 6+ HCP.</span></span></td><td>500</td><td>493</td><td>7</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2559,7 +3696,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Opps_Takeout_X_We_XX</td><td>500</td><td>495</td><td>5</td>
+        <td><span class="has-tip">Takeout X We XX<span class="tip">Opps_Takeout_X_We_XX.btn
+
+Opponents Takeout X We XX
+We have no fit and 10+ HCP.</span></span></td><td>500</td><td>495</td><td>5</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2573,7 +3713,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Opps_Weak_Two</td><td>500</td><td>484</td><td>16</td>
+        <td><span class="has-tip">Weak Two<span class="tip">Opps_Weak_Two.btn
+
+Opponent's Weak Two Bid</span></span></td><td>500</td><td>484</td><td>16</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2587,7 +3729,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Overcalls</td><td>500</td><td>489</td><td>11</td>
+        <td><span class="has-tip">Overcalls<span class="tip">Overcalls.btn
+
+Overcalls</span></span></td><td>500</td><td>489</td><td>11</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2601,7 +3745,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Power_Double_Balanced</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Power X Bal (19+)<span class="tip">Power_Double_Balanced.btn
+
+Balanced Power Double
+https://tinyurl.com/3ayndhy9</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2615,7 +3762,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Power_Double_Unbalanced</td><td>500</td><td>394</td><td>106</td>
+        <td><span class="has-tip">Power X Unb (17+)<span class="tip">Power_Double_Unbalanced.btn
+
+Unbalanced Power Double
+https://tinyurl.com/3ayndhy9</span></span></td><td>500</td><td>394</td><td>106</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2629,7 +3779,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Preempt_Keycard</td><td>500</td><td>-</td><td>-</td>
+        <td><span class="has-tip">Preempt Keycard<span class="tip">Preempt_Keycard.btn
+
+Keycard after Preempts
+After a preemptive opening, 4!C is keycard-ask. EXCEPTION: After 3!C opening, 4!D is keycard-ask.
+The responses are 0, 1-without, 1-with, 2-without, 2-with.
+After a weak two 4!C Keycard-Ask may be used after a feature-ask sequence such as 2!H - 2N - 3!D - 4!C.
+https://www.advinbridge.com/this-week-in-bridge/578</span></span></td><td>500</td><td>-</td><td>-</td>
         <td>0.0s</td>
         <td>0.1s</td>
         <td>1.3s</td>
@@ -2643,7 +3799,11 @@
         <td>1.4s</td>
       </tr>
       <tr>
-        <td>Preempt_X_XX</td><td>500</td><td>76</td><td>424</td>
+        <td><span class="has-tip">Preempt (X) XX (Lev)<span class="tip">Preempt_X_XX.btn
+
+Preempt (X) XX (Now What?)
+After a 3-level or 4-level preempt, (X), XX, what do we do?  The deals are leveled
+so that the 7-card and 8-card preempts occur with about the same frequency.</span></span></td><td>500</td><td>76</td><td>424</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2657,7 +3817,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Preemptive_Raise</td><td>500</td><td>222</td><td>278</td>
+        <td><span class="has-tip">Preemptive Raise<span class="tip">Preemptive_Raise.btn
+
+South opens and North, with 3-6 HCP and an 11+ card minor fit or a 10+ major fit,
+makes a game-level preemptive raise.  When opponents intervene, an invitational raise
+is often more effective.</span></span></td><td>500</td><td>222</td><td>278</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2671,7 +3835,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Preempts</td><td>500</td><td>420</td><td>80</td>
+        <td><span class="has-tip">Preempts<span class="tip">Preempts.btn
+
+Preempts</span></span></td><td>500</td><td>420</td><td>80</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2685,7 +3851,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Resp_to_1C</td><td>500</td><td>493</td><td>7</td>
+        <td><span class="has-tip">Resp w/5D &amp; 4M<span class="tip">Resp_to_1C.btn
+
+Resp to 1C w/5-D &amp; 4M
+South opens 1!C.  North has 5+!D and one or both 4-card majors.</span></span></td><td>500</td><td>493</td><td>7</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2699,7 +3868,9 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>Responsive_Double</td><td>500</td><td>195</td><td>305</td>
+        <td><span class="has-tip">Responsive Double<span class="tip">Responsive_Double.btn
+
+West Opens, North Bids or Doubles, East raises, and South does anything</span></span></td><td>500</td><td>195</td><td>305</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2713,7 +3884,16 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Reverse_After_Two_Over_One</td><td>500</td><td>300</td><td>200</td>
+        <td><span class="has-tip">Reverse After 2/1<span class="tip">Reverse_After_Two_Over_One.btn
+
+Reverse After 2/1 is for those that don't play 2/1 GF
+Reverses show 5+ cards in the suit opened and 4+ cards in the suit rebid.  They are
+natural and Game Forcing.  Possible Reverses After 2/1 are...
+• 1!D - 2!C - 2!D - 2!H
+• 1!D - 2!C - 2!D - 2!S
+• 1!H - 2!C - 2!H - 2!S
+• 1!H - 2!D - 2!H - 2!S
+Reverses are NOT a convention.  If you don't have Game Forcing strength, don't reverse.</span></span></td><td>500</td><td>300</td><td>200</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2727,7 +3907,21 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Reverse_By_Opener</td><td>500</td><td>240</td><td>260</td>
+        <td><span class="has-tip">Reverse By Opener<span class="tip">Reverse_By_Opener.btn
+
+Reverse By Opener
+Reverses show 5+ cards in the suit opened and 4+ cards (usually) in the suit rebid.  They are natural
+and strong -- in the 17-21 range -- a 1-round force.  Possible Reverses by Opener are...
+• 1!H - 1N - 2!S
+• 1!D - 1!S - 2!H
+• 1!D - 1N - 2!H/2!S
+• 1!C - 1!H - 2!D
+• 1!C - 1!S - 2!D/2!H
+• 1!C - 1N - 2!D/2!H/1!S
+Reverses are NOT a convention.  If you don't have the extra strength, don't reverse.  Some play lebensohl
+after reverses -- second link below.
+https://www.bridgebum.com/reverse_bids.php
+https://www.advinbridge.com/this-week-in-bridge/417</span></span></td><td>500</td><td>240</td><td>260</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2741,7 +3935,17 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Reverse_By_Responder</td><td>500</td><td>133</td><td>367</td>
+        <td><span class="has-tip">Reverse By Responder<span class="tip">Reverse_By_Responder.btn
+
+Reverse By Responder
+Reverses by responder show 4+ cards in the first suit and usually 4+ cards in the suit rebid.
+They are natural and Game Forcing.  Possible Reverses by Responder are...
+• 1!C - 1!D - 1N - 2!H or 2!S
+• 1!C - 1!H - 1N - 2!S
+• 1!C - 1!D - 2!C - 2!H or 2!S
+• 1!D - 1!H - 1N - 2!S
+• 1!D - 1!H - 2!D - 2!S
+Reverses are NOT a convention.  If you don't have  Game Forcing strength, don't reverse.</span></span></td><td>500</td><td>133</td><td>367</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2755,7 +3959,22 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Reverse_Flannery</td><td>500</td><td>237</td><td>263</td>
+        <td><span class="has-tip">Reverse Flannery<span class="tip">Reverse_Flannery.btn
+
+After 1!C or 1!D (P)
+2!H shows 5!S and 4-5!H and 5-8 HCP
+• P - willing to play 2!H
+• 2!S = willing to play 2!S
+• 2N - ask 5-4/5-5 shape and 5-6/7-8 HCP
+• 3m - to play
+• 3om = choose a minor NF
+• 3M - Preemptive
+• 3N - to play
+• 4m - slam invite in m
+• 4om - choose a minor GF
+• 4M - to play
+2!S shows 5!S and 4!H and 9-10 HCP w/similar continuations.
+http://www.duralbridge.com/flannery.ing.htm</span></span></td><td>500</td><td>237</td><td>263</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2769,7 +3988,13 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>Robot_Free_Bid</td><td>500</td><td>288</td><td>212</td>
+        <td><span class="has-tip">Robot Free Bid<span class="tip">Robot_Free_Bid.btn
+
+Robot Free Bid
+North Opens &amp; East Overcalls and South has no Major suit fit w/North and
+with a good 6+ card suit
+negative double with unbid 4-card Major
+bids new suit w/11-14 TP or jump new suit w/15-16 TP</span></span></td><td>500</td><td>288</td><td>212</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2783,7 +4008,15 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Rule_of_16</td><td>500</td><td>489</td><td>11</td>
+        <td><span class="has-tip">Rule of 16<span class="tip">Rule_of_16.btn
+
+North opens 1N with 15-17 HCP and East passes. South has a balanced hand with 8-9 HCP
+and more than 13 R16 points (HCP + number of cards higher than an 8).  When South has more
+than 15 R16 points, South will will have the 4!C; otherwise, North will have the 4!C.  Sit
+South and put Robots in the other three seats.  Check Double-Dummy to see how you did. If
+you want, you can test with specific R16 values (15, 16, 17, or 18).  On all of these the opener
+will have exactly 15 HCP -- hands that would not accept an invitation.  Let me know how the
+Rule of 16 works for you.</span></span></td><td>500</td><td>489</td><td>11</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2797,7 +4030,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Rule_of_16-15</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">=15<span class="tip">Rule_of_16-15.btn
+
+The Rule of 16 -- Opener has 15 HCP NT &amp; responder has 15 R16 points.</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2811,7 +4046,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Rule_of_16-16</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">=16<span class="tip">Rule_of_16-16.btn
+
+The Rule of 16 -- Opener has 15 HCP &amp; responder has 16 R16 points.</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2825,7 +4062,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Rule_of_16-17</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">=17<span class="tip">Rule_of_16-17.btn
+
+The Rule of 16 -- Opener has 15 HCP &amp; responder has 17 R16 points.</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2839,7 +4078,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Rule_of_16-18</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">=18<span class="tip">Rule_of_16-18.btn
+
+The Rule of 16 -- Opener has 15 HCP &amp; responder has 18 R16 points.</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2853,7 +4094,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Rule_of_2</td><td>500</td><td>252</td><td>248</td>
+        <td><span class="has-tip">Rule of 2<span class="tip">Rule_of_2.btn
+
+Mel’s Rule of 2
+After 1N - P - P,  if you have 2 distribution points,  balance!
+https://bridgeburglar.com/mels-rule-2/</span></span></td><td>500</td><td>252</td><td>248</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2867,7 +4112,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Runout_after_1N_X</td><td>500</td><td>49</td><td>451</td>
+        <td><span class="has-tip">Runout after 1NX<span class="tip">Runout_after_1N_X.btn
+
+Runout after 1NX</span></span></td><td>500</td><td>49</td><td>451</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2881,7 +4128,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS16_1C_1SuitedOpnr</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">1-Suited Opener<span class="tip">SCS16_1C_1SuitedOpnr.btn
+
+16+ w/solid or semi-solid 1-suited hand</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2895,7 +4144,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS16_1C_1SuitedResp</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">1-Suited Resp w/8+<span class="tip">SCS16_1C_1SuitedResp.btn
+
+16+ opener w/solid or semi-solid 1-suited response</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2909,7 +4160,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS16_1C_3-Suit_Resp</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">3-Suited Resp w/8+<span class="tip">SCS16_1C_3-Suit_Resp.btn
+
+1C with 3-Suit Response (16+ HCP)
+1!C is 16+ HCP, artificial and forcing.
+Is there anything you want here.  I often include a link to a description.
+http://clairebridge.com/textes/karensrules.pdf</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2923,7 +4179,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS16_1C_3-Suit_Resp_5-7</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">3-Suited Resp w/5-7<span class="tip">SCS16_1C_3-Suit_Resp_5-7.btn
+
+3-Suit Response w/5-7 HCP</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2937,7 +4195,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS16_1C_54_Resp</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">5/4 Resp w/8+<span class="tip">SCS16_1C_54_Resp.btn
+
+5/4 Response (16+ HCP)
+1!C is 16+ HCP, artificial and forcing.
+Is there anything you want here.  I often include a link to a description.
+http://clairebridge.com/textes/karensrules.pdf</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2951,7 +4214,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS16_1C_55_Resp</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">5/5+ Resp w/8+<span class="tip">SCS16_1C_55_Resp.btn
+
+5/5 or better Response (16+ HCP)
+1!C is 16+ HCP, artificial and forcing.
+Is there anything you want here.  I often include a link to a description.
+http://clairebridge.com/textes/karensrules.pdf</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2965,7 +4233,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS16_1C_any_0-4_Resp</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">any Resp w/0-4<span class="tip">SCS16_1C_any_0-4_Resp.btn
+
+Any 0-4 Response (16+ HCP)</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2979,7 +4249,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS16_1C_any_5-7_Resp</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">any Resp w/5-7<span class="tip">SCS16_1C_any_5-7_Resp.btn
+
+Any 5-7 Response (16+ HCP)</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2993,7 +4265,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS16_1C_any_8plus_Resp</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">any Resp w/8+<span class="tip">SCS16_1C_any_8plus_Resp.btn
+
+Any 8+ Response (16+ HCP)</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3007,7 +4281,9 @@
         <td>4.9s</td>
       </tr>
       <tr>
-        <td>SCS16_1or2C</td><td>500</td><td>468</td><td>32</td>
+        <td><span class="has-tip">1/2 Club Opener<span class="tip">SCS16_1or2C.btn
+
+Strong Club: 1C = 16+ w/6+Clubs or 2C = 11-15 HCP w/6+Clubs</span></span></td><td>500</td><td>468</td><td>32</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3021,7 +4297,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS16_Major_Open_2-Suit_Resp</td><td>500</td><td>490</td><td>10</td>
+        <td><span class="has-tip">1M w/2-Suit Resp<span class="tip">SCS16_Major_Open_2-Suit_Resp.btn
+
+Major &amp; 2-Suit Response (11-15 HCP)
+1!H or 1!S is 11-15 HCP.
+http://clairebridge.com/textes/karensrules.pdf</span></span></td><td>500</td><td>490</td><td>10</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3035,7 +4315,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS16_Major_with_2nd_Suit</td><td>500</td><td>335</td><td>165</td>
+        <td><span class="has-tip">1M w/2nd Suit<span class="tip">SCS16_Major_with_2nd_Suit.btn
+
+Major with 2nd Suit (9-15 HCP)
+South opens 1!H or 1!S with a second suit of at least 5-cards and North has 12+.
+2!C is a game-forcing relay.
+http://clairebridge.com/textes/karensrules.pdf</span></span></td><td>500</td><td>335</td><td>165</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3049,7 +4334,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS_1C_3-Suit_Resp</td><td>500</td><td>322</td><td>178</td>
+        <td><span class="has-tip">1C 3-Suit<span class="tip">SCS_1C_3-Suit_Resp.btn
+
+1C with 3-Suit Response
+1!C is 15+ HCP, artificial and forcing.
+Is there anything you want here.  I often include a link to a description.
+http://clairebridge.com/textes/karensrules.pdf</span></span></td><td>500</td><td>322</td><td>178</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3063,7 +4353,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS_1C_3-Suit_Resp_5-7</td><td>500</td><td>357</td><td>143</td>
+        <td><span class="has-tip">Strong Club 3-Suit 5-7<span class="tip">SCS_1C_3-Suit_Resp_5-7.btn
+
+Strong Club with 3-Suit Response w/5-7 HCP</span></span></td><td>500</td><td>357</td><td>143</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3077,7 +4369,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS_1C_54_Resp</td><td>500</td><td>318</td><td>182</td>
+        <td><span class="has-tip">Strong Club 5/4 Resp<span class="tip">SCS_1C_54_Resp.btn
+
+Strong Club with 5/4 Response
+1!C is 15+ HCP, artificial and forcing.
+Is there anything you want here.  I often include a link to a description.
+http://clairebridge.com/textes/karensrules.pdf</span></span></td><td>500</td><td>318</td><td>182</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3091,7 +4388,7 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS_1C_55_Resp</td><td>500</td><td>320</td><td>180</td>
+        <td><span class="has-tip">StrongClub55<span class="tip">SCS_1C_55_Resp.btn</span></span></td><td>500</td><td>320</td><td>180</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3105,7 +4402,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS_1C_any_0-4_Resp</td><td>500</td><td>372</td><td>128</td>
+        <td><span class="has-tip">Strong Club &amp; 0-4 Resp<span class="tip">SCS_1C_any_0-4_Resp.btn
+
+Strong Club with any 0-4 Response</span></span></td><td>500</td><td>372</td><td>128</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3119,7 +4418,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS_1C_any_5-7_Resp</td><td>500</td><td>347</td><td>153</td>
+        <td><span class="has-tip">Strong Club &amp; 5-7 Resp<span class="tip">SCS_1C_any_5-7_Resp.btn
+
+Strong Club with any 5-7 Response</span></span></td><td>500</td><td>347</td><td>153</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3133,7 +4434,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS_1C_any_8plus_Resp</td><td>500</td><td>325</td><td>175</td>
+        <td><span class="has-tip">Strong Club &amp; 8+ Resp<span class="tip">SCS_1C_any_8plus_Resp.btn
+
+Strong Club with any 8+ Response</span></span></td><td>500</td><td>325</td><td>175</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3147,7 +4450,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS_Major_Open_2-Suit_Resp</td><td>500</td><td>486</td><td>14</td>
+        <td><span class="has-tip">Major &amp; 2-Suit Resp<span class="tip">SCS_Major_Open_2-Suit_Resp.btn
+
+Major &amp; 2-Suit Response
+1!H or 1!S is 11-14 HCP.
+http://clairebridge.com/textes/karensrules.pdf</span></span></td><td>500</td><td>486</td><td>14</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3161,7 +4468,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS_Major_with_2nd_Suit</td><td>500</td><td>341</td><td>159</td>
+        <td><span class="has-tip">Major w/2nd Suit<span class="tip">SCS_Major_with_2nd_Suit.btn
+
+Major with 2nd Suit
+South opens 1!H or 1!S with a second suit of at least 5-cards and North has 12+.
+2!C is a game-forcing relay.
+http://clairebridge.com/textes/karensrules.pdf</span></span></td><td>500</td><td>341</td><td>159</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3175,7 +4487,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SCS_Two_Clubs</td><td>500</td><td>235</td><td>265</td>
+        <td><span class="has-tip">Two Clubs 11-16<span class="tip">SCS_Two_Clubs.btn
+
+Strong Club System: 2C = 11-16 HCP and 5+Clubs</span></span></td><td>500</td><td>235</td><td>265</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3189,7 +4503,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Scrambling_2NT</td><td>500</td><td>64</td><td>436</td>
+        <td><span class="has-tip">Scrambling 2NT<span class="tip">Scrambling_2NT.btn
+
+Scrambling 2NT.  In a competitive auction, when your'e forced to bid, 2NT is Scrambling.
+Two NT in competition may be Good/Bad or Scrambling.  If you make a free bid, it's Good/Bad.
+Check the link below for more information.  After (1x) P (2x) X; (P), you must act.
+https://tinyurl.com/Scrambling-vs-Good-Bad-2N</span></span></td><td>500</td><td>64</td><td>436</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3203,7 +4522,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Serious</td><td>500</td><td>86</td><td>414</td>
+        <td><span class="has-tip">Serious/Non-Serious<span class="tip">Serious.btn
+
+Serious/Non-Serious: When we're in a 2/1 auction and we have a major suit fit
+and the bid is at 3 of our major, the step bid (or 3N) says I'm non-serious (or serious).
+it's a partnership agreement.  I prefer non-serious as it doesn't reveal information.
+The deal is leveled so that game and slam occur with about the same frequency.</span></span></td><td>500</td><td>86</td><td>414</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3217,7 +4541,14 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Size_Asking_Minor_Suit_Stayman</td><td>500</td><td>62</td><td>438</td>
+        <td><span class="has-tip">Size Asking MSS<span class="tip">Size_Asking_Minor_Suit_Stayman.btn
+
+Size Asking Minor Suit Stayman
+2!S asks for TOP of range and shows !C or balanced -- Ask yourself, do I want to be in game opposite 8 HCP?
+2N is a conditional transfer to !D. You should accept the transfer with better !D than !C; otherwise, bid 3!C.
+With a balanced hand, repeated asking bids of 4N and 5N are invites to 6N and 7N.
+The opener should treat these as 'Pick a Slam'.
+https://tinyurl.com/Size-Asking-MSS</span></span></td><td>500</td><td>62</td><td>438</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3231,7 +4562,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Slam_After_Major_Fit</td><td>500</td><td>469</td><td>31</td>
+        <td><span class="has-tip">Major Suit Slam<span class="tip">Slam_After_Major_Fit.btn
+
+Slam w/Major Suit Fit -- N/S have 29+ HCP
+Responder's hand has at least 3-card support.  Its strength is wide ranging.</span></span></td><td>500</td><td>469</td><td>31</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3245,7 +4579,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Slam_after_NT</td><td>500</td><td>428</td><td>72</td>
+        <td><span class="has-tip">Slam after NT<span class="tip">Slam_after_NT.btn
+
+Slam after Notrump</span></span></td><td>500</td><td>428</td><td>72</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3259,7 +4595,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Slam_after_Preempt</td><td>500</td><td>447</td><td>53</td>
+        <td><span class="has-tip">Slam after Preempt<span class="tip">Slam_after_Preempt.btn
+
+Slam after Preempt</span></span></td><td>500</td><td>447</td><td>53</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3273,7 +4611,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Slam_after_Stayman</td><td>500</td><td>487</td><td>13</td>
+        <td><span class="has-tip">Slam after Stayman<span class="tip">Slam_after_Stayman.btn
+
+Slam after Stayman or Smolen.</span></span></td><td>500</td><td>487</td><td>13</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3287,7 +4627,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Slam_after_Stayman_or_Jacoby_w30plus</td><td>500</td><td>414</td><td>86</td>
+        <td><span class="has-tip">Sta/Jac w/30+ (Lev)<span class="tip">Slam_after_Stayman_or_Jacoby_w30plus.btn
+
+Slam after Stayman/Jacoby w/30+
+Leveled for Stayman/Jacoby, Fit/NoFit, and NT Range.</span></span></td><td>500</td><td>414</td><td>86</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3301,7 +4644,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Slam_after_Stayman_or_Jacoby_w31plus</td><td>500</td><td>427</td><td>73</td>
+        <td><span class="has-tip">Sta/Jac w/31+ (Lev)<span class="tip">Slam_after_Stayman_or_Jacoby_w31plus.btn
+
+Slam after Stayman/Jacoby w/31+
+Leveled for Stayman/Jacoby, Fit/NoFit, and NT Range.</span></span></td><td>500</td><td>427</td><td>73</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3315,7 +4661,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Slam_after_Transfer</td><td>500</td><td>472</td><td>28</td>
+        <td><span class="has-tip">Slam after Transfer<span class="tip">Slam_after_Transfer.btn
+
+Slam after Jacoby/Texas Transfer.</span></span></td><td>500</td><td>472</td><td>28</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3329,7 +4677,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Smolen</td><td>500</td><td>488</td><td>12</td>
+        <td><span class="has-tip">Smolen<span class="tip">Smolen.btn
+
+Smolen
+With game forcing values and 5-4 in the majors, start with 2!C.
+If partner bids 2!D, jump to 3 of your 4-card major.</span></span></td><td>500</td><td>488</td><td>12</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3343,7 +4695,12 @@
         <td>4.6s</td>
       </tr>
       <tr>
-        <td>Smolen_Invitational</td><td>500</td><td>404</td><td>96</td>
+        <td><span class="has-tip">Smolen Inv<span class="tip">Smolen_Invitational.btn
+
+Smolen Shape w/Invitational values
+With invitational values and 5-4 in the majors, you can invite.
+• 4!S and 5!H, transfer to 2!H and then bid 2!S.
+• 5!S and 4!H, start with Stayman and correct 2!D to 2!S.</span></span></td><td>500</td><td>404</td><td>96</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3357,7 +4714,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Smolen_after_2N</td><td>500</td><td>491</td><td>9</td>
+        <td><span class="has-tip">Smolen - 2N<span class="tip">Smolen_after_2N.btn
+
+Smolen after 2NT
+With game forcing values and 5-4 in the majors, start with 3!C.
+If partner bids 3!D, bid your 4-card major.</span></span></td><td>500</td><td>491</td><td>9</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3371,7 +4732,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Snapdragon_Double</td><td>500</td><td>155</td><td>345</td>
+        <td><span class="has-tip">Snapdragon Double<span class="tip">Snapdragon_Double.btn
+
+Snapdragon Double
+After LHO opens, partner overcalls, and RHO bids a new suit, a Snapdragon double
+is artifical and forcing.  It shows 5+ cards in the lone unbid suit, at least 8 HCP,
+and a tolerance for partner's suit.  'Tolerance' ranges from 2 to 3 cards.
+https://www.bridgebum.com/snapdragon_double.php</span></span></td><td>500</td><td>155</td><td>345</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3385,7 +4752,14 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>Soloway_Jump_Shift</td><td>500</td><td>327</td><td>173</td>
+        <td><span class="has-tip">Soloway Jump Shift<span class="tip">Soloway_Jump_Shift.btn
+
+Soloway Jump Shift
+1. Strong rebiddable suit w/17+ HCP and 4+ controls and no side 4-card suit
+2. Solid suit w/17+ HCP and 4+ controls and may have a 4-card side suit
+3. Rebiddable suit w/18+ HCP and 4+ controls and 5332 or 6322 shape
+4. Rebiddable suit w/17+ TP and 4+ controls and 4-card support for openers suit
+https://www.bridgebase.com/doc/gib_system_notes.php#Soloway_Jump_Shift</span></span></td><td>500</td><td>327</td><td>173</td>
         <td>0.0s</td>
         <td>1.0s</td>
         <td>1.8s</td>
@@ -3399,7 +4773,11 @@
         <td>7.4s</td>
       </tr>
       <tr>
-        <td>Soloway_Jump_Shift_Type-1</td><td>500</td><td>427</td><td>73</td>
+        <td><span class="has-tip">1<span class="tip">Soloway_Jump_Shift_Type-1.btn
+
+Soloway Jump Shift - Type 1
+1. Strong rebiddable suit w/17+ HCP and 4+ controls and no side 4-card suit
+https://www.bridgebase.com/doc/gib_system_notes.php#Soloway_Jump_Shift</span></span></td><td>500</td><td>427</td><td>73</td>
         <td>0.0s</td>
         <td>0.8s</td>
         <td>2.1s</td>
@@ -3413,7 +4791,11 @@
         <td>7.6s</td>
       </tr>
       <tr>
-        <td>Soloway_Jump_Shift_Type-2</td><td>500</td><td>379</td><td>121</td>
+        <td><span class="has-tip">2<span class="tip">Soloway_Jump_Shift_Type-2.btn
+
+Soloway Jump Shift - Type 2
+2. Solid suit w/17+ HCP and 4+ controls and may have a 4-card side suit
+https://www.bridgebase.com/doc/gib_system_notes.php#Soloway_Jump_Shift</span></span></td><td>500</td><td>379</td><td>121</td>
         <td>0.0s</td>
         <td>0.8s</td>
         <td>3.1s</td>
@@ -3427,7 +4809,11 @@
         <td>8.7s</td>
       </tr>
       <tr>
-        <td>Soloway_Jump_Shift_Type-3</td><td>500</td><td>198</td><td>302</td>
+        <td><span class="has-tip">3<span class="tip">Soloway_Jump_Shift_Type-3.btn
+
+Soloway Jump Shift - Type 3
+3. Rebiddable suit w/18+ HCP and 4+ controls and 5332 or 6322 shape
+https://www.bridgebase.com/doc/gib_system_notes.php#Soloway_Jump_Shift</span></span></td><td>500</td><td>198</td><td>302</td>
         <td>0.0s</td>
         <td>0.8s</td>
         <td>2.0s</td>
@@ -3441,7 +4827,11 @@
         <td>7.4s</td>
       </tr>
       <tr>
-        <td>Soloway_Jump_Shift_Type-4</td><td>500</td><td>169</td><td>331</td>
+        <td><span class="has-tip">4<span class="tip">Soloway_Jump_Shift_Type-4.btn
+
+Soloway Jump Shift - Type 4
+4. Rebiddable suit w/17+ TP and 4+ controls and 4-card support for openers suit
+https://www.bridgebase.com/doc/gib_system_notes.php#Soloway_Jump_Shift</span></span></td><td>500</td><td>169</td><td>331</td>
         <td>0.0s</td>
         <td>0.8s</td>
         <td>1.3s</td>
@@ -3455,7 +4845,16 @@
         <td>6.7s</td>
       </tr>
       <tr>
-        <td>Spear</td><td>500</td><td>366</td><td>134</td>
+        <td><span class="has-tip">Spear<span class="tip">Spear.btn
+
+Spear: Intervening after 1!C or 1!D (P) 1NT...
+• 2!C = both majors w/6+ HCP
+• 2!D = one major w/12+ HCP
+• 2!H = 5+!H usually less than 12 HCP
+• 2!S = 5+!S usually less than 12 HCP
+• X = Good hand usually balanced 12+
+• 3x = natural good single suited hand
+https://www.advinbridge.com/this-week-in-bridge/571</span></span></td><td>500</td><td>366</td><td>134</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3469,7 +4868,18 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Spiral_Raise</td><td>500</td><td>132</td><td>368</td>
+        <td><span class="has-tip">Spiral Raise<span class="tip">Spiral_Raise.btn
+
+Spiral Raise
+After 1m 1M 2M, 2N is Spiral asking bid
+In the simplest version Opener shows 3- or 4-card support and min/max HCP
+• 3!C 3-card support, minimum
+• 3!D 3-card support, maximum
+• 3!H 4-card support, minimum
+• 3!S 4-card support, maximum
+Some use a step-bid instead of 2N as the asking bid
+https://bridgewinners.com/article/view/spiral-raises/
+https://bridgewinners.com/article/view/1m-1m-now-what/</span></span></td><td>500</td><td>132</td><td>368</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3483,7 +4893,18 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Spiral_Raises_with_3</td><td>500</td><td>-</td><td>500</td>
+        <td><span class="has-tip">Spiral Raise w/3<span class="tip">Spiral_Raises_with_3.btn
+
+Spiral Raise w/3
+After 1m 1M 2M, 2N is Spiral asking bid
+In the simplest version Opener shows 3- or 4-card support and min/max HCP
+• 3!C 3-card support, minimum
+• 3!D 3-card support, maximum
+• 3!H 4-card support, minimum
+• 3!S 4-card support, maximum
+Some use a step-bid instead of 2N as the asking bid
+https://bridgewinners.com/article/view/spiral-raises/
+https://bridgewinners.com/article/view/1m-1m-now-what/</span></span></td><td>500</td><td>-</td><td>500</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3497,7 +4918,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Splinters</td><td>500</td><td>345</td><td>155</td>
+        <td><span class="has-tip">Splinters<span class="tip">Splinters.btn
+
+Splinter Bids are double jumps.  They show a singleton or void in the suit bid and 4+ cards
+in support of opener's major.  GIB splinters with a singleton A, K, or Q.  Some players do NOT.
+• After 1!H a jump to 3!S, 4!C, or 4!D
+• After 1!S a jump to 4!C, 4!D, or 4!H</span></span></td><td>500</td><td>345</td><td>155</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3511,7 +4937,16 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Splinters_By_Opener</td><td>500</td><td>134</td><td>366</td>
+        <td><span class="has-tip">Splinter by Opener<span class="tip">Splinters_By_Opener.btn
+
+Splinter by Opener
+An unusual jump is a splinter.
+A Jump Reverse is unusual.  Billy Miller refers to these 3-level splinters as 'splimit'.
+They're always below the 3-level or responder's suit and they're invitational to game.
+https://tinyurl.com/Billy-Miller-SpLimit-Bids
+Double jumpshifts are also unusual. They're above the 3-level of responder's suit; thus, game forcing.
+Many also play that Jump's in 2/1 auctions are splinters. (Not Included Here)
+NOTE: The Robots play these 3-level splinters as GAME FORCING.</span></span></td><td>500</td><td>134</td><td>366</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3525,7 +4960,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Splinters_after_Minor</td><td>500</td><td>129</td><td>371</td>
+        <td><span class="has-tip">Splinters after Minor<span class="tip">Splinters_after_Minor.btn
+
+Splinter Bids are double jumps.  They show a singleton or void in the suit bid and support
+in support of opener's minor (at least 9-cards).
+GIB splinters with a singleton A, K, or Q.  Some players do NOT.
+• After 1!C a jump to 3!D, 3!H, or 3!S
+• After 1!D a jump to 3!H, 3!S, or 4!C</span></span></td><td>500</td><td>129</td><td>371</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3539,7 +4980,19 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Stayman</td><td>500</td><td>481</td><td>19</td>
+        <td><span class="has-tip">Basic Stayman<span class="tip">Stayman.btn
+
+Stayman Convention (Basics)
+Stayman (2!C) asks partner for a 4-card major after a 1NT opening.
+• 2!D - No 4-card major
+• 2!H - 4+!H, may also have 4!S
+• 2!S - 4+!S and denies 4!H
+Requirements to bid Stayman:
+• At least one 4-card major
+• 8+ HCP for invitational hands
+• With weak hands (&lt; 8 HCP), only bid 2!C if you can pass any response
+Hands without a 4-card major or with fewer than 8 HCP usually pass 1NT.
+https://www.bridgebum.com/stayman.php</span></span></td><td>500</td><td>481</td><td>19</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3553,7 +5006,17 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Suction</td><td>500</td><td>472</td><td>28</td>
+        <td><span class="has-tip">Suction<span class="tip">Suction.btn
+
+15-17 Notrump Opening and Suction.
+• X   = !C and !H -- non-touching
+• 2!C = !D or (!H and !S)
+• 2!D = !H or (!S and !C)
+• 2!H = !S or (!C and !D)
+• 2!S = !C or (!D and !H)
+• 2N  = !D and !S -- non-touching
+The 1-suited vs 2-suited ratio is about 65/35.
+https://www.bridgebum.com/suction.php</span></span></td><td>500</td><td>472</td><td>28</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3567,7 +5030,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>SupportX_by_Advancer</td><td>500</td><td>245</td><td>255</td>
+        <td><span class="has-tip">Sup X by Advancer<span class="tip">SupportX_by_Advancer.btn
+
+After partner overcalls and RHO raises, X is a Support Double.
+After 1x (1y) 2x, (X) shows 3-card support.  A raise shows 4-card support.</span></span></td><td>500</td><td>245</td><td>255</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3581,7 +5047,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Support_Double</td><td>500</td><td>311</td><td>189</td>
+        <td><span class="has-tip">Support Double<span class="tip">Support_Double.btn
+
+Support Double
+Partner opens 1!C, 1!D, or 1!H
+You respond 1!H or 1!S
+Your LHO bids or doubles
+Your partner doubles or redoubles.</span></span></td><td>500</td><td>311</td><td>189</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3595,7 +5067,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Takeout_Double</td><td>500</td><td>258</td><td>242</td>
+        <td><span class="has-tip">Takeout Doubles<span class="tip">Takeout_Double.btn
+
+Takeout Doubles</span></span></td><td>500</td><td>258</td><td>242</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3609,7 +5083,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Texas_Transfer</td><td>500</td><td>360</td><td>140</td>
+        <td><span class="has-tip">GIB NT &amp; Texas<span class="tip">Texas_Transfer.btn
+
+Texas Transfer
+Texas Transfer show a 6+card major with either NO slam interest or intent to follow up with RKC.
+With a 6+card major an a short suit. Jacoby then splinter shows slam interest (small are grand) due to shortness.
+Jacoby followed directly by 4N is Quantitative.  Texas then 4N is RKC without shortness.
+https://www.bridgebum.com/texas_transfer.php</span></span></td><td>500</td><td>360</td><td>140</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3623,7 +5103,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Texas_or_Jacoby</td><td>500</td><td>488</td><td>12</td>
+        <td><span class="has-tip">Jacoby or Texas<span class="tip">Texas_or_Jacoby.btn
+
+Jacoby or Texas
+Jacoby followed directly by 4N is Quantitative.  Texas then 4N is RKC.
+Jacopy then Splinter has 6+cards and slam interest (small or grand) due to shortness.</span></span></td><td>500</td><td>488</td><td>12</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3637,7 +5121,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Tislevoll_after_Opps_Preempt</td><td>500</td><td>261</td><td>239</td>
+        <td><span class="has-tip">Pre/Tislevoll 4C/4D<span class="tip">Tislevoll_after_Opps_Preempt.btn
+
+Tislevoll Slam Try after Preempt
+North open 1!H or 1!S, East Preempts, and South has 14+ HCP and support for North's suit.
+• 4!C shows a control in the opponents suit.
+• 4!D denies a control in the opponents suit.
+by special request from Sten Mullervig.</span></span></td><td>500</td><td>261</td><td>239</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3651,7 +5141,14 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Too_Strong_for_Overcall</td><td>500</td><td>498</td><td>2</td>
+        <td><span class="has-tip">Overcalls??<span class="tip">Too_Strong_for_Overcall.btn
+
+Overcalls??  Some hands are too strong for an overcall.
+Simple overcalls -- those at the same level as the opening bid -- show
+• 7-17 at the 1-level
+• 11-17 at the 2-level
+With stronger hands, start with a double.  Double then new suit shows 18+.
+Overcall then Double is take-out in the 15-17 range.</span></span></td><td>500</td><td>498</td><td>2</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3665,7 +5162,14 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Too_Strong_for_Overcall4th</td><td>500</td><td>252</td><td>248</td>
+        <td><span class="has-tip">Overcalls in 4th??<span class="tip">Too_Strong_for_Overcall4th.btn
+
+Overcalls in 4th??  Some hands are too strong for an overcall in 4th seat.
+Simple overcalls -- those at the same level as the opening bid -- show
+• 7-17 at the 1-level
+• 11-17 at the 2-level
+With stronger hands, start with a double.  Double then new suit shows 18+.
+Overcall then Double is take-out in the 15-17 range.</span></span></td><td>500</td><td>252</td><td>248</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3679,7 +5183,18 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Transfer_Advances</td><td>500</td><td>-</td><td>500</td>
+        <td><span class="has-tip">Transfer Advances<span class="tip">Transfer_Advances.btn
+
+Transfer Advances
+After an opening suit bid, a non-jump overcall,  and a pass by responder
+the advancer may...
+1. bid NT -- natural and non-forcing.
+2. make a natural and forcing new suit bid below the 2-level of the opening suit.
+3. make a weak raises.
+4. transfer into a new suit or the overcaller's suit -- starting with a cue bid of opener's suit.
+5. make a natural jump bid above overcaller's suit.
+This is leveled such the opening bid is equally divide amoung the four suits.
+https://bridgewinners.com/article/view/transfer-advances-of-overcalls/</span></span></td><td>500</td><td>-</td><td>500</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3693,7 +5208,19 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Transfer_Walsh</td><td>500</td><td>390</td><td>110</td>
+        <td><span class="has-tip">Transfer Walsh<span class="tip">Transfer_Walsh.btn
+
+Transfer Walsh w/X-Y-NT
+After 1!C...
+• 1!D = 4+!H
+• 1!H = 4+!S
+• 1!S = No 4+ Major (usually 5+D)
+·· If opener rebids 1N...
+··• 2!C = relay to 2!D
+··• 2!D = artificial Game Force
+• 1N = 10-12 balanced
+• 2N = 13-15 balanced
+https://en.wikipedia.org/wiki/Transfer_Walsh#</span></span></td><td>500</td><td>390</td><td>110</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3707,7 +5234,21 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Transfers_after_1M_X</td><td>500</td><td>475</td><td>25</td>
+        <td><span class="has-tip">Xfer after 1M (X)<span class="tip">Transfers_after_1M_X.btn
+
+Transfer after 1M (X)
+Transfers start at 1N and end at 2M-1.
+• 1N  --&gt; 2!C
+• 2!C --&gt; 2!D
+• 2!D --&gt; 2!H
+• 2!H --&gt; 2!S (only after 1S opener)
+Transfers into a new suit, show something like a weak 2, or better and less than 3-card support.
+A 1-under jump at the 3-level is a transfer (1!H (X) 3!D, or 1!S (X) 3!H). So, responder has
+two ways to raise to the 2- or 3-level. A direct raise is 4-7 and the 1-under jump is 8-10.
+With less than invitional values, raise to the limit! 2-level w/3, 3-level w/4, or game w/5.
+With a fit and invitional+ values (11+), bid 2NT.
+Finally, XX is Business with less than 3-card support.
+https://www.nxtbook.com/acbl/bridgebulletin/2025_06/index.php#/p/66</span></span></td><td>500</td><td>475</td><td>25</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3721,7 +5262,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Trap_Pass</td><td>94</td><td>59</td><td>35</td>
+        <td><span class="has-tip">Trap Pass<span class="tip">Trap_Pass.btn
+
+Trap Pass
+After 1x, (overcall), Pass, (Pass), consider reopening with DOUBLE.</span></span></td><td>94</td><td>59</td><td>35</td>
         <td>0.0s</td>
         <td>0.9s</td>
         <td>3m52s</td>
@@ -3735,7 +5279,11 @@
         <td>3m54s</td>
       </tr>
       <tr>
-        <td>Trap_Pass_Maybe</td><td>170</td><td>123</td><td>47</td>
+        <td><span class="has-tip">Trap Pass?<span class="tip">Trap_Pass_Maybe.btn
+
+Trap Pass, Maybe
+After 1x, (overcall), Pass, (Pass), consider reopening with DOUBLE.
+About 33% of South's passes are trap passes.  The others are weak passes.</span></span></td><td>170</td><td>123</td><td>47</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3749,7 +5297,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Trap_Pass_Opener</td><td>500</td><td>262</td><td>238</td>
+        <td><span class="has-tip">Trap Pass Opener<span class="tip">Trap_Pass_Opener.btn
+
+Trap Pass after opener's major or weak 2.
+When you have a stack in opener's suit consider passing.</span></span></td><td>500</td><td>262</td><td>238</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3763,7 +5314,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Trap_Pass_Opener_Maybe</td><td>500</td><td>281</td><td>219</td>
+        <td><span class="has-tip">Trap Pass Opener?<span class="tip">Trap_Pass_Opener_Maybe.btn
+
+Trap Pass after opener's major or weak 2 (Maybe)
+About half are trap passes about half are normal passes.</span></span></td><td>500</td><td>281</td><td>219</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3777,7 +5331,15 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Two-Suited_Overcalls</td><td>500</td><td>351</td><td>149</td>
+        <td><span class="has-tip">2-Suit Overcalls<span class="tip">Two-Suited_Overcalls.btn
+
+Please note:  This scenario includes all two-suited hands. Specific major/minor combinations
+are problematic -- Michaels Cuebids and Top &amp; Bottom Cuebids can't be played together.
+·
+You may want to practice with the Michaels and Unusual NT scenario instead.
+·
+Let me know if you want to practice with Top &amp; Bottom and Unusual NT.
+2-Suit Overcalls</span></span></td><td>500</td><td>351</td><td>149</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3791,7 +5353,14 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Two-Way_Game_Try</td><td>500</td><td>238</td><td>262</td>
+        <td><span class="has-tip">Two-Way Game Try<span class="tip">Two-Way_Game_Try.btn
+
+Two-Way Game Try
+After a single raise of a major
+. a step bid is a short-suit game try
+. any other bid below 3 or the major is a long suit/help suit game try
+. bidding 3 of the major is a general strength game try
+https://www.bridgebase.com/doc/gib_system_notes.php#Two-way_Game_Try</span></span></td><td>500</td><td>238</td><td>262</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3805,7 +5374,15 @@
         <td>4.2s</td>
       </tr>
       <tr>
-        <td>Two-Way_New_Minor_Forcing_aka_xyNT</td><td>500</td><td>220</td><td>280</td>
+        <td><span class="has-tip">2-Way NMF - xyNT (Lev)<span class="tip">Two-Way_New_Minor_Forcing_aka_xyNT.btn
+
+Two Way New Minor Forcing aka xyNT allows you to describe four different responding hand types.
+• Part Score  -- after 1x-1y-1N, 2!H or 2!S ane natural and non-forcing, 2N relays to 3!C P/C.
+• Game Invite -- after 1x-1y-1N, bid 2!C, an artifical relay to 2!D.  Then, all continuations are invitational.
+• Game Force  -- after 1x-1y-1N, bid 2!D, an artifical game force.
+• Slam Invite -- after 1x-1y-1N, a suit bid at the 3-level is a natural slam try.
+The deals are leveled so that the hand types occur at about the same frequency.
+https://bridgewinners.com/article/view/two-way-new-minor-forcing-aka-xynt</span></span></td><td>500</td><td>220</td><td>280</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3819,7 +5396,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Two-Way_Size_Ask</td><td>500</td><td>213</td><td>287</td>
+        <td><span class="has-tip">Two-Way Size Ask<span class="tip">Two-Way_Size_Ask.btn
+
+Two-Way Size Ask
+After a 1NT opening and a Pass, responder can ask about the opener's hand size.
+2!S shows !C or balanced and is size-asking.  Opener bids 3!C if minimum or 3!D if max.
+2N shows!D or balanced and is size-asking.  Opener bids 3C if minimum or 3!D if max.
+https://tinyurl.com/Size-Asking-MSS</span></span></td><td>500</td><td>213</td><td>287</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3833,7 +5416,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Two_NT_in_Fourth_Seat</td><td>500</td><td>429</td><td>71</td>
+        <td><span class="has-tip">2NT in 4th Seat<span class="tip">Two_NT_in_Fourth_Seat.btn
+
+2N in 4th Seat shows 20-21 HCP.</span></span></td><td>500</td><td>429</td><td>71</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3847,7 +5432,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Two_Over_One</td><td>500</td><td>477</td><td>23</td>
+        <td><span class="has-tip">Two Over One<span class="tip">Two_Over_One.btn
+
+Any 2/1 after 1!D, 1!H, or 1!S opening
+1!D - 2!C
+1!H - 2!C or 2!D
+1!S - 2!C or 2!D or 2!H</span></span></td><td>500</td><td>477</td><td>23</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3861,7 +5451,17 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Vics_2C_Relay</td><td>500</td><td>484</td><td>16</td>
+        <td><span class="has-tip">Vic's 2C Relay<span class="tip">Vics_2C_Relay.btn
+
+Vic's Non-Force NT &amp; 2!C Relay. After 1M (P)...
+• 1N, is Not Forcing 8-11. Continuations are natural.
+• 2!C is a relay to 2!D. Continuations are
+··· 2M is a 3-card invitational raise.
+··· 3M is a 3-card Game Forcing raise.
+··· any other call is natural and game forcing.
+• A new suit (2!D or 2!H) is a natural Game Force.
+This is described in Vic's Views, March 2024 ACBL Bulletin, p66.
+https://www.nxtbook.com/acbl/bridgebulletin/2024_03/index.php#/p/66</span></span></td><td>500</td><td>484</td><td>16</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3875,7 +5475,15 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Vics_Bal_Resp_to_1m</td><td>500</td><td>123</td><td>377</td>
+        <td><span class="has-tip">Vic's Bal Resp to 1m<span class="tip">Vics_Bal_Resp_to_1m.btn
+
+Vic's balanced-hand responses to 1!C or 1!D
+South opens 1!C or 1!D and North has any balanced hand without a major suit.
+• 1N = 6-10
+• 2!H = 11-12 (a relay to 2!S)
+• 2N = 13-15
+• 3N = 16-17
+https://www.nxtbook.com/acbl/bridgebulletin/2025_05/index.php#/p/70</span></span></td><td>500</td><td>123</td><td>377</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3889,7 +5497,11 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>W2_X_XX</td><td>280</td><td>15</td><td>265</td>
+        <td><span class="has-tip">Weak2 (X) XX<span class="tip">W2_X_XX.btn
+
+Weak2 (X) XX (Now What?)
+After 2!D/2!H/2!S, (X), XX,
+Without the Redouble we play lebensohl.  With the Redouble ???.</span></span></td><td>280</td><td>15</td><td>265</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3903,7 +5515,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>WB5_Collante</td><td>500</td><td>500</td><td>-</td>
+        <td><span class="has-tip">Collante<span class="tip">WB5_Collante.btn
+
+After 1C (1D), X shows 4!H and 2!H shows 5+!H,  likewise after 1C (1H) X shows 4!S and 2S shows 5+!S.</span></span></td><td>500</td><td>500</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3917,7 +5531,7 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>WB5_Rodrigue</td><td>500</td><td>498</td><td>2</td>
+        <td><span class="has-tip">WB5Rodrigue<span class="tip">WB5_Rodrigue.btn</span></span></td><td>500</td><td>498</td><td>2</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3931,7 +5545,14 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>WB5_Roudi</td><td>500</td><td>486</td><td>14</td>
+        <td><span class="has-tip">Roudi<span class="tip">WB5_Roudi.btn
+
+After 1x (P) 1y (P) 1NT, 2!C is an artificial asking bid.
+2!D shows a min opening and no major fit.
+2!H shows a min opening and 3-card in responder's major.
+2!S shows a max opening and 3-card in responder's major.
+2N shows a max opening and no major fit.
+3m shows a max opening and 3-card in responder's major &amp; 5-cards in the suit bid.</span></span></td><td>500</td><td>486</td><td>14</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3945,7 +5566,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>We_Overcall</td><td>500</td><td>353</td><td>147</td>
+        <td><span class="has-tip">We Overcall<span class="tip">We_Overcall.btn
+
+Overcalls</span></span></td><td>500</td><td>353</td><td>147</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3959,7 +5582,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>We_Overcall_1N</td><td>500</td><td>416</td><td>84</td>
+        <td><span class="has-tip">We Overcall 1NT<span class="tip">We_Overcall_1N.btn
+
+We Overcall 1NT</span></span></td><td>500</td><td>416</td><td>84</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3973,7 +5598,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>We_Overcall_1N_then_Gerber</td><td>500</td><td>-</td><td>-</td>
+        <td><span class="has-tip">then Gerber<span class="tip">We_Overcall_1N_then_Gerber.btn
+
+We Overcall 1NT then partner bids 4!C
+• 4!D - 0 or 4 Aces
+• 4!H - 1 Ace
+• 4!S - 2 Aces
+• 4N - 3 Aces</span></span></td><td>500</td><td>-</td><td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3987,7 +5618,9 @@
         <td>0.0s</td>
       </tr>
       <tr>
-        <td>We_Overcall_NT_then_Jacoby</td><td>500</td><td>256</td><td>244</td>
+        <td><span class="has-tip">then Jacoby<span class="tip">We_Overcall_NT_then_Jacoby.btn
+
+We Overcall 1NT then partner transfers to 2!H or 2!S.</span></span></td><td>500</td><td>256</td><td>244</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4001,7 +5634,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>We_Overcall_NT_then_MSS</td><td>500</td><td>155</td><td>345</td>
+        <td><span class="has-tip">then  MSS<span class="tip">We_Overcall_NT_then_MSS.btn
+
+After we Overcall 1NT, partner bids Minor Suit Stayman.
+There are multiple ways to play MSS; this is how GIB plays it...
+2N is MSS; then...
+• 3!C - Shows a !Club preference.
+• 3!D - Shows a !Diamond preference.</span></span></td><td>500</td><td>155</td><td>345</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4015,7 +5654,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>We_Overcall_NT_then_MST</td><td>500</td><td>135</td><td>365</td>
+        <td><span class="has-tip">then MST<span class="tip">We_Overcall_NT_then_MST.btn
+
+Minor Suit Transfer
+There are multiple ways to play MST; this is how GIB plays it...
+After partner overcalls 1NT, responder bids the strain below their minor...
+• 2N for !C
+• 3!C for !D</span></span></td><td>500</td><td>135</td><td>365</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4029,7 +5674,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>We_Overcall_NT_then_Smolen</td><td>500</td><td>111</td><td>389</td>
+        <td><span class="has-tip">then Smolen<span class="tip">We_Overcall_NT_then_Smolen.btn
+
+We Overcall 1NT then partner bids Smolen 2!C
+After 2!D...
+• 3!H shows 5!S &amp; 4!H
+• 3!S shows 5!H &amp; 4!S</span></span></td><td>500</td><td>111</td><td>389</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4043,7 +5693,10 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>We_Overcall_NT_then_Stayman</td><td>500</td><td>206</td><td>294</td>
+        <td><span class="has-tip">then Stayman<span class="tip">We_Overcall_NT_then_Stayman.btn
+
+We Overcall 1NT then Stayman.
+This may be "Drop-dead Stayman" or "Crawling Stayman"</span></span></td><td>500</td><td>206</td><td>294</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4057,7 +5710,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>We_Overcall_NT_then_Texas</td><td>500</td><td>174</td><td>326</td>
+        <td><span class="has-tip">then Texas<span class="tip">We_Overcall_NT_then_Texas.btn
+
+We Overcall 1NT then partner Texas transfers to 4!H or 4!S</span></span></td><td>500</td><td>174</td><td>326</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4071,7 +5726,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>We_Overcall_Their_2C</td><td>500</td><td>177</td><td>323</td>
+        <td><span class="has-tip">We Overcall Their 2C<span class="tip">We_Overcall_Their_2C.btn
+
+They open 2C (strong) and we overcall or preempt.</span></span></td><td>500</td><td>177</td><td>323</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4085,7 +5742,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>We_X_Opps_Preempt</td><td>500</td><td>180</td><td>320</td>
+        <td><span class="has-tip">We X Opps Preempt<span class="tip">We_X_Opps_Preempt.btn
+
+We Double Opponents Preemptive opening.</span></span></td><td>500</td><td>180</td><td>320</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4099,7 +5758,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>We_X_Opps_Weak_2</td><td>500</td><td>386</td><td>114</td>
+        <td><span class="has-tip">We X Opps W2<span class="tip">We_X_Opps_Weak_2.btn
+
+We Double Opponents Weak Two opening.</span></span></td><td>500</td><td>386</td><td>114</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4113,7 +5774,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Weak_2_Bids</td><td>500</td><td>474</td><td>26</td>
+        <td><span class="has-tip">Weak 2 without 4M<span class="tip">Weak_2_Bids.btn
+
+Weak Two Bids without 4-card major
+Opener has a 6-card suit without a 4-card side major, at least half of the HCP
+are in the suit, less than 11 HCP and less than 7 losers.
+https://www.bridgebum.com/weak_two.php</span></span></td><td>500</td><td>474</td><td>26</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4127,7 +5793,12 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Weak_2_Bids_Lax</td><td>500</td><td>441</td><td>59</td>
+        <td><span class="has-tip">Weak 2 maybe 4M<span class="tip">Weak_2_Bids_Lax.btn
+
+Weak Two Bids with any 4-card side suit.
+Opener has a 6-card suit, at least half of the HCP
+are in the suit, less than 11 HCP and less than 7 losers.
+https://www.bridgebum.com/weak_two.php</span></span></td><td>500</td><td>441</td><td>59</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4141,7 +5812,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Weak_2_Bids_Lax_Leveled</td><td>500</td><td>423</td><td>77</td>
+        <td><span class="has-tip">(Lev)<span class="tip">Weak_2_Bids_Lax_Leveled.btn
+
+Weak Two Bids may have 4-card major - Leveled
+Opener has a 6-card suit and may have a 4-card side major, at least half of the HCP
+are in the suit, less than 11 HCP and less than 7 losers.  This script is leveled.
+Meaning that responder is equally likely to have a pass, raise, invite, or force.
+https://www.bridgebum.com/weak_two.php</span></span></td><td>500</td><td>423</td><td>77</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4155,7 +5832,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Weak_2_Bids_Leveled</td><td>500</td><td>480</td><td>20</td>
+        <td><span class="has-tip">(Lev)<span class="tip">Weak_2_Bids_Leveled.btn
+
+Weak Two Bids without 4-card major - Leveled
+Opener has a 6-card suit without a 4-card side major, at least half of the HCP
+are in the suit, less than 11 HCP and less than 7 losers.  This script is leveled.
+Meaning that responder is equally likely to have a pass, raise, invite, or force.
+https://www.bridgebum.com/weak_two.php</span></span></td><td>500</td><td>480</td><td>20</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4169,7 +5852,14 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Weak_Jump_Shift</td><td>500</td><td>377</td><td>123</td>
+        <td><span class="has-tip">Weak Jump Shift (Lev)<span class="tip">Weak_Jump_Shift.btn
+
+Weak Jump Shift
+South opens, West passes, and North jumps -- a single jump.
+• at the 2-level showing 2-5 HCP and 6+ cards -- too weak for the 1-level.
+• at the 3-level showing 2-7 HCP and 7+ cards in the suit bid
+Leveled: Opener's Force, Rebid, New Suit, (Pass or Raise) occur at about the same frequency.
+https://www.bridgebum.com/weak_jump_shifts.php</span></span></td><td>500</td><td>377</td><td>123</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4183,7 +5873,9 @@
         <td>4.3s</td>
       </tr>
       <tr>
-        <td>Weak_NT_09-12</td><td>500</td><td>-</td><td>500</td>
+        <td><span class="has-tip">Weak NT 9-12<span class="tip">Weak_NT_09-12.btn
+
+South has a semi-balanced hand with 9-12 HCP and not 5/4 in the majors</span></span></td><td>500</td><td>-</td><td>500</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4197,7 +5889,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Weak_NT_09-15</td><td>500</td><td>-</td><td>371</td>
+        <td><span class="has-tip">Weak NT 9-15<span class="tip">Weak_NT_09-15.btn
+
+South has a semi-balanced hand with 9-15 HCP and not 5/4 in the majors</span></span></td><td>500</td><td>-</td><td>371</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4211,7 +5905,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Weak_NT_10-12</td><td>500</td><td>-</td><td>500</td>
+        <td><span class="has-tip">Weak NT 10-12<span class="tip">Weak_NT_10-12.btn
+
+South has a semi-balanced hand with 10-12 HCP and not 5/4 in the majors</span></span></td><td>500</td><td>-</td><td>500</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4225,7 +5921,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Weak_NT_10-13</td><td>500</td><td>-</td><td>409</td>
+        <td><span class="has-tip">Weak NT 10-13<span class="tip">Weak_NT_10-13.btn
+
+South has a semi-balanced hand with 10-13 HCP and not 5/4 in the majors</span></span></td><td>500</td><td>-</td><td>409</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4239,7 +5937,7 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Weak_NT_11-16</td><td>500</td><td>-</td><td>310</td>
+        <td><span class="has-tip">WeakNT11<span class="tip">Weak_NT_11-16.btn</span></span></td><td>500</td><td>-</td><td>310</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4253,7 +5951,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Weak_NT_13-15</td><td>500</td><td>342</td><td>158</td>
+        <td><span class="has-tip">Weak NT 13-15<span class="tip">Weak_NT_13-15.btn
+
+South has a semi-balanced hand with 13-15 HCP and not 5/4 in the majors</span></span></td><td>500</td><td>342</td><td>158</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4267,7 +5967,9 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Weak_NT_14-15</td><td>500</td><td>334</td><td>166</td>
+        <td><span class="has-tip">Weak NT 14-15<span class="tip">Weak_NT_14-15.btn
+
+South has a semi-balanced hand with 14-15 HCP and not 5/4 in the majors</span></span></td><td>500</td><td>334</td><td>166</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4281,7 +5983,13 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>XYZ</td><td>500</td><td>387</td><td>113</td>
+        <td><span class="has-tip">XYZ<span class="tip">XYZ.btn
+
+XYZ.  After 1X, 1Y, 1Z, responder may bid
+• 2!C request opener bid 2!D. Responder may pass or continue with an invitational bid.
+• 2!D which is artificial and Game Forcing.
+• 2!H, 2!S or 3!C which are sign-offs.
+• 2N which is invitational to 3N.</span></span></td><td>500</td><td>387</td><td>113</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4295,7 +6003,20 @@
         <td>-</td>
       </tr>
       <tr>
-        <td>Xfer_after_1M_X</td><td>500</td><td>280</td><td>220</td>
+        <td><span class="has-tip">Xfer after 1M (X)<span class="tip">Xfer_after_1M_X.btn
+
+Transfers after Opponents double our 1!H or 1!S
+Transfers start at 1N and end at 2M-1; then skip to 3M-1.
+• 1N  --&gt; 2!C
+• 2!C --&gt; 2!D
+• 2!D --&gt; 2!H
+• 2!H --&gt; 2!S (only after 1!S opener)
+With less than 3-card support: With 6+, bid 1!S or transfer to !C/!D/!H. With 11+/semi-balanced, XX.
+With 3/4-card support raise (4-7) or transfer (8-10)+ to the 2-level w/3 or 3-level w/4.
+With 5-card support and no slam interest, raise to game.
+Transfers into a new suit show something like a weak 2 or better.
+Transfer &amp; raise is invitational.
+https://www.nxtbook.com/acbl/bridgebulletin/2025_06/index.php#/p/66</span></span></td><td>500</td><td>280</td><td>220</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>

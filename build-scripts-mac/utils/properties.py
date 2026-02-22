@@ -135,6 +135,71 @@ def get_quiz_control(scenario: str) -> Dict[str, object]:
     return defaults
 
 
+def get_btn_property(scenario: str, property_name: str) -> Optional[str]:
+    """
+    Fetch a property value directly from a scenario's .btn file.
+
+    Args:
+        scenario: Scenario name (e.g., "Smolen")
+        property_name: Property to fetch (e.g., "button-text")
+
+    Returns:
+        Property value if found, None otherwise
+    """
+    btn_path = os.path.join(FOLDERS["btn"], f"{scenario}.btn")
+
+    if not os.path.exists(btn_path):
+        return None
+
+    pattern = re.compile(rf'^#\s*{re.escape(property_name)}:\s*(.+)$', re.IGNORECASE)
+
+    try:
+        with open(btn_path, "r") as f:
+            for line in f:
+                match = pattern.match(line.strip())
+                if match:
+                    return match.group(1).strip()
+    except Exception:
+        pass
+
+    return None
+
+
+def get_chat_text(scenario: str) -> str:
+    """
+    Get the chat text from a scenario's .btn file.
+
+    Reads content between /*@chat and @chat*/ markers,
+    stripping leading '---' lines.
+
+    Returns:
+        Chat text as a single string, or empty string if not found.
+    """
+    btn_path = os.path.join(FOLDERS["btn"], f"{scenario}.btn")
+
+    if not os.path.exists(btn_path):
+        return ""
+
+    try:
+        with open(btn_path, "r") as f:
+            content = f.read()
+    except Exception:
+        return ""
+
+    match = re.search(r'/\*@chat\s*\n(.*?)@chat\*/', content, re.DOTALL)
+    if not match:
+        return ""
+
+    lines = []
+    for line in match.group(1).strip().splitlines():
+        line = line.strip()
+        if line.startswith("---"):
+            line = line.lstrip("-").strip()
+        if line:
+            lines.append(line)
+    return "\n".join(lines)
+
+
 def get_bba_works(scenario: str) -> bool:
     """
     Check if BBA analysis works for a scenario.
