@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate a Scenario Summary document (Markdown) showing per-scenario
+Generate a Scenario Summary document (HTML) showing per-scenario
 deal counts, filter counts, filter-out counts, and elapsed times.
 
 Usage:
@@ -21,7 +21,7 @@ from config import FOLDERS, OPERATIONS_ORDER, PROJECT_ROOT
 from utils.properties import get_bba_works
 
 TIMING_FILE = os.path.join(PROJECT_ROOT, "build-data", "pipeline-timing.json")
-OUTPUT_FILE = os.path.join(PROJECT_ROOT, "docs", "Scenario_Summary.md")
+OUTPUT_FILE = os.path.join(PROJECT_ROOT, "docs", "Scenario_Summary.html")
 
 # Columns for ET: operation names and their short display headers
 OP_COLUMNS = [
@@ -72,8 +72,13 @@ def format_et(seconds: float) -> str:
     return f"{minutes}m{secs:.0f}s"
 
 
+def _esc(text: str) -> str:
+    """Escape HTML special characters."""
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
 def generate_summary(pattern: str = "*"):
-    """Generate the Scenario_Summary.md file."""
+    """Generate the Scenario_Summary.html file."""
     scenarios = get_scenarios(pattern)
     if not scenarios:
         print(f"No scenarios found matching: {pattern}")
@@ -116,7 +121,6 @@ def generate_summary(pattern: str = "*"):
         })
 
     # Compute top-10 summaries
-    # Lowest filtered/deals percent (only scenarios with deals > 0 and bba-works=true)
     filter_pcts = []
     for row in rows:
         if row["deals"] > 0 and get_bba_works(row["name"]):
@@ -125,12 +129,10 @@ def generate_summary(pattern: str = "*"):
     filter_pcts.sort(key=lambda x: x[1])
     lowest_filter = filter_pcts[:10]
 
-    # Lowest deal counts (only scenarios with deals > 0)
     deal_rows = [(row["name"], row["deals"]) for row in rows if 0 < row["deals"] < 500]
     deal_rows.sort(key=lambda x: x[1])
     lowest_deals = deal_rows[:10]
 
-    # Longest total ET (only pipeline operations, not release etc.)
     pipeline_ops = {op for op, _ in OP_COLUMNS}
     et_rows = []
     for row in rows:
@@ -141,61 +143,95 @@ def generate_summary(pattern: str = "*"):
     et_rows.sort(key=lambda x: -x[1])
     longest_et = et_rows[:10]
 
-    # Build markdown
-    lines = []
-    lines.append("# Scenario Summary")
-    lines.append("")
-    lines.append(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M')}")
-    lines.append(f"Scenarios: {len(rows)}")
-    lines.append("")
+    # Build HTML
+    h = []
+    h.append('<!DOCTYPE html>')
+    h.append('<html lang="en">')
+    h.append('<head>')
+    h.append('  <meta charset="UTF-8">')
+    h.append('  <meta name="viewport" content="width=device-width, initial-scale=1.0">')
+    h.append('  <title>Scenario Summary</title>')
+    h.append('  <style>')
+    h.append('    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;')
+    h.append('           font-size: 13px; max-width: 1400px; margin: 30px auto; padding: 20px;')
+    h.append('           background: #f5f5f5; color: #333; }')
+    h.append('    h1 { color: #222; text-align: center; font-size: 22px; margin-bottom: 5px; }')
+    h.append('    .subtitle { text-align: center; color: #666; margin-bottom: 25px; }')
+    h.append('    .subtitle a { color: #0077b6; text-decoration: none; }')
+    h.append('    .summaries { display: flex; gap: 20px; margin-bottom: 25px; }')
+    h.append('    .summary-card { background: #fff; border-radius: 8px; padding: 15px 20px;')
+    h.append('                    box-shadow: 0 2px 4px rgba(0,0,0,0.08); flex: 1; }')
+    h.append('    .summary-card h3 { margin: 0 0 10px 0; font-size: 14px; color: #333; }')
+    h.append('    table { border-collapse: collapse; width: 100%; }')
+    h.append('    .main-table { background: #fff; border-radius: 8px; padding: 15px;')
+    h.append('                  box-shadow: 0 2px 4px rgba(0,0,0,0.08); overflow-x: auto; }')
+    h.append('    th { background: #f0f0f0; font-weight: 600; text-align: right; padding: 6px 8px;')
+    h.append('         border-bottom: 2px solid #ddd; font-size: 12px; white-space: nowrap; }')
+    h.append('    th:first-child { text-align: left; }')
+    h.append('    td { padding: 4px 8px; border-bottom: 1px solid #eee; text-align: right;')
+    h.append('         font-size: 12px; white-space: nowrap; }')
+    h.append('    td:first-child { text-align: left; }')
+    h.append('    tr:hover td { background: #f8f8f8; }')
+    h.append('    .totals td { font-weight: bold; border-top: 2px solid #ddd; }')
+    h.append('    .summary-card td, .summary-card th { font-size: 12px; }')
+    h.append('    .summary-card th { background: transparent; border-bottom: 1px solid #ddd; }')
+    h.append('  </style>')
+    h.append('</head>')
+    h.append('<body>')
+    h.append('  <h1>Scenario Summary</h1>')
+    ts = datetime.now().strftime('%Y-%m-%d %H:%M')
+    h.append(f'  <p class="subtitle">{len(rows)} scenarios &mdash; Generated {ts}')
+    h.append(f'    &mdash; <a href="./">Dashboard</a></p>')
 
-    # Side-by-side summary tables using HTML
-    lines.append('<table width="100%"><tr valign="top"><td>')
-    lines.append("")
-    lines.append("### Lowest Filter Rate")
-    lines.append("")
-    lines.append("| # | Scenario | Filt | Deals | Rate |")
-    lines.append("| ---: | :--- | ---: | ---: | ---: |")
+    # Side-by-side summaries
+    h.append('  <div class="summaries">')
+
+    # Lowest Filter Rate
+    h.append('    <div class="summary-card">')
+    h.append('      <h3>Lowest Filter Rate</h3>')
+    h.append('      <table>')
+    h.append('        <tr><th>#</th><th style="text-align:left">Scenario</th><th>Filt</th><th>Deals</th><th>Rate</th></tr>')
     for i, (name, pct, filt, deals) in enumerate(lowest_filter, 1):
-        lines.append(f"| {i} | {name} | {filt} | {deals} | {pct:.1f}% |")
-    lines.append("")
-    lines.append('</td><td>&nbsp;&nbsp;</td><td>')
-    lines.append("")
-    lines.append("### Lowest Deal Counts")
-    lines.append("")
-    lines.append("| # | Scenario | Deals |")
-    lines.append("| ---: | :--- | ---: |")
+        h.append(f'        <tr><td>{i}</td><td style="text-align:left">{_esc(name)}</td><td>{filt}</td><td>{deals}</td><td>{pct:.1f}%</td></tr>')
+    h.append('      </table>')
+    h.append('    </div>')
+
+    # Lowest Deal Counts
+    h.append('    <div class="summary-card">')
+    h.append('      <h3>Lowest Deal Counts</h3>')
+    h.append('      <table>')
+    h.append('        <tr><th>#</th><th style="text-align:left">Scenario</th><th>Deals</th></tr>')
     for i, (name, deals) in enumerate(lowest_deals, 1):
-        lines.append(f"| {i} | {name} | {deals} |")
-    lines.append("")
-    lines.append('</td><td>&nbsp;&nbsp;</td><td>')
-    lines.append("")
-    lines.append("### Longest Total ET")
-    lines.append("")
+        h.append(f'        <tr><td>{i}</td><td style="text-align:left">{_esc(name)}</td><td>{deals}</td></tr>')
+    h.append('      </table>')
+    h.append('    </div>')
+
+    # Longest Total ET
+    h.append('    <div class="summary-card">')
+    h.append('      <h3>Longest Total ET</h3>')
+    h.append('      <table>')
     if longest_et:
-        lines.append("| # | Scenario | Total ET |")
-        lines.append("| ---: | :--- | ---: |")
+        h.append('        <tr><th>#</th><th style="text-align:left">Scenario</th><th>Total ET</th></tr>')
         for i, (name, total) in enumerate(longest_et, 1):
-            lines.append(f"| {i} | {name} | {format_et(total)} |")
+            h.append(f'        <tr><td>{i}</td><td style="text-align:left">{_esc(name)}</td><td>{format_et(total)}</td></tr>')
     else:
-        lines.append("*No timing data available.*")
-    lines.append("")
-    lines.append('</td></tr></table>')
-    lines.append("")
+        h.append('        <tr><td><em>No timing data available.</em></td></tr>')
+    h.append('      </table>')
+    h.append('    </div>')
 
-    # Main table header
-    op_headers = [h for _, h in OP_COLUMNS]
-    header = "| Scenario | Deals | Filtered | Flt-Out | " + " | ".join(op_headers) + " | Total |"
-    separator = "|" + "|".join(["-" * (len(c) + 2) for c in
-        ["Scenario", "Deals", "Filtered", "Flt-Out"] + op_headers + ["Total"]]) + "|"
+    h.append('  </div>')
 
-    # Right-align numeric columns
-    align = "| :--- | ---: | ---: | ---: |" + " ---: |" * len(op_headers) + " ---: |"
+    # Main table
+    op_headers = [hdr for _, hdr in OP_COLUMNS]
+    h.append('  <div class="main-table">')
+    h.append('    <table>')
+    h.append('      <tr>')
+    h.append('        <th>Scenario</th><th>Deals</th><th>Filtered</th><th>Flt-Out</th>')
+    for hdr in op_headers:
+        h.append(f'        <th>{_esc(hdr)}</th>')
+    h.append('        <th>Total</th>')
+    h.append('      </tr>')
 
-    lines.append(header)
-    lines.append(align)
-
-    # Data rows
     total_deals = 0
     total_filtered = 0
     total_filtered_out = 0
@@ -209,21 +245,27 @@ def generate_summary(pattern: str = "*"):
         total_filtered += row["filtered"]
         total_filtered_out += row["filtered_out"]
 
-        cols = [row["name"], deals_str, filt_str, fout_str] + row["op_times"] + [row["total_et"]]
-        lines.append("| " + " | ".join(cols) + " |")
+        h.append('      <tr>')
+        h.append(f'        <td>{_esc(row["name"])}</td><td>{deals_str}</td><td>{filt_str}</td><td>{fout_str}</td>')
+        for t in row["op_times"]:
+            h.append(f'        <td>{t}</td>')
+        h.append(f'        <td>{row["total_et"]}</td>')
+        h.append('      </tr>')
 
     # Totals row
-    lines.append("| " + " | ".join([
-        "**Total**",
-        f"**{total_deals}**",
-        f"**{total_filtered}**",
-        f"**{total_filtered_out}**",
-    ] + ["-"] * len(op_headers) + ["-"]) + " |")
+    h.append('      <tr class="totals">')
+    h.append(f'        <td>Total</td><td>{total_deals}</td><td>{total_filtered}</td><td>{total_filtered_out}</td>')
+    for _ in op_headers:
+        h.append('        <td>-</td>')
+    h.append('        <td>-</td>')
+    h.append('      </tr>')
 
-    lines.append("")
+    h.append('    </table>')
+    h.append('  </div>')
+    h.append('</body>')
+    h.append('</html>')
 
-    # Write output
-    content = "\n".join(lines)
+    content = "\n".join(h)
     with open(OUTPUT_FILE, "w") as f:
         f.write(content)
 
