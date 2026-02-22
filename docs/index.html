@@ -37,6 +37,7 @@
             margin: 0 4px;
         }
         .nav-btn:hover { background: #005f8a; }
+        .nav-btn-active { background: #333; pointer-events: none; }
         .stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -588,7 +589,7 @@ const DASHBOARD_DATA = {
 </head>
 <body>
     <h1>Practice Bidding Scenarios</h1>
-    <p class="subtitle">Development Activity Dashboard &mdash; <a class="nav-btn" href="Scenario_Summary.html">Scenario Summary</a> <a class="nav-btn" href="Convention_Card_Summary.html">Convention Cards</a></p>
+    <p class="subtitle">Development Activity Dashboard &mdash; <a class="nav-btn nav-btn-active" href="./">Dashboard</a> <a class="nav-btn" href="Scenario_Summary.html">Scenario Summary</a> <a class="nav-btn" href="Convention_Card_Summary.html">Convention Cards</a></p>
 
     <div class="stats">
         <div class="stat-box">
@@ -695,7 +696,7 @@ const DASHBOARD_DATA = {
         function formatTime(isoString) {
             try {
                 const date = new Date(isoString);
-                return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', timeZoneName: 'short'});
             } catch {
                 return isoString;
             }

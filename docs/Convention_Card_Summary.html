@@ -13,6 +13,7 @@
     .nav-btn { display: inline-block; padding: 6px 14px; background: #0077b6; color: #fff;
               border-radius: 4px; text-decoration: none; font-size: 12px; margin: 0 4px; }
     .nav-btn:hover { background: #005f8a; }
+    .nav-btn-active { background: #333; pointer-events: none; }
     .main-table { background: #fff; border-radius: 8px; padding: 15px;
                   box-shadow: 0 2px 4px rgba(0,0,0,0.08); overflow-x: auto; }
     table { border-collapse: collapse; width: 100%; }
@@ -26,7 +27,7 @@
     td:first-child { text-align: left; white-space: nowrap; }
     tr:hover td { background: #f8f8f8; cursor: pointer; }
     tr.highlighted td { background: #fff3cd !important; }
-    .col-highlighted { background: #e8f4fd !important; }
+    .col-highlighted { background: #d0e8f7 !important; }
     tr.highlighted .col-highlighted { background: #d4e9c7 !important; }
     .v1 { font-weight: bold; color: #0077b6; }
     .v0 { color: #ccc; }
@@ -40,9 +41,10 @@
 </head>
 <body>
   <h1>Convention Card Summary</h1>
-  <p class="subtitle">15 convention cards &mdash; Generated 2026-02-21 21:29
+  <p class="subtitle">15 convention cards &mdash; Generated <span id="gen-time" data-utc="2026-02-22T04:18:00Z"></span>
     &mdash; <a class="nav-btn" href="./">Dashboard</a>
-    <a class="nav-btn" href="Scenario_Summary.html">Scenario Summary</a></p>
+    <a class="nav-btn" href="Scenario_Summary.html">Scenario Summary</a>
+    <a class="nav-btn nav-btn-active" href="Convention_Card_Summary.html">Convention Cards</a></p>
   <div class="main-table">
     <table>
       <tr>
@@ -1971,29 +1973,44 @@
     </table>
   </div>
   <script>
+    var span = document.getElementById("gen-time");
+    var d = new Date(span.dataset.utc);
+    var tz = d.toLocaleString("en-US", {timeZoneName: "short"}).split(" ").pop();
+    var pad = function(n) { return n < 10 ? "0" + n : n; };
+    span.textContent = d.getFullYear() + "-" + pad(d.getMonth()+1) + "-" + pad(d.getDate())
+      + " " + pad(d.getHours()) + ":" + pad(d.getMinutes()) + " " + tz;
     var table = document.querySelector("table");
-    var highlightedCol = -1;
+    var hCol = -1;
+    function clearCol() {
+      table.querySelectorAll(".col-highlighted").forEach(function(c) {
+        c.classList.remove("col-highlighted");
+      });
+      hCol = -1;
+    }
+    function applyCol(col) {
+      clearCol();
+      if (col < 1) return;
+      hCol = col;
+      var rows = table.rows;
+      for (var i = 0; i < rows.length; i++) {
+        if (rows[i].cells[col]) rows[i].cells[col].classList.add("col-highlighted");
+      }
+    }
     table.addEventListener("click", function(e) {
       var th = e.target.closest("th");
       if (th) {
-        var col = Array.from(th.parentNode.children).indexOf(th);
-        if (col > 0) {
-          var cells = table.querySelectorAll(".col-highlighted");
-          cells.forEach(function(c) { c.classList.remove("col-highlighted"); });
-          if (col === highlightedCol) { highlightedCol = -1; return; }
-          highlightedCol = col;
-          table.querySelectorAll("tr").forEach(function(r) {
-            if (r.children[col]) r.children[col].classList.add("col-highlighted");
-          });
-        }
+        var col = th.cellIndex;
+        if (col === hCol) clearCol(); else applyCol(col);
         return;
       }
-      var row = e.target.closest("tr");
-      if (row && !row.querySelector("th")) {
-        var prev = document.querySelector("tr.highlighted");
-        if (prev && prev !== row) prev.classList.remove("highlighted");
-        row.classList.toggle("highlighted");
-      }
+      var td = e.target.closest("td");
+      if (!td) return;
+      var col = td.cellIndex;
+      var row = td.parentNode;
+      var prev = table.querySelector("tr.highlighted");
+      if (prev && prev !== row) prev.classList.remove("highlighted");
+      row.classList.toggle("highlighted");
+      if (col === hCol) clearCol(); else applyCol(col);
     });
   </script>
 </body>
