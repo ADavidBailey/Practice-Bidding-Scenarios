@@ -82,15 +82,16 @@ def _esc_attr(text: str) -> str:
     return _esc(text).replace('"', "&quot;").replace("\n", "&#10;")
 
 
+GITHUB_BTN_URL = "https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/btn"
+
+
 def _scenario_td(name: str, btn_info: dict, style: str = "") -> str:
     """Build a <td> with button-text display and CSS hover tooltip."""
     display = _esc(btn_info.get("button_text") or name)
-    tooltip_parts = [f"{name}.btn"]
+    github_link = f'<a href="{GITHUB_BTN_URL}/{name}.btn" target="_blank" style="color:#8cf;text-decoration:none;">{name}.btn</a>'
     chat = btn_info.get("chat_text", "")
-    if chat:
-        tooltip_parts.append("")
-        tooltip_parts.append(chat)
-    tooltip = _esc("\n".join(tooltip_parts))
+    chat_html = f"\n{_esc(chat)}" if chat else ""
+    tooltip = f'{github_link}{chat_html}'
     style_attr = f' style="{style}"' if style else ""
     return f'<td{style_attr}><span class="has-tip">{display}<span class="tip">{tooltip}</span></span></td>'
 
