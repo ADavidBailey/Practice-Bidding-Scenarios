@@ -157,7 +157,9 @@ def generate_summary(pattern: str = "*"):
     h.append('           background: #f5f5f5; color: #333; }')
     h.append('    h1 { color: #222; text-align: center; font-size: 22px; margin-bottom: 5px; }')
     h.append('    .subtitle { text-align: center; color: #666; margin-bottom: 25px; }')
-    h.append('    .subtitle a { color: #0077b6; text-decoration: none; }')
+    h.append('    .nav-btn { display: inline-block; padding: 6px 14px; background: #0077b6; color: #fff;')
+    h.append('              border-radius: 4px; text-decoration: none; font-size: 12px; margin: 0 4px; }')
+    h.append('    .nav-btn:hover { background: #005f8a; }')
     h.append('    .summaries { display: flex; gap: 20px; margin-bottom: 25px; }')
     h.append('    .summary-card { background: #fff; border-radius: 8px; padding: 15px 20px;')
     h.append('                    box-shadow: 0 2px 4px rgba(0,0,0,0.08); flex: 1; }')
@@ -181,7 +183,8 @@ def generate_summary(pattern: str = "*"):
     h.append('  <h1>Scenario Summary</h1>')
     ts = datetime.now().strftime('%Y-%m-%d %H:%M')
     h.append(f'  <p class="subtitle">{len(rows)} scenarios &mdash; Generated {ts}')
-    h.append(f'    &mdash; <a href="./">Dashboard</a></p>')
+    h.append(f'    &mdash; <a class="nav-btn" href="./">Dashboard</a>')
+    h.append(f'    <a class="nav-btn" href="Convention_Card_Summary.html">Convention Cards</a></p>')
 
     # Side-by-side summaries
     h.append('  <div class="summaries">')

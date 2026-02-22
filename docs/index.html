@@ -26,6 +26,17 @@
             color: #666666;
             margin-bottom: 30px;
         }
+        .nav-btn {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #0077b6;
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 12px;
+            margin: 0 4px;
+        }
+        .nav-btn:hover { background: #005f8a; }
         .stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -577,7 +588,7 @@ const DASHBOARD_DATA = {
 </head>
 <body>
     <h1>Practice Bidding Scenarios</h1>
-    <p class="subtitle">Development Activity Dashboard &mdash; <a href="Scenario_Summary.html" style="color: #0077b6;">Scenario Summary</a></p>
+    <p class="subtitle">Development Activity Dashboard &mdash; <a class="nav-btn" href="Scenario_Summary.html">Scenario Summary</a> <a class="nav-btn" href="Convention_Card_Summary.html">Convention Cards</a></p>
 
     <div class="stats">
         <div class="stat-box">
