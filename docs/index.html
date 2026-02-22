@@ -177,14 +177,14 @@
     </style>
     <script>
 const DASHBOARD_DATA = {
-  "generatedAt": "2026-02-22T06:01:04.617825",
+  "generatedAt": "2026-02-22T12:01:05.557425",
   "summary": {
     "totalScenarios": 300,
     "scenariosWorked": 300,
-    "totalFileEdits": 51003,
+    "totalFileEdits": 51004,
     "totalPipelineRuns": 1473,
-    "totalSessionHours": 3365,
-    "totalCommits": 5821
+    "totalSessionHours": 3374,
+    "totalCommits": 5823
   },
   "charts": {
     "labels": [
@@ -247,7 +247,7 @@ const DASHBOARD_DATA = {
       678,
       506,
       95,
-      964
+      965
     ],
     "pipelineRuns": [
       0,
@@ -309,7 +309,7 @@ const DASHBOARD_DATA = {
       80,
       62,
       228,
-      817
+      823
     ],
     "sessionHours": [
       145,
@@ -340,7 +340,7 @@ const DASHBOARD_DATA = {
       102,
       69,
       97,
-      470
+      479
     ],
     "scenariosWorked": [
       56,
@@ -375,30 +375,6 @@ const DASHBOARD_DATA = {
     ]
   },
   "recentActivity": [
-    {
-      "timestamp": "2026-02-21T22:38:29.982Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "Preempt_Keycard",
-        "operation": "release"
-      }
-    },
-    {
-      "timestamp": "2026-02-21T23:28:08.360Z",
-      "type": "file_save",
-      "details": {
-        "filePath": "btn/Soloway_Jump_Shift.btn",
-        "fileType": "btn"
-      }
-    },
-    {
-      "timestamp": "2026-02-21T23:30:00.271Z",
-      "type": "file_save",
-      "details": {
-        "filePath": "btn/Soloway_Jump_Shift_Type-1.btn",
-        "fileType": "btn"
-      }
-    },
     {
       "timestamp": "2026-02-21T23:30:21.591Z",
       "type": "file_save",
@@ -530,9 +506,59 @@ const DASHBOARD_DATA = {
         "filePath": "build-scripts-mac/convention_card_summary.py",
         "fileType": "python"
       }
+    },
+    {
+      "timestamp": "2026-02-22T12:46:22.449Z",
+      "type": "session_end",
+      "details": {
+        "durationMinutes": 573
+      }
+    },
+    {
+      "timestamp": "2026-02-22T13:26:59.690Z",
+      "type": "session_start",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-02-22T13:29:44.906Z",
+      "type": "file_save",
+      "details": {
+        "filePath": "docs/index.html",
+        "fileType": "html"
+      }
     }
   ],
   "recentCommits": [
+    {
+      "hash": "789db78b",
+      "date": "2026-02-22 10:36:42 -0600",
+      "message": "Switch tooltip links to raw GitHub URLs for cleaner file viewing"
+    },
+    {
+      "hash": "8c794758",
+      "date": "2026-02-22 09:16:30 -0600",
+      "message": "Use window.open for tooltip links to work locally and on GitHub Pages"
+    },
+    {
+      "hash": "350f659c",
+      "date": "2026-02-22 08:59:19 -0600",
+      "message": "Add GitHub link to .btn filename in Scenario Summary tooltips"
+    },
+    {
+      "hash": "8860694f",
+      "date": "2026-02-22 08:23:53 -0600",
+      "message": "Show button-text with hover tooltips in Scenario Summary"
+    },
+    {
+      "hash": "e0aecf7c",
+      "date": "2026-02-22 07:34:10 -0600",
+      "message": "Reduce Cumulative Scenarios chart height on dashboard"
+    },
+    {
+      "hash": "6eaa1947",
+      "date": "2026-02-22 06:01:04 -0600",
+      "message": "Daily dashboard update"
+    },
     {
       "hash": "6887a9c7",
       "date": "2026-02-21 22:20:08 -0600",
@@ -552,36 +578,6 @@ const DASHBOARD_DATA = {
       "hash": "9e09d19a",
       "date": "2026-02-21 20:52:26 -0600",
       "message": "Add Convention Card Summary, standardize bbsa files, update navigation"
-    },
-    {
-      "hash": "2011be07",
-      "date": "2026-02-21 19:57:01 -0600",
-      "message": "Switch Fourth_Suit_Forcing from 21GF-Walsh to 21GF-SPECIALS; move Walsh card to unreferenced"
-    },
-    {
-      "hash": "0241a4db",
-      "date": "2026-02-21 19:56:39 -0600",
-      "message": "Release Fourth_Suit_Forcing to pbs-release"
-    },
-    {
-      "hash": "c1a067eb",
-      "date": "2026-02-21 19:56:20 -0600",
-      "message": "Update pbs-test/Fourth_Suit_Forcing.pbs"
-    },
-    {
-      "hash": "44a37417",
-      "date": "2026-02-21 18:03:07 -0600",
-      "message": "Convert Scenario Summary from Markdown to HTML for GitHub Pages"
-    },
-    {
-      "hash": "a15acc5b",
-      "date": "2026-02-21 17:59:48 -0600",
-      "message": "Add Scenario Summary link to dashboard"
-    },
-    {
-      "hash": "360e9b81",
-      "date": "2026-02-21 17:57:08 -0600",
-      "message": "Move Scenario Summary to docs/ with side-by-side summaries"
     }
   ]
 };
