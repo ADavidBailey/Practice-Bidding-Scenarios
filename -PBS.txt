@@ -549,9 +549,9 @@ Script,onDataLoad
             var chatText = this.getAttribute('data-chat');
             console.log('PBS Dynamic: Loading scenario', scenarioName);
 
-            // Send chat message to self (scenario description)
+            // Send chat message to current chat destination (scenario description)
             if (chatText) {
-                sendPrivateChat(whoAmI(), chatText);
+                setChatMessage(chatText, true);
             }
 
             fetch(url)
@@ -684,9 +684,9 @@ Script,onDataLoad
                     var chatText = this.getAttribute('data-chat');
                     var url = PBS_TEST_BASE + '/' + scenarioName + '.pbs';
 
-                    // Send chat message to self (scenario description)
+                    // Send chat message to current chat destination (scenario description)
                     if (chatText) {
-                        sendPrivateChat(whoAmI(), chatText);
+                        setChatMessage(chatText, true);
                     }
 
                     fetch(url)
