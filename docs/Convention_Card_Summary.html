@@ -17,13 +17,17 @@
                   box-shadow: 0 2px 4px rgba(0,0,0,0.08); overflow-x: auto; }
     table { border-collapse: collapse; width: 100%; }
     th { background: #f0f0f0; font-weight: 600; text-align: center; padding: 6px 4px;
-         border-bottom: 2px solid #ddd; font-size: 11px; white-space: nowrap; }
-    th:first-child { text-align: left; min-width: 220px; }
+         border-bottom: 2px solid #ddd; font-size: 11px; white-space: nowrap;
+         vertical-align: bottom; }
+    th:first-child { text-align: left; min-width: 220px; cursor: default; }
+    th:not(:first-child) { cursor: pointer; }
     td { padding: 3px 4px; border-bottom: 1px solid #eee; text-align: center;
          font-size: 12px; }
     td:first-child { text-align: left; white-space: nowrap; }
     tr:hover td { background: #f8f8f8; cursor: pointer; }
     tr.highlighted td { background: #fff3cd !important; }
+    .col-highlighted { background: #e8f4fd !important; }
+    tr.highlighted .col-highlighted { background: #d4e9c7 !important; }
     .v1 { font-weight: bold; color: #0077b6; }
     .v0 { color: #ccc; }
     .scenario-count { font-size: 10px; color: #888; font-weight: normal; }
@@ -31,13 +35,12 @@
                       color: #555; padding-top: 8px; border-bottom: 1px solid #ddd; }
     .rotate-header { writing-mode: vertical-rl; text-orientation: mixed;
                      transform: rotate(180deg); min-height: 100px;
-                     display: flex; align-items: center; justify-content: center;
-                     margin: 0 auto; }
+                     display: inline-block; }
   </style>
 </head>
 <body>
   <h1>Convention Card Summary</h1>
-  <p class="subtitle">15 convention cards &mdash; Generated 2026-02-21 21:04
+  <p class="subtitle">15 convention cards &mdash; Generated 2026-02-21 21:29
     &mdash; <a class="nav-btn" href="./">Dashboard</a>
     <a class="nav-btn" href="Scenario_Summary.html">Scenario Summary</a></p>
   <div class="main-table">
@@ -1968,9 +1971,29 @@
     </table>
   </div>
   <script>
-    document.querySelector("table").addEventListener("click", function(e) {
+    var table = document.querySelector("table");
+    var highlightedCol = -1;
+    table.addEventListener("click", function(e) {
+      var th = e.target.closest("th");
+      if (th) {
+        var col = Array.from(th.parentNode.children).indexOf(th);
+        if (col > 0) {
+          var cells = table.querySelectorAll(".col-highlighted");
+          cells.forEach(function(c) { c.classList.remove("col-highlighted"); });
+          if (col === highlightedCol) { highlightedCol = -1; return; }
+          highlightedCol = col;
+          table.querySelectorAll("tr").forEach(function(r) {
+            if (r.children[col]) r.children[col].classList.add("col-highlighted");
+          });
+        }
+        return;
+      }
       var row = e.target.closest("tr");
-      if (row && !row.querySelector("th")) row.classList.toggle("highlighted");
+      if (row && !row.querySelector("th")) {
+        var prev = document.querySelector("tr.highlighted");
+        if (prev && prev !== row) prev.classList.remove("highlighted");
+        row.classList.toggle("highlighted");
+      }
     });
   </script>
 </body>

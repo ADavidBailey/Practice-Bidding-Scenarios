@@ -1,6 +1,6 @@
 #!/bin/bash
 # Update dashboard and push to GitHub Pages
-# Run by launchd at 3:00 AM daily
+# Run by launchd at 6:00 AM, 12:00 PM, and 6:00 PM daily
 
 cd /Users/adavidbailey/Practice-Bidding-Scenarios
 
