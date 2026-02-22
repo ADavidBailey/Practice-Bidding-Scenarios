@@ -22,19 +22,22 @@
     td { padding: 3px 4px; border-bottom: 1px solid #eee; text-align: center;
          font-size: 12px; }
     td:first-child { text-align: left; white-space: nowrap; }
-    tr:hover td { background: #f8f8f8; }
+    tr:hover td { background: #f8f8f8; cursor: pointer; }
+    tr.highlighted td { background: #fff3cd !important; }
     .v1 { font-weight: bold; color: #0077b6; }
     .v0 { color: #ccc; }
     .scenario-count { font-size: 10px; color: #888; font-weight: normal; }
     .section-row td { background: #f7f7f7; font-weight: 600; font-size: 11px;
                       color: #555; padding-top: 8px; border-bottom: 1px solid #ddd; }
     .rotate-header { writing-mode: vertical-rl; text-orientation: mixed;
-                     transform: rotate(180deg); min-height: 100px; }
+                     transform: rotate(180deg); min-height: 100px;
+                     display: flex; align-items: center; justify-content: center;
+                     margin: 0 auto; }
   </style>
 </head>
 <body>
   <h1>Convention Card Summary</h1>
-  <p class="subtitle">15 convention cards &mdash; Generated 2026-02-21 20:50
+  <p class="subtitle">15 convention cards &mdash; Generated 2026-02-21 21:04
     &mdash; <a class="nav-btn" href="./">Dashboard</a>
     <a class="nav-btn" href="Scenario_Summary.html">Scenario Summary</a></p>
   <div class="main-table">
@@ -1964,5 +1967,11 @@
       </tr>
     </table>
   </div>
+  <script>
+    document.querySelector("table").addEventListener("click", function(e) {
+      var row = e.target.closest("tr");
+      if (row && !row.querySelector("th")) row.classList.toggle("highlighted");
+    });
+  </script>
 </body>
 </html>
