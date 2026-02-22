@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-Walsh
+convention-card-ns: 21GF-SPECIALS
+convention-card-ew: 21GF-GIB
 auction-filter: Note...:Fourth.suit
 */
-# convention-card: 21GF-Walsh
-
-
 produce 100
 dealer south
 
@@ -101,7 +99,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -111,7 +109,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -297,8 +295,7 @@ h3  = h==3 and (CH or DH)
 s3  = s==3 and (CS or DS or HS)
 
 
-action
-printoneline,
+action printoneline,
 average "noReverse " 100 * noReverse,
 average "CDH       " 100 * CDH,
 average "CDS       " 100 * CDS,
@@ -329,4 +326,4 @@ NOTE: Many have different agreements about the sequence，1!C - 1!D - 1!H - 1!S.
 Some play it as natural and forcing one round.\n\
 Some play it as GF and less than 4 spades and use 2!S for GF with 4 spades. Talk to your partner!\n\
 https://www.bridgebum.com/fourth_suit_forcing.php\n\
-%FourthSuitForcing%
+%FourthSuitForcing%,width=50%
