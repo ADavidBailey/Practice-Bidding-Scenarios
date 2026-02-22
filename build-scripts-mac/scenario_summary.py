@@ -88,7 +88,8 @@ GITHUB_BTN_URL = "https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blo
 def _scenario_td(name: str, btn_info: dict, style: str = "") -> str:
     """Build a <td> with button-text display and CSS hover tooltip."""
     display = _esc(btn_info.get("button_text") or name)
-    github_link = f'<a href="{GITHUB_BTN_URL}/{name}.btn" target="_blank" style="color:#8cf;text-decoration:none;">{name}.btn</a>'
+    url = f'{GITHUB_BTN_URL}/{name}.btn'
+    github_link = f'<a href="{url}" onclick="window.open(\'{url}\');return false;" style="color:#8cf;text-decoration:none;">{name}.btn</a>'
     chat = btn_info.get("chat_text", "")
     chat_html = f"\n{_esc(chat)}" if chat else ""
     tooltip = f'{github_link}{chat_html}'
