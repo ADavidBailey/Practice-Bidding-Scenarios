@@ -82,7 +82,7 @@ def _esc_attr(text: str) -> str:
     return _esc(text).replace('"', "&quot;").replace("\n", "&#10;")
 
 
-GITHUB_BTN_URL = "https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/btn"
+GITHUB_BTN_URL = "https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn"
 
 
 def _scenario_td(name: str, btn_info: dict, style: str = "") -> str:
