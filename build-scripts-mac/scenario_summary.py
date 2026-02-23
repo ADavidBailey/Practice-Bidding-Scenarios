@@ -51,17 +51,6 @@ def count_boards(file_path: str) -> int:
     return count
 
 
-def _sort_key(name: str) -> str:
-    """Sort key that places _Leveled variants immediately after their base.
-
-    'Foo_Leveled' sorts as 'Foo\\x00Leveled' so it comes right after 'Foo'
-    but before 'Foo_anything_else'.
-    """
-    if name.endswith('_Leveled'):
-        return name[:-len('_Leveled')] + '\x00Leveled'
-    return name
-
-
 def get_scenarios(pattern: str) -> list:
     """Get scenario names from btn/ folder, optionally filtered by pattern."""
     btn_dir = FOLDERS["btn"]
@@ -69,10 +58,9 @@ def get_scenarios(pattern: str) -> list:
                  if f.endswith('.btn') and not f.startswith('.') and not f.startswith('-')]
 
     if pattern == "*":
-        return sorted(btn_files, key=_sort_key)
+        return sorted(btn_files)
 
-    return sorted((f for f in btn_files if fnmatch.fnmatch(f, pattern)),
-                  key=_sort_key)
+    return sorted(f for f in btn_files if fnmatch.fnmatch(f, pattern))
 
 
 def format_et(seconds: float) -> str:
@@ -97,29 +85,22 @@ def _esc_attr(text: str) -> str:
 GITHUB_BTN_URL = "https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn"
 
 
-def _find_parent(name: str, scenarios: list):
-    """Find the most specific parent scenario for a given name.
-
-    A scenario is a child if another scenario's name is a prefix followed
-    by '_', '-', or a digit.  Returns the longest matching parent, or None.
-    """
-    best = None
-    for s in scenarios:
-        if s == name:
-            continue
-        if not name.startswith(s):
-            continue
-        rest = name[len(s):]
-        if rest and (rest[0] in ('_', '-') or rest[0].isdigit()):
-            if best is None or len(s) > len(best):
-                best = s
-    return best
+# Scenarios whose children (by prefix) should be indented
+_INDENT_PARENTS = [
+    "Rule_of_16",
+    "Soloway_Jump_Shift",
+    "We_Overcall",
+]
 
 
-def _build_subordinates(scenarios: list) -> dict:
-    """Return {name: bool} indicating whether each scenario is subordinate."""
-    name_set = set(scenarios)
-    return {s: _find_parent(s, scenarios) is not None for s in scenarios}
+def _is_subordinate(name: str) -> bool:
+    """Return True if name is a child of one of the explicit indent parents."""
+    for parent in _INDENT_PARENTS:
+        if name.startswith(parent) and name != parent:
+            rest = name[len(parent):]
+            if rest and rest[0] in ('_', '-'):
+                return True
+    return False
 
 
 def _scenario_td(name: str, btn_info: dict, style: str = "",
@@ -188,9 +169,8 @@ def generate_summary(pattern: str = "*"):
             "total_et": format_et(total_et) if total_et > 0 else "-",
         })
 
-    # Build btn_info lookup and subordinate map
+    # Build btn_info lookup for summary cards
     btn_lookup = {row["name"]: row["btn_info"] for row in rows}
-    subordinates = _build_subordinates(scenarios)
 
     # Compute top-10 summaries
     filter_pcts = []
@@ -350,9 +330,8 @@ def generate_summary(pattern: str = "*"):
         filt_str = str(row["filtered"]) if row["filtered"] > 0 else "-"
         fout_str = str(row["filtered_out"]) if row["filtered_out"] > 0 else "-"
 
-        is_sub = subordinates.get(row["name"], False)
         h.append('      <tr>')
-        h.append(f'        {_scenario_td(row["name"], row["btn_info"], indent=is_sub)}<td>{deals_str}</td><td>{filt_str}</td><td>{fout_str}</td>')
+        h.append(f'        {_scenario_td(row["name"], row["btn_info"], indent=_is_subordinate(row["name"]))}<td>{deals_str}</td><td>{filt_str}</td><td>{fout_str}</td>')
         for t in row["op_times"]:
             h.append(f'        <td>{t}</td>')
         h.append(f'        <td>{row["total_et"]}</td>')
