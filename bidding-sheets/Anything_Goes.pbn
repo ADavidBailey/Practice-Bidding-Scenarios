@@ -279,8 +279,9 @@ Pass  Pass
 [Contract "4H"]
 [Auction "E"]
 Pass  1H    Pass  2H
-Pass  4H    Pass  Pass
-Pass
+Pass  2N =1=    Pass  4H
+Pass  Pass  Pass
+[Note "1:Two way game tries"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -490,11 +491,13 @@ Pass  Pass
 {HCP 4 12 10 14}
 {Losers 10 6 8 8}
 [Declarer "N"]
-[Contract "2C"]
+[Contract "3N"]
 [Auction "W"]
 Pass  1C    Pass  1D
-Pass  1S    Pass  2C
-Pass  Pass  Pass
+Pass  1S    Pass  2H =1=
+Pass  3N    Pass  Pass
+Pass
+[Note "1:Fourth suit"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -584,13 +587,13 @@ Pass  Pass
 {HCP 10 12 8 10}
 {Losers 7 6 10 8}
 [Declarer "N"]
-[Contract "2H"]
+[Contract "4H"]
 [Auction "E"]
 Pass  Pass  Pass  1H
-Pass  2C =1=    Pass  2D =2=
-Pass  2H    Pass  Pass
-Pass
-[Note "1:Reverse drury"]
+Pass  2C =1=    Pass  2H =2=
+Pass  3H    Pass  4H
+Pass  Pass  Pass
+[Note "1:Drury"]
 [Note "2:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -635,9 +638,10 @@ Pass
 [Declarer "N"]
 [Contract "3S"]
 [Auction "W"]
-Pass  1S    X     2S
-3D    Pass  Pass  3S
+Pass  1S    X     1N =1=
+2D    Pass  Pass  3S
 Pass  Pass  Pass
+[Note "1:Support 1NT"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -926,19 +930,22 @@ Pass
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
-[Dealer "W"]
+[Dealer "E"]
 [Vulnerable "None"]
-[Deal "W:9742.T73.Q96.J54 T53.AK54.AT87.T6 K86.QJ98.J4.Q983 AQJ.62.K532.AK72"]
+[Deal "E:9742.T73.Q96.J54 T53.AK54.AT87.T6 K86.QJ98.J4.Q983 AQJ.62.K532.AK72"]
 {Shape 3424 3244 4333 3442}
 {HCP 9 17 3 11}
 {Losers 8 6 11 8}
 [Declarer "S"]
-[Contract "4C"]
-[Auction "W"]
+[Contract "6D"]
+[Auction "E"]
 Pass  1D    Pass  2C
-Pass  2D    Pass  3D
-Pass  3H    Pass  4C
+Pass  2N    Pass  4D
+Pass  4N    Pass  5C =1=
+Pass  5H    Pass  6D =2=
 Pass  Pass  Pass
+[Note "1:A=0/5 or 3/5"]
+[Note "2:no !D queen"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -1051,10 +1058,10 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "E"]
-Pass  1S    Pass  1N =1=
-Pass  3C    Pass  3N
-Pass  Pass  Pass
-[Note "1:forcing 1NT"]
+Pass  1S    Pass  1N
+Pass  2C    Pass  2S
+Pass  3N    Pass  Pass
+Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 

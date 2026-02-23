@@ -864,11 +864,12 @@ Pass  Pass
 [Contract "6H"]
 [Auction "S"]
 1N    Pass  3D =1=    Pass
-4H    Pass  4N    Pass
-5C =2=    Pass  6H    Pass
+4H    Pass  5D =2=    Pass
+5N =3=    Pass  6H    Pass
 Pass  Pass
 [Note "1:1N-3D splinter"]
-[Note "2:A=0/5 or 3/5"]
+[Note "2:Exclusion, for !H"]
+[Note "3:2 out of 4"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -889,8 +890,8 @@ Pass  Pass
 [Contract "6N"]
 [Auction "S"]
 1N    Pass  2C =1=    Pass
-2D    Pass  6N    Pass
-Pass  Pass
+2D    Pass  5N    Pass
+6N    Pass  Pass  Pass
 [Note "1:Stayman"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -1316,8 +1317,8 @@ Pass  Pass
 [Contract "6N"]
 [Auction "S"]
 1N    Pass  2C =1=    Pass
-2D    Pass  6N    Pass
-Pass  Pass
+2D    Pass  5N    Pass
+6N    Pass  Pass  Pass
 [Note "1:Stayman"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -1781,11 +1782,11 @@ Pass  Pass
 {HCP 18 5 16 1}
 {Losers 4 11 6 11}
 [Declarer "S"]
-[Contract "6N"]
+[Contract "6C"]
 [Auction "S"]
 1N    Pass  3D =1=    Pass
-3N    Pass  6N    Pass
-Pass  Pass
+3N    Pass  5N    Pass
+6C    Pass  Pass  Pass
 [Note "1:1N-3D splinter"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -2329,8 +2330,8 @@ Pass  Pass
 [Contract "6N"]
 [Auction "S"]
 1N    Pass  3H =1=    Pass
-3N    Pass  6N    Pass
-Pass  Pass
+3N    Pass  5N    Pass
+6N    Pass  Pass  Pass
 [Note "1:1N-3M splinter"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -3364,11 +3365,12 @@ Pass  Pass
 [Contract "6S"]
 [Auction "S"]
 1N    Pass  3H =1=    Pass
-4S    Pass  4N    Pass
-5H =2=    Pass  6S    Pass
+4S    Pass  5H =2=    Pass
+5N =3=    Pass  6S    Pass
 Pass  Pass
 [Note "1:1N-3M splinter"]
-[Note "2:A=2/5 or 5/5, Q(S)=0"]
+[Note "2:Exclusion, for !S"]
+[Note "3:1 out of 4"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -3569,13 +3571,12 @@ Pass  Pass
 [Contract "6S"]
 [Auction "S"]
 1N    Pass  3D =1=    Pass
-4S    Pass  4N    Pass
-5C =2=    Pass  5D    Pass
-6D =3=    Pass  6S    Pass
+4S    Pass  5D =2=    Pass
+5N =3=    Pass  6S    Pass
 Pass  Pass
 [Note "1:1N-3D splinter"]
-[Note "2:A=0/5 or 3/5"]
-[Note "3:!S queen and !D king"]
+[Note "2:Exclusion, for !S"]
+[Note "3:2 out of 4"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -5967,8 +5968,8 @@ Pass  Pass
 [Contract "6N"]
 [Auction "S"]
 1N    Pass  2C =1=    Pass
-2H    Pass  6N    Pass
-Pass  Pass
+2H    Pass  5N    Pass
+6N    Pass  Pass  Pass
 [Note "1:Stayman"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -5990,8 +5991,8 @@ Pass  Pass
 [Contract "6N"]
 [Auction "S"]
 1N    Pass  2C =1=    Pass
-2S    Pass  6N    Pass
-Pass  Pass
+2S    Pass  5N    Pass
+6N    Pass  Pass  Pass
 [Note "1:Stayman"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -6088,8 +6089,8 @@ Pass  Pass
 [Contract "6N"]
 [Auction "S"]
 1N    Pass  3D =1=    Pass
-3N    Pass  6N    Pass
-Pass  Pass
+3N    Pass  5N    Pass
+6N    Pass  Pass  Pass
 [Note "1:1N-3D splinter"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -6332,14 +6333,17 @@ Pass  Pass
 {HCP 20 4 16 0}
 {Losers 4 10 7 10}
 [Declarer "S"]
-[Contract "7N"]
+[Contract "7S"]
 [Auction "S"]
 1N    Pass  3D =1=    Pass
-4S    Pass  4N    Pass
-5H =2=    Pass  7N    Pass
-Pass  Pass
+4S    Pass  5D =2=    Pass
+5S =3=    Pass  5N    Pass
+6S =4=    Pass  7C    Pass
+7S    Pass  Pass  Pass
 [Note "1:1N-3D splinter"]
-[Note "2:A=2/5 or 5/5, Q(S)=0"]
+[Note "2:Exclusion, for !S"]
+[Note "3:1 out of 4"]
+[Note "4:no !S queen"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -6976,11 +6980,11 @@ Pass  Pass
 {HCP 18 7 15 0}
 {Losers 3 10 7 12}
 [Declarer "S"]
-[Contract "4N"]
+[Contract "6N"]
 [Auction "S"]
 1N    Pass  3S =1=    Pass
-3N    Pass  4N    Pass
-Pass  Pass
+3N    Pass  5N    Pass
+6N    Pass  Pass  Pass
 [Note "1:1N-3M splinter"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -7585,11 +7589,12 @@ Pass  Pass
 [Contract "6S"]
 [Auction "S"]
 1N    Pass  3D =1=    Pass
-4S    Pass  4N    Pass
-5H =2=    Pass  6S    Pass
+4S    Pass  5D =2=    Pass
+5S =3=    Pass  6S    Pass
 Pass  Pass
 [Note "1:1N-3D splinter"]
-[Note "2:A=2/5 or 5/5, Q(S)=0"]
+[Note "2:Exclusion, for !S"]
+[Note "3:1 out of 4"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -7767,8 +7772,8 @@ Pass  Pass
 [Contract "6N"]
 [Auction "S"]
 1N    Pass  3S =1=    Pass
-3N    Pass  6N    Pass
-Pass  Pass
+3N    Pass  5N    Pass
+6N    Pass  Pass  Pass
 [Note "1:1N-3M splinter"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -10260,8 +10265,8 @@ Pass  Pass
 [Contract "6N"]
 [Auction "S"]
 1N    Pass  3D =1=    Pass
-3N    Pass  6N    Pass
-Pass  Pass
+3N    Pass  5N    Pass
+6N    Pass  Pass  Pass
 [Note "1:1N-3D splinter"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -10693,11 +10698,13 @@ Pass  Pass
 [Contract "6H"]
 [Auction "S"]
 1N    Pass  3D =1=    Pass
-4H    Pass  4N    Pass
-5C =2=    Pass  6H    Pass
-Pass  Pass
+4H    Pass  5D =2=    Pass
+5N =3=    Pass  6C    Pass
+6H =4=    Pass  Pass  Pass
 [Note "1:1N-3D splinter"]
-[Note "2:A=0/5 or 3/5"]
+[Note "2:Exclusion, for !H"]
+[Note "3:2 out of 4"]
+[Note "4:no !H queen"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -10740,8 +10747,8 @@ Pass  Pass
 [Contract "6N"]
 [Auction "S"]
 1N    Pass  2C =1=    Pass
-2D    Pass  6N    Pass
-Pass  Pass
+2D    Pass  5N    Pass
+6N    Pass  Pass  Pass
 [Note "1:Stayman"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]

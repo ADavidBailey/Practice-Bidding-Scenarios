@@ -316,8 +316,10 @@ XX    2C    2S    3H
 [Contract "3N"]
 [Auction "E"]
 1D    Pass  1S    Pass
-2C    Pass  3N    Pass
+2C    Pass  2H =1=    Pass
+3H    Pass  3N    Pass
 Pass  Pass
+[Note "1:Fourth suit"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -401,14 +403,13 @@ Pass
 {Shape 3622 2353 2236 6232}
 {HCP 9 12 8 11}
 {Losers 7 8 8 6}
-[Declarer "W"]
-[Contract "4S"]
+[Declarer "E"]
+[Contract "3D"]
 [Auction "E"]
 1D    Pass  1S    Pass
 1N    Pass  2C =1=    2H
-3D    Pass  3S    Pass
-4S    Pass  Pass  Pass
-[Note "1:New Minor Forcing"]
+3D    Pass  Pass  Pass
+[Note "1:Checkback"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -1124,12 +1125,13 @@ Pass  Pass
 {Shape 5332 4243 1336 3532}
 {HCP 8 12 8 12}
 {Losers 9 7 8 7}
-[Declarer "W"]
+[Declarer "E"]
 [Contract "3N"]
 [Auction "E"]
 1D    Pass  1H    Pass
-1S    Pass  2N    Pass
+1S    Pass  2C =1=    Pass
 3N    Pass  Pass  Pass
+[Note "1:Fourth suit"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -1302,13 +1304,13 @@ Pass  3H    3S    Pass
 {HCP 9 12 8 11}
 {Losers 8 7 9 7}
 [Declarer "E"]
-[Contract "3N"]
+[Contract "2N"]
 [Auction "E"]
 1D    Pass  1S    Pass
 1N    Pass  2C =1=    Pass
-2H    Pass  2N    Pass
-3N    Pass  Pass  Pass
-[Note "1:New Minor Forcing"]
+2D    Pass  2N    Pass
+Pass  Pass
+[Note "1:Checkback"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -2307,14 +2309,14 @@ XX    2C    Pass  Pass
 {Shape 2236 2443 3532 6232}
 {HCP 8 12 8 12}
 {Losers 7 8 9 6}
-[Declarer "W"]
-[Contract "4S"]
+[Declarer "E"]
+[Contract "2N"]
 [Auction "E"]
 1D    Pass  1S    Pass
 1N    Pass  2C =1=    X
-2H    Pass  3S    Pass
-4S    Pass  Pass  Pass
-[Note "1:New Minor Forcing"]
+2D    Pass  2N    Pass
+Pass  Pass
+[Note "1:Checkback"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -2924,9 +2926,10 @@ Pass  Pass
 [Contract "3N"]
 [Auction "E"]
 1C    Pass  1H    Pass
-1N    Pass  2D =1=    Pass
-3N    Pass  Pass  Pass
-[Note "1:New Minor Forcing"]
+1N    Pass  2C =1=    Pass
+2N    Pass  3N    Pass
+Pass  Pass
+[Note "1:Checkback"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -3121,13 +3124,11 @@ X     Pass  Pass  Pass
 {Shape 2623 4252 1435 6133}
 {HCP 8 12 9 11}
 {Losers 8 8 7 6}
-[Declarer "S"]
-[Contract "5HX"]
+[Declarer "W"]
+[Contract "4S"]
 [Auction "E"]
 1D    Pass  1S    Pass
-2S    Pass  3H    X
-3N    Pass  4S    Pass
-Pass  5H    X     Pass
+2S    Pass  4S    Pass
 Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -3258,8 +3259,9 @@ Pass  Pass
 [Auction "E"]
 1D    Pass  1S    Pass
 1N    Pass  2C =1=    Pass
-3N    Pass  Pass  Pass
-[Note "1:New Minor Forcing"]
+2N    Pass  3N    Pass
+Pass  Pass
+[Note "1:Checkback"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -3616,8 +3618,9 @@ Pass
 [Auction "E"]
 1D    Pass  1H    Pass
 1N    Pass  2C =1=    Pass
-3N    Pass  Pass  Pass
-[Note "1:New Minor Forcing"]
+2N    Pass  3N    Pass
+Pass  Pass
+[Note "1:Checkback"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -3729,10 +3732,9 @@ Pass  Pass
 [Auction "E"]
 1D    1S    2C =1=    2S
 3D    Pass  Pass  3S
-4D    Pass  4S =2=    Pass
-5D    Pass  Pass  Pass
+4D    Pass  5D    Pass
+Pass  Pass
 [Note "1:1X-(Y)-2Z forcing"]
-[Note "2:limit raise or better in !D"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -3750,11 +3752,10 @@ Pass  Pass
 {HCP 8 12 8 12}
 {Losers 8 7 9 6}
 [Declarer "W"]
-[Contract "4D"]
+[Contract "3D"]
 [Auction "E"]
-1C    Pass  1D    2H
-Pass  3H    4D    Pass
-Pass  Pass
+1C    Pass  2D    Pass
+3D    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -4042,14 +4043,14 @@ Pass  Pass
 {Shape 3622 2425 3253 5143}
 {HCP 9 12 8 11}
 {Losers 8 7 9 8}
-[Declarer "E"]
-[Contract "3N"]
+[Declarer "W"]
+[Contract "3S"]
 [Auction "E"]
 1C    Pass  1S    Pass
-1N    Pass  2D =1=    Pass
-2H    Pass  2N    Pass
-3N    Pass  Pass  Pass
-[Note "1:New Minor Forcing"]
+1N    Pass  2C =1=    Pass
+2D    Pass  2S    Pass
+3S    Pass  Pass  Pass
+[Note "1:Checkback"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -4067,11 +4068,13 @@ Pass  Pass
 {HCP 8 12 8 12}
 {Losers 8 6 8 7}
 [Declarer "W"]
-[Contract "3S"]
+[Contract "4S"]
 [Auction "E"]
 1D    Pass  1S    Pass
-2C    Pass  3S    Pass
-Pass  Pass
+2C    Pass  2H =1=    Pass
+3H    Pass  3S    Pass
+4S    Pass  Pass  Pass
+[Note "1:Fourth suit"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -4608,14 +4611,14 @@ Pass  Pass  Pass
 {Shape 2623 2353 3136 6331}
 {HCP 8 12 9 11}
 {Losers 7 8 8 7}
-[Declarer "W"]
-[Contract "4S"]
+[Declarer "E"]
+[Contract "3D"]
 [Auction "E"]
 1D    Pass  1S    Pass
 1N    Pass  2C =1=    Pass
-2N    Pass  3S    Pass
-4S    Pass  Pass  Pass
-[Note "1:New Minor Forcing"]
+2D    Pass  2N    Pass
+3D    Pass  Pass  Pass
+[Note "1:Checkback"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -5128,12 +5131,12 @@ Pass  Pass
 {HCP 9 12 8 11}
 {Losers 8 8 7 8}
 [Declarer "E"]
-[Contract "2H"]
+[Contract "2D"]
 [Auction "E"]
 1D    Pass  1S    Pass
 1N    Pass  2C =1=    Pass
-2H    Pass  Pass  Pass
-[Note "1:New Minor Forcing"]
+2D    Pass  Pass  Pass
+[Note "1:Checkback"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -6029,10 +6032,9 @@ Pass  Pass  Pass
 [Auction "E"]
 1D    Pass  1S    Pass
 1N    Pass  2C =1=    X
-2S =2=    Pass  3S    Pass
+2S    Pass  3S    Pass
 4S    Pass  Pass  Pass
-[Note "1:New Minor Forcing"]
-[Note "2:3 !S"]
+[Note "1:Checkback"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -6951,15 +6953,14 @@ Pass  Pass
 {Shape 2542 2443 3226 6232}
 {HCP 8 12 9 11}
 {Losers 8 7 8 7}
-[Declarer "W"]
-[Contract "4S"]
+[Declarer "E"]
+[Contract "3N"]
 [Auction "E"]
 1D    Pass  1S    Pass
 1N    Pass  2C =1=    Pass
-2H    Pass  2S    Pass
-3S    Pass  4S    Pass
-Pass  Pass
-[Note "1:New Minor Forcing"]
+2D    Pass  2S    Pass
+3N    Pass  Pass  Pass
+[Note "1:Checkback"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -7946,8 +7947,7 @@ Pass  Pass
 [Contract "4S"]
 [Auction "E"]
 1D    Pass  1S    Pass
-2S    Pass  3C    Pass
-3D    Pass  4S    Pass
+2S    Pass  4S    Pass
 Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -9443,8 +9443,10 @@ Pass  Pass
 [Contract "3S"]
 [Auction "E"]
 1C    1D    1S    X
-2S    Pass  3S    Pass
+2S    Pass  3H =1=    X
+Pass  Pass  3S    Pass
 Pass  Pass
+[Note "1:Two way game tries"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -9840,8 +9842,7 @@ Pass  Pass
 [Declarer "W"]
 [Contract "5D"]
 [Auction "E"]
-1C    Pass  1D    2S
-Pass  3S    4D    Pass
+1C    Pass  2D    Pass
 5D    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -10550,10 +10551,12 @@ Pass  Pass
 {HCP 8 13 10 9}
 {Losers 8 7 8 7}
 [Declarer "W"]
-[Contract "2S"]
+[Contract "4S"]
 [Auction "E"]
 1C    1H    1S    2H
-2S    Pass  Pass  Pass
+2S    Pass  3H =1=    Pass
+4S    Pass  Pass  Pass
+[Note "1:Two way game tries"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -10800,8 +10803,7 @@ Pass
 [Contract "4S"]
 [Auction "E"]
 1D    Pass  1S    Pass
-2S    Pass  3D    Pass
-3H    Pass  4S    Pass
+2S    Pass  4S    Pass
 Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -11133,12 +11135,13 @@ Pass  Pass
 {HCP 8 12 9 11}
 {Losers 8 8 9 8}
 [Declarer "E"]
-[Contract "3N"]
+[Contract "2N"]
 [Auction "E"]
 1D    Pass  1H    Pass
 1N    Pass  2C =1=    Pass
-3N    Pass  Pass  Pass
-[Note "1:New Minor Forcing"]
+2D    Pass  2N    Pass
+Pass  Pass
+[Note "1:Checkback"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -11244,13 +11247,13 @@ Pass  Pass
 {Shape 1336 2443 4531 6133}
 {HCP 8 12 8 12}
 {Losers 8 7 9 6}
-[Declarer "W"]
-[Contract "4S"]
+[Declarer "E"]
+[Contract "3N"]
 [Auction "E"]
 1D    Pass  1S    Pass
 1N    Pass  2C =1=    X
-2H    Pass  3S    Pass
-4S    Pass  Pass  Pass
-[Note "1:New Minor Forcing"]
+2D    Pass  2S    Pass
+3N    Pass  Pass  Pass
+[Note "1:Checkback"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]

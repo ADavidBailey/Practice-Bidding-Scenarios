@@ -107,7 +107,7 @@ brd# dlr contract score  par     north            east             south        
 102   S  3N-S                    QT87.J82.9654.94 42.9.KQT873.T832 A93.AQ73.A.AKQ75 KJ65.KT654.J2.J6 | 2C=1=-P-2D=2=-P-2N-P-3C=3=-P-3H-P-3N | Strong | Waiting | Stayman
 103   S  3N-N                    T9432.A2.T95.A98 A87.T93.J874.KJ3 KQ.KQJ754.AKQ.52 J65.86.632.QT764 | 2C=1=-P-2S-P-3H-P-3N | Strong
 104   S  7N-N                    T9.43.AKT96.KQT5 Q762.J852.J43.84 AK5.AKQ976..A962 J843.T.Q8752.J73 | 2C=1=-P-3D-P-3H-P-4N-P-5D=2=-P-5S-P-5N=3=-P-7N | Strong | A=1/5 or 4/5 | !H queen no !C king no !D king
-105   S  6H-S                    A8762.94..KQJT92 KT95.T63.A3.6543 J3.AKQJ82.KJT7.A Q4.75.Q986542.87 | 1H-P-1S-P-3D-P-4C-P-4H-P-4N-P-5C=1=-P-5D-P-6D=2=-P-6H | A=0/5 or 3/5 | !H queen and !D king
+105   S  4S-N                    A8762.94..KQJT92 KT95.T63.A3.6543 J3.AKQJ82.KJT7.A Q4.75.Q986542.87 | 1H-P-3C=1=-P-3D-P-4S | Inviting Jump Shifts
 106   S  2N-S                    72.962.J9863.Q95 8.T74.A75.J87632 AK54.AKQ3.T.AKT4 QJT963.J85.KQ42. | 2C=1=-P-2D=2=-P-2N | Strong | Waiting
 107   S  4S-S                    832.QJ43.32.JT86 74.AT.976.975432 AKQJ96.982.AK.AQ T5.K765.QJT854.K | 2C=1=-P-2D=2=-P-2S-P-3S-P-3N-P-4S | Strong | Waiting
 108   S  3N-S                    T94.T75.AQ92.984 .QJ96.JT87.QJT52 AQ85.AK84.K6.AK6 KJ7632.32.543.73 | 2C=1=-P-2D=2=-P-2N-P-3N | Strong | Waiting
@@ -517,10 +517,10 @@ brd# dlr contract score  par     north            east             south        
     1  1H-P-1S-P-2H
     1  1H-P-1S-P-2H-P-3H-P-3N-P-4H
     1  1H-P-1S-P-3D-P-3N
-    1  1H-P-1S-P-3D-P-4C-P-4H-P-4N-P-5C=1=-P-5D-P-6D=2=-P-6H | A=0/5 or 3/5 | !H queen and !D king
     1  1H-P-1S-P-3D-P-6S
     2  1H-P-2H-P-2N-P-4H
     1  1H-P-2H-P-4C=1=-P-4H-P-4N-P-5D=2=-P-6H | Splinter | A=1/5 or 4/5
+    1  1H-P-3C=1=-P-3D-P-4S | Inviting Jump Shifts
     1  1H-P-P-1S-2S=1=-P-3H-P-4H | Strength cue bid
     1  1H-P-P-2C-2S-P-3H
     1  1H-P-P-2D-3C-P-3H-P-4H
@@ -887,7 +887,7 @@ brd# dlr contract score  par     north            east             south        
     2  !D queen and !S king
     1  !D queen no !S king no !C king
     3  !H queen and !C king
-    2  !H queen and !D king
+    1  !H queen and !D king
     3  !H queen and !S king
     2  !H queen no !C king no !D king
     1  !H queen no !S king no !C king no !D king
@@ -897,7 +897,7 @@ brd# dlr contract score  par     north            east             south        
     2  !S queen no !C king no !D king no !H king
     3  !S queen no !H king no !C king no !D king
     4  A=0/4 or 4/4
-   64  A=0/5 or 3/5
+   63  A=0/5 or 3/5
    51  A=1/5 or 4/5
     2  A=2/5 or 5/5, Q(D)=0
     2  A=2/5 or 5/5, Q(D)=1
@@ -910,6 +910,7 @@ brd# dlr contract score  par     north            east             south        
     1  Both majors
     5  Extended acceptance after NT
     9  Forcing 1NT
+    1  Inviting Jump Shifts
     1  Jacoby 2NT
    10  K=0
     2  K=1
