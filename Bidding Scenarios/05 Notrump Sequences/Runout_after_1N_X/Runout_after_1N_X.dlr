@@ -29,9 +29,9 @@ gibNT = nt1 or nt2
 ### End of GIB 1 Notrump ###
 # Defines gibNT
 
-wX = hcp(west)>16
-nShape = shape(north, any 8xxx +any 7xxx +any 6xxx -any 85xx -any 76xx -any 75xx-any 66xx -any 65xx)
-nXX = hcp(north)<5 and (clubs(north)>5 or diamonds(north)>5) and nShape
+wX = hcp(west)>15
+nShape = shape(north, xx5x + xxx5 -any 8xxx -any 7xxx -any 6xxx -any 55xx -any 55xx)
+nXX = hcp(north)<6 and nShape
 
 gibNT and wX and nXX
 
