@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-GIB
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n1N +X +XX
+auction-filter: Auction.....\n1N +X
 */
 # Runout after 1N Doubled
 dealer south
@@ -39,7 +39,7 @@ gibNT = nt1 or nt2
 # Defines gibNT
 
 wX = hcp(west)>15
-nShape = (clubs(north)>4 or diamonds(north)>4) and shape(north,-any 55xx -any 55xx)
+nShape = (clubs(north)>4 or diamonds(north)>4) and shape(north,-any 76xx =aany 66xx -any 65xx -any 55xx -any 55xx)
 nXX = hcp(north)<8 and nShape
 
 gibNT and wX and nXX
