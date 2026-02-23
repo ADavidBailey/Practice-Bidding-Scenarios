@@ -85,7 +85,33 @@ def _esc_attr(text: str) -> str:
 GITHUB_BTN_URL = "https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn"
 
 
-def _scenario_td(name: str, btn_info: dict, style: str = "") -> str:
+def _find_parent(name: str, scenarios: list):
+    """Find the most specific parent scenario for a given name.
+
+    A scenario is a child if another scenario's name is a prefix followed
+    by '_', '-', or a digit.  Returns the longest matching parent, or None.
+    """
+    best = None
+    for s in scenarios:
+        if s == name:
+            continue
+        if not name.startswith(s):
+            continue
+        rest = name[len(s):]
+        if rest and (rest[0] in ('_', '-') or rest[0].isdigit()):
+            if best is None or len(s) > len(best):
+                best = s
+    return best
+
+
+def _build_subordinates(scenarios: list) -> dict:
+    """Return {name: bool} indicating whether each scenario is subordinate."""
+    name_set = set(scenarios)
+    return {s: _find_parent(s, scenarios) is not None for s in scenarios}
+
+
+def _scenario_td(name: str, btn_info: dict, style: str = "",
+                 indent: bool = False) -> str:
     """Build a <td> with button-text display and CSS hover tooltip."""
     display = _esc(btn_info.get("button_text") or name)
     url = f'{GITHUB_BTN_URL}/{name}.btn'
@@ -93,7 +119,9 @@ def _scenario_td(name: str, btn_info: dict, style: str = "") -> str:
     chat = btn_info.get("chat_text", "")
     chat_html = f"\n{_esc(chat)}" if chat else ""
     tooltip = f'{github_link}{chat_html}'
-    style_attr = f' style="{style}"' if style else ""
+    pad = "padding-left:24px;" if indent else ""
+    combined = f"{pad}{style}" if pad or style else ""
+    style_attr = f' style="{combined}"' if combined else ""
     return f'<td{style_attr}><span class="has-tip">{display}<span class="tip">{tooltip}</span></span></td>'
 
 
@@ -148,8 +176,9 @@ def generate_summary(pattern: str = "*"):
             "total_et": format_et(total_et) if total_et > 0 else "-",
         })
 
-    # Build btn_info lookup for summary cards
+    # Build btn_info lookup and subordinate map
     btn_lookup = {row["name"]: row["btn_info"] for row in rows}
+    subordinates = _build_subordinates(scenarios)
 
     # Compute top-10 summaries
     filter_pcts = []
@@ -309,8 +338,9 @@ def generate_summary(pattern: str = "*"):
         filt_str = str(row["filtered"]) if row["filtered"] > 0 else "-"
         fout_str = str(row["filtered_out"]) if row["filtered_out"] > 0 else "-"
 
+        is_sub = subordinates.get(row["name"], False)
         h.append('      <tr>')
-        h.append(f'        {_scenario_td(row["name"], row["btn_info"])}<td>{deals_str}</td><td>{filt_str}</td><td>{fout_str}</td>')
+        h.append(f'        {_scenario_td(row["name"], row["btn_info"], indent=is_sub)}<td>{deals_str}</td><td>{filt_str}</td><td>{fout_str}</td>')
         for t in row["op_times"]:
             h.append(f'        <td>{t}</td>')
         h.append(f'        <td>{row["total_et"]}</td>')
