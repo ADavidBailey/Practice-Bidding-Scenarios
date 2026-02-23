@@ -39,7 +39,7 @@ gibNT = nt1 or nt2
 # Defines gibNT
 
 wX = hcp(west)>15
-nShape = (clubs(north)>4 or diamonds(north)>4) and shape(north,-any 76xx -any 66xx -any 65xx -any 55xx -any 55xx)
+nShape = (clubs(north)>4 or diamonds(north)>4) and shape(north,xxxx -any 76xx -any 66xx -any 65xx -any 55xx)
 nXX = hcp(north)<8 and nShape
 
 gibNT and wX and nXX
