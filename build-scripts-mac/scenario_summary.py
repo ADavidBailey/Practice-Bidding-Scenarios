@@ -51,6 +51,17 @@ def count_boards(file_path: str) -> int:
     return count
 
 
+def _sort_key(name: str) -> str:
+    """Sort key that places _Leveled variants immediately after their base.
+
+    'Foo_Leveled' sorts as 'Foo\\x00Leveled' so it comes right after 'Foo'
+    but before 'Foo_anything_else'.
+    """
+    if name.endswith('_Leveled'):
+        return name[:-len('_Leveled')] + '\x00Leveled'
+    return name
+
+
 def get_scenarios(pattern: str) -> list:
     """Get scenario names from btn/ folder, optionally filtered by pattern."""
     btn_dir = FOLDERS["btn"]
@@ -58,9 +69,10 @@ def get_scenarios(pattern: str) -> list:
                  if f.endswith('.btn') and not f.startswith('.') and not f.startswith('-')]
 
     if pattern == "*":
-        return sorted(btn_files)
+        return sorted(btn_files, key=_sort_key)
 
-    return sorted(f for f in btn_files if fnmatch.fnmatch(f, pattern))
+    return sorted((f for f in btn_files if fnmatch.fnmatch(f, pattern)),
+                  key=_sort_key)
 
 
 def format_et(seconds: float) -> str:
