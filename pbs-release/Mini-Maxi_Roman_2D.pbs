@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[CD].
 */
 # Mini-Roman
@@ -37,7 +39,7 @@ MiniMaxiRoman = shape(south,any 4441+any 5440-5xxx-x5xx) and (sH or sD or sC) an
 # Now do it
 MiniMaxiRoman   // and not maxi
 
-action
+action printoneline,
 average "1S" 100 * spades(south)<2,
 average "1H" 100 * hearts(south)<2,
 average "1D" 100 * diamonds(south)<2,
