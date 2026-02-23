@@ -960,7 +960,7 @@ def generate_quiz_pbn(quizzes: List[Dict], scenario: str) -> str:
     return '\n'.join(lines)
 
 
-def run_quiz(scenario: str, num_per_quiz: int = 6, verbose: bool = False) -> bool:
+def run_quiz(scenario: str, num_per_quiz: int = 6, verbose: bool = False, debug: bool = False) -> bool:
     """
     Generate quizzes for a scenario.
 
@@ -968,6 +968,7 @@ def run_quiz(scenario: str, num_per_quiz: int = 6, verbose: bool = False) -> boo
         scenario: Scenario name (e.g., "Stayman")
         num_per_quiz: Number of hands per quiz (default 6)
         verbose: Whether to print progress (default False)
+        debug: Whether to print detailed auction analysis and quiz hands (default False)
 
     Returns:
         True if successful, False otherwise
@@ -1002,7 +1003,7 @@ def run_quiz(scenario: str, num_per_quiz: int = 6, verbose: bool = False) -> boo
     # Generate quizzes
     if verbose:
         print(f"\nAnalyzing auction decision points...")
-    quizzes = generate_quizzes(hands, num_per_quiz, verbose=verbose,
+    quizzes = generate_quizzes(hands, num_per_quiz, verbose=debug,
                                max_rounds=quiz_control['rounds'],
                                max_level=quiz_control['level'])
 
@@ -1014,7 +1015,7 @@ def run_quiz(scenario: str, num_per_quiz: int = 6, verbose: bool = False) -> boo
     if verbose:
         print(f"\nGenerated {len(quizzes)} quiz sets")
 
-        # Display quizzes to console
+    if debug:
         for i, quiz in enumerate(quizzes, 1):
             display_quiz(quiz, i)
 
@@ -1071,5 +1072,5 @@ if __name__ == "__main__":
     print(f"Hands per quiz: {num_per_quiz}")
     print()
 
-    success = run_quiz(scenario, num_per_quiz, verbose=verbose)
+    success = run_quiz(scenario, num_per_quiz, verbose=verbose, debug=verbose)
     print(f"\nResult: {'Success' if success else 'Failed'}")
