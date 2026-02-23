@@ -3,7 +3,7 @@
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1N +X
-# convention-card-ns: 21GF-GIB
+# convention-card-ns: 21GF-DEFAULT
 # convention-card-ew: 21GF-GIB
 
 /*@chat
@@ -17,8 +17,8 @@ dealer south
 # Defines gibNT
 
 wX = hcp(west)>16
-nShape = shape(north, any 8xxx +any 7xxx +any 6xxx -any 85xx -any 76xx -any 66xx)
-nXX = hcp(north)<6 and (clubs(north)>5 or diamonds(north)>5) and nShape
+nShape = shape(north, any 8xxx +any 7xxx +any 6xxx -any 85xx -any 76xx -any 75xx-any 66xx -any 65xx)
+nXX = hcp(north)<5 and (clubs(north)>5 or diamonds(north)>5) and nShape
 
 gibNT and wX and nXX
 
