@@ -194,13 +194,25 @@ def generate_summary():
         h.append(f'            <div class="scenario-count">{count_str}</div></th>')
     h.append('      </tr>')
 
+    # Friendly display names for enumerated settings
+    SYSTEM_TYPE_NAMES = {
+        "0": "2/1GF",
+        "1": "SAYC",
+        "2": "WJ",
+        "3": "PC",
+        "4": "Acol",
+    }
+
     # Data rows
     for key in visible_keys:
         h.append('      <tr>')
         h.append(f'        <td>{_esc(key)}</td>')
         for name in ordered:
             val = cards[name].get(key, "0")
-            if val == "1":
+            if key == "System type":
+                display = SYSTEM_TYPE_NAMES.get(val, val)
+                h.append(f'        <td>{_esc(display)}</td>')
+            elif val == "1":
                 h.append(f'        <td class="v1">1</td>')
             elif val == "0":
                 h.append(f'        <td class="v0">&middot;</td>')
