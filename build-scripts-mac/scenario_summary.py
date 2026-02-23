@@ -122,14 +122,17 @@ def generate_summary(pattern: str = "*"):
 
         et = timing.get(scenario, {})
         op_times = []
+        op_seconds = []
         total_et = 0.0
         for op_name, _ in OP_COLUMNS:
             t = et.get(op_name)
             if t is not None:
                 op_times.append(format_et(t))
+                op_seconds.append(t)
                 total_et += t
             else:
                 op_times.append("-")
+                op_seconds.append(0.0)
 
         rows.append({
             "name": scenario,
@@ -141,6 +144,7 @@ def generate_summary(pattern: str = "*"):
             "filtered": filtered,
             "filtered_out": filtered_out,
             "op_times": op_times,
+            "op_seconds": op_seconds,
             "total_et": format_et(total_et) if total_et > 0 else "-",
         })
 
@@ -297,11 +301,13 @@ def generate_summary(pattern: str = "*"):
         h.append('      </tr>')
 
     # Totals row
+    col_totals = [sum(row["op_seconds"][i] for row in rows) for i in range(len(OP_COLUMNS))]
+    grand_total = sum(col_totals)
     h.append('      <tr class="totals">')
     h.append(f'        <td>Total</td><td>{total_deals}</td><td>{total_filtered}</td><td>{total_filtered_out}</td>')
-    for _ in op_headers:
-        h.append('        <td>-</td>')
-    h.append('        <td>-</td>')
+    for ct in col_totals:
+        h.append(f'        <td>{format_et(ct) if ct > 0 else "-"}</td>')
+    h.append(f'        <td>{format_et(grand_total) if grand_total > 0 else "-"}</td>')
     h.append('      </tr>')
 
     h.append('    </table>')
