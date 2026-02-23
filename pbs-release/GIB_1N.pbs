@@ -16,7 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-GIB
+convention-card-ns: 21GF-GIB
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1NT?
 */
 # 1 Notrump GIB
@@ -38,7 +39,7 @@ gibNT = nt1 or nt2
 
 gibNT
 
-action
+action printoneline,
 
 average "not 5422" 100 * nt1,
 average "5422    " 100 * shape(south,5422),
