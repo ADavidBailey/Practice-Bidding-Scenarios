@@ -280,18 +280,34 @@ def generate_summary(pattern: str = "*"):
     h.append('        <th>Total</th>')
     h.append('      </tr>')
 
-    total_deals = 0
-    total_filtered = 0
-    total_filtered_out = 0
+    # Compute totals before emitting rows
+    total_deals = sum(row["deals"] for row in rows)
+    total_filtered = sum(row["filtered"] for row in rows)
+    total_filtered_out = sum(row["filtered_out"] for row in rows)
+    col_totals = [sum(row["op_seconds"][i] for row in rows) for i in range(len(OP_COLUMNS))]
+    grand_total = sum(col_totals)
 
+    # Totals row (at top)
+    h.append('      <tr class="totals">')
+    h.append(f'        <td>Total</td><td>{total_deals}</td><td>{total_filtered}</td><td>{total_filtered_out}</td>')
+    for ct in col_totals:
+        h.append(f'        <td>{format_et(ct) if ct > 0 else "-"}</td>')
+    h.append(f'        <td>{format_et(grand_total) if grand_total > 0 else "-"}</td>')
+    h.append('      </tr>')
+    # ET percentage row
+    h.append('      <tr class="totals">')
+    h.append('        <td>% of ET</td><td></td><td></td><td></td>')
+    for ct in col_totals:
+        pct = (ct / grand_total * 100) if grand_total > 0 else 0
+        h.append(f'        <td>{pct:.1f}%</td>' if ct > 0 else '        <td>-</td>')
+    h.append('        <td>100%</td>')
+    h.append('      </tr>')
+
+    # Data rows
     for row in rows:
         deals_str = str(row["deals"]) if row["deals"] > 0 else "-"
         filt_str = str(row["filtered"]) if row["filtered"] > 0 else "-"
         fout_str = str(row["filtered_out"]) if row["filtered_out"] > 0 else "-"
-
-        total_deals += row["deals"]
-        total_filtered += row["filtered"]
-        total_filtered_out += row["filtered_out"]
 
         h.append('      <tr>')
         h.append(f'        {_scenario_td(row["name"], row["btn_info"])}<td>{deals_str}</td><td>{filt_str}</td><td>{fout_str}</td>')
@@ -300,16 +316,13 @@ def generate_summary(pattern: str = "*"):
         h.append(f'        <td>{row["total_et"]}</td>')
         h.append('      </tr>')
 
-    # Totals row
-    col_totals = [sum(row["op_seconds"][i] for row in rows) for i in range(len(OP_COLUMNS))]
-    grand_total = sum(col_totals)
+    # Repeat totals at bottom
     h.append('      <tr class="totals">')
     h.append(f'        <td>Total</td><td>{total_deals}</td><td>{total_filtered}</td><td>{total_filtered_out}</td>')
     for ct in col_totals:
         h.append(f'        <td>{format_et(ct) if ct > 0 else "-"}</td>')
     h.append(f'        <td>{format_et(grand_total) if grand_total > 0 else "-"}</td>')
     h.append('      </tr>')
-    # ET percentage row
     h.append('      <tr class="totals">')
     h.append('        <td>% of ET</td><td></td><td></td><td></td>')
     for ct in col_totals:
