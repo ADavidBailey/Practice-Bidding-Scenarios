@@ -309,6 +309,14 @@ def generate_summary(pattern: str = "*"):
         h.append(f'        <td>{format_et(ct) if ct > 0 else "-"}</td>')
     h.append(f'        <td>{format_et(grand_total) if grand_total > 0 else "-"}</td>')
     h.append('      </tr>')
+    # ET percentage row
+    h.append('      <tr class="totals">')
+    h.append('        <td>% of ET</td><td></td><td></td><td></td>')
+    for ct in col_totals:
+        pct = (ct / grand_total * 100) if grand_total > 0 else 0
+        h.append(f'        <td>{pct:.1f}%</td>' if ct > 0 else '        <td>-</td>')
+    h.append('        <td>100%</td>')
+    h.append('      </tr>')
     # Repeat column headings after totals
     h.append('      <tr>')
     h.append('        <th></th><th>Deals</th><th>Filtered</th><th>Flt-Out</th>')
