@@ -309,6 +309,13 @@ def generate_summary(pattern: str = "*"):
         h.append(f'        <td>{format_et(ct) if ct > 0 else "-"}</td>')
     h.append(f'        <td>{format_et(grand_total) if grand_total > 0 else "-"}</td>')
     h.append('      </tr>')
+    # Repeat column headings after totals
+    h.append('      <tr>')
+    h.append('        <th>Scenario</th><th>Deals</th><th>Filtered</th><th>Flt-Out</th>')
+    for hdr in op_headers:
+        h.append(f'        <th>{_esc(hdr)}</th>')
+    h.append('        <th>Total</th>')
+    h.append('      </tr>')
 
     h.append('    </table>')
     h.append('  </div>')
