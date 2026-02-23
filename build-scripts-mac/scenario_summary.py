@@ -311,7 +311,7 @@ def generate_summary(pattern: str = "*"):
     h.append('      </tr>')
     # Repeat column headings after totals
     h.append('      <tr>')
-    h.append('        <th>Scenario</th><th>Deals</th><th>Filtered</th><th>Flt-Out</th>')
+    h.append('        <th></th><th>Deals</th><th>Filtered</th><th>Flt-Out</th>')
     for hdr in op_headers:
         h.append(f'        <th>{_esc(hdr)}</th>')
     h.append('        <th>Total</th>')
