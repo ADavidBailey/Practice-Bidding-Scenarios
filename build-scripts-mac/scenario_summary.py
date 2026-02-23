@@ -85,22 +85,22 @@ def _esc_attr(text: str) -> str:
 GITHUB_BTN_URL = "https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn"
 
 
-# Scenarios whose children (by prefix) should be indented
-_INDENT_PARENTS = [
-    "Rule_of_16",
-    "Soloway_Jump_Shift",
-    "We_Overcall",
-]
+# Explicit parent→children indent groups
+_INDENT_PARENTS = {
+    "Rule_of_16": ["Rule_of_16-15", "Rule_of_16-16", "Rule_of_16-17", "Rule_of_16-18"],
+    "Soloway_Jump_Shift": ["Soloway_Jump_Shift_Type-1", "Soloway_Jump_Shift_Type-2",
+                           "Soloway_Jump_Shift_Type-3", "Soloway_Jump_Shift_Type-4"],
+    "We_Overcall_1N": ["We_Overcall_1N_then_Gerber"],
+    "We_Overcall_NT": ["We_Overcall_NT_then_Jacoby", "We_Overcall_NT_then_MSS",
+                        "We_Overcall_NT_then_MST", "We_Overcall_NT_then_Smolen",
+                        "We_Overcall_NT_then_Stayman", "We_Overcall_NT_then_Texas"],
+}
+_INDENT_CHILDREN = {child for children in _INDENT_PARENTS.values() for child in children}
 
 
 def _is_subordinate(name: str) -> bool:
-    """Return True if name is a child of one of the explicit indent parents."""
-    for parent in _INDENT_PARENTS:
-        if name.startswith(parent) and name != parent:
-            rest = name[len(parent):]
-            if rest and rest[0] in ('_', '-'):
-                return True
-    return False
+    """Return True if name is in the explicit indent children set."""
+    return name in _INDENT_CHILDREN
 
 
 def _scenario_td(name: str, btn_info: dict, style: str = "",
