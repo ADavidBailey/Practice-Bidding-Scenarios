@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1N +Pass +2C
 */
 produce 1000
@@ -69,6 +71,7 @@ staymanOrSmolen = shape(north, 54xx+45xx+44xx+43xx+34xx)  // Stayman and/or Smol
 nRange = hcp(north)>15
 
 gibNT and staymanOrSmolen and nRange and calmWest
+action printoneline,
 `, "S", true)
 Script
 Button,Slam after Stayman,\n\
