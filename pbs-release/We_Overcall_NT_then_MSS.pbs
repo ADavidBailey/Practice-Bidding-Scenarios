@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-MSTandMSS
+convention-card-ns: 21GF-MSTandMSS
+convention-card-ew: 21GF-GIB
 auction-filter: Note "1:1N-2S Minor Suit Stayman
 */
-# convention-card: 21GF-MSTandMSS
-
-
 # Enable both MST and MSS
 
 # We Overcall 1NT then Minor Suit Stayman (MSS)
@@ -58,6 +56,7 @@ n2S = (shape(north,xx55+xx54+xx45) and hcp(north)>7) or (shape(north, xx75+xx65+
 
 # Now do it
 eOpens and sNT and n2S
+action printoneline,
 `, "E", true)
 Script
 Button,then  MSS,\n\
