@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1N +Pass
 */
 produce 1000
@@ -112,7 +114,7 @@ and levelTheDeal
 
 # Generate Statistics
 
-action
+action printoneline,
 
 average "Minimum     " 100 * ntMin,
 average "Avg         " 100 * ntAvg,
