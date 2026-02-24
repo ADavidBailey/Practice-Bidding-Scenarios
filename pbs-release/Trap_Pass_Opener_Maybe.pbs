@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n[1-7][CDHS] +Pass +Pass +X
 */
 # Stack in Opponents Suit -- for training Ben
@@ -167,7 +169,7 @@ nBalances = hcp(north)>10 and shape(north,any 5440+any 5431+any 4441)
 eOpens and wPasses and nBalances
 and levelTheDeal
 
-action
+action printoneline,
 average "---- 1-level ----" 100 * eOpens1,
 average "     1-level trap    " 100 * l1t,
 average "     1-level no trap " 100 * l1n,
