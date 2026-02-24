@@ -16,14 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: Precision
+convention-card-ns: Precision
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[HS]
 */
-# convention-card: Precision
-
-
-dealer south
-
 # Predict South's Opening Suit
 s = spades(south)
 h = hearts(south)
@@ -39,6 +35,7 @@ hcp(south)>10 and hcp(south)<16 and hcp(north)>10 and
 ((oS and spades(north)<5 and shape(north, any 55xx))
 or
 (oH and hearts(north)<5 and shape(north, any 55xx)))
+action printoneline,
 `, "S", true)
 Script
 Button,1M w/2-Suit Resp,\n\
