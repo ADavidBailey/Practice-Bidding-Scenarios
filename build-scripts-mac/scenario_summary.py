@@ -266,7 +266,7 @@ def generate_summary(pattern: str = "*"):
     h.append('    .main-table tr.highlighted td { background: #fff3cd !important; }')
     h.append('    .main-table .col-highlighted { background: #d0e8f7 !important; }')
     h.append('    .main-table tr.highlighted .col-highlighted { background: #d4e9c7 !important; }')
-    h.append('    .totals td { font-weight: bold; border-top: 2px solid #ddd; }')
+    h.append('    .totals td { font-weight: bold; border-top: 2px solid #ddd; text-align: center; }')
     h.append('    .summary-card td, .summary-card th { font-size: 12px; }')
     h.append('    .summary-card th { background: transparent; border-bottom: 1px solid #ddd; }')
     h.append('    .has-tip { position: relative; cursor: help; border-bottom: 1px dotted #999; }')
@@ -341,6 +341,8 @@ def generate_summary(pattern: str = "*"):
     total_filtered_out = sum(row["filtered_out"] for row in rows)
     col_totals = [sum(row["op_seconds"][i] for row in rows) for i in range(len(OP_COLUMNS))]
     grand_total = sum(col_totals)
+    filt_pct_str = f'{total_filtered / total_deals * 100:.1f}%' if total_deals > 0 else '-'
+    fout_pct_str = f'{total_filtered_out / total_deals * 100:.1f}%' if total_deals > 0 else '-'
 
     # Totals row (at top)
     h.append('      <tr class="totals">')
@@ -349,9 +351,9 @@ def generate_summary(pattern: str = "*"):
         h.append(f'        <td>{format_et(ct) if ct > 0 else "-"}</td>')
     h.append(f'        <td>{format_et(grand_total) if grand_total > 0 else "-"}</td>')
     h.append('      </tr>')
-    # ET percentage row
+    # Percentage row
     h.append('      <tr class="totals">')
-    h.append('        <td>% of ET</td><td></td><td></td><td></td>')
+    h.append(f'        <td>%</td><td></td><td>{filt_pct_str}</td><td>{fout_pct_str}</td>')
     for ct in col_totals:
         pct = (ct / grand_total * 100) if grand_total > 0 else 0
         h.append(f'        <td>{pct:.1f}%</td>' if ct > 0 else '        <td>-</td>')
@@ -379,7 +381,7 @@ def generate_summary(pattern: str = "*"):
     h.append(f'        <td>{format_et(grand_total) if grand_total > 0 else "-"}</td>')
     h.append('      </tr>')
     h.append('      <tr class="totals">')
-    h.append('        <td>% of ET</td><td></td><td></td><td></td>')
+    h.append(f'        <td>%</td><td></td><td>{filt_pct_str}</td><td>{fout_pct_str}</td>')
     for ct in col_totals:
         pct = (ct / grand_total * 100) if grand_total > 0 else 0
         h.append(f'        <td>{pct:.1f}%</td>' if ct > 0 else '        <td>-</td>')
