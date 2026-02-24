@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-NoInvertedMinor
+convention-card-ns: 21GF-NoInvertedMinor
+convention-card-ew: 21GF-GIB
 auction-filter: (1[CD] Pass 1[DHSN])|(1C Pass 2C)|(1D Pass 2D)|(1[CD] Pass [23]N)
 */
-# convention-card: 21GF-NoInvertedMinor
-
-
 # Minor w/Raise OR Balanced Response -- Leveled
 dealer south
 
@@ -101,7 +99,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -111,7 +109,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -231,7 +229,7 @@ levelTheDeal = levwkr or levgir or levgfr or levwkb or levgib or levgfb
 (wkRaise or giRaise or gfRaise or wkBal or giBal or gfBal) and calmOpps and hcp(south)<22
 and levelTheDeal
 
-action
+action printoneline,
 average "1 Club        " 100 * oC,
 average "1 Diamond     " 100 * oD,
 average "hcp south     "       hcp(south),
@@ -265,4 +263,4 @@ Button,1m & Raise/Bal (Lev),\n\
 1!C/!D - 3N shows 16-17 HCP balanced\n\
 This scenario is leveled such that the mixed raise，invitational raise，and\n\
 balanced weak，invitational，and forcing responses occur at about the same frequency.\n\
-%MinorOpenerRespStr%,backgroundColor=lightpink
+%MinorOpenerRespStr%,width=50% backgroundColor=lightpink
