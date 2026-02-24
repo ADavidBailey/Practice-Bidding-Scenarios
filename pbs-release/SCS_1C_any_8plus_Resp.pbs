@@ -16,12 +16,21 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: Precision
+convention-card-ns: Precision
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....[\s\S][\s\S]?1C
 */
-# convention-card: Precision
+produce 1000
+dealer south
+
+# South has 15+
+hcp(south)>14
+
+# North has 8+
+and hcp(north)>8
+action printoneline,
 `, "S", true)
 Script
 Button,Strong Club & 8+ Resp,\n\
 --- Strong Club with any 8+ Response\n\
-%StrongClubAny8PlusResp%,backgroundColor=lightpink
+%StrongClubAny8PlusResp%,width=50% backgroundColor=lightpink
