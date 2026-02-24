@@ -16,14 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: Precision
+convention-card-ns: Precision
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....[\s\S][\s\S]?1[HS]
 */
-# convention-card: Precision
-
-
-dealer south
-
 # Predict South's Opening Suit
 s = spades(south)
 h = hearts(south)
@@ -39,6 +35,7 @@ and shape(south, any 85xx +any 76xx +any 75xx +any 65xx +any 55xx) // any two 5+
 
 # and North has 12+
 and hcp(north)>11                                                  // responder has 12+
+action printoneline,
 `, "S", true)
 Script
 Button,Major w/2nd Suit,\n\
@@ -46,4 +43,4 @@ Button,Major w/2nd Suit,\n\
 South opens 1!H or 1!S with a second suit of at least 5-cards and North has 12+.\n\
 2!C is a game-forcing relay.\n\
 http://clairebridge.com/textes/karensrules.pdf\n\
-%MajorWith2ndSuit%,backgroundColor=lightpink
+%MajorWith2ndSuit%,width=50% backgroundColor=lightpink
