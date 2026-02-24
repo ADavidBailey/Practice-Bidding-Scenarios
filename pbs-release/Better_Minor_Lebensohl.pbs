@@ -16,9 +16,12 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: 2[DHS] +X +Pass
 */
 # Better Minor Lebensohl
+dealer east
 produce 1000
 
 # Define East weak 2 bids w/o 3-card support by west
@@ -103,7 +106,7 @@ levelTheDeal = levWeak or levInvite or levForce
 eOpensWeak2 and sDoubles and wPasses and (weak or invite or force)
 and levelTheDeal
 
-action
+action printoneline,
 average "Weak  " 100 * weak,
 average "Invite" 100 * invite,
 average "Force " 100 * force,
