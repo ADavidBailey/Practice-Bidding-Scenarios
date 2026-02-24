@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[HS]
 */
 # South opens 1 Major
@@ -132,6 +134,7 @@ oneClub    = oC
 
 # South opens 1M
 (oS or oH) and hcp(south)>11 and hcp(south)<20
+action printoneline,
 `, "S", true)
 Script
 Button,Major Opener,\n\
