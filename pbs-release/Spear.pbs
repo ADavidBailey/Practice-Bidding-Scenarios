@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[CD] +Pass +1N +
 */
 # Spear Convention
@@ -170,8 +172,7 @@ eOneMinor and sPasses and wOneNT and nSpear
 and levelTheDeal
 
 #  produce 40
-action
-#  printoneline,
+action printoneline,
 average "3343" 100 * shape(west,3343),
 average "3334" 100 * shape(west,3334),
 average "3325" 100 * shape(west,3325),
