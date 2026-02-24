@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n(1C +2C|1D +2D|1H +2H|1S +2S)
 */
 ### Imported script: TP (Total Points)
@@ -141,7 +143,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -151,7 +153,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -234,7 +236,7 @@ northResponds = (force or limit or comp or prem)
 
 southOpens and westMCB and northResponds
 
-action
+action printoneline,
 average "force" 100 * force,
 average "limit" 100 * limit,
 average "comp " 100 * comp,
@@ -246,4 +248,4 @@ Button,Michaels after 1m,\n\
   • 1!C - 2!C = 5+!H & 5+!S，or a good hand\n\
   • 1!D - 2!D = 5+!H & 5+!S\n\
 https://www.bridgebum.com/michaels_cuebid.php\n\
-%MichaelsAfter1m%
+%MichaelsAfter1m%,width=50%
