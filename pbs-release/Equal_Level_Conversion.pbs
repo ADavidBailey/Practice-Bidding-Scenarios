@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[HS] +(2D|X) +Pass
 */
 # Equal Level Conversion
@@ -75,7 +77,7 @@ sDoubles = hcp(south)>11 and hcp(south)<15 and shape(south,4x5x +4x6x +4x7x +4x8
 # Now do it
 eOpens and sDoubles and calmWest
 
-action
+action printoneline,
 average "4 spades & 5+ diamonds " 100 * shape(south,4xxx),
 average "4x5x" 100 * shape(south,4x5x),
 average "4x6x" 100 * shape(south,4x6x), 
