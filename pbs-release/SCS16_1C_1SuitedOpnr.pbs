@@ -16,14 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: Precision
+convention-card-ns: Precision
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1C
 */
-# convention-card: Precision
-
-
-dealer south
-
 solidC = clubs(south)>5 and top3(south,clubs)>2
 solidD = diamonds(south)>5 and top3(south,diamonds)>2
 solidH = hearts(south)>5 and top3(south,hearts)>2
@@ -41,6 +37,7 @@ semiSolid = (semiSolidC or semiSolidD or semiSolidH or semiSolidS)
 
 # North has 0-4
 and hcp(north)<5
+action printoneline,
 `, "S", true)
 Script
 Button,1-Suited Opener,\n\
