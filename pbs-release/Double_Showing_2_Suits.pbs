@@ -16,10 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n((1C +Pass +1[DHS]|1D +Pass +1[HS]|1H +Pass +1S|1[CDH] +1[DHS] +2[CDH]) +X)
 */
-dealer west
-
 ##### Double Showing 2 Suits #####
 # a.  West Opens, North Passes, East Bids a new suit at the 1-level, and South has the other 2 suits.
 # b.  West Opens, North Bids a new Suit at the 1-level, East Raises, and South has the other 2 suits.
@@ -152,7 +152,7 @@ levelTheDeal = levNBids or levNPass
 westOpens and northActs and eastActs and southActs
 and levelTheDeal
 
-action
+action printoneline,
 average "N bids" 100 * northBids,
 average "N pass" 100 * northPasses,
 average "H&S   " 100 * sHS,
