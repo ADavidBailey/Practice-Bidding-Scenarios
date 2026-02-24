@@ -42,7 +42,7 @@
 </head>
 <body>
   <h1>Convention Card Summary</h1>
-  <p class="subtitle">14 convention cards &mdash; Generated <span id="gen-time" data-utc="2026-02-24T15:15:03Z"></span>
+  <p class="subtitle">14 convention cards &mdash; Generated <span id="gen-time" data-utc="2026-02-24T15:21:23Z"></span>
     &mdash; <a class="nav-btn" href="./">Dashboard</a>
     <a class="nav-btn" href="Scenario_Summary.html">Scenario Summary</a>
     <a class="nav-btn nav-btn-active" href="Convention_Card_Summary.html">Convention Cards</a></p>
@@ -1895,14 +1895,13 @@
         if (col === hCol) clearCol(); else applyCol(col);
         return;
       }
+      clearCol();
       var td = e.target.closest("td");
       if (!td) return;
-      var col = td.cellIndex;
       var row = td.parentNode;
       var prev = table.querySelector("tr.highlighted");
       if (prev && prev !== row) prev.classList.remove("highlighted");
       row.classList.toggle("highlighted");
-      if (col === hCol) clearCol(); else applyCol(col);
     });
   </script>
 </body>
