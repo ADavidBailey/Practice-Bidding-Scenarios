@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n2C =.= +(X|2[DHSN]) +
 */
 # They open 2C (strong) and we overcall or preempt
@@ -49,7 +51,7 @@ losersWithOneSuit  = sOneSuit  ? losers(south) : 0
 losersWithTwoSuits = sTwoSuits ? losers(south) : 0
 
 produce 500
-action
+action printoneline,
 average "hcp east      " hcp(east),
 average "sTwoSuits     " 100 * sTwoSuits,
 average "losers(south) " losersWithTwoSuits,
