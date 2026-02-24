@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n3[CDHS] +X +
 */
 # Opps Preempt, we X and they XX
@@ -98,7 +100,7 @@ levelTheDeal = lev7 or lev8 or lev9
 eOpens and sDoubles and wXX
 and levelTheDeal
 
-action
+action printoneline,
 average "hcp East " hcp(east),
 average "hcp North" hcp(north),
 average "hcp West " hcp(west),
