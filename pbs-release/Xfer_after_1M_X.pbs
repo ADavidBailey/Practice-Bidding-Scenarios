@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[HS] +X [12]. +
 */
 # South opens 1 Major
@@ -80,7 +82,7 @@ nActsWithoutFit = XX or S1 or N1 or c2
 # Now do it
 southM and westX and (nActsWithFit or nActsWithoutFit)
 
-action
+action printoneline,
 average "----- NO FIT ----- " 100 * nActsWithoutFit,
 average "10+ XX - penalty   " 100 * XX,
 average "6+  1S - spades    " 100 * S1,
