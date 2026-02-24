@@ -16,18 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: 2[DHS]
 */
-# button-width: 12%
-# button-text: (Lev)
-# dealer-position: S
-# gib-works: true
-# bba-works: true
-# auction-filter: 2[DHS]
-
-
-dealer south
-
 # Define South's Weak 2 Bids w/o 4-card major side suit -- Strict
 
      // at least half of south's points are in the suit
@@ -129,7 +121,7 @@ levelTheDeal = (case1 or case2 or case3 or case4)
 weakTwo
 and levelTheDeal
 
-action
+action printoneline,
 average "Responder pass          " 100 * rPass,
 average "Responder raise         " 100 * rRaise,
 average "Responder invite        " 100 * rInvite,
