@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Note..1.Splinter
 */
 # Splinters
@@ -171,7 +173,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -181,7 +183,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -302,7 +304,7 @@ levelTheDeal = lev1 or lev2 or lev3 or lev4
 sOpens and calmWest and nSplinters
 and levelTheDeal
 
-action
+action printoneline,
 average "Part Score" 100 * part,
 average "Game"       100 * game,
 average "Slam"       100 * slam,
@@ -315,4 +317,4 @@ in support of opener's minor (at least 9-cards).\n\
 GIB splinters with a singleton A，K，or Q.  Some players do NOT.\n\
 • After 1!C a jump to 3!D，3!H，or 3!S\n\
 • After 1!D a jump to 3!H，3!S，or 4!C\n\
-%Splinters_after_Minor%
+%Splinters_after_Minor%,width=50%
