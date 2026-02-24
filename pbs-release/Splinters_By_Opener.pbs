@@ -16,9 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: (1[CDH] +Pass +1S +Pass\n4[CDH])|(1[CD] +Pass +1H +Pass\n(3S|4[CD]))
 */
-dealer south
 produce 1000
 
 # Splinters by Opener
@@ -237,7 +238,7 @@ northRange = hcp(north)>5  and hcp(north)<17  // no jump shifts
 # Now do it
 sOpens and northRange and calmOpps
 
-action
+action printoneline,
 average "CH " 100 * CH,
 average "  3D     " 100 * CH3D,
 average "  3S     " 100 * CH3S,
