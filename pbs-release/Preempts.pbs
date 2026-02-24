@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n[2345][CDHS] +
 */
 # Preempts
@@ -29,6 +31,7 @@ oD = top5(south,diamonds)>1 and diamonds(south)>6
 oC = top5(south,clubs)>1    and clubs(south)>6
 
 (oS or oH or oD or oC) and range
+action printoneline,
 `, "S", true)
 Script
 Button,Preempts,\n\
