@@ -16,14 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: Precision
+convention-card-ns: Precision
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....[\s\S][\s\S]?1[HS]
 */
-# convention-card: Precision
-
-
-dealer south
-
 # Predict South's Opening Suit
 s = spades(south)
 h = hearts(south)
@@ -39,10 +35,11 @@ sOpens = hcp(south)>10 and hcp(south)<15 and hcp(north)>10
 nSpades = oS and spades(north)<5 and shape(north, any 55xx)
 nHearts = oH and hearts(north)<5 and shape(north, any 55xx)
 sOpens and (nSpades or nHearts)
+action printoneline,
 `, "S", true)
 Script
 Button,Major & 2-Suit Resp,\n\
 --- Major & 2-Suit Response\n\
 1!H or 1!S is 11-14 HCP.\n\
 http://clairebridge.com/textes/karensrules.pdf\n\
-%Major2SuitResp%,backgroundColor=lightpink
+%Major2SuitResp%,width=50% backgroundColor=lightpink
