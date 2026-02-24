@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n(1N +Pass +2[DH]|1N +Pass +4[DH])
 */
 produce 1000
@@ -43,6 +45,7 @@ and (spades(north)>4 or hearts(north)>4)    // Jacoby or Texas Transfer
 and shape(north, any 0xxx +any 1xxx +any 2xxx)
 and not shape(north, 54xx+45xx)             // avoid Smolen
 and hcp(north)>15
+action printoneline,
 `, "S", true)
 Script
 Button,Slam after Transfer,\n\
