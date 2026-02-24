@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[CD] +Pass +[123]N
 */
 # South opens 1C or 1D with no other constraints
@@ -27,6 +29,7 @@ auction-filter: Auction.....\n1[CD] +Pass +[123]N
 # 16-17 3N
 
 
+dealer south
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -219,7 +222,7 @@ levelTheDeal = lev1N or lev2H or lev2N or lev3N
 (oneClub or oneDiamond) and (n1 or n2 or n3 or n4) and nNT and calmWest
 and levelTheDeal
 
-action
+action printoneline,
 
 average "1N  6-10 " 100 * n1,
 average "2H 11-12 " 100 * n2,
