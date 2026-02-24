@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Note.*Michaels
 */
 produce 1000
@@ -47,7 +49,7 @@ east3Bid = eastHCP and (p3S or p3H or p3D or p3C) and shape(east,any 7xxx -any 7
 # Now do it
 east3Bid
 
-action
+action printoneline,
 
 average "3C" 100 * p3C,
 average "3D" 100 * p3D,
@@ -58,4 +60,4 @@ Script
 Button,Non-Leaping Michaels,\n\
 --- Non-Leaping Michaels after 3-level preempt\n\
 https://www.bridgewebs.com/alton/EBU%20-%20Stage%202%20Conventions%20-%20Leaping%20and%20Non-Leaping%20Michaels.pdf\n\
-%NLMAfter3Bid%,backgroundColor=lightpink
+%NLMAfter3Bid%,width=50% backgroundColor=lightpink
