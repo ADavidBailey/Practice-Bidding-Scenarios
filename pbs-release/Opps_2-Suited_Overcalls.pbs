@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[CDHS] +2[CDHSN] +
 */
 # Opponent's Two-Suited Overcalls
@@ -172,7 +174,7 @@ oSuit and oRange and iRange and rRange
 
 #  Michaels Cue Bid (MCB), Unusual 2NT (U2N), Top & Bottom Cue Bid (T&B)
 
-action
+action printoneline,
 average "1S         " 100 * (oneS and (HD or HC or DC)),
 average "   (2S MCB     = HD) " 100 * (oneS and HD),
 average "   (2S MCB/T&B = HC) " 100 * (oneS and HC),
