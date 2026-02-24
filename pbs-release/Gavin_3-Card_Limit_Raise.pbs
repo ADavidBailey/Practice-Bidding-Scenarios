@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: .
 */
 # 3-Card Limit Raise
@@ -35,9 +37,10 @@ HeartFit = ((hearts(north)>4 and spades(south)<5) and hearts(south)==3)
 MajorFit = (SpadeFit or HeartFit)
 
 hcp(north)>10 and hcp(north)<15 and MajorFit and tp>10 and tp<13
+action printoneline,
 `, "N", true)
 Script
 Button,3-card Limit Raise (11-12 TP) 1N/3M,\n\
 --- 3-card Limit Raise (11-12 TP) 1N/3M\n\
 https://tinyurl.com/4dvh42e7\n\
-%LimitRaise3Card%,backgroundColor=lightpink
+%LimitRaise3Card%,width=50% backgroundColor=lightpink
