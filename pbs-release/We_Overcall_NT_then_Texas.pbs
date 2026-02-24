@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Note....Texas
 */
 # We Overcall 1NT_then_Stayman
@@ -52,6 +54,7 @@ n4DorH = shape(north,9xxx+8xxx+7xxx+6xxx+x9xx+x8xx+x7xx+x6xx) and controls(north
 
 # Now do it
 eOpens and sNT and n4DorH
+action printoneline,
 `, "E", true)
 Script
 Button,then Texas,\n\
