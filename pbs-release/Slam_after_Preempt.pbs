@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n[2-5][CDHS]
 */
 # Slam after Preempt
@@ -39,7 +41,7 @@ uncoveredLosers = losers(south) - coverCards
 
 sPreempt and uncoveredLosers < 2
 
-action
+action printoneline,
 average "south hcp       " hcp(south),
 average "south losers    " losers(south),
 average "cover cards     " coverCards,
