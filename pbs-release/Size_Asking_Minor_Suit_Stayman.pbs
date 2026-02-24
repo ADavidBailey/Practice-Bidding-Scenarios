@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1N +Pass +2S
 */
 # Size Asking MSS
@@ -40,6 +42,7 @@ sA = bothMinors or cA or dA or (noMajor and bHCP)
 
 # North opens 1N and south asks for 17
 nO and sA
+action printoneline,
 `, "N", true)
 Script
 Button,Size Asking MSS,\n\
