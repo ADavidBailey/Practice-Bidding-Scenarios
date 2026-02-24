@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[HS] +3[CDHS] +4[CD]
 */
 # Opponents preempt our Major
@@ -37,6 +39,7 @@ ePreempts = (PCE or PDE or PHE or PSE) and hcp(east)>5 and hcp(east)<10
 FitWith14Plus = (sFit or hFit) and hcp(south)>13
 
 nOpens and ePreempts and FitWith14Plus
+action printoneline,
 `, "N", true)
 Script
 Button,Pre/Tislevoll 4C/4D,\n\
