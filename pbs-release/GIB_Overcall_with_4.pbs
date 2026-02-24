@@ -16,18 +16,12 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-GIB
+convention-card-ns: 21GF-GIB
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[CDH]
 */
-# convention-card: 21GF-GIB
-
-
 /*
 South opens 1C, 1D, or 1H and West overcalls at the 1-level in a 4-card suit.
-
-convention-card: 21GF-GIB
-auction-filter: Auction.....\n1[CDH]
-
 */
 
 dealer south
@@ -82,7 +76,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -92,7 +86,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -225,7 +219,7 @@ sOpens = hcp(south)>11 and hcp(south)<15
 sOpens and wOvercalls
 
 
-action
+action printoneline,
 average "1C-1D   " 100 * (cOC and wD4),
 average "1C-1H   " 100 * (cOC and wH4),
 average "1C-1S   " 100 * (cOC and wS4),
@@ -241,4 +235,4 @@ The required suit quality is AKxx，AQJx，AQTx，AQ9x，AJT9，KQJx，KQTx，or
 West's shape is either 4333 or 4432.\n\
 West's lower limit is 12 TP -- can be 11 HCP w/a small doubleton.\n\
 West's upper limit is 13 HCP with 44/33 in the majors，otherwise 14 HCP.\n\
-%GibOcW4%
+%GibOcW4%,width=50%
