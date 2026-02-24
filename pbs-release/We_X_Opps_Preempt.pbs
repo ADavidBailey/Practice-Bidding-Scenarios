@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: 3[CDHS] X Pass
 */
 # East Preempts
@@ -115,7 +117,7 @@ ePreempts and sX and wPasses and (weak or invite or force)
 and levelTheDeal
 
 produce 40
-action
+action printoneline,
 average "South X 14-15 " 100 * sX1,
 average "South X 16-18 " 100 * sX2,
 average "South X 19+   " 100 * sX3,
