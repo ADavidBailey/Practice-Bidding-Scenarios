@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1N +Pass +2[DH] +X
 */
 # Opps X Jacoby
@@ -47,7 +49,7 @@ eDoubles = shape(east,any 6xxx+any 5xxx-any 65xx-any 55xx) and eLength>4 and hcp
 # Now do it
 sNT and wPasses and nTransfers and eDoubles 
 
-action
+action printoneline,
 
 average "South's hcp     " hcp(south),
 average "North's hcp     " hcp(north),
