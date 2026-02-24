@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: (1C 2C)|(1D 2D)|(1H 2H)|(1S 2S)|(1[CDHS] 2N)
 */
 # Two-Suited Overcalls
@@ -180,8 +182,7 @@ oSuit and iRange and rRange
 # You might also play with choseing south's suits
 #and SC or SD  // If you just want the problematic ones
 
-action
-#printoneline,
+action printoneline,
 
 average "Weak       " 100 * iWeak,
 average "  HCP      "     wHCP,
@@ -220,4 +221,4 @@ You may want to practice with the Michaels and Unusual NT scenario instead.\n\
 ·\n\
 Let me know if you want to practice with Top & Bottom and Unusual NT.\n\
 --- 2-Suit Overcalls\n\
-%TwoSuitedOvercalls%,backgroundColor=lightpink
+%TwoSuitedOvercalls%,width=50% backgroundColor=lightpink
