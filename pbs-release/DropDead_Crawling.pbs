@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1NT? +Pass +2C +
 */
 # Stayman
@@ -69,7 +71,7 @@ crawlingStayman = shape(north,4414+4405) and hcp(north)<8
 
 gibNT and (dropDeadStayman or crawlingStayman) and calmWest
 
-action
+action printoneline,
 average "dropDead    " 100 * dropDeadStayman,
 average "crawling    " 100 * crawlingStayman,
 `, "S", true)
@@ -85,4 +87,4 @@ With Drop Dead Stayman，responder will pass anything that opener bids.\n\
 With Crawling Stayman，responder will correct 2!D to 2!H showing a weak 3-suited hand w/short !D.\n\
 https://www.bridgebum.com/stayman.php\n\
 https://www.bridgebum.com/crawling_stayman.php\n\
-%DropDeadCrawling%,backgroundColor=lightpink
+%DropDeadCrawling%,width=50% backgroundColor=lightpink
