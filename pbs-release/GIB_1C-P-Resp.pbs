@@ -16,7 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-GIB
+convention-card-ns: 21GF-GIB
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1C +Pass +(1[DHS]|[1-3]NT?|[2-3]C|3[CDHS]) +
 */
 ##### Imported Script: Define Calm Opponents #####
@@ -357,7 +358,7 @@ nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N
 
 oneClub and not wOvercalls and nRange and nResponds and oppsPass
 
-action
+action printoneline,
 average "1C Pass 1D" 100 * r1D,
 average "1C Pass 1H" 100 * r1H,
 average "1C Pass 1S" 100 * r1S,
