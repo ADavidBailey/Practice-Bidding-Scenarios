@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Note..1.Splinter
 */
 # Splinters
@@ -208,7 +210,7 @@ levelTheDeal = lev1 or lev2 or lev3 or lev4
 sOpens and fit and nSplinters and calmWest
 and levelTheDeal
 
-action
+action printoneline,
 average "12-13 & 13-16" 100 * game1,
 average "14-15 & 13-16" 100 * game2,
 average "16-17 & 13-16" 100 * slam1,
@@ -220,4 +222,4 @@ Button,Splinters,\n\
 in support of opener's major.  GIB splinters with a singleton A，K，or Q.  Some players do NOT.\n\
 • After 1!H a jump to 3!S，4!C，or 4!D\n\
 • After 1!S a jump to 4!C，4!D，or 4!H\n\
-%Splinters%
+%Splinters%,width=50%
