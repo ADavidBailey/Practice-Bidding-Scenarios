@@ -16,19 +16,14 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: Precision
+convention-card-ns: Precision
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n[12]C
 */
-# convention-card: Precision
-
-
 /*
 Strong Club System
 
 1C (16+) or 2C(11-15)
-
-convention-card: Precision
-auction-filter: Auction.....\n[12]C
 */
 
 dealer south
@@ -44,6 +39,7 @@ range = range1C or range2C
 suit = clubs(south)>5 and clubs(south)>diamonds(south)
 
 range and suit
+action printoneline,
 `, "S", true)
 Script
 Button,1/2 Club Opener,\n\
