@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: .
 */
 # Gavin's Passed Hand Response Structure
@@ -110,8 +112,7 @@ nOpens = nMajor and hcp(north)>11 and hcp(north)<20 and notNT and shape(north,an
 sPasses and nOpens and calmOpps
 and not (oneSp or nt or pass)
 
-action
-printoneline,
+action printoneline,
 average "raise      4-7 sPts 3+fit                " 100 * raise,
 average "fit jump   8+  sPts 4+fit  good 2nd suit " 100 * fitJump,
 average "splinter1  8+  sHCP 3+fit  singleton     " 100 * splinter1,
@@ -138,4 +139,4 @@ After P (P) 1M (P)...\n\
 • other bids are natural\n\
 Responder's rebids of Pass，1!S，& 1N are excluded.\n\
 https://tinyurl.com/Passed-Hand-Resp-Str\n\
-%PassedHandRespStr%,backgroundColor=lightpink
+%PassedHandRespStr%,width=50% backgroundColor=lightpink
