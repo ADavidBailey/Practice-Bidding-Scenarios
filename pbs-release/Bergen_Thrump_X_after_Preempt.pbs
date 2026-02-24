@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[CDHS] +3[DHS]
 */
 # Bergen Thrump X after Preempt
@@ -42,7 +44,7 @@ sDoubles = noMajorFit and hcp(south)>9
 nOpens and ePreempts and sDoubles
 
 produce 1000
-action
+action printoneline,
 average "hcp(north)" hcp(north),
 average "hcp(south)" hcp(south),
 produce 1000
