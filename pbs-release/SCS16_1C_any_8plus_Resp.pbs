@@ -16,18 +16,16 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: Precision
+convention-card-ns: Precision
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1C
 */
-# convention-card: Precision
-
-
-
 # Strong C & any 8+ response
 dealer south
 
 # South has 16+ and North has 8+
 hcp(south)>15 and hcp(north)>7 and controls(north)>2
+action printoneline,
 `, "S", true)
 Script
 Button,any Resp w/8+,\n\
