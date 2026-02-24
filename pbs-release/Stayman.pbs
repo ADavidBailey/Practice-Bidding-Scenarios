@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1NT? +Pass +(Pass|2C)
 */
 # Stayman Basics - for learning the convention
@@ -146,7 +148,7 @@ true15to17 = hcp(south)>14 and hcp(south)<18
 condition NT and northHand and calmOpps and true15to17
 
 # Generate Statistics
-action
+action printoneline,
 average "One Major   " 100 * nHasOneMajor,
 average "Two Majors  " 100 * nHasTwoMajors,
 average "Weak (<8)   " 100 * nWeak,
