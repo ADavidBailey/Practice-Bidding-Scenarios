@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n2[DHS] +X
 */
 # Lebensohl over Weak2 (X)
@@ -61,7 +63,7 @@ force  = hcp(north)>11
 
 eOpensWeak2 and sDoubles and wPasses and (weak or invite or force)
 
-action
+action printoneline,
 average "North Weak   " 100 * weak,
 average "North Invite " 100 * invite,
 average "North Force  " 100 * force,
