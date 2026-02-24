@@ -16,14 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: Precision
+convention-card-ns: Precision
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n2C
 */
-# convention-card: Precision
-
-
-dealer south
-
 # Strong Club System:  2C = 11-16 HCP with 5+Clubs
 s = spades(south)
 h = hearts(south)
@@ -34,6 +30,7 @@ range = hcp(south)>10 and hcp(south)<17
 suit = c>4 and s<5 and h<5 and d<c
 
 range and suit
+action printoneline,
 `, "S", true)
 Script
 Button,Two Clubs 11-16,\n\
