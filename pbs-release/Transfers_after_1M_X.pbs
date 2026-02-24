@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: 1[HS] X
 */
 # Transfers after 1M (X)
@@ -40,7 +42,7 @@ XoneH = hcp(east)>11 and spades(east)==4 and hearts(east)<2 and diamonds(east)>2
 
 (oneS and XoneS) or (oneH and XoneH)
 
-action
+action printoneline,
 average "4-7   w/3 " 100 * (hcp(south)>3 and hcp(south)<8  and c3),
 average "4-7   w/4 " 100 * (hcp(south)>3 and hcp(south)<8  and c4),
 average "8-10  w/3 " 100 * (hcp(south)>7 and hcp(south)<11 and c3),
