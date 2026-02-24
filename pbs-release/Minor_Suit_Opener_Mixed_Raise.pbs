@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-NoInvertedMinor
+convention-card-ns: 21GF-NoInvertedMinor
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n(1C +Pass +3C)|(1D +Pass +3D)
 */
-# convention-card: 21GF-NoInvertedMinor
-
-
 # Minor Opening w/Mixed Raise
 dealer south
 
@@ -171,7 +169,7 @@ mixedRaise = (cRaise or dRaise) and range and shortness
 mixedRaise and calmOpps and hcp(south)<22  // some are included in imported code
 
 produce 1000
-action
+action printoneline,
 average "1 Club        " 100 * oC,
 average "1 Diamond     " 100 * oD,
 average "hcp north     "       hcp(north),
