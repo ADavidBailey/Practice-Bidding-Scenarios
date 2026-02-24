@@ -16,11 +16,14 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1C +[PX1].* (X|1[DHSN]|[23]N)
 */
 # Transfer Walsh
 
 
+dealer south
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -156,8 +159,7 @@ oneClub and hcp(south)>11 and nResponds   // BBO does not open most 11s
 
 
 produce 40
-action
-printoneline,
+action printoneline,
 
 average "1D        " 100 * n1D,
 average "1H        " 100 * n1H,
