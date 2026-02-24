@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n3[CDHS] +3N
 */
 ### 3N over RHO's 3x ###
@@ -135,7 +137,7 @@ levelTheDeal = level1 or level2 or level3
 ePreempts and (case1 or case2 or case3)
 and levelTheDeal
 
-action
+action printoneline,
 average "1 Stop and >17             " 100 * case1,
 average "1 Stop, good suit, and >15 " 100 * case2,
 average "2 Stop and >15             " 100 * case3,
