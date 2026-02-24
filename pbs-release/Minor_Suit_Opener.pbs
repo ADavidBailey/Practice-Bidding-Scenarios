@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[CD]
 */
 # Open 1 of a Minor
@@ -32,6 +34,7 @@ notMajor = spades(south)<5 and hearts(south)<5
 hcpRange = hcp(south)>11 and hcp(south)<22
 
 notNT and notMajor and hcpRange
+action printoneline,
 `, "S", true)
 Script
 Button,Minor Opening,\n\
