@@ -1,7 +1,7 @@
-Script,GIB
-window.currentPBSScenario = 'GIB';
+Script,GibAfterStayman
+window.currentPBSScenario = 'GibAfterStayman';
 window.currentPBSScenarioFilename = 'GIB_1N-P-2C-BID';
-console.log('PBS: Logging scenario selection for GIB');
+console.log('PBS: Logging scenario selection for GibAfterStayman');
 fetch('https://bba.harmonicsystems.com/api/scenario/select', {
     method: 'POST',
     headers: {
@@ -9,23 +9,19 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
         'X-Client-Version': '1.0.0'
     },
     body: JSON.stringify({
-        scenario: 'GIB',
+        scenario: 'GibAfterStayman',
         user: whoAmI() || 'anonymous'
     })
 }).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
 setDealerCode(`
 
 /*
-convention-card: 21GF-GIB
+convention-card-ns: 21GF-GIB
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n(1NT? +Pass +2C.* +[X2-7])
 */
-# convention-card: 21GF-GIB
-
 /*
 South opens 1N and North responds 2C and East bids.
-
-convention-card: 21GF-GIB
-auction-filter: Auction.....\n(1NT? +Pass +2C.* +[X2-7])
 */
 
 dealer south
@@ -327,7 +323,7 @@ levelTheDeal = lev2B or lev3B or lev4B or levX
 gibNT and tpSouth<19 and calmWest and n2Clubs and (eShape or eX) and (e2B or e3B or e4B or eX)
 and levelTheDeal
 
-action
+action printoneline,
 average "smolen      " 100 * smolen,
 average "stayman     " 100 * stayman,
 average "major invite" 100 * majorInvite,
@@ -347,10 +343,4 @@ average "4 strong    " 100 * e4Bs,
 average "Any 4-Bid---" 100 * (e4Bw or e4Bs),
 `, "S", true)
 Script
-Button,GIB,%GIB%
-
-Button,GIB after 1N-2C,\n\
----  GIB after 1N-2C\n\
-GIB opens 1NT with 4333，4432， or 5332 w/15-17 HCP or 15-16 and a 5-card major\n\
-and any 5422 without a 5-card major，without 4!S，and 15-16 HCP (too few points to reverse)\n\
-%NotrumpGIB%
+Button,GIB after Stayman,%GibAfterStayman%,width=50%
