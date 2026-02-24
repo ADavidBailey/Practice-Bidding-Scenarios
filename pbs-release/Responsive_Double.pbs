@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n(1C +[X1].? +2C|1D +[X1].? +2D|1H +[X1].? +2H|1S +[X1].? +2S)
 */
 # Predict West's Opening suit
@@ -45,8 +47,7 @@ southDoubles = hcp(south)>7
 westOpens and northDoubles and eastRaises and southDoubles and dAll
 
 produce 30
-action
-printoneline,
+action printoneline,
 `, "W", true)
 Script
 Button,Responsive Double,\n\
