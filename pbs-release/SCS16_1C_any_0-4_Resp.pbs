@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: Precision
+convention-card-ns: Precision
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1C
 */
-# convention-card: Precision
-
-
 produce 1000
 dealer south
 
@@ -30,6 +28,7 @@ hcp(south)>15
 
 # North has 0-4
 and hcp(north)<5
+action printoneline,
 `, "S", true)
 Script
 Button,any Resp w/0-4,\n\
