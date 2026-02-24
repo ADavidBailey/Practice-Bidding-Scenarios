@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: (1D Pass 2C)|(1H Pass 2[CD])|(1S Pass 2[CDH])
 */
 # Two Over One
@@ -72,7 +74,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -82,7 +84,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -175,7 +177,7 @@ nShape = shape(north,any 6xxx+any 5xxx+any 4441-any 55xx)
 # Now do it.
 (oneS or oneH or oneD) and hcp(south)>11 and hcp(south)<20 and hcp(north)>12 and nShape and calmOpps
 
-action
+action printoneline,
 average "1S     " 100 * oS,
 average "1H     " 100 * oH,
 average "1D     " 100 * oD,
@@ -195,4 +197,4 @@ Button,Two Over One,\n\
 1!D - 2!C\n\
 1!H - 2!C or 2!D\n\
 1!S - 2!C or 2!D or 2!H\n\
-%TwoOverOne%
+%TwoOverOne%,width=50%
