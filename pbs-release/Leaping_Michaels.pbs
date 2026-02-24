@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: (Note...:Leaping Michaels)|(Note...:Michaels)
 */
 produce 1000
@@ -42,7 +44,7 @@ dE = top3(east,diamonds)>1 and diamonds(east)==6 and spades(east)<4 and hearts(e
 # East opens a Weak Two and South has 2 good suits and less than 5 losers
 hcp(east)>5 and hcp(east)<10 and (sE or hE or dE) and hcp(south)>11 and losers(south)<5
 
-action
+action printoneline,
 average "           2S " 100 * sE,
 average "           2H " 100 * hE,
 average "           2D " 100 * dE,
@@ -53,4 +55,4 @@ Script
 Button,Leaping Michaels,\n\
 --- Leaping Michaels\n\
 https://www.bridgebum.com/leaping_michaels.php\n\
-%LeapingMichaels%,backgroundColor=lightpink
+%LeapingMichaels%,width=50% backgroundColor=lightpink
