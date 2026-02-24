@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[CDHS] +.[CDHS]
 */
 # Opponents preempt overcall
@@ -31,6 +33,7 @@ PCE = clubs(east)>6 and top4(east,clubs)==2
 nOpens = hcp(north)>11 and hcp(north)<15 and (hcp(north) + hcp(south)) >19
 ePreempts = hcp(east)>5 and hcp(east)<9 and (PCE or PDE or PHE or PSE)
 nOpens and ePreempts
+action printoneline,
 `, "N", true)
 Script
 Button,Preempt Overcall,\n\
