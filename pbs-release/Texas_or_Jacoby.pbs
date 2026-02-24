@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: (1NT?.* Pass.* 2[DH] +)|(1NT?.* Pass.* 4[DH] +)
 */
 # Stayman or Jacoby
@@ -72,10 +74,11 @@ nM = (nS or nH)
 
 # North has Robot 1 Notrump Opening and South Transfers
 gibNT and nM and calmWest
+action printoneline,
 `, "S", true)
 Script
 Button,Jacoby or Texas,\n\
 ---  Jacoby or Texas\n\
 Jacoby followed directly by 4N is Quantitative.  Texas then 4N is RKC.\n\
 Jacopy then Splinter has 6+cards and slam interest (small or grand) due to shortness.\n\
-%JacobyOrTexas%
+%JacobyOrTexas%,width=50%
