@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n(1H +Pass +2H|1S +Pass +2S) +X\nPass.
 */
 # Scrambling 2NT
@@ -49,7 +51,7 @@ nScramble = ((not nMajor and shape(north,xx45 + xx54 + xx44)) or (nMajor and hcp
 
 OBAR and sTOX and (nFreeBid or nScramble)
 
-action
+action printoneline,
 average "Free Bid" 100 * nFreeBid,
 average "Scramble" 100 * nScramble,
 `, "W", true)
