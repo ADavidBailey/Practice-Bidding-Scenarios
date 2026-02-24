@@ -51,6 +51,13 @@ def count_boards(file_path: str) -> int:
     return count
 
 
+def _sort_key(name: str) -> str:
+    """Sort key that places _Leveled variants immediately after their base."""
+    if name.endswith('_Leveled'):
+        return name[:-len('_Leveled')] + '\x00Leveled'
+    return name
+
+
 def get_scenarios(pattern: str) -> list:
     """Get scenario names from btn/ folder, optionally filtered by pattern."""
     btn_dir = FOLDERS["btn"]
@@ -58,9 +65,10 @@ def get_scenarios(pattern: str) -> list:
                  if f.endswith('.btn') and not f.startswith('.') and not f.startswith('-')]
 
     if pattern == "*":
-        return sorted(btn_files)
+        return sorted(btn_files, key=_sort_key)
 
-    return sorted(f for f in btn_files if fnmatch.fnmatch(f, pattern))
+    return sorted((f for f in btn_files if fnmatch.fnmatch(f, pattern)),
+                  key=_sort_key)
 
 
 def format_et(seconds: float) -> str:
@@ -101,8 +109,12 @@ _INDENT_CHILDREN = {child for children in _INDENT_PARENTS.values() for child in 
 
 
 def _is_subordinate(name: str) -> bool:
-    """Return True if name is in the explicit indent children set."""
-    return name in _INDENT_CHILDREN
+    """Return True if name is in the explicit indent children set or is a _Leveled variant."""
+    if name in _INDENT_CHILDREN:
+        return True
+    if name.endswith('_Leveled'):
+        return True
+    return False
 
 
 def _scenario_td(name: str, btn_info: dict, style: str = "",
