@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n2[DHS] +Pass +Pass +X
 */
 # Lebensohl after (2x) P (P) X
@@ -112,7 +114,7 @@ levelTheDeal = (levWeak or levInvite or levForce)
 wOpensWeak2 and nPasses and ePasses and sDoubles and nResponds
 and levelTheDeal
 
-action
+action printoneline,
 average "Weak  " 100 * weak,
 average "Invite" 100 * invite,
 average "Force " 100 * force,
