@@ -16,9 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: .
 */
-dealer north
 # Weak Splinter (9-11 HCP)
 
 # Avoid NT opener
@@ -62,6 +63,7 @@ and calmOpps
 and MajorFit
 and shape(south,any 1xxx +any 0xxx)
 and hcp(south)>8 and hcp(south)<12
+action printoneline,
 `, "N", true)
 Script
 Button,Weak Splinter (9-11 HCP),\n\
@@ -69,4 +71,4 @@ Button,Weak Splinter (9-11 HCP),\n\
   • 1!H - 3!S，3N asks，answers are low，middle，high\n\
   • 1!S - 3N，4!C asks，answers are low，middle，high\n\
 https://tinyurl.com/4dvh42e7\n\
-%AmbiguousSplinter%,backgroundColor=lightpink
+%AmbiguousSplinter%,width=50% backgroundColor=lightpink
