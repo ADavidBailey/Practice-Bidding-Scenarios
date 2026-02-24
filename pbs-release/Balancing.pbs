@@ -16,12 +16,12 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[CDHS] +Pass +Pass +[PX1-7]
 */
 /*
 Balancing
-
-auction-filter: Auction.....\n1[CDHS] +Pass +Pass +[PX1-7]
 */
 
 # Balancing
@@ -172,7 +172,7 @@ eOpens and wPasses and calmSouth and (nOC1 or nOC2 or nTOX or nOCN or nJOC or nT
 and levelTheDeal
 
 produce 5000
-action
+action printoneline,
 average "(hcp east)  " hcp(east),
 average "(hcp north) " hcp(north),
 average "overcall at 1-level    " 100 * nOC1,
@@ -196,4 +196,4 @@ Button,Balancing (Lev),\n\
 • Two-Suits -- cue bid\n\
 • 2NT -- 20-21\n\
 This scenario attempts to offer all options with about the same frequency.\n\
-%Balancing%
+%Balancing%,width=50%
