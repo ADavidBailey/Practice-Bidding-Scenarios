@@ -16,9 +16,12 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: 1N +Pass
 */
 # Rule of 16 = 17
+dealer north
 
 
 # East passes
@@ -69,8 +72,7 @@ sActs = shape(south, any 4333+any 4432+any 5332+any 5422-5xxx-x5xx) and hcp(sout
 nOpens and calmEast and sActs and club4
 
 produce 1000
-action
-#printoneline,
+action printoneline,
 frequency "R16 points" (r16,13,19),
 `, "N", true)
 Script
