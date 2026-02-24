@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: Precision
+convention-card-ns: Precision
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....[\s\S][\s\S]?1C
 */
-# convention-card: Precision
-
-
 # Strong Club System: 1C & 3 suited response 8+ HCP
 dealer south
 
@@ -33,9 +31,10 @@ and hcp(north)>7
 
 # North has specific shapes
 and shape(north, any 4441 + any 5440)
+action printoneline,
 `, "S", true)
 Script
-Button,3-Suited Rest w/8+,\n\
+Button,3-Suited Resp w/8+,\n\
 --- 1C with 3-Suit Response (16+ HCP)\n\
 1!C is 16+ HCP，artificial and forcing.\n\
 Is there anything you want here.  I often include a link to a description.\n\
