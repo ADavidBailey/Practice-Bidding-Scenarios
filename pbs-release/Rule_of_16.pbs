@@ -16,9 +16,12 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: 1N +Pass
 */
 # Rule of 16
+dealer north
 
 
 # East passes
@@ -123,8 +126,7 @@ nOpens and calmEast and sActs and club4
 and levelTheDeal
 
 produce 10000
-action
-#printoneline,
+action printoneline,
 average "R16 points = 14 " 100 * (r16==14),
 average "R16 points = 15 " 100 * (r16==15),
 average "R16 points = 16 " 100 * (r16==16),
