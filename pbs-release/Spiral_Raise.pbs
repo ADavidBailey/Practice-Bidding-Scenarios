@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: ((1[CD] +Pass +1H +Pass\n2H +Pass +[23])|(1[CD] +Pass +1S +Pass\n2S +Pass +[23]))
 */
 produce 1000
@@ -63,6 +65,7 @@ calmOpps = calmEast and calmWest
 
 # Now do it…
 minorOpening and shortness and northResponds and calmOpps
+action printoneline,
 `, "S", true)
 Script
 Button,Spiral Raise,\n\
