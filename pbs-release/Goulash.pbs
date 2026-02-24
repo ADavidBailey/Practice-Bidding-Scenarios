@@ -16,10 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: .
 */
-dealer south
-
 # Goulash
 
 sShape = shape(south,any 9xxx+any 8xxx + any 74xx + any 73xx+ any 66xx+ any 65xx+any 55xx)
@@ -29,10 +29,11 @@ eShape = shape(east ,any 9xxx+any 8xxx + any 74xx + any 73xx+ any 66xx+ any 65xx
 
 Goulash = sShape and wShape and nShape and eShape
 Goulash
+action printoneline,
 `, "S", true)
 Script
 Button,Goulash,\n\
 --- Goulash hands hands have wild distribution.\n\
 I have no idea how these deals fit the idea of Goulash.\n\
 I'd like your feedback.\n\
-%Goulash%
+%Goulash%,width=50%
