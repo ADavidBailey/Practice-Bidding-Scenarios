@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n(1C +Pass +1.* Pass\n2C|1D +Pass 1.* Pass\n2D)
 */
 # South Open's 1 of a Minor
@@ -61,7 +63,7 @@ sLength = clubs(south)>diamonds(south) ? clubs(south) : diamonds(south)
 # Do it
 sMinor and n1Bid and calmOpps
 
-action
+action printoneline,
 average "hcp(south)      " hcp(south),
 average "hcp(north)      " hcp(north),
 average "south length    " sLength,
