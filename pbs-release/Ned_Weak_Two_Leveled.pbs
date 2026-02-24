@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: .
 */
 # Ned's Weak Two
@@ -117,7 +119,7 @@ levelTheDeal = levPass or levRaise or levNewSuit or levForce
 sOpensWeak2 and (nPass or nRaise or nNewSuit or nForce)
 and levelTheDeal
 
-action
+action printoneline,
 average "Pass      " 100 * nPass,
 average "Raise     " 100 * nRaise,
 average "New Suit  " 100 * nNewSuit,
