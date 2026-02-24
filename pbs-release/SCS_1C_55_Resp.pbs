@@ -16,11 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: Precision
+convention-card-ns: Precision
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....[\s\S][\s\S]?1C
 */
-# convention-card: Precision
-
 # Strong C & two-suited response
 dealer south
 
@@ -32,6 +31,7 @@ and hcp(north)>7
 
 # North has 5-5 or better
 and shape(north, any 85xx+ any 76xx +any 75xx +any 65xx +any 55xx)
+action printoneline,
 `, "S", true)
 Script
-Button,StrongClub55,%StrongClub55%,backgroundColor=lightpink
+Button,StrongClub55,%StrongClub55%,width=50%
