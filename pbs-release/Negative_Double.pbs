@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: 1[CDHS] (1[DHS]|2[CDH]) X
 */
 # Negative Double
@@ -73,7 +75,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -83,7 +85,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -172,8 +174,7 @@ nDoubles = (((x1 or x2 or f1) and p1) or ((x3 or x4 or x5) and p2) or ((x6 or f2
 
 sOpens and wOvercalls and nDoubles
 
-action
-#printoneline,
+action printoneline,
 average "1C (1D) H&S " 100 * x1,
 average "1C (1D) H/S " 100 * f1,
 average "1C (1H) S   " 100 * x2,
@@ -192,4 +193,4 @@ After x (y)，X is a Negative Double.  It's for takeout. At the 1-level\n\
 it promises 4-Cards in each unbid major. At higher levels you need a backup\n\
 plan if partner doesn't have your major -- maybe a tolerance for opener's suit.\n\
 https://www.larryco.com/bridge-articles/negative-doubles\n\
-%NegativeDouble%
+%NegativeDouble%,width=50%
