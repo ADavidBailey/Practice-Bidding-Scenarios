@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1N +Pass +((2C.* Pass\n2D +Pass +2S)|(2D +Pass\n2H +Pass +2S))
 */
 # Smolen
@@ -53,6 +55,7 @@ hcp(south) >=15 && hcp(south)<=17 &&
 shape(north, 54xx+45xx) &&
 hcp(north) >= 8 && hcp(north) <= 9 &&
 calmWest        // It's OK for west to X with decent clubs -- system's on
+action printoneline,
 `, "S", true)
 Script
 Button,Smolen Inv,\n\
