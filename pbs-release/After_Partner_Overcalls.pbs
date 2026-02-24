@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n(1C +1[DHS]|1D +(1[HS]|2C)|1H +(1S|2[CD])|1S +2[CDH]) +Pass
 */
 # After Partner Overcalls
@@ -185,7 +187,7 @@ levelTheDeal = nRaises or nCueBids or nNewSuit or levelNT or levelPunts
 eOpens and sOvercalls and wPasses and (nRaises or nCueBids or nNewSuit or nNotrump or nPunts)
 and levelTheDeal
 
-action
+action printoneline,
 average "Raises  " 100 * nRaises,
 average "CueBids " 100 * nCueBids,
 average "NewSuit " 100 * nNewSuit,
