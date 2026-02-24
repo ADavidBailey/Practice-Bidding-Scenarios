@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n2C ... +[X2-7]
 */
 # Opponents Bid over our Game Forcing 2C
@@ -36,8 +38,7 @@ wOvercalls = (wS or wH or wD or wC) and shape(west,any 93xx +any 84xx +any 75xx+
 
 s2C //and wOvercalls
 
-action
-printoneline,
+action printoneline,
 `, "S", true)
 Script
 Button,Bid Over GF 2C,\n\
