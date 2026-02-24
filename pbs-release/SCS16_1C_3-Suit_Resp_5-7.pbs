@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: Precision
+convention-card-ns: Precision
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1C
 */
-# convention-card: Precision
-
-
 # Strong Club System: 1C & 3 suited response
 dealer south
 
@@ -33,6 +31,7 @@ and hcp(north)>4 and hcp(north)<8
 
 # North has specific shapes
 and shape(north, any 4441 + any 5440)
+action printoneline,
 `, "S", true)
 Script
 Button,3-Suited Resp w/5-7,\n\
