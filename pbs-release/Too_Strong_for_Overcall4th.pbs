@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[CDHS] +Pass +Pass +X
 */
 # X then Bid a new suit
@@ -63,7 +65,7 @@ nDoubles = (GoodS or GoodH or GoodD or GoodC) and hcp(north)>17 and not gibNT
 
 eOpens and nDoubles
 
-action
+action printoneline,
 average "(hcp east)  " hcp(east),
 average "(hcp north) " hcp(north),
 `, "E", true)
