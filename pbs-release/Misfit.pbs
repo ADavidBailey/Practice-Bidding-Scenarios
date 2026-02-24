@@ -16,10 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: 1[CDHS] Pass
 */
-dealer south
-
 ### Import 'canned' code for Leveling, Calm Opponents, and Predict Opening Bid 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -97,7 +97,7 @@ twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
 
 # Define Gambling 3N
 g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
-gamble3 = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
 
 # Define Game Forcing 2C
 case1 = hcp(south)>18 and sTP>21
@@ -107,7 +107,7 @@ gameForce2C = (case1 or case2 or case3)
 
 ### Predict South's opening BID
 P1 = gameForce2C
-P2 = P1 or gamble3 or twoNT or oneNT
+P2 = P1 or threeNT or twoNT or oneNT
 
 # Define quality and length lower limits for 10 HCP openers
 
@@ -214,7 +214,7 @@ levelTheDeal = (lMin or lMid or lMax)
 sOpens and (nMin or nMid or nMax) and calmOpps
 and levelTheDeal
 
-action
+action printoneline,
 average "Min" 100 * nMin,
 average "Mid" 100 * nMid,
 average "Max" 100 * nMax,
@@ -225,4 +225,4 @@ Button,Misfit (Lev),\n\
   • 6-10\n\
   • 11-12\n\
   • 13+\n\
-%Misfit%
+%Misfit%,width=50%
