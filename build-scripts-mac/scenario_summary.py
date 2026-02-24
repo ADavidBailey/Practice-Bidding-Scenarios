@@ -51,33 +51,37 @@ def count_boards(file_path: str) -> int:
     return count
 
 
-def _sort_key(name: str) -> str:
-    """Sort key that places children immediately after their parent,
-    and _Leveled variants immediately after their base."""
-    if name.endswith('_Leveled'):
-        base = name[:-len('_Leveled')]
-        # Check if the base itself is a child of a parent
-        if base in _CHILD_TO_PARENT:
-            parent, idx = _CHILD_TO_PARENT[base]
-            return parent + '\x00' + f'{idx:03d}' + '\x00Leveled'
-        return base + '\x00Leveled'
-    if name in _CHILD_TO_PARENT:
-        parent, idx = _CHILD_TO_PARENT[name]
-        return parent + '\x00' + f'{idx:03d}'
-    return name
-
-
 def get_scenarios(pattern: str) -> list:
-    """Get scenario names from btn/ folder, optionally filtered by pattern."""
+    """Get scenario names from btn/ folder, sorted by button-text display name.
+    Subordinate scenarios sort immediately after their parent."""
     btn_dir = FOLDERS["btn"]
     btn_files = [f[:-4] for f in os.listdir(btn_dir)
                  if f.endswith('.btn') and not f.startswith('.') and not f.startswith('-')]
 
-    if pattern == "*":
-        return sorted(btn_files, key=_sort_key)
+    if pattern != "*":
+        btn_files = [f for f in btn_files if fnmatch.fnmatch(f, pattern)]
 
-    return sorted((f for f in btn_files if fnmatch.fnmatch(f, pattern)),
-                  key=_sort_key)
+    # Pre-compute button-text for sort keys
+    btn_text = {}
+    for name in btn_files:
+        btn_text[name] = (get_btn_property(name, "button-text") or name.replace('_', ' ')).lower()
+
+    def sort_key(name):
+        if name.endswith('_Leveled'):
+            base = name[:-len('_Leveled')]
+            base_text = btn_text.get(base, base.replace('_', ' ').lower())
+            if base in _CHILD_TO_PARENT:
+                parent, idx = _CHILD_TO_PARENT[base]
+                parent_text = btn_text.get(parent, parent.replace('_', ' ').lower())
+                return parent_text + '\x00' + f'{idx:03d}' + '\x00Leveled'
+            return base_text + '\x00Leveled'
+        if name in _CHILD_TO_PARENT:
+            parent, idx = _CHILD_TO_PARENT[name]
+            parent_text = btn_text.get(parent, parent.replace('_', ' ').lower())
+            return parent_text + '\x00' + f'{idx:03d}'
+        return btn_text[name]
+
+    return sorted(btn_files, key=sort_key)
 
 
 def format_et(seconds: float) -> str:
