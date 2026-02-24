@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: Precision
+convention-card-ns: Precision
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....[\s\S][\s\S]?1C
 */
-# convention-card: Precision
-
-
 # Strong C & 5/4, 5/5, or 6/5 H/S
 dealer south
 
@@ -33,6 +31,7 @@ and hcp(north)>7
 
 # North has specific shapes
 and shape(north, any 54xx+ any 55xx +any 65xx)
+action printoneline,
 `, "S", true)
 Script
 Button,5/4 Resp w/8+,\n\
