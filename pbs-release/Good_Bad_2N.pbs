@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[CDHS] +1[HS] +X +2[HS]
 */
 # Good/Bad 2N
@@ -81,7 +83,7 @@ wRaises      = hcp(west)>5   and hcp(west)<11
 
 nOpens and eBids1Major and sDoubles and wRaises
 
-action 
+action printoneline,
 average "eastS" 100 * eGS,
 average "eastH" 100 * eGH,
 average "hcp N" hcp(north),
