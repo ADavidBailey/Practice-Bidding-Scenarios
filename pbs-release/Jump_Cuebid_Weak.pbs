@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: (\n1C.*\n..* [3-7][CDHS])|(\n1D.*\n..* [3-7][CDHS])
 */
 # BBA does NOT play Direct Jump Cuebids.  The following filter matches the deals that
@@ -48,7 +50,7 @@ eOpens = openMinor and hcp(east)>11 and hcp(east)<15
 
 eOpens and shape(south,any 9xxx+any 8xxx+any 7xxx-any 5xxx)
 
-action
+action printoneline,
 average "hcp(east)     " hcp(east),
 average "hcp(south)    " hcp(south),
 average "losers(south) " 100 * losers(south),
