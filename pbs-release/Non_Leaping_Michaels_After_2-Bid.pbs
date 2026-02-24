@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Note.*Michaels
 */
 produce 1000
@@ -49,7 +51,7 @@ east2Bid = eastBids and southPass and westRaise //and northActs
 # Now do it
 east2Bid
 
-action
+action printoneline,
 
 average "2D           " 100 * dE,
 average "2H           " 100 * hE,
@@ -61,4 +63,4 @@ Script
 Button,NLM after 2-Bid & Raise,\n\
 --- Non-Leaping Michaels after a Weak 2 & Raise\n\
 http://tinyurl.com/Leaping-Michaels\n\
-%NLMAfter2Bid%,backgroundColor=lightpink
+%NLMAfter2Bid%,width=50% backgroundColor=lightpink
