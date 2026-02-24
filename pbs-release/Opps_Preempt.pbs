@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n[234567][CDHS] +
 */
 # Opps Preempt
@@ -32,6 +34,7 @@ or
 or
 (top5(east,clubs)>1 and clubs(east)>6)
 )
+action printoneline,
 `, "E", true)
 Script
 Button,Opps Preempt,\n\
