@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-Flannery
+convention-card-ns: 21GF-Flannery
+convention-card-ew: 21GF-GIB
 auction-filter: Note....Flannery
 */
-# convention-card: 21GF-Flannery
-
-
 # Flannery
 
 dealer south
@@ -32,7 +30,7 @@ flannery = hcp(south)>10 and hcp(south)<16 and shape(south, 45xx)
 # Now do it
 flannery
 
-action
+action printoneline,
 average "HCP North=" hcp(north),
 average "HCP South=" hcp(south),
 `, "S", true)
