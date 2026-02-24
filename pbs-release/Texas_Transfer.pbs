@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1N +Pass +4[DH]
 */
 # Texas Transfer
@@ -142,6 +144,7 @@ nH = hearts(north)>5 and top5(north,hearts)>2 and spades(north)<4
 nM = (nS or nH)
 
 gibNT and nM and tpNorth>9 and calmWest
+action printoneline,
 `, "S", true)
 Script
 Button,GIB NT & Texas,\n\
