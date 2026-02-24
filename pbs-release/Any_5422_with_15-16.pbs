@@ -16,16 +16,16 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1N
 */
-dealer south
-
 # any 5422 w/15-16 HCP
 
 hcp(south)>14 and hcp(south)<17 and shape(south,any 5422)
 
 produce 5000
-action
+action printoneline,
 average "hcp        " hcp(south),
 # 5 Spades
 average "5422       " 100 * shape(south,5422),
