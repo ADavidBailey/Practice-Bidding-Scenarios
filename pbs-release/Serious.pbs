@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: (1H +Pass +2[CDN] +Pass\n[34]H)|(1S +Pass +2[CDHN] +Pass\n[34]S)
 */
 # Serious/Non-Serious
@@ -100,7 +102,7 @@ levelTheDeal = levGame or levSlam or levGrand
 nOpens and majorFit and (game or slam or grand) and hcp(north)<16
 and levelTheDeal
 
-action
+action printoneline,
 average "game " 100 * game,
 average "slam " 100 * slam,
 average "grand" 100 * grand,
