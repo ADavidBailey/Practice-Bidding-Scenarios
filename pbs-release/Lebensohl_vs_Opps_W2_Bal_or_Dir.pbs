@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n2[DHS] +(X|Pass +Pass +X)
 */
 # Lebensohl vs Opponents Weak 2 -- Direct or Balanced
@@ -99,7 +101,7 @@ sActs = ePasses and sDoubles and nResponds
 
 wOpensWeak2 and (nActs or sActs)
 
-action
+action printoneline,
 average "North X" 100 * nActs,
 average "South X" 100 * sActs,
 `, "W", true)
