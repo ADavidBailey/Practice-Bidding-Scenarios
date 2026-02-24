@@ -16,10 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n((1C +Pass +[23]C)|(1D +Pass +[23]D))
 */
-dealer south
-
 # Inverted Minors
 
 ##### Imported Script: Define Calm Opponents #####
@@ -74,6 +74,7 @@ minorRaise = (cFit or dFit) and noMajor and noNT
 # South opens 1m and North raises
 
 minorRaise and hcp(south)>11 and hcp(south)<20 and hcp(north)>5 and hcp(north)<13 and calmOpps
+action printoneline,
 `, "S", true)
 Script
 Button,Inverted Minors,\n\
