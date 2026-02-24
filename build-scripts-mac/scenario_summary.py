@@ -52,9 +52,18 @@ def count_boards(file_path: str) -> int:
 
 
 def _sort_key(name: str) -> str:
-    """Sort key that places _Leveled variants immediately after their base."""
+    """Sort key that places children immediately after their parent,
+    and _Leveled variants immediately after their base."""
     if name.endswith('_Leveled'):
-        return name[:-len('_Leveled')] + '\x00Leveled'
+        base = name[:-len('_Leveled')]
+        # Check if the base itself is a child of a parent
+        if base in _CHILD_TO_PARENT:
+            parent, idx = _CHILD_TO_PARENT[base]
+            return parent + '\x00' + f'{idx:03d}' + '\x00Leveled'
+        return base + '\x00Leveled'
+    if name in _CHILD_TO_PARENT:
+        parent, idx = _CHILD_TO_PARENT[name]
+        return parent + '\x00' + f'{idx:03d}'
     return name
 
 
@@ -106,6 +115,12 @@ _INDENT_PARENTS = {
                              "Open_In_Fourth_15", "Open_In_Fourth_16"],
 }
 _INDENT_CHILDREN = {child for children in _INDENT_PARENTS.values() for child in children}
+
+# Reverse lookup: child → (parent, index) for sort ordering
+_CHILD_TO_PARENT = {}
+for _parent, _children in _INDENT_PARENTS.items():
+    for _i, _child in enumerate(_children):
+        _CHILD_TO_PARENT[_child] = (_parent, _i)
 
 
 def _is_subordinate(name: str) -> bool:
