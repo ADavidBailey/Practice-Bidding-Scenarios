@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: .
 */
 # Strong Splinter (12-15 HCP)
@@ -62,6 +64,7 @@ and calmOpps
 and MajorFit
 and shape(south,any 1xxx +any 0xxx)
 and hcp(south)>11 and hcp(south)<16
+action printoneline,
 `, "N", true)
 Script
 Button,Strong Splinter (12-15 HCP),\n\
@@ -69,4 +72,4 @@ Button,Strong Splinter (12-15 HCP),\n\
   • 1!H - 3!S，4!C，4!D\n\
   • 1!S - 4!C，4!D，4!H\n\
 https://tinyurl.com/4dvh42e7\n\
-%DirectSplinter%,backgroundColor=lightpink
+%DirectSplinter%,width=50% backgroundColor=lightpink
