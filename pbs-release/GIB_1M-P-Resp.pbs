@@ -16,7 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: 21GF-GIB
+convention-card-ns: 21GF-GIB
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[HS] +Pass
 */
 # GIB responses to 1H/S -- South opens 1M and North responds
@@ -247,8 +248,7 @@ southPasses = tpSouth<15
 oneMtwoM and calmOpps and southPasses
 
 produce 20
-action
-printoneline,
+action printoneline,
 `, "S", true)
 Script
 Button,GIB after 1M,\n\
