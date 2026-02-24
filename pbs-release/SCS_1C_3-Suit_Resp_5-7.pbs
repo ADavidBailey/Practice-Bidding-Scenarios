@@ -16,12 +16,10 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card: Precision
-auction-filter: Auction.....[\s\S][\s\S]?1C
+convention-card-ns: Precision
+convention-card-ew: 21GF-GIB
+auction-filter: Auction.....\n1C
 */
-# convention-card: Precision
-
-
 # Strong Club System: 1C & 3 suited response
 dealer south
 
@@ -33,8 +31,9 @@ and hcp(north)>4 and hcp(north)<8
 
 # North has specific shapes
 and shape(north, any 4441 + any 5440)
+action printoneline,
 `, "S", true)
 Script
 Button,Strong Club 3-Suit 5-7,\n\
 --- Strong Club with 3-Suit Response w/5-7 HCP\n\
-%StrongClub3Suit57%,backgroundColor=lightpink
+%StrongClub3Suit57%,width=50% backgroundColor=lightpink
