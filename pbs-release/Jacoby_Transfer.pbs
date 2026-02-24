@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1N +Pass +2[DH]
 */
 # Import Define-1N and Calm Opponents
@@ -70,7 +72,7 @@ nHgf = shape(north,x5xx) and spades(north)<4 and hcp(north)>8
 gibNT and (nSps or nHps or nSgf or nHgf) and calmWest
 
 # Generate Statistics
-action
+action printoneline,
 average "Heart Fit" 100 * (nHps or nHgf),
 average "Spade Fit" 100 * (nSps or nSgf),
 `, "S", true)
