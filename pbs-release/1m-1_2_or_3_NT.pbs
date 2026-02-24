@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[CD] +Pass +[123]N
 */
 /*
@@ -278,7 +280,7 @@ sRange = tpSouth>11 and hcp(south)>10 and tpSouth<22 and hcp(south)<23
 # Now do it
 (s1m1N or s1m2N or s1m3N) and sRange and sShape and calmWest and (nAny4 or nMajor4)
 
-action
+action printoneline,
 
 average "1m... 6- 9 " 100 * s1m1N,
 average "     10-12 " 100 * s1m2N,
