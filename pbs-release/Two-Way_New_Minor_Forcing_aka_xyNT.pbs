@@ -16,7 +16,9 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-auction-filter: 1[CDHS] Pass 1[DHS] Pass\\n1NT Pass
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
+auction-filter: 1[CDHS] +Pass +1[DHS] +Pass\n1N +Pass
 */
 produce 300000
 dealer north
@@ -126,7 +128,7 @@ levelTheDeal = (levPartscore or levInvite or levGame or levSlam)
 northOpens and southResponds and calmOpps and (partscore or invite or game or slam)
 and levelTheDeal
 
-action
+action printoneline,
 average "partscore " 100 * partscore,
 average "invite    " 100 * invite,
 average "game      " 100 * game,
@@ -141,4 +143,4 @@ Button,2-Way NMF - xyNT (Lev),\n\
   • Slam Invite -- after 1x-1y-1N，a suit bid at the 3-level is a natural slam try.\n\
 The deals are leveled so that the hand types occur at about the same frequency.\n\
 https://bridgewinners.com/article/view/two-way-new-minor-forcing-aka-xynt\n\
-%xyNT%
+%xyNT%,width=50%
