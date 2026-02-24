@@ -113,6 +113,7 @@ _INDENT_PARENTS = {
                         "We_Overcall_NT_then_Stayman", "We_Overcall_NT_then_Texas"],
     "Open_In_Fourth_Seat": ["Open_In_Fourth_13", "Open_In_Fourth_14",
                              "Open_In_Fourth_15", "Open_In_Fourth_16"],
+    "Misfit6-5": ["Misfit_06-10", "Misfit_11-12", "Misfit_13-Plus"],
 }
 _INDENT_CHILDREN = {child for children in _INDENT_PARENTS.values() for child in children}
 
