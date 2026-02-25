@@ -919,11 +919,24 @@ Script,onDataLoad
                     fetchPbsMetadata(name, PBS_RELEASE_BASE).then(function(meta) {
                         bt.textContent = meta.text;
                         if (meta.style.backgroundColor) bt.style.backgroundColor = meta.style.backgroundColor;
+                        if (meta.chat) {
+                            bt.setAttribute('data-chat', meta.chatRaw);
+                            var tooltipText = meta.chat.replace(/^\n?---\s*/, '').trim()
+                                .replace(/!S/g, '\u2660')
+                                .replace(/!H/g, '\u2665')
+                                .replace(/!D/g, '\u2666')
+                                .replace(/!C/g, '\u2663');
+                            bt.title = tooltipText;
+                        }
                     });
 
                     bt.onclick = function() {
                         var scenarioName = this.getAttribute('data-scenario');
                         var url = this.getAttribute('data-pbs-url');
+                        var chatText = this.getAttribute('data-chat');
+                        if (chatText) {
+                            setChatMessage(chatText, true);
+                        }
                         fetch(url)
                             .then(function(response) { return response.text(); })
                             .then(function(content) {

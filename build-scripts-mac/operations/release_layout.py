@@ -4,6 +4,7 @@ Release layout operation: Copy button layout from beta to release and commit/pus
 This operation is intentionally NOT included in OPERATIONS_ORDER,
 so it won't run with "*" or "op+" wildcards. It must be invoked explicitly.
 """
+import filecmp
 import os
 import shutil
 import subprocess
@@ -41,6 +42,11 @@ def run_release_layout(scenario: str = None, verbose: bool = True) -> bool:
     if not os.path.exists(beta_path):
         print(f"Error: release-layout: No beta file found: {beta_path}")
         return False
+
+    # Check if beta and release are already identical
+    if os.path.exists(release_path) and filecmp.cmp(beta_path, release_path, shallow=False):
+        print(f"  Beta is the same as Release")
+        return True
 
     try:
         # Copy beta to release (overwriting if exists)
