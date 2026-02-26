@@ -2,15 +2,18 @@
 # button-text: GIB after 1C
 # gib-works: true
 # bba-works: true
-# auction-filter: Auction.....\n1C +Pass +(1[DHS]|[1-3]NT?|[2-3]C|3[CDHS]) +
+# auction-filter: Auction.....\n1C +Pass +(1[DHS]|1NT?|2C|2NT?|3[CDHS]|3NT?) +
 # convention-card-ns: 21GF-GIB
 # convention-card-ew: 21GF-GIB
 
 /*@chat
---- GIB responses to 1!C
-South opens 1!C and North responds w/anything other than Soloway JS.
-You may go to 'Deal source' to get specific responses. Near the bottom you'll
-find the line that starts with nResponds = ... pick the response(s) you want.
+--- After 1!C (Pass)...
+South opens 1!C and North responds.  You may go to 'Deal source' to select specific
+responses.  Just modify this line...
+ - nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N
+For example, if you want just splinter responses to 1!C, use this...
+ - nResponds = r3x
+Don't worry about breaking things. Just reclick the scenario button to reload.
 @chat*/
 
 dealer south
@@ -97,7 +100,6 @@ s3343 = nS==3 and nH==3  and nD==4
 sxx44 = (nS==3 or nS==2) and nD==4 and nC==4  // 3244 or 2344
 nBal  = (s3334 or s3343 or sxx44)  // no 4-card major
 
-
 nRange = nRebiddableSuit ? tpNorth>5 and tpNorth<17 : tpNorth>5   // no upper range without rebiddable suit
 
 ## 1. Major responses
@@ -152,11 +154,12 @@ nResponds = r1D or r1H or r1S or r1N or r2C or r2N or r3C or r3x or r3N
 oneClub and not wOvercalls and nRange and nResponds and oppsPass
 
 action
-average "1C Pass 1D" 100 * r1D,
-average "1C Pass 1H" 100 * r1H,
-average "1C Pass 1S" 100 * r1S,
-average "1C Pass 2C" 100 * r2C,
-average "1C Pass 2N" 100 * r2N,
-average "1C Pass 3C" 100 * r3C,
-average "1C Pass 3x" 100 * r3x,
-average "1C Pass 3N" 100 * r3N,
+average "CD " 100 * r1D,
+average "CH " 100 * r1H,
+average "CS " 100 * r1S,
+average "CN " 100 * r1N,
+average "2C " 100 * r2C,
+average "2N " 100 * r2N,
+average "3C " 100 * r3C,
+average "3x " 100 * r3x,
+average "3N " 100 * r3N,
