@@ -137,9 +137,9 @@ predeal west HQ DK CA
 # and West is NOT short in North's suit (avoid X)
 s1S = oneSpade   and spades(north)<3   and spades(west)>2
 s1H = oneHeart   and hearts(north)<3   and hearts(west)>2
-s1D = oneDiamond and diamonds(north)<3 and diamonds(west)>2
-s1C = oneClub    and clubs(north)<3    and clubs(west)>2
-sOpens = (s1S or s1H or s1D or s1C) and shape(south,any 5431 any 5440) and hcp(south)>11 and hcp(south)<15
+s1D = oneDiamond and diamonds(north)<4 and diamonds(west)>2
+s1C = oneClub    and clubs(north)<4    and clubs(west)>2
+sOpens = (s1S or s1H or s1D or s1C) and shape(south,any 5440 +any 5431 +any 5422) and hcp(south)>11 and hcp(south)<15
 
 # Calculate South's Rank
 sRS = s1S ? 4 : 0
@@ -165,7 +165,7 @@ wRD = wD ? 2 : 0
 wRC = wC ? 1 : 0
 westRank = wRS+wRH+wRD+wRC   // all except one are zero
 
-rankOK = westRank<southRank  // force a 2-level overcall
+rankOK = 1 //westRank<southRank  // force a 2-level overcall
 
 # West has a good suit, North has a stack, and South has a take-out double
 w1S = wS and top3(west,spades)==2   and spades(north)==5   and top5(north,spades)==3
