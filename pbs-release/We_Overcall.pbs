@@ -20,9 +20,6 @@ convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
 auction-filter: 1[CDHS] (1[DHS]|2[CDH])
 */
-# Overcalls
-dealer east
-
 # Define good suits
 GoodS = spades(south)>4 and top5(south,spades)>2
 GoodH = hearts(south)>4 and top5(south,hearts)>2
@@ -35,5 +32,5 @@ action printoneline,
 `, "E", true)
 Script
 Button,We Overcall,\n\
---- Overcalls\n\
+--- We Overcall\n\
 %WeOvercall%
