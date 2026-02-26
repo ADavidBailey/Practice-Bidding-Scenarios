@@ -3,7 +3,7 @@
 # scenario-title: --- Trap Pass, Maybe
 # gib-works: true
 # bba-works: true
-# auction-filter: Auction.....\n1[CDHS] +[1-4][CDHS]
+# auction-filter: Auction.....\n1[CDHS] +[1-4][CDHS] +Pass +Pass\nX +Pass +Pass
 # convention-card-ns: 21GF-DEFAULT
 # convention-card-ew: 21GF-GIB
 
@@ -124,13 +124,15 @@ oneClub    = oC
 
 dealer south
 
+predeal west HQ,DK,CA
+
 # North does not have a fit with South (avoid raise) and North is short in West's suit
 # and West is NOT short in North's suit (avoid X)
 s1S = oneSpade   and spades(north)<3   and spades(west)>2
 s1H = oneHeart   and hearts(north)<3   and hearts(west)>2
-s1D = oneDiamond and diamonds(north)<3 and diamonds(west)>2
-s1C = oneClub    and clubs(north)<3    and clubs(west)>2
-sOpens = (s1S or s1H or s1D or s1C) and shape(south,any 5431 any 5440) and hcp(south)>11 and hcp(south)<15
+s1D = oneDiamond and diamonds(north)<4 and diamonds(west)>2
+s1C = oneClub    and clubs(north)<4    and clubs(west)>2
+sOpens = (s1S or s1H or s1D or s1C) and shape(south,any 5440 +any 5431 +any 5422) and hcp(south)>11 and hcp(south)<15
 
 # Calculate South's Rank
 sRS = s1S ? 4 : 0
@@ -156,14 +158,14 @@ wRD = wD ? 2 : 0
 wRC = wC ? 1 : 0
 westRank = wRS+wRH+wRD+wRC   // all except one are zero
 
-rankOK = westRank<southRank  // force a 2-level overcall
+rankOK = 1 //westRank<southRank  // force a 2-level overcall
 
 # West has a good suit, North has a stack, and South has a take-out double
 w1S = wS and top3(west,spades)==2   and spades(north)==5   and top5(north,spades)==3
 w1H = wH and top3(west,hearts)==2   and hearts(north)==5   and top5(north,hearts)==3
 w1D = wD and top3(west,diamonds)==2 and diamonds(north)==5 and top5(north,diamonds)==3
 w1C = wC and top3(west,clubs)==2    and clubs(north)==5    and top5(north,clubs)==3
-wGoodSuitNorthStack = (w1S or w1H or w1D or w1C) and shape(south,any 5431 any 5440)
+wGoodSuitNorthStack = (w1S or w1H or w1D or w1C) and shape(south,any 5422 +any 5431 any 5440)
 
 # West has a good suit and North does NOT have a stack
 w2S = wS and top3(west,spades)==2
