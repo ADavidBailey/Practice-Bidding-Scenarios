@@ -74,6 +74,9 @@ if (!$("bridge-screen deal-viewer", parent.window.document).length) {
         $(".navBarClass .titleClass", window.parent.document).text("");
     }
 }
+var titleEl = $(".navBarClass .titleClass", window.parent.document);
+var titleText = titleEl.text();
+if (titleText && titleText.indexOf("(Host:") >= 0) titleEl.text(titleText.replace(/\s*\(Host:.*?\)/, ""));
 var l = $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", parent.window.document).length;
 if((l%13) == 0) displayHCP();
 if (window.syncRotateFromDialog) window.syncRotateFromDialog();
