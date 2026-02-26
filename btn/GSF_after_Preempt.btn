@@ -31,11 +31,11 @@ southC = clubs(south)>6    and clubs(north)>2    and top3(north,clubs)==1
 southD = diamonds(south)>5 and diamonds(north)>2 and top3(north,diamonds)==1
 southH = hearts(south)>5   and hearts(north)>2   and top3(north,hearts)==1
 southS = spades(south)>5   and spades(north)>2   and top3(north,spades)==1
-southPreempts = (southC or southD or southH or southS) and hcp(south)>6 and hcp(south)<11
+southPreempts = (southC or southD or southH or southS) and hcp(south)>6 and hcp(south)<11 and tpSouth>7
 
 # So, if South has 2 of the top 3 in his suit, North can count 13 tricks -- in NT.
 # If opener has 1 of the top 3, 12 tricks in the suit are certain.
-southPreempts and tpNorth>29
+southPreempts and tpNorth>28
 
 action
 average "C " 100 * southC,
