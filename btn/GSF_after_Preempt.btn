@@ -26,12 +26,18 @@ dealer south
 # Preempt is restricted to a major; so, we can predeal cards in the minors.
 predeal north CAJ,DAJ,HAJ,SAJ
 
-# South opens 3H or 3S and North has 3-card support with 1 of the top 3 -- North can see 11, 12, or 13 sure tricks.
-southC = clubs(south)>6    and clubs(north)>2    and top3(north,clubs)==1    and top5(north,clubs)>   top3(north,clubs)
+# South preempts and North has 3-card support with 1 of the top 3 -- North can see 11, 12, or 13 sure tricks.
+southC = clubs(south)>6    and clubs(north)>2    and top3(north,clubs)==1    and top5(north,clubs)   >top3(north,clubs)
 southD = diamonds(south)>5 and diamonds(north)>2 and top3(north,diamonds)==1 and top5(north,diamonds)>top3(north,diamonds)
-southH = hearts(south)>5   and hearts(north)>2   and top3(north,hearts)==1   and top5(north,hearts)>  top3(north,hearts)
-southS = spades(south)>5   and spades(north)>2   and top3(north,spades)==1   and top5(north,spades)>  top3(north,spades)
-southPreempts = (southC or southD or southH or southS) and hcp(south)>6 and hcp(south)<11 and tpSouth>8
+southH = hearts(south)>5   and hearts(north)>2   and top3(north,hearts)==1   and top5(north,hearts)  >top3(north,hearts)
+southS = spades(south)>5   and spades(north)>2   and top3(north,spades)==1   and top5(north,spades)  >top3(north,spades)
+
+south2Bid = shape(south,any 6xxx) and hcp(south)<10 and tpSouth>6
+south3Bid - shape(south,any 7xxx) and hcp(south)>4 and hcpSouth<10 and tpSouth>5
+south4Bid = shape(south,any 8xxx) and hcp(south)>4 and hcpSouth<10
+south5Bid = shape(south,any 8xxx) and hcp(south)>5 and hcpSouth<10
+sPreempt = (south2Bid or south3Bid or south4Bid or south5Bid)
+southPreempts = sPreempt and (southC or southD or southH or southS)
 
 # So, if South has 2 of the top 3 in his suit, North can count 13 tricks -- in NT.
 # If opener has 1 of the top 3, 12 tricks in the suit are certain.
