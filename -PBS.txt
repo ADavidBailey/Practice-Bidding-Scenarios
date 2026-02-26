@@ -62,7 +62,6 @@ displayHCP = function () {
         }
     });
     var el = $(".navBarClass .titleClass", window.parent.document);
-    if (!window.pbsOriginalTitle) window.pbsOriginalTitle = el.text();
     el.css("white-space", "pre");
     el.text(txt);
 };
@@ -72,8 +71,7 @@ Script,onAnyMutation
 if (!$("bridge-screen deal-viewer", parent.window.document).length) {
     if (window.pbsShowHCP) {
         window.pbsShowHCP = false;
-        $(".navBarClass .titleClass", window.parent.document).text(window.pbsOriginalTitle || "");
-        window.pbsOriginalTitle = null;
+        $(".navBarClass .titleClass", window.parent.document).text("");
     }
 }
 var l = $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", parent.window.document).length;
