@@ -33,9 +33,9 @@ southH = hearts(south)>5   and hearts(north)>2   and top3(north,hearts)==1   and
 southS = spades(south)>5   and spades(north)>2   and top3(north,spades)==1   and top5(north,spades)  >top3(north,spades)
 
 south2Bid = shape(south,any 6xxx) and hcp(south)<10 and tpSouth>6
-south3Bid - shape(south,any 7xxx) and hcp(south)>4 and hcpSouth<10 and tpSouth>5
-south4Bid = shape(south,any 8xxx) and hcp(south)>4 and hcpSouth<10
-south5Bid = shape(south,any 8xxx) and hcp(south)>5 and hcpSouth<10
+south3Bid - shape(south,any 7xxx) and hcp(south)>4 and hcp(South)<10 and tpSouth>5
+south4Bid = shape(south,any 8xxx) and hcp(south)>4 and hcp(South)<10
+south5Bid = shape(south,any 8xxx) and hcp(south)>5 and hcp(South)<10
 sPreempt = (south2Bid or south3Bid or south4Bid or south5Bid)
 southPreempts = sPreempt and (southC or southD or southH or southS)
 
