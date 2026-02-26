@@ -126,13 +126,13 @@ calmOpps = calmEast and calmWest
 # North has 6 tricks outside of the opener's suit.
 
 # Preempt is restricted to a major; so, we can predeal cards in the minors.
-predeal north CAJ,DAJ,HAJ,SAJ
+predeal north CA,DA,HA,SA
 
 # South preempts and North has 3-card support with 1 of the top 3 -- North can see 11, 12, or 13 sure tricks.
-southC = clubs(south)>6    and (top5(south,clubs)   >top3(south,clubs))    and clubs(north)>2    and top3(north,clubs)==1
-southD = diamonds(south)>5 and (top5(south,diamonds)>top3(south,diamonds)) and diamonds(north)>2 and top3(north,diamonds)==1
-southH = hearts(south)>5   and (top5(south,hearts)  >top3(south,hearts))   and hearts(north)>2   and top3(north,hearts)==1
-southS = spades(south)>5   and (top5(south,spades)  >top3(south,spades))   and spades(north)>2   and top3(north,spades)==1
+southC = clubs(south)>6    and top3(south,clubs)>0    and top5(south,clubs)==3    and clubs(north)>2    and top3(north,clubs)==1
+southD = diamonds(south)>5 and top3(south,diamonds)>0 and top5(south,diamonds)==3 and diamonds(north)>2 and top3(north,diamonds)==1
+southH = hearts(south)>5   and top3(south,hearts)>0   and top5(south,hearts)==3   and hearts(north)>2   and top3(north,hearts)==1
+southS = spades(south)>5   and top3(south,spades)>0   and top5(south,spades)==3   and spades(north)>2   and top3(north,spades)==1
 
 # Define the level of the preempt
 south2Bid = shape(south,any 6xxx) and hcp(south)<10 and tpSouth>6
