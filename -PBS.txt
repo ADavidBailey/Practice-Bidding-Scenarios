@@ -68,7 +68,12 @@ displayHCP = function () {
 Script
 
 Script,onAnyMutation
-if (!$("bridge-screen deal-viewer", parent.window.document).length) window.pbsShowHCP = false;
+if (!$("bridge-screen deal-viewer", parent.window.document).length) {
+    if (window.pbsShowHCP) {
+        window.pbsShowHCP = false;
+        $(".navBarClass .titleClass", window.parent.document).text("");
+    }
+}
 var l = $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", parent.window.document).length;
 if((l%13) == 0) displayHCP();
 if (window.syncRotateFromDialog) window.syncRotateFromDialog();
