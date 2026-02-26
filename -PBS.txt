@@ -9,6 +9,7 @@ Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/PBStooltips.js
 // Display HCP for visible hands
 Script,onDataLoad
 displayHCP = function () {
+    if (!window.pbsShowHCP) return;
     var HCP = [0,0,0,0];
     var cardCount = [0,0,0,0];
     var player = ["S", "W", "N", "E"];
@@ -67,6 +68,7 @@ displayHCP = function () {
 Script
 
 Script,onAnyMutation
+if (!$("bridge-screen deal-viewer", parent.window.document).length) window.pbsShowHCP = false;
 var l = $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", parent.window.document).length;
 if((l%13) == 0) displayHCP();
 if (window.syncRotateFromDialog) window.syncRotateFromDialog();
@@ -569,6 +571,7 @@ Script,onDataLoad
                             headers: { 'Content-Type': 'application/json', 'X-Client-Version': '1.0.0' },
                             body: JSON.stringify({ scenario: scenarioName, user: whoAmI() || 'anonymous' })
                         }).catch(function() {});
+                        window.pbsShowHCP = true;
                         setDealerCode(match[1], match[2], match[3] === 'true');
                     }
                 })
@@ -699,6 +702,7 @@ Script,onDataLoad
                                 // Extract convention-card from dealer code comments
                                 var ccMatch = match[1].match(/convention-card:\s*(\S+)/);
                                 window.currentPBSConventionCard = ccMatch ? ccMatch[1] : null;
+                                window.pbsShowHCP = true;
                                 setDealerCode(match[1], match[2], match[3] === 'true');
                             }
                         })
@@ -943,6 +947,7 @@ Script,onDataLoad
                                 var match = content.match(/setDealerCode\(`([\s\S]*?)`,\s*"([NSEW])",\s*(true|false)\)/);
                                 if (match) {
                                     window.currentPBSScenario = scenarioName;
+                                    window.pbsShowHCP = true;
                                     setDealerCode(match[1], match[2], match[3] === 'true');
                                 }
                             })
