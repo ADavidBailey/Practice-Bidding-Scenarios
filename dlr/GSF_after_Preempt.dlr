@@ -124,16 +124,18 @@ calmOpps = calmEast and calmWest
 predeal north CAJ,DAJ,HAJ,SAJ
 
 # South preempts and North has 3-card support with 1 of the top 3 -- North can see 11, 12, or 13 sure tricks.
-southC = clubs(south)>6    and clubs(north)>2    and top3(north,clubs)==1    and (top5(north,clubs)   >top3(north,clubs))
-southD = diamonds(south)>5 and diamonds(north)>2 and top3(north,diamonds)==1 and (top5(north,diamonds)>top3(north,diamonds))
-southH = hearts(south)>5   and hearts(north)>2   and top3(north,hearts)==1   and (top5(north,hearts)  >top3(north,hearts))
-southS = spades(south)>5   and spades(north)>2   and top3(north,spades)==1   and (top5(north,spades)  >top3(north,spades))
+southC = clubs(south)>6    and (top5(south,clubs)   >top3(south,clubs))    and clubs(north)>2    and top3(north,clubs)==1
+southD = diamonds(south)>5 and (top5(south,diamonds)>top3(south,diamonds)) and diamonds(north)>2 and top3(north,diamonds)==1
+southH = hearts(south)>5   and (top5(south,hearts)  >top3(south,hearts))   and hearts(north)>2   and top3(north,hearts)==1
+southS = spades(south)>5   and (top5(south,spades)  >top3(south,spades))   and spades(north)>2   and top3(north,spades)==1
 
+# Define the level of the preempt
 south2Bid = shape(south,any 6xxx) and hcp(south)<10 and tpSouth>6
 south3Bid = shape(south,any 7xxx) and hcp(south)>4 and hcp(south)<10 and tpSouth>5
 south4Bid = shape(south,any 8xxx) and hcp(south)>4 and hcp(south)<10
 south5Bid = shape(south,any 8xxx) and hcp(south)>5 and hcp(south)<10
 sPreempt = (south2Bid or south3Bid or south4Bid or south5Bid)
+
 southPreempts = sPreempt and (southC or southD or southH or southS)
 
 # So, if South has 2 of the top 3 in his suit, North can count 13 tricks -- in NT.
