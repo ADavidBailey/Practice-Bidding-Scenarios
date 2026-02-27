@@ -42,7 +42,7 @@
 </head>
 <body>
   <h1>Convention Card Summary</h1>
-  <p class="subtitle">14 convention cards &mdash; Generated <span id="gen-time" data-utc="2026-02-27T20:30:25Z"></span>
+  <p class="subtitle">14 convention cards &mdash; Generated <span id="gen-time" data-utc="2026-02-27T21:14:51Z"></span>
     &mdash; <a class="nav-btn" href="./">Dashboard</a>
     <a class="nav-btn" href="Scenario_Summary.html">Scenario Summary</a>
     <a class="nav-btn nav-btn-active" href="Convention_Card_Summary.html">Convention Cards</a></p>
@@ -51,11 +51,11 @@
       <tr>
         <th>Setting</th>
         <th><div class="rotate-header">GIB</div>
-            <div class="scenario-count">16 NS, 294 EW</div></th>
+            <div class="scenario-count">16 NS, 292 EW</div></th>
         <th><div class="rotate-header">DEFAULT</div>
-            <div class="scenario-count">198 NS</div></th>
+            <div class="scenario-count">197 NS</div></th>
         <th><div class="rotate-header">SPECIALS</div>
-            <div class="scenario-count">35 NS, 1 EW</div></th>
+            <div class="scenario-count">34 NS, 1 EW</div></th>
         <th><div class="rotate-header">Flannery</div>
             <div class="scenario-count">1 NS</div></th>
         <th><div class="rotate-header">MSS</div>
@@ -1801,10 +1801,7 @@
   <script>
     var span = document.getElementById("gen-time");
     var d = new Date(span.dataset.utc);
-    var tz = d.toLocaleString("en-US", {timeZoneName: "short"}).split(" ").pop();
-    var pad = function(n) { return n < 10 ? "0" + n : n; };
-    span.textContent = d.getFullYear() + "-" + pad(d.getMonth()+1) + "-" + pad(d.getDate())
-      + " " + pad(d.getHours()) + ":" + pad(d.getMinutes()) + " " + tz;
+    span.textContent = d.toLocaleDateString() + " " + d.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit", timeZoneName: "short"});
     var table = document.querySelector("table");
     var hCol = -1;
     function clearCol() {
