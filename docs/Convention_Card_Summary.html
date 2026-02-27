@@ -38,11 +38,14 @@
     .rotate-header { writing-mode: vertical-rl; text-orientation: mixed;
                      transform: rotate(180deg); min-height: 100px;
                      display: inline-block; }
+    .col-hidden { display: none; }
+    .col-selected { background: #d0e8f7 !important; }
+    th.col-selected { background: #b8d4e8 !important; }
   </style>
 </head>
 <body>
   <h1>Convention Card Summary</h1>
-  <p class="subtitle">14 convention cards &mdash; Generated <span id="gen-time" data-utc="2026-02-27T22:06:51Z"></span>
+  <p class="subtitle">14 convention cards &mdash; Generated <span id="gen-time" data-utc="2026-02-27T22:19:57Z"></span>
     &mdash; <a class="nav-btn" href="./">Dashboard</a>
     <a class="nav-btn" href="Scenario_Summary.html">Scenario Summary</a>
     <a class="nav-btn nav-btn-active" href="Convention_Card_Summary.html">Convention Cards</a></p>
@@ -1803,33 +1806,45 @@
     var d = new Date(span.dataset.utc);
     span.textContent = d.toLocaleDateString() + " " + d.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit", timeZoneName: "short"});
     var table = document.querySelector("table");
-    var hCol = -1;
-    function clearCol() {
-      table.querySelectorAll(".col-highlighted").forEach(function(c) {
-        c.classList.remove("col-highlighted");
+    var col1 = -1, col2 = -1;
+    function clearAll() {
+      table.querySelectorAll(".col-highlighted,.col-selected,.diff,.col-hidden").forEach(function(c) {
+        c.classList.remove("col-highlighted","col-selected","diff","col-hidden");
       });
-      table.querySelectorAll(".diff").forEach(function(c) {
-        c.classList.remove("diff");
-      });
-      hCol = -1;
+      col1 = -1; col2 = -1;
     }
-    function applyCol(col) {
-      clearCol();
-      if (col < 1) return;
-      hCol = col;
+    function render() {
+      table.querySelectorAll(".col-highlighted,.col-selected,.diff,.col-hidden").forEach(function(c) {
+        c.classList.remove("col-highlighted","col-selected","diff","col-hidden");
+      });
+      if (col1 < 1) return;
       var rows = table.rows;
-      for (var i = 0; i < rows.length; i++) {
-        var ref = rows[i].cells[col];
-        if (!ref) continue;
-        ref.classList.add("col-highlighted");
-        var refVal = ref.getAttribute("data-v");
-        if (refVal === null) continue;
-        for (var j = 1; j < rows[i].cells.length; j++) {
-          if (j === col) continue;
-          var cell = rows[i].cells[j];
-          var cellVal = cell.getAttribute("data-v");
-          if (cellVal !== null && cellVal !== refVal) {
-            cell.classList.add("diff");
+      if (col2 < 1) {
+        for (var i = 0; i < rows.length; i++) {
+          var ref = rows[i].cells[col1];
+          if (!ref) continue;
+          ref.classList.add("col-highlighted");
+          var refVal = ref.getAttribute("data-v");
+          if (refVal === null) continue;
+          for (var j = 1; j < rows[i].cells.length; j++) {
+            if (j === col1) continue;
+            var cell = rows[i].cells[j];
+            var cellVal = cell.getAttribute("data-v");
+            if (cellVal !== null && cellVal !== refVal) cell.classList.add("diff");
+          }
+        }
+      } else {
+        for (var i = 0; i < rows.length; i++) {
+          for (var j = 1; j < rows[i].cells.length; j++) {
+            if (j !== col1 && j !== col2) rows[i].cells[j].classList.add("col-hidden");
+          }
+          var c1 = rows[i].cells[col1], c2 = rows[i].cells[col2];
+          if (c1) c1.classList.add("col-selected");
+          if (c2) c2.classList.add("col-selected");
+          var v1 = c1 ? c1.getAttribute("data-v") : null;
+          var v2 = c2 ? c2.getAttribute("data-v") : null;
+          if (v1 !== null && v2 !== null && v1 !== v2) {
+            c1.classList.add("diff"); c2.classList.add("diff");
           }
         }
       }
@@ -1838,17 +1853,20 @@
       var th = e.target.closest("th");
       if (th) {
         var col = th.cellIndex;
-        if (col === hCol) clearCol(); else applyCol(col);
+        if (col < 1) return;
+        if (col === col1) { col1 = col2; col2 = -1; }
+        else if (col === col2) { col2 = -1; }
+        else if (col1 < 1) { col1 = col; }
+        else { col2 = col; }
+        render();
         return;
       }
       var td = e.target.closest("td");
       if (!td) return;
-      var col = td.cellIndex;
       var row = td.parentNode;
       var prev = table.querySelector("tr.highlighted");
       if (prev && prev !== row) prev.classList.remove("highlighted");
       row.classList.toggle("highlighted");
-      if (col === hCol) clearCol(); else applyCol(col);
     });
   </script>
 </body>
