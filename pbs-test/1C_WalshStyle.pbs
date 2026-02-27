@@ -230,7 +230,7 @@ tpEW = tpEast + tpWest
 # Defines tpSouth
 
 # North has 4+ Diamonds and at least one 4-card major.
-nShape = diamonds(north)>3 and (spades(north)==4 or hearts(north)==4)
+nShape = diamonds(north)>3 and diamonds(north)<6 and (spades(north)==4 or hearts(north)==4)
 
 # North has a 1-bid hand or better
 bid1 = tpNorth>5 and tpNorth<12
