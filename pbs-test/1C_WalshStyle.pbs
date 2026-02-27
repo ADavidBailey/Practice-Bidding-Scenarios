@@ -236,7 +236,7 @@ nShape = diamonds(north)>3 and diamonds(north)<6 and (spades(north)==4 or hearts
 bid1 = tpNorth>5 and tpNorth<12
 bid2 = tpNorth>11
 
-oneClub and nShape and (bid1 or bid2) and calmOpps
+oneClub and nShape and calmOpps and (bid1) // or bid2) 
 
 produce 30
 action printoneline,
