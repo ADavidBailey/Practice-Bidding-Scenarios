@@ -24,8 +24,8 @@ dealer south
 # Defines oneClub, oneDiamond
 
 # North has 4+ Diamonds and at least one 4-card major.
-nShape = shape(north,4xxx +x4xx +44xx -any 5xxx) and shape(north,xx4x +xx5x)
-diamonds(north)>3 and diamonds(north)<6 and (spades(north)==4 or hearts(north)==4)
+#nShape = shape(north,4xxx +x4xx +44xx -any 5xxx) and shape(north,xx4x +xx5x)
+nShape = diamonds(north)>3 and diamonds(north)<6 and (spades(north)==4 or hearts(north)==4)
 
 # North has a 1-bid hand or better
 bid1 = hcp(north)>5 and hcp(north)<12
