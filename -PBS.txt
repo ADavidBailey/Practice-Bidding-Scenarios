@@ -71,7 +71,9 @@ Script,onAnyMutation
 if (!$("bridge-screen deal-viewer", parent.window.document).length) {
     if (window.pbsShowHCP) {
         window.pbsShowHCP = false;
-        $(".navBarClass .titleClass", window.parent.document).text("Main Bridge Club");
+        var el = $(".navBarClass .titleClass", window.parent.document);
+        el.css("white-space", "");
+        el.text("Main Bridge Club");
     }
 }
 var titleEl = $(".navBarClass .titleClass", window.parent.document);
