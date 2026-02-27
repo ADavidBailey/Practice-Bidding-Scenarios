@@ -233,7 +233,7 @@ tpEW = tpEast + tpWest
 nShape = diamonds(north)>3 and diamonds(north)<6 and (spades(north)==4 or hearts(north)==4)
 
 # North has a 1-bid hand or better
-bid1 = tpNorth>5 and tpNorth<12
+bid1 = tpNorth>5 and tpNorth<10
 bid2 = tpNorth>11
 
 oneClub and nShape and calmOpps and (bid1) // or bid2) 
