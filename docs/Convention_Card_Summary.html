@@ -42,11 +42,14 @@
     .col-selected { background: #d0e8f7 !important; }
     th.col-selected { background: #b8d4e8 !important; }
     .col-selected.diff { background: #f8d7da !important; }
+    td.diff-label { background: #f8d7da !important; }
+    table.two-card-mode col { width: auto; }
+    table.two-card-mode { width: auto; }
   </style>
 </head>
 <body>
   <h1>Convention Card Summary</h1>
-  <p class="subtitle">14 convention cards &mdash; Generated <span id="gen-time" data-utc="2026-02-27T22:22:48Z"></span>
+  <p class="subtitle">14 convention cards &mdash; Generated <span id="gen-time" data-utc="2026-02-27T22:26:23Z"></span>
     &mdash; <a class="nav-btn" href="./">Dashboard</a>
     <a class="nav-btn" href="Scenario_Summary.html">Scenario Summary</a>
     <a class="nav-btn nav-btn-active" href="Convention_Card_Summary.html">Convention Cards</a></p>
@@ -1815,9 +1818,10 @@
       col1 = -1; col2 = -1;
     }
     function render() {
-      table.querySelectorAll(".col-highlighted,.col-selected,.diff,.col-hidden").forEach(function(c) {
-        c.classList.remove("col-highlighted","col-selected","diff","col-hidden");
+      table.querySelectorAll(".col-highlighted,.col-selected,.diff,.diff-label,.col-hidden").forEach(function(c) {
+        c.classList.remove("col-highlighted","col-selected","diff","diff-label","col-hidden");
       });
+      table.classList.remove("two-card-mode");
       if (col1 < 1) return;
       var rows = table.rows;
       if (col2 < 1) {
@@ -1835,6 +1839,7 @@
           }
         }
       } else {
+        table.classList.add("two-card-mode");
         for (var i = 0; i < rows.length; i++) {
           for (var j = 1; j < rows[i].cells.length; j++) {
             if (j !== col1 && j !== col2) rows[i].cells[j].classList.add("col-hidden");
@@ -1846,6 +1851,7 @@
           var v2 = c2 ? c2.getAttribute("data-v") : null;
           if (v1 !== null && v2 !== null && v1 !== v2) {
             c1.classList.add("diff"); c2.classList.add("diff");
+            rows[i].cells[0].classList.add("diff-label");
           }
         }
       }
