@@ -168,6 +168,7 @@ def generate_summary():
     h.append('    .col-hidden { display: none; }')
     h.append('    .col-selected { background: #d0e8f7 !important; }')
     h.append('    th.col-selected { background: #b8d4e8 !important; }')
+    h.append('    .col-selected.diff { background: #f8d7da !important; }')
     h.append('  </style>')
     h.append('</head>')
     h.append('<body>')
