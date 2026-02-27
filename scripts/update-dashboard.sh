@@ -1,5 +1,5 @@
 #!/bin/bash
-# Update dashboard and push to GitHub Pages
+# Update dashboard, scenario summary, and convention card summary, then push to GitHub Pages
 # Run by launchd at 6:00 AM, 12:00 PM, and 6:00 PM daily
 
 cd /Users/adavidbailey/Practice-Bidding-Scenarios
@@ -9,12 +9,18 @@ echo "$(date): Starting dashboard update"
 # Generate dashboard data
 /usr/bin/python3 docs/generateDashboardData.py
 
+# Generate scenario summary
+/usr/bin/python3 build-scripts-mac/scenario_summary.py
+
+# Generate convention card summary
+/usr/bin/python3 build-scripts-mac/convention_card_summary.py
+
 # Check if there are changes to commit
-if git diff --quiet docs/index.html docs/dashboard-data.json; then
+if git diff --quiet docs/index.html docs/dashboard-data.json docs/Scenario_Summary.html docs/Convention_Card_Summary.html; then
     echo "$(date): No changes to commit"
 else
     echo "$(date): Committing and pushing changes"
-    git add docs/index.html docs/dashboard-data.json
+    git add docs/index.html docs/dashboard-data.json docs/Scenario_Summary.html docs/Convention_Card_Summary.html
     git commit -m "Daily dashboard update"
     git push
     echo "$(date): Push complete"
