@@ -177,14 +177,14 @@
     </style>
     <script>
 const DASHBOARD_DATA = {
-  "generatedAt": "2026-02-27T12:01:08.205801",
+  "generatedAt": "2026-02-27T12:43:38.633460",
   "summary": {
     "totalScenarios": 296,
     "scenariosWorked": 296,
     "totalFileEdits": 51142,
-    "totalPipelineRuns": 1650,
+    "totalPipelineRuns": 1651,
     "totalSessionHours": 3469,
-    "totalCommits": 6521
+    "totalCommits": 6524
   },
   "charts": {
     "labels": [
@@ -278,7 +278,7 @@ const DASHBOARD_DATA = {
       0,
       0,
       61,
-      1589
+      1590
     ],
     "commits": [
       502,
@@ -309,7 +309,7 @@ const DASHBOARD_DATA = {
       80,
       62,
       228,
-      1551
+      1554
     ],
     "sessionHours": [
       145,
@@ -375,14 +375,6 @@ const DASHBOARD_DATA = {
     ]
   },
   "recentActivity": [
-    {
-      "timestamp": "2026-02-26T21:49:04.155Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "All_Pass",
-        "operation": "*"
-      }
-    },
     {
       "timestamp": "2026-02-27T01:35:20.811Z",
       "type": "session_end",
@@ -523,9 +515,32 @@ const DASHBOARD_DATA = {
         "scenario": "1C_WalshStyle",
         "operation": "*"
       }
+    },
+    {
+      "timestamp": "2026-02-27T18:15:21.320Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "1C_WalshStyle",
+        "operation": "*"
+      }
     }
   ],
   "recentCommits": [
+    {
+      "hash": "bfec2313",
+      "date": "2026-02-27 12:33:32 -0600",
+      "message": "Add scenario and convention card summaries to scheduled updates"
+    },
+    {
+      "hash": "92c7da6c",
+      "date": "2026-02-27 12:30:33 -0600",
+      "message": "Update 21GF-SPECIALS for Walsh Style and regenerate Convention Card Summary"
+    },
+    {
+      "hash": "3556a781",
+      "date": "2026-02-27 12:01:08 -0600",
+      "message": "Daily dashboard update"
+    },
     {
       "hash": "990d940f",
       "date": "2026-02-27 11:51:57 -0600",
@@ -560,21 +575,6 @@ const DASHBOARD_DATA = {
       "hash": "0d7fefcd",
       "date": "2026-02-26 17:46:02 -0600",
       "message": "Clear title bar to empty when leaving table"
-    },
-    {
-      "hash": "e34f79fe",
-      "date": "2026-02-26 17:41:00 -0600",
-      "message": "Restore original title bar text when leaving table"
-    },
-    {
-      "hash": "c17e87eb",
-      "date": "2026-02-26 17:27:02 -0600",
-      "message": "Clear HCP title bar text when leaving table"
-    },
-    {
-      "hash": "42d55f25",
-      "date": "2026-02-26 17:12:11 -0600",
-      "message": "Restrict HCP/TP display to scenario practice tables only"
     }
   ]
 };
@@ -582,7 +582,8 @@ const DASHBOARD_DATA = {
 </head>
 <body>
     <h1>Practice Bidding Scenarios</h1>
-    <p class="subtitle">Development Activity Dashboard &mdash; <a class="nav-btn nav-btn-active" href="./">Dashboard</a> <a class="nav-btn" href="Scenario_Summary.html">Scenario Summary</a> <a class="nav-btn" href="Convention_Card_Summary.html">Convention Cards</a></p>
+    <p class="subtitle">Development Activity Dashboard &mdash; Generated <span id="lastUpdated">-</span>
+        &mdash; <a class="nav-btn nav-btn-active" href="./">Dashboard</a> <a class="nav-btn" href="Scenario_Summary.html">Scenario Summary</a> <a class="nav-btn" href="Convention_Card_Summary.html">Convention Cards</a></p>
 
     <div class="stats">
         <div class="stat-box">
@@ -643,9 +644,7 @@ const DASHBOARD_DATA = {
     </div>
 
     <p class="footer">
-        Last updated: <span id="lastUpdated">-</span>
-        <br>
-        <small>Auto-updates daily at 3 AM Central, or run <code>python3 docs/generateDashboardData.py</code></small>
+        <small>Auto-updates daily at 6 AM, noon, and 6 PM Central</small>
     </p>
 
     <script>
