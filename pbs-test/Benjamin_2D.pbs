@@ -35,14 +35,14 @@ oneSuit = suits1 and shape(south,any 8xxx +any 7xxx +any 6xxx)
 twoSuit = suits2 and shape(south,any 76xx +any 75xx +any 66xx +any 65xx +any 55xx)
 bal = not (twoSuit or oneSuit)
 
-c1 = hcp(south)>17 and hcp(south)<25 and twoSuit
-c2 = hcp(south)>19 and hcp(south)<25 and oneSuit and not twoSuit
-cB = hcp(south)>22 and hcp(south)<25 and bal
-dU = hcp(south)>23 and not bal
-dB = hcp(south)>24 and bal
+C1 = hcp(south)>17 and hcp(south)<25 and twoSuit
+C2 = hcp(south)>19 and hcp(south)<25 and oneSuit and not twoSuit
+CB = hcp(south)>22 and hcp(south)<25 and bal
+DU = hcp(south)>23 and not bal
+DB = hcp(south)>24 and bal
 
-twoC = c1 or c2 or cB
-twoD = dU or dB
+twoC = C1 or C2 or CB
+twoD = DU or DB
 
 
 ### Imported Leveling Code ###
@@ -83,13 +83,13 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-lev-c1 = c1 and keep
-lev-c2 = c2 and keep
-lev-cB = cB and keep
+lev-C1 = C1 and keep
+lev-C2 = C2 and keep
+lev-CB = CB and keep
 
-lev-dU = dU and keep
-lev-dB = dB and keep
-levelTheDeal = lev-c1 or lev-c2 or lev-cB or lev-dU or lev-dB
+lev-DU = DU and keep
+lev-DB = DB and keep
+levelTheDeal = lev-C1 or lev-C2 or lev-CB or lev-DU or lev-DB
 
 # Now do it
 twoC or twoD
@@ -97,13 +97,13 @@ and levelTheDeal
 
 action printoneline,
 action printoneline,
-average "C 1-suit" 100 * c1,
-average "C 2-suit" 100 * c2,
-average "C bal   " 100 * cB,
+average "C 1-suit" 100 * C1,
+average "C 2-suit" 100 * C2,
+average "C bal   " 100 * CB,
 average "Open 2C " 100 * twoC,
 
-average "D unbal " 100 * dU,
-average "D bal   " 100 * dB,
+average "D unbal " 100 * DU,
+average "D bal   " 100 * DB,
 average "open 2D " 100 * twoD,
 `, "S", true)
 Script
