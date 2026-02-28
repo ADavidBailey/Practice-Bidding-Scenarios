@@ -38,7 +38,7 @@ twoSuit = suits2 and shape(south,any 76xx +any 75xx +any 66xx +any 65xx +any 55x
 oneSuit = suits1 and shape(south,any 8xxx +any 7xxx +any 6xxx) and not twoSuit
 
 c1 = hcp(south)>17 and hcp(south)<25 and twoSuit
-c2 = hcp(south)>19 and hcp(south)<25 and oneSuit
+c2 = hcp(south)>19 and hcp(south)<25 and oneSuit and not twoSuit
 c3 = hcp(south)>22 and hcp(south)<25 and bal
 d1 = hcp(south)>23 and not bal
 d2 = hcp(south)>24 and bal
@@ -94,9 +94,15 @@ twoC or twoD
 and levelTheDeal
 
 action printoneline,
+action printoneline,
+average "C 1-suit" 100 * c1,
+average "C 2-suit" 100 * c2,
+average "C bal   " 100 * cB,
+average "Open 2C " 100 * twoC,
 
-average "2C" 100 * twoC,
-average "2D" 100 * twoD,
+average "D unbal " 100 * d1,
+average "D bal   " 100 * d2
+average "open 2D " 100 * twoD,
 `, "S", true)
 Script
 Button,Benjamin 2 Bid (Lev),\n\
