@@ -177,14 +177,14 @@
     </style>
     <script>
 const DASHBOARD_DATA = {
-  "generatedAt": "2026-02-28T06:01:05.280849",
+  "generatedAt": "2026-02-28T09:21:55.398363",
   "summary": {
     "totalScenarios": 295,
     "scenariosWorked": 295,
     "totalFileEdits": 51165,
-    "totalPipelineRuns": 1671,
-    "totalSessionHours": 3469,
-    "totalCommits": 6551
+    "totalPipelineRuns": 1672,
+    "totalSessionHours": 3466,
+    "totalCommits": 6556
   },
   "charts": {
     "labels": [
@@ -219,7 +219,7 @@ const DASHBOARD_DATA = {
       "Feb 26"
     ],
     "fileEdits": [
-      450,
+      449,
       423,
       253,
       292,
@@ -247,7 +247,7 @@ const DASHBOARD_DATA = {
       678,
       506,
       95,
-      1126
+      1127
     ],
     "pipelineRuns": [
       0,
@@ -278,10 +278,10 @@ const DASHBOARD_DATA = {
       0,
       0,
       61,
-      1610
+      1611
     ],
     "commits": [
-      502,
+      501,
       441,
       259,
       304,
@@ -309,10 +309,10 @@ const DASHBOARD_DATA = {
       80,
       62,
       228,
-      1588
+      1594
     ],
     "sessionHours": [
-      145,
+      142,
       171,
       75,
       140,
@@ -375,22 +375,6 @@ const DASHBOARD_DATA = {
     ]
   },
   "recentActivity": [
-    {
-      "timestamp": "2026-02-27T20:42:18.774Z",
-      "type": "file_save",
-      "details": {
-        "filePath": "btn/1C_WalshStyle.btn",
-        "fileType": "btn"
-      }
-    },
-    {
-      "timestamp": "2026-02-27T20:42:26.598Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "1C_WalshStyle",
-        "operation": "*"
-      }
-    },
     {
       "timestamp": "2026-02-27T20:49:28.811Z",
       "type": "file_save",
@@ -534,9 +518,55 @@ const DASHBOARD_DATA = {
         "scenario": "1C_WalshStyle",
         "operation": "release"
       }
+    },
+    {
+      "timestamp": "2026-02-28T15:03:13.180Z",
+      "type": "file_save",
+      "details": {
+        "filePath": "build-scripts-mac/config.py",
+        "fileType": "python"
+      }
+    },
+    {
+      "timestamp": "2026-02-28T15:16:08.205Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "3N",
+        "operation": "release"
+      }
     }
   ],
   "recentCommits": [
+    {
+      "hash": "0cb2f2eb",
+      "date": "2026-02-28 09:16:09 -0600",
+      "message": "Release 3N to pbs-release"
+    },
+    {
+      "hash": "56d94e0e",
+      "date": "2026-02-28 09:15:28 -0600",
+      "message": "3N: switch NS convention card to 21GF-GIB, delete 21GF-Not-Gambling"
+    },
+    {
+      "hash": "89622b91",
+      "date": "2026-02-28 09:13:29 -0600",
+      "message": "Update pbs-test/3N.pbs"
+    },
+    {
+      "hash": "908732a1",
+      "date": "2026-02-28 09:05:13 -0600",
+      "message": "1C_WalshStyle: set gib-works to true"
+    },
+    {
+      "hash": "0cdb2339",
+      "date": "2026-02-28 09:04:59 -0600",
+      "message": "Defer Windows env var check so summary scripts run from launchd"
+    },
+    {
+      "hash": "e43236ca",
+      "date": "2026-02-28 06:01:05 -0600",
+      "message": "Daily dashboard update"
+    },
     {
       "hash": "90ed9722",
       "date": "2026-02-27 20:25:16 -0600",
@@ -556,36 +586,6 @@ const DASHBOARD_DATA = {
       "hash": "1372c197",
       "date": "2026-02-27 17:36:36 -0600",
       "message": "Regenerate 1C_WalshStyle pipeline outputs"
-    },
-    {
-      "hash": "5890f33c",
-      "date": "2026-02-27 17:35:59 -0600",
-      "message": "Release 1C_WalshStyle to pbs-release"
-    },
-    {
-      "hash": "07657da9",
-      "date": "2026-02-27 17:35:38 -0600",
-      "message": "Update pbs-test/1C_WalshStyle.pbs"
-    },
-    {
-      "hash": "043c50b6",
-      "date": "2026-02-27 16:26:29 -0600",
-      "message": "Two-card mode: left-justify columns and highlight setting names for diffs"
-    },
-    {
-      "hash": "208861de",
-      "date": "2026-02-27 16:22:53 -0600",
-      "message": "Fix two-card comparison: diff highlight now shows over selected background"
-    },
-    {
-      "hash": "8717cab5",
-      "date": "2026-02-27 16:20:13 -0600",
-      "message": "Add two-card comparison mode to Convention Card Summary"
-    },
-    {
-      "hash": "d4d047b4",
-      "date": "2026-02-27 16:07:46 -0600",
-      "message": "Update dashboard-update.log"
     }
   ]
 };
