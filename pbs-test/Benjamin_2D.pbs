@@ -39,12 +39,12 @@ oneSuit = suits1 and shape(south,any 8xxx +any 7xxx +any 6xxx) and not twoSuit
 
 c1 = hcp(south)>17 and hcp(south)<25 and twoSuit
 c2 = hcp(south)>19 and hcp(south)<25 and oneSuit and not twoSuit
-c3 = hcp(south)>22 and hcp(south)<25 and bal
-d1 = hcp(south)>23 and not bal
-d2 = hcp(south)>24 and bal
+cB = hcp(south)>22 and hcp(south)<25 and bal
+dU = hcp(south)>23 and not bal
+dB = hcp(south)>24 and bal
 
-twoC = c1 or c2 or c3
-twoD = d1 or d2
+twoC = c1 or c2 or cB
+twoD = dU or dB
 
 
 ### Imported Leveling Code ###
@@ -100,8 +100,8 @@ average "C 2-suit" 100 * c2,
 average "C bal   " 100 * cB,
 average "Open 2C " 100 * twoC,
 
-average "D unbal " 100 * d1,
-average "D bal   " 100 * d2
+average "D unbal " 100 * dU,
+average "D bal   " 100 * dB,
 average "open 2D " 100 * twoD,
 `, "S", true)
 Script
