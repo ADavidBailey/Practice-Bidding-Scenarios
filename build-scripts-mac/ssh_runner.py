@@ -5,7 +5,7 @@ Uses native ssh command via subprocess.
 import subprocess
 import shlex
 from typing import Optional, Tuple
-from config import WINDOWS_SSH_HOST, WINDOWS_SSH_USER, PROJECT_ROOT, DRIVE_MAPPINGS
+from config import WINDOWS_SSH_HOST, WINDOWS_SSH_USER, PROJECT_ROOT, get_drive_mappings
 
 
 def get_drive_mapping_commands() -> str:
@@ -14,7 +14,7 @@ def get_drive_mapping_commands() -> str:
     SSH sessions don't inherit user's mapped drives, so we need to map them.
     """
     commands = []
-    for mac_base, (drive_letter, unc_path) in DRIVE_MAPPINGS.items():
+    for mac_base, (drive_letter, unc_path) in get_drive_mappings().items():
         # Use net use to map the drive (ignore errors if already mapped)
         commands.append(f"net use {drive_letter} {unc_path} >nul 2>&1")
     return " & ".join(commands)
@@ -32,7 +32,7 @@ def mac_to_windows_path(mac_path: str) -> str:
     mac_path = mac_path.replace("\\", "/")
 
     # Find the matching drive mapping (sort by path length descending to match most specific first)
-    for mac_base, (windows_drive, unc_path) in sorted(DRIVE_MAPPINGS.items(), key=lambda x: len(x[0]), reverse=True):
+    for mac_base, (windows_drive, unc_path) in sorted(get_drive_mappings().items(), key=lambda x: len(x[0]), reverse=True):
         if mac_path.startswith(mac_base):
             # Replace Mac base with Windows drive and convert slashes
             relative_path = mac_path[len(mac_base):]
@@ -56,7 +56,7 @@ def windows_to_mac_path(windows_path: str) -> str:
     windows_path = windows_path.replace("/", "\\")
 
     # Find the matching drive mapping
-    for mac_base, (windows_drive, unc_path) in DRIVE_MAPPINGS.items():
+    for mac_base, (windows_drive, unc_path) in get_drive_mappings().items():
         if windows_path.upper().startswith(windows_drive.upper()):
             # Replace Windows drive with Mac base and convert slashes
             relative_path = windows_path[len(windows_drive):]

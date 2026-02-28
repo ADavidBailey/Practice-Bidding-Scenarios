@@ -17,26 +17,28 @@ WINDOWS_SSH_USER = os.environ.get("WINDOWS_USER")
 UNC_PREFIX = os.environ.get("PBS_UNC_PREFIX")
 BCSCRIPT_PATH = os.environ.get("PBS_BCSCRIPT_PATH")
 
-_missing = []
-if not WINDOWS_SSH_HOST:
-    _missing.append('WINDOWS_HOST')
-if not WINDOWS_SSH_USER:
-    _missing.append('WINDOWS_USER')
-if not UNC_PREFIX:
-    _missing.append('PBS_UNC_PREFIX')
-if not BCSCRIPT_PATH:
-    _missing.append('PBS_BCSCRIPT_PATH')
-
-if _missing:
-    import sys
-    print(f"Error: Missing required environment variables: {', '.join(_missing)}")
-    print("Add these to your ~/.zshrc:")
-    print('  export WINDOWS_HOST="your-windows-ip"')
-    print('  export WINDOWS_USER="your-windows-username"')
-    print('  export PBS_UNC_PREFIX="\\\\Mac\\Home"  # For Parallels; adjust for your VM')
-    print('  export PBS_BCSCRIPT_PATH="~/Documents/BCScript/2024-11-13"')
-    print("Then run: source ~/.zshrc")
-    sys.exit(1)
+def require_windows_config():
+    """Validate that Windows VM environment variables are set.
+    Call this before operations that need Windows connectivity."""
+    _missing = []
+    if not WINDOWS_SSH_HOST:
+        _missing.append('WINDOWS_HOST')
+    if not WINDOWS_SSH_USER:
+        _missing.append('WINDOWS_USER')
+    if not UNC_PREFIX:
+        _missing.append('PBS_UNC_PREFIX')
+    if not BCSCRIPT_PATH:
+        _missing.append('PBS_BCSCRIPT_PATH')
+    if _missing:
+        import sys
+        print(f"Error: Missing required environment variables: {', '.join(_missing)}")
+        print("Add these to your ~/.zshrc:")
+        print('  export WINDOWS_HOST="your-windows-ip"')
+        print('  export WINDOWS_USER="your-windows-username"')
+        print('  export PBS_UNC_PREFIX="\\\\Mac\\Home"  # For Parallels; adjust for your VM')
+        print('  export PBS_BCSCRIPT_PATH="~/Documents/BCScript/2024-11-13"')
+        print("Then run: source ~/.zshrc")
+        sys.exit(1)
 
 # Helper to convert Mac path to UNC path
 def _mac_to_unc(mac_path: str) -> str:
@@ -49,19 +51,27 @@ def _mac_to_unc(mac_path: str) -> str:
         return UNC_PREFIX + relative.replace("/", "\\")
     return expanded.replace("/", "\\")
 
-# Expand BCScript path
-_bcscript_expanded = os.path.expanduser(BCSCRIPT_PATH)
+# Drive mappings are built lazily since they require Windows config
+_DRIVE_MAPPINGS = None
 
-# Drive mappings: Mac path -> (Windows drive letter, UNC path)
-# UNC paths are needed because SSH sessions don't inherit mapped drives
-DRIVE_MAPPINGS = {
-    # G: drive maps to GitHub folder (one level above project)
-    os.path.dirname(PROJECT_ROOT): ("G:", _mac_to_unc(os.path.dirname(PROJECT_ROOT))),
-    # P: drive maps to the project root
-    PROJECT_ROOT: ("P:", _mac_to_unc(PROJECT_ROOT)),
-    # S: drive maps to BridgeComposer scripts folder
-    _bcscript_expanded: ("S:", _mac_to_unc(_bcscript_expanded)),
-}
+def get_drive_mappings():
+    """Get drive mappings, building them on first access. Requires Windows config."""
+    global _DRIVE_MAPPINGS
+    if _DRIVE_MAPPINGS is None:
+        require_windows_config()
+        _bcscript_expanded = os.path.expanduser(BCSCRIPT_PATH)
+        _DRIVE_MAPPINGS = {
+            # G: drive maps to GitHub folder (one level above project)
+            os.path.dirname(PROJECT_ROOT): ("G:", _mac_to_unc(os.path.dirname(PROJECT_ROOT))),
+            # P: drive maps to the project root
+            PROJECT_ROOT: ("P:", _mac_to_unc(PROJECT_ROOT)),
+            # S: drive maps to BridgeComposer scripts folder
+            _bcscript_expanded: ("S:", _mac_to_unc(_bcscript_expanded)),
+        }
+    return _DRIVE_MAPPINGS
+
+# For backward compatibility
+DRIVE_MAPPINGS = None  # Use get_drive_mappings() instead
 
 # Folder structure within the project
 FOLDERS = {

@@ -7,7 +7,7 @@ import sys
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from config import PROJECT_ROOT, FOLDERS, DRIVE_MAPPINGS
+from config import PROJECT_ROOT, FOLDERS, get_drive_mappings
 
 
 def mac_to_windows(mac_path: str) -> str:
@@ -22,7 +22,7 @@ def mac_to_windows(mac_path: str) -> str:
     mac_path = os.path.abspath(mac_path)
 
     # Find the matching drive mapping
-    for mac_base, windows_drive in DRIVE_MAPPINGS.items():
+    for mac_base, windows_drive in get_drive_mappings().items():
         if mac_path.startswith(mac_base):
             # Replace Mac base with Windows drive and convert slashes
             relative_path = mac_path[len(mac_base):]
@@ -45,7 +45,7 @@ def windows_to_mac(windows_path: str) -> str:
     windows_path = windows_path.replace("/", "\\")
 
     # Find the matching drive mapping
-    for mac_base, windows_drive in DRIVE_MAPPINGS.items():
+    for mac_base, windows_drive in get_drive_mappings().items():
         if windows_path.upper().startswith(windows_drive.upper()):
             # Replace Windows drive with Mac base and convert slashes
             relative_path = windows_path[len(windows_drive):]
