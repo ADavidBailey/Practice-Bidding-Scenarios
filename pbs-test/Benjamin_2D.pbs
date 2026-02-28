@@ -85,9 +85,13 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-lev2C = twoC and keep25
-lev2D = twoD and keep
-levelTheDeal = lev2C or lev2D
+lev-c1 = c1 and keep
+lev-c2 = c2 and keep
+lev-cB = cB and keep
+
+lev-dU = dU and keep
+lev-dB = dB and keep
+levelTheDeal = lev-c1 or lev-c2 or lev-cB or lev-dU or lev-dB
 
 # Now do it
 twoC or twoD
