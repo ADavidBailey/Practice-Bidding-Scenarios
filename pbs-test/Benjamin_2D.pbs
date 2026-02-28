@@ -44,7 +44,6 @@ s2DB = hcp(south)>24 and bal
 twoC = s2C2S or s2C1S or s2CB
 twoD = s2DU or s2DB
 
-
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
 c2 = hascard(east,2D)
@@ -83,9 +82,9 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-levs2C2S = s2C2S and keep0
+levs2C2S = s2C2S and keep
 levs2C1S = s2C1S and keep
-levs2CB  = s2CB  and keep0
+levs2CB  = s2CB  and keep
 
 levs2DU = s2DU and keep
 levs2DB = s2DB and keep
@@ -93,7 +92,7 @@ levelTheDeal = levs2C2S or levs2C1S or levs2CB or levs2DU or levs2DB
 
 # Now do it
 twoC or twoD
-and levelTheDeal
+// and levelTheDeal
 
 action printoneline,
 action printoneline,
