@@ -41,22 +41,23 @@ ntDownGrade = S2H or H2H or D2H or C2H
 ntPoints = ntDownGrade ? hcp(south) : hcp(south) + lengthPoints
 
 # Define robot notrump shape and exclude any 5-card major
-ntShape = shape(south, any 4333 +any 4432 +any 5332 +any 5422 -5xxx -x5xx)
+ntShape = shape(south, any 4333 +any 4432 +any 5332 -5xxx -x5xx)
 
 # Define Two NT Point range
-threeNT = ntShape and ntPoints>24 and ntPoints<28
+threeNT = ntShape and hcp(south)>24 and hcp(south)<28 //ntPoints>24 and ntPoints<28
 
 ### Do it ###
 threeNT and hcp(north)>4     // Increase the probability of slam
 
 ### Generate Statistics ###
 
-combined = ntPoints + hcp(north)
+combined = hcp(south) + hcp(north)   //ntPoints + hcp(north)
 
 partscore = combined<25
 game = combined>24 and combined<33
 slam = combined>32
 
+action printoneline,
 action printoneline,
 average "Game         " 100 * game,
 average "Slam         " 100 * slam,
