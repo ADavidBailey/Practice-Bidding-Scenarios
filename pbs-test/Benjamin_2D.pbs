@@ -23,10 +23,6 @@ auction-filter: Auction.....\n2[CD] +
 # Game Forcing Benjamin 2D
 dealer south
 
-oneSuit = suits1 and shape(south,any 8xxx +any 7xxx +any 6xxx)
-twoSuit = suits2 and shape(south,any 76xx +any 75xx +any 66xx +any 65xx +any 55xx)
-bal = not (twoSuit or oneSuit)
-
 gC = clubs(south)>4    and top3(south,clubs)==3    or top5(south,clubs)==4
 gD = diamonds(south)>4 and top3(south,diamonds)==3 or top5(south,diamonds)==4
 gH = hearts(south)>4   and top3(south,hearts)==3   or top5(south,hearts)==4
@@ -34,8 +30,10 @@ gS = spades(south)>4   and top3(south,spades)==3   or top5(south,spades)==4
 
 suits1 = gC or gD or gH or gS
 suits2 = (gC and gD) or (gC and gH) or (gC and gS) or (gD and gH) or (gD and gS) or (gH and gS)
+
+oneSuit = suits1 and shape(south,any 8xxx +any 7xxx +any 6xxx)
 twoSuit = suits2 and shape(south,any 76xx +any 75xx +any 66xx +any 65xx +any 55xx)
-oneSuit = suits1 and shape(south,any 8xxx +any 7xxx +any 6xxx) and not twoSuit
+bal = not (twoSuit or oneSuit)
 
 c1 = hcp(south)>17 and hcp(south)<25 and twoSuit
 c2 = hcp(south)>19 and hcp(south)<25 and oneSuit and not twoSuit
