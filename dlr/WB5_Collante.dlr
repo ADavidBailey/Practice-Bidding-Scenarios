@@ -3,7 +3,7 @@
 # scenario-title: --- Collante
 # gib-works: false
 # bba-works: true
-# auction-filter: Auction.....\n(1C +1D +(X|[23]H)|1C +1H +(X|[23]S))
+# auction-filter: (1C +[12]D +(X|[12]H)|1C +[12]H +(X|[12]S)|1D +[12]H +(X|[12]S))
 # convention-card-ns: 21GF-SPECIALS2
 # convention-card-ew: 21GF-GIB
 
@@ -11,6 +11,7 @@
 --- Collante
 After 1C (1D), X shows 4!H and 2!H shows 5+!H,
 likewise after 1C (1H) X shows 4!S and 2S shows 5+!S.
+This may also used after 1m (2!D/1!H).
 @chat*/
 
 dealer south
@@ -122,7 +123,7 @@ oneDiamond = oD
 oneClub    = oC
 
 ##### End of Imported Script -- Predict Opening 1-Bid #####
-# Defines oneClub
+# Defines oneClub, oneDiamond
 ##### Imported Script: Define Calm Opponents #####
 
 # Avoid concentration of values
@@ -149,14 +150,106 @@ calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<1
 calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
-# Defines calmWest
+# Defines calmOpps
+### Imported script: TP (Total Points)
+//   Total Points = HCP + Short-Suit Points - Penalty Points
+//   Short-Suit Points: 3 for void, 2 for singleton, 1 for doubleton
+//   Penalty Points: 1 for each honor (K/Q/J) in a short suit (devalues wasted honors like Kx, Qx)
 
-CDX = oneClub and shape(west,xx5x +xx6x -any 8xxx -any 7xxx -any 76xx -any 75xx -any 66xx -any 65xx -any 55xx) and hearts(south)==4 and spades(south)<5
+## Calculate TP for North
+# Short-Suit Points: void=3, singleton=2, doubleton=1
+nSpadeSSP = spades(north)<3   ? 3-spades(north)   : 0
+nHeartSSP = hearts(north)<3   ? 3-hearts(north)   : 0
+nDiamSSP  = diamonds(north)<3 ? 3-diamonds(north) : 0
+nClubSSP  = clubs(north)<3    ? 3-clubs(north)    : 0
+nSSP = nSpadeSSP + nHeartSSP + nDiamSSP + nClubSSP
+
+# Penalty Points: deduct 1 for honors in short suits
+nSpadePP = spades(north)<3   and hcp(north,spades)>0   ? 1 : 0
+nHeartPP = hearts(north)<3   and hcp(north,hearts)>0   ? 1 : 0
+nDiamPP  = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
+nClubPP  = clubs(north)<3    and hcp(north,clubs)>0    ? 1 : 0
+nPP = nSpadePP + nHeartPP + nDiamPP + nClubPP
+
+tpNorth = hcp(north) + nSSP - nPP
+
+## Calculate TP for East
+eSpadeSSP = spades(east)<3   ? 3-spades(east)   : 0
+eHeartSSP = hearts(east)<3   ? 3-hearts(east)   : 0
+eDiamSSP  = diamonds(east)<3 ? 3-diamonds(east) : 0
+eClubSSP  = clubs(east)<3    ? 3-clubs(east)    : 0
+eSSP = eSpadeSSP + eHeartSSP + eDiamSSP + eClubSSP
+
+eSpadePP = spades(east)<3   and hcp(east,spades)>0   ? 1 : 0
+eHeartPP = hearts(east)<3   and hcp(east,hearts)>0   ? 1 : 0
+eDiamPP  = diamonds(east)<3 and hcp(east,diamonds)>0 ? 1 : 0
+eClubPP  = clubs(east)<3    and hcp(east,clubs)>0    ? 1 : 0
+ePP = eSpadePP + eHeartPP + eDiamPP + eClubPP
+
+tpEast = hcp(east) + eSSP - ePP
+
+## Calculate TP for South
+sSpadeSSP = spades(south)<3   ? 3-spades(south)   : 0
+sHeartSSP = hearts(south)<3   ? 3-hearts(south)   : 0
+sDiamSSP  = diamonds(south)<3 ? 3-diamonds(south) : 0
+sClubSSP  = clubs(south)<3    ? 3-clubs(south)    : 0
+sSSP = sSpadeSSP + sHeartSSP + sDiamSSP + sClubSSP
+
+sSpadePP = spades(south)<3   and hcp(south,spades)>0   ? 1 : 0
+sHeartPP = hearts(south)<3   and hcp(south,hearts)>0   ? 1 : 0
+sDiamPP  = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
+sClubPP  = clubs(south)<3    and hcp(south,clubs)>0    ? 1 : 0
+sPP = sSpadePP + sHeartPP + sDiamPP + sClubPP
+
+tpSouth = hcp(south) + sSSP - sPP
+
+## Calculate TP for West
+wSpadeSSP = spades(west)<3   ? 3-spades(west)   : 0
+wHeartSSP = hearts(west)<3   ? 3-hearts(west)   : 0
+wDiamSSP  = diamonds(west)<3 ? 3-diamonds(west) : 0
+wClubSSP  = clubs(west)<3    ? 3-clubs(west)    : 0
+wSSP = wSpadeSSP + wHeartSSP + wDiamSSP + wClubSSP
+
+wSpadePP = spades(west)<3   and hcp(west,spades)>0   ? 1 : 0
+wHeartPP = hearts(west)<3   and hcp(west,hearts)>0   ? 1 : 0
+wDiamPP  = diamonds(west)<3 and hcp(west,diamonds)>0 ? 1 : 0
+wClubPP  = clubs(west)<3    and hcp(west,clubs)>0    ? 1 : 0
+wPP = wSpadePP + wHeartPP + wDiamPP + wClubPP
+
+tpWest = hcp(west) + wSSP - wPP
+
+## Partnership Totals
+tpNS = tpNorth + tpSouth
+tpEW = tpEast + tpWest
+
+### End of Imported Script: TP
+# Defines tpSouth, tpWest, tpNorth
+
+sRange = hcp(south)>10 and tpSouth>11 and tpSouth<16
+wRange = tpWest>7 and tpWest<12
+nRange = tpNorth>8
+range = sRange and wRange and nRange
+
+nH = hearts(north)>3 and shape(west,xx5x + xx6x)
+nS = spades(north)>3 and shape(west,x5xx + x6xx)
+
+wD = diamonds(west)>4 and top5(west,diamonds)>2 and shape(west,any 6xxx +any 5440 +any 5431 +any 5422) and nH
+wH = hearts(west)>4   and top5(west,hearts)>2   and shape(west,any 6xxx +any 5440 +any 5431 +any 5422) and nS
+sC = oneClub    and (wD or wH)
+sD = oneDiamond and wH
 
 
-sRange = hcp(south)>11 and hcp(south)<15
-wRange = hcp(west)>7 and hcp(west)<12
-nRange = hcp(north)>5
 
-CDX and sRange and wRange and nRange
+CDX = sC and wD  and nH and range and hearts(north)==4
+CDH = sC and wD  and nH and range and hearts(north)>4
+mHX = (sC or sD) and wH and nS and spades(north)==4
+mHS = (sC or sD) and wH and nS and spades(north)>4
+
+(CDX or CDH or mHX or mHS) and range and calmEast
+
+
 action printoneline,
+average "CDX" 100 * CDX,
+average "CDH" 100 * CDH,
+average "mHX" 100 * mHX,
+average "mHS" 100 * mHS,
