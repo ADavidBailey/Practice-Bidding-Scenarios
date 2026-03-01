@@ -42,13 +42,9 @@ Pass  Pass
 [Declarer "S"]
 [Contract "4H"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1S    Pass  1N    Pass
 3H    Pass  4H    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -83,11 +79,11 @@ Pass  Pass
 [South "EPBot"]
 [West "EPBot"]
 [Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:T7.8.KQJ97.JT954 J64.J7542.T653.K AKQ2.AQT3.A84.Q3 9853.K96.2.A8762"]
-{Shape 2155 3541 4432 4315}
-{HCP 7 5 21 7}
-{Losers 7 10 5 8}
+[Vulnerable "All"]
+[Deal "N:.K65.KQ532.T9762 Q9853.T73.J76.84 AK642.A94.98.AKQ JT7.QJ82.AT4.J53"]
+{Shape 0355 5332 5323 3433}
+{HCP 8 3 20 9}
+{Losers 6 10 5 10}
 [Declarer "S"]
 [Contract "3N"]
 [Auction "S"]
@@ -104,29 +100,44 @@ Pass  Pass
 [South "EPBot"]
 [West "EPBot"]
 [Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:8.94.AKQ63.QT762 KQJ974.JT85.T8.8 AT.AKQ62.754.AK4 6532.73.J92.J953"]
-{Shape 1255 6421 2533 4234}
-{HCP 11 7 20 2}
-{Losers 5 7 5 11}
-[Declarer "N"]
-[Contract "6D"]
+[Vulnerable "NS"]
+[Deal "N:T7.8.KQJ97.JT954 J64.J7542.T653.K AKQ2.AQT3.A84.Q3 9853.K96.2.A8762"]
+{Shape 2155 3541 4432 4315}
+{HCP 7 5 21 7}
+{Losers 7 10 5 8}
+[Declarer "S"]
+[Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3D    Pass
-4D    Pass  4S    X
-5C    Pass  6D    Pass
+2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
 [Board "6"]
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "EW"]
+[Deal "N:8.94.AKQ63.QT762 KQJ974.JT85.T8.8 AT.AKQ62.754.AK4 6532.73.J92.J953"]
+{Shape 1255 6421 2533 4234}
+{HCP 11 7 20 2}
+{Losers 5 7 5 11}
+[Declarer "N"]
+[Contract "6N"]
+[Auction "S"]
+1H    Pass  1N    Pass
+2N    Pass  6N    Pass
+Pass  Pass
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "2N_and_MSS"]
+[Site ""]
+[Board "7"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -149,7 +160,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "7"]
+[Board "8"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -170,7 +181,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "8"]
+[Board "9"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -181,20 +192,19 @@ Pass  Pass
 {Shape 0355 3532 4333 6223}
 {HCP 10 7 20 3}
 {Losers 7 9 5 9}
-[Declarer "S"]
-[Contract "3N"]
+[Declarer "N"]
+[Contract "5D"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
+2N    Pass  4S =1=    Pass
+5C    Pass  5D    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "9"]
+[Board "10"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -206,19 +216,17 @@ Pass  Pass
 {HCP 10 6 20 4}
 {Losers 6 9 5 10}
 [Declarer "S"]
-[Contract "3N"]
+[Contract "5D"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
-Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
+2N    Pass  4S =1=    Pass
+5D    Pass  Pass  Pass
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "10"]
+[Board "11"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -239,7 +247,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "11"]
+[Board "12"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -260,7 +268,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "12"]
+[Board "13"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -283,7 +291,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "13"]
+[Board "14"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -297,19 +305,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1S    Pass  1N    Pass
 3H    Pass  3N    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "14"]
+[Board "15"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -323,21 +327,17 @@ Pass  Pass
 [Declarer "S"]
 [Contract "7C"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1S    Pass  1N    Pass
 3C    Pass  4N    Pass
-5C =4=    Pass  7C    Pass
+5C =1=    Pass  7C    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
-[Note "4:A=0/5 or 3/5"]
+[Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "15"]
+[Board "16"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -360,7 +360,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "16"]
+[Board "17"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -374,17 +374,16 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6N"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  6N    Pass
+2N    Pass  4S =1=    Pass
+5C    Pass  6N    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "17"]
+[Board "18"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -407,7 +406,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "18"]
+[Board "19"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -428,7 +427,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "19"]
+[Board "20"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -449,7 +448,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "20"]
+[Board "21"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -472,7 +471,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "21"]
+[Board "22"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -495,7 +494,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "22"]
+[Board "23"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -516,7 +515,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "23"]
+[Board "24"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -530,15 +529,14 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    3H
+1S    Pass  1N    3H
 3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "24"]
+[Board "25"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -559,7 +557,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "25"]
+[Board "26"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -580,7 +578,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "26"]
+[Board "27"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -591,22 +589,18 @@ Pass  Pass
 {Shape 0355 4342 5422 4324}
 {HCP 8 10 21 1}
 {Losers 7 8 4 11}
-[Declarer "N"]
-[Contract "3N"]
+[Declarer "S"]
+[Contract "4H"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-3H    Pass  3N    Pass
+1S    Pass  1N    Pass
+3H    Pass  4H    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "27"]
+[Board "28"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -627,7 +621,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "28"]
+[Board "29"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -641,17 +635,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2H    Pass
-3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
+1H    Pass  1N    Pass
+2N    Pass  3N    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "29"]
+[Board "30"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -665,24 +657,17 @@ Pass  Pass
 [Declarer "N"]
 [Contract "6D"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3D    Pass
-3N    Pass  4D    Pass
-4N    Pass  5D =4=    Pass
-5H    Pass  6C =5=    Pass
-6D    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
-[Note "4:A=1/5 or 4/5"]
-[Note "5:!D queen and !C king"]
+1H    Pass  1N    Pass
+2N    Pass  4D    Pass
+4H    Pass  4S    Pass
+5C    Pass  6D    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "30"]
+[Board "31"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -694,17 +679,20 @@ Pass  Pass
 {HCP 9 3 21 7}
 {Losers 7 10 4 7}
 [Declarer "S"]
-[Contract "5D"]
+[Contract "6D"]
 [Auction "S"]
 1H    2S    Pass  3S
-4D    Pass  5D    Pass
-Pass  Pass
+4D    Pass  4S =1=    X
+4N    Pass  5D =2=    Pass
+6D    Pass  Pass  Pass
+[Note "1:limit raise or better in !D"]
+[Note "2:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "31"]
+[Board "32"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -727,7 +715,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "32"]
+[Board "33"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -748,7 +736,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "33"]
+[Board "34"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -771,7 +759,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "34"]
+[Board "35"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -794,7 +782,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "35"]
+[Board "36"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -815,7 +803,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "36"]
+[Board "37"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -838,7 +826,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "37"]
+[Board "38"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -859,7 +847,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "38"]
+[Board "39"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -881,7 +869,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "39"]
+[Board "40"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -895,19 +883,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1S    Pass  1N    Pass
 3H    Pass  3N    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "40"]
+[Board "41"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -929,7 +913,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "41"]
+[Board "42"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -950,7 +934,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "42"]
+[Board "43"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -971,7 +955,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "43"]
+[Board "44"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -994,7 +978,30 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "44"]
+[Board "45"]
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "NS"]
+[Deal "N:K95..AKQT8.J9873 T3.J7643.J9654.4 AQJ42.AK5.72.AK5 876.QT982.3.QT62"]
+{Shape 3055 2551 5323 3514}
+{HCP 13 2 21 4}
+{Losers 5 9 5 8}
+[Declarer "N"]
+[Contract "5D"]
+[Auction "S"]
+2N    Pass  4S =1=    Pass
+5C    Pass  5D    Pass
+Pass  Pass
+[Note "1:Texas"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "2N_and_MSS"]
+[Site ""]
+[Board "46"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1017,7 +1024,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "45"]
+[Board "47"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1038,7 +1045,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "46"]
+[Board "48"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1059,7 +1066,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "47"]
+[Board "49"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1082,7 +1089,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "48"]
+[Board "50"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1104,7 +1111,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "49"]
+[Board "51"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1118,19 +1125,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3D    Pass
-3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
+1H    Pass  1N    Pass
+2N    Pass  3N    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "50"]
+[Board "52"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1151,7 +1154,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "51"]
+[Board "53"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1163,19 +1166,17 @@ Pass  Pass
 {HCP 10 6 21 3}
 {Losers 6 9 5 8}
 [Declarer "S"]
-[Contract "3N"]
+[Contract "5D"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
-Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
+2N    Pass  4S =1=    Pass
+5D    Pass  Pass  Pass
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "52"]
+[Board "54"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1189,17 +1190,14 @@ Pass  Pass
 [Declarer "S"]
 [Contract "3N"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
+2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "53"]
+[Board "55"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1222,7 +1220,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "54"]
+[Board "56"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1236,19 +1234,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1H    Pass  1N    Pass
 2N    Pass  3D    Pass
 3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "55"]
+[Board "57"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1270,7 +1264,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "56"]
+[Board "58"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1293,7 +1287,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "57"]
+[Board "59"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1314,7 +1308,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "58"]
+[Board "60"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1335,7 +1329,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "59"]
+[Board "61"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1355,7 +1349,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "60"]
+[Board "62"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1378,7 +1372,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "61"]
+[Board "63"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1400,7 +1394,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "62"]
+[Board "64"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1423,7 +1417,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "63"]
+[Board "65"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1446,7 +1440,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "64"]
+[Board "66"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1469,7 +1463,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "65"]
+[Board "67"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1492,7 +1486,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "66"]
+[Board "68"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1515,7 +1509,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "67"]
+[Board "69"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1535,7 +1529,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "68"]
+[Board "70"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1558,7 +1552,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "69"]
+[Board "71"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1579,7 +1573,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "70"]
+[Board "72"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1590,25 +1584,22 @@ Pass  Pass
 {Shape 1255 5332 5224 2632}
 {HCP 12 5 20 3}
 {Losers 5 10 5 9}
-[Declarer "S"]
-[Contract "6C"]
+[Declarer "N"]
+[Contract "6N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1S    Pass  1N    Pass
 3C    Pass  4N    Pass
-5C =4=    Pass  5D    Pass
-6C =5=    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
-[Note "4:A=0/5 or 3/5"]
-[Note "5:no !C queen"]
+5C =1=    Pass  5D    Pass
+6C =2=    Pass  6N    Pass
+Pass  Pass
+[Note "1:A=0/5 or 3/5"]
+[Note "2:no !C queen"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "71"]
+[Board "73"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1630,7 +1621,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "72"]
+[Board "74"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1642,26 +1633,17 @@ Pass  Pass
 {HCP 11 5 20 4}
 {Losers 6 10 5 8}
 [Declarer "N"]
-[Contract "6D"]
+[Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3D    Pass
-4D    Pass  4H    Pass
-4N    Pass  5D =4=    Pass
-5H    Pass  6C =5=    Pass
-6D    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
-[Note "4:A=1/5 or 4/5"]
-[Note "5:!D queen and !C king"]
+1S    Pass  1N    Pass
+2N    Pass  3N    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "73"]
+[Board "75"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1684,7 +1666,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "74"]
+[Board "76"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1705,7 +1687,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "75"]
+[Board "77"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1728,7 +1710,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "76"]
+[Board "78"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1751,7 +1733,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "77"]
+[Board "79"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1774,7 +1756,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "78"]
+[Board "80"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1797,7 +1779,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "79"]
+[Board "81"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1820,7 +1802,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "80"]
+[Board "82"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1834,15 +1816,14 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    3S
+1H    Pass  1N    3S
 3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "81"]
+[Board "83"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1864,7 +1845,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "82"]
+[Board "84"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1887,7 +1868,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "83"]
+[Board "85"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1907,7 +1888,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "84"]
+[Board "86"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1928,7 +1909,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "85"]
+[Board "87"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1949,7 +1930,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "86"]
+[Board "88"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1972,7 +1953,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "87"]
+[Board "89"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1994,7 +1975,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "88"]
+[Board "90"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2008,19 +1989,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1S    Pass  1N    Pass
 3H    Pass  3N    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "89"]
+[Board "91"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2043,7 +2020,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "90"]
+[Board "92"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2065,7 +2042,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "91"]
+[Board "93"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2079,19 +2056,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1S    Pass  1N    Pass
 3H    Pass  3N    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "92"]
+[Board "94"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2113,7 +2086,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "93"]
+[Board "95"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2134,7 +2107,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "94"]
+[Board "96"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2157,7 +2130,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "95"]
+[Board "97"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2178,7 +2151,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "96"]
+[Board "98"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2201,7 +2174,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "97"]
+[Board "99"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2215,19 +2188,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3N    Pass
-Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
+1H    Pass  1N    Pass
+2N    Pass  3D    Pass
+3N    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "98"]
+[Board "100"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2250,7 +2219,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "99"]
+[Board "101"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2273,7 +2242,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "100"]
+[Board "102"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2296,7 +2265,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "101"]
+[Board "103"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2319,7 +2288,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "102"]
+[Board "104"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2340,7 +2309,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "103"]
+[Board "105"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2354,19 +2323,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1H    Pass  1N    Pass
 2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "104"]
+[Board "106"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2378,27 +2343,17 @@ Pass  Pass
 {HCP 10 7 21 2}
 {Losers 7 8 5 10}
 [Declarer "N"]
-[Contract "7D"]
+[Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3D    Pass
-4D    Pass  4H    Pass
-4N    Pass  5H =4=    Pass
-5N =5=    Pass  6C =6=    Pass
-7D    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
-[Note "4:A=2/5 or 5/5, Q(D)=0"]
-[Note "5:King ask by 5NT"]
-[Note "6:K=0"]
+1S    Pass  1N    Pass
+2N    Pass  3N    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "105"]
+[Board "107"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2420,7 +2375,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "106"]
+[Board "108"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2432,21 +2387,19 @@ Pass  Pass
 {HCP 10 8 21 1}
 {Losers 4 8 5 9}
 [Declarer "N"]
-[Contract "3N"]
+[Contract "6C"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3C    Pass
-3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
+1H    Pass  1N    Pass
+2N    Pass  4C    Pass
+4N    Pass  5D =1=    Pass
+6C    Pass  Pass  Pass
+[Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "107"]
+[Board "109"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2466,7 +2419,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "108"]
+[Board "110"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2487,7 +2440,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "109"]
+[Board "111"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2501,19 +2454,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1H    Pass  1N    Pass
 2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "110"]
+[Board "112"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2524,21 +2473,18 @@ Pass  Pass
 {Shape 2155 3433 5332 3523}
 {HCP 7 6 21 6}
 {Losers 7 10 5 9}
-[Declarer "S"]
-[Contract "4S"]
+[Declarer "N"]
+[Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2S    Pass
-3N    Pass  4S    Pass
+1S    Pass  1N    Pass
+2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "111"]
+[Board "113"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2552,17 +2498,14 @@ Pass  Pass
 [Declarer "S"]
 [Contract "3N"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
+2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "112"]
+[Board "114"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2585,7 +2528,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "113"]
+[Board "115"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2606,7 +2549,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "114"]
+[Board "116"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2629,7 +2572,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "115"]
+[Board "117"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2649,7 +2592,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "116"]
+[Board "118"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2671,7 +2614,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "117"]
+[Board "119"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2692,7 +2635,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "118"]
+[Board "120"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2713,7 +2656,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "119"]
+[Board "121"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2736,7 +2679,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "120"]
+[Board "122"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2757,7 +2700,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "121"]
+[Board "123"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2779,7 +2722,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "122"]
+[Board "124"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2791,20 +2734,15 @@ Pass  Pass
 {HCP 6 3 20 11}
 {Losers 6 10 4 8}
 [Declarer "S"]
-[Contract "4H"]
+[Contract "1H"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  3C    Pass
-3N    Pass  4H    Pass
-Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
+1H    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "123"]
+[Board "125"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2816,19 +2754,19 @@ Pass  Pass
 {HCP 7 8 20 5}
 {Losers 6 9 5 8}
 [Declarer "S"]
-[Contract "3C"]
+[Contract "6C"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  3C    Pass
+1H    Pass  1N    Pass
+3C    Pass  4N    Pass
+5C =1=    Pass  6C    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
+[Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "124"]
+[Board "126"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2849,7 +2787,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "125"]
+[Board "127"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2870,7 +2808,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "126"]
+[Board "128"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2893,7 +2831,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "127"]
+[Board "129"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2907,17 +2845,14 @@ Pass  Pass
 [Declarer "S"]
 [Contract "3N"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
+2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "128"]
+[Board "130"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2929,19 +2864,17 @@ Pass  Pass
 {HCP 9 2 20 9}
 {Losers 7 12 4 8}
 [Declarer "S"]
-[Contract "3N"]
+[Contract "5C"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
-Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
+2N    Pass  4S =1=    Pass
+5C    Pass  Pass  Pass
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "129"]
+[Board "131"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2964,7 +2897,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "130"]
+[Board "132"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2985,7 +2918,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "131"]
+[Board "133"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3008,7 +2941,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "132"]
+[Board "134"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3030,7 +2963,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "133"]
+[Board "135"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3051,7 +2984,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "134"]
+[Board "136"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3072,7 +3005,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "135"]
+[Board "137"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3095,7 +3028,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "136"]
+[Board "138"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3118,7 +3051,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "137"]
+[Board "139"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3139,7 +3072,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "138"]
+[Board "140"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3160,7 +3093,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "139"]
+[Board "141"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3182,7 +3115,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "140"]
+[Board "142"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3205,7 +3138,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "141"]
+[Board "143"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3226,7 +3159,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "142"]
+[Board "144"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3240,19 +3173,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1S    Pass  1N    Pass
 3H    Pass  3N    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "143"]
+[Board "145"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3278,7 +3207,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "144"]
+[Board "146"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3301,7 +3230,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "145"]
+[Board "147"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3322,7 +3251,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "146"]
+[Board "148"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3334,19 +3263,17 @@ Pass  Pass
 {HCP 11 4 20 5}
 {Losers 6 8 5 10}
 [Declarer "S"]
-[Contract "4N"]
+[Contract "5D"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  4N    Pass
-Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
+2N    Pass  4S =1=    Pass
+5D    Pass  Pass  Pass
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "147"]
+[Board "149"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3367,7 +3294,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "148"]
+[Board "150"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3390,7 +3317,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "149"]
+[Board "151"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3413,7 +3340,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "150"]
+[Board "152"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3436,7 +3363,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "151"]
+[Board "153"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3450,19 +3377,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3D    Pass
-3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
+1H    Pass  1N    Pass
+2N    Pass  3N    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "152"]
+[Board "154"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3485,7 +3408,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "153"]
+[Board "155"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3508,7 +3431,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "154"]
+[Board "156"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3530,7 +3453,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "155"]
+[Board "157"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3551,7 +3474,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "156"]
+[Board "158"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3565,17 +3488,14 @@ Pass  Pass
 [Declarer "S"]
 [Contract "3N"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
+2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "157"]
+[Board "159"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3587,18 +3507,17 @@ Pass  Pass
 {HCP 9 11 20 0}
 {Losers 6 6 5 9}
 [Declarer "S"]
-[Contract "3N"]
+[Contract "5D"]
 [Auction "S"]
-2N    Pass  3C =1=    3H
-Pass  Pass  3N    Pass
-Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
+2N    Pass  4S =1=    Pass
+5D    Pass  Pass  Pass
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "158"]
+[Board "160"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3612,15 +3531,14 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    3H
+1S    Pass  1N    3H
 3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "159"]
+[Board "161"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3642,7 +3560,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "160"]
+[Board "162"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3663,7 +3581,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "161"]
+[Board "163"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3686,7 +3604,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "162"]
+[Board "164"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3700,19 +3618,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1S    Pass  1N    Pass
 3H    Pass  3N    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "163"]
+[Board "165"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3733,7 +3647,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "164"]
+[Board "166"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3747,19 +3661,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1S    Pass  1N    Pass
 3H    Pass  3N    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "165"]
+[Board "167"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3782,7 +3692,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "166"]
+[Board "168"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3802,7 +3712,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "167"]
+[Board "169"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3823,7 +3733,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "168"]
+[Board "170"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3846,7 +3756,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "169"]
+[Board "171"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3860,19 +3770,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3D    Pass
-3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
+1H    Pass  1N    Pass
+2N    Pass  3N    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "170"]
+[Board "172"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3895,7 +3801,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "171"]
+[Board "173"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3909,19 +3815,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1S    Pass  1N    Pass
 2N    Pass  3D    Pass
 3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "172"]
+[Board "174"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3942,7 +3844,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "173"]
+[Board "175"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3965,7 +3867,7 @@ Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "174"]
+[Board "176"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3977,21 +3879,19 @@ Pass
 {HCP 8 2 20 10}
 {Losers 4 10 5 9}
 [Declarer "N"]
-[Contract "3N"]
+[Contract "6C"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3D    Pass
-3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
+1H    Pass  1N    Pass
+2N    Pass  4C    Pass
+4N    Pass  5D =1=    Pass
+6C    Pass  Pass  Pass
+[Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "175"]
+[Board "177"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4013,7 +3913,7 @@ Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "176"]
+[Board "178"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4027,19 +3927,15 @@ Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1H    Pass  1N    Pass
 2N    Pass  3D    Pass
 3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "177"]
+[Board "179"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4060,7 +3956,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "178"]
+[Board "180"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4081,7 +3977,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "179"]
+[Board "181"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4095,19 +3991,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1S    Pass  1N    Pass
 3H    Pass  3N    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "180"]
+[Board "182"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4128,7 +4020,7 @@ Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "181"]
+[Board "183"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4151,7 +4043,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "182"]
+[Board "184"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4172,7 +4064,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "183"]
+[Board "185"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4193,7 +4085,7 @@ Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "184"]
+[Board "186"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4216,7 +4108,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "185"]
+[Board "187"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4238,7 +4130,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "186"]
+[Board "188"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4249,22 +4141,18 @@ Pass  Pass
 {Shape 2065 3523 5422 3433}
 {HCP 11 6 20 3}
 {Losers 5 9 4 12}
-[Declarer "N"]
-[Contract "3N"]
+[Declarer "S"]
+[Contract "4S"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-3H    Pass  3N    Pass
+1S    Pass  1N    Pass
+3H    Pass  4S    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "187"]
+[Board "189"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4287,7 +4175,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "188"]
+[Board "190"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4310,7 +4198,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "189"]
+[Board "191"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4330,7 +4218,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "190"]
+[Board "192"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4352,7 +4240,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "191"]
+[Board "193"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4366,15 +4254,14 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    3H
+1S    Pass  1N    3H
 3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "192"]
+[Board "194"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4395,7 +4282,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "193"]
+[Board "195"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4418,7 +4305,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "194"]
+[Board "196"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4440,7 +4327,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "195"]
+[Board "197"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4462,7 +4349,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "196"]
+[Board "198"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4474,18 +4361,17 @@ Pass  Pass
 {HCP 12 5 20 3}
 {Losers 5 8 6 8}
 [Declarer "S"]
-[Contract "4N"]
+[Contract "5D"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3N    Pass  4N    Pass
-Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
+2N    Pass  4S =1=    Pass
+5D    Pass  Pass  Pass
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "197"]
+[Board "199"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4497,23 +4383,17 @@ Pass  Pass
 {HCP 11 2 21 6}
 {Losers 5 9 4 8}
 [Declarer "N"]
-[Contract "7N"]
+[Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1H    Pass  1N    Pass
 2N    Pass  3D    Pass
-4N    Pass  5S =4=    Pass
-7N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
-[Note "4:A=2/5 or 5/5, Q(D)=1"]
+3N    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "198"]
+[Board "200"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4534,7 +4414,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "199"]
+[Board "201"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4557,7 +4437,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "200"]
+[Board "202"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4578,7 +4458,7 @@ Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "201"]
+[Board "203"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4600,7 +4480,7 @@ Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "202"]
+[Board "204"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4621,7 +4501,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "203"]
+[Board "205"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4642,7 +4522,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "204"]
+[Board "206"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4665,7 +4545,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "205"]
+[Board "207"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4679,19 +4559,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1H    Pass  1N    Pass
 2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "206"]
+[Board "208"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4714,7 +4590,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "207"]
+[Board "209"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4734,7 +4610,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "208"]
+[Board "210"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4755,7 +4631,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "209"]
+[Board "211"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4778,7 +4654,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "210"]
+[Board "212"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4801,7 +4677,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "211"]
+[Board "213"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4822,7 +4698,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "212"]
+[Board "214"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4844,7 +4720,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "213"]
+[Board "215"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4866,7 +4742,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "214"]
+[Board "216"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4889,7 +4765,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "215"]
+[Board "217"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4911,7 +4787,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "216"]
+[Board "218"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4925,16 +4801,14 @@ Pass  Pass
 [Declarer "S"]
 [Contract "3N"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3H    Pass  3N    Pass
+2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "217"]
+[Board "219"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4957,7 +4831,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "218"]
+[Board "220"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4979,7 +4853,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "219"]
+[Board "221"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5003,7 +4877,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "220"]
+[Board "222"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5015,18 +4889,16 @@ Pass  Pass
 {HCP 12 7 20 1}
 {Losers 5 5 6 10}
 [Declarer "N"]
-[Contract "6N"]
+[Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    3S
-3N    Pass  4N    Pass
-6N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
+1H    Pass  1N    3S
+3N    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "221"]
+[Board "223"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5047,7 +4919,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "222"]
+[Board "224"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5067,7 +4939,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "223"]
+[Board "225"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5088,7 +4960,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "224"]
+[Board "226"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5111,7 +4983,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "225"]
+[Board "227"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5125,24 +4997,17 @@ Pass  Pass
 [Declarer "N"]
 [Contract "6D"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3D    Pass
-3N    Pass  4D    Pass
-4N    Pass  5D =4=    Pass
-5H    Pass  5N =5=    Pass
+1S    Pass  1N    Pass
+2N    Pass  4D    Pass
+4N    Pass  5D =1=    Pass
 6D    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
-[Note "4:A=1/5 or 4/5"]
-[Note "5:!D queen no !S king no !C king"]
+[Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "226"]
+[Board "228"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5163,7 +5028,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "227"]
+[Board "229"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5175,19 +5040,17 @@ Pass  Pass
 {HCP 9 6 20 5}
 {Losers 6 8 5 8}
 [Declarer "S"]
-[Contract "3N"]
+[Contract "5C"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
-Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
+2N    Pass  4S =1=    Pass
+5C    Pass  Pass  Pass
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "228"]
+[Board "230"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5208,7 +5071,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "229"]
+[Board "231"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5231,7 +5094,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "230"]
+[Board "232"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5252,7 +5115,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "231"]
+[Board "233"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5275,7 +5138,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "232"]
+[Board "234"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5298,7 +5161,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "233"]
+[Board "235"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5319,7 +5182,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "234"]
+[Board "236"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5342,7 +5205,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "235"]
+[Board "237"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5364,7 +5227,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "236"]
+[Board "238"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5387,7 +5250,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "237"]
+[Board "239"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5410,7 +5273,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "238"]
+[Board "240"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5433,7 +5296,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "239"]
+[Board "241"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5456,7 +5319,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "240"]
+[Board "242"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5477,7 +5340,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "241"]
+[Board "243"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5500,7 +5363,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "242"]
+[Board "244"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5514,19 +5377,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1S    Pass  1N    Pass
 3H    Pass  3N    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "243"]
+[Board "245"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5547,7 +5406,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "244"]
+[Board "246"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5568,7 +5427,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "245"]
+[Board "247"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5591,7 +5450,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "246"]
+[Board "248"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5614,7 +5473,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "247"]
+[Board "249"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5635,7 +5494,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "248"]
+[Board "250"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5658,7 +5517,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "249"]
+[Board "251"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5681,7 +5540,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "250"]
+[Board "252"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5703,7 +5562,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "251"]
+[Board "253"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5729,7 +5588,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "252"]
+[Board "254"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5741,21 +5600,17 @@ Pass  Pass
 {HCP 8 9 20 3}
 {Losers 6 8 5 11}
 [Declarer "N"]
-[Contract "3N"]
+[Contract "5D"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3D    Pass
-3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
+1H    Pass  1N    Pass
+2N    Pass  5D    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "253"]
+[Board "255"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5777,7 +5632,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "254"]
+[Board "256"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5791,19 +5646,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1S    Pass  1N    Pass
 3H    Pass  3N    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "255"]
+[Board "257"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5824,7 +5675,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "256"]
+[Board "258"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5845,7 +5696,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "257"]
+[Board "259"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5866,7 +5717,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "258"]
+[Board "260"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5878,18 +5729,16 @@ Pass  Pass
 {HCP 5 11 20 4}
 {Losers 8 7 5 8}
 [Declarer "S"]
-[Contract "4H"]
+[Contract "3N"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3H    Pass  4H    Pass
+2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "259"]
+[Board "261"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5910,7 +5759,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "260"]
+[Board "262"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5933,7 +5782,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "261"]
+[Board "263"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5957,7 +5806,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "262"]
+[Board "264"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5978,7 +5827,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "263"]
+[Board "265"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5992,19 +5841,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3N    Pass
-Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
+1H    Pass  1N    Pass
+2N    Pass  3D    Pass
+3N    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "264"]
+[Board "266"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6025,7 +5870,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "265"]
+[Board "267"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6046,7 +5891,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "266"]
+[Board "268"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6069,7 +5914,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "267"]
+[Board "269"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6081,19 +5926,17 @@ Pass  Pass
 {HCP 12 7 20 1}
 {Losers 5 8 5 10}
 [Declarer "S"]
-[Contract "6N"]
+[Contract "5D"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  4N    Pass
-6N    Pass  Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
+2N    Pass  4S =1=    Pass
+5D    Pass  Pass  Pass
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "268"]
+[Board "270"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6116,7 +5959,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "269"]
+[Board "271"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6137,7 +5980,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "270"]
+[Board "272"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6159,7 +6002,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "271"]
+[Board "273"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6180,7 +6023,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "272"]
+[Board "274"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6192,19 +6035,18 @@ Pass  Pass
 {HCP 10 1 20 9}
 {Losers 6 12 6 8}
 [Declarer "S"]
-[Contract "3N"]
+[Contract "6C"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
-Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
+2N    Pass  4S =1=    Pass
+5C    Pass  5D    Pass
+6C    Pass  Pass  Pass
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "273"]
+[Board "275"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6227,7 +6069,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "274"]
+[Board "276"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6241,17 +6083,16 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6N"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  6N    Pass
+2N    Pass  4S =1=    Pass
+5D    Pass  6N    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "275"]
+[Board "277"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6273,7 +6114,7 @@ Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "276"]
+[Board "278"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6285,19 +6126,17 @@ Pass
 {HCP 10 7 20 3}
 {Losers 5 9 6 8}
 [Declarer "S"]
-[Contract "3N"]
+[Contract "5D"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
-Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
+2N    Pass  4S =1=    Pass
+5D    Pass  Pass  Pass
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "277"]
+[Board "279"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6320,7 +6159,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "278"]
+[Board "280"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6343,7 +6182,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "279"]
+[Board "281"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6357,17 +6196,14 @@ Pass  Pass
 [Declarer "S"]
 [Contract "3N"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
+2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "280"]
+[Board "282"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6381,19 +6217,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3N    Pass
-Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
+1H    Pass  1N    Pass
+2N    Pass  3D    Pass
+3N    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "281"]
+[Board "283"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6416,7 +6248,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "282"]
+[Board "284"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6437,7 +6269,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "283"]
+[Board "285"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6458,7 +6290,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "284"]
+[Board "286"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6481,7 +6313,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "285"]
+[Board "287"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6502,7 +6334,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "286"]
+[Board "288"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6514,19 +6346,17 @@ Pass  Pass
 {HCP 10 5 21 4}
 {Losers 6 10 4 10}
 [Declarer "S"]
-[Contract "3N"]
+[Contract "5D"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
-Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
+2N    Pass  4S =1=    Pass
+5D    Pass  Pass  Pass
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "287"]
+[Board "289"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6547,7 +6377,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "288"]
+[Board "290"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6568,7 +6398,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "289"]
+[Board "291"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6589,7 +6419,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "290"]
+[Board "292"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6611,7 +6441,7 @@ Pass  Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "291"]
+[Board "293"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6634,7 +6464,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "292"]
+[Board "294"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6656,7 +6486,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "293"]
+[Board "295"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6667,20 +6497,19 @@ Pass  Pass
 {Shape 3055 2731 3433 5224}
 {HCP 11 8 20 1}
 {Losers 6 8 6 10}
-[Declarer "S"]
-[Contract "4N"]
+[Declarer "N"]
+[Contract "5D"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  4N    Pass
+2N    Pass  4S =1=    Pass
+5C    Pass  5D    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "294"]
+[Board "296"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6703,7 +6532,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "295"]
+[Board "297"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6726,7 +6555,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "296"]
+[Board "298"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6740,17 +6569,14 @@ Pass  Pass
 [Declarer "S"]
 [Contract "3N"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
+2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "297"]
+[Board "299"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6762,23 +6588,21 @@ Pass  Pass
 {HCP 11 9 20 0}
 {Losers 5 7 5 10}
 [Declarer "N"]
-[Contract "5D"]
+[Contract "6DX"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3D    Pass
-4N    Pass  5D =4=    Pass
-Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
-[Note "4:A=1/5 or 4/5"]
+1H    Pass  1N    Pass
+2N    Pass  4D    Pass
+4N    Pass  5D =1=    Pass
+5H    Pass  6D =2=    X
+Pass  Pass  Pass
+[Note "1:A=1/5 or 4/5"]
+[Note "2:no !D queen"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "298"]
+[Board "300"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6799,7 +6623,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "299"]
+[Board "301"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6822,7 +6646,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "300"]
+[Board "302"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6845,7 +6669,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "301"]
+[Board "303"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6868,7 +6692,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "302"]
+[Board "304"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6882,19 +6706,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1S    Pass  1N    Pass
 3H    Pass  3N    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "303"]
+[Board "305"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6905,20 +6725,19 @@ Pass  Pass
 {Shape 0355 3451 4225 6412}
 {HCP 12 0 20 8}
 {Losers 6 10 5 6}
-[Declarer "S"]
-[Contract "4N"]
+[Declarer "N"]
+[Contract "5D"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  4N    Pass
+2N    Pass  4S =1=    Pass
+5C    Pass  5D    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "304"]
+[Board "306"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6932,17 +6751,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  3D    Pass
+1H    Pass  1N    Pass
+2N    Pass  3D    Pass
 3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "305"]
+[Board "307"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6956,16 +6773,14 @@ Pass  Pass
 [Declarer "S"]
 [Contract "3N"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3H    Pass  3N    Pass
+2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "306"]
+[Board "308"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6988,7 +6803,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "307"]
+[Board "309"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7011,7 +6826,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "308"]
+[Board "310"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7032,7 +6847,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "309"]
+[Board "311"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7044,19 +6859,18 @@ Pass  Pass
 {HCP 14 4 20 2}
 {Losers 4 9 7 9}
 [Declarer "S"]
-[Contract "6N"]
+[Contract "7C"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  6N    Pass
-Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
+2N    Pass  4S =1=    Pass
+5C    Pass  6N    Pass
+7C    Pass  Pass  Pass
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "310"]
+[Board "312"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7079,7 +6893,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "311"]
+[Board "313"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7102,7 +6916,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "312"]
+[Board "314"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7124,7 +6938,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "313"]
+[Board "315"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7146,7 +6960,7 @@ Pass  Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "314"]
+[Board "316"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7157,26 +6971,22 @@ Pass  Pass  Pass
 {Shape 0265 4333 4522 5323}
 {HCP 9 6 21 4}
 {Losers 6 10 5 11}
-[Declarer "S"]
-[Contract "6H"]
+[Declarer "N"]
+[Contract "6D"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-4N    Pass  5C =4=    Pass
-5N =5=    Pass  6H =6=    Pass
+1H    Pass  1N    Pass
+2N    Pass  4D    Pass
+4N    Pass  5D =1=    Pass
+5H    Pass  6D =2=    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
-[Note "4:A=0/4 or 3/4"]
-[Note "5:King ask by 5NT"]
-[Note "6:K=2"]
+[Note "1:A=1/5 or 4/5"]
+[Note "2:no !D queen"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "315"]
+[Board "317"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7190,17 +7000,14 @@ Pass  Pass
 [Declarer "S"]
 [Contract "3N"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
+2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "316"]
+[Board "318"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7223,7 +7030,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "317"]
+[Board "319"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7235,26 +7042,22 @@ Pass  Pass
 {HCP 11 6 21 2}
 {Losers 5 9 5 10}
 [Declarer "N"]
-[Contract "6N"]
+[Contract "7D"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3D    Pass
-4N    Pass  5S =4=    Pass
-5N =5=    Pass  6C =6=    Pass
-6N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
-[Note "4:A=2/5 or 5/5, Q(D)=1"]
-[Note "5:King ask by 5NT"]
-[Note "6:K=0"]
+1H    Pass  1N    Pass
+2N    Pass  4D    Pass
+4N    Pass  5S =1=    Pass
+5N =2=    Pass  6C =3=    Pass
+7D    Pass  Pass  Pass
+[Note "1:A=2/5 or 5/5, Q(D)=1"]
+[Note "2:King ask by 5NT"]
+[Note "3:K=0"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "318"]
+[Board "320"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7277,7 +7080,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "319"]
+[Board "321"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7300,7 +7103,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "320"]
+[Board "322"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7321,7 +7124,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "321"]
+[Board "323"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7344,7 +7147,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "322"]
+[Board "324"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7365,7 +7168,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "323"]
+[Board "325"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7388,7 +7191,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "324"]
+[Board "326"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7411,7 +7214,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "325"]
+[Board "327"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7432,7 +7235,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "326"]
+[Board "328"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7453,7 +7256,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "327"]
+[Board "329"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7475,7 +7278,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "328"]
+[Board "330"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7496,7 +7299,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "329"]
+[Board "331"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7519,7 +7322,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "330"]
+[Board "332"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7533,19 +7336,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1H    Pass  1N    Pass
 2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "331"]
+[Board "333"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7559,17 +7358,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  3D    Pass
-3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
+1H    Pass  1N    Pass
+2N    Pass  3N    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "332"]
+[Board "334"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7590,7 +7387,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "333"]
+[Board "335"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7613,7 +7410,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "334"]
+[Board "336"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7634,7 +7431,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "335"]
+[Board "337"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7659,7 +7456,7 @@ Pass  Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "336"]
+[Board "338"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7680,7 +7477,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "337"]
+[Board "339"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7691,20 +7488,19 @@ Pass  Pass
 {Shape 3055 3523 4423 3442}
 {HCP 12 4 20 4}
 {Losers 6 10 5 10}
-[Declarer "S"]
-[Contract "6N"]
+[Declarer "N"]
+[Contract "5D"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  4N    Pass
-6N    Pass  Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
+2N    Pass  4S =1=    Pass
+5C    Pass  5D    Pass
+Pass  Pass
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "338"]
+[Board "340"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7726,7 +7522,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "339"]
+[Board "341"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7747,7 +7543,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "340"]
+[Board "342"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7768,7 +7564,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "341"]
+[Board "343"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7790,7 +7586,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "342"]
+[Board "344"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7804,16 +7600,14 @@ Pass  Pass
 [Declarer "S"]
 [Contract "3N"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3H    Pass  3N    Pass
+2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "343"]
+[Board "345"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7836,7 +7630,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "344"]
+[Board "346"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7857,7 +7651,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "345"]
+[Board "347"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7879,7 +7673,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "346"]
+[Board "348"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7900,7 +7694,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "347"]
+[Board "349"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7922,7 +7716,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "348"]
+[Board "350"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7936,17 +7730,14 @@ Pass  Pass
 [Declarer "S"]
 [Contract "3N"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
+2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "349"]
+[Board "351"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7967,7 +7758,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "350"]
+[Board "352"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7989,7 +7780,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "351"]
+[Board "353"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8000,20 +7791,19 @@ Pass  Pass
 {Shape 0355 6331 4225 3532}
 {HCP 11 4 20 5}
 {Losers 6 9 4 10}
-[Declarer "S"]
-[Contract "4N"]
+[Declarer "N"]
+[Contract "5D"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  4N    Pass
+2N    Pass  4S =1=    Pass
+5C    Pass  5D    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "352"]
+[Board "354"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8034,7 +7824,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "353"]
+[Board "355"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8057,7 +7847,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "354"]
+[Board "356"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8069,21 +7859,19 @@ Pass  Pass
 {HCP 8 3 20 9}
 {Losers 5 9 4 9}
 [Declarer "N"]
-[Contract "3N"]
+[Contract "5D"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3N    Pass
+1H    Pass  1N    Pass
+2N    Pass  3D    Pass
+3N    Pass  4D    Pass
+4H    Pass  5D    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "355"]
+[Board "357"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8104,7 +7892,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "356"]
+[Board "358"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8127,7 +7915,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "357"]
+[Board "359"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8139,23 +7927,17 @@ Pass  Pass
 {HCP 11 3 20 6}
 {Losers 6 9 6 8}
 [Declarer "N"]
-[Contract "6D"]
+[Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3D    Pass
-4D    Pass  4H    Pass
-5C    Pass  6D    Pass
+1S    Pass  1N    Pass
+2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "358"]
+[Board "360"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8177,7 +7959,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "359"]
+[Board "361"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8200,7 +7982,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "360"]
+[Board "362"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8223,7 +8005,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "361"]
+[Board "363"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8235,21 +8017,18 @@ Pass  Pass
 {HCP 9 7 20 4}
 {Losers 5 8 5 11}
 [Declarer "N"]
-[Contract "3N"]
+[Contract "5C"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3N    Pass
-Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
+1H    Pass  1N    Pass
+2N    Pass  4C    Pass
+4H    Pass  4S    Pass
+5C    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "362"]
+[Board "364"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8271,7 +8050,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "363"]
+[Board "365"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8294,7 +8073,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "364"]
+[Board "366"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8317,7 +8096,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "365"]
+[Board "367"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8339,7 +8118,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "366"]
+[Board "368"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8360,7 +8139,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "367"]
+[Board "369"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8383,7 +8162,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "368"]
+[Board "370"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8406,7 +8185,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "369"]
+[Board "371"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8429,7 +8208,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "370"]
+[Board "372"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8441,19 +8220,17 @@ Pass  Pass
 {HCP 11 3 21 5}
 {Losers 6 10 4 10}
 [Declarer "S"]
-[Contract "6N"]
+[Contract "5D"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  4N    Pass
-6N    Pass  Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
+2N    Pass  4S =1=    Pass
+5D    Pass  Pass  Pass
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "371"]
+[Board "373"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8474,7 +8251,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "372"]
+[Board "374"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8485,21 +8262,21 @@ Pass  Pass
 {Shape 2065 2533 5332 4513}
 {HCP 7 5 21 7}
 {Losers 6 10 5 8}
-[Declarer "S"]
-[Contract "4S"]
+[Declarer "N"]
+[Contract "6D"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  3D    Pass
-3N    Pass  4S    Pass
+1S    Pass  1N    Pass
+2N    Pass  4D    Pass
+4S    Pass  4N    Pass
+5H =1=    Pass  6D    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
+[Note "1:A=2/5 or 5/5, Q(D)=0"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "373"]
+[Board "375"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8522,7 +8299,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "374"]
+[Board "376"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8543,7 +8320,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "375"]
+[Board "377"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8566,7 +8343,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "376"]
+[Board "378"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8586,7 +8363,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "377"]
+[Board "379"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8607,7 +8384,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "378"]
+[Board "380"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8630,7 +8407,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "379"]
+[Board "381"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8644,19 +8421,17 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6C"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-3C    Pass  5C    Pass
-6C    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
+1H    Pass  1N    Pass
+3C    Pass  4N    Pass
+5C =1=    Pass  6C    Pass
+Pass  Pass
+[Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "380"]
+[Board "382"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8678,7 +8453,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "381"]
+[Board "383"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8699,7 +8474,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "382"]
+[Board "384"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8713,17 +8488,14 @@ Pass  Pass
 [Declarer "S"]
 [Contract "3N"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
+2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "383"]
+[Board "385"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8746,7 +8518,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "384"]
+[Board "386"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8760,17 +8532,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  3D    Pass
-3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
+1H    Pass  1N    Pass
+2N    Pass  3N    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "385"]
+[Board "387"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8793,7 +8563,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "386"]
+[Board "388"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8807,17 +8577,14 @@ Pass  Pass
 [Declarer "S"]
 [Contract "3N"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
+2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "387"]
+[Board "389"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8840,7 +8607,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "388"]
+[Board "390"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8863,7 +8630,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "389"]
+[Board "391"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8890,7 +8657,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "390"]
+[Board "392"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8904,19 +8671,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1S    Pass  1N    Pass
 3H    Pass  3N    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "391"]
+[Board "393"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8937,7 +8700,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "392"]
+[Board "394"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8958,7 +8721,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "393"]
+[Board "395"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8979,7 +8742,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "394"]
+[Board "396"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9002,7 +8765,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "395"]
+[Board "397"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9022,7 +8785,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "396"]
+[Board "398"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9045,7 +8808,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "397"]
+[Board "399"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9068,7 +8831,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "398"]
+[Board "400"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9079,18 +8842,17 @@ Pass  Pass
 {Shape 3055 7321 2533 1534}
 {HCP 6 7 20 7}
 {Losers 7 7 4 9}
-[Declarer "N"]
-[Contract "2D"]
+[Declarer "E"]
+[Contract "3S"]
 [Auction "S"]
-1H    Pass  Pass  1S
-X     Pass  2D    Pass
-Pass  Pass
+1H    Pass  1N    3S
+Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "399"]
+[Board "401"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9105,20 +8867,17 @@ Pass  Pass
 [Contract "3N"]
 [Auction "S"]
 2C =1=    Pass  2D =2=    Pass
-2H =3=    Pass  2S =4=    Pass
-3S =5=    Pass  3N    Pass
+2H    Pass  3D    Pass
+3S    Pass  3N    Pass
 Pass  Pass
 [Note "1:strong"]
 [Note "2:waiting"]
-[Note "3:Kokish Relay"]
-[Note "4:Completing the relay"]
-[Note "5:5+!H 4+!S"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "400"]
+[Board "402"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9142,7 +8901,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "401"]
+[Board "403"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9164,7 +8923,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "402"]
+[Board "404"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9176,18 +8935,17 @@ Pass  Pass
 {HCP 11 4 21 4}
 {Losers 6 6 5 7}
 [Declarer "S"]
-[Contract "6N"]
+[Contract "5D"]
 [Auction "S"]
-2N    Pass  3C =1=    4S
-X     Pass  4N    Pass
-6N    Pass  Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
+2N    Pass  4S =1=    Pass
+5D    Pass  Pass  Pass
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "403"]
+[Board "405"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9199,19 +8957,17 @@ X     Pass  4N    Pass
 {HCP 9 6 20 5}
 {Losers 7 8 5 9}
 [Declarer "S"]
-[Contract "3N"]
+[Contract "5D"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
-Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
+2N    Pass  4S =1=    Pass
+5D    Pass  Pass  Pass
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "404"]
+[Board "406"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9234,7 +8990,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "405"]
+[Board "407"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9255,7 +9011,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "406"]
+[Board "408"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9276,7 +9032,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "407"]
+[Board "409"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9297,7 +9053,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "408"]
+[Board "410"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9311,19 +9067,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1H    Pass  1N    Pass
 2N    Pass  3D    Pass
 3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "409"]
+[Board "411"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9346,7 +9098,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "410"]
+[Board "412"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9357,19 +9109,19 @@ Pass  Pass
 {Shape 3055 4450 3523 3415}
 {HCP 9 1 20 10}
 {Losers 7 9 5 7}
-[Declarer "S"]
-[Contract "3N"]
+[Declarer "N"]
+[Contract "5D"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3H    Pass  3N    Pass
+2N    Pass  4S =1=    Pass
+5C    Pass  5D    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "411"]
+[Board "413"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9392,7 +9144,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "412"]
+[Board "414"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9415,7 +9167,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "413"]
+[Board "415"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9429,19 +9181,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1S    Pass  1N    Pass
 2N    Pass  3D    Pass
 3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "414"]
+[Board "416"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9464,7 +9212,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "415"]
+[Board "417"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9476,23 +9224,22 @@ Pass  Pass
 {HCP 9 3 21 7}
 {Losers 5 9 5 8}
 [Declarer "N"]
-[Contract "5D"]
+[Contract "7D"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3D    Pass
-4N    Pass  5D =4=    Pass
+1H    Pass  1N    Pass
+2N    Pass  4D    Pass
+4N    Pass  5D =1=    Pass
+5H    Pass  5N =2=    Pass
+6N    Pass  7D    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
-[Note "4:A=1/5 or 4/5"]
+[Note "1:A=1/5 or 4/5"]
+[Note "2:!D queen no !S king no !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "416"]
+[Board "418"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9515,7 +9262,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "417"]
+[Board "419"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9537,7 +9284,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "418"]
+[Board "420"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9558,7 +9305,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "419"]
+[Board "421"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9569,20 +9316,18 @@ Pass  Pass
 {Shape 1165 5440 4522 3316}
 {HCP 6 11 20 3}
 {Losers 6 5 5 9}
-[Declarer "N"]
+[Declarer "S"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  3D    Pass
+1H    Pass  Pass  1S
+1N    Pass  2N    Pass
 3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "420"]
+[Board "422"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9606,7 +9351,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "421"]
+[Board "423"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9618,22 +9363,17 @@ Pass  Pass
 {HCP 9 7 21 3}
 {Losers 6 10 5 9}
 [Declarer "N"]
-[Contract "6N"]
+[Contract "3N"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-4N    Pass  5C =4=    Pass
-6N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
-[Note "4:A=0/4 or 3/4"]
+1S    Pass  1N    Pass
+2N    Pass  3N    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "422"]
+[Board "424"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9656,7 +9396,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "423"]
+[Board "425"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9678,7 +9418,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "424"]
+[Board "426"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9701,7 +9441,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "425"]
+[Board "427"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9722,7 +9462,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "426"]
+[Board "428"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9745,7 +9485,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "427"]
+[Board "429"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9757,21 +9497,20 @@ Pass  Pass
 {HCP 11 1 21 7}
 {Losers 5 10 5 9}
 [Declarer "N"]
-[Contract "3N"]
+[Contract "6C"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3C    Pass
-3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
+1S    Pass  1N    Pass
+2N    Pass  4C    Pass
+4H    Pass  4S    Pass
+4N    Pass  5D =1=    Pass
+6C    Pass  Pass  Pass
+[Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "428"]
+[Board "430"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9783,22 +9522,19 @@ Pass  Pass
 {HCP 11 6 20 3}
 {Losers 6 9 5 9}
 [Declarer "N"]
-[Contract "6D"]
+[Contract "5D"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1S    Pass  1N    Pass
 2N    Pass  3D    Pass
-4D    Pass  5D    Pass
-6D    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
+4N    Pass  5D =1=    Pass
+Pass  Pass
+[Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "429"]
+[Board "431"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9821,7 +9557,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "430"]
+[Board "432"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9842,7 +9578,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "431"]
+[Board "433"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9865,7 +9601,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "432"]
+[Board "434"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9886,7 +9622,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "433"]
+[Board "435"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9900,16 +9636,14 @@ Pass  Pass
 [Declarer "S"]
 [Contract "3N"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3H    Pass  3N    Pass
+2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "434"]
+[Board "436"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9930,7 +9664,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "435"]
+[Board "437"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9951,7 +9685,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "436"]
+[Board "438"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9973,7 +9707,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "437"]
+[Board "439"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9996,7 +9730,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "438"]
+[Board "440"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10018,7 +9752,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "439"]
+[Board "441"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10041,7 +9775,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "440"]
+[Board "442"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10064,7 +9798,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "441"]
+[Board "443"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10076,21 +9810,17 @@ Pass  Pass
 {HCP 11 7 20 2}
 {Losers 6 9 5 9}
 [Declarer "N"]
-[Contract "3N"]
+[Contract "3D"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1H    Pass  1N    Pass
 2N    Pass  3D    Pass
-3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "442"]
+[Board "444"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10111,7 +9841,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "443"]
+[Board "445"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10134,7 +9864,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "444"]
+[Board "446"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10148,15 +9878,14 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    3S
+1H    Pass  1N    3S
 3N    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "445"]
+[Board "447"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10179,7 +9908,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "446"]
+[Board "448"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10193,17 +9922,14 @@ Pass  Pass
 [Declarer "S"]
 [Contract "3N"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3D =2=    Pass  3N    Pass
+2N    Pass  3N    Pass
 Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
-[Note "2:artificial"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "447"]
+[Board "449"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10223,7 +9949,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "448"]
+[Board "450"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10245,7 +9971,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "449"]
+[Board "451"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10266,7 +9992,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "450"]
+[Board "452"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10288,7 +10014,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "451"]
+[Board "453"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10311,7 +10037,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "452"]
+[Board "454"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10333,7 +10059,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "453"]
+[Board "455"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10344,19 +10070,19 @@ Pass  Pass
 {Shape 1255 5143 5422 2623}
 {HCP 10 4 21 5}
 {Losers 6 8 4 9}
-[Declarer "N"]
-[Contract "3N"]
+[Declarer "S"]
+[Contract "5N"]
 [Auction "S"]
 2C =1=    Pass  3D    Pass
-3S    Pass  3N    Pass
-Pass  Pass
+3S    Pass  5C    Pass
+5N    Pass  Pass  Pass
 [Note "1:strong"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "454"]
+[Board "456"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10370,19 +10096,15 @@ Pass  Pass
 [Declarer "N"]
 [Contract "3N"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    X     2D =3=    Pass
-2N    Pass  3N    Pass
-Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
+1H    Pass  1N    Pass
+2N    Pass  3D    Pass
+3N    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "455"]
+[Board "457"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10394,21 +10116,22 @@ Pass  Pass
 {HCP 10 6 20 4}
 {Losers 5 9 5 9}
 [Declarer "N"]
-[Contract "3N"]
+[Contract "7C"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3N    Pass
-Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
+1H    Pass  1N    Pass
+2N    Pass  4C    Pass
+4N    Pass  5S =1=    Pass
+5N =2=    Pass  6C =3=    Pass
+7C    Pass  Pass  Pass
+[Note "1:A=2/5 or 5/5, Q(C)=1"]
+[Note "2:King ask by 5NT"]
+[Note "3:K=0"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "456"]
+[Board "458"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10419,23 +10142,20 @@ Pass  Pass
 {Shape 2056 2632 5332 4423}
 {HCP 11 7 20 2}
 {Losers 5 8 5 10}
-[Declarer "S"]
-[Contract "4S"]
+[Declarer "N"]
+[Contract "6C"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
-2N    Pass  3C    Pass
-3N    Pass  4S    Pass
-Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
+1S    Pass  1N    Pass
+2N    Pass  4C    Pass
+4N    Pass  5H =1=    X
+6C    Pass  Pass  Pass
+[Note "1:A=2/5 or 5/5, Q(C)=0"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "457"]
+[Board "459"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10456,7 +10176,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "458"]
+[Board "460"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10479,7 +10199,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "459"]
+[Board "461"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10491,21 +10211,18 @@ Pass  Pass
 {HCP 11 6 20 3}
 {Losers 6 9 5 10}
 [Declarer "N"]
-[Contract "5D"]
+[Contract "6D"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  2D =3=    Pass
+1H    Pass  1N    Pass
 2N    Pass  3D    Pass
-5D    Pass  Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
-[Note "3:artificial"]
+5D    Pass  6D    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "460"]
+[Board "462"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10527,7 +10244,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "461"]
+[Board "463"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10548,7 +10265,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "462"]
+[Board "464"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10560,17 +10277,17 @@ Pass  Pass
 {HCP 9 2 20 9}
 {Losers 7 11 6 8}
 [Declarer "S"]
-[Contract "3N"]
+[Contract "5D"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3N    Pass  Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
+2N    Pass  4S =1=    Pass
+5D    Pass  Pass  Pass
+[Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "463"]
+[Board "465"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10593,7 +10310,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "464"]
+[Board "466"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10604,20 +10321,18 @@ Pass  Pass
 {Shape 1255 4423 5242 3523}
 {HCP 7 1 21 11}
 {Losers 7 11 4 8}
-[Declarer "N"]
-[Contract "3D"]
+[Declarer "S"]
+[Contract "4D"]
 [Auction "S"]
-1S    Pass  1N =1=    Pass
-2C =2=    Pass  3D    Pass
+1S    Pass  1N    Pass
+3D    Pass  4D    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "465"]
+[Board "467"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10628,21 +10343,18 @@ Pass  Pass
 {Shape 0256 5224 3532 5431}
 {HCP 7 5 20 8}
 {Losers 6 8 5 9}
-[Declarer "S"]
-[Contract "4H"]
+[Declarer "N"]
+[Contract "5C"]
 [Auction "S"]
-1H    Pass  1N =1=    Pass
-2C =2=    Pass  3C    Pass
-3N    Pass  4H    Pass
+1H    Pass  1N    Pass
+2N    Pass  5C    Pass
 Pass  Pass
-[Note "1:forcing 1NT"]
-[Note "2:Gazzilli"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "466"]
+[Board "468"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10663,7 +10375,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "467"]
+[Board "469"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10684,7 +10396,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "468"]
+[Board "470"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10707,7 +10419,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "469"]
+[Board "471"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10727,7 +10439,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "470"]
+[Board "472"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10748,7 +10460,7 @@ Pass  Pass
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "471"]
+[Board "473"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10762,15 +10474,14 @@ Pass  Pass
 [Declarer "S"]
 [Contract "3N"]
 [Auction "S"]
-2N    Pass  3C =1=    Pass
-3N    Pass  Pass  Pass
-[Note "1:2N-3C Puppet Stayman"]
+2N    Pass  3N    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "2N_and_MSS"]
 [Site ""]
-[Board "472"]
+[Board "474"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -10781,11 +10492,11 @@ Pass  Pass
 {Shape 2056 3802 5332 3253}
 {HCP 6 8 20 6}
 {Losers 6 6 5 9}
-[Declarer "E"]
-[Contract "4HX"]
+[Declarer "N"]
+[Contract "3C"]
 [Auction "S"]
-1S    Pass  1N =1=    4H
-X     Pass  Pass  Pass
-[Note "1:forcing 1NT"]
+1S    Pass  Pass  2H
+2N    Pass  3C    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]

@@ -188,7 +188,7 @@ def generate_summary():
 
     # Header row with rotated card names
     h.append('      <tr>')
-    h.append('        <th>Setting</th>')
+    h.append('        <th>Convention Card Setting</th>')
     for name in ordered:
         sn = short_name(name)
         ns, ew = scenario_counts[name]
