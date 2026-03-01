@@ -237,10 +237,10 @@ range = sRange and wRange and nRange
 nH = hearts(north)>3 and shape(west,xx5x + xx6x)
 nS = spades(north)>3 and shape(west,x5xx + x6xx)
 
-wD = diamonds(west)>4 and top4(west,diamonds)>1 and shape(west,any 5440 +any 5431 +any 5422)
-wH = hearts(west)>4   and top4(west,hearts)>1   and shape(west,any 5440 +any 5431 +any 5422)
-sC = oneClub    and ((wD and nH) or (wH and nS))
-sD = oneDiamond and wH and nS
+wD = diamonds(west)>4 and top4(west,diamonds)>1 and shape(west,any 5440 +any 5431 +any 5422) and nH
+wH = hearts(west)>4   and top4(west,hearts)>1   and shape(west,any 5440 +any 5431 +any 5422) and nS
+sC = oneClub    and (wD or wH)
+sD = oneDiamond and wH
 
 
 
@@ -249,7 +249,7 @@ CDH = sC and wD  and nH and range and hearts(north)>4
 mHX = (sC or sD) and wH and nS and spades(north)==4
 mHS = (sC or sD) and wH and nS and spades(north)>4
 
-(CDX or CDH or mHX or mHS) and range and calmOpps
+(CDX or CDH or mHX or mHS) and range and calmEast
 
 
 action printoneline,
