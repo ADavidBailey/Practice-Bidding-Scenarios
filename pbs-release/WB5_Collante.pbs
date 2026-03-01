@@ -154,7 +154,7 @@ calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<1
 calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
-# Defines calmOpps
+# Defines calmEast
 ### Imported script: TP (Total Points)
 //   Total Points = HCP + Short-Suit Points - Penalty Points
 //   Short-Suit Points: 3 for void, 2 for singleton, 1 for doubleton
@@ -230,7 +230,7 @@ tpEW = tpEast + tpWest
 # Defines tpSouth, tpWest, tpNorth
 
 sRange = hcp(south)>10 and tpSouth>11 and tpSouth<16
-wRange = tpWest>7 and tpWest<12
+wRange = hcp(west)>5 and tpWest>8 and tpWest<12
 nRange = tpNorth>8
 range = sRange and wRange and nRange
 
@@ -242,15 +242,12 @@ wH = hearts(west)>4   and top5(west,hearts)>2   and shape(west,any 6xxx +any 544
 sC = oneClub    and (wD or wH)
 sD = oneDiamond and wH
 
-
-
 CDX = sC and wD  and nH and range and hearts(north)==4
 CDH = sC and wD  and nH and range and hearts(north)>4
 mHX = (sC or sD) and wH and nS and spades(north)==4
 mHS = (sC or sD) and wH and nS and spades(north)>4
 
 (CDX or CDH or mHX or mHS) and range and calmEast
-
 
 action printoneline,
 average "CDX" 100 * CDX,
