@@ -237,8 +237,8 @@ range = sRange and wRange and nRange
 nH = hearts(north)>3 and shape(west,xx5x + xx6x)
 nS = spades(north)>3 and shape(west,x5xx + x6xx)
 
-wD = diamonds(west)>4 and shape(west,any 5440 + any 5431 +any 5422)
-wH = hearts(west)>4   and shape(west,any 5440 + any 5431 +any 5422)
+wD = diamonds(west)>4 and top4(diamonds,west)>1 and shape(west,any 5440 + any 5431 +any 5422)
+wH = hearts(west)>4   and top4(hearts,west)>1   and shape(west,any 5440 + any 5431 +any 5422)
 sC = oneClub    and wD and nH
 sD = oneDiamond and wH and nS
 
