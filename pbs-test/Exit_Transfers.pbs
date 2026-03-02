@@ -17,7 +17,7 @@ setDealerCode(`
 
 /*
 convention-card-ew: 21GF-GIB
-auction-filter: # convention-card-ns: 21GF-NoNtDefense
+auction-filter: # convention-card-ns: 21GF-DEFAULT
 */
 # Opponent doubles 1NT
 dealer south
@@ -74,7 +74,7 @@ average "hcp north " hcp(north),
 average "hcp west  " hcp(west),
 `, "S", true)
 Script
-Button,Exit Transfers,\n\
+Button,Exit Transfers (Lev),\n\
 --- Exit Transfers are usually runouts after the opponents Double our 1N opener.\n\
 • Pass - Requires partner to make an artificial redouble.  After partner's forced XX，\n\
 continuations are like DONT -- 2!C is !C & Higher，2!D is !D & Higher，and 2!H is !H & !S.\n\
@@ -82,5 +82,6 @@ continuations are like DONT -- 2!C is !C & Higher，2!D is !D & Higher，and 2!H
 • 2!C - 5+!D\n\
 • 2!D - 5+!H\n\
 • 2!H - 5+!S\n\
+These are leveled to produce balanced and unbalanced hands at about the same frequency.\n\
 https://www.bridgebum.com/exit_transfers.php\n\
 %ExitTransfers%,width=50% backgroundColor=lightpink
