@@ -573,9 +573,11 @@ Script,onDataLoad
                     if (match) {
                         window.currentPBSScenario = scenarioName;
                         window.currentPBSScenarioFilename = scenarioName;
-                        // Extract convention-card from dealer code comments
-                        var ccMatch = match[1].match(/convention-card:\s*(\S+)/);
-                        window.currentPBSConventionCard = ccMatch ? ccMatch[1] : null;
+                        // Extract convention-card-ns and convention-card-ew from dealer code comments
+                        var ccNS = match[1].match(/convention-card-ns:\s*(\S+)/);
+                        var ccEW = match[1].match(/convention-card-ew:\s*(\S+)/);
+                        window.currentPBSConventionCardNS = ccNS ? ccNS[1] : null;
+                        window.currentPBSConventionCardEW = ccEW ? ccEW[1] : null;
                         fetch('https://bba.harmonicsystems.com/api/scenario/select', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json', 'X-Client-Version': '1.0.0' },
@@ -709,9 +711,11 @@ Script,onDataLoad
                             if (match) {
                                 window.currentPBSScenario = scenarioName;
                                 window.currentPBSScenarioFilename = scenarioName;
-                                // Extract convention-card from dealer code comments
-                                var ccMatch = match[1].match(/convention-card:\s*(\S+)/);
-                                window.currentPBSConventionCard = ccMatch ? ccMatch[1] : null;
+                                // Extract convention-card-ns and convention-card-ew from dealer code comments
+                                var ccNS = match[1].match(/convention-card-ns:\s*(\S+)/);
+                                var ccEW = match[1].match(/convention-card-ew:\s*(\S+)/);
+                                window.currentPBSConventionCardNS = ccNS ? ccNS[1] : null;
+                                window.currentPBSConventionCardEW = ccEW ? ccEW[1] : null;
                                 window.pbsShowHCP = true;
                                 setDealerCode(match[1], match[2], match[3] === 'true');
                             }
@@ -957,6 +961,11 @@ Script,onDataLoad
                                 var match = content.match(/setDealerCode\(`([\s\S]*?)`,\s*"([NSEW])",\s*(true|false)\)/);
                                 if (match) {
                                     window.currentPBSScenario = scenarioName;
+                                    // Extract convention-card-ns and convention-card-ew from dealer code comments
+                                    var ccNS = match[1].match(/convention-card-ns:\s*(\S+)/);
+                                    var ccEW = match[1].match(/convention-card-ew:\s*(\S+)/);
+                                    window.currentPBSConventionCardNS = ccNS ? ccNS[1] : null;
+                                    window.currentPBSConventionCardEW = ccEW ? ccEW[1] : null;
                                     window.pbsShowHCP = true;
                                     setDealerCode(match[1], match[2], match[3] === 'true');
                                 }
