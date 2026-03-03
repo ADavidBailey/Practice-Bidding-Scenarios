@@ -106,12 +106,12 @@ w2D = diamonds(east)==6 and (top5(east,diamonds)>2 or top3(east,diamonds)>1) and
 slt2S = w2S and spades(south)<2
 slt2H = w2H and hearts(south)<2
 slt2D = w2D and diamonds(south)<2
-slt2 = (slt2S or slt2H or slt2D) and tpSouth>10
+slt2 = (slt2S or slt2H or slt2D) and tpSouth>11
 
 slt3s = w2S and spades(south)<3
 slt3h = w2H and hearts(south)<3
 slt3d = w2D and diamonds(south)<3
-slt3 = (slt3s or slt3h or slt3d) and tpSouth>12
+slt3 = (slt3s or slt3h or slt3d) and tpSouth>13
 
 sDoubles = (slt2 or slt3) and shape(south,any 5440 +any 5431 +any 5422 +any 44xx -5xxx -x5xx)
 
