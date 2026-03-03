@@ -27,9 +27,11 @@
     td { padding: 4px 8px; border-bottom: 1px solid #eee; text-align: right;
          font-size: 12px; white-space: nowrap; }
     td:first-child { text-align: left; }
+    .main-table thead th { position: sticky; top: 0; z-index: 10; background: #f0f0f0;
+                           box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1); }
     .main-table tr:hover td { background: #f8f8f8; cursor: pointer; }
     .main-table th { cursor: pointer; }
-    .main-table th:first-child { cursor: default; }
+    .sort-arrow { font-size: 10px; color: #666; }
     .main-table tr.highlighted td { background: #fff3cd !important; }
     .main-table .col-highlighted { background: #d0e8f7 !important; }
     .main-table tr.highlighted .col-highlighted { background: #d4e9c7 !important; }
@@ -180,6 +182,7 @@ Without the Redouble we play lebensohl.  With the Redouble ???.</span></span></t
   </div>
   <div class="main-table">
     <table>
+      <thead>
       <tr>
         <th>Scenario</th><th>Deals</th><th>Filtered</th><th>Flt-Out</th>
         <th>dlr</th>
@@ -194,6 +197,8 @@ Without the Redouble we play lebensohl.  With the Redouble ???.</span></span></t
         <th>package</th>
         <th>Total</th>
       </tr>
+      </thead>
+      <tbody>
       <tr class="totals">
         <td>Total</td><td>146212</td><td>98260</td><td>39452</td>
         <td>0.3s</td>
@@ -5690,6 +5695,8 @@ XYZ.  After 1X, 1Y, 1Z, responder may bid
         <td>0.0%</td>
         <td>100%</td>
       </tr>
+      </tbody>
+      <tfoot>
       <tr>
         <th></th><th>Deals</th><th>Filtered</th><th>Flt-Out</th>
         <th>dlr</th>
@@ -5704,6 +5711,7 @@ XYZ.  After 1X, 1Y, 1Z, responder may bid
         <th>package</th>
         <th>Total</th>
       </tr>
+      </tfoot>
     </table>
   </div>
   <script>
@@ -5711,7 +5719,10 @@ XYZ.  After 1X, 1Y, 1Z, responder may bid
     var d = new Date(span.dataset.utc);
     span.textContent = d.toLocaleDateString() + " " + d.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit", timeZoneName: "short"});
     var table = document.querySelector(".main-table table");
+    var tbody = table.querySelector("tbody");
     var hCol = -1;
+    var sortCol = -1;
+    var sortAsc = true;
     function clearCol() {
       table.querySelectorAll(".col-highlighted").forEach(function(c) {
         c.classList.remove("col-highlighted");
@@ -5727,11 +5738,60 @@ XYZ.  After 1X, 1Y, 1Z, responder may bid
         if (rows[i].cells[col]) rows[i].cells[col].classList.add("col-highlighted");
       }
     }
+    // Parse time strings like "0.0s", "1m48s", "47m44s" to seconds
+    function parseTime(s) {
+      var m = s.match(/^(?:(\d+)m)?(\d+(?:\.\d+)?)s$/);
+      if (m) return (m[1] ? parseInt(m[1]) * 60 : 0) + parseFloat(m[2]);
+      return null;
+    }
+    // Parse cell text to a sortable value
+    function sortVal(text, col) {
+      text = text.trim();
+      if (text === "-" || text === "") return -Infinity;
+      if (col === 0) return text.toLowerCase();
+      var t = parseTime(text);
+      if (t !== null) return t;
+      var n = parseFloat(text.replace(/[,%]/g, ""));
+      if (!isNaN(n)) return n;
+      return text.toLowerCase();
+    }
+    function clearSortIndicators() {
+      table.querySelectorAll("thead th .sort-arrow").forEach(function(a) { a.remove(); });
+    }
+    function setSortIndicator(th, asc) {
+      clearSortIndicators();
+      var arrow = document.createElement("span");
+      arrow.className = "sort-arrow";
+      arrow.textContent = asc ? " \u25B2" : " \u25BC";
+      th.appendChild(arrow);
+    }
+    function sortTable(col) {
+      var dataRows = Array.from(tbody.querySelectorAll("tr:not(.totals)"));
+      if (col === sortCol) {
+        sortAsc = !sortAsc;
+      } else {
+        sortCol = col;
+        sortAsc = col === 0; // text ascending by default, numbers descending
+      }
+      dataRows.sort(function(a, b) {
+        var va = sortVal(a.cells[col] ? a.cells[col].textContent : "", col);
+        var vb = sortVal(b.cells[col] ? b.cells[col].textContent : "", col);
+        var cmp = 0;
+        if (typeof va === "string" && typeof vb === "string") cmp = va.localeCompare(vb);
+        else if (va < vb) cmp = -1;
+        else if (va > vb) cmp = 1;
+        return sortAsc ? cmp : -cmp;
+      });
+      dataRows.forEach(function(r) { tbody.appendChild(r); });
+      var th = table.querySelector("thead").rows[0].cells[col];
+      setSortIndicator(th, sortAsc);
+    }
     table.addEventListener("click", function(e) {
       var th = e.target.closest("th");
-      if (th && table.contains(th)) {
+      if (th && table.querySelector("thead").contains(th)) {
         var col = th.cellIndex;
-        if (col === hCol) clearCol(); else applyCol(col);
+        sortTable(col);
+        applyCol(col);
         return;
       }
       var td = e.target.closest("td");
