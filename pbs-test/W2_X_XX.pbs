@@ -101,7 +101,7 @@ tpEW = tpEast + tpWest
 w2S = spades(east)==6   and (top5(east,spades)>2   or top3(east,spades)>1)   and spades(west)<2
 w2H = hearts(east)==6   and (top5(east,hearts)>2   or top3(east,hearts)>1)   and hearts(west)<2
 w2D = diamonds(east)==6 and (top5(east,diamonds)>2 or top3(east,diamonds)>1) and diamonds(west)<2
-eW2 = (w2S or w2H or w2D) and hcp(east)>5 and hcp(east)<11 and tpEasst<12
+eW2 = (w2S or w2H or w2D) and hcp(east)>5 and hcp(east)<11 and tpEast<12
 
 # South is short in East's suit
 slt2S = w2S and spades(south)<2
