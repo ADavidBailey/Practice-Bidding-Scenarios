@@ -98,9 +98,9 @@ tpEW = tpEast + tpWest
 # Defines tpSouth, tpWest, tpNorth, tpEast
 
 # Define East weak 2 bids
-w2S = spades(east)==6   and (top5(east,spades)>2   or top3(east,spades)>1)   and spades(west)==3   and hcp(west,spades)<2
-w2H = hearts(east)==6   and (top5(east,hearts)>2   or top3(east,hearts)>1)   and hearts(west)==3   and hcp(west,hearts)<2
-w2D = diamonds(east)==6 and (top5(east,diamonds)>2 or top3(east,diamonds)>1) and diamonds(west)==3 and hcp(west,diamonds)<2
+w2S = spades(east)==6   and (top5(east,spades)>2   or top3(east,spades)>1)   and spades(west)<3   and hcp(west,spades)<2
+w2H = hearts(east)==6   and (top5(east,hearts)>2   or top3(east,hearts)>1)   and hearts(west)<3   and hcp(west,hearts)<2
+w2D = diamonds(east)==6 and (top5(east,diamonds)>2 or top3(east,diamonds)>1) and diamonds(west)<3 and hcp(west,diamonds)<2
 
 # South is short in East's suit
 slt2S = w2S and spades(south)<2
