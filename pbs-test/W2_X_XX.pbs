@@ -98,9 +98,9 @@ tpEW = tpEast + tpWest
 # Defines tpSouth, tpWest, tpNorth, tpEast
 
 # Define East weak 2 bids
-w2S = spades(east)==6   and (top5(east,spades)>2   or top3(east,spades)>1)   and spades(west)<3
-w2H = hearts(east)==6   and (top5(east,hearts)>2   or top3(east,hearts)>1)   and hearts(west)<3
-w2D = diamonds(east)==6 and (top5(east,diamonds)>2 or top3(east,diamonds)>1) and diamonds(west)<3
+w2S = spades(east)==6   and (top5(east,spades)>2   or top3(east,spades)>1)   and spades(west)<2
+w2H = hearts(east)==6   and (top5(east,hearts)>2   or top3(east,hearts)>1)   and hearts(west)<2
+w2D = diamonds(east)==6 and (top5(east,diamonds)>2 or top3(east,diamonds)>1) and diamonds(west)<2
 
 # South is short in East's suit
 slt2S = w2S and spades(south)<2
@@ -118,10 +118,10 @@ sDouble2 = tpSouth>13 and slt3
 sDoubles = (sDouble1 or sDouble2) and shape(south,any 5431 +any 44xx -5xxx -x5xx)
 
 # East opens a weak 2, South doubles, and West Redoubles
-eOpensWeak2 = (w2S or w2H or w2D) and tpEast>6 and shape(east,any 6430 +any 6421 +any 6331 +any 6322 -4xxx -x4xx)
+eOpensWeak2 = (w2S or w2H or w2D) and tpEast>6 and tpEast<10 and tpSouth>11 and shape(east,any 6430 +any 6421 +any 6331 +any 6322 -4xxx -x4xx)
 
 # West Redoubles
-wXX = hcp(west)>15 and shape(west,any 4432 +any 4441 +any 5440)
+wXX = hcp(west)>16 and shape(west,any 4432 +any 4441 +any 5440)
 
 eOpensWeak2 and sDoubles and wXX
 
