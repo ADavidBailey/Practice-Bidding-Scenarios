@@ -1,15 +1,15 @@
 # alias: TwoWayGameTry
 # button-text: Two-Way Game Try
-# gib-works: false
+# gib-works: true
 # bba-works: true
-# auction-filter: Note "1:Two way game tries
-# convention-card-ns: 21GF-SPECIALS
+# auction-filter: Note .1.Two way game tries
+# convention-card-ns: 21GF-GIB
 # convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Two-Way Game Try
 After a single raise of a major
-. a step bid is a short-suit game try
+. a step bid is an unspecified shortness game try
 . any other bid below 3 or the major is a long suit/help suit game try
 . bidding 3 of the major is a general strength game try
  https://www.bridgebase.com/doc/gib_system_notes.php#Two-way_Game_Try
@@ -20,6 +20,7 @@ After a single raise of a major
 # Two-Way Game Tries
 dealer south
 
+
 #include "script/Calm-Opponents"
 # Defines calmWest, calmEast, and calmOpps
 #include "script/Predict-Opening-1-Bid"
@@ -27,18 +28,21 @@ dealer south
 #include "script/TP"
 # Defines tpSouth, tpNorth
 
+# Define BBA NT
+bbaNT = hcp(south)>14 and hcp(south)<18 and shape(south,any 5332 +any 4432 +any 4333)
+
 # Define openers suitable for a game try
-sFit3 = oneSpade and spades(south)==5 and top4(south,spades)>1 and spades(north)==3
-hFit3 = oneHeart and hearts(north)==5 and top4(south,hearts)>1 and hearts(north)==3 and spades(north)<4
-fit3 = (sFit3 or hFit3) and hcp(north)<10
+sFit3 = oneSpade and spades(south)==5 and top5(south,spades)>2 and spades(north)==3
+hFit3 = oneHeart and hearts(south)==5 and top5(south,hearts)>2 and hearts(north)==3 and spades(north)<4
+fit3 = (sFit3 or hFit3) and tpNorth<10
 
-sFit4 = oneSpade and spades(north)>3
-hFit4 = oneHeart and hearts(north)>3
-fit4 = (sFit4 or hFit4) and hcp(north)<7
+sFit4 = oneSpade and spades(north)==4
+hFit4 = oneHeart and hearts(north)==4
+fit4 = (sFit4 or hFit4) and tpNorth<9
 
-fit  = (fit3 or fit4) and tpNorth>4
+fit  = (fit3 or fit4) and not bbaNT and tpNorth>6
 
-gameTry = tpSouth==16 and hcp(south)<16
+gameTry = tpSouth>15 and tpSouth<18
 
 fit and gameTry and tpNorth<10 and calmOpps
 
