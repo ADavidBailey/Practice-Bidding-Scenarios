@@ -21,6 +21,10 @@ window.toggleRandomlyRotate = function () {
     window.pbsRotateDeals = !window.pbsRotateDeals;
     window.updateRotateButton();
 
+    // Save Auction Compare state - opening the Deal Source dialog
+    // may trigger onTableHidden which disables Auction Compare
+    var savedCompareEnabled = window.bbaCompareEnabled || false;
+
     var delayValue = 500;
     var cnt = -1;
     var intrv;
@@ -83,6 +87,11 @@ window.toggleRandomlyRotate = function () {
                 case 4:
                     // Close dialog
                     $("modal-content button", parent.window.document)[0].dispatchEvent(new Event("click"));
+                    // Restore Auction Compare state after a short delay
+                    // to let any onTableHidden events settle
+                    setTimeout(function() {
+                        window.bbaCompareEnabled = savedCompareEnabled;
+                    }, 600);
                     clearInterval(intrv);
                     break;
                 case 9:

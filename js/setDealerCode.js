@@ -5,6 +5,10 @@ window.setDealerCode = function (dealerCode, dealer = "S", rotateDeals = true) {
     window.pbsRotateDeals = rotateDeals;
     if (window.updateRotateButton) window.updateRotateButton();
 
+    // Save Auction Compare state - opening the Deal Source dialog
+    // may trigger onTableHidden which disables Auction Compare
+    var savedCompareEnabled = window.bbaCompareEnabled || false;
+
     var txtar = null;
     var delayValue = 500;
     var cnt = -1;
@@ -105,6 +109,11 @@ window.setDealerCode = function (dealerCode, dealer = "S", rotateDeals = true) {
                 case 9:
                     // Close dialog
                     $("modal-content button", parent.window.document)[0].dispatchEvent(new Event("click"));
+                    // Restore Auction Compare state after a short delay
+                    // to let any onTableHidden events settle
+                    setTimeout(function() {
+                        window.bbaCompareEnabled = savedCompareEnabled;
+                    }, 600);
                     break;
                 case 10:
                     // Redeal
