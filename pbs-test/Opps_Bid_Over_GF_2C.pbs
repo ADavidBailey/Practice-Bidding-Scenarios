@@ -99,9 +99,9 @@ tpEW = tpEast + tpWest
 
 # Game Forcing 2C
 case1 = hcp(south)>22
-case2 = hcp(south)>18 and tpSouth>19 and losers(south)<5 and (spades(south)>5 or hearts(south)>5)
-case3 = hcp(south)>18 and tpSouth>19 and losers(south)<4 and (diamonds(south)>5 or clubs(south)>5)
-s2C = (case1 or case2 or case3)
+case2 = hcp(south)>18 and tpSouth>22// and losers(south)<5 and (spades(south)>5 or hearts(south)>5)
+case3 = hcp(south)>18 and tpSouth>22 and losers(south)<4 and (diamonds(south)>5 or clubs(south)>5)
+s2C = (case1 or case2) // or case3)
 
 # West overcalls
 wS = spades(west)>5   and top5(west,spades)>2
