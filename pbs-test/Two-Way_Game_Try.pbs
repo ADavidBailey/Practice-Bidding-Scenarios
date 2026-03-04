@@ -235,8 +235,8 @@ tpEW = tpEast + tpWest
 # Defines tpSouth, tpNorth
 
 # Define openers suitable for a game try
-sFit3 = oneSpade and top5(south,spades)>2 and spades(north)==3
-hFit3 = oneHeart and top5(south,hearts)>2 and hearts(north)==3 and spades(north)<4
+sFit3 = oneSpade and spades(south)==5 and top5(south,spades)>2 and spades(north)==3
+hFit3 = oneHeart and hearts(south)==5 and top5(south,hearts)>2 and hearts(north)==3 and spades(north)<4
 fit3 = (sFit3 or hFit3)
 
 sFit4 = oneSpade and spades(north)>3
@@ -245,7 +245,7 @@ fit4 = (sFit4 or hFit4)
 
 fit  = (fit3 or fit4) and tpNorth>6 and tpNorth<10
 
-gameTry = tpSouth>16
+gameTry = tpSouth>15 and tpSouth<18
 
 fit and gameTry and tpNorth<10 and calmOpps
 
