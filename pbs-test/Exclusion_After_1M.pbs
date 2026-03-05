@@ -258,12 +258,12 @@ keep985 = not keep015
 keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
-levJ2n = jacoby2n and keep25
+levJ2n = jacoby2n and keep
 levSpl = splinter and keep
-levInv = invite   and keep25
+levInv = invite   and keep
 levelTheDeal = levJ2n or levSpl or levInv or levPre
 
-(jacoby2n or splinter or invite) and (tpNorth + tpSouth)>32
+(splinter or jacoby2nr or invite) and (tpNorth + tpSouth)>32
 and levelTheDeal
 
 action printoneline,
@@ -273,8 +273,8 @@ average "hcp total " (hcp(north)+hcp(south)),
 average "tpSouth   " tpSouth,
 average "tpNorth   " tpNorth,
 average "tpTotal   " (tpNorth+tpSouth),
-average "jacoby 2N " 100 * jacoby2n,
 average "splinter  " 100 * splinter,
+average "jacoby 2N " 100 * jacoby2n,
 average "inv raise " 100 * invite,
 `, "S", true)
 Script
