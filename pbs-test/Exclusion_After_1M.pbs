@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-SPECIALS2
 convention-card-ew: 21GF-GIB
-auction-filter: Note....Exclusion
+auction-filter: Note..... out of 4
 */
 # 1M-3M Inviting, Inviting Jump Shifts
 
@@ -284,6 +284,9 @@ action printoneline,
 average "hcp south " hcp(south),
 average "hcp north " hcp(north),
 average "hcp total " (hcp(north)+hcp(south)),
+average "tpSouth   " tpSouth,
+average "tpNorth   " tpNorth,
+average "tpTotal   " (tpNorth+tpSouth),
 average "jacoby 2N " 100 * jacoby2n,
 average "splinter  " 100 * splinter,
 average "inv raise " 100 * invite,
