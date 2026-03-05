@@ -258,10 +258,10 @@ keep985 = not keep015
 keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
+levSpl = splinter and keep25
 levJ2n = jacoby2n and keep
-levSpl = splinter and keep
 levInv = invite   and keep
-levelTheDeal = levJ2n or levSpl or levInv or levPre
+levelTheDeal = levSpl or levJ2n or levInv
 
 (splinter or jacoby2nr or invite) and (tpNorth + tpSouth)>32
 and levelTheDeal
