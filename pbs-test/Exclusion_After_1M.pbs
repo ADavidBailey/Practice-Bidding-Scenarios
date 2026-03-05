@@ -217,10 +217,9 @@ sRange = tpSouth>18 and tpSouth<23   // hcp(north) +6 - losers(south)
 sOpens = (sBid or hBid) and sShape and sRange 
 
 # Define a 4-card raise
-jacoby2n = sOpens and tpNorth>12   // hcp(north) +6 - losers(north)
-splinter = sOpens and shape(north,any 0xxx+any 1xxx) and tpNorth>12 and tpNorth<17 and not jacoby2n
+splinter = sOpens and shape(north,any 0xxx+any 1xxx) and tpNorth>12 and tpNorth<17
+jacoby2n = sOpens and tpNorth>12 and not splinter
 invite   = sOpens and tpNorth>9 and tpNorth<13 and not (jacoby2n or splinter)
-
 invite3  = (sBid3 or hBid3) and tpNorth>9 and tpNorth<14 and not (jacoby2n or splinter or invite)
 
 # Define unbalanced preemptive raises
