@@ -215,13 +215,11 @@ sShape  = shape(south,any 0xxx)
 sRange = tpSouth>18 and tpSouth<23   // hcp(north) +6 - losers(south)
 
 sOpens  = (sBid or hBid) and sShape and sRange   // w/4-card support or better
-sOpens3 = (sBid3 or hBid3) and sShape and sRange // w/3-card support
 
 # Define a 4-card raise
 splinter = sOpens and shape(north,any 0xxx+any 1xxx) and tpNorth>12 and tpNorth<17
 jacoby2n = sOpens and tpNorth>12 and not splinter
 invite   = sOpens  and tpNorth>9 and tpNorth<13 and not (splinter or jacoby2n)
-invite3  = sOpens3 and tpNorth>9 and tpNorth<13 and not (splinter or jacoby2n or invite)
 
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
@@ -265,7 +263,7 @@ levSpl = splinter and keep
 levInv = invite   and keep25
 levelTheDeal = levJ2n or levSpl or levInv or levPre
 
-(jacoby2n or splinter or invite or invite3) and (tpNorth + tpSouth)>32
+(jacoby2n or splinter or invite) and (tpNorth + tpSouth)>32
 and levelTheDeal
 
 action printoneline,
@@ -278,7 +276,6 @@ average "tpTotal   " (tpNorth+tpSouth),
 average "jacoby 2N " 100 * jacoby2n,
 average "splinter  " 100 * splinter,
 average "inv raise " 100 * invite,
-average "inv 3     " 100 * invite3,
 `, "S", true)
 Script
 Button,Exclusion After 1M,%ExclusionAfter1M%,width=50%
