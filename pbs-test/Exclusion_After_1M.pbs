@@ -223,12 +223,6 @@ jacoby2n = sOpens and tpNorth>12 and not splinter
 invite   = sOpens  and tpNorth>9 and tpNorth<13 and not (splinter or jacoby2n)
 invite3  = sOpens3 and tpNorth>9 and tpNorth<13 and not (splinter or jacoby2n or invite)
 
-# Define unbalanced preemptive raises
-hPreempt = oneHeart and hearts(north)>4
-sPreempt = oneSpade and spades(north)>4
-unBalRaise = shape(north,any 0xxx+any 1xxx) and (hPreempt or sPreempt)
-preempt  = sOpens and unBalRaise and not (jacoby2n or splinter or invite or invite3) // any strength
-
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
 c2 = hascard(east,2D)
@@ -269,10 +263,9 @@ keep0  = 0
 levJ2n = jacoby2n and keep25
 levSpl = splinter and keep
 levInv = invite   and keep25
-levPre = preempt  and keep06
 levelTheDeal = levJ2n or levSpl or levInv or levPre
 
-(jacoby2n or splinter or invite or preempt) //and (tpNorth + tpSouth)>32
+(jacoby2n or splinter or invite or invite3) and (tpNorth + tpSouth)>32
 and levelTheDeal
 
 action printoneline,
@@ -286,7 +279,6 @@ average "jacoby 2N " 100 * jacoby2n,
 average "splinter  " 100 * splinter,
 average "inv raise " 100 * invite,
 average "inv 3     " 100 * invite3,
-average "preempt   " 100 * preempt,
 `, "S", true)
 Script
 Button,Exclusion After 1M,%ExclusionAfter1M%,width=50%
