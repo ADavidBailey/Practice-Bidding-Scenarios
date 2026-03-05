@@ -139,14 +139,14 @@ hBid = oneHeart and hearts(north)>3
 sShape  = shape(south,any 0xxx)
 
 sStrength = hcp(south) +6 - losers(south)
-sRange = sStrength>19 and sStrength<23
+sRange = sStrength>18 and sStrength<23  // was 18
 
 sOpens = (sBid or hBid) and sShape and sRange 
 
 nStrength = hcp(north) +6 - losers(north)
 
 # Define a 4-card raise
-jacoby2n = sOpens and nStrength>12 
+jacoby2n = sOpens and nStrength>13  // was 12
 splinter = sOpens and shape(north,any 0xxx+any 1xxx) and nStrength>11 and nStrength<15 and not jacoby2n
 invite   = sOpens and nStrength>10 and nStrength<13 and not (jacoby2n or splinter)
 
