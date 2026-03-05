@@ -212,20 +212,16 @@ sBid = oneSpade and spades(north)>3
 hBid = oneHeart and hearts(north)>3
 
 sShape  = shape(south,any 0xxx)
-
-sStrength = tpSouth // hcp(north) +6 - losers(south)
-sRange = sStrength>18 and sStrength<23
+sRange = tpSouth>18 and tpSouth<23   // hcp(north) +6 - losers(south)
 
 sOpens = (sBid or hBid) and sShape and sRange 
 
-nStrength = tpNorth  // hcp(north) +6 - losers(north)
-
 # Define a 4-card raise
-jacoby2n = sOpens and nStrength>12
-splinter = sOpens and shape(north,any 0xxx+any 1xxx) and nStrength>12 and nStrength<17 and not jacoby2n
-invite   = sOpens and nStrength>9 and nStrength<13 and not (jacoby2n or splinter)
+jacoby2n = sOpens and tpNorth>12   // hcp(north) +6 - losers(north)
+splinter = sOpens and shape(north,any 0xxx+any 1xxx) and tpNorth>12 and tpNorth<17 and not jacoby2n
+invite   = sOpens and tpNorth>9 and tpNorth<13 and not (jacoby2n or splinter)
 
-invite3  = (sBid3 or hBid3) and nStrength>9 and nStrength<14 and not (jacoby2n or splinter or invite)
+invite3  = (sBid3 or hBid3) and tpNorth>9 and tpNorth<14 and not (jacoby2n or splinter or invite)
 
 # Define unbalanced preemptive raises
 hPreempt = oneHeart and hearts(north)>4
@@ -276,7 +272,7 @@ levInv = invite   and keep25
 levPre = preempt  and keep06
 levelTheDeal = levJ2n or levSpl or levInv or levPre
 
-(jacoby2n or splinter or invite or preempt) and (nStrength + sStrength)>32
+(jacoby2n or splinter or invite or preempt) //and (tpNorth + tpSouth)>32
 and levelTheDeal
 
 action printoneline,
