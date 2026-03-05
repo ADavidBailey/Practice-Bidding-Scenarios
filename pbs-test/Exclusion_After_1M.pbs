@@ -139,7 +139,7 @@ hBid = oneHeart and hearts(north)>3
 sShape  = shape(south,any 0xxx)
 
 sStrength = hcp(south) +6 - losers(south)
-sRange = sStrength>18 and sStrength<23  // was 18
+sRange = sStrength>18 and sStrength<23
 
 sOpens = (sBid or hBid) and sShape and sRange 
 
@@ -199,7 +199,7 @@ levInv = invite   and keep25
 levPre = preempt  and keep06
 levelTheDeal = levJ2n or levSpl or levInv or levPre
 
-(jacoby2n or splinter or invite or preempt)
+(jacoby2n or splinter or invite or preempt) and (nStrength + sStrength)>32
 and levelTheDeal
 
 
