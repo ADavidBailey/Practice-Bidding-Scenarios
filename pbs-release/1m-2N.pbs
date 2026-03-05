@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card-ns: 21GF-DEFAULT
+convention-card-ns: 21GF-GIB
 convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[CD] +Pass +2N
 */
@@ -259,13 +259,13 @@ s1Cn3N = oneClub    and nC2 and nD3 and nM3 and n3   // 1C - 3N with 3 hcp in un
 s1Dn3N = oneDiamond and nD2 and nC3 and nM3 and n3   // 1D - 3N
 s1m3N  = s1Cn3N or s1Dn3N
 
-nAny4   = shape(north,any 4333)   // any 4333
-nMajor4 = shape(north,4333+3433)  // either major
+nShape = shape(north,any 4333 -4xxx -x4xx)
+//nMajor4 = shape(north,4333+3433)  // either major
 
 sRange = tpSouth>11 and hcp(south)>10 and tpSouth<22 and hcp(south)<23
 
 # Now do it
-s1m2N and sRange and sShape and calmWest and (nAny4 or nMajor4)
+s1m2N and sRange and sShape and calmWest and nShape
 
 action printoneline,
 
