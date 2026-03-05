@@ -146,7 +146,7 @@ sOpens = (sBid or hBid) and sShape and sRange
 nStrength = hcp(north) +6 - losers(north)
 
 # Define a 4-card raise
-jacoby2n = sOpens and nStrength>13  // was 12
+jacoby2n = sOpens and nStrength>12
 splinter = sOpens and shape(north,any 0xxx+any 1xxx) and nStrength>11 and nStrength<15 and not jacoby2n
 invite   = sOpens and nStrength>10 and nStrength<13 and not (jacoby2n or splinter)
 
@@ -199,7 +199,7 @@ levInv = invite   and keep25
 levPre = preempt  and keep06
 levelTheDeal = levJ2n or levSpl or levInv or levPre
 
-(jacoby2n or splinter or invite or preempt) and (nStrength + sStrength)>32
+(jacoby2n or splinter or invite or preempt) and (nStrength + sStrength)>34
 and levelTheDeal
 
 
