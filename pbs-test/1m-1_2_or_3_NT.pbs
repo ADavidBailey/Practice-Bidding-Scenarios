@@ -251,8 +251,8 @@ nD3 = hcp(north,diamonds)>2
 nM3 = hcp(north,hearts)>2 and hcp(north,spades)>2
 
 # Define North's response ranges
-n1 = hcp(north)>5  and hcp(north)<10 and hascard(east,2C) and hascard(west,2D)
-n2 = hcp(north)>9  and hcp(north)<13 and hascard(east,3D)
+n1 = hcp(north)>5  and hcp(north)<10 //and hascard(east,2C) and hascard(west,2D)
+n2 = hcp(north)>9  and hcp(north)<13 //and hascard(east,3D)
 n3 = hcp(north)>12 and hcp(north)<16
 
 # For opening with minimum values, require extra suit length
