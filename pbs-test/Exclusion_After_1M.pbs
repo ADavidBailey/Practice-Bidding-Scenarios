@@ -214,13 +214,14 @@ hBid = oneHeart and hearts(north)>3
 sShape  = shape(south,any 0xxx)
 sRange = tpSouth>18 and tpSouth<23   // hcp(north) +6 - losers(south)
 
-sOpens = (sBid or hBid) and sShape and sRange 
+sOpens  = (sBid or hBid) and sShape and sRange   // w/4-card support or better
+sOpens3 = (sBid3 or hBid3) and sShape and sRange // w/3-card support
 
 # Define a 4-card raise
 splinter = sOpens and shape(north,any 0xxx+any 1xxx) and tpNorth>12 and tpNorth<17
 jacoby2n = sOpens and tpNorth>12 and not splinter
 invite   = sOpens and tpNorth>9 and tpNorth<13 and not (jacoby2n or splinter)
-invite3  = (sBid3 or hBid3) and tpNorth>9 and tpNorth<14 and not (jacoby2n or splinter or invite)
+invite3  = sOpens3 and tpNorth>9 and tpNorth<14 and not (splinter or jacoby2n or invite)
 
 # Define unbalanced preemptive raises
 hPreempt = oneHeart and hearts(north)>4
