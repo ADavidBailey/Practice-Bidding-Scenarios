@@ -266,7 +266,7 @@ s1m1N  = (s1Cn1N or s1Dn1N) and hascard(east,2C) and hascard(west,2D)
 
 s1Cn2N = oneClub    and nC2 and nD3 and nM3 and n2   // 1C - 2N with 3 hcp in unbid suits and 2 in opener's suit
 s1Dn2N = oneDiamond and nD2 and nC3 and nM3 and n2   // 1D - 2N 
-s1m2N  = s1Cn2N or s1Dn2N
+s1m2N  = s1Cn2N or s1Dn2N and hascard(east,3D)
 
 s1Cn3N = oneClub    and nC2 and nD3 and nM3 and n3   // 1C - 3N with 3 hcp in unbid suits and 2 in opener's suit
 s1Dn3N = oneDiamond and nD2 and nC3 and nM3 and n3   // 1D - 3N
