@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card-ns: 21GF-DEFAULT
+convention-card-ns: 21GF-GIB
 convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1[CD] +Pass +[123]N
 */
@@ -251,9 +251,9 @@ nD3 = hcp(north,diamonds)>2
 nM3 = hcp(north,hearts)>2 and hcp(north,spades)>2
 
 # Define North's response ranges
-n1 = hcp(north)>5  and hcp(north)<10
-n2 = hcp(north)>9  and hcp(north)<13
-n3 = hcp(north)>12 and hcp(north)<16
+n1 = hcp(north)>5  and hcp(north)<10 //and hascard(east,2C)
+n2 = hcp(north)>9  and hcp(north)<13 
+n3 = hcp(north)>12 and hcp(north)<16 //and hascard(west,2D) and not hascard(west,2C)
 
 # For opening with minimum values, require extra suit length
 sMin = hcp(south)<12 and tpSouth<13
@@ -262,7 +262,7 @@ sShape = sMin ? shape(south,any 7xxx+any 6xxx) : shape(south, xxxx)
 # South bids 1C or 1D and North responds 1N or 2/3N
 s1Cn1N = oneClub    and nD2 and nM2 and n1           // 1C - 1N with 2 hcp in unbid suits
 s1Dn1N = oneDiamond and nC2 and nM2 and n1           // 1D - 1N  
-s1m1N  = s1Cn1N or s1Dn1N
+s1m1N  = (s1Cn1N or s1Dn1N)
 
 s1Cn2N = oneClub    and nC2 and nD3 and nM3 and n2   // 1C - 2N with 3 hcp in unbid suits and 2 in opener's suit
 s1Dn2N = oneDiamond and nD2 and nC3 and nM3 and n2   // 1D - 2N 
@@ -272,15 +272,20 @@ s1Cn3N = oneClub    and nC2 and nD3 and nM3 and n3   // 1C - 3N with 3 hcp in un
 s1Dn3N = oneDiamond and nD2 and nC3 and nM3 and n3   // 1D - 3N
 s1m3N  = s1Cn3N or s1Dn3N
 
-nAny4   = shape(north,any 4333)   // any 4333
-nMajor4 = shape(north,4333+3433)  // either major
+nShape  = shape(north,any 4333 -4xxx -x4xx)
+//nAny4   = shape(north,any 4333)   // any 4333
+//nMajor4 = shape(north,4333+3433)  // either major
 
 sRange = tpSouth>11 and hcp(south)>10 and tpSouth<22 and hcp(south)<23
 
 # Now do it
-(s1m1N or s1m2N or s1m3N) and sRange and sShape and calmWest and (nAny4 or nMajor4)
+(s1m1N or s1m2N or s1m3N) and sRange and sShape and calmWest and nShape
 
 action printoneline,
+
+average "n1         " 100 * n1,
+average "n2         " 100 * n2,
+average "n3         " 100 * n3,
 
 average "1m... 6- 9 " 100 * s1m1N,
 average "     10-12 " 100 * s1m2N,
@@ -297,9 +302,9 @@ average "      3343 " 100 * shape(north,3343),
 average "      3334 " 100 * shape(north,3334),
 `, "S", true)
 Script
-Button,1m-1|2|3 NT w/4333,\n\
+Button,1m-1|2|3 NT w/33(43),\n\
 --- 1m - 1NT，2NT，or 3NT w/4333 shape\n\
 South opens 1!C or 1!D.  North has any 4333 hand with stuff in every other suit.\n\
 Should North skip over a 4-card suit to bid NT?\n\
 1NT is 6-9，2NT is 10-12，3NT is 13-15.\n\
-%NtAfter1m%,width=50% backgroundColor=lightpink
+%NtAfter1m%,width=50%
