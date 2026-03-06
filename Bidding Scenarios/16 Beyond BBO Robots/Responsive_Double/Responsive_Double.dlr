@@ -1,6 +1,6 @@
 # alias: ResponsiveDouble
 # button-text: Responsive Double
-# scenario-title: West Opens, North Bids or Doubles, East raises, and South does anything
+# scenario-title: West Opens, North Bids or Doubles, East raises, and South doubles.
 # gib-works: false
 # bba-works: true
 # auction-filter: Auction.....\n(1C +[X1].? +2C|1D +[X1].? +2D|1H +[X1].? +2H|1S +[X1].? +2S)
@@ -8,7 +8,8 @@
 # convention-card-ew: 21GF-GIB
 
 /*@chat
-West Opens, North Bids or Doubles, East raises, and South does anything
+West Opens, North Bids or Doubles, East raises, and South doubles.
+The double shows both majors if west opened a minor, otherwise, both minors.
 @chat*/
 
 dealer west
@@ -25,19 +26,18 @@ oC = not (oS or oH or oD)
 westSuit = (oS or oH or oD or oC)
 
 # Distribution in West's opening suit -- north<3, east has support, west has 4 in unbid major(s) & 3+ in unbid minor(s).
-dS = oS ? spades(east)  >3 and spades(north)<2   and hearts(north)==4 and shape(south,1444+2443+2434)       : 0
-dH = oH ? hearts(east)  >3 and hearts(north)<2   and spades(north)==4 and shape(south,4144+4243+4234)       : 0
-dD = oD ? diamonds(east)>4 and diamonds(north)<2 and shape(north,44xx+43xx+34xx) and shape(south,4414+4423) : 0
-dC = oC ? clubs(east)   >5 and clubs(north)<2    and shape(north,44xx+43xx+34xx) and shape(south,4441+4432) : 0
-dAll = (dS or dH or dD or dC) and shape(north,any 5440+any 5431+any 5332+any 4441+any 4432-5xxx-x5xx)
+dS = oS and spades(east)  >2 and shape(south,xx44)
+dH = oH and hearts(east)  >2 and shape(south,xx44)
+dD = oD and diamonds(east)>3 and shape(south,44xx)
+dC = oC and clubs(east)   >4 and shape(south,44xx)
 
-westOpens    = hcp(west) >11 and hcp(west) <15
-northDoubles = hcp(north)>9  and hcp(north)<15
-eastRaises   = hcp(east) >7  and hcp(east) <10
+westOpens    = hcp(west) >11 and hcp(west) <15 and (dS or dH or dD or dC)
+northActs    = hcp(north)>10 and hcp(north)<15 and shape(north,any 5431 +any 5440 +any 4441)
+eastRaises   = hcp(east) >5  and hcp(east) <9
 southDoubles = hcp(south)>7
 
 ##### Now do it #####
-westOpens and northDoubles and eastRaises and southDoubles and dAll
+westOpens and northActs and eastRaises and southDoubles
 
 produce 30
 action printoneline,
