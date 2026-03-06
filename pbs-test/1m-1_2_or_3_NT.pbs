@@ -251,9 +251,9 @@ nD3 = hcp(north,diamonds)>2
 nM3 = hcp(north,hearts)>2 and hcp(north,spades)>2
 
 # Define North's response ranges
-n1 = hcp(north)>5  and hcp(north)<10 and hascard(east,2C)
+n1 = hcp(north)>5  and hcp(north)<10 //and hascard(east,2C)
 n2 = hcp(north)>9  and hcp(north)<13 
-n3 = hcp(north)>12 and hcp(north)<16 and hascard(west,2D) and not hascard(west,2C)
+n3 = hcp(north)>12 and hcp(north)<16 //and hascard(west,2D) and not hascard(west,2C)
 
 # For opening with minimum values, require extra suit length
 sMin = hcp(south)<12 and tpSouth<13
@@ -279,7 +279,7 @@ nShape  = shape(north,any 4333 -4xxx -x4xx)
 sRange = tpSouth>11 and hcp(south)>10 and tpSouth<22 and hcp(south)<23
 
 # Now do it
-(s1m1N or s1m2N or s1m3N) and sRange and sShape and calmWest and nShape  //(nAny4 or nMajor4)
+(s1m1N or s1m2N or s1m3N) and sRange and sShape and calmWest and nShape
 
 action printoneline,
 
@@ -302,7 +302,7 @@ average "      3343 " 100 * shape(north,3343),
 average "      3334 " 100 * shape(north,3334),
 `, "S", true)
 Script
-Button,1m-1|2|3 NT w/4333,\n\
+Button,1m-1|2|3 NT w/33(43),\n\
 --- 1m - 1NT，2NT，or 3NT w/4333 shape\n\
 South opens 1!C or 1!D.  North has any 4333 hand with stuff in every other suit.\n\
 Should North skip over a 4-card suit to bid NT?\n\
