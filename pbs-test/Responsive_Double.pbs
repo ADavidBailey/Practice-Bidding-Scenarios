@@ -44,12 +44,13 @@ eastRaises   = hcp(east) >5  and hcp(east) <9
 southDoubles = hcp(south)>7
 
 ##### Now do it #####
-westOpens and northDoubles and eastRaises and southDoubles
+westOpens and northActs and eastRaises and southDoubles
 
 produce 30
 action printoneline,
 `, "W", true)
 Script
 Button,Responsive Double,\n\
-West Opens，North Bids or Doubles，East raises，and South does anything\n\
+West Opens，North Bids or Doubles，East raises，and South doubles.\n\
+The double shows both majors if west opened a minor，otherwise，both minors.\n\
 %ResponsiveDouble%,width=50% backgroundColor=lightpink
