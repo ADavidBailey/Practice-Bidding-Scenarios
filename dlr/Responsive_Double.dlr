@@ -25,16 +25,16 @@ oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
 oC = not (oS or oH or oD)
 westSuit = (oS or oH or oD or oC)
 
-# Distribution in West's opening suit -- north<3, east has support, west has 4 in unbid major(s) & 3+ in unbid minor(s).
-dS = oS and spades(east)  >2 and shape(south,xx44)
-dH = oH and hearts(east)  >2 and shape(south,xx44)
-dD = oD and diamonds(east)>3 and shape(south,44xx)
-dC = oC and clubs(east)   >4 and shape(south,44xx)
+# West opens a major & south has both minors; otherwise, both majors. 
+dS = oS and spades(east)  >2 and diamonds(south)>3 and clubs(south)>3
+dH = oH and hearts(east)  >2 and diamonds(south)>3 and clubs(south)>3
+dD = oD and diamonds(east)>3 and spades(south)>3   and hearts(south)>3
+dC = oC and clubs(east)   >4 and spades(south)>3   and hearts(south)>3
 
 westOpens    = hcp(west) >11 and hcp(west) <15 and (dS or dH or dD or dC)
 northActs    = hcp(north)>10 and hcp(north)<15 and shape(north,any 5431 +any 5440 +any 4441)
 eastRaises   = hcp(east) >5  and hcp(east) <9
-southDoubles = hcp(south)>7
+southDoubles = hcp(south)>9
 
 ##### Now do it #####
 westOpens and northActs and eastRaises and southDoubles
