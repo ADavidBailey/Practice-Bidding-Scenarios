@@ -35,7 +35,7 @@ westSuit = (oS or oH or oD or oC)
 dS = oS and spades(east)  >2 and spades(north)<2   and hearts(north)==4            and shape(south,2443+3433)
 dH = oH and hearts(east)  >2 and hearts(north)<2   and spades(north)==4            and shape(south,4243+4333)
 dD = oD and diamonds(east)>3 and diamonds(north)<2 and shape(north,44xx+43xx+34xx) and shape(south,4414+4423)
-dC = oC and clubs(east)   >4 and clubs(north)<2    and shape(north,any 54xx+45xx+4351+3451) and shape(south,4441+4432)
+dC = oC and clubs(east)   >4 and clubs(north)<2    and shape(north,54xx+45xx+4351+3451) and shape(south,4441+4432)
 dAll = (dS or dH or dD or dC) and shape(north,any 5440+any 5431+any 5332+any 4441+any 4432-5xxx-x5xx)
 
 westOpens    = hcp(west) >11 and hcp(west) <15
