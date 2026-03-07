@@ -250,10 +250,10 @@ predeal south D75,C64
 mK = hcp(north,hearts)>2 and hcp(north,spades)>2
 
 # South opens a minor and North has any 4333 with 10-12 and honor(s)in every suit
-s1C = oneClub    and dQ and clubs(south)>6     and top3(south,clubs)>1    and top5(south,clubs)>2
-s1D = oneDiamond and cQ and diamonds(south)>6  and top3(south,diamonds)>1 and top5(south,diamonds)>2
+s1C = oneClub    and clubs(south)>5     and top5(south,clubs)>2
+s1D = oneDiamond and diamonds(south)>5  and top5(south,diamonds)>2
 s1mShape = shape(south,any 83xx +any 74xx +any 65xx -5xxx -x5xx -4xxx -x4xx)       // south shape upgrades required for TP
-s1mRange = tpSouth>21 and hcp(south)<19
+s1mRange = hcp(south)<19 and losers(south)==4
 n1mRange = hcp(north)>10 and hcp(north)<13      // north responds 2N (I hope!)
 n1mShape = shape(north,any 4333 +any 4432 -4xxx -x4xx)
 
