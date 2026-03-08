@@ -223,8 +223,8 @@ oneH = oH and (h3 or h4)
 ### Then, in balancing seat, we get a balancing 2NT
 
 # Define good suits
-GoodD = diamonds(west)>4 and top4(west,diamonds)==1
-GoodC = clubs(west)>4    and top4(west,clubs)==1
+GoodD = diamonds(west)>4 and top4(west,diamonds)==1 and controls(west,diamonds)<2
+GoodC = clubs(west)>4    and top4(west,clubs)==1    and controls(west,clubs)<2
 BadM  = hcp(west,spades)==0 and hcp(west,hearts)==0
 
 # Intervener is at least 6-5 in the minors
