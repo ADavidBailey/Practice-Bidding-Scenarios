@@ -209,10 +209,12 @@ tpEW = tpEast + tpWest
 
 # The bidding starts: 1M - P - 2M - P - P
 ForcingNT = hcp(north)<7 or hcp(north)>9   // faulty raise of invitational raise
+topSpadeHonor = hcp(north,spades)>2
+topHeartHonor = hcp(north,hearts)>2
 
-s3 = spades(north)==3 and tpNorth>6 and tpNorth<11 and not ForcingNT
-s4 = spades(north)==4 and tpNorth>6 and tpNorth<10                   // avoid jump raise
-h3 = hearts(north)==3 and tpNorth>6 and tpNorth<11 and not ForcingNT
+s3 = spades(north)==3 and hcp(north,spades)<3 and tpNorth>6 and tpNorth<11 and not (ForcingNT or topSpadeHonor)
+s4 = spades(north)==4 and tpNorth>6 and tpNorth<10
+h3 = hearts(north)==3 and hcp(north,hearts)<3 and tpNorth>6 and tpNorth<11 and not (ForcingNT or topHeartHonor)
 h4 = hearts(north)==4 and tpNorth>6 and tpNorth<10
 
 oneS = oS and (s3 or s4) and spades(west)>1
@@ -226,7 +228,7 @@ GoodC = clubs(west)>4    and top5(west,clubs)==2
 BadM  = hcp(west,spades)<3 and hcp(west,hearts)<3
 
 # Intervener is at least 6-5 in the minors
-wDC = GoodD and GoodC and (clubs(west) + diamonds(west))>10 and BadM    // West can have 2 to 4 in openers Major
+wDC = GoodD and GoodC and BadM       // West can have 2 to 4 in openers Major
 wRange = hcp(west)<10 and tpWest>10                    // avoid honors in short suits
 
 eHand = spades(east)<5 and hearts(east)<5 and tpEast<12       // East must start with a Pass
