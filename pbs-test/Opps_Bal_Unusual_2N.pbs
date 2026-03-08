@@ -24,7 +24,7 @@ auction-filter: Auction.....\n(1H +Pass +2H|1S +Pass 2S) +Pass\nPass +
 dealer south
 produce 1000
 
-predeal west DKJT9,CKQT9
+predeal west DQT9,CQT9
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -221,12 +221,13 @@ oneH = oH and (h3 or h4) and hearts(west)>1
 ### Then, in balancing seat, we get a balancing 2NT
 
 # Define good suits
-GoodD = diamonds(west)>4 and top5(west,diamonds)>2
-GoodC = clubs(west)>4    and top5(west,clubs)>2
+GoodD = diamonds(west)>4 and top5(west,diamonds)==3
+GoodC = clubs(west)>4    and top5(west,clubs)==3
+BadM  = hcp(west,spades)==0 and hcp(west,hearts)==0
 
 # Intervener is 54 or 45 in the minors
-wDC = GoodD and GoodC and (clubs(west) + diamonds(west))>10     // West can have 2 to 4 in openers Major
-wRange =  hcp(west)>8 and hcp(west)<11 and tpWest>10               // avoid honors in short suits
+wDC = GoodD and GoodC and (clubs(west) + diamonds(west))>10 and BadM    // West can have 2 to 4 in openers Major
+wRange = hcp(west)<10 and tpWest>10                    // avoid honors in short suits
 
 eHand = spades(east)<5 and hearts(east)<5 and tpEast<12       // East must start with a Pass
 
@@ -234,7 +235,7 @@ oSuit = (oneS or oneH) and shape(south,any xxxx-8xxx-7xxx-6xxx)
 oRange = hcp(south)>11 and hcp(south)<15 and tpSouth>12 and tpSouth<17
 
 ### Now do it
-oSuit and oRange and wDC and wRange and eHand
+oSuit and oRange and wDC and eHand // and wRange
 action printoneline,
 `, "S", true)
 Script
