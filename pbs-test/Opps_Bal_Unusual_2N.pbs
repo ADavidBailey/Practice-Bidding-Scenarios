@@ -16,7 +16,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
-convention-card-ns: 21GF-GIB
+convention-card-ns: 21GF-PolishTwoSuiters
 convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n(1H +Pass +2H|1S +Pass 2S) +Pass\nPass +
 */
@@ -227,7 +227,7 @@ GoodD = diamonds(west)>4 and top4(west,diamonds)==1 and controls(west,diamonds)<
 GoodC = clubs(west)>4    and top4(west,clubs)==1    and controls(west,clubs)<2
 BadM  = hcp(west,spades)==0 and hcp(west,hearts)==0
 
-# Intervener is at least 6-5 in the minors
+# Intervener is at least 5-5 in the minors
 wHand = GoodD and GoodC and BadM //and (diamonds(west) + clubs(west))>10
 
 eHand = spades(east)<5 and hearts(east)<5 and tpEast<12       // East must start with a Pass
