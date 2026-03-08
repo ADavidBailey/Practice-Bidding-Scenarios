@@ -228,8 +228,7 @@ GoodC = clubs(west)>4    and top5(west,clubs)>1
 BadM  = hcp(west,spades)==0 and hcp(west,hearts)==0
 
 # Intervener is at least 6-5 in the minors
-wDC = GoodD and GoodC and BadM and (diamonds(west) + clubs(west)) >10
-wRange = hcp(west)<10 and tpWest<12                    // avoid honors in short suits
+wHand = hcp(west)<10 and tpWest<12 and GoodD and GoodC and BadM and (diamonds(west) + clubs(west))>10
 
 eHand = spades(east)<5 and hearts(east)<5 and tpEast<12       // East must start with a Pass
 
@@ -237,7 +236,7 @@ oSuit = (oneS or oneH) and shape(south,any xxxx-8xxx-7xxx-6xxx)
 oRange = hcp(south)>11 and hcp(south)<15 and tpSouth>12 and tpSouth<17
 
 ### Now do it
-oSuit and oRange and wDC and eHand and wRange
+oSuit and oRange and wHand and eHand and wRange
 action printoneline,
 `, "S", true)
 Script
