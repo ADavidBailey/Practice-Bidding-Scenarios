@@ -228,7 +228,7 @@ GoodC = clubs(west)>4    and top4(west,clubs)==1    and controls(west,clubs)<2
 BadM  = hcp(west,spades)==0 and hcp(west,hearts)==0
 
 # Intervener is at least 6-5 in the minors
-wHand = GoodD and GoodC and BadM and (diamonds(west) + clubs(west))>10
+wHand = GoodD and GoodC and BadM //and (diamonds(west) + clubs(west))>10
 
 eHand = spades(east)<5 and hearts(east)<5 and tpEast<12       // East must start with a Pass
 
