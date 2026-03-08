@@ -226,7 +226,7 @@ GoodC = clubs(west)>3    and top5(west,clubs)>2
 
 # Intervener is 54 or 45 in the minors
 wDC = GoodD and GoodC and diamonds(west)>4 and clubs(west)>4      // West can have 2 to 4 in openers Major
-wRange = losers(west)==8 and tpWest>9 and tpWest<12               // avoid honors in short suits
+wRange =  tpWest>9 and tpWest<12               // avoid honors in short suits
 
 eHand = spades(east)<5 and hearts(east)<5 and tpEast<12       // East must start with a Pass
 
