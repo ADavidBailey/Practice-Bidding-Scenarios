@@ -18,13 +18,13 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-GIB
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n1[CDHS] +Pass +2[CDHSN] +Pass\nPass
+auction-filter: Auction.....\n(1H +Pass +2H|1S +Pass 2S) +Pass\nPass +
 */
 # Opponent's Balancing Unusual NT
 dealer south
 produce 1000
 
-predeal west DKT9,CQT9
+predeal west DKJT9,CKQT9
 
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -225,7 +225,7 @@ GoodD = diamonds(west)>3 and top5(west,diamonds)>2
 GoodC = clubs(west)>3    and top5(west,clubs)>2
 
 # Intervener is 54 or 45 in the minors
-wDC = GoodD and GoodC and shape(west,66xx +xx65 +xx56 +xx55)      // West can have 2 to 4 in openers Major
+wDC = GoodD and GoodC and diamonds(west)>4 and clubs(west)>4      // West can have 2 to 4 in openers Major
 wRange = losers(west)==8 and tpWest>9 and tpWest<12               // avoid honors in short suits
 
 eHand = spades(east)<5 and hearts(east)<5 and tpEast<12       // East must start with a Pass
@@ -240,5 +240,5 @@ action printoneline,
 Script
 Button,Bal w/Unusual NT,\n\
 --- Opponents Bal with Unusual NT\n\
-This shows 5/4 or 4/5 in the minors.\n\
+showing both minors.\n\
 %OppsBalUnusualNT%,width=50%
