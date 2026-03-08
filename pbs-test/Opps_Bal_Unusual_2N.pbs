@@ -221,11 +221,11 @@ oneH = oH and (h3 or h4) and hearts(west)>1
 ### Then, in balancing seat, we get a balancing 2NT
 
 # Define good suits
-GoodD = diamonds(west)>4 and top5(west,diamonds)==3
-GoodC = clubs(west)>4    and top5(west,clubs)==3
-BadM  = hcp(west,spades)==0 and hcp(west,hearts)==0
+GoodD = diamonds(west)>4 and top5(west,diamonds)==2
+GoodC = clubs(west)>4    and top5(west,clubs)==2
+BadM  = hcp(west,spades)<3 and hcp(west,hearts)<3
 
-# Intervener is 54 or 45 in the minors
+# Intervener is at least 6-5 in the minors
 wDC = GoodD and GoodC and (clubs(west) + diamonds(west))>10 and BadM    // West can have 2 to 4 in openers Major
 wRange = hcp(west)<10 and tpWest>10                    // avoid honors in short suits
 
