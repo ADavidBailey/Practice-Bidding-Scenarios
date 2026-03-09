@@ -112,12 +112,6 @@ def generate_summary():
         ns, ew = count_scenarios(name)
         scenario_counts[name] = (ns, ew)
 
-    # Filter to only show rows where at least one card has value != "0"
-    visible_keys = []
-    for key in canonical_keys:
-        if any(cards[name].get(key, "0") != "0" for name in ordered):
-            visible_keys.append(key)
-
     # Short display names for column headers
     def short_name(name):
         name = name.replace("21GF-", "")
@@ -160,6 +154,7 @@ def generate_summary():
     h.append('    .v1 { font-weight: bold; color: #0077b6; }')
     h.append('    .v0 { color: #ccc; }')
     h.append('    .scenario-count { font-size: 10px; color: #888; font-weight: normal; }')
+    h.append('    tr.unused td { background: #f0f0f0; color: #aaa; }')
     h.append('    .section-row td { background: #f7f7f7; font-weight: 600; font-size: 11px;')
     h.append('                      color: #555; padding-top: 8px; border-bottom: 1px solid #ddd; }')
     h.append('    .rotate-header { writing-mode: vertical-rl; text-orientation: mixed;')
@@ -212,8 +207,10 @@ def generate_summary():
     }
 
     # Data rows
-    for key in visible_keys:
-        h.append('      <tr>')
+    for key in canonical_keys:
+        used = any(cards[name].get(key, "0") != "0" for name in ordered)
+        row_class = '' if used else ' class="unused"'
+        h.append(f'      <tr{row_class}>')
         h.append(f'        <td>{_esc(key)}</td>')
         for name in ordered:
             val = cards[name].get(key, "0")
@@ -310,7 +307,7 @@ def generate_summary():
         f.write(content)
 
     print(f"Summary written to {OUTPUT_FILE}")
-    print(f"  {len(ordered)} cards, {len(visible_keys)} settings shown (of {len(canonical_keys)} total)")
+    print(f"  {len(ordered)} cards, {len(canonical_keys)} settings shown")
 
 
 if __name__ == "__main__":
