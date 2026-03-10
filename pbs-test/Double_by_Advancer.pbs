@@ -38,7 +38,7 @@ westOpens = (oS or oH or oD or oC) //and shape(west,any 1xxx + any 0xxx)
 nD = diamonds(north)==5 and hcp(north,diamonds)>3
 nH = hearts(north)  ==5 and hcp(north,hearts)  >3 and not nD
 nS = spades(north)  ==5 and hcp(north,spades)  >3 and not (nD or nH)
-northOvercalls = ((oC and (nD or nH or nS)) or (oD and (nH or nS)) or (oH and nS)) and shape(north,any 5xxx -any 65xx -any 55xx)
+northOvercalls = ((oC and (nD or nH or nS)) or (oD and (nH or nS)) or (oH and nS)) and shape(north,any 6xxx +any 5xxx -any 65xx -any 55xx)
 
 # Avoid South's support for North's suit
 sDOK = nD ? diamonds(south)<3 : 1
@@ -47,7 +47,7 @@ sSOK = nS ? spades(south)  <3 : 1
 southSupportOK = sDOK and sHOK and sSOK
 
 # Define East's good support -------------------------     avoid negative double -----------
-eC = oC and clubs(east)   >3 and hcp(east,clubs)   >3 and spades(east)<4 and hearts(east)<4
+eC = oC and clubs(east)   >4 and hcp(east,clubs)   >3 and spades(east)<4 and hearts(east)<4
 eD = oD and diamonds(east)>3 and hcp(east,diamonds)>2 and spades(east)<4 and hearts(east)<4
 eH = oH and hearts(east)  >2 and hcp(east,hearts)  >1
 
