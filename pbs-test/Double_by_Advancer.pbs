@@ -71,7 +71,7 @@ sCH = DS and shape(south,x4x4+x4x5)      and hcp(south,clubs)   >3 and hcp(south
 sCD = HS and shape(south,xx44+xx45+xx54) and hcp(south,diamonds)>3 and hcp(south,clubs) >3
 southActs = (sHS or sDS or sDH or sCS or sCH or sCD)
 
-/*
+
 # Make them good suits
 sGHS = sHS and hcp(south,hearts)  >3 and hcp(south,spades)>3
 sGDS = sDS and hcp(south,diamonds)>3 and hcp(south,spades)>3
@@ -80,8 +80,8 @@ sGCS = sCS and hcp(south,clubs)   >3 and hcp(south,spades)>3
 sGCH = sCH and hcp(south,clubs)   >3 and hcp(south,hearts)>3
 sGCD = sCD and hcp(south,diamonds)>3 and hcp(south,clubs) >3
 
-southActs  = (sGHS or sGDS or sGDH or sGCS or sGCH or sGCD) and southSupportOK
-*/
+#southActs  = (sGHS or sGDS or sGDH or sGCS or sGCH or sGCD) and southSupportOK
+
 
 minHCP  = hcp(west)>=11 and hcp(north)>=8 and hcp(east)>=6 and hcp(south)>=10
 
