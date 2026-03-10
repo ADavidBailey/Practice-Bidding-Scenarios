@@ -63,14 +63,15 @@ DS = oD and nS
 HS = oH and nS
 
 # Define South's doubles showing the 2 other suits
-sHS = CD and shape(south,44xx+54xx+45xx)
-sDS = CH and shape(south,4x4x+4x5x)
-sDH = CS and shape(south,x44x+x45x)      and spades(south)<3
-sCS = DH and shape(south,4xx4+4xx5)      and hearts(south)<3
-sCH = DS and shape(south,x4x4+x4x5)      and spades(south)<3
-sCD = HS and shape(south,xx44+xx45+xx54)
-#southActs = (sHS or sDS or sDH or sCS or sCH or sCD)
+sHS = CD and shape(south,44xx+54xx+45xx) and hcp(south,hearts)  >3 and hcp(south,spades)>3
+sDS = CH and shape(south,4x4x+4x5x)      and hcp(south,diamonds)>3 and hcp(south,spades)>3
+sDH = CS and shape(south,x44x+x45x)      and hcp(south,diamonds)>3 and hcp(south,hearts)>3 and spades(south)<3
+sCS = DH and shape(south,4xx4+4xx5)      and hcp(south,clubs)   >3 and hcp(south,spades)>3 and hearts(south)<3
+sCH = DS and shape(south,x4x4+x4x5)      and hcp(south,clubs)   >3 and hcp(south,hearts)>3 and spades(south)<3
+sCD = HS and shape(south,xx44+xx45+xx54) and hcp(south,diamonds)>3 and hcp(south,clubs) >3
+southActs = (sHS or sDS or sDH or sCS or sCH or sCD)
 
+/*
 # Make them good suits
 sGHS = sHS and hcp(south,hearts)  >3 and hcp(south,spades)>3
 sGDS = sDS and hcp(south,diamonds)>3 and hcp(south,spades)>3
@@ -80,14 +81,15 @@ sGCH = sCH and hcp(south,clubs)   >3 and hcp(south,hearts)>3
 sGCD = sCD and hcp(south,diamonds)>3 and hcp(south,clubs) >3
 
 southActs  = (sGHS or sGDS or sGDH or sGCS or sGCH or sGCD) and southSupportOK
+*/
 
-minHCP  = hcp(west)>=12 and hcp(north)>=8 and hcp(east)>=6 and hcp(south)>=10
+minHCP  = hcp(west)>=11 and hcp(north)>=8 and hcp(east)>=6 and hcp(south)>=10
 
 ##### Now do it #####
-westOpens and northOvercalls and eastRaises and southActs and minHCP
+westOpens and northOvercalls and eastRaises and southActs //and minHCP
 
 produce 30
-action printoneline,
+
 action printoneline,
 average "W 1C  " 100 * oC,
 average "W 1D  " 100 * oD,
