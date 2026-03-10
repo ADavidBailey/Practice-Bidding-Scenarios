@@ -32,18 +32,18 @@ oS = s>4 and s>=h and s>=d and s>=c
 oH = not oS and h>4 and h>=d and h>=c
 oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
 oC = not (oS or oH or oD)
-westOpens = (oS or oH or oD or oC) //and shape(west,any 1xxx + any 0xxx)
+westOpens = (oC or oD or oH) //and shape(west,any 1xxx + any 0xxx)
 
 # Predict North's overcall
-nD = diamonds(north)==5 and hcp(north,diamonds)>3
-nH = hearts(north)  ==5 and hcp(north,hearts)  >3 and not nD
-nS = spades(north)  ==5 and hcp(north,spades)  >3 and not (nD or nH)
+nD = diamonds(north)>4 and diamonds(north)>hearts(north) and diamonds(north)>spades(north)
+nH = hearts(north)  >4 and hearts(north)>spades(north) and not nD
+nS = spades(north)  >4 and not (nD or nH)
 northOvercalls = ((oC and (nD or nH or nS)) or (oD and (nH or nS)) or (oH and nS)) and shape(north,any 6xxx +any 5xxx -any 65xx -any 55xx)
 
 # Avoid South's support for North's suit
-sDOK = nD ? diamonds(south)<3 : 1
-sHOK = nH ? hearts(south)  <3 : 1
-sSOK = nS ? spades(south)  <3 : 1
+sDOK = nD ? diamonds(south)<3 : 0
+sHOK = nH ? hearts(south)  <3 : 0
+sSOK = nS ? spades(south)  <3 : 0
 southSupportOK = sDOK and sHOK and sSOK
 
 # Define East's good support -------------------------     avoid negative double -----------
