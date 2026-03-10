@@ -38,16 +38,16 @@ westOpens = (oC or oD or oH) //and shape(west,any 1xxx + any 0xxx)
 nD = diamonds(north)>4 and diamonds(north)>hearts(north) and diamonds(north)>spades(north)
 nH = hearts(north)  >4 and hearts(north)>spades(north) and not nD
 nS = spades(north)  >4 and not (nD or nH)
-northOvercalls = ((oC and (nD or nH or nS)) or (oD and (nH or nS)) or (oH and nS)) and shape(north,any 6xxx +any 5xxx -any 65xx -any 55xx)
+northOvercalls = ((oC and (nD or nH or nS)) or (oD and (nH or nS)) or (oH and nS)) and shape(north,any 6xxx +any 5xxx -any 65xx -any 55xx -any 4xxx)
 
 # Avoid South's support for North's suit
-sDOK = nD ? diamonds(south)<3 : 0
-sHOK = nH ? hearts(south)  <3 : 0
-sSOK = nS ? spades(south)  <3 : 0
+sDOK = nD and diamonds(south)<3
+sHOK = nH and hearts(south)  <3
+sSOK = nS and spades(south)  <3
 southSupportOK = sDOK and sHOK and sSOK
 
 # Define East's good support -------------------------     avoid negative double -----------
-eC = oC and clubs(east)   >4 and hcp(east,clubs)   >3 and spades(east)<4 and hearts(east)<4
+eC = oC and clubs(east)   >4 and hcp(east,clubs)   >2 and spades(east)<4 and hearts(east)<4
 eD = oD and diamonds(east)>3 and hcp(east,diamonds)>2 and spades(east)<4 and hearts(east)<4
 eH = oH and hearts(east)  >2 and hcp(east,hearts)  >1
 
@@ -63,12 +63,12 @@ DS = oD and nS
 HS = oH and nS
 
 # Define South's doubles showing the 2 other suits
-sHS = CD ? shape(south,44xx+54xx+45xx) : 0
-sDS = CH ? shape(south,4x4x+4x5x)      : 0
-sDH = CS ? shape(south,x44x+x45x)      and spades(south)<3    : 0
-sCS = DH ? shape(south,4xx4+4xx5)      and hearts(south)<3    : 0
-sCH = DS ? shape(south,x4x4+x4x5)      and spades(south)<3    : 0
-sCD = HS ? shape(south,xx44+xx45+xx54) : 0
+sHS = CD and shape(south,44xx+54xx+45xx)
+sDS = CH and shape(south,4x4x+4x5x)
+sDH = CS and shape(south,x44x+x45x)      and spades(south)<3
+sCS = DH and shape(south,4xx4+4xx5)      and hearts(south)<3
+sCH = DS and shape(south,x4x4+x4x5)      and spades(south)<3
+sCD = HS and shape(south,xx44+xx45+xx54)
 
 # Make them good suits
 sGHS = sHS and hcp(south,hearts)  >3 and hcp(south,spades)>3
@@ -85,6 +85,8 @@ minHCP  = hcp(west)>=12 and hcp(north)>=8 and hcp(east)>=6 and hcp(south)>=12
 ##### Now do it #####
 westOpens and northOvercalls and eastRaises and southActs and minHCP
 
+produce 30
+action printoneline,
 action printoneline,
 average "W 1C  " 100 * oC,
 average "W 1D  " 100 * oD,
