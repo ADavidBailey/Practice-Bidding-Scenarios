@@ -1,16 +1,23 @@
 # alias: Serious
 # button-text: Serious/Non-Serious
-# scenario-title: ---  Serious/Non-Serious: When we're in a 2/1 auction and we have a major suit fit
+# scenario-title: ---  Serious/Non-Serious: When we're in a GF auction with a major suit fit and the bid
 # gib-works: true
 # bba-works: true
-# auction-filter: (1H +Pass +2[CDN] +Pass\n[34]H)|(1S +Pass +2[CDHN] +Pass\n[34]S)
+# auction-filter: (1H +Pass +2N.*\n.*3H|1S +Pass +2N.*\n.*3S|1H +Pass +2[CDS].*\n.. +Pass +3H|1S +Pass +2[CDH].*\n.. +Pass +3S|1S +Pass +2H.*\n3H|1H +Pass +2S.*\n3S)
 # convention-card-ns: 21GF-DEFAULT
 # convention-card-ew: 21GF-GIB
 
+/* That's a complex filter.  Here's a breakdown:
+1M Pass 2N Pass, 3M by either
+1M Pass 2/1, ... 3M by responder
+1x Pass 2M Pass, 3M by either
+*/
+
 /*@chat
----  Serious/Non-Serious: When we're in a 2/1 auction and we have a major suit fit
-and the bid is at 3 of our major, the step bid (or 3N) says I'm non-serious (or serious).
-it's a partnership agreement.  I prefer non-serious as it doesn't reveal information.
+---  Serious/Non-Serious: When we're in a GF auction with a major suit fit and the bid
+is at 3 of our major, the step bid (or 3N) says I'm non-serious (or serious). It's a
+partnership agreement. Serious demands that partner cue-bid. I prefer non-serious as
+it avoids non-serious cue-bids which might reveal information, needlessly.
 The deal is leveled so that game and slam occur with about the same frequency.
 @chat*/
 
