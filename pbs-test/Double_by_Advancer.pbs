@@ -112,7 +112,7 @@ westOpens = (oC or oD or oH) //and shape(west,any 1xxx + any 0xxx)
 nD = diamonds(north)>4 and diamonds(north)>hearts(north) and diamonds(north)>spades(north)
 nH = hearts(north)  >4 and hearts(north)>spades(north) and not nD
 nS = spades(north)  >4 and not (nD or nH)
-northOvercalls = ((oC and (nD or nH or nS)) or (oD and (nH or nS)) or (oH and nS)) and shape(north,any 5xxx -any 55xx -any 4xxx)
+northOvercalls = ((oC and (nD or nH or nS)) or (oD and (nH or nS)) or (oH and nS)) and shape(north,any 5xxx -any 55xx -any 56xx -any 65xx -any 66xx -any 4xxx)
 
 # Avoid South's support for North's suit
 sDOK = nD and diamonds(south)<3
