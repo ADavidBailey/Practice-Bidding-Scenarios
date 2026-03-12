@@ -112,7 +112,8 @@ westOpens = (oC or oD or oH) //and shape(west,any 1xxx + any 0xxx)
 nD = diamonds(north)>4 and diamonds(north)>hearts(north) and diamonds(north)>spades(north)
 nH = hearts(north)  >4 and hearts(north)>spades(north) and not nD
 nS = spades(north)  >4 and not (nD or nH)
-northOvercalls = ((oC and (nD or nH or nS)) or (oD and (nH or nS)) or (oH and nS)) and shape(north,any 5xxx -any 55xx -any 56xx -any 65xx -any 66xx -any 4xxx)
+northShape = shape(north,any 5xxx -any 55xx -any 56xx -any 65xx -any 66xx -any 7xxx -any 4xxx)
+northOvercalls = ((oC and (nD or nH or nS)) or (oD and (nH or nS)) or (oH and nS)) and northShape
 
 # Avoid South's support for North's suit
 sDOK = nD and diamonds(south)<3
@@ -120,10 +121,10 @@ sHOK = nH and hearts(south)  <3
 sSOK = nS and spades(south)  <3
 southSupportOK = sDOK or sHOK or sSOK
 
-# Define East's good support -------------------------     avoid negative double -----------
-eC = oC and clubs(east)   >3 and hcp(east,clubs)   >2 and spades(east)<4 and hearts(east)<4
-eD = oD and diamonds(east)>3 and hcp(east,diamonds)>2 and spades(east)<4 and hearts(east)<4
-eH = oH and hearts(east)  >2 and hcp(east,hearts)  >1
+# Define East's good support                                               ------ avoid negative double --------
+eC = oC and clubs(east)   >3 and hcp(east,clubs)   >2 and clubs(east)<6    and spades(east)<4 and hearts(east)<4
+eD = oD and diamonds(east)>3 and hcp(east,diamonds)>2 and diamonds(east)<5 and spades(east)<4 and hearts(east)<4
+eH = oH and hearts(east) ==3 and hcp(east,hearts)  >1
 
 # East raises ---------------     avoid preemptive raise -----
 eastRaises = (eC or eD or eH) and shape(east,xxxx -any 0xxx -any 1xxx)
