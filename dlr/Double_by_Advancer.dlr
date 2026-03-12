@@ -115,13 +115,13 @@ sHOK = nH and hearts(south)  <3
 sSOK = nS and spades(south)  <3
 southSupportOK = sDOK or sHOK or sSOK
 
-# Define East's good support                                               ------ avoid negative double --------
-eC = oC and clubs(east)   >3 and hcp(east,clubs)   >2 and clubs(east)<6    and spades(east)<4 and hearts(east)<4
-eD = oD and diamonds(east)>3 and hcp(east,diamonds)>2 and diamonds(east)<5 and spades(east)<4 and hearts(east)<4
-eH = oH and hearts(east) ==3 and hcp(east,hearts)  >1
+# Define East's simple raise  --- w/good support       ------ avoid negative double
+eC = oC and clubs(east)   ==4 and hcp(east,clubs)   >3 and spades(east)<4 and hearts(east)<4
+eD = oD and diamonds(east)==4 and hcp(east,diamonds)>2 and spades(east)<4 and hearts(east)<4
+eH = oH and hearts(east)  ==3 and hcp(east,hearts)  >1
 
-# East raises ---------------     avoid preemptive raise -----
-eastRaises = (eC or eD or eH) and shape(east,xxxx -any 0xxx -any 1xxx)
+# East raises
+eastRaises = (eC or eD or eH)
 
 # Define Opener's & Overcaller's suits
 CD = oC and nD
