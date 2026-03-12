@@ -112,7 +112,7 @@ eD = oD and diamonds(east)==4 and hcp(east,diamonds)>2 and spades(east)<4 and he
 eC = oC and clubs(east)   ==4 and hcp(east,clubs)   >3 and spades(east)<4 and hearts(east)<4
 
 # East raises
-eastRaises = (eS or eH or eD or eC) and tpEast>5 and tpEast<10
+eastRaises = (eS or eH or eD or eC) and hcp(east)>5 and tpEast<10
 
 # South has the 2 unbid suits (majors if minor opened, minors if major opened)
 dS = oS and spades(north)<3   and diamonds(south)>3 and clubs(south)>3
