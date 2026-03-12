@@ -18,8 +18,15 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
-auction-filter: (1H +Pass +2[CDN] +Pass\n[34]H)|(1S +Pass +2[CDHN] +Pass\n[34]S)
+auction-filter: (1H +Pass +2N.*\n.*3H|1S +Pass +2N.*\n.*3S|1H +Pass +2[CDS].*\n.. +Pass +3H|1S +Pass +2[CDH].*\n.. +Pass +3S|1S +Pass +2H.*\n3H|1H +Pass +2S.*\n3S)
 */
+/* That's a complex filter.  Here's a breakdown:
+1M Pass 2N Pass, 3M by either
+1M Pass 2/1, ... 3M by responder
+1x Pass 2M Pass, 3M by either
+*/
+
+
 # Serious/Non-Serious
 dealer north
 produce 1000
@@ -109,8 +116,9 @@ average "grand" 100 * grand,
 `, "N", true)
 Script
 Button,Serious/Non-Serious,\n\
----  Serious/Non-Serious: When we're in a 2/1 auction and we have a major suit fit\n\
-and the bid is at 3 of our major，the step bid (or 3N) says I'm non-serious (or serious).\n\
-it's a partnership agreement.  I prefer non-serious as it doesn't reveal information.\n\
+---  Serious/Non-Serious: When we're in a GF auction with a major suit fit and the bid\n\
+is at 3 of our major，the step bid (or 3N) says I'm non-serious (or serious). It's a\n\
+partnership agreement. Serious demands that partner cue-bid. I prefer non-serious as\n\
+it avoids non-serious cue-bids which might reveal information，needlessly.\n\
 The deal is leveled so that game and slam occur with about the same frequency.\n\
 %Serious%
