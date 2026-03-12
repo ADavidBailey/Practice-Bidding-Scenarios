@@ -112,18 +112,19 @@ westOpens = (oC or oD or oH) //and shape(west,any 1xxx + any 0xxx)
 nD = diamonds(north)>4 and diamonds(north)>hearts(north) and diamonds(north)>spades(north)
 nH = hearts(north)  >4 and hearts(north)>spades(north) and not nD
 nS = spades(north)  >4 and not (nD or nH)
-northOvercalls = ((oC and (nD or nH or nS)) or (oD and (nH or nS)) or (oH and nS)) and shape(north,any 6xxx +any 5xxx -any 65xx -any 55xx -any 4xxx)
+northShape = shape(north,any 5xxx -any 55xx -any 56xx -any 65xx -any 66xx -any 7xxx -any 4xxx)
+northOvercalls = ((oC and (nD or nH or nS)) or (oD and (nH or nS)) or (oH and nS)) and northShape
 
 # Avoid South's support for North's suit
 sDOK = nD and diamonds(south)<3
 sHOK = nH and hearts(south)  <3
 sSOK = nS and spades(south)  <3
-southSupportOK = sDOK and sHOK and sSOK
+southSupportOK = sDOK or sHOK or sSOK
 
-# Define East's good support -------------------------     avoid negative double -----------
-eC = oC and clubs(east)   >4 and hcp(east,clubs)   >2 and spades(east)<4 and hearts(east)<4
-eD = oD and diamonds(east)>3 and hcp(east,diamonds)>2 and spades(east)<4 and hearts(east)<4
-eH = oH and hearts(east)  >2 and hcp(east,hearts)  >1
+# Define East's good support                                               ------ avoid negative double --------
+eC = oC and clubs(east)   >3 and hcp(east,clubs)   >2 and clubs(east)<6    and spades(east)<4 and hearts(east)<4
+eD = oD and diamonds(east)>3 and hcp(east,diamonds)>2 and diamonds(east)<5 and spades(east)<4 and hearts(east)<4
+eH = oH and hearts(east) ==3 and hcp(east,hearts)  >1
 
 # East raises ---------------     avoid preemptive raise -----
 eastRaises = (eC or eD or eH) and shape(east,xxxx -any 0xxx -any 1xxx)
@@ -137,7 +138,7 @@ DS = oD and nS
 HS = oH and nS
 
 # Define South's doubles showing the 2 other suits
-sHS = CD and shape(south,44xx+54xx+45xx) and hcp(south,hearts)  >3 and hcp(south,spades)>3
+sHS = CD and shape(south,44xx)             and hcp(south,hearts)  >3 and hcp(south,spades)>3
 sDS = CH and shape(south,4x4x+4x5x)      and hcp(south,diamonds)>3 and hcp(south,spades)>3
 sDH = CS and shape(south,x44x+x45x)      and hcp(south,diamonds)>3 and hcp(south,hearts)>3 and spades(south)<3
 sCS = DH and shape(south,4xx4+4xx5)      and hcp(south,clubs)   >3 and hcp(south,spades)>3 and hearts(south)<3
@@ -145,10 +146,10 @@ sCH = DS and shape(south,x4x4+x4x5)      and hcp(south,clubs)   >3 and hcp(south
 sCD = HS and shape(south,xx44+xx45+xx54) and hcp(south,diamonds)>3 and hcp(south,clubs) >3
 southActs = (sHS or sDS or sDH or sCS or sCH or sCD)
 
-minHCP = hcp(west)>=10 and tpWest>11 and hcp(north)>=8 and tpNorth>8 and tpEast>5 and tpSouth>9
+minHCP = hcp(west)>=11 and hcp(west)<15 and tpWest>12 and hcp(north)>=8 and tpNorth>8 and tpEast>5 and tpEast<10 and tpSouth>9
 
 ##### Now do it #####
-westOpens and northOvercalls and eastRaises and southActs and minHCP
+westOpens and northOvercalls and eastRaises and southActs and southSupportOK and minHCP
 
 produce 30
 
