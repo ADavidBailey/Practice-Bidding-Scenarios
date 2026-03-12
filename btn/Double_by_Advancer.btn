@@ -68,7 +68,7 @@ sCH = DS and shape(south,x4x4+x4x5)      and hcp(south,clubs)   >3 and hcp(south
 sCD = HS and shape(south,xx44+xx45+xx54) and hcp(south,diamonds)>3 and hcp(south,clubs) >3
 southActs = (sHS or sDS or sDH or sCS or sCH or sCD)
 
-minHCP = hcp(west)>=11 and hcp(west)<15 and tpWest>12 and hcp(north)>=8 and tpNorth>8 and tpEast>5 and tpSouth>9
+minHCP = hcp(west)>=11 and hcp(west)<15 and tpWest>12 and hcp(north)>=8 and tpNorth>8 and tpEast>5 and tpEast<10 and tpSouth>9
 
 ##### Now do it #####
 westOpens and northOvercalls and eastRaises and southActs and southSupportOK and minHCP
