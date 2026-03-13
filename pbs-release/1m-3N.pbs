@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-GIB
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n1[CD] +Pass +
+auction-filter: Auction.....\n1[CD] +Pass
 */
 ##### Imported Script: Define Calm Opponents #####
 
@@ -237,6 +237,12 @@ nC3 = hcp(north,clubs)>2         // at least Kxx or QJx
 nD3 = hcp(north,diamonds)>2
 nM3 = hcp(north,hearts)>2 and hcp(north,spades)>2
 
+# Partial stop in unbid suits: length + HCP >= 4 (e.g. Qx, Jxx)
+nStopS = spades(north)   + hcp(north,spades)   > 3
+nStopH = hearts(north)   + hcp(north,hearts)   > 3
+nStopD = diamonds(north) + hcp(north,diamonds) > 3
+nStopC = clubs(north)    + hcp(north,clubs)    > 3
+
 # Define North's response ranges
 n1 = hcp(north)>5  and hcp(north)<10
 n2 = hcp(north)>9  and hcp(north)<13
@@ -255,8 +261,8 @@ s1Cn2N = oneClub    and nC2 and nD3 and nM3 and n2   // 1C - 2N with 3 hcp in un
 s1Dn2N = oneDiamond and nD2 and nC3 and nM3 and n2   // 1D - 2N 
 s1m2N  = s1Cn2N or s1Dn2N
 
-s1Cn3N = oneClub    and nC2 and nD3 and nM3 and n3   // 1C - 3N with 3 hcp in unbid suits and 2 in opener's suit
-s1Dn3N = oneDiamond and nD2 and nC3 and nM3 and n3   // 1D - 3N
+s1Cn3N = oneClub    and nC2 and nStopD and nStopH and nStopS and n3   // 1C - 3N: Qxx+ in clubs, partial stop in D/H/S
+s1Dn3N = oneDiamond and nD2 and nStopC and nStopH and nStopS and n3   // 1D - 3N: Qxx+ in diamonds, partial stop in C/H/S
 s1m3N  = s1Cn3N or s1Dn3N
 
 nShape = shape(north,any 4333 -4xxx -x4xx)
@@ -285,8 +291,8 @@ average "      3343 " 100 * shape(north,3343),
 average "      3334 " 100 * shape(north,3334),
 `, "S", true)
 Script
-Button,1m-3N (13-15) w/33(43),\n\
+Button,1m-3NT (13-15) w/33(43),\n\
 --- 1m - 3NT (13-15) w/4333 & no major\n\
 South opens 1!C or 1!D.  North has any 4333 hand with stuff in every other suit.\n\
 Should North skip over a 4-card suit to bid NT?\n\
-%oneMinor3NT%,width=50%
+%oneMinor3NT%
