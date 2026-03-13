@@ -1,15 +1,15 @@
 # alias: PreemptXRX
-# button-text: Preempt (X) XX (Lev)
+# button-text: Preempt (X) XX? (Lev)
 # gib-works: true
 # bba-works: true
-# auction-filter: Auction.....\n[34][CDHS] +X +XX +
+# auction-filter: Auction.....\n[34][CDHS] +X
 # convention-card-ns: 21GF-DEFAULT
 # convention-card-ew: 21GF-GIB
 
 /*@chat
---- Preempt (X) XX (Now What?)
-After a 3-level or 4-level preempt, (X), XX, what do we do?  The deals are leveled
-so that the 7-card and 8-card preempts occur with about the same frequency.
+--- Preempt (X) XX? (Now What?)
+After a 3-level or 4-level preempt, (X), XX, what do we do?  The deals are leveled so
+that the 7-card and 8-card preempts and the XX/Pass occur with about the same frequency.
 @chat*/
 
 # Opps Preempt, we X and they XX
@@ -53,7 +53,7 @@ wXX = hcp(west)>14
 # Define leveling
 #include "script/Leveling"
 
-lev7 = length==7 and keep19
+lev7 = length==7 and keep25
 lev8 = length==8 and keep81
 lev9 = length==9 and keep
 levelTheDeal = lev7 or lev8 or lev9
