@@ -1,15 +1,15 @@
 # alias: Gazzilli
 # button-text: Gazzilli (Lev)
-# scenario-title: --- Gazzilli 2!C rebid after a Major opening and 1NT response
+# scenario-title: --- Gazzilli 2!C rebid after a Major opening
 # gib-works: false
 # bba-works: true
-# auction-filter: Auction.....\n1[HS] +Pass +1N .* Pass\n
+# auction-filter: Auction.....\n(1S +Pass +1N|1H +Pass +1S) .* Pass\n
 # convention-card-ns: 21GF-Gazzilli
 # convention-card-ew: 21GF-GIB
 
 /*@chat
---- Gazzilli 2!C rebid after a Major opening and 1NT response
-  • 1M - 1N
+--- Gazzilli 2!C rebid after a Major opening
+  • 1S - 1N  or  1H - 1S
     • 2C  - artifical Gazzilli relay - 16+ or *** natural 11-14 w/6+M ***
         • 2D - 8+ artificial
             • 2M  - 11-14 with 6+M *** NF ***
@@ -169,9 +169,9 @@ oneClub    = oC
 ##### End of Imported Script -- Predict Opening 1-Bid #####
 # Defines oneHeart, oneSpade, gibNT
 
-# South opens 1M and north responds 1N -- avoid 1S - 3H and 1H - 1S
+# South opens 1M: 1S opener gets 1N response; 1H opener gets 1S response
 sSpades = oneSpade and spades(north)<3 and hearts(north)<6
-sHearts = oneHeart and hearts(north)<3 and spades(north)<4
+sHearts = oneHeart and spades(north)>3 and hearts(north)<4
 nRange  = hcp(north) > 5 and hcp(north) < 12
 sMajor  = sSpades or sHearts
 
