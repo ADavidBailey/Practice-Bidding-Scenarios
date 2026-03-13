@@ -21,10 +21,8 @@
 [Contract "4H"]
 [Auction "S"]
 1C    Pass  1H    Pass
-1N    Pass  2C =1=    Pass
-2S    Pass  4H    Pass
-Pass  Pass
-[Note "1:Checkback"]
+1N    Pass  3H    Pass
+4H    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -111,10 +109,11 @@ Pass  Pass
 {HCP 11 10 14 5}
 {Losers 7 8 7 10}
 [Declarer "N"]
-[Contract "1N"]
+[Contract "2C"]
 [Auction "N"]
 1C    Pass  1H    Pass
-1N    Pass  Pass  Pass
+1N    Pass  2C    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -277,10 +276,8 @@ Pass  Pass
 [Contract "6N"]
 [Auction "S"]
 1C    Pass  1H    Pass
-1N    Pass  2C =1=    Pass
-2N    Pass  5N    Pass
+1N    Pass  4N    Pass
 6N    Pass  Pass  Pass
-[Note "1:Checkback"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -325,10 +322,11 @@ Pass  Pass
 [Contract "4S"]
 [Auction "N"]
 1C    Pass  1S    Pass
-1N    Pass  2C =1=    Pass
-2S    Pass  4S    Pass
+1N    Pass  2D =1=    Pass
+2S =2=    Pass  4S    Pass
 Pass  Pass
-[Note "1:Checkback"]
+[Note "1:New Minor Forcing"]
+[Note "2:3 !S"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -350,10 +348,10 @@ Pass  Pass
 [Contract "3N"]
 [Auction "N"]
 1C    Pass  1S    Pass
-1N    Pass  2C =1=    Pass
-2D    Pass  3D    Pass
-3N    Pass  Pass  Pass
-[Note "1:Checkback"]
+1N    Pass  2D =1=    Pass
+2H    Pass  3N    Pass
+Pass  Pass
+[Note "1:New Minor Forcing"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -529,20 +527,22 @@ Pass  Pass
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
-[Dealer "S"]
+[Dealer "N"]
 [Vulnerable "EW"]
-[Deal "S:.AQ93.K642.AJ954 6543.842.953.762 KT982.KJT7.A7.KQ AQJ7.65.QJT8.T83"]
+[Deal "N:.AQ93.K642.AJ954 6543.842.953.762 KT982.KJT7.A7.KQ AQJ7.65.QJT8.T83"]
 {Shape 5422 4243 0445 4333}
 {HCP 16 10 14 0}
 {Losers 6 8 5 12}
 [Declarer "N"]
-[Contract "5H"]
-[Auction "S"]
+[Contract "6H"]
+[Auction "N"]
 1C    Pass  1S    Pass
-1N    Pass  3H    Pass
-4N    Pass  5H =1=    Pass
+1N    Pass  2D =1=    Pass
+3H    Pass  4N    Pass
+5S =2=    Pass  6H    Pass
 Pass  Pass
-[Note "1:A=2/5 or 5/5, Q(H)=0"]
+[Note "1:New Minor Forcing"]
+[Note "2:A=2/5 or 5/5, Q(H)=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -704,10 +704,8 @@ Pass  Pass
 [Contract "3N"]
 [Auction "S"]
 1C    Pass  1H    Pass
-1N    Pass  2C =1=    Pass
-2S    Pass  3N    Pass
+1N    Pass  3N    Pass
 Pass  Pass
-[Note "1:Checkback"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -752,10 +750,12 @@ Pass  Pass
 [Contract "4H"]
 [Auction "N"]
 1C    Pass  1H    Pass
-1N    Pass  2C =1=    Pass
-2S    Pass  4H    Pass
+1N    Pass  2D =1=    Pass
+3H =2=    Pass  3S    Pass
+4C    Pass  4H    Pass
 Pass  Pass
-[Note "1:Checkback"]
+[Note "1:New Minor Forcing"]
+[Note "2:3 !H"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -976,18 +976,20 @@ Pass  Pass
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
-[Dealer "N"]
+[Dealer "S"]
 [Vulnerable "NS"]
-[Deal "N:A8.AJ84.J7.Q8732 76.T63.T654.AJT4 QJ432.KQ97.AK9.5 KT95.52.Q832.K96"]
+[Deal "S:A8.AJ84.J7.Q8732 76.T63.T654.AJT4 QJ432.KQ97.AK9.5 KT95.52.Q832.K96"]
 {Shape 5431 4243 2425 2344}
 {HCP 15 8 12 5}
 {Losers 5 8 7 10}
 [Declarer "S"]
 [Contract "4H"]
-[Auction "N"]
+[Auction "S"]
 1C    Pass  1S    Pass
-1N    Pass  3H    Pass
-4H    Pass  Pass  Pass
+1N    Pass  2D =1=    Pass
+2H    Pass  4H    Pass
+Pass  Pass
+[Note "1:New Minor Forcing"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -1137,18 +1139,19 @@ Pass  Pass
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
-[Dealer "S"]
+[Dealer "N"]
 [Vulnerable "EW"]
-[Deal "S:KT.A5.A542.J7654 962.T43.KQJ7.K83 QJ754.KQ98.9.AT2 A83.J762.T863.Q9"]
+[Deal "N:KT.A5.A542.J7654 962.T43.KQJ7.K83 QJ754.KQ98.9.AT2 A83.J762.T863.Q9"]
 {Shape 5413 3442 2245 3343}
 {HCP 12 7 12 9}
 {Losers 6 10 7 9}
 [Declarer "N"]
-[Contract "2S"]
-[Auction "S"]
+[Contract "3N"]
+[Auction "N"]
 1C    Pass  1S    Pass
-1N    Pass  2H    Pass
-2S    Pass  Pass  Pass
+1N    Pass  2D =1=    Pass
+3N    Pass  Pass  Pass
+[Note "1:New Minor Forcing"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
