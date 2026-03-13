@@ -3,7 +3,7 @@
 # scenario-title: --- Preempt (X) XX (Now What?)
 # gib-works: true
 # bba-works: true
-# auction-filter: Auction.....\n3[CDHS] +X +
+# auction-filter: Auction.....\n[34][CDHS] +X +XX +
 # convention-card-ns: 21GF-DEFAULT
 # convention-card-ew: 21GF-GIB
 
@@ -43,8 +43,13 @@ sDoubles = (sDouble1 or sDouble2) and shape(south,xxxx-5xxx-x5xx) and controls(s
 # East opens 4, South doubles, and West Redoubles
 eOpens = (wS or wH or wD or wC) and hcp(east)>3 and hcp(east)<10
 
-# West Redoubles
-wXX = hcp(west)>10
+# West Redoubles (HCP or fit-based)
+wFitS = wS and spades(west)>2
+wFitH = wH and hearts(west)>2
+wFitD = wD and diamonds(west)>2
+wFitC = wC and clubs(west)>2
+wFit = wFitS or wFitH or wFitD or wFitC
+wXX = hcp(west)>14
 
 # Define leveling
 ### Imported Leveling Code ###
