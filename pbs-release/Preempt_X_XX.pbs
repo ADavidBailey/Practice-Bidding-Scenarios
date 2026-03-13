@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n3[CDHS] +X +
+auction-filter: Auction.....\n[34][CDHS] +X +XX +
 */
 # Opps Preempt, we X and they XX
 dealer east
@@ -50,8 +50,13 @@ sDoubles = (sDouble1 or sDouble2) and shape(south,xxxx-5xxx-x5xx) and controls(s
 # East opens 4, South doubles, and West Redoubles
 eOpens = (wS or wH or wD or wC) and hcp(east)>3 and hcp(east)<10
 
-# West Redoubles
-wXX = hcp(west)>10
+# West Redoubles (HCP or fit-based)
+wFitS = wS and spades(west)>2
+wFitH = wH and hearts(west)>2
+wFitD = wD and diamonds(west)>2
+wFitC = wC and clubs(west)>2
+wFit = wFitS or wFitH or wFitD or wFitC
+wXX = hcp(west)>14
 
 # Define leveling
 ### Imported Leveling Code ###
@@ -115,4 +120,4 @@ Button,Preempt (X) XX (Lev),\n\
 --- Preempt (X) XX (Now What?)\n\
 After a 3-level or 4-level preempt，(X)，XX，what do we do?  The deals are leveled\n\
 so that the 7-card and 8-card preempts occur with about the same frequency.\n\
-%PreemptXRX%,width=50%
+%PreemptXRX%
