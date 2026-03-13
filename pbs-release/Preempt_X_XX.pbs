@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n[34][CDHS] +X +XX +
+auction-filter: Auction.....\n[34][CDHS] +X
 */
 # Opps Preempt, we X and they XX
 dealer east
@@ -97,7 +97,7 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-lev7 = length==7 and keep19
+lev7 = length==7 and keep25
 lev8 = length==8 and keep81
 lev9 = length==9 and keep
 levelTheDeal = lev7 or lev8 or lev9
@@ -116,8 +116,8 @@ average "hcp E/W  " hcp(east) + hcp(west),
 frequency "length " (length, 6, 10),
 `, "E", true)
 Script
-Button,Preempt (X) XX (Lev),\n\
---- Preempt (X) XX (Now What?)\n\
-After a 3-level or 4-level preempt，(X)，XX，what do we do?  The deals are leveled\n\
-so that the 7-card and 8-card preempts occur with about the same frequency.\n\
+Button,Preempt (X) XX? (Lev),\n\
+--- Preempt (X) XX? (Now What?)\n\
+After a 3-level or 4-level preempt，(X)，XX，what do we do?  The deals are leveled so\n\
+that the 7-card and 8-card preempts and the XX/Pass occur with about the same frequency.\n\
 %PreemptXRX%
