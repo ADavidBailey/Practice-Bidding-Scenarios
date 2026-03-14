@@ -2,7 +2,7 @@
 # button-text: X by Advancer
 # gib-works: true
 # bba-works: true
-# auction-filter: Auction.....\n(1C .* 2C|1D .* 2D|1H .* 2H|1S .* 2S) +X
+# auction-filter: Auction.....\n(1C +1. +2C|1D +1. +2D|1H +1. +2H|1S +1. +2S) +X
 # convention-card-ns: 21GF-DEFAULT
 # convention-card-ew: 21GF-GIB
 
@@ -68,7 +68,7 @@ sCH = DS and shape(south,x4x4+x4x5)      and hcp(south,clubs)   >2 and hcp(south
 sCD = HS and shape(south,xx44+xx45+xx54) and hcp(south,diamonds)>2 and hcp(south,clubs) >2
 southActs = (sHS or sDS or sDH or sCS or sCH or sCD)
 
-minHCP = hcp(west)>=11 and hcp(west)<15 and tpWest>12 and hcp(north)>=8 and tpNorth>8 and tpEast>5 and tpEast<10 and tpSouth>10
+minHCP = hcp(west)>=11 and hcp(west)<15 and tpWest>12 and hcp(north)>=8 and tpNorth>8 and tpEast>5 and tpEast<10 and tpSouth>9
 
 ##### Now do it #####
 westOpens and northOvercalls and eastRaises and southActs and southSupportOK and minHCP
