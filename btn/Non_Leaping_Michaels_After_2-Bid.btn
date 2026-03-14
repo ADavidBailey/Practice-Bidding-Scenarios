@@ -14,16 +14,16 @@ http://tinyurl.com/Leaping-Michaels
 produce 1000
 dealer east
 
-# Define Good suits North -- 5+ cards with at least 2 of the top 3
-gS = spades(north)>4   and top5(north,spades)>2
-gH = hearts(north)>4   and top5(north,hearts)>2
-gD = diamonds(north)>4 and top5(north,diamonds)>2
-gC = clubs(north)>4    and top5(north,clubs)>2
+# Define North's biddable suits -- GIB: 5+ cards is biddable
+gS = spades(north)>4
+gH = hearts(north)>4
+gD = diamonds(north)>4
+gC = clubs(north)>4
 
 # Define Good 2 Suits North
-g2notS = (gH and gD) or (gH and gC) or (gD and gC)
-g2notH = (gS and gD) or (gS and gC) or (gC and gD)
-g2notD = (gS and gH) or (gS and gC) or (gH and gC)
+g2notS = (gH and gD) or (gH and gC) //or (gD and gC)
+g2notH = (gS and gD) or (gS and gC) //or (gC and gD)
+g2notD = (gS and gH) or (gS and gC) //or (gH and gC)
 //northActs = losers(north)>4 and hcp(north)>11
 
 eastHCP = hcp(east)>5 and hcp(east)<10
@@ -37,7 +37,7 @@ southPass = shape(south,xxxx -any 8xxx -any 7xxx -any 6xxx -any 55xx) and hcp(so
 westRaise = hcp(west)>3 and hcp(west)<10 and shape(west, any 0xxx +any 1xxx +any 22xx)
 eastBids = eastHCP and (sE or hE or dE) and shape(east,any 6xxx -any 66xx -any 65xx -4xxx-x4xx)
 
-east2Bid = eastBids and southPass and westRaise //and northActs
+east2Bid = eastBids and southPass //and northActs
 
 # Now do it
 east2Bid
@@ -47,5 +47,6 @@ action
 average "2D           " 100 * dE,
 average "2H           " 100 * hE,
 average "2S           " 100 * sE,
+average "westRaise    " 100 * westRaise,
 average "hcp(north)   " hcp(north),
 average "losers(north)" losers(north),
