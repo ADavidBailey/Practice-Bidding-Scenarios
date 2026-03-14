@@ -58,7 +58,7 @@ w1S = wS and top3(west,spades)==2   and spades(north)==5   and top5(north,spades
 w1H = wH and top3(west,hearts)==2   and hearts(north)==5   and top5(north,hearts)==3
 w1D = wD and top3(west,diamonds)==2 and diamonds(north)==5 and top5(north,diamonds)==3
 w1C = wC and top3(west,clubs)==2    and clubs(north)==5    and top5(north,clubs)==3
-wGoodSuitNorthStack = (w1S or w1H or w1D or w1C) and shape(south,any 5422 +any 5431 any 5440)
+wGoodSuitNorthStack = (w1S or w1H or w1D or w1C) and shape(south,any 5422 +any 5431 +any 5440)
 
 # West has a good suit and North does NOT have a stack
 w2S = wS and top3(west,spades)==2
