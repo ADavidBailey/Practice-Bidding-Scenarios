@@ -27,14 +27,14 @@ auction-filter: Auction.....\n1[CD] +[1-4][HS]
 
 dealer south
 
-# South opens 1C or 1D with 5+ cards in the minor
+# South opens 1C or 1D with 5+ cards in the minor, no 5-card major
 s = spades(south)
 h = hearts(south)
 d = diamonds(south)
 c = clubs(south)
 
-open1C = c>=5 and c>=d and hcp(south)>12 and hcp(south)<18
-open1D = d>=5 and d>c  and hcp(south)>12 and hcp(south)<18
+open1C = c>=5 and c>d  and s<5 and h<5 and hcp(south)>12 and hcp(south)<18
+open1D = d>=5 and d>=c and s<5 and h<5 and hcp(south)>12 and hcp(south)<18
 sOpens = open1C or open1D
 
 # West overcalls 1H or 1S with a good 5+ card suit (West is 2nd seat after South opens)
@@ -60,10 +60,35 @@ nHasStop = nHStop or nSStop
 # North has enough to respond and accept 3NT
 nResponds = hcp(north)>7 and hcp(north)<14
 
-# East is quiet
-eQuiet = hcp(east)<9 and shape(east,xxxx-any 7xxx-any 6xxx)
+##### Imported Script: Define Calm Opponents #####
 
-sOpens and wOvercalls and sNoStop and nHasStop and nResponds and eQuiet
+# Avoid concentration of values
+cce = top4(east,clubs)<2
+cde = top4(east,diamonds)<2
+che = top4(east,hearts)<2
+cse = top4(east,spades)<2
+noConEast = cce and cde and che and cse
+
+ccw = top4(west,clubs)<2
+cdw = top4(west,diamonds)<2
+chw = top4(west,hearts)<2
+csw = top4(west,spades)<2
+noConWest = ccw and cdw and chw and csw
+
+balEast    = shape(east,any 4432 +any 4333)
+unbalEast  = shape(east,xxxx -any 4432 -any 4333 -any 9xxx -any 8xxx -any 7xxx-any 6xxx -any 55xx)
+
+balWest    = shape(west,any 4432 +any 4333)
+unbalWest  = shape(west,xxxx -any 4432 -any 4333 -any 9xxx -any 8xxx -any 7xxx-any 6xxx -any 55xx)
+
+calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<11)
+calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<11)
+calmOpps = calmEast and calmWest
+
+##### End of Imported Script: Define Calm Opponents #####
+# Defines calmEast, calmWest, calmOpps
+
+sOpens and wOvercalls and sNoStop and nHasStop and nResponds and calmEast
 
 action printoneline,
 average "South HCP  " hcp(south),
