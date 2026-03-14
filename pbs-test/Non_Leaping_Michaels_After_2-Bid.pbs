@@ -30,9 +30,9 @@ gD = diamonds(north)>4
 gC = clubs(north)>4
 
 # Define Good 2 Suits North
-g2notS = (gH and gD) or (gH and gC) or (gD and gC)
-g2notH = (gS and gD) or (gS and gC) or (gC and gD)
-g2notD = (gS and gH) or (gS and gC) or (gH and gC)
+g2notS = (gH and gD) or (gH and gC) //or (gD and gC)
+g2notH = (gS and gD) or (gS and gC) //or (gC and gD)
+g2notD = (gS and gH) or (gS and gC) //or (gH and gC)
 //northActs = losers(north)>4 and hcp(north)>11
 
 eastHCP = hcp(east)>5 and hcp(east)<10
