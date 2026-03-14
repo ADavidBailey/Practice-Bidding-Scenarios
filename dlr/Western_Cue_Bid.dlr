@@ -1,0 +1,67 @@
+# alias: WesternCueBid
+# button-text: Western Cue Bid
+# scenario-title: --- Western Cue Bid
+# gib-works: false
+# bba-works: true
+# auction-filter: Auction.....\n1[CD] +[1-4][HS]
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Western Cue Bid
+After 1m - (1M) - bid，a 3M cue bid asks partner to bid 3NT with a stopper.
+Without a stopper，partner bids their best suit at or below 3NT.
+(NOTE: BBA does not play Western Cue Bid — it bids 3NT directly)
+@chat*/
+
+# Western Cue Bid
+# South opens a long minor, West overcalls a major (2nd seat)
+# South has NO stopper in West's suit and wants to play 3NT
+# North has a stopper in West's suit and enough values to accept
+
+dealer south
+
+# South opens 1C or 1D with 5+ cards in the minor
+s = spades(south)
+h = hearts(south)
+d = diamonds(south)
+c = clubs(south)
+
+open1C = c>=5 and c>=d and hcp(south)>12 and hcp(south)<18
+open1D = d>=5 and d>c  and hcp(south)>12 and hcp(south)<18
+sOpens = open1C or open1D
+
+# West overcalls 1H or 1S with a good 5+ card suit (West is 2nd seat after South opens)
+wH = hearts(west)>4 and top4(west,hearts)>1 and hearts(west)>=spades(west)
+wS = spades(west)>4 and top4(west,spades)>1 and spades(west)>hearts(west)
+wOvercalls = (wH or wS) and hcp(west)>7 and hcp(west)<15
+
+# South has NO stopper in West's overcalled suit
+# No stopper = no A, no Kx, no Qxx in that suit
+sNoHStop = wH and controls(south,hearts)==0 and (hearts(south)<3 or top3(south,hearts)==0)
+sNoSStop = wS and controls(south,spades)==0 and (spades(south)<3 or top3(south,spades)==0)
+sNoStop = sNoHStop or sNoSStop
+
+# North HAS a stopper in West's overcalled suit: A, Kx, or Qxx
+nHStop = wH and (controls(north,hearts)==2 or
+                 (controls(north,hearts)==1 and hearts(north)>1) or
+                 (controls(north,hearts)==0 and top3(north,hearts)>0 and hearts(north)>2))
+nSStop = wS and (controls(north,spades)==2 or
+                 (controls(north,spades)==1 and spades(north)>1) or
+                 (controls(north,spades)==0 and top3(north,spades)>0 and spades(north)>2))
+nHasStop = nHStop or nSStop
+
+# North has enough to respond and accept 3NT
+nResponds = hcp(north)>7 and hcp(north)<14
+
+# East is quiet
+eQuiet = hcp(east)<9 and shape(east,xxxx-any 7xxx-any 6xxx)
+
+sOpens and wOvercalls and sNoStop and nHasStop and nResponds and eQuiet
+
+action printoneline,
+average "South HCP  " hcp(south),
+average "North HCP  " hcp(north),
+average "West HCP   " hcp(west),
+average "wOvercall H" 100 * wH,
+average "wOvercall S" 100 * wS,
