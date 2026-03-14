@@ -8,8 +8,8 @@
 
 /*@chat
 --- Western Cue Bid
-After 1m - (1M) - bid，a 3M cue bid asks partner to bid 3NT with a stopper.
-Without a stopper，partner bids their best suit at or below 3NT.
+After 1m - (1M) - bid, a 3M cue bid asks partner to bid 3NT with a stopper.
+Without a stopper, partner bids their best suit at or below 3NT.
 (NOTE: BBA does not play Western Cue Bid — it bids 3NT directly)
 @chat*/
 
@@ -20,14 +20,14 @@ Without a stopper，partner bids their best suit at or below 3NT.
 
 dealer south
 
-# South opens 1C or 1D with 5+ cards in the minor
+# South opens 1C or 1D with 5+ cards in the minor, no 5-card major
 s = spades(south)
 h = hearts(south)
 d = diamonds(south)
 c = clubs(south)
 
-open1C = c>=5 and c>=d and hcp(south)>12 and hcp(south)<18
-open1D = d>=5 and d>c  and hcp(south)>12 and hcp(south)<18
+open1C = c>=5 and c>d  and s<5 and h<5 and hcp(south)>12 and hcp(south)<18
+open1D = d>=5 and d>=c and s<5 and h<5 and hcp(south)>12 and hcp(south)<18
 sOpens = open1C or open1D
 
 # West overcalls 1H or 1S with a good 5+ card suit (West is 2nd seat after South opens)
@@ -53,10 +53,10 @@ nHasStop = nHStop or nSStop
 # North has enough to respond and accept 3NT
 nResponds = hcp(north)>7 and hcp(north)<14
 
-# East is quiet
-eQuiet = hcp(east)<9 and shape(east,xxxx-any 7xxx-any 6xxx)
+#include "script/Calm-Opponents"
+# Defines calmEast, calmWest, calmOpps
 
-sOpens and wOvercalls and sNoStop and nHasStop and nResponds and eQuiet
+sOpens and wOvercalls and sNoStop and nHasStop and nResponds and calmEast
 
 action
 average "South HCP  " hcp(south),
