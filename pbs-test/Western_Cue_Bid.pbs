@@ -1,0 +1,81 @@
+Script,WesternCueBid
+window.currentPBSScenario = 'WesternCueBid';
+window.currentPBSScenarioFilename = 'Western_Cue_Bid';
+console.log('PBS: Logging scenario selection for WesternCueBid');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'WesternCueBid',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
+auction-filter: Auction.....\n1[CD] +[1-4][HS]
+*/
+# Western Cue Bid
+# South opens a long minor, East overcalls a major
+# South has NO stopper in East's suit and wants to play 3NT
+# North has a stopper in East's suit and enough values to accept
+
+dealer south
+
+# South opens 1C or 1D with 5+ cards in the minor
+s = spades(south)
+h = hearts(south)
+d = diamonds(south)
+c = clubs(south)
+
+open1C = c>=5 and c>=d and hcp(south)>12 and hcp(south)<18
+open1D = d>=5 and d>c  and hcp(south)>12 and hcp(south)<18
+sOpens = open1C or open1D
+
+# East overcalls 1H or 1S with a good 5+ card suit
+eH = hearts(east)>4 and top4(east,hearts)>1 and hearts(east)>=spades(east)
+eS = spades(east)>4 and top4(east,spades)>1 and spades(east)>hearts(east)
+eOvercalls = (eH or eS) and hcp(east)>7 and hcp(east)<15
+
+# South has NO stopper in East's overcalled suit
+# No stopper = no A, no Kx, no Qxx in that suit
+sNoHStop = eH and controls(south,hearts)==0 and (hearts(south)<3 or top3(south,hearts)==0)
+sNoSStop = eS and controls(south,spades)==0 and (spades(south)<3 or top3(south,spades)==0)
+sNoStop = sNoHStop or sNoSStop
+
+# North HAS a stopper in East's overcalled suit: A, Kx, or Qxx
+nHStop = eH and (controls(north,hearts)==2 or
+                 (controls(north,hearts)==1 and hearts(north)>1) or
+                 (controls(north,hearts)==0 and top3(north,hearts)>0 and hearts(north)>2))
+nSStop = eS and (controls(north,spades)==2 or
+                 (controls(north,spades)==1 and spades(north)>1) or
+                 (controls(north,spades)==0 and top3(north,spades)>0 and spades(north)>2))
+nHasStop = nHStop or nSStop
+
+# North has enough to respond and accept 3NT
+nResponds = hcp(north)>7 and hcp(north)<14
+
+# West is quiet
+wQuiet = hcp(west)<9 and shape(west,xxxx-any 7xxx-any 6xxx)
+
+sOpens and eOvercalls and sNoStop and nHasStop and nResponds and wQuiet
+
+action printoneline,
+average "South HCP  " hcp(south),
+average "North HCP  " hcp(north),
+average "East HCP   " hcp(east),
+average "eOvercall H" 100 * eH,
+average "eOvercall S" 100 * eS,
+`, "S", true)
+Script
+Button,Western Cue Bid,\n\
+--- Western Cue Bid\n\
+After 1m - (1M) - bid，a 3M cue bid asks partner to bid 3NT with a stopper.\n\
+Without a stopper，partner bids their best suit at or below 3NT.\n\
+(NOTE: BBA does not play Western Cue Bid — it bids 3NT directly)\n\
+%WesternCueBid%,backgroundColor=lightpink
