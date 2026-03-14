@@ -119,13 +119,13 @@ s2C = (sTBC or sTBD or sTBH or sTBS) and tpSouth>9 and oneSuitShape and not (sSt
 # or Double
 sX = hcp(south)>15 and not (sStrong1 or s2Suits or s2C)
 
-#include "script/Calm-Opponents"
-# Defines calmEast, calmWest, calmOpps
-# North and East must pass over 1NT
-
+# North must pass over 1NT (South's partner)
 calmNorth = hcp(north)<10
 
-gibNT and (sX or sStrong1 or s2Suits or s2C) and calmNorth and calmEast
+# East must pass over 1NT (South's partner): <8 HCP, no 5+ major, no 6+ minor
+ePass = hcp(east)<8 and spades(east)<5 and hearts(east)<5 and clubs(east)<6 and diamonds(east)<6
+
+gibNT and (sX or sStrong1 or s2Suits or s2C) and calmNorth and ePass
 
 action
 
