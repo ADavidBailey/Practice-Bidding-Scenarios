@@ -65,9 +65,9 @@ weakJumpOvercall = wjoSuit and wjoRange
 
 ### Define West X -- short in opener's suit and 4-cards in each unbid major
 // deny e/w fit, reduce west hcp, and allow 5431 to reduce 'Error generating deal'
-sShort = w2s and spades(west)<3 and shape(west,x5xx+x4xx)
-hShort = w2h and hearts(west)<3 and shape(west,5xxx+4xxx)
-dShort = w2d and diamonds(west)<3 and shape(west,54xx+45xx+44xx)
+sShort = w2s and spades(west)<3   and hearts(west)>3  //shape(west,x5xx+x4xx)
+hShort = w2h and hearts(west)<3   and spades(west)>3  //shape(west,5xxx+4xxx)
+dShort = w2d and diamonds(west)<3 and hearts(west)>3 and spades(west)>3  //shape(west,54xx+45xx+44xx)
 ewFit = (eH and hearts(west)>2) or (eD and diamonds(west)>3) or (eC and clubs(west)>3)
 westX = hcp(west)>6 and (sShort or hShort or dShort) and shape(west,any 5440+any 5431+any 4441+any 4432) and not ewFit
 
