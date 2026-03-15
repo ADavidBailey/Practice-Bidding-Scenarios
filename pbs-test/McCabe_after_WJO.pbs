@@ -98,10 +98,10 @@ leadAsk = nsFit and (lS or lH or lD or lC) and not (rule17 or rule15)
 raise = nsFit and hcp(north)>6    and not(rule17 or rule15 or leadAsk)
 
 ### Define North's long & strong suits -- 5+9
-sS = (spades(north)   + hcp(north,spades)  )>13
-sH = (hearts(north)   + hcp(north,hearts)  )>13
-sD = (diamonds(north) + hcp(north,diamonds))>13
-sC = (clubs(north)    + hcp(north,clubs)   )>13
+sS = (spades(north)   + hcp(north,spades)  )>12 and spades(north)>4
+sH = (hearts(north)   + hcp(north,hearts)  )>12 and hearts(north)>4
+sD = (diamonds(north) + hcp(north,diamonds))>12 and diamonds(north)>4
+sC = (clubs(north)    + hcp(north,clubs)   )>12 and clubs(north)>4
 //sH = (hearts(north)==5 and top4(north,hearts)==4)     or (hearts(north)>5   and top4(north,hearts)==3)
 //sD = (diamonds(north)==5 and top4(north,diamonds)==4) or (diamonds(north)>5 and top4(north,diamonds)==3)
 //sC = (clubs(north)==5 and top4(north,clubs)==4)       or (clubs(north)>5    and top4(north,clubs)==3)
