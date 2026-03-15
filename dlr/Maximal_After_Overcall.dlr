@@ -110,34 +110,32 @@ eS = spades(east)
 eH = hearts(east)
 eD = diamonds(east)
 
-
 ewS = eS + spades(west)
 ewH = eH + hearts(west)
 ewD = eD + diamonds(west)
 
-# Define North's major suits w/South's support for simple raise, and ew shape
+# Define North's overcall in a major w/South's support for simple raise
 n1Suit = shape(north,any 7xxx +any 6xxx +any 5xxx -any 76xx -any 75xx -any 66xx -any 65xx -any 55xx)
-nsS = spades(north)>4 and top5(north,spades)>2 and spades(south)==3 and ewS<6 and ewH>7
-nsH = hearts(north)>4 and top5(north,hearts)>2 and hearts(south)==3 and diamonds(east)>2 and spades(east)<4
-nsBid = (nsS or nsH) and hcp(north)>11 and tpNorth<14 and tpSouth>5 and tpSouth<11 and n1Suit
+nsS = spades(north)>4 and spades(south)>2
+nsH = hearts(north)>4 and hearts(south)>2
+nsBid = (nsS or nsH) and hcp(north)>7 and tpNorth>8 and tpNorth<20 and tpSouth>5 and tpSouth<11 and n1Suit
 
-### West has a minimal opener w/good maximal suit: opens 1 and rebids 3
-# Twice Rebiddable: rebiddable + 1 card (7+ or 6 with quality)
-wMaxH = nsS and wH and (hearts(west)>6   or (hearts(west)>5   and top5(west,hearts)>2)) and hearts(east)>2 and n1Suit
-wMaxD = nsH and wD and (diamonds(west)>6 or (diamonds(west)>5 and top5(west,diamonds)>2)) and diamonds(east)>2 and n1Suit
+### West rebids 3 of maximal suit: 5+ suit, 12-16 TP (per GIB)
+wMaxH = nsS and wH and hearts(west)>4 and hearts(east)>2
+wMaxD = nsH and wD and diamonds(west)>4 and diamonds(east)>2
 
 # West opens a minor, EW each have 4+ cards in maximal suit to compete
-ewMaxH = nsS and not wH and hearts(west)>3   and top3(west,hearts)>0   and hearts(east)>3   and top3(east,hearts)>1
-ewMaxD = nsH and not wD and diamonds(west)>3 and top3(west,diamonds)>0 and diamonds(east)>3 and top3(east,diamonds)>1
+ewMaxH = nsS and not wH and hearts(west)>3 and hearts(east)>3
+ewMaxD = nsH and not wD and diamonds(west)>3 and diamonds(east)>3
 
 maxH = (wMaxH or ewMaxH)
 maxD = (wMaxD or ewMaxD)
-ewBID = (maxH or maxD) and hcp(west)>10 and tpWest>12 and hcp(west)<13 and tpEast>7
+ewBID = (maxH or maxD) and hcp(west)>10 and tpWest>11 and tpWest<17 and tpEast>5
 
-wRange = hcp(west)>10 and tpWest>11 and tpWest<14
-nRange = hcp(north)>11
-eRange = hcp(east)>6 and tpEast<11
-sRange = hcp(south)>6
+wRange = hcp(west)>10 and tpWest>11 and tpWest<17
+nRange = hcp(north)>7 and tpNorth>8
+eRange = tpEast>5 and tpEast<11
+sRange = tpSouth>5
 ranges = wRange and nRange and eRange and sRange
 
 # Now do it
