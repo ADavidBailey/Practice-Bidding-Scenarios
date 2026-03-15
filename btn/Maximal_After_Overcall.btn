@@ -44,8 +44,8 @@ ewD = eD + diamonds(west)
 
 # Define North's overcall in a major w/South's support for simple raise
 n1Suit = shape(north,any 7xxx +any 6xxx +any 5xxx -any 76xx -any 75xx -any 66xx -any 65xx -any 55xx)
-nsS = spades(north)>4 and spades(south)>2
-nsH = hearts(north)>4 and hearts(south)>2
+nsS = (spades(north)>5 and spades(south)>1) or (spades(north)>4 and spades(south)>2)
+nsH = (hearts(north)>5 and hearts(south)>1) or (hearts(north)>4 and hearts(south)>2)
 nsBid = (nsS or nsH) and hcp(north)>7 and tpNorth>8 and tpNorth<20 and tpSouth>5 and tpSouth<11 and n1Suit
 
 ### West rebids 3 of maximal suit: 5+ suit, 12-16 TP (per GIB)
