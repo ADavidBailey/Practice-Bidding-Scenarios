@@ -111,7 +111,7 @@ n1Suit = shape(north,any 6xxx +any 5xxx -any 66xx -any 65xx -any 55xx)
 nsS = (spades(north)==6 and spades(south)==2) or (spades(north)==5 and spades(south)>2) and wH and hcp(west)>11
 nsH = (hearts(north)==6 and hearts(south)==2) or (hearts(north)==5 and hearts(south)>2) and wD and hcp(west)>11
 nWJO = (spades(north)==6 or hearts(north)==6) and hcp(north)<10
-nsBid = (nsS or nsH) and hcp(north)>8 and tpNorth>9 and tpNorth<20 and tpSouth>6 and tpSouth<11 and n1Suit and not nWJO
+nsBid = (nsS or nsH) and hcp(north)>9 and tpNorth>10 and tpNorth<20 and tpSouth>7 and tpSouth<11 and n1Suit and not nWJO
 
 ### West opens the maximal suit and rebids it at 3: 5+ suit, 12-16 TP (per GIB)
 # East makes a simple raise (3-card support) -- avoid jumps
