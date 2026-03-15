@@ -44,25 +44,30 @@ ewD = eD + diamonds(west)
 
 # Define North's overcall in a major w/South's support for simple raise
 n1Suit = shape(north,any 7xxx +any 6xxx +any 5xxx -any 76xx -any 75xx -any 66xx -any 65xx -any 55xx)
-nsS = (spades(north)>5 and spades(south)>1) or (spades(north)>4 and spades(south)>2)
-nsH = (hearts(north)>5 and hearts(south)>1) or (hearts(north)>4 and hearts(south)>2)
+nsS = (spades(north)>5 and spades(south)==2) or (spades(north)>4 and spades(south)>2)
+nsH = (hearts(north)>5 and hearts(south)==2) or (hearts(north)>4 and hearts(south)>2)
 nsBid = (nsS or nsH) and hcp(north)>7 and tpNorth>8 and tpNorth<20 and tpSouth>5 and tpSouth<11 and n1Suit
 
 ### West rebids 3 of maximal suit: 5+ suit, 12-16 TP (per GIB)
 wMaxH = nsS and wH and hearts(west)>4 and hearts(east)>2
-wMaxD = nsH and wD and diamonds(west)>4 and diamonds(east)>2
+wMaxD = nsH and wD and diamonds(west)>4 and diamonds(east)>3 and spades(west)<4
 
-# West opens a minor, EW each have 4+ cards in maximal suit to compete
-ewMaxH = nsS and not wH and hearts(west)>3 and hearts(east)>3
-ewMaxD = nsH and not wD and diamonds(west)>3 and diamonds(east)>3
+# West opens a minor, East introduces max suit by bidding (5+) or X (4+ max, 3+ 4th suit)
+eBidH = hearts(east)>4 and hearts(west)>2 and tpEast>10
+eDblH = hearts(east)>3 and hearts(west)>3 and tpEast>5 and ((wC and diamonds(east)>2) or (wD and clubs(east)>2))
+ewMaxH = nsS and not wH and (eBidH or eDblH)
+
+eBidD = diamonds(east)>4 and diamonds(west)>3 and tpEast>10
+eDblD = diamonds(east)>3 and diamonds(west)>3 and tpEast>5 and spades(east)>2
+ewMaxD = nsH and not wD and (eBidD or eDblD) and spades(west)<4
 
 maxH = (wMaxH or ewMaxH)
 maxD = (wMaxD or ewMaxD)
-ewBID = (maxH or maxD) and hcp(west)>10 and tpWest>11 and tpWest<17 and tpEast>5
+ewBID = (maxH or maxD) and hcp(west)>10 and tpWest>11 and tpWest<17
 
 wRange = hcp(west)>10 and tpWest>11 and tpWest<17
 nRange = hcp(north)>7 and tpNorth>8
-eRange = tpEast>5 and tpEast<11
+eRange = tpEast>5
 sRange = tpSouth>5
 ranges = wRange and nRange and eRange and sRange
 
