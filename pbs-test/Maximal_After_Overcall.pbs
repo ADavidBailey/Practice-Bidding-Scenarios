@@ -124,8 +124,12 @@ eRange = tpEast>5
 sRange = tpSouth>5
 ranges = wRange and nRange and eRange and sRange
 
+levelTheDeal = wMaxH and hascard(west,H4)
+
 # Now do it
 (wMaxH or wMaxD) and ranges and nsBid
+and levelTheDeal
+
 produce 40
 action printoneline,
 `, "W", true)
