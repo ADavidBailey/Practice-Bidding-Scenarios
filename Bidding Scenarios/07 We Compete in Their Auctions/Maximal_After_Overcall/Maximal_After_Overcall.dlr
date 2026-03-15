@@ -116,11 +116,11 @@ nsBid = (nsS or nsH) and hcp(north)>10 and tpNorth>11 and tpNorth<20 and tpSouth
 ### West opens the maximal suit and rebids it at 3: 5+ suit, 12-16 TP (per GIB)
 # East makes a simple raise (3-card support) -- avoid jumps
 wMaxH = nsS and wH and hearts(west)>4 and hearts(east)==3
-wMaxD = nsH and wD and diamonds(west)>4 and diamonds(east)>3 and spades(west)<4 and spades(east)<4
+wMaxD = nsH and wD and diamonds(west)>4 and diamonds(east)>3 and diamonds(east)<6 and hcp(east,diamonds)<4 and spades(west)<4 and spades(east)<4 and hearts(south)<5
 
 wRange = hcp(west)>11 and tpWest>12 and tpWest<16
 nRange = hcp(north)>7 and tpNorth>8
-eRange = tpEast>5
+eRange = tpEast>5 and tpEast<11
 sRange = tpSouth>5
 ranges = wRange and nRange and eRange and sRange
 
@@ -162,7 +162,7 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-levelTheDeal = (wMaxH and keep44) or wMaxD
+levelTheDeal = (wMaxH and keep30) or wMaxD
 
 # Now do it
 (wMaxH or wMaxD) and ranges and nsBid
