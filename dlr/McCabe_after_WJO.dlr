@@ -64,9 +64,9 @@ weakJumpOvercall = wjoSuit and wjoRange
 
 ### Define West X -- short in opener's suit and 4-cards in each unbid major
 // deny e/w fit, reduce west hcp, and allow 5431 to reduce 'Error generating deal'
-sShort = w2s and spades(west)<3 and shape(west,x4xx)
-hShort = w2h and hearts(west)<3 and shape(west,4xxx)
-dShort = w2d and diamonds(west)<3 and shape(west,44xx)
+sShort = w2s and spades(west)<3   and hearts(west)>3  //shape(west,x5xx+x4xx)
+hShort = w2h and hearts(west)<3   and spades(west)>3  //shape(west,5xxx+4xxx)
+dShort = w2d and diamonds(west)<3 and hearts(west)>3 and spades(west)>3  //shape(west,54xx+45xx+44xx)
 ewFit = (eH and hearts(west)>2) or (eD and diamonds(west)>3) or (eC and clubs(west)>3)
 westX = hcp(west)>6 and (sShort or hShort or dShort) and shape(west,any 5440+any 5431+any 4441+any 4432) and not ewFit
 
@@ -87,20 +87,20 @@ rule17 = (hcp(north) + trumpLength)>17
 rule15 = (hcp(north) + trumpLength)>15   and not (rule17)
 
 ### Define Lead my suit -- MILD PREEMPT
-lS = top3(north,spades)==2   and not w2s
-lH = top3(north,hearts)==2   and not w2h
-lD = top3(north,diamonds)==2 and not w2d
-lC = top3(north,clubs)==2
+lS = top3(north,spades)>1   and not w2s
+lH = top3(north,hearts)>1   and not w2h
+lD = top3(north,diamonds)>1 and not w2d
+lC = top3(north,clubs)>1
 leadAsk = nsFit and (lS or lH or lD or lC) and not (rule17 or rule15)
 
 ### Define Mild preempt -- MILD PREEMPT
 raise = nsFit and hcp(north)>6    and not(rule17 or rule15 or leadAsk)
 
-### Define North's long & strong suits
-sS = (spades(north)==5 and top4(north,spades)==4)     or (spades(north)>5   and top4(north,spades)==3)
-sH = (hearts(north)==5 and top4(north,hearts)==4)     or (hearts(north)>5   and top4(north,hearts)==3)
-sD = (diamonds(north)==5 and top4(north,diamonds)==4) or (diamonds(north)>5 and top4(north,diamonds)==3)
-sC = (clubs(north)==5 and top4(north,clubs)==4)       or (clubs(north)>5    and top4(north,clubs)==3)
+### Define North's long & strong suits -- 5+9
+sS = (spades(north)   + hcp(north,spades)  )>12 and spades(north)>4
+sH = (hearts(north)   + hcp(north,hearts)  )>12 and hearts(north)>4
+sD = (diamonds(north) + hcp(north,diamonds))>12 and diamonds(north)>4
+sC = (clubs(north)    + hcp(north,clubs)   )>12 and clubs(north)>4
 mySuit = (sS or sH or sD or sC) and not nsFit and not (rule17 or rule15 or leadAsk or raise)
 
 ### Define pass
