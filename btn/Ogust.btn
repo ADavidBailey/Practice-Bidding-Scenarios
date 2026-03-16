@@ -28,8 +28,15 @@ w2s = spades(south)>5 and hearts(south)<4 and diamonds(south)<4 and clubs(south)
 w2h = hearts(south)>5 and spades(south)<4 and diamonds(south)<4 and clubs(south)<4
 w2d = diamonds(south)>5 and spades(south)<4 and hearts(south)<4 and clubs(south)<4
 
-w2Range = sHcp<11 and tpSouth>6
-weakTwo = (w2s or w2h or w2d) and w2Range
+# Avoid singleton K or Q in any suit (stiff honor = 2 or 3 HCP in a singleton)
+stiffS = spades(south)==1 and hcp(south,spades)>1 and hcp(south,spades)<4
+stiffH = hearts(south)==1 and hcp(south,hearts)>1 and hcp(south,hearts)<4
+stiffD = diamonds(south)==1 and hcp(south,diamonds)>1 and hcp(south,diamonds)<4
+stiffC = clubs(south)==1 and hcp(south,clubs)>1 and hcp(south,clubs)<4
+noStiffHonor = not (stiffS or stiffH or stiffD or stiffC)
+
+w2Range = sHcp<10 and tpSouth>6 and tpSouth<12
+weakTwo = (w2s or w2h or w2d) and w2Range and noStiffHonor
 
 # North has 15+ HCP -- strong enough to ask via 2NT
 northAsks = hcp(north)>14
