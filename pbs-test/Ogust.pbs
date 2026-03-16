@@ -133,14 +133,21 @@ stiffD = diamonds(south)==1 and hcp(south,diamonds)>1 and hcp(south,diamonds)<4
 stiffC = clubs(south)==1 and hcp(south,clubs)>1 and hcp(south,clubs)<4
 noStiffHonor = not (stiffS or stiffH or stiffD or stiffC)
 
+# GIB minimums are floors -- hands at minimum in ALL dimensions often don't get opened.
+# Require at least one of (suit quality, HCP, TP) to be above minimum.
+aboveMinSuit = (w2s and top4(south,spades)>2) or (w2h and top4(south,hearts)>2) or (w2d and top4(south,diamonds)>2)
+aboveMinHcp = sHcp > 6
+aboveMinTp = tpSouth > 7
+atLeastOneAbove = aboveMinSuit or aboveMinHcp or aboveMinTp
+
 w2Range = sHcp<10 and tpSouth>6 and tpSouth<12
-weakTwo = (w2s or w2h or w2d) and w2Range and noStiffHonor
+weakTwo = (w2s or w2h or w2d) and w2Range and noStiffHonor and atLeastOneAbove
 
 # North has 15-16 TP or 21+ TP -- strong enough to invite game or slam.
 northAsks = (hcp(north)>14 and tpNorth<17) or tpNorth>20
 
-# Good suit = 2+ of top 3 honors (AKQ) in the opened suit
-goodSuit = (w2s and top3(south,spades)>1) or (w2h and top3(south,hearts)>1) or (w2d and top3(south,diamonds)>1)
+# Good suit (BBA definition) = 5+ HCP in suit (AJ, KQ, AQ, AK, or better)
+goodSuit = (w2s and hcp(south,spades)>4) or (w2h and hcp(south,hearts)>4) or (w2d and hcp(south,diamonds)>4)
 poorSuit = not goodSuit
 
 # Solid suit = all 3 top honors (AKQ)
