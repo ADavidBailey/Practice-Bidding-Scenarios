@@ -70,12 +70,12 @@ case3N = solidSuit                               // Solid suit (AKQ)
 #include "script/Leveling"
 
 # Level: bring 3D and 3S down toward 3H (14%)
-lev1 = case3C and keep
-lev2 = case3D and keep53
-lev3 = case3H and keep
-lev4 = case3S and keep25
-lev5 = case3N and keep
-levelTheDeal = lev1 or lev2 or lev3 or lev4 or lev5
+lev3C = case3C and keep
+lev3D = case3D and keep53
+lev3H = case3H and keep
+lev3S = case3S and keep25
+lev3N = case3N and keep
+levelTheDeal = lev3C or lev3D or lev3H or lev3S or lev3N
 
 weakTwo and northAsks and calmOpps and levelTheDeal
 
