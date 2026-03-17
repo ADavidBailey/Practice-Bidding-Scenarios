@@ -102,7 +102,7 @@ sOpens1D = sD and sNoMajor and not sNT and hcp(south)>11 and hcp(south)<15
 # North responds 1H, then wants to bid 4NT
 # GIB says: 5+ C, 5+ D, 4+ H, 18+ TP -- but 5+5+4=14 is impossible
 # Try the closest shape: 0-4-5-4 with big points
-nShape = spades(north)==0 and hearts(north)==4 and diamonds(north)>4 and clubs(north)>3
+nShape = spades(north)==0 and hearts(north)>4 and diamonds(north)>3 and clubs(north)>3
 nStrong = hcp(north)>15 and tpNorth>17
 
 # East overcalls 2S: 5+ spades, 10+ TP
