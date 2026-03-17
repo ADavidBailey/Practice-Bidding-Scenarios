@@ -1,0 +1,29 @@
+# alias: ImpossibleNegative
+# button-text: Impossible Negative
+# scenario-title: --- Impossible Negative after 1!C opening
+# gib-works: false
+# bba-works: true
+# auction-filter: Auction.....[\s\S][\s\S]?1C
+# convention-card-ns: Precision
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Impossible Negative after 1!C opening
+After a Precision 1!C (15+ HCP), responder bids 1!D with any 4441 hand and 8+ HCP.
+This "impossible" negative bid (looks like 0-7 HCP) allows responder to later reveal shape:
+  • Jump in singleton after opener's rebid (if opener hasn't bid it)
+  • Jump to NT if opener bids responder's singleton
+https://www.bridgebum.com/impossible_negative.php
+@chat*/
+
+dealer south
+
+# South opens 1C (Precision: 16+ HCP)
+hcp(south)>15
+
+# North has Impossible Negative: any 4441, 8+ HCP
+and hcp(north)>7 and shape(north, any 4441)
+
+# Calm opponents
+and hcp(east)<10 and hcp(west)<10
+action printoneline,
