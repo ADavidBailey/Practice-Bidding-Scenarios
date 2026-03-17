@@ -144,7 +144,7 @@ brd# dlr contract score  par     north            east             south        
 139   E  4D-E                    T9732.A3.A7.AK32 Q4.Q8.QJT953.J98 J865.JT42.642.76 AK.K9765.K8.QT54 | 2D-P-2N=1=-P-3N-P-4D | Artificial
 140   E  3N-N                    K9.A.J953.AKQ974 6.KJT875.Q87.JT6 QJT85.Q96.AK6.85 A7432.432.T42.32 | 2H-2S-P-3N
 141   E  2S-N                    AQ532.KJ7.K8.AK6 864.AQ.QJT965.73 KT.T8643.43.QJ84 J97.952.A72.T952 | 2D-P-P-X-P-2H-P-2S
-142   E  3C-W                    J86.KQJ75.QT9.J7 AQT753.T.A762.T3 K94.964.KJ85.K62 2.A832.43.AQ9854 | 1S-P-1N-P-2D-P-3C
+142   E  3C-W                    J86.KQJ75.QT9.J7 AQT753.T.A762.T3 K94.964.KJ85.K62 2.A832.43.AQ9854 | 1S-P-3C=1= | Inviting Jump Shifts
 143   E  3D-E                    Q7654.K952.7.J52 KT.A4.QJT964.864 AJ98.J763.2.KQ73 32.QT8.AK853.AT9 | 2D-X-P-2S-P-P-3D
 144   E  2S-N                    AK94.Q95.JT52.Q9 6.AKT732.96.JT65 QJ75.4.AKQ8.A843 T832.J86.743.K72 | 2H-X-P-2S
 145   E  4D-E                    QT2.AK832.6.J643 J.J7.KJT983.K872 975.654.542.AT95 AK8643.QT9.AQ7.Q | 3D-P-3S-P-4D
@@ -207,7 +207,7 @@ brd# dlr contract score  par     north            east             south        
 202   E  3S-S                    KT8.A54.AJ72.Q95 97.KQJT62.QT54.4 QJ6543.83.K86.AT A2.97.93.KJ87632 | 2H-P-P-X-P-3S
 203   E  3S-E                    Q.AJT74.9653.QT5 KJT642.3.JT72.AJ A53.KQ2.84.K9872 987.9865.AKQ.643 | 2S-P-3S
 204   E  4H-E                    AK96432.73.4.Q64 Q.KJT942.KJ97.95 JT8.Q.A8652.A732 75.A865.QT3.KJT8 | 2H-P-4H
-205   E  3H-E                    Q83.85.974.AQT87 A64.AJT632.6.J92 J975.KQ4.Q32.K65 KT2.97.AKJT85.43 | 1H-P-1N-P-2H-P-3H
+205   E  3D-W                    Q83.85.974.AQT87 A64.AJT632.6.J92 J975.KQ4.Q32.K65 KT2.97.AKJT85.43 | 1H-P-3D=1= | Inviting Jump Shifts
 206   E  6D-E                    3.KJ764.9843.K84 64.QT5.KQ7652.63 T9872.A932..T972 AKQJ5.8.AJT.AQJ5 | 2D-P-2N=1=-P-3D-P-4N-P-5D=2=-P-6D | Artificial | A=1/5 or 4/5
 207   E  5C-N                    T983.T4.AQ.AK975 764.KQJ973.K94.J KJ2.A652.75.QT62 AQ5.8.JT8632.843 | 2H-P-P-3C-P-3H=1=-P-3S-P-4C-P-5C | Limit raise or better in !C
 208   E  3D-S                    AJ8.72.93.QJT953 KQT763.T43.QJ7.2 92.AJ65.AKT854.K 54.KQ98.62.A8764 | 2S-3D
@@ -509,13 +509,13 @@ brd# dlr contract score  par     north            east             south        
     1  1D-1H-2C=1=-4H | 1X-(Y)-2Z forcing
     1  1D-P-1N-X-2D-P-P-2S
     1  1H-2C-2D=1=-3C-P-P-4D | 1X-(Y)-2Z forcing
-    1  1H-P-1N-P-2H-P-3H
     1  1H-P-1S-2C-2H-P-3H
     1  1H-P-2D-P-2H-P-2S-P-3D-P-4C-P-4H-P-4S-P-5D
+    1  1H-P-3D=1= | Inviting Jump Shifts
     1  1S-2C-2H=1=-2S=2=-X-3C-3S-4C | 1X-(Y)-2Z forcing | Limit raise or better in !C
     1  1S-2S=1=-3H=2=-P-4S | Michaels Cuebid | Limit raise or better in !S
-    1  1S-P-1N-P-2D-P-3C
     1  1S-P-2C-P-2S-P-4N-P-5H=1=-P-6N | A=2/5 or 5/5, Q(S)=0
+    1  1S-P-3C=1= | Inviting Jump Shifts
    21  2D
     4  2D-2H
     1  2D-2H-3D-P-P-3H-4D-P-5D
@@ -832,6 +832,7 @@ brd# dlr contract score  par     north            east             south        
     1  A=3 out of 4
    70  Artificial
     1  Automat
+    2  Inviting Jump Shifts
     1  K=0
     1  King ask
    27  Lebensohl after double
