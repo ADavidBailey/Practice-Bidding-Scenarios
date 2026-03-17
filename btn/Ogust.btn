@@ -67,7 +67,17 @@ case3H = maximal and poorSuit                    // Maximal, poor suit
 case3S = maximal and goodSuit and not solidSuit  // Maximal, good suit
 case3N = solidSuit                               // Solid suit (AKQ)
 
-weakTwo and northAsks and calmOpps
+#include "script/Leveling"
+
+# Level: bring 3D and 3S down toward 3H (14%)
+lev1 = case3C and keep
+lev2 = case3D and keep53
+lev3 = case3H and keep
+lev4 = case3S and keep25
+lev5 = case3N and keep
+levelTheDeal = lev1 or lev2 or lev3 or lev4 or lev5
+
+weakTwo and northAsks and calmOpps and levelTheDeal
 
 produce 40
 action
