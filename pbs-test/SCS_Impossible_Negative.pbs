@@ -18,10 +18,10 @@ setDealerCode(`
 /*
 convention-card-ns: Precision
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n1C +Pass +1D
+auction-filter: Auction.....[\s\S][\s\S]?1C
 */
-# South opens 1C (Precision: 15+ HCP)
-hcp(south)>14
+# South opens 1C (Precision: 16+ HCP)
+hcp(south)>15
 
 # North has Impossible Negative: any 4441, 8+ HCP
 and hcp(north)>7 and shape(north, any 4441)
