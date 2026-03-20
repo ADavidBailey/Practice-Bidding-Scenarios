@@ -18,22 +18,23 @@ dealer east
 #include "script/TP"
 # Defines tpSouth, tpWest, tpNorth, tpEast
 
-# Define East weak 2 bids
-w2S = spades(east)==6   and (top5(east,spades)>2   or top3(east,spades)>1)   and spades(west)<2
-w2H = hearts(east)==6   and (top5(east,hearts)>2   or top3(east,hearts)>1)   and hearts(west)<2
-w2D = diamonds(east)==6 and (top5(east,diamonds)>2 or top3(east,diamonds)>1) and diamonds(west)<2
-eW2 = (w2S or w2H or w2D) and hcp(east)>5 and hcp(east)<11 and tpEast<12
+# Define East weak 2 bids weak 2 ------------------------------------------  ---- Takeout X ------ --- possible XX -----
+w2S = spades(east)==6   and (top5(east,spades)>2   or top3(east,spades)>1)   and spades(south)<4   and spades(west)<4
+w2H = hearts(east)==6   and (top5(east,hearts)>2   or top3(east,hearts)>1)   and hearts(north)<4   and hearts(west)<4
+w2D = diamonds(east)==6 and (top5(east,diamonds)>2 or top3(east,diamonds)>1) and diamonds(south)<4 and diamonds(west)<4
+eW2 = (w2S or w2H or w2D) and hcp(east)>5 and hcp(east)<11 and tpEast<12 and tpWest>5
 
-# South is short in East's suit
+# South is short in East's suit -- singleton or less
 slt2S = w2S and spades(south)<2
 slt2H = w2H and hearts(south)<2
 slt2D = w2D and diamonds(south)<2
 slt2 = (slt2S or slt2H or slt2D) and tpSouth>12 and tpSouth<15
 
+#                               -- doubleton or less
 slt3s = w2S and spades(south)<3
 slt3h = w2H and hearts(south)<3
 slt3d = w2D and diamonds(south)<3
-slt3 = (slt3s or slt3h or slt3d) and tpSouth>13 and tpSouth<16
+slt3 = (slt3s or slt3h or slt3d) and hcp(south)>13 and hcp(south)<16
 
 sDoubles = (slt2 or slt3) and shape(south,any 5440 +any 5431 +any 44xx -5xxx -x5xx)
 
