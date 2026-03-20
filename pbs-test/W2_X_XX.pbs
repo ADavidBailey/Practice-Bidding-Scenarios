@@ -114,7 +114,7 @@ slt3h = w2H and hearts(south)<3
 slt3d = w2D and diamonds(south)<3
 slt3 = (slt3s or slt3h or slt3d) and hcp(south)>12 and hcp(south)<16
 
-sDoubles = (slt2 or slt3) and shape(south,any 5440 +any 5431 +any 44xx -5xxx -x5xx)
+sDoubles = (slt2 or slt3) and shape(south,any 5440 +any 5431 +any 4441 -5xxx -x5xx)
 
 # East opens a weak 2, South doubles, and West Redoubles
 eOpensWeak2 = eW2 and shape(east,any 6430 +any 6421 +any 6331 -4xxx -x4xx)
