@@ -225,11 +225,11 @@ tpNS = tpNorth + tpSouth
 tpEW = tpEast + tpWest
 
 ### End of Imported Script: TP
-##### Jacoby 2N #####
 
+##### Jacoby 2N #####
 lenSouth = oneSpade ? spades(south) : hearts(south)
 strSouth = tpSouth + lenSouth - 5
-oneMajor = (oS or oH) and strSouth>10 and tpSouth>11
+oneMajor = (oS or oH) and strSouth>11 and strSouth<15
 
 # Define 4+ card fits for south
 fitSpades = oneSpade and spades(north)>3
@@ -264,9 +264,7 @@ N3 = fit and suitPoints>14 and suitPoints<18 and not (x4 or x3 or M3)
 M4 = fit and suitPoints>11 and suitPoints<15 and not (x4 or x3 or M3 or N3)
 
 j2n = (x4 or x3 or M3 or N3 or M4) and not (splinter or jumpGame) 
-
 ##### End of Jacoby 2N #####
-# Defines j2n, x4, x3, M3, N3, M4
 
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
@@ -315,7 +313,7 @@ levelM4 = M4 and keep03
 levelTheDeal = levelx3 or levelM4 or levelM3 or levelx4 or levelN3
 
 ##### Now do it #####
-j2n and strSouth>11 and strSouth<15 and strNorth>12 and calmWest
+fit and j2n and calmOpps
 #and levelTheDeal
 
 produce 30
