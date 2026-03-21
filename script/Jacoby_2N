@@ -4,7 +4,6 @@
 splinter = shape(north,any 0xxx+any 1xxx) and tpNorth>12 and tpNorth<17
 
 oneMajor = (oS or oH)
-oneMinor = (oC or oD)
 
 # Define 4+ card fits for south
 sFit = oneSpade and spades(north)>3
@@ -31,6 +30,6 @@ M3 = mFit and suitPoints>17                   and not (x4 or x3)
 N3 = mFit and suitPoints>14 and suitPoints<18 and not (x4 or x3 or M3)
 M4 = mFit and suitPoints>11 and suitPoints<15 and not (x4 or x3 or M3 or N3)
 
-(x4 or x3 or M3 or N3 or M4) and not splinter
+j2n = (x4 or x3 or M3 or N3 or M4) and not splinter
 
 ##### End of Jacoby 2N #####
