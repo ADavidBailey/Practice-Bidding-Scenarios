@@ -167,7 +167,7 @@ ePass = tpEast<9 and shape(east,xxxx-any 7xxx -any 6xxx)
 sTOX =shape(south,any 5422 +any 5431 +any 5440)
 
 # Now do it
-sOpens and wOvercalls and (nStack or (nPass and hascard(east,C2) and hascard(west,D2))) and ePass and sTOX
+sOpens and wOvercalls and (nStack or (nPass and hascard(east,C2))) and ePass and sTOX
 
 action printoneline,
 average "Trap Pass" 100 * nStack,
