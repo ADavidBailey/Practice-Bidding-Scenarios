@@ -228,9 +228,10 @@ keep985 = not keep015
 keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
+
 lWeakPass = wOvercallWeak and keep015 and hascard(north,4C)
 lTrapPass = wOvercallTrap and keep
-levelTheDeal = lTrapPass or lWeakPass
+levelTheDeal = lWeakPass or lTrapPass
 
 # Now do it
 sOpens and wOvercalls and eQuiet
