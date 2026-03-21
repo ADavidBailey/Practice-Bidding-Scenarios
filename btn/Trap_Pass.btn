@@ -2,7 +2,7 @@
 # button-text: Trap Pass
 # gib-works: true
 # bba-works: true
-# auction-filter: Auction.....\n1[CDHS] +[1-4][CDHS] +Pass +Pass\nX +Pass +Pass
+# auction-filter: Auction.....\n1.*\nX +Pass +Pass
 # convention-card-ns: 21GF-DEFAULT
 # convention-card-ew: 21GF-GIB
 
@@ -10,6 +10,8 @@
 --- Trap Pass
 After 1x, (overcall), Pass, (Pass), consider reopening with DOUBLE.
 @chat*/
+
+#include "script/TP"
 
 ##### Predict South's Opening Suit #####
 # With 12-14 HCP and 5440/5431/5422 shape, South always opens the unique 5-card suit
