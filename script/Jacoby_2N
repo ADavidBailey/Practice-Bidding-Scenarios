@@ -1,5 +1,7 @@
 ##### Jacoby 2N #####
 
+#include "script/Predict-Opening-1-Bid"
+
 lenSouth = oneSpade ? spades(south) : hearts(south)
 strSouth = tpSouth + lenSouth - 5
 oneMajor = (oS or oH) and strSouth>10 and tpSouth>11
