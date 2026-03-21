@@ -155,10 +155,10 @@ nSS = w1S and spades(north)==5   and top5(north,spades)>=2
 nHS = w1H and hearts(north)==5   and top5(north,hearts)>=2
 nDS = w1D and diamonds(north)==5 and top5(north,diamonds)>=2
 nCS = w1C and clubs(north)==5    and top5(north,clubs)>=2
-nStack = (nSS or nHS or nDS or nCS)
+nTrap = (nSS or nHS or nDS or nCS)
 
 # North weak Pass -- no double & no bid
-nWeak = not nStack and tpNorth<9
+nWeak = not nTrap and tpNorth<9
 
 # East Passes
 ePass = tpEast<9 and shape(east,xxxx-any 7xxx -any 6xxx)
@@ -203,16 +203,16 @@ keep985 = not keep015
 keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
-levWeak  = nWeak  and keep75
-levStack = nStack and keep
-levelTheDeal = levWeak or levStack
+levWeak = nWeak and keep
+levTrap = nTrap and keep
+levelTheDeal = levWeak or levTrap
 
 # Now do it
-sOpens and wOvercalls and (nStack or (nWeak and hascard(east,D2))) and ePass and sTOX
+sOpens and wOvercalls and (nTrap or (nWeak and hascard(east,D2))) and ePass and sTOX
 and levelTheDeal
 
 action printoneline,
-average "Trap Pass" 100 * nStack,
+average "Trap Pass" 100 * nTrap,
 average "Weak Pass" 100 * nWeak,
 `, "S", true)
 Script
