@@ -1,13 +1,16 @@
 ##### Jacoby 2N #####
 
-splinter = shape(north,any 0xxx+any 1xxx) and tpNorth>11 and tpNorth<19
-
 oneMajor = (oS or oH)
 
 # Define 4+ card fits for south
 sFit = oneSpade and spades(north)>3
 hFit = oneHeart and hearts(north)>3
 mFit = sFit or hFit
+
+# Exclude north splinters
+nSuitLen = sFit ? spades(north) : hearts(north)
+nStrength = tpNorth + nSuitLen - 5
+splinter = shape(north,any 0xxx+any 1xxx) and nStrength>11 and nStrength<19
 
 # Define Good suits -- 5+ cards with 2 of the top 3
 gS = spades(south)>4   and top3(south,spades)>1
