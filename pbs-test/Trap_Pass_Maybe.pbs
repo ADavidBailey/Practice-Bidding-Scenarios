@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n1.*\nX +Pass +(\d|Pass)
+auction-filter: Auction.....\n1.*\nX +Pass +[\dP]
 */
 ##### Predict South's Opening Suit #####
 # With 12-14 HCP and 5440/5431/5422 shape, South always opens the unique 5-card suit
@@ -85,7 +85,7 @@ nCS = w1C and clubs(north)==5    and top5(north,clubs)>=2
 nStack = (nSS or nHS or nDS or nCS)
 
 # North Pass -- no double & no bid
-nPass = tpNorth<9
+nPass = not nStack and tpNorth<9
 
 # East Passes
 ePass = tpEAst<9 and shape(east,xxxx-any 7xxx -any 6xxx)
@@ -97,8 +97,8 @@ sTOX =shape(south,any 5422 +any 5431 +any 5440)
 sOpens and wOvercalls and (nTraps or nPass) and ePass and sTOX
 
 action printoneline,
-average "Trap Pass" 100 * wOvercallTrap,
-average "Weak Pass" 100 * wOvercallWeak,
+average "Trap Pass" 100 * nStack,
+average "Weak Pass" 100 * nPass,
 `, "S", true)
 Script
 Button,Trap Pass?,\n\
