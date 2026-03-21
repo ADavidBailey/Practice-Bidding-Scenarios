@@ -227,7 +227,8 @@ tpEW = tpEast + tpWest
 ### End of Imported Script: TP
 ##### Jacoby 2N #####
 
-sStrength = tpSouth + spades(south) - 5
+sLength = oS ? spades(south) : hearts(south)
+sStrength = tpSouth + sLength - 5
 oneMajor = (oS or oH) and sStrength>10 and tpSouth>11
 
 # Define 4+ card fits for south
