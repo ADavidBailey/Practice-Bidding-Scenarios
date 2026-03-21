@@ -1,13 +1,15 @@
-//BBOalert, Bidding Scenarios Beta
-//BBOalert, Bidding Scenarios Beta - version 4.2.6-beta
+//BBOalert, Bidding Scenarios
+//BBOalert, Bidding Scenarios - version 4.1.9-polling
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode-polling.js
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/toggleRotate.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
-Javascript,https://github.com/Rick-Wilson/bbo-pbs/blob/master/Plugins/BBAcompare.js
+Javascript,https://github.com/ADavidBailey/bbo-pbs/blob/master/Plugins/BBAcompare.js
 Import,https://github.com/stanmaz/BBOalert/blob/master/Scripts/PBStooltips.js
 
 // Display HCP for visible hands
 Script,onDataLoad
 displayHCP = function () {
+    if (!window.pbsShowHCP) return;
     var HCP = [0,0,0,0];
     var cardCount = [0,0,0,0];
     var player = ["S", "W", "N", "E"];
@@ -66,12 +68,25 @@ displayHCP = function () {
 Script
 
 Script,onAnyMutation
+if (!$("bridge-screen deal-viewer", parent.window.document).length) {
+    if (window.pbsShowHCP) {
+        window.pbsShowHCP = false;
+        var el = $(".navBarClass .titleClass", window.parent.document);
+        el.css("white-space", "");
+        el.text("Main Bridge Club");
+    }
+}
+var titleEl = $(".navBarClass .titleClass", window.parent.document);
+var titleText = titleEl.text();
+if (titleText && titleText.indexOf("(Host:") >= 0) titleEl.text(titleText.replace(/\s*\(Host:.*?\)/, ""));
 var l = $("bridge-screen deal-viewer .coverClass .cardSurfaceClass .topLeft", parent.window.document).length;
 if((l%13) == 0) displayHCP();
+if (window.syncRotateFromDialog) window.syncRotateFromDialog();
 Script
 
 // Start BBA Auction Compare panel (called by Auction Compare button)
 Script,startBBACompare,window.startBBACompare(); R='';
+Script,toggleRotate,window.toggleRandomlyRotate(); R='';
 
 // Pause
 Script,onLogin,setTimeout(setOptionsOff, 200);
@@ -127,10 +142,9 @@ Promise.resolve()
             throw new Error("Go Home.");
          }
     })
-    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(4).click())
+    .then(() => $("button.bbo-phx-navigation:contains('Practice')", BBOcontext()).first().click())
     .then(() => delay(delayValue))
-    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(tableType).click())
-    .then(() => $(".menuGrid navigation-list-button .navClass:visible", BBOcontext()).eq(0).click())
+    .then(() => $("button.bbo-phx-navigation:contains('Start a bidding table')", BBOcontext()).first().click())
     .then(() => delay(delayValue))
     .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(0).click())
     .then(() => delay(delayValue))
@@ -181,9 +195,9 @@ Promise.resolve()
             throw new Error("Go Home.");
          }
     })
-    .then(() => $(".menuGrid navigation-list-button .navClass", BBOcontext()).eq(4).click())
+    .then(() => $("button.bbo-phx-navigation:contains('Practice')", BBOcontext()).first().click())
     .then(() => delay(delayValue))
-    .then(() => $(".menuGrid navigation-list-button .navClass:visible", BBOcontext()).eq(1).click())
+    .then(() => $("button.bbo-phx-navigation:contains('Start a teaching table')", BBOcontext()).first().click())
     .then(() => delay(delayValue))
     .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(0).click())
     .then(() => delay(delayValue))
@@ -547,9 +561,9 @@ Script,onDataLoad
             var chatText = this.getAttribute('data-chat');
             console.log('PBS Dynamic: Loading scenario', scenarioName);
 
-            // Send chat message to self (scenario description)
+            // Send chat message to current chat destination (scenario description)
             if (chatText) {
-                sendPrivateChat(whoAmI(), chatText);
+                setChatMessage(chatText, true);
             }
 
             fetch(url)
@@ -559,14 +573,17 @@ Script,onDataLoad
                     if (match) {
                         window.currentPBSScenario = scenarioName;
                         window.currentPBSScenarioFilename = scenarioName;
-                        // Extract convention-card from dealer code comments
-                        var ccMatch = match[1].match(/convention-card:\s*(\S+)/);
-                        window.currentPBSConventionCard = ccMatch ? ccMatch[1] : null;
+                        // Extract convention-card-ns and convention-card-ew from dealer code comments
+                        var ccNS = match[1].match(/convention-card-ns:\s*(\S+)/);
+                        var ccEW = match[1].match(/convention-card-ew:\s*(\S+)/);
+                        window.currentPBSConventionCardNS = ccNS ? ccNS[1] : null;
+                        window.currentPBSConventionCardEW = ccEW ? ccEW[1] : null;
                         fetch('https://bba.harmonicsystems.com/api/scenario/select', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json', 'X-Client-Version': '1.0.0' },
                             body: JSON.stringify({ scenario: scenarioName, user: whoAmI() || 'anonymous' })
                         }).catch(function() {});
+                        window.pbsShowHCP = true;
                         setDealerCode(match[1], match[2], match[3] === 'true');
                     }
                 })
@@ -682,9 +699,9 @@ Script,onDataLoad
                     var chatText = this.getAttribute('data-chat');
                     var url = PBS_TEST_BASE + '/' + scenarioName + '.pbs';
 
-                    // Send chat message to self (scenario description)
+                    // Send chat message to current chat destination (scenario description)
                     if (chatText) {
-                        sendPrivateChat(whoAmI(), chatText);
+                        setChatMessage(chatText, true);
                     }
 
                     fetch(url)
@@ -694,9 +711,12 @@ Script,onDataLoad
                             if (match) {
                                 window.currentPBSScenario = scenarioName;
                                 window.currentPBSScenarioFilename = scenarioName;
-                                // Extract convention-card from dealer code comments
-                                var ccMatch = match[1].match(/convention-card:\s*(\S+)/);
-                                window.currentPBSConventionCard = ccMatch ? ccMatch[1] : null;
+                                // Extract convention-card-ns and convention-card-ew from dealer code comments
+                                var ccNS = match[1].match(/convention-card-ns:\s*(\S+)/);
+                                var ccEW = match[1].match(/convention-card-ew:\s*(\S+)/);
+                                window.currentPBSConventionCardNS = ccNS ? ccNS[1] : null;
+                                window.currentPBSConventionCardEW = ccEW ? ccEW[1] : null;
+                                window.pbsShowHCP = true;
                                 setDealerCode(match[1], match[2], match[3] === 'true');
                             }
                         })
@@ -917,17 +937,36 @@ Script,onDataLoad
                     fetchPbsMetadata(name, PBS_RELEASE_BASE).then(function(meta) {
                         bt.textContent = meta.text;
                         if (meta.style.backgroundColor) bt.style.backgroundColor = meta.style.backgroundColor;
+                        if (meta.chat) {
+                            bt.setAttribute('data-chat', meta.chatRaw);
+                            var tooltipText = meta.chat.replace(/^\n?---\s*/, '').trim()
+                                .replace(/!S/g, '\u2660')
+                                .replace(/!H/g, '\u2665')
+                                .replace(/!D/g, '\u2666')
+                                .replace(/!C/g, '\u2663');
+                            bt.title = tooltipText;
+                        }
                     });
 
                     bt.onclick = function() {
                         var scenarioName = this.getAttribute('data-scenario');
                         var url = this.getAttribute('data-pbs-url');
+                        var chatText = this.getAttribute('data-chat');
+                        if (chatText) {
+                            setChatMessage(chatText, true);
+                        }
                         fetch(url)
                             .then(function(response) { return response.text(); })
                             .then(function(content) {
                                 var match = content.match(/setDealerCode\(`([\s\S]*?)`,\s*"([NSEW])",\s*(true|false)\)/);
                                 if (match) {
                                     window.currentPBSScenario = scenarioName;
+                                    // Extract convention-card-ns and convention-card-ew from dealer code comments
+                                    var ccNS = match[1].match(/convention-card-ns:\s*(\S+)/);
+                                    var ccEW = match[1].match(/convention-card-ew:\s*(\S+)/);
+                                    window.currentPBSConventionCardNS = ccNS ? ccNS[1] : null;
+                                    window.currentPBSConventionCardEW = ccEW ? ccEW[1] : null;
+                                    window.pbsShowHCP = true;
                                     setDealerCode(match[1], match[2], match[3] === 'true');
                                 }
                             })
@@ -1003,7 +1042,7 @@ Script,onDataLoad
     }
 
     function runInit() {
-        console.log('PBS v4.2.6-beta: Initializing...');
+        console.log('PBS v4.1.8: Initializing...');
         console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
         console.log('PBS Dynamic: Beta layout =', pbsConfig.Use_Beta_Layout);
 
