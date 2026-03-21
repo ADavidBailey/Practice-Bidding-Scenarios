@@ -101,7 +101,7 @@ d = diamonds(south)
 c = clubs(south)
 oneSpade   = s>4 and s>=h and s>=d and s>=c
 oneHeart   = not oneSpade and h>4 and h>=d and h>=c
-oneDiamond = not oneSpade and not oneHeart and and ((d>3 and d>=c) or c<3)
+oneDiamond = not oneSpade and not oneHeart and ((d>3 and d>=c) or c<3)
 oneClub    = not oneSpade and not oneHeart and not oneDiamond
 ##### End of Predict South's Opening Suit #####
 
@@ -208,7 +208,7 @@ levTrap = nTrap and keep
 levelTheDeal = levWeak or levTrap
 
 # Now do it
-sOpens and wOvercalls and (nTrap or (nWeak and hascard(east,D2))) and ePass and sTOX
+sOpens and wOvercalls and (nTrap or nWeak) and ePass and sTOX
 and levelTheDeal
 
 action printoneline,
