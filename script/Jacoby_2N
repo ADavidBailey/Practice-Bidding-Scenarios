@@ -1,0 +1,36 @@
+##### Jacoby 2N #####
+
+#include "script/TP"
+splinter = shape(north,any 0xxx+any 1xxx) and tpNorth>12 and tpNorth<17
+
+oneMajor = (oS or oH)
+oneMinor = (oC or oD)
+
+# Define 4+ card fits for south
+sFit = oneSpade and spades(north)>3
+hFit = oneHeart and hearts(north)>3
+mFit = sFit or hFit
+
+# Define Good suits -- 5+ cards with 2 of the top 3
+gS = spades(south)>4   and top3(south,spades)>1
+gH = hearts(south)>4   and top3(south,hearts)>1
+gD = diamonds(south)>4 and top3(south,diamonds)>1
+gC = clubs(south)>4    and top3(south,clubs)>1
+  
+# Define Strong suits -- 5+ cards with 3 of the top 4
+# Define Solid suits -- 5 cards with 4 of the top 4 or 6+ cards with 3 of the top 3  
+
+# Define Majors with 2nd suits
+sFit2nd = oneSpade and sFit and (gH or gD or gC)
+hFit2nd = oneHeart and hFit and (gS or gD or gC)
+
+# Define the 5 types of opening hands in priority order
+x4 = sFit2nd or hFit2nd
+x3 = mFit and shape(south, any 0xxx+any 1xxx) and not x4
+M3 = mFit and suitPoints>17                   and not (x4 or x3)
+N3 = mFit and suitPoints>14 and suitPoints<18 and not (x4 or x3 or M3)
+M4 = mFit and suitPoints>11 and suitPoints<15 and not (x4 or x3 or M3 or N3)
+
+(x4 or x3 or M3 or N3 or M4) and not splinter
+
+##### End of Jacoby 2N #####
