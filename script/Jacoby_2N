@@ -8,10 +8,13 @@ sFit = oneSpade and spades(north)>3
 hFit = oneHeart and hearts(north)>3
 mFit = sFit or hFit
 
-# Exclude north splinters
+# Exclude north's splinters
 nSuitLen = sFit ? spades(north) : hearts(north)
 nStrength = tpNorth + nSuitLen - 4
 splinter = shape(north,any 0xxx+any 1xxx) and nStrength>12 and nStrength<19
+
+# Exclude north's jumps to game
+jumpGame = nSuitLen>3 and hcp(north)<9 and tpNorth>3
 
 # Define Good suits -- 5+ cards with 2 of the top 3
 gS = spades(south)>4   and top3(south,spades)>1
@@ -33,6 +36,6 @@ M3 = mFit and suitPoints>17                   and not (x4 or x3)
 N3 = mFit and suitPoints>14 and suitPoints<18 and not (x4 or x3 or M3)
 M4 = mFit and suitPoints>11 and suitPoints<15 and not (x4 or x3 or M3 or N3)
 
-j2n = (x4 or x3 or M3 or N3 or M4) and not splinter
+j2n = (x4 or x3 or M3 or N3 or M4) and not (splinter or jumpGame) 
 
 ##### End of Jacoby 2N #####
