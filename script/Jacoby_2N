@@ -9,7 +9,7 @@ mFit = sFit or hFit
 
 # Exclude north splinters
 nSuitLen = sFit ? spades(north) : hearts(north)
-nStrength = tpNorth + nSuitLen - 5
+nStrength = tpNorth + nSuitLen - 4
 splinter = shape(north,any 0xxx+any 1xxx) and nStrength>12 and nStrength<19
 
 # Define Good suits -- 5+ cards with 2 of the top 3
