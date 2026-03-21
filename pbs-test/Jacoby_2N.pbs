@@ -238,11 +238,11 @@ fit = fitSpades or fitHearts
 
 # Exclude north's splinters
 lenNorth = fitSpades ? spades(north) : hearts(north)
-strNorth = tpNorth + lenNorth - 4
-splinter = fit and shape(north,any 0xxx+any 1xxx) and strNorth>12 and strNorth<19
+//strNorth = tpNorth + lenNorth - 4
+splinter = fit and shape(north,any 0xxx+any 1xxx) and tpNorth>12 and tpNorth<17
 
 # Exclude north's jumps to game
-jumpGame = fit and lenNorth>3 and strNorth>9
+jumpGame = fit and lenNorth>3 and tpNorth>9
 
 # Define Good suits -- 5+ cards with 2 of the top 3
 gS = spades(south)>4   and top3(south,spades)>1
@@ -313,7 +313,7 @@ levelM4 = M4 and keep03
 levelTheDeal = levelx3 or levelM4 or levelM3 or levelx4 or levelN3
 
 ##### Now do it #####
-j2n and strNorth>12 and calmOpps
+j2n and calmOpps // and tpNorth>12
 #and levelTheDeal
 
 produce 30
