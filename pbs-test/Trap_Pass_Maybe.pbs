@@ -161,13 +161,13 @@ nStack = (nSS or nHS or nDS or nCS)
 nPass = not nStack and tpNorth<9
 
 # East Passes
-ePass = tpEAst<9 and shape(east,xxxx-any 7xxx -any 6xxx)
+ePass = tpEast<9 and shape(east,xxxx-any 7xxx -any 6xxx)
 
 # South makes a Take-Out X
 sTOX =shape(south,any 5422 +any 5431 +any 5440)
 
 # Now do it
-sOpens and wOvercalls and (nTraps or nPass) and ePass and sTOX
+sOpens and wOvercalls and (nStack or nPass) and ePass and sTOX
 
 action printoneline,
 average "Trap Pass" 100 * nStack,
