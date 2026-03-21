@@ -239,7 +239,7 @@ fit = fitSpades or fitHearts
 # Exclude north's splinters
 lenNorth = fitSpades ? spades(north) : hearts(north)
 strNorth = tpNorth + lenNorth - 4
-splinter = fit and shape(north,any 0xxx+any 1xxx) and strNorth>12 and strNorth<17
+splinter = fit and shape(north,any 0xxx+any 1xxx) and strNorth>12 and strNorth<18
 
 # Exclude north's jumps to game
 jumpGame = fit and lenNorth>3 and strNorth>9 and strNorth<13
