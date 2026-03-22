@@ -123,10 +123,10 @@ sDoubles = (sDouble1 or sDouble2) and shape(south,xxxx-5xxx-x5xx) and controls(s
 eOpens = (wS or wH or wD or wC) and hcp(east)>3 and hcp(east)<10
 
 # West Redoubles (HCP or fit-based)
-wFitS = wS and spades(west)>2   : 2 * (spades(west)-1)   ? 0  // 4 for 3-cards + 2 for each additional card
-wFitH = wH and hearts(west)>2   : 2 * (hearts(west)-1)   ? 0
-wFitD = wD and diamonds(west)>2 : 2 * (diamonds(west)-1) ? 0    
-wFitC = wC and clubs(west)>2    : 2 * (clubs(west)-1)    ? 0
+wFitS = (wS and spades(west)>2)   ? 2 * (spades(west)-1)   : 0  // 4 for 3-cards + 2 for each additional card
+wFitH = (wH and hearts(west)>2)   ? 2 * (hearts(west)-1)   : 0
+wFitD = (wD and diamonds(west)>2) ? 2 * (diamonds(west)-1) : 0
+wFitC = (wC and clubs(west)>2)    ? 2 * (clubs(west)-1)    : 0
 wFitP = wFitS + wFitH + wFitD + wFitC
 
 wStr = tpWest + wFitP
