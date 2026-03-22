@@ -102,8 +102,8 @@ sOpens1D = sD and sNoMajor and not sNT and hcp(south)>11 and hcp(south)<15
 # North responds 1H: 4+ hearts, 6+ HCP
 nResp = hearts(north)>3 and tpNorth>5
 
-# East overcalls 2S: 5+ spades, 10+ TP
-eOvercall = spades(east)>5 and tpEast>9
+# East overcalls 2S: aggressive weak jump overcall -- 5+ spades, 9- HCP, 3+ TP
+eOvercall = spades(east)>4 and hcp(east)<10 and tpEast>2
 
 # West raises to 4S: 4+ spades, enough to jump
 wRaise = spades(west)>3 and (tpWest + spades(west)-3)>9
