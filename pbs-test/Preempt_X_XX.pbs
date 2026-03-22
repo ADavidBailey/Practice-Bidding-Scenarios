@@ -130,6 +130,7 @@ wFitD = (wD and diamonds(west)>2) ? 2 * (diamonds(west)-1) : 0
 wFitC = (wC and clubs(west)>2)    ? 2 * (clubs(west)-1)    : 0
 wFitP = wFitS + wFitH + wFitD + wFitC
 
+wStr = tpWest + wFitP
 wXX = wStr>15 and controls(west)>1
 
 # Define leveling
