@@ -102,7 +102,11 @@ sOpens1D = sD and sNoMajor and not sNT and hcp(south)>11 and hcp(south)<15
 # North responds 1H then bids 4N (Unusual NT): 4+ H, 5+ D, 5+ C, 18+ TP
 # Shape: 0-4-5-4, 0-4-4-5, 0-5-4-4, 0-5-5-3, 0-4-5-4, etc.
 nShape = shape(north,0445 +0454)
-nResp = nShape and tpNorth>15 and hcp(north,hearts)>3 and hcp(north,clubs)>3
+nH = hcp(north,hearts) + hearts(north)
+nD = hcp(north,diamonds) + diamonds(north)
+nC = hcp(north,clubs) + clubs(north)
+nBalanced = (nH-nD)<3 and (nD-nH)<3 and (nH-nC)<3 and (nC-nH)<3 and (nD-nC)<3 and (nC-nD)<3
+nResp = nShape and nBalanced and tpNorth>17
 
 # West passes over 1D: not enough to act
 wPasses = hcp(west)<15
