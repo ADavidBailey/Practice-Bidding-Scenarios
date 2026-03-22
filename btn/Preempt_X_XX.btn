@@ -1,5 +1,5 @@
 # alias: PreemptXRX
-# button-text: Preempt (X) XX? (Lev)
+# button-text: Preempt-X-XX
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n[34][CDHS] +X +XX
@@ -8,8 +8,7 @@
 
 /*@chat
 --- Preempt (X) XX? (Now What?)
-After a 3-level or 4-level preempt, (X), XX, what do we do?  The deals are leveled so
-that the 7-card and 8-card preempts and the XX/Pass occur with about the same frequency.
+After a 3-level preempt, [345][CDHS]-X-XX, what do we do?
 @chat*/
 
 # Opps Preempt, we X and they XX
@@ -55,7 +54,7 @@ wSuitLen = (wS ? spades(west) : 0) + (wH ? hearts(west) : 0) + (wD ? diamonds(we
 wTrumpAce = (wS ? hascard(west,AS) : 0) + (wH ? hascard(west,AH) : 0) + (wD ? hascard(west,AD) : 0) + (wC ? hascard(west,AC) : 0)
 wAllAces = hascard(west,AS) + hascard(west,AH) + hascard(west,AD) + hascard(west,AC)
 wOutsideAces = wAllAces - wTrumpAce
-wXX = (wSuitLen + length)<11 and wSuitLen>2 and wOutsideAces>1 and controls(west)>5
+wXX = (wSuitLen + length)<11 and wSuitLen>2 and wOutsideAces>1 and controls(west)>5 and hcp(west)>14
 
 # Define leveling
 #include "script/Leveling"
