@@ -130,8 +130,11 @@ wFitD = (wD and diamonds(west)>2) ? 2 * (diamonds(west)-1) : 0
 wFitC = (wC and clubs(west)>2)    ? 2 * (clubs(west)-1)    : 0
 wFitP = wFitS + wFitH + wFitD + wFitC
 
-wStr = tpWest + wFitP
-wXX = wStr>15 and controls(west)>3
+wSuitLen = (wS ? spades(west) : 0) + (wH ? hearts(west) : 0) + (wD ? diamonds(west) : 0) + (wC ? clubs(west) : 0)
+wTrumpAce = (wS ? hascard(west,AS) : 0) + (wH ? hascard(west,AH) : 0) + (wD ? hascard(west,AD) : 0) + (wC ? hascard(west,AC) : 0)
+wAllAces = hascard(west,AS) + hascard(west,AH) + hascard(west,AD) + hascard(west,AC)
+wOutsideAces = wAllAces - wTrumpAce
+wXX = wSuitLen>4 and wOutsideAces>1
 
 # Define leveling
 ### Imported Leveling Code ###
