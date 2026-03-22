@@ -117,7 +117,7 @@ sShort = (sShortS or sShortH or sShortD or sShortC)
 
 sDouble1 = hcp(south)>14 and sShort
 sDouble2 = hcp(south)>17
-sDoubles = (sDouble1 or sDouble2) and shape(south,xxxx-5xxx-x5xx) and controls(south)>3
+sDoubles = (sDouble1 or sDouble2) and tpSouth > (hcp(south) + 2) and shape(south,xxxx-5xxx-x5xx) and controls(south)>3
 
 # East opens 4, South doubles, and West Redoubles
 eOpens = (wS or wH or wD or wC) and hcp(east)>3 and hcp(east)<10
