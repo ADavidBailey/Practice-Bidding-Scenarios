@@ -134,7 +134,7 @@ wSuitLen = (wS ? spades(west) : 0) + (wH ? hearts(west) : 0) + (wD ? diamonds(we
 wTrumpAce = (wS ? hascard(west,AS) : 0) + (wH ? hascard(west,AH) : 0) + (wD ? hascard(west,AD) : 0) + (wC ? hascard(west,AC) : 0)
 wAllAces = hascard(west,AS) + hascard(west,AH) + hascard(west,AD) + hascard(west,AC)
 wOutsideAces = wAllAces - wTrumpAce
-wXX = (wSuitLen + length)<12 and wSuitLen>2 and wOutsideAces>1
+wXX = (wSuitLen + length)<11 and wSuitLen>2 and wOutsideAces>1 and controls(west)>4
 
 # Define leveling
 ### Imported Leveling Code ###
