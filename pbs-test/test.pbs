@@ -108,8 +108,8 @@ wPasses = hcp(west)<15
 # East overcalls 2S: 6+ spades pushes BBA to jump to 2S not 1S
 eOvercall = spades(east)>5 and hcp(east)<10 and tpEast>2
 
-# West raises to 4S: 4- spades, 16- TP
-wRaise = spades(west)<5 and tpWest<17
+# West raises to 4S: 4+ spades, poor quality if 5+ (at most Q high), 16- TP
+wRaise = spades(west)>3 and (spades(west)==4 or hcp(west,spades)<3) and tpWest<17
 sOpens1D and nResp and wPasses and eOvercall and wRaise
 
 produce 40
