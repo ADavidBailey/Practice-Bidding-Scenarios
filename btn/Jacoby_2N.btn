@@ -2,6 +2,7 @@
 # button-text: Jacoby 2N (4x-Suit)
 # gib-works: true
 # bba-works: true
+# scenario-title: --- Jacoby 2N
 # auction-filter: Auction.....\n1[HS] +Pass +2N
 # convention-card-ns: 21GF-DEFAULT
 # convention-card-ew: 21GF-GIB
@@ -17,22 +18,29 @@ are the approximate frequency of occurrence for the various hand types. Use the 
 • 4M (34%) - 12-14 Semi-Balanced
 @chat*/
 
-produce 2000
 dealer south
-
-# Jacoby 2N Leveled
 
 #include "script/Predict-Opening-1-Bid"
 #include "script/Calm-Opponents"
+#include "script/TP"
 
 ##### Jacoby 2N #####
-oneMajor = (oS or oH)
-oneMinor = (oC or oD)
+lenSouth = oneSpade ? spades(south) : hearts(south)
+strSouth = tpSouth + lenSouth - 5
+oneMajor = (oS or oH) and strSouth>11 and strSouth<15
 
 # Define 4+ card fits for south
-sFit = oneSpade and spades(north)>3
-hFit = oneHeart and hearts(north)>3
-mFit = sFit or hFit
+fitSpades = oneSpade and spades(north)>3
+fitHearts = oneHeart and hearts(north)>3
+fit = fitSpades or fitHearts
+
+# Exclude north's splinters
+lenNorth = fitSpades ? spades(north) : hearts(north)
+strNorth = tpNorth + lenNorth - 4
+splinter = fit and shape(north,any 0xxx+any 1xxx) and strNorth>10 and (strNorth<13 or strNorth>18) // game or slam
+
+# Exclude north's jumps to game
+jumpGame = fit and lenNorth>3 and strNorth<9
 
 # Define Good suits -- 5+ cards with 2 of the top 3
 gS = spades(south)>4   and top3(south,spades)>1
@@ -44,19 +52,55 @@ gC = clubs(south)>4    and top3(south,clubs)>1
 # Define Solid suits -- 5 cards with 4 of the top 4 or 6+ cards with 3 of the top 3  
 
 # Define Majors with 2nd suits
-sFit2nd = oneSpade and sFit and (gH or gD or gC)
-hFit2nd = oneHeart and hFit and (gS or gD or gC)
+twoSuits = (fitSpades and (gH or gD or gC)) or (fitHearts and (gS or gD or gC))
 
 # Define the 5 types of opening hands in priority order
-x4 = sFit2nd or hFit2nd
-x3 = mFit and shape(south, any 0xxx+any 1xxx) and not x4
-M3 = mFit and suitPoints>17                   and not (x4 or x3)
-N3 = mFit and suitPoints>14 and suitPoints<18 and not (x4 or x3 or M3)
-M4 = mFit and suitPoints>11 and suitPoints<15 and not (x4 or x3 or M3 or N3)
+x4 = fit and twoSuits
+x3 = fit and shape(south, any 0xxx+any 1xxx) and not x4
+M3 = fit and suitPoints>17                   and not (x4 or x3)
+N3 = fit and suitPoints>14 and suitPoints<18 and not (x4 or x3 or M3)
+M4 = fit and suitPoints>11 and suitPoints<15 and not (x4 or x3 or M3 or N3)
 
+j2n = strNorth>12 and (x4 or x3 or M3 or N3 or M4) and not (splinter or jumpGame) 
 ##### End of Jacoby 2N #####
 
-#include "script/Leveling"
+### Imported Leveling Code ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep015 = keep06 and c3
+keep03 = keep06 and keep44
+keep045 = keep06 and not c3
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep955 = not keep045
+keep97 = not keep03
+keep985 = not keep015
+keep   = 1
+keep0  = 0
+### End of Imported Leveling Code ###
 
 # Do the leveling
 levelx4 = x4 and keep25
@@ -67,12 +111,11 @@ levelM4 = M4 and keep03
 levelTheDeal = levelx3 or levelM4 or levelM3 or levelx4 or levelN3
 
 ##### Now do it #####
-condition
-(x4 or x3 or M3 or N3 or M4) and suitPoints>12 and calmWest and hcp(north)>12
+j2n and calmOpps
 #and levelTheDeal
 
+produce 30
 action
-#printoneline,
 average "1. x4" 100 * x4,
 average "2. x3" 100 * x3,
 average "3. M3" 100 * M3,
