@@ -239,10 +239,10 @@ fit = fitSpades or fitHearts
 # Exclude north's splinters
 lenNorth = fitSpades ? spades(north) : hearts(north)
 strNorth = tpNorth + lenNorth - 4
-splinter = fit and shape(north,any 0xxx+any 1xxx) and hcp(north)>9 and hcp(north)<12
+splinter = fit and shape(north,any 0xxx+any 1xxx) and strNorth>10 and strNorth<13
 
 # Exclude north's jumps to game
-jumpGame = fit and lenNorth>3 and strNorth>9 and strNorth<13
+jumpGame = fit and lenNorth>3 and strNorth<9
 
 # Define Good suits -- 5+ cards with 2 of the top 3
 gS = spades(south)>4   and top3(south,spades)>1
