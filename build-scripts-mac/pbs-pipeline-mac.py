@@ -23,8 +23,9 @@ import os
 import sys
 import time
 
-from config import FOLDERS, OPERATIONS_ORDER, PROJECT_ROOT
+from config import FOLDERS, OPERATIONS_ORDER, PROJECT_ROOT, DEALER_PLATFORM
 from ssh_runner import test_ssh_connection
+from operations.bba_from_pbn import BBA_MODE
 from utils.properties import get_bba_works
 
 # ANSI color codes
@@ -383,8 +384,9 @@ Operations (in order):
 
     verbose = not args.quiet
 
-    # Check SSH connection unless skipped
-    if not args.no_ssh_check:
+    # Check SSH connection unless skipped or not needed
+    needs_ssh = DEALER_PLATFORM != "mac" or BBA_MODE != "mac"
+    if needs_ssh and not args.no_ssh_check:
         if verbose:
             print("Checking SSH connection to Windows VM...")
         if not test_ssh_connection():
