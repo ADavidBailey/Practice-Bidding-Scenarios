@@ -97,16 +97,19 @@ tpEW = tpEast + tpWest
 ### End of Imported Script: TP
 
 # Define East preempt at the 3- or 4-level
-wS = shape(east,9xxx+8xxx+7xxx) and top3(east,spades)==1   and top5(east,spades)>2   and spades(west)>1
-wH = shape(east,x9xx+x8xx+x7xx) and top3(east,hearts)==1   and top5(east,hearts)>2   and hearts(west)>1
-wD = shape(east,xx9x+xx8x+xx7x) and top3(east,diamonds)==1 and top5(east,diamonds)>2 and diamonds(west)>1
-wC = shape(east,xxx9+xxx8+xxx7) and top3(east,clubs)==1    and top5(east,clubs)>2    and clubs(west)>1
+wS = shape(east,9xxx+8xxx+7xxx) and hcp(east,spades)>1   and spades(west)>1
+wH = shape(east,x9xx+x8xx+x7xx) and hcp(east,hearts)>1   and hearts(west)>1
+wD = shape(east,xx9x+xx8x+xx7x) and hcp(east,diamonds)>1 and diamonds(west)>1
+wC = shape(east,xxx9+xxx8+xxx7) and hcp(east,clubs)>1    and clubs(west)>1
 
 lS = wS ? spades(east)   : 0
 lH = wH ? hearts(east)   : 0
 lD = wD ? diamonds(east) : 0
 lC = wC ? clubs(east)    : 0
 length = lS + lH + lD + lC
+
+# East opens with a 3-level or 4-level preempt
+eOpens = (wS or wH or wD or wC) and hcp(east)>4 and hcp(east)<10
 
 # South is short in East's suit
 sShortS = wS and spades(south)<2
@@ -115,12 +118,10 @@ sShortD = wD and diamonds(south)<2
 sShortC = wC and clubs(south)<2
 sShort = (sShortS or sShortH or sShortD or sShortC)
 
-sDouble1 = hcp(south)>14 and sShort
+# South doubles
+sDouble1 = hcp(south)>11 and sShort and shape(south,any 4441 +any 54xx +any 5530 +any 0xxx +any 1xxx)
 sDouble2 = hcp(south)>17
-sDoubles = (sDouble1 or sDouble2) and shape(south,any 4441 +any 54xx +any 55xx +any 0xxx +any 1xxx)
-
-# East opens 4, South doubles, and West Redoubles
-eOpens = (wS or wH or wD or wC) and hcp(east)>3 and hcp(east)<10
+sDoubles = (sDouble1 or sDouble2)
 
 # West Redoubles (HCP or fit-based)
 wFitS = (wS and spades(west)>2)   ? 2 * (spades(west)-1)   : 0  // 4 for 3-cards + 2 for each additional card
@@ -176,7 +177,7 @@ lev9 = length==9 and keep
 levelTheDeal = lev7 or lev8 or lev9
 
 eOpens and sDoubles and wXX
-and levelTheDeal
+#and levelTheDeal
 
 action printoneline,
 average "hcp East " hcp(east),
