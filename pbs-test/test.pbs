@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-GIB
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n1D +Pass +1H +2S\nPass +4S +4N
+auction-filter: Auction.....\n1D +Pass +1H +2S\nPass +4S
 */
 ### Imported script: TP (Total Points)
 //   Total Points = HCP + Short-Suit Points - Penalty Points
@@ -93,33 +93,26 @@ tpEW = tpEast + tpWest
 
 ### End of Imported Script: TP
 
-# South opens 1D: 12-14 TP, 3+ diamonds, passes over 2S
+# South opens 1D: 12-14 TP, 4+ diamonds, no 5-card major
 sD = diamonds(south)>3 and diamonds(south)>=clubs(south)
 sNoMajor = spades(south)<5 and hearts(south)<5
 sNT = hcp(south)>14 and hcp(south)<17 and shape(south,any 5332 +any 4432 +any 4333 -5xxx -x5xx)
 sOpens1D = sD and sNoMajor and not sNT and hcp(south)>11 and hcp(south)<15
 
-# North responds 1H, then wants to bid 4NT
-# GIB says: 5+ C, 5+ D, 4+ H, 18+ TP -- but 5+5+4=14 is impossible
-# Try the closest shape: 0-4-5-4 with big points
-nShape = spades(north)==0 and shape(north,0454)
-nStrong = hcp(north)>15 and tpNorth<17
+# North responds 1H: 4+ hearts, 6+ HCP
+nResp = hearts(north)>3 and tpNorth>5
 
 # East overcalls 2S: 5+ spades, 10+ TP
-eOvercall = spades(east)>5 and hcp(east)<10 and tpEast>2
+eOvercall = spades(east)>5 and tpEast>9
 
-# West raises to 4S: 3+ spades, Law of Total Tricks
-wRaise = spades(west)>2 and tpWest<17
-
-sOpens1D and nShape and nStrong and eOvercall and wRaise
+# West raises to 4S: 4+ spades, enough to jump
+wRaise = spades(west)>3 and (tpWest + spades(west)-3)>9
+sOpens1D and nResp and eOvercall and wRaise
 
 produce 40
 action printoneline,
 `, "S", true)
 Script
-Button,Test 4NT,\n\
---- Test: Can GIB bid 4NT (Unusual NT) after 1D-P-1H-2S-P-4S?\n\
-GIB says 4NT = Unusual NT: 5+ C，5+ D，4+ H，18+ TP\n\
-But 5+5+4 = 14 > 13 cards，so the shape is impossible.\n\
-Testing with 4H + 5D + 4C (0-4-5-4) and 18+ TP.\n\
+Button,Test,\n\
+--- Test: 1D-P-1H-2S，P-4S\n\
 %test%
