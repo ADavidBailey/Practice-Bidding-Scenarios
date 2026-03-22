@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-GIB
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n1D +Pass +1H +2S\nPass +4S
+auction-filter: Auction.....\n1D +Pass +1H +2S\nPass +4S +4N
 */
 ### Imported script: TP (Total Points)
 //   Total Points = HCP + Short-Suit Points - Penalty Points
@@ -99,8 +99,8 @@ sNoMajor = spades(south)<5 and hearts(south)<5
 sNT = hcp(south)>14 and hcp(south)<17 and shape(south,any 5332 +any 4432 +any 4333 -5xxx -x5xx)
 sOpens1D = sD and sNoMajor and not sNT and hcp(south)>11 and hcp(south)<15
 
-# North responds 1H: 4+ hearts, 6+ HCP
-nResp = hearts(north)>3 and tpNorth>5
+# North responds 1H then bids 4N (Unusual NT): 4+ H, 5+ D, 5+ C, 18+ TP
+nResp = hearts(north)>3 and diamonds(north)>4 and clubs(north)>4 and tpNorth>17
 
 # West passes over 1D: not enough to act
 wPasses = hcp(west)<15
@@ -117,5 +117,5 @@ action printoneline,
 `, "S", true)
 Script
 Button,Test,\n\
---- Test: 1D-P-1H-2S，P-4S\n\
+--- Test: 1D-P-1H-2S，P-4S-4N\n\
 %test%
