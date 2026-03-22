@@ -101,7 +101,7 @@ sOpens1D = sD and sNoMajor and not sNT and hcp(south)>11 and hcp(south)<15
 
 # North responds 1H then bids 4N (Unusual NT): 4+ H, 5+ D, 5+ C, 18+ TP
 # Shape: 0-4-5-4, 0-4-4-5, 0-5-4-4, 0-5-5-3, 0-4-5-4, etc.
-n0535 = shape(north,0535) and hcp(north,hearts)>3 and hcp(north,clubs)>3
+n0535 = shape(north,0535) and hcp(north,diamonds)>3 and hcp(north,clubs)>3
 nShape = shape(north,0445 +0454 +0544) or n0535
 nResp = nShape and tpNorth>15
 
