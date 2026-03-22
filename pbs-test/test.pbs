@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-GIB
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n1D +Pass +1H +2S +Pass +4S +4N
+auction-filter: Auction.....\n1D +Pass +1H +2S\nPass +4S +4N
 */
 ### Imported script: TP (Total Points)
 //   Total Points = HCP + Short-Suit Points - Penalty Points
@@ -102,11 +102,11 @@ sOpens1D = sD and sNoMajor and not sNT and hcp(south)>11 and hcp(south)<15
 # North responds 1H, then wants to bid 4NT
 # GIB says: 5+ C, 5+ D, 4+ H, 18+ TP -- but 5+5+4=14 is impossible
 # Try the closest shape: 0-4-5-4 with big points
-nShape = spades(north)==0 and hearts(north)>4 and diamonds(north)>3 and clubs(north)>3
-nStrong = hcp(north)>15 and tpNorth>17
+nShape = spades(north)==0 and shape(north,0454)
+nStrong = hcp(north)>15 and tpNorth<17
 
 # East overcalls 2S: 5+ spades, 10+ TP
-eOvercall = spades(east)>4 and hcp(east)>7 and tpEast>9 and tpEast<17
+eOvercall = spades(east)>5 and hcp(east)<10 and tpEast>2
 
 # West raises to 4S: 3+ spades, Law of Total Tricks
 wRaise = spades(west)>2 and tpWest<17
