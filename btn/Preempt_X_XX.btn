@@ -2,7 +2,7 @@
 # button-text: Preempt (X) XX? (Lev)
 # gib-works: true
 # bba-works: true
-# auction-filter: Auction.....\n[34][CDHS] +X
+# auction-filter: Auction.....\n[34][CDHS] +X +XX
 # convention-card-ns: 21GF-DEFAULT
 # convention-card-ew: 21GF-GIB
 
@@ -15,18 +15,22 @@ that the 7-card and 8-card preempts and the XX/Pass occur with about the same fr
 # Opps Preempt, we X and they XX
 dealer east
 produce 1000
+#include "script/TP"
 
 # Define East preempt at the 3- or 4-level
-wS = shape(east,9xxx+8xxx+7xxx) and top3(east,spades)>1   and spades(west)>1
-wH = shape(east,x9xx+x8xx+x7xx) and top3(east,hearts)>1   and hearts(west)>1
-wD = shape(east,xx9x+xx8x+xx7x) and top3(east,diamonds)>1 and diamonds(west)>1
-wC = shape(east,xxx9+xxx8+xxx7) and top3(east,clubs)>1    and clubs(west)>1
+wS = shape(east,9xxx+8xxx+7xxx) and hcp(east,spades)>1   and spades(west)>1
+wH = shape(east,x9xx+x8xx+x7xx) and hcp(east,hearts)>1   and hearts(west)>1
+wD = shape(east,xx9x+xx8x+xx7x) and hcp(east,diamonds)>1 and diamonds(west)>1
+wC = shape(east,xxx9+xxx8+xxx7) and hcp(east,clubs)>1    and clubs(west)>1
 
 lS = wS ? spades(east)   : 0
 lH = wH ? hearts(east)   : 0
 lD = wD ? diamonds(east) : 0
 lC = wC ? clubs(east)    : 0
 length = lS + lH + lD + lC
+
+# East opens with a 3-level or 4-level preempt
+eOpens = (wS or wH or wD or wC) and hcp(east)>4 and hcp(east)<10
 
 # South is short in East's suit
 sShortS = wS and spades(south)<2
@@ -35,20 +39,23 @@ sShortD = wD and diamonds(south)<2
 sShortC = wC and clubs(south)<2
 sShort = (sShortS or sShortH or sShortD or sShortC)
 
-sDouble1 = hcp(south)>14 and sShort
+# South doubles
+sDouble1 = hcp(south)>11 and sShort and shape(south,any 4441 +any 54xx +any 5530 +any 0xxx +any 1xxx)
 sDouble2 = hcp(south)>17
-sDoubles = (sDouble1 or sDouble2) and shape(south,xxxx-5xxx-x5xx) and controls(south)>3
-
-# East opens 4, South doubles, and West Redoubles
-eOpens = (wS or wH or wD or wC) and hcp(east)>3 and hcp(east)<10
+sDoubles = (sDouble1 or sDouble2)
 
 # West Redoubles (HCP or fit-based)
-wFitS = wS and spades(west)>2
-wFitH = wH and hearts(west)>2
-wFitD = wD and diamonds(west)>2
-wFitC = wC and clubs(west)>2
-wFit = wFitS or wFitH or wFitD or wFitC
-wXX = hcp(west)>14
+wFitS = (wS and spades(west)>2)   ? 2 * (spades(west)-1)   : 0  // 4 for 3-cards + 2 for each additional card
+wFitH = (wH and hearts(west)>2)   ? 2 * (hearts(west)-1)   : 0
+wFitD = (wD and diamonds(west)>2) ? 2 * (diamonds(west)-1) : 0
+wFitC = (wC and clubs(west)>2)    ? 2 * (clubs(west)-1)    : 0
+wFitP = wFitS + wFitH + wFitD + wFitC
+
+wSuitLen = (wS ? spades(west) : 0) + (wH ? hearts(west) : 0) + (wD ? diamonds(west) : 0) + (wC ? clubs(west) : 0)
+wTrumpAce = (wS ? hascard(west,AS) : 0) + (wH ? hascard(west,AH) : 0) + (wD ? hascard(west,AD) : 0) + (wC ? hascard(west,AC) : 0)
+wAllAces = hascard(west,AS) + hascard(west,AH) + hascard(west,AD) + hascard(west,AC)
+wOutsideAces = wAllAces - wTrumpAce
+wXX = (wSuitLen + length)<11 and wSuitLen>2 and wOutsideAces>1 and controls(west)>5
 
 # Define leveling
 #include "script/Leveling"
@@ -59,7 +66,7 @@ lev9 = length==9 and keep
 levelTheDeal = lev7 or lev8 or lev9
 
 eOpens and sDoubles and wXX
-and levelTheDeal
+#and levelTheDeal
 
 action
 average "hcp East " hcp(east),
