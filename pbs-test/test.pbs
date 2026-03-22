@@ -105,8 +105,8 @@ nShape = shape(north,0445 +0454)
 nH = hcp(north,hearts) + hearts(north)
 nD = hcp(north,diamonds) + diamonds(north)
 nC = hcp(north,clubs) + clubs(north)
-nBalanced = (nH-nD)<3 and (nD-nH)<3 and (nH-nC)<3 and (nC-nH)<3 and (nD-nC)<3 and (nC-nD)<3
-nResp = nShape and nBalanced and tpNorth>17
+nBalanced = (nH-nD)<4 and (nD-nH)<4 and (nH-nC)<4 and (nC-nH)<4 and (nD-nC)<4 and (nC-nD)<4
+nResp = nShape and nBalanced and tpNorth>16
 
 # West passes over 1D: not enough to act
 wPasses = hcp(west)<15
