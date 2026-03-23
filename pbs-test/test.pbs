@@ -104,7 +104,7 @@ sOpens1D = sD and sNoMajor and not sNT and hcp(south)>11 and hcp(south)<15
 nShape = shape(north,0445 +0454)
 nTens = hascard(north,TH) + hascard(north,TD) + hascard(north,TC)
 nNines = hascard(north,9H) + hascard(north,9D) + hascard(north,9C)
-nResp = nShape and tpNorth>16 and (nTens + nNines)>1
+nResp = nShape and tpNorth>15 and (nTens + nNines)>1
 
 # West passes over 1D: not enough to act
 wPasses = hcp(west)<15
