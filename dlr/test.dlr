@@ -3,7 +3,7 @@
 # scenario-title: --- Test: 1D-P-1H-2S, P-4S-4N
 # gib-works: true
 # bba-works: true
-# auction-filter: Auction.....\n1D +Pass +1H +2S\nPass +4S +4N
+# auction-filter: ^(5.|.* .* 5.) =.=
 # convention-card-ns: 21GF-GIB
 # convention-card-ew: 21GF-GIB
 
@@ -97,7 +97,7 @@ sOpens1D = sD and sNoMajor and not sNT and hcp(south)>11 and hcp(south)<15
 nShape = shape(north,0445 +0454)
 nTens = hascard(north,TH) + hascard(north,TD) + hascard(north,TC)
 nNines = hascard(north,9H) + hascard(north,9D) + hascard(north,9C)
-nResp = nShape and hcp(north)>14 and (nTens + nNines)>3
+nResp = nShape and tpNorth>15 and (nTens + nNines)>2
 
 # West passes over 1D: not enough to act
 wPasses = hcp(west)<15
