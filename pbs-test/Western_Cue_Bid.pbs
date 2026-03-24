@@ -18,12 +18,13 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n(1C +1D +(1H +3[CH]|1S +3[CS])|1C +1H +(2D +3[CD]|1S +3[CS])|1C +1S +(2D +3[CD]|2H +3[CH])|1D +2C +(2H +3[DH]|2S +3[DS])|1D +1H +(2C +3[CD]|1S +3[DS])|1D +1S +(2C +3[CD]|2H +3[DH])|1H +2C +(2D +3[DH]|2S +3[HS])|1H +2D +(3C +3H|2S +3[HS])|1H +1S +(2C +3[CH]|2D +3[DH])|1S +2C +(2D +3[DS]|2H +3[HS])|1S +2D +(3C +3S|2H +3[HS])|1S +2H +3[CD] +3S)
+auction-filter: Auction.....\n1\S+ +[12](C|D|H|S)\S*[\s\S]*\n(3\1\S*[ \n]|\S+ +\S+ +3\1)
 */
 # Western Cue Bid
-# South opens a long minor, West overcalls a major (2nd seat)
-# South has NO stopper in West's suit and wants to play 3NT
-# North has a stopper in West's suit and enough values to accept
+# South opens 1x, West overcalls y (2nd seat)
+# North responds z, East passes
+# South cue bids 3y with values for 3NT but no stopper in y
+# North bids 3NT with a stopper, or bids best suit without one
 
 dealer south
 
@@ -100,7 +101,7 @@ average "wOvercall S" 100 * wS,
 Script
 Button,Western Cue Bid,\n\
 --- Western Cue Bid\n\
-After x - (y) - 2x/z，a 3x/z cue bid asks partner to bid 3NT with a stopper.\n\
-Without a stopper，partner bids their best suit below 3NT.\n\
+After 1x - (y) - z - Pass，South cue bids 3y (opponent's suit) with values for 3NT but no stopper in y.\n\
+This asks North to bid 3NT with a stopper，or bid their best suit without one.\n\
 (NOTE: BBA does not play Western Cue Bid — it bids 3NT directly)\n\
 %WesternCueBid%,backgroundColor=lightpink
