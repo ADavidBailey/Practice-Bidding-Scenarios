@@ -1,0 +1,45 @@
+### Imported script: LP (Length Points)
+//   Length Points = HCP + Long-Suit Points
+//   Long-Suit Points: 1 for every card over 4 in a suit
+
+## Calculate LP for North
+nSpadeLSP = spades(north)>4   ? spades(north)-4   : 0
+nHeartLSP = hearts(north)>4   ? hearts(north)-4   : 0
+nDiamLSP  = diamonds(north)>4 ? diamonds(north)-4 : 0
+nClubLSP  = clubs(north)>4    ? clubs(north)-4    : 0
+nLSP = nSpadeLSP + nHeartLSP + nDiamLSP + nClubLSP
+
+lpNorth = hcp(north) + nLSP
+
+## Calculate LP for East
+eSpadeLSP = spades(east)>4   ? spades(east)-4   : 0
+eHeartLSP = hearts(east)>4   ? hearts(east)-4   : 0
+eDiamLSP  = diamonds(east)>4 ? diamonds(east)-4 : 0
+eClubLSP  = clubs(east)>4    ? clubs(east)-4    : 0
+eLSP = eSpadeLSP + eHeartLSP + eDiamLSP + eClubLSP
+
+lpEast = hcp(east) + eLSP
+
+## Calculate LP for South
+sSpadeLSP = spades(south)>4   ? spades(south)-4   : 0
+sHeartLSP = hearts(south)>4   ? hearts(south)-4   : 0
+sDiamLSP  = diamonds(south)>4 ? diamonds(south)-4 : 0
+sClubLSP  = clubs(south)>4    ? clubs(south)-4    : 0
+sLSP = sSpadeLSP + sHeartLSP + sDiamLSP + sClubLSP
+
+lpSouth = hcp(south) + sLSP
+
+## Calculate LP for West
+wSpadeLSP = spades(west)>4   ? spades(west)-4   : 0
+wHeartLSP = hearts(west)>4   ? hearts(west)-4   : 0
+wDiamLSP  = diamonds(west)>4 ? diamonds(west)-4 : 0
+wClubLSP  = clubs(west)>4    ? clubs(west)-4    : 0
+wLSP = wSpadeLSP + wHeartLSP + wDiamLSP + wClubLSP
+
+lpWest = hcp(west) + wLSP
+
+## Partnership Totals
+lpNS = lpNorth + lpSouth
+lpEW = lpEast + lpWest
+
+### End of Imported Script: LP
