@@ -2,22 +2,23 @@
 # button-text: Western Cue Bid
 # scenario-title: --- Western Cue Bid
 # gib-works: false
-# bba-works: true
-# auction-filter: Auction.....\n1[CD] +[1-4][HS]
+# bba-works: false
+# auction-filter:
 # convention-card-ns: 21GF-DEFAULT
 # convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Western Cue Bid
-After 1m - (1M) - bid, a 3M cue bid asks partner to bid 3NT with a stopper.
-Without a stopper, partner bids their best suit at or below 3NT.
+After 1x - (y) - z - Pass, South cue bids 3y (opponent's suit) with values for 3NT but no stopper in y.
+This asks North to bid 3NT with a stopper, or bid their best suit without one.
 (NOTE: BBA does not play Western Cue Bid — it bids 3NT directly)
 @chat*/
 
 # Western Cue Bid
-# South opens a long minor, West overcalls a major (2nd seat)
-# South has NO stopper in West's suit and wants to play 3NT
-# North has a stopper in West's suit and enough values to accept
+# South opens 1x, West overcalls y (2nd seat)
+# North responds z, East passes
+# South cue bids 3y with values for 3NT but no stopper in y
+# North bids 3NT with a stopper, or bids best suit without one
 
 dealer south
 
