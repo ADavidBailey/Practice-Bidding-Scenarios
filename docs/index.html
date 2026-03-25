@@ -177,14 +177,14 @@
     </style>
     <script>
 const DASHBOARD_DATA = {
-  "generatedAt": "2026-03-25T12:01:19.616365",
+  "generatedAt": "2026-03-25T18:01:16.299503",
   "summary": {
-    "totalScenarios": 300,
-    "scenariosWorked": 300,
-    "totalFileEdits": 51348,
-    "totalPipelineRuns": 2338,
+    "totalScenarios": 299,
+    "scenariosWorked": 299,
+    "totalFileEdits": 51349,
+    "totalPipelineRuns": 2342,
     "totalSessionHours": 3818,
-    "totalCommits": 7106
+    "totalCommits": 7112
   },
   "charts": {
     "labels": [
@@ -247,7 +247,7 @@ const DASHBOARD_DATA = {
       506,
       95,
       1170,
-      589
+      590
     ],
     "pipelineRuns": [
       0,
@@ -278,7 +278,7 @@ const DASHBOARD_DATA = {
       0,
       61,
       1660,
-      617
+      621
     ],
     "commits": [
       441,
@@ -309,7 +309,7 @@ const DASHBOARD_DATA = {
       62,
       228,
       1666,
-      896
+      902
     ],
     "sessionHours": [
       171,
@@ -358,63 +358,23 @@ const DASHBOARD_DATA = {
       196,
       207,
       214,
-      225,
-      237,
-      244,
-      251,
-      255,
+      224,
+      236,
+      243,
+      250,
+      254,
+      254,
       255,
       256,
-      257,
-      267,
-      269,
-      273,
-      289,
-      295,
-      300
+      266,
+      268,
+      272,
+      288,
+      294,
+      299
     ]
   },
   "recentActivity": [
-    {
-      "timestamp": "2026-03-25T02:19:08.502Z",
-      "type": "file_save",
-      "details": {
-        "filePath": "btn/Western_Cue_Bid.btn",
-        "fileType": "btn"
-      }
-    },
-    {
-      "timestamp": "2026-03-25T02:19:15.235Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "Western_Cue_Bid",
-        "operation": "*"
-      }
-    },
-    {
-      "timestamp": "2026-03-25T02:34:53.993Z",
-      "type": "file_save",
-      "details": {
-        "filePath": "btn/Western_Cue_Bid.btn",
-        "fileType": "btn"
-      }
-    },
-    {
-      "timestamp": "2026-03-25T02:35:03.835Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "Western_Cue_Bid",
-        "operation": "*"
-      }
-    },
-    {
-      "timestamp": "2026-03-25T02:40:29.988Z",
-      "type": "file_save",
-      "details": {
-        "filePath": "btn/Western_Cue_Bid.btn",
-        "fileType": "btn"
-      }
-    },
     {
       "timestamp": "2026-03-25T02:40:34.499Z",
       "type": "pipeline_run",
@@ -534,9 +494,79 @@ const DASHBOARD_DATA = {
         "scenario": "Western_Cue_Bid",
         "operation": "*"
       }
+    },
+    {
+      "timestamp": "2026-03-25T18:53:41.956Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "GIB_1N-P-2C-BID",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-03-25T18:55:18.472Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "Western_Cue_Bid",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-03-25T22:01:19.942Z",
+      "type": "file_save",
+      "details": {
+        "filePath": "btn/Texas_or_Jacoby.btn",
+        "fileType": "btn"
+      }
+    },
+    {
+      "timestamp": "2026-03-25T22:01:39.175Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "Texas_or_Jacoby",
+        "operation": "*"
+      }
+    },
+    {
+      "timestamp": "2026-03-25T22:31:06.397Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "Texas_or_Jacoby",
+        "operation": "release"
+      }
     }
   ],
   "recentCommits": [
+    {
+      "hash": "5d39de58",
+      "date": "2026-03-25 17:30:02 -0500",
+      "message": "Fix typo \"Jacopy\" \u2192 \"Jacoby\" in Texas_or_Jacoby chat text"
+    },
+    {
+      "hash": "e4a53f6e",
+      "date": "2026-03-25 14:07:48 -0700",
+      "message": "Remove dead logPBS block, add X-Client-Info header to scenario/select calls"
+    },
+    {
+      "hash": "c8ce55fa",
+      "date": "2026-03-25 12:49:53 -0700",
+      "message": "Point BBAcompare.js back to Rick-Wilson/bbo-pbs upstream repo"
+    },
+    {
+      "hash": "cbcf39fb",
+      "date": "2026-03-25 13:55:18 -0500",
+      "message": "Release Western_Cue_Bid to pbs-release"
+    },
+    {
+      "hash": "b4c014bb",
+      "date": "2026-03-25 13:52:13 -0500",
+      "message": "Remove test.pbs from pbs-release"
+    },
+    {
+      "hash": "91abe09b",
+      "date": "2026-03-25 12:01:20 -0500",
+      "message": "Daily dashboard update"
+    },
     {
       "hash": "b2cd9f48",
       "date": "2026-03-25 06:01:18 -0500",
@@ -555,36 +585,6 @@ const DASHBOARD_DATA = {
     {
       "hash": "3d30ea8c",
       "date": "2026-03-24 22:00:07 -0500",
-      "message": "Update pbs-test/Western_Cue_Bid.pbs"
-    },
-    {
-      "hash": "c3037cac",
-      "date": "2026-03-24 21:57:01 -0500",
-      "message": "Update pbs-test/Western_Cue_Bid.pbs"
-    },
-    {
-      "hash": "6a2cee8b",
-      "date": "2026-03-24 21:46:05 -0500",
-      "message": "Update pbs-test/Western_Cue_Bid.pbs"
-    },
-    {
-      "hash": "b4e1d1e8",
-      "date": "2026-03-24 21:45:27 -0500",
-      "message": "Update pbs-test/Western_Cue_Bid.pbs"
-    },
-    {
-      "hash": "7fce454d",
-      "date": "2026-03-24 21:40:34 -0500",
-      "message": "Update pbs-test/Western_Cue_Bid.pbs"
-    },
-    {
-      "hash": "f36286e1",
-      "date": "2026-03-24 21:35:04 -0500",
-      "message": "Update pbs-test/Western_Cue_Bid.pbs"
-    },
-    {
-      "hash": "71dfec72",
-      "date": "2026-03-24 21:19:15 -0500",
       "message": "Update pbs-test/Western_Cue_Bid.pbs"
     }
   ]
