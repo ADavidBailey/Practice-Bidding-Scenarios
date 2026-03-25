@@ -181,25 +181,6 @@ function delay(duration) {
 }
 //Script
 
-// Log PBS scenario selection for analytics
-Script,logPBS
-if (window._pbsScenario) {
-    window.currentPBSScenario = window._pbsScenario;
-    fetch('https://bba-server.bridgebidding.ai/api/scenario/select', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-Client-Version': '1.0.0'
-        },
-        body: JSON.stringify({
-            scenario: window._pbsScenario,
-            user: whoAmI() || 'anonymous'
-        })
-    }).catch(function(){});
-    window._pbsScenario = undefined;
-}
-R='';
-Script
 
 Script,reviewCurrentCode,setDealerCode("");
 
@@ -524,9 +505,14 @@ Script,onDataLoad
                         // Extract convention-card from dealer code comments
                         var ccMatch = match[1].match(/convention-card:\s*(\S+)/);
                         window.currentPBSConventionCard = ccMatch ? ccMatch[1] : null;
+                        var _ext = (document.title.indexOf('PBS') >= 0) ? 'PBSforBBO' : 'BBOAlert';
+                        var _ua = navigator.userAgent;
+                        var _br = _ua.indexOf('Edg/') > -1 ? 'Edge' : _ua.indexOf('Chrome/') > -1 ? 'Chrome' : _ua.indexOf('Firefox/') > -1 ? 'Firefox' : _ua.indexOf('Safari/') > -1 ? 'Safari' : 'Unknown';
+                        var _pf = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+                        var _os = /Win/i.test(_pf) ? 'Windows' : /Mac/i.test(_pf) ? 'macOS' : /Linux/i.test(_pf) ? 'Linux' : 'Unknown';
                         fetch('https://bba.harmonicsystems.com/api/scenario/select', {
                             method: 'POST',
-                            headers: { 'Content-Type': 'application/json', 'X-Client-Version': '1.0.0' },
+                            headers: { 'Content-Type': 'application/json', 'X-Client-Version': '1.9.25', 'X-Client-Info': 'ext=' + _ext + '; browser=' + _br + '; os=' + _os },
                             body: JSON.stringify({ scenario: scenarioName, user: whoAmI() || 'anonymous' })
                         }).catch(function() {});
                         setDealerCode(match[1], match[2], match[3] === 'true');
