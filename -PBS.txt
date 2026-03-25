@@ -474,7 +474,7 @@ Script,onDataLoad
         if (action && action.startsWith('%') && action.endsWith('%')) {
             bt.onclick = function() { execUserScript(action); };
         } else if (action && action.startsWith('http')) {
-            bt.onclick = function() { window.open(action, '_blank'); };
+            bt.onclick = function() { (window.top || window).open(action, '_blank'); };
         }
 
         if (insertBefore) {
