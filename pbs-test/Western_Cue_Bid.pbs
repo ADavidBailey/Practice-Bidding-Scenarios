@@ -1,0 +1,132 @@
+Script,WesternCueBid
+window.currentPBSScenario = 'WesternCueBid';
+window.currentPBSScenarioFilename = 'Western_Cue_Bid';
+console.log('PBS: Logging scenario selection for WesternCueBid');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'WesternCueBid',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+convention-card-ew: 21GF-GIB
+auction-filter: # convention-card-ns: 21GF-DEFAULT
+*/
+# Western Cue Bid
+# South opens 1x, West overcalls y (2nd seat)
+# North responds z, East passes
+# South cue bids 3y with values for 3NT but no stopper in y
+# North bids 3NT with a stopper, or bids best suit without one
+
+dealer south
+
+#import "script/Predict-Opening-1-Bid-South"
+sOpens = oS or oH or oD or oC
+sCRank = oC ? 1 : 0
+sDRank = oD ? 2 : 0
+sHRank = oH ? 3 : 0
+sSRank = oS ? 4 : 0
+sRank  = (sCRank + sDRank + sHRank + sSRank)  // all but 1 are 0
+
+wD = diamonds(west)>4 and top4(west,diamonds)>1 and diamonds(west)>=hearts(west)
+wH = hearts(west)>4   and top4(west,hearts)>1 and hearts(west)>=spades(west)
+wS = spades(west)>4   and top4(west,spades)>1 and spades(west)>hearts(west)
+wC = clubs(west)>5    and top4(west,clubs)>1
+
+wCRank= wC ? 1 : 0
+wDRank = wD ? 2 : 0
+wHRank = wH ? 3 : 0
+wSRank = wS ? 4 : 0
+wRank  = (wCRank + wDRank + wHRank + wSRank)  // all but 1 are 0
+
+wRange = wRank > sRank ?  hcp(west)>7 and hcp(west)<18 and tpWest>8 and tpWest<10 : hcp(west)>9 and hcp(west)<19 and tpwest>10 and tpWest<19
+
+wOvercalls = shape(west,any 6xxx + any 5xxx -any 66xx -any 65xx -any 55xx) and (wD or wH or wS or wC) and wRange
+
+# North doubles or bids a new suit
+nC = (oC or wC) and clubs(north)<3
+nD = (oD or wD) and diamonds(north)<3
+nH = (oH or wH) and hearts(north)<3
+nS = (oS or wS) and spades(north)<3
+
+nCRank = nC ? 1 : 0
+nDRank = nD ? 2 : 0
+nHRank = nH ? 3 : 0
+nSRank = nS ? 4 : 0
+nRank  = (nCRank + nDRank + nHRank + nSRank)  // all but 1 are 0
+
+nRange = nRank > wRank ?  tpNorth>5 : tpNorth>10
+
+nX = shape(north,any 54xx +any 44xx) and (nC or nD or nH or nS) and hcp(north)>4 and tpNorth>6
+nBids = shape(north, any 6xxx + any 5xxx -any 4xxx -any 66xx -any 65xx -any 55xx) and  nRange
+nActs = nX or nBids
+
+# South has NO stopper in West's overcalled suit
+# No stopper = no A, no Kx, no Qxx in that suit
+sNoHStop = wH and controls(south,hearts)==0 and (hearts(south)<3 or top3(south,hearts)==0)
+sNoSStop = wS and controls(south,spades)==0 and (spades(south)<3 or top3(south,spades)==0)
+sNoStop = sNoHStop or sNoSStop
+
+# North HAS a stopper in West's overcalled suit: A, Kx, or Qxx
+nHStop = wH and (controls(north,hearts)==2 or
+                 (controls(north,hearts)==1 and hearts(north)>1) or
+                 (controls(north,hearts)==0 and top3(north,hearts)>0 and hearts(north)>2))
+nSStop = wS and (controls(north,spades)==2 or
+                 (controls(north,spades)==1 and spades(north)>1) or
+                 (controls(north,spades)==0 and top3(north,spades)>0 and spades(north)>2))
+nHasStop = nHStop or nSStop
+
+# North has enough to respond and accept 3NT
+nResponds = hcp(north)>7 and hcp(north)<14
+
+##### Imported Script: Define Calm Opponents #####
+
+# Avoid concentration of values
+cce = top4(east,clubs)<2
+cde = top4(east,diamonds)<2
+che = top4(east,hearts)<2
+cse = top4(east,spades)<2
+noConEast = cce and cde and che and cse
+
+ccw = top4(west,clubs)<2
+cdw = top4(west,diamonds)<2
+chw = top4(west,hearts)<2
+csw = top4(west,spades)<2
+noConWest = ccw and cdw and chw and csw
+
+balEast    = shape(east,any 4432 +any 4333)
+unbalEast  = shape(east,xxxx -any 4432 -any 4333 -any 9xxx -any 8xxx -any 7xxx-any 6xxx -any 55xx)
+
+balWest    = shape(west,any 4432 +any 4333)
+unbalWest  = shape(west,xxxx -any 4432 -any 4333 -any 9xxx -any 8xxx -any 7xxx-any 6xxx -any 55xx)
+
+calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<11)
+calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<11)
+calmOpps = calmEast and calmWest
+
+##### End of Imported Script: Define Calm Opponents #####
+# Defines calmEast, calmWest, calmOpps
+
+sOpens and wOvercalls and nActs and calmEast
+
+action printoneline,
+average "South HCP  " hcp(south),
+average "North HCP  " hcp(north),
+average "West HCP   " hcp(west),
+average "wOvercall H" 100 * wH,
+average "wOvercall S" 100 * wS,
+`, "S", true)
+Script
+Button,Western Cue Bid,\n\
+--- Western Cue Bid\n\
+After 1x - (y) - z - Pass，South cue bids 3y (opponent's suit) with values for 3NT but no stopper in y.\n\
+This asks North to bid 3NT with a stopper，or bid their best suit without one.\n\
+(NOTE: BBA does not play Western Cue Bid — it bids 3NT directly)\n\
+%WesternCueBid%,backgroundColor=lightpink
