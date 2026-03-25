@@ -22,7 +22,7 @@ auction-filter: # convention-card-ns: 21GF-DEFAULT
 # Western Cue Bid
 # South opens 1x, West overcalls y (2nd seat)
 # North responds z, East passes
-# South cue bids 3y with values for 3NT but no stopper in y
+# South cue, X, passes, or cue bids
 # North bids 3NT with a stopper, or bids best suit without one
 
 dealer south
@@ -126,7 +126,8 @@ average "wOvercall S" 100 * wS,
 Script
 Button,Western Cue Bid,\n\
 --- Western Cue Bid\n\
-After 1x - (y) - z - Pass，South cue bids 3y (opponent's suit) with values for 3NT but no stopper in y.\n\
-This asks North to bid 3NT with a stopper，or bid their best suit without one.\n\
-(NOTE: BBA does not play Western Cue Bid — it bids 3NT directly)\n\
+After 1x - (y) - z - (pass or raise)，South passes，rebids，or makes a Western Cue BID -- 3 \n\
+of opponent's suit. If south passes or rebids，north may make a Western Cue Bid.  A Western\n\
+Cue Bid asks partner to bid 3NT with a stopper in opponents last-bid suit，or bid their best\n\
+suit without one. (NOTE: BBA does not play Western Cue Bid — it bids 3NT directly)\n\
 %WesternCueBid%,backgroundColor=lightpink
