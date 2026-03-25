@@ -738,7 +738,7 @@ Script,onDataLoad
                     title = parts[0].trim();
                     url = parts[1].trim();
                 }
-                createButton(title, url ? url + '\\n' : '', { width: '100%', backgroundColor: 'LemonChiffon' });
+                createButton(title, url || '', { width: '100%', backgroundColor: 'LemonChiffon' });
                 continue;
             }
 
@@ -751,7 +751,7 @@ Script,onDataLoad
                     title = parts[0].trim();
                     url = parts[1].trim();
                 }
-                var btn = createButton(title, url ? url + '\\n' : '', { width: '100%', backgroundColor: 'lightblue' });
+                var btn = createButton(title, url || '', { width: '100%', backgroundColor: 'lightblue' });
                 if (btn) {
                     btn.onclick = function() {
                         var next = $(this).next();
