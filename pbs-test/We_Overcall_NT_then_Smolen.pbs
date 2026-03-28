@@ -206,10 +206,10 @@ tpEW = tpEast + tpWest
 # defines tpSouth
 
 # South has 3/4 cards in East's suit w/at least Axx, Kxx or QJx
-eSws = oS and hcp(south,spades)>2   and spades(south)>2   and spades(south<5)
-eHws = oH and hcp(south,hearts)>2   and hearts(south)>2   and hearts(south<5)
-eDws = oD and hcp(south,diamonds)>2 and diamonds(south)>2 and diamonds(south<5)
-eCws = oC and hcp(south,clubs)>2    and clubs(south)>2    and clubs(south<5)
+eSws = oS and hcp(south,spades)>2   and spades(south)>2   and spades(south)<5
+eHws = oH and hcp(south,hearts)>2   and hearts(south)>2   and hearts(south)<5
+eDws = oD and hcp(south,diamonds)>2 and diamonds(south)>2 and diamonds(south)<5
+eCws = oC and hcp(south,clubs)>2    and clubs(south)>2    and clubs(south)<5
 
 # East opens 1 of a suit & South has stop
 eOpens = (eSws or eHws or eDws or eCws) and hcp(east)>11 and hcp(east)<20
