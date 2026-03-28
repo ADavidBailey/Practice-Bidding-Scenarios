@@ -129,29 +129,34 @@ calmOpps = calmEast and calmWest
 predeal north CA,DA,HA,SA
 
 # South preempts and North has 3-card support with 1 of the top 3 -- North can see 11, 12, or 13 sure tricks.
-southC = clubs(south)>6    and top3(south,clubs)>0    and top5(south,clubs)==3    and clubs(north)>2    and top3(north,clubs)==1
-southD = diamonds(south)>5 and top3(south,diamonds)>0 and top5(south,diamonds)==3 and diamonds(north)>2 and top3(north,diamonds)==1
-southH = hearts(south)>5   and top3(south,hearts)>0   and top5(south,hearts)==3   and hearts(north)>2   and top3(north,hearts)==1
-southS = spades(south)>5   and top3(south,spades)>0   and top5(south,spades)==3   and spades(north)>2   and top3(north,spades)==1
+# North has the A and is missing the KQ.  South has either the Q, K, or both.
+southC = clubs(south)>6    and top3(south,clubs)>0    and top5(south,clubs)==3    and clubs(north)>2    and hcp(north,spades)<6
+southD = diamonds(south)>5 and top3(south,diamonds)>0 and top5(south,diamonds)==3 and diamonds(north)>2 and hcp(north,hearts)<6
+southH = hearts(south)>5   and top3(south,hearts)>0   and top5(south,hearts)==3   and hearts(north)>2   and hcp(north,diamonds)<6
+southS = spades(south)>5   and top3(south,spades)>0   and top5(south,spades)==3   and spades(north)>2   and hcp(north,clubs)<6
 
 # Define the level of the preempt
-south2Bid = shape(south,any 6xxx) and hcp(south)<10 and tpSouth>6
-south3Bid = shape(south,any 7xxx) and hcp(south)>4 and hcp(south)<10 and tpSouth>5
-south4Bid = shape(south,any 8xxx) and hcp(south)>4 and hcp(south)<10
-south5Bid = shape(south,any 8xxx) and hcp(south)>5 and hcp(south)<10
+south2Bid = shape(south,any 6xxx -any 5xxx -4xxx -x4xx)      and hcp(south)<10 and tpSouth>6
+south3Bid = shape(south,any 7xxx)           and hcp(south)>4 and hcp(south)<10 and tpSouth>5
+south4Bid = shape(south,any 8xxx +any 9xxx) and hcp(south)>4 and hcp(south)<10
+south5Bid = shape(south,any 8xxx +any 9xxx) and hcp(south)>5 and hcp(south)<10
 sPreempt = (south2Bid or south3Bid or south4Bid or south5Bid)
 
 southPreempts = sPreempt and (southC or southD or southH or southS)
 
 # So, if South has 2 of the top 3 in his suit, North can count 13 tricks -- in NT.
 # If opener has 1 of the top 3, 12 tricks in the suit are certain.
-southPreempts and tpNorth>28
+southPreempts and hcp(north)>25
 
 action printoneline,
 average "C " 100 * southC,
 average "D " 100 * southD,
 average "H " 100 * southH,
 average "S " 100 * southS,
+average "2 " 100 * south2Bid,
+average "3 " 100 * south3Bid,
+average "4 " 100 * south4Bid,
+average "5 " 100 * south5Bid
 `, "S", true)
 Script
 Button,GSF after Preempt,\n\
