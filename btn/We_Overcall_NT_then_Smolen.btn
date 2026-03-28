@@ -15,7 +15,6 @@ After 2!D...
 
 dealer east
 
-
 # Predict East's opening suit
 s = spades(east)
 h = hearts(east)
@@ -39,8 +38,8 @@ eCws = eC and hcp(south,clubs)>2 and clubs(south)>2
 # East opens 1 of a suit & South has stop
 eOpens = notEastNT and (eSws or eHws or eDws or eCws) and hcp(east)>11 and hcp(east)<20
 
-# South bids 1N
-sNT = shape(south, any 4333 +any 4432 +any 5332 - 5xxx - x5xx) and hcp(south)>14 && hcp(south)<19
+# South bids 1N without a 4- or 5-card major
+sNT = shape(south, any 4333 +any 4432 +any 5332 -5xxx -x5xx -4xxx -x4xx) and hcp(south)>14 && hcp(south)<19
 
 # North bids 2C (Smolen) -- a game try with 5/4 or 4/5 in the majors
 n2C = shape(north,54xx+45xx) and shape(north,any 0xxx+any 1xxx) and hcp(north)>8
