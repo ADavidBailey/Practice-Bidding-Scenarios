@@ -28,11 +28,11 @@ auction-filter: Auction.....\n1. +1N +Pass +2C.*\nPass +2D +Pass +3[HS]
 # include: "script/TP"
 # defines tpSouth
 
-# South has a stop in East's opening suit -- at least Axx, Kxx or QJx
-eSws = oS and hcp(south,spades)>2 and spades(south)>2
-eHws = oH and hcp(south,hearts)>2 and hearts(south)>2
-eDws = oD and hcp(south,diamonds)>2 and diamonds(south)>2
-eCws = oC and hcp(south,clubs)>2 and clubs(south)>2
+# South has a stop in East's opening suit -- at least Axx, Kxx or QJx // avoid pass w/5 & X w/2
+eSws = oS and hcp(south,spades)>2   and spades(south)>2   and spades(south<5)
+eHws = oH and hcp(south,hearts)>2   and hearts(south)>2   and hearts(south<5)
+eDws = oD and hcp(south,diamonds)>2 and diamonds(south)>2 and diamonds(south<5)
+eCws = oC and hcp(south,clubs)>2    and clubs(south)>2    and clubs(south<5)
 
 # East opens 1 of a suit & South has stop
 eOpens = (eSws or eHws or eDws or eCws) and hcp(east)>11 and hcp(east)<20
