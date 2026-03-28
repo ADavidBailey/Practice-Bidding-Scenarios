@@ -135,7 +135,7 @@ southH = hearts(south)>5   and top3(south,hearts)>0   and top5(south,hearts)==3 
 southS = spades(south)>5   and top3(south,spades)>0   and top5(south,spades)==3   and spades(north)>2   and top3(north,spades)==1
 
 # Define the level of the preempt
-south2Bid = shape(south,any 6xxx)                            and hcp(south)<10 and tpSouth>6
+south2Bid = shape(south,any 6xxx -any 5xxx -4xxx -x4xx)      and hcp(south)<10 and tpSouth>6
 south3Bid = shape(south,any 7xxx)           and hcp(south)>4 and hcp(south)<10 and tpSouth>5
 south4Bid = shape(south,any 8xxx +any 9xxx) and hcp(south)>4 and hcp(south)<10
 south5Bid = shape(south,any 8xxx +any 9xxx) and hcp(south)>5 and hcp(south)<10
