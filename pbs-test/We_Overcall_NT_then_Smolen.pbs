@@ -215,7 +215,7 @@ eCws = oC and hcp(south,clubs)>2    and clubs(south)>2    and clubs(south)<5
 eOpens = (eSws or eHws or eDws or eCws) and hcp(east)>11 and hcp(east)<15
 
 # South bids 1N without a 4-card major w/15-18 w/o a 5-card suit or 15-17 with 5-card suit
-ntRange = shape(south,any 4333 +any 4432) ? hcp(south)>14 and tpSouth<19 : hcp(south)>14 and tpSouth<18
+ntRange = shape(south,any 5xxx) ? hcp(south)>14 and tpSouth<18 : hcp(south)>14 and tpSouth<19
 
 sNT = ntRange and shape(south,any 4333 +any 4432 +any 5332 -5xxx -x5xx -4xxx -x4xx)  // south re-bids 2D
 
