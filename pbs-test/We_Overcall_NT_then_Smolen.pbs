@@ -212,7 +212,7 @@ eD = oD and diamonds(south)>2 and diamonds(south)<5
 eC = oC and clubs(south)>2    and clubs(south)<5
 
 # East opens 1 of a suit
-eOpens = (eS or eH or eD or eC) and hcp(east)>10 and tpEast>11 and shape(east,-any 8xxx -any 7xxx -any 55xx)
+eOpens = (oS or oH or oD or oC) and hcp(east)>10 and tpEast>11 and shape(east,-any 8xxx -any 7xxx -any 55xx)
 
 # South has a horse in every stall
 sS = hcp(south,spades) + spades(south) > 4
