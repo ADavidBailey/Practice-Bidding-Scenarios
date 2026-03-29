@@ -23,19 +23,19 @@ dealer east
 #include "script/TP"
 # defines tpSouth
 
-# South has 3/4 cards in East's suit w/at least Axx, Kxx or QJx
-eSws = oS and hcp(south,spades)>2   and spades(south)>2   and spades(south)<5
-eHws = oH and hcp(south,hearts)>2   and hearts(south)>2   and hearts(south)<5
-eDws = oD and hcp(south,diamonds)>2 and diamonds(south)>2 and diamonds(south)<5
-eCws = oC and hcp(south,clubs)>2    and clubs(south)>2    and clubs(south)<5
+# East opens 1 of a suit
+eOpens = (oS or oH or oD or oC) and hcp(east)>11 and hcp(east)<15
 
-# East opens 1 of a suit & South has stop
-eOpens = (eSws or eHws or eDws or eCws) and hcp(east)>11 and hcp(east)<15
+# South has a horse in every stall
+sS = hcp(south,spades) + spades(south) > 4
+sH = hcp(south,hearts) + hearts(south) > 4
+sD = hcp(south,diamonds) + diamonds(south) > 4
+sC = hcp(south,clubs) + clubs(south) > 4
+sStops = sS and sH and sD and sC
 
-# South bids 1N without a 4-card major w/15-18 w/o a 5-card suit or 15-17 with 5-card suit
+# South bids 1N without a 4-card major.  15-18 w/o a 5-card suit or 15-17 with 5-card suit.
 ntRange = shape(south,any 5xxx) ? hcp(south)>14 and tpSouth<18 : hcp(south)>14 and tpSouth<19
-
-sNT = ntRange and shape(south,any 4333 +any 4432 +any 5332 -5xxx -x5xx -4xxx -x4xx)  // south re-bids 2D
+sNT = ntRange and sStops and shape(south,any 4333 +any 4432 +any 5332 -5xxx -x5xx -4xxx -x4xx)  // south re-bids 2D
 
 # North bids 2C (Smolen) -- a game force with 5/4 or 4/5 in the majors
 n2C = shape(north,54xx +45xx) and hcp(north)>9
