@@ -205,11 +205,11 @@ tpEW = tpEast + tpWest
 ### End of Imported Script: TP
 # defines tpSouth
 
-# South has too few for defense.
-eS = oS and spades(south)<5
-eH = oH and hearts(south)<5
-eD = oD and diamonds(south)<5
-eC = oC and clubs(south)<5
+# South has too few for defense bias
+eS = oS and spades(south)>2   and spades(south)<5
+eH = oH and hearts(south)>2   and hearts(south)<5
+eD = oD and diamonds(south)>2 and diamonds(south)<5
+eC = oC and clubs(south)>2    and clubs(south)<5
 
 # East opens 1 of a suit
 eOpens = (eS or eH or eD or eC) and hcp(east)>10 and tpEast>11
