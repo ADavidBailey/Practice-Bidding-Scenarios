@@ -209,10 +209,10 @@ tpEW = tpEast + tpWest
 eOpens = (oS or oH or oD or oC) and hcp(east)>11 and hcp(east)<15
 
 # South has a horse in every stall
-sS = top2(south,spades)==1
-sH = top2(south,hearts)==1
-sD = top2(south,diamonds)1
-sC = top2(south,clubs)==1
+sS = controls(south,spades)>0
+sH = controls(south,hearts)>0
+sD = controls(south,diamonds)>0
+sC = controls(south,clubs)>0
 sStops = sS and sH and sD and sC
 
 # South bids 1N without a 4-card major.  15-18 w/o a 5-card suit or 15-17 with 5-card suit.
