@@ -209,16 +209,15 @@ tpEW = tpEast + tpWest
 eOpens = (oS or oH or oD or oC) and hcp(east)>11 and hcp(east)<15
 
 # South has a horse in every stall
-sS = hcp(south,spades)>2
-sH = hcp(south,hearts)>2
-sD = hcp(south,diamonds)>2
-sC = hcp(south,clubs)>2
-sSuits = sS and sH and sD and sC
+sS = top2(south,spades)==1
+sH = top2(south,hearts)==1
+sD = top2(south,diamonds)1
+sC = top2(south,clubs)==1
+sStops = sS and sH and sD and sC
 
-# South bids 1N without a 4-card major w/15-18 w/o a 5-card suit or 15-17 with 5-card suit
+# South bids 1N without a 4-card major.  15-18 w/o a 5-card suit or 15-17 with 5-card suit.
 ntRange = shape(south,any 5xxx) ? hcp(south)>14 and tpSouth<18 : hcp(south)>14 and tpSouth<19
-
-sNT = ntRange and sSuits and shape(south,any 4333 +any 4432 +any 5332 -5xxx -x5xx -4xxx -x4xx)  // south re-bids 2D
+sNT = ntRange and sStops and shape(south,any 4333 +any 4432 +any 5332 -5xxx -x5xx -4xxx -x4xx)  // south re-bids 2D
 
 # North bids 2C (Smolen) -- a game force with 5/4 or 4/5 in the majors
 n2C = shape(north,54xx +45xx) and hcp(north)>9
