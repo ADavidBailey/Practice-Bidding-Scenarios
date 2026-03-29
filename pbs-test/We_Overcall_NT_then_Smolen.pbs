@@ -206,7 +206,7 @@ tpEW = tpEast + tpWest
 # defines tpSouth
 
 # East opens 1 of a suit
-eOpens = (oS or oH or oD or oC) and hcp(east)>10 and tpEast>11
+eOpens = (oS or oH or oD or oC) and hcp(east)>11 and hcp(east)<15
 
 # South has a horse in every stall
 sS = hcp(south,spades) + spades(south) > 4
