@@ -46,7 +46,7 @@ wHRank = wH ? 3 : 0
 wSRank = wS ? 4 : 0
 wRank  = (wCRank + wDRank + wHRank + wSRank)  // all but 1 are 0
 
-wRange = wRank > sRank ?  hcp(west)>7 and hcp(west)<18 and tpWest>8 and tpWest<10 : hcp(west)>9 and hcp(west)<19 and tpwest>10 and tpWest<19
+wRange = wRank > sRank ?  hcp(west)>7 and hcp(west)<18 and tpWest>8 and tpWest<19 : hcp(west)>9 and hcp(west)<19 and tpWest>10 and tpWest<20
 
 wOvercalls = shape(west,any 6xxx + any 5xxx -any 66xx -any 65xx -any 55xx) and (wD or wH or wS or wC) and wRange
 
