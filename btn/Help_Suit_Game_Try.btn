@@ -1,0 +1,63 @@
+# alias: HelpSuitGT
+# button-text: Help Suit GT
+# gib-works: true
+# bba-works: true
+# auction-filter: 1[HS] +Pass +2[HS] +Pass\n(2S|3[CDH])
+# convention-card-ns: 21GF-GIB
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Help Suit Game Try
+After 1M - Pass - 2M, opener bids a new suit showing 3-4 cards
+with about one top honor, asking responder for help in that suit.
+Responder bids game with useful holdings (void, singleton, Ax, Kx, etc.)
+or signs off with poor holdings (xxx, xxxx).
+https://www.bridgebum.com/help_suit_game_try.php
+@chat*/
+
+# Help Suit Game Try
+# South opens 1H or 1S, North raises to 2M
+# South bids a new suit (help suit) with 3-4 cards and ~1 top honor
+# North accepts with help in that suit or signs off without
+
+dealer south
+
+#include "script/Calm-Opponents"
+# Defines calmOpps
+#include "script/Predict-Opening-1-Bid"
+# Defines oneHeart, oneSpade
+#include "script/TP"
+# Defines tpSouth, tpNorth
+
+# Exclude hands BBA would open 1NT (15-17 HCP balanced)
+bbaNT = hcp(south)>14 and hcp(south)<18 and shape(south,any 5332+any 4432+any 4333)
+
+# South opens 1H or 1S (not 1NT)
+sOpens1M = (oneHeart or oneSpade) and not bbaNT
+
+# North raises to 2M (3+ support, 6-10 TP)
+# After 1H, North needs 3+ hearts and fewer than 4 spades (else would bid 1S)
+nRaisesH = oneHeart and hearts(north)>2 and spades(north)<4
+nRaisesS = oneSpade and spades(north)>2
+nRaises = (nRaisesH or nRaisesS) and tpNorth>5 and tpNorth<11
+
+# South has game-try strength (15-18 TP)
+gameTryStrength = tpSouth>14 and tpSouth<19
+
+# minor help suit: 3-4 cards with exactly 1 of top 3 honors (A, K, or Q)
+helpC = clubs(south)>2    and clubs(south)<5    and top3(south,clubs)==1
+helpD = diamonds(south)>2 and diamonds(south)<5 and top3(south,diamonds)==1
+helpH = hearts(south)>2   and hearts(south)<5   and top3(south,hearts)==1    and oneSpade
+helpS = spades(south)>2   and spades(south)<5   and top3(south,spades)==1    and oneHeart
+
+hasHelpSuit = helpC or helpD or helpH or helpS
+
+sOpens1M and nRaises and gameTryStrength and hasHelpSuit and calmOpps
+
+action
+average "South HCP  " hcp(south),
+average "North HCP  " hcp(north),
+average "South TP   " tpSouth,
+average "North TP   " tpNorth,
+average "Opens 1H   " 100 * oneHeart,
+average "Opens 1S   " 100 * oneSpade,
