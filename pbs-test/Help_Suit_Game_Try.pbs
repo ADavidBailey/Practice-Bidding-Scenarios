@@ -251,18 +251,13 @@ nRaises = (nRaisesH or nRaisesS) and tpNorth>5 and tpNorth<11
 # South has game-try strength (15-18 TP)
 gameTryStrength = tpSouth>14 and tpSouth<19
 
-# Help suit: side suit of 3-4 cards with exactly 1 of top 3 honors (A, K, or Q)
-# After opening hearts, help suit in clubs, diamonds, or spades
-hHelpC = oneHeart and clubs(south)>2    and clubs(south)<5    and top3(south,clubs)==1
-hHelpD = oneHeart and diamonds(south)>2 and diamonds(south)<5 and top3(south,diamonds)==1
-hHelpS = oneHeart and spades(south)>2   and spades(south)<5   and top3(south,spades)==1
+# minor help suit: 3-4 cards with exactly 1 of top 3 honors (A, K, or Q)
+helpC = clubs(south)>2    and clubs(south)<5    and top3(south,clubs)==1
+helpD = diamonds(south)>2 and diamonds(south)<5 and top3(south,diamonds)==1
+helpH = hearts(south)>2   and hearts(south)<5   and top3(south,hearts)==1    and oneSpade
+helpS = spades(south)>2   and spades(south)<5   and top3(south,spades)==1    and oneHeart
 
-# After opening spades, help suit in clubs, diamonds, or hearts
-sHelpC = oneSpade and clubs(south)>2    and clubs(south)<5    and top3(south,clubs)==1
-sHelpD = oneSpade and diamonds(south)>2 and diamonds(south)<5 and top3(south,diamonds)==1
-sHelpH = oneSpade and hearts(south)>2   and hearts(south)<5   and top3(south,hearts)==1
-
-hasHelpSuit = hHelpC or hHelpD or hHelpS or sHelpC or sHelpD or sHelpH
+hasHelpSuit = helpC or helpD or helpH or helpS
 
 sOpens1M and nRaises and gameTryStrength and hasHelpSuit and calmOpps
 
