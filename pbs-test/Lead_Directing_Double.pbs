@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-GIB
 convention-card-ew: 21GF-GIB
-auction-filter: 1N +Pass +2[CDH]
+auction-filter: (1N +Pass +2[CDH]|1N +Pass +3[CDHS])
 */
 # Lead Directing Double
 # West opens 1NT, East responds with artificial bid
@@ -50,6 +50,10 @@ lddH5 = hearts(south)==5   and top5(south,hearts)>2
 lddH6 = hearts(south)>5    and top4(south,hearts)>1
 lddH = lddH5 or lddH6
 
+lddS5 = spades(south)==5   and top5(south,spades)>2
+lddS6 = spades(south)>5    and top4(south,spades)>1
+lddS = lddS5 or lddS6
+
 # Match South's strong suit with East's likely artificial bid
 # Clubs: East uses Stayman (4-card major, no 5-card major)
 matchC = lddC and (hearts(east)==4 or spades(east)==4) and hearts(east)<5 and spades(east)<5
@@ -60,7 +64,13 @@ matchD = lddD and hearts(east)>4
 # Hearts: East transfers to spades (5+ spades)
 matchH = lddH and spades(east)>4
 
-hasMatch = matchC or matchD or matchH
+# Splinter: East has shortness in South's strong suit with 4+ card major support
+matchSplC = lddC and clubs(east)<2    and (hearts(east)>3 or spades(east)>3)
+matchSplD = lddD and diamonds(east)<2 and (hearts(east)>3 or spades(east)>3)
+matchSplH = lddH and hearts(east)<2   and spades(east)>3
+matchSplS = lddS and spades(east)<2   and hearts(east)>3
+
+hasMatch = matchC or matchD or matchH or matchSplC or matchSplD or matchSplH or matchSplS
 
 westNT and southRange and eastResponds and hasMatch
 
