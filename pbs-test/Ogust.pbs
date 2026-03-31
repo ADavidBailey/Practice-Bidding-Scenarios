@@ -122,15 +122,14 @@ tpEW = tpEast + tpWest
 # South opens a Weak Two (GIB definition): 6+ suit, no 4-card side suit, 10- HCP, 7+ TP
 sHcp = hcp(south)
 # Suit quality: 2 of top 3 (AKQ) or 3 of top 5 (AKQJT) -- e.g., KQ yes, KJT yes, KJ no
-w2s = shape(south, 6xxx -xxx6 -any 4xxx) and (top3(south,spades)>1 or top5(south,spades)>2)
-w2h = shape(south, x6xx -xxx6 -any 4xxx) and (top3(south,hearts)>1 or top5(south,hearts)>2)
+w2s = shape(south, 6xxx -xxx6 -any 4xxx) and (top3(south,spades)>1 or top5(south,spades)>2)     and (spades(north) + hcp(north))<19
+w2h = shape(south, x6xx -xxx6 -any 4xxx) and (top3(south,hearts)>1 or top5(south,hearts)>2)     and (hearts(north) + hcp(north))<19
 w2d = shape(south, xx6x -xxx6 -any 4xxx) and (top3(south,diamonds)>1 or top5(south,diamonds)>2)
 
-# Avoid singleton K or Q in any suit (stiff honor = 2 or 3 HCP in a singleton)
-stiffS = spades(south)==1 and hcp(south,spades)>1 and hcp(south,spades)<4
-stiffH = hearts(south)==1 and hcp(south,hearts)>1 and hcp(south,hearts)<4
-stiffD = diamonds(south)==1 and hcp(south,diamonds)>1 and hcp(south,diamonds)<4
-stiffC = clubs(south)==1 and hcp(south,clubs)>1 and hcp(south,clubs)<4
+stiffS = spades(south)==1   and hcp(south,spades)>0
+stiffH = hearts(south)==1   and hcp(south,hearts)>0
+stiffD = diamonds(south)==1 and hcp(south,diamonds)>0
+stiffC = clubs(south)==1    and hcp(south,clubs)>0
 noStiffHonor = not (stiffS or stiffH or stiffD or stiffC)
 
 # GIB minimums are floors -- hands at minimum in ALL dimensions often don't get opened.
