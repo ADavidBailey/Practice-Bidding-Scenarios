@@ -37,9 +37,10 @@ sOpens1M = (oneHeart or oneSpade) and not bbaNT
 
 # North raises to 2M (3+ support, 6-10 TP)
 # After 1H, North needs 3+ hearts and fewer than 4 spades (else would bid 1S)
-nRaisesH = oneHeart and hearts(north)>2 and spades(north)<4
-nRaisesS = oneSpade and spades(north)>2
-nRaises = (nRaisesH or nRaisesS) and tpNorth>5 and tpNorth<11
+supCards = oneHeart ? hearts(north) : spades(north)
+nRaisesH = oneHeart and supCards>2 and spades(north)<4
+nRaisesS = oneSpade and supCards>2
+nRaises = (nRaisesH or nRaisesS) and tpNorth+supCards>8 and tpNorth+supCards<13
 
 # South has game-try strength (15-18 TP)
 gameTryStrength = tpSouth>14 and tpSouth<19
