@@ -219,6 +219,18 @@ def generate_summary(pattern: str = "*"):
     deal_rows.sort(key=lambda x: x[1])
     lowest_deals = deal_rows[:10]
 
+    # Newest scenarios by btn file creation time (birthtime)
+    newest_scenarios = []
+    for row in rows:
+        btn_path = os.path.join(FOLDERS["btn"], f"{row['name']}.btn")
+        if os.path.exists(btn_path):
+            stat = os.stat(btn_path)
+            # Use birthtime (st_birthtime) on macOS, fall back to mtime
+            ctime = getattr(stat, 'st_birthtime', stat.st_mtime)
+            newest_scenarios.append((row["name"], ctime, row["deals"]))
+    newest_scenarios.sort(key=lambda x: -x[1])
+    newest_10 = newest_scenarios[:10]
+
     pipeline_ops = {op for op, _ in OP_COLUMNS}
     et_rows = []
     for row in rows:
@@ -306,6 +318,18 @@ def generate_summary(pattern: str = "*"):
     h.append('        <tr><th>#</th><th style="text-align:left">Scenario</th><th>Deals</th></tr>')
     for i, (name, deals) in enumerate(lowest_deals, 1):
         h.append(f'        <tr><td>{i}</td>{_scenario_td(name, btn_lookup[name], "text-align:left")}<td>{deals}</td></tr>')
+    h.append('      </table>')
+    h.append('    </div>')
+
+    # Newest Scenarios
+    h.append('    <div class="summary-card">')
+    h.append('      <h3>Newest Scenarios</h3>')
+    h.append('      <table>')
+    h.append('        <tr><th>#</th><th style="text-align:left">Scenario</th><th>Created</th><th>Deals</th></tr>')
+    for i, (name, ctime, deals) in enumerate(newest_10, 1):
+        date_str = datetime.fromtimestamp(ctime).strftime('%Y-%m-%d')
+        deals_str = str(deals) if deals > 0 else "-"
+        h.append(f'        <tr><td>{i}</td>{_scenario_td(name, btn_lookup[name], "text-align:left")}<td>{date_str}</td><td>{deals_str}</td></tr>')
     h.append('      </table>')
     h.append('    </div>')
 
