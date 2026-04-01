@@ -1,0 +1,77 @@
+Script,RosenkranzDbl
+window.currentPBSScenario = 'RosenkranzDbl';
+window.currentPBSScenarioFilename = 'Rosenkranz_Double';
+console.log('PBS: Logging scenario selection for RosenkranzDbl');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'RosenkranzDbl',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+convention-card-ns: 21GF-GIB
+convention-card-ew: 21GF-GIB
+auction-filter: (1[CD] +1[HS]|1H +1S)
+*/
+# Rosenkranz Double
+# West opens, North overcalls, East bids
+# South has 3+ support with a top honor in North's suit
+
+dealer west
+
+# Predict West's opening suit
+ws = spades(west)
+wh = hearts(west)
+wd = diamonds(west)
+wc = clubs(west)
+wS = ws>4 and ws>=wh and ws>=wd and ws>=wc
+wH = not wS and wh>4 and wh>=wd and wh>=wc
+wD = not (wS or wH) and ((wd>3 and wd>=wc) or wc<3)
+wC = not (wS or wH or wD)
+wOpens = (wC or wD or wH) and hcp(west)>11 and hcp(west)<19
+
+# North overcalls a major (5+ suit, decent quality, overcall values)
+nOC_H = hearts(north)>4 and top5(north,hearts)>1 and hcp(north)>7 and hcp(north)<17
+nOC_S = spades(north)>4 and top5(north,spades)>1 and hcp(north)>7 and hcp(north)<17
+
+# North overcalls higher than West's suit
+nOvercallH = nOC_H and (wC or wD) and (hearts(north)>spades(north) or spades(north)<5)
+nOvercallS = nOC_S and not nOvercallH and (wC or wD or wH)
+nOvercalls = nOvercallH or nOvercallS
+
+# East responds
+eastBids = hcp(east)>5
+
+# South has Rosenkranz double hand:
+# 3+ support with A, K, or Q (top3 >= 1) in partner's suit, 6-10 HCP
+sSupH = nOvercallH and hearts(south)>2 and top3(south,hearts)>0
+sSupS = nOvercallS and spades(south)>2 and top3(south,spades)>0
+sRosenkranz = (sSupH or sSupS) and hcp(south)>5 and hcp(south)<11
+
+wOpens and nOvercalls and eastBids and sRosenkranz
+
+action printoneline,
+average "South HCP   " hcp(south),
+average "North HCP   " hcp(north),
+average "West HCP    " hcp(west),
+average "N overcall H" 100 * nOvercallH,
+average "N overcall S" 100 * nOvercallS,
+`, "W", true)
+Script
+Button,Rosenkranz Dbl,\n\
+--- Rosenkranz Double\n\
+After LHO opens，partner overcalls，and RHO bids:\n\
+. Double = 3+ support with A，K，or Q in partner's suit，6-10 HCP\n\
+. Simple raise = 3+ support WITHOUT a top honor，6-10 HCP\n\
+. Cuebid = 10+ HCP with support (too strong for Rosenkranz)\n\
+Applies through the 2-level only.\n\
+NOTE: BBA does not play Rosenkranz doubles.\n\
+https://www.bridgebum.com/rosenkranz_double.php\n\
+%RosenkranzDbl%,backgroundColor=lightpink
