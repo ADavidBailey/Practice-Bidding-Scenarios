@@ -49,18 +49,70 @@ sOvercalls = sOvercallH or sOvercallS
 # West responds
 westBids = hcp(west)>5
 
-# North has Rosenkranz double hand:
-# 3+ support with A, K, or Q (top3 >= 1) in partner's suit, 6-10 HCP
-nSupH = sOvercallH and hearts(north)>2 and top3(north,hearts)>0
-nSupS = sOvercallS and spades(north)>2 and top3(north,spades)>0
-nRosenkranz = (nSupH or nSupS) and hcp(north)>5 and hcp(north)<11
+# North (advancer) has 3+ support and 6-10 HCP
+nSupH = sOvercallH and hearts(north)>2
+nSupS = sOvercallS and spades(north)>2
+nAdvances = (nSupH or nSupS) and hcp(north)>5 and hcp(north)<11
 
-eOpens and sOvercalls and westBids and nRosenkranz
+# Top honor (A, K, or Q) in partner's suit — Rosenkranz double
+hasTopHonorH = nSupH and top3(north,hearts)>0
+hasTopHonorS = nSupS and top3(north,spades)>0
+hasTopHonor = hasTopHonorH or hasTopHonorS
+
+# No top honor — simple raise
+noTopHonor = not hasTopHonor
+
+### Imported Leveling Code ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep015 = keep06 and c3
+keep03 = keep06 and keep44
+keep045 = keep06 and not c3
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep955 = not keep045
+keep97 = not keep03
+keep985 = not keep015
+keep   = 1
+keep0  = 0
+### End of Imported Leveling Code ###
+
+# Level to ~50% top honor, ~50% no top honor
+levWith    = hasTopHonor and keep
+levWithout = noTopHonor  and keep
+levelTheDeal = levWith or levWithout
+
+eOpens and sOvercalls and westBids and nAdvances and levelTheDeal
 
 action printoneline,
 average "South HCP   " hcp(south),
 average "North HCP   " hcp(north),
 average "East HCP    " hcp(east),
+average "Has top honor" 100 * hasTopHonor,
+average "No top honor " 100 * noTopHonor,
 average "S overcall H" 100 * sOvercallH,
 average "S overcall S" 100 * sOvercallS,
 `, "E", true)
