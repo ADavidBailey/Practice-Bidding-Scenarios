@@ -250,17 +250,17 @@ s2C = clubs(south)>3 and spades(south)<6 and hearts(south)<6
 # Type 1: After 1S only - exactly 5 hearts and 2 spades (wants heart support)
 heartsAfter1S = oneSpade and hearts(north)==5 and spades(north)==2
 
-# Type 2: Good raise to 3C (4+ clubs, invitational values)
-goodClubRaise = clubs(north)>3 and hcp(north)>9 and hcp(north)<13 and not heartsAfter1S
+# Type 2: Good preference to opener's major (2-card support, 10+ HCP)
+goodMajorPref = hcp(north)>9 and ((oneSpade and spades(north)==2 and hearts(north)<5) or (oneHeart and hearts(north)==2)) and not heartsAfter1S
 
-# Type 3: Good hand with diamonds (5+ diamonds, invitational)
-goodDiamonds = diamonds(north)>4 and hcp(north)>9 and hcp(north)<13 and not (heartsAfter1S or goodClubRaise)
+# Type 3: Good raise to 3C (4+ clubs, invitational values)
+goodClubRaise = clubs(north)>3 and hcp(north)>9 and hcp(north)<13 and not (heartsAfter1S or goodMajorPref)
 
-# Type 4: Good preference to opener's major (2-card support, 10+ HCP)
-goodMajorPref = hcp(north)>9 and ((oneSpade and spades(north)==2 and hearts(north)<5) or (oneHeart and hearts(north)==2)) and not (heartsAfter1S or goodClubRaise or goodDiamonds)
+# Type 4: Good hand with diamonds (5+ diamonds, invitational)
+goodDiamonds = diamonds(north)>4 and hcp(north)>9 and hcp(north)<13 and not (heartsAfter1S or goodMajorPref or goodClubRaise)
 
 # Type 5: Another decent hand (10-12 HCP, no clear direction)
-decentHand = hcp(north)>9 and hcp(north)<13 and not (heartsAfter1S or goodClubRaise or goodDiamonds or goodMajorPref)
+decentHand = hcp(north)>9 and hcp(north)<13 and not (heartsAfter1S or goodMajorPref or goodClubRaise or goodDiamonds)
 
 # Combine BART 2D hand types
 bart2D = goodClubRaise or heartsAfter1S or goodMajorPref or goodDiamonds or decentHand
