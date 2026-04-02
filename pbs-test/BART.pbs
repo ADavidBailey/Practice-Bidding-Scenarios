@@ -18,9 +18,9 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n1[HS] +Pass +1NT?.* Pass\n2C
+auction-filter: Auction.....\n1[HS] +Pass +1NT? +Pass\n2C
 */
-# BART: After 1H/1S - 1NT(sf) - 2C, responder bids 2D artificial
+# BART: After 1H/1S - 1NT(f) - 2C, responder bids 2D artificial
 dealer south
 
 ##### Imported Script: Define Calm Opponents #####
@@ -233,7 +233,7 @@ tpEW = tpEast + tpWest
 # defines tpNorth
 
 # South opens 1H or 1S (12-19 HCP, 5+ major)
-open1M = (oneSpade or oneHeart) and hcp(south)>11 and hcp(south)<20 and not gibNT
+open1M = (oneSpade or oneHeart) and hcp(south)>11 and hcp(south)<15 and not gibNT
 
 # North responds 1NT semi-forcing (6-12 HCP, no fit, no GF)
 # After 1S: fewer than 4 spades; after 1H: fewer than 4 hearts and fewer than 4 spades
@@ -241,7 +241,7 @@ noFit = (oneSpade and spades(north)<4) or (oneHeart and hearts(north)<4 and spad
 n1NT = hcp(north)>5 and hcp(north)<13 and noFit
 
 # South rebids 2C (4+ clubs, not strong enough for reverse, not 6+ in major)
-s2C = clubs(south)>3 and spades(south)<7 and hearts(south)<7 and not (oneHeart and spades(south)>3 and hcp(south)>16) and not (oneSpade and hearts(south)>3 and hcp(south)>16)
+s2C = clubs(south)>3 and spades(south)<6 and hearts(south)<6
 
 # =============================================
 # BART 2D by North - five hand types
@@ -333,7 +333,7 @@ average "--------------------" 100 * bart2D,
 Script
 Button,BART,\n\
 --- BART\n\
-After 1H/1S - 1NT(semi-forcing) - 2C，responder's 2D is artificial (BART)，showing one of:\n\
+After 1H/1S - 1NT (forcing) - 2C，responder's 2D is artificial (BART)，showing one of:\n\
 - Good raise to 3C\n\
 - Good preference to 2M (opener's major)\n\
 - Good hand with diamonds\n\
