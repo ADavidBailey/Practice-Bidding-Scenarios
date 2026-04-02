@@ -307,13 +307,18 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
+# Level 1H/1S openings (natural ratio ~75/25, level to ~50/50)
+levS = oneSpade and keep31
+levH = oneHeart and keep
+levelOpening = levS or levH
+
 # Level the hand types
 t1Lev = goodClubRaise   and keep
 t2Lev = heartsAfter1S   and keep
 t3Lev = goodMajorPref   and keep75
 t4Lev = goodDiamonds    and keep75
 t5Lev = decentHand      and keep47
-levelTheDeal = t1Lev or t2Lev or t3Lev or t4Lev or t5Lev
+levelTheDeal = levelOpening and (t1Lev or t2Lev or t3Lev or t4Lev or t5Lev)
 
 open1M and n1NT and s2C and bart2D and calmOpps
 and levelTheDeal
