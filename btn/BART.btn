@@ -1,0 +1,96 @@
+# alias: BART
+# button-text: BART
+# gib-works: false
+# bba-works: true
+# auction-filter: Auction.....\n1[HS] +Pass +1NT?.* Pass\n2C
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- BART
+After 1H/1S - 1NT (forcing) - 2C, responder's 2D is artificial (BART), showing one of:
+- Good raise to 3C
+- Good preference to 2M (opener's major)
+- Good hand with diamonds
+- After 1S: exactly 5H and 2S (wants heart support)
+- Another decent hand that needs more room
+All other bids are natural.
+https://www.larryco.com/bridge-articles/bart
+@chat*/
+
+# BART: After 1H/1S - 1NT(f) - 2C, responder bids 2D artificial
+dealer south
+
+#include "script/Calm-Opponents"
+#include "script/Predict-Opening-1-Bid"
+# defines oneSpade, oneHeart, gibNT
+
+#include "script/TP"
+# defines tpNorth
+
+# South opens 1H or 1S (12-19 HCP, 5+ major)
+open1M = (oneSpade or oneHeart) and hcp(south)>11 and hcp(south)<15 and not gibNT
+
+# North responds 1NT semi-forcing (6-12 HCP, no fit, no GF)
+# After 1S: fewer than 4 spades; after 1H: fewer than 4 hearts and fewer than 4 spades
+noFit = (oneSpade and spades(north)<4) or (oneHeart and hearts(north)<4 and spades(north)<4)
+n1NT = hcp(north)>5 and hcp(north)<13 and noFit
+
+# South rebids 2C (4+ clubs, not strong enough for reverse, not 6+ in major)
+s2C = clubs(south)>3 and spades(south)<6 and hearts(south)<6
+
+# =============================================
+# BART 2D by North - five hand types
+# =============================================
+
+# Type 1: After 1S only - exactly 5 hearts and 2 spades (wants heart support)
+heartsAfter1S = oneSpade and hearts(north)==5 and spades(north)==2
+
+# Type 2: Good preference to opener's major (2-card support, 10+ HCP)
+goodMajorPref = hcp(north)>9 and ((oneSpade and spades(north)==2 and hearts(north)<5) or (oneHeart and hearts(north)==2)) and not heartsAfter1S
+
+# Type 3: Good raise to 3C (4+ clubs, invitational values)
+goodClubRaise = clubs(north)>3 and hcp(north)>9 and hcp(north)<13 and not (heartsAfter1S or goodMajorPref)
+
+# Type 4: Good hand with diamonds (5+ diamonds, invitational)
+goodDiamonds = diamonds(north)>4 and hcp(north)>9 and hcp(north)<13 and not (heartsAfter1S or goodMajorPref or goodClubRaise)
+
+# Type 5: Another decent hand (10-12 HCP, no clear direction)
+decentHand = hcp(north)>9 and hcp(north)<13 and not (heartsAfter1S or goodMajorPref or goodClubRaise or goodDiamonds)
+
+# Combine BART 2D hand types
+bart2D = goodClubRaise or heartsAfter1S or goodMajorPref or goodDiamonds or decentHand
+
+# =============================================
+# Do it
+# =============================================
+
+#include "script/Leveling"
+
+# Level 1H/1S openings (natural ratio ~75/25, level to ~50/50)
+levS = oneSpade and keep33
+levH = oneHeart and keep
+levelOpening = levS or levH
+
+# Level the hand types
+t1Lev = goodClubRaise   and keep
+t2Lev = heartsAfter1S   and keep
+t3Lev = goodMajorPref   and keep75
+t4Lev = goodDiamonds    and keep75
+t5Lev = decentHand      and keep47
+levelTheDeal = levelOpening and (t1Lev or t2Lev or t3Lev or t4Lev or t5Lev)
+
+open1M and n1NT and s2C and bart2D and calmOpps
+and levelTheDeal
+
+produce 25
+action
+average "1S opened           " 100 * oneSpade,
+average "1H opened           " 100 * oneHeart,
+average "--------------------" 0,
+average "Good club raise     " 100 * goodClubRaise,
+average "5H + 2S (after 1S)  " 100 * heartsAfter1S,
+average "Good major pref     " 100 * goodMajorPref,
+average "Good diamonds       " 100 * goodDiamonds,
+average "Decent hand         " 100 * decentHand,
+average "--------------------" 100 * bart2D,
