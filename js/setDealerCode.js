@@ -13,6 +13,8 @@ window.setDealerCode = function (dealerCode, dealer = "S", rotateDeals = true) {
     var delayValue = 500;
     var cnt = -1;
     var intrv;
+    var t0 = Date.now();
+    console.log("[PBS] setDealerCode START");
     var dirs = "SWNE";
     intrv = setInterval(() => {
         try {
@@ -118,10 +120,12 @@ window.setDealerCode = function (dealerCode, dealer = "S", rotateDeals = true) {
                 case 10:
                     // Redeal
                     $(".redeal-button", PWD).click();
+                    console.log("[PBS] setDealerCode DONE in " + (Date.now() - t0) + "ms");
                     clearInterval(intrv);
                     break;
                 case 15:
                     // Prevent andless loop
+                    console.log("[PBS] setDealerCode TIMEOUT in " + (Date.now() - t0) + "ms");
                     clearInterval(intrv);
                     break;
             }

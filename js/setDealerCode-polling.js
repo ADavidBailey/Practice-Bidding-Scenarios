@@ -9,8 +9,10 @@ window.setDealerCode = function (dealerCode, dealer = "S", rotateDeals = true) {
     var doc = parent.window.document;
     var dirs = "SWNE";
     var step = 0;
-    var stepStart = Date.now();
+    var t0 = Date.now();
+    var stepStart = t0;
     var maxWait = 5000;
+    console.log("[PBS] setDealerCode START");
 
     var steps = [
         // step 0: close dialog if already open
@@ -121,7 +123,7 @@ window.setDealerCode = function (dealerCode, dealer = "S", rotateDeals = true) {
 
     var intrv = setInterval(() => {
         try {
-            if (step >= steps.length) { clearInterval(intrv); return; }
+            if (step >= steps.length) { console.log("[PBS] setDealerCode DONE in " + (Date.now() - t0) + "ms"); clearInterval(intrv); return; }
             if (Date.now() - stepStart > maxWait) { step++; stepStart = Date.now(); return; }
             if (!steps[step].ready()) return;
             steps[step].action();
