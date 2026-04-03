@@ -193,16 +193,16 @@ keep0  = 0
 # Combined points (north TP + south TP)
 combinedTP = tpNorth + tpSouth
 
-# Partscore hands (combined < 26)
-partHands = combinedTP < 26
-# Game hands (combined 26-32)
-gameHands = combinedTP > 25 and combinedTP < 33
+# Partscore hands (combined < 27)
+partHands = combinedTP < 27
+# Game hands (combined 27-32)
+gameHands = combinedTP > 26 and combinedTP < 33
 # Slam hands (combined 33+)
 slamHands = combinedTP > 32
 
 # Level: partscore ~45%, game ~45%, slam ~10%
-levPart = partHands and keep75
-levGame = gameHands and keep03
+levPart = partHands and keep47
+levGame = gameHands and keep06
 levSlam = slamHands and keep
 levelTheDeal = levPart or levGame or levSlam
 
@@ -222,7 +222,7 @@ average "Game        " 100 * gameHands,
 average "Slam        " 100 * slamHands,
 `, "S", true)
 Script
-Button,Drury,\n\
+Button,Drury (Lev),\n\
 --- Drury\n\
 After P (P) 1M (P)，2!C is Drury or Reverse Drury.\n\
 2!C asks about the opener's hand.\n\
