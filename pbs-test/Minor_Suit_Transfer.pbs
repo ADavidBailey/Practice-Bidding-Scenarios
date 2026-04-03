@@ -44,10 +44,10 @@ gibNT = nt1 or nt2
 # West passes
 
 # North transfers to Clubs(2S) or Diamonds (2N) -- long minor, more than half of points in suit, not many hcp
-nDiamonds = diamonds(North)>5 and hcp(north,diamonds)>(hcp(north)/2) and (hcp(north)+diamonds(north))<16
-nClubs    = clubs(North)>5    and hcp(north,clubs)   >(hcp(north)/2) and (hcp(north)+clubs(north)   )<16
+nDiamonds = diamonds(north)>5 and hcp(north,diamonds)>(hcp(north)/2) and (hcp(north)+diamonds(north))<16
+nClubs    = clubs(north)>5    and hcp(north,clubs)   >(hcp(north)/2) and (hcp(north)+clubs(north)   )<16
 
-nResponds = (diamonds or clubs) and hcp(north)>7 and shape(north,xxxx -any 5xxx -any 4xxx)
+nResponds = (nDiamonds or nClubs) and hcp(north)>7 and shape(north,xxxx -any 5xxx -any 4xxx)
 
 # Now do it
 gibNT and nResponds
