@@ -159,7 +159,7 @@ Promise.resolve()
     .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(4).click())
     .then(() => delay(delayValue))
     .then(() => $("start-table-screen .buttonRowClass button", BBOcontext()).eq(2).click())
-    .then(() => delay(3000))
+    .then(() => waitFor(() => $("bridge-screen .nameDisplayClass", BBOcontext()).length > 0))
     .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(0).click())
     .then(() => delay(delayValue))
     .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
@@ -179,6 +179,17 @@ Promise.resolve()
 function delay(duration) {
     return new Promise((resolve) => {
         setTimeout(resolve, duration);
+    });
+}
+function waitFor(test, interval, timeout) {
+    interval = interval || 50;
+    timeout = timeout || 10000;
+    return new Promise((resolve, reject) => {
+        var t0 = Date.now();
+        var intrv = setInterval(() => {
+            if (test()) { clearInterval(intrv); resolve(); }
+            else if (Date.now() - t0 > timeout) { clearInterval(intrv); reject(new Error("waitFor timeout")); }
+        }, interval);
     });
 }
 //Script
@@ -215,7 +226,7 @@ Promise.resolve()
     .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(4).click())
     .then(() => delay(delayValue))
     .then(() => $("start-table-screen .buttonRowClass button", BBOcontext()).eq(2).click())
-    .then(() => delay(3000))
+    .then(() => waitFor(() => $("bridge-screen .nameDisplayClass", BBOcontext()).length > 0))
     .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(0).click())
     .then(() => delay(delayValue))
     .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
@@ -235,6 +246,17 @@ Promise.resolve()
 function delay(duration) {
     return new Promise((resolve) => {
         setTimeout(resolve, duration);
+    });
+}
+function waitFor(test, interval, timeout) {
+    interval = interval || 50;
+    timeout = timeout || 10000;
+    return new Promise((resolve, reject) => {
+        var t0 = Date.now();
+        var intrv = setInterval(() => {
+            if (test()) { clearInterval(intrv); resolve(); }
+            else if (Date.now() - t0 > timeout) { clearInterval(intrv); reject(new Error("waitFor timeout")); }
+        }, interval);
     });
 }
 //Script
