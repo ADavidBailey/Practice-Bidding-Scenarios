@@ -69,9 +69,9 @@ calmOpps = calmEast and calmWest
 
 # West passes
 
-# North transfers to Clubs(2S) or Diamonds (2N) -- long minor, more than half of points in suit, not many hcp
-nDiamonds = diamonds(north)>5 and hcp(north,diamonds)>(hcp(north)/2) and (hcp(north)+diamonds(north))<15 and top3(north,diamonds)<2 and top5(north,diamonds)>1
-nClubs    = clubs(north)>5    and hcp(north,clubs)   >(hcp(north)/2) and (hcp(north)+clubs(north)   )<15 and top3(north,clubs)<2    and top5(north,clubs)>1
+# North transfers to Clubs (2S) or Diamonds (2N) -- long minor, more than half of points in suit, not many hcp
+nDiamonds = diamonds(north)>5 and (hcp(north)+diamonds(north))<15 and top3(north,diamonds)==1 and top5(north,diamonds)>1 //and hcp(north,diamonds)>(hcp(north)/2)
+nClubs    = clubs(north)>5    and (hcp(north)+clubs(north)   )<15 and top3(north,clubs)==1    and top5(north,clubs)>1    //and hcp(north,clubs)   >(hcp(north)/2) 
 
 nResponds = (nDiamonds or nClubs) and hcp(north)>6 and shape(north,xxxx -any 5xxx -any 4xxx)
 
