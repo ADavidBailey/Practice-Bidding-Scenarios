@@ -192,10 +192,10 @@ combinedTP = tpNorth + tpSouth
 
 # Partscore hands (combined < 24)
 partHands = combinedTP < 24
-# Game hands (combined 24-29)
-gameHands = combinedTP > 23 and combinedTP < 30
-# Slam hands (combined 30+)
-slamHands = combinedTP > 29
+# Game hands (combined 24-28)
+gameHands = combinedTP > 23 and combinedTP < 29
+# Slam hands (combined 29+)
+slamHands = combinedTP > 28
 
 # Level: partscore ~45%, game ~45%, slam ~10%
 levPart = partHands and keep
