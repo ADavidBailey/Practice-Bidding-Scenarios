@@ -70,15 +70,15 @@ calmOpps = calmEast and calmWest
 # West passes
 
 # North transfers to Clubs(2S) or Diamonds (2N) -- long minor, more than half of points in suit, not many hcp
-nDiamonds = diamonds(north)>5 and hcp(north,diamonds)>(hcp(north)/2) and (hcp(north)+diamonds(north))<16
-nClubs    = clubs(north)>5    and hcp(north,clubs)   >(hcp(north)/2) and (hcp(north)+clubs(north)   )<16
+nDiamonds = diamonds(north)>5 and hcp(north,diamonds)>(hcp(north)/2) and (hcp(north)+diamonds(north))<16 and hcp(north,diamonds)<6  
+nClubs    = clubs(north)>5    and hcp(north,clubs)   >(hcp(north)/2) and (hcp(north)+clubs(north)   )<16 and hcp(north,clubs)<6
 
 nResponds = (nDiamonds or nClubs) and hcp(north)>7 and shape(north,xxxx -any 5xxx -any 4xxx)
 
 # Now do it
 gibNT and calmOpps and nResponds
 
-produce 1000
+produce 30
 action printoneline,
 average "9xxx" 100 * shape(north,any 9xxx),
 average "8xxx" 100 * shape(north,any 8xxx),
