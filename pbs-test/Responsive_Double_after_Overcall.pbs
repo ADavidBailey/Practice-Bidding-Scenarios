@@ -127,13 +127,22 @@ eastRaises = (eC or eD or eH or eS) and hcp(east)>5 and tpEast<10
 # 1C-1D-2C: unbid H,S   1C-1H-2C: unbid D,S   1C-1S-2C: unbid D,H
 # 1D-1H-2D: unbid C,S   1D-1S-2D: unbid C,H
 # 1H-1S-2H: unbid C,D
-dCD = oC and ovD and hearts(south)>3   and spades(south)>3   and clubs(south)<4
-dCH = oC and ovH and diamonds(south)>3 and spades(south)>3  and clubs(south)<4
-dCS = oC and ovS and diamonds(south)>3 and hearts(south)>3  and clubs(south)<4
-dDH = oD and ovH and clubs(south)>3    and spades(south)>3  and diamonds(south)<4
-dDS = oD and ovS and clubs(south)>3    and hearts(south)>3  and diamonds(south)<4
-dHS = oH and ovS and clubs(south)>3    and diamonds(south)>3 and hearts(south)<4
-southDoubles = (dCD or dCH or dCS or dDH or dDS or dHS) and hcp(south)>9 and tpSouth>9
+# Both unbid suits at 2-level (lower strength OK)
+dCD = oC and ovD and hearts(south)>3   and spades(south)>3
+dCS = oC and ovS and diamonds(south)>3 and hearts(south)>3
+low2 = (dCD or dCS) and hcp(south)>8 and tpSouth>8
+
+# One unbid suit at 3-level (mixed)
+dCH = oC and ovH and diamonds(south)>3 and spades(south)>3
+dDH = oD and ovH and clubs(south)>3    and spades(south)>3
+dDS = oD and ovS and clubs(south)>3    and hearts(south)>3
+mixed = (dCH or dDH or dDS) and hcp(south)>9 and tpSouth>9
+
+# Both unbid suits at 3-level (needs most strength)
+dHS = oH and ovS and clubs(south)>3    and diamonds(south)>3
+high3 = dHS and hcp(south)>10 and tpSouth>10
+
+southDoubles = low2 or mixed or high3
 
 ##### Now do it #####
 westOpens = hcp(west)>10 and tpWest>11 and hcp(west)<15
