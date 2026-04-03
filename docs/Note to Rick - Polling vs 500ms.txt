@@ -1,0 +1,29 @@
+Hi Rick,
+
+I switched -PBS.txt to use the polling version of setDealerCode (v4.1.10-polling). Instead of fixed 500ms delays between steps (~5.5s total), it polls the DOM every 50ms and advances as soon as each element is ready.
+
+The only difference between the two versions is two lines in -PBS.txt:
+
+Polling (current):
+
+
+//BBOalert, Bidding Scenarios - version 4.1.10-polling
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode-polling.js
+Fixed 500ms delays:
+
+
+//BBOalert, Bidding Scenarios - version 4.1.9
+Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode.js
+Both scripts have console timing logs — open F12 → Console and look for [PBS] setDealerCode DONE in Xms when you click a scenario button.
+
+You can also switch without committing by running this in the browser console:
+
+
+// For fixed 500ms version:
+localStorage.setItem('PBSCache', 'BBOalert\nImport,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-PBS-original.txt');
+
+// For polling version:
+localStorage.setItem('PBSCache', 'BBOalert\nImport,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/-PBS.txt');
+Then close and reopen the BBO side nav panel to reload.
+
+— David
