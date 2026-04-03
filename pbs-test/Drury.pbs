@@ -201,9 +201,9 @@ gameHands = combinedTP > 26 and combinedTP < 33
 slamHands = combinedTP > 32
 
 # Level: partscore ~45%, game ~45%, slam ~10%
-levPart = partHands and keep14
+levPart = partHands and keep19
 levGame = gameHands and keep06
-levSlam = slamHands and keep
+levSlam = slamHands and keep75
 levelTheDeal = levPart or levGame or levSlam
 
 # Now do it
