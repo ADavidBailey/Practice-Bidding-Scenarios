@@ -127,22 +127,30 @@ eastRaises = (eC or eD or eH or eS) and hcp(east)>5 and tpEast<10
 # 1C-1D-2C: unbid H,S   1C-1H-2C: unbid D,S   1C-1S-2C: unbid D,H
 # 1D-1H-2D: unbid C,S   1D-1S-2D: unbid C,H
 # 1H-1S-2H: unbid C,D
-# Both unbid suits at 2-level (lower strength OK)
+# BBA combined HCP thresholds for responsive double:
+#   vs minor at 2-level: 18+   vs minor at 3-level: 20+
+#   vs major at 2-level: 20+   vs major at 3-level: 22+
+hcpNS = hcp(north) + hcp(south)
+
+# vs minor opening, response at 2-level (18+ combined)
 dCD = oC and ovD and hearts(south)>3   and spades(south)>3
 dCS = oC and ovS and diamonds(south)>3 and hearts(south)>3
-low2 = (dCD or dCS) and hcp(south)>8 and tpSouth>8
+min2 = (dCD or dCS) and hcpNS>17
 
-# One unbid suit at 3-level (mixed)
+# vs minor opening, response at 3-level (20+ combined)
 dCH = oC and ovH and diamonds(south)>3 and spades(south)>3
+min3 = dCH and hcpNS>19
+
+# vs major opening at 2-level (20+ combined)
 dDH = oD and ovH and clubs(south)>3    and spades(south)>3
 dDS = oD and ovS and clubs(south)>3    and hearts(south)>3
-mixed = (dCH or dDH or dDS) and hcp(south)>9 and tpSouth>9
+maj2 = (dDH or dDS) and hcpNS>19
 
-# Both unbid suits at 3-level (needs most strength)
+# vs major opening at 3-level (22+ combined)
 dHS = oH and ovS and clubs(south)>3    and diamonds(south)>3
-high3 = dHS and hcp(south)>10 and tpSouth>10
+maj3 = dHS and hcpNS>21
 
-southDoubles = low2 or mixed or high3
+southDoubles = min2 or min3 or maj2 or maj3
 
 ##### Now do it #####
 westOpens = hcp(west)>10 and tpWest>11 and hcp(west)<15
