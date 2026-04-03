@@ -129,39 +129,39 @@ Script
 
 //Script,setBiddingTable
 (function() {
-    var doc = BBOcontext();
-    var homeButton = $("nav-bar button", doc).eq(0);
+    var D = () => BBOcontext();
+    var homeButton = $("nav-bar button", D()).eq(0);
     if (!homeButton.prop('disabled')) {
         alert("You must be at the BBO Home page to start a table.");
         return;
     }
-    var step = 0, seatIdx = 0, t0 = Date.now(), stepStart = t0, maxWait = 5000;
+    var step = 0, t0 = Date.now(), stepStart = t0, maxWait = 5000;
     console.log("[PBS] setBiddingTable START");
     var steps = [
         { ready: () => true,
-          action: () => $("button.bbo-phx-navigation:contains('Practice')", doc).first().click() },
-        { ready: () => $("button.bbo-phx-navigation:contains('Start a bidding table')", doc).length > 0,
-          action: () => $("button.bbo-phx-navigation:contains('Start a bidding table')", doc).first().click() },
-        { ready: () => $("table-options-panel .toggleDivClass ion-toggle", doc).length > 0,
-          action: () => { for (var i = 0; i < 5; i++) $("table-options-panel .toggleDivClass ion-toggle", doc).eq(i).click(); } },
+          action: () => $("button.bbo-phx-navigation:contains('Practice')", D()).first().click() },
+        { ready: () => $("button.bbo-phx-navigation:contains('Start a bidding table')", D()).length > 0,
+          action: () => $("button.bbo-phx-navigation:contains('Start a bidding table')", D()).first().click() },
+        { ready: () => $("table-options-panel .toggleDivClass ion-toggle", D()).length > 0,
+          action: () => { for (var i = 0; i < 5; i++) $("table-options-panel .toggleDivClass ion-toggle", D()).eq(i).click(); } },
         { ready: () => true,
-          action: () => $("start-table-screen .buttonRowClass button", doc).eq(2).click() },
-        { ready: () => $("bridge-screen .nameDisplayClass", doc).length > 0,
-          action: () => $("bridge-screen .nameDisplayClass", doc).eq(0).click() },
-        { ready: () => $("bridge-screen menu-item", doc).length > 0,
-          action: () => $("bridge-screen menu-item", doc).eq(0).children().click() },
-        { ready: () => $("bridge-screen menu-item", doc).length === 0,
-          action: () => $("bridge-screen .nameDisplayClass", doc).eq(1).click() },
-        { ready: () => $("bridge-screen menu-item", doc).length > 0,
-          action: () => $("bridge-screen menu-item", doc).eq(0).children().click() },
-        { ready: () => $("bridge-screen menu-item", doc).length === 0,
-          action: () => $("bridge-screen .nameDisplayClass", doc).eq(2).click() },
-        { ready: () => $("bridge-screen menu-item", doc).length > 0,
-          action: () => $("bridge-screen menu-item", doc).eq(0).children().click() },
-        { ready: () => $("bridge-screen menu-item", doc).length === 0,
-          action: () => $("bridge-screen .nameDisplayClass", doc).eq(3).click() },
-        { ready: () => $("bridge-screen menu-item", doc).length > 0,
-          action: () => $("bridge-screen menu-item", doc).eq(0).children().click() }
+          action: () => $("start-table-screen .buttonRowClass button", D()).eq(2).click() },
+        { ready: () => $("bridge-screen .nameDisplayClass", D()).length > 0,
+          action: () => $("bridge-screen .nameDisplayClass", D()).eq(0).click() },
+        { ready: () => $("bridge-screen menu-item", D()).length > 0,
+          action: () => $("bridge-screen menu-item", D()).eq(0).children().click() },
+        { ready: () => $("bridge-screen menu-item", D()).length === 0,
+          action: () => $("bridge-screen .nameDisplayClass", D()).eq(1).click() },
+        { ready: () => $("bridge-screen menu-item", D()).length > 0,
+          action: () => $("bridge-screen menu-item", D()).eq(0).children().click() },
+        { ready: () => $("bridge-screen menu-item", D()).length === 0,
+          action: () => $("bridge-screen .nameDisplayClass", D()).eq(2).click() },
+        { ready: () => $("bridge-screen menu-item", D()).length > 0,
+          action: () => $("bridge-screen menu-item", D()).eq(0).children().click() },
+        { ready: () => $("bridge-screen menu-item", D()).length === 0,
+          action: () => $("bridge-screen .nameDisplayClass", D()).eq(3).click() },
+        { ready: () => $("bridge-screen menu-item", D()).length > 0,
+          action: () => $("bridge-screen menu-item", D()).eq(0).children().click() }
     ];
     var intrv = setInterval(() => {
         try {
@@ -178,8 +178,8 @@ Script
 
 //Script,setTeachingTable
 (function() {
-    var doc = BBOcontext();
-    var homeButton = $("nav-bar button", doc).eq(0);
+    var D = () => BBOcontext();
+    var homeButton = $("nav-bar button", D()).eq(0);
     if (!homeButton.prop('disabled')) {
         alert("You must be at the BBO Home page to start a table.");
         return;
@@ -188,29 +188,29 @@ Script
     console.log("[PBS] setTeachingTable START");
     var steps = [
         { ready: () => true,
-          action: () => $("button.bbo-phx-navigation:contains('Practice')", doc).first().click() },
-        { ready: () => $("button.bbo-phx-navigation:contains('Start a teaching table')", doc).length > 0,
-          action: () => $("button.bbo-phx-navigation:contains('Start a teaching table')", doc).first().click() },
-        { ready: () => $("table-options-panel .toggleDivClass ion-toggle", doc).length > 0,
-          action: () => { for (var i = 0; i < 5; i++) $("table-options-panel .toggleDivClass ion-toggle", doc).eq(i).click(); } },
+          action: () => $("button.bbo-phx-navigation:contains('Practice')", D()).first().click() },
+        { ready: () => $("button.bbo-phx-navigation:contains('Start a teaching table')", D()).length > 0,
+          action: () => $("button.bbo-phx-navigation:contains('Start a teaching table')", D()).first().click() },
+        { ready: () => $("table-options-panel .toggleDivClass ion-toggle", D()).length > 0,
+          action: () => { for (var i = 0; i < 5; i++) $("table-options-panel .toggleDivClass ion-toggle", D()).eq(i).click(); } },
         { ready: () => true,
-          action: () => $("start-table-screen .buttonRowClass button", doc).eq(2).click() },
-        { ready: () => $("bridge-screen .nameDisplayClass", doc).length > 0,
-          action: () => $("bridge-screen .nameDisplayClass", doc).eq(0).click() },
-        { ready: () => $("bridge-screen menu-item", doc).length > 0,
-          action: () => $("bridge-screen menu-item", doc).eq(0).children().click() },
-        { ready: () => $("bridge-screen menu-item", doc).length === 0,
-          action: () => $("bridge-screen .nameDisplayClass", doc).eq(1).click() },
-        { ready: () => $("bridge-screen menu-item", doc).length > 0,
-          action: () => $("bridge-screen menu-item", doc).eq(0).children().click() },
-        { ready: () => $("bridge-screen menu-item", doc).length === 0,
-          action: () => $("bridge-screen .nameDisplayClass", doc).eq(2).click() },
-        { ready: () => $("bridge-screen menu-item", doc).length > 0,
-          action: () => $("bridge-screen menu-item", doc).eq(0).children().click() },
-        { ready: () => $("bridge-screen menu-item", doc).length === 0,
-          action: () => $("bridge-screen .nameDisplayClass", doc).eq(3).click() },
-        { ready: () => $("bridge-screen menu-item", doc).length > 0,
-          action: () => $("bridge-screen menu-item", doc).eq(0).children().click() }
+          action: () => $("start-table-screen .buttonRowClass button", D()).eq(2).click() },
+        { ready: () => $("bridge-screen .nameDisplayClass", D()).length > 0,
+          action: () => $("bridge-screen .nameDisplayClass", D()).eq(0).click() },
+        { ready: () => $("bridge-screen menu-item", D()).length > 0,
+          action: () => $("bridge-screen menu-item", D()).eq(0).children().click() },
+        { ready: () => $("bridge-screen menu-item", D()).length === 0,
+          action: () => $("bridge-screen .nameDisplayClass", D()).eq(1).click() },
+        { ready: () => $("bridge-screen menu-item", D()).length > 0,
+          action: () => $("bridge-screen menu-item", D()).eq(0).children().click() },
+        { ready: () => $("bridge-screen menu-item", D()).length === 0,
+          action: () => $("bridge-screen .nameDisplayClass", D()).eq(2).click() },
+        { ready: () => $("bridge-screen menu-item", D()).length > 0,
+          action: () => $("bridge-screen menu-item", D()).eq(0).children().click() },
+        { ready: () => $("bridge-screen menu-item", D()).length === 0,
+          action: () => $("bridge-screen .nameDisplayClass", D()).eq(3).click() },
+        { ready: () => $("bridge-screen menu-item", D()).length > 0,
+          action: () => $("bridge-screen menu-item", D()).eq(0).children().click() }
     ];
     var intrv = setInterval(() => {
         try {
