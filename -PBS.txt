@@ -128,118 +128,116 @@ setTimeout(function() {
 Script
 
 //Script,setBiddingTable
-(function() {
-    var D = parent.window.document;
-    var homeButton = $("nav-bar button", D).eq(0);
-    if (!homeButton.prop('disabled')) {
-        alert("You must be at the BBO Home page to start a table.");
-        return;
-    }
-    var step = 0, t0 = Date.now(), stepStart = t0, maxWait = 10000, minWait = 200;
-    console.log("[PBS] setBiddingTable START");
-    var steps = [
-        { ready: () => true,
-          action: () => $("button.bbo-phx-navigation:contains('Practice')", D).first().click() },
-        { ready: () => $("button.bbo-phx-navigation:contains('Start a bidding table')", D).length > 0,
-          action: () => $("button.bbo-phx-navigation:contains('Start a bidding table')", D).first().click() },
-        { ready: () => $("table-options-panel .toggleDivClass ion-toggle", D).length > 0,
-          action: () => $("table-options-panel .toggleDivClass ion-toggle", D).eq(0).click() },
-        { ready: () => true,
-          action: () => $("table-options-panel .toggleDivClass ion-toggle", D).eq(1).click() },
-        { ready: () => true,
-          action: () => $("table-options-panel .toggleDivClass ion-toggle", D).eq(2).click() },
-        { ready: () => true,
-          action: () => $("table-options-panel .toggleDivClass ion-toggle", D).eq(3).click() },
-        { ready: () => true,
-          action: () => $("table-options-panel .toggleDivClass ion-toggle", D).eq(4).click() },
-        { ready: () => true,
-          action: () => $("start-table-screen .buttonRowClass button", D).eq(2).click() },
-        { ready: () => $("bridge-screen .nameDisplayClass", D).length > 0,
-          action: () => $("bridge-screen .nameDisplayClass", D).eq(0).click() },
-        { ready: () => $("bridge-screen menu-item", D).length > 0,
-          action: () => $("bridge-screen menu-item", D).eq(0).children().click() },
-        { ready: () => $("bridge-screen menu-item", D).length === 0,
-          action: () => $("bridge-screen .nameDisplayClass", D).eq(1).click() },
-        { ready: () => $("bridge-screen menu-item", D).length > 0,
-          action: () => $("bridge-screen menu-item", D).eq(0).children().click() },
-        { ready: () => $("bridge-screen menu-item", D).length === 0,
-          action: () => $("bridge-screen .nameDisplayClass", D).eq(2).click() },
-        { ready: () => $("bridge-screen menu-item", D).length > 0,
-          action: () => $("bridge-screen menu-item", D).eq(0).children().click() },
-        { ready: () => $("bridge-screen menu-item", D).length === 0,
-          action: () => $("bridge-screen .nameDisplayClass", D).eq(3).click() },
-        { ready: () => $("bridge-screen menu-item", D).length > 0,
-          action: () => $("bridge-screen menu-item", D).eq(0).children().click() }
-    ];
-    var intrv = setInterval(() => {
-        try {
-            if (step >= steps.length) { console.log("[PBS] setBiddingTable DONE in " + (Date.now() - t0) + "ms"); clearInterval(intrv); return; }
-            if (Date.now() - stepStart > maxWait) { console.log("[PBS] setBiddingTable step " + step + " TIMEOUT"); step++; stepStart = Date.now(); return; }
-            if (Date.now() - stepStart < minWait) return;
-            if (!steps[step].ready()) return;
-            steps[step].action();
-            step++;
-            stepStart = Date.now();
-        } catch (e) { step++; stepStart = Date.now(); }
-    }, 50);
-})();
+var delayValue = 500;
+var t0 = Date.now();
+console.log("[PBS] setBiddingTable START");
+Promise.resolve()
+    .then(() => {
+         const homeButton = $("nav-bar button", BBOcontext()).eq(0);
+         const isDisabled = homeButton.prop('disabled');
+         if (isDisabled) {
+            console.log("The home button is disabled.");
+         } else {
+            console.log("The home button is enabled.");
+            homeFound = true;
+            alert("You must be at the BBO Home page to start a table.")
+            throw new Error("Go Home.");
+         }
+    })
+    .then(() => $("button.bbo-phx-navigation:contains('Practice')", BBOcontext()).first().click())
+    .then(() => delay(delayValue))
+    .then(() => $("button.bbo-phx-navigation:contains('Start a bidding table')", BBOcontext()).first().click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(0).click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(1).click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(2).click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(3).click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(4).click())
+    .then(() => delay(delayValue))
+    .then(() => $("start-table-screen .buttonRowClass button", BBOcontext()).eq(2).click())
+    .then(() => delay(3000))
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(0).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(1).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(2).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(3).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => console.log("[PBS] setBiddingTable DONE in " + (Date.now() - t0) + "ms"))
+function delay(duration) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, duration);
+    });
+}
 //Script
 
 //Script,setTeachingTable
-(function() {
-    var D = parent.window.document;
-    var homeButton = $("nav-bar button", D).eq(0);
-    if (!homeButton.prop('disabled')) {
-        alert("You must be at the BBO Home page to start a table.");
-        return;
-    }
-    var step = 0, t0 = Date.now(), stepStart = t0, maxWait = 10000, minWait = 200;
-    console.log("[PBS] setTeachingTable START");
-    var steps = [
-        { ready: () => true,
-          action: () => $("button.bbo-phx-navigation:contains('Practice')", D).first().click() },
-        { ready: () => $("button.bbo-phx-navigation:contains('Start a teaching table')", D).length > 0,
-          action: () => $("button.bbo-phx-navigation:contains('Start a teaching table')", D).first().click() },
-        { ready: () => $("table-options-panel .toggleDivClass ion-toggle", D).length > 0,
-          action: () => $("table-options-panel .toggleDivClass ion-toggle", D).eq(0).click() },
-        { ready: () => true,
-          action: () => $("table-options-panel .toggleDivClass ion-toggle", D).eq(1).click() },
-        { ready: () => true,
-          action: () => $("table-options-panel .toggleDivClass ion-toggle", D).eq(2).click() },
-        { ready: () => true,
-          action: () => $("table-options-panel .toggleDivClass ion-toggle", D).eq(3).click() },
-        { ready: () => true,
-          action: () => $("table-options-panel .toggleDivClass ion-toggle", D).eq(4).click() },
-        { ready: () => true,
-          action: () => $("start-table-screen .buttonRowClass button", D).eq(2).click() },
-        { ready: () => $("bridge-screen .nameDisplayClass", D).length > 0,
-          action: () => $("bridge-screen .nameDisplayClass", D).eq(0).click() },
-        { ready: () => $("bridge-screen menu-item", D).length > 0,
-          action: () => $("bridge-screen menu-item", D).eq(0).children().click() },
-        { ready: () => $("bridge-screen menu-item", D).length === 0,
-          action: () => $("bridge-screen .nameDisplayClass", D).eq(1).click() },
-        { ready: () => $("bridge-screen menu-item", D).length > 0,
-          action: () => $("bridge-screen menu-item", D).eq(0).children().click() },
-        { ready: () => $("bridge-screen menu-item", D).length === 0,
-          action: () => $("bridge-screen .nameDisplayClass", D).eq(2).click() },
-        { ready: () => $("bridge-screen menu-item", D).length > 0,
-          action: () => $("bridge-screen menu-item", D).eq(0).children().click() },
-        { ready: () => $("bridge-screen menu-item", D).length === 0,
-          action: () => $("bridge-screen .nameDisplayClass", D).eq(3).click() },
-        { ready: () => $("bridge-screen menu-item", D).length > 0,
-          action: () => $("bridge-screen menu-item", D).eq(0).children().click() }
-    ];
-    var intrv = setInterval(() => {
-        try {
-            if (step >= steps.length) { console.log("[PBS] setTeachingTable DONE in " + (Date.now() - t0) + "ms"); clearInterval(intrv); return; }
-            if (Date.now() - stepStart > maxWait) { console.log("[PBS] setTeachingTable step " + step + " TIMEOUT"); step++; stepStart = Date.now(); return; }
-            if (Date.now() - stepStart < minWait) return;
-            if (!steps[step].ready()) return;
-            steps[step].action();
-            step++;
-            stepStart = Date.now();
-        } catch (e) { step++; stepStart = Date.now(); }
-    }, 50);
+var delayValue = 500;
+var t0 = Date.now();
+console.log("[PBS] setTeachingTable START");
+Promise.resolve()
+    .then(() => {
+         const homeButton = $("nav-bar button", BBOcontext()).eq(0);
+         const isDisabled = homeButton.prop('disabled');
+         if (isDisabled) {
+            console.log("The home button is disabled.");
+         } else {
+            console.log("The home button is enabled.");
+            homeFound = true;
+            alert("You must be at the BBO Home page to start a table.")
+            throw new Error("Go Home.");
+         }
+    })
+    .then(() => $("button.bbo-phx-navigation:contains('Practice')", BBOcontext()).first().click())
+    .then(() => delay(delayValue))
+    .then(() => $("button.bbo-phx-navigation:contains('Start a teaching table')", BBOcontext()).first().click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(0).click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(1).click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(2).click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(3).click())
+    .then(() => delay(delayValue))
+    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(4).click())
+    .then(() => delay(delayValue))
+    .then(() => $("start-table-screen .buttonRowClass button", BBOcontext()).eq(2).click())
+    .then(() => delay(3000))
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(0).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(1).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(2).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(3).click())
+    .then(() => delay(delayValue))
+    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+    .then(() => console.log("[PBS] setTeachingTable DONE in " + (Date.now() - t0) + "ms"))
+function delay(duration) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, duration);
+    });
+}
+//Script
 })();
 //Script
 
