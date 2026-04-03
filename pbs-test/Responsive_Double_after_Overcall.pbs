@@ -129,17 +129,17 @@ eastRaises = (eC or eD or eH or eS) and hcp(east)>5 and tpEast<10
 # 1H-1S-2H: unbid C,D
 # South has 4+ in each unbid suit and short in partner's suit (denies raise)
 # 1C-1D: unbid H,S; short in D
-dCD = oC and ovD and hearts(south)>3 and spades(south)>3 and diamonds(south)<3
+dCD = oC and ovD and hearts(south)>3 and spades(south)>3 and diamonds(south)<2
 # 1C-1H: unbid D,S; short in H
-dCH = oC and ovH and diamonds(south)>3 and spades(south)>3 and hearts(south)<3
+dCH = oC and ovH and diamonds(south)>3 and spades(south)>3 and hearts(south)<2
 # 1C-1S: unbid D,H; short in S
-dCS = oC and ovS and diamonds(south)>3 and hearts(south)>3 and spades(south)<3
+dCS = oC and ovS and diamonds(south)>3 and hearts(south)>3 and spades(south)<2
 # 1D-1H: unbid C,S; short in H
-dDH = oD and ovH and clubs(south)>3 and spades(south)>3 and hearts(south)<3
+dDH = oD and ovH and clubs(south)>3 and spades(south)>3 and hearts(south)<2
 # 1D-1S: unbid C,H; short in S
-dDS = oD and ovS and clubs(south)>3 and hearts(south)>3 and spades(south)<3
+dDS = oD and ovS and clubs(south)>3 and hearts(south)>3 and spades(south)<2
 # 1H-1S: unbid C,D; short in S
-dHS = oH and ovS and clubs(south)>3 and diamonds(south)>3 and spades(south)<3
+dHS = oH and ovS and clubs(south)>3 and diamonds(south)>3 and spades(south)<2
 
 southDoubles = (dCD or dCH or dCS or dDH or dDS or dHS) and hcp(south)>8 and tpSouth>8
 
