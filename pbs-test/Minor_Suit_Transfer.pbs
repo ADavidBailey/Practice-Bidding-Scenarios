@@ -40,6 +40,7 @@ gibNT = nt1 or nt2
 
 ### End of GIB 1 Notrump ###
 # Defines gibNT
+# ERROR: Could not find script/Calm-Opponents-1N
 
 # West passes
 
@@ -50,7 +51,7 @@ nClubs    = clubs(north)>5    and hcp(north,clubs)   >(hcp(north)/2) and (hcp(no
 nResponds = (nDiamonds or nClubs) and hcp(north)>7 and shape(north,xxxx -any 5xxx -any 4xxx)
 
 # Now do it
-gibNT and nResponds
+gibNT and calmOpponents and nResponds
 
 produce 1000
 action printoneline,
