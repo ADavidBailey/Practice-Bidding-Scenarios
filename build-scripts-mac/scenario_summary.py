@@ -242,7 +242,7 @@ def generate_summary(pattern: str = "*"):
             continue
         if created > 0:
             newest_scenarios.append((row["name"], created, modified, row["deals"]))
-    newest_scenarios.sort(key=lambda x: -x[1])
+    newest_scenarios.sort(key=lambda x: -x[2])  # Sort by modified date, not created
     newest_10 = newest_scenarios[:10]
 
     pipeline_ops = {op for op, _ in OP_COLUMNS}
