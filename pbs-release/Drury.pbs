@@ -135,7 +135,10 @@ rebbidableC = clubs(south)==5    and hcp(south,clubs)>3
 sSJS = (rebiddableD or rebbidableC) and hcp(south)>10 and tpSouth>10
 
 # North opens 1H or 1S
-nNT = shape(north,any 4333+any 4432+any 5332) and hcp(north)>14 and hcp(north)<18
+nBal = shape(north,any 4333+any 4432+any 5332)
+n1NT = nBal and hcp(north)>14 and hcp(north)<18
+n2NT = nBal and hcp(north)>19 and hcp(north)<22
+nNT = n1NT or n2NT
 
 //nMin = tpNorth==12 and hcp(north)==11
 nSpade = spades(north)>4 and hearts(north)<5 and diamonds(north)<5 and clubs(north)<5 and spades(south)>2 and hearts(south)<5
@@ -143,25 +146,81 @@ nHeart = hearts(north)>4 and spades(north)<5 and diamonds(north)<5 and clubs(nor
 len = hearts(north)>spades(north) ? hearts(north) : spades(north)
 nMin = len == 5 ? 12 : 11
 
-nRange = hcp(north)>nMin and hcp(north)<18
+nRange = hcp(north)>nMin and hcp(north)<22
 nOpens = (nSpade or nHeart) and nRange and not nNT and diamonds(north)<len and clubs(north)<len
 
 sResponds = tpSouth>9 and not sSJS
 
+# Level north's opening to balance partscore/game/slam
+### Imported Leveling Code ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep015 = keep06 and c3
+keep03 = keep06 and keep44
+keep045 = keep06 and not c3
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep955 = not keep045
+keep97 = not keep03
+keep985 = not keep015
+keep   = 1
+keep0  = 0
+### End of Imported Leveling Code ###
+
+# Level by north's HCP to balance partscore/game/slam
+nLow  = hcp(north) < 15
+nMid  = hcp(north) > 14 and hcp(north) < 19
+nHigh = hcp(north) > 18
+
+levLow  = nLow  and keep
+levMid  = nMid  and keep03
+levHigh = nHigh and keep25
+levelTheDeal = levLow or levMid or levHigh
+
 # Now do it
 sPasses and nOpens and calmOpps and sResponds
+and levelTheDeal
 
 action printoneline,
-average "HCP North " hcp(north),
-average "TP North  " tpNorth,
-average "HCP South " hcp(south),
-average "TP South  " tpSouth,
+average "HCP North   " hcp(north),
+average "TP North    " tpNorth,
+average "HCP South   " hcp(south),
+average "TP South    " tpSouth,
+average "Combined TP " tpNorth + tpSouth,
+average "------------" 0,
+average "N Low (<15) " 100 * nLow,
+average "N Mid (15-18)" 100 * nMid,
+average "N High (19+)" 100 * nHigh,
 `, "S", true)
 Script
-Button,Drury,\n\
+Button,Drury (Lev),\n\
 --- Drury\n\
 After P (P) 1M (P)，2!C is Drury or Reverse Drury.\n\
 2!C asks about the opener's hand.\n\
 Drury:  2!D denies game interest and 2M shows game interest.\n\
 Reverse Drury: 2!D shows some game interest and 2M denies game interest.\n\
-%Drury%,width=50%
+Leveled Partscore 35%，game 60%，slam 5%.\n\
+%Drury%
