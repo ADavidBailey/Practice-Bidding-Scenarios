@@ -190,21 +190,15 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-# Combined points (north TP + south TP)
-combinedTP = tpNorth + tpSouth
+# Level by north's HCP to balance partscore/game/slam
+nLow  = hcp(north) < 15
+nMid  = hcp(north) > 14 and hcp(north) < 19
+nHigh = hcp(north) > 18
 
-# Partscore hands (combined < 27)
-partHands = combinedTP < 27
-# Game hands (combined 27-32)
-gameHands = combinedTP > 26 and combinedTP < 33
-# Slam hands (combined 33+)
-slamHands = combinedTP > 32
-
-# Level: partscore ~45%, game ~45%, slam ~10%
-levPart = partHands and keep19
-levGame = gameHands and keep03
-levSlam = slamHands and keep75
-levelTheDeal = levPart or levGame or levSlam
+levLow  = nLow  and keep
+levMid  = nMid  and keep06
+levHigh = nHigh and keep
+levelTheDeal = levLow or levMid or levHigh
 
 # Now do it
 sPasses and nOpens and calmOpps and sResponds
@@ -215,11 +209,11 @@ average "HCP North   " hcp(north),
 average "TP North    " tpNorth,
 average "HCP South   " hcp(south),
 average "TP South    " tpSouth,
-average "Combined TP " combinedTP,
+average "Combined TP " tpNorth + tpSouth,
 average "------------" 0,
-average "Partscore   " 100 * partHands,
-average "Game        " 100 * gameHands,
-average "Slam        " 100 * slamHands,
+average "N Low (<15) " 100 * nLow,
+average "N Mid (15-18)" 100 * nMid,
+average "N High (19+)" 100 * nHigh,
 `, "S", true)
 Script
 Button,Drury (Lev),\n\
