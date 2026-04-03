@@ -190,16 +190,16 @@ keep0  = 0
 # Combined points (north TP + south TP)
 combinedTP = tpNorth + tpSouth
 
-# Partscore hands (combined < 24)
-partHands = combinedTP < 24
-# Game hands (combined 24-30)
-gameHands = combinedTP > 23 and combinedTP < 31
-# Slam hands (combined 31+)
-slamHands = combinedTP > 30
+# Partscore hands (combined < 26)
+partHands = combinedTP < 26
+# Game hands (combined 26-32)
+gameHands = combinedTP > 25 and combinedTP < 33
+# Slam hands (combined 33+)
+slamHands = combinedTP > 32
 
 # Level: partscore ~45%, game ~45%, slam ~10%
-levPart = partHands and keep
-levGame = gameHands and keep03
+levPart = partHands and keep56
+levGame = gameHands and keep06
 levSlam = slamHands and keep
 levelTheDeal = levPart or levGame or levSlam
 
