@@ -133,7 +133,7 @@ dCS = oC and ovS and diamonds(south)>3 and hearts(south)>3
 dDH = oD and ovH and clubs(south)>3    and spades(south)>3
 dDS = oD and ovS and clubs(south)>3    and hearts(south)>3
 dHS = oH and ovS and clubs(south)>3    and diamonds(south)>3
-southDoubles = (dCD or dCH or dCS or dDH or dDS or dHS) and tpSouth>7
+southDoubles = (dCD or dCH or dCS or dDH or dDS or dHS) and hcp(south)>9 and tpSouth>9
 
 ##### Now do it #####
 westOpens = hcp(west)>10 and tpWest>11 and hcp(west)<15
