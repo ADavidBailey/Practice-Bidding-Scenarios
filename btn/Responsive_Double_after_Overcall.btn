@@ -1,0 +1,107 @@
+# alias: ResponsiveDoubleAfterOvercall
+# button-text: Resp Dbl after OC
+# gib-works: false
+# bba-works: true
+# auction-filter: Auction.....\n(1C +\d. +2C|1D +\d. +2D|1H +\d. +2H|1S +\d. +2S) +X
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+After partner overcalls and RHO raises, a Responsive Double shows the two unbid suits.
+Unlike after a takeout double (where partner shows all unbid suits),
+here partner has shown a specific suit, so the double shows the OTHER two suits.
+• 1!C-1!D-2!C-X shows !H and !S
+• 1!C-1!H-2!C-X shows !D and !S
+• 1!C-1!S-2!C-X shows !D and !H
+• 1!D-1!H-2!D-X shows !C and !S
+• 1!D-1!S-2!D-X shows !C and !H
+• 1!H-1!S-2!H-X shows !C and !D
+@chat*/
+
+dealer west
+
+#include "script/TP"
+# Defines tpWest, tpNorth, tpEast, tpSouth
+
+# Predict West's Opening suit
+s = spades(west)
+h = hearts(west)
+d = diamonds(west)
+c = clubs(west)
+oS = s>4 and s>=h and s>=d and s>=c
+oH = not oS and h>4 and h>=d and h>=c
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3)
+oC = not (oS or oH or oD)
+
+# North overcalls (5-card suit)
+# 1-level: higher-ranking than West's suit (10+ HCP)
+canS1 = spades(north)==5 and (oC or oD or oH)
+canH1 = hearts(north)==5 and (oC or oD)
+canD1 = diamonds(north)==5 and oC
+
+ovS = canS1
+ovH = canH1 and not ovS
+ovD1 = canD1 and not ovS and not ovH
+
+northOneSuited = shape(north,xxxx - any 94xx -any 85xx -any 76xx -any 75xx -any 66xx -any 55xx)
+
+northOv1 = (ovS or ovH or ovD1) and northOneSuited and hcp(north)>9 and hcp(north)<16
+
+# 2-level non-jump: lower-ranking than West's suit (11+ TP)
+canD2 = diamonds(north)==5 and (oH or oS)
+canC2 = clubs(north)==5 and (oD or oH or oS)
+
+ovD2 = canD2 and not ovS and not ovH
+ovC = canC2 and not ovS and not ovH and not ovD2
+
+northOv2 = (ovD2 or ovC) and northOneSuited and tpNorth>10 and hcp(north)<16
+
+northOvercalls = northOv1 or northOv2
+
+# East raises West's suit (simple raise)
+eC = oC and clubs(east)==4    and hcp(east,clubs)>3    and spades(east)<4 and hearts(east)<4
+eD = oD and diamonds(east)==4 and hcp(east,diamonds)>2 and spades(east)<4 and hearts(east)<4
+eH = oH and hearts(east)==3   and hcp(east,hearts)>1
+eS = oS and spades(east)==3   and hcp(east,spades)>1
+eastRaises = (eC or eD or eH or eS) and hcp(east)>5 and hcp(east)<9 and tpEast<10
+
+# South's good 4-card suits
+S4 = spades(south)==4   and hcp(south,spades)>2
+H4 = hearts(south)==4   and hcp(south,hearts)>2
+D4 = diamonds(south)==4 and hcp(south,diamonds)>2
+C4 = clubs(south)==4    and hcp(south,clubs)>2
+
+# South's responsive double: good 4-4 in the two unbid suits, short in partner's
+# 1-level overcalls (higher-ranking than opener's)
+# 1C-1D: unbid H,S
+dCD = oC and ovD1 and H4 and S4 and diamonds(south)<3
+# 1C-1H: unbid D,S
+dCH = oC and ovH and D4 and S4 and hearts(south)<3
+# 1C-1S: unbid D,H
+dCS = oC and ovS and D4 and H4 and spades(south)<3
+# 1D-1H: unbid C,S
+dDH = oD and ovH and C4 and S4 and hearts(south)<3
+# 1D-1S: unbid C,H
+dDS = oD and ovS and C4 and H4 and spades(south)<3
+# 1H-1S: unbid C,D
+dHS = oH and ovS and C4 and D4 and spades(south)<3
+# 2-level overcalls (lower-ranking than opener's)
+# 1D-2C: unbid H,S
+dDC = oD and ovC and H4 and S4 and clubs(south)<3
+# 1H-2C: unbid D,S
+dHC = oH and ovC and D4 and S4 and clubs(south)<3
+# 1H-2D: unbid C,S
+dHD = oH and ovD2 and C4 and S4 and diamonds(south)<3
+# 1S-2C: unbid D,H
+dSC = oS and ovC and D4 and H4 and clubs(south)<3
+# 1S-2D: unbid C,H
+dSD = oS and ovD2 and C4 and H4 and diamonds(south)<3
+
+southDoubles = (dCD or dCH or dCS or dDH or dDS or dHS or dDC or dHC or dHD or dSC or dSD) and hcp(south)>8 and tpSouth>8
+
+##### Now do it #####
+westOpens = hcp(west)>10 and tpWest>11 and hcp(west)<17
+westOpens and northOvercalls and eastRaises and southDoubles
+
+produce 30
+action
