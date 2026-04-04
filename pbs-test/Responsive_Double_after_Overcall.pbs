@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
-auction-filter: (1C +(1D|1H|1S) +2C|1D +(1H|1S) +2D|1H +1S +2H) +X
+auction-filter: Auction.....\n(1C +.. +2C|1D +.. +2D|1H +.. +2H|1S +.. +2S) +X
 */
 ### Imported script: TP (Total Points)
 //   Total Points = HCP + Short-Suit Points - Penalty Points
@@ -110,11 +110,11 @@ canS = spades(north)>4 and (oC or oD or oH)
 canH = hearts(north)>4 and (oC or oD)
 canD = diamonds(north)>4 and oC
 
-ovS = canS and spades(north)>=hearts(north) and spades(north)>=diamonds(north)
-ovH = canH and not ovS and hearts(north)>=diamonds(north)
-ovD = canD and not ovS and not ovH
+ovS = canS and spades(north)==5
+ovH = canH and not ovS and hearts(north)==5
+ovD = canD and not ovS and not ovH and diamonds(north)==5
 
-northOvercalls = (ovS or ovH or ovD) and hcp(north)>7 and hcp(north)<16
+northOvercalls = (ovS or ovH or ovD) and hcp(north)>9 and hcp(north)<16
 
 # East raises West's suit (simple raise)
 eC = oC and clubs(east)>3    and hcp(east,clubs)>2    and spades(east)<4 and hearts(east)<4
@@ -129,22 +129,22 @@ eastRaises = (eC or eD or eH or eS) and hcp(east)>5 and tpEast<10
 # 1H-1S-2H: unbid C,D
 # South has 4+ in each unbid suit and short in partner's suit (denies raise)
 # 1C-1D: unbid H,S; short in D
-dCD = oC and ovD and hearts(south)>3 and spades(south)>3 and diamonds(south)<2
+dCD = oC and ovD and hearts(south)==4 and spades(south)==4 and diamonds(south)<3
 # 1C-1H: unbid D,S; short in H
-dCH = oC and ovH and diamonds(south)>3 and spades(south)>3 and hearts(south)<2
+dCH = oC and ovH and diamonds(south)==4 and spades(south)==4 and hearts(south)<3
 # 1C-1S: unbid D,H; short in S
-dCS = oC and ovS and diamonds(south)>3 and hearts(south)>3 and spades(south)<2
+dCS = oC and ovS and diamonds(south)==4 and hearts(south)==4 and spades(south)<3
 # 1D-1H: unbid C,S; short in H
-dDH = oD and ovH and clubs(south)>3 and spades(south)>3 and hearts(south)<2
+dDH = oD and ovH and clubs(south)==4 and spades(south)==4 and hearts(south)<3
 # 1D-1S: unbid C,H; short in S
-dDS = oD and ovS and clubs(south)>3 and hearts(south)>3 and spades(south)<2
+dDS = oD and ovS and clubs(south)==4 and hearts(south)==4 and spades(south)<3
 # 1H-1S: unbid C,D; short in S
-dHS = oH and ovS and clubs(south)>3 and diamonds(south)>3 and spades(south)<2
+dHS = oH and ovS and clubs(south)==4 and diamonds(south)==4 and spades(south)<3
 
 southDoubles = (dCD or dCH or dCS or dDH or dDS or dHS) and hcp(south)>8 and tpSouth>8
 
 ##### Now do it #####
-westOpens = hcp(west)>10 and tpWest>11 and hcp(west)<15
+westOpens = hcp(west)>10 and tpWest>11 and hcp(west)<17
 westOpens and northOvercalls and eastRaises and southDoubles
 
 produce 30
