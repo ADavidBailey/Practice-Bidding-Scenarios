@@ -115,10 +115,10 @@ eC = oC and clubs(east)   ==4 and hcp(east,clubs)   >3 and spades(east)<4 and he
 eastRaises = (eS or eH or eD or eC) and hcp(east)>5 and tpEast<10
 
 # South has the 2 unbid suits (majors if minor opened, minors if major opened)
-dS = oS and spades(north)<3   and diamonds(south)>3 and clubs(south)>3    and hcp(south,diamonds)+3*diamonds(south) == hcp(south,clubs)+3*clubs(south)
-dH = oH and hearts(north)<3   and diamonds(south)>3 and clubs(south)>3    and hcp(south,diamonds)+3*diamonds(south) == hcp(south,clubs)+3*clubs(south)
-dD = oD and diamonds(north)<3 and spades(south)>3   and hearts(south)>3   and hcp(south,spades)+3*spades(south)     == hcp(south,hearts)+3*hearts(south)
-dC = oC and clubs(north)<3    and spades(south)>3   and hearts(south)>3   and hcp(south,spades)+3*spades(south)     == hcp(south,hearts)+3*hearts(south)
+dS = oS and spades(north)<3   and diamonds(south)==4 and clubs(south)==4
+dH = oH and hearts(north)<3   and diamonds(south)==4 and clubs(south)==4
+dD = oD and diamonds(north)<3 and spades(south)==4   and hearts(south)==4
+dC = oC and clubs(north)<3    and spades(south)==4   and hearts(south)==4
 southSuits = dS or dH or dD or dC
 
 westOpens    = hcp(west)>10 and tpWest>11 and hcp(west)<17
