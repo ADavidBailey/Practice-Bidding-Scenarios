@@ -122,7 +122,7 @@ dC = oC and clubs(north)<3    and spades(south)>3   and hearts(south)>3
 southSuits = dS or dH or dD or dC
 
 westOpens    = hcp(west)>10 and tpWest>11 and hcp(west)<17
-northDoubles = tpNorth>11 and hcp(north)<15 and shape(north,any 4432 +any 4441 +any 5440) and hearts(north)<5 and spades(north)<5
+northDoubles = hcp(north)>11 and shape(north,any 4432 +any 4441 +any 5440 -5xxx -x5xx)
 southDoubles = tpSouth>7 and southSuits
 
 ##### Now do it #####
