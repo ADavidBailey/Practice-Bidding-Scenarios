@@ -125,7 +125,7 @@ southSuits = dS or dH or dD or dC
 
 westOpens    = hcp(west)>10 and tpWest>11 and hcp(west)<17
 northDoubles = hcp(north)>11 and shape(north,any 4432 +any 4441 +any 5440 -5xxx -x5xx)
-southDoubles = tpSouth>7 and southSuits
+southDoubles = hcp(south)>10 and southSuits
 
 ##### Now do it #####
 westOpens and northDoubles and eastRaises and southDoubles
