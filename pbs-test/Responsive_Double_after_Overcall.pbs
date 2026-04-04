@@ -165,7 +165,7 @@ dSD = oS and ovD2 and clubs(south)==4 and hearts(south)==4 and diamonds(south)<3
 # Boost south's HCP when both unbid suits are minors (BBA is reluctant to X for minors)
 southMinors = dHS
 southMajors = dCD or dCH or dCS or dDH or dDS or dDC or dHC or dHD or dSC or dSD
-southDoubles = (southMajors and hcp(south)>8 and tpSouth>8) or (southMinors and hcp(south)>10 and tpSouth>10)
+southDoubles = (southMajors and hcp(south)>8 and tpSouth>8) or (southMinors and hcp(south)>12 and tpSouth>12)
 
 ##### Now do it #####
 westOpens = hcp(west)>10 and tpWest>11 and hcp(west)<17
