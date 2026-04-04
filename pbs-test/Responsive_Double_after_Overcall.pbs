@@ -137,10 +137,10 @@ eS = oS and spades(east)==3   and hcp(east,spades)>1
 eastRaises = (eC or eD or eH or eS) and hcp(east)>5 and hcp(east)<9 and tpEast<10
 
 # South's good 4-card suits
-S4 = spades(south)==4   and top3(south,spades)>0   and top5(south,spades)>1
-H4 = hearts(south)==4   and top3(south,hearts)>0   and top5(south,hearts)>1
-D4 = diamonds(south)==4 and top3(south,diamonds)>0 and top5(south,diamonds)>1
-C4 = clubs(south)==4    and top3(south,clubs)>0    and top5(south,clubs)>1
+S4 = spades(south)==4   and hcp(south,spades)>2
+H4 = hearts(south)==4   and hcp(south,hearts)>2
+D4 = diamonds(south)==4 and hcp(south,diamonds)>2
+C4 = clubs(south)==4    and hcp(south,clubs)>2
 
 # South's responsive double: good 4-4 in the two unbid suits, short in partner's
 # 1-level overcalls (higher-ranking than opener's)
