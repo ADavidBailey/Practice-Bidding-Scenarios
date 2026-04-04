@@ -119,8 +119,8 @@ northOvercalls = (ovS or ovH or ovD) and hcp(north)>9 and hcp(north)<16
 # East raises West's suit (simple raise)
 eC = oC and clubs(east)>3    and hcp(east,clubs)>2    and spades(east)<4 and hearts(east)<4
 eD = oD and diamonds(east)>3 and hcp(east,diamonds)>2 and spades(east)<4 and hearts(east)<4
-eH = oH and hearts(east)>2   and hcp(east,hearts)>1
-eS = oS and spades(east)>2   and hcp(east,spades)>1
+eH = oH and hearts(east)==3   and hcp(east,hearts)>1
+eS = oS and spades(east)==3   and hcp(east,spades)>1
 eastRaises = (eC or eD or eH or eS) and hcp(east)>5 and hcp(east)<9 and tpEast<10
 
 # South's responsive double: 4+ in each of the two unbid suits
