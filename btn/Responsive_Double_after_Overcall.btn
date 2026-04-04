@@ -51,8 +51,8 @@ northOv1 = (ovS or ovH or ovD1) and northOneSuited and hcp(north)>9 and hcp(nort
 canD2 = diamonds(north)==5 and (oH or oS)
 canC2 = clubs(north)==5 and (oD or oH or oS)
 
-ovD2 = canD2 and not ovS and not ovH
-ovC = canC2 and not ovS and not ovH and not ovD2
+ovD2 = canD2 and not ovS and not ovH and (top3(north,diamonds)>1 or top5(north,diamonds)>2)
+ovC = canC2 and not ovS and not ovH and not ovD2 and (top3(north,clubs)>1 or top5(north,clubs)>2)
 
 northOv2 = (ovD2 or ovC) and northOneSuited and tpNorth>10 and hcp(north)<16
 
