@@ -127,7 +127,10 @@ ovC = canC2 and not ovS and not ovH and not ovD2 and (top3(north,clubs)>1 or top
 
 northOv2 = (ovD2 or ovC) and northOneSuited and tpNorth>10 and hcp(north)<16
 
-northOvercalls = northOv1 or northOv2
+# Exclude takeout double hands (short in opener's suit, 3+ in each other, 12+ TP)
+northTOX = (oS and spades(north)<3 and hearts(north)>2 and diamonds(north)>2 and clubs(north)>2 and tpNorth>11) or (oH and hearts(north)<3 and spades(north)>2 and diamonds(north)>2 and clubs(north)>2 and tpNorth>11) or (oD and diamonds(north)<3 and spades(north)>2 and hearts(north)>2 and clubs(north)>2 and tpNorth>11) or (oC and clubs(north)<3 and spades(north)>2 and hearts(north)>2 and diamonds(north)>2 and tpNorth>11)
+
+northOvercalls = (northOv1 or northOv2) and not northTOX
 
 # East raises West's suit (simple raise)
 eC = oC and clubs(east)==4    and hcp(east,clubs)>3    and spades(east)<4 and hearts(east)<4
