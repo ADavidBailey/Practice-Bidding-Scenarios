@@ -138,38 +138,38 @@ eS = oS and spades(east)==3   and hcp(east,spades)>1
 eastRaises = (eC or eD or eH or eS) and hcp(east)>5 and hcp(east)<9 and tpEast<10
 
 # South's good 4-card suits
-S4 = spades(south)==4   and hcp(south,spades)>2
-H4 = hearts(south)==4   and hcp(south,hearts)>2
-D4 = diamonds(south)==4 and hcp(south,diamonds)>2
-C4 = clubs(south)==4    and hcp(south,clubs)>2
+s4 = spades(south)==4   and hcp(south,spades)>2
+h4 = hearts(south)==4   and hcp(south,hearts)>2
+d4 = diamonds(south)==4 and hcp(south,diamonds)>2
+c4 = clubs(south)==4    and hcp(south,clubs)>2
 
 # South's responsive double: good 4-4 in the two unbid suits, short in partner's
 # 1-level overcalls (higher-ranking than opener's)
 # 1C-1D: unbid H,S
-dCD = oC and ovD1 and H4 and S4 and diamonds(south)<3
+dCD = oC and ovD1 and h4 and s4 and diamonds(south)<3
 # 1C-1H: unbid D,S
-dCH = oC and ovH and D4 and S4 and hearts(south)<3
+dCH = oC and ovH and d4 and s4 and hearts(south)<3
 # 1C-1S: unbid D,H
-dCS = oC and ovS and D4 and H4 and spades(south)<3
+dCS = oC and ovS and d4 and h4 and spades(south)<3
 # 1D-1H: unbid C,S
-dDH = oD and ovH and C4 and S4 and hearts(south)<3
+dDH = oD and ovH and c4 and s4 and hearts(south)<3
 # 1D-1S: unbid C,H
-dDS = oD and ovS and C4 and H4 and spades(south)<3
+dDS = oD and ovS and c4 and h4 and spades(south)<3
 # 1H-1S: unbid C,D
-dHS = oH and ovS and C4 and D4 and spades(south)<3
+dHS = oH and ovS and c4 and d4 and spades(south)<3
 # 2-level overcalls (lower-ranking than opener's)
 # 1D-2C: unbid H,S
-dDC = oD and ovC and H4 and S4 and clubs(south)<3
+dDC = oD and ovC and h4 and s4 and clubs(south)<3
 # 1H-2C: unbid D,S
-dHC = oH and ovC and D4 and S4 and clubs(south)<3
+dHC = oH and ovC and d4 and s4 and clubs(south)<3
 # 1H-2D: unbid C,S
-dHD = oH and ovD2 and C4 and S4 and diamonds(south)<3
+dHD = oH and ovD2 and c4 and s4 and diamonds(south)<3
 # 1S-2C: unbid D,H
-dSC = oS and ovC and D4 and H4 and clubs(south)<3
+dSC = oS and ovC and d4 and h4 and clubs(south)<3
 # 1S-2D: unbid C,H
-dSD = oS and ovD2 and C4 and H4 and diamonds(south)<3
+dSD = oS and ovD2 and c4 and h4 and diamonds(south)<3
 
-southDoubles = (dCD or dCH or dCS or dDH or dDS or dHS or dDC or dHC or dHD or dSC or dSD) and hcp(south)>8 and tpSouth>8
+southDoubles = (dCD or dCH or dCS or dDH or dDS or dHS or dDC or dHC or dHD or dSC or dSD) and hcp(south)>8
 
 ##### Now do it #####
 westOpens = hcp(west)>10 and tpWest>11 and hcp(west)<17
