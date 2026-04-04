@@ -136,29 +136,29 @@ eastRaises = (eC or eD or eH or eS) and hcp(east)>5 and hcp(east)<9 and tpEast<1
 
 # South's responsive double: exactly 4-4 in the two unbid suits, short in partner's
 # 1-level overcalls (higher-ranking than opener's)
-# 1C-1D: unbid H,S; short in D (minor — relax)
-dCD = oC and ovD1 and hearts(south)==4 and spades(south)==4
-# 1C-1H: unbid D,S; short in H
+# 1C-1D: unbid H,S
+dCD = oC and ovD1 and hearts(south)==4 and spades(south)==4 and diamonds(south)<3
+# 1C-1H: unbid D,S
 dCH = oC and ovH and diamonds(south)==4 and spades(south)==4 and hearts(south)<3
-# 1C-1S: unbid D,H; short in S
+# 1C-1S: unbid D,H
 dCS = oC and ovS and diamonds(south)==4 and hearts(south)==4 and spades(south)<3
-# 1D-1H: unbid C,S; short in H
+# 1D-1H: unbid C,S
 dDH = oD and ovH and clubs(south)==4 and spades(south)==4 and hearts(south)<3
-# 1D-1S: unbid C,H; short in S
+# 1D-1S: unbid C,H
 dDS = oD and ovS and clubs(south)==4 and hearts(south)==4 and spades(south)<3
-# 1H-1S: unbid C,D; short in S
+# 1H-1S: unbid C,D
 dHS = oH and ovS and clubs(south)==4 and diamonds(south)==4 and spades(south)<3
 # 2-level overcalls (lower-ranking than opener's)
-# 1D-2C: unbid H,S; short in C (minor — relax)
-dDC = oD and ovC and hearts(south)==4 and spades(south)==4
-# 1H-2C: unbid D,S; short in C (minor — relax)
-dHC = oH and ovC and diamonds(south)==4 and spades(south)==4
-# 1H-2D: unbid C,S; short in D (minor — relax)
-dHD = oH and ovD2 and clubs(south)==4 and spades(south)==4
-# 1S-2C: unbid D,H; short in C (minor — relax)
-dSC = oS and ovC and diamonds(south)==4 and hearts(south)==4
-# 1S-2D: unbid C,H; short in D (minor — relax)
-dSD = oS and ovD2 and clubs(south)==4 and hearts(south)==4
+# 1D-2C: unbid H,S
+dDC = oD and ovC and hearts(south)==4 and spades(south)==4 and clubs(south)<3
+# 1H-2C: unbid D,S
+dHC = oH and ovC and diamonds(south)==4 and spades(south)==4 and clubs(south)<3
+# 1H-2D: unbid C,S
+dHD = oH and ovD2 and clubs(south)==4 and spades(south)==4 and diamonds(south)<3
+# 1S-2C: unbid D,H
+dSC = oS and ovC and diamonds(south)==4 and hearts(south)==4 and clubs(south)<3
+# 1S-2D: unbid C,H
+dSD = oS and ovD2 and clubs(south)==4 and hearts(south)==4 and diamonds(south)<3
 
 southDoubles = (dCD or dCH or dCS or dDH or dDS or dHS or dDC or dHC or dHD or dSC or dSD) and hcp(south)>8 and tpSouth>8
 
