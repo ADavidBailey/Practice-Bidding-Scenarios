@@ -163,7 +163,9 @@ dSD = oS and ovD2 and clubs(south)==4 and hearts(south)==4 and diamonds(south)<3
 southDoubles = (dCD or dCH or dCS or dDH or dDS or dHS or dDC or dHC or dHD or dSC or dSD) and hcp(south)>8 and tpSouth>8
 
 ##### Now do it #####
-westOpens = hcp(west)>10 and tpWest>11 and hcp(west)<17
+minWest = hcp(west)<12 or tpWest<13
+westSuitLong = (oS and s>5) or (oH and h>5) or (oD and d>4) or (oC and c>3)
+westOpens = hcp(west)>10 and tpWest>11 and hcp(west)<17 and (not minWest or westSuitLong)
 westOpens and northOvercalls and eastRaises and southDoubles
 
 produce 30
