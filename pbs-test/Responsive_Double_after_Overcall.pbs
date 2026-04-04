@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n(1C +.. +2C|1D +.. +2D|1H +.. +2H|1S +.. +2S) +X
+auction-filter: Auction.....\n(1C +\d. +2C|1D +\d. +2D|1H +\d. +2H|1S +\d. +2S) +X
 */
 ### Imported script: TP (Total Points)
 //   Total Points = HCP + Short-Suit Points - Penalty Points
@@ -114,7 +114,9 @@ ovS = canS1
 ovH = canH1 and not ovS
 ovD1 = canD1 and not ovS and not ovH
 
-northOv1 = (ovS or ovH or ovD1) and hcp(north)>9 and hcp(north)<16
+no2nd5 = (ovS and hearts(north)<5 and diamonds(north)<5 and clubs(north)<5) or (ovH and spades(north)<5 and diamonds(north)<5 and clubs(north)<5) or (ovD1 and spades(north)<5 and hearts(north)<5 and clubs(north)<5)
+
+northOv1 = (ovS or ovH or ovD1) and no2nd5 and hcp(north)>9 and hcp(north)<16
 
 # 2-level non-jump: lower-ranking than West's suit (11+ TP)
 canD2 = diamonds(north)==5 and (oH or oS)
@@ -123,7 +125,9 @@ canC2 = clubs(north)==5 and (oD or oH or oS)
 ovD2 = canD2 and not ovS and not ovH
 ovC = canC2 and not ovS and not ovH and not ovD2
 
-northOv2 = (ovD2 or ovC) and tpNorth>10 and hcp(north)<16
+no2nd5b = (ovD2 and spades(north)<5 and hearts(north)<5 and clubs(north)<5) or (ovC and spades(north)<5 and hearts(north)<5 and diamonds(north)<5)
+
+northOv2 = (ovD2 or ovC) and no2nd5b and tpNorth>10 and hcp(north)<16
 
 northOvercalls = northOv1 or northOv2
 
