@@ -162,7 +162,10 @@ dSC = oS and ovC and diamonds(south)==4 and hearts(south)==4 and clubs(south)<3
 # 1S-2D: unbid C,H
 dSD = oS and ovD2 and clubs(south)==4 and hearts(south)==4 and diamonds(south)<3
 
-southDoubles = (dCD or dCH or dCS or dDH or dDS or dHS or dDC or dHC or dHD or dSC or dSD) and hcp(south)>8 and tpSouth>8
+# Boost south's HCP when both unbid suits are minors (BBA is reluctant to X for minors)
+southMinors = dHS
+southMajors = dCD or dCH or dCS or dDH or dDS or dDC or dHC or dHD or dSC or dSD
+southDoubles = (southMajors and hcp(south)>8 and tpSouth>8) or (southMinors and hcp(south)>10 and tpSouth>10)
 
 ##### Now do it #####
 westOpens = hcp(west)>10 and tpWest>11 and hcp(west)<17
