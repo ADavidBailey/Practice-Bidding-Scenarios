@@ -1002,22 +1002,22 @@ Script,onDataLoad
         });
     }
 
-    // Clear all dynamically created buttons (everything after first 3 hidden buttons)
+    // Clear all dynamically created content
     function clearDynamicButtons() {
         var adPanel = document.getElementById('adpanel2');
         if (!adPanel) return;
 
-        // Remove all buttons except the first 3 (Char, Word, All backspace buttons)
-        var buttons = adPanel.querySelectorAll('button');
-        for (var i = buttons.length - 1; i >= 3; i--) {
-            buttons[i].remove();
+        // The original 3 backspace buttons were removed on data load,
+        // so all remaining children are dynamic — remove them all
+        while (adPanel.lastChild) {
+            adPanel.removeChild(adPanel.lastChild);
         }
 
         // Reset tracking arrays
         referencedScenarios = [];
         missingPbsFiles = [];
 
-        console.log('PBS Dynamic: Cleared all dynamic buttons');
+        console.log('PBS Dynamic: Cleared all dynamic content');
     }
 
     // Rebuild buttons (called on config change)

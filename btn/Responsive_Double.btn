@@ -37,13 +37,12 @@ eC = oC and clubs(east)   ==4 and hcp(east,clubs)   >3 and spades(east)<4 and he
 # East raises
 eastRaises = (eS or eH or eD or eC) and hcp(east)>5 and tpEast<10
 
-# South has equal-length unbid suits
-# Major opened: other major ==4, both minors ==3
-# Minor opened: both majors ==4
-dS = oS and spades(north)<3   and hearts(south)==4 and diamonds(south)>2 and clubs(south)>2 and hcp(south,spades)==0
-dH = oH and hearts(north)<3   and spades(south)==4 and diamonds(south)>2 and clubs(south)>2 and hcp(south,hearts)==0
-dD = oD and diamonds(north)<3 and spades(south)==4 and hearts(south)==4 and hcp(south,diamonds)==0
-dC = oC and clubs(north)<3    and spades(south)==4 and hearts(south)==4 and hcp(south,clubs)==0
+# Major opened: other major ==4, both minors 3+
+# Minor opened: both majors ==4, other minor 3+
+dS = oS and spades(north)<3   and hearts(south)==4 and diamonds(south)>2 and clubs(south)>2    and hcp(south,spades)==0
+dH = oH and hearts(north)<3   and spades(south)==4 and diamonds(south)>2 and clubs(south)>2    and hcp(south,hearts)==0
+dD = oD and diamonds(north)<3 and spades(south)==4 and hearts(south)==4  and clubs(south)>2    and hcp(south,diamonds)==0 
+dC = oC and clubs(north)<3    and spades(south)==4 and hearts(south)==4  and diamonds(south)>2 and hcp(south,clubs)==0
 southSuits = dS or dH or dD or dC
 
 westOpens    = hcp(west)>10 and tpWest>11 and hcp(west)<17
