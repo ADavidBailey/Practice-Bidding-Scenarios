@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n.*4[HS] +Pass +4N +5[CDHS]
+auction-filter: Auction.....\n.*2N +[3-7].* +4N +5[CDHS]
 */
 # DOPI-ROPI: Interference over Blackwood
 dealer north
@@ -33,12 +33,12 @@ gibNT = nt1 or nt2
 
 ### End of GIB 1 Notrump ###
 
-# North opens 1 Major
-heartOpen = hearts(north)>4 and hearts(south)>2
-spadeOpen = spades(north)>4 and spades(south)>2
+# North opens 1 Major, South has 4+ support for Jacoby 2NT
+heartOpen = hearts(north)>4 and hearts(south)>3
+spadeOpen = spades(north)>4 and spades(south)>3
 majorFit = (heartOpen or spadeOpen) and not gibNT
 
-# South has game-forcing values with fit
+# N/S have slam-zone values (South GF with 13+)
 slamZone = hcp(north)>11 and hcp(south)>12 and (hcp(north)+hcp(south))>27
 
 # West (3rd seat) has extreme distribution - likely to compete at 5-level
