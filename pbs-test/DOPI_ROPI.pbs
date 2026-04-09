@@ -33,28 +33,28 @@ gibNT = nt1 or nt2
 
 ### End of GIB 1 Notrump ###
 
-# North opens 1 Major with slam values
+# North opens 1 Major
 heartOpen = hearts(north)>4 and hearts(south)>2
 spadeOpen = spades(north)>4 and spades(south)>2
 majorFit = (heartOpen or spadeOpen) and not gibNT
 
-# N/S have slam-zone values
-slamZone = hcp(north)>13 and hcp(south)>9 and (hcp(north)+hcp(south))>27
+# South has game-forcing values with fit
+slamZone = hcp(north)>11 and hcp(south)>12 and (hcp(north)+hcp(south))>27
 
-# East has extreme distribution - long suit likely to compete at 5-level
-eClubL  = clubs(east)>6    and top5(east,clubs)>1
-eDiamL  = diamonds(east)>6 and top5(east,diamonds)>1
-eHeartL = hearts(east)>6   and top5(east,hearts)>1
-eSpadeL = spades(east)>6   and top5(east,spades)>1
-eWild = (eClubL or eDiamL or eHeartL or eSpadeL) and hcp(east)<10
+# West (3rd seat) has extreme distribution - likely to compete at 5-level
+wClubL  = clubs(west)>6    and top5(west,clubs)>1
+wDiamL  = diamonds(west)>6 and top5(west,diamonds)>1
+wHeartL = hearts(west)>6   and top5(west,hearts)>1
+wSpadeL = spades(west)>6   and top5(west,spades)>1
+wWild = (wClubL or wDiamL or wHeartL or wSpadeL) and hcp(west)<10
 
-majorFit and slamZone and eWild
+majorFit and slamZone and wWild
 
 action printoneline,
 average "hcp north    " hcp(north),
 average "hcp south    " hcp(south),
 average "hcp total    " (hcp(north)+hcp(south)),
-average "hcp east     " hcp(east),
+average "hcp west     " hcp(west),
 `, "N", true)
 Script
 Button,DOPI-ROPI,\n\
