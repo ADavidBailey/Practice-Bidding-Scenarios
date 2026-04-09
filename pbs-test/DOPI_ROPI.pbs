@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n1[HS] +Pass +2N.+\n.+4N +5[CDHS]
+auction-filter: Auction.....\n1[HS] +Pass +2N.+\n.+4N +(5[CDHS]|X )
 */
 # DOPI-ROPI: Interference over Blackwood
 dealer north
@@ -57,9 +57,21 @@ wMicS = spadeOpen and hearts(west)>4 and (clubs(west)>4 or diamonds(west)>4) and
 wMicH = heartOpen and spades(west)>4 and (clubs(west)>4 or diamonds(west)>4) and spades(east)>2 and clubs(east)>2 and diamonds(east)>2
 w2Suit = wMicS or wMicH
 
-wWild = (w1Suit or w2Suit) and wVoid and hcp(west)<12
+# Paths 1 & 2 need void in N's trump suit to bid at the 5-level
+wBid5 = (w1Suit or w2Suit) and wVoid and hcp(west)<12
 
-majorFit and slamZone and wWild
+# Path 3: Lead-directing X of 4NT with solid suit (AKQJ or AKQ+7)
+eSolidC = top4(east,clubs)==4    or (top3(east,clubs)==3    and clubs(east)>6)
+eSolidD = top4(east,diamonds)==4 or (top3(east,diamonds)==3 and diamonds(east)>6)
+eSolidH = top4(east,hearts)==4   or (top3(east,hearts)==3   and hearts(east)>6)
+eSolidS = top4(east,spades)==4   or (top3(east,spades)==3   and spades(east)>6)
+wSolidC = top4(west,clubs)==4    or (top3(west,clubs)==3    and clubs(west)>6)
+wSolidD = top4(west,diamonds)==4 or (top3(west,diamonds)==3 and diamonds(west)>6)
+wSolidH = top4(west,hearts)==4   or (top3(west,hearts)==3   and hearts(west)>6)
+wSolidS = top4(west,spades)==4   or (top3(west,spades)==3   and spades(west)>6)
+ewSolid = eSolidC or eSolidD or eSolidH or eSolidS or wSolidC or wSolidD or wSolidH or wSolidS
+
+majorFit and slamZone and (wBid5 or ewSolid)
 
 action printoneline,
 average "hcp north    " hcp(north),
