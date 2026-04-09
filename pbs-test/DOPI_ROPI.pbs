@@ -51,15 +51,10 @@ wHeartL = hearts(west)>6   and top5(west,hearts)>3   and (hearts(west)+hearts(ea
 wSpadeL = spades(west)>6   and top5(west,spades)>3   and (spades(west)+spades(east))>8
 w1Suit = wClubL or wDiamL or wHeartL or wSpadeL
 
-# Path 2: Michaels-type 2-suited hand, East fits both
-wMicS = spadeOpen and hearts(west)>4 and (
-  (clubs(west)>4    and hearts(east)>2 and clubs(east)>2) or
-  (diamonds(west)>4 and hearts(east)>2 and diamonds(east)>2)
-)
-wMicH = heartOpen and spades(west)>4 and (
-  (clubs(west)>4    and spades(east)>2 and clubs(east)>2) or
-  (diamonds(west)>4 and spades(east)>2 and diamonds(east)>2)
-)
+# Path 2: Michaels-type 2-suited hand
+# East fits the known major AND both minors (so fit is certain either way)
+wMicS = spadeOpen and hearts(west)>4 and (clubs(west)>4 or diamonds(west)>4) and hearts(east)>2 and clubs(east)>2 and diamonds(east)>2
+wMicH = heartOpen and spades(west)>4 and (clubs(west)>4 or diamonds(west)>4) and spades(east)>2 and clubs(east)>2 and diamonds(east)>2
 w2Suit = wMicS or wMicH
 
 wWild = (w1Suit or w2Suit) and wVoid and hcp(west)<12
