@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n.*2N +[3-7].* +4N +5[CDHS]
+auction-filter: Auction.....\n.*2N +[3-7].*4N +5[CDHS]
 */
 # DOPI-ROPI: Interference over Blackwood
 dealer north
@@ -41,12 +41,13 @@ majorFit = (heartOpen or spadeOpen) and not gibNT
 # N/S have slam-zone values (South GF with 13+)
 slamZone = hcp(north)>11 and hcp(south)>12 and (hcp(north)+hcp(south))>27
 
-# West (3rd seat) has extreme distribution - likely to compete at 5-level
-wClubL  = clubs(west)>6    and top5(west,clubs)>1
-wDiamL  = diamonds(west)>6 and top5(west,diamonds)>1
-wHeartL = hearts(west)>6   and top5(west,hearts)>1
-wSpadeL = spades(west)>6   and top5(west,spades)>1
-wWild = (wClubL or wDiamL or wHeartL or wSpadeL) and hcp(west)<10
+# West has extreme distribution - bids over 2NT, then again over 4NT
+# East needs some support so E/W compete together
+wClubL  = clubs(west)>6    and top5(west,clubs)>2   and clubs(east)>2
+wDiamL  = diamonds(west)>6 and top5(west,diamonds)>2 and diamonds(east)>2
+wHeartL = hearts(west)>6   and top5(west,hearts)>2   and hearts(east)>2
+wSpadeL = spades(west)>6   and top5(west,spades)>2   and spades(east)>2
+wWild = (wClubL or wDiamL or wHeartL or wSpadeL) and hcp(west)<12
 
 majorFit and slamZone and wWild
 
