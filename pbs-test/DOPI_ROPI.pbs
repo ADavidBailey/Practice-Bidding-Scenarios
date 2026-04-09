@@ -41,18 +41,17 @@ majorFit = (heartOpen or spadeOpen) and not gibNT
 # N/S have slam-zone values (South GF with 13+)
 slamZone = hcp(north)>11 and hcp(south)>12 and (hcp(north)+hcp(south))>27
 
-# West has extreme distribution with void in N's major
-# East has strong support so E/W compete together at the 5-level
-wClubL  = clubs(west)>6    and top5(west,clubs)>2   and (clubs(west)+clubs(east))>8
-wDiamL  = diamonds(west)>6 and top5(west,diamonds)>2 and (diamonds(west)+diamonds(east))>8
-wHeartL = hearts(west)>6   and top5(west,hearts)>2   and (hearts(west)+hearts(east))>8
-wSpadeL = spades(west)>6   and top5(west,spades)>2   and (spades(west)+spades(east))>8
+# West has long suit with East support
+wClubL  = clubs(west)>5    and top5(west,clubs)>1   and (clubs(west)+clubs(east))>7
+wDiamL  = diamonds(west)>5 and top5(west,diamonds)>1 and (diamonds(west)+diamonds(east))>7
+wHeartL = hearts(west)>5   and top5(west,hearts)>1   and (hearts(west)+hearts(east))>7
+wSpadeL = spades(west)>5   and top5(west,spades)>1   and (spades(west)+spades(east))>7
 wLong = wClubL or wDiamL or wHeartL or wSpadeL
 
-# West has void in N's trump suit - no wasted values, eager to compete
-wVoid = (spadeOpen and spades(west)==0) or (heartOpen and hearts(west)==0)
+# West is short in N's trump suit - eager to compete
+wShort = (spadeOpen and spades(west)<2) or (heartOpen and hearts(west)<2)
 
-wWild = wLong and wVoid and hcp(west)<12
+wWild = wLong and wShort and hcp(west)<12
 
 majorFit and slamZone and wWild
 
