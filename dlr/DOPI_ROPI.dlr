@@ -1,0 +1,70 @@
+# alias: DOPIROPI
+# button-text: DOPI-ROPI
+# scenario-title: --- DOPI-ROPI: Responding to Blackwood after Interference
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n1[HS] +Pass +2N.+\n.+4N +5[CDHS]
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- DOPI-ROPI: Responding to Blackwood after Interference
+When an opponent bids over partner's 4NT (Blackwood/RKCB), use DOPI:
+  D = Double = 0 keycards
+  O = next step up = 1 keycard
+  P = Pass = 1 keycard (without trump queen)
+  I = next steps = 2, 3 keycards
+When an opponent doubles 4NT, use ROPI:
+  R = Redouble = 0 keycards
+  O = next step up = 1 keycard
+  P = Pass = 1 keycard (without trump queen)
+  I = next steps = 2, 3 keycards
+https://www.acblunit390.org/Simon/dopi-ropi.htm
+@chat*/
+
+# DOPI-ROPI: Interference over Blackwood
+dealer north
+
+##### Imported Script -- GIB 1 Notrump #####
+
+# GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
+ntP = hcp(north) + shape(north,5xxx+x5xx)
+nt1 = shape(north, any 5332+any 4432+any 4333) and hcp(north)>14 and ntP<18
+nt2 = shape(north, any 5422-5xxx-x5xx-4xxx) and hcp(north)>14 and hcp(north)<17
+gibNT = nt1 or nt2
+
+### End of GIB 1 Notrump ###
+
+# North opens 1 Major, South has 4+ support for Jacoby 2NT
+heartOpen = hearts(north)>4 and hearts(south)>3
+spadeOpen = spades(north)>4 and spades(south)>3
+majorFit = (heartOpen or spadeOpen) and not gibNT
+
+# N/S have slam-zone values (South GF with 13+)
+slamZone = hcp(north)>11 and hcp(south)>12 and (hcp(north)+hcp(south))>27
+
+# West has void in N's trump suit
+wVoid = (spadeOpen and spades(west)==0) or (heartOpen and hearts(west)==0)
+
+# Path 1: West has 7+ card suit with 4+ top honors, E/W 9+ fit
+wClubL  = clubs(west)>6    and top5(west,clubs)>3   and (clubs(west)+clubs(east))>8
+wDiamL  = diamonds(west)>6 and top5(west,diamonds)>3 and (diamonds(west)+diamonds(east))>8
+wHeartL = hearts(west)>6   and top5(west,hearts)>3   and (hearts(west)+hearts(east))>8
+wSpadeL = spades(west)>6   and top5(west,spades)>3   and (spades(west)+spades(east))>8
+w1Suit = wClubL or wDiamL or wHeartL or wSpadeL
+
+# Path 2: Michaels-type 2-suited hand
+# East fits the known major AND both minors (so fit is certain either way)
+wMicS = spadeOpen and hearts(west)>4 and (clubs(west)>4 or diamonds(west)>4) and hearts(east)>2 and clubs(east)>2 and diamonds(east)>2
+wMicH = heartOpen and spades(west)>4 and (clubs(west)>4 or diamonds(west)>4) and spades(east)>2 and clubs(east)>2 and diamonds(east)>2
+w2Suit = wMicS or wMicH
+
+wWild = (w1Suit or w2Suit) and wVoid and hcp(west)<12
+
+majorFit and slamZone and wWild
+
+action printoneline,
+average "hcp north    " hcp(north),
+average "hcp south    " hcp(south),
+average "hcp total    " (hcp(north)+hcp(south)),
+average "hcp west     " hcp(west),
