@@ -1,0 +1,33 @@
+# alias: respToGibNt
+# button-text: Resp to GIB NT
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n1NT?
+# convention-card-ns: 21GF-GIB
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+---  GIB Notrump Opening (North)
+GIB opens 1NT with 4333, 4432,  or 5332 w/15-17 HCP or 15-16 and a 5-card major
+and any 5422 without a 5-card major, without 4!S, and 15-16 HCP (too few points to reverse)
+Basic Responses include Stayman, Jacoby Transfer, and 3 Notrump.
+@chat*/
+
+dealer north
+
+#include "script/GIB-1N-North"
+# defines gibNT
+
+# Basic Notrump responses
+stayman = shape(south,54xx+45xx+4xxx+x4xx) and hcp(south)>8
+jacoby  = (spades(south)>4 or hearts(south)>4) and not stayman
+threeNT = not (stayman or jacoby) and hcp(south)>9
+
+gibNT and (stayman or jacoby or threeNT) and hcp(south)<16
+
+produce 30
+action
+
+average "stayman " 100 * stayman,
+average "jacoby  " 100 * jacoby,
+average "threeNT " 100 * threeNT,
