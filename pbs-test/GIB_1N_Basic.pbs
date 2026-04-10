@@ -36,8 +36,8 @@ gibNT = nt1 or nt2
 # defines gibNT
 
 # Basic Notrump responses
-stayman = spades(south)==4 or hearts(south)==4 and hcp(south)>8
-jacoby  = spades(south)>4 or hearts(south)>4 and not stayman
+stayman = shape(south,54xx+45xx+4xxx+x4xx) and hcp(south)>8
+jacoby  = (spades(south)>4 or hearts(south)>4) and not stayman
 threeNT = not (stayman or jacoby) and hcp(south)>9
 
 gibNT and (stayman or jacoby or threeNT) and hcp(south)<16
