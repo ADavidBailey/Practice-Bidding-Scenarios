@@ -1,16 +1,15 @@
 # alias: respToGibNt
-# button-text: NT Resp Basic
+# button-text: Basic NT Resp
 # gib-works: true
 # bba-works: true
-# auction-filter: Auction.....\n1NT?
+# auction-filter: Auction.....\n1N +Pass +\d
 # convention-card-ns: 21GF-GIB
 # convention-card-ew: 21GF-GIB
 
 /*@chat
----  GIB Notrump Opening (North)
-GIB opens 1NT with 4333, 4432,  or 5332 w/15-17 HCP or 15-16 and a 5-card major
-and any 5422 without a 5-card major, without 4!S, and 15-16 HCP (too few points to reverse)
-Basic Responses include Stayman, Jacoby Transfer, and 3 Notrump.
+---  Basic Notrump Responses
+A Basic 1NT shows a balanced hand (4333, 4432, 5332, or maybe 5422) w/15-17 HCP and no 5-card major
+or 15-16 with a 5-card major. Basic Responses include Stayman, Jacoby Transfer, and 3 Notrump.
 @chat*/
 
 dealer north
@@ -20,11 +19,10 @@ dealer north
 # defines gibNT
 
 # Basic Notrump responses
-smolen  = shape(south,54xx+45xx+4xxx+x4xx) and hcp(south)>9 
-stayman = shape(south,54xx+45xx+4xxx+x4xx) and hcp(south)>8 and not smolen
+stayman = shape(south,54xx+45xx+4xxx+x4xx) and hcp(south)>8
 texas   = (spades(south)>5 or hearts(south)>5) and tpSouth>9
 jacoby  = (spades(south)>4 or hearts(south)>4) and not (stayman or texas)
-threeNT = not (smolen or stayman or texas or jacoby) and hcp(south)>9
+threeNT = not (stayman or texas or jacoby) and hcp(south)>9
 
 twoSuit = shape(south,any 76xx +any 75xx +any 66xx +any 65xx +any 55xx)
 

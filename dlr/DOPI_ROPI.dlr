@@ -59,6 +59,7 @@ wMicS = spadeOpen and hearts(west)>4 and (clubs(west)>4 or diamonds(west)>4) and
 wMicH = heartOpen and spades(west)>4 and (clubs(west)>4 or diamonds(west)>4) and spades(east)>2 and clubs(east)>2 and diamonds(east)>2
 w2Suit = wMicS or wMicH
 
+# Note: Tried solid suit (AKQJ or AKQ+7) for lead-directing X of 4NT — BBA never doubled.
 wWild = (w1Suit or w2Suit) and wVoid and hcp(west)<12
 
 majorFit and slamZone and wWild
