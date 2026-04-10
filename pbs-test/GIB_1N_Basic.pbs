@@ -108,7 +108,7 @@ gibNT = nt1 or nt2
 # defines gibNT
 
 # Basic Notrump responses
-stayman = shape(south,54xx+45xx+4xxx+x4xx) and hcp(south)>8
+stayman = shape(south,4xxx+x4xx-5xxx-x5xx) and hcp(south)>8
 texas   = (spades(south)>5 or hearts(south)>5) and tpSouth>9
 jacoby  = (spades(south)>4 or hearts(south)>4) and not (stayman or texas)
 threeNT = not (stayman or jacoby) and hcp(south)>9
@@ -125,7 +125,7 @@ average "jacoby  " 100 * jacoby,
 average "threeNT " 100 * threeNT,
 `, "N", true)
 Script
-Button,Resp to GIB NT,\n\
+Button,NT Resp Basic,\n\
 ---  GIB Notrump Opening (North)\n\
 GIB opens 1NT with 4333，4432， or 5332 w/15-17 HCP or 15-16 and a 5-card major\n\
 and any 5422 without a 5-card major，without 4!S，and 15-16 HCP (too few points to reverse)\n\
