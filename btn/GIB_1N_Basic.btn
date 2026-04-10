@@ -1,5 +1,5 @@
 # alias: respToGibNt
-# button-text: Resp to GIB NT
+# button-text: NT Resp Basic
 # gib-works: true
 # bba-works: true
 # auction-filter: Auction.....\n1NT?
@@ -20,7 +20,7 @@ dealer north
 # defines gibNT
 
 # Basic Notrump responses
-stayman = shape(south,54xx+45xx+4xxx+x4xx) and hcp(south)>8
+stayman = shape(south,4xxx+x4xx-5xxx-x5xx) and hcp(south)>8
 texas   = (spades(south)>5 or hearts(south)>5) and tpSouth>9
 jacoby  = (spades(south)>4 or hearts(south)>4) and not (stayman or texas)
 threeNT = not (stayman or jacoby) and hcp(south)>9
