@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n[23][CDHS].+4N +[5X]
+auction-filter: Auction.....\n[23][CDHS].+4N
 */
 # DOPI-ROPI vs Preempt: Interference over Blackwood after opponent preempts
 dealer west
@@ -48,11 +48,11 @@ majorFit = nH or nS or sH or sS
 # N/S slam zone
 slamZone = hcp(north)>11 and hcp(south)>11 and (hcp(north)+hcp(south))>26
 
-# East has 4+ fit for West's suit AND a void (extreme shape to encourage bidding)
-eFitC = w3C             and clubs(east)>3    and (spades(east)==0 or hearts(east)==0 or diamonds(east)==0)
-eFitD = (w2D or w3D)    and diamonds(east)>3 and (spades(east)==0 or hearts(east)==0 or clubs(east)==0)
-eFitH = (w2H or w3H)    and hearts(east)>3   and (spades(east)==0 or diamonds(east)==0 or clubs(east)==0)
-eFitS = (w2S or w3S)    and spades(east)>3   and (hearts(east)==0 or diamonds(east)==0 or clubs(east)==0)
+# East has 3+ fit for West's suit (shape and fit for E/W)
+eFitC = w3C             and clubs(east)>2
+eFitD = (w2D or w3D)    and diamonds(east)>2
+eFitH = (w2H or w3H)    and hearts(east)>2
+eFitS = (w2S or w3S)    and spades(east)>2
 eastFit = eFitC or eFitD or eFitH or eFitS
 
 wPreempt and majorFit and slamZone and eastFit
@@ -71,7 +71,7 @@ Button,DOPI-ROPI vs Preempt,\n\
 --- DOPI-ROPI vs Preempt: After opponent opens a preempt\n\
 Opponent opens a weak 2 or 3-level preempt.\n\
 N/S find their major fit and bid Blackwood (4NT).\n\
-East raises the preempt or doubles -> DOPI/ROPI applies.\n\
+If East raises the preempt or doubles -> DOPI/ROPI applies.\n\
 DOPI (opponent bids over 4NT):\n\
   D = Double = 0 keycards\n\
   O = next step up = 1 keycard\n\
