@@ -113,7 +113,9 @@ texas   = (spades(south)>5 or hearts(south)>5) and tpSouth>9
 jacoby  = (spades(south)>4 or hearts(south)>4) and not (stayman or texas)
 threeNT = not (stayman or jacoby) and hcp(south)>9
 
-gibNT and (stayman or jacoby or threeNT) and hcp(south)<16
+twoSuit = shape(south,any 76xx +any 75xx +any 66xx +any 65xx +any 55xx)
+
+gibNT and (stayman or jacoby or threeNT) and hcp(south)<16 and not twoSuit
 
 produce 30
 action printoneline,
