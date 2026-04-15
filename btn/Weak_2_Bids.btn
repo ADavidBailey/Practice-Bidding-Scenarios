@@ -22,9 +22,9 @@ dealer south
 #include "script/TP"
 
 noVoid = not shape(south, any 0xxx)
-w2s = spades(south)>=6   and hearts(south)<=3 and diamonds(south)<=3 and clubs(south)<=4 and noVoid
-w2h = hearts(south)>=6   and spades(south)<=3 and diamonds(south)<=3 and clubs(south)<=4 and noVoid
-w2d = diamonds(south)>=6 and spades(south)<=3 and hearts(south)<=3   and clubs(south)<=4 and noVoid
+w2s = spades(south)>=6   and hearts(south)<=3 and diamonds(south)<=3 and clubs(south)<=4 and noVoid and top5(south,spades)>2
+w2h = hearts(south)>=6   and spades(south)<=3 and diamonds(south)<=3 and clubs(south)<=4 and noVoid and top5(south,hearts)>2
+w2d = diamonds(south)>=6 and spades(south)<=3 and hearts(south)<=3   and clubs(south)<=4 and noVoid and top5(south,diamonds)>2
 
 w2Range = tpSouth>4 and hcp(south)<11
 
