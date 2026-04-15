@@ -24,12 +24,13 @@ auction-filter: 2[DHS]
 # Matches GIB requirements: 6+ suit, 1-3 side suits (1-4 clubs),
 # no 4-card side major, 5-10 HCP
 
-tp = hcp(south)
-noVoid = not shape(south, any 0xxx)
 
-w2S = spades(south)>=6   and hearts(south)<=3 and diamonds(south)<=3 and clubs(south)<=4 and noVoid
-w2H = hearts(south)>=6   and spades(south)<=3 and diamonds(south)<=3 and clubs(south)<=4 and noVoid
-w2D = diamonds(south)>=6 and spades(south)<=3 and hearts(south)<=3   and clubs(south)<=4 and noVoid
+tp = hcp(south)
+
+noVoid = not shape(south, any 0xxx)
+w2s = spades(south)>=6   and hearts(south)<=3 and diamonds(south)<=3 and clubs(south)<=4 and noVoid
+w2h = hearts(south)>=6   and spades(south)<=3 and diamonds(south)<=3 and clubs(south)<=4 and noVoid
+w2d = diamonds(south)>=6 and spades(south)<=3 and hearts(south)<=3   and clubs(south)<=4 and noVoid
 
 w2Range = tp>4 and hcp(south)<11
 
