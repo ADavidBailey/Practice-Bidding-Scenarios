@@ -102,7 +102,7 @@ w2s = spades(south)==6   and hearts(south)<=3 and diamonds(south)<=3 and clubs(s
 w2h = hearts(south)==6   and spades(south)<=3 and diamonds(south)<=3 and clubs(south)<=4 and noVoid and top5(south,hearts)>2
 w2d = diamonds(south)==6 and spades(south)<=3 and hearts(south)<=3   and clubs(south)<=4 and noVoid and top5(south,diamonds)>2
 
-w2Range = tpSouth>5 and hcp(south)<11
+w2Range = tpSouth>6 and hcp(south)<11
 
 weakTwo = (w2s or w2h or w2d) and w2Range
 
