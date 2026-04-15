@@ -18,24 +18,92 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
-auction-filter: 2[DHS]
+auction-filter: Auction.....\n2[DHS]
 */
-# Define South's Weak 2 Bids w/o 4-card major side suit -- Strict
+# Define South's Weak 2 Bids w/o 4-card major side suit
+# Matches GIB requirements: 6 suit, 1-3 side suits (1-4 clubs),
+# no 4-card side major, 5-10 HCP
 
-     // at least half of south's points are in the suit
-     // allow no 4-card side major
+### Imported script: TP (Total Points)
+//   Total Points = HCP + Short-Suit Points - Penalty Points
+//   Short-Suit Points: 3 for void, 2 for singleton, 1 for doubleton
+//   Penalty Points: 1 for each honor (K/Q/J) in a short suit (devalues wasted honors like Kx, Qx)
 
-tp = hcp(south)
-sp = hcp(south,spades)
-hp = hcp(south,hearts)
-dp = hcp(south,diamonds)
- 
-w2s = shape(south,6xxx-x6xx-x5xx-x4xx) and 2 * sp > tp    
-w2h = shape(south,x6xx-6xxx-5xxx-4xxx) and 2 * hp > tp
-w2d = shape(south,xx6x-x6xx-x5xx-x4xx-6xxx-5xxx-4xxx) and 2* dp > tp
- 
-w2Range = tp>4 and tp<11 and losers(south)<7
- 
+## Calculate TP for North
+# Short-Suit Points: void=3, singleton=2, doubleton=1
+nSpadeSSP = spades(north)<3   ? 3-spades(north)   : 0
+nHeartSSP = hearts(north)<3   ? 3-hearts(north)   : 0
+nDiamSSP  = diamonds(north)<3 ? 3-diamonds(north) : 0
+nClubSSP  = clubs(north)<3    ? 3-clubs(north)    : 0
+nSSP = nSpadeSSP + nHeartSSP + nDiamSSP + nClubSSP
+
+# Penalty Points: deduct 1 for honors in short suits
+nSpadePP = spades(north)<3   and hcp(north,spades)>0   ? 1 : 0
+nHeartPP = hearts(north)<3   and hcp(north,hearts)>0   ? 1 : 0
+nDiamPP  = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
+nClubPP  = clubs(north)<3    and hcp(north,clubs)>0    ? 1 : 0
+nPP = nSpadePP + nHeartPP + nDiamPP + nClubPP
+
+tpNorth = hcp(north) + nSSP - nPP
+
+## Calculate TP for East
+eSpadeSSP = spades(east)<3   ? 3-spades(east)   : 0
+eHeartSSP = hearts(east)<3   ? 3-hearts(east)   : 0
+eDiamSSP  = diamonds(east)<3 ? 3-diamonds(east) : 0
+eClubSSP  = clubs(east)<3    ? 3-clubs(east)    : 0
+eSSP = eSpadeSSP + eHeartSSP + eDiamSSP + eClubSSP
+
+eSpadePP = spades(east)<3   and hcp(east,spades)>0   ? 1 : 0
+eHeartPP = hearts(east)<3   and hcp(east,hearts)>0   ? 1 : 0
+eDiamPP  = diamonds(east)<3 and hcp(east,diamonds)>0 ? 1 : 0
+eClubPP  = clubs(east)<3    and hcp(east,clubs)>0    ? 1 : 0
+ePP = eSpadePP + eHeartPP + eDiamPP + eClubPP
+
+tpEast = hcp(east) + eSSP - ePP
+
+## Calculate TP for South
+sSpadeSSP = spades(south)<3   ? 3-spades(south)   : 0
+sHeartSSP = hearts(south)<3   ? 3-hearts(south)   : 0
+sDiamSSP  = diamonds(south)<3 ? 3-diamonds(south) : 0
+sClubSSP  = clubs(south)<3    ? 3-clubs(south)    : 0
+sSSP = sSpadeSSP + sHeartSSP + sDiamSSP + sClubSSP
+
+sSpadePP = spades(south)<3   and hcp(south,spades)>0   ? 1 : 0
+sHeartPP = hearts(south)<3   and hcp(south,hearts)>0   ? 1 : 0
+sDiamPP  = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
+sClubPP  = clubs(south)<3    and hcp(south,clubs)>0    ? 1 : 0
+sPP = sSpadePP + sHeartPP + sDiamPP + sClubPP
+
+tpSouth = hcp(south) + sSSP - sPP
+
+## Calculate TP for West
+wSpadeSSP = spades(west)<3   ? 3-spades(west)   : 0
+wHeartSSP = hearts(west)<3   ? 3-hearts(west)   : 0
+wDiamSSP  = diamonds(west)<3 ? 3-diamonds(west) : 0
+wClubSSP  = clubs(west)<3    ? 3-clubs(west)    : 0
+wSSP = wSpadeSSP + wHeartSSP + wDiamSSP + wClubSSP
+
+wSpadePP = spades(west)<3   and hcp(west,spades)>0   ? 1 : 0
+wHeartPP = hearts(west)<3   and hcp(west,hearts)>0   ? 1 : 0
+wDiamPP  = diamonds(west)<3 and hcp(west,diamonds)>0 ? 1 : 0
+wClubPP  = clubs(west)<3    and hcp(west,clubs)>0    ? 1 : 0
+wPP = wSpadePP + wHeartPP + wDiamPP + wClubPP
+
+tpWest = hcp(west) + wSSP - wPP
+
+## Partnership Totals
+tpNS = tpNorth + tpSouth
+tpEW = tpEast + tpWest
+
+### End of Imported Script: TP
+
+noVoid = not shape(south, any 0xxx)
+w2s = spades(south)==6   and hearts(south)<=3 and diamonds(south)<=3 and clubs(south)<=4 and noVoid and top5(south,spades)>2
+w2h = hearts(south)==6   and spades(south)<=3 and diamonds(south)<=3 and clubs(south)<=4 and noVoid and top5(south,hearts)>2
+w2d = diamonds(south)==6 and spades(south)<=3 and hearts(south)<=3   and clubs(south)<=4 and noVoid and top5(south,diamonds)>2
+
+w2Range = tpSouth>6 and hcp(south)<11
+
 weakTwo = (w2s or w2h or w2d) and w2Range
 
 # Define responders hand types
@@ -135,7 +203,7 @@ average "Trump fit               " 100 * fit,
 Script
 Button,Weak2 w/o 4M,\n\
 --- Weak Two Bids without 4-card major\n\
-Opener has a 6-card suit without a 4-card side major，at least half of the HCP\n\
-are in the suit，less than 11 HCP and less than 7 losers.\n\
+Opener has a 6-card suit without a 4-card side major，no voids,\n\
+5-10 HCP. Matches GIB robot opening requirements.\n\
 https://www.bridgebum.com/weak_two.php\n\
 %WeakTwoBids%
