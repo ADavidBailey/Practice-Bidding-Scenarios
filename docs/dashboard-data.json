@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-04-16T06:01:07.320866",
+  "generatedAt": "2026-04-16T12:01:09.278148",
   "summary": {
     "totalScenarios": 306,
     "scenariosWorked": 306,
-    "totalFileEdits": 51271,
-    "totalPipelineRuns": 2487,
-    "totalSessionHours": 4152,
-    "totalCommits": 7167
+    "totalFileEdits": 51261,
+    "totalPipelineRuns": 2491,
+    "totalSessionHours": 4150,
+    "totalCommits": 7161
   },
   "charts": {
     "labels": [
@@ -41,7 +41,7 @@
       "Apr 26"
     ],
     "fileEdits": [
-      146,
+      136,
       253,
       292,
       377,
@@ -100,10 +100,10 @@
       61,
       1660,
       690,
-      76
+      80
     ],
     "commits": [
-      155,
+      143,
       259,
       304,
       391,
@@ -131,10 +131,10 @@
       228,
       1666,
       1028,
-      298
+      304
     ],
     "sessionHours": [
-      72,
+      70,
       75,
       140,
       158,
@@ -165,7 +165,7 @@
       292
     ],
     "scenariosWorked": [
-      13,
+      12,
       28,
       56,
       69,
@@ -197,38 +197,6 @@
     ]
   },
   "recentActivity": [
-    {
-      "timestamp": "2026-04-11T15:12:08.079Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "Cappelletti",
-        "operation": "release"
-      }
-    },
-    {
-      "timestamp": "2026-04-11T15:12:17.329Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "Cappelletti_in_4th",
-        "operation": "release"
-      }
-    },
-    {
-      "timestamp": "2026-04-11T18:25:34.678Z",
-      "type": "file_save",
-      "details": {
-        "filePath": "btn/DOPI_ROPI.btn",
-        "fileType": "btn"
-      }
-    },
-    {
-      "timestamp": "2026-04-11T18:28:31.357Z",
-      "type": "file_save",
-      "details": {
-        "filePath": "btn/DOPI_ROPI.btn",
-        "fileType": "btn"
-      }
-    },
     {
       "timestamp": "2026-04-12T16:01:03.303Z",
       "type": "file_save",
@@ -356,9 +324,71 @@
         "scenario": "Weak_2_Bids_Lax",
         "operation": "release"
       }
+    },
+    {
+      "timestamp": "2026-04-16T15:06:50.214Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "Weak_2_Bids_Lax",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-04-16T15:07:00.328Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "Weak_2_Bids_Leveled",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-04-16T15:07:08.788Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "Weak_2_Bids_Leveled",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-04-16T15:07:34.297Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "Weak_2_Bids_Lax_Leveled",
+        "operation": "release"
+      }
     }
   ],
   "recentCommits": [
+    {
+      "hash": "c989881b",
+      "date": "2026-04-16 10:07:34 -0500",
+      "message": "Release Weak_2_Bids_Lax_Leveled to pbs-release"
+    },
+    {
+      "hash": "95d87773",
+      "date": "2026-04-16 10:07:00 -0500",
+      "message": "Release Weak_2_Bids_Leveled to pbs-release"
+    },
+    {
+      "hash": "930e2878",
+      "date": "2026-04-16 10:04:03 -0500",
+      "message": "Align Weak_2_Bids_Leveled and Weak_2_Bids_Lax_Leveled with GIB"
+    },
+    {
+      "hash": "2b8010cb",
+      "date": "2026-04-16 10:02:55 -0500",
+      "message": "Update pbs-test/Weak_2_Bids_Leveled.pbs"
+    },
+    {
+      "hash": "449429e0",
+      "date": "2026-04-16 10:02:49 -0500",
+      "message": "Update pbs-test/Weak_2_Bids_Lax_Leveled.pbs"
+    },
+    {
+      "hash": "ea34282c",
+      "date": "2026-04-16 06:01:57 -0500",
+      "message": "Daily dashboard update"
+    },
     {
       "hash": "cd70513a",
       "date": "2026-04-15 18:02:05 -0500",
@@ -378,36 +408,6 @@
       "hash": "c57c6390",
       "date": "2026-04-15 14:17:35 -0500",
       "message": "Align Weak_2_Bids_Lax with GIB requirements, allow 4-card side majors"
-    },
-    {
-      "hash": "09448680",
-      "date": "2026-04-15 14:16:27 -0500",
-      "message": "Update pbs-test/Weak_2_Bids_Lax.pbs"
-    },
-    {
-      "hash": "de158a93",
-      "date": "2026-04-15 14:13:49 -0500",
-      "message": "Regenerate Weak_2_Bids \u2014 92.4% BBA match rate"
-    },
-    {
-      "hash": "f23ab9bc",
-      "date": "2026-04-15 14:12:42 -0500",
-      "message": "Update pbs-test/Weak_2_Bids.pbs"
-    },
-    {
-      "hash": "3bb504a0",
-      "date": "2026-04-15 13:55:14 -0500",
-      "message": "Tighten Weak_2_Bids: exactly 6-card suit, 6+ TP, require 2+ of top 5"
-    },
-    {
-      "hash": "06c2a211",
-      "date": "2026-04-15 13:54:11 -0500",
-      "message": "Update pbs-test/Weak_2_Bids.pbs"
-    },
-    {
-      "hash": "7617beb8",
-      "date": "2026-04-15 13:34:57 -0500",
-      "message": "Regenerate Weak_2_Bids pipeline output"
     }
   ]
 }
