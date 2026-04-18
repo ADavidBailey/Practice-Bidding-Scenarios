@@ -127,111 +127,75 @@ setTimeout(function() {
    },1000);
 Script
 
-//Script,setBiddingTable
-var delayValue = 500;
-Promise.resolve()
-    .then(() => {
-         const homeButton = $("nav-bar button", BBOcontext()).eq(0);
-         const isDisabled = homeButton.prop('disabled');
-         if (isDisabled) {
-            console.log("The home button is disabled.");
-         } else {
-            console.log("The home button is enabled.");
-            homeFound = true;
-            alert("You must be at the BBO Home page to start a table.")
-            throw new Error("Go Home.");
-         }
-    })
-    .then(() => $("button.bbo-phx-navigation:contains('Practice')", BBOcontext()).first().click())
-    .then(() => delay(delayValue))
-    .then(() => $("button.bbo-phx-navigation:contains('Start a bidding table')", BBOcontext()).first().click())
-    .then(() => delay(delayValue))
-    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(0).click())
-    .then(() => delay(delayValue))
-    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(1).click())
-    .then(() => delay(delayValue))
-    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(2).click())
-    .then(() => delay(delayValue))
-    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(3).click())
-    .then(() => delay(delayValue))
-    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(4).click())
-    .then(() => delay(delayValue))
-    .then(() => $("start-table-screen .buttonRowClass button", BBOcontext()).eq(2).click())
-    .then(() => delay(3000))
-    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(0).click())
-    .then(() => delay(delayValue))
-    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
-    .then(() => delay(delayValue))
-    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(1).click())
-    .then(() => delay(delayValue))
-    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
-    .then(() => delay(delayValue))
-    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(2).click())
-    .then(() => delay(delayValue))
-    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
-    .then(() => delay(delayValue))
-    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(3).click())
-    .then(() => delay(delayValue))
-    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
-function delay(duration) {
-    return new Promise((resolve) => {
-        setTimeout(resolve, duration);
-    });
-}
+//Script,onLogin
+window.startTable = function(type, opts) {
+    opts = opts || {};
+    var requireHome = opts.requireHome !== false;
+    var delayValue = 500;
+    var t0 = Date.now();
+    var startBtnText = (type === 'teaching') ? 'Start a teaching table' : 'Start a bidding table';
+    function delay(duration) {
+        return new Promise((resolve) => { setTimeout(resolve, duration); });
+    }
+    function waitFor(test, interval, timeout) {
+        interval = interval || 50;
+        timeout = timeout || 10000;
+        return new Promise((resolve, reject) => {
+            var t0 = Date.now();
+            var intrv = setInterval(() => {
+                if (test()) { clearInterval(intrv); resolve(); }
+                else if (Date.now() - t0 > timeout) { clearInterval(intrv); reject(new Error("waitFor timeout")); }
+            }, interval);
+        });
+    }
+    console.log("[PBS] startTable(" + type + ") START");
+    return Promise.resolve()
+        .then(() => {
+             const homeButton = $("nav-bar button", BBOcontext()).eq(0);
+             const isDisabled = homeButton.prop('disabled');
+             if (isDisabled) return;
+             if (!requireHome) return;
+             alert("You must be at the BBO Home page to start a table.");
+             throw new Error("Go Home.");
+        })
+        .then(() => $("button.bbo-phx-navigation:contains('Practice')", BBOcontext()).first().click())
+        .then(() => delay(delayValue))
+        .then(() => $("button.bbo-phx-navigation:contains('" + startBtnText + "')", BBOcontext()).first().click())
+        .then(() => delay(delayValue))
+        .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(0).click())
+        .then(() => delay(delayValue))
+        .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(1).click())
+        .then(() => delay(delayValue))
+        .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(2).click())
+        .then(() => delay(delayValue))
+        .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(3).click())
+        .then(() => delay(delayValue))
+        .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(4).click())
+        .then(() => delay(delayValue))
+        .then(() => $("start-table-screen .buttonRowClass button", BBOcontext()).eq(2).click())
+        .then(() => waitFor(() => $("bridge-screen .nameDisplayClass", BBOcontext()).length > 0))
+        .then(() => delay(3000))
+        .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(0).click())
+        .then(() => delay(delayValue))
+        .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+        .then(() => delay(delayValue))
+        .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(1).click())
+        .then(() => delay(delayValue))
+        .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+        .then(() => delay(delayValue))
+        .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(2).click())
+        .then(() => delay(delayValue))
+        .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+        .then(() => delay(delayValue))
+        .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(3).click())
+        .then(() => delay(delayValue))
+        .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
+        .then(() => console.log("[PBS] startTable(" + type + ") DONE in " + (Date.now() - t0) + "ms"));
+};
 //Script
 
-//Script,setTeachingTable
-var delayValue = 500;
-Promise.resolve()
-    .then(() => {
-         const homeButton = $("nav-bar button", BBOcontext()).eq(0);
-         const isDisabled = homeButton.prop('disabled');
-         if (isDisabled) {
-            console.log("The home button is disabled.");
-         } else {
-            console.log("The home button is enabled.");
-            homeFound = true;
-            alert("You must be at the BBO Home page to start a table.")
-            throw new Error("Go Home.");
-         }
-    })
-    .then(() => $("button.bbo-phx-navigation:contains('Practice')", BBOcontext()).first().click())
-    .then(() => delay(delayValue))
-    .then(() => $("button.bbo-phx-navigation:contains('Start a teaching table')", BBOcontext()).first().click())
-    .then(() => delay(delayValue))
-    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(0).click())
-    .then(() => delay(delayValue))
-    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(1).click())
-    .then(() => delay(delayValue))
-    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(2).click())
-    .then(() => delay(delayValue))
-    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(3).click())
-    .then(() => delay(delayValue))
-    .then(() => $("table-options-panel .toggleDivClass ion-toggle", BBOcontext()).eq(4).click())
-    .then(() => delay(delayValue))
-    .then(() => $("start-table-screen .buttonRowClass button", BBOcontext()).eq(2).click())
-    .then(() => delay(3000))
-    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(0).click())
-    .then(() => delay(delayValue))
-    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
-    .then(() => delay(delayValue))
-    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(1).click())
-    .then(() => delay(delayValue))
-    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
-    .then(() => delay(delayValue))
-    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(2).click())
-    .then(() => delay(delayValue))
-    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
-    .then(() => delay(delayValue))
-    .then(() => $("bridge-screen .nameDisplayClass", BBOcontext()).eq(3).click())
-    .then(() => delay(delayValue))
-    .then(() => $("bridge-screen menu-item", BBOcontext()).eq(0).children().click())
-function delay(duration) {
-    return new Promise((resolve) => {
-        setTimeout(resolve, duration);
-    });
-}
-//Script
+Script,setBiddingTable,localStorage.setItem('pbsLastTableType','bidding'); window.startTable('bidding'); R='';
+Script,setTeachingTable,localStorage.setItem('pbsLastTableType','teaching'); window.startTable('teaching'); R='';
 
 
 Script,reviewCurrentCode,setDealerCode("");
@@ -547,33 +511,47 @@ Script,onDataLoad
                 setChatMessage(chatText, true);
             }
 
-            fetch(url)
-                .then(function(response) { return response.text(); })
-                .then(function(content) {
-                    var match = content.match(/setDealerCode\(`([\s\S]*?)`,\s*"([NSEW])",\s*(true|false)\)/);
-                    if (match) {
-                        window.currentPBSScenario = scenarioName;
-                        window.currentPBSScenarioFilename = scenarioName;
-                        // Extract convention-card-ns and convention-card-ew from dealer code comments
-                        var ccNS = match[1].match(/convention-card-ns:\s*(\S+)/);
-                        var ccEW = match[1].match(/convention-card-ew:\s*(\S+)/);
-                        window.currentPBSConventionCardNS = ccNS ? ccNS[1] : null;
-                        window.currentPBSConventionCardEW = ccEW ? ccEW[1] : null;
-                        var _ext = (document.title.indexOf('PBS') >= 0) ? 'PBSforBBO' : 'BBOAlert';
-                        var _ua = navigator.userAgent;
-                        var _br = _ua.indexOf('Edg/') > -1 ? 'Edge' : _ua.indexOf('Chrome/') > -1 ? 'Chrome' : _ua.indexOf('Firefox/') > -1 ? 'Firefox' : _ua.indexOf('Safari/') > -1 ? 'Safari' : 'Unknown';
-                        var _pf = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
-                        var _os = /Win/i.test(_pf) ? 'Windows' : /Mac/i.test(_pf) ? 'macOS' : /Linux/i.test(_pf) ? 'Linux' : 'Unknown';
-                        fetch('https://bba.harmonicsystems.com/api/scenario/select', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json', 'X-Client-Version': '1.9.25', 'X-Client-Info': 'ext=' + _ext + '; browser=' + _br + '; os=' + _os },
-                            body: JSON.stringify({ scenario: scenarioName, user: whoAmI() || 'anonymous' })
-                        }).catch(function() {});
-                        window.pbsShowHCP = true;
-                        setDealerCode(match[1], match[2], match[3] === 'true');
-                    }
-                })
-                .catch(function(err) { console.error('PBS Dynamic: Failed to load', scenarioName, err); });
+            var loadScenario = function() {
+                return fetch(url)
+                    .then(function(response) { return response.text(); })
+                    .then(function(content) {
+                        var match = content.match(/setDealerCode\(`([\s\S]*?)`,\s*"([NSEW])",\s*(true|false)\)/);
+                        if (match) {
+                            window.currentPBSScenario = scenarioName;
+                            window.currentPBSScenarioFilename = scenarioName;
+                            // Extract convention-card-ns and convention-card-ew from dealer code comments
+                            var ccNS = match[1].match(/convention-card-ns:\s*(\S+)/);
+                            var ccEW = match[1].match(/convention-card-ew:\s*(\S+)/);
+                            window.currentPBSConventionCardNS = ccNS ? ccNS[1] : null;
+                            window.currentPBSConventionCardEW = ccEW ? ccEW[1] : null;
+                            var _ext = (document.title.indexOf('PBS') >= 0) ? 'PBSforBBO' : 'BBOAlert';
+                            var _ua = navigator.userAgent;
+                            var _br = _ua.indexOf('Edg/') > -1 ? 'Edge' : _ua.indexOf('Chrome/') > -1 ? 'Chrome' : _ua.indexOf('Firefox/') > -1 ? 'Firefox' : _ua.indexOf('Safari/') > -1 ? 'Safari' : 'Unknown';
+                            var _pf = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+                            var _os = /Win/i.test(_pf) ? 'Windows' : /Mac/i.test(_pf) ? 'macOS' : /Linux/i.test(_pf) ? 'Linux' : 'Unknown';
+                            fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json', 'X-Client-Version': '1.9.25', 'X-Client-Info': 'ext=' + _ext + '; browser=' + _br + '; os=' + _os },
+                                body: JSON.stringify({ scenario: scenarioName, user: whoAmI() || 'anonymous' })
+                            }).catch(function() {});
+                            window.pbsShowHCP = true;
+                            setDealerCode(match[1], match[2], match[3] === 'true');
+                        }
+                    })
+                    .catch(function(err) { console.error('PBS Dynamic: Failed to load', scenarioName, err); });
+            };
+
+            // Auto-start a table if we're on the BBO home screen (home button disabled = at home)
+            var homeButton = $("nav-bar button", BBOcontext()).eq(0);
+            var atHome = homeButton.length > 0 && homeButton.prop('disabled');
+            if (atHome && typeof window.startTable === 'function') {
+                var preferred = localStorage.getItem('pbsLastTableType') || 'bidding';
+                window.startTable(preferred, { requireHome: false })
+                    .then(loadScenario)
+                    .catch(function(err) { console.error('PBS auto-start failed', err); });
+            } else {
+                loadScenario();
+            }
         };
 
         return bt;
@@ -972,22 +950,22 @@ Script,onDataLoad
         });
     }
 
-    // Clear all dynamically created buttons (everything after first 3 hidden buttons)
+    // Clear all dynamically created content
     function clearDynamicButtons() {
         var adPanel = document.getElementById('adpanel2');
         if (!adPanel) return;
 
-        // Remove all buttons except the first 3 (Char, Word, All backspace buttons)
-        var buttons = adPanel.querySelectorAll('button');
-        for (var i = buttons.length - 1; i >= 3; i--) {
-            buttons[i].remove();
+        // The original 3 backspace buttons were removed on data load,
+        // so all remaining children are dynamic — remove them all
+        while (adPanel.lastChild) {
+            adPanel.removeChild(adPanel.lastChild);
         }
 
         // Reset tracking arrays
         referencedScenarios = [];
         missingPbsFiles = [];
 
-        console.log('PBS Dynamic: Cleared all dynamic buttons');
+        console.log('PBS Dynamic: Cleared all dynamic content');
     }
 
     // Rebuild buttons (called on config change)
