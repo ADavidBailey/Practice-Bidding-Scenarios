@@ -544,6 +544,7 @@ Script,onDataLoad
             // Auto-start a table if we're on the BBO home screen (home button disabled = at home)
             var homeButton = $("nav-bar button", BBOcontext()).eq(0);
             var atHome = homeButton.length > 0 && homeButton.prop('disabled');
+            console.log('[PBS] click atHome=' + atHome + ' startTable=' + (typeof window.startTable));
             if (atHome && typeof window.startTable === 'function') {
                 var preferred = localStorage.getItem('pbsLastTableType') || 'bidding';
                 window.startTable(preferred, { requireHome: false })
@@ -1006,7 +1007,7 @@ Script,onDataLoad
     }
 
     function runInit() {
-        console.log('PBS v4.1.8: Initializing...');
+        console.log('PBS v4.1.11-beta-autostart: Initializing...');
         console.log('PBS Dynamic: Test mode =', pbsConfig.Enable_Test_Mode);
         console.log('PBS Dynamic: Beta layout =', pbsConfig.Use_Beta_Layout);
 
