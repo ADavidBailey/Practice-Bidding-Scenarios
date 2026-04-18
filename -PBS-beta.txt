@@ -1,5 +1,5 @@
 //BBOalert, Bidding Scenarios
-//BBOalert, Bidding Scenarios - version 4.1.10-polling
+//BBOalert, Bidding Scenarios - version 4.1.11-beta-autostart
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/setDealerCode-polling.js
 Import,https://github.com/ADavidBailey/Practice-Bidding-Scenarios/blob/main/js/toggleRotate.js
 Javascript,https://github.com/stanmaz/BBOalert/blob/master/Plugins/PBNcapture.js
@@ -531,7 +531,7 @@ Script,onDataLoad
                             var _os = /Win/i.test(_pf) ? 'Windows' : /Mac/i.test(_pf) ? 'macOS' : /Linux/i.test(_pf) ? 'Linux' : 'Unknown';
                             fetch('https://bba.harmonicsystems.com/api/scenario/select', {
                                 method: 'POST',
-                                headers: { 'Content-Type': 'application/json', 'X-Client-Version': '1.9.25', 'X-Client-Info': 'ext=' + _ext + '; browser=' + _br + '; os=' + _os },
+                                headers: { 'Content-Type': 'application/json', 'X-Client-Version': '1.9.26-beta', 'X-Client-Info': 'ext=' + _ext + '; browser=' + _br + '; os=' + _os },
                                 body: JSON.stringify({ scenario: scenarioName, user: whoAmI() || 'anonymous' })
                             }).catch(function() {});
                             window.pbsShowHCP = true;
