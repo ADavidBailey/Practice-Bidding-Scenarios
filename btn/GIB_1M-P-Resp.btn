@@ -9,37 +9,37 @@
 
 /*@chat
 --- GIB after 1M
-South opens 1!H or 1!S and North has support.  
+North opens 1!H or 1!S and South has support.
 You may go to 'Deal source' to get specific responses. Near the bottom you'll
-find the line that starts with nResponds = ... pick the response(s) you want.
+find the line that starts with sResponds = ... pick the response(s) you want.
 @chat*/
 
-dealer south
+dealer north
 
-# GIB responses to 1H/S -- South opens 1M and North responds
+# GIB responses to 1H/S -- North opens 1M and South responds
 
 #include "script/Calm-Opponents"
 # Defines calmOpps
-#include "script/Predict-Opening-1-Bid"
+#include "script/Predict-Opening-1-Bid-North"
 # Defines oneHeart, oneSpade
 #include "script/TP"
-# Defines tpWest, tpNorth
+# Defines tpEast, tpSouth
 
-# GIB responses to 1H/S -- South opens 1M and North has support
-openHeart = oH and hearts(north)>2
-openSpade = oS and spades(north)>2
+# GIB responses to 1H/S -- North opens 1M and South has support
+openHeart = oH and hearts(south)>2
+openSpade = oS and spades(south)>2
 
-northCards = oH ? hearts(north) : spades(north)
-northLimit = northCards==3 ? 11 : 10
+southCards = oH ? hearts(south) : spades(south)
+southLimit = southCards==3 ? 11 : 10
 
-oneMtwoM = (oH or oS) and northCards and tpNorth>6 and tpNorth<northLimit
+oneMtwoM = (oH or oS) and southCards and tpSouth>6 and tpSouth<southLimit
 
-eastPasses = (openSpade and tpEast<12) or (openHeart and spades(east)>4 and tpEast<11)
+westPasses = (openSpade and tpWest<12) or (openHeart and spades(west)>4 and tpWest<11)
 
-southPasses = tpSouth<15
+northPasses = tpNorth<15
 
 
-oneMtwoM and calmOpps and southPasses
+oneMtwoM and calmOpps and northPasses
 
 produce 20
 action

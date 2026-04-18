@@ -19,44 +19,44 @@ https://www.larryco.com/bridge-articles/major-openings-part-1
 @chat*/
 
 # Major_Suit_Fit
-dealer south
+dealer north
 
-#include "script/Predict-Opening-1-Bid"
+#include "script/Predict-Opening-1-Bid-North"
 # Returns oS & oH
 
-#include "script/Total-Points-North"
-# Returns nTP
+#include "script/Total-Points-South"
+# Returns sTP
 
-# South opens 1 Major and North has a fit
-S_ = oS and spades(north)>2
-H_ = oH and hearts(north)>2
+# North opens 1 Major and South has a fit
+S_ = oS and spades(south)>2
+H_ = oH and hearts(south)>2
 
 # Avoid preempts, weak 2, Michaels, and Unusual NT
-wPreempt  = shape(west,any 9xxx +any 8xxx +any 7xxx +any 6xxx) and hcp(west)>3
-w2Suits   = shape(west,any 76xx +any 75xx +any 66xx +any 65xx +any 55xx) and hcp(west)>3
-wOvercall = shape(west,any 5xxx) and hcp(west)>7
-wPasses   = hcp(west)<11 and not(wPreempt or w2Suits or wOvercall)
+ePreempt  = shape(east,any 9xxx +any 8xxx +any 7xxx +any 6xxx) and hcp(east)>3
+e2Suits   = shape(east,any 76xx +any 75xx +any 66xx +any 65xx +any 55xx) and hcp(east)>3
+eOvercall = shape(east,any 5xxx) and hcp(east)>7
+ePasses   = hcp(east)<11 and not(ePreempt or e2Suits or eOvercall)
 
-# Define North's 3- 4+ and 5+ card fits
-spadeFit3 = S_ and spades(north)==3
-spadeFit4 = S_ and spades(north)>3
-spadeFit5 = S_ and spades(north)>4
-heartFit3 = H_ and hearts(north)==3
-heartFit4 = H_ and hearts(north)>3
-heartFit5 = H_ and hearts(north)>4
+# Define South's 3- 4+ and 5+ card fits
+spadeFit3 = S_ and spades(south)==3
+spadeFit4 = S_ and spades(south)>3
+spadeFit5 = S_ and spades(south)>4
+heartFit3 = H_ and hearts(south)==3
+heartFit4 = H_ and hearts(south)>3
+heartFit5 = H_ and hearts(south)>4
 fit4 = spadeFit4 or heartFit4
 
-# Calculate North's Total Points: nTP + +1 for 4+ support unless 4333
-nP = nTP + (fit4 and shape(north,xxxx-any 4333))
+# Calculate South's Total Points: sTP + +1 for 4+ support unless 4333
+sP = sTP + (fit4 and shape(south,xxxx-any 4333))
 
 # Avoid Splinter
-Splinter = fit4 and shape(north,any 0xxx +any 1xxx) and nP>10 and nP<16
+Splinter = fit4 and shape(south,any 0xxx +any 1xxx) and sP>10 and sP<16
 
-preempt = nP<8            and (spadeFit5 or heartFit5)
-faulty  = nP>3  and nP<8  and (S_ or H_) and not preempt
-simple  = nP>7  and nP<11 and (S_ or H_)
-invite3 = nP>10 and nP<13 and (spadeFit3 or heartFit3) 
-invite4 = nP>10 and nP<13 and (spadeFit4 or heartFit4)
+preempt = sP<8            and (spadeFit5 or heartFit5)
+faulty  = sP>3  and sP<8  and (S_ or H_) and not preempt
+simple  = sP>7  and sP<11 and (S_ or H_)
+invite3 = sP>10 and sP<13 and (spadeFit3 or heartFit3)
+invite4 = sP>10 and sP<13 and (spadeFit4 or heartFit4)
 
 #include "script/Leveling"
 
@@ -67,10 +67,10 @@ lev4 = invite4 and keep89
 lev5 = preempt and keep
 levelTheDeal = lev1 or lev2 or lev3 or lev4 or lev5
 
-sOpens = (oH or oS) and hcp(south)>11 and hcp(south)<19
-nResponds = (preempt or faulty or simple or invite3 or invite4) and not Splinter
+nOpens = (oH or oS) and hcp(north)>11 and hcp(north)<19
+sResponds = (preempt or faulty or simple or invite3 or invite4) and not Splinter
 
-sOpens and wPasses and nResponds
+nOpens and ePasses and sResponds
 and levelTheDeal
 
 action
