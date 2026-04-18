@@ -506,9 +506,10 @@ Script,onDataLoad
             var chatText = this.getAttribute('data-chat');
             console.log('PBS Dynamic: Loading scenario', scenarioName);
 
-            var sendChat = function() {
-                if (chatText) setChatMessage(chatText, true);
-            };
+            // Send chat message to current chat destination (scenario description)
+            if (chatText) {
+                setChatMessage(chatText, true);
+            }
 
             var loadScenario = function() {
                 return fetch(url)
@@ -547,11 +548,9 @@ Script,onDataLoad
             if (atHome && typeof window.startTable === 'function') {
                 var preferred = localStorage.getItem('pbsLastTableType') || 'bidding';
                 window.startTable(preferred, { requireHome: false })
-                    .then(sendChat)
                     .then(loadScenario)
                     .catch(function(err) { console.error('PBS auto-start failed', err); });
             } else {
-                sendChat();
                 loadScenario();
             }
         };
