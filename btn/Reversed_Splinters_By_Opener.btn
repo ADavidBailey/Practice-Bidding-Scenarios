@@ -1,0 +1,117 @@
+# alias: ReversedSplinterByOpener
+# button-text: Reversed Splinter by Opener
+# gib-works: false
+# bba-works: false
+# auction-filter: (1[CDH] +Pass +1S +Pass\n(3H|4[CDH]))|(1[CD] +Pass +1H +Pass\n(3[DS]|4[CD]))
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Reversed Splinter by Opener
+In a reversed splinter, the jump shows shortness in a suit OTHER than the one bid.
+The advantage: opponents can't double the splinter to direct a lead or suggest a sacrifice.
+Created by Dutch expert Anton Maas.
+
+After 1!C-1!H: 3!D = !S shortness, 3!S = !D shortness
+After 1!C-1!S: 3!D = !H shortness, 3!H = !D shortness
+After 1!D-1!H: 3!S = !C shortness, 4!C = !S shortness
+After 1!D-1!S: 3!H = !C shortness, 4!C = !H shortness
+After 1!H-1!S: 4!C = !D shortness, 4!D = !C shortness
+
+3-level jumps below responder's suit (jump reverses) are invitational.
+4-level jumps (double jump shifts) are game-forcing.
+NOTE: The Robots do NOT play reversed splinters.
+@chat*/
+
+dealer south
+produce 1000
+
+# Reversed Splinters by Opener
+
+#include "script/Calm-Opponents"
+#include "script/Predict-Opening-1-Bid"
+
+###### Define Bidding Sequences #####
+# These variables are defined in the imported script
+# The number of cards South has in each suit: s, h, d, c
+# South's predicted opening suit: oC, oD, oH, oS
+
+sP = hcp(south)
+nP = hcp(north)
+
+# Predict North's 1-level response
+sN = spades(north)
+hN = hearts(north)
+dN = diamonds(north)
+cN = clubs(north)
+
+# North responds in a major (Walsh style)
+nRS  =  nP<11 ? sN>3 and sN>hN : sN>3 and sN>hN and sN>=dN and sN>=cN               // avoid 2/1 in minor
+nRH  = (nP<11 ? hN>3           : hN>3           and hN>=dN and hN>=cN) and not (nRS)
+
+# Define auction (South's opening, North's response)
+CH = oC and nRH
+CS = oC and nRS
+DH = oD and nRH
+DS = oD and nRS
+HS = sP<11 ? oH and nRS and hN<3 : oH and nRS and hN<4     // no Jacoby 2N
+##### End of Define Bidding Sequences #####
+
+# Don't include a singleton K, Q, or J
+Cshort = (shape(south,xxx1) and (top4(south,clubs)   ==0 or hascard(south,AC)) or shape(south,xxx0))
+Dshort = (shape(south,xx1x) and (top4(south,diamonds)==0 or hascard(south,AD)) or shape(south,xx0x))
+Hshort = (shape(south,x1xx) and (top4(south,hearts)  ==0 or hascard(south,AH)) or shape(south,x0xx))
+Sshort = (shape(south,1xxx) and (top4(south,spades)  ==0 or hascard(south,AS)) or shape(south,0xxx))
+
+# REVERSED splinter sequences
+# The bid is in one suit, but shortness is in the OTHER available suit
+
+# After 1C-1H: bid 3D shows S shortness, bid 3S shows D shortness
+CH3D = CH and h>3 and Sshort  // reversed: bid D, short S
+CH3S = CH and h>3 and Dshort  // reversed: bid S, short D
+
+# After 1C-1S: bid 3D shows H shortness, bid 3H shows D shortness
+CS3D = CS and s>3 and Hshort  // reversed: bid D, short H
+CS3H = CS and s>3 and Dshort  // reversed: bid H, short D
+
+# After 1D-1H: bid 3S shows C shortness, bid 4C shows S shortness
+DH3S = DH and h>3 and Cshort  // reversed: bid S, short C
+DH4C = DH and h>3 and Sshort  // reversed: bid C, short S
+
+# After 1D-1S: bid 3H shows C shortness, bid 4C shows H shortness
+DS3H = DS and s>3 and Cshort  // reversed: bid H, short C
+DS4C = DS and s>3 and Hshort  // reversed: bid C, short H
+
+# After 1H-1S: bid 4C shows D shortness, bid 4D shows C shortness
+HS4C = HS and s>3 and Dshort  // reversed: bid C, short D
+HS4D = HS and s>3 and Cshort  // reversed: bid D, short C
+
+jReverse   = (CH3D or CH3S or CS3D or CS3H or DS3H) and hcp(south)>12 and hcp(south)<22
+jJumpShift = (DH3S or DH4C or DS4C or HS4C or HS4D) and hcp(south)>15 and hcp(south)<19
+
+northRange = hcp(north)>5  and hcp(north)<17  // no jump shifts
+
+sOpens = jReverse or jJumpShift
+
+# Now do it
+sOpens and northRange and calmOpps
+
+action
+average "CH " 100 * CH,
+average "  3D=Sshort" 100 * CH3D,
+average "  3S=Dshort" 100 * CH3S,
+average "CS " 100 * CS,
+average "  3D=Hshort" 100 * CS3D,
+average "  3H=Dshort" 100 * CS3H,
+average "DH " 100 * DH,
+average "  3S=Cshort" 100 * DH3S,
+average "  4C=Sshort" 100 * DH4C,
+average "DS " 100 * DS,
+average "  3H=Cshort" 100 * DS3H,
+average "  4C=Hshort" 100 * DS4C,
+average "HS " 100 * HS,
+average "  4C=Dshort" 100 * HS4C,
+average "  4D=Cshort" 100 * HS4D,
+
+average "GI " 100 * jReverse,
+average "GF " 100 * jJumpShift,
