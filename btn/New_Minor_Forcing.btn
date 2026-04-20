@@ -14,13 +14,13 @@ Partner rebids 1N.
 Then, a new minor is artificial and asks, "Do you have 3 cards in my major?"
 @chat*/
 
-produce 1000
 dealer north
 
 # New Minor Forcing
 
 #include "script/Predict-Opening-1-Bid-North"
 #include "script/Calm-Opponents"
+#include "script/TP"
 
 ### End of Boiler Plate ###
 
@@ -33,7 +33,7 @@ sH = shape(south,x5xx)
 sS = shape(south,5xxx)
 nHasFit = (sH and hearts(north)==3) or (sS and spades(north)==3)
 
-sResponds = (((oC or oD) and (sH or sS)) or (oH and sS)) and shape(south,xxxx-any 55xx-any 65xx-any 75xx) and hcp(south)>10 and hcp(south)<13
+sResponds = (((oC or oD) and (sH or sS)) or (oH and sS)) and shape(south,xxxx-any 55xx-any 65xx-any 75xx) and tpSouth>10 and tpSouth<13
 
 # North rebids 1N
 nOpens and sResponds and calmOpps
