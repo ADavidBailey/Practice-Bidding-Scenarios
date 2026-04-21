@@ -44,7 +44,7 @@ sd02 = shape(north, any 22xx) ? 1 : 0
 sd03 = shape(north, any 222x) ? 1 : 0
 
 # Calculate North's Total Points
-sTP = hcp(north) + sv01+ss01+ss02+sd01+sd02+sd03 -ssp-shp-sdp-scp
+nTP = hcp(north) + sv01+ss01+ss02+sd01+sd02+sd03 -ssp-shp-sdp-scp
 
 # Calculate length points for North (lengthPoints)
 lp1 = spades(north)>4 ? spades(north)-4 : 0
@@ -67,9 +67,9 @@ g3Shape = shape(north,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx
 threeNT = (top3(north,clubs)==3 and clubs(north)>6) or (top3(north,diamonds)==3 and diamonds(north)>6) and hcp(north)<12 and g3Shape
 
 # Define Game Forcing 2C
-case1 = hcp(north)>18 and sTP>21
-case2 = hcp(north)>18 and sTP>19 and losers(north)<5 and (spades(north)>5 or hearts(north)>5)
-case3 = hcp(north)>18 and sTP>19 and losers(north)<4 and (diamonds(north)>5 or clubs(north)>5)
+case1 = hcp(north)>18 and nTP>21
+case2 = hcp(north)>18 and nTP>19 and losers(north)<5 and (spades(north)>5 or hearts(north)>5)
+case3 = hcp(north)>18 and nTP>19 and losers(north)<4 and (diamonds(north)>5 or clubs(north)>5)
 gameForce2C = (case1 or case2 or case3)
 
 ### Predict North's opening BID
@@ -79,7 +79,7 @@ P2 = P1 or threeNT or twoNT or oneNT
 # Define quality and length lower limits for 10 HCP openers
 
 q2of3 = (top3(north,spades)>1 or top3(north,hearts)>1) and controls(north)>3
-lgt5  = (spades(north)>4 or hearts(north)>4) and shape(north,any 7xxx +any 64xx +any 55xx +any 1xxx+any 0xxx -any 8xxx -any 54xx) and sTP>(hcp(north) +2)
+lgt5  = (spades(north)>4 or hearts(north)>4) and shape(north,any 7xxx +any 64xx +any 55xx +any 1xxx+any 0xxx -any 8xxx -any 54xx) and nTP>(hcp(north) +2)
 
 # Predict North's Opening suit
 # What's the longest suit?
@@ -95,18 +95,18 @@ lH = h>4 and h>s and h>=d and h>=c
 lM = lS or lH
 
 hsOK1 = lM and hcp(north)>11
-hsOK2 = lM and hcp(north)>10 and sTP>12 and not hsOK1
+hsOK2 = lM and hcp(north)>10 and nTP>12 and not hsOK1
 hsOK3 = lM and hcp(north)>9  and lgt5 and q2of3 and not (hsOK1 or hsOK2)
 hsRange = (hsOK1 or hsOK2 or hsOK3) and not P2
 
 # Define 1D Range
 dOK1 = hcp(north)>11 and (diamonds(north)>3 or shape(north, 4432))
-dOK2 = hcp(north)>9  and sTP>12 and diamonds(north)>5 and not dOK1
+dOK2 = hcp(north)>9  and nTP>12 and diamonds(north)>5 and not dOK1
 dRange = (dOK1 or dOK2) and not P2
 
 # Define 1C Range
-cOK1 = hcp(north)>10 and sTP>12 and spades(north)==4
-cOK2 = hcp(north)>9  and sTP>12 and clubs(north)>5 and not cOK1
+cOK1 = hcp(north)>10 and nTP>12 and spades(north)==4
+cOK2 = hcp(north)>9  and nTP>12 and clubs(north)>5 and not cOK1
 cOK3 = hcp(north)>11 and clubs(north)>2            and not (cOK1 or cOK2)
 cRange = (cOK1 or cOK2 or cOK3) and clubs(north)>2 and clubs(north)>diamonds(north) and not P2
 
