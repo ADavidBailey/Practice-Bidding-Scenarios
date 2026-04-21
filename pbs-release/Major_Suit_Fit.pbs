@@ -53,7 +53,7 @@ sd02 = shape(north, any 22xx) ? 1 : 0
 sd03 = shape(north, any 222x) ? 1 : 0
 
 # Calculate North's Total Points
-sTP = hcp(north) + sv01+ss01+ss02+sd01+sd02+sd03 -ssp-shp-sdp-scp
+nTP = hcp(north) + sv01+ss01+ss02+sd01+sd02+sd03 -ssp-shp-sdp-scp
 
 # Calculate length points for North (lengthPoints)
 lp1 = spades(north)>4 ? spades(north)-4 : 0
@@ -76,9 +76,9 @@ g3Shape = shape(north,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx
 threeNT = (top3(north,clubs)==3 and clubs(north)>6) or (top3(north,diamonds)==3 and diamonds(north)>6) and hcp(north)<12 and g3Shape
 
 # Define Game Forcing 2C
-case1 = hcp(north)>18 and sTP>21
-case2 = hcp(north)>18 and sTP>19 and losers(north)<5 and (spades(north)>5 or hearts(north)>5)
-case3 = hcp(north)>18 and sTP>19 and losers(north)<4 and (diamonds(north)>5 or clubs(north)>5)
+case1 = hcp(north)>18 and nTP>21
+case2 = hcp(north)>18 and nTP>19 and losers(north)<5 and (spades(north)>5 or hearts(north)>5)
+case3 = hcp(north)>18 and nTP>19 and losers(north)<4 and (diamonds(north)>5 or clubs(north)>5)
 gameForce2C = (case1 or case2 or case3)
 
 ### Predict North's opening BID
@@ -88,7 +88,7 @@ P2 = P1 or threeNT or twoNT or oneNT
 # Define quality and length lower limits for 10 HCP openers
 
 q2of3 = (top3(north,spades)>1 or top3(north,hearts)>1) and controls(north)>3
-lgt5  = (spades(north)>4 or hearts(north)>4) and shape(north,any 7xxx +any 64xx +any 55xx +any 1xxx+any 0xxx -any 8xxx -any 54xx) and sTP>(hcp(north) +2)
+lgt5  = (spades(north)>4 or hearts(north)>4) and shape(north,any 7xxx +any 64xx +any 55xx +any 1xxx+any 0xxx -any 8xxx -any 54xx) and nTP>(hcp(north) +2)
 
 # Predict North's Opening suit
 # What's the longest suit?
@@ -104,18 +104,18 @@ lH = h>4 and h>s and h>=d and h>=c
 lM = lS or lH
 
 hsOK1 = lM and hcp(north)>11
-hsOK2 = lM and hcp(north)>10 and sTP>12 and not hsOK1
+hsOK2 = lM and hcp(north)>10 and nTP>12 and not hsOK1
 hsOK3 = lM and hcp(north)>9  and lgt5 and q2of3 and not (hsOK1 or hsOK2)
 hsRange = (hsOK1 or hsOK2 or hsOK3) and not P2
 
 # Define 1D Range
 dOK1 = hcp(north)>11 and (diamonds(north)>3 or shape(north, 4432))
-dOK2 = hcp(north)>9  and sTP>12 and diamonds(north)>5 and not dOK1
+dOK2 = hcp(north)>9  and nTP>12 and diamonds(north)>5 and not dOK1
 dRange = (dOK1 or dOK2) and not P2
 
 # Define 1C Range
-cOK1 = hcp(north)>10 and sTP>12 and spades(north)==4
-cOK2 = hcp(north)>9  and sTP>12 and clubs(north)>5 and not cOK1
+cOK1 = hcp(north)>10 and nTP>12 and spades(north)==4
+cOK2 = hcp(north)>9  and nTP>12 and clubs(north)>5 and not cOK1
 cOK3 = hcp(north)>11 and clubs(north)>2            and not (cOK1 or cOK2)
 cRange = (cOK1 or cOK2 or cOK3) and clubs(north)>2 and clubs(north)>diamonds(north) and not P2
 
@@ -132,32 +132,79 @@ oneClub    = oC
 ##### End of Imported Script -- Predict Opening 1-Bid-North #####
 # Returns oS & oH
 
-##### Imported Script - Calculate Total Points for South #####
+### Imported script: TP (Total Points)
+//   Total Points = HCP + Short-Suit Points - Penalty Points
+//   Short-Suit Points: 3 for void, 2 for singleton, 1 for doubleton
+//   Penalty Points: 1 for each honor (K/Q/J) in a short suit (devalues wasted honors like Kx, Qx)
+
+## Calculate TP for North
+# Short-Suit Points: void=3, singleton=2, doubleton=1
+nSpadeSSP = spades(north)<3   ? 3-spades(north)   : 0
+nHeartSSP = hearts(north)<3   ? 3-hearts(north)   : 0
+nDiamSSP  = diamonds(north)<3 ? 3-diamonds(north) : 0
+nClubSSP  = clubs(north)<3    ? 3-clubs(north)    : 0
+nSSP = nSpadeSSP + nHeartSSP + nDiamSSP + nClubSSP
+
+# Penalty Points: deduct 1 for honors in short suits
+nSpadePP = spades(north)<3   and hcp(north,spades)>0   ? 1 : 0
+nHeartPP = hearts(north)<3   and hcp(north,hearts)>0   ? 1 : 0
+nDiamPP  = diamonds(north)<3 and hcp(north,diamonds)>0 ? 1 : 0
+nClubPP  = clubs(north)<3    and hcp(north,clubs)>0    ? 1 : 0
+nPP = nSpadePP + nHeartPP + nDiamPP + nClubPP
+
+tpNorth = hcp(north) + nSSP - nPP
+
+## Calculate TP for East
+eSpadeSSP = spades(east)<3   ? 3-spades(east)   : 0
+eHeartSSP = hearts(east)<3   ? 3-hearts(east)   : 0
+eDiamSSP  = diamonds(east)<3 ? 3-diamonds(east) : 0
+eClubSSP  = clubs(east)<3    ? 3-clubs(east)    : 0
+eSSP = eSpadeSSP + eHeartSSP + eDiamSSP + eClubSSP
+
+eSpadePP = spades(east)<3   and hcp(east,spades)>0   ? 1 : 0
+eHeartPP = hearts(east)<3   and hcp(east,hearts)>0   ? 1 : 0
+eDiamPP  = diamonds(east)<3 and hcp(east,diamonds)>0 ? 1 : 0
+eClubPP  = clubs(east)<3    and hcp(east,clubs)>0    ? 1 : 0
+ePP = eSpadePP + eHeartPP + eDiamPP + eClubPP
+
+tpEast = hcp(east) + eSSP - ePP
 
 ## Calculate TP for South
-# Calculate South's Short-Suit Penalty Points
-sSP = spades(south)<3 and hcp(south,spades)>0     ? 1 : 0
-sHP = hearts(south)<3 and hcp(south,hearts)>0     ? 1 : 0
-sDP = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
-sCP = clubs(south)<3 and hcp(south,clubs)>0       ? 1 : 0
+sSpadeSSP = spades(south)<3   ? 3-spades(south)   : 0
+sHeartSSP = hearts(south)<3   ? 3-hearts(south)   : 0
+sDiamSSP  = diamonds(south)<3 ? 3-diamonds(south) : 0
+sClubSSP  = clubs(south)<3    ? 3-clubs(south)    : 0
+sSSP = sSpadeSSP + sHeartSSP + sDiamSSP + sClubSSP
 
-# Calculate South's Short-Suit Points
-sv1 = shape(south, any 0xxx) ? 3 : 0
-ss1 = shape(south, any 1xxx) ? 2 : 0 // allow for 2 singletons
-ss2 = shape(south, any 11xx) ? 2 : 0
-sd1 = shape(south, any 2xxx) ? 1 : 0 // allow for 3 doubletons
-sd2 = shape(south, any 22xx) ? 1 : 0
-sd3 = shape(south, any 222x) ? 1 : 0
+sSpadePP = spades(south)<3   and hcp(south,spades)>0   ? 1 : 0
+sHeartPP = hearts(south)<3   and hcp(south,hearts)>0   ? 1 : 0
+sDiamPP  = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
+sClubPP  = clubs(south)<3    and hcp(south,clubs)>0    ? 1 : 0
+sPP = sSpadePP + sHeartPP + sDiamPP + sClubPP
 
-# Calculate South's Total Points
-sTP = hcp(south) + sv1+ss1+ss2+sd1+sd2+sd3 -sSP-sHP-sDP-sCP
+tpSouth = hcp(south) + sSSP - sPP
 
-### End of Calculate TP for South ###
-# Returns sTP
+## Calculate TP for West
+wSpadeSSP = spades(west)<3   ? 3-spades(west)   : 0
+wHeartSSP = hearts(west)<3   ? 3-hearts(west)   : 0
+wDiamSSP  = diamonds(west)<3 ? 3-diamonds(west) : 0
+wClubSSP  = clubs(west)<3    ? 3-clubs(west)    : 0
+wSSP = wSpadeSSP + wHeartSSP + wDiamSSP + wClubSSP
 
-# North opens 1 Major and South has a fit
-S_ = oS and spades(south)>2
-H_ = oH and hearts(south)>2
+wSpadePP = spades(west)<3   and hcp(west,spades)>0   ? 1 : 0
+wHeartPP = hearts(west)<3   and hcp(west,hearts)>0   ? 1 : 0
+wDiamPP  = diamonds(west)<3 and hcp(west,diamonds)>0 ? 1 : 0
+wClubPP  = clubs(west)<3    and hcp(west,clubs)>0    ? 1 : 0
+wPP = wSpadePP + wHeartPP + wDiamPP + wClubPP
+
+tpWest = hcp(west) + wSSP - wPP
+
+## Partnership Totals
+tpNS = tpNorth + tpSouth
+tpEW = tpEast + tpWest
+
+### End of Imported Script: TP
+# Returns tpSouth
 
 # Avoid preempts, weak 2, Michaels, and Unusual NT
 ePreempt  = shape(east,any 9xxx +any 8xxx +any 7xxx +any 6xxx) and hcp(east)>3
@@ -166,25 +213,27 @@ eOvercall = shape(east,any 5xxx) and hcp(east)>7
 ePasses   = hcp(east)<11 and not(ePreempt or e2Suits or eOvercall)
 
 # Define South's 3- 4+ and 5+ card fits
-spadeFit3 = S_ and spades(south)==3
-spadeFit4 = S_ and spades(south)>3
-spadeFit5 = S_ and spades(south)>4
-heartFit3 = H_ and hearts(south)==3
-heartFit4 = H_ and hearts(south)>3
-heartFit5 = H_ and hearts(south)>4
+spadeFit3 = oS and spades(south)==3
+spadeFit4 = oS and spades(south)==4
+spadeFit5 = oS and spades(south)>4
+heartFit3 = oH and hearts(south)==3
+heartFit4 = oH and hearts(south)==4
+heartFit5 = oH and hearts(south)>4
+fit3 = spadeFit3 or heartFit3
 fit4 = spadeFit4 or heartFit4
+fit5 = spadeFit5 or heartFit5
 
-# Calculate South's Total Points: sTP + +1 for 4+ support unless 4333
-sP = sTP + (fit4 and shape(south,xxxx-any 4333))
+# Calculate South's Total Points: tpSouth +1 for 4+ support unless 4333
+sP = tpSouth + (fit4 and shape(south,xxxx-any 4333))
 
 # Avoid Splinter
 Splinter = fit4 and shape(south,any 0xxx +any 1xxx) and sP>10 and sP<16
 
-preempt = sP<8            and (spadeFit5 or heartFit5)
-faulty  = sP>3  and sP<8  and (S_ or H_) and not preempt
-simple  = sP>7  and sP<11 and (S_ or H_)
-invite3 = sP>10 and sP<13 and (spadeFit3 or heartFit3)
-invite4 = sP>10 and sP<13 and (spadeFit4 or heartFit4)
+preempt = sP<8            and fit5
+faulty  = sP>3  and sP<8  and (fit3 or fit4)
+simple  = sP>7  and sP<11 and (fit3 or fit4)
+invite3 = sP>10 and sP<13 and fit3
+invite4 = sP>10 and sP<13 and fit4
 
 ### Imported Leveling Code ###
 c1 = hascard(west,2C)
