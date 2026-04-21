@@ -167,10 +167,10 @@ ePasses   = hcp(east)<11 and not(ePreempt or e2Suits or eOvercall)
 
 # Define South's 3- 4+ and 5+ card fits
 spadeFit3 = S_ and spades(south)==3
-spadeFit4 = S_ and spades(south)>3
+spadeFit4 = S_ and spades(south)==4
 spadeFit5 = S_ and spades(south)>4
 heartFit3 = H_ and hearts(south)==3
-heartFit4 = H_ and hearts(south)>3
+heartFit4 = H_ and hearts(south)==4
 heartFit5 = H_ and hearts(south)>4
 fit4 = spadeFit4 or heartFit4
 
