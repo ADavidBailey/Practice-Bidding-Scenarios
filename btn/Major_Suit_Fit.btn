@@ -24,12 +24,8 @@ dealer north
 #include "script/Predict-Opening-1-Bid-North"
 # Returns oS & oH
 
-#include "script/Total-Points-South"
-# Returns sTP
-
-# North opens 1 Major and South has a fit
-S_ = oS and spades(south)>2
-H_ = oH and hearts(south)>2
+#include "script/TP"
+# Returns tpSouth
 
 # Avoid preempts, weak 2, Michaels, and Unusual NT
 ePreempt  = shape(east,any 9xxx +any 8xxx +any 7xxx +any 6xxx) and hcp(east)>3
@@ -38,25 +34,27 @@ eOvercall = shape(east,any 5xxx) and hcp(east)>7
 ePasses   = hcp(east)<11 and not(ePreempt or e2Suits or eOvercall)
 
 # Define South's 3- 4+ and 5+ card fits
-spadeFit3 = S_ and spades(south)==3
-spadeFit4 = S_ and spades(south)>3
-spadeFit5 = S_ and spades(south)>4
-heartFit3 = H_ and hearts(south)==3
-heartFit4 = H_ and hearts(south)>3
-heartFit5 = H_ and hearts(south)>4
+spadeFit3 = oS and spades(south)==3
+spadeFit4 = oS and spades(south)==4
+spadeFit5 = oS and spades(south)>4
+heartFit3 = oH and hearts(south)==3
+heartFit4 = oH and hearts(south)==4
+heartFit5 = oH and hearts(south)>4
+fit3 = spadeFit3 or heartFit3
 fit4 = spadeFit4 or heartFit4
+fit5 = spadeFit5 or heartFit5
 
-# Calculate South's Total Points: sTP + +1 for 4+ support unless 4333
-sP = sTP + (fit4 and shape(south,xxxx-any 4333))
+# Calculate South's Total Points: tpSouth +1 for 4+ support unless 4333
+sP = tpSouth + (fit4 and shape(south,xxxx-any 4333))
 
 # Avoid Splinter
 Splinter = fit4 and shape(south,any 0xxx +any 1xxx) and sP>10 and sP<16
 
-preempt = sP<8            and (spadeFit5 or heartFit5)
-faulty  = sP>3  and sP<8  and (S_ or H_) and not preempt
-simple  = sP>7  and sP<11 and (S_ or H_)
-invite3 = sP>10 and sP<13 and (spadeFit3 or heartFit3)
-invite4 = sP>10 and sP<13 and (spadeFit4 or heartFit4)
+preempt = sP<8            and fit5
+faulty  = sP>3  and sP<8  and (fit3 or fit4)
+simple  = sP>7  and sP<11 and (fit3 or fit4)
+invite3 = sP>10 and sP<13 and fit3
+invite4 = sP>10 and sP<13 and fit4
 
 #include "script/Leveling"
 
