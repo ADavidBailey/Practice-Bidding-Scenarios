@@ -177,14 +177,14 @@
     </style>
     <script>
 const DASHBOARD_DATA = {
-  "generatedAt": "2026-04-21T18:01:14.743669",
+  "generatedAt": "2026-04-22T06:01:07.499630",
   "summary": {
     "totalScenarios": 306,
     "scenariosWorked": 306,
     "totalFileEdits": 51135,
-    "totalPipelineRuns": 2503,
+    "totalPipelineRuns": 2510,
     "totalSessionHours": 4080,
-    "totalCommits": 7177
+    "totalCommits": 7188
   },
   "charts": {
     "labels": [
@@ -193,8 +193,8 @@ const DASHBOARD_DATA = {
       "Mar 24",
       "Apr 24",
       "May 24",
-      "May 24",
       "Jun 24",
+      "Jul 24",
       "Jul 24",
       "Aug 24",
       "Sep 24",
@@ -224,8 +224,8 @@ const DASHBOARD_DATA = {
       377,
       243,
       4406,
-      4406,
       5419,
+      2185,
       2185,
       232,
       767,
@@ -278,7 +278,7 @@ const DASHBOARD_DATA = {
       61,
       1660,
       690,
-      92
+      99
     ],
     "commits": [
       259,
@@ -286,8 +286,8 @@ const DASHBOARD_DATA = {
       391,
       255,
       82,
-      82,
       209,
+      187,
       187,
       41,
       175,
@@ -309,7 +309,7 @@ const DASHBOARD_DATA = {
       228,
       1666,
       1028,
-      363
+      378
     ],
     "sessionHours": [
       75,
@@ -317,8 +317,8 @@ const DASHBOARD_DATA = {
       158,
       83,
       66,
-      66,
       143,
+      158,
       158,
       47,
       141,
@@ -343,13 +343,13 @@ const DASHBOARD_DATA = {
       292
     ],
     "scenariosWorked": [
-      22,
-      51,
-      66,
-      77,
-      125,
+      21,
+      50,
+      65,
+      76,
       125,
       127,
+      164,
       164,
       165,
       172,
@@ -375,62 +375,6 @@ const DASHBOARD_DATA = {
     ]
   },
   "recentActivity": [
-    {
-      "timestamp": "2026-04-18T22:35:21.995Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "GIB_1C-P-Resp",
-        "operation": "release"
-      }
-    },
-    {
-      "timestamp": "2026-04-18T22:35:31.025Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "1C_WalshStyle",
-        "operation": "release"
-      }
-    },
-    {
-      "timestamp": "2026-04-18T23:11:49.343Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "GIB_1M-P-Resp",
-        "operation": "release"
-      }
-    },
-    {
-      "timestamp": "2026-04-18T23:12:07.517Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "Major_Opener",
-        "operation": "release"
-      }
-    },
-    {
-      "timestamp": "2026-04-18T23:12:15.089Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "Major_Suit_Fit",
-        "operation": "release"
-      }
-    },
-    {
-      "timestamp": "2026-04-18T23:12:46.621Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "Fourth_Suit_Forcing",
-        "operation": "release"
-      }
-    },
-    {
-      "timestamp": "2026-04-18T23:13:05.355Z",
-      "type": "pipeline_run",
-      "details": {
-        "scenario": "New_Minor_Forcing",
-        "operation": "release"
-      }
-    },
     {
       "timestamp": "2026-04-20T13:16:21.398Z",
       "type": "file_save",
@@ -533,58 +477,114 @@ const DASHBOARD_DATA = {
       "details": {
         "filePath": "script/Predict-Opening-1-Bid-North"
       }
+    },
+    {
+      "timestamp": "2026-04-21T23:37:05.004Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "1C_WalshStyle",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-04-21T23:37:11.957Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "Fourth_Suit_Forcing",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-04-21T23:37:17.422Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "GIB_1C-P-Resp",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-04-21T23:37:23.046Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "GIB_1M-P-Resp",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-04-21T23:37:31.283Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "Major_Opener",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-04-21T23:37:37.685Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "Major_Suit_Fit",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-04-21T23:37:44.105Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "New_Minor_Forcing",
+        "operation": "release"
+      }
     }
   ],
   "recentCommits": [
     {
-      "hash": "be526cb6",
-      "date": "2026-04-21 17:52:15 -0500",
-      "message": "Refactor Major_Suit_Fit: use TP script, fix fit definitions, simplify"
+      "hash": "9230260e",
+      "date": "2026-04-21 18:37:44 -0500",
+      "message": "Release New_Minor_Forcing to pbs-release"
     },
     {
-      "hash": "4c8d0530",
-      "date": "2026-04-21 17:48:36 -0500",
-      "message": "Update pbs-test/Major_Suit_Fit.pbs"
-    },
-    {
-      "hash": "0e06b3fe",
-      "date": "2026-04-21 17:47:46 -0500",
-      "message": "Rename sTP to nTP in Predict-Opening-1-Bid-North"
-    },
-    {
-      "hash": "a041b0a3",
-      "date": "2026-04-21 17:31:23 -0500",
-      "message": "Update pbs-test/Major_Suit_Fit.pbs"
-    },
-    {
-      "hash": "0b565c70",
-      "date": "2026-04-21 16:44:57 -0500",
+      "hash": "4f914dfe",
+      "date": "2026-04-21 18:37:38 -0500",
       "message": "Release Major_Suit_Fit to pbs-release"
     },
     {
-      "hash": "8b79d27b",
-      "date": "2026-04-21 16:44:34 -0500",
-      "message": "Revert Major_Suit_Fit to original and regenerate pipeline"
+      "hash": "ab346d63",
+      "date": "2026-04-21 18:37:31 -0500",
+      "message": "Release Major_Opener to pbs-release"
     },
     {
-      "hash": "f9016fd5",
-      "date": "2026-04-21 16:42:57 -0500",
-      "message": "Update pbs-test/Major_Suit_Fit.pbs"
+      "hash": "2407de7f",
+      "date": "2026-04-21 18:37:23 -0500",
+      "message": "Release GIB_1M-P-Resp to pbs-release"
     },
     {
-      "hash": "ec32815e",
-      "date": "2026-04-21 16:35:36 -0500",
-      "message": "Update pbs-test/Major_Suit_Fit.pbs"
+      "hash": "f0aef878",
+      "date": "2026-04-21 18:37:17 -0500",
+      "message": "Release GIB_1C-P-Resp to pbs-release"
     },
     {
-      "hash": "466a2b1a",
-      "date": "2026-04-21 16:19:03 -0500",
-      "message": "Release Major_Suit_Fit to pbs-release"
+      "hash": "c588203d",
+      "date": "2026-04-21 18:37:12 -0500",
+      "message": "Release Fourth_Suit_Forcing to pbs-release"
     },
     {
-      "hash": "61608831",
-      "date": "2026-04-21 16:18:31 -0500",
-      "message": "Fix Major_Suit_Fit spadeFit4/heartFit4 to use ==4 instead of >3"
+      "hash": "28cea449",
+      "date": "2026-04-21 18:37:05 -0500",
+      "message": "Release 1C_WalshStyle to pbs-release"
+    },
+    {
+      "hash": "f8a6708b",
+      "date": "2026-04-21 18:10:37 -0500",
+      "message": "Regenerate 6 scenarios after Predict-Opening-1-Bid-North sTP->nTP rename"
+    },
+    {
+      "hash": "090440a4",
+      "date": "2026-04-21 18:09:22 -0500",
+      "message": "Update pbs-test/Fourth_Suit_Forcing.pbs"
+    },
+    {
+      "hash": "35fa3a14",
+      "date": "2026-04-21 18:08:22 -0500",
+      "message": "Update pbs-test/GIB_1M-P-Resp.pbs"
     }
   ]
 };
