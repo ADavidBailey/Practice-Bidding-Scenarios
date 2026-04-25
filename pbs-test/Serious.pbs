@@ -29,7 +29,6 @@ auction-filter: (1H +Pass +2N.*\n.*3H|1S +Pass +2N.*\n.*3S|1H +Pass +2[CDS].*\n.
 
 # Serious/Non-Serious
 dealer north
-produce 1000
 
 # North's opening suit
 NT = shape(north,any 4333+any 4432+any 5332-5xxx-x5xx) and hcp(north)>14 and hcp(north)<18
@@ -41,7 +40,7 @@ nS = sN>4 and sN>=hN and sN>=dN and sN>=cN     and spades(south)<4 and not NT
 nH = not nS and hN>4 and hN>=dN and hN>=cN     and hearts(south)<4 and not NT
 nD = not nS and not nH and ((dN>3 and dN>=cN)) and spades(north)<4 and hearts(north)<4 and not NT
 
-# South's longest suit
+# South's 2/1 responding suit
 s = spades(south)
 h = hearts(south)
 d = diamonds(south)
@@ -51,10 +50,20 @@ sH = not sS and h>=d and h>=c
 sD = not sS and not sH and d>=c
 sC = not sS and not sH and not sD
 
-oS = nS and sS==3
-oH = nH and sH==3
+# North has 3+card support for South's suit
+rC = sC and clubs(north)>2
+rD = sD and diamonds(north)>2
+rH = sH and hearts(north)>2
 
-nOpens = ((oS and (sC or sD or sH)) or (oH and (sC or sD)) or (nD and sC)) and hcp(north)>11 and hcp(south)>12
+# South has 3+card support for North's suit
+oS = nS and s==3
+oH = nH and h==3
+
+# (North supports South) or (South supports North)
+nSs = (rC or rD or rH) or (oS or oH)
+
+# North opens and South responds 2/1
+nOpens = ((oS and (rC or rD or rH)) or (oH and (rC or rD)) or (nD and rC)) and hcp(north)>11 and hcp(south)>12
 
 # Avoid 3N-Choice-of-Games
 sNT = shape(south,any 4333 +any 4432 +any 5332) and hcp(south,diamonds)>2 and hcp(south,clubs)>2
