@@ -71,7 +71,7 @@ nS5  = shape(north,5xxx) and hearts(north)<4 and spades(south)>3
 nH5  = shape(north,x5xx) and spades(north)<4 and hearts(south)>3
 
 # Now OPEN 1NT
-gibNT and (nSwq or nHwq or nS5 or nH5) and calmWest and shape(south,xxxx-any 4333) and hcp(south)==17
+gibNT and (nSwq or nHwq or nS5 or nH5) and calmWest and shape(south,xxxx-any 4333) and hcp(south)>14 and hcp(south)<17
 
 # Generate Statistics
 action printoneline,
@@ -86,4 +86,4 @@ Button,Jacoby Super-Accept,\n\
 South opens 1N w/17 HCP and 2452+2425+2245+2254+4522 or any 4432 or 5332.\n\
 Those 5422 hands are the ones where you are likely to have to reverse to show your suits.\n\
 North transfers to Hearts or Spades and South has 4- or 5-card support.\n\
-%JacobySuperAccept%,width=50%
+%JacobySuperAccept%
