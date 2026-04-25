@@ -18,12 +18,12 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
-auction-filter: (1H +Pass +2N.*\n.*3H|1S +Pass +2N.*\n.*3S|1H +Pass +2[CDS].*\n.. +Pass +3H|1S +Pass +2[CDH].*\n.. +Pass +3S|1S +Pass +2H.*\n3H|1H +Pass +2S.*\n3S)
+auction-filter: (1H +Pass +2N.*\n.*3H|1S +Pass +2N.*\n.*3S|1H +Pass +2[CD].*\n.. +Pass +3H|1S +Pass +2[CDH].*\n.. +Pass +3S|1S +Pass +2H.*\n3H|1H +Pass +2S.*\n3S|1[DHS] +Pass 2C.*\n3C|1[HS] +Pass 2D.*\n3D)
 */
 /* That's a complex filter.  Here's a breakdown:
-1M Pass 2N Pass, 3M by either
-1M Pass 2/1, ... 3M by responder
-1x Pass 2M Pass, 3M by either
+1M Pass 2N Pass, 3M by either      -- (1H +Pass +2N.*\n.*3H|1S +Pass +2N.*\n.*3S)
+1M Pass 2/1, ... 3M by responder   -- (1H +Pass +2[CD].*\n.*Pass 3H|1S +Pass +2[CDH].*\n.*Pass 3S)
+1S Pass 2H Pass, 3M by either      -- (1S +Pass +2H.*\n.*3[HS])
 */
 
 
