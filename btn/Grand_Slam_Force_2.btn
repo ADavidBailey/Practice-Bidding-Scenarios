@@ -3,6 +3,8 @@
 # gib-works: true
 # bba-works: true
 # auction-filter: .
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
 
 /*@chat
 --- Grand Slam Force asks partner, Do you have 2 of the top 3 honors?
@@ -18,9 +20,6 @@ dealer south
 
 predeal south CA,DA,HK,SK
 predeal north CK,DK
-
-range = hcp(south)>16 and hcp(north)
-
 
 # Define North's Kings
 kingC = hascard(north,KC)
