@@ -16,6 +16,8 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
 setDealerCode(`
 
 /*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
 auction-filter: .
 */
 ##### Imported Script -- Predict Opening 1-Bid South #####
@@ -128,9 +130,6 @@ oneClub    = oC
 
 predeal south CA,DA,HK,SK
 predeal north CK,DK
-
-range = hcp(south)>16 and hcp(north)
-
 
 # Define North's Kings
 kingC = hascard(north,KC)
