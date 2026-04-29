@@ -1,7 +1,7 @@
-Script,SCS16-1C-1SuitedResp
-window.currentPBSScenario = 'SCS16-1C-1SuitedResp';
+Script,SCS16_1C_1SuitedResp
+window.currentPBSScenario = 'SCS16_1C_1SuitedResp';
 window.currentPBSScenarioFilename = 'SCS16_1C_1SuitedResp';
-console.log('PBS: Logging scenario selection for SCS16-1C-1SuitedResp');
+console.log('PBS: Logging scenario selection for SCS16_1C_1SuitedResp');
 fetch('https://bba.harmonicsystems.com/api/scenario/select', {
     method: 'POST',
     headers: {
@@ -9,7 +9,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
         'X-Client-Version': '1.0.0'
     },
     body: JSON.stringify({
-        scenario: 'SCS16-1C-1SuitedResp',
+        scenario: 'SCS16_1C_1SuitedResp',
         user: whoAmI() || 'anonymous'
     })
 }).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
@@ -42,4 +42,4 @@ action printoneline,
 Script
 Button,1-Suited Resp w/8+,\n\
 --- 16+ opener w/solid or semi-solid 1-suited response\n\
-%SCS16-1C-1SuitedResp%,width=50% backgroundColor=lightpink
+%SCS16_1C_1SuitedResp%,backgroundColor=lightpink
