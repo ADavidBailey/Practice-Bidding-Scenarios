@@ -20,12 +20,6 @@ convention-card-ns: 21GF-GIB
 convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n(1NT? +Pass +2C.* +[X2-7])
 */
-/*
-South opens 1N and North responds 2C and East bids.
-*/
-
-dealer south
-
 # 1 Notrump Opening
 ##### Imported Script -- GIB 1 Notrump #####
 
@@ -343,4 +337,7 @@ average "4 strong    " 100 * e4Bs,
 average "Any 4-Bid---" 100 * (e4Bw or e4Bs),
 `, "S", true)
 Script
-Button,GIB after Stayman,%GibAfterStayman%,width=50%
+Button,GIB after Stayman,\n\
+--- GIB after Stayman\n\
+South opens 1N，North responds 2!C，and East bids.\n\
+%GibAfterStayman%
