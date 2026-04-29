@@ -1,7 +1,7 @@
-Script,WeakNT11
-window.currentPBSScenario = 'WeakNT11';
+Script,WeakNT11to16
+window.currentPBSScenario = 'WeakNT11to16';
 window.currentPBSScenarioFilename = 'Weak_NT_11-16';
-console.log('PBS: Logging scenario selection for WeakNT11');
+console.log('PBS: Logging scenario selection for WeakNT11to16');
 fetch('https://bba.harmonicsystems.com/api/scenario/select', {
     method: 'POST',
     headers: {
@@ -9,7 +9,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
         'X-Client-Version': '1.0.0'
     },
     body: JSON.stringify({
-        scenario: 'WeakNT11',
+        scenario: 'WeakNT11to16',
         user: whoAmI() || 'anonymous'
     })
 }).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
@@ -77,4 +77,6 @@ average "11-13 " 100 * hcp1113,
 average "14-16 " 100 * hcp1416,
 `, "S", true)
 Script
-Button,WeakNT 11-16,%WeakNT11%
+Button,WeakNT 11-16,\n\
+--- South has a semi-balanced hand with 11-16 HCP and not 5/4 in the majors\n\
+%WeakNT11to16%,backgroundColor=lightpink
