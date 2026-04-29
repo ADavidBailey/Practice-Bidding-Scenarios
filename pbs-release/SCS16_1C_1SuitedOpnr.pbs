@@ -1,7 +1,7 @@
-Script,SCS16-1C-1SuitedOpnr
-window.currentPBSScenario = 'SCS16-1C-1SuitedOpnr';
+Script,SCS16_1C_1SuitedOpnr
+window.currentPBSScenario = 'SCS16_1C_1SuitedOpnr';
 window.currentPBSScenarioFilename = 'SCS16_1C_1SuitedOpnr';
-console.log('PBS: Logging scenario selection for SCS16-1C-1SuitedOpnr');
+console.log('PBS: Logging scenario selection for SCS16_1C_1SuitedOpnr');
 fetch('https://bba.harmonicsystems.com/api/scenario/select', {
     method: 'POST',
     headers: {
@@ -9,7 +9,7 @@ fetch('https://bba.harmonicsystems.com/api/scenario/select', {
         'X-Client-Version': '1.0.0'
     },
     body: JSON.stringify({
-        scenario: 'SCS16-1C-1SuitedOpnr',
+        scenario: 'SCS16_1C_1SuitedOpnr',
         user: whoAmI() || 'anonymous'
     })
 }).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
@@ -45,4 +45,4 @@ action printoneline,
 Script
 Button,1-Suited Opener,\n\
 --- 16+ w/solid or semi-solid 1-suited hand\n\
-%SCS16-1C-1SuitedOpnr%,width=50% backgroundColor=lightpink
+%SCS16_1C_1SuitedOpnr%,backgroundColor=lightpink
