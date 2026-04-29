@@ -47,7 +47,7 @@ eJD = hascard(east,JD)
 eTD = hascard(east,TD)
 e9D = hascard(east,9D)
 
-# Define East's possible overcall suits: AKxx，AQJx，AQTx，AQ9x，AJT9，KQJx，or KQTx
+# Define East's possible overcall suits: AKxx, AQJx, AQTx, AQ9x, AJT9, KQJx, or KQTx
 eS4 = ((eAS and eKS) or (eAS and eQS and (eJS or eTS or e9S)) or (eAS and eJS and eTS and e9S) or (eKS and eQS and (eJS or eTS))) and spades(east)==4
 eH4 = ((eAH and eKH) or (eAH and eQH and (eJH or eTH or e9H)) or (eAH and eJH and eTH and e9H) or (eKH and eQH and (eJH or eTH))) and hearts(east)==4
 eD4 = ((eAD and eKD) or (eAD and eQD and (eJD or eTD or e9D)) or (eAD and eJD and eTD and e9D) or (eKD and eQD and (eJD or eTD))) and diamonds(east)==4

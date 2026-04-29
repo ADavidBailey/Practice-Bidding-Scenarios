@@ -65,7 +65,7 @@ wJD = hascard(west,JD)
 wTD = hascard(west,TD)
 w9D = hascard(west,9D)
 
-# Define West's possible overcall suits: AKxx，AQJx，AQTx，AQ9x，AJT9，KQJx，or KQTx
+# Define West's possible overcall suits: AKxx, AQJx, AQTx, AQ9x, AJT9, KQJx, or KQTx
 wS4 = ((wAS and wKS) or (wAS and wQS and (wJS or wTS or w9S)) or (wAS and wJS and wTS and w9S) or (wKS and wQS and (wJS or wTS))) and shape(west,4xxx)
 wH4 = ((wAH and wKH) or (wAH and wQH and (wJH or wTH or w9H)) or (wAH and wJH and wTH and w9H) or (wKH and wQH and (wJH or wTH))) and shape(west,x4xx)
 wD4 = ((wAD and wKD) or (wAD and wQD and (wJD or wTD or w9D)) or (wAD and wJD and wTD and w9D) or (wKD and wQD and (wJD or wTD))) and shape(west,xx4x)
