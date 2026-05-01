@@ -40,15 +40,16 @@ majorFit = (heartOpen or spadeOpen) and not gibNT
 # N/S have slam-zone values
 slamZone = hcp(north)>11 and hcp(south)>12 and (hcp(north)+hcp(south))>27
 
-# West: 7 clubs to AKQJ, void spades, modest HCP
-wClubs = clubs(west)==7 and top4(west,clubs)==4
-wShape = spades(west)==0
+# West: 7+ clubs with 3 of AKQJ, at most 1 spade, modest HCP
+wClubs = clubs(west)>=7 and top4(west,clubs)>=3
+wShape = spades(west)<=1
 wRange = hcp(west)>=8 and hcp(west)<=11
 
-# East minimal so E/W can't make their own slam
+# East: 4+ club support so E/W have 9+ fit; weak so E raises rather than jumps
+eFit = clubs(east)>=4
 eMin = hcp(east)<10
 
-majorFit and slamZone and wClubs and wShape and wRange and eMin
+majorFit and slamZone and wClubs and wShape and wRange and eFit and eMin
 
 action printoneline,
 average "hcp north  " hcp(north),
