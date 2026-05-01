@@ -97,8 +97,8 @@ ewModest   = (hcp(west)+hcp(east))<=22
 overcallPath = nOpens and (heartScn or spadeScn) and ewModest
 
 # Combined: preempt at full rate (~178 max in 300M attempts), overcall
-# reduced to ~6%. Targets ~178 preempt + ~322 overcall to fill the 500 cap.
-slamZone and (preemptPath or (overcallPath and keep06))
+# reduced to ~3% to give preempt the largest possible share of the 500 cap.
+slamZone and (preemptPath or (overcallPath and keep03))
 
 action printoneline,
 average "hcp north       " hcp(north),
