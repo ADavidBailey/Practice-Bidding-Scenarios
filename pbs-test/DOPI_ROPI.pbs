@@ -20,6 +20,11 @@ convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-DEFAULT
 auction-filter: (4N +[X5]|4N\n[X5])
 */
+# Note: BBA does not implement lead-directing (Lightner) doubles. An
+# earlier version used 7-card AKQJ holdings hoping BBA would X 4NT
+# for the lead — it never did. This deck instead targets the DOPI
+# trigger: opponents bidding 5-level over our 4NT.
+
 # DOPI-ROPI: Interference over Blackwood
 dealer north
 
@@ -74,6 +79,12 @@ keep0  = 0
 slamZone = hcp(south)>=12 and (hcp(north)+hcp(south))>=28
 
 # === Path A: 3-level minor preempt by West, East supports ===
+# N opens 1M, S has 4+ support → Jacoby 2NT GF, gives N/S a clean
+# path to Blackwood. W preempts a 7+ minor (3 of AKQJ); E has 4+
+# support so W has confidence to compete over 4NT.
+# Tried mirror (E-preempter, W-supporter): 0 matches — BBA can't
+# navigate from a 2nd-seat 3-level overcall to 4NT.
+# Tried requiring partner to lack a 4-card major: hurt match rate.
 heartOpen = hearts(north)>4 and hearts(south)>3
 spadeOpen = spades(north)>4 and spades(south)>3
 majorFit = (heartOpen or spadeOpen) and not gibNT
@@ -88,6 +99,11 @@ eMin     = hcp(east)<10
 preemptPath = majorFit and wMinor and wRange and wShort and eFit and eMin
 
 # === Path B: 1-level overcall / Unusual NT with 11+ major fit ===
+# E/W have a 5-6 or 6-5 major fit; one overcalls naturally (1H, 1S,
+# or 2NT-Unusual) and the partnership pushes through 4NT. N opens a
+# lower-ranking suit so the major can be overcalled at the 1-level.
+# In practice BBA picks Unusual NT more often than a simple 1-level
+# overcall when the long-suit holder has a second 5+ card suit.
 nOpens     = hcp(north)>=12 and hcp(north)<=21 and not gibNT
 ewHearts11 = hearts(west)+hearts(east)>=11 and hearts(west)>=5 and hearts(east)>=5
 ewSpades11 = spades(west)+spades(east)>=11 and spades(west)>=5 and spades(east)>=5
@@ -96,8 +112,11 @@ spadeScn   = ewSpades11 and (clubs(north)>=5 or diamonds(north)>=5 or hearts(nor
 ewModest   = (hcp(west)+hcp(east))<=22
 overcallPath = nOpens and (heartScn or spadeScn) and ewModest
 
-# Combined: preempt at full rate, overcall reduced to ~3% so dealer
-# fills most of the 500-hand cap with the (much rarer) preempt hands.
+# Leveling: overcall hands are ~10x more common than preempt hands.
+# Without throttling, dealer fills the 500-hand cap entirely with
+# overcall hands and finds 0 preempts. keep03 cuts overcall to ~3%,
+# producing a typical ~196 preempt + ~304 overcall mix and ~10-12
+# filtered matches per run.
 slamZone and (preemptPath or (overcallPath and keep03))
 
 action printoneline,
