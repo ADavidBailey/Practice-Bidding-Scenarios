@@ -96,10 +96,10 @@ spadeScn   = ewSpades11 and (clubs(north)>=5 or diamonds(north)>=5 or hearts(nor
 ewModest   = (hcp(west)+hcp(east))<=22
 overcallPath = nOpens and (heartScn or spadeScn) and ewModest
 
-# Combined: preempt at full rate, overcall reduced to ~25% so dealer
-# doesn't fill the 500-hand cap entirely with the (much more common)
-# overcall hands before finding the rarer preempts.
-slamZone and (preemptPath or (overcallPath and keep25))
+# Combined: preempt at full rate, overcall reduced to ~14%. Overcall's
+# natural rate is ~10x preempt's, so keep14 brings them to comparable
+# yields and lets both paths produce hands within the 500-hand cap.
+slamZone and (preemptPath or (overcallPath and keep14))
 
 action printoneline,
 average "hcp north       " hcp(north),
