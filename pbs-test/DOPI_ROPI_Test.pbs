@@ -20,12 +20,11 @@ convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-DEFAULT
 auction-filter: (4N +[X5]|4N\n[X5])
 */
-# DOPI-ROPI Silent-West Test
+# DOPI-ROPI Preemptive-West Test
 dealer north
 
 ##### Imported Script -- GIB 1 Notrump #####
 
-# GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
 ntP = hcp(north) + shape(north,5xxx+x5xx)
 nt1 = shape(north, any 5332+any 4432+any 4333) and hcp(north)>14 and ntP<18
 nt2 = shape(north, any 5422-5xxx-x5xx-4xxx) and hcp(north)>14 and hcp(north)<17
@@ -38,24 +37,32 @@ heartOpen = hearts(north)>4 and hearts(south)>3
 spadeOpen = spades(north)>4 and spades(south)>3
 majorFit = (heartOpen or spadeOpen) and not gibNT
 
-# N/S have slam-zone values (South GF with 13+)
+# N/S have slam-zone values
 slamZone = hcp(north)>11 and hcp(south)>12 and (hcp(north)+hcp(south))>27
 
-# Silent West: weak, no overcallable long suit
-wSilent = hcp(west)<8 and clubs(west)<6 and diamonds(west)<6 and hearts(west)<6 and spades(west)<6
+# West: 7 clubs to AKQJ, void spades, modest HCP
+wClubs = clubs(west)==7 and \
+         hascard(west, club ace) and hascard(west, club king) and \
+         hascard(west, club queen) and hascard(west, club jack)
+wShape = spades(west)==0
+wRange = hcp(west)>=8 and hcp(west)<=11
 
-majorFit and slamZone and wSilent
+# East minimal so E/W can't make their own slam
+eMin = hcp(east)<10
+
+majorFit and slamZone and wClubs and wShape and wRange and eMin
 
 action printoneline,
 average "hcp north  " hcp(north),
 average "hcp south  " hcp(south),
 average "hcp total  " (hcp(north)+hcp(south)),
 average "hcp west   " hcp(west),
+average "clubs west " clubs(west),
 `, "N", true)
 Script
 Button,DOPI-ROPI Test,\n\
---- DOPI-ROPI Test (Silent West，21GF-DEFAULT both sides)\n\
-Diagnostic: when West is forced to pass throughout (hcp<8，no long suit),\n\
-does BBA ever double 4NT? Tests whether 21GF-DEFAULT supports speculative\n\
-lead-directing X of Blackwood without a prior bid by the doubler.\n\
+--- DOPI-ROPI Test (Preemptive West，21GF-DEFAULT both sides)\n\
+Diagnostic: West holds AKQJ-seventh of clubs and a spade void.\n\
+Should overcall/preempt clubs naturally. After N/S reach 4NT,\n\
+does BBA double 4NT for the lead (clubs already advertised)?\n\
 %DOPIROPITest%,backgroundColor=lightpink
