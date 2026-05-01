@@ -41,9 +41,7 @@ majorFit = (heartOpen or spadeOpen) and not gibNT
 slamZone = hcp(north)>11 and hcp(south)>12 and (hcp(north)+hcp(south))>27
 
 # West: 7 clubs to AKQJ, void spades, modest HCP
-wClubs = clubs(west)==7 and \
-         hascard(west, club ace) and hascard(west, club king) and \
-         hascard(west, club queen) and hascard(west, club jack)
+wClubs = clubs(west)==7 and hascard(west, club ace) and hascard(west, club king) and hascard(west, club queen) and hascard(west, club jack)
 wShape = spades(west)==0
 wRange = hcp(west)>=8 and hcp(west)<=11
 
