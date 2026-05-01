@@ -20,7 +20,7 @@ convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-DEFAULT
 auction-filter: (4N +[X5]|4N\n[X5])
 */
-# DOPI-ROPI Preemptive-West Test
+# DOPI-ROPI Preemptive-Minor Test
 dealer north
 
 ##### Imported Script -- GIB 1 Notrump #####
@@ -40,28 +40,33 @@ majorFit = (heartOpen or spadeOpen) and not gibNT
 # N/S have slam-zone values
 slamZone = hcp(north)>11 and hcp(south)>12 and (hcp(north)+hcp(south))>27
 
-# West: 7+ clubs with 3 of AKQJ, at most 1 spade, modest HCP
-wClubs = clubs(west)>=7 and top4(west,clubs)>=3
-wShape = spades(west)<=1
+# West: 7+ in either minor with 3 of AKQJ in that suit
+wClubsLong    = clubs(west)>=7    and top4(west,clubs)>=3
+wDiamondsLong = diamonds(west)>=7 and top4(west,diamonds)>=3
+wMinor = wClubsLong or wDiamondsLong
+
+# West: short in N's major so the preempt has natural shape
+wShort = (spadeOpen and spades(west)<=1) or (heartOpen and hearts(west)<=1)
 wRange = hcp(west)>=8 and hcp(west)<=11
 
-# East: 4+ club support so E/W have 9+ fit; weak so E raises rather than jumps
-eFit = clubs(east)>=4
+# East: 4+ support in W's long minor (whichever it is); weak so E raises rather than jumps
+eFit = (wClubsLong and clubs(east)>=4) or (wDiamondsLong and diamonds(east)>=4)
 eMin = hcp(east)<10
 
-majorFit and slamZone and wClubs and wShape and wRange and eFit and eMin
+majorFit and slamZone and wMinor and wShort and wRange and eFit and eMin
 
 action printoneline,
-average "hcp north  " hcp(north),
-average "hcp south  " hcp(south),
-average "hcp total  " (hcp(north)+hcp(south)),
-average "hcp west   " hcp(west),
-average "clubs west " clubs(west),
+average "hcp north     " hcp(north),
+average "hcp south     " hcp(south),
+average "hcp total     " (hcp(north)+hcp(south)),
+average "hcp west      " hcp(west),
+average "clubs west    " clubs(west),
+average "diamonds west " diamonds(west),
 `, "N", true)
 Script
 Button,DOPI-ROPI Test,\n\
---- DOPI-ROPI Test (Preemptive West，21GF-DEFAULT both sides)\n\
-Diagnostic: West holds AKQJ-seventh of clubs and a spade void.\n\
-Should overcall/preempt clubs naturally. After N/S reach 4NT,\n\
-does BBA double 4NT for the lead (clubs already advertised)?\n\
+--- DOPI-ROPI Test (Preemptive minor，21GF-DEFAULT both sides)\n\
+Diagnostic: West holds a 7+ card minor with 3 of AKQJ; East has 4+ support.\n\
+Should preempt naturally. After N/S reach 4NT，do opponents bid 5-level,\n\
+triggering DOPI/ROPI from N/S?\n\
 %DOPIROPITest%,backgroundColor=lightpink
