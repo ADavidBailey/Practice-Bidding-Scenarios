@@ -20,7 +20,7 @@ convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-DEFAULT
 auction-filter: (4N +[X5]|4N\n[X5])
 */
-# DOPI-ROPI Preemptive-Minor Test
+# DOPI-ROPI 1-Level-Overcall Test
 dealer north
 
 ##### Imported Script -- GIB 1 Notrump #####
@@ -32,49 +32,44 @@ gibNT = nt1 or nt2
 
 ### End of GIB 1 Notrump ###
 
-# North opens 1 Major, South has 4+ support for Jacoby 2NT
-heartOpen = hearts(north)>4 and hearts(south)>3
-spadeOpen = spades(north)>4 and spades(south)>3
-majorFit = (heartOpen or spadeOpen) and not gibNT
+# N has a standard 1-of-a-suit opening (not 1NT)
+nOpens = hcp(north)>=12 and hcp(north)<=21 and not gibNT
 
-# N/S have slam-zone values
-slamZone = hcp(north)>11 and hcp(south)>12 and (hcp(north)+hcp(south))>27
+# N/S in slam zone
+slamZone = hcp(south)>=12 and (hcp(north)+hcp(south))>=28
 
-# Path A: West has the long minor, East supports & raises
-wClubsLong    = clubs(west)>=7    and top4(west,clubs)>=3
-wDiamondsLong = diamonds(west)>=7 and top4(west,diamonds)>=3
-wMinor = wClubsLong or wDiamondsLong
-wRange = hcp(west)>=8 and hcp(west)<=11
-wShort = (spadeOpen and spades(west)<=1) or (heartOpen and hearts(west)<=1)
-eSupport = (wClubsLong and clubs(east)>=4) or (wDiamondsLong and diamonds(east)>=4)
-eShape   = spades(east)<4 and hearts(east)<4
-eMin     = hcp(east)<10
-westPath = wMinor and wRange and wShort and eSupport and eShape and eMin
+# E/W have 11+ card major fit, both 5+
+ewHearts11 = hearts(west)+hearts(east)>=11 and hearts(west)>=5 and hearts(east)>=5
+ewSpades11 = spades(west)+spades(east)>=11 and spades(west)>=5 and spades(east)>=5
 
-# Path B: East has the long minor, West supports & raises (mirror)
-eClubsLong    = clubs(east)>=7    and top4(east,clubs)>=3
-eDiamondsLong = diamonds(east)>=7 and top4(east,diamonds)>=3
-eMinor = eClubsLong or eDiamondsLong
-eRange = hcp(east)>=8 and hcp(east)<=11
-eShort = (spadeOpen and spades(east)<=1) or (heartOpen and hearts(east)<=1)
-wSupport = (eClubsLong and clubs(west)>=4) or (eDiamondsLong and diamonds(west)>=4)
-wShape   = spades(west)<4 and hearts(west)<4
-wMin     = hcp(west)<10
-eastPath = eMinor and eRange and eShort and wSupport and wShape and wMin
+# N's opening suit must be lower-ranking than E/W's fit suit
+# Heart fit: N opens 1C or 1D (no 5+ major)
+# Spade fit: N opens 1C, 1D, or 1H (no 5+ spades)
+heartScenario = ewHearts11 and
+                (clubs(north)>=5 or diamonds(north)>=5) and
+                hearts(north)<5 and spades(north)<5
+spadeScenario = ewSpades11 and
+                (clubs(north)>=5 or diamonds(north)>=5 or hearts(north)>=5) and
+                spades(north)<5
+scenario = heartScenario or spadeScenario
 
-majorFit and slamZone and (westPath or eastPath)
+# E/W combined HCP modest (overcall + raise, not their own opening)
+ewModest = (hcp(west)+hcp(east))<=22
+
+nOpens and slamZone and scenario and ewModest
 
 action printoneline,
 average "hcp north     " hcp(north),
 average "hcp south     " hcp(south),
-average "hcp total     " (hcp(north)+hcp(south)),
-average "west long     " 100 * westPath,
-average "east long     " 100 * eastPath,
+average "hcp e+w       " (hcp(east)+hcp(west)),
+average "ew hearts fit " 100 * ewHearts11,
+average "ew spades fit " 100 * ewSpades11,
 `, "N", true)
 Script
-Button,DOPI-ROPI Test,\n\
---- DOPI-ROPI Test (Preemptive minor，either opponent，21GF-DEFAULT both sides)\n\
-Diagnostic: One opponent holds 7+ in a minor with AKQJ; partner has 4+ support\n\
-and no 4-card major. Should preempt and compete. After N/S reach 4NT，do\n\
-opponents bid 5-level，triggering DOPI/ROPI from N/S?\n\
+Button,DOPI-ROPI Test (1-Level),\n\
+--- DOPI-ROPI Test (1-level overcall variant，21GF-DEFAULT both sides)\n\
+Diagnostic: E/W have an 11+ card major fit (5/6 or 6/5+); they start with a\n\
+1-level overcall or weak-jump overcall. N opens a lower-ranking suit，N/S in\n\
+slam zone. After N/S reach 4NT，do opponents bid 5-level，triggering\n\
+DOPI/ROPI from N/S?\n\
 %DOPIROPITest%,backgroundColor=lightpink
