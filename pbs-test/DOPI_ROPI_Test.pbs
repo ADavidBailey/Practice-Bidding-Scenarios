@@ -41,8 +41,8 @@ majorFit = (heartOpen or spadeOpen) and not gibNT
 slamZone = hcp(north)>11 and hcp(south)>12 and (hcp(north)+hcp(south))>27
 
 # Path A: West has the long minor, East supports & raises
-wClubsLong    = clubs(west)>=7    and top4(west,clubs)==4
-wDiamondsLong = diamonds(west)>=7 and top4(west,diamonds)==4
+wClubsLong    = clubs(west)>=7    and top4(west,clubs)>=3
+wDiamondsLong = diamonds(west)>=7 and top4(west,diamonds)>=3
 wMinor = wClubsLong or wDiamondsLong
 wRange = hcp(west)>=8 and hcp(west)<=11
 wShort = (spadeOpen and spades(west)<=1) or (heartOpen and hearts(west)<=1)
@@ -52,8 +52,8 @@ eMin     = hcp(east)<10
 westPath = wMinor and wRange and wShort and eSupport and eShape and eMin
 
 # Path B: East has the long minor, West supports & raises (mirror)
-eClubsLong    = clubs(east)>=7    and top4(east,clubs)==4
-eDiamondsLong = diamonds(east)>=7 and top4(east,diamonds)==4
+eClubsLong    = clubs(east)>=7    and top4(east,clubs)>=3
+eDiamondsLong = diamonds(east)>=7 and top4(east,diamonds)>=3
 eMinor = eClubsLong or eDiamondsLong
 eRange = hcp(east)>=8 and hcp(east)<=11
 eShort = (spadeOpen and spades(east)<=1) or (heartOpen and hearts(east)<=1)
