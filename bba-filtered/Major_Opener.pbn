@@ -21,7 +21,7 @@
 [Auction "N"]
 1S    2H    3H =1=    Pass
 4C    Pass  4H    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 5S    Pass  Pass  Pass
 [Note "1:limit raise or better in !S"]
 [Note "2:A=1/5 or 4/5"]
@@ -198,12 +198,12 @@ Pass  Pass
 {HCP 18 3 11 8}
 {Losers 4 11 6 5}
 [Declarer "N"]
-[Contract "7S"]
+[Contract "6S"]
 [Auction "N"]
 1S    Pass  4C =1=    Pass
 4H    Pass  4N    Pass
-5C =2=    Pass  5D    Pass
-6C =3=    Pass  7S    Pass
+5D =2=    Pass  5H    Pass
+6C =3=    Pass  6S    Pass
 Pass  Pass
 [Note "1:Splinter"]
 [Note "2:A=0/5 or 3/5"]
@@ -251,7 +251,7 @@ X     Pass  Pass  Pass
 1H    Pass  2N =1=    Pass
 3H    Pass  3S    Pass
 4C    Pass  4H    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 5H    Pass  Pass  Pass
 [Note "1:Jacoby 2NT"]
 [Note "2:A=1/5 or 4/5"]
@@ -1169,7 +1169,7 @@ Pass  Pass
 1H    Pass  2N =1=    Pass
 3D =2=    Pass  3H    Pass
 4D    Pass  4S    Pass
-4N    Pass  5C =3=    Pass
+4N    Pass  5D =3=    Pass
 5H    Pass  Pass  Pass
 [Note "1:Jacoby 2NT"]
 [Note "2:shortness  !D"]
@@ -1286,7 +1286,7 @@ Pass  Pass
 [Auction "N"]
 1S    Pass  1N =1=    Pass
 2N    Pass  4S    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 5S    Pass  Pass  Pass
 [Note "1:forcing 1NT"]
 [Note "2:A=1/5 or 4/5"]
@@ -1808,7 +1808,7 @@ Pass  Pass
 [Auction "N"]
 1S    Pass  2D    Pass
 4S    Pass  4N    Pass
-5D =1=    Pass  6S    Pass
+5C =1=    Pass  6S    Pass
 Pass  Pass
 [Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -1900,7 +1900,7 @@ Pass  Pass
 2C    Pass  2D =1=    Pass
 2N    Pass  3H    Pass
 4C    Pass  4D    Pass
-4N    Pass  5C =2=    Pass
+4N    Pass  5D =2=    Pass
 5N =3=    Pass  6D =4=    Pass
 6H    Pass  Pass  Pass
 [Note "1:Fourth suit game force"]
@@ -2131,7 +2131,7 @@ Pass  Pass
 [Auction "N"]
 1S    Pass  1N =1=    Pass
 3C    Pass  4N    Pass
-5C =2=    Pass  5D    Pass
+5D =2=    Pass  5H    Pass
 5S =3=    Pass  6C    Pass
 Pass  Pass
 [Note "1:forcing 1NT"]
@@ -2264,7 +2264,7 @@ Pass  Pass
 1H    Pass  2C    Pass
 2S    Pass  3D    Pass
 4H    Pass  4N    Pass
-5C =1=    Pass  5H    Pass
+5D =1=    Pass  5H    Pass
 6H    Pass  Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -2660,7 +2660,7 @@ Pass  Pass
 [Auction "N"]
 1S    Pass  2H    Pass
 4D =1=    Pass  4N    Pass
-5D =2=    Pass  5H    Pass
+5C =2=    Pass  5H    Pass
 Pass  Pass
 [Note "1:Splinter"]
 [Note "2:A=1/5 or 4/5"]
@@ -2708,7 +2708,7 @@ Pass  Pass  Pass
 [Auction "N"]
 1S    Pass  2N =1=    Pass
 3H =2=    Pass  4S    Pass
-4N    Pass  5D =3=    Pass
+4N    Pass  5C =3=    Pass
 6S    Pass  Pass  Pass
 [Note "1:Jacoby 2NT"]
 [Note "2:shortness  !H"]
@@ -3507,7 +3507,7 @@ Pass  Pass
 1S    Pass  2D    Pass
 2H    Pass  2S    Pass
 3H    Pass  3S    Pass
-4N    Pass  5C =1=    Pass
+4N    Pass  5D =1=    Pass
 6S    Pass  Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -4280,17 +4280,20 @@ Pass  Pass
 {HCP 13 4 17 6}
 {Losers 5 9 4 9}
 [Declarer "N"]
-[Contract "6H"]
+[Contract "7H"]
 [Auction "N"]
 1H    Pass  2N =1=    Pass
 3S =2=    Pass  3N    Pass
-4N    Pass  5C =3=    Pass
-5D    Pass  5S =4=    Pass
-6H    Pass  Pass  Pass
+4N    Pass  5D =3=    Pass
+5S    Pass  5N =4=    Pass
+6C =5=    Pass  6H =6=    Pass
+7H    Pass  Pass  Pass
 [Note "1:Jacoby 2NT"]
 [Note "2:shortness  !S"]
 [Note "3:A=0/5 or 3/5"]
-[Note "4:!H queen and !S king"]
+[Note "4:!H queen no !C king no !D king"]
+[Note "5:King ask by available bid"]
+[Note "6:K=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -4466,10 +4469,12 @@ Pass  Pass  Pass
 [Auction "N"]
 1H    Pass  1N =1=    3S
 4H    Pass  4N    Pass
-5C =2=    Pass  6H    Pass
+5D =2=    X     5S    Pass
+5N =3=    Pass  6H    Pass
 Pass  Pass
 [Note "1:forcing 1NT"]
 [Note "2:A=0/5 or 3/5"]
+[Note "3:!H queen no !C king no !D king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -5098,7 +5103,7 @@ Pass  Pass
 1H    Pass  2N =1=    Pass
 3D =2=    Pass  3H    Pass
 4C    Pass  4D    Pass
-4N    Pass  5C =3=    Pass
+4N    Pass  5D =3=    Pass
 6H    Pass  Pass  Pass
 [Note "1:Jacoby 2NT"]
 [Note "2:shortness  !D"]
@@ -6019,7 +6024,7 @@ Pass  Pass
 [Auction "N"]
 1H    Pass  3S =1=    X
 4D    Pass  4H    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 6H    Pass  Pass  Pass
 [Note "1:Splinter"]
 [Note "2:A=1/5 or 4/5"]
@@ -6358,7 +6363,7 @@ Pass  Pass
 1S    Pass  2H    Pass
 3D    Pass  3S    Pass
 4S    Pass  4N    Pass
-5D =1=    Pass  5H    Pass
+5C =1=    Pass  5D    Pass
 6D =2=    Pass  6S    Pass
 Pass  Pass
 [Note "1:A=1/5 or 4/5"]
@@ -6721,7 +6726,7 @@ X     Pass  Pass  Pass
 [Contract "6H"]
 [Auction "N"]
 1H    3C    4C =1=    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 6H    Pass  Pass  Pass
 [Note "1:limit raise or better in !H"]
 [Note "2:A=1/5 or 4/5"]
@@ -6788,7 +6793,7 @@ Pass  Pass
 [Contract "6H"]
 [Auction "N"]
 1H    Pass  3H    4S
-4N    Pass  5C =1=    Pass
+4N    Pass  5D =1=    Pass
 6H    Pass  Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -6968,7 +6973,7 @@ Pass  Pass  Pass
 1H    Pass  2N =1=    Pass
 3D =2=    Pass  3H    Pass
 4C    Pass  4H    Pass
-4N    Pass  5D =3=    Pass
+4N    Pass  5C =3=    Pass
 6H    Pass  Pass  Pass
 [Note "1:Jacoby 2NT"]
 [Note "2:shortness  !D"]
@@ -8293,7 +8298,7 @@ Pass  Pass
 [Contract "5H"]
 [Auction "N"]
 1H    Pass  4C =1=    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 5H    Pass  Pass  Pass
 [Note "1:Splinter"]
 [Note "2:A=1/5 or 4/5"]
@@ -8586,7 +8591,7 @@ Pass
 1S    2C    2D =1=    Pass
 2H    Pass  3N    Pass
 4D    Pass  4S    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 6D    Pass  Pass  Pass
 [Note "1:1X-(Y)-2Z forcing"]
 [Note "2:A=1/5 or 4/5"]
@@ -8611,8 +8616,8 @@ Pass
 [Auction "N"]
 1H    Pass  1S    Pass
 4H    Pass  4N    Pass
-5C =1=    Pass  5H    Pass
-6H    Pass  Pass  Pass
+5D =1=    Pass  6H    Pass
+Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -8771,7 +8776,7 @@ Pass  Pass  Pass
 [Contract "5H"]
 [Auction "N"]
 1H    1S    2S =1=    Pass
-4N    Pass  5D =2=    X
+4N    Pass  5C =2=    Pass
 5H    Pass  Pass  Pass
 [Note "1:limit raise or better in !H"]
 [Note "2:A=1/5 or 4/5"]
@@ -9687,9 +9692,11 @@ Pass  Pass
 1H    Pass  2S    Pass
 3D    Pass  4D    Pass
 4H    Pass  4S    Pass
-4N    Pass  5C =1=    X
+4N    Pass  5D =1=    Pass
+5H    Pass  5S =2=    Pass
 6D    Pass  Pass  Pass
 [Note "1:A=0/5 or 3/5"]
+[Note "2:!D queen and !S king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -9870,7 +9877,7 @@ X     Pass  Pass  Pass
 [Auction "N"]
 1S    Pass  2C    Pass
 4S    Pass  4N    Pass
-5C =1=    Pass  5S    Pass
+5D =1=    Pass  5S    Pass
 6S    Pass  Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -9890,12 +9897,13 @@ X     Pass  Pass  Pass
 {HCP 14 6 15 5}
 {Losers 6 8 6 8}
 [Declarer "N"]
-[Contract "5D"]
+[Contract "5H"]
 [Auction "N"]
 1H    Pass  2C    Pass
 3D    Pass  3H    Pass
 3N    Pass  4N    Pass
-5D =1=    Pass  Pass  Pass
+5C =1=    Pass  5H    Pass
+Pass  Pass
 [Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]

@@ -46,7 +46,7 @@
 [Auction "S"]
 1D    Pass  1H    Pass
 1S    Pass  3N    Pass
-4N    Pass  5D =1=    Pass
+4N    Pass  5C =1=    Pass
 6N    Pass  Pass  Pass
 [Note "1:A=1/4 or 4/4"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -118,14 +118,14 @@ Pass  Pass
 {HCP 15 3 18 4}
 {Losers 5 8 5 9}
 [Declarer "S"]
-[Contract "7D"]
+[Contract "6D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2S    Pass  3C    Pass
-3D    Pass  4D    Pass
-4N    Pass  5H =1=    Pass
-7D    Pass  Pass  Pass
-[Note "1:A=2/5 or 5/5, Q(D)=0"]
+1D    Pass  2C =1=    Pass
+2S    Pass  3H =2=    Pass
+4D    Pass  5D    Pass
+6D    Pass  Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -190,22 +190,19 @@ Pass  Pass
 [South "EPBot"]
 [West "EPBot"]
 [Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:J.AK843.KQ87.AQ6 T865.J62.J96.J53 KQ97..AT532.KT84 A432.QT975.4.972"]
-{Shape 1543 4333 4054 4513}
-{HCP 19 3 12 6}
-{Losers 4 12 5 8}
+[Vulnerable "None"]
+[Deal "N:AJT84.A.AK965.73 Q653.K9863.T.Q65 K.QJT7.QJ742.AJ2 972.542.83.KT984"]
+{Shape 5152 4513 1453 3325}
+{HCP 16 7 14 3}
+{Losers 5 7 7 10}
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-4S    Pass  4N    Pass
-5D =2=    Pass  6D    Pass
-Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=1/5 or 4/5"]
+1D    Pass  2S    Pass
+3H    Pass  4D    Pass
+4N    Pass  5C =1=    Pass
+6D    Pass  Pass  Pass
+[Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -217,48 +214,24 @@ Pass  Pass
 [South "EPBot"]
 [West "EPBot"]
 [Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:QJ7.7.AK75.QJ987 A532.6542.T96.53 9.AKJT.J8432.AK6 KT864.Q983.Q.T42"]
-{Shape 3145 4432 1453 5413}
-{HCP 13 4 16 7}
-{Losers 6 10 6 8}
-[Declarer "N"]
-[Contract "5C"]
+[Vulnerable "NS"]
+[Deal "N:J.AK843.KQ87.AQ6 T865.J62.J96.J53 KQ97..AT532.KT84 A432.QT975.4.972"]
+{Shape 1543 4333 4054 4513}
+{HCP 19 3 12 6}
+{Losers 4 12 5 8}
+[Declarer "S"]
+[Contract "5S"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2H    Pass  3C    Pass
-5C    Pass  Pass  Pass
+1D    Pass  2H    Pass
+2S    Pass  4N    Pass
+5S =1=    Pass  Pass  Pass
+[Note "1:A=2/5 or 5/5, Q(S)=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
 [Board "10"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:A6.KJT543.AKT6.3 KT432.872.74.Q96 Q8.Q.QJ852.AKJT7 J975.A96.93.8542"]
-{Shape 2641 5323 2155 4324}
-{HCP 15 5 15 5}
-{Losers 5 9 6 10}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1H    Pass
-2C    Pass  2S =1=    X
-3C    Pass  3H    Pass
-5C    Pass  6D    Pass
-Pass  Pass
-[Note "1:Fourth suit game force"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "11"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -283,56 +256,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "12"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:9.KQ4.KJT8.AK965 653.AT97.953.J42 AKJ7.J653.A762.8 QT842.82.Q4.QT73"]
-{Shape 1345 3433 4441 5224}
-{HCP 16 5 13 6}
-{Losers 5 11 7 8}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  3S =1=    Pass
-4S    Pass  4N    Pass
-5H =2=    Pass  6D    Pass
-Pass  Pass
-[Note "1:Splinter"]
-[Note "2:A=2/5 or 5/5, Q(D)=0"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "13"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:T.KT.AK98.AJT982 Q64.Q7542.75.753 AJ52.AJ6.QJT32.Q K9873.983.64.K64"]
-{Shape 1246 3523 4351 5323}
-{HCP 15 4 15 6}
-{Losers 5 9 7 9}
-[Declarer "S"]
-[Contract "6N"]
-[Auction "S"]
-1D    Pass  2C    Pass
-2S    Pass  3C    Pass
-3N    Pass  6N    Pass
-Pass  Pass
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "14"]
+[Board "11"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -357,7 +281,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "15"]
+[Board "12"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -374,7 +298,7 @@ Pass  Pass
 1D    Pass  1H    Pass
 2N    Pass  3H    Pass
 3S    Pass  4D    Pass
-4N    Pass  5D =1=    Pass
+4N    Pass  5C =1=    Pass
 6D    Pass  Pass  Pass
 [Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -382,7 +306,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "16"]
+[Board "13"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -404,7 +328,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "17"]
+[Board "14"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -415,20 +339,19 @@ Pass  Pass
 {Shape 2146 4324 4441 3532}
 {HCP 12 7 19 2}
 {Losers 5 9 4 11}
-[Declarer "S"]
-[Contract "6D"]
+[Declarer "N"]
+[Contract "6N"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2H    Pass  3C    Pass
-3D    Pass  3N    Pass
-4N    Pass  6D    Pass
-Pass  Pass
+1D    Pass  2C =1=    Pass
+2H    Pass  3N    Pass
+6N    Pass  Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "18"]
+[Board "15"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -452,32 +375,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "19"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:Q.KQJ85.K2.KJ653 K985.974.Q876.84 A732.A.J43.AQT92 JT64.T632.AT95.7"]
-{Shape 1525 4342 4135 4441}
-{HCP 15 5 15 5}
-{Losers 5 9 6 9}
-[Declarer "S"]
-[Contract "6C"]
-[Auction "S"]
-1C    Pass  1H    Pass
-1S    Pass  2D =1=    Pass
-3C    Pass  4C    Pass
-4S    Pass  5C    Pass
-6C    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "20"]
+[Board "16"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -495,7 +393,7 @@ Pass  Pass
 2H    Pass  3C =1=    Pass
 3N    Pass  4D    Pass
 4H    Pass  4N    Pass
-5C =2=    Pass  6D    Pass
+5D =2=    Pass  6D    Pass
 Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=0/5 or 3/5"]
@@ -504,7 +402,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "21"]
+[Board "17"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -520,7 +418,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  1H    Pass
 2N    Pass  4D    Pass
-4N    Pass  5D =1=    Pass
+4N    Pass  5C =1=    Pass
 6D    Pass  Pass  Pass
 [Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -528,7 +426,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "22"]
+[Board "18"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -540,24 +438,23 @@ Pass  Pass
 {HCP 18 2 15 5}
 {Losers 4 9 5 8}
 [Declarer "S"]
-[Contract "7D"]
+[Contract "6D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-3D    Pass  3S    Pass
-3N    Pass  4D    Pass
+1D    Pass  2C =1=    Pass
+2H    Pass  2S =2=    Pass
+3D    Pass  4D    Pass
 4H    Pass  4N    Pass
-5S =1=    Pass  5N =2=    Pass
-6D =3=    Pass  7D    Pass
+5S =3=    Pass  6D    Pass
 Pass  Pass
-[Note "1:A=2/5 or 5/5, Q(D)=1"]
-[Note "2:King ask by 5NT"]
-[Note "3:K=1"]
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
+[Note "3:A=2/5 or 5/5, Q(D)=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "23"]
+[Board "19"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -583,7 +480,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "24"]
+[Board "20"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -599,7 +496,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  3S =1=    Pass
 4C    Pass  4S    Pass
-4N    Pass  5C =2=    Pass
+4N    Pass  5D =2=    Pass
 6D    Pass  Pass  Pass
 [Note "1:Splinter"]
 [Note "2:A=0/5 or 3/5"]
@@ -608,32 +505,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "25"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:AQ2.A.K962.QJ765 J843.Q742.JT75.2 5.K653.AQ84.AKT3 KT976.JT98.3.984"]
-{Shape 3145 4441 1444 5413}
-{HCP 16 4 16 4}
-{Losers 5 9 5 9}
-[Declarer "N"]
-[Contract "6C"]
-[Auction "S"]
-1D    Pass  2C    Pass
-2H    Pass  3C    Pass
-4C    Pass  4N    Pass
-5C =1=    Pass  6C    Pass
-Pass  Pass
-[Note "1:A=0/5 or 3/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "26"]
+[Board "21"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -649,7 +521,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  2D =1=    Pass
 2H    Pass  4D    Pass
-4N    Pass  5C =2=    Pass
+4N    Pass  5D =2=    Pass
 5H    Pass  5N =3=    Pass
 6D    Pass  Pass  Pass
 [Note "1:Inverted minors"]
@@ -660,7 +532,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "27"]
+[Board "22"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -674,23 +546,21 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  1H    Pass
-2C    Pass  2S =1=    Pass
-2N    Pass  3H    Pass
+1D    Pass  2H    Pass
+3C    Pass  3H    Pass
 3N    Pass  4D    Pass
 4S    Pass  4N    Pass
-5C =2=    Pass  5H    Pass
-5S =3=    Pass  6D    Pass
+5D =1=    Pass  5H    Pass
+5S =2=    Pass  6D    Pass
 Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=0/5 or 3/5"]
-[Note "3:!D queen and !S king"]
+[Note "1:A=0/5 or 3/5"]
+[Note "2:!D queen and !S king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "28"]
+[Board "23"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -704,21 +574,21 @@ Pass  Pass
 [Declarer "S"]
 [Contract "7D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2H    Pass  3C    Pass
-3D    Pass  4D    Pass
-4N    Pass  5S =1=    Pass
-5N =2=    Pass  6D =3=    Pass
+1D    Pass  2C =1=    Pass
+2H    Pass  3D    Pass
+4N    Pass  5S =2=    Pass
+5N =3=    Pass  6D =4=    Pass
 7D    Pass  Pass  Pass
-[Note "1:A=2/5 or 5/5, Q(D)=1"]
-[Note "2:King ask by 5NT"]
-[Note "3:K=1"]
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:A=2/5 or 5/5, Q(D)=1"]
+[Note "3:King ask by 5NT"]
+[Note "4:K=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "29"]
+[Board "24"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -735,7 +605,7 @@ Pass  Pass
 1D    Pass  1S    Pass
 2N    Pass  4D    Pass
 4H    Pass  4N    Pass
-5C =1=    Pass  6D    Pass
+5D =1=    Pass  6D    Pass
 Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -743,7 +613,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "30"]
+[Board "25"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -768,7 +638,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "31"]
+[Board "26"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -786,7 +656,7 @@ Pass  Pass
 3C    Pass  3H    Pass
 3N    Pass  4D    Pass
 4S    Pass  4N    Pass
-5C =1=    Pass  5H    Pass
+5D =1=    Pass  5H    Pass
 6D =2=    Pass  7N    Pass
 Pass  Pass
 [Note "1:A=0/5 or 3/5"]
@@ -796,7 +666,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "32"]
+[Board "27"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -823,7 +693,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "33"]
+[Board "28"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -845,33 +715,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "34"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:AQJT5.AJ2.A983.5 92.Q874.74.QT983 4.K96.QJT65.AK74 K8763.T53.K2.J62"]
-{Shape 5341 2425 1354 5323}
-{HCP 16 4 13 7}
-{Losers 6 8 6 9}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-2N    Pass  4D    Pass
-4N    Pass  5C =2=    Pass
-6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=0/5 or 3/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "35"]
+[Board "29"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -887,7 +731,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  2D =1=    Pass
 4D    Pass  4N    Pass
-5C =2=    Pass  5H    Pass
+5D =2=    Pass  5H    Pass
 5S =3=    Pass  5N =4=    Pass
 6D =5=    Pass  7N    Pass
 Pass  Pass
@@ -901,7 +745,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "36"]
+[Board "30"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -915,18 +759,18 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  2D =1=    Pass
-4D    Pass  4H    Pass
-4N    Pass  5D =2=    Pass
-6D    Pass  Pass  Pass
-[Note "1:Inverted minors"]
-[Note "2:A=1/5 or 4/5"]
+1D    Pass  2C =1=    Pass
+2H    Pass  3C    Pass
+3D    Pass  3N    Pass
+4N    Pass  6D    Pass
+Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "37"]
+[Board "31"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -938,20 +782,21 @@ Pass  Pass
 {HCP 16 4 14 6}
 {Losers 4 10 7 8}
 [Declarer "S"]
-[Contract "6D"]
+[Contract "5D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  3D    Pass
-3H    Pass  4N    Pass
-5H =1=    Pass  6D    Pass
+1D    Pass  2C =1=    Pass
+2H    Pass  2S =2=    Pass
+3S    Pass  4D    Pass
+4H    Pass  5D    Pass
 Pass  Pass
-[Note "1:A=2/5 or 5/5, Q(D)=0"]
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "38"]
+[Board "32"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -965,42 +810,46 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  3D    Pass
-3H    Pass  4N    Pass
-5H =1=    Pass  6D    Pass
-Pass  Pass
-[Note "1:A=2/5 or 5/5, Q(D)=0"]
+1D    Pass  2C =1=    Pass
+2H    Pass  2S =2=    Pass
+3D    Pass  4D    Pass
+4H    Pass  4S    Pass
+4N    Pass  5S =3=    Pass
+6D    Pass  Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
+[Note "3:A=2/5 or 5/5, Q(D)=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "39"]
+[Board "33"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
 [Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:JT.2.AKJ7.Q98652 97652.T875..KT73 AK.KQ93.Q98543.A Q843.AJ64.T62.J4"]
-{Shape 2146 5404 2461 4432}
-{HCP 11 3 18 8}
-{Losers 6 8 3 9}
+[Vulnerable "EW"]
+[Deal "N:Q7.6.AJ43.AQT632 J96.987.Q82.K984 AK53.KQJT.KT65.5 T842.A5432.97.J7"]
+{Shape 2146 3334 4441 4522}
+{HCP 13 6 16 5}
+{Losers 6 10 5 9}
 [Declarer "S"]
-[Contract "6D"]
+[Contract "5D"]
 [Auction "S"]
-1D    Pass  2N    Pass
-4D    Pass  4N    Pass
-5S =1=    Pass  6D    Pass
+1D    Pass  2C =1=    Pass
+2H    Pass  3D    Pass
+3S    Pass  4C    Pass
+4H    Pass  5D    Pass
 Pass  Pass
-[Note "1:A=2/5 or 5/5, Q(D)=1"]
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "40"]
+[Board "34"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1016,7 +865,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  3H =1=    Pass
 4C    Pass  4D    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 6D    Pass  Pass  Pass
 [Note "1:Splinter"]
 [Note "2:A=1/5 or 4/5"]
@@ -1025,32 +874,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "41"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:AJT986.T.AQ92.KQ 432.Q963.65.8754 K.KJ54.KJT83.A92 Q75.A872.74.JT63"]
-{Shape 6142 3424 1453 3424}
-{HCP 16 2 15 7}
-{Losers 5 10 7 9}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1S    Pass
-1N    Pass  3S    Pass
-3N    Pass  4D    Pass
-4N    Pass  5S =1=    Pass
-6D    Pass  Pass  Pass
-[Note "1:A=2/5 or 5/5, Q(D)=1"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "42"]
+[Board "35"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1075,7 +899,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "43"]
+[Board "36"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1092,7 +916,8 @@ Pass  Pass
 1D    Pass  2D =1=    Pass
 2N    Pass  4D    Pass
 4S    Pass  4N    Pass
-5D =2=    Pass  Pass  Pass
+5C =2=    Pass  5D    Pass
+Pass  Pass
 [Note "1:Inverted minors"]
 [Note "2:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -1100,7 +925,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "44"]
+[Board "37"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1125,7 +950,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "45"]
+[Board "38"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1142,7 +967,7 @@ Pass  Pass
 1D    Pass  1S    Pass
 2H    Pass  3C =1=    Pass
 3N    Pass  4D    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 6D    Pass  Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=1/5 or 4/5"]
@@ -1151,7 +976,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "46"]
+[Board "39"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1168,7 +993,7 @@ Pass  Pass
 1D    Pass  2D =1=    Pass
 2H    Pass  4D    Pass
 4S    Pass  4N    Pass
-5C =2=    Pass  6D    Pass
+5D =2=    Pass  6D    Pass
 Pass  Pass
 [Note "1:Inverted minors"]
 [Note "2:A=0/5 or 3/5"]
@@ -1177,7 +1002,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "47"]
+[Board "40"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1193,7 +1018,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  1S    Pass
 3N    Pass  4D    Pass
-4N    Pass  5C =1=    Pass
+4N    Pass  5D =1=    Pass
 6D    Pass  Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -1201,7 +1026,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "48"]
+[Board "41"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1228,7 +1053,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "49"]
+[Board "42"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1245,7 +1070,7 @@ Pass  Pass
 1D    Pass  1H    Pass
 3C    Pass  4D    Pass
 4S    Pass  4N    Pass
-5C =1=    Pass  6D    Pass
+5D =1=    Pass  6D    Pass
 Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -1253,7 +1078,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "50"]
+[Board "43"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1277,7 +1102,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "51"]
+[Board "44"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1295,7 +1120,7 @@ Pass  Pass
 2H    Pass  3N    Pass
 4D    Pass  4H    Pass
 4S    Pass  4N    Pass
-5C =2=    Pass  6D    Pass
+5D =2=    Pass  6D    Pass
 Pass  Pass
 [Note "1:Inverted minors"]
 [Note "2:A=0/5 or 3/5"]
@@ -1304,7 +1129,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "52"]
+[Board "45"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1328,7 +1153,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "53"]
+[Board "46"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1352,7 +1177,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "54"]
+[Board "47"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1366,19 +1191,17 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-2N    Pass  4D    Pass
-4N    Pass  5H =2=    Pass
+1D    Pass  2S    Pass
+3C    Pass  4D    Pass
+4N    Pass  5H =1=    Pass
 6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2/5 or 5/5, Q(D)=0"]
+[Note "1:A=2/5 or 5/5, Q(D)=0"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "55"]
+[Board "48"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1404,7 +1227,33 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "56"]
+[Board "49"]
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "NS"]
+[Deal "N:2.T92.AK87.AKQJ5 QT654.A63.T3.863 AKJ8.J874.QJ42.2 973.KQ5.965.T974"]
+{Shape 1345 5323 4441 3334}
+{HCP 17 6 12 5}
+{Losers 5 9 7 10}
+[Declarer "S"]
+[Contract "5D"]
+[Auction "S"]
+1D    Pass  2C =1=    Pass
+2H    Pass  2S =2=    Pass
+3S    Pass  4D    Pass
+4S    Pass  5D    Pass
+Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Minor_Game_Or_Slam"]
+[Site ""]
+[Board "50"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1418,19 +1267,17 @@ Pass  Pass
 [Declarer "N"]
 [Contract "5H"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4H    Pass
-4N    Pass  5C =2=    Pass
+1D    Pass  2H    Pass
+2S    Pass  3H    Pass
+4N    Pass  5D =1=    Pass
 5H    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=0/5 or 3/5"]
+[Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "57"]
+[Board "51"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1444,22 +1291,21 @@ Pass  Pass
 [Declarer "S"]
 [Contract "7D"]
 [Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
+1D    Pass  2S    Pass
 3H    Pass  4D    Pass
-4N    Pass  5D =2=    Pass
-5N =3=    Pass  6C =4=    Pass
-7D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=1/5 or 4/5"]
-[Note "3:King ask by 5NT"]
-[Note "4:K=0"]
+4N    Pass  5C =1=    Pass
+5N =2=    Pass  6C =3=    Pass
+6N    Pass  7D    Pass
+Pass  Pass
+[Note "1:A=1/5 or 4/5"]
+[Note "2:King ask by 5NT"]
+[Note "3:K=0"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "58"]
+[Board "52"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1473,18 +1319,16 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
+1D    Pass  2S    Pass
 3H    Pass  4D    Pass
 5D    Pass  6D    Pass
 Pass  Pass
-[Note "1:Fourth suit game force"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "59"]
+[Board "53"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1501,7 +1345,7 @@ Pass  Pass
 1D    Pass  1H    Pass
 3N    Pass  4D    Pass
 4S    Pass  4N    Pass
-5C =1=    Pass  7D    Pass
+5D =1=    Pass  7D    Pass
 Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -1509,7 +1353,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "60"]
+[Board "54"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1535,34 +1379,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "61"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:AQ6.AQJT64.Q742. 9542.92.93.KT986 J87.K.AT865.AQ43 KT3.8753.KJ.J752"]
-{Shape 3640 4225 3154 3424}
-{HCP 15 3 14 8}
-{Losers 4 9 7 9}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1H    Pass
-2C    Pass  2S =1=    Pass
-3D    Pass  3H    Pass
-3N    Pass  4D    Pass
-4N    Pass  5S =2=    Pass
-6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2/5 or 5/5, Q(D)=1"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "62"]
+[Board "55"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1579,7 +1396,7 @@ Pass  Pass
 1D    Pass  1S    Pass
 3C    Pass  3S    Pass
 4C    Pass  4N    Pass
-5C =1=    Pass  7D    Pass
+5D =1=    Pass  7D    Pass
 Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -1587,7 +1404,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "63"]
+[Board "56"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1605,7 +1422,7 @@ Pass  Pass
 2C    Pass  2H =1=    Pass
 3H    Pass  4D    Pass
 4H    Pass  4N    Pass
-5D =2=    Pass  6D    Pass
+5C =2=    Pass  6D    Pass
 Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=1/5 or 4/5"]
@@ -1614,7 +1431,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "64"]
+[Board "57"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1639,7 +1456,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "65"]
+[Board "58"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1657,7 +1474,7 @@ Pass  Pass
 2H    Pass  3C =1=    Pass
 3N    Pass  4D    Pass
 4H    Pass  4N    Pass
-5C =2=    Pass  5H    Pass
+5D =2=    Pass  5H    Pass
 5N =3=    Pass  6C =4=    Pass
 6H =5=    Pass  7N    Pass
 Pass  Pass
@@ -1671,7 +1488,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "66"]
+[Board "59"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1699,7 +1516,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "67"]
+[Board "60"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1713,19 +1530,20 @@ Pass  Pass
 [Declarer "S"]
 [Contract "7C"]
 [Auction "S"]
-1C    Pass  1H    Pass
-1S    Pass  2D =1=    Pass
-3C    Pass  4C    Pass
-4N    Pass  5C =2=    Pass
+1C    Pass  2H    Pass
+2S    Pass  4C    Pass
+4N    Pass  5D =1=    Pass
+5N =2=    Pass  6H =3=    Pass
 7C    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=0/5 or 3/5"]
+[Note "1:A=0/5 or 3/5"]
+[Note "2:King ask by 5NT"]
+[Note "3:K=2"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "68"]
+[Board "61"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1737,20 +1555,22 @@ Pass  Pass
 {HCP 17 0 13 10}
 {Losers 4 10 6 9}
 [Declarer "S"]
-[Contract "5D"]
+[Contract "6D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  3D    Pass
-3H    Pass  4C    Pass
-4H    Pass  4N    Pass
-5D =1=    Pass  Pass  Pass
-[Note "1:A=1/5 or 4/5"]
+1D    Pass  2C =1=    Pass
+2H    Pass  2S =2=    Pass
+3S    Pass  4D    Pass
+4N    Pass  5S =3=    Pass
+6D    Pass  Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
+[Note "3:A=2/5 or 5/5, Q(D)=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "69"]
+[Board "62"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1775,7 +1595,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "70"]
+[Board "63"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1792,7 +1612,7 @@ Pass  Pass
 1D    Pass  1S    Pass
 2C    Pass  2H =1=    Pass
 3C    Pass  4D    Pass
-4N    Pass  5C =2=    Pass
+4N    Pass  5D =2=    Pass
 5H    Pass  6D =3=    Pass
 7D    Pass  Pass  Pass
 [Note "1:Fourth suit game force"]
@@ -1803,34 +1623,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "71"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:52.KJT972.AKQ6.K KJ76.Q3.983.6542 AQT..JT7542.AQ87 9843.A8654..JT93"]
-{Shape 2641 4234 3064 4504}
-{HCP 16 6 13 5}
-{Losers 5 10 5 8}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1H    Pass
-2C    Pass  2S =1=    Pass
-2N    Pass  3H    Pass
-3N    Pass  4D    Pass
-4N    Pass  5S =2=    Pass
-6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2/5 or 5/5, Q(D)=1"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "72"]
+[Board "64"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1847,17 +1640,17 @@ Pass  Pass
 1D    Pass  1H    Pass
 3C    Pass  3H    Pass
 4C    Pass  4N    Pass
-5C =1=    Pass  5D    Pass
+5D =1=    Pass  5H    Pass
 5N =2=    Pass  7D    Pass
 Pass  Pass
 [Note "1:A=0/5 or 3/5"]
-[Note "2:!C queen no !H king no !S king"]
+[Note "2:!C queen no !S king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "73"]
+[Board "65"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1869,11 +1662,11 @@ Pass  Pass
 {HCP 14 5 17 4}
 {Losers 5 9 5 9}
 [Declarer "S"]
-[Contract "5D"]
+[Contract "5C"]
 [Auction "S"]
 1D    Pass  1S    Pass
 2C    Pass  2H =1=    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=1/4 or 4/4"]
@@ -1882,7 +1675,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "74"]
+[Board "66"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1899,17 +1692,15 @@ Pass  Pass
 1D    Pass  1S    Pass
 3C    Pass  3S    Pass
 3N    Pass  4D    Pass
-4N    Pass  5D =1=    Pass
-5H    Pass  5S =2=    Pass
+4N    Pass  5C =1=    Pass
 6D    Pass  Pass  Pass
 [Note "1:A=1/5 or 4/5"]
-[Note "2:!D queen and !S king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "75"]
+[Board "67"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1934,7 +1725,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "76"]
+[Board "68"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -1945,50 +1736,23 @@ Pass  Pass
 {Shape 1345 4333 4441 4324}
 {HCP 20 2 12 6}
 {Losers 4 12 7 9}
-[Declarer "N"]
-[Contract "6N"]
-[Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  3D    Pass
-3H    Pass  4N    Pass
-5H =1=    Pass  5N =2=    Pass
-6D =3=    Pass  6N    Pass
-Pass  Pass
-[Note "1:A=2/5 or 5/5, Q(D)=0"]
-[Note "2:King ask by 5NT"]
-[Note "3:K=1"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "77"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:Q87.AKQ42.8543.A J3.653.K976.QJ98 AT52..AQJT2.K743 K964.JT987..T652"]
-{Shape 3541 2344 4054 4504}
-{HCP 15 7 14 4}
-{Losers 5 9 5 8}
 [Declarer "S"]
-[Contract "5S"]
+[Contract "5D"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  3N    Pass
-4D    Pass  4N    Pass
-5S =2=    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2/5 or 5/5, Q(D)=1"]
+1D    Pass  2C =1=    Pass
+2H    Pass  2S =2=    Pass
+3S    Pass  4D    Pass
+4N    Pass  5D =3=    Pass
+Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
+[Note "3:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "78"]
+[Board "69"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2002,19 +1766,17 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-4N    Pass  5C =2=    Pass
+1D    Pass  2H    Pass
+2S    Pass  4D    Pass
+4N    Pass  5D =1=    Pass
 6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=0/5 or 3/5"]
+[Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "79"]
+[Board "70"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2025,22 +1787,20 @@ Pass  Pass
 {Shape 6151 3415 1444 3433}
 {HCP 15 6 15 4}
 {Losers 4 9 5 11}
-[Declarer "S"]
-[Contract "6D"]
+[Declarer "N"]
+[Contract "5S"]
 [Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-3H    Pass  4D    Pass
-4N    Pass  5S =2=    Pass
-6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2/5 or 5/5, Q(D)=1"]
+1D    Pass  2S    Pass
+3H    Pass  3S    Pass
+4N    Pass  5H =1=    Pass
+5S    Pass  Pass  Pass
+[Note "1:A=2/5 or 5/5, Q(S)=0"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "80"]
+[Board "71"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2066,36 +1826,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "81"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:6.A98653.AK83.AK JT874.Q2.T97.965 AK93.7.Q654.QJ82 Q52.KJT4.J2.T743"]
-{Shape 1642 5233 4144 3424}
-{HCP 18 3 12 7}
-{Losers 4 11 6 9}
-[Declarer "S"]
-[Contract "7D"]
-[Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-4S    Pass  4N    Pass
-5D =2=    Pass  5H    Pass
-5S =3=    Pass  7D    Pass
-Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=1/5 or 4/5"]
-[Note "3:!D queen and !S king"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "82"]
+[Board "72"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2119,7 +1850,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "83"]
+[Board "73"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2133,21 +1864,22 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  3D    Pass
-4C    Pass  4H    Pass
-4S    Pass  4N    Pass
-5D =1=    Pass  5H    Pass
-6C =2=    Pass  6D    Pass
+1D    Pass  2C =1=    Pass
+2S    Pass  3H =2=    Pass
+4D    Pass  4N    Pass
+5C =3=    Pass  5H    Pass
+6C =4=    Pass  6D    Pass
 Pass  Pass
-[Note "1:A=1/5 or 4/5"]
-[Note "2:!D queen and !C king"]
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
+[Note "3:A=1/5 or 4/5"]
+[Note "4:!D queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "84"]
+[Board "74"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2165,7 +1897,7 @@ Pass  Pass
 1S    Pass  2C =1=    Pass
 3C    Pass  4D    Pass
 4S    Pass  4N    Pass
-5D =2=    Pass  5H    Pass
+5C =2=    Pass  5H    Pass
 6C =3=    Pass  6D    Pass
 Pass  Pass
 [Note "1:Fourth suit game force"]
@@ -2176,60 +1908,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "85"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:9.AQJ86.QJ64.AJ3 Q753.T752.A75.T7 AK86.K.KT32.K986 JT42.943.98.Q542"]
-{Shape 1543 4432 4144 4324}
-{HCP 15 6 16 3}
-{Losers 6 9 6 10}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  3N    Pass
-4N    Pass  6D    Pass
-Pass  Pass
-[Note "1:Fourth suit game force"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "86"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:AQJ84.A.AK64.942 972.9753.87.J763 T.KQT2.T532.AKQ5 K653.J864.QJ9.T8"]
-{Shape 5143 3424 1444 4432}
-{HCP 18 1 14 7}
-{Losers 5 11 5 9}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-3H    Pass  4D    Pass
-4H    Pass  4N    Pass
-5D =2=    Pass  5H    Pass
-6D =3=    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=1/5 or 4/5"]
-[Note "3:no !D queen"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "87"]
+[Board "75"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2255,7 +1934,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "88"]
+[Board "76"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2279,7 +1958,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "89"]
+[Board "77"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2303,7 +1982,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "90"]
+[Board "78"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2328,33 +2007,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "91"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:KJ754.KT3.AQ75.Q QT83.J987..JT765 A.A642.KT962.A42 962.Q5.J843.K983"]
-{Shape 5341 4405 1453 3244}
-{HCP 15 4 15 6}
-{Losers 6 8 6 10}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1S    Pass
-1N    Pass  2C =1=    Pass
-3H    Pass  4D    Pass
-4N    Pass  5D =2=    Pass
-6D    Pass  Pass  Pass
-[Note "1:New Minor Forcing"]
-[Note "2:A=1/5 or 4/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "92"]
+[Board "79"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2368,20 +2021,20 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  3H =1=    Pass
-4D    Pass  4H    Pass
-4S    Pass  4N    Pass
-5H =2=    Pass  6D    Pass
+1D    Pass  2C =1=    Pass
+2S    Pass  3H =2=    Pass
+4D    Pass  4N    Pass
+5H =3=    Pass  6D    Pass
 Pass  Pass
-[Note "1:Splinter"]
-[Note "2:A=2/5 or 5/5, Q(D)=0"]
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
+[Note "3:A=2/5 or 5/5, Q(D)=0"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "93"]
+[Board "80"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2398,7 +2051,7 @@ Pass  Pass
 1D    Pass  1H    Pass
 2S    Pass  4D    Pass
 4S    Pass  4N    Pass
-5C =1=    Pass  6D    Pass
+5D =1=    Pass  6D    Pass
 Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -2406,7 +2059,31 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "94"]
+[Board "81"]
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "All"]
+[Deal "N:AK542..A53.A6543 876.KT75.T764.T2 Q.AJ83.QJ2.KQ987 JT93.Q9642.K98.J"]
+{Shape 5035 3442 1435 4531}
+{HCP 15 3 15 7}
+{Losers 5 10 6 8}
+[Declarer "S"]
+[Contract "7C"]
+[Auction "S"]
+1C    Pass  2S    Pass
+3H    Pass  4C    Pass
+4N    Pass  5D =1=    Pass
+7C    Pass  Pass  Pass
+[Note "1:A=0/5 or 3/5"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Minor_Game_Or_Slam"]
+[Site ""]
+[Board "82"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2418,21 +2095,17 @@ Pass  Pass
 {HCP 15 4 16 5}
 {Losers 4 8 4 11}
 [Declarer "S"]
-[Contract "7D"]
+[Contract "5D"]
 [Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-2N    Pass  4D    Pass
-4N    Pass  5S =2=    Pass
-7D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2/5 or 5/5, Q(D)=1"]
+1D    Pass  2S    Pass
+5C    Pass  5D    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "95"]
+[Board "83"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2457,7 +2130,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "96"]
+[Board "84"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2469,21 +2142,19 @@ Pass  Pass
 {HCP 19 7 13 1}
 {Losers 4 8 6 11}
 [Declarer "S"]
-[Contract "6N"]
+[Contract "5H"]
 [Auction "S"]
-1D    Pass  1S    Pass
-1N    Pass  2C =1=    Pass
+1D    Pass  2S    Pass
 3H    Pass  4N    Pass
-5D =2=    Pass  6N    Pass
+5C =1=    Pass  5H    Pass
 Pass  Pass
-[Note "1:New Minor Forcing"]
-[Note "2:A=1/5 or 4/5"]
+[Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "97"]
+[Board "85"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2497,17 +2168,17 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  1S    Pass
-2D    Pass  4N    Pass
-5H =1=    Pass  6D    Pass
-Pass  Pass
-[Note "1:A=2/5 or 5/5, Q(D)=0"]
+1D    Pass  2S    Pass
+3H    Pass  4D    Pass
+4N    Pass  5S =1=    Pass
+6D    Pass  Pass  Pass
+[Note "1:A=2/5 or 5/5, Q(D)=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "98"]
+[Board "86"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2530,7 +2201,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "99"]
+[Board "87"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2542,18 +2213,18 @@ Pass  Pass
 {HCP 14 8 15 3}
 {Losers 6 9 6 10}
 [Declarer "S"]
-[Contract "5C"]
+[Contract "5D"]
 [Auction "S"]
 1D    Pass  1S    Pass
 2C    Pass  4N    Pass
-5C =1=    Pass  Pass  Pass
+5D =1=    Pass  Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "100"]
+[Board "88"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2570,7 +2241,7 @@ Pass  Pass
 1D    Pass  1S    Pass
 2N    Pass  3D    Pass
 3N    Pass  4D    Pass
-4N    Pass  5D =1=    Pass
+4N    Pass  5C =1=    Pass
 6D    Pass  Pass  Pass
 [Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -2578,7 +2249,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "101"]
+[Board "89"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2602,7 +2273,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "102"]
+[Board "90"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2613,21 +2284,43 @@ Pass  Pass
 {Shape 3046 2533 4441 4423}
 {HCP 13 6 19 2}
 {Losers 5 10 5 10}
-[Declarer "S"]
-[Contract "6D"]
+[Declarer "N"]
+[Contract "6N"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2H    Pass  3C    Pass
-3D    Pass  4D    Pass
-4N    Pass  5H =1=    Pass
-6D    Pass  Pass  Pass
-[Note "1:A=2/5 or 5/5, Q(D)=0"]
+1D    Pass  2C =1=    Pass
+2H    Pass  3N    Pass
+6N    Pass  Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "103"]
+[Board "91"]
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:98.2.QJ62.AKJ965 Q43.964.T743.QT4 AKJ5.AKJ7.K985.7 T762.QT853.A.832"]
+{Shape 2146 3343 4441 4513}
+{HCP 11 4 19 6}
+{Losers 6 10 5 8}
+[Declarer "S"]
+[Contract "6D"]
+[Auction "S"]
+1D    Pass  2C =1=    Pass
+2H    Pass  3C    Pass
+3D    Pass  5D    Pass
+6D    Pass  Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Minor_Game_Or_Slam"]
+[Site ""]
+[Board "92"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2654,31 +2347,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "104"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:Q72.K.J652.KQJ87 AT85.T62.94.6542 K96.AJ75.AQ873.A J43.Q9843.KT.T93"]
-{Shape 3145 4324 3451 3523}
-{HCP 12 4 18 6}
-{Losers 7 10 5 9}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  2D =1=    Pass
-4D    Pass  4H    Pass
-4S    Pass  5D    Pass
-6D    Pass  Pass  Pass
-[Note "1:Inverted minors"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "105"]
+[Board "93"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2695,7 +2364,7 @@ Pass  Pass
 1D    Pass  1S    Pass
 2H    Pass  3C =1=    Pass
 4S    Pass  4N    Pass
-5D =2=    Pass  5H    Pass
+5C =2=    Pass  5D    Pass
 5S =3=    Pass  7D    Pass
 Pass  Pass
 [Note "1:Fourth suit game force"]
@@ -2706,7 +2375,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "106"]
+[Board "94"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2732,7 +2401,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "107"]
+[Board "95"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2743,19 +2412,19 @@ Pass  Pass
 {Shape 1147 3433 4441 5422}
 {HCP 14 3 17 6}
 {Losers 5 11 5 9}
-[Declarer "S"]
-[Contract "5D"]
+[Declarer "N"]
+[Contract "6C"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2H    Pass  4C    Pass
-4S    Pass  5D    Pass
-Pass  Pass
+1D    Pass  2C =1=    Pass
+2H    Pass  5C    Pass
+6C    Pass  Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "108"]
+[Board "96"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2766,19 +2435,20 @@ Pass  Pass
 {Shape 3145 3433 4441 3424}
 {HCP 15 7 17 1}
 {Losers 6 10 5 11}
-[Declarer "S"]
+[Declarer "N"]
 [Contract "6N"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2H    Pass  3C    Pass
-3N    Pass  4N    Pass
-6N    Pass  Pass  Pass
+1D    Pass  2C =1=    Pass
+2H    Pass  3N    Pass
+4N    Pass  6N    Pass
+Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "109"]
+[Board "97"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2803,7 +2473,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "110"]
+[Board "98"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2819,7 +2489,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  2D =1=    Pass
 4D    Pass  4S    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 6D    Pass  Pass  Pass
 [Note "1:Inverted minors"]
 [Note "2:A=1/5 or 4/5"]
@@ -2828,7 +2498,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "111"]
+[Board "99"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2851,7 +2521,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "112"]
+[Board "100"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2868,7 +2538,7 @@ Pass  Pass
 1D    Pass  1H    Pass
 2C    Pass  2S =1=    Pass
 3D    Pass  4D    Pass
-4N    Pass  5C =2=    Pass
+4N    Pass  5D =2=    Pass
 6D    Pass  Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=0/5 or 3/5"]
@@ -2877,7 +2547,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "113"]
+[Board "101"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2902,7 +2572,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "114"]
+[Board "102"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2927,7 +2597,32 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "115"]
+[Board "103"]
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "EW"]
+[Deal "N:Q97.AJ963.AQT4.K 653.KQT.K63.J765 AKT4.5.J985.AQT2 J82.8742.72.9843"]
+{Shape 3541 3334 4144 3424}
+{HCP 16 9 14 1}
+{Losers 6 9 6 11}
+[Declarer "S"]
+[Contract "6D"]
+[Auction "S"]
+1D    Pass  2H    Pass
+2S    Pass  3D    Pass
+4D    Pass  4H    Pass
+4N    Pass  5S =1=    Pass
+6D    Pass  Pass  Pass
+[Note "1:A=2/5 or 5/5, Q(D)=1"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Minor_Game_Or_Slam"]
+[Site ""]
+[Board "104"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2944,7 +2639,7 @@ Pass  Pass
 1D    Pass  2D =1=    Pass
 3N    Pass  4D    Pass
 4H    Pass  4S    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 6D    Pass  Pass  Pass
 [Note "1:Inverted minors"]
 [Note "2:A=1/5 or 4/5"]
@@ -2953,7 +2648,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "116"]
+[Board "105"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2967,18 +2662,19 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2H    Pass  3C    Pass
-3D    Pass  4D    Pass
-4N    Pass  5H =1=    Pass
-6D    Pass  Pass  Pass
-[Note "1:A=2/5 or 5/5, Q(D)=0"]
+1D    Pass  2C =1=    Pass
+2H    Pass  3D    Pass
+3S    Pass  4N    Pass
+5S =2=    Pass  6D    Pass
+Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:A=2/5 or 5/5, Q(D)=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "117"]
+[Board "106"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -2995,18 +2691,18 @@ Pass  Pass
 1C    Pass  2C =1=    Pass
 2H    Pass  4C    Pass
 4D    Pass  4H    Pass
-4N    Pass  5C =2=    Pass
-5D    Pass  5N =3=    Pass
+4N    Pass  5D =2=    Pass
+5H    Pass  5N =3=    Pass
 6C    Pass  Pass  Pass
 [Note "1:Inverted minors"]
 [Note "2:A=0/5 or 3/5"]
-[Note "3:!C queen no !H king no !S king"]
+[Note "3:!C queen no !S king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "118"]
+[Board "107"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3031,7 +2727,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "119"]
+[Board "108"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3047,7 +2743,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  3S =1=    Pass
 4C    Pass  4H    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 6D    Pass  Pass  Pass
 [Note "1:Splinter"]
 [Note "2:A=1/5 or 4/5"]
@@ -3056,7 +2752,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "120"]
+[Board "109"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3073,7 +2769,7 @@ Pass  Pass
 1D    Pass  2D =1=    Pass
 2H    Pass  3N    Pass
 4D    Pass  4N    Pass
-5C =2=    Pass  6D    Pass
+5D =2=    Pass  6D    Pass
 Pass  Pass
 [Note "1:Inverted minors"]
 [Note "2:A=0/5 or 3/5"]
@@ -3082,7 +2778,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "121"]
+[Board "110"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3094,21 +2790,19 @@ Pass  Pass
 {HCP 17 4 16 3}
 {Losers 4 10 6 11}
 [Declarer "S"]
-[Contract "6D"]
+[Contract "6N"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-4N    Pass  5S =2=    Pass
-6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2/5 or 5/5, Q(D)=1"]
+1D    Pass  2H    Pass
+2S    Pass  3H    Pass
+4N    Pass  5D =1=    Pass
+6N    Pass  Pass  Pass
+[Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "122"]
+[Board "111"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3126,7 +2820,7 @@ Pass  Pass
 2N    Pass  3D    Pass
 3S    Pass  4D    Pass
 4S    Pass  4N    Pass
-5D =1=    Pass  5H    Pass
+5C =1=    Pass  5H    Pass
 6D =2=    Pass  Pass  Pass
 [Note "1:A=1/5 or 4/5"]
 [Note "2:no !D queen"]
@@ -3135,7 +2829,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "123"]
+[Board "112"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3159,7 +2853,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "124"]
+[Board "113"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3183,7 +2877,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "125"]
+[Board "114"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3199,7 +2893,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  1H    Pass
 1S    Pass  3D    Pass
-4N    Pass  5D =1=    Pass
+4N    Pass  5C =1=    Pass
 5H    Pass  5N =2=    Pass
 6D    Pass  Pass  Pass
 [Note "1:A=1/5 or 4/5"]
@@ -3209,7 +2903,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "126"]
+[Board "115"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3226,7 +2920,7 @@ Pass  Pass
 1D    Pass  1H    Pass
 3C    Pass  4D    Pass
 4S    Pass  4N    Pass
-5C =1=    Pass  5N =2=    Pass
+5D =1=    Pass  5N =2=    Pass
 6D =3=    Pass  Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [Note "2:King ask by 5NT"]
@@ -3236,7 +2930,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "127"]
+[Board "116"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3250,16 +2944,20 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2S    Pass  3C    Pass
-3D    Pass  5D    Pass
+1D    Pass  2C =1=    Pass
+2S    Pass  3D    Pass
+4N    Pass  5D =2=    Pass
+5H    Pass  5S =3=    Pass
 6D    Pass  Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:A=0/5 or 3/5"]
+[Note "3:!D queen and !S king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "128"]
+[Board "117"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3284,7 +2982,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "129"]
+[Board "118"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3298,20 +2996,18 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
+1D    Pass  2H    Pass
+2S    Pass  4D    Pass
 4S    Pass  4N    Pass
-5D =2=    Pass  6D    Pass
+5C =1=    Pass  6D    Pass
 Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=1/5 or 4/5"]
+[Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "130"]
+[Board "119"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3325,66 +3021,44 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-3D    Pass  4D    Pass
-4N    Pass  5S =1=    Pass
-6D    Pass  Pass  Pass
-[Note "1:A=2/5 or 5/5, Q(D)=1"]
+1D    Pass  2C =1=    Pass
+2H    Pass  2S =2=    Pass
+3D    Pass  4N    Pass
+5H =3=    Pass  6D    Pass
+Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
+[Note "3:A=2/5 or 5/5, Q(D)=0"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "131"]
+[Board "120"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
 [Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:AKQT63.85.KQT4.K 2.Q43.9632.A9432 9.AJ96.AJ85.QJT7 J8754.KT72.7.865"]
-{Shape 6241 1345 1444 5413}
-{HCP 17 6 13 4}
-{Losers 4 8 7 9}
+[Vulnerable "NS"]
+[Deal "N:2.T96.Q875.AKQT7 653.AJ53.T62.542 KQJ7.K872.AKJ9.J AT984.Q4.43.9863"]
+{Shape 1345 3433 4441 5224}
+{HCP 11 5 18 6}
+{Losers 6 11 5 9}
 [Declarer "S"]
 [Contract "5D"]
 [Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-3H    Pass  4D    Pass
-4H    Pass  4S    Pass
-5D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "132"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:QJ6.T.KQ73.AJ983 K972.J7652.6.KT7 AT54.AKQ9.AT842. 83.843.J95.Q6542"]
-{Shape 3145 4513 4450 2335}
-{HCP 13 7 17 3}
-{Losers 6 8 4 10}
-[Declarer "N"]
-[Contract "6C"]
-[Auction "S"]
-1D    Pass  2C    Pass
+1D    Pass  2C =1=    Pass
 2H    Pass  3C    Pass
-4N    Pass  5D =1=    Pass
-6C    Pass  Pass  Pass
-[Note "1:A=1/5 or 4/5"]
+3D    Pass  5D    Pass
+Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "133"]
+[Board "121"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3398,21 +3072,19 @@ Pass  Pass
 [Declarer "S"]
 [Contract "7N"]
 [Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-4N    Pass  5C =2=    Pass
-5N =3=    Pass  6D =4=    Pass
+1D    Pass  2S    Pass
+3C    Pass  3S    Pass
+4N    Pass  5C =1=    Pass
+5D    Pass  5S =2=    Pass
 7N    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=0/4 or 3/4"]
-[Note "3:King ask by 5NT"]
-[Note "4:K=1"]
+[Note "1:A=1/5 or 4/5"]
+[Note "2:no !S queen"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "134"]
+[Board "122"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3426,18 +3098,20 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  3D    Pass
-3S    Pass  4N    Pass
-5D =1=    Pass  6D    Pass
+1D    Pass  2C =1=    Pass
+2S    Pass  3H =2=    Pass
+4D    Pass  4N    Pass
+5C =3=    Pass  6D    Pass
 Pass  Pass
-[Note "1:A=1/5 or 4/5"]
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
+[Note "3:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "135"]
+[Board "123"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3451,18 +3125,18 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  3N    Pass
-4N    Pass  6D    Pass
-Pass  Pass
-[Note "1:Fourth suit game force"]
+1D    Pass  2H    Pass
+2S    Pass  3D    Pass
+4D    Pass  4H    Pass
+4N    Pass  5H =1=    Pass
+6D    Pass  Pass  Pass
+[Note "1:A=2/5 or 5/5, Q(D)=0"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "136"]
+[Board "124"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3488,31 +3162,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "137"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:AKJ95.J.QJ73.KQJ T632.K8654.4.962 8.QT92.AKT6.A753 Q74.A73.9852.T84"]
-{Shape 5143 4513 1444 3343}
-{HCP 18 3 13 6}
-{Losers 5 9 6 10}
-[Declarer "S"]
-[Contract "5D"]
-[Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-3H    Pass  4D    Pass
-5D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "138"]
+[Board "125"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3535,7 +3185,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "139"]
+[Board "126"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3562,7 +3212,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "140"]
+[Board "127"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3588,7 +3238,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "141"]
+[Board "128"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3599,23 +3249,18 @@ Pass  Pass
 {Shape 5341 4414 1255 3433}
 {HCP 16 5 19 0}
 {Losers 5 9 4 12}
-[Declarer "S"]
-[Contract "7D"]
+[Declarer "N"]
+[Contract "6N"]
 [Auction "S"]
-1D    Pass  1S    Pass
-3C    Pass  3S    Pass
-4C    Pass  4N    Pass
-5C =1=    Pass  5D    Pass
-5N =2=    Pass  7D    Pass
-Pass  Pass
-[Note "1:A=0/5 or 3/5"]
-[Note "2:!C queen no !H king no !S king"]
+1D    Pass  2S    Pass
+3C    Pass  3N    Pass
+6N    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "142"]
+[Board "129"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3629,17 +3274,17 @@ Pass  Pass
 [Declarer "S"]
 [Contract "5D"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-5D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
+1D    Pass  2H    Pass
+2S    Pass  3D    Pass
+4D    Pass  4H    Pass
+4S    Pass  5D    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "143"]
+[Board "130"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3664,7 +3309,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "144"]
+[Board "131"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3680,7 +3325,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  3S =1=    Pass
 4C    Pass  4D    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 6D    Pass  Pass  Pass
 [Note "1:Splinter"]
 [Note "2:A=1/5 or 4/5"]
@@ -3689,59 +3334,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "145"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:AKJT52.K8.AQ97.8 Q9863.Q742.3.742 4.AT95.J862.AQJ9 7.J63.KT54.KT653"]
-{Shape 6241 5413 1444 1345}
-{HCP 17 4 12 7}
-{Losers 4 8 7 8}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-3H    Pass  4D    Pass
-4H    Pass  4S    Pass
-4N    Pass  5S =2=    Pass
-6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2/5 or 5/5, Q(D)=1"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "146"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:AJT.6.K954.KQ863 Q7532.J983.8.AT5 K4.AQT2.AQJT62.4 986.K754.73.J972"]
-{Shape 3145 5413 2461 3424}
-{HCP 13 7 16 4}
-{Losers 6 8 4 10}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  2C    Pass
-3D    Pass  4D    Pass
-4H    Pass  4S    Pass
-4N    Pass  5S =1=    Pass
-6D    Pass  Pass  Pass
-[Note "1:A=2/5 or 5/5, Q(D)=1"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "147"]
+[Board "132"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3766,7 +3359,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "148"]
+[Board "133"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3796,7 +3389,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "149"]
+[Board "134"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3810,44 +3403,42 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-4N    Pass  5C =2=    Pass
+1D    Pass  2H    Pass
+2S    Pass  4D    Pass
+4N    Pass  5D =1=    Pass
 6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=0/5 or 3/5"]
+[Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "150"]
+[Board "135"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
 [Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:AKJ762.A74.KQ96. QT83.T53.J2.JT96 5.QJ62.AT73.KQ53 94.K98.854.A8742"]
-{Shape 6340 4324 1444 2335}
-{HCP 17 4 12 7}
-{Losers 4 10 6 9}
+[Vulnerable "NS"]
+[Deal "N:AKQ74.A.Q876.KT6 T963.QJ94.T32.A5 2.K72.AKJ94.J874 J85.T8653.5.Q932"]
+{Shape 5143 4432 1354 3514}
+{HCP 18 7 12 3}
+{Losers 4 9 7 9}
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-3H    Pass  4D    Pass
-5D    Pass  6D    Pass
+1D    Pass  2S    Pass
+3C    Pass  4D    Pass
+4H    Pass  4N    Pass
+5H =1=    Pass  6D    Pass
 Pass  Pass
-[Note "1:Fourth suit game force"]
+[Note "1:A=2/5 or 5/5, Q(D)=0"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "151"]
+[Board "136"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3859,21 +3450,20 @@ Pass  Pass
 {HCP 15 7 14 4}
 {Losers 4 9 7 11}
 [Declarer "S"]
-[Contract "5D"]
+[Contract "6D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  3D    Pass
-3N    Pass  4D    Pass
-4S    Pass  4N    Pass
-5C =1=    Pass  5D    Pass
-Pass  Pass
-[Note "1:A=0/5 or 3/5"]
+1D    Pass  2C =1=    Pass
+2H    Pass  2S =2=    Pass
+3S    Pass  5D    Pass
+6D    Pass  Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "152"]
+[Board "137"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3891,7 +3481,7 @@ Pass  Pass
 2H    Pass  3C =1=    Pass
 3N    Pass  4D    Pass
 4H    Pass  4N    Pass
-5C =2=    Pass  7D    Pass
+5D =2=    Pass  7D    Pass
 Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=0/5 or 3/5"]
@@ -3900,7 +3490,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "153"]
+[Board "138"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3926,7 +3516,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "154"]
+[Board "139"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3942,7 +3532,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  1H    Pass
 1S    Pass  3N    Pass
-4N    Pass  5D =1=    Pass
+4N    Pass  5C =1=    Pass
 6N    Pass  Pass  Pass
 [Note "1:A=1/4 or 4/4"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -3950,7 +3540,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "155"]
+[Board "140"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -3962,23 +3552,21 @@ Pass  Pass
 {HCP 17 5 18 0}
 {Losers 4 11 5 10}
 [Declarer "S"]
-[Contract "7D"]
+[Contract "5D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2S    Pass  3C    Pass
-3D    Pass  4D    Pass
-4N    Pass  5S =1=    Pass
-5N =2=    Pass  6D =3=    Pass
-7D    Pass  Pass  Pass
-[Note "1:A=2/5 or 5/5, Q(D)=1"]
-[Note "2:King ask by 5NT"]
-[Note "3:K=1"]
+1D    Pass  2C =1=    Pass
+2S    Pass  3H =2=    Pass
+4D    Pass  4N    Pass
+5D =3=    Pass  Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
+[Note "3:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "156"]
+[Board "141"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4003,7 +3591,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "157"]
+[Board "142"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4027,7 +3615,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "158"]
+[Board "143"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4039,19 +3627,21 @@ Pass  Pass
 {HCP 14 5 18 3}
 {Losers 4 8 6 10}
 [Declarer "S"]
-[Contract "6C"]
+[Contract "7C"]
 [Auction "S"]
 1C    Pass  2C =1=    Pass
-4C    Pass  5H    Pass
-6C =2=    Pass  Pass  Pass
+4C    Pass  4D    Pass
+4H    Pass  4N    Pass
+5D =2=    Pass  7C    Pass
+Pass  Pass
 [Note "1:Inverted minors"]
-[Note "2:2 out of 4"]
+[Note "2:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "159"]
+[Board "144"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4063,24 +3653,18 @@ Pass  Pass
 {HCP 19 6 12 3}
 {Losers 4 9 6 9}
 [Declarer "S"]
-[Contract "7D"]
+[Contract "6D"]
 [Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
+1D    Pass  2S    Pass
 3H    Pass  4D    Pass
-4H    Pass  4N    Pass
-5D =2=    Pass  5H    Pass
-6C =3=    Pass  7D    Pass
+5D    Pass  6D    Pass
 Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=1/5 or 4/5"]
-[Note "3:!D queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "160"]
+[Board "145"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4107,7 +3691,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "161"]
+[Board "146"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4121,18 +3705,44 @@ Pass  Pass
 [Declarer "S"]
 [Contract "5D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  3D    Pass
-3H    Pass  4N    Pass
-5C =1=    Pass  5D    Pass
-Pass  Pass
-[Note "1:A=0/5 or 3/5"]
+1D    Pass  2C =1=    Pass
+2H    Pass  2S =2=    Pass
+3S    Pass  4D    Pass
+4H    Pass  4N    Pass
+5D =3=    Pass  Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
+[Note "3:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "162"]
+[Board "147"]
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "NS"]
+[Deal "N:Q.A62.KT52.KJ974 9542.J983.7.Q653 AK86.QT54.AQJ43. JT73.K7.986.AT82"]
+{Shape 1345 4414 4450 4234}
+{HCP 13 3 16 8}
+{Losers 7 9 4 9}
+[Declarer "S"]
+[Contract "5D"]
+[Auction "S"]
+1D    Pass  2C =1=    Pass
+2H    Pass  3C    Pass
+3D    Pass  5D    Pass
+Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Minor_Game_Or_Slam"]
+[Site ""]
+[Board "148"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4149,16 +3759,18 @@ Pass  Pass
 1C    Pass  2C =1=    Pass
 2N    Pass  4C    Pass
 4D    Pass  4H    Pass
-4N    Pass  5C =2=    Pass
+4N    Pass  5D =2=    Pass
+5H    Pass  5N =3=    Pass
 6C    Pass  Pass  Pass
 [Note "1:Inverted minors"]
 [Note "2:A=0/5 or 3/5"]
+[Note "3:!C queen no !S king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "163"]
+[Board "149"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4183,7 +3795,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "164"]
+[Board "150"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4209,7 +3821,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "165"]
+[Board "151"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4233,7 +3845,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "166"]
+[Board "152"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4245,24 +3857,18 @@ Pass  Pass
 {HCP 19 5 13 3}
 {Losers 4 9 6 10}
 [Declarer "S"]
-[Contract "7D"]
+[Contract "6D"]
 [Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
+1D    Pass  2S    Pass
 3H    Pass  4D    Pass
-4H    Pass  4N    Pass
-5D =2=    Pass  5H    Pass
-5N =3=    Pass  7D    Pass
+5D    Pass  6D    Pass
 Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=1/5 or 4/5"]
-[Note "3:!D queen no !S king no !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "167"]
+[Board "153"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4286,31 +3892,31 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "168"]
+[Board "154"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
 [Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:KQJ53.A93.AT73.K 972.J75.J8.A8532 A.KQ84.KQ964.964 T864.T62.52.QJT7"]
-{Shape 5341 3325 1453 4324}
-{HCP 17 6 14 3}
-{Losers 6 10 5 10}
+[Vulnerable "NS"]
+[Deal "N:KQJT54.QJ.AK32.3 A7.T642.J76.J864 2.AK87.Q954.AK52 9863.953.T8.QT97"]
+{Shape 6241 2434 1444 4324}
+{HCP 16 6 16 2}
+{Losers 5 10 5 10}
 [Declarer "S"]
-[Contract "5D"]
+[Contract "6N"]
 [Auction "S"]
-1D    Pass  1S    Pass
-1N    Pass  2C =1=    Pass
-3H    Pass  4D    Pass
-5D    Pass  Pass  Pass
-[Note "1:New Minor Forcing"]
+1D    Pass  2S    Pass
+3H    Pass  3S    Pass
+4N    Pass  5S =1=    Pass
+6N    Pass  Pass  Pass
+[Note "1:A=2/5 or 5/5, Q(S)=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "169"]
+[Board "155"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4326,7 +3932,7 @@ Pass  Pass
 [Auction "S"]
 2C =1=    Pass  3C    Pass
 4D    Pass  4N    Pass
-5C =2=    Pass  6D    Pass
+5D =2=    Pass  6D    Pass
 Pass  Pass
 [Note "1:strong"]
 [Note "2:A=0/5 or 3/5"]
@@ -4335,7 +3941,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "170"]
+[Board "156"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4360,7 +3966,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "171"]
+[Board "157"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4372,19 +3978,18 @@ Pass  Pass
 {HCP 20 4 13 3}
 {Losers 5 10 6 8}
 [Declarer "S"]
-[Contract "5D"]
+[Contract "6D"]
 [Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-3D    Pass  4D    Pass
-5D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
+1D    Pass  2S    Pass
+3C    Pass  4D    Pass
+5D    Pass  6D    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "172"]
+[Board "158"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4409,7 +4014,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "173"]
+[Board "159"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4435,7 +4040,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "174"]
+[Board "160"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4447,12 +4052,11 @@ Pass  Pass
 {HCP 15 5 14 6}
 {Losers 5 10 6 8}
 [Declarer "S"]
-[Contract "6C"]
+[Contract "5C"]
 [Auction "S"]
 1C    Pass  2C =1=    Pass
 3D =2=    Pass  4N    Pass
-5D =3=    Pass  6C    Pass
-Pass  Pass
+5C =3=    Pass  Pass  Pass
 [Note "1:Inverted minors"]
 [Note "2:shortness "]
 [Note "3:A=1/5 or 4/5"]
@@ -4461,7 +4065,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "175"]
+[Board "161"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4484,7 +4088,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "176"]
+[Board "162"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4509,30 +4113,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "177"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:J.K93.AKQ9.A9865 9743.T84.42.J742 AQT5.AQ76.T876.K K862.J52.J53.QT3"]
-{Shape 1345 4324 4441 4333}
-{HCP 17 1 15 7}
-{Losers 5 11 6 10}
-[Declarer "S"]
-[Contract "6N"]
-[Auction "S"]
-1D    Pass  2C    Pass
-2H    Pass  3C    Pass
-3N    Pass  6N    Pass
-Pass  Pass
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "178"]
+[Board "163"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4544,13 +4125,12 @@ Pass  Pass
 {HCP 20 6 13 1}
 {Losers 5 9 6 10}
 [Declarer "S"]
-[Contract "6D"]
+[Contract "5D"]
 [Auction "S"]
 1D    Pass  1H    Pass
 1S    Pass  2C =1=    Pass
 3C    Pass  4D    Pass
-4N    Pass  5C =2=    Pass
-5D    Pass  6D    Pass
+4N    Pass  5D =2=    Pass
 Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=0/5 or 3/5"]
@@ -4559,7 +4139,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "179"]
+[Board "164"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4576,7 +4156,7 @@ Pass  Pass
 1C    Pass  2C =1=    Pass
 4D =2=    Pass  4H    Pass
 4S    Pass  4N    Pass
-5D =3=    Pass  5H    Pass
+5C =3=    Pass  5D    Pass
 5S =4=    Pass  5N =5=    Pass
 6D =6=    Pass  7C    Pass
 Pass  Pass
@@ -4591,7 +4171,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "180"]
+[Board "165"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4602,22 +4182,18 @@ Pass  Pass
 {Shape 1543 5323 4153 3424}
 {HCP 17 1 17 5}
 {Losers 6 11 5 9}
-[Declarer "S"]
-[Contract "5D"]
+[Declarer "N"]
+[Contract "6N"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3D    Pass  4D    Pass
-4S    Pass  4N    Pass
-5D =2=    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=1/5 or 4/5"]
+1D    Pass  2H    Pass
+2S    Pass  2N    Pass
+6N    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "181"]
+[Board "166"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4640,7 +4216,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "182"]
+[Board "167"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4654,19 +4230,19 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6N"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-4N    Pass  5H =2=    Pass
+1D    Pass  2H    Pass
+2S    Pass  3H    Pass
+4N    Pass  5D =1=    Pass
+5S    Pass  5N =2=    Pass
 6N    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2/5 or 5/5, Q(D)=0"]
+[Note "1:A=0/5 or 3/5"]
+[Note "2:!H queen no !C king no !D king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "183"]
+[Board "168"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4680,21 +4256,23 @@ Pass  Pass
 [Declarer "S"]
 [Contract "7C"]
 [Auction "S"]
-1C    Pass  1S    Pass
-1N    Pass  2D =1=    Pass
-3N    Pass  4C    Pass
-4N    Pass  5C =2=    Pass
-5D    Pass  5S =3=    Pass
+1C    Pass  2S    Pass
+3D    Pass  4C    Pass
+4D    Pass  4S    Pass
+4N    Pass  5D =1=    Pass
+5H    Pass  5S =2=    Pass
+5N =3=    Pass  6D =4=    Pass
 7C    Pass  Pass  Pass
-[Note "1:New Minor Forcing"]
-[Note "2:A=0/5 or 3/5"]
-[Note "3:!C queen and !S king"]
+[Note "1:A=0/5 or 3/5"]
+[Note "2:!C queen and !S king"]
+[Note "3:King ask by 5NT"]
+[Note "4:K=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "184"]
+[Board "169"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4706,19 +4284,18 @@ Pass  Pass
 {HCP 12 5 17 6}
 {Losers 7 7 6 9}
 [Declarer "S"]
-[Contract "6D"]
+[Contract "5D"]
 [Auction "S"]
 1D    Pass  1S    Pass
 3D    Pass  4N    Pass
-5C =1=    Pass  5D    Pass
-6D    Pass  Pass  Pass
+5D =1=    Pass  Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "185"]
+[Board "170"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4742,7 +4319,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "186"]
+[Board "171"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4754,13 +4331,12 @@ Pass  Pass
 {HCP 13 4 16 7}
 {Losers 5 9 4 9}
 [Declarer "S"]
-[Contract "6D"]
+[Contract "5D"]
 [Auction "S"]
 1D    Pass  1S    Pass
 2H    Pass  3C =1=    Pass
 3N    Pass  4D    Pass
-4N    Pass  5C =2=    Pass
-5D    Pass  6D    Pass
+4N    Pass  5D =2=    Pass
 Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=0/5 or 3/5"]
@@ -4769,7 +4345,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "187"]
+[Board "172"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4786,7 +4362,7 @@ Pass  Pass
 1D    Pass  1S    Pass
 2H    Pass  3C =1=    Pass
 3S    Pass  4D    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 6D    Pass  Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=1/5 or 4/5"]
@@ -4795,7 +4371,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "188"]
+[Board "173"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4812,7 +4388,7 @@ Pass  Pass
 1D    Pass  1S    Pass
 2H    Pass  3C =1=    Pass
 3N    Pass  4D    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 5H    Pass  5S =3=    Pass
 6D    Pass  Pass  Pass
 [Note "1:Fourth suit game force"]
@@ -4823,7 +4399,33 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "189"]
+[Board "174"]
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "NS"]
+[Deal "N:3.K84.AKT6.KJT52 J54.Q92.84.Q9876 AKQ6.A763.Q532.3 T9872.JT5.J97.A4"]
+{Shape 1345 3325 4441 5332}
+{HCP 14 5 15 6}
+{Losers 6 9 5 10}
+[Declarer "S"]
+[Contract "6D"]
+[Auction "S"]
+1D    Pass  2C =1=    Pass
+2H    Pass  3C    Pass
+3D    Pass  4N    Pass
+5S =2=    Pass  6D    Pass
+Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:A=2/5 or 5/5, Q(D)=1"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Minor_Game_Or_Slam"]
+[Site ""]
+[Board "175"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4841,7 +4443,7 @@ Pass  Pass
 2H    Pass  3C =1=    Pass
 3N    Pass  4D    Pass
 4H    Pass  4S    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 6D    Pass  Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=1/5 or 4/5"]
@@ -4850,7 +4452,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "190"]
+[Board "176"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4875,7 +4477,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "191"]
+[Board "177"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4900,7 +4502,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "192"]
+[Board "178"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4923,7 +4525,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "193"]
+[Board "179"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4947,7 +4549,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "194"]
+[Board "180"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4965,7 +4567,7 @@ Pass  Pass
 2H    Pass  3D =1=    Pass
 3N    Pass  4C    Pass
 4D    Pass  4S    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 6C    Pass  Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=1/5 or 4/5"]
@@ -4974,7 +4576,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "195"]
+[Board "181"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -4991,7 +4593,7 @@ Pass  Pass
 1D    Pass  2D =1=    Pass
 2H    Pass  3S =2=    Pass
 4D    Pass  4S    Pass
-4N    Pass  5C =3=    Pass
+4N    Pass  5D =3=    Pass
 6D    Pass  Pass  Pass
 [Note "1:Inverted minors"]
 [Note "2:Splinter"]
@@ -5001,7 +4603,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "196"]
+[Board "182"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5015,18 +4617,16 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
+1D    Pass  2H    Pass
+2S    Pass  4D    Pass
 4S    Pass  5D    Pass
 6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "197"]
+[Board "183"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5052,7 +4652,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "198"]
+[Board "184"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5064,20 +4664,22 @@ Pass  Pass
 {HCP 17 3 13 7}
 {Losers 3 9 5 9}
 [Declarer "S"]
-[Contract "7D"]
+[Contract "5D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  3D    Pass
-4D    Pass  5S    Pass
-6C =1=    Pass  7D    Pass
+1D    Pass  2C =1=    Pass
+2S    Pass  3H =2=    Pass
+4D    Pass  4N    Pass
+5C =3=    Pass  5D    Pass
 Pass  Pass
-[Note "1:1 out of 4"]
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
+[Note "3:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "199"]
+[Board "185"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5103,7 +4705,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "200"]
+[Board "186"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5127,7 +4729,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "201"]
+[Board "187"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5153,56 +4755,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "202"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:A.AK762.J643.AT2 Q862.T9854.9.J86 KJ95.3.KQ75.KQ73 T743.QJ.AT82.954"]
-{Shape 1543 4513 4144 4243}
-{HCP 16 3 14 7}
-{Losers 6 9 5 10}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-4N    Pass  5C =2=    Pass
-6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=0/5 or 3/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "203"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:Q75.7.KJT2.AKQJ2 T64.Q53.Q87.T743 KJ32.AKJ8.A953.6 A98.T9642.64.985"]
-{Shape 3145 3334 4441 3523}
-{HCP 16 4 16 4}
-{Losers 5 10 6 10}
-[Declarer "S"]
-[Contract "6N"]
-[Auction "S"]
-1D    Pass  2C    Pass
-2H    Pass  3C    Pass
-3N    Pass  6N    Pass
-Pass  Pass
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "204"]
+[Board "188"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5214,20 +4767,18 @@ Pass  Pass
 {HCP 19 3 12 6}
 {Losers 4 10 7 10}
 [Declarer "S"]
-[Contract "6D"]
+[Contract "6N"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-5D    Pass  6D    Pass
-Pass  Pass
-[Note "1:Fourth suit game force"]
+1D    Pass  2H    Pass
+2S    Pass  3H    Pass
+3N    Pass  4N    Pass
+6N    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "205"]
+[Board "189"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5252,7 +4803,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "206"]
+[Board "190"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5276,7 +4827,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "207"]
+[Board "191"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5293,7 +4844,7 @@ Pass  Pass
 1D    Pass  1S    Pass
 2N    Pass  4C =1=    Pass
 4H    Pass  4N    Pass
-5C =2=    Pass  5H    Pass
+5D =2=    Pass  5H    Pass
 6D =3=    Pass  Pass  Pass
 [Note "1:Splinter"]
 [Note "2:A=0/5 or 3/5"]
@@ -5303,7 +4854,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "208"]
+[Board "192"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5331,34 +4882,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "209"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:3.AQJ982.AQ73.A4 QT862.63.JT6.T83 AK97.5.9852.KQJ6 J54.KT74.K4.9752"]
-{Shape 1642 5233 4144 3424}
-{HCP 17 3 13 7}
-{Losers 4 10 6 9}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-4S    Pass  4N    Pass
-5D =2=    Pass  6D    Pass
-Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=1/5 or 4/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "210"]
+[Board "193"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5370,12 +4894,13 @@ Pass  Pass
 {HCP 18 2 13 7}
 {Losers 5 9 7 7}
 [Declarer "S"]
-[Contract "5D"]
+[Contract "6D"]
 [Auction "S"]
 1D    Pass  1H    Pass
 2C    Pass  2S =1=    Pass
 3H    Pass  4D    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
+5D    Pass  6D    Pass
 Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=1/5 or 4/5"]
@@ -5384,7 +4909,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "211"]
+[Board "194"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5396,20 +4921,20 @@ Pass  Pass
 {HCP 19 1 13 7}
 {Losers 4 9 6 11}
 [Declarer "S"]
-[Contract "6N"]
+[Contract "6D"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-2D    Pass  4D    Pass
-4S    Pass  5C    Pass
-6N    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
+1D    Pass  2H    Pass
+2S    Pass  4D    Pass
+4S    Pass  4N    Pass
+5S =1=    Pass  6D    Pass
+Pass  Pass
+[Note "1:A=2/5 or 5/5, Q(D)=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "212"]
+[Board "195"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5421,13 +4946,13 @@ Pass  Pass
 {HCP 12 7 18 3}
 {Losers 7 8 6 10}
 [Declarer "S"]
-[Contract "5C"]
+[Contract "6C"]
 [Auction "S"]
 1C    Pass  2C =1=    Pass
 3N    Pass  4C    Pass
 4D    Pass  4H    Pass
-4N    Pass  5C =2=    Pass
-Pass  Pass
+4N    Pass  5D =2=    Pass
+6C    Pass  Pass  Pass
 [Note "1:Inverted minors"]
 [Note "2:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -5435,7 +4960,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "213"]
+[Board "196"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5457,7 +4982,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "214"]
+[Board "197"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5475,7 +5000,7 @@ Pass  Pass
 2N    Pass  4C    Pass
 4D    Pass  4H    Pass
 4S    Pass  4N    Pass
-5D =2=    Pass  6C    Pass
+5C =2=    Pass  6C    Pass
 Pass  Pass
 [Note "1:Inverted minors"]
 [Note "2:A=1/5 or 4/5"]
@@ -5484,33 +5009,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "215"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:K63.Q.AJT8.AKQ86 J74.962.K3.J7543 AQ85.AJT3.Q765.T T92.K8754.942.92"]
-{Shape 3145 3325 4441 3532}
-{HCP 19 5 13 3}
-{Losers 5 10 6 10}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  3H =1=    Pass
-4H    Pass  4N    Pass
-5S =2=    Pass  6D    Pass
-Pass  Pass
-[Note "1:Splinter"]
-[Note "2:A=2/5 or 5/5, Q(D)=1"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "216"]
+[Board "198"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5522,45 +5021,22 @@ Pass  Pass
 {HCP 13 5 17 5}
 {Losers 6 10 5 10}
 [Declarer "S"]
-[Contract "5S"]
+[Contract "7D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2S    Pass  3C    Pass
-4N    Pass  5S =1=    Pass
-Pass  Pass
-[Note "1:A=2/5 or 5/5, Q(C)=1"]
+1D    Pass  2C =1=    Pass
+2S    Pass  3D    Pass
+4N    Pass  5C =2=    Pass
+5H    Pass  6D =3=    Pass
+7D    Pass  Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:A=1/5 or 4/5"]
+[Note "3:no !D queen"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "217"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:AKT62.K.KQJ6.QT3 J9854.Q753.95.95 3.AT86.A874.AJ76 Q7.J942.T32.K842"]
-{Shape 5143 5422 1444 2434}
-{HCP 18 3 13 6}
-{Losers 5 9 7 10}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-3H    Pass  4D    Pass
-4N    Pass  5S =2=    Pass
-6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2/5 or 5/5, Q(D)=1"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "218"]
+[Board "199"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5586,7 +5062,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "219"]
+[Board "200"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5613,7 +5089,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "220"]
+[Board "201"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5624,21 +5100,19 @@ Pass  Pass
 {Shape 1543 4333 4144 4423}
 {HCP 15 7 16 2}
 {Losers 6 10 5 10}
-[Declarer "S"]
-[Contract "6D"]
+[Declarer "N"]
+[Contract "6N"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  3N    Pass
-4N    Pass  6D    Pass
+1D    Pass  2H    Pass
+2S    Pass  3N    Pass
+4N    Pass  6N    Pass
 Pass  Pass
-[Note "1:Fourth suit game force"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "221"]
+[Board "202"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5652,17 +5126,15 @@ Pass  Pass
 [Declarer "S"]
 [Contract "5D"]
 [Auction "S"]
-1D    Pass  1H    Pass
-2C    Pass  2S =1=    Pass
+1D    Pass  2H    Pass
 3C    Pass  4D    Pass
 5D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "222"]
+[Board "203"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5680,7 +5152,7 @@ Pass  Pass
 1S    Pass  2C =1=    Pass
 2D    Pass  4D    Pass
 4S    Pass  4N    Pass
-5D =2=    Pass  6D    Pass
+5C =2=    Pass  6D    Pass
 Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=1/5 or 4/5"]
@@ -5689,7 +5161,31 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "223"]
+[Board "204"]
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "EW"]
+[Deal "N:A.AKJT63.K543.52 8642.Q754.6.JT87 KJT..AQJ987.KQ93 Q9753.982.T2.A64"]
+{Shape 1642 4414 3064 5323}
+{HCP 15 3 16 6}
+{Losers 5 9 4 9}
+[Declarer "S"]
+[Contract "5D"]
+[Auction "S"]
+1D    Pass  2H    Pass
+4D    Pass  4N    Pass
+5C =1=    Pass  5D    Pass
+Pass  Pass
+[Note "1:A=1/5 or 4/5"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Minor_Game_Or_Slam"]
+[Site ""]
+[Board "205"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5715,7 +5211,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "224"]
+[Board "206"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5742,7 +5238,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "225"]
+[Board "207"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5758,7 +5254,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  1S    Pass
 3N    Pass  4D    Pass
-4N    Pass  5C =1=    Pass
+4N    Pass  5D =1=    Pass
 6D    Pass  Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -5766,7 +5262,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "226"]
+[Board "208"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5777,20 +5273,22 @@ Pass  Pass
 {Shape 3145 4414 4450 2434}
 {HCP 19 4 13 4}
 {Losers 4 9 5 10}
-[Declarer "N"]
-[Contract "6N"]
+[Declarer "S"]
+[Contract "5D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  3D    Pass
-4H    Pass  4S    Pass
-5D    Pass  6N    Pass
-Pass  Pass
+1D    Pass  2C =1=    Pass
+2H    Pass  2S =2=    Pass
+3S    Pass  4D    Pass
+4H    Pass  5C    Pass
+5D    Pass  Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "227"]
+[Board "209"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5806,15 +5304,15 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  1S    Pass
 1N    Pass  3D    Pass
-4N    Pass  5D =1=    Pass
-Pass  Pass
+4N    Pass  5C =1=    Pass
+5D    Pass  Pass  Pass
 [Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "228"]
+[Board "210"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5838,7 +5336,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "229"]
+[Board "211"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5855,42 +5353,16 @@ Pass  Pass
 1D    Pass  2D =1=    Pass
 2H    Pass  4D    Pass
 4H    Pass  4S    Pass
-4N    Pass  5C =2=    Pass
-5H    Pass  6D =3=    Pass
-Pass  Pass
+4N    Pass  5D =2=    Pass
+6D    Pass  Pass  Pass
 [Note "1:Inverted minors"]
 [Note "2:A=0/5 or 3/5"]
-[Note "3:no !D queen"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "230"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:.KT42.KJ72.AKJ64 A765.Q963.Q4.Q82 KQJ3.A.AT986.T97 T9842.J875.53.53"]
-{Shape 0445 4423 4153 5422}
-{HCP 15 10 14 1}
-{Losers 5 8 6 10}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  2H    Pass
-3S    Pass  4D    Pass
-5C    Pass  6D    Pass
-Pass  Pass
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "231"]
+[Board "212"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5908,8 +5380,8 @@ Pass  Pass
 2H    Pass  3C =1=    Pass
 3N    Pass  4D    Pass
 4H    Pass  4S    Pass
-4N    Pass  5D =2=    Pass
-Pass  Pass
+4N    Pass  5C =2=    Pass
+5D    Pass  Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -5917,7 +5389,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "232"]
+[Board "213"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5933,7 +5405,7 @@ Pass  Pass
 [Auction "S"]
 1C    Pass  2C =1=    Pass
 4C    Pass  4N    Pass
-5C =2=    Pass  6C    Pass
+5D =2=    Pass  6C    Pass
 Pass  Pass
 [Note "1:Inverted minors"]
 [Note "2:A=0/5 or 3/5"]
@@ -5942,7 +5414,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "233"]
+[Board "214"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5968,7 +5440,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "234"]
+[Board "215"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -5985,7 +5457,7 @@ Pass  Pass
 1D    Pass  1S    Pass
 2C    Pass  2H =1=    Pass
 2N    Pass  4D    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 5N =3=    Pass  6C =4=    Pass
 7D    Pass  Pass  Pass
 [Note "1:Fourth suit game force"]
@@ -5997,7 +5469,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "235"]
+[Board "216"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6019,33 +5491,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "236"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:4.AKQJT4.AKJ6.98 J73.8753.54.J732 AQ92.6.QT97.AQT6 KT865.92.832.K54"]
-{Shape 1642 3424 4144 5233}
-{HCP 18 2 14 6}
-{Losers 4 11 5 9}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-4N    Pass  5C =2=    Pass
-6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=0/5 or 3/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "237"]
+[Board "217"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6076,7 +5522,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "238"]
+[Board "218"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6099,7 +5545,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "239"]
+[Board "219"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6126,7 +5572,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "240"]
+[Board "220"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6143,7 +5589,7 @@ Pass  Pass
 1D    Pass  1H    Pass
 2S    Pass  4D    Pass
 4S    Pass  4N    Pass
-5C =1=    Pass  6D    Pass
+5D =1=    Pass  6D    Pass
 Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -6151,7 +5597,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "241"]
+[Board "221"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6174,7 +5620,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "242"]
+[Board "222"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6191,7 +5637,7 @@ Pass  Pass
 1D    Pass  1S    Pass
 2N    Pass  3D    Pass
 3N    Pass  4N    Pass
-5D =1=    Pass  6N    Pass
+5C =1=    Pass  6N    Pass
 Pass  Pass
 [Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -6199,7 +5645,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "243"]
+[Board "223"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6213,19 +5659,20 @@ Pass  Pass
 [Declarer "S"]
 [Contract "7C"]
 [Auction "S"]
-1C    Pass  1S    Pass
-1N    Pass  2D =1=    Pass
-3N    Pass  4C    Pass
-4N    Pass  5S =2=    Pass
+1C    Pass  2S    Pass
+3D    Pass  4C    Pass
+4N    Pass  5S =1=    Pass
+5N =2=    Pass  6H =3=    Pass
 7C    Pass  Pass  Pass
-[Note "1:New Minor Forcing"]
-[Note "2:A=2/5 or 5/5, Q(C)=1"]
+[Note "1:A=2/5 or 5/5, Q(C)=1"]
+[Note "2:King ask by 5NT"]
+[Note "3:K=2"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "244"]
+[Board "224"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6248,7 +5695,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "245"]
+[Board "225"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6259,19 +5706,22 @@ Pass  Pass
 {Shape 2146 5422 4441 2434}
 {HCP 16 6 17 1}
 {Losers 5 8 6 11}
-[Declarer "S"]
+[Declarer "N"]
 [Contract "6N"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2H    Pass  3C    Pass
-3N    Pass  6N    Pass
+1D    Pass  2C =1=    Pass
+2H    Pass  2S =2=    Pass
+3S    Pass  3N    Pass
+4N    Pass  6N    Pass
 Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "246"]
+[Board "226"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6296,32 +5746,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "247"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:K.AQJ972.J943.K7 T653.8543.A.Q632 AQ97.K.KQT752.J8 J842.T6.86.AT954"]
-{Shape 1642 4414 4162 4225}
-{HCP 14 6 15 5}
-{Losers 6 8 5 9}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-2D    Pass  3H    Pass
-4D    Pass  5D    Pass
-6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "248"]
+[Board "227"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6344,7 +5769,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "249"]
+[Board "228"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6368,7 +5793,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "250"]
+[Board "229"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6393,7 +5818,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "251"]
+[Board "230"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6410,7 +5835,7 @@ Pass  Pass
 1C    Pass  1S    Pass
 2H    Pass  3D =1=    X
 3N    Pass  4C    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 6C    Pass  Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=1/5 or 4/5"]
@@ -6419,7 +5844,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "252"]
+[Board "231"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6433,19 +5858,18 @@ Pass  Pass
 [Declarer "N"]
 [Contract "6C"]
 [Auction "S"]
-1D    Pass  2C    Pass
-3S =1=    Pass  4C    Pass
-4D    Pass  4H    Pass
-4N    Pass  5C =2=    Pass
-6C    Pass  Pass  Pass
-[Note "1:Splinter"]
-[Note "2:A=0/5 or 3/5"]
+1D    Pass  2C =1=    Pass
+3S =2=    Pass  4H    Pass
+5C    Pass  6C    Pass
+Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Splinter"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "253"]
+[Board "232"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6468,7 +5892,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "254"]
+[Board "233"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6479,23 +5903,19 @@ Pass  Pass
 {Shape 6142 3523 1444 3334}
 {HCP 19 1 12 8}
 {Losers 3 11 6 10}
-[Declarer "N"]
+[Declarer "S"]
 [Contract "6N"]
 [Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-3H    Pass  4D    Pass
-4H    Pass  4N    Pass
-5D =2=    Pass  6N    Pass
-Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=1/5 or 4/5"]
+1D    Pass  2S    Pass
+3H    Pass  3S    Pass
+3N    Pass  4N    Pass
+6N    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "255"]
+[Board "234"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6521,59 +5941,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "256"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:AKJ754.5.AK52.76 T92.K973.94.T982 Q.AJ86.QJT76.AJ4 863.QT42.83.KQ53"]
-{Shape 6142 3424 1453 3424}
-{HCP 15 3 15 7}
-{Losers 5 10 7 8}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1S    Pass
-1N    Pass  3S    Pass
-3N    Pass  4D    Pass
-4N    Pass  5C =1=    Pass
-6D    Pass  Pass  Pass
-[Note "1:A=0/5 or 3/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "257"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:JT5.AK543.K853.A 9843.876.4.T9742 AKQ2.2.QJ97.QJ53 76.QJT9.AT62.K86"]
-{Shape 3541 4315 4144 2443}
-{HCP 15 0 15 10}
-{Losers 6 10 5 8}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-4S    Pass  4N    Pass
-5D =2=    Pass  6D    Pass
-Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=1/5 or 4/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "258"]
+[Board "235"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6589,18 +5957,18 @@ Pass  Pass
 [Auction "S"]
 1C    Pass  2C =1=    Pass
 3N    Pass  4C    Pass
-4N    Pass  5D =2=    Pass
-5H    Pass  5N =3=    Pass
+4N    Pass  5C =2=    Pass
+5D    Pass  5N =3=    Pass
 6N    Pass  Pass  Pass
 [Note "1:Inverted minors"]
 [Note "2:A=1/5 or 4/5"]
-[Note "3:!C queen no !S king"]
+[Note "3:!C queen no !H king no !S king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "259"]
+[Board "236"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6617,7 +5985,7 @@ Pass  Pass
 1D    Pass  1H    Pass
 2C    Pass  2S =1=    Pass
 2N    Pass  4D    Pass
-4N    Pass  5C =2=    Pass
+4N    Pass  5D =2=    Pass
 7D    Pass  Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=0/5 or 3/5"]
@@ -6626,7 +5994,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "260"]
+[Board "237"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6653,7 +6021,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "261"]
+[Board "238"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6679,7 +6047,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "262"]
+[Board "239"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6690,50 +6058,19 @@ Pass  Pass
 {Shape 2641 4225 4144 3433}
 {HCP 21 1 14 4}
 {Losers 4 10 6 11}
-[Declarer "N"]
-[Contract "7N"]
+[Declarer "S"]
+[Contract "6N"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-4S    Pass  4N    Pass
-5S =2=    Pass  5N =3=    Pass
-6D =4=    Pass  7N    Pass
-Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2/5 or 5/5, Q(D)=1"]
-[Note "3:King ask by 5NT"]
-[Note "4:K=1"]
+1D    Pass  2H    Pass
+2S    Pass  3H    Pass
+3N    Pass  4N    Pass
+6N    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "263"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:KQ5.Q.KJ87.AKQ84 AT964.J643.52.97 3.AK97.AQT6.6532 J872.T852.943.JT"]
-{Shape 3145 5422 1444 4432}
-{HCP 20 5 13 2}
-{Losers 4 9 6 11}
-[Declarer "N"]
-[Contract "6C"]
-[Auction "S"]
-1D    Pass  2C    Pass
-3S =1=    Pass  4C    Pass
-5C    Pass  6C    Pass
-Pass  Pass
-[Note "1:Splinter"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "264"]
+[Board "240"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6758,7 +6095,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "265"]
+[Board "241"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6775,7 +6112,7 @@ Pass  Pass
 1D    Pass  1S    Pass
 2C    Pass  2H =1=    Pass
 3H    Pass  4D    Pass
-4N    Pass  5C =2=    Pass
+4N    Pass  5D =2=    Pass
 6D    Pass  Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=0/5 or 3/5"]
@@ -6784,35 +6121,32 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "266"]
+[Board "242"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
 [Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:J42.A.9765.AKQ73 QT96.K865.T.T952 A753.Q73.AKQJ8.4 K8.JT942.432.J86"]
-{Shape 3145 4414 4351 2533}
-{HCP 14 5 16 5}
-{Losers 6 8 5 10}
+[Vulnerable "NS"]
+[Deal "N:4.KJ5.JT64.AKQ97 AKQ.T943.932.JT4 J982.AQ76.AKQ7.3 T7653.82.85.8652"]
+{Shape 1345 3433 4441 5224}
+{HCP 14 10 16 0}
+{Losers 6 9 5 10}
 [Declarer "S"]
-[Contract "6D"]
+[Contract "5D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2S    Pass  3C    Pass
-3D    Pass  4D    Pass
-4S    Pass  4N    Pass
-5C =1=    Pass  5H    Pass
-5N =2=    Pass  6D    Pass
+1D    Pass  2C =1=    Pass
+2H    Pass  3D    Pass
+3S    Pass  4C    Pass
+4H    Pass  5D    Pass
 Pass  Pass
-[Note "1:A=0/5 or 3/5"]
-[Note "2:!D queen no !S king no !C king"]
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "267"]
+[Board "243"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6830,7 +6164,7 @@ Pass  Pass
 1S    Pass  2C =1=    Pass
 3C    Pass  4D    Pass
 4S    Pass  4N    Pass
-5D =2=    Pass  6S    Pass
+5C =2=    Pass  6S    Pass
 Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=1/5 or 4/5"]
@@ -6839,59 +6173,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "268"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:AKJT8.KJT.AQ75.3 7654.875.92.7652 3.AQ63.KJT6.KT84 Q92.942.843.AQJ9"]
-{Shape 5341 4324 1444 3334}
-{HCP 18 0 13 9}
-{Losers 5 11 6 9}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-3H    Pass  4D    Pass
-4N    Pass  5S =2=    Pass
-6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2/5 or 5/5, Q(D)=1"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "269"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:QJ.2.AQJ7.AQ8654 54.K763.954.T972 KT97.AJ98.KT83.K A8632.QT54.62.J3"]
-{Shape 2146 2434 4441 5422}
-{HCP 16 3 14 7}
-{Losers 5 10 7 8}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  3H =1=    Pass
-4C    Pass  4N    Pass
-5H =2=    Pass  6D    Pass
-Pass  Pass
-[Note "1:Splinter"]
-[Note "2:A=2/5 or 5/5, Q(D)=0"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "270"]
+[Board "244"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6917,7 +6199,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "271"]
+[Board "245"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6942,7 +6224,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "272"]
+[Board "246"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6966,7 +6248,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "273"]
+[Board "247"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -6980,19 +6262,20 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  3S =1=    Pass
-4C    Pass  4N    Pass
-5D =2=    Pass  6D    Pass
+1D    Pass  2C =1=    Pass
+2S    Pass  3H =2=    Pass
+4D    Pass  4N    Pass
+5C =3=    Pass  6D    Pass
 Pass  Pass
-[Note "1:Splinter"]
-[Note "2:A=1/5 or 4/5"]
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
+[Note "3:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "274"]
+[Board "248"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7010,7 +6293,7 @@ Pass  Pass
 2C    Pass  2S =1=    Pass
 3H    Pass  4D    Pass
 4S    Pass  4N    Pass
-5D =2=    Pass  5H    Pass
+5C =2=    Pass  5H    Pass
 6C =3=    Pass  6D    Pass
 Pass  Pass
 [Note "1:Fourth suit game force"]
@@ -7021,7 +6304,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "275"]
+[Board "249"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7046,7 +6329,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "276"]
+[Board "250"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7071,34 +6354,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "277"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:A.A97643.AQT7.A3 9873.QJ82.K85.K8 KQ52.K.J943.QJ75 JT64.T5.62.T9642"]
-{Shape 1642 4432 4144 4225}
-{HCP 18 9 12 1}
-{Losers 4 8 7 10}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-4S    Pass  4N    Pass
-5C =2=    Pass  6D    Pass
-Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=0/5 or 3/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "278"]
+[Board "251"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7110,19 +6366,20 @@ Pass  Pass
 {HCP 17 4 13 6}
 {Losers 5 10 7 9}
 [Declarer "S"]
-[Contract "6D"]
+[Contract "5D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  3D    Pass
-4C    Pass  4S    Pass
-5D    Pass  6D    Pass
+1D    Pass  2C =1=    Pass
+2S    Pass  3H =2=    Pass
+4D    Pass  5D    Pass
 Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "279"]
+[Board "252"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7146,7 +6403,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "280"]
+[Board "253"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7160,22 +6417,43 @@ Pass  Pass
 [Declarer "N"]
 [Contract "6H"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-4S    Pass  4N    Pass
-5D =2=    Pass  5H    Pass
-5S =3=    Pass  6H    Pass
+1D    Pass  2H    Pass
+2S    Pass  3H    Pass
+3N    Pass  6H    Pass
 Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=1/5 or 4/5"]
-[Note "3:!D queen and !S king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "281"]
+[Board "254"]
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "NS"]
+[Deal "N:AQ983.KQ4.AJ654. T42.JT3.T7.JT762 5.A962.KQ82.AK53 KJ76.875.93.Q984"]
+{Shape 5350 3325 1444 4324}
+{HCP 16 2 16 6}
+{Losers 4 11 5 9}
+[Declarer "S"]
+[Contract "6N"]
+[Auction "S"]
+1D    Pass  2S    Pass
+3H    Pass  4D    Pass
+4N    Pass  5H =1=    Pass
+5N =2=    Pass  6D =3=    Pass
+6N    Pass  Pass  Pass
+[Note "1:A=2/5 or 5/5, Q(D)=0"]
+[Note "2:King ask by 5NT"]
+[Note "3:K=1"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Minor_Game_Or_Slam"]
+[Site ""]
+[Board "255"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7187,25 +6465,26 @@ Pass  Pass
 {HCP 14 4 18 4}
 {Losers 6 9 5 11}
 [Declarer "S"]
-[Contract "6D"]
+[Contract "7D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2H    Pass  3C    Pass
-3D    Pass  4D    Pass
-4N    Pass  5D =1=    Pass
-5H    Pass  5S =2=    Pass
-5N =3=    Pass  6D =4=    Pass
-Pass  Pass
-[Note "1:A=1/5 or 4/5"]
-[Note "2:!D queen and !S king"]
-[Note "3:King ask by 5NT"]
-[Note "4:K=1"]
+1D    Pass  2C =1=    Pass
+2H    Pass  3D    Pass
+3S    Pass  4D    Pass
+4N    Pass  5C =2=    Pass
+5H    Pass  5S =3=    Pass
+5N =4=    Pass  6D =5=    Pass
+7D    Pass  Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:A=1/5 or 4/5"]
+[Note "3:!D queen and !S king"]
+[Note "4:King ask by 5NT"]
+[Note "5:K=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "282"]
+[Board "256"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7221,7 +6500,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  2D =1=    Pass
 3N    Pass  4D    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 5H    Pass  6D =3=    Pass
 Pass  Pass
 [Note "1:Inverted minors"]
@@ -7232,7 +6511,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "283"]
+[Board "257"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7257,7 +6536,34 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "284"]
+[Board "258"]
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "NS"]
+[Deal "N:K.532.A987.KQ985 9864.KQ97.KT4.J4 AQ75.AJ64.QJ52.A JT32.T8.63.T7632"]
+{Shape 1345 4432 4441 4225}
+{HCP 12 9 18 1}
+{Losers 7 8 5 10}
+[Declarer "S"]
+[Contract "6D"]
+[Auction "S"]
+1D    Pass  2C =1=    Pass
+2H    Pass  3D    Pass
+3S    Pass  3N    Pass
+4D    Pass  4H    Pass
+4N    Pass  5C =2=    Pass
+6D    Pass  Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:A=1/5 or 4/5"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Minor_Game_Or_Slam"]
+[Site ""]
+[Board "259"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7271,20 +6577,42 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-4S    Pass  4N    Pass
-5C =2=    Pass  6D    Pass
+1D    Pass  2H    Pass
+2S    Pass  4D    Pass
+5D    Pass  6D    Pass
 Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "285"]
+[Board "260"]
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "All"]
+[Deal "N:A4.KJ9653.AQ62.9 8532.QT.75.J8764 KQ96.A.T984.AKT5 JT7.8742.KJ3.Q32"]
+{Shape 2641 4225 4144 3433}
+{HCP 14 3 16 7}
+{Losers 5 10 5 10}
+[Declarer "S"]
+[Contract "6N"]
+[Auction "S"]
+1D    Pass  2H    Pass
+2S    Pass  3H    Pass
+4N    Pass  5D =1=    Pass
+5S    Pass  6H =2=    Pass
+6N    Pass  Pass  Pass
+[Note "1:A=0/5 or 3/5"]
+[Note "2:no !H queen"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Minor_Game_Or_Slam"]
+[Site ""]
+[Board "261"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7309,7 +6637,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "286"]
+[Board "262"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7335,7 +6663,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "287"]
+[Board "263"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7359,7 +6687,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "288"]
+[Board "264"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7376,7 +6704,7 @@ Pass  Pass
 1C    Pass  2C =1=    Pass
 2N    Pass  4C    Pass
 4D    Pass  4H    Pass
-4N    Pass  5C =2=    Pass
+4N    Pass  5D =2=    Pass
 6C    Pass  Pass  Pass
 [Note "1:Inverted minors"]
 [Note "2:A=0/5 or 3/5"]
@@ -7385,7 +6713,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "289"]
+[Board "265"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7401,7 +6729,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  1H    Pass
 1S    Pass  4D    Pass
-4N    Pass  5C =1=    Pass
+4N    Pass  5D =1=    Pass
 6D    Pass  Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -7409,7 +6737,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "290"]
+[Board "266"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7426,7 +6754,7 @@ Pass  Pass
 1C    Pass  1H    Pass
 2D    Pass  2S =1=    Pass
 2N    Pass  4C    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 6C    Pass  Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=1/5 or 4/5"]
@@ -7435,7 +6763,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "291"]
+[Board "267"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7451,15 +6779,15 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  1H    Pass
 1S    Pass  3D    Pass
-4N    Pass  5D =1=    Pass
-Pass  Pass
+4N    Pass  5C =1=    Pass
+5D    Pass  Pass  Pass
 [Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "292"]
+[Board "268"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7483,33 +6811,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "293"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:AQ754.AT5.AK42.7 JT98.7.JT9.Q8654 6.KJ82.Q753.AKT3 K32.Q9643.86.J92"]
-{Shape 5341 4135 1444 3523}
-{HCP 17 4 13 6}
-{Losers 5 9 6 9}
-[Declarer "S"]
-[Contract "5D"]
-[Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-3H    Pass  4D    Pass
-4N    Pass  5D =2=    Pass
-Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=1/5 or 4/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "294"]
+[Board "269"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7520,23 +6822,42 @@ Pass  Pass
 {Shape 6241 3433 1255 3514}
 {HCP 14 6 18 2}
 {Losers 5 10 4 9}
-[Declarer "N"]
-[Contract "7N"]
+[Declarer "S"]
+[Contract "6N"]
 [Auction "S"]
-1D    Pass  1S    Pass
-3C    Pass  3S    Pass
-4C    Pass  4N    Pass
-5D =1=    Pass  5H    Pass
-6C =2=    Pass  7N    Pass
-Pass  Pass
-[Note "1:A=1/5 or 4/5"]
-[Note "2:no !C queen"]
+1D    Pass  2S    Pass
+5C    Pass  5D    Pass
+6N    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "295"]
+[Board "270"]
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:K.T4.KQ98.QJ8543 T943.Q9632.7.972 A862.AK87.AT42.A QJ75.J5.J653.KT6"]
+{Shape 1246 4513 4441 4243}
+{HCP 11 2 19 8}
+{Losers 6 9 5 9}
+[Declarer "S"]
+[Contract "6D"]
+[Auction "S"]
+1D    Pass  2C =1=    Pass
+2H    Pass  3C    Pass
+3D    Pass  5D    Pass
+6D    Pass  Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Minor_Game_Or_Slam"]
+[Site ""]
+[Board "271"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7547,21 +6868,20 @@ Pass  Pass
 {Shape 0643 4423 4144 5233}
 {HCP 16 7 15 2}
 {Losers 4 10 5 10}
-[Declarer "S"]
-[Contract "6D"]
+[Declarer "N"]
+[Contract "6H"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-4S    Pass  5D    Pass
-6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
+1D    Pass  2H    Pass
+2S    Pass  3H    Pass
+4N    Pass  5S =1=    Pass
+6H    Pass  Pass  Pass
+[Note "1:A=2/5 or 5/5, Q(H)=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "296"]
+[Board "272"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7572,24 +6892,20 @@ Pass  Pass
 {Shape 0346 5233 4351 4513}
 {HCP 16 3 18 3}
 {Losers 4 10 5 9}
-[Declarer "S"]
-[Contract "7D"]
+[Declarer "N"]
+[Contract "6N"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2S    Pass  3C    Pass
-3D    Pass  4D    Pass
-4N    Pass  5C =1=    Pass
-5N =2=    Pass  6C =3=    Pass
-7D    Pass  Pass  Pass
-[Note "1:A=0/5 or 3/5"]
-[Note "2:King ask by 5NT"]
-[Note "3:K=0"]
+1D    Pass  2C =1=    Pass
+2S    Pass  3N    Pass
+4N    Pass  6N    Pass
+Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "297"]
+[Board "273"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7606,7 +6922,7 @@ Pass  Pass
 1C    Pass  1H    Pass
 1S    Pass  2D =1=    Pass
 3C    Pass  4C    Pass
-4N    Pass  5C =2=    Pass
+4N    Pass  5D =2=    Pass
 6C    Pass  Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=0/5 or 3/5"]
@@ -7615,7 +6931,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "298"]
+[Board "274"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7641,7 +6957,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "299"]
+[Board "275"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7656,48 +6972,21 @@ Pass  Pass
 [Contract "7C"]
 [Auction "S"]
 1C    Pass  2C =1=    Pass
-3D =2=    Pass  4S    Pass
+3D =2=    Pass  4D    Pass
+4H    Pass  4N    Pass
 5C =3=    Pass  5D    Pass
 5H =4=    Pass  7C    Pass
 Pass  Pass
 [Note "1:Inverted minors"]
 [Note "2:shortness "]
-[Note "3:1 out of 4"]
+[Note "3:A=1/5 or 4/5"]
 [Note "4:!C queen and !H king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "300"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:AT653.AQJ.AKJ2.8 K42.T863.Q.QT542 Q.K952.T976.AK63 J987.74.8543.J97"]
-{Shape 5341 3415 1444 4243}
-{HCP 19 7 12 2}
-{Losers 5 8 7 11}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-3H    Pass  4D    Pass
-4H    Pass  4N    Pass
-5D =2=    Pass  5H    Pass
-6D =3=    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=1/5 or 4/5"]
-[Note "3:no !D queen"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "301"]
+[Board "276"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7714,7 +7003,7 @@ Pass  Pass
 1D    Pass  2D =1=    Pass
 2H    Pass  4D    Pass
 4S    Pass  4N    Pass
-5D =2=    Pass  6D    Pass
+5C =2=    Pass  6D    Pass
 Pass  Pass
 [Note "1:Inverted minors"]
 [Note "2:A=1/5 or 4/5"]
@@ -7723,7 +7012,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "302"]
+[Board "277"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7748,7 +7037,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "303"]
+[Board "278"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7762,20 +7051,16 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-3H    Pass  4D    Pass
-4H    Pass  4S    Pass
-4N    Pass  5S =2=    Pass
-6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2/5 or 5/5, Q(D)=1"]
+1D    Pass  2S    Pass
+3H    Pass  3N    Pass
+4N    Pass  6D    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "304"]
+[Board "279"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7799,33 +7084,53 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "305"]
+[Board "280"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
 [Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:AKT952.K.AJT5.K2 764.AT864.32.T87 J.QJ93.K9874.AQ9 Q83.752.Q6.J6543"]
-{Shape 6142 3523 1453 3325}
-{HCP 18 4 13 5}
-{Losers 5 10 6 10}
+[Vulnerable "NS"]
+[Deal "N:Q53.AQJT8.KQ63.Q KT.5432.A52.T875 A642..JT984.AKJ2 J987.K976.7.9643"]
+{Shape 3541 2434 4054 4414}
+{HCP 16 7 13 4}
+{Losers 5 9 6 9}
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  1S    Pass
-1N    Pass  3S    Pass
-3N    Pass  4D    Pass
-4N    Pass  5H =1=    Pass
-5S    Pass  6D    Pass
-Pass  Pass
-[Note "1:A=2/5 or 5/5, Q(D)=0"]
+1D    Pass  2H    Pass
+2S    Pass  3D    Pass
+4D    Pass  4H    Pass
+4S    Pass  5D    Pass
+6D    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "306"]
+[Board "281"]
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "EW"]
+[Deal "N:AQJ86.J.AQJT.Q74 974.K6432.92.532 T.AT85.K874.AKJT K532.Q97.653.986"]
+{Shape 5143 3523 1444 4333}
+{HCP 17 3 15 5}
+{Losers 5 10 6 10}
+[Declarer "N"]
+[Contract "6N"]
+[Auction "S"]
+1D    Pass  2S    Pass
+3H    Pass  3N    Pass
+6N    Pass  Pass  Pass
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Minor_Game_Or_Slam"]
+[Site ""]
+[Board "282"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7853,7 +7158,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "307"]
+[Board "283"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7877,7 +7182,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "308"]
+[Board "284"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7906,7 +7211,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "309"]
+[Board "285"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7918,21 +7223,18 @@ Pass  Pass
 {HCP 19 2 12 7}
 {Losers 4 10 6 10}
 [Declarer "S"]
-[Contract "5D"]
+[Contract "5S"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-4S    Pass  4N    Pass
-5D =2=    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=1/5 or 4/5"]
+1D    Pass  2H    Pass
+2S    Pass  4N    Pass
+5S =1=    Pass  Pass  Pass
+[Note "1:A=2/5 or 5/5, Q(S)=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "310"]
+[Board "286"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7958,7 +7260,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "311"]
+[Board "287"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -7984,7 +7286,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "312"]
+[Board "288"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8000,7 +7302,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  1S    Pass
 2D    Pass  4N    Pass
-5D =1=    Pass  6D    Pass
+5C =1=    Pass  6D    Pass
 Pass  Pass
 [Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -8008,7 +7310,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "313"]
+[Board "289"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8033,7 +7335,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "314"]
+[Board "290"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8047,20 +7349,19 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
+1D    Pass  2H    Pass
+2S    Pass  3D    Pass
+4D    Pass  4H    Pass
 4S    Pass  4N    Pass
-5D =2=    Pass  6D    Pass
+5C =1=    Pass  6D    Pass
 Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=1/5 or 4/5"]
+[Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "315"]
+[Board "291"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8072,20 +7373,17 @@ Pass  Pass
 {HCP 15 2 17 6}
 {Losers 4 9 6 9}
 [Declarer "S"]
-[Contract "6D"]
+[Contract "6N"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  3N    Pass
-4N    Pass  6D    Pass
-Pass  Pass
-[Note "1:Fourth suit game force"]
+1D    Pass  2H    Pass
+2S    Pass  3H    Pass
+6N    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "316"]
+[Board "292"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8099,20 +7397,18 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  1H    Pass
-2C    Pass  2S =1=    Pass
-2N    Pass  3H    Pass
+1D    Pass  2H    Pass
+3C    Pass  3H    Pass
 3N    Pass  4D    Pass
-4N    Pass  5S =2=    Pass
+4N    Pass  5S =1=    Pass
 6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2/5 or 5/5, Q(D)=1"]
+[Note "1:A=2/5 or 5/5, Q(D)=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "317"]
+[Board "293"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8128,7 +7424,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  2D =1=    Pass
 3N    Pass  4D    Pass
-4N    Pass  5D =2=    Pass
+4N    Pass  5C =2=    Pass
 5H    Pass  5N =3=    Pass
 6D    Pass  Pass  Pass
 [Note "1:Inverted minors"]
@@ -8139,7 +7435,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "318"]
+[Board "294"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8164,7 +7460,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "319"]
+[Board "295"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8181,7 +7477,7 @@ Pass  Pass
 1D    Pass  1H    Pass
 2S    Pass  4D    Pass
 4S    Pass  4N    Pass
-5C =1=    Pass  6D    Pass
+5D =1=    Pass  6D    Pass
 Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -8189,7 +7485,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "320"]
+[Board "296"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8206,7 +7502,7 @@ Pass  Pass
 1D    Pass  1H    Pass
 2S    Pass  4D    Pass
 4S    Pass  4N    Pass
-5C =1=    Pass  7D    Pass
+5D =1=    Pass  7D    Pass
 Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -8214,7 +7510,37 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "321"]
+[Board "297"]
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "NS"]
+[Deal "N:A.T.AQT7.AQJ8654 953.Q8765.652.97 QJT2.AKJ4.KJ83.2 K8764.932.94.KT3"]
+{Shape 1147 3532 4441 5323}
+{HCP 17 2 15 6}
+{Losers 3 10 6 9}
+[Declarer "S"]
+[Contract "6D"]
+[Auction "S"]
+1D    Pass  2C =1=    Pass
+2H    Pass  2S =2=    Pass
+3S    Pass  4D    Pass
+4H    Pass  4S    Pass
+4N    Pass  5D =3=    Pass
+5H    Pass  5N =4=    Pass
+6D    Pass  Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
+[Note "3:A=0/5 or 3/5"]
+[Note "4:!D queen no !S king no !C king"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Minor_Game_Or_Slam"]
+[Site ""]
+[Board "298"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8237,32 +7563,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "322"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:9.AKJ953.A632.A8 7532.874.T9.K954 KQJT.Q.KJ75.Q632 A864.T62.Q84.JT7"]
-{Shape 1642 4324 4144 4333}
-{HCP 16 3 14 7}
-{Losers 5 10 6 10}
-[Declarer "S"]
-[Contract "5D"]
-[Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-4S    Pass  5D    Pass
-Pass  Pass
-[Note "1:Fourth suit game force"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "323"]
+[Board "299"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8276,19 +7577,17 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6C"]
 [Auction "S"]
-1C    Pass  1S    Pass
-2D    Pass  2H =1=    Pass
-3N    Pass  4C    Pass
-4D    Pass  4H    Pass
-5C    Pass  6C    Pass
-Pass  Pass
-[Note "1:Fourth suit game force"]
+1C    Pass  2S    Pass
+3D    Pass  4C    Pass
+4N    Pass  5S =1=    Pass
+6C    Pass  Pass  Pass
+[Note "1:A=2/5 or 5/5, Q(C)=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "324"]
+[Board "300"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8311,7 +7610,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "325"]
+[Board "301"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8338,7 +7637,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "326"]
+[Board "302"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8355,7 +7654,7 @@ Pass  Pass
 1D    Pass  1H    Pass
 3C    Pass  3H    Pass
 3N    Pass  4D    Pass
-4N    Pass  5D =1=    Pass
+4N    Pass  5C =1=    Pass
 6D    Pass  Pass  Pass
 [Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -8363,7 +7662,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "327"]
+[Board "303"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8388,30 +7687,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "328"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:A.KJ2.K962.KQ974 J64.8653.AT3.T32 KQ92.AQT7.QJ87.J T8753.94.54.A865"]
-{Shape 1345 3433 4441 5224}
-{HCP 16 5 15 4}
-{Losers 5 11 5 9}
-[Declarer "S"]
-[Contract "6N"]
-[Auction "S"]
-1D    Pass  2C    Pass
-2H    Pass  3C    Pass
-3N    Pass  6N    Pass
-Pass  Pass
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "329"]
+[Board "304"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8438,7 +7714,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "330"]
+[Board "305"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8463,7 +7739,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "331"]
+[Board "306"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8488,7 +7764,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "332"]
+[Board "307"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8514,7 +7790,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "333"]
+[Board "308"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8531,7 +7807,7 @@ Pass  Pass
 1D    Pass  2D =1=    Pass
 2N    Pass  4D    Pass
 4H    Pass  4N    Pass
-5D =2=    Pass  5H    Pass
+5C =2=    Pass  5H    Pass
 5S =3=    Pass  5N =4=    Pass
 6D =5=    Pass  7N    Pass
 Pass  Pass
@@ -8545,33 +7821,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "334"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:AK542.AJT.A752.Q QT73.764.T3.8754 6.KQ52.KQJ4.KJ93 J98.983.986.AT62"]
-{Shape 5341 4324 1444 3334}
-{HCP 18 2 15 5}
-{Losers 6 10 5 11}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-3H    Pass  4D    Pass
-4N    Pass  5C =2=    Pass
-6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=0/5 or 3/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "335"]
+[Board "309"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8585,43 +7835,19 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6N"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-4N    Pass  5S =2=    Pass
+1D    Pass  2H    Pass
+2S    Pass  3H    Pass
+4N    Pass  5D =1=    Pass
+5S    Pass  6H =2=    Pass
 6N    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2/5 or 5/5, Q(D)=1"]
+[Note "1:A=0/5 or 3/5"]
+[Note "2:no !H queen"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "336"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:4.A95.AQ92.KQ975 Q8732.84.K3.8642 AKT5.KQT3.JT76.J J96.J762.854.AT3"]
-{Shape 1345 5224 4441 3433}
-{HCP 15 5 14 6}
-{Losers 5 8 6 11}
-[Declarer "S"]
-[Contract "5D"]
-[Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  3S =1=    Pass
-4H    Pass  5D    Pass
-Pass  Pass
-[Note "1:Splinter"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "337"]
+[Board "310"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8633,48 +7859,20 @@ Pass  Pass
 {HCP 19 4 15 2}
 {Losers 5 10 6 10}
 [Declarer "S"]
-[Contract "6N"]
+[Contract "5D"]
 [Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-2N    Pass  4D    Pass
-4H    Pass  4N    Pass
-5D =2=    Pass  6N    Pass
-Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=1/5 or 4/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "338"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:Q.AKT974.AK95.97 9652.53.873.JT52 AK74.6.QJ62.K863 JT83.QJ82.T4.AQ4"]
-{Shape 1642 4234 4144 4423}
-{HCP 16 1 13 10}
-{Losers 5 11 6 8}
-[Declarer "S"]
-[Contract "6D"]
-[Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
+1D    Pass  2S    Pass
 3C    Pass  4D    Pass
-4N    Pass  5C =2=    Pass
-6D    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=0/5 or 3/5"]
+4H    Pass  4N    Pass
+5C =1=    Pass  5D    Pass
+Pass  Pass
+[Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "339"]
+[Board "311"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8699,7 +7897,32 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "340"]
+[Board "312"]
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "All"]
+[Deal "N:K.J53.AQ73.KJ653 A864.QT86.42.T97 Q973.AK7.KJT98.A JT52.942.65.Q842"]
+{Shape 1345 4423 4351 4324}
+{HCP 14 6 17 3}
+{Losers 7 9 5 10}
+[Declarer "S"]
+[Contract "6N"]
+[Auction "S"]
+1D    Pass  2C =1=    Pass
+2S    Pass  3H =2=    Pass
+4D    Pass  5D    Pass
+6N    Pass  Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Minor_Game_Or_Slam"]
+[Site ""]
+[Board "313"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8729,7 +7952,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "341"]
+[Board "314"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8740,21 +7963,23 @@ Pass  Pass
 {Shape 1543 4324 3154 5422}
 {HCP 15 3 17 5}
 {Losers 7 10 6 9}
-[Declarer "N"]
-[Contract "5H"]
+[Declarer "S"]
+[Contract "7D"]
 [Auction "S"]
-1D    Pass  1H    Pass
-2C    Pass  2S =1=    Pass
-4N    Pass  5H =2=    Pass
-Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2 out of 4"]
+1D    Pass  2H    Pass
+3C    Pass  4D    Pass
+4N    Pass  5D =1=    Pass
+5N =2=    Pass  6D =3=    Pass
+7D    Pass  Pass  Pass
+[Note "1:A=0/5 or 3/5"]
+[Note "2:King ask by 5NT"]
+[Note "3:K=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "342"]
+[Board "315"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8766,22 +7991,20 @@ Pass  Pass
 {HCP 11 4 18 7}
 {Losers 7 10 5 7}
 [Declarer "S"]
-[Contract "6D"]
+[Contract "5D"]
 [Auction "S"]
-1D    Pass  2D =1=    Pass
-3S =2=    Pass  3N    Pass
-4D    Pass  4N    Pass
-5S =3=    Pass  6D    Pass
+1D    Pass  2C =1=    Pass
+2H    Pass  3C    Pass
+3D    Pass  3N    Pass
+4C    Pass  5D    Pass
 Pass  Pass
-[Note "1:Inverted minors"]
-[Note "2:shortness "]
-[Note "3:A=2/5 or 5/5, Q(D)=1"]
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "343"]
+[Board "316"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8806,7 +8029,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "344"]
+[Board "317"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8828,7 +8051,32 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "345"]
+[Board "318"]
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "All"]
+[Deal "N:AKQ92.KQ.8.AT876 T84.97654.J75.J2 J.A82.KQ93.K9543 7653.JT3.AT642.Q"]
+{Shape 5215 3532 1345 4351}
+{HCP 18 2 13 7}
+{Losers 4 11 6 9}
+[Declarer "S"]
+[Contract "6C"]
+[Auction "S"]
+1C    Pass  2S    Pass
+3D    Pass  4C    Pass
+4D    Pass  4H    Pass
+4N    Pass  5S =1=    Pass
+6C    Pass  Pass  Pass
+[Note "1:A=2/5 or 5/5, Q(C)=1"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Minor_Game_Or_Slam"]
+[Site ""]
+[Board "319"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8854,7 +8102,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "346"]
+[Board "320"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8879,7 +8127,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "347"]
+[Board "321"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8903,7 +8151,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "348"]
+[Board "322"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8917,19 +8165,17 @@ Pass  Pass
 [Declarer "N"]
 [Contract "5H"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-2D    Pass  3H    Pass
-4N    Pass  5H =2=    Pass
+1D    Pass  2H    Pass
+2S    Pass  3H    Pass
+4N    Pass  5H =1=    Pass
 Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2/5 or 5/5, Q(H)=0"]
+[Note "1:A=2/5 or 5/5, Q(H)=0"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "349"]
+[Board "323"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8943,22 +8189,17 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6N"]
 [Auction "S"]
-1D    Pass  1H    Pass
-1S    Pass  2C =1=    Pass
-3C    Pass  4D    Pass
-4N    Pass  5S =2=    Pass
-5N =3=    Pass  6H =4=    Pass
+1D    Pass  2H    Pass
+2S    Pass  3H    Pass
+4N    Pass  5S =1=    Pass
 6N    Pass  Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2/5 or 5/5, Q(D)=1"]
-[Note "3:King ask by 5NT"]
-[Note "4:K=2"]
+[Note "1:A=2/5 or 5/5, Q(H)=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "350"]
+[Board "324"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8983,7 +8224,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "351"]
+[Board "325"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -8995,22 +8236,21 @@ Pass  Pass
 {HCP 16 2 17 5}
 {Losers 5 10 5 9}
 [Declarer "S"]
-[Contract "6D"]
+[Contract "6N"]
 [Auction "S"]
-1D    Pass  1S    Pass
-2H    Pass  3C =1=    Pass
-3N    Pass  4D    Pass
-4H    Pass  4N    Pass
-5S =2=    Pass  6D    Pass
-Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2/5 or 5/5, Q(D)=1"]
+1D    Pass  2S    Pass
+3H    Pass  3S    Pass
+4N    Pass  5D =1=    Pass
+5H    Pass  6H =2=    Pass
+6N    Pass  Pass  Pass
+[Note "1:A=0/5 or 3/5"]
+[Note "2:!S queen and !H king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "352"]
+[Board "326"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9034,7 +8274,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "353"]
+[Board "327"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9059,7 +8299,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "354"]
+[Board "328"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9071,20 +8311,22 @@ Pass  Pass
 {HCP 16 7 14 3}
 {Losers 5 10 5 10}
 [Declarer "S"]
-[Contract "7D"]
+[Contract "6D"]
 [Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  3D    Pass
-3H    Pass  4N    Pass
-5S =1=    Pass  7D    Pass
-Pass  Pass
-[Note "1:A=2/5 or 5/5, Q(D)=1"]
+1D    Pass  2C =1=    Pass
+2H    Pass  2S =2=    Pass
+3S    Pass  4D    Pass
+4N    Pass  5D =3=    Pass
+6D    Pass  Pass  Pass
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:Fourth suit game force"]
+[Note "3:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "355"]
+[Board "329"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9106,32 +8348,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "356"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:AKQT3.9.JT84.AK5 876.AJT2.K3.J832 J.KQ87.AQ652.QT4 9542.6543.97.976"]
-{Shape 5143 3424 1453 4423}
-{HCP 17 9 14 0}
-{Losers 5 9 5 11}
-[Declarer "N"]
-[Contract "5S"]
-[Auction "S"]
-1D    Pass  1S    Pass
-1N    Pass  2C =1=    Pass
-3H    Pass  4N    Pass
-5S =2=    Pass  Pass  Pass
-[Note "1:New Minor Forcing"]
-[Note "2:A=2/5 or 5/5, Q(H)=1"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "357"]
+[Board "330"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9145,20 +8362,21 @@ Pass  Pass
 [Declarer "S"]
 [Contract "6D"]
 [Auction "S"]
-1D    Pass  2C    Pass
+1D    Pass  2C =1=    Pass
 2D    Pass  3D    Pass
-4D    Pass  4N    Pass
-5D =1=    Pass  5H    Pass
-5S =2=    Pass  6D    Pass
+3H    Pass  4N    Pass
+5C =2=    Pass  5H    Pass
+5S =3=    Pass  6D    Pass
 Pass  Pass
-[Note "1:A=1/5 or 4/5"]
-[Note "2:!D queen and !S king"]
+[Note "1:10+ HCP if fit or 6+; 12+ F"]
+[Note "2:A=1/5 or 4/5"]
+[Note "3:!D queen and !S king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "358"]
+[Board "331"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9181,7 +8399,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "359"]
+[Board "332"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9195,20 +8413,21 @@ Pass  Pass
 [Declarer "S"]
 [Contract "7D"]
 [Auction "S"]
-1D    Pass  1S    Pass
-2C    Pass  2H =1=    Pass
-3N    Pass  4D    Pass
+1D    Pass  2S    Pass
+3C    Pass  4D    Pass
 4H    Pass  4N    Pass
-5H =2=    Pass  7D    Pass
+5H =1=    Pass  5N =2=    Pass
+6D =3=    Pass  7D    Pass
 Pass  Pass
-[Note "1:Fourth suit game force"]
-[Note "2:A=2/5 or 5/5, Q(D)=0"]
+[Note "1:A=2/5 or 5/5, Q(D)=0"]
+[Note "2:King ask by 5NT"]
+[Note "3:K=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "360"]
+[Board "333"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9220,14 +8439,13 @@ Pass  Pass
 {HCP 15 4 17 4}
 {Losers 5 7 5 11}
 [Declarer "S"]
-[Contract "7D"]
+[Contract "5D"]
 [Auction "S"]
 1D    Pass  1S    Pass
 2H    Pass  3C =1=    Pass
 3N    Pass  4D    Pass
-4N    Pass  5C =2=    Pass
-5D    Pass  6D    Pass
-7D    Pass  Pass  Pass
+4N    Pass  5D =2=    Pass
+Pass  Pass
 [Note "1:Fourth suit game force"]
 [Note "2:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -9235,7 +8453,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "361"]
+[Board "334"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
@@ -9262,33 +8480,7 @@ Pass  Pass
 
 [Event "Minor_Game_Or_Slam"]
 [Site ""]
-[Board "362"]
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:KQJ.3.KQ64.AJT86 T964.KQJ8.83.Q92 A532.A752.AJ72.3 87.T964.T95.K754"]
-{Shape 3145 4423 4441 2434}
-{HCP 16 8 13 3}
-{Losers 5 8 7 10}
-[Declarer "S"]
-[Contract "5D"]
-[Auction "S"]
-1D    Pass  2C    Pass
-2D    Pass  3H =1=    Pass
-4H    Pass  4N    Pass
-5C =2=    Pass  5D    Pass
-Pass  Pass
-[Note "1:Splinter"]
-[Note "2:A=0/5 or 3/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Minor_Game_Or_Slam"]
-[Site ""]
-[Board "363"]
+[Board "335"]
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]

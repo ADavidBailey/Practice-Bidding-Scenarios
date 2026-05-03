@@ -71,7 +71,7 @@
 [Auction "S"]
 1D    Pass  2S =1=    Pass
 3D =2=    Pass  4C    Pass
-4N    Pass  5C =3=    Pass
+4N    Pass  5D =3=    Pass
 7D    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:bidable suit"]
@@ -176,7 +176,7 @@ Pass  Pass
 1C    Pass  2D =1=    Pass
 3C =2=    Pass  3H    Pass
 3N    Pass  4N    Pass
-5D =3=    Pass  5H    Pass
+5C =3=    Pass  5D    Pass
 6C =4=    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:bidable suit"]
@@ -252,13 +252,13 @@ Pass  Pass
 {HCP 18 5 12 5}
 {Losers 3 7 7 9}
 [Declarer "N"]
-[Contract "6H"]
+[Contract "7H"]
 [Auction "S"]
 1C    Pass  2H =1=    Pass
 3C =2=    Pass  3H    Pass
-4N    Pass  5C =3=    Pass
-5D    Pass  6D =4=    Pass
-6H    Pass  Pass  Pass
+4N    Pass  5D =3=    Pass
+5S    Pass  6D =4=    Pass
+7H    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:bidable suit"]
 [Note "3:A=0/5 or 3/5"]
@@ -342,8 +342,8 @@ Pass  Pass
 [Auction "S"]
 1C    Pass  2H =1=    Pass
 2N =2=    Pass  3H    Pass
-4N    Pass  5C =3=    Pass
-5D    Pass  6C =4=    Pass
+4N    Pass  5D =3=    Pass
+5S    Pass  6C =4=    Pass
 6H    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -419,7 +419,7 @@ Pass  Pass
 1C    Pass  2S =1=    Pass
 2N =2=    Pass  3D    Pass
 3S    Pass  4N    Pass
-5D =3=    Pass  7S    Pass
+5C =3=    Pass  7S    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -515,12 +515,13 @@ Pass  Pass
 {Shape 5314 1381 3235 4513}
 {HCP 18 4 13 5}
 {Losers 5 7 7 9}
-[Declarer "S"]
-[Contract "5C"]
+[Declarer "N"]
+[Contract "6S"]
 [Auction "S"]
 1C    Pass  2S =1=    3D
 Pass  Pass  4D    Pass
-4N    Pass  5C =2=    Pass
+4N    Pass  5D =2=    Pass
+5S    Pass  6S    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:A=0/5 or 3/5"]
@@ -750,15 +751,15 @@ Pass  Pass
 [Auction "S"]
 1C    Pass  2H =1=    Pass
 3H =2=    Pass  4D    Pass
-4N    Pass  5C =3=    Pass
-5D    Pass  5S =4=    Pass
-5N =5=    Pass  6D =6=    Pass
+4N    Pass  5D =3=    Pass
+5S    Pass  5N =4=    Pass
+6C =5=    Pass  6H =6=    Pass
 7H    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
 [Note "3:A=0/5 or 3/5"]
-[Note "4:!H queen and !S king"]
-[Note "5:King ask by 5NT"]
+[Note "4:!H queen no !C king no !D king"]
+[Note "5:King ask by available bid"]
 [Note "6:K=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -830,8 +831,8 @@ Pass  Pass
 [Auction "S"]
 1C    Pass  2S =1=    4H
 X     Pass  4S    Pass
-4N    Pass  5C =2=    Pass
-5D    Pass  6D =3=    Pass
+4N    Pass  5D =2=    Pass
+5H    X     6D =3=    Pass
 6S    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:A=0/5 or 3/5"]
@@ -857,8 +858,8 @@ X     Pass  4S    Pass
 [Auction "S"]
 1D    Pass  2S =1=    Pass
 3D =2=    Pass  3S    Pass
-4N    Pass  5C =3=    Pass
-5D    Pass  6D =4=    Pass
+4N    Pass  5D =3=    Pass
+5H    Pass  6D =4=    Pass
 6S    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:bidable suit"]
@@ -964,13 +965,13 @@ Pass  Pass
 1D    Pass  2H =1=    Pass
 3H =2=    Pass  3S    Pass
 4C    Pass  4D    Pass
-4N    Pass  5C =3=    Pass
-5D    Pass  5N =4=    Pass
+4N    Pass  5D =3=    X
+5S    Pass  5N =4=    Pass
 6H    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
 [Note "3:A=0/5 or 3/5"]
-[Note "4:!H queen no !S king no !C king no !D king"]
+[Note "4:!H queen no !C king no !D king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -993,7 +994,7 @@ Pass  Pass
 1D    Pass  2S =1=    Pass
 3C =2=    Pass  3D    Pass
 4S    Pass  4N    Pass
-5D =3=    Pass  5H    Pass
+5C =3=    Pass  5D    Pass
 5S =4=    Pass  6S    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
@@ -1016,13 +1017,12 @@ Pass  Pass
 {Shape 5215 1381 2434 5413}
 {HCP 19 7 13 1}
 {Losers 4 6 7 10}
-[Declarer "N"]
-[Contract "5S"]
+[Declarer "S"]
+[Contract "5C"]
 [Auction "S"]
 1C    Pass  2S =1=    4D
 Pass  Pass  4N    Pass
-5D =2=    X     5S    Pass
-Pass  Pass
+5C =2=    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -1047,7 +1047,7 @@ Pass  Pass
 1C    Pass  2D =1=    Pass
 3C =2=    Pass  3S    Pass
 4D    Pass  4N    Pass
-5D =3=    Pass  6D    Pass
+5C =3=    Pass  6D    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:bidable suit"]
@@ -1128,7 +1128,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  2H =1=    Pass
 3H =2=    Pass  4N    Pass
-5C =3=    Pass  5H    Pass
+5D =3=    Pass  5H    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -1181,7 +1181,7 @@ Pass  Pass
 1D    Pass  2H =1=    Pass
 3D =2=    Pass  3S    X
 4C    Pass  4H    Pass
-4N    Pass  5C =3=    Pass
+4N    Pass  5D =3=    Pass
 6D    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:bidable suit"]
@@ -1208,7 +1208,7 @@ Pass  Pass
 1D    Pass  2S =1=    Pass
 3D =2=    Pass  4C    Pass
 4D    Pass  4N    Pass
-5D =3=    Pass  5H    Pass
+5C =3=    Pass  5H    Pass
 6C =4=    Pass  6D    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
@@ -1522,7 +1522,7 @@ Pass  Pass
 1D    Pass  2H =1=    Pass
 3H =2=    Pass  4D    Pass
 4H    Pass  4N    Pass
-5D =3=    Pass  5N =4=    Pass
+5C =3=    Pass  5N =4=    Pass
 6H =5=    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -1550,8 +1550,8 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  2H =1=    Pass
 3H =2=    Pass  3S    Pass
-4N    Pass  5C =3=    Pass
-5D    Pass  6C =4=    Pass
+4N    Pass  5D =3=    Pass
+5S    Pass  6C =4=    Pass
 6H    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -1627,7 +1627,7 @@ Pass  Pass
 1C    Pass  2D =1=    Pass
 2N =2=    Pass  3D    Pass
 4D    Pass  4N    Pass
-5D =3=    Pass  6N    Pass
+5C =3=    Pass  6N    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -1704,7 +1704,7 @@ Pass  Pass
 [Auction "S"]
 1C    Pass  2H =1=    Pass
 3H =2=    Pass  3S    Pass
-4N    Pass  5C =3=    Pass
+4N    Pass  5D =3=    Pass
 6H    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -1786,7 +1786,7 @@ Pass  Pass
 1C    Pass  2H =1=    Pass
 3C =2=    Pass  3H    Pass
 4H    Pass  4N    Pass
-5D =3=    Pass  6H    Pass
+5C =3=    Pass  6H    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:bidable suit"]
@@ -1863,7 +1863,7 @@ Pass
 1D    Pass  2H =1=    Pass
 3H =2=    Pass  3S    Pass
 4D    Pass  4N    Pass
-5D =3=    Pass  5N =4=    Pass
+5C =3=    Pass  5N =4=    Pass
 6D =5=    Pass  7H    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
@@ -2014,8 +2014,8 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  2H =1=    Pass
 3D =2=    Pass  3H    Pass
-4N    Pass  5C =3=    Pass
-5D    Pass  6D =4=    Pass
+4N    Pass  5D =3=    Pass
+5S    Pass  6D =4=    Pass
 6H    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:bidable suit"]
@@ -2146,7 +2146,7 @@ Pass  Pass
 1D    Pass  2H =1=    Pass
 2S =2=    Pass  3C    Pass
 4H    Pass  4N    Pass
-5D =3=    Pass  5H    Pass
+5C =3=    X     5H    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -2480,8 +2480,8 @@ Pass  Pass
 3C =2=    Pass  3D    Pass
 3S    Pass  3N    Pass
 4D    Pass  4H    Pass
-4N    Pass  5C =3=    Pass
-5D    Pass  5S =4=    Pass
+4N    Pass  5D =3=    Pass
+5H    Pass  5S =4=    Pass
 6S    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -2528,17 +2528,20 @@ Pass  Pass
 {HCP 21 5 13 1}
 {Losers 4 8 5 9}
 [Declarer "N"]
-[Contract "6H"]
+[Contract "7H"]
 [Auction "S"]
 1C    Pass  2H =1=    Pass
 3H =2=    Pass  4C    Pass
-4N    Pass  5C =3=    Pass
-5D    Pass  5S =4=    Pass
-6H    Pass  Pass  Pass
+4N    Pass  5D =3=    Pass
+5S    Pass  5N =4=    Pass
+6C =5=    Pass  6H =6=    Pass
+7H    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
 [Note "3:A=0/5 or 3/5"]
-[Note "4:!H queen and !S king"]
+[Note "4:!H queen no !C king no !D king"]
+[Note "5:King ask by available bid"]
+[Note "6:K=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -2556,12 +2559,12 @@ Pass  Pass
 {HCP 17 7 13 3}
 {Losers 6 9 7 10}
 [Declarer "N"]
-[Contract "5H"]
+[Contract "6H"]
 [Auction "S"]
 1D    Pass  2H =1=    Pass
 2N =2=    Pass  3H    Pass
-4N    Pass  5C =3=    Pass
-5D    Pass  5H =4=    Pass
+4N    Pass  5D =3=    Pass
+5S    Pass  6H =4=    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -2588,7 +2591,7 @@ Pass  Pass
 [Auction "S"]
 1C    Pass  2S =1=    Pass
 3D =2=    Pass  3S    Pass
-4N    Pass  5C =3=    Pass
+4N    Pass  5D =3=    Pass
 6S    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -2614,9 +2617,9 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  2H =1=    2N =2=
 3N    Pass  4H    Pass
-4N    Pass  5C =3=    Pass
-5D    Pass  5H =4=    Pass
-6H    Pass  Pass  Pass
+4N    Pass  5D =3=    Pass
+5S    Pass  6H =4=    Pass
+Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:Unusual 2NT"]
 [Note "3:A=0/5 or 3/5"]
@@ -2849,7 +2852,7 @@ Pass  Pass
 1C    Pass  2S =1=    Pass
 3S =2=    Pass  4H    X
 4S    Pass  4N    Pass
-5D =3=    Pass  6S    Pass
+5C =3=    Pass  6S    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -3183,7 +3186,7 @@ Pass  Pass
 1D    Pass  2S =1=    Pass
 2N =2=    Pass  3C    Pass
 4S    Pass  4N    Pass
-5D =3=    Pass  6D    Pass
+5C =3=    Pass  6D    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -3259,7 +3262,7 @@ Pass  Pass
 1D    Pass  2H =1=    Pass
 2S =2=    Pass  3H    Pass
 3S    Pass  4N    Pass
-5D =3=    Pass  6D    Pass
+5C =3=    Pass  6D    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -3312,7 +3315,7 @@ Pass  Pass
 [Auction "S"]
 1C    Pass  2H =1=    Pass
 3H =2=    Pass  4D    Pass
-4N    Pass  5C =3=    Pass
+4N    Pass  5D =3=    Pass
 6H    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -3414,7 +3417,7 @@ Pass  Pass
 1D    Pass  2H =1=    Pass
 3H =2=    Pass  4C    Pass
 4H    Pass  4N    Pass
-5D =3=    Pass  5H    Pass
+5C =3=    Pass  5H    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -3441,7 +3444,7 @@ Pass  Pass
 1D    Pass  2S =1=    Pass
 2N =2=    Pass  3C    Pass
 4D    Pass  4N    Pass
-5C =3=    Pass  6D    Pass
+5D =3=    Pass  6D    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -3468,7 +3471,7 @@ Pass  Pass
 1C    Pass  2S =1=    Pass
 3C =2=    Pass  3H    Pass
 3N    Pass  4N    Pass
-5D =3=    Pass  6C    Pass
+5C =3=    Pass  6C    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:bidable suit"]
@@ -3494,13 +3497,12 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  2H =1=    Pass
 3H =2=    Pass  4D    Pass
-4N    Pass  5C =3=    Pass
-5D    Pass  6D =4=    Pass
-6H    Pass  Pass  Pass
+4N    Pass  5D =3=    Pass
+5H    Pass  6H    Pass
+Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
 [Note "3:A=0/5 or 3/5"]
-[Note "4:!H queen and !D king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -3724,7 +3726,7 @@ Pass  Pass
 1D    Pass  2H =1=    Pass
 2S =2=    Pass  3C    Pass
 4D    Pass  4N    Pass
-5D =3=    Pass  5H    Pass
+5C =3=    Pass  5H    Pass
 6D =4=    Pass  6N    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
@@ -3779,7 +3781,7 @@ Pass  Pass
 1C    Pass  2S =1=    Pass
 2N =2=    Pass  3C    Pass
 3S    Pass  4N    Pass
-5D =3=    X     6S    Pass
+5C =3=    Pass  6S    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -3910,7 +3912,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  2S =1=    3C
 3S    Pass  4D    Pass
-4N    Pass  5C =2=    Pass
+4N    Pass  5D =2=    Pass
 5S    Pass  6S    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
@@ -3937,9 +3939,9 @@ Pass  Pass
 1C    Pass  2H =1=    Pass
 2S =2=    Pass  3C    Pass
 3H    Pass  3N    Pass
-4N    Pass  5C =3=    Pass
-5D    Pass  5H =4=    Pass
-6H    Pass  Pass  Pass
+4N    Pass  5D =3=    Pass
+5S    Pass  6H =4=    Pass
+Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
 [Note "3:A=0/5 or 3/5"]
@@ -4091,7 +4093,7 @@ Pass  Pass
 1D    Pass  2S =1=    Pass
 3D =2=    Pass  4D    Pass
 4H    Pass  4N    Pass
-5C =3=    Pass  6D    Pass
+5D =3=    Pass  6D    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:bidable suit"]
@@ -4118,13 +4120,13 @@ Pass  Pass
 1C    Pass  2D =1=    Pass
 3C =2=    Pass  3S    Pass
 4C    Pass  4N    Pass
-5D =3=    Pass  5H    Pass
-5S =4=    Pass  6C    Pass
+5C =3=    Pass  5D    Pass
+5H =4=    Pass  6C    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:bidable suit"]
 [Note "3:A=1/5 or 4/5"]
-[Note "4:!C queen and !S king"]
+[Note "4:!C queen and !H king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -4147,7 +4149,7 @@ Pass  Pass
 1C    Pass  2H =1=    3D
 3H    Pass  4C    Pass
 4H    Pass  4N    Pass
-5D =2=    Pass  5N =3=    Pass
+5C =2=    Pass  5N =3=    Pass
 6H =4=    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:A=1/5 or 4/5"]

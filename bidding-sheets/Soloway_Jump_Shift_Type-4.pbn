@@ -74,7 +74,7 @@
 [Auction "N"]
 1D    Pass  2S =1=    Pass
 3D =2=    Pass  4C    Pass
-4N    Pass  5C =3=    Pass
+4N    Pass  5D =3=    Pass
 7D    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:bidable suit"]
@@ -183,7 +183,7 @@ Pass  Pass
 1C    Pass  2D =1=    Pass
 3C =2=    Pass  3H    Pass
 3N    Pass  4N    Pass
-5D =3=    Pass  5H    Pass
+5C =3=    Pass  5D    Pass
 6C =4=    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:bidable suit"]
@@ -262,13 +262,13 @@ Pass  Pass
 {HCP 18 5 12 5}
 {Losers 3 7 7 9}
 [Declarer "S"]
-[Contract "6H"]
+[Contract "7H"]
 [Auction "N"]
 1C    Pass  2H =1=    Pass
 3C =2=    Pass  3H    Pass
-4N    Pass  5C =3=    Pass
-5D    Pass  6D =4=    Pass
-6H    Pass  Pass  Pass
+4N    Pass  5D =3=    Pass
+5S    Pass  6D =4=    Pass
+7H    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:bidable suit"]
 [Note "3:A=0/5 or 3/5"]
@@ -355,8 +355,8 @@ Pass  Pass
 [Auction "S"]
 1C    Pass  2H =1=    Pass
 2N =2=    Pass  3H    Pass
-4N    Pass  5C =3=    Pass
-5D    Pass  6C =4=    Pass
+4N    Pass  5D =3=    Pass
+5S    Pass  6C =4=    Pass
 6H    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -435,7 +435,7 @@ Pass  Pass
 1C    Pass  2S =1=    Pass
 2N =2=    Pass  3D    Pass
 3S    Pass  4N    Pass
-5D =3=    Pass  7S    Pass
+5C =3=    Pass  7S    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -529,18 +529,19 @@ Pass  Pass
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
-[Dealer "S"]
+[Dealer "N"]
 [Vulnerable "EW"]
-[Deal "S:T43.A5.KJ8.KQ964 K962.98632.Q.T83 AQJ85.QT7.A.AJ75 7.KJ4.T9765432.2"]
+[Deal "N:T43.A5.KJ8.KQ964 K962.98632.Q.T83 AQJ85.QT7.A.AJ75 7.KJ4.T9765432.2"]
 {Shape 5314 1381 3235 4513}
 {HCP 18 4 13 5}
 {Losers 5 7 7 9}
 [Declarer "S"]
-[Contract "5C"]
-[Auction "S"]
+[Contract "6S"]
+[Auction "N"]
 1C    Pass  2S =1=    3D
 Pass  Pass  4D    Pass
-4N    Pass  5C =2=    Pass
+4N    Pass  5D =2=    Pass
+5S    Pass  6S    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:A=0/5 or 3/5"]
@@ -779,15 +780,15 @@ Pass  Pass
 [Auction "S"]
 1C    Pass  2H =1=    Pass
 3H =2=    Pass  4D    Pass
-4N    Pass  5C =3=    Pass
-5D    Pass  5S =4=    Pass
-5N =5=    Pass  6D =6=    Pass
+4N    Pass  5D =3=    Pass
+5S    Pass  5N =4=    Pass
+6C =5=    Pass  6H =6=    Pass
 7H    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
 [Note "3:A=0/5 or 3/5"]
-[Note "4:!H queen and !S king"]
-[Note "5:King ask by 5NT"]
+[Note "4:!H queen no !C king no !D king"]
+[Note "5:King ask by available bid"]
 [Note "6:K=1"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -862,8 +863,8 @@ Pass  Pass
 [Auction "N"]
 1C    Pass  2S =1=    4H
 X     Pass  4S    Pass
-4N    Pass  5C =2=    Pass
-5D    Pass  6D =3=    Pass
+4N    Pass  5D =2=    Pass
+5H    X     6D =3=    Pass
 6S    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:A=0/5 or 3/5"]
@@ -890,8 +891,8 @@ X     Pass  4S    Pass
 [Auction "S"]
 1D    Pass  2S =1=    Pass
 3D =2=    Pass  3S    Pass
-4N    Pass  5C =3=    Pass
-5D    Pass  6D =4=    Pass
+4N    Pass  5D =3=    Pass
+5H    Pass  6D =4=    Pass
 6S    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:bidable suit"]
@@ -1001,13 +1002,13 @@ Pass  Pass
 1D    Pass  2H =1=    Pass
 3H =2=    Pass  3S    Pass
 4C    Pass  4D    Pass
-4N    Pass  5C =3=    Pass
-5D    Pass  5N =4=    Pass
+4N    Pass  5D =3=    X
+5S    Pass  5N =4=    Pass
 6H    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
 [Note "3:A=0/5 or 3/5"]
-[Note "4:!H queen no !S king no !C king no !D king"]
+[Note "4:!H queen no !C king no !D king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -1031,7 +1032,7 @@ Pass  Pass
 1D    Pass  2S =1=    Pass
 3C =2=    Pass  3D    Pass
 4S    Pass  4N    Pass
-5D =3=    Pass  5H    Pass
+5C =3=    Pass  5D    Pass
 5S =4=    Pass  6S    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
@@ -1049,19 +1050,18 @@ Pass  Pass
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
-[Dealer "S"]
+[Dealer "N"]
 [Vulnerable "All"]
-[Deal "S:94.AK76.K62.QJ53 87652.J542.T.T76 AKQJ3.Q3.3.AK984 T.T98.AQJ98754.2"]
+[Deal "N:94.AK76.K62.QJ53 87652.J542.T.T76 AKQJ3.Q3.3.AK984 T.T98.AQJ98754.2"]
 {Shape 5215 1381 2434 5413}
 {HCP 19 7 13 1}
 {Losers 4 6 7 10}
 [Declarer "N"]
-[Contract "5S"]
-[Auction "S"]
+[Contract "5C"]
+[Auction "N"]
 1C    Pass  2S =1=    4D
 Pass  Pass  4N    Pass
-5D =2=    X     5S    Pass
-Pass  Pass
+5C =2=    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -1087,7 +1087,7 @@ Pass  Pass
 1C    Pass  2D =1=    Pass
 3C =2=    Pass  3S    Pass
 4D    Pass  4N    Pass
-5D =3=    Pass  6D    Pass
+5C =3=    Pass  6D    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:bidable suit"]
@@ -1171,7 +1171,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  2H =1=    Pass
 3H =2=    Pass  4N    Pass
-5C =3=    Pass  5H    Pass
+5D =3=    Pass  5H    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:artificial"]
@@ -1226,7 +1226,7 @@ Pass  Pass
 1D    Pass  2H =1=    Pass
 3D =2=    Pass  3S    X
 4C    Pass  4H    Pass
-4N    Pass  5C =3=    Pass
+4N    Pass  5D =3=    Pass
 6D    Pass  Pass  Pass
 [Note "1:Soloway Jump Shifts"]
 [Note "2:bidable suit"]
@@ -1254,7 +1254,7 @@ Pass  Pass
 1D    Pass  2S =1=    Pass
 3D =2=    Pass  4C    Pass
 4D    Pass  4N    Pass
-5D =3=    Pass  5H    Pass
+5C =3=    Pass  5H    Pass
 6C =4=    Pass  6D    Pass
 Pass  Pass
 [Note "1:Soloway Jump Shifts"]

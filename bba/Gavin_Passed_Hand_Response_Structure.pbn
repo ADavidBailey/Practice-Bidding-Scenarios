@@ -583,7 +583,7 @@ Pass  Pass  1H    Pass
 Pass  Pass  1H    Pass
 2C =1=    Pass  3D =2=    Pass
 4D    Pass  4N    Pass
-5D =3=    Pass  6H    Pass
+5C =3=    Pass  6H    Pass
 Pass  Pass
 [Note "1:Reverse drury"]
 [Note "2:Splinter"]
@@ -610,7 +610,7 @@ Pass  Pass
 Pass  Pass  1H    Pass
 2H    Pass  4C =1=    Pass
 4D    Pass  4N    Pass
-5D =2=    Pass  6H    Pass
+5C =2=    Pass  6H    Pass
 Pass  Pass
 [Note "1:Splinter"]
 [Note "2:A=1/5 or 4/5"]
@@ -678,11 +678,12 @@ Pass  Pass
 [Auction "S"]
 Pass  Pass  2C =1=    Pass
 2N    Pass  3H    Pass
-4N    Pass  5D =2=    Pass
-5H    Pass  6H    Pass
-Pass  Pass
+4N    Pass  5C =2=    Pass
+5D    Pass  5N =3=    Pass
+6H    Pass  Pass  Pass
 [Note "1:strong"]
 [Note "2:A=1/5 or 4/5"]
+[Note "3:!H queen no !S king no !C king no !D king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -1649,7 +1650,7 @@ Pass  Pass  1S    Pass
 2C =1=    Pass  3N    Pass
 4D    Pass  4H    Pass
 4S    Pass  4N    Pass
-5D =2=    Pass  5S    Pass
+5C =2=    Pass  5S    Pass
 Pass  Pass
 [Note "1:Reverse drury"]
 [Note "2:A=1/5 or 4/5"]
@@ -1857,7 +1858,7 @@ Pass  Pass  1H    Pass
 2C =1=    Pass  3C    Pass
 3H    Pass  4C    Pass
 4H    Pass  4N    Pass
-5D =2=    Pass  6H    Pass
+5C =2=    Pass  6H    Pass
 Pass  Pass
 [Note "1:Reverse drury"]
 [Note "2:A=1/5 or 4/5"]
@@ -2366,7 +2367,7 @@ Pass  Pass
 Pass  Pass  1S    Pass
 2C =1=    Pass  3S    Pass
 4C    Pass  4N    Pass
-5D =2=    Pass  5S    Pass
+5C =2=    Pass  5S    Pass
 Pass  Pass
 [Note "1:Reverse drury"]
 [Note "2:A=1/5 or 4/5"]
@@ -3004,7 +3005,7 @@ Pass  Pass  1H    Pass
 2C =1=    Pass  3H    Pass
 4C    Pass  4D    Pass
 4H    Pass  4N    Pass
-5D =2=    Pass  5H    Pass
+5C =2=    Pass  5H    Pass
 Pass  Pass
 [Note "1:Reverse drury"]
 [Note "2:A=1/5 or 4/5"]
@@ -3517,7 +3518,7 @@ Pass  Pass
 Pass  Pass  1S    Pass
 2C =1=    Pass  3S    Pass
 4S    Pass  4N    Pass
-5C =2=    Pass  5S    Pass
+5D =2=    Pass  5S    Pass
 Pass  Pass
 [Note "1:Reverse drury"]
 [Note "2:A=0/5 or 3/5"]
@@ -3824,7 +3825,7 @@ Pass  Pass
 Pass  Pass  1S    Pass
 2C =1=    Pass  3H =2=    Pass
 4D    Pass  4N    Pass
-5D =3=    Pass  5S    Pass
+5C =3=    Pass  5S    Pass
 Pass  Pass
 [Note "1:Reverse drury"]
 [Note "2:Splinter"]
@@ -4169,7 +4170,7 @@ Pass  Pass  1S    Pass
 2C =1=    Pass  3N    Pass
 4C    Pass  4D    Pass
 4S    Pass  4N    Pass
-5C =2=    Pass  5S    Pass
+5D =2=    Pass  5S    Pass
 Pass  Pass
 [Note "1:Reverse drury"]
 [Note "2:A=0/5 or 3/5"]
@@ -4378,16 +4379,18 @@ Pass  Pass  1H    Pass
 {HCP 18 6 10 6}
 {Losers 5 9 9 9}
 [Declarer "N"]
-[Contract "5H"]
+[Contract "6H"]
 [Auction "S"]
 Pass  Pass  1H    Pass
 2C =1=    Pass  2S    Pass
 3N    Pass  4C    Pass
 4H    Pass  4N    Pass
-5D =2=    Pass  5H    Pass
+5C =2=    Pass  5D    Pass
+6C =3=    Pass  6H    Pass
 Pass  Pass
 [Note "1:Reverse drury"]
 [Note "2:A=1/5 or 4/5"]
+[Note "3:!H queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -5391,9 +5394,11 @@ Pass  Pass
 [Auction "S"]
 1S    Pass  2H    Pass
 4H    Pass  4N    Pass
-5D =1=    Pass  6H    Pass
+5C =1=    Pass  5D    Pass
+5S =2=    Pass  6H    Pass
 Pass  Pass
 [Note "1:A=1/5 or 4/5"]
+[Note "2:!H queen and !S king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -6207,8 +6212,9 @@ Pass  Pass
 1C    Pass  1H    Pass
 1N    Pass  2D =1=    Pass
 2H =2=    Pass  4N    Pass
-5D =3=    Pass  5S    Pass
-6H =4=    Pass  Pass  Pass
+5C =3=    Pass  5D    Pass
+5H =4=    Pass  6H    Pass
+Pass  Pass
 [Note "1:New Minor Forcing"]
 [Note "2:3 !H"]
 [Note "3:A=1/5 or 4/5"]
@@ -6324,7 +6330,7 @@ Pass  Pass
 [Auction "S"]
 1H    Pass  2S    Pass
 4S    Pass  4N    Pass
-5C =1=    Pass  5S    Pass
+5D =1=    Pass  5S    Pass
 Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -6905,7 +6911,7 @@ Pass  Pass  1S    Pass
 2C =1=    Pass  3N    Pass
 4C    Pass  4D    Pass
 4S    Pass  4N    Pass
-5D =2=    Pass  5S    Pass
+5C =2=    Pass  5S    Pass
 Pass  Pass
 [Note "1:Reverse drury"]
 [Note "2:A=1/5 or 4/5"]
@@ -7803,12 +7809,11 @@ Pass  Pass  1S    Pass
 {HCP 19 3 11 7}
 {Losers 5 11 6 9}
 [Declarer "S"]
-[Contract "6C"]
+[Contract "5C"]
 [Auction "S"]
 1C    Pass  1H    Pass
 2C    Pass  4N    Pass
-5D =1=    Pass  6C    Pass
-Pass  Pass
+5C =1=    Pass  Pass  Pass
 [Note "1:A=1/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -9141,7 +9146,7 @@ Pass  Pass  1S    Pass
 2C =1=    Pass  3C    Pass
 3S    Pass  4C    Pass
 4D    Pass  4H    Pass
-4N    Pass  5C =2=    Pass
+4N    Pass  5D =2=    Pass
 6S    Pass  Pass  Pass
 [Note "1:Reverse drury"]
 [Note "2:A=0/5 or 3/5"]
@@ -9790,7 +9795,7 @@ Pass  Pass  1H    Pass
 Pass  Pass  1H    Pass
 2C =1=    Pass  4C =2=    Pass
 4H    Pass  4N    Pass
-5D =3=    Pass  5H    Pass
+5C =3=    Pass  5H    Pass
 Pass  Pass
 [Note "1:Reverse drury"]
 [Note "2:Splinter"]
@@ -10168,7 +10173,7 @@ Pass  Pass
 Pass  Pass  1H    Pass
 2C =1=    Pass  3C    Pass
 4H    Pass  4N    Pass
-5C =2=    Pass  6H    Pass
+5D =2=    Pass  6H    Pass
 Pass  Pass
 [Note "1:Reverse drury"]
 [Note "2:A=0/5 or 3/5"]
@@ -11403,7 +11408,7 @@ Pass  Pass
 Pass  Pass  1S    Pass
 2S    Pass  4C =1=    Pass
 4H    Pass  4N    Pass
-5C =2=    Pass  6S    X
+5D =2=    Pass  6S    X
 Pass  Pass  Pass
 [Note "1:Splinter"]
 [Note "2:A=0/5 or 3/5"]
@@ -11525,7 +11530,7 @@ Pass  Pass  1H    Pass
 Pass  Pass  1S    Pass
 2S    Pass  2N    Pass
 3S    Pass  4S    Pass
-4N    Pass  5C =1=    Pass
+4N    Pass  5D =1=    Pass
 6S    Pass  Pass  Pass
 [Note "1:A=0/5 or 3/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]

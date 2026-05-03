@@ -793,9 +793,10 @@ Pass
 {HCP 5 16 15 4}
 {Losers 9 6 8 10}
 [Declarer "S"]
-[Contract "1N"]
+[Contract "1NX"]
 [Auction "S"]
-1N    Pass  Pass  Pass
+1N    Pass  Pass  X
+Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -903,12 +904,10 @@ Pass  Pass
 {Shape 4432 2263 3442 4306}
 {HCP 5 6 15 14}
 {Losers 9 9 6 5}
-[Declarer "E"]
-[Contract "3C"]
+[Declarer "S"]
+[Contract "1N"]
 [Auction "S"]
-1N    X     Pass  2C
-Pass  3C    Pass  Pass
-Pass
+1N    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -925,10 +924,11 @@ Pass
 {Shape 1435 4342 4423 4243}
 {HCP 6 2 15 17}
 {Losers 9 10 7 6}
-[Declarer "S"]
-[Contract "1N"]
+[Declarer "E"]
+[Contract "2SX"]
 [Auction "S"]
-1N    Pass  Pass  Pass
+1N    X     XX    2S
+X     Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -1272,12 +1272,14 @@ Pass
 {Shape 3622 1363 3334 6124}
 {HCP 5 9 15 11}
 {Losers 8 8 8 6}
-[Declarer "N"]
-[Contract "2H"]
+[Declarer "S"]
+[Contract "3H"]
 [Auction "S"]
-1N    2D =1=    2H    Pass
-Pass  Pass
-[Note "1:Multi-Landy, Multi"]
+1N    2S =1=    3D =2=    Pass
+3H =3=    Pass  Pass  Pass
+[Note "1:Cappelletti, 5M-4m"]
+[Note "2:Rubensohl after 1NT"]
+[Note "3:relay"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -1553,9 +1555,10 @@ Pass
 {HCP 5 4 15 16}
 {Losers 9 10 7 7}
 [Declarer "S"]
-[Contract "1N"]
+[Contract "1NXX"]
 [Auction "S"]
-1N    Pass  Pass  Pass
+1N    X     Pass  Pass
+XX    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -1792,13 +1795,14 @@ Pass  Pass
 {Shape 6313 3523 4342 0265}
 {HCP 6 7 15 12}
 {Losers 9 9 7 5}
-[Declarer "N"]
+[Declarer "S"]
 [Contract "4S"]
 [Auction "S"]
-1N    2N =1=    Pass  3C
-Pass  Pass  4S    Pass
+1N    2C =1=    2H    Pass
+3S =2=    Pass  4S    Pass
 Pass  Pass
-[Note "1:Unusual 2NT"]
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:Super acceptance after NT"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -2101,11 +2105,11 @@ Pass  Pass
 {HCP 7 7 15 11}
 {Losers 9 10 8 6}
 [Declarer "S"]
-[Contract "2H"]
+[Contract "3H"]
 [Auction "S"]
-1N    Pass  2C =1=    Pass
-2H    Pass  Pass  Pass
-[Note "1:Stayman"]
+1N    2S =1=    X     Pass
+3H    Pass  Pass  Pass
+[Note "1:Cappelletti, 5M-4m"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -2211,10 +2215,11 @@ Pass  Pass  Pass
 {HCP 7 3 15 15}
 {Losers 6 9 7 6}
 [Declarer "S"]
-[Contract "4S"]
+[Contract "4SX"]
 [Auction "S"]
-1N    Pass  4H =1=    Pass
-4S    Pass  Pass  Pass
+1N    X     4H =1=    Pass
+4S    Pass  Pass  X
+Pass  Pass  Pass
 [Note "1:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -2235,7 +2240,7 @@ Pass  Pass  Pass
 [Declarer "S"]
 [Contract "2H"]
 [Auction "S"]
-1N    Pass  2D    Pass
+1N    X     2D    Pass
 2H    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -2454,8 +2459,8 @@ X     2S    Pass  Pass
 [Declarer "S"]
 [Contract "3S"]
 [Auction "S"]
-1S    X     2S    X
-Pass  3H    Pass  Pass
+1S    X     2S    Pass
+Pass  X     Pass  3H
 3S    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
@@ -2473,13 +2478,13 @@ Pass  3H    Pass  Pass
 {Shape 2173 3532 3325 5413}
 {HCP 5 8 15 12}
 {Losers 8 8 6 7}
-[Declarer "E"]
-[Contract "3HX"]
+[Declarer "N"]
+[Contract "4D"]
 [Auction "S"]
-1N    2C =1=    3C =2=    3H
-X     Pass  Pass  Pass
-[Note "1:Multi-Landy, both majors"]
-[Note "2:1N-3C transfer to diamonds"]
+1N    2D =1=    3D    3H
+Pass  Pass  4D    Pass
+Pass  Pass
+[Note "1:Cappelletti, both majors"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -2499,11 +2504,9 @@ X     Pass  Pass  Pass
 [Declarer "W"]
 [Contract "2S"]
 [Auction "S"]
-1N    2D =1=    Pass  2H =2=
-Pass  2S    Pass  Pass
+1N    2S =1=    Pass  Pass
 Pass
-[Note "1:Multi-Landy, Multi"]
-[Note "2:to the partner's longer"]
+[Note "1:Cappelletti, 5M-4m"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -3079,11 +3082,13 @@ X     Pass  Pass  Pass
 {HCP 7 9 15 9}
 {Losers 8 10 7 6}
 [Declarer "S"]
-[Contract "3S"]
+[Contract "4SX"]
 [Auction "S"]
-1N    Pass  2H    Pass
-3S =1=    Pass  Pass  Pass
-[Note "1:Super acceptance after NT"]
+1N    2C =1=    4H =2=    Pass
+4S    Pass  Pass  X
+Pass  Pass  Pass
+[Note "1:Cappelletti, any 6+suit"]
+[Note "2:Texas"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -3293,14 +3298,13 @@ Pass  Pass
 {Shape 0319 4351 4342 5431}
 {HCP 6 8 15 11}
 {Losers 5 7 7 7}
-[Declarer "S"]
-[Contract "3C"]
+[Declarer "N"]
+[Contract "6C"]
 [Auction "S"]
-1N    2C =1=    2S =2=    Pass
-3C =3=    Pass  Pass  Pass
-[Note "1:Multi-Landy, both majors"]
-[Note "2:1N-2S transfer to clubs"]
-[Note "3:automat"]
+1N    2D =1=    3C    Pass
+3N    Pass  6C    Pass
+Pass  Pass
+[Note "1:Cappelletti, both majors"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
