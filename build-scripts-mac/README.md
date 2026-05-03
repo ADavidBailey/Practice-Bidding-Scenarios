@@ -30,18 +30,6 @@ python3 pbs-pipeline-mac.py "*" "*"
 ### Windows VM
 - OpenSSH Server enabled
 - Drive mappings are handled automatically via `net use` commands (configured via `PBS_UNC_PREFIX` env var)
-- BBA.exe installed and in PATH (C:\BBA\)
-- BBAWatcher.ps1 running (required for BBA operation in GUI mode)
-
-### Starting the BBA Watcher (Windows)
-BBA.exe is a GUI application that can't run over SSH. A watcher script handles BBA requests:
-
-```powershell
-# Run in PowerShell on Windows
-powershell -File P:\build-scripts\BBAWatcher.ps1
-```
-
-To run at Windows startup, create a shortcut to the script in `shell:startup`.
 
 ## Operations
 
@@ -50,7 +38,7 @@ To run at Windows startup, create a shortcut to the script in `shell:startup`.
 | `dlr` | Extract dealer code from PBS file | Mac (py/oneExtract.py) |
 | `pbn` | Generate PBN from DLR | Mac (dealer) or Windows (dealer.exe via SSH) |
 | `rotate` | Create rotated PBN/LIN for 4-player practice | Windows (SetDealerMulti.js via SSH) |
-| `bba` | Generate BBA with bidding analysis | Windows (BBA.exe via watcher) |
+| `bba` | Generate BBA with bidding analysis | Mac (bba-cli native) |
 | `title` | Set title (skipped) | - |
 | `filter` | Filter BBA by auction patterns | Windows (Filter.js via SSH) |
 | `filterStats` | Count hands in filtered files | Mac (native Python) |
@@ -67,7 +55,7 @@ pbn/{scenario}.pbn
     ↓ rotate (SetDealerMulti.js)
 pbn-rotated-for-4-players/{scenario}.pbn
 lin-rotated-for-4-players/{scenario}.lin
-    ↓ bba (BBA.exe)
+    ↓ bba (bba-cli)
 bba/{scenario}.pbn
 bba-summary/{scenario}.txt
     ↓ filter (Filter.js)
@@ -117,31 +105,20 @@ Edit `config.py` to change:
 ┌─────────────────────────────────────────────────────────────┐
 │                         MAC                                  │
 │  pbs-pipeline-mac.py (orchestrator)                         │
-│  ├── operations/dlr.py      → py/oneExtract.py (local)     │
-│  ├── operations/pbn.py      → dealer (local or SSH)        │
-│  ├── operations/rotate.py   → SetDealerMulti.js (SSH)      │
-│  ├── operations/bba.py      → BBA.exe (via watcher)        │
-│  ├── operations/filter.py   → Filter.js (SSH)              │
+│  ├── operations/dlr.py           → py/oneExtract.py (local)│
+│  ├── operations/pbn.py           → dealer (local or SSH)   │
+│  ├── operations/rotate.py        → SetDealerMulti.js (SSH) │
+│  ├── operations/bba_from_pbn.py  → bba-cli (local)         │
+│  ├── operations/filter.py        → Filter.js (SSH)         │
 │  └── operations/bidding_sheet.py → wkhtmltopdf (local)     │
 └──────────────────────┬──────────────────────────────────────┘
-                       │ SSH / File Queue
+                       │ SSH
 ┌──────────────────────▼──────────────────────────────────────┐
 │                      WINDOWS VM                              │
 │  - P:\ and S:\ mapped to Mac folders                        │
-│  - dealer.exe, BBA.exe, cscript for .js/.wsf scripts        │
-│  - BBAWatcher.ps1 monitors bba-queue/ for requests          │
+│  - dealer.exe, cscript for .js/.wsf scripts                 │
 └─────────────────────────────────────────────────────────────┘
 ```
-
-## BBA Watcher Protocol
-
-Since BBA.exe requires a GUI session, it uses a file-based queue:
-
-1. Mac writes `bba-queue/{scenario}.request` containing: `scenario,cc1,cc2`
-2. Watcher creates `bba-queue/{scenario}.starting` to acknowledge
-3. Watcher runs BBA.exe with constructed command
-4. Watcher creates `bba-queue/{scenario}.done` with "OK" or error message
-5. Watcher cleans up .request and .starting files
 
 ## Troubleshooting
 
@@ -155,11 +132,6 @@ ssh $WINDOWS_USER@$WINDOWS_HOST "echo hello"
 
 ### Drive not accessible via SSH
 SSH sessions don't inherit mapped drives. The ssh_runner.py automatically runs `net use` commands to map P: and S: before each command.
-
-### BBA watcher not responding
-- Ensure Windows is logged in (not just VM running)
-- Start the watcher: `powershell -File P:\build-scripts\BBAWatcher.ps1`
-- Check for errors in the watcher console
 
 ### "No module named 'requests'"
 ```bash
@@ -177,7 +149,7 @@ build-scripts-mac/
 │   ├── dlr.py         # PBS → DLR
 │   ├── pbn.py         # DLR → PBN
 │   ├── rotate.py      # PBN rotation
-│   ├── bba.py         # PBN → BBA (via watcher)
+│   ├── bba_from_pbn.py # PBN → BBA (bba-cli, local)
 │   ├── filter.py      # BBA filtering
 │   ├── filter_stats.py # Count filtered hands
 │   └── bidding_sheet.py # Generate PDFs
@@ -193,7 +165,7 @@ build-scripts-mac/
 Full rebuild of all 299 scenarios with `pbn+` operations using dynamic per-scenario seeding (SEED_OFFSET=1).
 
 ```
-python3 pbs-pipeline-mac.py "*" "pbn+" -q --no-ssh-check
+python3 pbs-pipeline-mac.py "*" "pbn+" -q
 ```
 
 ### Results

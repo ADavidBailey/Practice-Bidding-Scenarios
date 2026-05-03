@@ -24,8 +24,6 @@ import sys
 import time
 
 from config import FOLDERS, OPERATIONS_ORDER, PROJECT_ROOT, DEALER_PLATFORM
-from ssh_runner import test_ssh_connection
-from operations.bba_from_pbn import BBA_MODE
 from utils.properties import get_bba_works
 
 # ANSI color codes
@@ -370,11 +368,6 @@ Operations (in order):
         help="Operations to run: '*' for all, 'op1,op2' for specific, 'op+' from op to end",
     )
     parser.add_argument(
-        "--no-ssh-check",
-        action="store_true",
-        help="Skip SSH connection check at startup",
-    )
-    parser.add_argument(
         "-q", "--quiet",
         action="store_true",
         help="Reduce output verbosity",
@@ -383,20 +376,6 @@ Operations (in order):
     args = parser.parse_args()
 
     verbose = not args.quiet
-
-    # Check SSH connection unless skipped or not needed
-    needs_ssh = DEALER_PLATFORM != "mac" or BBA_MODE != "mac"
-    if needs_ssh and not args.no_ssh_check:
-        if verbose:
-            print("Checking SSH connection to Windows VM...")
-        if not test_ssh_connection():
-            print("\nSSH connection failed. Options:")
-            print("  1. Ensure Windows VM is running")
-            print("  2. Check SSH server is enabled on Windows")
-            print("  3. Use --no-ssh-check to skip this test")
-            sys.exit(1)
-        if verbose:
-            print("  SSH connection OK\n")
 
     # Get scenarios
     scenarios = get_scenarios(args.scenario_pattern)
