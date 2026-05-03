@@ -164,8 +164,8 @@ function getScenarioFromPath(filePath: string): string | undefined {
         return baseName.replace(/\.btn$/, '');
     }
 
-    if (parentDir === 'pbs-test') {
-        // pbs-test/Scenario.pbs
+    if (parentDir === 'pbs-test' || parentDir === 'pbs-release') {
+        // pbs-test/Scenario.pbs or pbs-release/Scenario.pbs
         return baseName.replace(/\.pbs$/, '');
     }
 
