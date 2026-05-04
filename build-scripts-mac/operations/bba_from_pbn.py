@@ -94,7 +94,7 @@ def run_bba(scenario: str, verbose: bool = True, output_dir: str = None) -> bool
 
     pbn/{scenario}.pbn -> bba/{scenario}.pbn (or output_dir/{scenario}.pbn)
 
-    Uses the Rust bba-cli built from the BBA-CLI repo, which links the same
+    Uses the Rust bba-cli built from the BBA-Tools repo, which links the same
     NativeAOT libEPBot.dylib that bba-server runs on the droplet. This keeps
     locally-generated bba-filtered output in sync with what users see from
     the production server.
@@ -113,12 +113,7 @@ def run_bba(scenario: str, verbose: bool = True, output_dir: str = None) -> bool
     bba_cli = MAC_TOOLS.get("bba_cli")
     if not bba_cli or not os.path.exists(bba_cli):
         print(f"Error: bba-cli not found at: {bba_cli}")
-        print(f"  Build it with: cd ~/Development/GitHub/BBA-CLI/cli && cargo build --release")
-        return False
-
-    bba_cli_libpath = MAC_TOOLS.get("bba_cli_libpath")
-    if not bba_cli_libpath or not os.path.exists(os.path.join(bba_cli_libpath, "libEPBot.dylib")):
-        print(f"Error: libEPBot.dylib not found at: {bba_cli_libpath}")
+        print(f"  Install from https://github.com/Rick-Wilson/BBA-Tools/releases (.dmg)")
         return False
 
     pbn_path = os.path.join(FOLDERS["pbn"], f"{scenario}.pbn")
@@ -151,13 +146,14 @@ def run_bba(scenario: str, verbose: bool = True, output_dir: str = None) -> bool
         "--ns-conventions", cc1_file,
         "--ew-conventions", cc2_file,
         "--event", scenario.replace("_", " "),
+        # Emit [Result], [Score], [Scoring], and the BBA board-id hash —
+        # restores the per-board fields the original BBA.exe output had
+        # and that David's classroom UI expects. Costs ~0.22 ms per board.
+        "--single-dummy",
     ]
 
-    # bba-cli loads libEPBot.dylib via the dynamic loader's search path.
-    env = {**os.environ, "DYLD_LIBRARY_PATH": bba_cli_libpath}
-
     if verbose:
-        print(f"  Running: DYLD_LIBRARY_PATH={bba_cli_libpath} {' '.join(cmd)}")
+        print(f"  Running: {' '.join(cmd)}")
 
     try:
         start_time = time.time()
@@ -166,7 +162,6 @@ def run_bba(scenario: str, verbose: bool = True, output_dir: str = None) -> bool
             capture_output=True,
             text=True,
             timeout=BBA_TIMEOUT,
-            env=env,
         )
         elapsed = time.time() - start_time
 

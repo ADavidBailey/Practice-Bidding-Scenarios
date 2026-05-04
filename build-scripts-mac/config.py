@@ -105,12 +105,23 @@ WINDOWS_TOOLS = {
 }
 
 # Mac tool paths
+#
+# bba_cli: the Rust-based bba-cli from BBA-Tools — same engine as the
+# bba-server on the droplet, so auctions match the production server
+# byte-for-byte. Installed from the signed/notarized .dmg release;
+# libEPBot.dylib lives next to it and is auto-discovered via the binary's
+# embedded rpath, so no DYLD_LIBRARY_PATH dance is needed.
+#
+# To run against a dev build instead, point at
+# ~/Development/GitHub/BBA-Tools/bba-cli/target/release/bba-cli AND copy
+# epbot-libs/macos/arm64/libEPBot.dylib next to it (rpath looks for it
+# in @executable_path).
 MAC_TOOLS = {
     "python": "python3",
     "wkhtmltopdf": "/opt/homebrew/bin/wkhtmltopdf",  # Adjust if installed elsewhere
     "dealer": "/Applications/Bridge Utilities/dealer3",  # Mac version of dealer
     "bridge_wrangler": "/Applications/Bridge Utilities/bridge-wrangler",
-    "bba_cli": "/Applications/Bridge Utilities/bba-cli-mac",
+    "bba_cli": "/Applications/Bridge Utilities/bba-cli",
 }
 
 # Where to run dealer: "mac" (default) or "windows"
