@@ -249,9 +249,9 @@ fit4 = (sFit4 or hFit4) and tpNorth<9
 
 fit  = (fit3 or fit4) and not bbaNT and tpNorth>6
 
-gameTry = tpSouth>14 and tpSouth<17
+gameTry = tpSouth>15 and tpSouth<18
 
-fit and gameTry and calmOpps
+fit and gameTry and tpNorth<10 and calmOpps
 
 action printoneline,
 average "hcp(south)" hcp(south),
@@ -266,4 +266,4 @@ After a single raise of a major\n\
 . any other bid below 3 or the major is a long suit/help suit game try\n\
 . bidding 3 of the major is a general strength game try\n\
  https://www.bridgebase.com/doc/gib_system_notes.php#Two-way_Game_Try\n\
-%TwoWayGameTry%,width=50%
+%TwoWayGameTry%

@@ -155,10 +155,10 @@ keep   = 1
 keep0  = 0
 ### End of Imported Leveling Code ###
 
-l1t = eOpens1 and trap     and keep
-l1n = eOpens1 and not trap and keep0
+l1t = eOpens1 and trap     and keep19
+l1n = eOpens1 and not trap and keep06
 l2t = eOpens2 and trap     and keep
-l2n = eOpens2 and not trap and keep0
+l2n = eOpens2 and not trap and keep25
 
 levelTheDeal = l1t or l1n or l2t or l2n
 
@@ -181,4 +181,4 @@ Script
 Button,Trap Pass Opener?,\n\
 --- Trap Pass after opener's major or weak 2 (Maybe)\n\
 About half are trap passes about half are normal passes.\n\
-%TrapPassOpenerMaybe%,width=50%
+%TrapPassOpenerMaybe%
