@@ -1,0 +1,46 @@
+# alias: oneMajor3NTPictureBid
+# button-text: 1M-3N Picture Bid
+# gib-works: false
+# bba-works: false
+# scenario-title: --- 1M - 3NT Picture Bid
+# auction-filter: Auction.....\n1[HS] +Pass +3N
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- 1M - 3NT Picture Bid
+A 3NT response to a 1M opening shows a very specific hand:
+• 12-15 HCP, game-forcing values
+• Exactly 2 cards in opener's major (no fit)
+• Exactly 4 cards in each minor
+• Therefore exactly 3 cards in the other major
+• Wants to declare with tenaces protected
+Opener can pass with no major fit, correct to 4M with a 6-card suit, or correct to 4-of-the-other-major with 5-3 fit. Slam tries: 4NT (18-19 balanced), jump to 5M (6+ card suit), or 4-minor as a forcing slam try.
+@chat*/
+
+dealer south
+
+#include "script/Predict-Opening-1-Bid"
+# Defines oneSpade, oneHeart
+#include "script/Calm-Opponents"
+# Defines calmOpps
+
+# Opener: 1H or 1S
+oneMajor = oneHeart or oneSpade
+
+# Responder shape: exactly 2 in opener's major, 3 in other major, 4-4 in minors
+nShape3244 = oneHeart and shape(north, 3244)  // 1H opener: north is 3-2-4-4
+nShape2344 = oneSpade and shape(north, 2344)  // 1S opener: north is 2-3-4-4
+nShape = nShape3244 or nShape2344
+
+# Responder strength: 12-15 HCP
+nStrength = hcp(north)>11 and hcp(north)<16
+
+oneMajor and nShape and nStrength and calmOpps
+
+action
+
+average "1H opener (3-2-4-4)" 100 * nShape3244,
+average "1S opener (2-3-4-4)" 100 * nShape2344,
+average "hcp North" hcp(north),
+average "hcp South" hcp(south),
