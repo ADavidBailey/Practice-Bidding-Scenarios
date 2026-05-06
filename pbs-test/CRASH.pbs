@@ -93,8 +93,8 @@ c1S = sS1 and not colorPair                 // Natural spades
 c1N = shapePair                             // Shape two-suiter
 cX  = sX                                    // Strength
 
-# Level the deal: 1S dominates at ~62%; cut to ~7% to match 1D/1H/1N
-levelTheDeal = c1D or c1H or c1N or cX or (c1S and keep11)
+# Level the deal: 1S dominates at ~62% raw; reduce to match 1D/1H/1N
+levelTheDeal = c1D or c1H or c1N or cX or (c1S and keep06)
 
 # Now do it: East opens strong 1C and South has a CRASH action
 strong1C and (cX or c1D or c1H or c1S or c1N) and levelTheDeal
