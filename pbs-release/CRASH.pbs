@@ -20,6 +20,44 @@ convention-card-ns: 21GF-DEFAULT
 convention-card-ew: Precision
 auction-filter: Auction.....\n1C +
 */
+### Imported Leveling Code ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep015 = keep06 and c3
+keep03 = keep06 and keep44
+keep045 = keep06 and not c3
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep955 = not keep045
+keep97 = not keep03
+keep985 = not keep015
+keep   = 1
+keep0  = 0
+### End of Imported Leveling Code ###
+
 # East opens strong 1C (Precision): 16+ HCP, any shape
 strong1C = hcp(east)>15
 
@@ -55,8 +93,12 @@ c1S = sS1 and not colorPair                 // Natural spades
 c1N = shapePair                             // Shape two-suiter
 cX  = sX                                    // Strength
 
+# Level the deal so all 5 actions occur at similar frequency
+# Raw shares: X=20.6, 1D=5.4, 1H=7.2, 1S=62.6, 1N=7.4
+levelTheDeal = c1D or (c1H and keep75) or (c1N and keep75) or (c1S and keep06) or (cX and keep19)
+
 # Now do it: East opens strong 1C and South has a CRASH action
-strong1C and (cX or c1D or c1H or c1S or c1N)
+strong1C and (cX or c1D or c1H or c1S or c1N) and levelTheDeal
 
 action printoneline,
 
