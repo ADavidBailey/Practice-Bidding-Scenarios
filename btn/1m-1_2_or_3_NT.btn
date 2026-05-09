@@ -42,7 +42,7 @@ nD3 = hcp(north,diamonds)>2
 nM3 = hcp(north,hearts)>2 and hcp(north,spades)>2
 
 # Define North's response ranges
-n1 = hcp(north)>5  and hcp(north)<10 //and hascard(east,2C)
+n1 = hcp(north)>7  and hcp(north)<10 //and hascard(east,2C)
 n2 = hcp(north)>9  and hcp(north)<13 
 n3 = hcp(north)>12 and hcp(north)<16 //and hascard(west,2D) and not hascard(west,2C)
 
@@ -51,16 +51,18 @@ sMin = hcp(south)<12 and tpSouth<13
 sShape = sMin ? shape(south,any 7xxx+any 6xxx) : shape(south, xxxx)
 
 # South bids 1C or 1D and North responds 1N or 2/3N
-s1Cn1N = oneClub    and nD2 and nM2 and n1           // 1C - 1N with 2 hcp in unbid suits
-s1Dn1N = oneDiamond and nC2 and nM2 and n1           // 1D - 1N  
+# Stopper requirements (nC2/nD2/nM2/nC3/nD3/nM3) removed to test hypothesis
+# on hands without pre-selected NT-friendly distributions
+s1Cn1N = oneClub    and n1                           // 1C - 1N (no stopper req)
+s1Dn1N = oneDiamond and n1                           // 1D - 1N (no stopper req)
 s1m1N  = (s1Cn1N or s1Dn1N)
 
-s1Cn2N = oneClub    and nC2 and nD3 and nM3 and n2   // 1C - 2N with 3 hcp in unbid suits and 2 in opener's suit
-s1Dn2N = oneDiamond and nD2 and nC3 and nM3 and n2   // 1D - 2N 
+s1Cn2N = oneClub    and n2                           // 1C - 2N (no stopper req)
+s1Dn2N = oneDiamond and n2                           // 1D - 2N (no stopper req)
 s1m2N  = s1Cn2N or s1Dn2N
 
-s1Cn3N = oneClub    and nC2 and nD3 and nM3 and n3   // 1C - 3N with 3 hcp in unbid suits and 2 in opener's suit
-s1Dn3N = oneDiamond and nD2 and nC3 and nM3 and n3   // 1D - 3N
+s1Cn3N = oneClub    and n3                           // 1C - 3N (no stopper req)
+s1Dn3N = oneDiamond and n3                           // 1D - 3N (no stopper req)
 s1m3N  = s1Cn3N or s1Dn3N
 
 //nShape  = shape(north,any 4333 -4xxx -x4xx)
