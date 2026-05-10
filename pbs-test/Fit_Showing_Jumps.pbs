@@ -240,7 +240,7 @@ tpEW = tpEast + tpWest
 nOpens1m = oneClub or oneDiamond
 
 # South is a passed hand with limit-raise strength (10-11 HCP)
-sPassedLR = hcp(south)>9 and tpSouth<12
+sPassedLR = tpSouth>9 and tpSouth<12 and hcp(south)<11
 
 # 4+ card support for partner's opened minor
 sFits = (oneClub    and clubs(south)>3) or
