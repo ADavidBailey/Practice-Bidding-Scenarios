@@ -241,12 +241,15 @@ nOpens1m = oneClub or oneDiamond
 
 # South is a passed hand with limit-raise strength (10-11 HCP).
 # Must NOT meet BBA's opening criteria. Per Predict-Opening-1-Bid:
-#  - 1H/1S: 10+ HCP, 5+ major, 2 of top-3 honors (hsOK3)
-#  - 1m (minor): requires TP>12 with 6+ minor
-#  - Weak twos / preempts: 6+ card suit
+#  - 1H/1S (hsOK3 path): 10+ HCP, 5+ major, q2of3, lgt5
+#    where q2of3 = (top3(spades)>1 OR top3(hearts)>1) AND controls>3.
+#    Defeated by capping BOTH majors at top3<=1 (so q2of3's first term fails).
+#  - 1m: requires TP>12 with 6+ minor (excluded by tpSouth<12)
+#  - Weak twos / preempts: 6+ card suit (excluded by length caps)
 sPassedLR = tpSouth>9 and tpSouth<12 and hcp(south)<11 and
             spades(south)<6 and hearts(south)<6 and
-            diamonds(south)<6 and clubs(south)<6
+            diamonds(south)<6 and clubs(south)<6 and
+            top3(south,spades)<2 and top3(south,hearts)<2
 
 # 4+ card support for partner's opened minor
 sFits = (oneClub    and clubs(south)>3) or
