@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-GIB
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n(Pass +Pass +1C +Pass\n2[DHS]|Pass +Pass +1D +Pass\n(2[HS]|3C)|Pass +Pass +1H +Pass\n(2S|3[CD])|Pass +Pass +1S +Pass\n3[CDH])
+auction-filter: Note....Fit showing jump
 */
 # Passed-Hand Fit-Showing Jump
 # South passes in 1st seat. North opens 1 of any suit.
@@ -240,7 +240,7 @@ tpEW = tpEast + tpWest
 nOpens1Suit = oneClub or oneDiamond or oneHeart or oneSpade
 
 # South is a passed hand with limit-raise strength (10-11 HCP)
-sPassedLR = hcp(south)>9 and hcp(south)<12 and tpSouth<13
+sPassedLR = hcp(south)>9 and tpSouth<12
 
 # 4+ card support for partner's opened suit
 sFits = (oneClub    and clubs(south)>3)    or
