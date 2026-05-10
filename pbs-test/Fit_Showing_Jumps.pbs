@@ -236,44 +236,43 @@ tpEW = tpEast + tpWest
 ### End of Imported Script: TP
 # Defines tpSouth, tpNorth
 
-# North opens 1C or 1D
-nOpens1m = oneClub or oneDiamond
+####### What we WANT #######
+# Per Fit-Showing Jumps convention by a passed hand:
+#   1. North opens 1C or 1D.
+#   2. South is a passed hand with limit-raise values.
+#   3. South has 4+ card support for partner's minor.
+#   4. South has a 5-card side suit with honors.
+# Each "wanted" condition below is one piece of that picture.
 
-# South is a passed hand with limit-raise strength (10-11 HCP).
-# Must NOT meet BBA's opening criteria. Per Predict-Opening-1-Bid:
-#  - 1H/1S (hsOK3 path): 10+ HCP, 5+ major, q2of3, lgt5
-#    where q2of3 = (top3(spades)>1 OR top3(hearts)>1) AND controls>3.
-#    Defeated by capping BOTH majors at top3<=1 (so q2of3's first term fails).
-#  - 1m: requires TP>12 with 6+ minor (excluded by tpSouth<12)
-#  - Weak twos / preempts: 6+ card suit (excluded by length caps)
-sPassedLR = tpSouth>9 and tpSouth<12 and hcp(south)<11 and
-            spades(south)<6 and hearts(south)<6 and
-            diamonds(south)<6 and clubs(south)<6 and
-            top3(south,spades)<2 and top3(south,hearts)<2
+# 1. Wanted opening: north opens 1C or 1D
+nWantedOpen = oneClub or oneDiamond
 
-# 4+ card support for partner's opened minor
-sFits = (oneClub    and clubs(south)>3) or
-        (oneDiamond and diamonds(south)>3)
+# 2. Wanted south range: 10 HCP, 10-11 TP, no length BBA would open or preempt,
+#    no major with 2 top-3 honors (else BBA opens 1H/1S via hsOK3 in 21GF-GIB).
+sWantedRange = tpSouth>9 and tpSouth<12 and hcp(south)<11 and
+               spades(south)<6 and hearts(south)<6 and
+               diamonds(south)<6 and clubs(south)<6 and
+               top3(south,spades)<2 and top3(south,hearts)<2
 
-# 5-card side suit with honors. Side suit must differ from the opened (trump) suit.
-# Major side suit: exactly 1 of top-3 honors (else BBA opens 1M via hsOK3).
-# Minor side suit: any of top-3 honors.
+# 3. Wanted support: 4+ cards in partner's opened minor
+sWantedFit = (oneClub    and clubs(south)>3) or
+             (oneDiamond and diamonds(south)>3)
 
-# Over 1C: D, H, S
-fsjDoverC = oneClub and diamonds(south)==5 and top3(south,diamonds)>0
-fsjHoverC = oneClub and hearts(south)==5   and top3(south,hearts)==1
-fsjSoverC = oneClub and spades(south)==5   and top3(south,spades)==1
+# 4. Wanted side suit (5 cards, with honors). Major side suits cap at exactly
+#    1 top-3 honor so BBA doesn't open 1H/1S; minors only need any top-3 honor.
+sWantedSideD_overC = oneClub    and diamonds(south)==5 and top3(south,diamonds)>0
+sWantedSideH_overC = oneClub    and hearts(south)==5   and top3(south,hearts)==1
+sWantedSideS_overC = oneClub    and spades(south)==5   and top3(south,spades)==1
+sWantedSideC_overD = oneDiamond and clubs(south)==5    and top3(south,clubs)>0
+sWantedSideH_overD = oneDiamond and hearts(south)==5   and top3(south,hearts)==1
+sWantedSideS_overD = oneDiamond and spades(south)==5   and top3(south,spades)==1
 
-# Over 1D: C, H, S
-fsjCoverD = oneDiamond and clubs(south)==5  and top3(south,clubs)>0
-fsjHoverD = oneDiamond and hearts(south)==5 and top3(south,hearts)==1
-fsjSoverD = oneDiamond and spades(south)==5 and top3(south,spades)==1
+sWantedSide = sWantedSideD_overC or sWantedSideH_overC or sWantedSideS_overC or
+              sWantedSideC_overD or sWantedSideH_overD or sWantedSideS_overD
 
-hasFSJ = fsjDoverC or fsjHoverC or fsjSoverC or
-         fsjCoverD or fsjHoverD or fsjSoverD
-
-# Now do it -- south's tight constraints first for short-circuit speedup
-sPassedLR and sFits and hasFSJ and nOpens1m and calmOpps
+####### Compose all wanted conditions #######
+# (Tightest constraints first for short-circuit speedup.)
+sWantedSide and sWantedFit and sWantedRange and nWantedOpen and calmOpps
 
 produce 30
 action printoneline,
