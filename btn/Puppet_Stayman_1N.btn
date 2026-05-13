@@ -53,7 +53,7 @@ hN = hearts(north)
 nHas4SAndNot4H = sN==4 and hN<4
 nHas4HAndNot4S = hN==4 and sN<4
 nHasBoth4M    = sN==4 and hN==4
-nHas3S3H      = sN==3 and hN==3
+nHas3S3H      = sN==3 or hN==3
 nQualifies    = nHas4SAndNot4H or nHas4HAndNot4S or nHasBoth4M or nHas3S3H
 
 # Exclude very long suits (would use a different system, e.g., transfers)
@@ -88,7 +88,7 @@ action
 average "Has 4!S only       " 100 * nHas4SAndNot4H,
 average "Has 4!H only       " 100 * nHas4HAndNot4S,
 average "Has both 4M        " 100 * nHasBoth4M,
-average "Has 3-3 in majors  " 100 * nHas3S3H,
+average "Has 3-card major(s)" 100 * nHas3S3H,
 average "Game range (10-15) " 100 * game,
 average "Slam invite (16-18)" 100 * slamInvite,
 average "Slam force (19+)   " 100 * slamForce,
