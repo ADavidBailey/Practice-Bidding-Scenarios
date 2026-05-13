@@ -54,7 +54,7 @@ hN = hearts(north)
 nHas4SAndNot4H = sN==4 and hN<4
 nHas4HAndNot4S = hN==4 and sN<4
 nHasBoth4M    = sN==4 and hN==4
-nHas3S3H      = sN==3 or hN==3
+nHas3S3H      = sN==3 and hN==3
 nQualifies    = nHas4SAndNot4H or nHas4HAndNot4S or nHasBoth4M or nHas3S3H
 
 # Exclude very long suits (would use a different system, e.g., transfers)
