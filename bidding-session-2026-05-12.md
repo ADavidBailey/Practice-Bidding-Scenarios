@@ -10,8 +10,11 @@ Today was mostly **convention learning + tooling work** rather than score-tracki
 | 2 | Serious | 5 | After your initial rules explanation |
 | 3 | Serious | 10 | Applied Serious cuebid logic — some slams found, one grand missed (deal 7♥), one disaster (7♥−1 missing ♠K) |
 | 4 | Serious | 5 | After full convention rules + "skip denies" + "cue after denial = two controls" clarifications |
+| 5 | Puppet Stayman 1N | 10 | Validating the new scenario — all 10 matched BBA (5.0–5.0 BAM). 4-4 fit found via "bid the major you don't hold"; one 6NT slam reached via Gerber after Puppet |
 
-Three slams reached and made on the practice deals (6♣, 6♥, 6♠); one grand made (7♥); a couple slams overbid down. The Serious sequence demonstrated clearly when both partners follow it.
+Three slams reached and made on the Serious practice deals (6♣, 6♥, 6♠); one grand made (7♥); a couple slams overbid down. The Serious sequence demonstrated clearly when both partners follow it.
+
+The Puppet 1N run validated the new scenario end-to-end: BBA correctly plays 1N-3C Puppet with the new 21GF-Puppet bbsa, and the puppet response structure (3♦/3♥/3♠/3NT) worked as documented. Slams missed when partnership had 30+ HCP but no major fit — Puppet doesn't help find NT slams from those hands.
 
 ## Serious Cue Bids — convention learned
 
