@@ -31,10 +31,10 @@ After 3!H or 3!S (opener shows 5-card major):
 
 After 3NT (no majors): natural minor-suit slam investigation.
 
-Bid Puppet 3!C with:
+Bid Puppet 3!C with a Game-forcing hand (10+ HCP) and at least one of the following:
 • Any 4-card major (looking for 4-4 fit)
 • 3-card support for one or both majors (looking for 5-3 fit)
-• Game or slam-going values opposite 15-17 NT (typically 10+ HCP)
+Puppet 3!C is a stayman system -- on in competition.
 
 Reference: https://www.bridgebum.com/puppet_stayman.php
 @chat*/
@@ -54,7 +54,7 @@ hN = hearts(north)
 nHas4SAndNot4H = sN==4 and hN<4
 nHas4HAndNot4S = hN==4 and sN<4
 nHasBoth4M    = sN==4 and hN==4
-nHas3S3H      = sN==3 and hN==3
+nHas3S3H      = sN==3 or hN==3
 nQualifies    = nHas4SAndNot4H or nHas4HAndNot4S or nHasBoth4M or nHas3S3H
 
 # Exclude very long suits (would use a different system, e.g., transfers)
@@ -125,7 +125,7 @@ action printoneline,
 average "Has 4!S only       " 100 * nHas4SAndNot4H,
 average "Has 4!H only       " 100 * nHas4HAndNot4S,
 average "Has both 4M        " 100 * nHasBoth4M,
-average "Has 3-3 in majors  " 100 * nHas3S3H,
+average "Has 3-card major(s)" 100 * nHas3S3H,
 average "Game range (10-15) " 100 * game,
 average "Slam invite (16-18)" 100 * slamInvite,
 average "Slam force (19+)   " 100 * slamForce,
