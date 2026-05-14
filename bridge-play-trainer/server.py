@@ -134,20 +134,21 @@ class Session:
 
         if role == "declarer":
             self.user_seats = {self.declarer, self.dummy}
-        elif role == "defender_e":
-            self.user_seats = {Player.east}
-        elif role == "defender_w":
-            self.user_seats = {Player.west}
+            self._user_seat = self.declarer
+        elif role == "leader":
+            self.user_seats = {self.leader}
+            self._user_seat = self.leader
+        elif role == "defender":
+            partner = partner_of(self.leader)
+            self.user_seats = {partner}
+            self._user_seat = partner
         else:
             raise ValueError(f"unknown role {role}")
 
-        if role in ("defender_e", "defender_w"):
-            me = next(iter(self.user_seats))
-            if me in (self.declarer, self.dummy):
-                what = "declarer" if me == self.declarer else "dummy"
-                raise ValueError(
-                    f"{SEAT_LETTER[me]} is {what} on this deal — pick a different role or board."
-                )
+        # Display rotation: relabel every seat so the user always appears as
+        # South in the browser. Real compass seats (and the underlying deal)
+        # are unchanged — DDS and the dealer engine still use real compass.
+        self._rotation_shift = (int(Player.south) - int(self._user_seat)) % 4
 
         self.initial_hands = {
             Player.north: self.deal.north.copy(),
@@ -168,6 +169,13 @@ class Session:
         # Each /play (and /claim) records the cards_played_count BEFORE its
         # action. Undo pops the top and replays from move_log up to that count.
         self.undo_stack = []
+
+    def _rotate_seat(self, seat: Player) -> Player:
+        return Player((int(seat) + self._rotation_shift) % 4)
+
+    def _rl(self, letter: str) -> str:
+        """Rotate a seat letter into the user's South-at-bottom display frame."""
+        return SEAT_LETTER[self._rotate_seat(LETTER_SEAT[letter])]
 
     def visible_hands(self):
         if self.role == "declarer":
@@ -242,6 +250,48 @@ class Session:
         st["contract_str"] = f"{self.level}{DENOM_SYM[self.trump]} by {SEAT_LETTER[self.declarer]}"
         st["board_num"] = self.board.board_num
         st["scenario"] = self.board.info.get("Event", "?")
+        return self._rotate_state_for_user(st)
+
+    def _rotate_state_for_user(self, st):
+        R = self._rl
+
+        def rotate_keys(d):
+            return {R(k): v for k, v in d.items()}
+
+        for k in ("declarer", "dummy", "leader", "dealer"):
+            if st.get(k):
+                st[k] = R(st[k])
+        if st.get("to_play"):
+            st["to_play"] = R(st["to_play"])
+
+        st["hands"] = rotate_keys(st["hands"])
+        st["cards_played_by_seat"] = rotate_keys(st["cards_played_by_seat"])
+
+        for play in st.get("current_trick", []):
+            play["seat"] = R(play["seat"])
+        for trick in st.get("trick_history", []):
+            trick["leader"] = R(trick["leader"])
+            trick["winner"] = R(trick["winner"])
+            for play in trick["plays"]:
+                play["seat"] = R(play["seat"])
+        for call in st.get("auction", []):
+            call["seat"] = R(call["seat"])
+
+        # Present trick totals as user-pair = NS in displayed frame.
+        decl_total = self.ns_tricks if self.declarer in (Player.north, Player.south) else self.ew_tricks
+        opp_total = (self.ns_tricks + self.ew_tricks) - decl_total
+        if self.role == "declarer":
+            st["tricks_taken"] = {"NS": decl_total, "EW": opp_total}
+        else:
+            st["tricks_taken"] = {"NS": opp_total, "EW": decl_total}
+
+        if "result" in st:
+            st["result"]["all_hands"] = rotate_keys(st["result"]["all_hands"])
+            st["result"]["all_hcp"] = rotate_keys(st["result"]["all_hcp"])
+
+        parts = st.get("contract_str", "").rsplit(" by ", 1)
+        if len(parts) == 2:
+            st["contract_str"] = f"{parts[0]} by {R(parts[1])}"
         return st
 
     def play_user_card(self, suit_letter: str, rank_letter: str):
@@ -412,17 +462,14 @@ def start_session(body: StartSessionBody):
     if not boards:
         raise HTTPException(500, "scenario has no deals")
     idx = body.board_index % len(boards)
-    board = boards[idx]
     try:
-        sess = Session(board, role=body.role)
+        sess = Session(boards[idx], role=body.role)
     except ValueError as e:
         raise HTTPException(400, str(e))
-    # If role is declarer and user controls leader, fine. If user is declarer but not leader,
-    # auto-play any DDS seats up to user.
     sess.auto_play_until_user()
     sid = secrets.token_urlsafe(12)
     SESSIONS[sid] = sess
-    return {"session_id": sid, "state": sess.state()}
+    return {"session_id": sid, "state": sess.state(), "board_index": idx}
 
 
 @app.get("/api/session/{sid}")
@@ -431,6 +478,37 @@ def get_state(sid: str):
     if sess is None:
         raise HTTPException(404, "session not found")
     return {"state": sess.state()}
+
+
+@app.get("/api/session/{sid}/ground-truth")
+def ground_truth(sid: str):
+    """Initial hands and role metadata for the browser to build a Claude
+    grading payload. Returned in the user's South-at-bottom display frame
+    (matches what /api/session/{sid} returns)."""
+    sess = SESSIONS.get(sid)
+    if sess is None:
+        raise HTTPException(404, "session not found")
+    R = sess._rl
+    declarer_d = R(SEAT_LETTER[sess.declarer])
+    dummy_d = R(SEAT_LETTER[sess.dummy])
+    user_d = "S"
+    partner_d = "N"
+    if sess.role == "declarer":
+        hidden_seats_d = ["E", "W"]
+        hidden_labels = [f"defender ({s})" for s in hidden_seats_d]
+        role_desc = f"Student is declarer ({user_d}). Dummy is {dummy_d}."
+    else:
+        hidden_seats_d = [declarer_d, partner_d]
+        hidden_labels = [f"declarer ({declarer_d})", f"partner ({partner_d})"]
+        role_desc = (f"Student is defender ({user_d}). Partner is {partner_d}. "
+                     f"Declarer is {declarer_d}, dummy is {dummy_d}.")
+    return {
+        "role_desc": role_desc,
+        "hidden_seats": hidden_seats_d,
+        "hidden_labels": hidden_labels,
+        "initial_hands": {R(SEAT_LETTER[p]): hand_to_dict(sess.initial_hands[p])
+                          for p in (Player.north, Player.east, Player.south, Player.west)},
+    }
 
 
 class PlayBody(BaseModel):

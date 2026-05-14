@@ -14,7 +14,7 @@
 
 html, body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 18px;
+  font-size: 15px;
   background: var(--bg);
   color: var(--ink);
   margin: 0;
@@ -48,6 +48,7 @@ header h1 {
 }
 
 #sidebar {
+  grid-column: 1;
   background: var(--card-bg);
   border: 1px solid var(--rule);
   border-radius: 10px;
@@ -138,6 +139,7 @@ header h1 {
 }
 
 main {
+  grid-column: 2;
   padding: 1.5rem 0;
   min-width: 0; /* allow grid item to shrink */
 }
@@ -541,4 +543,275 @@ button.primary:hover { background: #16456a; }
   margin: 0 0 0.3rem;
   font-size: 1rem;
   color: var(--muted);
+}
+
+/* Header layout with settings gear */
+#header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#settings-btn {
+  font-size: 1.6rem;
+  padding: 0.2rem 0.7rem;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  line-height: 1;
+}
+#settings-btn:hover { background: var(--accent-soft); }
+
+/* Modal overlay */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 28, 28, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.modal[hidden] { display: none; }
+.modal-card {
+  background: var(--card-bg);
+  border-radius: 10px;
+  padding: 1.5rem 1.75rem;
+  max-width: 540px;
+  width: calc(100% - 2rem);
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+.modal-card h2 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.5rem;
+}
+.modal-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+.settings-group {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  margin: 0.5rem 0;
+}
+.settings-group legend {
+  font-weight: 600;
+  padding: 0 0.4rem;
+}
+.block { display: block; margin: 0.6rem 0; }
+.settings-key-actions {
+  margin-top: 0.4rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Wizard */
+.wizard-step p { line-height: 1.5; }
+.wizard-step ol { line-height: 1.6; padding-left: 1.3rem; }
+.wizard-step ol li { margin: 0.2rem 0; }
+.wizard-step code {
+  background: #f0ede4;
+  padding: 0.05rem 0.3rem;
+  border-radius: 3px;
+  font-size: 0.95em;
+}
+.wizard-step-num {
+  color: var(--muted);
+  font-size: 0.85em;
+  font-weight: 400;
+  margin-left: 0.4rem;
+}
+.wizard-key-input {
+  width: 100%;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.95rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+#wizard-test-status.ok { color: #1f7a3b; font-weight: 600; }
+#wizard-test-status.err { color: var(--red); font-weight: 600; }
+
+/* Inference / feedback panels */
+.grading-panel { background: #fafaf6; }
+
+/* Inference panel overlays the sidebar (same slot as the feedback panel, with
+   a blue accent so it reads as input-time rather than feedback-time). */
+#inference-panel {
+  position: fixed;
+  top: 90px;
+  left: 0.5rem;
+  width: calc(25% - 1rem);
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  background: white;
+  border: 2px solid var(--accent);
+  z-index: 60;
+  margin: 0;
+}
+#inference-panel h2 {
+  background: var(--accent);
+  color: white;
+  margin: -1rem -1.25rem 0.75rem -1.25rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px 8px 0 0;
+  font-size: 1.05rem;
+  border-bottom: none;
+}
+
+/* Feedback panel overlays the sidebar so it stays in view while you keep
+   playing the next trick — no scrolling down to see what Claude said. */
+#feedback-panel {
+  position: fixed;
+  top: 90px;
+  left: 0.5rem;
+  width: calc(25% - 1rem);
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  background: #fff8df;
+  border: 2px solid #c9a833;
+  z-index: 50;
+  margin: 0;
+}
+#feedback-panel h2 {
+  background: #c9a833;
+  color: white;
+  margin: -1rem -1.25rem 0.75rem -1.25rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px 8px 0 0;
+  font-size: 1.05rem;
+  border-bottom: none;
+}
+.feedback-close {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.6rem;
+  line-height: 1;
+  padding: 0.1rem 0.5rem;
+  cursor: pointer;
+  z-index: 1;
+}
+.feedback-close:hover { background: rgba(255,255,255,0.2); }
+
+#inference-body { line-height: 1.5; }
+
+#inference-body .prompt-line {
+  margin-bottom: 0.6rem;
+  color: var(--muted);
+}
+#inference-body textarea {
+  width: 100%;
+  min-height: 5em;
+  font-size: 1rem;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  resize: vertical;
+}
+#inference-body .struct-block {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+  margin: 0.5rem 0;
+  background: white;
+}
+#inference-body .struct-block-title {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+#inference-body .struct-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin: 0.25rem 0;
+}
+#inference-body .struct-row label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 0;
+  font-size: 0.95rem;
+}
+#inference-body .struct-row input[type=number] {
+  width: 4em;
+  text-align: right;
+}
+.grading-actions {
+  margin-top: 0.8rem;
+  display: flex;
+  gap: 0.5rem;
+}
+#inference-hint-body {
+  margin-top: 0.6rem;
+  padding: 0.5rem 0.7rem;
+  background: white;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  max-height: 16em;
+  overflow-y: auto;
+}
+.hint-trick-row {
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+.hint-trick-num {
+  display: inline-block;
+  width: 2.5em;
+  color: var(--muted);
+  font-weight: 600;
+}
+.hint-play-seat {
+  color: var(--muted);
+  margin-right: 0.15em;
+}
+.hint-section-title {
+  font-weight: 600;
+  margin: 0.5rem 0 0.25rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+.hint-section-title:first-child { margin-top: 0; }
+.hint-auction-grid {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+#inference-status { margin-top: 0.5rem; font-size: 0.95rem; }
+#inference-status.err { color: var(--red); }
+#inference-status.ok  { color: #1f7a3b; }
+
+/* Feedback rows */
+.feedback-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  padding: 0.25rem 0;
+  line-height: 1.45;
+}
+.feedback-row .verdict-icon { font-size: 1.15rem; }
+.feedback-overall {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+}
+.feedback-hint {
+  margin-top: 0.6rem;
+  padding: 0.5rem 0.7rem;
+  background: #fff7da;
+  border-left: 4px solid #c9a833;
+  border-radius: 4px;
 }
