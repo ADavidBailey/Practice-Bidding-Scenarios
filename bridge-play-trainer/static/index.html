@@ -23,6 +23,14 @@
   <main>
     <section id="picker" class="card">
       <label>
+        Play as:
+        <select id="role-select">
+          <option value="declarer">Declarer</option>
+          <option value="defender_e">Defender (East)</option>
+          <option value="defender_w">Defender (West)</option>
+        </select>
+      </label>
+      <label>
         Deal number (optional):
         <input id="board-index" type="number" min="0" value="0" style="width:6em">
       </label>

@@ -455,10 +455,11 @@ async function onScenarioClick(name) {
 async function startSession() {
   if (!currentScenario) return;
   const boardIndex = parseInt(document.getElementById("board-index").value, 10) || 0;
+  const role = document.getElementById("role-select").value || "declarer";
   try {
     const data = await api("/api/session", {
       method: "POST",
-      body: JSON.stringify({ scenario: currentScenario, board_index: boardIndex, role: "declarer" }),
+      body: JSON.stringify({ scenario: currentScenario, board_index: boardIndex, role }),
     });
     sessionId = data.session_id;
     document.getElementById("result-panel").hidden = true;

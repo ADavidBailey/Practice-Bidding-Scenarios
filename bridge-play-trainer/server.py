@@ -141,6 +141,14 @@ class Session:
         else:
             raise ValueError(f"unknown role {role}")
 
+        if role in ("defender_e", "defender_w"):
+            me = next(iter(self.user_seats))
+            if me in (self.declarer, self.dummy):
+                what = "declarer" if me == self.declarer else "dummy"
+                raise ValueError(
+                    f"{SEAT_LETTER[me]} is {what} on this deal — pick a different role or board."
+                )
+
         self.initial_hands = {
             Player.north: self.deal.north.copy(),
             Player.east:  self.deal.east.copy(),
