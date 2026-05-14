@@ -103,7 +103,9 @@ def is_endplay_candidate(deal, contract_str, declarer):
 
 
 def find_candidates():
-    matches = []
+    """Returns (matches_by_source, files_scanned, deals_scanned).
+    matches_by_source is an ordered dict: source_stem -> list of boards."""
+    matches_by_source: dict[str, list] = {}
     files_scanned = 0
     deals_scanned = 0
     for path in sorted(BBA_DIR.glob("*.pbn")):
@@ -127,10 +129,39 @@ def find_candidates():
             if declarer is None:
                 continue
             if is_endplay_candidate(board.deal, contract, declarer):
-                # Stash the derived declarer so the writer doesn't have to redo it.
                 board.info["Declarer"] = SEAT_LETTER[declarer]
-                matches.append(board)
-    return matches, files_scanned, deals_scanned
+                matches_by_source.setdefault(path.stem, []).append(board)
+    return matches_by_source, files_scanned, deals_scanned
+
+
+def stratified_sample(matches_by_source, target=500):
+    """Sample evenly across source scenarios. Each source contributes at most
+    its fair share; if a source has fewer, the leftover budget is redistributed
+    to sources with extras until we reach the target (or run out)."""
+    if not matches_by_source:
+        return []
+    sources = list(matches_by_source.keys())
+    picked: dict[str, list] = {s: [] for s in sources}
+    remaining = {s: list(matches_by_source[s]) for s in sources}
+
+    total_taken = 0
+    # Distribute in rounds; each round take 1 from each source that still has any.
+    while total_taken < target:
+        progress = False
+        for s in sources:
+            if total_taken >= target:
+                break
+            if remaining[s]:
+                picked[s].append(remaining[s].pop(0))
+                total_taken += 1
+                progress = True
+        if not progress:
+            break
+
+    out = []
+    for s in sources:
+        out.extend(picked[s])
+    return out, picked
 
 
 def write_pbn(boards, out_path):
@@ -198,14 +229,30 @@ def write_pbn(boards, out_path):
 
 
 def main():
-    matches, files_scanned, deals_scanned = find_candidates()
+    matches_by_source, files_scanned, deals_scanned = find_candidates()
+    total = sum(len(v) for v in matches_by_source.values())
     print(f"Scanned {files_scanned} files / {deals_scanned} deals")
-    print(f"Found {len(matches)} endplay candidates")
-    if matches:
-        # Cap at 500 to match other scenarios
-        matches = matches[:500]
-        write_pbn(matches, OUTPUT_PATH)
-        print(f"Wrote {len(matches)} deals to {OUTPUT_PATH}")
+    print(f"Found {total} endplay candidates across {len(matches_by_source)} source scenarios")
+
+    if not matches_by_source:
+        return
+
+    sampled, by_source = stratified_sample(matches_by_source, target=500)
+    print(f"Stratified sample: {len(sampled)} deals")
+    # Show distribution
+    nonempty = sorted(by_source.items(), key=lambda kv: -len(kv[1]))
+    print(f"Sources contributing: {sum(1 for v in by_source.values() if v)}")
+    top = nonempty[:10]
+    bottom = [kv for kv in nonempty if len(kv[1]) > 0][-5:]
+    print("  Top 10 contributors:")
+    for s, lst in top:
+        print(f"    {s}: {len(lst)}")
+    if len(nonempty) > 10:
+        print("  Bottom 5 with at least 1:")
+        for s, lst in bottom:
+            print(f"    {s}: {len(lst)}")
+    write_pbn(sampled, OUTPUT_PATH)
+    print(f"Wrote {len(sampled)} deals to {OUTPUT_PATH}")
 
 
 if __name__ == "__main__":
