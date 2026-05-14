@@ -22,9 +22,10 @@ auction-filter: Auction.....\n1N
 */
 # Place the 9 honors that define the finesse pattern directly. Predeal is
 # unconditional but free — the dealer engine never has to "find" these cards.
-predeal south KS,JS,AH,AC
-predeal north AS,KC,JC
-predeal east  KH,QH
+# Syntax: suit-letter then rank(s).
+predeal south SKJ,HA,CA
+predeal north SA,CKJ
+predeal east  HKQ
 
 dealer south
 
