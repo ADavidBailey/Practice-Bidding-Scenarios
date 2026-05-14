@@ -1,0 +1,544 @@
+/* Senior-friendly defaults: big fonts, high contrast, generous spacing. */
+:root {
+  --bg: #f5f3ef;
+  --card-bg: #ffffff;
+  --ink: #1c1c1c;
+  --muted: #5c5c5c;
+  --rule: #c8c4ba;
+  --accent: #1f5d8c;
+  --accent-soft: #d5e4f1;
+  --red: #b3261e;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  background: var(--bg);
+  color: var(--ink);
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--card-bg);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+#status-line {
+  margin-top: 0.25rem;
+  font-size: 0.95rem;
+}
+
+.muted { color: var(--muted); }
+
+#layout {
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  gap: 1.5rem;
+  padding: 0 1rem 0 0.5rem;
+}
+
+#sidebar {
+  background: var(--card-bg);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  min-height: calc(100vh - 100px);
+  max-height: calc(100vh - 100px);
+  margin-top: 1.5rem;
+  padding: 0;
+  overflow-y: auto;
+}
+
+#sidebar-search {
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid var(--rule);
+  background: #fafafa;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+#sidebar-search input {
+  width: 100%;
+  font-size: 0.95rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: white;
+}
+
+.sidebar-heading {
+  background: #fbf3d0;
+  border-bottom: 1px solid var(--rule);
+  padding: 0.6rem 1rem;
+  font-weight: 700;
+  color: #8a6a14;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.menu-section { border-bottom: 1px solid var(--rule); }
+
+.menu-section-header {
+  background: #dde9f3;
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.menu-section-header:hover { background: #c9def0; }
+
+.menu-section-header .chevron { font-size: 0.85rem; transition: transform 0.15s ease; }
+.menu-section.open .menu-section-header .chevron { transform: rotate(90deg); }
+
+.menu-scenarios {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.3rem;
+  padding: 0.4rem;
+}
+.menu-section.open .menu-scenarios { display: grid; }
+.menu-section.hidden { display: none; }
+
+.menu-scenario-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: white;
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  padding: 0.45rem 0.4rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: var(--ink);
+  line-height: 1.2;
+  word-break: break-word;
+}
+.menu-scenario-btn.hidden { display: none; }
+.menu-scenario-btn:hover { background: var(--accent-soft); }
+.menu-scenario-btn.active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+main {
+  padding: 1.5rem 0;
+  min-width: 0; /* allow grid item to shrink */
+}
+
+main > section { width: 100%; }
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: 1.25rem;
+  font-size: 1rem;
+}
+
+select, input[type=number] {
+  font-size: 1rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: white;
+}
+
+button {
+  font-size: 1rem;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid var(--rule);
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover { background: var(--accent-soft); }
+
+button.primary {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+button.primary:hover { background: #16456a; }
+
+/* Auction grid */
+#auction-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(4.5em, 1fr));
+  gap: 0.3rem 0.9rem;
+  font-variant-numeric: tabular-nums;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+.auction-cell {
+  padding: 0.2rem 0.5rem;
+}
+.auction-cell.header {
+  font-weight: 700;
+  border-bottom: 1px solid var(--rule);
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+.auction-cell.empty {
+  color: var(--muted);
+}
+
+@keyframes auction-pop {
+  0%   { background: #fff7c2; transform: scale(1.0); }
+  50%  { background: #fff7c2; transform: scale(1.08); }
+  100% { background: transparent; transform: scale(1.0); }
+}
+.auction-cell-new {
+  animation: auction-pop 0.6s ease-out;
+  border-radius: 4px;
+}
+
+#contract-line {
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-top: 0.6rem;
+}
+
+/* Bridge table */
+#table-grid {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) minmax(320px, 2fr) minmax(160px, 1fr);
+  grid-template-rows: auto auto auto auto;
+  gap: 1rem;
+  margin: 0.5rem 0;
+}
+
+#contract-display {
+  grid-column: 1; grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem;
+  min-height: 7em;
+}
+
+.contract-line-main {
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.contract-line-main .suit-red { color: var(--red); }
+.contract-line-sub {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-top: 0.25rem;
+}
+
+.seat {
+  background: #faf8f3;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 0.75rem;
+  /* Tall enough to hold a fresh 13-card hand plus prompt; stays this tall
+     as cards are played so the table doesn't reflow under you. */
+  min-height: 12em;
+}
+
+.seat .seat-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  color: var(--muted);
+}
+
+.seat .suit-line {
+  font-size: 1.15rem;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+}
+
+.suit-red { color: var(--red); }
+.suit-black { color: var(--ink); }
+
+.seat.face-down {
+  background: repeating-linear-gradient(
+    45deg, #d8d3c5, #d8d3c5 8px, #cdc8b9 8px, #cdc8b9 16px);
+  color: var(--muted);
+  font-style: italic;
+}
+
+.seat.face-down .seat-name { color: var(--muted); }
+
+.played-strip {
+  margin-top: 0.5rem;
+  padding-top: 0.4rem;
+  border-top: 1px dashed var(--rule);
+}
+
+.played-toggle {
+  background: white;
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: var(--accent);
+}
+.played-toggle:hover { background: var(--accent-soft); }
+
+.played-cards {
+  margin-top: 0.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+}
+.played-card {
+  font-size: 1.6rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.played-card.suit-red { color: var(--red); }
+
+#slot-top         { grid-column: 2; grid-row: 1; }
+#slot-left        { grid-column: 1; grid-row: 2; }
+#center           { grid-column: 2; grid-row: 2; }
+#slot-right       { grid-column: 3; grid-row: 2; }
+#below-table-row  { grid-column: 2; grid-row: 3; }
+#slot-bottom      { grid-column: 2; grid-row: 4; }
+
+/* Row below the table: Undo (flush left), tricks-strip (centered), Review
+   (flush right). The whole row spans the table's width. */
+#below-table-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+#below-table-row #tricks-strip {
+  flex: 1;
+}
+
+#center {
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  /* Size matches the seat rows so the table doesn't bounce between phases. */
+  min-height: 12em;
+  cursor: pointer;
+}
+
+#center:hover { background: #c8dcef; }
+
+#center.reviewing {
+  background: #fff8df;
+  border-color: #c9a833;
+}
+
+.center-trick-top    { grid-column: 2; grid-row: 1; }
+.center-trick-right  { grid-column: 3; grid-row: 2; justify-self: end; }
+.center-trick-bottom { grid-column: 2; grid-row: 3; }
+.center-trick-left   { grid-column: 1; grid-row: 2; justify-self: start; }
+.center-trick-label  { grid-column: 2; grid-row: 2; font-size: 0.9rem; color: var(--muted); }
+
+.result-big {
+  grid-column: 2; grid-row: 2;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+/* Auction-as-bidding-box during the auction animation: occupies the center of
+   the table the way BBO's bidding box does. Reverts to trick play afterwards. */
+.center-auction-box {
+  grid-column: 1 / span 3;
+  grid-row: 1 / span 3;
+  align-self: center;
+  justify-self: center;
+  background: white;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+}
+.center-auction-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(3.2em, auto));
+  gap: 0.25rem 0.9rem;
+  font-variant-numeric: tabular-nums;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.center-auction-grid .auction-cell { padding: 0.15rem 0.5rem; }
+.center-auction-grid .auction-cell.header {
+  font-weight: 800;
+  font-size: 1rem;
+  text-align: center;
+  background: #e8e8e8;
+  color: var(--muted);
+  border-radius: 4px;
+  margin-bottom: 0.2rem;
+}
+
+.center-play-btn {
+  display: block;
+  margin: 0.8rem auto 0.2rem;
+  padding: 0.55rem 2rem;
+  font-size: 1.2rem;
+}
+
+/* Tricks-won strip — overlapping card backs, like a stack of taken tricks
+   gathered at a real table. Vertical = our side won; horizontal = opponents.
+   Each new icon overlaps the previous so the most recent sits on top. */
+#tricks-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 0;
+  min-height: 64px;
+  flex: 1;
+}
+.trick-back {
+  display: inline-block;
+  border-radius: 4px;
+  border: 4px solid var(--accent); /* blue outline separates stacked cards */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  margin-left: -18px;
+}
+.trick-back:first-child { margin-left: 0; }
+.trick-back.ours {
+  width: 40px;
+  height: 56px;
+  background: #2ea043; /* green = won */
+}
+.trick-back.theirs {
+  width: 56px;
+  height: 40px;
+  background: var(--red); /* red = lost */
+}
+
+.trick-card {
+  font-size: 1.6rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  margin: 0.15rem 0;
+}
+
+/* Clickable cards inside the hand display */
+.hand-suit {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.25rem;
+  margin: 0.15rem 0;
+}
+
+.hand-suit .suit-symbol {
+  font-size: 1.5rem;
+  min-width: 1.2em;
+  font-weight: 600;
+}
+
+.card-btn {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ink);
+  border-radius: 6px;
+  cursor: default;
+  font-variant-numeric: tabular-nums;
+}
+
+
+.card-btn.suit-red { color: var(--red); }
+
+.card-btn.legal {
+  cursor: pointer;
+  border-color: var(--accent);
+  background: white;
+}
+.card-btn.legal:hover { background: var(--accent-soft); }
+
+.card-btn.illegal {
+  /* full color — only the border tells you which are clickable */
+  background: transparent;
+}
+
+.seat.active {
+  outline: 3px solid var(--accent);
+  outline-offset: -2px;
+  background: #f4f9fc;
+}
+
+.seat-prompt {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+#trick-summary {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+}
+
+/* End-of-deal panel */
+#all-hands-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.final-hand {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  background: #faf8f3;
+}
+
+.final-hand h4 {
+  margin: 0 0 0.3rem;
+  font-size: 1rem;
+  color: var(--muted);
+}

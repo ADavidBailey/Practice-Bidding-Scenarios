@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bridge Play Trainer</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <h1>Bridge Play Trainer</h1>
+  <div id="status-line" class="muted"></div>
+</header>
+
+<div id="layout">
+  <aside id="sidebar">
+    <div class="sidebar-heading">Bidding Scenarios</div>
+    <div id="sidebar-search">
+      <input id="search-input" type="search" placeholder="Search scenarios…" autocomplete="off">
+    </div>
+    <div id="menu"></div>
+  </aside>
+
+  <main>
+    <section id="picker" class="card">
+      <label>
+        Deal number (optional):
+        <input id="board-index" type="number" min="0" value="0" style="width:6em">
+      </label>
+      <button id="next-deal-btn" class="primary" disabled>Next deal</button>
+      <button id="replay-btn" disabled>Replay</button>
+      <button id="claim-btn" disabled>Claim</button>
+      <span id="picker-hint" class="muted">Pick a scenario from the sidebar to start.</span>
+    </section>
+
+    <section id="game" hidden>
+      <div class="card" id="table-panel">
+        <div id="table-grid">
+          <div id="contract-display"></div>
+          <div id="slot-top" class="seat"></div>
+          <div id="slot-left" class="seat"></div>
+          <div id="center"></div>
+          <div id="slot-right" class="seat"></div>
+          <div id="below-table-row">
+            <button id="undo-btn" disabled>Undo</button>
+            <div id="tricks-strip"></div>
+            <button id="review-btn" disabled title="Hold down to see the auction">Review</button>
+          </div>
+          <div id="slot-bottom" class="seat"></div>
+        </div>
+      </div>
+
+      <div id="trick-summary" class="muted"></div>
+
+      <div class="card" id="result-panel" hidden>
+        <h2>Deal complete</h2>
+        <div id="result-text"></div>
+        <h3>All four hands</h3>
+        <div id="all-hands-grid"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
