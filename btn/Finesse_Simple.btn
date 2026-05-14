@@ -1,0 +1,62 @@
+# alias: FinesseSimple
+# button-text: Finesse - Simple
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n1[NSH]
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Simple Finesse (3NT, 4!H, or 4!S by South)
+South opens with a 5+-card major and the partnership reaches a major game
+or 3NT. South declares.
+
+Teaching feature: South holds an AQ in a SIDE suit without the K. The K is in
+East or West, roughly half the time each way.
+
+• When South opens 1!S, the finesse suit is ♥ (AQ-no-K).
+• When South opens 1!H, the finesse suit is ♠ (AQ-no-K).
+• 5-3-3-2 hands sometimes open 1NT and play 3NT — finesse still applies.
+
+To take the finesse: lead small from dummy toward South's hand and play the Q
+if East follows small. The Q wins about half the time.
+
+Things to think about:
+• Count winners and losers first.
+• When in the play should you take the finesse?
+• If the finesse loses, where else can you make tricks?
+• Did the auction or the opening lead hint where the K sits?
+
+Reference: https://www.bridgebum.com/finesse.php
+@chat*/
+
+dealer south
+
+# ----- Path 1: South opens 1S (5+ spades, ≤4 hearts), finesse is in hearts -----
+p1Shape = spades(south) > 4 and hearts(south) < 5
+p1AQH   = hascard(south, AH) and hascard(south, QH) and not hascard(south, KH)
+p1N     = spades(north) > 2 and not hascard(north, KH)
+path1   = p1Shape and p1AQH and p1N
+
+# ----- Path 2: South opens 1H (5+ hearts, ≤4 spades), finesse is in spades -----
+p2Shape = hearts(south) > 4 and spades(south) < 5
+p2AQS   = hascard(south, AS) and hascard(south, QS) and not hascard(south, KS)
+p2N     = hearts(north) > 2 and not hascard(north, KS)
+path2   = p2Shape and p2AQS and p2N
+
+# ----- Common requirements -----
+sHcp       = hcp(south) > 13 and hcp(south) < 18
+sNoMinor5  = diamonds(south) < 5 and clubs(south) < 5
+nHcp       = hcp(north) > 7 and hcp(north) < 12
+nNoMinor5  = diamonds(north) < 5 and clubs(north) < 5
+
+# ----- Combine -----
+(path1 or path2) and sHcp and sNoMinor5 and nHcp and nNoMinor5
+
+action
+average "Path 1: 1S, finesse H" 100 * path1,
+average "Path 2: 1H, finesse S" 100 * path2,
+average "Finesse-K with East  " 100 * ((path1 and hascard(east, KH)) or (path2 and hascard(east, KS))),
+average "Finesse-K with West  " 100 * ((path1 and hascard(west, KH)) or (path2 and hascard(west, KS))),
+average "South HCP avg        "       hcp(south),
+average "North HCP avg        "       hcp(north),
