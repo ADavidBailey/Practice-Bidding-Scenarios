@@ -1,0 +1,85 @@
+Script,RabbisRule
+window.currentPBSScenario = 'RabbisRule';
+window.currentPBSScenarioFilename = 'Rabbis_Rule';
+console.log('PBS: Logging scenario selection for RabbisRule');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'RabbisRule',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+convention-card-ns: 21GF-DEFAULT
+convention-card-ew: 21GF-GIB
+auction-filter: Auction.....\n1S
+*/
+# Predeal: south's solid trumps + diamond AQ + heart A; west's stiff K of
+# diamonds; east's heart KQ threat.
+predeal south SAKQ,HA,DAQ
+predeal west  DK
+predeal east  HKQ
+
+dealer south
+
+# ----- Declarer (South) — 1S opener with 5-card spade suit -----
+sSpades   = spades(south) > 4 and spades(south) < 7
+sHcp      = hcp(south) > 13 and hcp(south) < 18
+sDiamonds = diamonds(south) == 5         # AQ + 3 small
+southHand = sSpades and sHcp and sDiamonds
+
+# ----- Dummy (North) — game-raising response with short diamonds -----
+nSpades   = spades(north) > 2 and spades(north) < 5
+nHcp      = hcp(north) > 7 and hcp(north) < 12
+nDiamonds = diamonds(north) == 3          # xxx; declarer leads toward AQ
+northHand = nSpades and nHcp and nDiamonds
+
+# ----- West — STIFF K of diamonds -----
+wDiamonds = diamonds(west) == 1           # K alone
+wHcp      = hcp(west) < 11
+westHand = wDiamonds and wHcp
+
+# ----- East — long hearts headed by KQ -----
+eHearts   = hearts(east) > 4
+eHcp      = hcp(east) < 11
+eastHand = eHearts and eHcp
+
+southHand and northHand and westHand and eastHand
+
+action printoneline,
+average "West stiff K (forced)  " 100 * (diamonds(west) == 1),
+average "East 5+ hearts (forced)" 100 * (hearts(east) > 4),
+average "South HCP              "       hcp(south),
+average "North HCP              "       hcp(north),
+`, "S", true)
+Script
+Button,Rabbi's Rule,\n\
+--- Rabbi's Rule (4!S) — drop the singleton King\n\
+"When the King is singleton，play the Ace." Here it's a safety play.\n\
+\n\
+South opens 1!S and the partnership reaches 4!S.\n\
+\n\
+Teaching feature: declarer holds AQxxx of diamonds opposite xxx in dummy.\n\
+The King is missing. The natural impulse is to finesse — but West has the\n\
+SINGLETON K. East has the rest of the diamonds (4 cards，Jxxx).\n\
+\n\
+• Play the Ace first: the stiff K drops，and the Queen is good. You make.\n\
+• Finesse (lead from dummy，play Q): the Q loses to West's K. West can put\n\
+  East in via a club，and East cashes the long heart suit. Down 2 or more.\n\
+\n\
+The key: Rabbi's Rule isn't "you gain a trick by laying down the A" — it's\n\
+that the FINESSE costs the contract when the K is stiff and the opp can\n\
+reach the long suit. Cashing the A is the safety play.\n\
+\n\
+Things to think about:\n\
+• Count your tricks before you commit to a line in diamonds.\n\
+• What clues does the auction give about distribution?\n\
+• If the auction is silent，the 4-1 split with K stiff offside is exactly\n\
+  what makes Rabbi's Rule shine.\n\
+%RabbisRule%
