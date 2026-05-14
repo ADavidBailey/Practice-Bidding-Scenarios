@@ -20,37 +20,36 @@ convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
 auction-filter: Auction.....\n1N
 */
-# ----- Declarer (South) — 1NT opener, 4-3-3-3, specific holdings -----
-sSpadeKJ   = hascard(south, KS) and hascard(south, JS) and not hascard(south, AS) and not hascard(south, QS)
-sHeartA    = hascard(south, AH) and not hascard(south, KH) and not hascard(south, QH) and not hascard(south, JH)
-sDiamondA  = hascard(south, AD) and not hascard(south, KD) and not hascard(south, QD)
-sClubA     = hascard(south, AC) and not hascard(south, KC) and not hascard(south, JC) and not hascard(south, QC)
-sShape4333 = spades(south) == 4 and hearts(south) == 3 and diamonds(south) == 3 and clubs(south) == 3
-sHcp       = hcp(south) > 14 and hcp(south) < 18
-southHand = sSpadeKJ and sHeartA and sDiamondA and sClubA and sShape4333 and sHcp
+# ----- Declarer (South) — 1NT opener, 4-card spades with KJ -----
+sShape  = spades(south) == 4 and shape(south, any 4333 + any 4432)
+sHcp    = hcp(south) > 14 and hcp(south) < 18
+sSpades = hascard(south, KS) and hascard(south, JS)
+sHearts = hascard(south, AH) and hearts(south) > 1 and hearts(south) < 5
+sClubs  = hascard(south, AC) and clubs(south) > 1 and clubs(south) < 5
+southHand = sShape and sHcp and sSpades and sHearts and sClubs
 
-# ----- Dummy (North) — game-going response with KJ of clubs -----
-nSpadeA    = hascard(north, AS) and not hascard(north, KS) and not hascard(north, QS) and not hascard(north, JS)
-nHeartNo   = not hascard(north, AH) and not hascard(north, KH) and not hascard(north, QH) and not hascard(north, JH)
-nDiamondK  = hascard(north, KD) and not hascard(north, AD) and not hascard(north, QD) and not hascard(north, JD)
-nClubKJ    = hascard(north, KC) and hascard(north, JC) and not hascard(north, AC) and not hascard(north, QC)
-nShape3334 = spades(north) == 3 and hearts(north) == 3 and diamonds(north) == 3 and clubs(north) == 4
-nHcp       = hcp(north) > 9 and hcp(north) < 13
-northHand = nSpadeA and nHeartNo and nDiamondK and nClubKJ and nShape3334 and nHcp
+# ----- Dummy (North) — game-going response, KJ of clubs, no heart honors -----
+nHcp     = hcp(north) > 9 and hcp(north) < 13
+nSpades  = hascard(north, AS) and spades(north) > 2 and spades(north) < 5
+nHearts  = hearts(north) > 2 and hearts(north) < 5 and not hascard(north, AH) and not hascard(north, KH) and not hascard(north, QH) and not hascard(north, JH)
+nClubs   = hascard(north, KC) and hascard(north, JC) and clubs(north) > 3 and clubs(north) < 6
+northHand = nHcp and nSpades and nHearts and nClubs
 
-# ----- East — the DANGER hand with long hearts -----
-# 5-card heart suit headed by KQ. Too weak to overcall or open weak 2.
-eHearts = hearts(east) == 5 and hascard(east, KH) and hascard(east, QH)
+# Both Queens must be in opponents (otherwise no finesse choice)
+qInOpps = not hascard(south, QS) and not hascard(north, QS) and not hascard(south, QC) and not hascard(north, QC)
+
+# ----- East — DANGER hand with 5+ hearts headed by KQ -----
+eHearts = hearts(east) > 4 and hearts(east) < 7 and hascard(east, KH) and hascard(east, QH)
 eHcp    = hcp(east) < 10
 eastHand = eHearts and eHcp
 
-# ----- West — SAFE hand, short in hearts, no entries -----
+# ----- West — SAFE hand, short in hearts -----
 wHearts = hearts(west) < 3
 wHcp    = hcp(west) < 11
 westHand = wHearts and wHcp
 
 # Combine
-southHand and northHand and eastHand and westHand
+southHand and northHand and qInOpps and eastHand and westHand
 
 action printoneline,
 average "Q spades with East " 100 * hascard(east, QS),
