@@ -18,59 +18,32 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n1S +Pass +3S +Pass\n4S
+auction-filter: Auction.....\n1[NS]
 */
-# ----- South opens 1S -----
-# 5 or 6 spades headed by AK, exactly 3 hearts headed by AQ (no K),
-# 14-17 HCP. No second 5-card suit so the auction stays 1S.
-sSpadesLen = spades(south) == 5 or spades(south) == 6
-sSpadeTop  = top2(south, spades) == 2
-sHearts3   = hearts(south) == 3
-sHasAQH    = hascard(south, AH) and hascard(south, QH)
-sNoKH      = not hascard(south, KH)
-sHcp       = hcp(south) > 13 and hcp(south) < 18
-sNoSide5   = diamonds(south) < 5 and clubs(south) < 5
-oneS = sSpadesLen and sSpadeTop and sHearts3 and sHasAQH and sNoKH and sHcp and sNoSide5
+# ----- South -----
+# 5+ spades, 14-17 HCP, AQ of hearts but NOT the K. Hearts 2-4 (so the AQ is
+# concealed by some small cards in dummy). No 5+ side suit so the opener's
+# call is 1NT or 1S, nothing wilder.
+sSpadesLen  = spades(south) > 4
+sHearts2to4 = hearts(south) > 1 and hearts(south) < 5
+sHasAQH     = hascard(south, AH) and hascard(south, QH)
+sNoKH       = not hascard(south, KH)
+sHcp        = hcp(south) > 13 and hcp(south) < 18
+sNoSide5    = diamonds(south) < 5 and clubs(south) < 5
+southHand = sSpadesLen and sHearts2to4 and sHasAQH and sNoKH and sHcp and sNoSide5
 
-# ----- North limit-raises to 3S -----
-# Exactly 3-card spade support, 10-11 HCP, balanced (no 5+ side suit),
-# and does NOT hold the heart K (so the finesse is a real choice).
-nSpades3   = spades(north) == 3
-nHcp       = hcp(north) > 9 and hcp(north) < 12
-nNoLong    = hearts(north) < 5 and diamonds(north) < 5 and clubs(north) < 5
-nNoKH      = not hascard(north, KH)
-limitRaise = nSpades3 and nHcp and nNoLong and nNoKH
-
-##### Imported Script: Define Calm Opponents #####
-
-# Avoid concentration of values
-cce = top4(east,clubs)<2
-cde = top4(east,diamonds)<2
-che = top4(east,hearts)<2
-cse = top4(east,spades)<2
-noConEast = cce and cde and che and cse
-
-ccw = top4(west,clubs)<2
-cdw = top4(west,diamonds)<2
-chw = top4(west,hearts)<2
-csw = top4(west,spades)<2
-noConWest = ccw and cdw and chw and csw
-
-balEast    = shape(east,any 4432 +any 4333)
-unbalEast  = shape(east,xxxx -any 4432 -any 4333 -any 9xxx -any 8xxx -any 7xxx-any 6xxx -any 55xx)
-
-balWest    = shape(west,any 4432 +any 4333)
-unbalWest  = shape(west,xxxx -any 4432 -any 4333 -any 9xxx -any 8xxx -any 7xxx-any 6xxx -any 55xx)
-
-calmEast = (unbalEast and noConEast and hcp(east)<8) or (balEast and hcp(east)<11)
-calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<11)
-calmOpps = calmEast and calmWest
-
-##### End of Imported Script: Define Calm Opponents #####
-# Returns calmEast, calmWest, calmOpps so neither defender interferes.
+# ----- North -----
+# 3+ spade support (in case opener bids 1S), 8-11 HCP for a game-going hand
+# opposite a 1NT or 1S opener, no ♥K (so the finesse is meaningful), no
+# excessive side length that would derail the auction.
+nSpadesSupport = spades(north) > 2
+nHcp           = hcp(north) > 7 and hcp(north) < 12
+nNoLong        = hearts(north) < 5 and diamonds(north) < 5 and clubs(north) < 5
+nNoKH          = not hascard(north, KH)
+northHand = nSpadesSupport and nHcp and nNoLong and nNoKH
 
 # ----- Combine -----
-oneS and limitRaise and calmOpps
+southHand and northHand
 
 action printoneline,
 average "South 5 spades       " 100 * (spades(south) == 5),
@@ -82,17 +55,19 @@ average "North HCP avg        "       hcp(north),
 `, "S", true)
 Script
 Button,Finesse - Simple,\n\
---- Simple Finesse (4!S by South)\n\
-South opens 1!S，North gives a limit raise (3!S)，South accepts game (4!S).\n\
+--- Simple Finesse (3NT or 4!S by South)\n\
+South opens (either 1NT or 1!S depending on shape)，and the partnership reaches\n\
+3NT or 4!S. South is the declarer.\n\
 \n\
 The teaching feature: South holds the ♥A and ♥Q but is missing the ♥K. The K\n\
 sits in East or West with roughly equal frequency. A finesse — leading low\n\
 from dummy toward South's hand and playing the Q if East follows small —\n\
-picks up the suit when East has the K (about half the time).\n\
+picks up the heart suit when East has the K (about half the time).\n\
 \n\
 Things to think about before touching the heart suit:\n\
 • Count winners and losers first.\n\
-• Decide when to take the finesse: before or after drawing all trumps?\n\
+• In 4!S: should you draw trumps before or after the heart finesse?\n\
+• In 3NT: what's your stopping suit，and how many tricks do you need from hearts?\n\
 • If the finesse loses，which side suit will yield the extra trick?\n\
 • Did the auction or the opening lead hint where the K sits?\n\
 \n\
