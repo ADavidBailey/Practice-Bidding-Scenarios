@@ -18,58 +18,58 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n1[NS]
+auction-filter: Auction.....\n1[NSH]
 */
-# ----- South -----
-# 5+ spades, 14-17 HCP, AQ of hearts but NOT the K. Hearts 2-4 (so the AQ is
-# concealed by some small cards in dummy). No 5+ side suit so the opener's
-# call is 1NT or 1S, nothing wilder.
-sSpadesLen  = spades(south) > 4
-sHearts2to4 = hearts(south) > 1 and hearts(south) < 5
-sHasAQH     = hascard(south, AH) and hascard(south, QH)
-sNoKH       = not hascard(south, KH)
-sHcp        = hcp(south) > 13 and hcp(south) < 18
-sNoSide5    = diamonds(south) < 5 and clubs(south) < 5
-southHand = sSpadesLen and sHearts2to4 and sHasAQH and sNoKH and sHcp and sNoSide5
+# ----- Path 1: South opens 1S (5+ spades, ≤4 hearts), finesse is in hearts -----
+p1Shape = spades(south) > 4 and hearts(south) < 5
+p1AQH   = hascard(south, AH) and hascard(south, QH) and not hascard(south, KH)
+p1N     = spades(north) > 2 and not hascard(north, KH)
+path1   = p1Shape and p1AQH and p1N
 
-# ----- North -----
-# 3+ spade support (in case opener bids 1S), 8-11 HCP for a game-going hand
-# opposite a 1NT or 1S opener, no ♥K (so the finesse is meaningful), no
-# excessive side length that would derail the auction.
-nSpadesSupport = spades(north) > 2
-nHcp           = hcp(north) > 7 and hcp(north) < 12
-nNoLong        = hearts(north) < 5 and diamonds(north) < 5 and clubs(north) < 5
-nNoKH          = not hascard(north, KH)
-northHand = nSpadesSupport and nHcp and nNoLong and nNoKH
+# ----- Path 2: South opens 1H (5+ hearts, ≤4 spades), finesse is in spades -----
+p2Shape = hearts(south) > 4 and spades(south) < 5
+p2AQS   = hascard(south, AS) and hascard(south, QS) and not hascard(south, KS)
+p2N     = hearts(north) > 2 and not hascard(north, KS)
+path2   = p2Shape and p2AQS and p2N
+
+# ----- Common requirements -----
+sHcp       = hcp(south) > 13 and hcp(south) < 18
+sNoMinor5  = diamonds(south) < 5 and clubs(south) < 5
+nHcp       = hcp(north) > 7 and hcp(north) < 12
+nNoMinor5  = diamonds(north) < 5 and clubs(north) < 5
 
 # ----- Combine -----
-southHand and northHand
+(path1 or path2) and sHcp and sNoMinor5 and nHcp and nNoMinor5
 
 action printoneline,
-average "South 5 spades       " 100 * (spades(south) == 5),
-average "South 6 spades       " 100 * (spades(south) == 6),
-average "Heart K with East    " 100 * hascard(east, KH),
-average "Heart K with West    " 100 * hascard(west, KH),
+average "Path 1: 1S, finesse H" 100 * path1,
+average "Path 2: 1H, finesse S" 100 * path2,
+average "Finesse-K with East  " 100 * ((path1 and hascard(east, KH)) or (path2 and hascard(east, KS))),
+average "Finesse-K with West  " 100 * ((path1 and hascard(west, KH)) or (path2 and hascard(west, KS))),
 average "South HCP avg        "       hcp(south),
 average "North HCP avg        "       hcp(north),
 `, "S", true)
 Script
 Button,Finesse - Simple,\n\
---- Simple Finesse (3NT or 4!S by South)\n\
-South opens (either 1NT or 1!S depending on shape)，and the partnership reaches\n\
-3NT or 4!S. South is the declarer.\n\
+--- Simple Finesse (3NT，4!H，or 4!S by South)\n\
+South opens with a 5+-card major and the partnership reaches a major game\n\
+or 3NT. South declares.\n\
 \n\
-The teaching feature: South holds the ♥A and ♥Q but is missing the ♥K. The K\n\
-sits in East or West with roughly equal frequency. A finesse — leading low\n\
-from dummy toward South's hand and playing the Q if East follows small —\n\
-picks up the heart suit when East has the K (about half the time).\n\
+Teaching feature: South holds an AQ in a SIDE suit without the K. The K is in\n\
+East or West，roughly half the time each way.\n\
 \n\
-Things to think about before touching the heart suit:\n\
+• When South opens 1!S，the finesse suit is ♥ (AQ-no-K).\n\
+• When South opens 1!H，the finesse suit is ♠ (AQ-no-K).\n\
+• 5-3-3-2 hands sometimes open 1NT and play 3NT — finesse still applies.\n\
+\n\
+To take the finesse: lead small from dummy toward South's hand and play the Q\n\
+if East follows small. The Q wins about half the time.\n\
+\n\
+Things to think about:\n\
 • Count winners and losers first.\n\
-• In 4!S: should you draw trumps before or after the heart finesse?\n\
-• In 3NT: what's your stopping suit，and how many tricks do you need from hearts?\n\
-• If the finesse loses，which side suit will yield the extra trick?\n\
+• When in the play should you take the finesse?\n\
+• If the finesse loses，where else can you make tricks?\n\
 • Did the auction or the opening lead hint where the K sits?\n\
 \n\
-Reference on the basic finesse: https://www.bridgebum.com/finesse.php\n\
+Reference: https://www.bridgebum.com/finesse.php\n\
 %FinesseSimple%
