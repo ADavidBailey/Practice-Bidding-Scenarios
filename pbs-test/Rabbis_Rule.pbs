@@ -18,27 +18,26 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
-auction-filter: Auction.....\n1S
+auction-filter: Auction.....\n[12]
 */
-# Predeal: south's solid trumps + diamond AQ + heart A; west's stiff K of
-# diamonds; east's heart KQ threat.
-predeal south SAKQ,HA,DAQ
+# Predeal: south gets the diamond AQ and a heart stopper; west's stiff K of
+# diamonds; east's heart KQ threat. Trump-suit honors are left random — BBA
+# will pick the contract, often 3NT or a major game.
+predeal south HA,DAQ
 predeal west  DK
 predeal east  HKQ
 
 dealer south
 
-# ----- Declarer (South) — 1S opener with 5+ spade suit -----
-sSpades   = spades(south) > 4
-sHcp      = hcp(south) > 13 and hcp(south) < 18
+# ----- Declarer (South) — strong-ish opener -----
+sHcp      = hcp(south) > 13 and hcp(south) < 19
 sDiamonds = diamonds(south) > 3 and diamonds(south) < 6   # 4-5 diamonds with AQ
-southHand = sSpades and sHcp and sDiamonds
+southHand = sHcp and sDiamonds
 
-# ----- Dummy (North) — game-raising response -----
-nSpades   = spades(north) > 2 and spades(north) < 5
-nHcp      = hcp(north) > 7 and hcp(north) < 12
-nDiamonds = diamonds(north) > 1 and diamonds(north) < 5   # 2-4 (loose)
-northHand = nSpades and nHcp and nDiamonds
+# ----- Dummy (North) — game-going hand -----
+nHcp      = hcp(north) > 7 and hcp(north) < 13
+nDiamonds = diamonds(north) > 1 and diamonds(north) < 5   # 2-4
+northHand = nHcp and nDiamonds
 
 # ----- West — STIFF K of diamonds -----
 wDiamonds = diamonds(west) == 1           # K alone
