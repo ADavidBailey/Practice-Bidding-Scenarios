@@ -1,0 +1,62 @@
+# alias: SideSuitRuffBeforeTrump
+# button-text: Ruff Before Trump
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n1S
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Side-Suit Ruff BEFORE Drawing Trumps (4!S)
+South opens 1!S, partnership reaches 4!S, South declares.
+
+Teaching feature: declarer has 5 spades opposite 3 in dummy. Dummy has a
+SINGLETON heart. Declarer's hand has 3+ small hearts (one or more losers).
+You need to ruff a heart in dummy — but you must do it BEFORE drawing
+trumps, otherwise dummy's trumps will be gone.
+
+Holdings:
+• Spades — AK + 3 small in South opposite Jxx or Qxx in dummy. 5-3 fit.
+• Hearts — singleton in dummy, several losers in declarer's hand. The
+  ruff is the only way to dispose of one of declarer's heart losers.
+• Diamonds/clubs — split honors.
+
+If you cash AK of trumps first, dummy's small trumps go away. Now you can
+no longer ruff hearts in dummy. The lesson: WIN THE OPENING LEAD, then
+take your heart ruff IMMEDIATELY, then return to drawing trumps.
+
+Things to think about:
+• Count your losers and trumps before touching them.
+• Plan the order of plays before leading to trick 2.
+• If trumps split 3-2 it's safe to draw one round before ruffing — but
+  never more.
+@chat*/
+
+predeal south SAK,DA
+predeal north SQ
+predeal east  HK,HA
+
+dealer south
+
+# South — 1S opener with 5-card spade suit, 14-17 HCP
+sSpades = spades(south) > 4 and spades(south) < 6
+sHearts = hearts(south) > 2   # 3+ small hearts to lose
+sHcp    = hcp(south) > 13 and hcp(south) < 18
+southHand = sSpades and sHearts and sHcp
+
+# North — 3-card spade support, SINGLETON heart, game-going hand
+nSpades = spades(north) > 2 and spades(north) < 5
+nHearts = hearts(north) == 1   # singleton — the ruffing opportunity
+nHcp    = hcp(north) > 7 and hcp(north) < 12
+northHand = nSpades and nHearts and nHcp
+
+# East/West — keep auction quiet
+eHcp = hcp(east) < 11
+wHcp = hcp(west) < 11
+
+southHand and northHand and eHcp and wHcp
+
+action
+average "South spade length "       spades(south),
+average "North heart singleton (forced) " 100 * (hearts(north) == 1),
+average "South heart losers (approx) "  hearts(south),

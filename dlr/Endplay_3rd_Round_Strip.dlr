@@ -1,0 +1,73 @@
+# alias: EndplayStrip
+# button-text: Endplay / Strip
+# scenario-title: --- Strip-and-Endplay (4!S)
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n1S
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Strip-and-Endplay (4!S)
+South opens 1!S, partnership reaches 4!S.
+
+Teaching feature: declarer faces a critical loser problem in one side suit
+(typically clubs). Rather than finessing for the Q, declarer can STRIP the
+other suits, then throw East in with a heart and force East to lead into
+declarer's club tenace.
+
+Holdings:
+• Spades — 5-3 fit with solid honors.
+• Hearts — declarer has AKx (or similar) opposite small; can play two
+  rounds to exhaust East, then throw the third round to East.
+• Diamonds — declarer cashes A and K, ruffs the third in dummy if needed.
+• Clubs — AJx opposite Kxx, with the Q missing. The 50% finesse can be
+  avoided entirely by the endplay.
+
+The plan:
+1. Win the opening lead.
+2. Draw two rounds of trump (don't draw all — you may need a trump entry).
+3. Cash AK of diamonds; ruff the third diamond in dummy.
+4. Cash AK of hearts.
+5. Lead a third heart to East.
+6. East must return either a club (into your AJ tenace — J wins) or give
+   you a ruff-and-discard. Either way, you don't lose a club trick.
+
+Things to think about:
+• Why do you NOT take the club finesse?
+• What if East has shorter clubs than expected?
+• How do you keep the trumps you need to recover from each ruff?
+
+Reference: https://www.bridgebum.com/endplay.php
+@chat*/
+
+predeal south SAK,CAJ
+predeal north CK
+predeal east  HQ
+
+dealer south
+
+# South opens 1S with 5-card spade suit, 14-17 HCP
+sSpades = spades(south) > 4 and spades(south) < 6
+sHcp    = hcp(south) > 13 and hcp(south) < 18
+southHand = sSpades and sHcp
+
+# North — 3-card support, 9-11 HCP
+nSpades = spades(north) > 2 and spades(north) < 5
+nHcp    = hcp(north) > 7 and hcp(north) < 12
+northHand = nSpades and nHcp
+
+# Q of clubs in opps (it's missing from declarer's side after predeal)
+qClubInOpps = not hascard(south, QC) and not hascard(north, QC)
+
+# Keep opps quiet
+eHcp = hcp(east) < 11
+wHcp = hcp(west) < 11
+
+southHand and northHand and qClubInOpps and eHcp and wHcp
+
+action printoneline,
+average "Q clubs with East " 100 * hascard(east, QC),
+average "Q clubs with West " 100 * hascard(west, QC),
+average "South HCP         "       hcp(south),
+average "North HCP         "       hcp(north),

@@ -1,0 +1,69 @@
+# alias: RabbisRule
+# button-text: Rabbi's Rule
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n[12]
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Rabbi's Rule (4!S) — drop the singleton King
+"When the King is singleton, play the Ace." Here it's a safety play.
+
+South opens 1!S and the partnership reaches 4!S.
+
+Teaching feature: declarer holds AQxxx of diamonds opposite xxx in dummy.
+The King is missing. The natural impulse is to finesse — but West has the
+SINGLETON K. East has the rest of the diamonds (4 cards, Jxxx).
+
+• Play the Ace first: the stiff K drops, and the Queen is good. You make.
+• Finesse (lead from dummy, play Q): the Q loses to West's K. West can put
+  East in via a club, and East cashes the long heart suit. Down 2 or more.
+
+The key: Rabbi's Rule isn't "you gain a trick by laying down the A" — it's
+that the FINESSE costs the contract when the K is stiff and the opp can
+reach the long suit. Cashing the A is the safety play.
+
+Things to think about:
+• Count your tricks before you commit to a line in diamonds.
+• What clues does the auction give about distribution?
+• If the auction is silent, the 4-1 split with K stiff offside is exactly
+  what makes Rabbi's Rule shine.
+@chat*/
+
+# Predeal: south gets the diamond AQ and a heart stopper; west's stiff K of
+# diamonds; east's heart KQ threat. Trump-suit honors are left random — BBA
+# will pick the contract, often 3NT or a major game.
+predeal south HA,DAQ
+predeal west  DK
+predeal east  HKQ
+
+dealer south
+
+# ----- Declarer (South) — strong-ish opener -----
+sHcp      = hcp(south) > 13 and hcp(south) < 19
+sDiamonds = diamonds(south) > 3 and diamonds(south) < 6   # 4-5 diamonds with AQ
+southHand = sHcp and sDiamonds
+
+# ----- Dummy (North) — game-going hand -----
+nHcp      = hcp(north) > 7 and hcp(north) < 13
+nDiamonds = diamonds(north) > 1 and diamonds(north) < 5   # 2-4
+northHand = nHcp and nDiamonds
+
+# ----- West — STIFF K of diamonds -----
+wDiamonds = diamonds(west) == 1           # K alone
+wHcp      = hcp(west) < 11
+westHand = wDiamonds and wHcp
+
+# ----- East — long hearts headed by KQ -----
+eHearts   = hearts(east) > 4
+eHcp      = hcp(east) < 11
+eastHand = eHearts and eHcp
+
+southHand and northHand and westHand and eastHand
+
+action
+average "West stiff K (forced)  " 100 * (diamonds(west) == 1),
+average "East 5+ hearts (forced)" 100 * (hearts(east) > 4),
+average "South HCP              "       hcp(south),
+average "North HCP              "       hcp(north),
