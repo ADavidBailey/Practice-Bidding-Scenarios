@@ -20,88 +20,94 @@ convention-card-ns: Basic-Bridge
 convention-card-ew: Basic-Bridge
 auction-filter: Auction.....\n1N +Pass +3N +Pass\nPass +Pass
 */
-### Imported script: qtNS (NS combined Quick Tricks)
-// Per-suit QT = min(consecutive top-honor chain held by NS, longer single-hand length in suit).
+### Imported script: topTricksNS (NS combined Top Tricks)
+//
+// Per-suit topTricks = min(consecutive top-honor chain held by NS,
+//                          longer single-hand length in that suit).
+//
 // Chain rules:
 //   0 = no A in NS    1 = A only    2 = AK    3 = AKQ    4 = AKQJ    5 = AKQJT
+//
 // Cap rule:
 //   Split chains require entries to materialize. We assume entries exist,
-//   so AK opposite Qxx (longer hand = 3) counts 3 QT, but AK opposite Qx
-//   (longer hand = 2) counts only 2 QT.
+//   so AK opposite Qxx (longer hand = 3) counts as 3 top tricks, but AK
+//   opposite Qx (longer hand = 2) counts only 2.
 //
-// Exports: qtSpades, qtHearts, qtDiamonds, qtClubs, qtNS
+// Stopper rule:
+//   In notrump, an unstopped suit (no A in NS for that suit) lets opps run
+//   their length on the opening lead before declarer can cash any winners.
+//   So if any suit lacks an A in NS, topTricksNS collapses to 0.
+//
+// Exports: topTricksSpades, topTricksHearts, topTricksDiamonds,
+//          topTricksClubs, topTricksNS
 
 // ---- Has-honor checks (either hand) ----
-nsAS_qt = hascard(south, AS) or hascard(north, AS)
-nsKS_qt = hascard(south, KS) or hascard(north, KS)
-nsQS_qt = hascard(south, QS) or hascard(north, QS)
-nsJS_qt = hascard(south, JS) or hascard(north, JS)
-nsTS_qt = hascard(south, TS) or hascard(north, TS)
+hasAceSpades   = hascard(south, AS) or hascard(north, AS)
+hasKingSpades  = hascard(south, KS) or hascard(north, KS)
+hasQueenSpades = hascard(south, QS) or hascard(north, QS)
+hasJackSpades  = hascard(south, JS) or hascard(north, JS)
+hasTenSpades   = hascard(south, TS) or hascard(north, TS)
 
-nsAH_qt = hascard(south, AH) or hascard(north, AH)
-nsKH_qt = hascard(south, KH) or hascard(north, KH)
-nsQH_qt = hascard(south, QH) or hascard(north, QH)
-nsJH_qt = hascard(south, JH) or hascard(north, JH)
-nsTH_qt = hascard(south, TH) or hascard(north, TH)
+hasAceHearts   = hascard(south, AH) or hascard(north, AH)
+hasKingHearts  = hascard(south, KH) or hascard(north, KH)
+hasQueenHearts = hascard(south, QH) or hascard(north, QH)
+hasJackHearts  = hascard(south, JH) or hascard(north, JH)
+hasTenHearts   = hascard(south, TH) or hascard(north, TH)
 
-nsAD_qt = hascard(south, AD) or hascard(north, AD)
-nsKD_qt = hascard(south, KD) or hascard(north, KD)
-nsQD_qt = hascard(south, QD) or hascard(north, QD)
-nsJD_qt = hascard(south, JD) or hascard(north, JD)
-nsTD_qt = hascard(south, TD) or hascard(north, TD)
+hasAceDiamonds   = hascard(south, AD) or hascard(north, AD)
+hasKingDiamonds  = hascard(south, KD) or hascard(north, KD)
+hasQueenDiamonds = hascard(south, QD) or hascard(north, QD)
+hasJackDiamonds  = hascard(south, JD) or hascard(north, JD)
+hasTenDiamonds   = hascard(south, TD) or hascard(north, TD)
 
-nsAC_qt = hascard(south, AC) or hascard(north, AC)
-nsKC_qt = hascard(south, KC) or hascard(north, KC)
-nsQC_qt = hascard(south, QC) or hascard(north, QC)
-nsJC_qt = hascard(south, JC) or hascard(north, JC)
-nsTC_qt = hascard(south, TC) or hascard(north, TC)
+hasAceClubs   = hascard(south, AC) or hascard(north, AC)
+hasKingClubs  = hascard(south, KC) or hascard(north, KC)
+hasQueenClubs = hascard(south, QC) or hascard(north, QC)
+hasJackClubs  = hascard(south, JC) or hascard(north, JC)
+hasTenClubs   = hascard(south, TC) or hascard(north, TC)
 
-// ---- Consecutive top-honor chain per suit (combined NS) ----
-chainSp4_qt = nsTS_qt ? 5 : 4
-chainSp3_qt = nsJS_qt ? chainSp4_qt : 3
-chainSp2_qt = nsQS_qt ? chainSp3_qt : 2
-chainSp1_qt = nsKS_qt ? chainSp2_qt : 1
-chainSp_qt  = nsAS_qt ? chainSp1_qt : 0
+// ---- Per-suit consecutive top-honor chain (combined NS) ----
+chainSpadesAfterJack  = hasTenSpades   ? 5 : 4
+chainSpadesAfterQueen = hasJackSpades  ? chainSpadesAfterJack  : 3
+chainSpadesAfterKing  = hasQueenSpades ? chainSpadesAfterQueen : 2
+chainSpadesAfterAce   = hasKingSpades  ? chainSpadesAfterKing  : 1
+chainSpades           = hasAceSpades   ? chainSpadesAfterAce   : 0
 
-chainHr4_qt = nsTH_qt ? 5 : 4
-chainHr3_qt = nsJH_qt ? chainHr4_qt : 3
-chainHr2_qt = nsQH_qt ? chainHr3_qt : 2
-chainHr1_qt = nsKH_qt ? chainHr2_qt : 1
-chainHr_qt  = nsAH_qt ? chainHr1_qt : 0
+chainHeartsAfterJack  = hasTenHearts   ? 5 : 4
+chainHeartsAfterQueen = hasJackHearts  ? chainHeartsAfterJack  : 3
+chainHeartsAfterKing  = hasQueenHearts ? chainHeartsAfterQueen : 2
+chainHeartsAfterAce   = hasKingHearts  ? chainHeartsAfterKing  : 1
+chainHearts           = hasAceHearts   ? chainHeartsAfterAce   : 0
 
-chainDi4_qt = nsTD_qt ? 5 : 4
-chainDi3_qt = nsJD_qt ? chainDi4_qt : 3
-chainDi2_qt = nsQD_qt ? chainDi3_qt : 2
-chainDi1_qt = nsKD_qt ? chainDi2_qt : 1
-chainDi_qt  = nsAD_qt ? chainDi1_qt : 0
+chainDiamondsAfterJack  = hasTenDiamonds   ? 5 : 4
+chainDiamondsAfterQueen = hasJackDiamonds  ? chainDiamondsAfterJack  : 3
+chainDiamondsAfterKing  = hasQueenDiamonds ? chainDiamondsAfterQueen : 2
+chainDiamondsAfterAce   = hasKingDiamonds  ? chainDiamondsAfterKing  : 1
+chainDiamonds           = hasAceDiamonds   ? chainDiamondsAfterAce   : 0
 
-chainCl4_qt = nsTC_qt ? 5 : 4
-chainCl3_qt = nsJC_qt ? chainCl4_qt : 3
-chainCl2_qt = nsQC_qt ? chainCl3_qt : 2
-chainCl1_qt = nsKC_qt ? chainCl2_qt : 1
-chainCl_qt  = nsAC_qt ? chainCl1_qt : 0
+chainClubsAfterJack  = hasTenClubs   ? 5 : 4
+chainClubsAfterQueen = hasJackClubs  ? chainClubsAfterJack  : 3
+chainClubsAfterKing  = hasQueenClubs ? chainClubsAfterQueen : 2
+chainClubsAfterAce   = hasKingClubs  ? chainClubsAfterKing  : 1
+chainClubs           = hasAceClubs   ? chainClubsAfterAce   : 0
 
 // ---- Longer single-hand length per suit ----
-maxLenSp_qt = spades(south)   > spades(north)   ? spades(south)   : spades(north)
-maxLenHr_qt = hearts(south)   > hearts(north)   ? hearts(south)   : hearts(north)
-maxLenDi_qt = diamonds(south) > diamonds(north) ? diamonds(south) : diamonds(north)
-maxLenCl_qt = clubs(south)    > clubs(north)    ? clubs(south)    : clubs(north)
+longerHandSpades   = spades(south)   > spades(north)   ? spades(south)   : spades(north)
+longerHandHearts   = hearts(south)   > hearts(north)   ? hearts(south)   : hearts(north)
+longerHandDiamonds = diamonds(south) > diamonds(north) ? diamonds(south) : diamonds(north)
+longerHandClubs    = clubs(south)    > clubs(north)    ? clubs(south)    : clubs(north)
 
-// ---- Per-suit QT = min(chain, longer-hand length) ----
-qtSpades   = chainSp_qt < maxLenSp_qt ? chainSp_qt : maxLenSp_qt
-qtHearts   = chainHr_qt < maxLenHr_qt ? chainHr_qt : maxLenHr_qt
-qtDiamonds = chainDi_qt < maxLenDi_qt ? chainDi_qt : maxLenDi_qt
-qtClubs    = chainCl_qt < maxLenCl_qt ? chainCl_qt : maxLenCl_qt
+// ---- Per-suit top tricks = min(chain, longer hand) ----
+topTricksSpades   = chainSpades   < longerHandSpades   ? chainSpades   : longerHandSpades
+topTricksHearts   = chainHearts   < longerHandHearts   ? chainHearts   : longerHandHearts
+topTricksDiamonds = chainDiamonds < longerHandDiamonds ? chainDiamonds : longerHandDiamonds
+topTricksClubs    = chainClubs    < longerHandClubs    ? chainClubs    : longerHandClubs
 
-// ---- Total ----
-// In notrump, an unstopped suit (no A in NS for that suit) lets opps run
-// their length on the opening lead before declarer can cash their winners.
-// So if any suit lacks an A in NS, qtNS collapses to 0 — there are no
-// QUICK tricks because opps will get in first.
-allSuitsStopped_qt = nsAS_qt and nsAH_qt and nsAD_qt and nsAC_qt
-qtRaw_qt = qtSpades + qtHearts + qtDiamonds + qtClubs
-qtNS = allSuitsStopped_qt ? qtRaw_qt : 0
-// Provides qtSpades, qtHearts, qtDiamonds, qtClubs, qtNS
+// ---- Total (collapses to 0 if any suit unstopped) ----
+allSuitsStopped = hasAceSpades and hasAceHearts and hasAceDiamonds and hasAceClubs
+topTricksRaw    = topTricksSpades + topTricksHearts + topTricksDiamonds + topTricksClubs
+topTricksNS     = allSuitsStopped ? topTricksRaw : 0
+// Provides topTricksSpades, topTricksHearts, topTricksDiamonds, topTricksClubs, topTricksNS
 
 // ----- Opener (South) — 1NT, 15-17, balanced (Basic-Bridge shape) -----
 sShape = shape(south, any 4333 + any 4432)
@@ -115,12 +121,18 @@ nHcp = hcp(north) > 8
 eHcp = hcp(east) < 11
 wHcp = hcp(west) < 11
 
-// qtNS == 9 implicitly requires all 4 aces in NS (qtNS collapses to 0 if
-// any suit is unstopped — see script/qtNS).
-sShape and sHcp and nNoMajor4 and nHcp and qtNS == 9 and eHcp and wHcp
+# Define responders actions
+nPass = hcp(north)<9
+n2N = hcp(north)==9 and topTricksNS == 8
+n3N = hcp(north)>9 and hcp(north)<16 and topTricksNS == 9
+nActs = nPass or n2N or n3N
+
+// topTricksNS == 9 implicitly requires all 4 aces in NS (topTricksNS collapses to 0 if
+// any suit is unstopped — see script/topTricksNS).
+sShape and sHcp and nNoMajor4 and nHcp and topTricksNS == 9 and eHcp and wHcp
 
 action printoneline,
-average "qt total (target=9) " qtNS,
+average "top tricks (target=9) " topTricksNS,
 average "South HCP           " hcp(south),
 average "North HCP           " hcp(north),
 average "NS combined HCP     " hcp(south) + hcp(north),
