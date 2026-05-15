@@ -20,70 +20,46 @@ convention-card-ns: Basic-Bridge
 convention-card-ew: Basic-Bridge
 auction-filter: Auction.....\n1N +Pass +3N +Pass\nPass +Pass
 */
-// ----- Opener (South) — 1NT, 15-17 HCP, balanced (Basic-Bridge shape) -----
+// ----- Opener (South) — 1NT, 15-17, Basic-Bridge balanced shape -----
 sShape = shape(south, any 4333 + any 4432)
 sHcp   = hcp(south) > 14 and hcp(south) < 18
 
-// ----- Responder (North) — 9+ HCP, no 4-card major (no Stayman),
-// no 5-card major (no transfer). Minor length OK; with Basic-Bridge there
-// is no Minor-Suit-Stayman, no Minor-Suit-Transfer, so the auction stays
-// 1NT-3NT.
+// ----- Responder (North) — 9+ HCP, no 4-card major, no 5-card major
 nNoMajor4 = spades(north) < 4 and hearts(north) < 4
 nHcp = hcp(north) > 8
 
-// ----- Per-suit "does NS hold this honor" (south or north) -----
-nsAS = hascard(south, AS) or hascard(north, AS)
-nsKS = hascard(south, KS) or hascard(north, KS)
-nsQS = hascard(south, QS) or hascard(north, QS)
-nsJS = hascard(south, JS) or hascard(north, JS)
-nsTS = hascard(south, TS) or hascard(north, TS)
+// ----- All 4 aces between the two hands -----
+nsAllAces = (hascard(south, AS) or hascard(north, AS))
+        and (hascard(south, AH) or hascard(north, AH))
+        and (hascard(south, AD) or hascard(north, AD))
+        and (hascard(south, AC) or hascard(north, AC))
 
-nsAH = hascard(south, AH) or hascard(north, AH)
-nsKH = hascard(south, KH) or hascard(north, KH)
-nsQH = hascard(south, QH) or hascard(north, QH)
-nsJH = hascard(south, JH) or hascard(north, JH)
-nsTH = hascard(south, TH) or hascard(north, TH)
+// ----- Per-suit QT = consecutive top honors in the hand holding the Ace -----
+// (chain stops when the next honor is in the OTHER hand or in opps)
+//   0 = no A in NS    1 = A only    2 = AK    3 = AKQ    4 = AKQJ    5 = AKQJT
+//
+// We compute the chain separately for South and North; only one hand has
+// the A in each suit, so adding the two values yields the suit's QT.
 
-nsAD = hascard(south, AD) or hascard(north, AD)
-nsKD = hascard(south, KD) or hascard(north, KD)
-nsQD = hascard(south, QD) or hascard(north, QD)
-nsJD = hascard(south, JD) or hascard(north, JD)
-nsTD = hascard(south, TD) or hascard(north, TD)
+// Spades
+sQtSp = hascard(south, AS) ? (hascard(south, KS) ? (hascard(south, QS) ? (hascard(south, JS) ? (hascard(south, TS) ? 5 : 4) : 3) : 2) : 1) : 0
+nQtSp = hascard(north, AS) ? (hascard(north, KS) ? (hascard(north, QS) ? (hascard(north, JS) ? (hascard(north, TS) ? 5 : 4) : 3) : 2) : 1) : 0
+qtSpades = sQtSp + nQtSp
 
-nsAC = hascard(south, AC) or hascard(north, AC)
-nsKC = hascard(south, KC) or hascard(north, KC)
-nsQC = hascard(south, QC) or hascard(north, QC)
-nsJC = hascard(south, JC) or hascard(north, JC)
-nsTC = hascard(south, TC) or hascard(north, TC)
+// Hearts
+sQtHr = hascard(south, AH) ? (hascard(south, KH) ? (hascard(south, QH) ? (hascard(south, JH) ? (hascard(south, TH) ? 5 : 4) : 3) : 2) : 1) : 0
+nQtHr = hascard(north, AH) ? (hascard(north, KH) ? (hascard(north, QH) ? (hascard(north, JH) ? (hascard(north, TH) ? 5 : 4) : 3) : 2) : 1) : 0
+qtHearts = sQtHr + nQtHr
 
-// All 4 aces must be in NS (in either hand)
-nsAllAces = nsAS and nsAH and nsAD and nsAC
+// Diamonds
+sQtDi = hascard(south, AD) ? (hascard(south, KD) ? (hascard(south, QD) ? (hascard(south, JD) ? (hascard(south, TD) ? 5 : 4) : 3) : 2) : 1) : 0
+nQtDi = hascard(north, AD) ? (hascard(north, KD) ? (hascard(north, QD) ? (hascard(north, JD) ? (hascard(north, TD) ? 5 : 4) : 3) : 2) : 1) : 0
+qtDiamonds = sQtDi + nQtDi
 
-// ----- Per-suit quick-trick count -----
-//   0 = no A   1 = A only   2 = AK   3 = AKQ   4 = AKQJ   5 = AKQJT
-qtSp4 = nsTS ? 5 : 4
-qtSp3 = nsJS ? qtSp4 : 3
-qtSp2 = nsQS ? qtSp3 : 2
-qtSp1 = nsKS ? qtSp2 : 1
-qtSpades = nsAS ? qtSp1 : 0
-
-qtHr4 = nsTH ? 5 : 4
-qtHr3 = nsJH ? qtHr4 : 3
-qtHr2 = nsQH ? qtHr3 : 2
-qtHr1 = nsKH ? qtHr2 : 1
-qtHearts = nsAH ? qtHr1 : 0
-
-qtDi4 = nsTD ? 5 : 4
-qtDi3 = nsJD ? qtDi4 : 3
-qtDi2 = nsQD ? qtDi3 : 2
-qtDi1 = nsKD ? qtDi2 : 1
-qtDiamonds = nsAD ? qtDi1 : 0
-
-qtCl4 = nsTC ? 5 : 4
-qtCl3 = nsJC ? qtCl4 : 3
-qtCl2 = nsQC ? qtCl3 : 2
-qtCl1 = nsKC ? qtCl2 : 1
-qtClubs = nsAC ? qtCl1 : 0
+// Clubs
+sQtCl = hascard(south, AC) ? (hascard(south, KC) ? (hascard(south, QC) ? (hascard(south, JC) ? (hascard(south, TC) ? 5 : 4) : 3) : 2) : 1) : 0
+nQtCl = hascard(north, AC) ? (hascard(north, KC) ? (hascard(north, QC) ? (hascard(north, JC) ? (hascard(north, TC) ? 5 : 4) : 3) : 2) : 1) : 0
+qtClubs = sQtCl + nQtCl
 
 qtTotal = qtSpades + qtHearts + qtDiamonds + qtClubs
 
@@ -104,18 +80,18 @@ Button,Top Tricks (NT),\n\
 --- Top Tricks — Notrump Contract (beginner)\n\
 1NT — Pass — 3NT — all pass. Final contract is 3NT (declarer needs 9 tricks).\n\
 \n\
-Teaching feature: NS holds all 4 aces (the aces may be in either hand)\n\
-AND exactly 9 quick tricks on top — no finesse required.\n\
+Teaching feature: NS holds all 4 aces AND exactly 9 quick tricks on top.\n\
+A quick trick counts only when the chain of top honors lives in the same\n\
+hand as the Ace (split chains require an entry to extend，so they don't\n\
+count as "quick"). 4 aces + 5 chain extensions = 9.\n\
 \n\
 Responder is constrained to no 4-card major (so no Stayman) and no 5-card\n\
 major (so no transfer). The auction stays natural.\n\
 \n\
 Things to think about:\n\
 • Count your top tricks before touching the hand.\n\
-• 9 quick tricks = 4 aces + 5 more from honor sequences (K on A，Q on AK,\n\
-  J on AKQ，etc).\n\
-• If you have 9 top tricks，cash them; don't finesse for an overtrick\n\
-  that risks losing the lead.\n\
+• AK in one hand = 2 QT; AK opposite Qx = also 2 QT (Q needs an entry).\n\
+• If you have 9 top tricks，cash them; don't finesse for an overtrick.\n\
 \n\
 Reference: https://www.bridgebum.com/counting.php\n\
 %PlayTopTricksNT%
