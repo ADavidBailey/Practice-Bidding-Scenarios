@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: Basic-Bridge
 convention-card-ew: Basic-Bridge
-auction-filter: Auction.....\n(1C +Pass +2C|1D +Pass +2D|1H +Pass +2H|1S +Pass +2S|1N +Pass +2N) +Pass\nPass +Pass
+auction-filter: Auction.....\n((1C +Pass +2C|1D +Pass +2D|1H +Pass +2H|1S +Pass +2S|1N +Pass +2N) +Pass\nPass +Pass|(1C +Pass +1D +Pass\n2D|1C +Pass +1H +Pass\n2H|1C +Pass +1S +Pass\n2S|1D +Pass +1H +Pass\n2H|1D +Pass +1S +Pass\n2S|1H +Pass +1S +Pass\n2S) +Pass +Pass +Pass)
 */
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -144,23 +144,19 @@ gibNT = nt1 or nt2
 # Provides gibNT for South's 1NT opening.
 
 # Opener — light minimum so the auction stops at the 2-level
-sHcp = hcp(south) > 11 and hcp(south) < 15
+sHcp   = hcp(south) > 11 and hcp(south) < 15
 sOpens = openingSuit or gibNT
 
-# Responder — 6-9 HCP with support in opener's suit (or balanced for 1NT)
-nMajorSupport = (oS and spades(north) > 2) or (oH and hearts(north) > 2)
-nMinorSupport = (oD and diamonds(north) > 3) or (oC and clubs(north) > 3)
-nNTRaise      = gibNT and shape(north, any 4333 + any 4432) and spades(north) < 4 and hearts(north) < 4
-nFit = nMajorSupport or nMinorSupport or nNTRaise
+# Responder — 6-9 HCP. Either supports opener's suit or has a 4-card suit
+# to bid (and opener has 4-card support to raise it). The auction filter
+# selects whichever path BBA takes.
 nHcp = hcp(north) > 5 and hcp(north) < 10
-# Avoid responder having a 4-card major (would prefer to bid the major)
-nNoNewSuit = spades(north) < 4 and hearts(north) < 4 or nMajorSupport
 
 # Quiet opponents — no overcalls, no doubles
 eHcp = hcp(east) < 11
 wHcp = hcp(west) < 11
 
-sOpens and sHcp and nFit and nHcp and nNoNewSuit and eHcp and wHcp
+sOpens and sHcp and nHcp and eHcp and wHcp
 
 action printoneline,
 average "South opens 1C   " 100 * oC,
@@ -175,8 +171,11 @@ average "NS combined HCP  "       hcp(south) + hcp(north),
 Script
 Button,Play Top Tricks,\n\
 --- Play Your Top Tricks (beginner — partial contract)\n\
-South opens 1 of a suit or 1NT; North raises to 2 of the same suit (or 2NT\n\
-over 1NT); everyone passes. Final contract is a 2-level partial.\n\
+The bidding stops at the 2-level. Two patterns:\n\
+• 1X — Pass — 2X — all pass   (North raises South's suit)\n\
+• 1X — Pass — 1Y — Pass — 2Y — all pass   (North bids a new suit at the 1-level,\n\
+  South raises it; both pass)\n\
+Or 1NT — 2NT — all pass for the NT case.\n\
 \n\
 Teaching feature: declarer has enough TOP tricks (sure winners) to make\n\
 8 tricks for the contract. The lesson is COUNT FIRST，CASH SECOND —\n\
