@@ -10,36 +10,34 @@
 --- Top Tricks — Notrump Contract (beginner)
 1NT — Pass — 3NT — all pass. Final contract is 3NT (declarer needs 9 tricks).
 
-Teaching feature: NS holds all 4 aces (the aces may be in either hand)
-AND exactly 9 quick tricks on top — no finesse required.
+Teaching feature: NS holds all 4 aces (in either hand) AND exactly 9 quick
+tricks on top. We assume outside entries exist, so split chains DO count
+(e.g., AK opposite Qxx = 3 QT). The per-suit count is capped by the
+longer single-hand length in that suit (so AK opposite Qx = 2 QT, since
+no hand has 3 cards in the suit).
 
 Responder is constrained to no 4-card major (so no Stayman) and no 5-card
-major (so no transfer). The auction stays natural.
+major (so no transfer). The auction stays natural 1NT—3NT.
 
 Things to think about:
 • Count your top tricks before touching the hand.
-• 9 quick tricks = 4 aces + 5 more from honor sequences (K on A, Q on AK,
-  J on AKQ, etc).
-• If you have 9 top tricks, cash them; don't finesse for an overtrick
-  that risks losing the lead.
+• Chain rule: A, then K (anywhere in NS), then Q, then J, then T.
+• Length cap: split chains need length in the longer hand to materialize.
 
 Reference: https://www.bridgebum.com/counting.php
 @chat*/
 
 dealer south
 
-// ----- Opener (South) — 1NT, 15-17 HCP, balanced (Basic-Bridge shape) -----
+// ----- Opener (South) — 1NT, 15-17, balanced (Basic-Bridge) -----
 sShape = shape(south, any 4333 + any 4432)
 sHcp   = hcp(south) > 14 and hcp(south) < 18
 
-// ----- Responder (North) — 9+ HCP, no 4-card major (no Stayman),
-// no 5-card major (no transfer). Minor length OK; with Basic-Bridge there
-// is no Minor-Suit-Stayman, no Minor-Suit-Transfer, so the auction stays
-// 1NT-3NT.
+// ----- Responder (North) — 9+ HCP, no 4-card major, no 5-card major -----
 nNoMajor4 = spades(north) < 4 and hearts(north) < 4
 nHcp = hcp(north) > 8
 
-// ----- Per-suit "does NS hold this honor" (south or north) -----
+// ----- Per-suit has-honor (either hand) -----
 nsAS = hascard(south, AS) or hascard(north, AS)
 nsKS = hascard(south, KS) or hascard(north, KS)
 nsQS = hascard(south, QS) or hascard(north, QS)
@@ -64,34 +62,46 @@ nsQC = hascard(south, QC) or hascard(north, QC)
 nsJC = hascard(south, JC) or hascard(north, JC)
 nsTC = hascard(south, TC) or hascard(north, TC)
 
-// All 4 aces must be in NS (in either hand)
+// All 4 aces in NS (either hand)
 nsAllAces = nsAS and nsAH and nsAD and nsAC
 
-// ----- Per-suit quick-trick count -----
-//   0 = no A   1 = A only   2 = AK   3 = AKQ   4 = AKQJ   5 = AKQJT
-qtSp4 = nsTS ? 5 : 4
-qtSp3 = nsJS ? qtSp4 : 3
-qtSp2 = nsQS ? qtSp3 : 2
-qtSp1 = nsKS ? qtSp2 : 1
-qtSpades = nsAS ? qtSp1 : 0
+// ----- Per-suit chain length (consecutive top honors held by NS) -----
+//   0 = no A   1 = A   2 = AK   3 = AKQ   4 = AKQJ   5 = AKQJT
+chainSp4 = nsTS ? 5 : 4
+chainSp3 = nsJS ? chainSp4 : 3
+chainSp2 = nsQS ? chainSp3 : 2
+chainSp1 = nsKS ? chainSp2 : 1
+chainSpades = nsAS ? chainSp1 : 0
 
-qtHr4 = nsTH ? 5 : 4
-qtHr3 = nsJH ? qtHr4 : 3
-qtHr2 = nsQH ? qtHr3 : 2
-qtHr1 = nsKH ? qtHr2 : 1
-qtHearts = nsAH ? qtHr1 : 0
+chainHr4 = nsTH ? 5 : 4
+chainHr3 = nsJH ? chainHr4 : 3
+chainHr2 = nsQH ? chainHr3 : 2
+chainHr1 = nsKH ? chainHr2 : 1
+chainHearts = nsAH ? chainHr1 : 0
 
-qtDi4 = nsTD ? 5 : 4
-qtDi3 = nsJD ? qtDi4 : 3
-qtDi2 = nsQD ? qtDi3 : 2
-qtDi1 = nsKD ? qtDi2 : 1
-qtDiamonds = nsAD ? qtDi1 : 0
+chainDi4 = nsTD ? 5 : 4
+chainDi3 = nsJD ? chainDi4 : 3
+chainDi2 = nsQD ? chainDi3 : 2
+chainDi1 = nsKD ? chainDi2 : 1
+chainDiamonds = nsAD ? chainDi1 : 0
 
-qtCl4 = nsTC ? 5 : 4
-qtCl3 = nsJC ? qtCl4 : 3
-qtCl2 = nsQC ? qtCl3 : 2
-qtCl1 = nsKC ? qtCl2 : 1
-qtClubs = nsAC ? qtCl1 : 0
+chainCl4 = nsTC ? 5 : 4
+chainCl3 = nsJC ? chainCl4 : 3
+chainCl2 = nsQC ? chainCl3 : 2
+chainCl1 = nsKC ? chainCl2 : 1
+chainClubs = nsAC ? chainCl1 : 0
+
+// ----- Length cap: longer single-hand length in each suit -----
+maxLenSp = spades(south) > spades(north)     ? spades(south)   : spades(north)
+maxLenHr = hearts(south) > hearts(north)     ? hearts(south)   : hearts(north)
+maxLenDi = diamonds(south) > diamonds(north) ? diamonds(south) : diamonds(north)
+maxLenCl = clubs(south) > clubs(north)       ? clubs(south)    : clubs(north)
+
+// ----- QT per suit = min(chain, longer hand length) -----
+qtSpades   = chainSpades   < maxLenSp ? chainSpades   : maxLenSp
+qtHearts   = chainHearts   < maxLenHr ? chainHearts   : maxLenHr
+qtDiamonds = chainDiamonds < maxLenDi ? chainDiamonds : maxLenDi
+qtClubs    = chainClubs    < maxLenCl ? chainClubs    : maxLenCl
 
 qtTotal = qtSpades + qtHearts + qtDiamonds + qtClubs
 
