@@ -1,35 +1,3 @@
-# alias: PlayTopTricksNT
-# button-text: Top Tricks (NT)
-# scenario-title: --- Top Tricks — Notrump Contract (beginner)
-# gib-works: true
-# bba-works: true
-# auction-filter: Auction.....\n1N +Pass +3N +Pass\nPass +Pass
-# convention-card-ns: Basic-Bridge
-# convention-card-ew: Basic-Bridge
-
-/*@chat
---- Top Tricks — Notrump Contract (beginner)
-1NT — Pass — 3NT — all pass. Final contract is 3NT (declarer needs 9 tricks).
-
-Teaching feature: NS holds all 4 aces (in either hand) AND exactly 9 quick
-tricks on top. We assume outside entries exist, so split chains DO count
-(e.g., AK opposite Qxx = 3 QT). The per-suit count is capped by the
-longer single-hand length in that suit (so AK opposite Qx = 2 QT, since
-no hand has 3 cards in the suit).
-
-Responder is constrained to no 4-card major (so no Stayman) and no 5-card
-major (so no transfer). The auction stays natural 1NT—3NT.
-
-Things to think about:
-• Count your top tricks before touching the hand.
-• Chain rule: A, then K (anywhere in NS), then Q, then J, then T.
-• Length cap: split chains need length in the longer hand to materialize.
-
-Reference: https://www.bridgebum.com/counting.php
-@chat*/
-
-dealer south
-
 ### Imported script: tpNS (NS combined Top Tricks)
 // Per-suit TT = min(consecutive top-honor chain held by NS, longer single-hand length in suit).
 // Chain rules:
@@ -111,32 +79,3 @@ tpClubs    = chainCl_tp < maxLenCl_tp ? chainCl_tp : maxLenCl_tp
 allSuitsStopped_tp = nsAS_tp and nsAH_tp and nsAD_tp and nsAC_tp
 tpRaw_tp = tpSpades + tpHearts + tpDiamonds + tpClubs
 tpNS = allSuitsStopped_tp ? tpRaw_tp : 0
-// Provides tpSpades, tpHearts, tpDiamonds, tpClubs, tpNS
-
-// ----- Opener (South) — 1NT, 15-17, balanced (Basic-Bridge shape) -----
-sShape = shape(south, any 4333 + any 4432)
-sHcp   = hcp(south) > 14 and hcp(south) < 18
-
-// ----- Responder (North) — 9+ HCP, no 4-card major, no 5-card major -----
-nNoMajor4 = spades(north) < 4 and hearts(north) < 4
-nHcp = hcp(north) > 8
-
-// Quiet opponents
-eHcp = hcp(east) < 11
-wHcp = hcp(west) < 11
-
-# Define responders actions
-nPass = hcp(north)<9
-n2N = hcp(north)==9 and tpNS == 8
-n3N = hcp(north)>9 and hcp(north)<16 and tpNS == 9
-nActs = nPass or n2N or n3N
-
-// tpNS == 9 implicitly requires all 4 aces in NS (tpNS collapses to 0 if
-// any suit is unstopped — see script/tpNS).
-sShape and sHcp and nNoMajor4 and nHcp and tpNS == 9 and eHcp and wHcp
-
-action printoneline,
-average "tp total (target=9) " tpNS,
-average "South HCP           " hcp(south),
-average "North HCP           " hcp(north),
-average "NS combined HCP     " hcp(south) + hcp(north),

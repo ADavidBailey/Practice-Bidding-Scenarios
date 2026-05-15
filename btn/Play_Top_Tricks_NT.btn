@@ -29,8 +29,8 @@ Reference: https://www.bridgebum.com/counting.php
 
 dealer south
 
-#include "script/qtNS"
-// Provides qtSpades, qtHearts, qtDiamonds, qtClubs, qtNS
+#include "script/tpNS"
+// Provides tpSpades, tpHearts, tpDiamonds, tpClubs, tpNS
 
 // ----- Opener (South) — 1NT, 15-17, balanced (Basic-Bridge shape) -----
 sShape = shape(south, any 4333 + any 4432)
@@ -44,12 +44,18 @@ nHcp = hcp(north) > 8
 eHcp = hcp(east) < 11
 wHcp = hcp(west) < 11
 
-// qtNS == 9 implicitly requires all 4 aces in NS (qtNS collapses to 0 if
-// any suit is unstopped — see script/qtNS).
-sShape and sHcp and nNoMajor4 and nHcp and qtNS == 9 and eHcp and wHcp
+# Define responders actions
+nPass = hcp(north)<9
+n2N = hcp(north)==9 and tpNS == 8
+n3N = hcp(north)>9 and hcp(north)<16 and tpNS == 9
+nActs = nPass or n2N or n3N
+
+// tpNS == 9 implicitly requires all 4 aces in NS (tpNS collapses to 0 if
+// any suit is unstopped — see script/tpNS).
+sShape and sHcp and nNoMajor4 and nHcp and tpNS == 9 and eHcp and wHcp
 
 action
-average "qt total (target=9) " qtNS,
+average "tp total (target=9) " tpNS,
 average "South HCP           " hcp(south),
 average "North HCP           " hcp(north),
 average "NS combined HCP     " hcp(south) + hcp(north),
