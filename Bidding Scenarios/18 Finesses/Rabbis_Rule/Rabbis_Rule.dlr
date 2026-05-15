@@ -1,62 +1,69 @@
 # alias: RabbisRule
 # button-text: Rabbi's Rule
-# scenario-title: --- Rabbi's Rule (4!S) — drop the singleton King
+# scenario-title: --- Rabbi's Rule (4!S) — safety play, drop the singleton King
 # gib-works: true
 # bba-works: true
-# auction-filter: Auction.....\n[12]
+# auction-filter: Auction.....\n(1S +Pass +2S +Pass\n4S +Pass +Pass +Pass|1S +Pass +3S +Pass\n4S +Pass +Pass +Pass|1S +Pass +4S +Pass\nPass +Pass)
 # convention-card-ns: Basic-Bridge
 # convention-card-ew: Basic-Bridge
 
 /*@chat
---- Rabbi's Rule (4!S) — drop the singleton King
-"When the King is singleton, play the Ace." Here it's a safety play.
+--- Rabbi's Rule (4!S) — safety play, drop the singleton King
+"When the King is singleton, play the Ace." This is a SAFETY PLAY.
 
-South opens 1!S and the partnership reaches 4!S.
+South opens 1!S and partnership reaches 4!S.
 
-Teaching feature: declarer holds AQxxx of diamonds opposite xxx in dummy.
-The King is missing. The natural impulse is to finesse — but West has the
-SINGLETON K. East has the rest of the diamonds (4 cards, Jxxx).
+Declarer has 10 sure tricks WITHOUT touching the diamond Queen — solid
+trumps, the heart Ace, and a club winner — but the diamond suit is the
+trap.
 
-• Play the Ace first: the stiff K drops, and the Queen is good. You make.
-• Finesse (lead from dummy, play Q): the Q loses to West's K. West can put
-  East in via a club, and East cashes the long heart suit. Down 2 or more.
+• AQxxx in declarer opposite xxx in dummy. The King is missing.
+• West has the SINGLETON K. East has Jxxx.
+• Take the safety play: cash the Ace. The stiff K drops; the Q is
+  established as a small bonus, but more importantly you never give up
+  the lead. Contract makes.
+• Try for an overtrick by finessing: lead toward the AQ and play the Q.
+  West's K wins. Now West can put East in, and East cashes long hearts.
+  Contract goes down — at least 1, sometimes more.
 
-The key: Rabbi's Rule isn't "you gain a trick by laying down the A" — it's
-that the FINESSE costs the contract when the K is stiff and the opp can
-reach the long suit. Cashing the A is the safety play.
+The lesson: COUNT your top tricks before deciding any finesse. If you
+already have enough to make, the finesse is gratuitous risk — and Rabbi's
+Rule (cash the Ace) is the safer play.
 
 Things to think about:
-• Count your tricks before you commit to a line in diamonds.
-• What clues does the auction give about distribution?
-• If the auction is silent, the 4-1 split with K stiff offside is exactly
-  what makes Rabbi's Rule shine.
+• What's your trick count BEFORE you touch diamonds?
+• Where is the danger hand for cashing — east or west?
+• Does the auction (silent opps) say anything about diamond distribution?
 @chat*/
 
-# Predeal: south gets the diamond AQ and a heart stopper; west's stiff K of
-# diamonds; east's heart KQ threat. Trump-suit honors are left random — BBA
-# will pick the contract, often 3NT or a major game.
-predeal south HA,DAQ
+// Predeal the safety-play layout. Declarer's trump tops + diamond AQ +
+// one heart stopper. Dummy: spade Q for an extra trump trick + club K.
+// West: stiff K of diamonds. East: long hearts headed by KQ.
+predeal south SAK,HA,DAQ
+predeal north CK
 predeal west  DK
 predeal east  HKQ
 
 dealer south
 
-# ----- Declarer (South) — strong-ish opener -----
-sHcp      = hcp(south) > 13 and hcp(south) < 19
-sDiamonds = diamonds(south) > 3 and diamonds(south) < 6   // 4-5 diamonds with AQ
-southHand = sHcp and sDiamonds
+// ----- Declarer (South) — 1S opener with 6 spades -----
+sHcp     = hcp(south) > 16 and hcp(south) < 20
+sSpades  = spades(south) == 6                // 6-card suit for trump dominance
+sDiamonds = diamonds(south) > 3 and diamonds(south) < 6   // AQ + 2-3 small
+southHand = sHcp and sSpades and sDiamonds
 
-# ----- Dummy (North) — game-going hand -----
-nHcp      = hcp(north) > 7 and hcp(north) < 13
+// ----- Dummy (North) — game-raising response -----
+nHcp     = hcp(north) > 5 and hcp(north) < 10
+nSpades  = spades(north) > 2 and spades(north) < 5   // 3-card support
 nDiamonds = diamonds(north) > 1 and diamonds(north) < 5   // 2-4
-northHand = nHcp and nDiamonds
+northHand = nHcp and nSpades and nDiamonds
 
-# ----- West — STIFF K of diamonds -----
+// ----- West — STIFF K of diamonds -----
 wDiamonds = diamonds(west) == 1           // K alone
 wHcp      = hcp(west) < 11
 westHand = wDiamonds and wHcp
 
-# ----- East — long hearts headed by KQ -----
+// ----- East — long hearts headed by KQ -----
 eHearts   = hearts(east) > 4
 eHcp      = hcp(east) < 11
 eastHand = eHearts and eHcp
@@ -66,5 +73,6 @@ southHand and northHand and westHand and eastHand
 action printoneline,
 average "West stiff K (forced)  " 100 * (diamonds(west) == 1),
 average "East 5+ hearts (forced)" 100 * (hearts(east) > 4),
+average "South 6 spades         " 100 * (spades(south) == 6),
 average "South HCP              "       hcp(south),
 average "North HCP              "       hcp(north),
