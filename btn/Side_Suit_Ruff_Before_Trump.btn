@@ -40,13 +40,13 @@ dealer south
 
 # South — 1S opener with 5-card spade suit, 14-17 HCP
 sSpades = spades(south) > 4 and spades(south) < 6
-sHearts = hearts(south) > 2   # 3+ small hearts to lose
+sHearts = hearts(south) > 2   // 3+ small hearts to lose
 sHcp    = hcp(south) > 13 and hcp(south) < 18
 southHand = sSpades and sHearts and sHcp
 
 # North — 3-card spade support, SINGLETON heart, game-going hand
 nSpades = spades(north) > 2 and spades(north) < 5
-nHearts = hearts(north) == 1   # singleton — the ruffing opportunity
+nHearts = hearts(north) == 1   // singleton — the ruffing opportunity
 nHcp    = hcp(north) > 7 and hcp(north) < 12
 northHand = nSpades and nHearts and nHcp
 

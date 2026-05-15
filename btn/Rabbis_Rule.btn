@@ -42,16 +42,16 @@ dealer south
 
 # ----- Declarer (South) — strong-ish opener -----
 sHcp      = hcp(south) > 13 and hcp(south) < 19
-sDiamonds = diamonds(south) > 3 and diamonds(south) < 6   # 4-5 diamonds with AQ
+sDiamonds = diamonds(south) > 3 and diamonds(south) < 6   // 4-5 diamonds with AQ
 southHand = sHcp and sDiamonds
 
 # ----- Dummy (North) — game-going hand -----
 nHcp      = hcp(north) > 7 and hcp(north) < 13
-nDiamonds = diamonds(north) > 1 and diamonds(north) < 5   # 2-4
+nDiamonds = diamonds(north) > 1 and diamonds(north) < 5   // 2-4
 northHand = nHcp and nDiamonds
 
 # ----- West — STIFF K of diamonds -----
-wDiamonds = diamonds(west) == 1           # K alone
+wDiamonds = diamonds(west) == 1           // K alone
 wHcp      = hcp(west) < 11
 westHand = wDiamonds and wHcp
 
