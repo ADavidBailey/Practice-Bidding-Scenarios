@@ -48,7 +48,7 @@ wHcp = hcp(west) < 11
 # Define responders actions
 nPass = hcp(north)<9
 n2N = hcp(north)==9 and topTricksNS == 8
-n3N = hcp(north)>9 and hcp(north)<16 and topTricksNS == 9
+n3N = hcp(north)>9 and hcp(north)<15 and topTricksNS == 9
 nActs = nPass or n2N or n3N
 
 // topTricksNS == 9 implicitly requires all 4 aces in NS (topTricksNS collapses to 0 if
