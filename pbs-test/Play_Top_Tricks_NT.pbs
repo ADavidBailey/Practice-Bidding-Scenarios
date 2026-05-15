@@ -115,7 +115,7 @@ sHcp   = hcp(south) > 14 and hcp(south) < 18
 
 // ----- Responder (North) — 9+ HCP, no 4-card major, no 6+ suit, no 5-5 -----
 nNoMajor4 = spades(north) < 4 and hearts(north) < 4
-nShape    = shape(north, -any 7xxx -any 6xxx -any 55xx)
+nShape    = shape(north, xxxx -any 7xxx -any 6xxx -any 55xx)
 nHcp      = hcp(north) > 8
 
 // Quiet opponents
