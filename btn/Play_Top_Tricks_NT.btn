@@ -32,6 +32,10 @@ dealer south
 #include "script/topTricksNS"
 // Provides topTricksSpades, topTricksHearts, topTricksDiamonds, topTricksClubs, topTricksNS
 
+#include "script/Leveling"
+// Provides keep015 (~1.5%), keep06 (~6%), keep (=1) — used to balance the
+// pass / 2NT / 3NT cases against each other.
+
 // ----- Opener (South) — 1NT, 15-17, balanced (Basic-Bridge shape) -----
 sShape = shape(south, any 4333 + any 4432)
 sHcp   = hcp(south) > 14 and hcp(south) < 18
@@ -44,10 +48,13 @@ nShape    = shape(north, xxxx -any 7xxx -any 6xxx -any 55xx)
 eHcp = hcp(east) < 11
 wHcp = hcp(west) < 11
 
-# Define responders actions
-nPass = hcp(north)<9
-n2N = hcp(north)==9 and topTricksNS == 8
-n3N = hcp(north)>9 and hcp(north)<15 and topTricksNS == 9
+# Define responder's three action paths, with Leveling factors to balance
+# the natural rates (Pass ~96%, 2NT ~0.2%, 3NT ~3.4%).
+# keep015 × randomCard (25%) ≈ 0.375%, applied to Pass to bring rate to ~0.26%.
+extraReduce = hascard(west, 4S)
+nPass = hcp(north)<9                                      and keep015 and extraReduce
+n2N   = hcp(north)==9 and topTricksNS == 8                and keep
+n3N   = hcp(north)>9  and hcp(north)<15 and topTricksNS == 9 and keep06
 nActs = nPass or n2N or n3N
 
 // nActs encodes the three responder paths (Pass / 2NT / 3NT). Each path's
