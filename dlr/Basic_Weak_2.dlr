@@ -1,0 +1,55 @@
+# alias: BasicWeak2
+# button-text: Basic Weak 2
+# scenario-title: --- Basic Weak Two-Bid (beginner)
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n2[HS]
+# convention-card-ns: 21GF-NoInvertedMinor
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Basic Weak Two-Bid (beginner)
+South opens 2!H or 2!S as a weak preempt.
+
+A weak two-bid shows:
+• 6-card suit (exactly 6 cards — not 5, not 7)
+• 5-10 HCP
+• 2 of the top 3 honors in the suit, or 3 of the top 5 (good suit quality)
+• Limited side-suit values (no 4-card major outside, no 4+-card minor with
+  values)
+
+Partner's responses:
+• Pass — happy to play 2M with a weak hand
+• 2NT — strong inquiry asking for shape and strength (Ogust or feature ask)
+• 3M — to play, with 3+ support and weakish hand
+• 4M — to play, often preemptive over a vulnerability-adjusted preempt
+• New suit — strong, forcing
+
+For beginners: open weak 2 with disciplined hands. The 6-card suit is the
+preempt's whole structure. Don't preempt with poor suits — partner will
+sometimes raise to game on a fit, and you need to deliver tricks.
+
+Reference: https://www.bridgebum.com/weak_two_bid.php
+@chat*/
+
+dealer south
+
+# South: 6-card heart suit OR 6-card spade suit, 5-10 HCP, 2 of top 3 honors
+sHearts6 = hearts(south) == 6 and top3(south, hearts) > 1
+sSpades6 = spades(south) == 6 and top3(south, spades) > 1
+sLongMajor = sHearts6 or sSpades6
+sHcp     = hcp(south) > 4 and hcp(south) < 11
+# Avoid having another long suit
+sNoSecondLong = (sHearts6 and spades(south) < 5) or (sSpades6 and hearts(south) < 5)
+southHand = sLongMajor and sHcp and sNoSecondLong
+
+# Quiet opponents
+eHcp = hcp(east) < 11
+wHcp = hcp(west) < 11
+
+southHand and eHcp and wHcp
+
+action printoneline,
+average "South opens 2H " 100 * sHearts6,
+average "South opens 2S " 100 * sSpades6,
+average "South HCP avg  "       hcp(south),
