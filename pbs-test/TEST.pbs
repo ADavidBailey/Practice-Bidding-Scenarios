@@ -17,9 +17,14 @@ setDealerCode(`
 
 /*
 convention-card-ns: 21GF-Puppet
-convention-card-ew: 21GF-GIB
+convention-card-ew: 21GF-SPECIALS2
 auction-filter: Note....1N-3C Puppet
 */
+// ew paying Multi-Landy
+
+
+dealer south
+
 # South opens 1NT (15-17 balanced)
 ntShape = shape(south,any 4333+any 4432+any 5332-5xxx-x5xx)
 ntRange = hcp(south)>14 and hcp(south)<18
@@ -96,11 +101,23 @@ levSlamForce = slamForce and keep
 
 levelTheDeal = levGame or levSlamInv or levSlamForce
 
-westC = shape(west,any 6xxx) and hcp(west)>8
-westD = shape(west,66xx+65xx+56xx) and hcp(west)>8
-westM = shape(west,5xxx+x5xx) and shape(west,xx5x+xxx5) and hcp(west)>8
+/*
+---  15-17 Notrump Opening and Multi-Landy action.
+  • X  = 4-card !H/!S w/5+!C/!D, a 6+ !C/!D, a 5-card !H/!S, a balanced 19+
+  • 2C = at least 5-4 or 4-5 in !H&!S
+  • 2D = 6 !H/!S w/o a side suit
+  • 2H = 5 !H & 4+ !C/!D
+  • 2S = 5 spades & 4+ !C/!D
+  • 2N = 5-5 or better in !C/!D
+  */
+
+westX = shape(west,4xxx+x4xx) and shape(west,xx5x+xxx5) or shape(west,5xxx+x5xx+xx6x+xxx6)
+westC = shape(west,54xx+45xx) and hcp(west)>8
+westD = shape(west,6xxx+x6xx-any 65xx-any 64xx) and hcp(west)>8
+westH = shape(west,x5xx) and shape(west,xx4x+xxx4) and hcp(west)>8
+westS = shape(west,5xxx) and shape(west,xx4x+xxx4) and hcp(west)>8
 westN = shape(west,xx66+xx65+xx56) and hcp(west)>8
-westActs = westC or westD or westM
+westActs = westX or west2C or west2D or west2H or west2S or west2N
 
 # Combine
 oneN and nQualifies and nNoLongSuit and westActs
@@ -116,7 +133,7 @@ average "Slam invite (16-18)" 100 * slamInvite,
 average "Slam force (19+)   " 100 * slamForce,
 `, "S", true)
 Script
-Button,1N Puppet,\n\
+Button,TEST,\n\
 --- Puppet Stayman after 1NT (15-17)\n\
 After a 1NT opening，responder uses 3!C to ask about opener's major suits.\n\
 (In contrast to standard Stayman which uses 2!C and asks for 4-card majors only.)\n\
