@@ -1,0 +1,38 @@
+# alias: BasicMinor
+# button-text: Basic 1m (Minor)
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n1[CD] +Pass +(1[DHSN]|2N|[2345][CD])
+# convention-card-ns: 21GF-NoInvertedMinor
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Basic 1m Opening (beginner)
+South opens 1!C or 1!D (12-21 HCP, 3+ clubs or 4+ diamonds). This scenario
+practices the natural responses without conventions like Inverted Minors.
+
+North's responses:
+• 1!D — 6+ HCP, 4+ diamonds (only over 1!C)
+• 1!H / 1!S — 6+ HCP, 4+ in that major
+• 1NT — 6-10 HCP, balanced, no 4-card major
+• 2NT — 11-12 HCP, balanced, no 4-card major
+• Simple raise (2!C / 2!D) — 6-9 HCP with 4+ support
+• Limit raise (3!C / 3!D) — 10-12 HCP with 4+ support
+• 4 or 5 of opener's minor — preemptive
+
+Reference: https://www.bridgebum.com/responses_to_one_of_a_minor.php
+@chat*/
+
+dealer south
+
+sHcp     = hcp(south) > 11 and hcp(south) < 22
+sMinor   = clubs(south) > 2 or diamonds(south) > 3
+southHand = sHcp and sMinor
+
+nHcp     = hcp(north) > 5 and hcp(north) < 13
+northHand = nHcp
+
+eHcp = hcp(east) < 11
+wHcp = hcp(west) < 11
+
+southHand and northHand and eHcp and wHcp

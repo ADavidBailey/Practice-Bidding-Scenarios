@@ -1,0 +1,51 @@
+# alias: BasicOvercall
+# button-text: Basic Overcall
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n1[CDHS] +1[DHSN]
+# convention-card-ns: 21GF-NoInvertedMinor
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Basic Overcall (beginner)
+East (or West) opens 1!C, 1!D, 1!H, or 1!S. South — sitting next — makes
+a non-jump suit overcall at the 1- or 2-level (no 1NT overcall, no jumps,
+no two-suiters).
+
+A simple overcall is:
+• 8-16 HCP (lighter at the 1-level, more at the 2-level)
+• 5+ cards in the overcalled suit, headed by at least two honors
+• Sometimes lighter for lead direction (e.g., 1!C — 1!H is common with
+  a fair 5-card heart suit)
+
+For beginners: an overcall is a constructive bid showing a real suit and
+respectable values. It is NOT a takeout double, NOT a jump, NOT a 1NT
+overcall (which shows 15-18 with a stopper). Just a plain natural call.
+
+Reference: https://www.bridgebum.com/overcalls.php
+@chat*/
+
+dealer east
+
+# East opens any 1-of-suit (12-21 HCP)
+eHcp = hcp(east) > 11 and hcp(east) < 22
+eShape = clubs(east) > 2 or diamonds(east) > 3 or spades(east) > 4 or hearts(east) > 4
+eastHand = eHcp and eShape
+
+# South overcalls: 8-16 HCP, 5+ in the overcalled suit
+sHcp   = hcp(south) > 7 and hcp(south) < 17
+sSuit  = spades(south) > 4 or hearts(south) > 4 or diamonds(south) > 4 or clubs(south) > 4
+southHand = sHcp and sSuit
+
+# Quiet partners (W passes since we're showing E opens; N's response after
+# overcall is the user-learning part; don't pre-restrict).
+wHcp = hcp(west) < 11
+
+eastHand and southHand and wHcp
+
+action
+average "East opens 1C   " 100 * (clubs(east) > 2 and clubs(east) >= diamonds(east) and hearts(east) < 5 and spades(east) < 5),
+average "East opens 1D   " 100 * (diamonds(east) > 3 and diamonds(east) > clubs(east) and hearts(east) < 5 and spades(east) < 5),
+average "East opens 1H   " 100 * (hearts(east) > 4 and spades(east) < 5),
+average "East opens 1S   " 100 * (spades(east) > 4),
+average "South HCP avg   "       hcp(south),
