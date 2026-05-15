@@ -2,7 +2,7 @@
 # button-text: Top Tricks (NT)
 # gib-works: true
 # bba-works: true
-# auction-filter: Auction.....\n1N +Pass +3N +Pass\nPass +Pass
+# auction-filter: Auction.....\n1N +Pass +(Pass +Pass +Pass|2N +Pass\nPass +Pass|3N +Pass\nPass +Pass)
 # convention-card-ns: Basic-Bridge
 # convention-card-ew: Basic-Bridge
 
@@ -36,10 +36,9 @@ dealer south
 sShape = shape(south, any 4333 + any 4432)
 sHcp   = hcp(south) > 14 and hcp(south) < 18
 
-// ----- Responder (North) — 9+ HCP, no 4-card major, no 6+ suit, no 5-5 -----
+// ----- Responder (North) — no 4-card major, no 6+ suit, no 5-5 -----
 nNoMajor4 = spades(north) < 4 and hearts(north) < 4
 nShape    = shape(north, xxxx -any 7xxx -any 6xxx -any 55xx)
-nHcp      = hcp(north) > 8
 
 // Quiet opponents
 eHcp = hcp(east) < 11
@@ -51,12 +50,16 @@ n2N = hcp(north)==9 and topTricksNS == 8
 n3N = hcp(north)>9 and hcp(north)<15 and topTricksNS == 9
 nActs = nPass or n2N or n3N
 
-// topTricksNS == 9 implicitly requires all 4 aces in NS (topTricksNS collapses to 0 if
-// any suit is unstopped — see script/topTricksNS).
-sShape and sHcp and nNoMajor4 and nShape and nHcp and topTricksNS == 9 and eHcp and wHcp
+// nActs encodes the three responder paths (Pass / 2NT / 3NT). Each path's
+// topTricksNS check implicitly requires all 4 aces in NS in the 2NT and
+// 3NT cases (see script/topTricksNS — it collapses to 0 if any suit is
+// unstopped).
+sShape and sHcp and nNoMajor4 and nShape and nActs and eHcp and wHcp
 
 action
-average "top tricks (target=9) " topTricksNS,
-average "South HCP           " hcp(south),
-average "North HCP           " hcp(north),
-average "NS combined HCP     " hcp(south) + hcp(north),
+average "North Pass    " 100 * nPass,
+average "North 2NT     " 100 * n2N,
+average "North 3NT     " 100 * n3N,
+average "top tricks    "       topTricksNS,
+average "South HCP     "       hcp(south),
+average "North HCP     "       hcp(north),
