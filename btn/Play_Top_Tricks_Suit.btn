@@ -1,0 +1,62 @@
+# alias: PlayTopTricksSuit
+# button-text: Top Tricks (Suit)
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n((1C +Pass +[23]C|1D +Pass +[23]D|1H +Pass +[23]H|1S +Pass +[23]S) +Pass\nPass +Pass|1[CDHS] +Pass +1[DHSN] +Pass\n2[CDHSN] +Pass +Pass +Pass)
+# convention-card-ns: Basic-Bridge
+# convention-card-ew: Basic-Bridge
+
+/*@chat
+--- Top Tricks — Suit Contract (beginner)
+The auction stops in a 2- or 3-of-suit partial. Allowed sequences:
+• 1X — Pass — 2X — all pass     (simple raise)
+• 1X — Pass — 3X — all pass     (limit raise)
+• 1X — Pass — 1Y — Pass — 2[XY] — all pass  (opener rebids own suit or
+  raises responder)
+
+Teaching feature: NS holds ALL FOUR ACES. For a 2-level contract that
+is 4 quick tricks; the trump suit's K, Q, and length tricks supply 4
+more, getting to 8 — the contract makes on top tricks alone. No
+finesses required.
+
+Things to think about:
+• Count your top tricks BEFORE you do anything else.
+• AKQ in trump + 5-card fit usually yields 5 trump tricks.
+• If you already see 8 top tricks, just cash them; don't risk a finesse
+  for an overtrick.
+
+Reference: https://www.bridgebum.com/counting.php
+@chat*/
+
+dealer south
+
+#include "script/Predict-Opening-1-Bid"
+# Provides oS, oH, oD, oC, openingSuit for South.
+
+# Opener — 12-14 HCP, 1-of-suit opening (not 1NT)
+sHcp    = hcp(south) > 11 and hcp(south) < 15
+sNotNT  = not (shape(south, any 4333 + any 4432 + any 5332) and hcp(south) > 14 and hcp(south) < 18)
+sOpens  = openingSuit and sNotNT
+
+# Responder — 6-12 HCP (simple or limit raise range)
+nHcp = hcp(north) > 5 and hcp(north) < 13
+
+# All four Aces in NS — guarantees 4 quick tricks
+nsAllAces = (hascard(south, AS) or hascard(north, AS))
+        and (hascard(south, AH) or hascard(north, AH))
+        and (hascard(south, AD) or hascard(north, AD))
+        and (hascard(south, AC) or hascard(north, AC))
+
+# Quiet opponents — no overcalls or doubles
+eHcp = hcp(east) < 11
+wHcp = hcp(west) < 11
+
+sOpens and sHcp and nHcp and nsAllAces and eHcp and wHcp
+
+action
+average "South opens 1C   " 100 * oC,
+average "South opens 1D   " 100 * oD,
+average "South opens 1H   " 100 * oH,
+average "South opens 1S   " 100 * oS,
+average "South HCP avg    "       hcp(south),
+average "North HCP avg    "       hcp(north),
