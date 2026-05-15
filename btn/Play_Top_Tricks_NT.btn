@@ -40,17 +40,13 @@ sHcp   = hcp(south) > 14 and hcp(south) < 18
 nNoMajor4 = spades(north) < 4 and hearts(north) < 4
 nHcp = hcp(north) > 8
 
-// All 4 aces in NS (either hand)
-nsAllAces = (hascard(south, AS) or hascard(north, AS))
-        and (hascard(south, AH) or hascard(north, AH))
-        and (hascard(south, AD) or hascard(north, AD))
-        and (hascard(south, AC) or hascard(north, AC))
-
 // Quiet opponents
 eHcp = hcp(east) < 11
 wHcp = hcp(west) < 11
 
-sShape and sHcp and nNoMajor4 and nHcp and nsAllAces and qtNS == 9 and eHcp and wHcp
+// qtNS == 9 implicitly requires all 4 aces in NS (qtNS collapses to 0 if
+// any suit is unstopped — see script/qtNS).
+sShape and sHcp and nNoMajor4 and nHcp and qtNS == 9 and eHcp and wHcp
 
 action
 average "qt total (target=9) " qtNS,

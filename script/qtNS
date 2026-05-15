@@ -72,4 +72,10 @@ qtDiamonds = chainDi_qt < maxLenDi_qt ? chainDi_qt : maxLenDi_qt
 qtClubs    = chainCl_qt < maxLenCl_qt ? chainCl_qt : maxLenCl_qt
 
 // ---- Total ----
-qtNS = qtSpades + qtHearts + qtDiamonds + qtClubs
+// In notrump, an unstopped suit (no A in NS for that suit) lets opps run
+// their length on the opening lead before declarer can cash their winners.
+// So if any suit lacks an A in NS, qtNS collapses to 0 — there are no
+// QUICK tricks because opps will get in first.
+allSuitsStopped_qt = nsAS_qt and nsAH_qt and nsAD_qt and nsAC_qt
+qtRaw_qt = qtSpades + qtHearts + qtDiamonds + qtClubs
+qtNS = allSuitsStopped_qt ? qtRaw_qt : 0
