@@ -129,8 +129,9 @@ oneClub    = oC
 ##### End of Imported Script -- Predict Opening 1-Bid #####
 # Provides oS, oH, oD, oC, openingSuit for South.
 
-# Opener — 12-14 HCP, 1-of-suit opening (not 1NT). Split into 12-13 (BBA
-# declines limit raise to game) vs exactly 14 (BBA accepts limit raise).
+# Opener — 12-14 HCP, 1-of-suit opening (not 1NT). Split into 12 (always
+# declines limit raise), 13 (BBA may accept with shape), 14 (BBA accepts).
+sHcp12   = hcp(south) == 12
 sHcp1213 = hcp(south) > 11 and hcp(south) < 14
 sHcp14   = hcp(south) == 14
 sHcp     = sHcp1213 or sHcp14
@@ -309,7 +310,7 @@ keep0  = 0
 #   4M accepted limit 1M-P-3M-P-4M-all pass   opener 14    + responder 10-12 major fit → 10+ tricks
 # Responder HCP capped at 12 to avoid Jacoby 2NT / slam exploration (Basic-Bridge has J2NT on).
 n2X = sHcp     and hcp(north) >  5 and hcp(north) < 10 and nHasFit   and topTricksNS ==  8 and keep
-n3X = sHcp1213 and hcp(north) >  9 and hcp(north) < 13 and nHasFit   and topTricksNS ==  9 and keep25
+n3X = sHcp12   and hcp(north) >  9 and hcp(north) < 13 and nHasFit   and topTricksNS ==  9 and keep25
 n4M = sHcp14   and hcp(north) >  9 and hcp(north) < 13 and nMajorFit and topTricksNS >= 10 and keep03
 nActs = n2X or n3X or n4M
 
