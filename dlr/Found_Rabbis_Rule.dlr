@@ -1,0 +1,31 @@
+# alias: FoundRabbisRule
+# button-text: Found Rabbi\'s Rule
+# scenario-title: --- Found Rabbi's Rule (4!S) — curated hands where the safety play applies
+# gib-works: false
+# bba-works: true
+# bba-direct: true
+# auction-filter: Auction.....
+# convention-card-ns: Basic-Bridge
+# convention-card-ew: Basic-Bridge
+
+/*@chat
+--- Found Rabbi's Rule (4!S) — curated hands where the safety play applies
+
+These hands are extracted from Rabbis_Rule.pbn by [find_rabbis_rule_makers.py]:
+contract = 4!S, declarer = South, result >= 10 tricks (declarer made the
+contract). Each hand demonstrates Rabbi's Rule —
+
+  "When the King is singleton, play the Ace."
+
+West holds the singleton !D K. East holds the !H KQ threat. To make
+4!S, declarer must drop West's bare K rather than finesse for it.
+
+Things to think about:
+• Count your tricks before touching the trump suit.
+• If you have 10 top tricks on the safety play, take them — don't
+  finesse for an 11th and risk going down.
+• The safety play here is dropping the singleton King.
+
+Reference: https://www.bridgebum.com/safety-plays.php
+@chat*/
+action printoneline,

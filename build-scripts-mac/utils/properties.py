@@ -200,6 +200,33 @@ def get_chat_text(scenario: str) -> str:
     return "\n".join(lines)
 
 
+def get_bba_direct(scenario: str) -> bool:
+    """
+    Check if a scenario uses bba-direct mode (pre-curated bba file, no dealer
+    pipeline needed). When true, the pipeline skips dlr/pbs/pbn/rotate/bba and
+    starts from filter — the bba/{scenario}.pbn file is taken as the source.
+
+    Returns:
+        True only if `# bba-direct: true` appears in the BTN header.
+        False otherwise (including missing BTN file).
+    """
+    btn_path = os.path.join(FOLDERS["btn"], f"{scenario}.btn")
+    if not os.path.exists(btn_path):
+        return False
+
+    pattern = re.compile(r'^#\s*bba-direct:\s*(.+)$', re.IGNORECASE)
+    try:
+        with open(btn_path, "r") as f:
+            for line in f:
+                match = pattern.match(line.strip())
+                if match:
+                    return match.group(1).strip().lower() == 'true'
+    except Exception:
+        pass
+
+    return False
+
+
 def get_bba_works(scenario: str) -> bool:
     """
     Check if BBA analysis works for a scenario.

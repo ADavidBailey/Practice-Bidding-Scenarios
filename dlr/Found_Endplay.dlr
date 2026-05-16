@@ -1,0 +1,33 @@
+# alias: FoundEndplay
+# button-text: Found Endplay
+# scenario-title: --- Found Endplays (4!H / 4!S) — curated strip-and-endplay candidates
+# gib-works: false
+# bba-works: true
+# bba-direct: true
+# auction-filter: Auction.....
+# convention-card-ns: Basic-Bridge
+# convention-card-ew: Basic-Bridge
+
+/*@chat
+--- Found Endplays (4!H / 4!S) — curated strip-and-endplay candidates
+
+These hands are scanned from all bba/*.pbn files by
+[find_endplay_candidates.py]: South declares a 4-of-major contract, and
+declarer's side holds an AJ tenace in one side suit (with East likely
+holding the Q) plus solid honors (AK or AKQ) in another side suit so a
+strip is feasible.
+
+The teaching pattern: strip the side suits where you have winners, then
+throw East in (typically with a heart or club) and force East to lead
+into your tenace. This converts a 50% finesse into a 100% endplay.
+
+Things to think about:
+• Count your losers; if a finesse can be avoided, look for a throw-in.
+• Strip the safe exits BEFORE the throw-in. Once East is in, every lead
+  helps you.
+• The thrown-in opponent should be the one holding the Q of your tenace
+  suit.
+
+Reference: https://www.bridgebum.com/endplay.php
+@chat*/
+action printoneline,

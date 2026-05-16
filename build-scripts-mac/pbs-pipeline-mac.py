@@ -24,7 +24,7 @@ import sys
 import time
 
 from config import FOLDERS, OPERATIONS_ORDER, PROJECT_ROOT, DEALER_PLATFORM
-from utils.properties import get_bba_works
+from utils.properties import get_bba_works, get_bba_direct
 
 # ANSI color codes
 RED = '\033[91m'
@@ -170,11 +170,17 @@ def format_duration(seconds: float) -> str:
 # BBA and downstream operations that require bba-works=true
 BBA_AND_DOWNSTREAM = {'bba', 'filter', 'filterStats', 'biddingSheet', 'quiz'}
 
+# Dealer-side operations skipped for bba-direct scenarios (curated bba files).
+# dlr/pbs still run so the BTN's @chat metadata flows to BBO via the PBS file.
+BBA_DIRECT_SKIP = {'pbn', 'rotate', 'bba'}
+
 
 def filter_operations_for_scenario(scenario: str, operations: list) -> list:
     """
     Filter operations based on scenario capabilities.
-    For scenarios with bba-works=false, exclude bba and downstream operations.
+    - bba-works=false: exclude bba and downstream operations.
+    - bba-direct=true: skip dealer/pbn/bba steps; the bba/{scenario}.pbn file
+      is taken as the pre-curated input to filter.
 
     Args:
         scenario: Scenario name
@@ -183,6 +189,9 @@ def filter_operations_for_scenario(scenario: str, operations: list) -> list:
     Returns:
         Filtered list of operations
     """
+    if get_bba_direct(scenario):
+        return [op for op in operations if op not in BBA_DIRECT_SKIP]
+
     if get_bba_works(scenario):
         return operations
 
