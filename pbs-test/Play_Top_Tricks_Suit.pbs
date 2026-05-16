@@ -1,0 +1,308 @@
+Script,PlayTopTricksSuit
+window.currentPBSScenario = 'PlayTopTricksSuit';
+window.currentPBSScenarioFilename = 'Play_Top_Tricks_Suit';
+console.log('PBS: Logging scenario selection for PlayTopTricksSuit');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'PlayTopTricksSuit',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+convention-card-ns: Basic-Bridge
+convention-card-ew: Basic-Bridge
+auction-filter: Auction.....\n((1C +Pass +[23]C|1D +Pass +[23]D|1H +Pass +[234]H|1S +Pass +[234]S) +Pass\nPass +Pass|1[CDHS] +Pass +1[DHSN] +Pass\n2[CDHS] +Pass +Pass +Pass)
+*/
+##### Imported Script -- Predict Opening 1-Bid South #####
+# 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
+# 03/30/2025 -- Changed to use gibNT
+
+# GIB opens 1N w/15-17 HCP or 15-16 and a 5-card major
+ntP = hcp(south) + shape(south,5xxx+x5xx)
+nt1 = shape(south, any 5332+any 4432+any 4333) and hcp(south)>14 and ntP<18
+
+# GIB does not open with 5422 and a 5-card major
+# GIB does not open with 5422 and the strength to reverse
+nt2 = shape(south, any 5422 -5xxx-x5xx-4xxx) and hcp(south)>14 and hcp(south)<17
+
+gibNT = nt1 or nt2
+
+## Calculate TP for South -- NOTE:  This uses different variable names than TP to avoid conflicts when both are used.
+# Calculate South's Short-Suit Penalty Points
+ssp = spades(south)<3 and hcp(south,spades)>0     ? 1 : 0
+shp = hearts(south)<3 and hcp(south,hearts)>0     ? 1 : 0
+sdp = diamonds(south)<3 and hcp(south,diamonds)>0 ? 1 : 0
+scp = clubs(south)<3 and hcp(south,clubs)>0       ? 1 : 0
+
+# Calculate South's Short-Suit Points
+sv01 = shape(south, any 0xxx) ? 3 : 0
+ss01 = shape(south, any 1xxx) ? 2 : 0 // allow for 2 singletons
+ss02 = shape(south, any 11xx) ? 2 : 0
+sd01 = shape(south, any 2xxx) ? 1 : 0 // allow for 3 doubletons
+sd02 = shape(south, any 22xx) ? 1 : 0
+sd03 = shape(south, any 222x) ? 1 : 0
+
+# Calculate South's Total Points
+sTP = hcp(south) + sv01+ss01+ss02+sd01+sd02+sd03 -ssp-shp-sdp-scp
+
+# Calculate length points for South (lengthPoints)
+lp1 = spades(south)>4 ? spades(south)-4 : 0
+lp2 = hearts(south)>4 ? hearts(south)-4 : 0
+lp3 = diamonds(south)>4 ? diamonds(south)-4 : 0
+lp4 = clubs(south)>4 ? clubs(south)-4 : 0
+lengthPoints = lp1 + lp2 + lp3 + lp4
+
+# Define suit points for south (suitPoints)
+suitPoints = hcp(south) + lengthPoints
+
+TwoNtShape = shape(south, any 4333 +any 4432 +any 5332 +any 5422)
+
+# Define ntPoint ranges
+oneNT   = gibNT
+twoNT   = TwoNtShape and hcp(south)>19 and hcp(south)<22
+
+# Define Gambling 3N
+g3Shape = shape(south,any 9xxx +any 8xxx +any 7xxx -any 4xxx -any 5xxx -any 6xxx)
+threeNT = (top3(south,clubs)==3 and clubs(south)>6) or (top3(south,diamonds)==3 and diamonds(south)>6) and hcp(south)<12 and g3Shape
+
+# Define Game Forcing 2C
+case1 = hcp(south)>18 and sTP>21
+case2 = hcp(south)>18 and sTP>19 and losers(south)<5 and (spades(south)>5 or hearts(south)>5)
+case3 = hcp(south)>18 and sTP>19 and losers(south)<4 and (diamonds(south)>5 or clubs(south)>5)
+gameForce2C = (case1 or case2 or case3)
+
+### Predict South's opening BID
+P1 = gameForce2C
+P2 = P1 or threeNT or twoNT or oneNT
+
+# Define quality and length lower limits for 10 HCP openers
+
+q2of3 = (top3(south,spades)>1 or top3(south,hearts)>1) and controls(south)>3
+lgt5  = (spades(south)>4 or hearts(south)>4) and shape(south,any 7xxx +any 64xx +any 55xx +any 1xxx+any 0xxx -any 8xxx -any 54xx) and sTP>(hcp(south) +2)
+
+# Predict South's Opening suit
+# What's the longest suit?
+s = spades(south)
+h = hearts(south)
+d = diamonds(south)
+c = clubs(south)
+
+## GIB has different requirements for 1H/S, 1D, and 1C openings 
+#Define range for 1 H/S
+lS = s>4 and s>=h and s>=d and s>=c
+lH = h>4 and h>s and h>=d and h>=c
+lM = lS or lH
+
+hsOK1 = lM and hcp(south)>11
+hsOK2 = lM and hcp(south)>10 and sTP>12 and not hsOK1
+hsOK3 = lM and hcp(south)>9  and lgt5 and q2of3 and not (hsOK1 or hsOK2)
+hsRange = (hsOK1 or hsOK2 or hsOK3) and not P2
+
+# Define 1D Range
+dOK1 = hcp(south)>11 and (diamonds(south)>3 or shape(south, 4432))
+dOK2 = hcp(south)>9  and sTP>12 and diamonds(south)>5 and not dOK1
+dRange = (dOK1 or dOK2) and not P2
+
+# Define 1C Range
+cOK1 = hcp(south)>10 and sTP>12 and spades(south)==4
+cOK2 = hcp(south)>9  and sTP>12 and clubs(south)>5 and not cOK1
+cOK3 = hcp(south)>11 and clubs(south)>2            and not (cOK1 or cOK2)
+cRange = (cOK1 or cOK2 or cOK3) and clubs(south)>2 and clubs(south)>diamonds(south) and not P2
+
+oS = s>4 and s>=h and s>=d and s>=c and hsRange
+oH = not oS and h>4 and h>=d and h>=c and hsRange
+oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and dRange
+oC = not (oS or oH or oD) and cRange
+openingSuit = (oS or oH or oD or oC)
+oneSpade   = oS
+oneHeart   = oH
+oneDiamond = oD
+oneClub    = oC
+
+##### End of Imported Script -- Predict Opening 1-Bid #####
+# Provides oS, oH, oD, oC, openingSuit for South.
+
+# Opener — 12-14 HCP, 1-of-suit opening (not 1NT)
+sHcp    = hcp(south) > 11 and hcp(south) < 15
+sNotNT  = not (shape(south, any 4333 + any 4432 + any 5332) and hcp(south) > 14 and hcp(south) < 18)
+sOpens  = openingSuit and sNotNT
+
+### Imported script: topTricksSuitNS (NS Top Tricks for SUIT contracts)
+//
+// Computes NS top tricks assuming OPENER's suit is trump.
+//
+// Trump suit:
+//   If NS's consecutive top-honor chain (AKQJT) is large enough to draw all
+//   opponents' trumps without loss (chainTrump >= oppsTrumpLen), then trump
+//   tricks = NS combined trump length (cross-ruff / length play takes all
+//   of them). Otherwise trump tricks = chainTrump only — opps' high trumps
+//   take the rest.
+//
+//   Examples:
+//     11-card fit + AK   (chain 2, opps 2) → 11 trump tricks
+//     10-card fit + AKQ  (chain 3, opps 3) → 10 trump tricks
+//      9-card fit + AKQJ (chain 4, opps 4) →  9 trump tricks
+//      8-card fit + AKQ  (chain 3, opps 5) →  3 trump tricks (lose 2)
+//
+// Side suits (non-trump):
+//   +1 per side suit for first-round stop (NS holds the ace, or either
+//      hand is void).
+//   +1 per side suit for a second-round ruff: a void hand that still holds
+//      4+ trumps takes a second ruff before running out.
+//
+// Total topTricksNS is capped at 13 (max tricks in a deal).
+//
+// Stopper rule:
+//   Every suit must have a first-round stop (ace or void). If any side suit
+//   is unstopped, opponents cash winners before declarer can — so scenarios
+//   should also require `nsAllStopped`, not just a threshold on topTricksNS.
+//
+// Trump-suit caveat:
+//   Uses opener's suit as trump (via oS/oH/oD/oC). For auctions where opener
+//   raises responder (e.g., 1X-1Y-2Y) the actual trump is Y, and the trump
+//   computation will be off. Acceptable for the dominant cases:
+//     1X — Pass — 2X — all pass
+//     1X — Pass — 3X — all pass
+//     1X — Pass — 1Y — Pass — 2X — all pass
+//
+// Dependency: requires oS, oH, oD, oC defined first
+// (e.g., via `#include "script/Predict-Opening-1-Bid"`)
+//
+// Exports: nsFirstS, nsFirstH, nsFirstD, nsFirstC,
+//          nsRuffS,  nsRuffH,  nsRuffD,  nsRuffC,
+//          nsAllStopped, trumpTricks, topTricksNS
+
+// ---- Trump-suit length in each NS hand (opener's suit is trump) ----
+sTrumps = oS ? spades(south) : (oH ? hearts(south) : (oD ? diamonds(south) : clubs(south)))
+nTrumps = oS ? spades(north) : (oH ? hearts(north) : (oD ? diamonds(north) : clubs(north)))
+nsTrumpLen   = sTrumps + nTrumps
+oppsTrumpLen = 13 - nsTrumpLen
+
+// ---- Has-honor in the trump suit (combined NS, picked by opener's suit) ----
+hasAceTrump   = oS ? (hascard(south,AS) or hascard(north,AS))
+              : (oH ? (hascard(south,AH) or hascard(north,AH))
+              : (oD ? (hascard(south,AD) or hascard(north,AD))
+              :       (hascard(south,AC) or hascard(north,AC))))
+hasKingTrump  = oS ? (hascard(south,KS) or hascard(north,KS))
+              : (oH ? (hascard(south,KH) or hascard(north,KH))
+              : (oD ? (hascard(south,KD) or hascard(north,KD))
+              :       (hascard(south,KC) or hascard(north,KC))))
+hasQueenTrump = oS ? (hascard(south,QS) or hascard(north,QS))
+              : (oH ? (hascard(south,QH) or hascard(north,QH))
+              : (oD ? (hascard(south,QD) or hascard(north,QD))
+              :       (hascard(south,QC) or hascard(north,QC))))
+hasJackTrump  = oS ? (hascard(south,JS) or hascard(north,JS))
+              : (oH ? (hascard(south,JH) or hascard(north,JH))
+              : (oD ? (hascard(south,JD) or hascard(north,JD))
+              :       (hascard(south,JC) or hascard(north,JC))))
+hasTenTrump   = oS ? (hascard(south,TS) or hascard(north,TS))
+              : (oH ? (hascard(south,TH) or hascard(north,TH))
+              : (oD ? (hascard(south,TD) or hascard(north,TD))
+              :       (hascard(south,TC) or hascard(north,TC))))
+
+// ---- Trump chain: consecutive AKQJT held by NS ----
+chainTrumpAfterJack  = hasTenTrump   ? 5 : 4
+chainTrumpAfterQueen = hasJackTrump  ? chainTrumpAfterJack  : 3
+chainTrumpAfterKing  = hasQueenTrump ? chainTrumpAfterQueen : 2
+chainTrumpAfterAce   = hasKingTrump  ? chainTrumpAfterKing  : 1
+chainTrump           = hasAceTrump   ? chainTrumpAfterAce   : 0
+
+// ---- Trump tricks: full length when chain draws all opps, else chain ----
+trumpTricks = chainTrump >= oppsTrumpLen ? nsTrumpLen : chainTrump
+
+// ---- First-round stop per suit (ace, or void in either hand) ----
+nsFirstS = hascard(south, AS) or hascard(north, AS) or spades(south)   == 0 or spades(north)   == 0
+nsFirstH = hascard(south, AH) or hascard(north, AH) or hearts(south)   == 0 or hearts(north)   == 0
+nsFirstD = hascard(south, AD) or hascard(north, AD) or diamonds(south) == 0 or diamonds(north) == 0
+nsFirstC = hascard(south, AC) or hascard(north, AC) or clubs(south)    == 0 or clubs(north)    == 0
+
+// ---- Second-round ruff: SIDE-suit void in a hand with 4+ trumps ----
+nsRuffS = (not oS) and ((spades(south)  ==0 and sTrumps>3) or (spades(north)  ==0 and nTrumps>3))
+nsRuffH = (not oH) and ((hearts(south)  ==0 and sTrumps>3) or (hearts(north)  ==0 and nTrumps>3))
+nsRuffD = (not oD) and ((diamonds(south)==0 and sTrumps>3) or (diamonds(north)==0 and nTrumps>3))
+nsRuffC = (not oC) and ((clubs(south)   ==0 and sTrumps>3) or (clubs(north)   ==0 and nTrumps>3))
+
+// ---- Side-suit first-round stops (exclude trump — counted in trumpTricks) ----
+sideStopS = (not oS) and nsFirstS
+sideStopH = (not oH) and nsFirstH
+sideStopD = (not oD) and nsFirstD
+sideStopC = (not oC) and nsFirstC
+
+// ---- Every suit first-round controlled ----
+nsAllStopped = nsFirstS and nsFirstH and nsFirstD and nsFirstC
+
+// ---- Top tricks total = trump tricks + side first-round + side ruffs (cap 13) ----
+topTricksRaw = trumpTricks
+             + sideStopS + sideStopH + sideStopD + sideStopC
+             + nsRuffS   + nsRuffH   + nsRuffD   + nsRuffC
+
+topTricksNS = topTricksRaw < 14 ? topTricksRaw : 13
+# Provides topTricksNS and nsAllStopped. Trump = opener's suit.
+
+# Responder support for opener's suit
+# - Major opener (1H/1S): 3+ support; for 1H, no 4-card spades alternative
+# - Minor opener (1C/1D): 4+ support and no 4-card major to bid first;
+#                         for 1C, also no 4-card diamond response
+nSupportS = oS and spades(north)   >= 3
+nSupportH = oH and hearts(north)   >= 3 and spades(north) < 4
+nSupportD = oD and diamonds(north) >= 4 and spades(north) < 4 and hearts(north) < 4
+nSupportC = oC and clubs(north)    >= 4 and spades(north) < 4 and hearts(north) < 4 and diamonds(north) < 4
+nHasFit   = nSupportS or nSupportH or nSupportD or nSupportC
+nMajorFit = nSupportS or nSupportH
+
+# Responder paths — each path targets a contract LEVEL with MATCHING top tricks
+# 2X simple raise (6-9 HCP, any fit)      → 8 top tricks
+# 3X limit raise  (10-12 HCP, any fit)    → 9 top tricks
+# 4M game raise   (13-15 HCP, major fit)  → 10 top tricks
+n2X = hcp(north) >  5 and hcp(north) < 10 and nHasFit   and topTricksNS ==  8
+n3X = hcp(north) >  9 and hcp(north) < 13 and nHasFit   and topTricksNS ==  9
+n4X = hcp(north) > 12 and hcp(north) < 16 and nMajorFit and topTricksNS == 10
+nActs = n2X or n3X or n4X
+
+# Quiet opponents — no overcalls or doubles
+eHcp = hcp(east) < 11
+wHcp = hcp(west) < 11
+
+sOpens and sHcp and nActs and nsAllStopped and eHcp and wHcp
+
+action printoneline,
+average "South opens 1C   " 100 * oC,
+average "South opens 1D   " 100 * oD,
+average "South opens 1H   " 100 * oH,
+average "South opens 1S   " 100 * oS,
+average "Path 2X (6-9)    " 100 * n2X,
+average "Path 3X (10-12)  " 100 * n3X,
+average "Path 4M (13-15)  " 100 * n4X,
+average "South HCP avg    "       hcp(south),
+average "North HCP avg    "       hcp(north),
+average "topTricksNS avg  "       topTricksNS,
+`, "S", true)
+Script
+Button,Top Tricks (Suit),\n\
+--- Top Tricks — Suit Contract (beginner)\n\
+The final contract is a suit partial or major-suit game. Top tricks\n\
+are designed to MATCH the contract level:\n\
+• 2X — simple raise — 8 top tricks (book 6 + 2)\n\
+• 3X — limit raise — 9 top tricks\n\
+• 4M — game in major — 10 top tricks\n\
+\n\
+Top tricks are first-round stops in every suit (ace or void) plus\n\
+trump-suit tricks (combined NS trump length when the AKQJT chain is\n\
+big enough to draw opps' trumps，else just the chain). A side-suit\n\
+void in a hand with 4+ trumps adds a second-round ruff.\n\
+\n\
+Things to think about:\n\
+• Count your top tricks BEFORE you do anything else.\n\
+• If you already have your contract count，cash; don't risk a finesse\n\
+  for an overtrick (matchpoints aside).\n\
+• At 4M，drawing trumps and running length is the standard plan.\n\
+\n\
+Reference: https://www.bridgebum.com/counting.php\n\
+%PlayTopTricksSuit%
