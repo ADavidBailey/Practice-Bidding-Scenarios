@@ -143,16 +143,18 @@ sOpens   = openingSuit and sNotNT
 //
 // Trump suit:
 //   If NS's consecutive top-honor chain (AKQJT) is large enough to draw all
-//   opponents' trumps without loss (chainTrump >= oppsTrumpLen), then trump
-//   tricks = NS combined trump length (cross-ruff / length play takes all
-//   of them). Otherwise trump tricks = chainTrump only — opps' high trumps
-//   take the rest.
+//   opponents' trumps without loss (chainTrump >= oppsTrumpLen), trump tricks
+//   = NS combined trump length (all of them cash). Otherwise opps' uncovered
+//   trumps take their share, leaving NS with:
+//     trumpTricks = nsTrumpLen - (oppsTrumpLen - chainTrump)
+//                 = nsTrumpLen - oppsTrumpLen + chainTrump
 //
 //   Examples:
 //     11-card fit + AK   (chain 2, opps 2) → 11 trump tricks
 //     10-card fit + AKQ  (chain 3, opps 3) → 10 trump tricks
-//      9-card fit + AKQJ (chain 4, opps 4) →  9 trump tricks
-//      8-card fit + AKQ  (chain 3, opps 5) →  3 trump tricks (lose 2)
+//      9-card fit + AKQ  (chain 3, opps 4) →  8 trump tricks (lose 1)
+//      8-card fit + AKQ  (chain 3, opps 5) →  6 trump tricks (lose 2)
+//      8-card fit + AK   (chain 2, opps 5) →  5 trump tricks (lose 3)
 //
 // Side suits (non-trump):
 //   +1 per side suit for first-round stop (NS holds the ace, or either
@@ -217,8 +219,9 @@ chainTrumpAfterKing  = hasQueenTrump ? chainTrumpAfterQueen : 2
 chainTrumpAfterAce   = hasKingTrump  ? chainTrumpAfterKing  : 1
 chainTrump           = hasAceTrump   ? chainTrumpAfterAce   : 0
 
-// ---- Trump tricks: full length when chain draws all opps, else chain ----
-trumpTricks = chainTrump >= oppsTrumpLen ? nsTrumpLen : chainTrump
+// ---- Trump tricks: full length when chain draws all opps,
+//      else length minus uncovered opps' trumps ----
+trumpTricks = chainTrump >= oppsTrumpLen ? nsTrumpLen : (nsTrumpLen - oppsTrumpLen + chainTrump)
 
 // ---- First-round stop per suit (ace, or void in either hand) ----
 nsFirstS = hascard(south, AS) or hascard(north, AS) or spades(south)   == 0 or spades(north)   == 0
