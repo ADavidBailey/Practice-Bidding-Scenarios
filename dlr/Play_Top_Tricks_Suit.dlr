@@ -15,10 +15,14 @@ The auction stops in a 2- or 3-of-suit partial. Allowed sequences:
 • 1X — Pass — 1Y — Pass — 2[XY] — all pass  (opener rebids own suit or
   raises responder)
 
-Teaching feature: NS holds ALL FOUR ACES. For a 2-level contract that
-is 4 quick tricks; the trump suit's K, Q, and length tricks supply 4
-more, getting to 8 — the contract makes on top tricks alone. No
-finesses required.
+Teaching feature: NS has first-round control of every suit — the ace,
+or a void (ruffing the first round). That's 4 quick tricks at the
+2-level; the trump suit's K, Q, and length tricks supply 4 more,
+getting to 8 — the contract makes on top tricks alone. No finesses
+required.
+
+Bonus: a side-suit void in a hand that holds 4+ trumps gives a
+SECOND-round ruff as well — both rounds of that suit are top tricks.
 
 Things to think about:
 • Count your top tricks BEFORE you do anything else.
@@ -148,17 +152,124 @@ sOpens  = openingSuit and sNotNT
 # Responder — 6-12 HCP (simple or limit raise range)
 nHcp = hcp(north) > 5 and hcp(north) < 13
 
-# All four Aces in NS — guarantees 4 quick tricks
-nsAllAces = (hascard(south, AS) or hascard(north, AS))
-        and (hascard(south, AH) or hascard(north, AH))
-        and (hascard(south, AD) or hascard(north, AD))
-        and (hascard(south, AC) or hascard(north, AC))
+### Imported script: topTricksSuitNS (NS Top Tricks for SUIT contracts)
+//
+// Computes NS top tricks assuming OPENER's suit is trump.
+//
+// Trump suit:
+//   If NS's consecutive top-honor chain (AKQJT) is large enough to draw all
+//   opponents' trumps without loss (chainTrump >= oppsTrumpLen), then trump
+//   tricks = NS combined trump length (cross-ruff / length play takes all
+//   of them). Otherwise trump tricks = chainTrump only — opps' high trumps
+//   take the rest.
+//
+//   Examples:
+//     11-card fit + AK   (chain 2, opps 2) → 11 trump tricks
+//     10-card fit + AKQ  (chain 3, opps 3) → 10 trump tricks
+//      9-card fit + AKQJ (chain 4, opps 4) →  9 trump tricks
+//      8-card fit + AKQ  (chain 3, opps 5) →  3 trump tricks (lose 2)
+//
+// Side suits (non-trump):
+//   +1 per side suit for first-round stop (NS holds the ace, or either
+//      hand is void).
+//   +1 per side suit for a second-round ruff: a void hand that still holds
+//      4+ trumps takes a second ruff before running out.
+//
+// Total topTricksNS is capped at 13 (max tricks in a deal).
+//
+// Stopper rule:
+//   Every suit must have a first-round stop (ace or void). If any side suit
+//   is unstopped, opponents cash winners before declarer can — so scenarios
+//   should also require `nsAllStopped`, not just a threshold on topTricksNS.
+//
+// Trump-suit caveat:
+//   Uses opener's suit as trump (via oS/oH/oD/oC). For auctions where opener
+//   raises responder (e.g., 1X-1Y-2Y) the actual trump is Y, and the trump
+//   computation will be off. Acceptable for the dominant cases:
+//     1X — Pass — 2X — all pass
+//     1X — Pass — 3X — all pass
+//     1X — Pass — 1Y — Pass — 2X — all pass
+//
+// Dependency: requires oS, oH, oD, oC defined first
+// (e.g., via `#include "script/Predict-Opening-1-Bid"`)
+//
+// Exports: nsFirstS, nsFirstH, nsFirstD, nsFirstC,
+//          nsRuffS,  nsRuffH,  nsRuffD,  nsRuffC,
+//          nsAllStopped, trumpTricks, topTricksNS
+
+// ---- Trump-suit length in each NS hand (opener's suit is trump) ----
+sTrumps = oS ? spades(south) : (oH ? hearts(south) : (oD ? diamonds(south) : clubs(south)))
+nTrumps = oS ? spades(north) : (oH ? hearts(north) : (oD ? diamonds(north) : clubs(north)))
+nsTrumpLen   = sTrumps + nTrumps
+oppsTrumpLen = 13 - nsTrumpLen
+
+// ---- Has-honor in the trump suit (combined NS, picked by opener's suit) ----
+hasAceTrump   = oS ? (hascard(south,AS) or hascard(north,AS))
+              : (oH ? (hascard(south,AH) or hascard(north,AH))
+              : (oD ? (hascard(south,AD) or hascard(north,AD))
+              :       (hascard(south,AC) or hascard(north,AC))))
+hasKingTrump  = oS ? (hascard(south,KS) or hascard(north,KS))
+              : (oH ? (hascard(south,KH) or hascard(north,KH))
+              : (oD ? (hascard(south,KD) or hascard(north,KD))
+              :       (hascard(south,KC) or hascard(north,KC))))
+hasQueenTrump = oS ? (hascard(south,QS) or hascard(north,QS))
+              : (oH ? (hascard(south,QH) or hascard(north,QH))
+              : (oD ? (hascard(south,QD) or hascard(north,QD))
+              :       (hascard(south,QC) or hascard(north,QC))))
+hasJackTrump  = oS ? (hascard(south,JS) or hascard(north,JS))
+              : (oH ? (hascard(south,JH) or hascard(north,JH))
+              : (oD ? (hascard(south,JD) or hascard(north,JD))
+              :       (hascard(south,JC) or hascard(north,JC))))
+hasTenTrump   = oS ? (hascard(south,TS) or hascard(north,TS))
+              : (oH ? (hascard(south,TH) or hascard(north,TH))
+              : (oD ? (hascard(south,TD) or hascard(north,TD))
+              :       (hascard(south,TC) or hascard(north,TC))))
+
+// ---- Trump chain: consecutive AKQJT held by NS ----
+chainTrumpAfterJack  = hasTenTrump   ? 5 : 4
+chainTrumpAfterQueen = hasJackTrump  ? chainTrumpAfterJack  : 3
+chainTrumpAfterKing  = hasQueenTrump ? chainTrumpAfterQueen : 2
+chainTrumpAfterAce   = hasKingTrump  ? chainTrumpAfterKing  : 1
+chainTrump           = hasAceTrump   ? chainTrumpAfterAce   : 0
+
+// ---- Trump tricks: full length when chain draws all opps, else chain ----
+trumpTricks = chainTrump >= oppsTrumpLen ? nsTrumpLen : chainTrump
+
+// ---- First-round stop per suit (ace, or void in either hand) ----
+nsFirstS = hascard(south, AS) or hascard(north, AS) or spades(south)   == 0 or spades(north)   == 0
+nsFirstH = hascard(south, AH) or hascard(north, AH) or hearts(south)   == 0 or hearts(north)   == 0
+nsFirstD = hascard(south, AD) or hascard(north, AD) or diamonds(south) == 0 or diamonds(north) == 0
+nsFirstC = hascard(south, AC) or hascard(north, AC) or clubs(south)    == 0 or clubs(north)    == 0
+
+// ---- Second-round ruff: SIDE-suit void in a hand with 4+ trumps ----
+nsRuffS = (not oS) and ((spades(south)  ==0 and sTrumps>3) or (spades(north)  ==0 and nTrumps>3))
+nsRuffH = (not oH) and ((hearts(south)  ==0 and sTrumps>3) or (hearts(north)  ==0 and nTrumps>3))
+nsRuffD = (not oD) and ((diamonds(south)==0 and sTrumps>3) or (diamonds(north)==0 and nTrumps>3))
+nsRuffC = (not oC) and ((clubs(south)   ==0 and sTrumps>3) or (clubs(north)   ==0 and nTrumps>3))
+
+// ---- Side-suit first-round stops (exclude trump — counted in trumpTricks) ----
+sideStopS = (not oS) and nsFirstS
+sideStopH = (not oH) and nsFirstH
+sideStopD = (not oD) and nsFirstD
+sideStopC = (not oC) and nsFirstC
+
+// ---- Every suit first-round controlled ----
+nsAllStopped = nsFirstS and nsFirstH and nsFirstD and nsFirstC
+
+// ---- Top tricks total = trump tricks + side first-round + side ruffs (cap 13) ----
+topTricksRaw = trumpTricks
+             + sideStopS + sideStopH + sideStopD + sideStopC
+             + nsRuffS   + nsRuffH   + nsRuffD   + nsRuffC
+
+topTricksNS = topTricksRaw < 14 ? topTricksRaw : 13
+# Provides topTricksNS (first-round stops + side-suit ruff bonus) and
+# nsAllStopped (every suit first-round controlled). Trump = opener's suit.
 
 # Quiet opponents — no overcalls or doubles
 eHcp = hcp(east) < 11
 wHcp = hcp(west) < 11
 
-sOpens and sHcp and nHcp and nsAllAces and eHcp and wHcp
+sOpens and sHcp and nHcp and nsAllStopped and eHcp and wHcp
 
 action printoneline,
 average "South opens 1C   " 100 * oC,
@@ -167,3 +278,4 @@ average "South opens 1H   " 100 * oH,
 average "South opens 1S   " 100 * oS,
 average "South HCP avg    "       hcp(south),
 average "North HCP avg    "       hcp(north),
+average "topTricksNS avg  "       topTricksNS,

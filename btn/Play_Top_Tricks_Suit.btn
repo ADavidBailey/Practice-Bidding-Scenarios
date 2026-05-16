@@ -14,10 +14,14 @@ The auction stops in a 2- or 3-of-suit partial. Allowed sequences:
 • 1X — Pass — 1Y — Pass — 2[XY] — all pass  (opener rebids own suit or
   raises responder)
 
-Teaching feature: NS holds ALL FOUR ACES. For a 2-level contract that
-is 4 quick tricks; the trump suit's K, Q, and length tricks supply 4
-more, getting to 8 — the contract makes on top tricks alone. No
-finesses required.
+Teaching feature: NS has first-round control of every suit — the ace,
+or a void (ruffing the first round). That's 4 quick tricks at the
+2-level; the trump suit's K, Q, and length tricks supply 4 more,
+getting to 8 — the contract makes on top tricks alone. No finesses
+required.
+
+Bonus: a side-suit void in a hand that holds 4+ trumps gives a
+SECOND-round ruff as well — both rounds of that suit are top tricks.
 
 Things to think about:
 • Count your top tricks BEFORE you do anything else.
@@ -41,17 +45,15 @@ sOpens  = openingSuit and sNotNT
 # Responder — 6-12 HCP (simple or limit raise range)
 nHcp = hcp(north) > 5 and hcp(north) < 13
 
-# All four Aces in NS — guarantees 4 quick tricks
-nsAllAces = (hascard(south, AS) or hascard(north, AS))
-        and (hascard(south, AH) or hascard(north, AH))
-        and (hascard(south, AD) or hascard(north, AD))
-        and (hascard(south, AC) or hascard(north, AC))
+#include "script/topTricksSuitNS"
+# Provides topTricksNS (first-round stops + side-suit ruff bonus) and
+# nsAllStopped (every suit first-round controlled). Trump = opener's suit.
 
 # Quiet opponents — no overcalls or doubles
 eHcp = hcp(east) < 11
 wHcp = hcp(west) < 11
 
-sOpens and sHcp and nHcp and nsAllAces and eHcp and wHcp
+sOpens and sHcp and nHcp and nsAllStopped and eHcp and wHcp
 
 action
 average "South opens 1C   " 100 * oC,
@@ -60,3 +62,4 @@ average "South opens 1H   " 100 * oH,
 average "South opens 1S   " 100 * oS,
 average "South HCP avg    "       hcp(south),
 average "North HCP avg    "       hcp(north),
+average "topTricksNS avg  "       topTricksNS,
