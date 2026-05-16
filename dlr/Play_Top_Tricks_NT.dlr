@@ -172,12 +172,11 @@ eHcp = hcp(east) < 11
 wHcp = hcp(west) < 11
 
 # Define responder's three action paths, with Leveling factors to balance
-# the natural rates (Pass ~96%, 2NT ~0.2%, 3NT ~3.4%).
-# keep015 × randomCard (25%) ≈ 0.375%, applied to Pass to bring rate to ~0.26%.
-extraReduce = hascard(west, 4S)
-nPass = hcp(north)<9                                      and keep015 and extraReduce
-n2N   = hcp(north)==9 and topTricksNS == 8                and keep
-n3N   = hcp(north)>9  and hcp(north)<15 and topTricksNS == 9 and keep06
+# the natural rates (Pass ~7.2%, 2NT ~2.2%, 3NT ~90.6%) toward roughly
+# equal distribution. 2NT is the rarest path; reduce Pass and 3NT to match.
+nPass = hcp(north)<9  and topTricksNS == 7                                           and keep30
+n2N   = hcp(north)==9 and topTricksNS == 8                                           and keep
+n3N   = hcp(north)>9  and hcp(north)<15 and topTricksNS >= 9 and topTricksNS <= 11   and keep03
 nActs = nPass or n2N or n3N
 
 // nActs encodes the three responder paths (Pass / 2NT / 3NT). Each path's
