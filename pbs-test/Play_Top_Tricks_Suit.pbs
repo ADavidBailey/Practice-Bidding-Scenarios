@@ -309,7 +309,7 @@ keep0  = 0
 #   3X passed limit   1X-P-3X-all pass        opener 12-13 + responder 10-12 fit →  9 tricks
 #   4M accepted limit 1M-P-3M-P-4M-all pass   opener 14    + responder 10-12 major fit → 10+ tricks
 # Responder HCP capped at 12 to avoid Jacoby 2NT / slam exploration (Basic-Bridge has J2NT on).
-n2X = sHcp     and hcp(north) >  5 and hcp(north) < 10 and nHasFit   and topTricksNS ==  8 and keep
+n2X = sHcp12   and hcp(north) >  5 and hcp(north) < 10 and nHasFit   and topTricksNS ==  8 and keep
 n3X = sHcp12   and hcp(north) >  9 and hcp(north) < 13 and nHasFit   and topTricksNS ==  9 and keep25
 n4M = sHcp14   and hcp(north) >  9 and hcp(north) < 13 and nMajorFit and topTricksNS >= 10 and keep03
 nActs = n2X or n3X or n4M
