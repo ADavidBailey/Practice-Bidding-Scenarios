@@ -449,10 +449,11 @@ Pass  Pass
 [Score "NS 1430"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
+1S    Pass  3S    Pass
+3N =1=    Pass  4S    Pass
 4N =2=    Pass  5D =3=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
+[Note "1:surplus"]
 [Note "2:Blackwood 0123, for !S"]
 [Note "3:A=1/5 or 5/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -770,12 +771,11 @@ Pass  Pass
 [Score "NS 980"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5D =3=    Pass
+1S    Pass  4S    Pass
+4N =1=    Pass  5D =2=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=1/5 or 5/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=1/5 or 5/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -828,12 +828,11 @@ Pass  Pass
 [Score "NS 1430"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5C =3=    Pass
+1S    Pass  4S    Pass
+4N =1=    Pass  5C =2=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=0/5 or 4/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=0/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -913,12 +912,13 @@ Pass  Pass
 [Score "NS 980"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5C =3=    Pass
+1S    Pass  2S    Pass
+4N =1=    Pass  5C =2=    Pass
+5D    Pass  6C =3=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=0/5 or 4/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=0/5 or 4/5"]
+[Note "3:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -967,19 +967,15 @@ Pass  Pass
 {HCP 7 10 17 6}
 {Losers 9 6 4 9}
 [Declarer "S"]
-[Contract "6S"]
+[Contract "4S"]
 [Result "12"]
-[Score "NS 1430"]
+[Score "NS 680"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    3S =2=
-X     4H    4S    Pass
-4N =3=    Pass  5C =4=    Pass
-6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Michaels Cuebid"]
-[Note "3:Blackwood 0123, for !S"]
-[Note "4:A=0/5 or 4/5"]
+1S    Pass  2S    3S =1=
+X     4H    Pass  Pass
+4S    Pass  Pass  Pass
+[Note "1:Michaels Cuebid"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -1307,35 +1303,6 @@ Pass
 [Event "Rabbis_Rule"]
 [Site ""]
 [Board "46"]
-% 3BAF9B9C12B0B02734DEF59C1047
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:J873.2.8752.AK82 2.KQJ643.JT93.J6 AKQT94.A8.AQ64.5 65.T975.K.QT9743"]
-{Shape 4144 1642 6241 2416}
-{HCP 8 8 19 5}
-{Losers 8 7 3 8}
-[Declarer "S"]
-[Contract "6S"]
-[Result "12"]
-[Score "NS 1430"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5D =3=    Pass
-6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=1/5 or 5/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Rabbis_Rule"]
-[Site ""]
-[Board "47"]
 % 38A097933B3BBC9CFED9F24C13AF
 [North "EPBot"]
 [East "EPBot"]
@@ -1365,7 +1332,7 @@ Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "48"]
+[Board "47"]
 % 3AA79354BB961FF517CBBE3CB8D8
 [North "EPBot"]
 [East "EPBot"]
@@ -1397,7 +1364,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "49"]
+[Board "48"]
 % 3BAC9B1F9014B501F2C4B354BE1C
 [North "EPBot"]
 [East "EPBot"]
@@ -1410,23 +1377,27 @@ Pass  Pass
 {HCP 7 7 18 8}
 {Losers 8 7 4 8}
 [Declarer "S"]
-[Contract "4S"]
+[Contract "6S"]
 [Result "12"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  4C =3=    Pass
-4S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Cue bid, a !C stopper"]
+1S    Pass  2S    Pass
+4D =1=    Pass  4H =2=    X
+4N =3=    Pass  5C =4=    Pass
+5D    Pass  6C =5=    Pass
+6S    Pass  Pass  Pass
+[Note "1:Cue bid, a !D stopper"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Blackwood 0123, for !S"]
+[Note "4:A=0/5 or 4/5"]
+[Note "5:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "50"]
+[Board "49"]
 % 38A397921899CCF012CCDA8CBF28
 [North "EPBot"]
 [East "EPBot"]
@@ -1456,7 +1427,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "51"]
+[Board "50"]
 % 3AA49317B9BEDC9C0D98C41A1BF4
 [North "EPBot"]
 [East "EPBot"]
@@ -1469,25 +1440,27 @@ Pass  Pass
 {HCP 7 6 19 8}
 {Losers 8 6 4 9}
 [Declarer "S"]
-[Contract "4S"]
+[Contract "6S"]
 [Result "12"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  4C =3=    Pass
-4H =4=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Cue bid, a !C stopper"]
-[Note "4:surplus"]
+1S    Pass  2S    Pass
+4D =1=    Pass  4H =2=    X
+4N =3=    Pass  5C =4=    Pass
+5D    Pass  6C =5=    Pass
+6S    Pass  Pass  Pass
+[Note "1:Cue bid, a !D stopper"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Blackwood 0123, for !S"]
+[Note "4:A=0/5 or 4/5"]
+[Note "5:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "52"]
+[Board "51"]
 % 39AB9F5A38C4D4B7B42813A0C297
 [North "EPBot"]
 [East "EPBot"]
@@ -1515,7 +1488,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "53"]
+[Board "52"]
 % 48A097120883BDFADEBFFE10D388
 [North "EPBot"]
 [East "EPBot"]
@@ -1545,7 +1518,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "54"]
+[Board "53"]
 % 4AA493D7362C8CFB9B2B548818B8
 [North "EPBot"]
 [East "EPBot"]
@@ -1573,7 +1546,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "55"]
+[Board "54"]
 % 4BAF9B9ED02F96B004CE3480F011
 [North "EPBot"]
 [East "EPBot"]
@@ -1603,36 +1576,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "56"]
-% 4AA493D73BB90C18FA9805DBBFB6
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:J985.95.93.KQJ43 .KQ864.JT8764.72 AKT632.A.AQ52.T5 Q74.JT732.K.A986"]
-{Shape 4225 0562 6142 3514}
-{HCP 7 6 17 10}
-{Losers 8 6 4 8}
-[Declarer "S"]
-[Contract "4S"]
-[Result "12"]
-[Score "NS 680"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  4C =3=    Pass
-4S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Cue bid, a !C stopper"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Rabbis_Rule"]
-[Site ""]
-[Board "57"]
+[Board "55"]
 % 49A89F5B28B8C0541402BBB6B3D2
 [North "EPBot"]
 [East "EPBot"]
@@ -1662,7 +1606,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "58"]
+[Board "56"]
 % 4BAC9B9F10E797B242F3F08C3C15
 [North "EPBot"]
 [East "EPBot"]
@@ -1692,7 +1636,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "59"]
+[Board "57"]
 % 48A297D08BACFC5C0B1F907800B2
 [North "EPBot"]
 [East "EPBot"]
@@ -1723,7 +1667,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "60"]
+[Board "58"]
 % 49A89F5813F26431549B840084B8
 [North "EPBot"]
 [East "EPBot"]
@@ -1748,7 +1692,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "61"]
+[Board "59"]
 % 4BAC9B1E471CF4D7B6209FB0BED3
 [North "EPBot"]
 [East "EPBot"]
@@ -1778,7 +1722,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "62"]
+[Board "60"]
 % 48A09712BBD9901ABE0CD04CF883
 [North "EPBot"]
 [East "EPBot"]
@@ -1808,7 +1752,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "63"]
+[Board "61"]
 % 4AA49316C51C389BFC9A189FB5CC
 [North "EPBot"]
 [East "EPBot"]
@@ -1841,7 +1785,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "64"]
+[Board "62"]
 % 48A297109BF8DBBC30095CBE1280
 [North "EPBot"]
 [East "EPBot"]
@@ -1859,18 +1803,19 @@ Pass  Pass
 [Score "NS 980"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    3H
-4N =2=    Pass  5C =3=    Pass
+1S    Pass  2S    3H
+4N =1=    Pass  5C =2=    Pass
+5D    Pass  6C =3=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=0/5 or 4/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=0/5 or 4/5"]
+[Note "3:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "65"]
+[Board "63"]
 % 4AA693176CC8178CFB94B884D81E
 [North "EPBot"]
 [East "EPBot"]
@@ -1898,7 +1843,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "66"]
+[Board "64"]
 % 49AB9F1AB8A0F2C8348AD2971473
 [North "EPBot"]
 [East "EPBot"]
@@ -1928,7 +1873,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "67"]
+[Board "65"]
 % 5AA6931487BE9CD47CC6B8180B39
 [North "EPBot"]
 [East "EPBot"]
@@ -1961,7 +1906,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "68"]
+[Board "66"]
 % 5BAF9BDF5C1C1490F6B781D3BC14
 [North "EPBot"]
 [East "EPBot"]
@@ -1991,7 +1936,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "69"]
+[Board "67"]
 % 5AA493D73E18F77B84DC2A87B89E
 [North "EPBot"]
 [East "EPBot"]
@@ -2021,7 +1966,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "70"]
+[Board "68"]
 % 5BAC9B9FD734FC8037B3A51272DE
 [North "EPBot"]
 [East "EPBot"]
@@ -2051,7 +1996,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "71"]
+[Board "69"]
 % 58A09712F398C21D9CB38F38C8DE
 [North "EPBot"]
 [East "EPBot"]
@@ -2081,7 +2026,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "72"]
+[Board "70"]
 % 59AB9F18D4F680C819D294878408
 [North "EPBot"]
 [East "EPBot"]
@@ -2111,7 +2056,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "73"]
+[Board "71"]
 % 5BAF9B9CF7B67550D03F3E338590
 [North "EPBot"]
 [East "EPBot"]
@@ -2143,7 +2088,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "74"]
+[Board "72"]
 % 58A29713B09C9C4C18F9F33F1A80
 [North "EPBot"]
 [East "EPBot"]
@@ -2176,7 +2121,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "75"]
+[Board "73"]
 % 5AA49317BE88F69CEA07D896FE3F
 [North "EPBot"]
 [East "EPBot"]
@@ -2203,7 +2148,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "76"]
+[Board "74"]
 % 5BAF9B5CA01014845CB3873CF6E2
 [North "EPBot"]
 [East "EPBot"]
@@ -2233,7 +2178,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "77"]
+[Board "75"]
 % 58A09712F38C229CB3FFFF0BD89E
 [North "EPBot"]
 [East "EPBot"]
@@ -2263,38 +2208,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "78"]
-% 5AA793D4593AB4BFDF28881B3884
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:T643.52.87.AK874 J.KQJ74.JT6543.T AK9852.A6.AQ92.J Q7.T983.K.Q96532"]
-{Shape 4225 1561 6241 2416}
-{HCP 7 8 18 7}
-{Losers 8 6 4 8}
-[Declarer "S"]
-[Contract "4S"]
-[Result "11"]
-[Score "NS 650"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  4C =3=    Pass
-4H =4=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Cue bid, a !C stopper"]
-[Note "4:surplus"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Rabbis_Rule"]
-[Site ""]
-[Board "79"]
+[Board "76"]
 % 59A89F1B88F417B15850B3BB3416
 [North "EPBot"]
 [East "EPBot"]
@@ -2312,18 +2226,19 @@ Pass  Pass
 [Score "NS 980"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5C =3=    Pass
+1S    Pass  2S    Pass
+4N =1=    Pass  5C =2=    Pass
+5D    Pass  6C =3=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=0/5 or 4/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=0/5 or 4/5"]
+[Note "3:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "80"]
+[Board "77"]
 % 68A09710AF8EDDFAF80C0AD88092
 [North "EPBot"]
 [East "EPBot"]
@@ -2352,7 +2267,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "81"]
+[Board "78"]
 % 6AA493179FDABCFEFC95287B1887
 [North "EPBot"]
 [East "EPBot"]
@@ -2382,7 +2297,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "82"]
+[Board "79"]
 % 69A89F9B14F4817AA0D23787C814
 [North "EPBot"]
 [East "EPBot"]
@@ -2412,7 +2327,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "83"]
+[Board "80"]
 % 6AA793D4BFBAF4C4173F1A7CAA9E
 [North "EPBot"]
 [East "EPBot"]
@@ -2444,7 +2359,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "84"]
+[Board "81"]
 % 69A89F18B35876855394B80018F3
 [North "EPBot"]
 [East "EPBot"]
@@ -2474,7 +2389,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "85"]
+[Board "82"]
 % 6BAF9B5CB31616FE0497B1FFB07C
 [North "EPBot"]
 [East "EPBot"]
@@ -2504,7 +2419,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "86"]
+[Board "83"]
 % 68A097933BEC9FD0BC33527C980B
 [North "EPBot"]
 [East "EPBot"]
@@ -2532,7 +2447,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "87"]
+[Board "84"]
 % 69AA9F1807F5D09200B44A309AB8
 [North "EPBot"]
 [East "EPBot"]
@@ -2550,18 +2465,19 @@ Pass  Pass
 [Score "NS 980"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5C =3=    Pass
+1S    Pass  2S    Pass
+4N =1=    Pass  5C =2=    Pass
+5D    Pass  6C =3=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=0/5 or 4/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=0/5 or 4/5"]
+[Note "3:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "88"]
+[Board "85"]
 % 6BAC9B1EC02E1FD0A690D4B4B337
 [North "EPBot"]
 [East "EPBot"]
@@ -2591,7 +2507,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "89"]
+[Board "86"]
 % 68A297D3323B9F9872DD8C1830B8
 [North "EPBot"]
 [East "EPBot"]
@@ -2621,7 +2537,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "90"]
+[Board "87"]
 % 6AA793963CFC8AC79AB81E24F718
 [North "EPBot"]
 [East "EPBot"]
@@ -2639,18 +2555,17 @@ Pass  Pass
 [Score "NS 1430"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5D =3=    Pass
+1S    Pass  3S    Pass
+4N =1=    Pass  5D =2=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=1/5 or 5/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=1/5 or 5/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "91"]
+[Board "88"]
 % 6BAC9B1CB7D41DC392208394FC54
 [North "EPBot"]
 [East "EPBot"]
@@ -2675,7 +2590,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "92"]
+[Board "89"]
 % 68A39750F090DBB8AE4C0C9F082C
 [North "EPBot"]
 [East "EPBot"]
@@ -2700,7 +2615,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "93"]
+[Board "90"]
 % 6AA693D7FEB798DCA70BBAF81C17
 [North "EPBot"]
 [East "EPBot"]
@@ -2729,7 +2644,7 @@ Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "94"]
+[Board "91"]
 % 69A89F1BDA7B90D7B17434B73B93
 [North "EPBot"]
 [East "EPBot"]
@@ -2759,7 +2674,7 @@ Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "95"]
+[Board "92"]
 % 7AA6939738F80CB49B8CDD1668CE
 [North "EPBot"]
 [East "EPBot"]
@@ -2789,7 +2704,7 @@ Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "96"]
+[Board "93"]
 % 79A89FDB9B07945934B6473880F0
 [North "EPBot"]
 [East "EPBot"]
@@ -2819,7 +2734,7 @@ Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "97"]
+[Board "94"]
 % 7BAF9BDCA273DF3634973190847C
 [North "EPBot"]
 [East "EPBot"]
@@ -2846,7 +2761,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "98"]
+[Board "95"]
 % 7AA49316DB87049C3E48F6BC5DB8
 [North "EPBot"]
 [East "EPBot"]
@@ -2876,7 +2791,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "99"]
+[Board "96"]
 % 79AB9F5818743A98D2B103D7B3B4
 [North "EPBot"]
 [East "EPBot"]
@@ -2906,7 +2821,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "100"]
+[Board "97"]
 % 7BAC9B1F74B3D79F84E01430609E
 [North "EPBot"]
 [East "EPBot"]
@@ -2934,7 +2849,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "101"]
+[Board "98"]
 % 78A09713DF3A989BA3AFCCF23CFE
 [North "EPBot"]
 [East "EPBot"]
@@ -2964,7 +2879,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "102"]
+[Board "99"]
 % 79AB9F18B4106798BB42B338F2D6
 [North "EPBot"]
 [East "EPBot"]
@@ -2994,7 +2909,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "103"]
+[Board "100"]
 % 7BAC9B9F043EEEFC749004429493
 [North "EPBot"]
 [East "EPBot"]
@@ -3023,7 +2938,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "104"]
+[Board "101"]
 % 7AA79314B4391BBC588A9D1CF4CB
 [North "EPBot"]
 [East "EPBot"]
@@ -3041,59 +2956,21 @@ Pass  Pass
 [Score "NS 1430"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  3S    Pass
-3N =3=    Pass  4C =4=    Pass
-4N =5=    Pass  5D =6=    Pass
+1S    Pass  3S    Pass
+3N =1=    Pass  4S    Pass
+4N =2=    Pass  5D =3=    Pass
+5H    Pass  6C =4=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:surplus"]
-[Note "4:Cue bid, a !C stopper"]
-[Note "5:Blackwood 0123, for !S"]
-[Note "6:A=1/5 or 5/5"]
+[Note "1:surplus"]
+[Note "2:Blackwood 0123, for !S"]
+[Note "3:A=1/5 or 5/5"]
+[Note "4:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "105"]
-% 78A397109CD2BBBC0C12F819BB6C
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:Q764.7.9543.AK93 2.KQJT64.J872.T6 AKJ983.A2.AQT6.4 T5.9853.K.QJ8752"]
-{Shape 4144 1642 6241 2416}
-{HCP 9 7 18 6}
-{Losers 7 7 4 8}
-[Declarer "S"]
-[Contract "6S"]
-[Result "12"]
-[Score "NS 980"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  3S    Pass
-3N =3=    Pass  4C =4=    Pass
-4H =5=    Pass  4N =6=    Pass
-5C =7=    Pass  6S    Pass
-Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:surplus"]
-[Note "4:Cue bid, a !C stopper"]
-[Note "5:Cue bid, a !H stopper"]
-[Note "6:Blackwood 0123, for !S"]
-[Note "7:A=0/5 or 4/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Rabbis_Rule"]
-[Site ""]
-[Board "106"]
+[Board "102"]
 % 7AA49314BD351F5FBA38B448CE98
 [North "EPBot"]
 [East "EPBot"]
@@ -3122,7 +2999,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "107"]
+[Board "103"]
 % 79AB9FDBB5F734C281183496903A
 [North "EPBot"]
 [East "EPBot"]
@@ -3140,23 +3017,21 @@ Pass  Pass
 [Score "NS 980"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  3S    Pass
-3N =3=    Pass  4C =4=    Pass
-4N =5=    Pass  5D =6=    Pass
+1S    Pass  3S    Pass
+3N =1=    Pass  4S    Pass
+4N =2=    Pass  5D =3=    Pass
+5H    Pass  5S =4=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:surplus"]
-[Note "4:Cue bid, a !C stopper"]
-[Note "5:Blackwood 0123, for !S"]
-[Note "6:A=1/5 or 5/5"]
+[Note "1:surplus"]
+[Note "2:Blackwood 0123, for !S"]
+[Note "3:A=1/5 or 5/5"]
+[Note "4:no !S queen"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "108"]
+[Board "104"]
 % 88A297103FBA8EB0DC00AEFB1BD0
 [North "EPBot"]
 [East "EPBot"]
@@ -3174,18 +3049,19 @@ Pass  Pass
 [Score "NS -50"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5C =3=    Pass
+1S    Pass  2S    Pass
+4N =1=    Pass  5C =2=    Pass
+5D    Pass  6C =3=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=0/5 or 4/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=0/5 or 4/5"]
+[Note "3:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "109"]
+[Board "105"]
 % 89A89F1A418014D0F58698F30AB4
 [North "EPBot"]
 [East "EPBot"]
@@ -3218,7 +3094,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "110"]
+[Board "106"]
 % 8BAE9B9FF3FEA414371C80B75060
 [North "EPBot"]
 [East "EPBot"]
@@ -3246,7 +3122,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "111"]
+[Board "107"]
 % 8AA493971CBC5CD82B3E5B34BBB5
 [North "EPBot"]
 [East "EPBot"]
@@ -3275,7 +3151,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "112"]
+[Board "108"]
 % 89A89F1BC698DA88B7F3923037E6
 [North "EPBot"]
 [East "EPBot"]
@@ -3305,7 +3181,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "113"]
+[Board "109"]
 % 8BAC9B5C0FB43F87D094101EB060
 [North "EPBot"]
 [East "EPBot"]
@@ -3331,7 +3207,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "114"]
+[Board "110"]
 % 88A397539E1F836038FC40BCB818
 [North "EPBot"]
 [East "EPBot"]
@@ -3361,7 +3237,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "115"]
+[Board "111"]
 % 89A89F580B3088C61096B0BA7015
 [North "EPBot"]
 [East "EPBot"]
@@ -3391,7 +3267,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "116"]
+[Board "112"]
 % 8BAF9B5C70149300D33CA504BC90
 [North "EPBot"]
 [East "EPBot"]
@@ -3416,38 +3292,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "117"]
-% 88A09713BA3C8EBA18CC3DDAD3A0
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:QT75.96.J874.KQ3 .KQ743.T965.J984 AKJ982.A2.AQ32.5 643.JT85.K.AT762"]
-{Shape 4243 0544 6241 3415}
-{HCP 8 6 18 8}
-{Losers 8 7 4 9}
-[Declarer "S"]
-[Contract "4S"]
-[Result "11"]
-[Score "NS 450"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  4C =3=    Pass
-4H =4=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Cue bid, a !C stopper"]
-[Note "4:surplus"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Rabbis_Rule"]
-[Site ""]
-[Board "118"]
+[Board "113"]
 % 8AA49397FE97DB9C3839B61FD8CD
 [North "EPBot"]
 [East "EPBot"]
@@ -3475,36 +3320,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "119"]
-% 8BAC9B1FC0A73CDE93B010733580
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:Q953.J2.T3.KQT74 4.KQ875.J76542.8 AKT762.AT.AQ98.3 J8.9643.K.AJ9652"]
-{Shape 4225 1561 6241 2416}
-{HCP 8 6 17 9}
-{Losers 7 6 4 8}
-[Declarer "S"]
-[Contract "4S"]
-[Result "11"]
-[Score "NS 650"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  4C =3=    Pass
-4S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Cue bid, a !C stopper"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Rabbis_Rule"]
-[Site ""]
-[Board "120"]
+[Board "114"]
 % 88A29793FAF8FF90BC3DA8035E1B
 [North "EPBot"]
 [East "EPBot"]
@@ -3534,7 +3350,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "121"]
+[Board "115"]
 % 89A89F1A7BB73B84DAF035941384
 [North "EPBot"]
 [East "EPBot"]
@@ -3564,7 +3380,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "122"]
+[Board "116"]
 % 9AA793169888BD34BB5BF4C806DF
 [North "EPBot"]
 [East "EPBot"]
@@ -3594,7 +3410,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "123"]
+[Board "117"]
 % 99A89F1B04E08294BA78D71AB433
 [North "EPBot"]
 [East "EPBot"]
@@ -3612,18 +3428,19 @@ Pass  Pass
 [Score "NS 980"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5C =3=    Pass
+1S    Pass  3S    Pass
+4N =1=    Pass  5C =2=    Pass
+5D    Pass  6C =3=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=0/5 or 4/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=0/5 or 4/5"]
+[Note "3:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "124"]
+[Board "118"]
 % 9BAE9B1C849035F05E8C8014337F
 [North "EPBot"]
 [East "EPBot"]
@@ -3654,7 +3471,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "125"]
+[Board "119"]
 % 9BAC9B9C04023CD0B3C59097F66E
 [North "EPBot"]
 [East "EPBot"]
@@ -3684,38 +3501,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "126"]
-% 99AB9FDA18A4133B3494C4947081
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:J987.52.932.AK98 3.KQJ964.T7654.Q AKT642.AT.AQJ8.2 Q5.873.K.JT76543"]
-{Shape 4234 1651 6241 2317}
-{HCP 8 8 18 6}
-{Losers 9 6 4 9}
-[Declarer "S"]
-[Contract "4S"]
-[Result "12"]
-[Score "NS 480"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  4C =3=    Pass
-4H =4=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Cue bid, a !C stopper"]
-[Note "4:surplus"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Rabbis_Rule"]
-[Site ""]
-[Board "127"]
+[Board "120"]
 % 9BAC9B9FC303057CF490B2961EFC
 [North "EPBot"]
 [East "EPBot"]
@@ -3743,7 +3529,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "128"]
+[Board "121"]
 % 98A397921ABC3378DFC0BB9D007C
 [North "EPBot"]
 [East "EPBot"]
@@ -3775,7 +3561,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "129"]
+[Board "122"]
 % 9AA493974A3DB9BA1C8BDCF41C36
 [North "EPBot"]
 [East "EPBot"]
@@ -3806,7 +3592,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "130"]
+[Board "123"]
 % 9BAF9B5E3FB7D5B01D94B43042C0
 [North "EPBot"]
 [East "EPBot"]
@@ -3838,7 +3624,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "131"]
+[Board "124"]
 % 98A097920FBC990CD8DAF331CEBF
 [North "EPBot"]
 [East "EPBot"]
@@ -3866,7 +3652,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "132"]
+[Board "125"]
 % 9AA493973E8C18D857F628BDC89F
 [North "EPBot"]
 [East "EPBot"]
@@ -3896,36 +3682,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "133"]
-% 99AB9F9A7490D4F428329503B73B
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:7642.4.T64.AK432 J.KQT95.J9853.Q6 AKQT53.A7.AQ72.5 98.J8632.K.JT987"]
-{Shape 4135 1552 6241 2515}
-{HCP 7 9 19 5}
-{Losers 8 7 3 9}
-[Declarer "S"]
-[Contract "6S"]
-[Result "12"]
-[Score "NS 980"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5D =3=    Pass
-6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=1/5 or 5/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Rabbis_Rule"]
-[Site ""]
-[Board "134"]
+[Board "126"]
 % A8A297D380325CBB1C3C79EB98BF
 [North "EPBot"]
 [East "EPBot"]
@@ -3952,7 +3709,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "135"]
+[Board "127"]
 % AAA69314B73C3FB68A1A4CDDB4D8
 [North "EPBot"]
 [East "EPBot"]
@@ -3982,7 +3739,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "136"]
+[Board "128"]
 % ABAC9B9FC25CB2F404AEF397133C
 [North "EPBot"]
 [East "EPBot"]
@@ -4010,7 +3767,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "137"]
+[Board "129"]
 % AAA79394F81827F9B7CC980A8C5E
 [North "EPBot"]
 [East "EPBot"]
@@ -4040,7 +3797,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "138"]
+[Board "130"]
 % A9A89F9BF088B098542357073A74
 [North "EPBot"]
 [East "EPBot"]
@@ -4066,7 +3823,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "139"]
+[Board "131"]
 % ABAC9B1E8632E23FD4F783BC9C10
 [North "EPBot"]
 [East "EPBot"]
@@ -4084,18 +3841,19 @@ Pass  Pass
 [Score "NS 1430"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5C =3=    Pass
+1S    Pass  2S    Pass
+4N =1=    Pass  5C =2=    Pass
+5D    Pass  6C =3=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=0/5 or 4/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=0/5 or 4/5"]
+[Note "3:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "140"]
+[Board "132"]
 % A8A09753488C9370FDB81F18BC19
 [North "EPBot"]
 [East "EPBot"]
@@ -4120,7 +3878,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "141"]
+[Board "133"]
 % ABAF9B9C1080B2B7DCF04F6F0014
 [North "EPBot"]
 [East "EPBot"]
@@ -4152,7 +3910,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "142"]
+[Board "134"]
 % A8A397D2139C1F703BFEA8CBB2BC
 [North "EPBot"]
 [East "EPBot"]
@@ -4182,7 +3940,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "143"]
+[Board "135"]
 % AAA79394FFF89A9C9A3BC5C80417
 [North "EPBot"]
 [East "EPBot"]
@@ -4210,7 +3968,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "144"]
+[Board "136"]
 % ABAC9B1D07BFD23CD0C48691F6B2
 [North "EPBot"]
 [East "EPBot"]
@@ -4241,7 +3999,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "145"]
+[Board "137"]
 % A8A397D2CAD0830CBD3C3E9C9828
 [North "EPBot"]
 [East "EPBot"]
@@ -4254,22 +4012,26 @@ Pass  Pass
 {HCP 9 8 17 6}
 {Losers 10 6 4 9}
 [Declarer "S"]
-[Contract "4S"]
+[Contract "6S"]
 [Result "12"]
-[Score "NS 480"]
+[Score "NS 980"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  3S    Pass
-4S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
+1S    Pass  3S    Pass
+3N =1=    Pass  4S    Pass
+4N =2=    Pass  5D =3=    Pass
+5H    Pass  5S =4=    Pass
+6S    Pass  Pass  Pass
+[Note "1:surplus"]
+[Note "2:Blackwood 0123, for !S"]
+[Note "3:A=1/5 or 5/5"]
+[Note "4:no !S queen"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "146"]
+[Board "138"]
 % AAA493D79C1ABB7F9446D88C243C
 [North "EPBot"]
 [East "EPBot"]
@@ -4295,7 +4057,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "147"]
+[Board "139"]
 % A9A89FDB1594B0D754300B948028
 [North "EPBot"]
 [East "EPBot"]
@@ -4320,7 +4082,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "148"]
+[Board "140"]
 % B8A09793380D4A8CF2AE18D89CC0
 [North "EPBot"]
 [East "EPBot"]
@@ -4345,7 +4107,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "149"]
+[Board "141"]
 % BAA7931498EA9F3CFFDBB41588DB
 [North "EPBot"]
 [East "EPBot"]
@@ -4377,7 +4139,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "150"]
+[Board "142"]
 % B9A89F9803BB049593F011F47658
 [North "EPBot"]
 [East "EPBot"]
@@ -4405,7 +4167,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "151"]
+[Board "143"]
 % BBAC9B1EC0AC04505C83B60490CC
 [North "EPBot"]
 [East "EPBot"]
@@ -4430,7 +4192,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "152"]
+[Board "144"]
 % B9AB9F98C79834977412F900D7BB
 [North "EPBot"]
 [East "EPBot"]
@@ -4462,7 +4224,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "153"]
+[Board "145"]
 % BBAC9B1CC531948E30D380D3D6BF
 [North "EPBot"]
 [East "EPBot"]
@@ -4496,7 +4258,7 @@ Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "154"]
+[Board "146"]
 % B8A2971008804BD0DA4E3CB1BC98
 [North "EPBot"]
 [East "EPBot"]
@@ -4526,7 +4288,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "155"]
+[Board "147"]
 % B9AB9F58F0BBB614A7C81B821074
 [North "EPBot"]
 [East "EPBot"]
@@ -4556,7 +4318,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "156"]
+[Board "148"]
 % BBAE9B1FFC859096331CF23CB377
 [North "EPBot"]
 [East "EPBot"]
@@ -4574,18 +4336,19 @@ Pass  Pass
 [Score "NS 1430"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5C =3=    Pass
+1S    Pass  2S    Pass
+4N =1=    Pass  5C =2=    Pass
+5D    Pass  6C =3=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=0/5 or 4/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=0/5 or 4/5"]
+[Note "3:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "157"]
+[Board "149"]
 % B8A397507CC890BB0E93D1BC1C08
 [North "EPBot"]
 [East "EPBot"]
@@ -4611,7 +4374,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "158"]
+[Board "150"]
 % BBAC9B1CC7CC2490BF8294FE5332
 [North "EPBot"]
 [East "EPBot"]
@@ -4641,7 +4404,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "159"]
+[Board "151"]
 % B8A097D3004C9F90A8BF037E38DC
 [North "EPBot"]
 [East "EPBot"]
@@ -4667,7 +4430,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "160"]
+[Board "152"]
 % BAA793945CC9DF1CB8B8BA3D5407
 [North "EPBot"]
 [East "EPBot"]
@@ -4698,7 +4461,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "161"]
+[Board "153"]
 % B9AA9F9807D00732A4970854F8B8
 [North "EPBot"]
 [East "EPBot"]
@@ -4726,7 +4489,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "162"]
+[Board "154"]
 % C8A097933C8A53BDD0FF3A8A3DD8
 [North "EPBot"]
 [East "EPBot"]
@@ -4754,7 +4517,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "163"]
+[Board "155"]
 % CAA493D77FAC2B385F94B71AB87C
 [North "EPBot"]
 [East "EPBot"]
@@ -4783,7 +4546,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "164"]
+[Board "156"]
 % C9A89FDB3A94921768B8339073C4
 [North "EPBot"]
 [East "EPBot"]
@@ -4813,7 +4576,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "165"]
+[Board "157"]
 % CBAE9B1CB384A3DCF0101C83C6E6
 [North "EPBot"]
 [East "EPBot"]
@@ -4843,7 +4606,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "166"]
+[Board "158"]
 % CAA493145B8AEBF42F9C189BF4BF
 [North "EPBot"]
 [East "EPBot"]
@@ -4873,7 +4636,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "167"]
+[Board "159"]
 % C9AA9FDB35D7D4941870AB03B090
 [North "EPBot"]
 [East "EPBot"]
@@ -4900,7 +4663,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "168"]
+[Board "160"]
 % CBAF9BDC1076D2FFBC8224BC0796
 [North "EPBot"]
 [East "EPBot"]
@@ -4930,7 +4693,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "169"]
+[Board "161"]
 % C8A397D3DCD0BA0A88933DFCBA12
 [North "EPBot"]
 [East "EPBot"]
@@ -4960,7 +4723,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "170"]
+[Board "162"]
 % C9AB9FD816F61BC6B3D4B818B381
 [North "EPBot"]
 [East "EPBot"]
@@ -4990,7 +4753,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "171"]
+[Board "163"]
 % CBAE9B1FA6FCD393BEF134C7B610
 [North "EPBot"]
 [East "EPBot"]
@@ -5017,7 +4780,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "172"]
+[Board "164"]
 % CAA493D718BA044B3CAC548ABCD7
 [North "EPBot"]
 [East "EPBot"]
@@ -5043,7 +4806,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "173"]
+[Board "165"]
 % CBAF9B1EDC8335B7903C80DE7014
 [North "EPBot"]
 [East "EPBot"]
@@ -5061,18 +4824,19 @@ Pass  Pass
 [Score "NS 1430"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5D =3=    Pass
+1S    Pass  3S    Pass
+4N =1=    Pass  5D =2=    Pass
+5H    Pass  6C =3=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=1/5 or 5/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=1/5 or 5/5"]
+[Note "3:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "174"]
+[Board "166"]
 % C8A39750DC8E932F98BC0FD8E830
 [North "EPBot"]
 [East "EPBot"]
@@ -5100,7 +4864,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "175"]
+[Board "167"]
 % CAA4931414BCAC7AD8998EC81F04
 [North "EPBot"]
 [East "EPBot"]
@@ -5125,7 +4889,7 @@ X     Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "176"]
+[Board "168"]
 % C9A89F1B74F19280F69417381B88
 [North "EPBot"]
 [East "EPBot"]
@@ -5143,18 +4907,19 @@ X     Pass  Pass  Pass
 [Score "NS 980"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5C =3=    Pass
+1S    Pass  2S    Pass
+4N =1=    Pass  5C =2=    Pass
+5D    Pass  6C =3=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=0/5 or 4/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=0/5 or 4/5"]
+[Note "3:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "177"]
+[Board "169"]
 % D8A297132F58BC1BFCBA3C50B380
 [North "EPBot"]
 [East "EPBot"]
@@ -5172,18 +4937,17 @@ X     Pass  Pass  Pass
 [Score "NS 980"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5C =3=    Pass
+1S    Pass  4S    Pass
+4N =1=    Pass  5C =2=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=0/5 or 4/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=0/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "178"]
+[Board "170"]
 % DAA693172738CC1CBCBAD8548C99
 [North "EPBot"]
 [East "EPBot"]
@@ -5196,27 +4960,24 @@ X     Pass  Pass  Pass
 {HCP 9 9 19 3}
 {Losers 8 6 4 9}
 [Declarer "S"]
-[Contract "4S"]
+[Contract "6S"]
 [Result "11"]
-[Score "NS 650"]
+[Score "NS -100"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  3S    Pass
-3N =3=    Pass  4C =4=    Pass
-4H =5=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:surplus"]
-[Note "4:Cue bid, a !C stopper"]
-[Note "5:Cue bid, a !H stopper"]
+1S    Pass  3S    Pass
+4N =1=    Pass  5C =2=    Pass
+5D    Pass  6C =3=    Pass
+6S    Pass  Pass  Pass
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=0/5 or 4/5"]
+[Note "3:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "179"]
+[Board "171"]
 % DBAC9B9F429D2230B484105C34C4
 [North "EPBot"]
 [East "EPBot"]
@@ -5247,7 +5008,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "180"]
+[Board "172"]
 % DAA49314774C97C8BD981E7D8838
 [North "EPBot"]
 [East "EPBot"]
@@ -5272,7 +5033,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "181"]
+[Board "173"]
 % D9AB9F9AF44894F0148804126883
 [North "EPBot"]
 [East "EPBot"]
@@ -5298,7 +5059,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "182"]
+[Board "174"]
 % DBAC9B1C0611D49C84329FB4E370
 [North "EPBot"]
 [East "EPBot"]
@@ -5323,7 +5084,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "183"]
+[Board "175"]
 % D8A39750B898BA1C3DCFA2483C10
 [North "EPBot"]
 [East "EPBot"]
@@ -5348,7 +5109,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "184"]
+[Board "176"]
 % D9A89F5BD1D292B4081437B83288
 [North "EPBot"]
 [East "EPBot"]
@@ -5378,7 +5139,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "185"]
+[Board "177"]
 % DBAF9BDEDC34DF838020509C06B4
 [North "EPBot"]
 [East "EPBot"]
@@ -5408,7 +5169,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "186"]
+[Board "178"]
 % D8A097935810BBF11E1C70BEBBCB
 [North "EPBot"]
 [East "EPBot"]
@@ -5436,7 +5197,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "187"]
+[Board "179"]
 % DAA493579E3608FD94BC0998FC1B
 [North "EPBot"]
 [East "EPBot"]
@@ -5469,7 +5230,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "188"]
+[Board "180"]
 % E8A39790FABC02DFB0BA1B6B3ED0
 [North "EPBot"]
 [East "EPBot"]
@@ -5501,7 +5262,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "189"]
+[Board "181"]
 % EAA79314D4ACD6A8FC8B9B1A0CDC
 [North "EPBot"]
 [East "EPBot"]
@@ -5529,7 +5290,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "190"]
+[Board "182"]
 % E9AB9FD8189AC4D2808B36B4D324
 [North "EPBot"]
 [East "EPBot"]
@@ -5559,7 +5320,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "191"]
+[Board "183"]
 % EBAE9B9C0432951C4636F0FC9F80
 [North "EPBot"]
 [East "EPBot"]
@@ -5587,7 +5348,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "192"]
+[Board "184"]
 % EAA493971C2474B61C8808D88E7E
 [North "EPBot"]
 [East "EPBot"]
@@ -5612,7 +5373,7 @@ Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "193"]
+[Board "185"]
 % E9AB9F189807B8C6B29B05D43470
 [North "EPBot"]
 [East "EPBot"]
@@ -5630,18 +5391,19 @@ Pass  Pass  Pass
 [Score "NS 980"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5D =3=    Pass
+1S    Pass  3S    Pass
+4N =1=    Pass  5D =2=    Pass
+5H    Pass  6C =3=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=1/5 or 5/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=1/5 or 5/5"]
+[Note "3:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "194"]
+[Board "186"]
 % EBAC9B9F364F141691F08CFE7084
 [North "EPBot"]
 [East "EPBot"]
@@ -5669,7 +5431,7 @@ Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "195"]
+[Board "187"]
 % E8A0971238801FFC0C58D3BC8EA9
 [North "EPBot"]
 [East "EPBot"]
@@ -5694,7 +5456,7 @@ Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "196"]
+[Board "188"]
 % E9A89F1A344020F59B84F450879B
 [North "EPBot"]
 [East "EPBot"]
@@ -5719,7 +5481,7 @@ Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "197"]
+[Board "189"]
 % EBAE9B9C0436BFF33550E09F1080
 [North "EPBot"]
 [East "EPBot"]
@@ -5749,7 +5511,7 @@ Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "198"]
+[Board "190"]
 % E8A397105E08983C3EBC93B0C148
 [North "EPBot"]
 [East "EPBot"]
@@ -5767,18 +5529,19 @@ Pass  Pass  Pass
 [Score "NS 980"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5D =3=    Pass
+1S    Pass  3S    Pass
+4N =1=    Pass  5D =2=    Pass
+5H    Pass  6C =3=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=1/5 or 5/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=1/5 or 5/5"]
+[Note "3:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "199"]
+[Board "191"]
 % EAA49314143B4EDCACF6BA968F38
 [North "EPBot"]
 [East "EPBot"]
@@ -5808,7 +5571,7 @@ Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "200"]
+[Board "192"]
 % EBAC9BDF1CC0B350334C94A08E04
 [North "EPBot"]
 [East "EPBot"]
@@ -5834,7 +5597,7 @@ Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "201"]
+[Board "193"]
 % E8A097100A9CBC1BDE403DB040BB
 [North "EPBot"]
 [East "EPBot"]
@@ -5864,7 +5627,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "202"]
+[Board "194"]
 % EAA69317D4FCF878A41F8B0E9EB6
 [North "EPBot"]
 [East "EPBot"]
@@ -5894,7 +5657,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "203"]
+[Board "195"]
 % E9AA9F980044D81092B445EBB400
 [North "EPBot"]
 [East "EPBot"]
@@ -5919,7 +5682,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "204"]
+[Board "196"]
 % F8A397D3BCFA7B1E3231DC889A80
 [North "EPBot"]
 [East "EPBot"]
@@ -5949,7 +5712,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "205"]
+[Board "197"]
 % FAA69314DC9D0C88DBA6BB0854FC
 [North "EPBot"]
 [East "EPBot"]
@@ -5974,7 +5737,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "206"]
+[Board "198"]
 % FBAE9B1FBE02D3948410EFF0F68C
 [North "EPBot"]
 [East "EPBot"]
@@ -6004,7 +5767,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "207"]
+[Board "199"]
 % FAA493D7185C05B8868AFC7C1C89
 [North "EPBot"]
 [East "EPBot"]
@@ -6029,7 +5792,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "208"]
+[Board "200"]
 % FBAE9B9FF320BCB0B45417C31C4E
 [North "EPBot"]
 [East "EPBot"]
@@ -6057,7 +5820,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "209"]
+[Board "201"]
 % F8A097931FD83C9BD19B739C3078
 [North "EPBot"]
 [East "EPBot"]
@@ -6085,7 +5848,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "210"]
+[Board "202"]
 % F9AB9F9816B2043BD7FBD0F48591
 [North "EPBot"]
 [East "EPBot"]
@@ -6117,7 +5880,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "211"]
+[Board "203"]
 % FBAE9B1FB7909F0EB6CEF4E310F0
 [North "EPBot"]
 [East "EPBot"]
@@ -6144,7 +5907,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "212"]
+[Board "204"]
 % F8A29710E3183F8CCB92DC80FC9F
 [North "EPBot"]
 [East "EPBot"]
@@ -6176,7 +5939,7 @@ X     4H    Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "213"]
+[Board "205"]
 % FBAF9B5C93643FD39036308C84FE
 [North "EPBot"]
 [East "EPBot"]
@@ -6206,7 +5969,7 @@ X     4H    Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "214"]
+[Board "206"]
 % F8A397903C33DC0CB890C9BA4E53
 [North "EPBot"]
 [East "EPBot"]
@@ -6234,7 +5997,7 @@ X     4H    Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "215"]
+[Board "207"]
 % FAA493542FB87C18FDBB9FB41B46
 [North "EPBot"]
 [East "EPBot"]
@@ -6265,7 +6028,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "216"]
+[Board "208"]
 % F9A89F9B3673F9563334B8D09385
 [North "EPBot"]
 [East "EPBot"]
@@ -6296,7 +6059,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "217"]
+[Board "209"]
 % 08A397D01EBB9D03C8B390387C7E
 [North "EPBot"]
 [East "EPBot"]
@@ -6326,7 +6089,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "218"]
+[Board "210"]
 % 0AA493148C38AF1F86D899FE7418
 [North "EPBot"]
 [East "EPBot"]
@@ -6351,7 +6114,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "219"]
+[Board "211"]
 % 09A89F182AD33873C6F4B49293A7
 [North "EPBot"]
 [East "EPBot"]
@@ -6381,7 +6144,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "220"]
+[Board "212"]
 % 0BAC9B1C9492100CF3B5C0CF9C16
 [North "EPBot"]
 [East "EPBot"]
@@ -6407,7 +6170,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "221"]
+[Board "213"]
 % 0AA793D758AE379F58983F34B7F8
 [North "EPBot"]
 [East "EPBot"]
@@ -6435,7 +6198,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "222"]
+[Board "214"]
 % 09AA9F1B249817B893DA703780F4
 [North "EPBot"]
 [East "EPBot"]
@@ -6453,18 +6216,17 @@ Pass  Pass
 [Score "NS 980"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5C =3=    Pass
+1S    Pass  4S    Pass
+4N =1=    Pass  5C =2=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=0/5 or 4/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=0/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "223"]
+[Board "215"]
 % 0BAF9B9CD07E97F68CF786123C20
 [North "EPBot"]
 [East "EPBot"]
@@ -6492,7 +6254,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "224"]
+[Board "216"]
 % 08A39712DDDA7B93BA0DF3BC38BC
 [North "EPBot"]
 [East "EPBot"]
@@ -6524,40 +6286,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "225"]
-% 09A89F1B92F433302BB1D4B84696
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:Q987.3.J986.KQ97 3.KQJ52.T532.J32 AKJ642.A7.AQ74.6 T5.T9864.K.AT854"]
-{Shape 4144 1543 6241 2515}
-{HCP 8 7 18 7}
-{Losers 7 8 4 8}
-[Declarer "S"]
-[Contract "6S"]
-[Result "12"]
-[Score "NS 980"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  3H =3=    X
-3S    Pass  4S    Pass
-4N =4=    Pass  5C =5=    Pass
-6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Cue bid, a !H stopper"]
-[Note "4:Blackwood 0123, for !S"]
-[Note "5:A=0/5 or 4/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Rabbis_Rule"]
-[Site ""]
-[Board "226"]
+[Board "217"]
 % 0BAC9B1C35B012079CC097807CDE
 [North "EPBot"]
 [East "EPBot"]
@@ -6583,35 +6312,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "227"]
-% 08A09713CABEB8FC9C02DB0CAD10
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:Q642.J64.J95.KQ5 .KQ752.T8743.JT6 AKT973.A3.AQ62.3 J85.T98.K.A98742"]
-{Shape 4333 0553 6241 3316}
-{HCP 9 6 17 8}
-{Losers 9 7 4 9}
-[Declarer "S"]
-[Contract "4S"]
-[Result "11"]
-[Score "NS 450"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  3S    Pass
-4S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Rabbis_Rule"]
-[Site ""]
-[Board "228"]
+[Board "218"]
 % 0AA49357BC3B1EF71CBA98E4368B
 [North "EPBot"]
 [East "EPBot"]
@@ -6640,7 +6341,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "229"]
+[Board "219"]
 % 08A0971080CBBECE11AC385B9C3C
 [North "EPBot"]
 [East "EPBot"]
@@ -6665,38 +6366,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "230"]
-% 0AA793D4BCEF9788081A19387BB4
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:7654.87.JT.AKT93 3.KQ965.876543.6 AKJ982.AT.AQ92.5 QT.J432.K.QJ8742"]
-{Shape 4225 1561 6241 2416}
-{HCP 8 5 18 9}
-{Losers 8 6 4 8}
-[Declarer "S"]
-[Contract "4S"]
-[Result "11"]
-[Score "NS 650"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  4C =3=    Pass
-4H =4=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Cue bid, a !C stopper"]
-[Note "4:surplus"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Rabbis_Rule"]
-[Site ""]
-[Board "231"]
+[Board "220"]
 % 09AB9F589886D0B1B71050C83718
 [North "EPBot"]
 [East "EPBot"]
@@ -6728,7 +6398,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "232"]
+[Board "221"]
 % 19AA9F1BF3B25887C416B8917830
 [North "EPBot"]
 [East "EPBot"]
@@ -6758,7 +6428,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "233"]
+[Board "222"]
 % 1BAF9B9CF2DCB510D0B61D378204
 [North "EPBot"]
 [East "EPBot"]
@@ -6776,21 +6446,20 @@ Pass  Pass
 [Score "NS 1430"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  4C =3=    Pass
-4N =4=    Pass  5D =5=    Pass
+1S    Pass  2S    Pass
+4D =1=    Pass  4H =2=    X
+4N =3=    Pass  5D =4=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Cue bid, a !C stopper"]
-[Note "4:Blackwood 0123, for !S"]
-[Note "5:A=1/5 or 5/5"]
+[Note "1:Cue bid, a !D stopper"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Blackwood 0123, for !S"]
+[Note "4:A=1/5 or 5/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "234"]
+[Board "223"]
 % 1AA49397DCFC16B91EA7D88E0BF8
 [North "EPBot"]
 [East "EPBot"]
@@ -6820,7 +6489,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "235"]
+[Board "224"]
 % 19AB9F9AD078B526B81770D03387
 [North "EPBot"]
 [East "EPBot"]
@@ -6850,7 +6519,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "236"]
+[Board "225"]
 % 1BAF9BDCB2FE860FF0169CD13780
 [North "EPBot"]
 [East "EPBot"]
@@ -6880,7 +6549,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "237"]
+[Board "226"]
 % 18A09712BBD2B03B8CFC0AC29C1D
 [North "EPBot"]
 [East "EPBot"]
@@ -6910,7 +6579,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "238"]
+[Board "227"]
 % 1BAC9B9CC7B4CC205293305D8400
 [North "EPBot"]
 [East "EPBot"]
@@ -6935,7 +6604,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "239"]
+[Board "228"]
 % 18A097D309BC18519E1BDFFCB088
 [North "EPBot"]
 [East "EPBot"]
@@ -6968,7 +6637,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "240"]
+[Board "229"]
 % 18A097121E93B08D3C7BFA3A90FB
 [North "EPBot"]
 [East "EPBot"]
@@ -6998,7 +6667,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "241"]
+[Board "230"]
 % 1AA7931496EB9B0458BEAE38FFFC
 [North "EPBot"]
 [East "EPBot"]
@@ -7028,7 +6697,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "242"]
+[Board "231"]
 % 19A89F5B81071AD0B238B4D4B7D1
 [North "EPBot"]
 [East "EPBot"]
@@ -7061,7 +6730,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "243"]
+[Board "232"]
 % 28A097103ED010EB8C9C894BBED8
 [North "EPBot"]
 [East "EPBot"]
@@ -7086,7 +6755,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "244"]
+[Board "233"]
 % 2AA493963F58F8960CDAB48B3C05
 [North "EPBot"]
 [East "EPBot"]
@@ -7114,7 +6783,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "245"]
+[Board "234"]
 % 29A89F1BD03368967480AB34B016
 [North "EPBot"]
 [East "EPBot"]
@@ -7142,7 +6811,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "246"]
+[Board "235"]
 % 2BAF9BDCA4FEB00096C65C118004
 [North "EPBot"]
 [East "EPBot"]
@@ -7167,7 +6836,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "247"]
+[Board "236"]
 % 2AA49397C8DA2C3CAADC479FB814
 [North "EPBot"]
 [East "EPBot"]
@@ -7192,7 +6861,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "248"]
+[Board "237"]
 % 29AA9FDBB0B45AD910B492083733
 [North "EPBot"]
 [East "EPBot"]
@@ -7223,7 +6892,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "249"]
+[Board "238"]
 % 2BAF9BDFD00F943400BEE3A2B4D2
 [North "EPBot"]
 [East "EPBot"]
@@ -7251,7 +6920,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "250"]
+[Board "239"]
 % 29AB9FD834F334A693409058842A
 [North "EPBot"]
 [East "EPBot"]
@@ -7279,7 +6948,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "251"]
+[Board "240"]
 % 2BAC9B9F00F4C181F773B0931E1C
 [North "EPBot"]
 [East "EPBot"]
@@ -7310,7 +6979,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "252"]
+[Board "241"]
 % 28A09713B08C6FAAD8DC323FCF98
 [North "EPBot"]
 [East "EPBot"]
@@ -7340,7 +7009,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "253"]
+[Board "242"]
 % 2AA793169885B81C498FDC345CF8
 [North "EPBot"]
 [East "EPBot"]
@@ -7373,7 +7042,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "254"]
+[Board "243"]
 % 2BAF9BDC14B1AC4037973EB2C054
 [North "EPBot"]
 [East "EPBot"]
@@ -7405,7 +7074,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "255"]
+[Board "244"]
 % 28A097103D8B52FEB83DB04FDB98
 [North "EPBot"]
 [East "EPBot"]
@@ -7436,7 +7105,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "256"]
+[Board "245"]
 % 2AA793D438BA941F0AFE94B64FEC
 [North "EPBot"]
 [East "EPBot"]
@@ -7466,7 +7135,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "257"]
+[Board "246"]
 % 38A397D11CDC328A3CABCAB3BADC
 [North "EPBot"]
 [East "EPBot"]
@@ -7493,7 +7162,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "258"]
+[Board "247"]
 % 3AA493D719389F86748C3F7BB8D9
 [North "EPBot"]
 [East "EPBot"]
@@ -7520,7 +7189,7 @@ X     Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "259"]
+[Board "248"]
 % 39A89F1AF002978412BBD4E8D893
 [North "EPBot"]
 [East "EPBot"]
@@ -7550,7 +7219,7 @@ X     Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "260"]
+[Board "249"]
 % 3BAF9B5C94379E0210E4BFF7F09E
 [North "EPBot"]
 [East "EPBot"]
@@ -7580,7 +7249,7 @@ X     Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "261"]
+[Board "250"]
 % 3AA49314CA18BC989D8CD6C61FF7
 [North "EPBot"]
 [East "EPBot"]
@@ -7610,7 +7279,7 @@ X     Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "262"]
+[Board "251"]
 % 39A89F1A282752F0B4BAF7933097
 [North "EPBot"]
 [East "EPBot"]
@@ -7638,7 +7307,7 @@ X     Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "263"]
+[Board "252"]
 % 38A097D39F3C5C326C9098BB28CB
 [North "EPBot"]
 [East "EPBot"]
@@ -7668,7 +7337,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "264"]
+[Board "253"]
 % 39AB9F58361A9833B58884D074C3
 [North "EPBot"]
 [East "EPBot"]
@@ -7698,7 +7367,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "265"]
+[Board "254"]
 % 3BAF9B9C00DF2096FEFCD0873696
 [North "EPBot"]
 [East "EPBot"]
@@ -7726,7 +7395,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "266"]
+[Board "255"]
 % 38A09712DB3ED3BF3AE08C109898
 [North "EPBot"]
 [East "EPBot"]
@@ -7739,23 +7408,24 @@ Pass  Pass
 {HCP 7 8 17 8}
 {Losers 8 6 3 9}
 [Declarer "S"]
-[Contract "7S"]
+[Contract "6S"]
 [Result "13"]
-[Score "NS 1510"]
+[Score "NS 1010"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    3H
-4N =2=    Pass  5C =3=    Pass
-7S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=0/5 or 4/5"]
+1S    Pass  2S    3H
+4N =1=    Pass  5C =2=    Pass
+5D    Pass  6C =3=    Pass
+6S    Pass  Pass  Pass
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=0/5 or 4/5"]
+[Note "3:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "267"]
+[Board "256"]
 % 3AA493151A0BBBC9C488DBBE9CF4
 [North "EPBot"]
 [East "EPBot"]
@@ -7786,35 +7456,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "268"]
-% 3BAC9B1FD7BCB140BD3214B217F6
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:Q653.8.J532.KQJ3 8.KQJ53.9864.642 AKT974.A.AQT7.97 J2.T97642.K.AT85"]
-{Shape 4144 1543 6142 2614}
-{HCP 9 6 17 8}
-{Losers 7 8 4 8}
-[Declarer "S"]
-[Contract "4S"]
-[Result "12"]
-[Score "NS 680"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  3S    Pass
-4S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Rabbis_Rule"]
-[Site ""]
-[Board "269"]
+[Board "257"]
 % 38A397901C9E9B6C3B3A8EF0F1FB
 [North "EPBot"]
 [East "EPBot"]
@@ -7844,7 +7486,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "270"]
+[Board "258"]
 % 3AA49314889559FEFC0F1BB77ABC
 [North "EPBot"]
 [East "EPBot"]
@@ -7871,7 +7513,7 @@ X     Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "271"]
+[Board "259"]
 % 39A89F1A84D0F154B83A5A048380
 [North "EPBot"]
 [East "EPBot"]
@@ -7897,7 +7539,7 @@ X     Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "272"]
+[Board "260"]
 % 48A097D3A8333F38B89E1D527FB8
 [North "EPBot"]
 [East "EPBot"]
@@ -7926,7 +7568,7 @@ X     Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "273"]
+[Board "261"]
 % 4AA493D787B8683C5D8BDEB4183B
 [North "EPBot"]
 [East "EPBot"]
@@ -7955,7 +7597,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "274"]
+[Board "262"]
 % 49A89F9B13843B35C2BA97D0E4F6
 [North "EPBot"]
 [East "EPBot"]
@@ -7985,7 +7627,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "275"]
+[Board "263"]
 % 4BAC9B1F8C649077349CD08613DC
 [North "EPBot"]
 [East "EPBot"]
@@ -8015,7 +7657,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "276"]
+[Board "264"]
 % 4AA4931408FA9C0617BC7EA4D89F
 [North "EPBot"]
 [East "EPBot"]
@@ -8045,7 +7687,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "277"]
+[Board "265"]
 % 49AB9F98348BD0F498371663B812
 [North "EPBot"]
 [East "EPBot"]
@@ -8077,7 +7719,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "278"]
+[Board "266"]
 % 4BAC9BDF3E46C07095931C34948C
 [North "EPBot"]
 [East "EPBot"]
@@ -8103,7 +7745,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "279"]
+[Board "267"]
 % 48A397D2104FC3FC18BE38A3BC9A
 [North "EPBot"]
 [East "EPBot"]
@@ -8133,7 +7775,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "280"]
+[Board "268"]
 % 49AB9F189491F8F4F3A600168A32
 [North "EPBot"]
 [East "EPBot"]
@@ -8151,25 +7793,21 @@ Pass  Pass
 [Score "NS -50"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  3S    Pass
-3N =3=    Pass  4C =4=    Pass
-4H =5=    Pass  4N =6=    Pass
-5C =7=    Pass  6S    Pass
-Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:surplus"]
-[Note "4:Cue bid, a !C stopper"]
-[Note "5:Cue bid, a !H stopper"]
-[Note "6:Blackwood 0123, for !S"]
-[Note "7:A=0/5 or 4/5"]
+1S    Pass  3S    Pass
+3N =1=    Pass  4S    Pass
+4N =2=    Pass  5D =3=    Pass
+5H    Pass  6C =4=    Pass
+6S    Pass  Pass  Pass
+[Note "1:surplus"]
+[Note "2:Blackwood 0123, for !S"]
+[Note "3:A=1/5 or 5/5"]
+[Note "4:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "281"]
+[Board "269"]
 % 4BAC9B1F0EA017F7B05393B0CEFC
 [North "EPBot"]
 [East "EPBot"]
@@ -8199,7 +7837,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "282"]
+[Board "270"]
 % 48A09713BB3F309ED0FA9E53EBB8
 [North "EPBot"]
 [East "EPBot"]
@@ -8229,7 +7867,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "283"]
+[Board "271"]
 % 4AA493975CFB489C1885083C3994
 [North "EPBot"]
 [East "EPBot"]
@@ -8254,7 +7892,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "284"]
+[Board "272"]
 % 4BAC9B5FCE96309F80F512BCF417
 [North "EPBot"]
 [East "EPBot"]
@@ -8284,7 +7922,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "285"]
+[Board "273"]
 % 48A0971032F88AAC008AD91C8EDC
 [North "EPBot"]
 [East "EPBot"]
@@ -8309,7 +7947,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "286"]
+[Board "274"]
 % 4AA493D61FCE6B080494B897F888
 [North "EPBot"]
 [East "EPBot"]
@@ -8335,7 +7973,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "287"]
+[Board "275"]
 % 49A89F594393A7B83894F7377014
 [North "EPBot"]
 [East "EPBot"]
@@ -8364,7 +8002,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "288"]
+[Board "276"]
 % 58A09710319B933ACD8ACC9E7CF8
 [North "EPBot"]
 [East "EPBot"]
@@ -8395,7 +8033,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "289"]
+[Board "277"]
 % 59A89F1BC5D4B93870B686109340
 [North "EPBot"]
 [East "EPBot"]
@@ -8428,7 +8066,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "290"]
+[Board "278"]
 % 5BAC9B5F2030CC13D0708FB69584
 [North "EPBot"]
 [East "EPBot"]
@@ -8453,7 +8091,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "291"]
+[Board "279"]
 % 5AA693140B3934BCBACB9CD6CC96
 [North "EPBot"]
 [East "EPBot"]
@@ -8483,7 +8121,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "292"]
+[Board "280"]
 % 59AB9F58FB96B372883B9434F711
 [North "EPBot"]
 [East "EPBot"]
@@ -8513,7 +8151,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "293"]
+[Board "281"]
 % 5BAC9B5F84F3D01F73869C36BC20
 [North "EPBot"]
 [East "EPBot"]
@@ -8543,7 +8181,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "294"]
+[Board "282"]
 % 5BAF9BDE50941F9C36F0B385443C
 [North "EPBot"]
 [East "EPBot"]
@@ -8573,7 +8211,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "295"]
+[Board "283"]
 % 58A09713BF3BB0A09CF30C485A5C
 [North "EPBot"]
 [East "EPBot"]
@@ -8599,7 +8237,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "296"]
+[Board "284"]
 % 5AA49316184C1F8C88B4A8FC4954
 [North "EPBot"]
 [East "EPBot"]
@@ -8624,36 +8262,7 @@ X     Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "297"]
-% 5BAF9B9CD3C3BC3216B053B52C34
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:8732.T.742.AKJT5 5.KQJ75.JT865.87 AKQ964.A3.AQ93.4 JT.98642.K.Q9632"]
-{Shape 4135 1552 6241 2515}
-{HCP 8 7 19 6}
-{Losers 8 7 3 8}
-[Declarer "S"]
-[Contract "6S"]
-[Result "12"]
-[Score "NS 1430"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5D =3=    Pass
-6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=1/5 or 5/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Rabbis_Rule"]
-[Site ""]
-[Board "298"]
+[Board "285"]
 % 58A097108018C28C90FF7FD91A98
 [North "EPBot"]
 [East "EPBot"]
@@ -8679,7 +8288,7 @@ X     Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "299"]
+[Board "286"]
 % 5AA49314BBB7D98B1BFCD8BF16C9
 [North "EPBot"]
 [East "EPBot"]
@@ -8710,7 +8319,7 @@ X     Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "300"]
+[Board "287"]
 % 59AB9F98042880C6B811C2D4B7D6
 [North "EPBot"]
 [East "EPBot"]
@@ -8740,7 +8349,7 @@ X     Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "301"]
+[Board "288"]
 % 68A097103B7AF09A127C9BBCA3CF
 [North "EPBot"]
 [East "EPBot"]
@@ -8771,7 +8380,7 @@ X     Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "302"]
+[Board "289"]
 % 6AA493D706789D1888B4091CBC5C
 [North "EPBot"]
 [East "EPBot"]
@@ -8796,7 +8405,7 @@ X     Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "303"]
+[Board "290"]
 % 69A89F1916A4B0FB14D390740B84
 [North "EPBot"]
 [East "EPBot"]
@@ -8823,7 +8432,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "304"]
+[Board "291"]
 % 6BAC9B5FF69C0FB4B027D20F92F0
 [North "EPBot"]
 [East "EPBot"]
@@ -8853,7 +8462,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "305"]
+[Board "292"]
 % 6AA79356BF1A099CB438D8A43ECC
 [North "EPBot"]
 [East "EPBot"]
@@ -8866,27 +8475,26 @@ Pass  Pass
 {HCP 9 9 18 4}
 {Losers 9 7 4 9}
 [Declarer "S"]
-[Contract "4S"]
+[Contract "6S"]
 [Result "12"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  3S    Pass
-3N =3=    Pass  4C =4=    Pass
-4H =5=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:surplus"]
-[Note "4:Cue bid, a !C stopper"]
-[Note "5:Cue bid, a !H stopper"]
+1S    Pass  3S    Pass
+3N =1=    Pass  4S    Pass
+4N =2=    Pass  5D =3=    Pass
+5H    Pass  5S =4=    Pass
+6S    Pass  Pass  Pass
+[Note "1:surplus"]
+[Note "2:Blackwood 0123, for !S"]
+[Note "3:A=1/5 or 5/5"]
+[Note "4:no !S queen"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "306"]
+[Board "293"]
 % 69A89F1B5094A4C036DAE7880090
 [North "EPBot"]
 [East "EPBot"]
@@ -8914,7 +8522,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "307"]
+[Board "294"]
 % 6BAF9BDC9601B0801DF356843CF6
 [North "EPBot"]
 [East "EPBot"]
@@ -8947,7 +8555,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "308"]
+[Board "295"]
 % 68A09712C2BAD3199BBEC0BC3ACC
 [North "EPBot"]
 [East "EPBot"]
@@ -8977,7 +8585,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "309"]
+[Board "296"]
 % 69AB9F98378414DADAC3B03586E0
 [North "EPBot"]
 [East "EPBot"]
@@ -9007,7 +8615,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "310"]
+[Board "297"]
 % 6BAF9B5C108EB0A73C1C80D634C2
 [North "EPBot"]
 [East "EPBot"]
@@ -9037,7 +8645,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "311"]
+[Board "298"]
 % 68A09713FEB8200A93989C3EC2FA
 [North "EPBot"]
 [East "EPBot"]
@@ -9055,18 +8663,19 @@ Pass  Pass
 [Score "NS -50"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5C =3=    Pass
+1S    Pass  2S    Pass
+4N =1=    Pass  5C =2=    Pass
+5D    Pass  6C =3=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=0/5 or 4/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=0/5 or 4/5"]
+[Note "3:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "312"]
+[Board "299"]
 % 6BAC9B1F9EFCF49310C28F76B624
 [North "EPBot"]
 [East "EPBot"]
@@ -9096,7 +8705,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "313"]
+[Board "300"]
 % 68A3975080BA30DE885C18017C88
 [North "EPBot"]
 [East "EPBot"]
@@ -9122,7 +8731,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "314"]
+[Board "301"]
 % 6AA49397CC8EE83FD7D81A3A9CB5
 [North "EPBot"]
 [East "EPBot"]
@@ -9152,7 +8761,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "315"]
+[Board "302"]
 % 69AB9FDA1083B23AD6B7B434E1DB
 [North "EPBot"]
 [East "EPBot"]
@@ -9184,7 +8793,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "316"]
+[Board "303"]
 % 78A09713FEF3B28EA01BFB5C1AB8
 [North "EPBot"]
 [East "EPBot"]
@@ -9214,7 +8823,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "317"]
+[Board "304"]
 % 7AA4931488D4DB9E3E3778AF3BB9
 [North "EPBot"]
 [East "EPBot"]
@@ -9245,7 +8854,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "318"]
+[Board "305"]
 % 79A89F5B973490023873D2B5BAC8
 [North "EPBot"]
 [East "EPBot"]
@@ -9275,7 +8884,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "319"]
+[Board "306"]
 % 7BAF9BDF50049D0CF6B0967017BC
 [North "EPBot"]
 [East "EPBot"]
@@ -9305,7 +8914,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "320"]
+[Board "307"]
 % 7AA49317AF5C1B34BBD8EBB7BA7C
 [North "EPBot"]
 [East "EPBot"]
@@ -9335,7 +8944,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "321"]
+[Board "308"]
 % 79AA9F1B3492834494F1B8DBC638
 [North "EPBot"]
 [East "EPBot"]
@@ -9365,7 +8974,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "322"]
+[Board "309"]
 % 7BAF9BDF907C86362E90FC801774
 [North "EPBot"]
 [East "EPBot"]
@@ -9395,40 +9004,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "323"]
-% 78A097D37BBB2C931C4C9CB11C38
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:9732.6.JT2.KQJT8 J6.KQ8753.97653. AKT854.A9.AQ84.4 Q.JT42.K.A976532"]
-{Shape 4135 2650 6241 1417}
-{HCP 7 6 17 10}
-{Losers 8 6 4 7}
-[Declarer "S"]
-[Contract "6S"]
-[Result "12"]
-[Score "NS 980"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  3H =3=    Pass
-3S    Pass  4S    Pass
-4N =4=    Pass  5C =5=    Pass
-6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Cue bid, a !H stopper"]
-[Note "4:Blackwood 0123, for !S"]
-[Note "5:A=0/5 or 4/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Rabbis_Rule"]
-[Site ""]
-[Board "324"]
+[Board "310"]
 % 79A89F1888C7F7D830A2D2869608
 [North "EPBot"]
 [East "EPBot"]
@@ -9458,7 +9034,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "325"]
+[Board "311"]
 % 7BAC9B1FFF70CFB492D30590823C
 [North "EPBot"]
 [East "EPBot"]
@@ -9488,7 +9064,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "326"]
+[Board "312"]
 % 78A39751389C28BC90700FDF8CCF
 [North "EPBot"]
 [East "EPBot"]
@@ -9520,7 +9096,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "327"]
+[Board "313"]
 % 7AA793D796983D98343C3B4AF88D
 [North "EPBot"]
 [East "EPBot"]
@@ -9538,23 +9114,21 @@ Pass  Pass
 [Score "NS 1430"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  3S    Pass
-3N =3=    Pass  4C =4=    Pass
-4N =5=    Pass  5D =6=    Pass
+1S    Pass  3S    Pass
+3N =1=    Pass  4S    Pass
+4N =2=    Pass  5D =3=    Pass
+5H    Pass  5S =4=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:surplus"]
-[Note "4:Cue bid, a !C stopper"]
-[Note "5:Blackwood 0123, for !S"]
-[Note "6:A=1/5 or 5/5"]
+[Note "1:surplus"]
+[Note "2:Blackwood 0123, for !S"]
+[Note "3:A=1/5 or 5/5"]
+[Note "4:no !S queen"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "328"]
+[Board "314"]
 % 7BAF9BDD32B424D4FF068390907E
 [North "EPBot"]
 [East "EPBot"]
@@ -9581,7 +9155,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "329"]
+[Board "315"]
 % 78A29713BFEC1C90F8BFBAC82A12
 [North "EPBot"]
 [East "EPBot"]
@@ -9599,18 +9173,17 @@ Pass  Pass
 [Score "NS 980"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5C =3=    Pass
+1S    Pass  4S    Pass
+4N =1=    Pass  5C =2=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=0/5 or 4/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=0/5 or 4/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "330"]
+[Board "316"]
 % 7AA6931487D896C88FDC39DCB41E
 [North "EPBot"]
 [East "EPBot"]
@@ -9640,7 +9213,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "331"]
+[Board "317"]
 % 79A89F1877C3D486B63098C3A81A
 [North "EPBot"]
 [East "EPBot"]
@@ -9670,7 +9243,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "332"]
+[Board "318"]
 % 88A097108F39983ABC1D50D3F89F
 [North "EPBot"]
 [East "EPBot"]
@@ -9683,27 +9256,27 @@ Pass  Pass
 {HCP 7 6 18 9}
 {Losers 8 6 4 7}
 [Declarer "S"]
-[Contract "4S"]
+[Contract "6S"]
 [Result "11"]
-[Score "NS 450"]
+[Score "NS -50"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  3H =3=    Pass
-3S    Pass  4C =4=    Pass
-4H =5=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Cue bid, a !H stopper"]
-[Note "4:Cue bid, a !C stopper"]
-[Note "5:surplus"]
+1S    Pass  2S    Pass
+4D =1=    Pass  4H =2=    X
+4N =3=    Pass  5C =4=    Pass
+5D    Pass  6C =5=    Pass
+6S    Pass  Pass  Pass
+[Note "1:Cue bid, a !D stopper"]
+[Note "2:Cue bid, a !C stopper"]
+[Note "3:Blackwood 0123, for !S"]
+[Note "4:A=0/5 or 4/5"]
+[Note "5:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "333"]
+[Board "319"]
 % 8AA793941AFF9FB82BF5DFDCBA14
 [North "EPBot"]
 [East "EPBot"]
@@ -9731,7 +9304,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "334"]
+[Board "320"]
 % 89A89F1AD790BB8483D4D8142134
 [North "EPBot"]
 [East "EPBot"]
@@ -9756,7 +9329,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "335"]
+[Board "321"]
 % 8BAF9B9FF2BFC532F29095F4133F
 [North "EPBot"]
 [East "EPBot"]
@@ -9788,7 +9361,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "336"]
+[Board "322"]
 % 8AA793961808D8F724BC8918BC5F
 [North "EPBot"]
 [East "EPBot"]
@@ -9806,10 +9379,11 @@ Pass  Pass
 [Score "NS -100"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
+1S    Pass  2S    Pass
+4C =1=    Pass  4S    Pass
 4N =2=    Pass  5D =3=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
+[Note "1:Cue bid, a !C stopper"]
 [Note "2:Blackwood 0123, for !S"]
 [Note "3:A=1/5 or 5/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -9817,7 +9391,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "337"]
+[Board "323"]
 % 89AB9F5B54B08814900824A336F4
 [North "EPBot"]
 [East "EPBot"]
@@ -9830,23 +9404,22 @@ Pass  Pass
 {HCP 9 10 17 4}
 {Losers 8 7 4 8}
 [Declarer "S"]
-[Contract "6S"]
+[Contract "5S"]
 [Result "12"]
-[Score "NS 980"]
+[Score "NS 480"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5D =3=    Pass
-6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=1/5 or 5/5"]
+1S    Pass  3S    Pass
+4N =1=    Pass  5D =2=    Pass
+5S    Pass  Pass  Pass
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=1/5 or 5/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "338"]
+[Board "324"]
 % 8BAC9B1F3CD3F0F68F9330D2859F
 [North "EPBot"]
 [East "EPBot"]
@@ -9876,7 +9449,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "339"]
+[Board "325"]
 % 88A297D33958FF98B09C0E03BDCC
 [North "EPBot"]
 [East "EPBot"]
@@ -9909,7 +9482,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "340"]
+[Board "326"]
 % 89A89FDB4286729433B598FB1830
 [North "EPBot"]
 [East "EPBot"]
@@ -9939,7 +9512,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "341"]
+[Board "327"]
 % 88A397107C7E0CE89098B38E19C8
 [North "EPBot"]
 [East "EPBot"]
@@ -9964,7 +9537,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "342"]
+[Board "328"]
 % 88A397901FA0CFB83ADAD2800EFC
 [North "EPBot"]
 [East "EPBot"]
@@ -9996,7 +9569,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "343"]
+[Board "329"]
 % 8AA79396FCBF77383D5D9B38D49B
 [North "EPBot"]
 [East "EPBot"]
@@ -10028,7 +9601,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "344"]
+[Board "330"]
 % 89AA9F98031A97C494A433E3D4F8
 [North "EPBot"]
 [East "EPBot"]
@@ -10056,7 +9629,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "345"]
+[Board "331"]
 % 98A097539F11BF10D918BB3CBCFA
 [North "EPBot"]
 [East "EPBot"]
@@ -10087,7 +9660,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "346"]
+[Board "332"]
 % 9AA493148C88585EBAC41C36C7BD
 [North "EPBot"]
 [East "EPBot"]
@@ -10113,7 +9686,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "347"]
+[Board "333"]
 % 99A89F18B1440B926BB03494F750
 [North "EPBot"]
 [East "EPBot"]
@@ -10140,7 +9713,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "348"]
+[Board "334"]
 % 99AB9F9A342AC6D3F29004FB9098
 [North "EPBot"]
 [East "EPBot"]
@@ -10168,7 +9741,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "349"]
+[Board "335"]
 % 9BAE9B1F8CB5D4349493FEC2C132
 [North "EPBot"]
 [East "EPBot"]
@@ -10201,7 +9774,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "350"]
+[Board "336"]
 % 98A397D0BBD80DBF0CBC7E13DD80
 [North "EPBot"]
 [East "EPBot"]
@@ -10234,36 +9807,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "351"]
-% 9BAC9B1FF4B03C16F0959203846E
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:Q984.43.J863.KQ4 2.KQ865.T754.852 AKT653.A2.AQ92.6 J7.JT97.K.AJT973"]
-{Shape 4243 1543 6241 2416}
-{HCP 8 5 17 10}
-{Losers 8 8 4 8}
-[Declarer "S"]
-[Contract "4S"]
-[Result "11"]
-[Score "NS 650"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  4C =3=    Pass
-4S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Cue bid, a !C stopper"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Rabbis_Rule"]
-[Site ""]
-[Board "352"]
+[Board "337"]
 % 98A09713CA309A9C2093CF7CBB7C
 [North "EPBot"]
 [East "EPBot"]
@@ -10293,7 +9837,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "353"]
+[Board "338"]
 % 9AA793964894280F34D6B83FF89E
 [North "EPBot"]
 [East "EPBot"]
@@ -10325,7 +9869,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "354"]
+[Board "339"]
 % 9BAF9BDC50CCF48286161C0194BC
 [North "EPBot"]
 [East "EPBot"]
@@ -10351,7 +9895,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "355"]
+[Board "340"]
 % 98A097108D3FB0FE2AD81B907C8A
 [North "EPBot"]
 [East "EPBot"]
@@ -10378,7 +9922,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "356"]
+[Board "341"]
 % 9AA493140C94AC99FB5F8BF8D41E
 [North "EPBot"]
 [East "EPBot"]
@@ -10403,7 +9947,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "357"]
+[Board "342"]
 % 99AB9F98F02334D897C0BB955406
 [North "EPBot"]
 [East "EPBot"]
@@ -10433,7 +9977,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "358"]
+[Board "343"]
 % A8A297D378DC8C10EB0CBA10BA93
 [North "EPBot"]
 [East "EPBot"]
@@ -10463,7 +10007,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "359"]
+[Board "344"]
 % AAA6931408D4B89C4CF64F94288B
 [North "EPBot"]
 [East "EPBot"]
@@ -10490,7 +10034,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "360"]
+[Board "345"]
 % A9A89F588314E6187990B714F380
 [North "EPBot"]
 [East "EPBot"]
@@ -10515,7 +10059,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "361"]
+[Board "346"]
 % ABAC9B9FC4F73D00BE90901762D4
 [North "EPBot"]
 [East "EPBot"]
@@ -10545,7 +10089,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "362"]
+[Board "347"]
 % AAA79396D8BDF43DC80C9A788E17
 [North "EPBot"]
 [East "EPBot"]
@@ -10575,7 +10119,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "363"]
+[Board "348"]
 % A9AB9F18F80897C412E4929022B4
 [North "EPBot"]
 [East "EPBot"]
@@ -10588,23 +10132,22 @@ Pass  Pass
 {HCP 9 5 18 8}
 {Losers 8 7 4 8}
 [Declarer "S"]
-[Contract "6S"]
+[Contract "5S"]
 [Result "11"]
-[Score "NS -50"]
+[Score "NS 450"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5D =3=    Pass
-6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=1/5 or 5/5"]
+1S    Pass  3S    Pass
+4N =1=    Pass  5D =2=    Pass
+5S    Pass  Pass  Pass
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=1/5 or 5/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "364"]
+[Board "349"]
 % ABAF9B9C14FD16B200A3C433D0BE
 [North "EPBot"]
 [East "EPBot"]
@@ -10622,10 +10165,11 @@ Pass  Pass
 [Score "NS -100"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
+1S    Pass  3S    Pass
+3N =1=    Pass  4S    Pass
 4N =2=    Pass  5D =3=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
+[Note "1:surplus"]
 [Note "2:Blackwood 0123, for !S"]
 [Note "3:A=1/5 or 5/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
@@ -10633,7 +10177,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "365"]
+[Board "350"]
 % A8A397903870BEAF9C1AF0D30BCE
 [North "EPBot"]
 [East "EPBot"]
@@ -10661,7 +10205,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "366"]
+[Board "351"]
 % A9AB9F5814A0109890F7F7B82747
 [North "EPBot"]
 [East "EPBot"]
@@ -10689,7 +10233,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "367"]
+[Board "352"]
 % ABAE9B9FC492E61C113487F08EF0
 [North "EPBot"]
 [East "EPBot"]
@@ -10719,7 +10263,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "368"]
+[Board "353"]
 % A8A09713BF9EFC0AD09B30FE1980
 [North "EPBot"]
 [East "EPBot"]
@@ -10746,7 +10290,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "369"]
+[Board "354"]
 % AAA69397DCEC0C8A9B36D8F90C94
 [North "EPBot"]
 [East "EPBot"]
@@ -10774,7 +10318,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "370"]
+[Board "355"]
 % ABAC9B5F8E123F91A034B6D0F7C4
 [North "EPBot"]
 [East "EPBot"]
@@ -10803,7 +10347,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "371"]
+[Board "356"]
 % A8A097D39AE80A3C9088529C3C33
 [North "EPBot"]
 [East "EPBot"]
@@ -10833,7 +10377,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "372"]
+[Board "357"]
 % AAA69317B7E87CB89B9C04DC6E3B
 [North "EPBot"]
 [East "EPBot"]
@@ -10863,7 +10407,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "373"]
+[Board "358"]
 % A9AB9FD894A0369817384720D4B3
 [North "EPBot"]
 [East "EPBot"]
@@ -10881,18 +10425,17 @@ Pass  Pass
 [Score "NS 980"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5D =3=    Pass
+1S    Pass  4S    Pass
+4N =1=    Pass  5D =2=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=1/5 or 5/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=1/5 or 5/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "374"]
+[Board "359"]
 % BAA793551AB89FF40B9C4FB938F4
 [North "EPBot"]
 [East "EPBot"]
@@ -10925,7 +10468,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "375"]
+[Board "360"]
 % B9AB9FD82890720596B8843410C2
 [North "EPBot"]
 [East "EPBot"]
@@ -10943,20 +10486,16 @@ Pass  Pass
 [Score "NS 480"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  4C =3=    Pass
-4H =4=    Pass  4S    Pass
+1S    Pass  2S    Pass
+4C =1=    Pass  4S    Pass
 Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Cue bid, a !C stopper"]
-[Note "4:surplus"]
+[Note "1:Cue bid, a !C stopper"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "376"]
+[Board "361"]
 % BBAF9BDC0CE23694B612CCB19730
 [North "EPBot"]
 [East "EPBot"]
@@ -10969,27 +10508,24 @@ Pass  Pass
 {HCP 9 5 18 8}
 {Losers 9 7 4 8}
 [Declarer "S"]
-[Contract "4S"]
+[Contract "6S"]
 [Result "12"]
-[Score "NS 680"]
+[Score "NS 1430"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  3S    Pass
-3N =3=    Pass  4C =4=    Pass
-4H =5=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:surplus"]
-[Note "4:Cue bid, a !C stopper"]
-[Note "5:Cue bid, a !H stopper"]
+1S    Pass  3S    Pass
+4N =1=    Pass  5D =2=    Pass
+5H    Pass  6C =3=    Pass
+6S    Pass  Pass  Pass
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=1/5 or 5/5"]
+[Note "3:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "377"]
+[Board "362"]
 % BAA693173E3C56889DF6DBF8848C
 [North "EPBot"]
 [East "EPBot"]
@@ -11019,7 +10555,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "378"]
+[Board "363"]
 % B9A89F9BD0F47495845788080500
 [North "EPBot"]
 [East "EPBot"]
@@ -11044,7 +10580,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "379"]
+[Board "364"]
 % BBAE9B1FD5BCC0DE93B40C34B353
 [North "EPBot"]
 [East "EPBot"]
@@ -11074,7 +10610,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "380"]
+[Board "365"]
 % B8A097139C388A985E00CC9CE8C1
 [North "EPBot"]
 [East "EPBot"]
@@ -11099,7 +10635,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "381"]
+[Board "366"]
 % BBAF9B9C3394BC0E3C57D205B070
 [North "EPBot"]
 [East "EPBot"]
@@ -11131,7 +10667,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "382"]
+[Board "367"]
 % BAA493973887EC1C78D7095ABFB8
 [North "EPBot"]
 [East "EPBot"]
@@ -11161,7 +10697,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "383"]
+[Board "368"]
 % BBAC9B1CA30EBF43D0A4D48432D0
 [North "EPBot"]
 [East "EPBot"]
@@ -11186,7 +10722,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "384"]
+[Board "369"]
 % B8A397D2B000BC481FD88CDABD0D
 [North "EPBot"]
 [East "EPBot"]
@@ -11219,7 +10755,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "385"]
+[Board "370"]
 % BAA79394483854083B8DBCDB9CD5
 [North "EPBot"]
 [East "EPBot"]
@@ -11254,7 +10790,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "386"]
+[Board "371"]
 % B9A89F1B1484F7B49BEA97304A30
 [North "EPBot"]
 [East "EPBot"]
@@ -11272,18 +10808,19 @@ Pass  Pass
 [Score "NS -50"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5C =3=    Pass
+1S    Pass  2S    Pass
+4N =1=    Pass  5C =2=    Pass
+5D    Pass  6C =3=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=0/5 or 4/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=0/5 or 4/5"]
+[Note "3:!S queen and !C king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "387"]
+[Board "372"]
 % C8A097108E8AEE902BF89CFC1A00
 [North "EPBot"]
 [East "EPBot"]
@@ -11308,68 +10845,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "388"]
-% CAA793D43CBED43FBA5808A917BE
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:J853.5.JT82.AK83 6.KQ963.7654.T72 AKT742.A4.AQ93.4 Q9.JT872.K.QJ965"]
-{Shape 4144 1543 6241 2515}
-{HCP 9 5 17 9}
-{Losers 8 8 4 8}
-[Declarer "S"]
-[Contract "4S"]
-[Result "12"]
-[Score "NS 680"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  3S    Pass
-4S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Rabbis_Rule"]
-[Site ""]
-[Board "389"]
-% CBAC9B1FD48393B5DE24D232B43C
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:Q642.T.J863.KQT9 .KQJ975.T954.754 AKT983.A6.AQ72.8 J75.8432.K.AJ632"]
-{Shape 4144 0643 6241 3415}
-{HCP 8 6 17 9}
-{Losers 7 7 4 9}
-[Declarer "S"]
-[Contract "6S"]
-[Result "12"]
-[Score "NS 1430"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  3H =3=    Pass
-3S    Pass  4S    Pass
-4N =4=    Pass  5C =5=    Pass
-6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Cue bid, a !H stopper"]
-[Note "4:Blackwood 0123, for !S"]
-[Note "5:A=0/5 or 4/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Rabbis_Rule"]
-[Site ""]
-[Board "390"]
+[Board "373"]
 % CAA49397DC94FE1B3B55FEB9BF3B
 [North "EPBot"]
 [East "EPBot"]
@@ -11397,7 +10873,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "391"]
+[Board "374"]
 % C9AB9FD8C4BB74181400A5508680
 [North "EPBot"]
 [East "EPBot"]
@@ -11422,7 +10898,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "392"]
+[Board "375"]
 % CBAC9B9C033CB0B45403A2D3DF4C
 [North "EPBot"]
 [East "EPBot"]
@@ -11448,7 +10924,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "393"]
+[Board "376"]
 % C8A097103A58D21C99FC8810B38F
 [North "EPBot"]
 [East "EPBot"]
@@ -11478,7 +10954,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "394"]
+[Board "377"]
 % CBAC9B1FF4279E84C0FE3C509382
 [North "EPBot"]
 [East "EPBot"]
@@ -11508,7 +10984,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "395"]
+[Board "378"]
 % C8A29711C8BA90500B90BF3CFF7A
 [North "EPBot"]
 [East "EPBot"]
@@ -11536,7 +11012,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "396"]
+[Board "379"]
 % CAA693148EAF7CC837D60CD698B8
 [North "EPBot"]
 [East "EPBot"]
@@ -11567,7 +11043,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "397"]
+[Board "380"]
 % C9A89F5B83F820A41BF774939634
 [North "EPBot"]
 [East "EPBot"]
@@ -11597,7 +11073,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "398"]
+[Board "381"]
 % D8A29710B392AAFF1B308CFE1CC8
 [North "EPBot"]
 [East "EPBot"]
@@ -11630,7 +11106,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "399"]
+[Board "382"]
 % DAA793D43A54388FBCD8AC0C1AA6
 [North "EPBot"]
 [East "EPBot"]
@@ -11658,7 +11134,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "400"]
+[Board "383"]
 % D9AB9FDB74B194B6D10737C41BB8
 [North "EPBot"]
 [East "EPBot"]
@@ -11690,36 +11166,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "401"]
-% DBAF9B9EF21FB716F0F3351080AC
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:T854.3.985.AKT96 .KQT84.J7643.QJ8 AKQ932.A2.AQT2.5 J76.J9765.K.7432"]
-{Shape 4135 0553 6241 3514}
-{HCP 7 9 19 5}
-{Losers 8 6 3 10}
-[Declarer "S"]
-[Contract "6S"]
-[Result "12"]
-[Score "NS 1430"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5D =3=    Pass
-6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=1/5 or 5/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Rabbis_Rule"]
-[Site ""]
-[Board "402"]
+[Board "384"]
 % D9AB9F9A50C890BB05B4F6101738
 [North "EPBot"]
 [East "EPBot"]
@@ -11737,18 +11184,17 @@ Pass  Pass
 [Score "NS 980"]
 [Scoring "MP"]
 [Auction "S"]
-1S    Pass  3C =1=    Pass
-4N =2=    Pass  5D =3=    Pass
+1S    Pass  2S    Pass
+4N =1=    Pass  5D =2=    Pass
 6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Blackwood 0123, for !S"]
-[Note "3:A=1/5 or 5/5"]
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=1/5 or 5/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "403"]
+[Board "385"]
 % DBAF9B9E10D0143FF4D3B58FE096
 [North "EPBot"]
 [East "EPBot"]
@@ -11778,7 +11224,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "404"]
+[Board "386"]
 % D9AA9F188BB7F4D398E41738B742
 [North "EPBot"]
 [East "EPBot"]
@@ -11811,7 +11257,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "405"]
+[Board "387"]
 % DBAC9B1EB6DFFCC7D030908F2297
 [North "EPBot"]
 [East "EPBot"]
@@ -11841,7 +11287,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "406"]
+[Board "388"]
 % D8A09712FA1A83FD1899BCBC4C33
 [North "EPBot"]
 [East "EPBot"]
@@ -11868,7 +11314,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "407"]
+[Board "389"]
 % DAA793D65B08B468941FF4BB088C
 [North "EPBot"]
 [East "EPBot"]
@@ -11898,7 +11344,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "408"]
+[Board "390"]
 % DBAF9B9C3093D0FCA6C20C54049F
 [North "EPBot"]
 [East "EPBot"]
@@ -11930,7 +11376,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "409"]
+[Board "391"]
 % D8A097D33FB1188E9C387258B802
 [North "EPBot"]
 [East "EPBot"]
@@ -11959,7 +11405,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "410"]
+[Board "392"]
 % DAA69314FB4834BCB98797D8DF1E
 [North "EPBot"]
 [East "EPBot"]
@@ -11987,7 +11433,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "411"]
+[Board "393"]
 % D9A89F1A8A8AC435B4F013D2F29B
 [North "EPBot"]
 [East "EPBot"]
@@ -12020,7 +11466,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "412"]
+[Board "394"]
 % E8A29710781C8CB018BB20DB6E8C
 [North "EPBot"]
 [East "EPBot"]
@@ -12046,7 +11492,7 @@ Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "413"]
+[Board "395"]
 % E9A89F1BB05085B5D6CA80F31418
 [North "EPBot"]
 [East "EPBot"]
@@ -12079,7 +11525,7 @@ Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "414"]
+[Board "396"]
 % EBAC9B9C048110735C3690F78CE6
 [North "EPBot"]
 [East "EPBot"]
@@ -12104,7 +11550,7 @@ Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "415"]
+[Board "397"]
 % EAA493163BBB9CEDDF8AD798F41C
 [North "EPBot"]
 [East "EPBot"]
@@ -12129,7 +11575,7 @@ Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "416"]
+[Board "398"]
 % E9A89F19F034C2BA8AD216B3B718
 [North "EPBot"]
 [East "EPBot"]
@@ -12157,7 +11603,7 @@ Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "417"]
+[Board "399"]
 % EBAC9B1C1CB483715030AFC41694
 [North "EPBot"]
 [East "EPBot"]
@@ -12182,7 +11628,7 @@ Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "418"]
+[Board "400"]
 % E9A89F18A05494FBF3076894B317
 [North "EPBot"]
 [East "EPBot"]
@@ -12212,7 +11658,7 @@ Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "419"]
+[Board "401"]
 % EBAF9B9E369474C39C13339CE4F1
 [North "EPBot"]
 [East "EPBot"]
@@ -12242,7 +11688,7 @@ Pass  Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "420"]
+[Board "402"]
 % E8A09712B8B2BBFD5833BE1B3FDD
 [North "EPBot"]
 [East "EPBot"]
@@ -12268,7 +11714,7 @@ Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "421"]
+[Board "403"]
 % EAA69314C938C9DF863B94D89FBC
 [North "EPBot"]
 [East "EPBot"]
@@ -12300,7 +11746,7 @@ X     4H    Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "422"]
+[Board "404"]
 % EBAC9B1C1EBFB77340944136DCB4
 [North "EPBot"]
 [East "EPBot"]
@@ -12330,7 +11776,7 @@ X     4H    Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "423"]
+[Board "405"]
 % E8A097D3933D109ECCFB3C1FB882
 [North "EPBot"]
 [East "EPBot"]
@@ -12360,7 +11806,7 @@ X     4H    Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "424"]
+[Board "406"]
 % EAA69397C8F9845EC7B81F14BB38
 [North "EPBot"]
 [East "EPBot"]
@@ -12388,7 +11834,7 @@ X     4H    Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "425"]
+[Board "407"]
 % F8A097110BFEEF988C5CB090FE0B
 [North "EPBot"]
 [East "EPBot"]
@@ -12417,40 +11863,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "426"]
-% FAA49317FBA41C0AF4DB989BBD3E
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:Q982.8.932.KQJ64 .KQ9654.J8654.82 AKT543.AT.AQT7.3 J76.J732.K.AT975"]
-{Shape 4135 0652 6241 3415}
-{HCP 8 6 17 9}
-{Losers 7 6 4 9}
-[Declarer "S"]
-[Contract "6S"]
-[Result "12"]
-[Score "NS 1430"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  3C =1=    Pass
-3D =2=    Pass  3H =3=    Pass
-3S    Pass  4S    Pass
-4N =4=    Pass  5C =5=    Pass
-6S    Pass  Pass  Pass
-[Note "1:Bergen"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Cue bid, a !H stopper"]
-[Note "4:Blackwood 0123, for !S"]
-[Note "5:A=0/5 or 4/5"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Rabbis_Rule"]
-[Site ""]
-[Board "427"]
+[Board "408"]
 % F9AB9F5812F09838B42BB68357F2
 [North "EPBot"]
 [East "EPBot"]
@@ -12480,7 +11893,7 @@ Pass  Pass
 
 [Event "Rabbis_Rule"]
 [Site ""]
-[Board "428"]
+[Board "409"]
 % FBAF9B5E3FF4128023D480F496AC
 [North "EPBot"]
 [East "EPBot"]
