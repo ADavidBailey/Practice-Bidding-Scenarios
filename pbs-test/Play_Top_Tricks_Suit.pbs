@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: Basic-Bridge
 convention-card-ew: Basic-Bridge
-auction-filter: Auction.....\n((1C +Pass +[23]C|1D +Pass +[23]D|1H +Pass +[234]H|1S +Pass +[234]S) +Pass\nPass +Pass|1[CDHS] +Pass +1[DHSN] +Pass\n2[CDHS] +Pass +Pass +Pass)
+auction-filter: Auction.....\n((1C +Pass +[23]C|1D +Pass +[23]D|1H +Pass +[234]H|1S +Pass +[234]S) +Pass\nPass +Pass|1[CDHS] +Pass +1[DHSN] +Pass\n2[CDHS] +Pass +Pass +Pass|1H +Pass +3H +Pass\n4H +Pass +Pass +Pass|1S +Pass +3S +Pass\n4S +Pass +Pass +Pass)
 */
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
@@ -263,7 +263,7 @@ nMajorFit = nSupportS or nSupportH
 # 4M game raise   (13-15 HCP, major fit)  → 10 top tricks
 n2X = hcp(north) >  5 and hcp(north) < 10 and nHasFit   and topTricksNS ==  8
 n3X = hcp(north) >  9 and hcp(north) < 13 and nHasFit   and topTricksNS ==  9
-n4X = hcp(north) > 12 and hcp(north) < 16 and nMajorFit and topTricksNS == 10
+n4X = hcp(north) > 12 and hcp(north) < 16 and nMajorFit and topTricksNS >= 10
 nActs = n2X or n3X or n4X
 
 # Quiet opponents — no overcalls or doubles
