@@ -33,6 +33,10 @@ dealer south
 #include "script/Predict-Opening-1-Bid"
 # Provides oS, oH, oD, oC, openingSuit for South.
 
+#include "script/TP"
+# Provides tpNorth/East/South/West and tpNS/EW (HCP + short-suit pts
+# - honor-in-short-suit penalty). tp aligns with how BBA evaluates hands.
+
 # Opener — 12-14 HCP, 1-of-suit opening (not 1NT). Split into 12 (always
 # declines limit raise), 13 (BBA may accept with shape), 14 (BBA accepts).
 sHcp12   = hcp(south) == 12
@@ -56,18 +60,26 @@ nSupportC = oC and clubs(north)    >= 4 and spades(north) < 4 and hearts(north) 
 nHasFit   = nSupportS or nSupportH or nSupportD or nSupportC
 nMajorFit = nSupportS or nSupportH
 
+# For n2X simple raise: restrict major-opener support to EXACTLY 3 cards.
+# With 4-card support + 6-9 HCP, BBA preempt-jumps to 3M; we need 2M only.
+nSupportS_2X = oS and spades(north) == 3
+nSupportH_2X = oH and hearts(north) == 3 and spades(north) < 4
+nHasFit_2X   = nSupportS_2X or nSupportH_2X or nSupportD or nSupportC
+
 #include "script/Leveling"
 # Provides keep, keep03, keep06, keep15, keep30, etc. — used to balance
 # the natural path frequencies after constraints.
 
-# Responder paths — each predicts a specific auction + final contract level:
-#   2X simple raise   1X-P-2X-all pass        opener 12-14 + responder 6-9 fit  →  8 tricks
-#   3X passed limit   1X-P-3X-all pass        opener 12-13 + responder 10-12 fit →  9 tricks
-#   4M accepted limit 1M-P-3M-P-4M-all pass   opener 14    + responder 10-12 major fit → 10+ tricks
-# Responder HCP capped at 12 to avoid Jacoby 2NT / slam exploration (Basic-Bridge has J2NT on).
-n2X = sHcp     and hcp(north) >  5 and hcp(north) < 10 and nHasFit   and topTricksNS ==  8 and keep
-n3X = sHcp12   and hcp(north) >  9 and hcp(north) < 13 and nHasFit   and topTricksNS ==  9 and keep25
-n4M = sHcp14   and hcp(north) >  9 and hcp(north) < 13 and nMajorFit and topTricksNS >= 10 and keep03
+# Responder paths — keyed on tpNorth (HCP + short-suit pts) which matches
+# BBA's hand evaluation. Shapely 6-9 HCP hands have tp 10+ and naturally
+# fall into the limit-raise bucket where BBA puts them.
+#   2X simple raise   1X-P-2X-all pass        opener 12 + tpNorth 6-9          →  8 tricks
+#   3X passed limit   1X-P-3X-all pass        opener 12 + tpNorth 10-12        →  9 tricks
+#   4M accepted limit 1M-P-3M-P-4M-all pass   opener 14 + tpNorth 10-12 major  → 10+ tricks
+# tpNorth cap at 12 keeps Jacoby 2NT / slam paths out of scope.
+n2X = sHcp12   and tpNorth >  5 and tpNorth < 10 and nHasFit_2X and topTricksNS ==  8 and keep
+n3X = sHcp12   and tpNorth >  9 and tpNorth < 13 and nHasFit   and topTricksNS ==  9 and keep25
+n4M = sHcp14   and tpNorth >  9 and tpNorth < 13 and nMajorFit and topTricksNS >= 10 and keep03
 nActs = n2X or n3X or n4M
 
 # Quiet opponents — no overcalls or doubles
