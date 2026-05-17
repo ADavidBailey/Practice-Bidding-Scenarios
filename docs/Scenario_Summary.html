@@ -47,7 +47,7 @@
 </head>
 <body>
   <h1>Scenario Summary</h1>
-  <p class="subtitle">334 scenarios &mdash; Generated <span id="gen-time" data-utc="2026-05-17T16:56:46Z"></span>
+  <p class="subtitle">334 scenarios &mdash; Generated <span id="gen-time" data-utc="2026-05-17T17:01:55Z"></span>
     &mdash; <a class="nav-btn" href="./">Dashboard</a>
     <a class="nav-btn nav-btn-active" href="Scenario_Summary.html">Scenario Summary</a>
     <a class="nav-btn" href="Convention_Card_Summary.html">Convention Cards</a></p>
@@ -177,7 +177,22 @@ Reference: https://www.bridgebum.com/counting.php</span></span></td><td>307</td>
       <h3>Recent Changes</h3>
       <table>
         <tr><th>#</th><th style="text-align:left">Scenario</th><th>Created</th><th>Modified</th></tr>
-        <tr><td>1</td><td style="text-align:left"><span class="has-tip">Found Endplay<span class="tip"><a href="https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Found_Endplay.btn" onclick="window.open('https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Found_Endplay.btn');return false;" style="color:#8cf;text-decoration:none;">Found_Endplay.btn</a>
+        <tr><td>1</td><td style="text-align:left"><span class="has-tip">Top Tricks (NT)<span class="tip"><a href="https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Play_Top_Tricks_NT.btn" onclick="window.open('https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Play_Top_Tricks_NT.btn');return false;" style="color:#8cf;text-decoration:none;">Play_Top_Tricks_NT.btn</a>
+Top Tricks — Notrump Contract (beginner)
+1NT — Pass — 3NT — all pass. Final contract is 3NT (declarer needs 9 tricks).
+Teaching feature: NS holds all 4 aces (in either hand) AND exactly 9 quick
+tricks on top. We assume outside entries exist, so split chains DO count
+(e.g., AK opposite Qxx = 3 QT). The per-suit count is capped by the
+longer single-hand length in that suit (so AK opposite Qx = 2 QT, since
+no hand has 3 cards in the suit).
+Responder is constrained to no 4-card major (so no Stayman) and no 5-card
+major (so no transfer). The auction stays natural 1NT—3NT.
+Things to think about:
+• Count your top tricks before touching the hand.
+• Chain rule: A, then K (anywhere in NS), then Q, then J, then T.
+• Length cap: split chains need length in the longer hand to materialize.
+Reference: https://www.bridgebum.com/counting.php</span></span></td><td>2026-05-15</td><td>2026-05-17</td></tr>
+        <tr><td>2</td><td style="text-align:left"><span class="has-tip">Found Endplay<span class="tip"><a href="https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Found_Endplay.btn" onclick="window.open('https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Found_Endplay.btn');return false;" style="color:#8cf;text-decoration:none;">Found_Endplay.btn</a>
 Found Endplays (4!H / 4!S) — curated strip-and-endplay candidates
 These hands are scanned from all bba/*.pbn files by
 [find_endplay_candidates.py]: South declares a 4-of-major contract, and
@@ -194,7 +209,7 @@ helps you.
 • The thrown-in opponent should be the one holding the Q of your tenace
 suit.
 Reference: https://www.bridgebum.com/endplay.php</span></span></td><td>2026-05-16</td><td>2026-05-16</td></tr>
-        <tr><td>2</td><td style="text-align:left"><span class="has-tip">Found Rabbi\'s Rule<span class="tip"><a href="https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Found_Rabbis_Rule.btn" onclick="window.open('https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Found_Rabbis_Rule.btn');return false;" style="color:#8cf;text-decoration:none;">Found_Rabbis_Rule.btn</a>
+        <tr><td>3</td><td style="text-align:left"><span class="has-tip">Found Rabbi\'s Rule<span class="tip"><a href="https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Found_Rabbis_Rule.btn" onclick="window.open('https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Found_Rabbis_Rule.btn');return false;" style="color:#8cf;text-decoration:none;">Found_Rabbis_Rule.btn</a>
 Found Rabbi's Rule (4!S) — curated hands where the safety play applies
 These hands are extracted from Rabbis_Rule.pbn by [find_rabbis_rule_makers.py]:
 contract = 4!S, declarer = South, result &gt;= 10 tricks (declarer made the
@@ -208,7 +223,7 @@ Things to think about:
 finesse for an 11th and risk going down.
 • The safety play here is dropping the singleton King.
 Reference: https://www.bridgebum.com/safety-plays.php</span></span></td><td>2026-05-16</td><td>2026-05-16</td></tr>
-        <tr><td>3</td><td style="text-align:left"><span class="has-tip">Rabbi\'s Rule<span class="tip"><a href="https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Rabbis_Rule.btn" onclick="window.open('https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Rabbis_Rule.btn');return false;" style="color:#8cf;text-decoration:none;">Rabbis_Rule.btn</a>
+        <tr><td>4</td><td style="text-align:left"><span class="has-tip">Rabbi\'s Rule<span class="tip"><a href="https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Rabbis_Rule.btn" onclick="window.open('https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Rabbis_Rule.btn');return false;" style="color:#8cf;text-decoration:none;">Rabbis_Rule.btn</a>
 Rabbi's Rule (4!S) — safety play, drop the singleton King
 "When the King is singleton, play the Ace." This is a SAFETY PLAY.
 South opens 1!S and partnership reaches 4!S.
@@ -230,7 +245,7 @@ Things to think about:
 • What's your trick count BEFORE you touch diamonds?
 • Where is the danger hand for cashing — east or west?
 • Does the auction (silent opps) say anything about diamond distribution?</span></span></td><td>2026-05-14</td><td>2026-05-16</td></tr>
-        <tr><td>4</td><td style="text-align:left"><span class="has-tip">Top Tricks (Suit)<span class="tip"><a href="https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Play_Top_Tricks_Suit.btn" onclick="window.open('https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Play_Top_Tricks_Suit.btn');return false;" style="color:#8cf;text-decoration:none;">Play_Top_Tricks_Suit.btn</a>
+        <tr><td>5</td><td style="text-align:left"><span class="has-tip">Top Tricks (Suit)<span class="tip"><a href="https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Play_Top_Tricks_Suit.btn" onclick="window.open('https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Play_Top_Tricks_Suit.btn');return false;" style="color:#8cf;text-decoration:none;">Play_Top_Tricks_Suit.btn</a>
 Top Tricks — Suit Contract (beginner)
 The final contract is a suit partial or major-suit game. Top tricks
 are designed to MATCH the contract level:
@@ -246,21 +261,6 @@ Things to think about:
 • If you already have your contract count, cash; don't risk a finesse
 for an overtrick (matchpoints aside).
 • At 4M, drawing trumps and running length is the standard plan.
-Reference: https://www.bridgebum.com/counting.php</span></span></td><td>2026-05-15</td><td>2026-05-16</td></tr>
-        <tr><td>5</td><td style="text-align:left"><span class="has-tip">Top Tricks (NT)<span class="tip"><a href="https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Play_Top_Tricks_NT.btn" onclick="window.open('https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/Play_Top_Tricks_NT.btn');return false;" style="color:#8cf;text-decoration:none;">Play_Top_Tricks_NT.btn</a>
-Top Tricks — Notrump Contract (beginner)
-1NT — Pass — 3NT — all pass. Final contract is 3NT (declarer needs 9 tricks).
-Teaching feature: NS holds all 4 aces (in either hand) AND exactly 9 quick
-tricks on top. We assume outside entries exist, so split chains DO count
-(e.g., AK opposite Qxx = 3 QT). The per-suit count is capped by the
-longer single-hand length in that suit (so AK opposite Qx = 2 QT, since
-no hand has 3 cards in the suit).
-Responder is constrained to no 4-card major (so no Stayman) and no 5-card
-major (so no transfer). The auction stays natural 1NT—3NT.
-Things to think about:
-• Count your top tricks before touching the hand.
-• Chain rule: A, then K (anywhere in NS), then Q, then J, then T.
-• Length cap: split chains need length in the longer hand to materialize.
 Reference: https://www.bridgebum.com/counting.php</span></span></td><td>2026-05-15</td><td>2026-05-16</td></tr>
         <tr><td>6</td><td style="text-align:left"><span class="has-tip">TEST<span class="tip"><a href="https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/TEST.btn" onclick="window.open('https://raw.githubusercontent.com/ADavidBailey/Practice-Bidding-Scenarios/main/btn/TEST.btn');return false;" style="color:#8cf;text-decoration:none;">TEST.btn</a>
 Puppet Stayman after 1NT (15-17)
