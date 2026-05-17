@@ -1,87 +1,118 @@
 ### Imported script: topTricksSuitNS (NS Top Tricks for SUIT contracts)
 //
-// Computes NS top tricks assuming OPENER's suit is trump.
+// Determines a presumed trump suit from NS combined holdings, then computes
+// NS top tricks based on that trump.
 //
-// Trump suit:
-//   If NS's consecutive top-honor chain (AKQJT) is large enough to draw all
-//   opponents' trumps without loss (chainTrump >= oppsTrumpLen), trump tricks
-//   = NS combined trump length (all of them cash). Otherwise opps' uncovered
-//   trumps take their share, leaving NS with:
-//     trumpTricks = nsTrumpLen - (oppsTrumpLen - chainTrump)
-//                 = nsTrumpLen - oppsTrumpLen + chainTrump
+// Trump-suit eligibility:
+//   Major suit (S, H) needs >= 8 combined NS cards.
+//   Minor suit (D, C) needs >= 9 combined NS cards.
 //
-//   Examples:
-//     11-card fit + AK   (chain 2, opps 2) → 11 trump tricks
-//     10-card fit + AKQ  (chain 3, opps 3) → 10 trump tricks
-//      9-card fit + AKQ  (chain 3, opps 4) →  8 trump tricks (lose 1)
-//      8-card fit + AKQ  (chain 3, opps 5) →  6 trump tricks (lose 2)
-//      8-card fit + AK   (chain 2, opps 5) →  5 trump tricks (lose 3)
+// Trump-suit priority (in order):
+//   1. Any eligible major beats any eligible minor (8-card major over
+//      9-card minor).
+//   2. Within a tier, the longer single-hand wins (5-3 fit beats 4-4 fit;
+//      6-3 fit beats 5-4 fit).
+//   3. Tiebreaker: larger total combined fit.
+//   4. Strict tie (same single-hand AND same total in two suits): the
+//      script picks alphabetically (spades over hearts, diamonds over
+//      clubs) but reports `trumpUnique = false`. Scenarios should reject
+//      these hands by requiring `trumpUnique` in the master constraint.
+//
+// Trump tricks formula:
+//   If chainTrump >= oppsTrumpLen: trumpTricks = nsTrumpLen (all cash).
+//   Else:                          trumpTricks = nsTrumpLen - oppsTrumpLen
+//                                                 + chainTrump
+//                                  (chain wins + length tricks after
+//                                   losing opps' uncovered trumps).
 //
 // Side suits (non-trump):
 //   +1 per side suit for first-round stop (NS holds the ace, or either
 //      hand is void).
-//   +1 per side suit for a second-round ruff: a void hand that still holds
-//      4+ trumps takes a second ruff before running out.
-//
-// Total topTricksNS is capped at 13 (max tricks in a deal).
+//   +1 per side suit for a second-round ruff: a void hand with 4+ trumps
+//      takes a second ruff before running out.
 //
 // Stopper rule:
-//   Every suit must have a first-round stop (ace or void). If any side suit
-//   is unstopped, opponents cash winners before declarer can — so scenarios
-//   should also require `nsAllStopped`, not just a threshold on topTricksNS.
+//   Every suit must have a first-round stop (`nsAllStopped`); without it
+//   opponents cash winners before declarer can. Scenarios should require
+//   `nsAllStopped` in the master constraint.
 //
-// Trump-suit caveat:
-//   Uses opener's suit as trump (via oS/oH/oD/oC). For auctions where opener
-//   raises responder (e.g., 1X-1Y-2Y) the actual trump is Y, and the trump
-//   computation will be off. Acceptable for the dominant cases:
-//     1X — Pass — 2X — all pass
-//     1X — Pass — 3X — all pass
-//     1X — Pass — 1Y — Pass — 2X — all pass
+// Self-contained — no longer depends on `script/Predict-Opening-1-Bid`.
 //
-// Dependency: requires oS, oH, oD, oC defined first
-// (e.g., via `#include "script/Predict-Opening-1-Bid"`)
-//
-// Exports: nsFirstS, nsFirstH, nsFirstD, nsFirstC,
+// Exports: trumpS, trumpH, trumpD, trumpC, hasTrump, trumpUnique,
+//          nsFirstS, nsFirstH, nsFirstD, nsFirstC,
 //          nsRuffS,  nsRuffH,  nsRuffD,  nsRuffC,
 //          nsAllStopped, trumpTricks, topTricksNS
 
-// ---- Trump-suit length in each NS hand (opener's suit is trump) ----
-sTrumps = oS ? spades(south) : (oH ? hearts(south) : (oD ? diamonds(south) : clubs(south)))
-nTrumps = oS ? spades(north) : (oH ? hearts(north) : (oD ? diamonds(north) : clubs(north)))
+// ---- NS combined suit length and longer-single-hand per suit ----
+nsLenS = spades(south)   + spades(north)
+nsLenH = hearts(south)   + hearts(north)
+nsLenD = diamonds(south) + diamonds(north)
+nsLenC = clubs(south)    + clubs(north)
+
+longerS = spades(south)   > spades(north)   ? spades(south)   : spades(north)
+longerH = hearts(south)   > hearts(north)   ? hearts(south)   : hearts(north)
+longerD = diamonds(south) > diamonds(north) ? diamonds(south) : diamonds(north)
+longerC = clubs(south)    > clubs(north)    ? clubs(south)    : clubs(north)
+
+// ---- Eligibility: 8+ for majors, 9+ for minors ----
+eligS = nsLenS >= 8
+eligH = nsLenH >= 8
+eligD = nsLenD >= 9
+eligC = nsLenC >= 9
+
+// ---- Best major: longer single-hand wins, tiebreak by total, then spades ----
+spadesBeatsHearts = longerS > longerH or (longerS == longerH and nsLenS >= nsLenH)
+trumpS = eligS and (not eligH or spadesBeatsHearts)
+trumpH = eligH and not trumpS
+hasMajor = eligS or eligH
+
+// ---- Best minor (only when no major eligible): same logic, D over C tie ----
+diamondsBeatsClubs = longerD > longerC or (longerD == longerC and nsLenD >= nsLenC)
+trumpD = (not hasMajor) and eligD and (not eligC or diamondsBeatsClubs)
+trumpC = (not hasMajor) and eligC and not trumpD
+
+// ---- Trump existence and uniqueness ----
+hasTrump = trumpS or trumpH or trumpD or trumpC
+majorsAmbig = eligS and eligH and longerS == longerH and nsLenS == nsLenH
+minorsAmbig = (not hasMajor) and eligD and eligC and longerD == longerC and nsLenD == nsLenC
+trumpUnique = hasTrump and not (majorsAmbig or minorsAmbig)
+
+// ---- Trump-suit length in each NS hand ----
+sTrumps = trumpS ? spades(south) : (trumpH ? hearts(south) : (trumpD ? diamonds(south) : clubs(south)))
+nTrumps = trumpS ? spades(north) : (trumpH ? hearts(north) : (trumpD ? diamonds(north) : clubs(north)))
 nsTrumpLen   = sTrumps + nTrumps
 oppsTrumpLen = 13 - nsTrumpLen
 
-// ---- Has-honor in the trump suit (combined NS, picked by opener's suit) ----
-hasAceTrump   = oS ? (hascard(south,AS) or hascard(north,AS))
-              : (oH ? (hascard(south,AH) or hascard(north,AH))
-              : (oD ? (hascard(south,AD) or hascard(north,AD))
-              :       (hascard(south,AC) or hascard(north,AC))))
-hasKingTrump  = oS ? (hascard(south,KS) or hascard(north,KS))
-              : (oH ? (hascard(south,KH) or hascard(north,KH))
-              : (oD ? (hascard(south,KD) or hascard(north,KD))
-              :       (hascard(south,KC) or hascard(north,KC))))
-hasQueenTrump = oS ? (hascard(south,QS) or hascard(north,QS))
-              : (oH ? (hascard(south,QH) or hascard(north,QH))
-              : (oD ? (hascard(south,QD) or hascard(north,QD))
-              :       (hascard(south,QC) or hascard(north,QC))))
-hasJackTrump  = oS ? (hascard(south,JS) or hascard(north,JS))
-              : (oH ? (hascard(south,JH) or hascard(north,JH))
-              : (oD ? (hascard(south,JD) or hascard(north,JD))
-              :       (hascard(south,JC) or hascard(north,JC))))
-hasTenTrump   = oS ? (hascard(south,TS) or hascard(north,TS))
-              : (oH ? (hascard(south,TH) or hascard(north,TH))
-              : (oD ? (hascard(south,TD) or hascard(north,TD))
-              :       (hascard(south,TC) or hascard(north,TC))))
+// ---- Has-honor in the trump suit ----
+hasAceTrump   = trumpS ? (hascard(south,AS) or hascard(north,AS))
+              : (trumpH ? (hascard(south,AH) or hascard(north,AH))
+              : (trumpD ? (hascard(south,AD) or hascard(north,AD))
+              :          (hascard(south,AC) or hascard(north,AC))))
+hasKingTrump  = trumpS ? (hascard(south,KS) or hascard(north,KS))
+              : (trumpH ? (hascard(south,KH) or hascard(north,KH))
+              : (trumpD ? (hascard(south,KD) or hascard(north,KD))
+              :          (hascard(south,KC) or hascard(north,KC))))
+hasQueenTrump = trumpS ? (hascard(south,QS) or hascard(north,QS))
+              : (trumpH ? (hascard(south,QH) or hascard(north,QH))
+              : (trumpD ? (hascard(south,QD) or hascard(north,QD))
+              :          (hascard(south,QC) or hascard(north,QC))))
+hasJackTrump  = trumpS ? (hascard(south,JS) or hascard(north,JS))
+              : (trumpH ? (hascard(south,JH) or hascard(north,JH))
+              : (trumpD ? (hascard(south,JD) or hascard(north,JD))
+              :          (hascard(south,JC) or hascard(north,JC))))
+hasTenTrump   = trumpS ? (hascard(south,TS) or hascard(north,TS))
+              : (trumpH ? (hascard(south,TH) or hascard(north,TH))
+              : (trumpD ? (hascard(south,TD) or hascard(north,TD))
+              :          (hascard(south,TC) or hascard(north,TC))))
 
-// ---- Trump chain: consecutive AKQJT held by NS ----
+// ---- Trump chain: consecutive AKQJT held by NS in the trump suit ----
 chainTrumpAfterJack  = hasTenTrump   ? 5 : 4
 chainTrumpAfterQueen = hasJackTrump  ? chainTrumpAfterJack  : 3
 chainTrumpAfterKing  = hasQueenTrump ? chainTrumpAfterQueen : 2
 chainTrumpAfterAce   = hasKingTrump  ? chainTrumpAfterKing  : 1
 chainTrump           = hasAceTrump   ? chainTrumpAfterAce   : 0
 
-// ---- Trump tricks: full length when chain draws all opps,
-//      else length minus uncovered opps' trumps ----
+// ---- Trump tricks ----
 trumpTricks = chainTrump >= oppsTrumpLen ? nsTrumpLen : (nsTrumpLen - oppsTrumpLen + chainTrump)
 
 // ---- First-round stop per suit (ace, or void in either hand) ----
@@ -91,16 +122,16 @@ nsFirstD = hascard(south, AD) or hascard(north, AD) or diamonds(south) == 0 or d
 nsFirstC = hascard(south, AC) or hascard(north, AC) or clubs(south)    == 0 or clubs(north)    == 0
 
 // ---- Second-round ruff: SIDE-suit void in a hand with 4+ trumps ----
-nsRuffS = (not oS) and ((spades(south)  ==0 and sTrumps>3) or (spades(north)  ==0 and nTrumps>3))
-nsRuffH = (not oH) and ((hearts(south)  ==0 and sTrumps>3) or (hearts(north)  ==0 and nTrumps>3))
-nsRuffD = (not oD) and ((diamonds(south)==0 and sTrumps>3) or (diamonds(north)==0 and nTrumps>3))
-nsRuffC = (not oC) and ((clubs(south)   ==0 and sTrumps>3) or (clubs(north)   ==0 and nTrumps>3))
+nsRuffS = (not trumpS) and ((spades(south)  ==0 and sTrumps>3) or (spades(north)  ==0 and nTrumps>3))
+nsRuffH = (not trumpH) and ((hearts(south)  ==0 and sTrumps>3) or (hearts(north)  ==0 and nTrumps>3))
+nsRuffD = (not trumpD) and ((diamonds(south)==0 and sTrumps>3) or (diamonds(north)==0 and nTrumps>3))
+nsRuffC = (not trumpC) and ((clubs(south)   ==0 and sTrumps>3) or (clubs(north)   ==0 and nTrumps>3))
 
 // ---- Side-suit first-round stops (exclude trump — counted in trumpTricks) ----
-sideStopS = (not oS) and nsFirstS
-sideStopH = (not oH) and nsFirstH
-sideStopD = (not oD) and nsFirstD
-sideStopC = (not oC) and nsFirstC
+sideStopS = (not trumpS) and nsFirstS
+sideStopH = (not trumpH) and nsFirstH
+sideStopD = (not trumpD) and nsFirstD
+sideStopC = (not trumpC) and nsFirstC
 
 // ---- Every suit first-round controlled ----
 nsAllStopped = nsFirstS and nsFirstH and nsFirstD and nsFirstC
