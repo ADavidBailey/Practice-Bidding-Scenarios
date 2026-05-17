@@ -179,11 +179,20 @@ n2N   = hcp(north)==9 and topTricksNS == 8                                      
 n3N   = hcp(north)>9  and hcp(north)<15 and topTricksNS >= 9 and topTricksNS <= 11   and keep03
 nActs = nPass or n2N or n3N
 
+// Ground-truth marker for the play trainer / grader: West's club spot
+// cards encode the top-trick count without affecting bidding or play.
+//   7C only (no 8C, no 9C) → exactly 7 top tricks  (Pass)
+//   8C only (no 7C, no 9C) → exactly 8 top tricks  (2NT)
+//   9C only (no 7C, no 8C) → 9+ top tricks         (3NT)
+nsMarker = (topTricksNS == 7 and     hascard(west, 7C) and not hascard(west, 8C) and not hascard(west, 9C))
+        or (topTricksNS == 8 and not hascard(west, 7C) and     hascard(west, 8C) and not hascard(west, 9C))
+        or (topTricksNS >= 9 and not hascard(west, 7C) and not hascard(west, 8C) and     hascard(west, 9C))
+
 // nActs encodes the three responder paths (Pass / 2NT / 3NT). Each path's
 // topTricksNS check implicitly requires all 4 aces in NS in the 2NT and
 // 3NT cases (see script/topTricksNS — it collapses to 0 if any suit is
 // unstopped).
-sShape and sHcp and nNoMajor4 and nShape and nActs and eHcp and wHcp
+sShape and sHcp and nNoMajor4 and nShape and nActs and eHcp and wHcp and nsMarker
 
 action printoneline,
 average "North Pass    " 100 * nPass,
