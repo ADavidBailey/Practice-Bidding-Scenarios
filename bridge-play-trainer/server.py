@@ -466,7 +466,11 @@ def start_session(body: StartSessionBody):
         sess = Session(boards[idx], role=body.role)
     except ValueError as e:
         raise HTTPException(400, str(e))
-    sess.auto_play_until_user()
+    # NOTE: deliberately NOT calling sess.auto_play_until_user() here. The
+    # client calls /start-play once the user clicks the Play button so any
+    # end-of-auction coaching has a chance to fire while cards_played_count
+    # is still 0. /start-play is idempotent (no-op when it's already the
+    # user's turn).
     sid = secrets.token_urlsafe(12)
     SESSIONS[sid] = sess
     return {"session_id": sid, "state": sess.state(), "board_index": idx}
@@ -493,10 +497,26 @@ def ground_truth(sid: str):
     dummy_d = R(SEAT_LETTER[sess.dummy])
     user_d = "S"
     partner_d = "N"
+    # Play-state-aware: before opening lead, defenders cannot see dummy.
+    pre_lead = sess.cards_played_count == 0
     if sess.role == "declarer":
         hidden_seats_d = ["E", "W"]
         hidden_labels = [f"defender ({s})" for s in hidden_seats_d]
         role_desc = f"Student is declarer ({user_d}). Dummy is {dummy_d}."
+    elif pre_lead:
+        # Defender on or before opening lead: dummy is still face-down.
+        hidden_seats_d = [declarer_d, dummy_d, partner_d]
+        hidden_labels = [
+            f"declarer ({declarer_d})",
+            f"dummy ({dummy_d}, face-down)",
+            f"partner ({partner_d})",
+        ]
+        on_lead = R(SEAT_LETTER[sess.leader]) == user_d
+        lead_status = "on opening lead" if on_lead else "awaiting opening lead from partner"
+        role_desc = (
+            f"Student is defender ({user_d}), {lead_status}. "
+            f"Partner is {partner_d}. Declarer is {declarer_d}, dummy is {dummy_d} (still face-down)."
+        )
     else:
         hidden_seats_d = [declarer_d, partner_d]
         hidden_labels = [f"declarer ({declarer_d})", f"partner ({partner_d})"]
@@ -523,6 +543,18 @@ def play(sid: str, body: PlayBody):
         raise HTTPException(404, "session not found")
     sess.undo_stack.append(sess.cards_played_count)  # checkpoint BEFORE user play
     sess.play_user_card(body.suit, body.rank)
+    sess.auto_play_until_user()
+    return {"state": sess.state()}
+
+
+@app.post("/api/session/{sid}/start-play")
+def start_play(sid: str):
+    """Called by the client when the user clicks Play in the auction overlay.
+    Auto-plays any non-user seats (e.g., LHO's opening lead) until it's the
+    user's turn. Idempotent — no-op when user is already on play."""
+    sess = SESSIONS.get(sid)
+    if sess is None:
+        raise HTTPException(404, "session not found")
     sess.auto_play_until_user()
     return {"state": sess.state()}
 

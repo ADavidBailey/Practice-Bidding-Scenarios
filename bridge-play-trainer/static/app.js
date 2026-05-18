@@ -283,6 +283,24 @@ function renderTable(state) {
   const hasHistory = state.trick_history && state.trick_history.length > 0;
   const showReview = viewingLastTrick && hasHistory && !trickFreeze;
 
+  // Review (press-and-hold auction) takes priority over trick freeze and
+  // last-trick peek so the user can always recall the bidding during play.
+  if (bidsInCenter()) {
+    const wrap = el("div", { class: "center-auction-box" });
+    const grid = el("div", { class: "center-auction-grid" });
+    fillAuctionGrid(grid, state, { largeStyle: true });
+    wrap.appendChild(grid);
+    if (awaitingPlay) {
+      const playBtn = el("button", {
+        class: "primary center-play-btn",
+        onclick: startPlay,
+      }, "Play");
+      wrap.appendChild(playBtn);
+    }
+    center.appendChild(wrap);
+    return;
+  }
+
   if (trickFreeze) {
     center.classList.add("reviewing");
     center.appendChild(el("div", { class: "center-trick-label" },
@@ -309,22 +327,6 @@ function renderTable(state) {
       const posKlass = pos ? `center-trick-${pos}` : "";
       center.appendChild(el("div", { class: `trick-card ${suitKlass} ${posKlass}` }, p.card));
     }
-    return;
-  }
-
-  if (bidsInCenter()) {
-    const wrap = el("div", { class: "center-auction-box" });
-    const grid = el("div", { class: "center-auction-grid" });
-    fillAuctionGrid(grid, state, { largeStyle: true });
-    wrap.appendChild(grid);
-    if (awaitingPlay) {
-      const playBtn = el("button", {
-        class: "primary center-play-btn",
-        onclick: startPlay,
-      }, "Play");
-      wrap.appendChild(playBtn);
-    }
-    center.appendChild(wrap);
     return;
   }
 
@@ -468,6 +470,9 @@ async function startSession() {
     groundTruth = null;
     inferenceHandledForTrick = -1;
     inferenceOpenedManually = false;
+    coachingFiredTriggers = new Set();
+    coachingTips = [];
+    coachingPending = false;
     document.getElementById("inference-panel").hidden = true;
     document.getElementById("feedback-panel").hidden = true;
     document.getElementById("result-panel").hidden = true;
@@ -541,10 +546,22 @@ function animateAuction(state) {
   render(lastState);
 }
 
-function startPlay() {
+async function startPlay() {
   awaitingPlay = false;
   auctionVisibleCount = null;
+  // First render closes the auction overlay and gives end-of-auction
+  // coaching a chance to fire while cards_played_count is still 0.
   if (lastState) render(lastState);
+  // Then ask the server to play any non-user seats (e.g., LHO's opening
+  // lead) until it's the user's turn. No-op for the leader role.
+  if (sessionId) {
+    try {
+      const data = await api(`/api/session/${sessionId}/start-play`, { method: "POST" });
+      render(data.state);
+    } catch (e) {
+      console.warn("start-play failed:", e);
+    }
+  }
 }
 
 function startReview() {
@@ -594,6 +611,11 @@ let groundTruth = null;
 let inferenceHandledForTrick = -1;
 let inferenceOpenedManually = false;
 
+// Coaching mode (slice 1: end-of-auction + opening-lead).
+let coachingFiredTriggers = new Set();   // Set<string>: which triggers have already fired this deal
+let coachingTips = [];                   // Array<{trigger, label, text}> — accumulates across the deal so the user can scroll back
+let coachingPending = false;             // True while a Claude call is in flight
+
 function getPrefs() {
   try { return JSON.parse(localStorage.getItem(PREFS_KEY)) || {}; }
   catch { return {}; }
@@ -608,18 +630,24 @@ function clearPref(key) {
 function gradingEnabled() { return !!getPrefs().gradingEnabled; }
 function gradingTrigger() { return getPrefs().gradingTrigger || "trick4"; }
 function gradingKey() { return getPrefs().anthropicKey || ""; }
+function gradingMode() { return getPrefs().gradingMode || "testing"; }
+function isCoaching() { return gradingMode() === "coaching"; }
 
 // --- settings modal ---
 
 function openSettings() {
   document.getElementById("settings-grading-enabled").checked = gradingEnabled();
+  document.getElementById("settings-mode").value = gradingMode();
   document.getElementById("settings-trigger").value = gradingTrigger();
+  document.getElementById("settings-trigger-row").style.display =
+    gradingMode() === "coaching" ? "none" : "";
   syncKeyStatus();
   document.getElementById("settings-modal").hidden = false;
 }
 function closeSettings() {
   setPrefs({
     gradingEnabled: document.getElementById("settings-grading-enabled").checked,
+    gradingMode: document.getElementById("settings-mode").value,
     gradingTrigger: document.getElementById("settings-trigger").value,
   });
   document.getElementById("settings-modal").hidden = true;
@@ -769,6 +797,33 @@ function syncSidebarVisibility() {
 async function updateInferenceUI(state) {
   const panel = document.getElementById("inference-panel");
   const gradeBtn = document.getElementById("grade-now-btn");
+
+  // Coaching mode: fire pre-lead / opening-lead triggers, keep the panel
+  // visible while a tip is showing or being fetched.
+  if (isCoaching()) {
+    gradeBtn.hidden = true;
+    // If a Claude call is in flight, leave the panel as-is (the runner
+    // will re-render when it returns).
+    if (coachingPending) {
+      syncSidebarVisibility();
+      return;
+    }
+    const trig = pendingCoachingTrigger(state);
+    if (trig) {
+      runCoachingTip(trig, state);
+      return;
+    }
+    // No new trigger pending; keep the panel visible if we have tips so
+    // the student can still scroll through earlier coaching.
+    if (coachingTips.length > 0) {
+      renderCoachingPanel();
+    } else {
+      panel.hidden = true;
+      syncSidebarVisibility();
+    }
+    return;
+  }
+
   const allowed = inferenceAllowed(state);
   // Manual-trigger Grade button: visible only in manual mode while allowed.
   if (allowed && gradingTrigger() === "manual") {
@@ -964,11 +1019,15 @@ ${studentLines}
 Grade each length and HCP separately. Return JSON only.`;
 }
 
+const SEAT_PERSPECTIVE = `The seat letters in the payload use the student's rotated view: S = the student (always bottom of the table), N = partner, W = LHO (left-hand opponent), E = RHO (right-hand opponent). When you write claims, notes, hints, or any narrative text, refer to the seats from the student's perspective using "you", "partner", "LHO", and "RHO" — not the raw letters. The JSON "claim" field for structured grading may still use the letters S/N/E/W for compactness, but every other field aimed at the student should use the perspective labels.`;
+
 const FREE_SYSTEM_PROMPT = `You are a bridge instructor grading a student's free-text read on the hidden hands during a deal.
 
 You receive: the auction, the hands visible to the student, the cards played so far, the ACTUAL hidden hands (ground truth — known only to you), and the student's prose estimate.
 
 Grade the student's stated claims against ground truth AND against what was inferrable from the visible evidence.
+
+${SEAT_PERSPECTIVE}
 
 Return JSON only:
 {
@@ -987,6 +1046,8 @@ For EACH hidden hand, grade each suit-length and HCP separately:
 - length exact = correct, ±1 = partial, ±2+ = wrong
 - HCP within ±1 = correct, within ±3 = partial, ±4+ = wrong
 
+${SEAT_PERSPECTIVE}
+
 Return JSON only:
 {
   "facets": [{"claim": "<who> <suit/HCP> = <student> (actual: <truth>)", "verdict": "...", "note": "..."}],
@@ -995,6 +1056,220 @@ Return JSON only:
   "overall": "excellent|good|partial|poor",
   "score": <0.0..1.0>
 }`;
+
+// ---- Coaching mode prompts ----
+
+const COACH_END_OF_AUCTION_PROMPT = `You are a friendly bridge coach. The auction has just concluded. **The opening lead has NOT been made yet — do not discuss the lead at all.**
+
+${SEAT_PERSPECTIVE}
+
+**ACCURACY**: be conservative and double-dummy-aware. Assume opponents play their honors optimally. Examples of common errors to avoid:
+- Dummy holding ♣KQ doubleton opposite opp ♣Axx typically establishes ONE trick after the ace falls, not two — the ace claims one of your K/Q.
+- "Finesse for the K" promises a 50% trick, not a sure one; don't count it as guaranteed in the Tricks card.
+- A 5-card side suit only yields length tricks AFTER you've drawn opp trumps / set the suit up, and only if the split is favorable.
+
+Cover three angles, tailored to the student's role:
+- **Tricks available**: how many SURE tricks the student's side has now, given the visible hand (and dummy if declarer). No finesses, no favorable splits.
+- **Promotion opportunities**: which cards in the visible hand CAN grow into winners (length tricks, honor sequences, finesse positions, suit establishment) — be specific about the assumption ("if the ♠Q is onside", "if hearts split 3-2").
+- **Risks to watch for**: what the opponents might do — bad splits, opp honors located by the bidding, fast losers in side suits.
+
+Return ONLY a JSON object with three string fields, each one short sentence (under 30 words):
+{"tricks": "...", "promotion": "...", "risks": "..."}
+
+No prose outside the JSON. No bullets inside the strings. Refer to seats with "you / partner / LHO / RHO".`;
+
+const COACH_OPENING_LEAD_PROMPT = `You are a friendly bridge coach. The opening lead has just been made. Dummy is now face-up.
+
+${SEAT_PERSPECTIVE}
+
+One short observation only — pick whichever is most useful given the student's role: what the lead reveals about leader's hand, what dummy adds to the picture, or one tactical point to plan for now.
+
+**Keep it tiny: ONE short sentence, no more than 25 words.** Plain prose, no JSON, no bullets.`;
+
+function buildCoachingPayload(state, triggerKey) {
+  const { visBlock, hidBlock, auctionLine, completed, tricksTxt } = commonBlocks(state);
+  const stage = triggerKey === "endOfAuction" ? "auction just concluded, no card played yet" : "right after the opening lead";
+  const partialTrick = (state.current_trick || [])
+    .map(p => `${p.seat}:${p.card}`).join(", ") || "(none yet)";
+  return `## Auction
+Dealer: ${state.dealer}
+${auctionLine}
+Final contract: ${state.contract_str}
+
+## Role
+${groundTruth.role_desc}
+
+## Stage
+${stage}.
+
+## Visible to student
+${visBlock}
+
+## Hidden (ground truth — NOT shown to student in the panel; available to you for accurate guidance)
+${hidBlock}
+
+## Play so far (${completed} completed tricks)
+${tricksTxt}
+
+## Cards in the current (in-progress) trick
+${partialTrick}
+
+Respond with plain prose for the student. No JSON.`;
+}
+
+async function callClaudeCoach(system, userText) {
+  const key = gradingKey();
+  if (!key) throw new Error("no API key configured");
+  const r = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": key,
+      "anthropic-version": "2023-06-01",
+      "anthropic-dangerous-direct-browser-access": "true",
+    },
+    body: JSON.stringify({
+      model: CLAUDE_MODEL,
+      max_tokens: 800,
+      system,
+      messages: [{ role: "user", content: userText }],
+    }),
+  });
+  if (!r.ok) {
+    const txt = await r.text();
+    throw new Error(`Anthropic ${r.status}: ${txt.slice(0, 200)}`);
+  }
+  const data = await r.json();
+  return (data.content || []).map(b => b.type === "text" ? b.text : "").join("").trim();
+}
+
+function pendingCoachingTrigger(state) {
+  if (!isCoaching() || !gradingEnabled() || !gradingKey()) return null;
+  if (bidsInCenter() || trickFreeze) return null;
+  // End of play: deal is complete. Fires once per deal.
+  if (state.complete) {
+    if (!coachingFiredTriggers.has("endOfPlay")) return "endOfPlay";
+    return null;
+  }
+  const tricksDone = (state.trick_history || []).length;
+  const currentCards = (state.current_trick || []).length;
+  // End-of-auction: no cards on the table yet. Fires for every role
+  // (declarer + both defenders) once per deal.
+  if (tricksDone === 0 && currentCards === 0
+      && !coachingFiredTriggers.has("endOfAuction")) {
+    return "endOfAuction";
+  }
+  // Opening lead: exactly one card has hit the table (either still in
+  // trick 1 or trick 1 just completed).
+  const openingPlayed = (tricksDone === 0 && currentCards === 1)
+                     || (tricksDone === 1 && currentCards === 0);
+  if (openingPlayed && !coachingFiredTriggers.has("openingLead")) {
+    return "openingLead";
+  }
+  return null;
+}
+
+const COACH_LABEL = {
+  endOfAuction: "End of auction",
+  openingLead: "After the opening lead",
+  endOfPlay: "End of play",
+};
+
+const COACH_END_OF_PLAY_PROMPT = `You are a friendly bridge coach. The deal is complete. You can now see every card and the full play record.
+
+${SEAT_PERSPECTIVE}
+
+Audit the student's plays (in declarer mode the student plays you AND your partner / dummy; in defender mode the student plays only their seat). Compare against ideal double-dummy play.
+
+Categorize the plays:
+- **errors**: card choices that clearly gave up a trick the student's side should have won — concrete: "at trick N you played the ♣Q when the ♣J wins the trick cheaper" etc.
+- **suboptimal**: technically less than double-dummy but didn't cost a trick on this deal (still worth pointing out so the habit doesn't bite later).
+- **summary**: one short sentence comparing the contract result to what was makeable with double-dummy play — and one positive note if there's something to praise.
+
+Return ONLY a JSON object with three string fields, each at most two short sentences:
+{"errors": "...", "suboptimal": "...", "summary": "..."}
+
+If there are no errors, set "errors" to "(no clear errors — well played)". Same convention for "suboptimal". Refer to seats with "you / partner / LHO / RHO".`;
+
+function parseJsonFromClaude(text) {
+  let t = text.trim();
+  if (t.startsWith("```")) {
+    // Strip ```json ... ``` fences.
+    t = t.replace(/^```(?:json)?\s*/i, "").replace(/```\s*$/, "").trim();
+  }
+  return JSON.parse(t);
+}
+
+async function runCoachingTip(triggerKey, state) {
+  coachingFiredTriggers.add(triggerKey);
+  coachingPending = true;
+  renderCoachingPanel();
+  try {
+    await ensureGroundTruth();
+    const system = triggerKey === "endOfAuction" ? COACH_END_OF_AUCTION_PROMPT
+                 : triggerKey === "endOfPlay"   ? COACH_END_OF_PLAY_PROMPT
+                 :                                COACH_OPENING_LEAD_PROMPT;
+    const payload = buildCoachingPayload(state, triggerKey);
+    const text = await callClaudeCoach(system, payload);
+    if (triggerKey === "endOfAuction") {
+      const obj = parseJsonFromClaude(text);
+      coachingTips.push({ trigger: triggerKey, label: "End of auction · Tricks",    text: obj.tricks    || "(no response)" });
+      coachingTips.push({ trigger: triggerKey, label: "End of auction · Promotion", text: obj.promotion || "(no response)" });
+      coachingTips.push({ trigger: triggerKey, label: "End of auction · Risks",     text: obj.risks     || "(no response)" });
+    } else if (triggerKey === "endOfPlay") {
+      const obj = parseJsonFromClaude(text);
+      coachingTips.push({ trigger: triggerKey, label: "End of play · Clear errors", text: obj.errors     || "(no response)" });
+      coachingTips.push({ trigger: triggerKey, label: "End of play · Suboptimal",   text: obj.suboptimal || "(no response)" });
+      coachingTips.push({ trigger: triggerKey, label: "End of play · Result",       text: obj.summary    || "(no response)" });
+    } else {
+      coachingTips.push({ trigger: triggerKey, label: COACH_LABEL[triggerKey], text });
+    }
+  } catch (e) {
+    coachingTips.push({ trigger: triggerKey, label: COACH_LABEL[triggerKey] + " (error)", text: `Could not fetch coaching tip: ${e.message}` });
+  } finally {
+    coachingPending = false;
+    renderCoachingPanel();
+    // Chain to the next trigger if the state has advanced while we were
+    // waiting on Claude (e.g., opening lead got played after end-of-auction).
+    if (lastState) {
+      const next = pendingCoachingTrigger(lastState);
+      if (next) runCoachingTip(next, lastState);
+    }
+  }
+}
+
+function renderCoachingPanel() {
+  const panel = document.getElementById("inference-panel");
+  const title = document.getElementById("inference-title");
+  const body = document.getElementById("inference-body");
+  const submit = document.getElementById("inference-submit");
+  const skip = document.getElementById("inference-skip");
+  const hint = document.getElementById("inference-hint");
+  const hintBody = document.getElementById("inference-hint-body");
+  panel.hidden = false;
+  title.textContent = "Coaching · scroll up to revisit";
+  body.innerHTML = "";
+  body.classList.add("coaching-tips-list");
+  for (const tip of coachingTips) {
+    const card = el("div", { class: "coach-tip-card" });
+    card.appendChild(el("div", { class: "coach-tip-label" }, tip.label));
+    card.appendChild(el("div", { class: "coach-tip-text" }, tip.text));
+    body.appendChild(card);
+  }
+  if (coachingPending) {
+    body.appendChild(el("div", { class: "coach-tip-card coach-loading" }, "Thinking…"));
+  }
+  // Auto-scroll to the newest tip but leave older ones reachable above.
+  body.scrollTop = body.scrollHeight;
+  // Hide testing-mode buttons and any leftover Continue button.
+  submit.hidden = true;
+  skip.hidden = true;
+  hint.hidden = true;
+  hintBody.hidden = true;
+  const cont = document.getElementById("coach-continue-btn");
+  if (cont) cont.remove();
+  syncSidebarVisibility();
+}
 
 async function callClaude(system, userText) {
   const key = gradingKey();
@@ -1191,6 +1466,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("settings-close").addEventListener("click", closeSettings);
   document.getElementById("settings-key-setup").addEventListener("click", openWizard);
   document.getElementById("settings-key-remove").addEventListener("click", removeKey);
+  document.getElementById("settings-mode").addEventListener("change", (ev) => {
+    document.getElementById("settings-trigger-row").style.display =
+      ev.target.value === "coaching" ? "none" : "";
+  });
   for (const b of document.querySelectorAll(".wizard-cancel")) {
     b.addEventListener("click", closeWizard);
   }

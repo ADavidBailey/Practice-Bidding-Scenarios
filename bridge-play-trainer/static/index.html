@@ -99,13 +99,20 @@
     <h2>Settings</h2>
 
     <fieldset class="settings-group">
-      <legend>Claude grading</legend>
+      <legend>Claude grading &amp; coaching</legend>
       <label class="block">
         <input type="checkbox" id="settings-grading-enabled">
-        Enable Claude grading
+        Enable Claude
       </label>
       <label class="block">
-        When to ask for your read:
+        Mode:
+        <select id="settings-mode">
+          <option value="testing">Testing — Claude grades your reads</option>
+          <option value="coaching">Coaching — Claude pushes tips as you play</option>
+        </select>
+      </label>
+      <label class="block" id="settings-trigger-row">
+        When to ask for your read (Testing mode):
         <select id="settings-trigger">
           <option value="every">After every trick</option>
           <option value="trick4">From trick 4 onward</option>

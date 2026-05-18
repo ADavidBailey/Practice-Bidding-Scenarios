@@ -666,6 +666,40 @@ button.primary:hover { background: #16456a; }
   border-bottom: none;
 }
 
+/* Coaching mode: scrollable tip log inside the inference panel. */
+.coaching-tips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+.coach-tip-card {
+  background: #fdf9ef;
+  border: 1px solid #e5dcc2;
+  border-radius: 6px;
+  padding: 0.55rem 0.75rem;
+}
+.coach-tip-label {
+  font-size: 0.8rem;
+  color: #886a3a;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
+}
+.coach-tip-text {
+  font-size: 1rem;
+  line-height: 1.35;
+  white-space: pre-wrap;
+}
+.coach-loading {
+  background: #f4f4f4;
+  border-style: dashed;
+  color: #777;
+  font-style: italic;
+}
+
 /* Feedback panel overlays the sidebar so it stays in view while you keep
    playing the next trick — no scrolling down to see what Claude said. */
 #feedback-panel {
