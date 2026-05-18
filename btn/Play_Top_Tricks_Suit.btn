@@ -47,7 +47,8 @@ sNotNT   = not (shape(south, any 4333 + any 4432 + any 5332) and hcp(south) > 14
 sOpens   = openingSuit and sNotNT
 
 #include "script/topTricksSuitNS"
-# Provides topTricksNS and nsAllStopped. Trump = opener's suit.
+# Provides topTricksNS and allSuitsStopped. NT-style chain × longer-hand
+# per suit; all-suits-stopped allows ace OR void for first-round control.
 
 # Responder support for opener's suit
 # - Major opener (1H/1S): 3+ support; for 1H, no 4-card spades alternative
@@ -93,7 +94,7 @@ nsMarker = (topTricksNS == 8 and not hascard(west, 7C) and     hascard(west, 8C)
 eHcp = hcp(east) < 11
 wHcp = hcp(west) < 11
 
-sOpens and nActs and nsAllStopped and trumpUnique and eHcp and wHcp and nsMarker
+sOpens and nActs and allSuitsStopped and eHcp and wHcp and nsMarker
 
 action
 average "South opens 1C   " 100 * oC,
