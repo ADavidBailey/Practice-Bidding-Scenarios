@@ -1,0 +1,83 @@
+# alias: SixKeyRKC
+# button-text: 6-Key RKC
+# gib-works: false
+# bba-works: false
+# auction-filter: Auction.....\n(1S +Pass +2[HDC]|1H +Pass +2[DC]|1D +Pass +2C|1C +Pass +2D)
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- 6-Key Roman Key Card Blackwood
+When the partnership has agreed on TWO suits, there are 6 key cards instead of 5:
+the four aces and the kings of BOTH agreed suits.
+
+Auctions that establish a 2-suit fit (responder's 2-level bid is 2/1 GF):
+. 1!S - 2!H - 3!H - 3!S     spade fit + heart fit
+. 1!S - 2!D - 3!D - 3!S     spade fit + diamond fit
+. 1!S - 2!C - 3!C - 3!S     spade fit + club fit
+. 1!H - 2!D - 3!D - 3!H     heart fit + diamond fit
+. 1!H - 2!C - 3!C - 3!H     heart fit + club fit
+. 1!D - 2!C - 3!C - 3!D     diamond fit + club fit
+
+Responses to 4!N (1430 style for the lower-ranking trump suit):
+. 5!C  = 1 or 4 key cards
+. 5!D  = 0 or 3 key cards
+. 5!H  = 2 key cards, denies the queen of either trump suit
+. 5!S  = 2 key cards, shows the queen of the HIGHER-ranking trump suit
+. 5!N  = (in a later round) all 6 key cards held — partner may jump to 7
+
+Follow-ups after 5!H / 5!S:
+. 5!N         asks for kings — cue-bid them up the line
+. 5!C / 5!D   (when not a trump suit) asks about the trump queens
+
+Note: BBA does not play 6-Key RKC — its 4!N is standard 1430 for a single
+agreed suit. This scenario is for human practice, not robot bidding.
+
+https://longbeachbridge.com/6-key-roman-key-card/
+@chat*/
+
+# 6-Key RKC: two-suit fit with slam interest
+dealer south
+
+#include "script/Calm-Opponents"
+# Defines calmOpps
+
+#include "script/Predict-Opening-1-Bid"
+# Defines oneSpade, oneHeart, oneDiamond, oneClub (South as opener)
+
+# South opens 1-of-suit with 5+ in opening suit and 4+ in a side suit.
+# North responds 2-of-side-suit (2/1 GF) with 5+ in that suit and 3+ support
+# for opener's suit. The 2-level new-suit response below GF must be in a suit
+# higher than opener's, so the side-suit choices are:
+#   1S opener:  side suit H, D, or C  (responder bids 2H / 2D / 2C)
+#   1H opener:  side suit D or C      (responder bids 2D / 2C)
+#   1D opener:  side suit C           (responder bids 2C)
+#   1C opener:  side suit D           (responder bids 2D — 2H/2S would be jump shifts)
+
+fitSH = oneSpade   and hearts(south)>3   and spades(north)>2   and hearts(north)>4
+fitSD = oneSpade   and diamonds(south)>3 and spades(north)>2   and diamonds(north)>4
+fitSC = oneSpade   and clubs(south)>3    and spades(north)>2   and clubs(north)>4
+fitHD = oneHeart   and diamonds(south)>3 and hearts(north)>2   and diamonds(north)>4
+fitHC = oneHeart   and clubs(south)>3    and hearts(north)>2   and clubs(north)>4
+fitDC = oneDiamond and clubs(south)>3    and diamonds(north)>3 and clubs(north)>4
+fitCD = oneClub    and diamonds(south)>3 and clubs(north)>3    and diamonds(north)>4
+
+twoSuitFit = fitSH or fitSD or fitSC or fitHD or fitHC or fitDC or fitCD
+
+# Slam zone: combined values consistent with bidding 6 of a suit.
+# Combined HCP capped at 36 to avoid grand-slam territory where the auction
+# detours into Grand Slam Force or 5NT pick-a-slam.
+combinedHCP = hcp(south) + hcp(north)
+slamRange = hcp(north)>11 and combinedHCP>29 and combinedHCP<37
+
+twoSuitFit and slamRange and calmOpps
+
+produce 1000
+action
+average "south HCP    " hcp(south),
+average "north HCP    " hcp(north),
+average "combined HCP " combinedHCP,
+average "opens 1S     " 100 * oneSpade,
+average "opens 1H     " 100 * oneHeart,
+average "opens 1D     " 100 * oneDiamond,
+average "opens 1C     " 100 * oneClub,
