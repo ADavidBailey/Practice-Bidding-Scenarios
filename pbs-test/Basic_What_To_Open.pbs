@@ -83,12 +83,12 @@ eHcp = hcp(east) < 11
 wHcp = hcp(west) < 11
 
 # Leveling: balance the six opening-bid paths so each shows up roughly equally.
-# Natural rates: 1C 29.8%, 1D 32.4%, 1H 15.4%, 1S 17.8%, 1N 4.4%, 2N 0.2%.
-lev1C = oC and keep14
-lev1D = oD and keep14
+# 2N is so rare it stays at full keep regardless.
+lev1C = oC and keep25
+lev1D = oD and keep19
 lev1H = oH and keep30
 lev1S = oS and keep25
-lev1N = oN and keep
+lev1N = oN and keep44
 lev2N = tN and keep
 
 levelTheDeal = lev1C or lev1D or lev1H or lev1S or lev1N or lev2N
