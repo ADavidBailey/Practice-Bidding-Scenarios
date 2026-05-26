@@ -78,7 +78,7 @@ oD = not (oS or oH) and ((d>3 and d>=c) or c<3) and not (oN or tN)
 oC = not (oS or oH or oD) and c>3               and not (oN or tN)
 
 # Standard 1-of-suit opening range
-sHcp = hcp(south) > 11 and hcp(south) < 22
+sHcp = hcp(south) > 11 and hcp(south) < 22 and losers(south)>3
 
 # Quiet opponents and partner so the focus is on the opening choice
 nHcp = hcp(north) >= 0 and hcp(north) < 14
