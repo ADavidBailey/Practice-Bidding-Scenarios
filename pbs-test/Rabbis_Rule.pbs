@@ -1,0 +1,92 @@
+Script,RabbisRule
+window.currentPBSScenario = 'RabbisRule';
+window.currentPBSScenarioFilename = 'Rabbis_Rule';
+console.log('PBS: Logging scenario selection for RabbisRule');
+fetch('https://bba.harmonicsystems.com/api/scenario/select', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Client-Version': '1.0.0'
+    },
+    body: JSON.stringify({
+        scenario: 'RabbisRule',
+        user: whoAmI() || 'anonymous'
+    })
+}).then(function(r){ console.log('PBS: Server response', r.status); }).catch(function(e){ console.log('PBS: Fetch error', e); });
+setDealerCode(`
+
+/*
+convention-card-ns: Basic-Bridge
+convention-card-ew: Basic-Bridge
+auction-filter: Auction.....\n(1S +Pass +2S +Pass\n4S +Pass +Pass +Pass|1S +Pass +3S +Pass\n4S +Pass +Pass +Pass|1S +Pass +4S +Pass\nPass +Pass)
+*/
+// Predeal the safety-play layout. Declarer's trump tops + diamond AQ +
+// one heart stopper. Dummy: spade Q for an extra trump trick + club K.
+// West: stiff K of diamonds. East: long hearts headed by KQ.
+predeal south SAK,HA,DAQ
+predeal north CK
+predeal west  DK
+predeal east  HKQ
+
+dealer south
+
+// ----- Declarer (South) — 1S opener with 6 spades -----
+sHcp     = hcp(south) > 16 and hcp(south) < 20
+sSpades  = spades(south) == 6                // 6-card suit for trump dominance
+sDiamonds = diamonds(south) > 3 and diamonds(south) < 6   // AQ + 2-3 small
+southHand = sHcp and sSpades and sDiamonds
+
+// ----- Dummy (North) — game-raising response -----
+nHcp     = hcp(north) > 5 and hcp(north) < 10
+nSpades  = spades(north) > 2 and spades(north) < 5   // 3-card support
+nDiamonds = diamonds(north) > 1 and diamonds(north) < 5   // 2-4
+northHand = nHcp and nSpades and nDiamonds
+
+// ----- West — STIFF K of diamonds -----
+wDiamonds = diamonds(west) == 1           // K alone
+wHcp      = hcp(west) < 11
+westHand = wDiamonds and wHcp
+
+// ----- East — long hearts headed by KQ -----
+eHearts   = hearts(east) > 4
+eHcp      = hcp(east) < 11
+eastHand = eHearts and eHcp
+
+southHand and northHand and westHand and eastHand
+
+action printoneline,
+average "West stiff K (forced)  " 100 * (diamonds(west) == 1),
+average "East 5+ hearts (forced)" 100 * (hearts(east) > 4),
+average "South 6 spades         " 100 * (spades(south) == 6),
+average "South HCP              "       hcp(south),
+average "North HCP              "       hcp(north),
+`, "S", true)
+Script
+Button,Rabbi's Rule,\n\
+--- Rabbi's Rule — safety play，drop the singleton King\n\
+"When the King is singleton offside，play the Ace." This is a SAFETY PLAY.\n\
+\n\
+South opens 1!S and partnership reaches 4!S.\n\
+\n\
+Declarer has 10 sure tricks WITHOUT touching the diamond Queen — solid\n\
+trumps，the heart Ace，and a club winner — but the diamond suit is the\n\
+trap.\n\
+\n\
+• AQxxx in declarer opposite xxx in dummy. The King is missing.\n\
+• West has the SINGLETON K. East has Jxxx.\n\
+• Take the safety play: cash the Ace. The stiff K drops; the Q is\n\
+  established as a small bonus，but more importantly you never give up\n\
+  the lead. Contract makes.\n\
+• Try for an overtrick by finessing: lead toward the AQ and play the Q.\n\
+  West's K wins. Now West can put East in，and East cashes long hearts.\n\
+  Contract goes down — at least 1，sometimes more.\n\
+\n\
+The lesson: COUNT your top tricks before deciding any finesse. If you\n\
+already have enough to make，the finesse is gratuitous risk — and Rabbi's\n\
+Rule (cash the Ace) is the safer play.\n\
+\n\
+Things to think about:\n\
+• What's your trick count BEFORE you touch diamonds?\n\
+• Where is the danger hand for cashing — east or west?\n\
+• Does the auction (silent opps) say anything about diamond distribution?\n\
+%RabbisRule%
