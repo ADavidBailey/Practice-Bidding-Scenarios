@@ -37,29 +37,18 @@ dealer south
 # Provides oS, oH, oD, oC, openingSuit for South.
 #include "script/topTricksSuitNS"
 # Provides topTricksNS
-#include "script/Leveling"
+#include "script/Calm-Opponents"
+# Provides calmOpps — E/W too weak or flat to overcall or double.
 
 # Opener — light minimum so the auction stops at the 2-level
 sHcp   = hcp(south) > 11 and hcp(south) < 15
 
-# Level the openings so each of 1C/1D/1H/1S/1NT shows up in roughly equal
-# proportion. Majors come up far more often naturally; throttle them down so
-# minors and NT get a fair share. Tune the keepNN values after running pbn
-# and reading the per-opening averages at the bottom of pbn/Play_Top_Tricks.pbn.
-lev1C  = oC and keep
-lev1D  = oD and keep44
-lev1H  = oH and keep86
-lev1S  = oS and keep75
-sOpens = lev1C or lev1D or lev1H or lev1S
+sOpens = oS or oH or oD or oC
 
 # Responder — 6-9 HCP. Either supports opener's suit or has a 4-card suit
 # to bid (and opener has 4-card support to raise it). The auction filter
 # selects whichever path BBA takes.
 nHcp = hcp(north) > 5 and hcp(north) < 10
-
-# Quiet opponents — no overcalls, no doubles
-eHcp = hcp(east) < 11
-wHcp = hcp(west) < 11
 
 # Raise-support constraints: for each 1X-1Y-2Y filter path, S needs 4+ in Y
 # so the raise to 2Y is natural. Predict N's response from shape using the
@@ -76,7 +65,21 @@ nResp1SAfter1H = oH and spades(north)>3   and diamonds(north)<4
 
 sCanRaise = (not nResp1DAfter1C or diamonds(south)>3) and (not nResp1HAfter1C or hearts(south)>3) and (not nResp1SAfter1C or spades(south)>3) and (not nResp1HAfter1D or hearts(south)>3) and (not nResp1SAfter1D or spades(south)>3) and (not nResp1SAfter1H or spades(south)>3)
 
-sOpens and sHcp and nHcp and eHcp and wHcp and topTricksNS==8 and sCanRaise
+# North raises opener's suit directly (the 1X-2X paths). Majors need 3+
+# support and no higher 4-card suit to bid first. Minors need 4+ support, no
+# 4-card major, AND shortness (singleton/void) — a balanced minor-support hand
+# bids 1NT, so a minor raise is always unbalanced (hence 5+ support in practice).
+nShort  = spades(north)<2 or hearts(north)<2 or diamonds(north)<2 or clubs(north)<2
+nRaiseH = oH and hearts(north)>2   and spades(north)<4
+nRaiseS = oS and spades(north)>2
+nRaiseC = oC and clubs(north)>3    and diamonds(north)<4 and hearts(north)<4 and spades(north)<4 and nShort
+nRaiseD = oD and diamonds(north)>3 and hearts(north)<4   and spades(north)<4 and nShort
+nRaises = nRaiseH or nRaiseS or nRaiseC or nRaiseD
+
+# North acts with a fit: raise opener, or bid a new suit South can raise.
+nActs = nRaises or nResp1DAfter1C or nResp1HAfter1C or nResp1SAfter1C or nResp1HAfter1D or nResp1SAfter1D or nResp1SAfter1H
+
+sOpens and sHcp and nHcp and calmOpps and topTricksNS==8 and sCanRaise and nActs
 
 action
 average "South opens 1C   " 100 * oC,
