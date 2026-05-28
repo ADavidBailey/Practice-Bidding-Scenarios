@@ -1,25 +1,34 @@
-### Imported script: topTricksSuitNS (NS Top Tricks for SUIT contracts)
+### Imported script: topTricksSuitNS (NS makeable tricks for SUIT contracts)
 //
-// NT-style baseline (chain × longer-hand-length per suit) PLUS suit-specific
-// adjustments for the presumed trump fit:
-//   - For the trump suit, replace the NT min(chain, longer) value with the
-//     suit-aware count: chain + max(0, nsLen - opps), capped at nsLen.
-//     This captures length tricks after drawing trumps (or cross-ruff
-//     potential when chain >= opps).
-//   - Add a side-suit ruff bonus when one hand is void and holds 4+ trumps.
+// Tricks NS can take BY FORCE in a suit contract — cashing winners, drawing
+// trumps, and ruffing losers — with NO finesse and NO promotion. This is the
+// "a beginner can make it" count, not a double-dummy maximum.
 //
-// Trump-suit eligibility / priority (same rule as before):
+// Side suits: top winners only = min(consecutive AKQJT chain held by NS,
+//   longer single-hand length). Counted from the ACE down, so KQJ without the
+//   ace = 0 (cashing it would need promotion, which is out).
+//
+// Trump suit (no trump loser required): a deal is kept only when NS's
+//   consecutive top trumps outlast the longest single opponent holding
+//   (trumpChain >= longestOpp), so trumps draw without ever losing the lead.
+//   Trump tricks = long-hand trump length (all high after the draw) PLUS
+//   ruffs in the short hand: +1 per side suit where the short trump hand is
+//   void/singleton and the long hand has losers to ruff (3+ cards), capped
+//   by the short hand's trump length.
+//
+// Trump-suit eligibility / priority:
 //   - Major (S, H) needs 8+ combined; minor (D, C) needs 9+.
 //   - Major beats minor; within tier, longer single hand wins, tiebreak by
 //     larger total combined, then alphabetical (S>H, D>C).
-//   - If no suit qualifies, all four suits use NT-style and no ruff bonus.
+//   - If no suit qualifies, all four suits use the side-suit count.
 //
-// All suits stopped: ace OR either hand void (relaxed from the NT version's
+// First-round control: ace OR either hand void (relaxed from the NT version's
 // "all four aces" — a void is first-round-controlled in a suit contract).
-// Total collapses to 0 if any suit is unstopped.
+// Total collapses to 0 if any suit lacks control or trumps can't be drawn
+// cleanly.
 //
 // Exports: topTricksSpades, topTricksHearts, topTricksDiamonds, topTricksClubs,
-//          trumpS, trumpH, trumpD, trumpC, hasTrump,
+//          trumpS, trumpH, trumpD, trumpC, hasTrump, trumpsDrawable,
 //          allSuitsStopped, topTricksNS
 
 // ---- Has-honor checks ----
@@ -108,38 +117,55 @@ trumpD = (not hasMajor) and eligD and (not eligC or diamondsBeatsClubs)
 trumpC = (not hasMajor) and eligC and not trumpD
 hasTrump = trumpS or trumpH or trumpD or trumpC
 
-// ---- Trump-suit length in each NS hand (for ruff bonuses) ----
-sTrumps = trumpS ? spades(south) : (trumpH ? hearts(south) : (trumpD ? diamonds(south) : (trumpC ? clubs(south) : 0)))
-nTrumps = trumpS ? spades(north) : (trumpH ? hearts(north) : (trumpD ? diamonds(north) : (trumpC ? clubs(north) : 0)))
+// ---- Trump-suit length in each hand (0 if no trump suit qualifies) ----
+sTrump = trumpS ? spades(south) : (trumpH ? hearts(south) : (trumpD ? diamonds(south) : (trumpC ? clubs(south) : 0)))
+nTrump = trumpS ? spades(north) : (trumpH ? hearts(north) : (trumpD ? diamonds(north) : (trumpC ? clubs(north) : 0)))
+eTrump = trumpS ? spades(east)  : (trumpH ? hearts(east)  : (trumpD ? diamonds(east)  : (trumpC ? clubs(east)  : 0)))
+wTrump = trumpS ? spades(west)  : (trumpH ? hearts(west)  : (trumpD ? diamonds(west)  : (trumpC ? clubs(west)  : 0)))
 
-// ---- Suit-aware "as trump" count: chain + max(0, nsLen - opps), capped at nsLen ----
-//   slack = nsLen - (13 - nsLen) = 2*nsLen - 13.
-slackPosS = nsLenS > 13 - nsLenS ? nsLenS - (13 - nsLenS) : 0
-slackPosH = nsLenH > 13 - nsLenH ? nsLenH - (13 - nsLenH) : 0
-slackPosD = nsLenD > 13 - nsLenD ? nsLenD - (13 - nsLenD) : 0
-slackPosC = nsLenC > 13 - nsLenC ? nsLenC - (13 - nsLenC) : 0
+longTrump  = sTrump > nTrump ? sTrump : nTrump
+shortTrump = sTrump > nTrump ? nTrump : sTrump
+longestOpp = eTrump > wTrump ? eTrump : wTrump
 
-trumpRawS = chainSpades   + slackPosS
-trumpRawH = chainHearts   + slackPosH
-trumpRawD = chainDiamonds + slackPosD
-trumpRawC = chainClubs    + slackPosC
+// ---- Trump honor chain for whichever suit is trump ----
+trumpChain = trumpS ? chainSpades : (trumpH ? chainHearts : (trumpD ? chainDiamonds : (trumpC ? chainClubs : 0)))
 
-trumpTricksAsS = trumpRawS < nsLenS ? trumpRawS : nsLenS
-trumpTricksAsH = trumpRawH < nsLenH ? trumpRawH : nsLenH
-trumpTricksAsD = trumpRawD < nsLenD ? trumpRawD : nsLenD
-trumpTricksAsC = trumpRawC < nsLenC ? trumpRawC : nsLenC
+// No trump loser: our consecutive top honors outlast the longest single
+// opponent holding, so every opponent trump is drawn without losing the lead.
+// (No trump suit => nothing to lose.)
+trumpsDrawable = (not hasTrump) or trumpChain >= longestOpp
 
-// ---- Per-suit contribution: trump-formula if this is trump, else NT-style ----
-contribS = trumpS ? trumpTricksAsS : topTricksSpades
-contribH = trumpH ? trumpTricksAsH : topTricksHearts
-contribD = trumpD ? trumpTricksAsD : topTricksDiamonds
-contribC = trumpC ? trumpTricksAsC : topTricksClubs
+// ---- Long / short trump hand side-suit lengths (for ruff counting) ----
+//   southLong = the NS hand holding the longer trumps. We ruff the long
+//   hand's side-suit losers in the short hand.
+southLong = sTrump >= nTrump
+shortSpades   = southLong ? spades(north)   : spades(south)
+shortHearts   = southLong ? hearts(north)   : hearts(south)
+shortDiamonds = southLong ? diamonds(north) : diamonds(south)
+shortClubs    = southLong ? clubs(north)    : clubs(south)
+longSpades    = southLong ? spades(south)   : spades(north)
+longHearts    = southLong ? hearts(south)   : hearts(north)
+longDiamonds  = southLong ? diamonds(south) : diamonds(north)
+longClubs     = southLong ? clubs(south)    : clubs(north)
 
-// ---- Ruff bonus: side-suit void in a hand with 4+ trumps ----
-ruffS = (not trumpS) and ((spades(south)  ==0 and sTrumps>3) or (spades(north)  ==0 and nTrumps>3))
-ruffH = (not trumpH) and ((hearts(south)  ==0 and sTrumps>3) or (hearts(north)  ==0 and nTrumps>3))
-ruffD = (not trumpD) and ((diamonds(south)==0 and sTrumps>3) or (diamonds(north)==0 and nTrumps>3))
-ruffC = (not trumpC) and ((clubs(south)   ==0 and sTrumps>3) or (clubs(north)   ==0 and nTrumps>3))
+// ---- Ruff tricks: +1 per SIDE suit where the short trump hand is
+//   void/singleton and the long hand has losers there (3+ cards). Conservative
+//   (one ruff per short suit), capped by the short hand's trump length. ----
+ruffSpades   = (not trumpS) and shortSpades   <= 1 and longSpades   >= 3
+ruffHearts   = (not trumpH) and shortHearts   <= 1 and longHearts   >= 3
+ruffDiamonds = (not trumpD) and shortDiamonds <= 1 and longDiamonds >= 3
+ruffClubs    = (not trumpC) and shortClubs    <= 1 and longClubs    >= 3
+ruffRaw   = ruffSpades + ruffHearts + ruffDiamonds + ruffClubs
+ruffCount = ruffRaw < shortTrump ? ruffRaw : shortTrump
+
+// ---- Trump-suit tricks = long-hand trumps drawn + short-hand ruffs ----
+trumpTricks = longTrump + ruffCount
+
+// ---- Per-suit contribution: trump-formula if this is trump, else side-suit ----
+contribS = trumpS ? trumpTricks : topTricksSpades
+contribH = trumpH ? trumpTricks : topTricksHearts
+contribD = trumpD ? trumpTricks : topTricksDiamonds
+contribC = trumpC ? trumpTricks : topTricksClubs
 
 // ---- First-round control per suit: ace OR either hand void ----
 stoppedSpades   = hasAceSpades   or spades(south)   == 0 or spades(north)   == 0
@@ -150,6 +176,6 @@ stoppedClubs    = hasAceClubs    or clubs(south)    == 0 or clubs(north)    == 0
 allSuitsStopped = stoppedSpades and stoppedHearts and stoppedDiamonds and stoppedClubs
 
 // ---- Total (collapses to 0 if any suit unstopped; capped at 13) ----
-topTricksRaw = contribS + contribH + contribD + contribC + ruffS + ruffH + ruffD + ruffC
+topTricksRaw = contribS + contribH + contribD + contribC
 topTricksCapped = topTricksRaw < 14 ? topTricksRaw : 13
-topTricksNS  = allSuitsStopped ? topTricksCapped : 0
+topTricksNS  = (allSuitsStopped and trumpsDrawable) ? topTricksCapped : 0
