@@ -34,11 +34,9 @@ auction-filter: \[Deal .* .* .* .*\..*\..*\.*[789]
 //   opposite Qx (longer hand = 2) counts only 2.
 //
 // Stopper rule:
-//   First-round control (allSuitsStopped = an ace in NS in every suit) is
-//   still computed and exported, but topTricksNS NO LONGER requires it. If
-//   NS can cash topTricksNS tricks, then NS winners + defenders' tricks <= 13,
-//   so any contract <= topTricksNS makes even if the defense cashes first.
-//   The consuming scenario can still AND in allSuitsStopped for cleaner hands.
+//   In notrump, an unstopped suit (no A in NS for that suit) lets opps run
+//   their length on the opening lead before declarer can cash any winners.
+//   So if any suit lacks an A in NS, topTricksNS collapses to 0.
 //
 // Exports: topTricksSpades, topTricksHearts, topTricksDiamonds,
 //          topTricksClubs, topTricksNS
@@ -105,10 +103,14 @@ topTricksHearts   = chainHearts   < longerHandHearts   ? chainHearts   : longerH
 topTricksDiamonds = chainDiamonds < longerHandDiamonds ? chainDiamonds : longerHandDiamonds
 topTricksClubs    = chainClubs    < longerHandClubs    ? chainClubs    : longerHandClubs
 
-// ---- Total (capped at 13). First-round control NOT required — see header. ----
-allSuitsStopped = hasAceSpades and hasAceHearts and hasAceDiamonds and hasAceClubs
+// ---- Total. Requires 3+ aces in NS for entries (relaxed from all 4):
+//   with no trumps to cross hands, the aces are what let declarer reach
+//   established winners. 3 aces = 3 entries, enough in practice; collapses
+//   to 0 below that. (EXPERIMENT — verify overcount rate before trusting.) ----
+acesNS          = hasAceSpades + hasAceHearts + hasAceDiamonds + hasAceClubs
+allSuitsStopped = acesNS >= 3
 topTricksRaw    = topTricksSpades + topTricksHearts + topTricksDiamonds + topTricksClubs
-topTricksNS     = topTricksRaw < 14 ? topTricksRaw : 13
+topTricksNS     = allSuitsStopped ? topTricksRaw : 0
 // Provides topTricksSpades, topTricksHearts, topTricksDiamonds, topTricksClubs, topTricksNS
 
 ### Imported Leveling Code ###
@@ -166,23 +168,24 @@ wHcp = hcp(west) < 11
 # Define responder's three action paths, with Leveling factors to balance
 # the natural rates (Pass ~7.2%, 2NT ~2.2%, 3NT ~90.6%) toward roughly
 # equal distribution. 2NT is the rarest path; reduce Pass and 3NT to match.
-nPass = hcp(north)<9  and topTricksNS >= 7 and topTricksNS <=  9                     and keep30
-n2N   = hcp(north)==9 and topTricksNS >= 8 and topTricksNS <= 10                     and keep
+nPass = hcp(north)<9  and topTricksNS == 7                                           and keep30
+n2N   = hcp(north)==9 and topTricksNS == 8                                           and keep
 n3N   = hcp(north)>9  and hcp(north)<15 and topTricksNS >= 9 and topTricksNS <= 11   and keep03
 nActs = nPass or n2N or n3N
 
 // Ground-truth marker for the play trainer / grader: West's club spot
-// cards encode the CONTRACT level (the path), not the raw trick count.
-//   7C only (no 8C, no 9C) → 1NT contract  (Pass,  target 7)
-//   8C only (no 7C, no 9C) → 2NT contract  (2NT,   target 8)
-//   9C only (no 7C, no 8C) → 3NT contract  (3NT,   target 9)
-nsMarker = (nPass and     hascard(west, 7C) and not hascard(west, 8C) and not hascard(west, 9C))
-        or (n2N   and not hascard(west, 7C) and     hascard(west, 8C) and not hascard(west, 9C))
-        or (n3N   and not hascard(west, 7C) and not hascard(west, 8C) and     hascard(west, 9C))
+// cards encode the top-trick count without affecting bidding or play.
+//   7C only (no 8C, no 9C) → exactly 7 top tricks  (Pass)
+//   8C only (no 7C, no 9C) → exactly 8 top tricks  (2NT)
+//   9C only (no 7C, no 8C) → 9+ top tricks         (3NT)
+nsMarker = (topTricksNS == 7 and     hascard(west, 7C) and not hascard(west, 8C) and not hascard(west, 9C))
+        or (topTricksNS == 8 and not hascard(west, 7C) and     hascard(west, 8C) and not hascard(west, 9C))
+        or (topTricksNS >= 9 and not hascard(west, 7C) and not hascard(west, 8C) and     hascard(west, 9C))
 
-// nActs encodes the three responder paths (Pass / 2NT / 3NT). Each path
-// requires enough top tricks to make its contract (topTricksNS >= target);
-// first-round control is no longer required (see script/topTricksNS).
+// nActs encodes the three responder paths (Pass / 2NT / 3NT). Each path's
+// topTricksNS check implicitly requires all 4 aces in NS in the 2NT and
+// 3NT cases (see script/topTricksNS — it collapses to 0 if any suit is
+// unstopped).
 sShape and sHcp and nNoMajor4 and nShape and nActs and eHcp and wHcp and nsMarker
 
 action printoneline,
@@ -198,12 +201,11 @@ Button,Top Tricks (NT),\n\
 --- Top Tricks — Notrump Contract (beginner)\n\
 1NT — Pass — 3NT — all pass. Final contract is 3NT (declarer needs 9 tricks).\n\
 \n\
-Teaching feature: NS can cash enough top tricks to make the contract once\n\
-on lead — no finesse，no promotion. First-round control in every suit is\n\
-NOT required; the defense may take a trick or two first，but you still have\n\
-enough winners to bring it home. We assume outside entries exist，so split\n\
-chains DO count (e.g.，AK opposite Qxx = 3 QT)，capped by the longer\n\
-single-hand length (AK opposite Qx = 2 QT).\n\
+Teaching feature: NS holds all 4 aces (in either hand) AND exactly 9 quick\n\
+tricks on top. We assume outside entries exist，so split chains DO count\n\
+(e.g.，AK opposite Qxx = 3 QT). The per-suit count is capped by the\n\
+longer single-hand length in that suit (so AK opposite Qx = 2 QT，since\n\
+no hand has 3 cards in the suit).\n\
 \n\
 Responder is constrained to no 4-card major (so no Stayman) and no 5-card\n\
 major (so no transfer). The auction stays natural 1NT—3NT.\n\
