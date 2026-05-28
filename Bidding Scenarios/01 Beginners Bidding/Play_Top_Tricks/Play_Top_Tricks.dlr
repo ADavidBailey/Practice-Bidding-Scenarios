@@ -371,12 +371,7 @@ nResp1HAfter1D = oD and hearts(north)>3   and diamonds(north)<4
 nResp1SAfter1D = oD and spades(north)>3   and hearts(north)<4 and diamonds(north)<4
 nResp1SAfter1H = oH and spades(north)>3   and diamonds(north)<4
 
-sCanRaise = (not nResp1DAfter1C or diamonds(south)>3)
-        and (not nResp1HAfter1C or hearts(south)>3)
-        and (not nResp1SAfter1C or spades(south)>3)
-        and (not nResp1HAfter1D or hearts(south)>3)
-        and (not nResp1SAfter1D or spades(south)>3)
-        and (not nResp1SAfter1H or spades(south)>3)
+sCanRaise = (not nResp1DAfter1C or diamonds(south)>3) and (not nResp1HAfter1C or hearts(south)>3) and (not nResp1SAfter1C or spades(south)>3) and (not nResp1HAfter1D or hearts(south)>3) and (not nResp1SAfter1D or spades(south)>3) and (not nResp1SAfter1H or spades(south)>3)
 
 sOpens and sHcp and nHcp and eHcp and wHcp and topTricksNS==8 and sCanRaise
 
