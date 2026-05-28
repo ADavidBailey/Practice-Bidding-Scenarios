@@ -79,7 +79,7 @@ nRaises = nRaiseH or nRaiseS or nRaiseC or nRaiseD
 # North acts with a fit: raise opener, or bid a new suit South can raise.
 nActs = nRaises or nResp1DAfter1C or nResp1HAfter1C or nResp1SAfter1C or nResp1HAfter1D or nResp1SAfter1D or nResp1SAfter1H
 
-sOpens and sHcp and nHcp and calmOpps and topTricksNS==8 and sCanRaise and nActs
+sOpens and sHcp and nHcp and calmOpps and topTricksNS>=8 and sCanRaise and nActs
 
 action
 average "South opens 1C   " 100 * oC,

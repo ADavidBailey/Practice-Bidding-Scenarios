@@ -3,28 +3,32 @@
 # scenario-title: --- Top Tricks — Suit Contract (beginner)
 # gib-works: true
 # bba-works: true
-# auction-filter: \[Deal .* .* .* .*\..*\..*\.*[89]
+# auction-filter: Auction.....\n((1C +Pass +2C|1D +Pass +2D|1H +Pass +2H|1S +Pass +2S|1C +Pass +3C|1D +Pass +3D|1H +Pass +3H|1S +Pass +3S) +Pass\nPass +Pass|(1H +Pass +3H +Pass\n4H|1S +Pass +3S +Pass\n4S) +Pass +Pass +Pass)
 # convention-card-ns: Basic-Bridge
 # convention-card-ew: Basic-Bridge
 
 /*@chat
 --- Top Tricks — Suit Contract (beginner)
-The final contract is a suit partial or major-suit game. Top tricks
+The final contract is a suit partial or major-suit game. Your tricks
 are designed to MATCH the contract level:
-• 2X — simple raise — 8 top tricks (book 6 + 2)
-• 3X — limit raise — 9 top tricks
-• 4M — game in major — 10 top tricks
+• 2X — simple raise — 8 tricks (book 6 + 2)
+• 3X — limit raise — 9 tricks
+• 4M — game in major — 10 tricks
 
-Top tricks are first-round stops in every suit (ace or void) plus
-trump-suit tricks (combined NS trump length when the AKQJT chain is
-big enough to draw opps' trumps, else just the chain). A side-suit
-void in a hand with 4+ trumps adds a second-round ruff.
+These are tricks you can take BY FORCE — no finesse, no promotion.
+They come from three places:
+• Aces and solid top sequences (A, AK, AKQ), cashed from the top.
+• Trumps: you hold enough top trumps to draw them all without losing
+  a trump trick, so your long trumps are winners.
+• Ruffs: trumping a loser in the short trump hand.
+The defense may cash a trick or two first, but once you are on lead you
+have enough top tricks to bring the contract home.
 
 Things to think about:
-• Count your top tricks BEFORE you do anything else.
-• If you already have your contract count, cash; don't risk a finesse
-  for an overtrick (matchpoints aside).
-• At 4M, drawing trumps and running length is the standard plan.
+• Count your tricks BEFORE you play to trick one.
+• You can always make this contract without finessing or promoting —
+  just cash winners, draw trumps, and ruff losers.
+• At 4M, drawing trumps and running your long trumps is the plan.
 
 Reference: https://www.bridgebum.com/counting.php
 @chat*/
@@ -248,10 +252,13 @@ sOpens   = openingSuit and sNotNT
 //     larger total combined, then alphabetical (S>H, D>C).
 //   - If no suit qualifies, all four suits use the side-suit count.
 //
-// First-round control: ace OR either hand void (relaxed from the NT version's
-// "all four aces" — a void is first-round-controlled in a suit contract).
-// Total collapses to 0 if any suit lacks control or trumps can't be drawn
-// cleanly.
+// First-round control (allSuitsStopped): ace OR either hand void in every
+// suit. Still computed and exported, but topTricksNS NO LONGER requires it —
+// the count itself ensures the contract: if NS can cash topTricksNS tricks,
+// then NS winners + defenders' tricks <= 13, so any contract <= topTricksNS
+// makes regardless of who cashes first. topTricksNS collapses to 0 only if
+// trumps can't be drawn cleanly. A scenario that wants the cleaner
+// "win trick 1 and cash out" hands can still AND in allSuitsStopped itself.
 //
 // Exports: topTricksSpades, topTricksHearts, topTricksDiamonds, topTricksClubs,
 //          trumpS, trumpH, trumpD, trumpC, hasTrump, trumpsDrawable,
@@ -401,10 +408,11 @@ stoppedClubs    = hasAceClubs    or clubs(south)    == 0 or clubs(north)    == 0
 
 allSuitsStopped = stoppedSpades and stoppedHearts and stoppedDiamonds and stoppedClubs
 
-// ---- Total (collapses to 0 if any suit unstopped; capped at 13) ----
+// ---- Total (capped at 13). Collapses to 0 only if trumps can't be drawn
+//   cleanly. First-round control is NOT required here — see header. ----
 topTricksRaw = contribS + contribH + contribD + contribC
 topTricksCapped = topTricksRaw < 14 ? topTricksRaw : 13
-topTricksNS  = (allSuitsStopped and trumpsDrawable) ? topTricksCapped : 0
+topTricksNS  = trumpsDrawable ? topTricksCapped : 0
 # Provides topTricksNS and allSuitsStopped. NT-style chain × longer-hand
 # per suit; all-suits-stopped allows ace OR void for first-round control.
 
@@ -472,23 +480,23 @@ keep0  = 0
 #   3X passed limit   1X-P-3X-all pass        opener 12 + tpNorth 10-12        →  9 tricks
 #   4M accepted limit 1M-P-3M-P-4M-all pass   opener 14 + tpNorth 10-12 major  → 10+ tricks
 # tpNorth cap at 12 keeps Jacoby 2NT / slam paths out of scope.
-n2X = sHcp12   and tpNorth >  5 and tpNorth < 10 and nHasFit_2X and topTricksNS ==  8 and keep
-n3X = sHcp12   and tpNorth >  9 and tpNorth < 13 and nHasFit   and topTricksNS ==  9 and keep25
+n2X = sHcp12   and tpNorth >  5 and tpNorth < 10 and nHasFit_2X and topTricksNS >=  8 and keep
+n3X = sHcp12   and tpNorth >  9 and tpNorth < 13 and nHasFit   and topTricksNS >=  9 and keep25
 n4M = sHcp14   and tpNorth >  9 and tpNorth < 13 and nMajorFit and topTricksNS >= 10 and keep03
 nActs = n2X or n3X or n4M
 
 # Ground-truth marker for the play trainer: West's club spot cards encode
-# the top-trick count (7C is unused — Suit minimum is 8 tricks).
-#   8C only (no 7C, no 9C) → exactly 8 top tricks  (2X partial)
-#   9C only (no 7C, no 8C) → 9+ top tricks         (3X partial or 4M game)
-nsMarker = (topTricksNS == 8 and not hascard(west, 7C) and     hascard(west, 8C) and not hascard(west, 9C))
-        or (topTricksNS >= 9 and not hascard(west, 7C) and not hascard(west, 8C) and     hascard(west, 9C))
+# the CONTRACT level (the path), not the raw trick count (7C is unused).
+#   8C only (no 7C, no 9C) → 2X partial          (target 8)
+#   9C only (no 7C, no 8C) → 3X partial / 4M game (target 9+)
+nsMarker = (n2X         and not hascard(west, 7C) and     hascard(west, 8C) and not hascard(west, 9C))
+        or ((n3X or n4M) and not hascard(west, 7C) and not hascard(west, 8C) and     hascard(west, 9C))
 
 # Quiet opponents — no overcalls or doubles
 eHcp = hcp(east) < 11
 wHcp = hcp(west) < 11
 
-sOpens and nActs and allSuitsStopped and eHcp and wHcp and nsMarker
+sOpens and nActs and eHcp and wHcp and nsMarker
 
 action printoneline,
 average "South opens 1C   " 100 * oC,
