@@ -103,12 +103,8 @@ topTricksHearts   = chainHearts   < longerHandHearts   ? chainHearts   : longerH
 topTricksDiamonds = chainDiamonds < longerHandDiamonds ? chainDiamonds : longerHandDiamonds
 topTricksClubs    = chainClubs    < longerHandClubs    ? chainClubs    : longerHandClubs
 
-// ---- Total. Requires 3+ aces in NS for entries (relaxed from all 4):
-//   with no trumps to cross hands, the aces are what let declarer reach
-//   established winners. 3 aces = 3 entries, enough in practice; collapses
-//   to 0 below that. (EXPERIMENT — verify overcount rate before trusting.) ----
-acesNS          = hasAceSpades + hasAceHearts + hasAceDiamonds + hasAceClubs
-allSuitsStopped = acesNS >= 3
+// ---- Total (collapses to 0 if any suit unstopped) ----
+allSuitsStopped = hasAceSpades and hasAceHearts and hasAceDiamonds and hasAceClubs
 topTricksRaw    = topTricksSpades + topTricksHearts + topTricksDiamonds + topTricksClubs
 topTricksNS     = allSuitsStopped ? topTricksRaw : 0
 // Provides topTricksSpades, topTricksHearts, topTricksDiamonds, topTricksClubs, topTricksNS
