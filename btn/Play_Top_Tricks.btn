@@ -46,10 +46,10 @@ sHcp   = hcp(south) > 11 and hcp(south) < 15
 # proportion. Majors come up far more often naturally; throttle them down so
 # minors and NT get a fair share. Tune the keepNN values after running pbn
 # and reading the per-opening averages at the bottom of pbn/Play_Top_Tricks.pbn.
-lev1C  = oC and keep75
-lev1D  = oD and keep67
+lev1C  = oC and keep
+lev1D  = oD and keep44
 lev1H  = oH and keep86
-lev1S  = oS and keep86
+lev1S  = oS and keep75
 sOpens = lev1C or lev1D or lev1H or lev1S
 
 # Responder — 6-9 HCP. Either supports opener's suit or has a 4-card suit
@@ -61,7 +61,27 @@ nHcp = hcp(north) > 5 and hcp(north) < 10
 eHcp = hcp(east) < 11
 wHcp = hcp(west) < 11
 
-sOpens and sHcp and nHcp and eHcp and wHcp and topTricksNS==8
+# Raise-support constraints: for each 1X-1Y-2Y filter path, S needs 4+ in Y
+# so the raise to 2Y is natural. Predict N's response from shape using the
+# "bid 4-card suits up the line" convention — N bids the LOWEST 4-card suit
+# higher than opener's. So after 1C, 4+D wins (even with a 4-card major);
+# 1H needs 4+H AND <4D; 1S needs 4+S AND <4H AND <4D. Etc.
+nResp1DAfter1C = oC and diamonds(north)>3
+nResp1HAfter1C = oC and hearts(north)>3   and diamonds(north)<4
+nResp1SAfter1C = oC and spades(north)>3   and diamonds(north)<4 and hearts(north)<4
+# Responder bidding a major never has 4+D (would bid 1D/raise instead).
+nResp1HAfter1D = oD and hearts(north)>3   and diamonds(north)<4
+nResp1SAfter1D = oD and spades(north)>3   and hearts(north)<4 and diamonds(north)<4
+nResp1SAfter1H = oH and spades(north)>3   and diamonds(north)<4
+
+sCanRaise = (not nResp1DAfter1C or diamonds(south)>3)
+        and (not nResp1HAfter1C or hearts(south)>3)
+        and (not nResp1SAfter1C or spades(south)>3)
+        and (not nResp1HAfter1D or hearts(south)>3)
+        and (not nResp1SAfter1D or spades(south)>3)
+        and (not nResp1SAfter1H or spades(south)>3)
+
+sOpens and sHcp and nHcp and eHcp and wHcp and topTricksNS==8 and sCanRaise
 
 action
 average "South opens 1C   " 100 * oC,
