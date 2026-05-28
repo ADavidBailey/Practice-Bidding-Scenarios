@@ -29,6 +29,13 @@ Reference: https://www.bridgebum.com/counting.php
 
 dealer south
 
+// Predeal one ace to each hand to guarantee an entry to declarer and dummy
+// and to slash the all-aces rejection rate (the dominant yield killer). The
+// other two aces (HA, CA) are still required in NS by allSuitsStopped in
+// script/topTricksNS, but roam between the hands for variety.
+predeal south SA
+predeal north DA
+
 #include "script/topTricksNS"
 // Provides topTricksSpades, topTricksHearts, topTricksDiamonds, topTricksClubs, topTricksNS
 
