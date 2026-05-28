@@ -2,17 +2,17 @@
 # button-text: Play Top Tricks
 # gib-works: true
 # bba-works: true
-# auction-filter: Auction.....\n((1C +Pass +2C|1D +Pass +2D|1H +Pass +2H|1S +Pass +2S|1N +Pass +2N) +Pass\nPass +Pass|(1C +Pass +1D +Pass\n2D|1C +Pass +1H +Pass\n2H|1C +Pass +1S +Pass\n2S|1D +Pass +1H +Pass\n2H|1D +Pass +1S +Pass\n2S|1H +Pass +1S +Pass\n2S) +Pass +Pass +Pass)
+# auction-filter: Auction.....\n((1C +Pass +2C|1D +Pass +2D|1H +Pass +2H|1S +Pass +2S) +Pass\nPass +Pass|(1C +Pass +1D +Pass\n2D|1C +Pass +1H +Pass\n2H|1C +Pass +1S +Pass\n2S|1D +Pass +1H +Pass\n2H|1D +Pass +1S +Pass\n2S|1H +Pass +1S +Pass\n2S) +Pass +Pass +Pass)
 # convention-card-ns: Basic-Bridge
 # convention-card-ew: Basic-Bridge
 
 /*@chat
 --- Play Your Top Tricks (beginner — partial contract)
-The bidding stops at the 2-level. Two patterns:
-• 1X — Pass — 2X — all pass   (North raises South's suit)
-• 1X — Pass — 1Y — Pass — 2Y — all pass   (North bids a new suit at the 1-level,
-  South raises it; both pass)
-Or 1NT — 2NT — all pass for the NT case.
+South opens at the 1-level in a suit; both sides stay quiet at the 2-level.
+• 1X — Pass — 2X — Pass — Pass — Pass            (North raises South's suit; S declares)
+• 1X — Pass — 1Y — Pass — 2Y — Pass — Pass — Pass  (North bids new suit, South raises; N declares)
+Y is always a suit (D/H/S, never NT). NT openings are excluded — the
+topTricksNS=8 constraint counts tricks in suit-contract terms.
 
 Teaching feature: declarer has enough TOP tricks (sure winners) to make
 8 tricks for the contract. The lesson is COUNT FIRST, CASH SECOND —
@@ -21,9 +21,9 @@ the tricks you need.
 
 Things to think about:
 • Count your AKs and trump length tricks before leading anything.
-• If you have 8 top tricks，take them. Don't risk for overtricks unless
+• If you have 8 top tricks, take them. Don't risk for overtricks unless
   it's free.
-• If you're short of 8 top tricks，then find the ones you're missing —
+• If you're short of 8 top tricks, then find the ones you're missing —
   but THIS scenario is designed so you have enough already.
 • Watch for entry problems: order your plays so each hand can lead when
   needed.
@@ -35,12 +35,22 @@ dealer south
 
 #include "script/Predict-Opening-1-Bid"
 # Provides oS, oH, oD, oC, openingSuit for South.
-#include "script/GIB-1N"
-# Provides gibNT for South's 1NT opening.
+#include "script/topTricksSuitNS"
+# Provides topTricksNS
+#include "script/Leveling"
 
 # Opener — light minimum so the auction stops at the 2-level
 sHcp   = hcp(south) > 11 and hcp(south) < 15
-sOpens = openingSuit or gibNT
+
+# Level the openings so each of 1C/1D/1H/1S/1NT shows up in roughly equal
+# proportion. Majors come up far more often naturally; throttle them down so
+# minors and NT get a fair share. Tune the keepNN values after running pbn
+# and reading the per-opening averages at the bottom of pbn/Play_Top_Tricks.pbn.
+lev1C  = oC and keep75
+lev1D  = oD and keep67
+lev1H  = oH and keep86
+lev1S  = oS and keep86
+sOpens = lev1C or lev1D or lev1H or lev1S
 
 # Responder — 6-9 HCP. Either supports opener's suit or has a 4-card suit
 # to bid (and opener has 4-card support to raise it). The auction filter
@@ -51,14 +61,13 @@ nHcp = hcp(north) > 5 and hcp(north) < 10
 eHcp = hcp(east) < 11
 wHcp = hcp(west) < 11
 
-sOpens and sHcp and nHcp and eHcp and wHcp
+sOpens and sHcp and nHcp and eHcp and wHcp and topTricksNS==8
 
 action
 average "South opens 1C   " 100 * oC,
 average "South opens 1D   " 100 * oD,
 average "South opens 1H   " 100 * oH,
 average "South opens 1S   " 100 * oS,
-average "South opens 1NT  " 100 * gibNT,
 average "South HCP avg    "       hcp(south),
 average "North HCP avg    "       hcp(north),
 average "NS combined HCP  "       hcp(south) + hcp(north),
