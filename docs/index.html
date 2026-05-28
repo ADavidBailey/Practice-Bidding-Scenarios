@@ -177,14 +177,14 @@
     </style>
     <script>
 const DASHBOARD_DATA = {
-  "generatedAt": "2026-05-27T18:01:16.675313",
+  "generatedAt": "2026-05-28T06:01:15.494121",
   "summary": {
     "totalScenarios": 331,
     "scenariosWorked": 331,
     "totalFileEdits": 51011,
-    "totalPipelineRuns": 2594,
+    "totalPipelineRuns": 2597,
     "totalSessionHours": 5015,
-    "totalCommits": 7606
+    "totalCommits": 7614
   },
   "charts": {
     "labels": [
@@ -206,7 +206,7 @@ const DASHBOARD_DATA = {
       "May 25",
       "Jun 25",
       "Jul 25",
-      "Jul 25",
+      "Aug 25",
       "Aug 25",
       "Sep 25",
       "Oct 25",
@@ -237,7 +237,7 @@ const DASHBOARD_DATA = {
       3782,
       595,
       314,
-      314,
+      250,
       250,
       870,
       1779,
@@ -278,7 +278,7 @@ const DASHBOARD_DATA = {
       1660,
       690,
       125,
-      58
+      61
     ],
     "commits": [
       304,
@@ -299,7 +299,7 @@ const DASHBOARD_DATA = {
       65,
       66,
       30,
-      30,
+      21,
       21,
       93,
       159,
@@ -309,7 +309,7 @@ const DASHBOARD_DATA = {
       1666,
       1028,
       469,
-      645
+      653
     ],
     "sessionHours": [
       140,
@@ -330,7 +330,7 @@ const DASHBOARD_DATA = {
       58,
       70,
       37,
-      37,
+      35,
       35,
       100,
       131,
@@ -361,7 +361,7 @@ const DASHBOARD_DATA = {
       248,
       252,
       252,
-      252,
+      253,
       253,
       254,
       264,
@@ -375,26 +375,6 @@ const DASHBOARD_DATA = {
     ]
   },
   "recentActivity": [
-    {
-      "timestamp": "2026-05-23T11:34:39.172Z",
-      "type": "session_end",
-      "details": {
-        "durationMinutes": 1129
-      }
-    },
-    {
-      "timestamp": "2026-05-23T14:21:05.119Z",
-      "type": "session_start",
-      "details": {}
-    },
-    {
-      "timestamp": "2026-05-26T16:38:52.837Z",
-      "type": "file_save",
-      "details": {
-        "filePath": "btn/Basic_What_To_Open.btn",
-        "fileType": "btn"
-      }
-    },
     {
       "timestamp": "2026-05-26T17:17:40.702Z",
       "type": "file_save",
@@ -530,9 +510,73 @@ const DASHBOARD_DATA = {
         "filePath": "btn/Play_Top_Tricks.btn",
         "fileType": "btn"
       }
+    },
+    {
+      "timestamp": "2026-05-28T00:31:36.813Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "Play_Top_Tricks_NT",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-05-28T00:31:53.794Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "Play_Top_Tricks_Suit",
+        "operation": "release"
+      }
+    },
+    {
+      "timestamp": "2026-05-28T02:52:59.296Z",
+      "type": "pipeline_run",
+      "details": {
+        "scenario": "Play_Top_Tricks",
+        "operation": "release"
+      }
     }
   ],
   "recentCommits": [
+    {
+      "hash": "8fbb6c66",
+      "date": "2026-05-27 22:17:46 -0500",
+      "message": "Release Play_Top_Tricks to pbs-release"
+    },
+    {
+      "hash": "23d34b03",
+      "date": "2026-05-27 22:17:27 -0500",
+      "message": "Play_Top_Tricks: collapse sCanRaise to single line for BBO dealer compat"
+    },
+    {
+      "hash": "e7036b5e",
+      "date": "2026-05-27 22:15:37 -0500",
+      "message": "Update pbs-test/Play_Top_Tricks.pbs"
+    },
+    {
+      "hash": "9c471f49",
+      "date": "2026-05-27 21:46:38 -0500",
+      "message": "Play_Top_Tricks: raise-support constraints, re-level, regenerate 95-board coaching"
+    },
+    {
+      "hash": "7203ea9b",
+      "date": "2026-05-27 19:31:53 -0500",
+      "message": "Release Play_Top_Tricks_Suit to pbs-release"
+    },
+    {
+      "hash": "b55d2404",
+      "date": "2026-05-27 19:31:37 -0500",
+      "message": "Release Play_Top_Tricks_NT to pbs-release"
+    },
+    {
+      "hash": "d7b23411",
+      "date": "2026-05-27 19:29:37 -0500",
+      "message": "Play_Top_Tricks: level openings, regenerate coaching with role tips"
+    },
+    {
+      "hash": "09daa451",
+      "date": "2026-05-27 18:01:57 -0500",
+      "message": "Daily dashboard update"
+    },
     {
       "hash": "b2e14866",
       "date": "2026-05-27 12:02:03 -0500",
@@ -542,46 +586,6 @@ const DASHBOARD_DATA = {
       "hash": "d5b081f1",
       "date": "2026-05-27 06:02:03 -0500",
       "message": "Daily dashboard update"
-    },
-    {
-      "hash": "c0ea27e4",
-      "date": "2026-05-26 18:01:55 -0500",
-      "message": "Daily dashboard update"
-    },
-    {
-      "hash": "11d3124e",
-      "date": "2026-05-26 15:47:04 -0500",
-      "message": "Release Rabbis_Rule to pbs-release"
-    },
-    {
-      "hash": "ce253f53",
-      "date": "2026-05-26 15:46:45 -0500",
-      "message": "Update Rabbis_Rule chat text"
-    },
-    {
-      "hash": "e63f0781",
-      "date": "2026-05-26 15:45:39 -0500",
-      "message": "Update pbs-test/Rabbis_Rule.pbs"
-    },
-    {
-      "hash": "7b9d844c",
-      "date": "2026-05-26 15:18:03 -0500",
-      "message": "Release Rabbis_Rule to pbs-release"
-    },
-    {
-      "hash": "c668f342",
-      "date": "2026-05-26 15:16:44 -0500",
-      "message": "Fix button-text escaping in Rabbis_Rule.btn"
-    },
-    {
-      "hash": "b3a16057",
-      "date": "2026-05-26 15:15:35 -0500",
-      "message": "Update pbs-test/Rabbis_Rule.pbs"
-    },
-    {
-      "hash": "8f925308",
-      "date": "2026-05-26 14:51:01 -0500",
-      "message": "Release Basic_What_To_Open to pbs-release"
     }
   ]
 };
