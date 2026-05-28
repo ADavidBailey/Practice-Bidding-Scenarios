@@ -152,10 +152,13 @@ oneClub    = oC
 //     larger total combined, then alphabetical (S>H, D>C).
 //   - If no suit qualifies, all four suits use the side-suit count.
 //
-// First-round control: ace OR either hand void (relaxed from the NT version's
-// "all four aces" — a void is first-round-controlled in a suit contract).
-// Total collapses to 0 if any suit lacks control or trumps can't be drawn
-// cleanly.
+// First-round control (allSuitsStopped): ace OR either hand void in every
+// suit. Still computed and exported, but topTricksNS NO LONGER requires it —
+// the count itself ensures the contract: if NS can cash topTricksNS tricks,
+// then NS winners + defenders' tricks <= 13, so any contract <= topTricksNS
+// makes regardless of who cashes first. topTricksNS collapses to 0 only if
+// trumps can't be drawn cleanly. A scenario that wants the cleaner
+// "win trick 1 and cash out" hands can still AND in allSuitsStopped itself.
 //
 // Exports: topTricksSpades, topTricksHearts, topTricksDiamonds, topTricksClubs,
 //          trumpS, trumpH, trumpD, trumpC, hasTrump, trumpsDrawable,
@@ -305,10 +308,11 @@ stoppedClubs    = hasAceClubs    or clubs(south)    == 0 or clubs(north)    == 0
 
 allSuitsStopped = stoppedSpades and stoppedHearts and stoppedDiamonds and stoppedClubs
 
-// ---- Total (collapses to 0 if any suit unstopped; capped at 13) ----
+// ---- Total (capped at 13). Collapses to 0 only if trumps can't be drawn
+//   cleanly. First-round control is NOT required here — see header. ----
 topTricksRaw = contribS + contribH + contribD + contribC
 topTricksCapped = topTricksRaw < 14 ? topTricksRaw : 13
-topTricksNS  = (allSuitsStopped and trumpsDrawable) ? topTricksCapped : 0
+topTricksNS  = trumpsDrawable ? topTricksCapped : 0
 # Provides topTricksNS
 ##### Imported Script: Define Calm Opponents #####
 
@@ -377,7 +381,7 @@ nRaises = nRaiseH or nRaiseS or nRaiseC or nRaiseD
 # North acts with a fit: raise opener, or bid a new suit South can raise.
 nActs = nRaises or nResp1DAfter1C or nResp1HAfter1C or nResp1SAfter1C or nResp1HAfter1D or nResp1SAfter1D or nResp1SAfter1H
 
-sOpens and sHcp and nHcp and calmOpps and topTricksNS==8 and sCanRaise and nActs
+sOpens and sHcp and nHcp and calmOpps and topTricksNS>=8 and sCanRaise and nActs
 
 action printoneline,
 average "South opens 1C   " 100 * oC,
