@@ -1,121 +1,115 @@
 # Bridge Play Trainer
 
-A self-paced web tool for practicing the **play** of bridge hands — declarer technique, defense, signaling, hand inference. The trainer uses the same scenario library as Practice-Bidding-Scenarios (`Bidding Scenarios/` folder) and adds an interactive play surface backed by [endplay](https://github.com/dominicprice/endplay) for legality checking and double-dummy resolution.
+A self-paced web tool for practicing the **play** of bridge hands — declarer technique, defense, and reading the auction. The trainer reuses the scenario library from Practice-Bidding-Scenarios and adds an interactive play surface backed by [endplay](https://github.com/dominicprice/endplay) for legality checking and double-dummy resolution.
 
 ## Who it's for
 
-There are lots of sites focused on bridge bidding. **This site is for those wanting to Play their Cards Better.** The UI is plain, large, and forgiving — large fonts, no timed animations, gentle errors, generous click targets. Claude grading and coaching are **off by default** so a new user gets a working trainer without any setup.
+There are lots of sites focused on bridge bidding. **This site is for those wanting to play their cards better.** The UI is plain, large, and forgiving — large fonts, no timed animations, gentle errors, generous click targets. Coaching is **built into the scenario files** as precomputed tutorial prose, so a new user gets a fully working, self-explaining trainer with no setup, no account, and no API key. There are **no outbound calls to any AI service at runtime.**
+
+## Where the code lives
+
+The trainer is a **separate repository** from Practice-Bidding-Scenarios:
+
+- Code: `~/AI-Bridge-Play-Trainer` — [github.com/ADavidBailey/AI-Bridge-Play-Trainer](https://github.com/ADavidBailey/AI-Bridge-Play-Trainer). Ships code only.
+- Data: *this* repo (Practice-Bidding-Scenarios) supplies the scenarios the trainer plays — the coaching PBNs in [coaching/](coaching/) and the menu layout in [btn/-button-layout-release.txt](btn/-button-layout-release.txt).
+
+The server resolves its data location from `BRIDGE_DATA_ROOT`, defaulting to `/Users/adavidbailey/Practice-Bidding-Scenarios`.
 
 ## How to run
 
 ```bash
-cd Practice-Bidding-Scenarios
-python3 -m uvicorn bridge-play-trainer.server:app --reload --port 8765
+cd ~/AI-Bridge-Play-Trainer
+python3 -m uvicorn server:app --reload --port 8765
 ```
 
-Open <http://localhost:8765> in any modern browser.
+Open <http://localhost:8765> in any modern browser. No build step, no test suite, no lint config. Override the data location with `BRIDGE_DATA_ROOT=/some/path` if the scenarios live elsewhere.
 
 ## How to use
 
-1. **Pick a scenario** from the left sidebar. Sections collapse, a sticky search box filters. Scenarios are parsed live from `btn/-button-layout-release.txt`.
-2. **Pick a role**: Declarer, Defender (West), or Defender (East). The server rejects a defender role that doesn't fit the board (e.g., asking for Defender-West when West is declarer); a future polish item replaces the alert with an inline error.
-3. **Auction renders** in the center with a Play button. No timed animation — the user clicks Play when ready.
-4. **Click cards in your hand** to play. Legal cards get a blue outline; illegal stay full-color but unbordered.
-5. After each trick, a 3-second yellow freeze shows "Trick #N — X won". Click the center any time to peek at the last completed trick.
-6. **Trick-counter strip** below the table: overlapping card-backs, green vertical = our side won the trick, red horizontal = opponents won.
+1. **Pick a scenario** from the left sidebar. Sections collapse; a sticky search box filters. Only scenarios that ship with an embedded coaching file are user-pickable — the menu is restricted to those, so every selectable deal is fully coached.
+2. **Pick a role**: Declarer (user controls declarer + dummy), Leader (the opening leader / defender on lead), or Defender (the leader's partner). The UI today is tuned for declarer; defender roles are functional but less polished.
+3. **Optionally set a deal number** to jump to a specific board; otherwise it starts at the first.
+4. **The auction animates bid-by-bid** in the center, interleaved with the scenario's tutorial prose (see below). Hands reveal progressively as the coaching calls for it. A **Play** action starts the card play once the auction is done — non-user seats (e.g. the opening lead) auto-play until it's your turn.
+5. **Click cards in your hand** to play. Legal cards are highlighted; non-user seats (defenders, and dummy when you aren't declarer) are auto-played by the double-dummy solver.
+6. **After each trick**, a brief freeze shows who won; the **trick-counter strip** below the table tracks our-side vs opponent tricks.
 7. **Controls below the table**:
+   - **Undo** — rewinds your last decision (and everything the auto-player did in response). Implemented by replaying the full move-log, because endplay's `unplay()` can't cross trick boundaries.
+   - **Hint** — surfaces card-counting facts derived from the trick history so far.
+   - **Review** — press-and-hold to re-show the auction (pointer capture keeps it up if your finger drifts off-button).
+   - **Replay** — reset to the opening-lead state.
+   - **Claim** — the solver plays out the remaining tricks.
    - **Next deal** — same scenario, next board.
-   - **Undo** — pop the last card. Implemented by replaying the move-log up to the previous count, because endplay's `unplay()` errors across trick boundaries.
-   - **Review** — press-and-hold to show the auction (uses pointer capture so the auction stays up if your finger drifts off-button).
-   - **Replay** — reset to opening-lead state.
-   - **Claim** — DDS plays out the remaining tricks; the result panel shows the four hands.
-8. **Result panel** appears when the deal completes (all 13 tricks played or claimed). Shows the contract, made/down, and all four hands.
+8. **Coaching panel** (center, below the table): renders the bid-by-bid tutorial prose and the post-auction planning notes. Its title bar doubles as a **Scenarios picker** — click it to switch scenarios without leaving the play view.
+9. **Result panel** appears when the deal completes (all 13 tricks or a claim): contract, made/down, and all four hands.
+10. **Session IMPs** in the header keeps a running total vs double-dummy across the deals you play in this tab.
 
 ## Bridge table layout
 
-The board is rotated so the **user always sits at the bottom (South in the rotated frame)**. Partner top, LHO left, RHO right. Auction calls, the contract banner, declarer/dummy/leader labels, hands, trick history, and trick totals all relabel together. This keeps the visual frame stable regardless of which seat the actual scenario dealt.
+The board is rotated so the **user always sits at the bottom (South in the display frame)**. Partner top, LHO left, RHO right. Everything — auction calls, contract banner, seat labels, hands, trick history, trick totals — relabels together, regardless of which seat the scenario actually dealt.
 
-## Claude grading & coaching (optional)
+Under the hood the `Deal`, the DDS calls, and the dealer engine all use **real compass**; only the outgoing API payload is rotated (`_rotation_shift`, computed once per session). When debugging: a seat letter in the API `state` is in the display frame; a `Player` enum inside a `Session` is real compass.
 
-Two modes, configured in the settings modal (gear icon):
+## Embedded coaching (precomputed PBN tutorial prose)
 
-### Testing mode (default)
+Coaching is authored directly into the scenario PBNs as a Baker-Bridge–style tutorial block that follows the `[Auction]` tag. There is no AI at runtime — all prose is precomputed upstream.
 
-After a trigger (every trick / from trick 4 / manual), the inference panel opens and asks for the student's read on the hidden hands:
-- **Trick 1-3**: free-text prose. *"West has ♥KQJ; East 2-3 spades, 8-10 HCP."*
-- **Trick 4+**: structured form — per-hand suit lengths + HCP estimate.
+```
+[Auction "N"]
+1H Pass 2D Pass 2NT Pass 3NT Pass Pass Pass
+{[show S]
+After North's 1\H opening South counts 12 HCP plus one length point for the
+fifth \D. What do you bid?[BID 2D]
+That is enough for a 2/1 response so South says 2\D. ...[BID 3NT]
+South is happy to play in Notrump ...
+[show NS]}
+```
 
-Submitting calls Claude with the auction, visible hands, play history, the ACTUAL hidden hands (ground truth from `/api/session/{sid}/ground-truth`), and the student's estimate. Claude returns a JSON grade: per-facet verdict (correct / partial / missed / wrong), missed inferences, a next-trick hint, an overall rating, and a 0-1 score. All output uses **bottom-seat perspective** ("you / partner / LHO / RHO") via the shared `SEAT_PERSPECTIVE` system-prompt block.
+Recognised markers:
+- `[show X]` — `X` is one or more seat letters (`N`, `EW`, `NSEW`, …) in **real** compass; reveals accumulate as the auction steps forward.
+- `[BID xxx]` — anchors the chunk to the next unconsumed matching call in the auction (`1C`, `2D`, `3NT`, `X`, `XX`; case-insensitive). Prose before the first `[BID]` is the intro chunk. Unmatched `[BID]`s degrade to the previous successfully-anchored chunk.
+- `\S \H \D \C` — substituted server-side to `♠ ♥ ♦ ♣`.
 
-### Coaching mode
+The parser only inspects the curly block immediately after `[Auction]`; pre-auction `{Shape ...}` / `{HCP ...}` / `{Losers ...}` blocks in the older `bba/*.pbn` files are ignored, and stripped before endplay parses the PBN. Coaching reveals are kept in the **author's real-compass frame** so the PBNs stay portable; the frontend maps them through `state.rotation_shift`. Scenarios without an embedded coaching block simply play normally (`state.coaching === null` skips the tutorial path).
 
-Instead of asking for student input, Claude **pushes coaching tips** at key moments:
-
-- **End of auction** (all roles): fires when the auction concludes and no cards have been played. Returns three bite-sized cards — *Tricks* (sure tricks now), *Promotion* (cards that can grow into winners), *Risks* (what opponents may do).
-- **After the opening lead** (all roles): fires when the first card hits the table. One short observation refining the picture now that dummy is visible.
-- **End of play** (all roles): fires when the deal completes. Returns three cards — *Clear errors*, *Suboptimal plays* (less than double-dummy but didn't cost a trick), *Result* (contract outcome vs what was makeable, with one note of praise if warranted).
-- *(Roadmap: significant-event tips mid-play, end-of-play summary.)*
-
-The server's `/api/session/{sid}/ground-truth` endpoint is **play-state-aware**: defenders see dummy as `hidden` before the opening lead and `visible` after, so Claude reasons about exactly what the student can see.
-
-### Claude setup
-
-Settings → "Set up key…" runs a 7-step wizard:
-1. Sign up at console.anthropic.com.
-2. Add billing.
-3. Set a monthly spending limit (Coaching mode burns ~3-4× more tokens than Testing, so the limit matters).
-4. Generate an API key.
-5. Paste the key.
-6. Live test call to Anthropic to validate.
-7. Confirm storage.
-
-The key is stored in `localStorage` only — never sent to our server. The browser calls Anthropic directly with the `anthropic-dangerous-direct-browser-access` header.
-
-### Sample coaching log (declarer in 4♠)
-
-The full coaching panel from a clean 4♠ deal:
-
-![Sample coaching log](docs/images/coaching-sample.png)
-
-Seven cards in order: three from end-of-auction, one after the opening lead, three at end-of-play. The student plays the hand between the opening-lead card and the end-of-play cards. Cards accumulate in the panel and remain scrollable for review.
+The trainer prefers `coaching/<scenario>.pbn` and falls back to `bba/<scenario>.pbn`. Authoring conventions for these files live in the trainer repo's `pbn-coaching-generator-plan.md` and in this repo's coaching-generation reference notes.
 
 ## Backend (FastAPI)
 
-[bridge-play-trainer/server.py](bridge-play-trainer/server.py) exposes:
+All backend logic lives in one file, `server.py` (in the trainer repo). A `Session` owns the full state of one in-progress deal; sessions are held in an in-memory dict keyed by an opaque token — no persistence, no auth, single-user local app. Non-user seats are auto-played by the double-dummy solver (`endplay.dds.solve_board`), and the deal's DD table is cached once per session for scoring. Scoring is reported as **IMPs vs double-dummy** from the student's perspective, undoubled (the trainer doesn't model doubles).
 
 | Endpoint | Purpose |
 |---|---|
-| `GET /api/scenarios`, `GET /api/menu` | Scenario list + sidebar sections, parsed from `btn/-button-layout-release.txt`. |
-| `POST /api/session` | Start a new session: scenario + board_index + role. Returns initial state. |
-| `GET /api/session/{sid}` | Current state (auction, hands visible to user, trick history, etc.). |
-| `DELETE /api/session/{sid}` | End the session. |
+| `GET /api/scenarios`, `GET /api/menu` | Scenario list + sidebar sections, restricted to scenarios that have embedded coaching. |
+| `POST /api/session` | Start a session: scenario + deal number + role. Returns initial state. |
+| `GET /api/session/{sid}` | Current state (auction, visible hands, trick history, coaching chunks, rotation shift). |
 | `POST /api/session/{sid}/play` | Play one card. |
-| `POST /api/session/{sid}/undo` | Rebuild deal from `move_log` up to the previous card count. |
-| `POST /api/session/{sid}/replay` | Reset to opening-lead state. |
-| `POST /api/session/{sid}/claim` | DDS plays out remaining tricks. |
-| `GET /api/session/{sid}/ground-truth` | Initial hands + role metadata + which seats are hidden, in the rotated South-at-bottom frame. Play-state-aware. |
+| `POST /api/session/{sid}/start-play` | User clicked Play in the auction overlay — auto-play non-user seats (e.g. the opening lead) until it's the user's turn. Idempotent. |
+| `POST /api/session/{sid}/undo` | Rebuild the deal from the move-log up to the previous checkpoint. |
+| `POST /api/session/{sid}/replay` | Reset to the opening-lead state. |
+| `POST /api/session/{sid}/claim` | Solver plays out the remaining tricks. |
+| `DELETE /api/session/{sid}` | End the session. |
 
 ## Frontend
 
-Plain HTML/CSS/JS in [bridge-play-trainer/static/](bridge-play-trainer/static/). No build step. Files:
-- `index.html` — markup for table, sidebar, panels, settings modal, wizard.
-- `style.css` — layout (25% sidebar / rest for table area), seat slots locked to 12em min-height to prevent reflow during play.
-- `app.js` — state, render, API calls, Claude grading + coaching wiring.
+Plain HTML/CSS/JS, no build step:
+- `index.html` — markup for the table, sidebar, coaching panel (which doubles as a Scenarios picker), and result panel.
+- `style.css` — layout (sidebar + table area), seat slots sized to prevent reflow during play.
+- `app.js` — state, render, API calls, the bid-by-bid auction animation, and progressive `[show]`-based hand masking. Polls the session and re-renders.
 
-## Terminal pipes (predecessors of the web MVP)
+## CLI prototypes (predecessors of the web MVP)
 
-Five iterations live in `bridge-play-trainer/pipe1.py` through `pipe5.py` — terminal-based versions that drove the design before the web UI. Useful for testing changes to the grading/coaching prompts in isolation.
+`pipe1.py` … `pipe5.py` in the trainer repo are standalone terminal walkers, in evolutionary order. They predate the web UI and are kept as references / scratch tools (run `python3 pipeN.py`; `pipe5` takes `--role declarer|defender_e|defender_w`). Useful for exercising deal/play logic in isolation.
 
 ## Roadmap
 
-- **Coaching slice 2**: end-of-play summary.
-- **Coaching slice 3**: mid-play significant-event tips (show-outs, ruffs, key-honor falls).
-- **End-of-session summary**: aggregate score across multiple deals.
-- **Inline error** instead of `alert()` when a defender role doesn't fit the board.
-- **Settings polish**: signaling style, opening-lead policy, structured-vs-free input mode toggle.
-- **Cross-platform topTricks**: port `script/topTricksNS` and `script/topTricksSuitNS` to TypeScript so the trainer can use them for objective grading alongside Claude.
-- **Found-scenario integration**: the curated "Found_Endplay" / "Found_Rabbis_Rule" decks should appear in the trainer's sidebar even though they were removed from the BBO button layout.
+- **Defender polish**: bring the leader/defender roles up to the declarer experience.
+- **End-of-session summary**: aggregate score across multiple deals (the header already tracks running session IMPs).
+- **Wider coaching coverage**: author tutorial blocks for more of the scenario library so more scenarios become user-pickable.
+- **Found-scenario integration**: surface the curated "Found_Endplay" / "Found_Rabbis_Rule" decks in the sidebar even though they were removed from the BBO button layout.
+- **Cross-platform topTricks**: port `script/topTricksNS` / `script/topTricksSuitNS` so the trainer can grade "sure tricks" objectively.
 
 ## Status snapshot
 
 See [Basic_Bidding_and_Play_Status.md](Basic_Bidding_and_Play_Status.md) for where the scenario library stands. The trainer consumes that library; improvements on either side compound.
+</content>
+</invoke>

@@ -6,6 +6,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Practice Bidding Scenarios (PBS) is a bridge bidding training platform that integrates with Bridge Base Online (BBO). Users define bidding scenarios in PBS format, generate practice hands with constraints using dealer language, and practice bidding with robots or partners. The system transforms scenario definitions through a multi-stage pipeline into bidding sheets and BBO-compatible formats.
 
+### Relationship to the Bridge Play Trainer
+
+The Bridge Play Trainer is a **separate repo** (`~/AI-Bridge-Play-Trainer`, github.com/ADavidBailey/AI-Bridge-Play-Trainer) — a web app for practicing the *play* of hands. The split is **content vs. engine** with a one-way runtime dependency:
+
+- **This repo = content + pipeline**: scenarios, the dealer pipeline, the `coaching/*.pbn` tutorial prose, the `btn/` menu layout, the VS Code extension, BBO integration.
+- **AI-Bridge-Play-Trainer = engine + UI**: FastAPI server, web UI, card-play mechanics, scoring, the coaching-marker parser.
+
+At runtime the trainer **reads** this repo's files via `BRIDGE_DATA_ROOT` (default this directory) → `coaching/*.pbn` + `btn/`. It never writes back, and this repo doesn't depend on the trainer. Rule of thumb: anything about a *particular hand or what it teaches* belongs here; anything about *how the app behaves for every hand* belongs in the trainer. The one shared seam is the coaching markers (`[show X]`, `[BID xxx]`, `\S\H\D\C`) — prose authored here, parser in the trainer's `server.py`. See [Bridge Play Trainer.md](Bridge Play Trainer.md) for the full trainer write-up.
+
 ## Common Commands
 
 ### Development Environment Setup
