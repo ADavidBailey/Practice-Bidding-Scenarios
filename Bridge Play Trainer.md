@@ -71,7 +71,7 @@ Recognised markers:
 
 The parser only inspects the curly block immediately after `[Auction]`; pre-auction `{Shape ...}` / `{HCP ...}` / `{Losers ...}` blocks in the older `bba/*.pbn` files are ignored, and stripped before endplay parses the PBN. Coaching reveals are kept in the **author's real-compass frame** so the PBNs stay portable; the frontend maps them through `state.rotation_shift`. Scenarios without an embedded coaching block simply play normally (`state.coaching === null` skips the tutorial path).
 
-The trainer prefers `coaching/<scenario>.pbn` and falls back to `bba/<scenario>.pbn`. Authoring conventions for these files live in the trainer repo's `pbn-coaching-generator-plan.md` and in this repo's coaching-generation reference notes.
+The trainer prefers `coaching/<scenario>.pbn` and falls back to `bba/<scenario>.pbn`. Authoring conventions for these files — every marker, the section ordering, and the rules — are documented in [coaching/README.md](coaching/README.md); the upstream generation plan (how the files are produced) lives in the trainer repo's `pbn-coaching-generator-plan.md`.
 
 ## Backend (FastAPI)
 
