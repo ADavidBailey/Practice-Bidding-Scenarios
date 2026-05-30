@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Practice Bidding Scenarios (PBS) is a bridge bidding training platform that integrates with Bridge Base Online (BBO). Users define bidding scenarios in PBS format, generate practice hands with constraints using dealer language, and practice bidding with robots or partners. The system transforms scenario definitions through a multi-stage pipeline into bidding sheets and BBO-compatible formats.
+Practice Bidding Scenarios (PBS) is a bridge bidding training platform that integrates with Bridge Base Online (BBO). Users author bidding scenarios as `.btn` files in `btn/` (the master source), generate practice hands with constraints using dealer language, and practice bidding with robots or partners. The system transforms scenario definitions through a multi-stage pipeline into bidding sheets and BBO-compatible formats. (The `.pbs` format still exists, but only as a generated, distributable artifact in `pbs-release/` — see the pipeline below.)
 
 ### Relationship to the Bridge Play Trainer
 
@@ -56,13 +56,16 @@ python3 pbs-pipeline-mac.py "Weak_2_Bids" "pbn"
 ```
 
 Pipeline operations in order:
-1. `dlr` - Extract dealer code from PBS file
-2. `pbn` - Generate hands using dealer
-3. `rotate` - Create 4-player rotations (PBN and LIN formats)
-4. `bba` - Analyze bidding with Bridge Base Archive
-5. `filter` - Filter by auction patterns
-6. `filterStats` - Generate statistics
-7. `biddingSheet` - Generate PDF bidding sheets
+1. `dlr` - Extract dealer code from the `.btn` master file
+2. `pbs` - Render the `.dlr` into a `.pbs` file in `pbs-test/`
+3. `pbn` - Generate hands using dealer
+4. `rotate` - Create 4-player rotations (PBN and LIN formats)
+5. `bba` - Analyze bidding with Bridge Base Archive
+6. `filter` - Filter by auction patterns
+7. `filterStats` - Generate statistics
+8. `biddingSheet` - Generate PDF bidding sheets
+
+The default `*` order continues past `biddingSheet` with `quiz` (generate quiz PBN/PDF) and `package` (copy artifacts into the Bidding Scenarios hierarchy). The `release` and `release-layout` operations are NOT in the default order — invoke them explicitly; `release` promotes `pbs-test/` → `pbs-release/`.
 
 ### Testing
 
@@ -84,9 +87,11 @@ python3 build-scripts-mac/pbn-diff.py file1.pbn file2.pbn
 The system follows a linear transformation pipeline:
 
 ```
-PBS file (scenario definition with button metadata)
+btn file (master scenario definition: dealer code + button metadata)
     ↓ [dlr] Extract dealer code
 dlr file (dealer language constraints)
+    ↓ [pbs] Render .pbs into pbs-test/  (separate [release] op promotes it to pbs-release/)
+pbs file (generated artifact)
     ↓ [pbn] Generate hands via dealer (500 per scenario)
 pbn file (Portable Bridge Notation)
     ↓ [rotate] Create 4-player rotations
@@ -134,12 +139,14 @@ Extension provides:
 ### Directory Structure
 
 **Input/Source:**
-- `PBS/` - Scenario definitions with button metadata (master files)
+- `btn/` - Scenario definitions with button metadata (`.btn` master files — the single source of truth)
 - `script/` - Reusable dealer language fragments and macros
 - `-PBS.txt` - Master configuration listing all scenarios with section organization
 
 **Generated (Intermediate):**
 - `dlr/` - Extracted dealer code
+- `pbs-test/` - `.pbs` files rendered from `.dlr` by the `pbs` operation
+- `pbs-release/` - Distributable `.pbs` files promoted from `pbs-test/` by the separate `release` operation
 - `pbn/` - Bridge Portable Notation files (~500 hands each)
 - `pbn-rotated-for-4-players/` - Rotated PBN for 4-player practice
 - `lin-rotated-for-4-players/` - LIN format for BBO
@@ -178,11 +185,12 @@ Pipeline operations in `build-scripts-mac/operations/`:
 
 ### Data Formats
 
-1. **PBS (Practice Bidding Scenario)**: Custom format combining dealer constraints with button metadata for BBO integration
-2. **DLR (Dealer)**: Dealer language for hand generation constraints - a DSL for expressing bridge hand requirements
-3. **PBN (Portable Bridge Notation)**: Standard bridge hand format, ~160-170KB per file (~500 hands)
-4. **BBA (Bridge Base Archive)**: PBN with bidding analysis, ~300-340KB per file
-5. **LIN (BBO format)**: Rotated variant for 4-player practice on BBO
+1. **BTN (Button / master scenario)**: The authored source format — combines dealer constraints with button metadata for BBO integration. Lives in `btn/`; everything else is derived from it.
+2. **PBS (Practice Bidding Scenario)**: Generated, distributable rendering of a `.btn` master (in `pbs-release/`); not hand-edited
+3. **DLR (Dealer)**: Dealer language for hand generation constraints - a DSL for expressing bridge hand requirements
+4. **PBN (Portable Bridge Notation)**: Standard bridge hand format, ~160-170KB per file (~500 hands)
+5. **BBA (Bridge Base Archive)**: PBN with bidding analysis, ~300-340KB per file
+6. **LIN (BBO format)**: Rotated variant for 4-player practice on BBO
 
 ### Configuration System
 
@@ -196,16 +204,16 @@ Central configuration in [build-scripts-mac/config.py](build-scripts-mac/config.
 
 ## Development Practices
 
-### Working with PBS Files
+### Working with Scenario (.btn) Files
 
-- PBS files live in the `PBS/` directory and are the master source
-- Each PBS file defines a bidding scenario with:
+- `.btn` files live in the `btn/` directory and are the single master source. Everything else (`dlr/`, `pbs-release/`, `pbn/`, etc.) is derived — the pipeline does not auto-cascade, so regenerate downstream artifacts explicitly after editing a `.btn`.
+- Each `.btn` file defines a bidding scenario with:
   - Dealer language code for hand generation constraints
-  - Button metadata for BBO integration
+  - Button metadata for BBO integration (`@chat`, `@convention-card-ns`, `@convention-card-ew`, `@include`, etc.)
   - Optional filtering rules for auction patterns
 - The `-PBS.txt` file lists all scenarios and their organization
-- When creating new scenarios, follow the existing PBS format structure
-- **Wide commas in scenario chat**: In the `Button,` section, the chat text content (the descriptive text after the button name) must use wide commas (，) instead of regular commas (,). The structural commas used as PBS syntax delimiters remain as regular commas. When editing PBS files, automatically replace any regular commas in the chat text with wide commas.
+- When creating new scenarios, follow the existing `.btn` structure
+- **Commas in scenario chat**: Use plain regular commas in `.btn` files. The pipeline converts them to wide commas (，) downstream when rendering the `.pbs`; do not hand-type wide commas in `.btn` files.
 
 ### Working with the Pipeline
 
@@ -217,7 +225,7 @@ Central configuration in [build-scripts-mac/config.py](build-scripts-mac/config.
 
 ### Working with the VS Code Extension
 
-- The extension auto-activates when the workspace contains `PBS` folder or `-PBS.txt` file
+- The extension auto-activates via `workspaceContains:PBS` or `workspaceContains:-PBS.txt` (see `vs-code/package.json`). Since the `PBS/` folder no longer exists, in practice `-PBS.txt` is the trigger
 - Tree views and button grid dynamically update based on file changes
 - Commands are registered in [package.json](vs-code/package.json) with menu contributions
 - The extension provides context-aware pipeline commands in the editor title bar
@@ -232,7 +240,7 @@ Central configuration in [build-scripts-mac/config.py](build-scripts-mac/config.
 
 ### File Naming Conventions
 
-- PBS files use names like `Smolen` or `Weak_2_Bids`
+- `.btn` files use names like `Smolen` or `Weak_2_Bids`
 - Generated files maintain the same base name with different extensions
 - Scenario names are used as keys throughout the system
 - Avoid spaces in scenario names; use underscores instead
