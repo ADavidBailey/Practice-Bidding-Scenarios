@@ -1,0 +1,38 @@
+# alias: BustOver2C
+# button-text: Bust Over Strong 2C
+# scenario-title: --- Responding to a Strong 2C with a Bust
+# gib-works: true
+# bba-works: true
+# auction-filter: Auction.....\n2C
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Responding to a Strong 2C with a Bust
+Partner opens a game-forcing 2!C (22+ HCP) and you hold a near-worthless hand:
+3-1-3-6 with only the !SJ and the !CT, 1 HCP and no other honors.
+Even opposite 22+ the partnership is rarely making game, but 2!C is forcing to
+at least 3 of a major (or game), so you cannot pass. Bid the waiting 2!D, then
+make your second negative on the next round to warn partner the hand is dead.
+https://www.bridgebum.com/strong_2c.php
+@chat*/
+
+dealer south
+
+# South: strong, game-forcing 2C opener (22+ HCP)
+s2C = hcp(south)>21
+
+# North: exactly 3-1-3-6 (3S, 1H, 3D, 6C)
+nShape = shape(north,3136)
+
+# North holds the SJ and the CT and NO other honor cards (A,K,Q,J,T)
+nSpades   = top5(north,spades)==1   and hascard(north,JS)
+nHearts   = top5(north,hearts)==0
+nDiamonds = top5(north,diamonds)==0
+nClubs    = top5(north,clubs)==1    and hascard(north,TC)
+nBust = nShape and nSpades and nHearts and nDiamonds and nClubs
+
+s2C and nBust
+
+produce 30
+action printoneline,
