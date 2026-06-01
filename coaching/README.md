@@ -53,6 +53,25 @@ block is the `[ROLE declarer][STAGE …]` play tips.
   as combined hands) → declarer/leader/defender `[ROLE][STAGE]` chunks, with praise only in
   `[STAGE post-play]`.
 
+### Opening-lead advice (the `[ROLE leader][STAGE pre-lead]` chunk)
+
+Make the leader's pre-lead tip follow standard practice (ref: https://kwbridge.com/leads.htm).
+Pick the suit, then name the **specific card** and why:
+
+- **Which suit — vs a suit contract** (safety): a singleton → partner's bid suit → a strong
+  touching-honor sequence → your longest suit (low) → an unbid suit → dummy's → a trump (last
+  resort). Don't lead unsupported/underled aces, underled broken honors (KJxx, Q10x) outside
+  partner's suit, or declarer's suit.
+- **Which suit — vs notrump** (attack length): **4th-best from your longest, strongest suit**,
+  unless partner bid one (lead it), your long suit is theirs, or it holds 3+ touching honors
+  (lead the honor).
+- **Which card from the suit:** AK… → K; touching honors (KQ, QJ, J10, 109) → the top honor;
+  interior sequence (the J in KJ10x, the 10 in Q10 9 7 4) → top of that sequence; 4+ with no
+  sequence → 4th best; 3 small → lowest; doubleton → top.
+
+Ground it in the actual hand and auction (e.g. "lead the ♦K, top of your ♦KQJ" / "4th-best
+spade, the ♠5, your longest suit against their notrump").
+
 ## File structure
 
 Standard PBN. For each board you want coached, insert **one `{...}` block immediately
