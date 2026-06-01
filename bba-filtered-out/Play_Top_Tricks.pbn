@@ -50,10 +50,7 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  1H    Pass
 2H    Pass  3H    Pass
-3S =1=    Pass  4D =2=    Pass
 4H    Pass  Pass  Pass
-[Note "1:Cue bid, a !S stopper"]
-[Note "2:Cue bid, a !D stopper"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -103,9 +100,7 @@ Pass  Pass
 [Scoring "MP"]
 [Auction "S"]
 1S    Pass  3S    Pass
-4C =1=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Cue bid, a !C stopper"]
+4S    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -274,16 +269,14 @@ Pass  Pass
 {HCP 9 7 14 10}
 {Losers 9 10 6 8}
 [Declarer "S"]
-[Contract "3S"]
+[Contract "4S"]
 [Result "11"]
-[Score "NS 200"]
+[Score "NS 650"]
 [Scoring "MP"]
 [Auction "S"]
 1S    Pass  2S    Pass
-2N =1=    Pass  3C =2=    Pass
-3S    Pass  Pass  Pass
-[Note "1:Two way game tries"]
-[Note "2:Two way game tries"]
+3S    Pass  3N    Pass
+4S    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -427,16 +420,16 @@ Pass  Pass
 {HCP 9 10 14 7}
 {Losers 9 9 5 9}
 [Declarer "S"]
-[Contract "4H"]
+[Contract "6H"]
 [Result "10"]
-[Score "NS 620"]
+[Score "NS -200"]
 [Scoring "MP"]
 [Auction "S"]
 1H    Pass  3H    Pass
-3S =1=    Pass  4C =2=    Pass
-4H    Pass  Pass  Pass
-[Note "1:Cue bid, a !S stopper"]
-[Note "2:Cue bid, a !C stopper"]
+4N =1=    Pass  5D =2=    Pass
+6H    Pass  Pass  Pass
+[Note "1:Blackwood 0123, for !H"]
+[Note "2:A=1/5 or 5/5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -847,33 +840,6 @@ Pass  X     Pass  2S
 [Event "Play_Top_Tricks"]
 [Site ""]
 [Board "34"]
-% 39A08E66900C7B2DA601D7F86FD2
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:T86.KT6.AJ62.953 Q93.J52.Q75.KQ72 AKJ7.AQ873.94.86 542.94.KT83.AJT4"]
-{Shape 3343 3334 4522 3244}
-{HCP 8 10 14 8}
-{Losers 10 8 6 9}
-[Declarer "S"]
-[Contract "3H"]
-[Result "10"]
-[Score "NS 170"]
-[Scoring "MP"]
-[Auction "S"]
-1H    Pass  2H    Pass
-2N =1=    Pass  3H    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "35"]
 % 3BAB41D03FE4824F19686632C9CD
 [North "EPBot"]
 [East "EPBot"]
@@ -899,7 +865,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "36"]
+[Board "35"]
 % 3A1DA0997B861A8D429022FCB304
 [North "EPBot"]
 [East "EPBot"]
@@ -924,7 +890,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "37"]
+[Board "36"]
 % 398C62EBA5A6F31C8364E28647FC
 [North "EPBot"]
 [East "EPBot"]
@@ -949,7 +915,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "38"]
+[Board "37"]
 % 3B4C6F6CC6CDDB309A0E28792311
 [North "EPBot"]
 [East "EPBot"]
@@ -962,20 +928,21 @@ Pass  Pass
 {HCP 9 10 14 7}
 {Losers 8 9 5 9}
 [Declarer "N"]
-[Contract "2H"]
+[Contract "4H"]
 [Result "10"]
-[Score "NS 170"]
+[Score "NS 620"]
 [Scoring "MP"]
 [Auction "S"]
 1D    Pass  1S    Pass
 1N    Pass  2H    Pass
+3H    Pass  4H    Pass
 Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "39"]
+[Board "38"]
 % 38A8ED475C618FF61A254826E8BF
 [North "EPBot"]
 [East "EPBot"]
@@ -1000,34 +967,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "40"]
-% 388DBD3758C46F57A19839CF16B2
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:Q53.AT4.J65.Q984 J98.J863.AK94.32 AK762.97.72.AK75 T4.KQ52.QT83.JT6"]
-{Shape 3334 3442 5224 2443}
-{HCP 9 9 14 8}
-{Losers 9 9 6 8}
-[Declarer "S"]
-[Contract "3S"]
-[Result "10"]
-[Score "NS 170"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  2S    Pass
-3C =1=    Pass  3S    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "41"]
+[Board "39"]
 % 3AB1198B92708BDE1F39A1EEFC45
 [North "EPBot"]
 [East "EPBot"]
@@ -1052,7 +992,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "42"]
+[Board "40"]
 % 3B5FEF74AD22F7D5B255DB7D3308
 [North "EPBot"]
 [East "EPBot"]
@@ -1077,7 +1017,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "43"]
+[Board "41"]
 % 39A0841D6E4924F7490A47C7ECFA
 [North "EPBot"]
 [East "EPBot"]
@@ -1103,7 +1043,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "44"]
+[Board "42"]
 % 481DB5E782DA582A98838C34BE73
 [North "EPBot"]
 [East "EPBot"]
@@ -1128,7 +1068,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "45"]
+[Board "43"]
 % 4A8EA098B3EC521CE20D3A49BD6D
 [North "EPBot"]
 [East "EPBot"]
@@ -1153,7 +1093,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "46"]
+[Board "44"]
 % 4B3C959E1362BB93EAC504AB3068
 [North "EPBot"]
 [East "EPBot"]
@@ -1178,7 +1118,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "47"]
+[Board "45"]
 % 4986AFB8C20FA12CB6875A18D47F
 [North "EPBot"]
 [East "EPBot"]
@@ -1203,7 +1143,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "48"]
+[Board "46"]
 % 4B299FDA34944D13A4827AB38EF4
 [North "EPBot"]
 [East "EPBot"]
@@ -1228,7 +1168,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "49"]
+[Board "47"]
 % 489D37B09BC4A2450F6CFE820376
 [North "EPBot"]
 [East "EPBot"]
@@ -1254,7 +1194,7 @@ Pass  X     Pass  3C
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "50"]
+[Board "48"]
 % 4B9C86FF9A176FB21086C178BC09
 [North "EPBot"]
 [East "EPBot"]
@@ -1279,7 +1219,7 @@ Pass  X     Pass  3C
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "51"]
+[Board "49"]
 % 4A87EA708218076305F2E4679C4A
 [North "EPBot"]
 [East "EPBot"]
@@ -1305,7 +1245,7 @@ Pass  X     Pass  3C
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "52"]
+[Board "50"]
 % 4B2EBC4348AB16EEB98312102FF8
 [North "EPBot"]
 [East "EPBot"]
@@ -1325,16 +1265,13 @@ Pass  X     Pass  3C
 [Auction "S"]
 1D    Pass  1S    Pass
 2S    Pass  3S    Pass
-4C =1=    Pass  4D =2=    Pass
 4S    Pass  Pass  Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, a !D stopper"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "53"]
+[Board "51"]
 % 4898B92C9EDFAE67F937C3B6651B
 [North "EPBot"]
 [East "EPBot"]
@@ -1359,7 +1296,7 @@ Pass  X     Pass  3C
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "54"]
+[Board "52"]
 % 49AF84DA3B9DC74C3021B4B7A256
 [North "EPBot"]
 [East "EPBot"]
@@ -1384,7 +1321,7 @@ Pass  X     Pass  3C
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "55"]
+[Board "53"]
 % 58AF30675491302BDE37A6BB02DE
 [North "EPBot"]
 [East "EPBot"]
@@ -1410,7 +1347,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "56"]
+[Board "54"]
 % 591A389D3172B9E11065D4C40E0A
 [North "EPBot"]
 [East "EPBot"]
@@ -1436,7 +1373,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "57"]
+[Board "55"]
 % 5B69CD100678F625E821C2514F29
 [North "EPBot"]
 [East "EPBot"]
@@ -1462,7 +1399,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "58"]
+[Board "56"]
 % 5BB69C8B81037A0E1C88E2799FC0
 [North "EPBot"]
 [East "EPBot"]
@@ -1487,7 +1424,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "59"]
+[Board "57"]
 % 594BF96E381259B604C1EDE15032
 [North "EPBot"]
 [East "EPBot"]
@@ -1513,7 +1450,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "60"]
+[Board "58"]
 % 588D98359E898A54EC72873C8627
 [North "EPBot"]
 [East "EPBot"]
@@ -1532,16 +1469,13 @@ Pass  Pass
 [Scoring "MP"]
 [Auction "S"]
 1S    Pass  3S    Pass
-4C =1=    Pass  4D =2=    Pass
 4S    Pass  Pass  Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, a !D stopper"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "61"]
+[Board "59"]
 % 5AAEC0A943E85F237FF286AE5DD4
 [North "EPBot"]
 [East "EPBot"]
@@ -1566,7 +1500,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "62"]
+[Board "60"]
 % 5B6C05B0EA57EE2AF04EC94514A6
 [North "EPBot"]
 [East "EPBot"]
@@ -1591,7 +1525,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "63"]
+[Board "61"]
 % 589A3081D5EF368C4E384904B19E
 [North "EPBot"]
 [East "EPBot"]
@@ -1616,7 +1550,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "64"]
+[Board "62"]
 % 5AF55DDD9E33C3EA4C567C87A8B7
 [North "EPBot"]
 [East "EPBot"]
@@ -1642,7 +1576,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "65"]
+[Board "63"]
 % 6801949C68CAB3B77E832DDA3214
 [North "EPBot"]
 [East "EPBot"]
@@ -1667,7 +1601,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "66"]
+[Board "64"]
 % 6AA44CEA5340B3F68AED57831FE6
 [North "EPBot"]
 [East "EPBot"]
@@ -1692,7 +1626,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "67"]
+[Board "65"]
 % 69AFBB365683CC5B19FE1778A82F
 [North "EPBot"]
 [East "EPBot"]
@@ -1718,7 +1652,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "68"]
+[Board "66"]
 % 6A04AA92ED3D948A3072DC1B3767
 [North "EPBot"]
 [East "EPBot"]
@@ -1744,7 +1678,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "69"]
+[Board "67"]
 % 698AB47B1BD4968D330F6EFBA29C
 [North "EPBot"]
 [East "EPBot"]
@@ -1769,7 +1703,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "70"]
+[Board "68"]
 % 69A2A2C47C5F45E0EC07DA06ABB1
 [North "EPBot"]
 [East "EPBot"]
@@ -1794,7 +1728,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "71"]
+[Board "69"]
 % 68ADC81441250FDDFCFF456A658A
 [North "EPBot"]
 [East "EPBot"]
@@ -1820,7 +1754,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "72"]
+[Board "70"]
 % 6AB6AF5BFC92267CDBE30C94677D
 [North "EPBot"]
 [East "EPBot"]
@@ -1845,7 +1779,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "73"]
+[Board "71"]
 % 6BAF32C05D3AB30CAE44E4923B19
 [North "EPBot"]
 [East "EPBot"]
@@ -1871,7 +1805,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "74"]
+[Board "72"]
 % 68AC286FBE344B9A8EF7A019D6A7
 [North "EPBot"]
 [East "EPBot"]
@@ -1896,36 +1830,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "75"]
-% 6A96B733C892AB6039D860AE1F2F
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:Q732.J.432.KQ932 85.AT63.J976.AT4 AKT94.98542.AK.7 J6.KQ7.QT85.J865"]
-{Shape 4135 2443 5521 2344}
-{HCP 8 9 14 9}
-{Losers 7 9 5 8}
-[Declarer "S"]
-[Contract "4S"]
-[Result "11"]
-[Score "NS 650"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  2S    Pass
-2N =1=    Pass  3C =2=    Pass
-3S    Pass  4S    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[Note "2:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "76"]
+[Board "73"]
 % 69158DBBD46E3B3B05C39E78D6BB
 [North "EPBot"]
 [East "EPBot"]
@@ -1951,7 +1856,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "77"]
+[Board "74"]
 % 78E0422A7364D72B40CCA61FBEA7
 [North "EPBot"]
 [East "EPBot"]
@@ -1976,7 +1881,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "78"]
+[Board "75"]
 % 7A6EECA1366028C79F3BE1D2474A
 [North "EPBot"]
 [East "EPBot"]
@@ -2001,36 +1906,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "79"]
-% 7B3D9B90863ACD717DC8ABD60792
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:AT3.J963.J43.K53 87.KQ42.Q82.JT42 KQJ52.5.A97.A987 964.AT87.KT65.Q6"]
-{Shape 3433 2434 5134 3442}
-{HCP 9 8 14 9}
-{Losers 10 8 6 9}
-[Declarer "S"]
-[Contract "3S"]
-[Result "10"]
-[Score "NS 170"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  2S    Pass
-2N =1=    Pass  3C =2=    Pass
-3H    Pass  3S    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[Note "2:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "80"]
+[Board "76"]
 % 7A8A2484F016467B29025D2364F3
 [North "EPBot"]
 [East "EPBot"]
@@ -2056,34 +1932,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "81"]
-% 7985EDD2D08DB82045627E6EC327
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:82.AT73.QJ863.32 7654.QJ.A72.Q654 AT9.K8642.9.AKT7 KQJ3.95.KT54.J98"]
-{Shape 2452 4234 3514 4243}
-{HCP 7 9 14 10}
-{Losers 8 9 6 8}
-[Declarer "S"]
-[Contract "3H"]
-[Result "10"]
-[Score "NS 170"]
-[Scoring "MP"]
-[Auction "S"]
-1H    Pass  2H    Pass
-3C =1=    Pass  3H    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "82"]
+[Board "77"]
 % 7843E0EE3DC788100611446EB9EE
 [North "EPBot"]
 [East "EPBot"]
@@ -2109,7 +1958,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "83"]
+[Board "78"]
 % 7BA46FD23B2E48C7612B7FC0A2DC
 [North "EPBot"]
 [East "EPBot"]
@@ -2134,7 +1983,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "84"]
+[Board "79"]
 % 7A6D4081E83D0802E0997FDE6EA6
 [North "EPBot"]
 [East "EPBot"]
@@ -2159,7 +2008,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "85"]
+[Board "80"]
 % 7B6C8649C102DD6388D315CFE868
 [North "EPBot"]
 [East "EPBot"]
@@ -2185,7 +2034,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "86"]
+[Board "81"]
 % 788CA44382E2C66A5FF3EC0D8A34
 [North "EPBot"]
 [East "EPBot"]
@@ -2211,7 +2060,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "87"]
+[Board "82"]
 % 7AB69FE374D8B50CA0829E0B7E19
 [North "EPBot"]
 [East "EPBot"]
@@ -2236,7 +2085,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "88"]
+[Board "83"]
 % 79E249486DC3F030145BE2F626A9
 [North "EPBot"]
 [East "EPBot"]
@@ -2261,7 +2110,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "89"]
+[Board "84"]
 % 889D2BE4BE861B188E8F7060F3B6
 [North "EPBot"]
 [East "EPBot"]
@@ -2287,7 +2136,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "90"]
+[Board "85"]
 % 8A28248AF29D502BD3BDEF9B8277
 [North "EPBot"]
 [East "EPBot"]
@@ -2312,7 +2161,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "91"]
+[Board "86"]
 % 89953BDD3BB0202A9F77A7640EDE
 [North "EPBot"]
 [East "EPBot"]
@@ -2338,7 +2187,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "92"]
+[Board "87"]
 % 8B9F31B80055F6919784F66ACD20
 [North "EPBot"]
 [East "EPBot"]
@@ -2363,7 +2212,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "93"]
+[Board "88"]
 % 8A45EB346A82422D13E9BC8350EB
 [North "EPBot"]
 [East "EPBot"]
@@ -2388,7 +2237,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "94"]
+[Board "89"]
 % 8BB6AC1BD631B6AA43D4A8215C37
 [North "EPBot"]
 [East "EPBot"]
@@ -2413,7 +2262,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "95"]
+[Board "90"]
 % 88BD89D8FE8882BD075E355A00A4
 [North "EPBot"]
 [East "EPBot"]
@@ -2438,7 +2287,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "96"]
+[Board "91"]
 % 8BDFE59B926F7BF263C9B42C9777
 [North "EPBot"]
 [East "EPBot"]
@@ -2463,36 +2312,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "97"]
-% 88BA90950875DD2F8DBAC0C27A18
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:J82.J754.AJ632.8 T3.KQ92.987.A643 AKQ76.8.K54.QT97 954.AT63.QT.KJ52"]
-{Shape 3451 2434 5134 3424}
-{HCP 7 9 14 10}
-{Losers 9 8 5 9}
-[Declarer "S"]
-[Contract "3S"]
-[Result "10"]
-[Score "NS 170"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  2S    Pass
-2N =1=    Pass  3C =2=    Pass
-3H    Pass  3S    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[Note "2:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "98"]
+[Board "92"]
 % 8AA443D6CB626F3518B684EAC00B
 [North "EPBot"]
 [East "EPBot"]
@@ -2518,7 +2338,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "99"]
+[Board "93"]
 % 8AE7549F9E6ABDE770CEFF99402C
 [North "EPBot"]
 [East "EPBot"]
@@ -2543,7 +2363,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "100"]
+[Board "94"]
 % 89886B74402E2ED7C5B15A0AC8EF
 [North "EPBot"]
 [East "EPBot"]
@@ -2569,7 +2389,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "101"]
+[Board "95"]
 % 982DB6BB728B50248EB608C09DDF
 [North "EPBot"]
 [East "EPBot"]
@@ -2594,7 +2414,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "102"]
+[Board "96"]
 % 9A37B99A806396E43F5A73DD8700
 [North "EPBot"]
 [East "EPBot"]
@@ -2619,34 +2439,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "103"]
-% 99BB9A10C67679E40733B8CFA19E
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:Q76.J74.Q63.A764 T9.KQ2.JT87.KJT2 AK532.83.AK95.93 J84.AT965.42.Q85"]
-{Shape 3334 2344 5242 3523}
-{HCP 9 10 14 7}
-{Losers 9 8 6 9}
-[Declarer "S"]
-[Contract "3S"]
-[Result "10"]
-[Score "NS 170"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  2S    Pass
-3D =1=    Pass  3S    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "104"]
+[Board "97"]
 % 9BB5909B3FBFD226A3E0E4566B34
 [North "EPBot"]
 [East "EPBot"]
@@ -2671,7 +2464,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "105"]
+[Board "98"]
 % 9AAC6A01D0CAAA5F7DACBC0D62E3
 [North "EPBot"]
 [East "EPBot"]
@@ -2696,7 +2489,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "106"]
+[Board "99"]
 % 99A067E68FDF437E16BEE9C7A3F9
 [North "EPBot"]
 [East "EPBot"]
@@ -2721,7 +2514,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "107"]
+[Board "100"]
 % 9B3F91A0C8ABA8CA13500E7F779F
 [North "EPBot"]
 [East "EPBot"]
@@ -2746,7 +2539,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "108"]
+[Board "101"]
 % 99E2602AFD4D61D68FA69300943C
 [North "EPBot"]
 [East "EPBot"]
@@ -2771,7 +2564,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "109"]
+[Board "102"]
 % 9843E065DE47A93E33EAE75C2688
 [North "EPBot"]
 [East "EPBot"]
@@ -2796,7 +2589,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "110"]
+[Board "103"]
 % 9A3D95723A09060FA0F09998EF51
 [North "EPBot"]
 [East "EPBot"]
@@ -2822,7 +2615,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "111"]
+[Board "104"]
 % 9BB38DDBEA4A1E5094349FBE2F34
 [North "EPBot"]
 [East "EPBot"]
@@ -2841,15 +2634,13 @@ Pass  Pass
 [Scoring "MP"]
 [Auction "S"]
 1S    Pass  3S    Pass
-4C =1=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Cue bid, a !C stopper"]
+4S    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "112"]
+[Board "105"]
 % 98859866395DF50D8CC6B88FBA1D
 [North "EPBot"]
 [East "EPBot"]
@@ -2862,27 +2653,19 @@ Pass  Pass
 {HCP 9 7 14 10}
 {Losers 8 9 4 8}
 [Declarer "S"]
-[Contract "5S"]
+[Contract "4S"]
 [Result "13"]
 [Score "NS 510"]
 [Scoring "MP"]
 [Auction "S"]
 1S    Pass  3S    Pass
-4C =1=    Pass  4D =2=    Pass
-4N =3=    Pass  5D =4=    Pass
-5H    Pass  5S =5=    Pass
-Pass  Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, a !D stopper"]
-[Note "3:Blackwood 0123, for !S"]
-[Note "4:A=1/5 or 5/5"]
-[Note "5:no !S queen"]
+4S    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "113"]
+[Board "106"]
 % 9AE749E02E0C60FD36AB6E7449DE
 [North "EPBot"]
 [East "EPBot"]
@@ -2901,16 +2684,13 @@ Pass  Pass
 [Scoring "MP"]
 [Auction "S"]
 1H    Pass  3H    Pass
-3S =1=    Pass  4C =2=    Pass
 4H    Pass  Pass  Pass
-[Note "1:Cue bid, a !S stopper"]
-[Note "2:Cue bid, a !C stopper"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "114"]
+[Board "107"]
 % 9980A49E776C1327AFFD1AF02A86
 [North "EPBot"]
 [East "EPBot"]
@@ -2935,7 +2715,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "115"]
+[Board "108"]
 % AA84939A04C11A3406A2F9BB6C43
 [North "EPBot"]
 [East "EPBot"]
@@ -2960,7 +2740,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "116"]
+[Board "109"]
 % A96AC09B2D64AFF3C664CB7227DD
 [North "EPBot"]
 [East "EPBot"]
@@ -2985,7 +2765,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "117"]
+[Board "110"]
 % A98886386C7AEF67A88FD2C7CA06
 [North "EPBot"]
 [East "EPBot"]
@@ -3011,7 +2791,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "118"]
+[Board "111"]
 % AA9FB9A05C8730FA2616CBC657BC
 [North "EPBot"]
 [East "EPBot"]
@@ -3036,7 +2816,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "119"]
+[Board "112"]
 % A805A2DE97089B303F548541FEAC
 [North "EPBot"]
 [East "EPBot"]
@@ -3061,7 +2841,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "120"]
+[Board "113"]
 % A9A79F3AF4018C069A1F5A6BF93C
 [North "EPBot"]
 [East "EPBot"]
@@ -3087,7 +2867,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "121"]
+[Board "114"]
 % BB65E900CA3F4904A7B5B2606A72
 [North "EPBot"]
 [East "EPBot"]
@@ -3112,7 +2892,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "122"]
+[Board "115"]
 % BA82262058407D0AC009F927ED96
 [North "EPBot"]
 [East "EPBot"]
@@ -3138,61 +2918,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "123"]
-% B93A8A906DD89A0FF143BA84543F
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:A82.K864.Q76.862 J63.QT93.43.AK95 KQ954.J.AKT95.J7 T7.A752.J82.QT43"]
-{Shape 3433 3424 5152 2434}
-{HCP 9 10 14 7}
-{Losers 9 8 5 9}
-[Declarer "S"]
-[Contract "3S"]
-[Result "10"]
-[Score "NS 170"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  2S    Pass
-3D =1=    Pass  3S    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "124"]
-% BB8E6CDBCA20EDB228429307E47F
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:T74.AJ64.43.Q542 K62.Q5.T865.AJ86 A85.KT973.AK92.9 QJ93.82.QJ7.KT73"]
-{Shape 3424 3244 3541 4234}
-{HCP 7 10 14 9}
-{Losers 9 9 6 8}
-[Declarer "S"]
-[Contract "3H"]
-[Result "11"]
-[Score "NS 200"]
-[Scoring "MP"]
-[Auction "S"]
-1H    Pass  2H    Pass
-3D =1=    Pass  3H    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "125"]
+[Board "116"]
 % B8BD1785C1930610D4BB5E3C0CA2
 [North "EPBot"]
 [East "EPBot"]
@@ -3217,7 +2943,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "126"]
+[Board "117"]
 % B9B50F65DA901D49B0F33C2E9A06
 [North "EPBot"]
 [East "EPBot"]
@@ -3243,7 +2969,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "127"]
+[Board "118"]
 % BB993105D981884254E8A64EB436
 [North "EPBot"]
 [East "EPBot"]
@@ -3262,15 +2988,13 @@ Pass  Pass
 [Scoring "MP"]
 [Auction "S"]
 1S    Pass  3S    Pass
-4C =1=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Cue bid, a !C stopper"]
+4S    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "128"]
+[Board "119"]
 % BA943683825C65DD8A9ECD383BB0
 [North "EPBot"]
 [East "EPBot"]
@@ -3295,7 +3019,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "129"]
+[Board "120"]
 % BBB95FB78370C1DCCB6B196793DD
 [North "EPBot"]
 [East "EPBot"]
@@ -3320,7 +3044,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "130"]
+[Board "121"]
 % B832A8B27B94CFF9265C0B9C856D
 [North "EPBot"]
 [East "EPBot"]
@@ -3346,7 +3070,7 @@ Pass  X     Pass  3D
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "131"]
+[Board "122"]
 % B9CAA02D54EF077562490ADDC870
 [North "EPBot"]
 [East "EPBot"]
@@ -3372,7 +3096,7 @@ Pass  X     Pass  3D
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "132"]
+[Board "123"]
 % C8A5389E1EB874CA7D0A87E99891
 [North "EPBot"]
 [East "EPBot"]
@@ -3397,7 +3121,7 @@ Pass  X     Pass  3D
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "133"]
+[Board "124"]
 % CAEFE9EA44784EE7A5500B9E03B0
 [North "EPBot"]
 [East "EPBot"]
@@ -3422,7 +3146,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "134"]
+[Board "125"]
 % C96BEF660D3B84DC3A68D28605CD
 [North "EPBot"]
 [East "EPBot"]
@@ -3448,7 +3172,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "135"]
+[Board "126"]
 % CB44A962B9A2C4DBA7D3276AC471
 [North "EPBot"]
 [East "EPBot"]
@@ -3473,7 +3197,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "136"]
+[Board "127"]
 % CA14BEADD2C0886966D29D0C833B
 [North "EPBot"]
 [East "EPBot"]
@@ -3498,7 +3222,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "137"]
+[Board "128"]
 % C9C16A6C8CCC2EB32B5882F74695
 [North "EPBot"]
 [East "EPBot"]
@@ -3524,7 +3248,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "138"]
+[Board "129"]
 % CB856AD0ED868463EA15FB6444B2
 [North "EPBot"]
 [East "EPBot"]
@@ -3549,7 +3273,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "139"]
+[Board "130"]
 % C8202C1C952AF3B74AA73EE6799F
 [North "EPBot"]
 [East "EPBot"]
@@ -3575,7 +3299,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "140"]
+[Board "131"]
 % CBB5939A3B32B6649A0C5FABC3EC
 [North "EPBot"]
 [East "EPBot"]
@@ -3600,7 +3324,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "141"]
+[Board "132"]
 % C815B1482630DF4894BFB39FCA92
 [North "EPBot"]
 [East "EPBot"]
@@ -3625,7 +3349,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "142"]
+[Board "133"]
 % CAEB67C194CE3B4321A43E62789B
 [North "EPBot"]
 [East "EPBot"]
@@ -3650,7 +3374,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "143"]
+[Board "134"]
 % CB9F39B2131204CD98678EBACD78
 [North "EPBot"]
 [East "EPBot"]
@@ -3675,7 +3399,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "144"]
+[Board "135"]
 % C8AF9798F2DF7C2B837040263C99
 [North "EPBot"]
 [East "EPBot"]
@@ -3700,7 +3424,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "145"]
+[Board "136"]
 % CA2193BA8304E6D9BB6238964CCF
 [North "EPBot"]
 [East "EPBot"]
@@ -3725,7 +3449,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "146"]
+[Board "137"]
 % C9A76CE3C6B102E87420651D5F8E
 [North "EPBot"]
 [East "EPBot"]
@@ -3750,7 +3474,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "147"]
+[Board "138"]
 % D8E769205E86CB17F8ABAC7E8DE6
 [North "EPBot"]
 [East "EPBot"]
@@ -3775,7 +3499,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "148"]
+[Board "139"]
 % DA04A86AB316069BDCB39C6335FB
 [North "EPBot"]
 [East "EPBot"]
@@ -3800,7 +3524,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "149"]
+[Board "140"]
 % D99BB7BEFDBCC12E288256A00757
 [North "EPBot"]
 [East "EPBot"]
@@ -3825,7 +3549,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "150"]
+[Board "141"]
 % DB208EB03FC217AB4E889F7158EB
 [North "EPBot"]
 [East "EPBot"]
@@ -3850,7 +3574,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "151"]
+[Board "142"]
 % DA8116BA80FDA8BF335A5B00C795
 [North "EPBot"]
 [East "EPBot"]
@@ -3875,7 +3599,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "152"]
+[Board "143"]
 % DBE564806A2BB8CA1F43769EDFEF
 [North "EPBot"]
 [East "EPBot"]
@@ -3900,7 +3624,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "153"]
+[Board "144"]
 % D8319773D2D4286BAC8E2E368F35
 [North "EPBot"]
 [East "EPBot"]
@@ -3920,15 +3644,13 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  1S    Pass
 2S    Pass  3S    Pass
-4C =1=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Cue bid, a !C stopper"]
+4S    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "154"]
+[Board "145"]
 % D99B79F3D6E89A33B04242E44DAF
 [North "EPBot"]
 [East "EPBot"]
@@ -3954,7 +3676,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "155"]
+[Board "146"]
 % DBC9A341685717F7AAC920926CF5
 [North "EPBot"]
 [East "EPBot"]
@@ -3979,7 +3701,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "156"]
+[Board "147"]
 % D8AAE8E64FDD14317AA0CE508B27
 [North "EPBot"]
 [East "EPBot"]
@@ -4005,7 +3727,7 @@ Pass  X     Pass  3C
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "157"]
+[Board "148"]
 % DA89823894330E70DDDBE5829647
 [North "EPBot"]
 [East "EPBot"]
@@ -4030,7 +3752,7 @@ Pass  X     Pass  3C
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "158"]
+[Board "149"]
 % DBAE76F4255C9742C784E1D8AE7B
 [North "EPBot"]
 [East "EPBot"]
@@ -4056,7 +3778,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "159"]
+[Board "150"]
 % D8213ED97415BE938CC9B31E4884
 [North "EPBot"]
 [East "EPBot"]
@@ -4075,15 +3797,13 @@ Pass  Pass
 [Scoring "MP"]
 [Auction "S"]
 1S    Pass  3S    Pass
-4C =1=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Cue bid, a !C stopper"]
+4S    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "160"]
+[Board "151"]
 % E8228615B4254CB38BFC4DDC199A
 [North "EPBot"]
 [East "EPBot"]
@@ -4108,7 +3828,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "161"]
+[Board "152"]
 % EABEB72298DAC013BB257DEB6C9F
 [North "EPBot"]
 [East "EPBot"]
@@ -4133,7 +3853,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "162"]
+[Board "153"]
 % EBC56EBA80A7BB6C07DC6853C1C2
 [North "EPBot"]
 [East "EPBot"]
@@ -4159,7 +3879,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "163"]
+[Board "154"]
 % EA95FF804A3B6F67CB61BCF2ABD9
 [North "EPBot"]
 [East "EPBot"]
@@ -4184,7 +3904,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "164"]
+[Board "155"]
 % E9BA18840BF98779CF5FA29E771C
 [North "EPBot"]
 [East "EPBot"]
@@ -4209,7 +3929,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "165"]
+[Board "156"]
 % E9B2B95E2F8415B39106F06C84CA
 [North "EPBot"]
 [East "EPBot"]
@@ -4234,7 +3954,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "166"]
+[Board "157"]
 % EB3DB6B37EECA1931844EA23141B
 [North "EPBot"]
 [East "EPBot"]
@@ -4260,7 +3980,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "167"]
+[Board "158"]
 % E8B99F58B03489C64E0112BFD422
 [North "EPBot"]
 [East "EPBot"]
@@ -4285,7 +4005,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "168"]
+[Board "159"]
 % EA849E3962329F9C7C6D1CA983F2
 [North "EPBot"]
 [East "EPBot"]
@@ -4310,7 +4030,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "169"]
+[Board "160"]
 % EBAE02E8340D58653BFA41422C95
 [North "EPBot"]
 [East "EPBot"]
@@ -4323,21 +4043,20 @@ Pass  Pass
 {HCP 8 10 14 8}
 {Losers 8 8 7 9}
 [Declarer "N"]
-[Contract "4H"]
+[Contract "2H"]
 [Result "10"]
-[Score "NS 620"]
+[Score "NS 170"]
 [Scoring "MP"]
 [Auction "S"]
 1C    Pass  1S    Pass
 1N    Pass  2H    Pass
-3H    Pass  4H    Pass
 Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "170"]
+[Board "161"]
 % E8B58F9FFF0870E05AB51E800267
 [North "EPBot"]
 [East "EPBot"]
@@ -4362,7 +4081,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "171"]
+[Board "162"]
 % EAE9498304C4222ED456CC205D76
 [North "EPBot"]
 [East "EPBot"]
@@ -4388,7 +4107,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "172"]
+[Board "163"]
 % E98BE46EF175E12C8C7A5643270D
 [North "EPBot"]
 [East "EPBot"]
@@ -4413,7 +4132,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "173"]
+[Board "164"]
 % FAA3EB82766A9CE73CC802E55F9C
 [North "EPBot"]
 [East "EPBot"]
@@ -4438,7 +4157,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "174"]
+[Board "165"]
 % F925BC8272199F199C81C47EC136
 [North "EPBot"]
 [East "EPBot"]
@@ -4463,34 +4182,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "175"]
-% FB09A299588264CA53F71D34B5BF
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:A54.AT8.9643.762 J97.QJ75.KT7.KT8 KQT32.K9.52.AQ53 86.6432.AQJ8.J94"]
-{Shape 3343 3433 5224 2443}
-{HCP 8 10 14 8}
-{Losers 10 9 5 9}
-[Declarer "S"]
-[Contract "3S"]
-[Result "10"]
-[Score "NS 170"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  2S    Pass
-3C =1=    Pass  3S    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "176"]
+[Board "166"]
 % FAA88ACFB4739962A23614DB032C
 [North "EPBot"]
 [East "EPBot"]
@@ -4515,7 +4207,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "177"]
+[Board "167"]
 % F98890B29E1B850EB549D00B76FC
 [North "EPBot"]
 [East "EPBot"]
@@ -4540,7 +4232,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "178"]
+[Board "168"]
 % FB95B32079E2077ED894B905A442
 [North "EPBot"]
 [East "EPBot"]
@@ -4565,7 +4257,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "179"]
+[Board "169"]
 % F8C3ED662D98316D1904F6CE844A
 [North "EPBot"]
 [East "EPBot"]
@@ -4591,7 +4283,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "180"]
+[Board "170"]
 % FBAA82BB0CD3B11A51049F88CC7F
 [North "EPBot"]
 [East "EPBot"]
@@ -4616,7 +4308,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "181"]
+[Board "171"]
 % FA28AE6CB0D8DF036E219AB6BF39
 [North "EPBot"]
 [East "EPBot"]
@@ -4641,7 +4333,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "182"]
+[Board "172"]
 % FB1D10B9A7700863398BA97615D2
 [North "EPBot"]
 [East "EPBot"]
@@ -4667,7 +4359,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "183"]
+[Board "173"]
 % FA20AA9F92BFA67CDB7CB31B2EE4
 [North "EPBot"]
 [East "EPBot"]
@@ -4692,7 +4384,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "184"]
+[Board "174"]
 % 0802A46C1D8D733B64230EC670D5
 [North "EPBot"]
 [East "EPBot"]
@@ -4705,20 +4397,21 @@ Pass  Pass
 {HCP 9 10 13 8}
 {Losers 8 8 7 8}
 [Declarer "N"]
-[Contract "2H"]
+[Contract "4H"]
 [Result "10"]
-[Score "NS 170"]
+[Score "NS 420"]
 [Scoring "MP"]
 [Auction "S"]
 1D    Pass  1S    Pass
 1N    Pass  2H    Pass
+3H    Pass  4H    Pass
 Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "185"]
+[Board "175"]
 % 0A359A349FA780DB4E00FA8851A3
 [North "EPBot"]
 [East "EPBot"]
@@ -4743,7 +4436,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "186"]
+[Board "176"]
 % 09A0B68E8E58AF1C0533A6C7D178
 [North "EPBot"]
 [East "EPBot"]
@@ -4768,7 +4461,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "187"]
+[Board "177"]
 % 0A6DD6B30CB3DFB49F64F85A266F
 [North "EPBot"]
 [East "EPBot"]
@@ -4793,7 +4486,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "188"]
+[Board "178"]
 % 09E2C95AF1138E75880971DC4490
 [North "EPBot"]
 [East "EPBot"]
@@ -4818,7 +4511,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "189"]
+[Board "179"]
 % 0887AED2B31FEF029D24B7046458
 [North "EPBot"]
 [East "EPBot"]
@@ -4843,7 +4536,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "190"]
+[Board "180"]
 % 0BE6EE6B04D4B3AF42B0C85B976D
 [North "EPBot"]
 [East "EPBot"]
@@ -4868,7 +4561,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "191"]
+[Board "181"]
 % 0AB9931D3B7CF0A316AE816ECADD
 [North "EPBot"]
 [East "EPBot"]
@@ -4893,7 +4586,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "192"]
+[Board "182"]
 % 0B28A2EF06C1A9705AE784643B5E
 [North "EPBot"]
 [East "EPBot"]
@@ -4918,7 +4611,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "193"]
+[Board "183"]
 % 0880A75AF625A01FB03F17DE886A
 [North "EPBot"]
 [East "EPBot"]
@@ -4937,15 +4630,13 @@ Pass  Pass
 [Scoring "MP"]
 [Auction "S"]
 1S    Pass  3S    Pass
-4C =1=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Cue bid, a !C stopper"]
+4S    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "194"]
+[Board "184"]
 % 0ABBA392EB26382230D4178F5867
 [North "EPBot"]
 [East "EPBot"]
@@ -4971,7 +4662,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "195"]
+[Board "185"]
 % 09AB1EB2F42BA4D59EA3423FCD77
 [North "EPBot"]
 [East "EPBot"]
@@ -4996,7 +4687,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "196"]
+[Board "186"]
 % 18A3149A7E35280EC31DBCB18457
 [North "EPBot"]
 [East "EPBot"]
@@ -5021,7 +4712,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "197"]
+[Board "187"]
 % 1921B69EFBDEACB30B547A27910C
 [North "EPBot"]
 [East "EPBot"]
@@ -5046,7 +4737,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "198"]
+[Board "188"]
 % 1B4EEFEC0870FF64AF22138B52EB
 [North "EPBot"]
 [East "EPBot"]
@@ -5071,7 +4762,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "199"]
+[Board "189"]
 % 1A2C65DA442A41C0A6F34EB81DEF
 [North "EPBot"]
 [East "EPBot"]
@@ -5096,7 +4787,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "200"]
+[Board "190"]
 % 19A13E57EA3F0F99B7803550BC96
 [North "EPBot"]
 [East "EPBot"]
@@ -5121,7 +4812,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "201"]
+[Board "191"]
 % 1BAC1B32EFD6F32B769F86659898
 [North "EPBot"]
 [East "EPBot"]
@@ -5146,7 +4837,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "202"]
+[Board "192"]
 % 1918A1FE63D28A1C37868F95B09C
 [North "EPBot"]
 [East "EPBot"]
@@ -5171,7 +4862,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "203"]
+[Board "193"]
 % 1BBE9423771BB4ECDBA026C29D76
 [North "EPBot"]
 [East "EPBot"]
@@ -5196,7 +4887,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "204"]
+[Board "194"]
 % 186DC725E34EA6F89D48A42EFA1B
 [North "EPBot"]
 [East "EPBot"]
@@ -5221,7 +4912,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "205"]
+[Board "195"]
 % 1A2822816AEF6A7ECF91D074CD2D
 [North "EPBot"]
 [East "EPBot"]
@@ -5246,7 +4937,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "206"]
+[Board "196"]
 % 1BBE1F395698172E803FE3CE78A0
 [North "EPBot"]
 [East "EPBot"]
@@ -5272,34 +4963,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "207"]
-% 182AB0AEF798650C41DA863CDFAB
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:A84.875.AT62.J32 97.T63.Q843.AQ65 KQT52.AQ92.K7.97 J63.KJ4.J95.KT84"]
-{Shape 3343 2344 5422 3334}
-{HCP 9 8 14 9}
-{Losers 10 8 5 10}
-[Declarer "S"]
-[Contract "3S"]
-[Result "10"]
-[Score "NS 170"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  2S    Pass
-3H =1=    Pass  3S    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "208"]
+[Board "197"]
 % 2841E76A5426A5FEB84DABDD0BCC
 [North "EPBot"]
 [East "EPBot"]
@@ -5324,7 +4988,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "209"]
+[Board "198"]
 % 2A849633C27942D8941FAEB7CB24
 [North "EPBot"]
 [East "EPBot"]
@@ -5337,21 +5001,24 @@ Pass  Pass
 {HCP 9 7 14 10}
 {Losers 8 9 5 9}
 [Declarer "S"]
-[Contract "4S"]
+[Contract "6S"]
 [Result "11"]
-[Score "NS 650"]
+[Score "NS -100"]
 [Scoring "MP"]
 [Auction "S"]
 1S    Pass  3S    Pass
-4C =1=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Cue bid, a !C stopper"]
+4N =1=    Pass  5D =2=    Pass
+5H    Pass  5N =3=    Pass
+6S    Pass  Pass  Pass
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=1/5 or 5/5"]
+[Note "3:!S queen no !C king no !D king no !H king"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "210"]
+[Board "199"]
 % 29AFCA4A66B9D327DCC36CFD8767
 [North "EPBot"]
 [East "EPBot"]
@@ -5379,7 +5046,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "211"]
+[Board "200"]
 % 2B1DB4E298B631DB63438C843E9B
 [North "EPBot"]
 [East "EPBot"]
@@ -5404,7 +5071,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "212"]
+[Board "201"]
 % 2A049AA0C5C234338508BE567B9B
 [North "EPBot"]
 [East "EPBot"]
@@ -5429,7 +5096,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "213"]
+[Board "202"]
 % 292D86F49706816010EEE1406D7D
 [North "EPBot"]
 [East "EPBot"]
@@ -5454,7 +5121,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "214"]
+[Board "203"]
 % 2B2A206D86CC42DC711A09CC1FE4
 [North "EPBot"]
 [East "EPBot"]
@@ -5474,15 +5141,13 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  1S    Pass
 1N    Pass  2H    Pass
-3H    Pass  3S =1=    Pass
 4H    Pass  Pass  Pass
-[Note "1:Cue bid, a !S stopper"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "215"]
+[Board "204"]
 % 28A71D2C548A9E73F11BAE3724F3
 [North "EPBot"]
 [East "EPBot"]
@@ -5508,7 +5173,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "216"]
+[Board "205"]
 % 28E14AE81C6382B37C06F76AEC9B
 [North "EPBot"]
 [East "EPBot"]
@@ -5533,7 +5198,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "217"]
+[Board "206"]
 % 2AED828252AF296129188EF8FC4C
 [North "EPBot"]
 [East "EPBot"]
@@ -5558,7 +5223,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "218"]
+[Board "207"]
 % 28E54F852E38CD67BA97F06BDEAA
 [North "EPBot"]
 [East "EPBot"]
@@ -5583,7 +5248,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "219"]
+[Board "208"]
 % 2A208A85D9709F06CF7D28B2B39A
 [North "EPBot"]
 [East "EPBot"]
@@ -5609,7 +5274,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "220"]
+[Board "209"]
 % 38A8159C6B977A08F8ADAF167DF9
 [North "EPBot"]
 [East "EPBot"]
@@ -5634,7 +5299,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "221"]
+[Board "210"]
 % 3A8790BA80FD393A85C89A4CC617
 [North "EPBot"]
 [East "EPBot"]
@@ -5659,7 +5324,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "222"]
+[Board "211"]
 % 3BA694EAC6312713B1B4691A6BB0
 [North "EPBot"]
 [East "EPBot"]
@@ -5684,7 +5349,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "223"]
+[Board "212"]
 % 3A67E10840EB9B7676C522090C90
 [North "EPBot"]
 [East "EPBot"]
@@ -5710,7 +5375,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "224"]
+[Board "213"]
 % 39A3A6DC77B228400197AE1FFC95
 [North "EPBot"]
 [East "EPBot"]
@@ -5723,22 +5388,22 @@ Pass  Pass
 {HCP 9 10 14 7}
 {Losers 9 8 5 9}
 [Declarer "S"]
-[Contract "4S"]
+[Contract "6S"]
 [Result "12"]
-[Score "NS 480"]
+[Score "NS 980"]
 [Scoring "MP"]
 [Auction "S"]
 1S    Pass  3S    Pass
-4D =1=    Pass  4H =2=    Pass
-4S    Pass  Pass  Pass
-[Note "1:Cue bid, a !D stopper"]
-[Note "2:Cue bid, a !C stopper"]
+4N =1=    Pass  5H =2=    Pass
+6S    Pass  Pass  Pass
+[Note "1:Blackwood 0123, for !S"]
+[Note "2:A=2 out of 5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "225"]
+[Board "214"]
 % 389AA00CC44ADCBA86B1D7192D79
 [North "EPBot"]
 [East "EPBot"]
@@ -5763,7 +5428,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "226"]
+[Board "215"]
 % 3980A69EF904027E8D344FB1D59B
 [North "EPBot"]
 [East "EPBot"]
@@ -5788,34 +5453,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "227"]
-% 3BEE6FC4C0269C035BAFFA7B6699
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:T8.QJ8.QT3.K8764 K743.972.J8.AT53 962.AKT63.AK96.2 AQJ5.54.7542.QJ9"]
-{Shape 2335 4324 3541 4243}
-{HCP 8 8 14 10}
-{Losers 8 9 6 8}
-[Declarer "S"]
-[Contract "3H"]
-[Result "10"]
-[Score "NS 170"]
-[Scoring "MP"]
-[Auction "S"]
-1H    Pass  2H    Pass
-3D =1=    Pass  3H    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "228"]
+[Board "216"]
 % 38B38ED76D9336BF020194F0064C
 [North "EPBot"]
 [East "EPBot"]
@@ -5840,7 +5478,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "229"]
+[Board "217"]
 % 3A6365CE8800460867A217F214B8
 [North "EPBot"]
 [East "EPBot"]
@@ -5866,7 +5504,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "230"]
+[Board "218"]
 % 3BA7B851DF90882E0E287282FB05
 [North "EPBot"]
 [East "EPBot"]
@@ -5891,7 +5529,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "231"]
+[Board "219"]
 % 38E862AB4CFEABA7C1521BB4C64C
 [North "EPBot"]
 [East "EPBot"]
@@ -5916,7 +5554,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "232"]
+[Board "220"]
 % 3A93B7988AC7D105F3886C461A34
 [North "EPBot"]
 [East "EPBot"]
@@ -5941,7 +5579,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "233"]
+[Board "221"]
 % 492AE26C7B1D55870B65D43BC8CC
 [North "EPBot"]
 [East "EPBot"]
@@ -5967,36 +5605,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "234"]
-% 4A6CAEE4739B68FA3E00A619C7C7
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:764.632.AK7.JT32 AJ9.T4.T984.K875 KT5.AKQ95.Q532.4 Q832.J87.J6.AQ96"]
-{Shape 3334 3244 3541 4324}
-{HCP 8 8 14 10}
-{Losers 10 9 5 8}
-[Declarer "S"]
-[Contract "3H"]
-[Result "9"]
-[Score "NS 140"]
-[Scoring "MP"]
-[Auction "S"]
-1H    Pass  2H    Pass
-2S =1=    Pass  2N =2=    Pass
-3C    Pass  3H    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[Note "2:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "235"]
+[Board "222"]
 % 499098844B5BB0FE833E36158EE9
 [North "EPBot"]
 [East "EPBot"]
@@ -6021,7 +5630,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "236"]
+[Board "223"]
 % 4B6CC6AF7203792A2C025C1FB9C8
 [North "EPBot"]
 [East "EPBot"]
@@ -6047,7 +5656,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "237"]
+[Board "224"]
 % 4880962C48AAF50EF83A8D679D79
 [North "EPBot"]
 [East "EPBot"]
@@ -6073,7 +5682,7 @@ X     Pass  Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "238"]
+[Board "225"]
 % 498934169D558E0C77F9839281FC
 [North "EPBot"]
 [East "EPBot"]
@@ -6092,44 +5701,13 @@ X     Pass  Pass  Pass
 [Scoring "MP"]
 [Auction "S"]
 1S    Pass  3S    Pass
-4C =1=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Cue bid, a !C stopper"]
+4S    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "239"]
-% 4B24AAA0D2B7095A85F0C67D019B
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:A93.9753.AT75.T2 84.J82.QJ63.KJ85 KQT72.AKQ.4.9743 J65.T64.K982.AQ6"]
-{Shape 3442 2344 5314 3343}
-{HCP 8 8 14 10}
-{Losers 9 9 5 9}
-[Declarer "S"]
-[Contract "3S"]
-[Result "10"]
-[Score "NS 170"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  2S    Pass
-2N =1=    Pass  3C =2=    Pass
-3D    Pass  3S    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[Note "2:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "240"]
+[Board "226"]
 % 4885AC1A772892E97C7A99CE00B7
 [North "EPBot"]
 [East "EPBot"]
@@ -6154,7 +5732,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "241"]
+[Board "227"]
 % 4AEB215D69684137FAC4C7128EEC
 [North "EPBot"]
 [East "EPBot"]
@@ -6166,24 +5744,20 @@ Pass  Pass
 {Shape 3433 4243 1534 5233}
 {HCP 9 10 14 7}
 {Losers 9 9 6 9}
-[Declarer "E"]
-[Contract "4SX"]
-[Result "7"]
-[Score "NS 500"]
+[Declarer "S"]
+[Contract "4H"]
+[Result "10"]
+[Score "NS 620"]
 [Scoring "MP"]
 [Auction "S"]
 1H    Pass  3H    Pass
-3S =1=    X     4C =2=    Pass
-4H    Pass  Pass  4S
-X     Pass  Pass  Pass
-[Note "1:Cue bid, a !S stopper"]
-[Note "2:Cue bid, a !C stopper"]
+4H    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "242"]
+[Board "228"]
 % 4B2128B67EB4EAD3908C0B97BF53
 [North "EPBot"]
 [East "EPBot"]
@@ -6208,7 +5782,7 @@ X     Pass  Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "243"]
+[Board "229"]
 % 4893B7BEEBF904184AA2A47E9C2F
 [North "EPBot"]
 [East "EPBot"]
@@ -6233,7 +5807,7 @@ X     Pass  Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "244"]
+[Board "230"]
 % 4AA7105CD100B2362FF98A984D86
 [North "EPBot"]
 [East "EPBot"]
@@ -6258,7 +5832,7 @@ X     Pass  Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "245"]
+[Board "231"]
 % 582FA496780FF79ECD5181863018
 [North "EPBot"]
 [East "EPBot"]
@@ -6283,7 +5857,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "246"]
+[Board "232"]
 % 5960A2F7F9146C48A7EB82CF875E
 [North "EPBot"]
 [East "EPBot"]
@@ -6308,7 +5882,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "247"]
+[Board "233"]
 % 5BCF6EA010D8C3A7AD4BF25B6937
 [North "EPBot"]
 [East "EPBot"]
@@ -6333,7 +5907,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "248"]
+[Board "234"]
 % 5A8790BAC64D985380242EBBF10A
 [North "EPBot"]
 [East "EPBot"]
@@ -6358,7 +5932,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "249"]
+[Board "235"]
 % 591819BEA476BF68C214E39E233B
 [North "EPBot"]
 [East "EPBot"]
@@ -6384,7 +5958,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "250"]
+[Board "236"]
 % 5B21482AAD39C31B6EC0CC41F556
 [North "EPBot"]
 [East "EPBot"]
@@ -6404,15 +5978,13 @@ Pass  Pass
 [Auction "S"]
 1C    Pass  1H    Pass
 2H    Pass  3H    Pass
-3S =1=    Pass  4H    Pass
-Pass  Pass
-[Note "1:Cue bid, a !S stopper"]
+4H    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "251"]
+[Board "237"]
 % 5B83A860AA96062C4FFBEC7BDE43
 [North "EPBot"]
 [East "EPBot"]
@@ -6437,7 +6009,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "252"]
+[Board "238"]
 % 58852E70D997B8A6827F04CBAE1C
 [North "EPBot"]
 [East "EPBot"]
@@ -6462,7 +6034,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "253"]
+[Board "239"]
 % 5AA8201B4DA6C8C0A1FF524E69BF
 [North "EPBot"]
 [East "EPBot"]
@@ -6487,7 +6059,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "254"]
+[Board "240"]
 % 5B846198EFE6036FE77AD17800A6
 [North "EPBot"]
 [East "EPBot"]
@@ -6512,7 +6084,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "255"]
+[Board "241"]
 % 5A9DB22E889FA3047F395072A412
 [North "EPBot"]
 [East "EPBot"]
@@ -6537,7 +6109,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "256"]
+[Board "242"]
 % 599FB7B5852FA3EC7252EC1A8234
 [North "EPBot"]
 [East "EPBot"]
@@ -6562,7 +6134,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "257"]
+[Board "243"]
 % 68A740737D8CDBE48AA2CF1F62C4
 [North "EPBot"]
 [East "EPBot"]
@@ -6588,7 +6160,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "258"]
+[Board "244"]
 % 6AC6C46796BD1F62C9602AC07B8C
 [North "EPBot"]
 [East "EPBot"]
@@ -6614,7 +6186,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "259"]
+[Board "245"]
 % 698FE56619554AB7DCCF28E3732C
 [North "EPBot"]
 [East "EPBot"]
@@ -6639,7 +6211,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "260"]
+[Board "246"]
 % 6A93ABB9089248130D86A062EEFC
 [North "EPBot"]
 [East "EPBot"]
@@ -6664,7 +6236,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "261"]
+[Board "247"]
 % 69AEB723BCB316C6EA10D3AC5DA2
 [North "EPBot"]
 [East "EPBot"]
@@ -6692,7 +6264,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "262"]
+[Board "248"]
 % 6B9EB48B4F4E9F309B2012C9C97C
 [North "EPBot"]
 [East "EPBot"]
@@ -6717,7 +6289,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "263"]
+[Board "249"]
 % 688540EEC9EFD5AEAE047BB00F46
 [North "EPBot"]
 [East "EPBot"]
@@ -6743,7 +6315,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "264"]
+[Board "250"]
 % 69B587CAEE1EA4B7A890403B3F52
 [North "EPBot"]
 [East "EPBot"]
@@ -6768,7 +6340,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "265"]
+[Board "251"]
 % 6B2D12E844DB7B32B7919F06B9A0
 [North "EPBot"]
 [East "EPBot"]
@@ -6793,7 +6365,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "266"]
+[Board "252"]
 % 68A76F6CC9C76F681DB21889E6F6
 [North "EPBot"]
 [East "EPBot"]
@@ -6812,16 +6384,13 @@ Pass  Pass
 [Scoring "MP"]
 [Auction "S"]
 1H    Pass  3H    Pass
-3S =1=    Pass  4C =2=    Pass
 4H    Pass  Pass  Pass
-[Note "1:Cue bid, a !S stopper"]
-[Note "2:Cue bid, a !C stopper"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "267"]
+[Board "253"]
 % 6A47A06026B82ED35BBAC70238A7
 [North "EPBot"]
 [East "EPBot"]
@@ -6846,7 +6415,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "268"]
+[Board "254"]
 % 6BABE6605165C83606AC5F03E0F9
 [North "EPBot"]
 [East "EPBot"]
@@ -6871,7 +6440,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "269"]
+[Board "255"]
 % 68BFAF97A69B09B6FA52FC452C00
 [North "EPBot"]
 [East "EPBot"]
@@ -6897,7 +6466,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "270"]
+[Board "256"]
 % 6AB9119F9F81F20229FD047E78AA
 [North "EPBot"]
 [East "EPBot"]
@@ -6922,7 +6491,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "271"]
+[Board "257"]
 % 69A7B4BF96E27D27CEF1601B9F22
 [North "EPBot"]
 [East "EPBot"]
@@ -6947,7 +6516,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "272"]
+[Board "258"]
 % 78C9D1D2B9193C291A423D4674E0
 [North "EPBot"]
 [East "EPBot"]
@@ -6967,19 +6536,14 @@ Pass  Pass
 [Auction "S"]
 1C    Pass  1S    Pass
 2C    Pass  2D    Pass
-2H =1=    Pass  2S    Pass
-3D    Pass  4N =2=    Pass
-5H =3=    Pass  6D    Pass
+5D    Pass  6D    Pass
 Pass  Pass
-[Note "1:Fourth suit"]
-[Note "2:Blackwood 0123, for !D"]
-[Note "3:A=2 out of 5"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "273"]
+[Board "259"]
 % 798D8614F8548FA0755F1BF209AF
 [North "EPBot"]
 [East "EPBot"]
@@ -7004,7 +6568,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "274"]
+[Board "260"]
 % 7B7FA5F6DC87206EDF579324DAB8
 [North "EPBot"]
 [East "EPBot"]
@@ -7029,7 +6593,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "275"]
+[Board "261"]
 % 79AE243B80F8A1E70E54D28F97B6
 [North "EPBot"]
 [East "EPBot"]
@@ -7054,7 +6618,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "276"]
+[Board "262"]
 % 7B09906D96809AB44BC4B51E0AB0
 [North "EPBot"]
 [East "EPBot"]
@@ -7079,7 +6643,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "277"]
+[Board "263"]
 % 78BF95984517BAEFD86B772E3CA1
 [North "EPBot"]
 [East "EPBot"]
@@ -7105,7 +6669,7 @@ X     Pass  Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "278"]
+[Board "264"]
 % 786545478F0EC85BF12AA0EDBED4
 [North "EPBot"]
 [East "EPBot"]
@@ -7131,7 +6695,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "279"]
+[Board "265"]
 % 7A26AC723CA34A9B24C6EB67D043
 [North "EPBot"]
 [East "EPBot"]
@@ -7150,16 +6714,13 @@ Pass  Pass
 [Scoring "MP"]
 [Auction "S"]
 1H    Pass  3H    Pass
-3S =1=    Pass  4D =2=    Pass
 4H    Pass  Pass  Pass
-[Note "1:Cue bid, a !S stopper"]
-[Note "2:Cue bid, a !D stopper"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "280"]
+[Board "266"]
 % 78913BF6568583293E3A846C8CDD
 [North "EPBot"]
 [East "EPBot"]
@@ -7184,7 +6745,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "281"]
+[Board "267"]
 % 7A4189E77AE0EC88D443A71A0C57
 [North "EPBot"]
 [East "EPBot"]
@@ -7210,7 +6771,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "282"]
+[Board "268"]
 % 79AFCE6562A38C7053DEA1C41AFB
 [North "EPBot"]
 [East "EPBot"]
@@ -7235,7 +6796,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "283"]
+[Board "269"]
 % 8893B0FB1EA784A68AF41D6C0A6F
 [North "EPBot"]
 [East "EPBot"]
@@ -7260,7 +6821,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "284"]
+[Board "270"]
 % 8A2BA6D06366C8DC32BB08CDA647
 [North "EPBot"]
 [East "EPBot"]
@@ -7285,7 +6846,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "285"]
+[Board "271"]
 % 898D869C1B249AC37C1E4771B8C9
 [North "EPBot"]
 [East "EPBot"]
@@ -7304,15 +6865,13 @@ Pass  Pass
 [Scoring "MP"]
 [Auction "S"]
 1S    Pass  3S    Pass
-4C =1=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Cue bid, a !C stopper"]
+4S    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "286"]
+[Board "272"]
 % 8B8E803ADCFED964EB432E258043
 [North "EPBot"]
 [East "EPBot"]
@@ -7338,7 +6897,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "287"]
+[Board "273"]
 % 89EBE76E716E80571A8EE4F00BAF
 [North "EPBot"]
 [East "EPBot"]
@@ -7357,17 +6916,13 @@ Pass  Pass
 [Scoring "MP"]
 [Auction "S"]
 1H    Pass  2H    Pass
-2S =1=    Pass  2N =2=    Pass
-3C    Pass  3H    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[Note "2:Two way game tries"]
+3H    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "288"]
+[Board "274"]
 % 8B31B92695D157302AB2EC8B1BE3
 [North "EPBot"]
 [East "EPBot"]
@@ -7393,61 +6948,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "289"]
-% 886B65E5F8DC1A06AE9F7125CB8C
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:984.832.AJ93.A63 AK5.T96.T762.987 762.AKQ74.5.KQ54 QJT3.J5.KQ84.JT2"]
-{Shape 3343 3343 3514 4243}
-{HCP 9 7 14 10}
-{Losers 10 10 5 8}
-[Declarer "S"]
-[Contract "3H"]
-[Result "10"]
-[Score "NS 170"]
-[Scoring "MP"]
-[Auction "S"]
-1H    Pass  2H    Pass
-3C =1=    Pass  3H    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "290"]
-% 89BB1DB65B80C50A3EC288BC1558
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:K873.T9865.T6.AJ J2.KJ32.Q93.Q876 AQT54..AJ852.K93 96.AQ74.K74.T542"]
-{Shape 4522 2434 5053 2434}
-{HCP 8 9 14 9}
-{Losers 8 8 5 8}
-[Declarer "S"]
-[Contract "4S"]
-[Result "12"]
-[Score "NS 480"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  2S    Pass
-3D =1=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "291"]
+[Board "275"]
 % 8B26A9F27F608A98650D1482C3C8
 [North "EPBot"]
 [East "EPBot"]
@@ -7467,16 +6968,13 @@ Pass  Pass
 [Auction "S"]
 1C    Pass  1H    Pass
 2H    Pass  3H    Pass
-3S =1=    Pass  4D =2=    Pass
 4H    Pass  Pass  Pass
-[Note "1:Cue bid, a !S stopper"]
-[Note "2:Cue bid, a !D stopper"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "292"]
+[Board "276"]
 % 88ACA80F5496BF523821C75BF6A3
 [North "EPBot"]
 [East "EPBot"]
@@ -7495,16 +6993,13 @@ Pass  Pass
 [Scoring "MP"]
 [Auction "S"]
 1S    Pass  3S    Pass
-4C =1=    Pass  4D =2=    Pass
 4S    Pass  Pass  Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, a !D stopper"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "293"]
+[Board "277"]
 % 8A2C9162ABF19A843738DE533EAF
 [North "EPBot"]
 [East "EPBot"]
@@ -7529,7 +7024,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "294"]
+[Board "278"]
 % 8B2D4AC058C32EC96C339BAE87F2
 [North "EPBot"]
 [East "EPBot"]
@@ -7555,7 +7050,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "295"]
+[Board "279"]
 % 88998454AA7FF6AF99B4281FC32E
 [North "EPBot"]
 [East "EPBot"]
@@ -7580,36 +7075,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "296"]
-% 8A9DB362EC028C67B29A2D283BD8
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:T543.T9.AJ95.K83 Q8.A62.6432.QT76 AK976.QJ854.8.A5 J2.K73.KQT7.J942"]
-{Shape 4243 2344 5512 2344}
-{HCP 8 8 14 10}
-{Losers 9 9 5 8}
-[Declarer "S"]
-[Contract "4S"]
-[Result "10"]
-[Score "NS 620"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  2S    Pass
-2N =1=    Pass  3C =2=    Pass
-3D    Pass  4S    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[Note "2:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "297"]
+[Board "280"]
 % 98B3BC9E09EE88053819E55D58B6
 [North "EPBot"]
 [East "EPBot"]
@@ -7635,7 +7101,7 @@ Pass  X     Pass  3H
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "298"]
+[Board "281"]
 % 9A97B392021A48EE61F917350CB4
 [North "EPBot"]
 [East "EPBot"]
@@ -7661,7 +7127,7 @@ Pass  X     Pass  3H
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "299"]
+[Board "282"]
 % 993918661B80BE86807C332598DE
 [North "EPBot"]
 [East "EPBot"]
@@ -7686,7 +7152,7 @@ Pass  X     Pass  3H
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "300"]
+[Board "283"]
 % 9A89902CD6EF83B29E3894663B7F
 [North "EPBot"]
 [East "EPBot"]
@@ -7712,34 +7178,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "301"]
-% 99AB1CE6C4AC13BD9A15A2703F42
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:K963.J2.9542.A93 42.K976.QJ6.Q752 AT875.AQT5.A7.86 QJ.843.KT83.KJT4"]
-{Shape 4243 2434 5422 2344}
-{HCP 8 8 14 10}
-{Losers 9 8 6 9}
-[Declarer "S"]
-[Contract "4S"]
-[Result "10"]
-[Score "NS 420"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  2S    Pass
-3H =1=    Pass  4S    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "302"]
+[Board "284"]
 % 9B9FB628620A10F65FEB2FB4AC10
 [North "EPBot"]
 [East "EPBot"]
@@ -7765,7 +7204,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "303"]
+[Board "285"]
 % 9B4CCEAB7E5AA4D8A3C3FC0F4321
 [North "EPBot"]
 [East "EPBot"]
@@ -7791,7 +7230,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "304"]
+[Board "286"]
 % 9AB3992B15E21E64BF4C8AB29CC0
 [North "EPBot"]
 [East "EPBot"]
@@ -7817,7 +7256,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "305"]
+[Board "287"]
 % 9B9C17BC70DA03F82981436EA79B
 [North "EPBot"]
 [East "EPBot"]
@@ -7842,7 +7281,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "306"]
+[Board "288"]
 % 98222574CAFF8D0C649FAB50EAEA
 [North "EPBot"]
 [East "EPBot"]
@@ -7867,7 +7306,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "307"]
+[Board "289"]
 % 9AA3393A54DB81EC9356888D33C6
 [North "EPBot"]
 [East "EPBot"]
@@ -7892,7 +7331,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "308"]
+[Board "290"]
 % 99A26840F7412BC3F49AAA1EEC5F
 [North "EPBot"]
 [East "EPBot"]
@@ -7911,16 +7350,13 @@ Pass  Pass
 [Scoring "MP"]
 [Auction "S"]
 1H    Pass  3H    Pass
-3S =1=    Pass  4D =2=    Pass
 4H    Pass  Pass  Pass
-[Note "1:Cue bid, a !S stopper"]
-[Note "2:Cue bid, a !D stopper"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "309"]
+[Board "291"]
 % A880B61E138AAB507C90FEF7A307
 [North "EPBot"]
 [East "EPBot"]
@@ -7945,7 +7381,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "310"]
+[Board "292"]
 % AA8488EB79B3DAA03F861D5306B2
 [North "EPBot"]
 [East "EPBot"]
@@ -7970,7 +7406,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "311"]
+[Board "293"]
 % ABEF226B90B82E6B276B32863098
 [North "EPBot"]
 [East "EPBot"]
@@ -7995,7 +7431,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "312"]
+[Board "294"]
 % A99820B2842FB45DF593DE236375
 [North "EPBot"]
 [East "EPBot"]
@@ -8020,7 +7456,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "313"]
+[Board "295"]
 % A88EA037C06743ACDDCBFA5244AA
 [North "EPBot"]
 [East "EPBot"]
@@ -8040,15 +7476,13 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  1H    Pass
 2H    Pass  3H    Pass
-3S =1=    Pass  4H    Pass
-Pass  Pass
-[Note "1:Cue bid, a !S stopper"]
+4H    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "314"]
+[Board "296"]
 % A9852C6FE6A7533AFF405ACDD1A0
 [North "EPBot"]
 [East "EPBot"]
@@ -8073,7 +7507,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "315"]
+[Board "297"]
 % AB949689EC3445FF6F4AB267FFD2
 [North "EPBot"]
 [East "EPBot"]
@@ -8098,7 +7532,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "316"]
+[Board "298"]
 % AA1139B53DCC98178FEBBAD44292
 [North "EPBot"]
 [East "EPBot"]
@@ -8123,7 +7557,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "317"]
+[Board "299"]
 % ABE943812CE47025C5D650B7AA4A
 [North "EPBot"]
 [East "EPBot"]
@@ -8148,7 +7582,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "318"]
+[Board "300"]
 % A831A61ADCBCB9CB156D44BC1A89
 [North "EPBot"]
 [East "EPBot"]
@@ -8173,7 +7607,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "319"]
+[Board "301"]
 % AA27B89210A19E5D7607F8BF68CF
 [North "EPBot"]
 [East "EPBot"]
@@ -8198,34 +7632,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "320"]
-% A99B98377C19563AE4C386B1CFA0
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:QT8.653.642.AQ63 J9.AKT9.Q975.985 AK542.72.AKT8.T4 763.QJ84.J3.KJ72"]
-{Shape 3334 2443 5242 3424}
-{HCP 8 10 14 8}
-{Losers 9 8 6 9}
-[Declarer "S"]
-[Contract "3S"]
-[Result "10"]
-[Score "NS 170"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  2S    Pass
-3D =1=    Pass  3S    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "321"]
+[Board "302"]
 % BA28A883675FF336D799C66FE048
 [North "EPBot"]
 [East "EPBot"]
@@ -8250,7 +7657,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "322"]
+[Board "303"]
 % B9EBE746ACC0614E82ACB370D515
 [North "EPBot"]
 [East "EPBot"]
@@ -8275,7 +7682,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "323"]
+[Board "304"]
 % BB08AD508EE240F30AF665E6A805
 [North "EPBot"]
 [East "EPBot"]
@@ -8300,7 +7707,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "324"]
+[Board "305"]
 % BA940418EDCEBC92A39AB3697F3E
 [North "EPBot"]
 [East "EPBot"]
@@ -8325,7 +7732,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "325"]
+[Board "306"]
 % BB818875D22FA86BC0C6FF2E1462
 [North "EPBot"]
 [East "EPBot"]
@@ -8350,7 +7757,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "326"]
+[Board "307"]
 % B8242D8E9E0B3618D9F26064CD85
 [North "EPBot"]
 [East "EPBot"]
@@ -8363,20 +7770,20 @@ Pass  Pass
 {HCP 9 10 13 8}
 {Losers 7 8 7 9}
 [Declarer "N"]
-[Contract "2S"]
+[Contract "2H"]
 [Result "10"]
 [Score "NS 170"]
 [Scoring "MP"]
 [Auction "S"]
 1C    Pass  1S    Pass
 1N    Pass  2H    Pass
-2S    Pass  Pass  Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "327"]
+[Board "308"]
 % B9993630E8466CCF1502AC752A0D
 [North "EPBot"]
 [East "EPBot"]
@@ -8402,7 +7809,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "328"]
+[Board "309"]
 % BB4D6C08D22FC33363AA06FD9898
 [North "EPBot"]
 [East "EPBot"]
@@ -8428,7 +7835,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "329"]
+[Board "310"]
 % BA6EE5CC6311D2BFC12FA86A3849
 [North "EPBot"]
 [East "EPBot"]
@@ -8453,7 +7860,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "330"]
+[Board "311"]
 % BB8188D22F739F26169820B964FB
 [North "EPBot"]
 [East "EPBot"]
@@ -8478,7 +7885,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "331"]
+[Board "312"]
 % B885152E5D8852EAF78BA07C3688
 [North "EPBot"]
 [East "EPBot"]
@@ -8503,7 +7910,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "332"]
+[Board "313"]
 % C897BD73C218CABD9E3105944886
 [North "EPBot"]
 [East "EPBot"]
@@ -8528,7 +7935,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "333"]
+[Board "314"]
 % CA9634088C01F97611DC8A4FB592
 [North "EPBot"]
 [East "EPBot"]
@@ -8553,7 +7960,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "334"]
+[Board "315"]
 % C9E761A77CC2BEDD4A0461D3C82A
 [North "EPBot"]
 [East "EPBot"]
@@ -8578,7 +7985,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "335"]
+[Board "316"]
 % C991B0159C857702FCC4D9227A81
 [North "EPBot"]
 [East "EPBot"]
@@ -8603,7 +8010,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "336"]
+[Board "317"]
 % CB26A8BA551C7D936796F338E78A
 [North "EPBot"]
 [East "EPBot"]
@@ -8628,7 +8035,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "337"]
+[Board "318"]
 % C82C6AA7E18BECC7C4E95E985A26
 [North "EPBot"]
 [East "EPBot"]
@@ -8653,7 +8060,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "338"]
+[Board "319"]
 % CBAC0A63F6CE8FC957385982A3E0
 [North "EPBot"]
 [East "EPBot"]
@@ -8673,15 +8080,13 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  1H    Pass
 2H    Pass  3H    Pass
-3S =1=    Pass  4H    Pass
-Pass  Pass
-[Note "1:Cue bid, a !S stopper"]
+4H    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "339"]
+[Board "320"]
 % C8214CE61462013C01CE6F74B3DB
 [North "EPBot"]
 [East "EPBot"]
@@ -8701,14 +8106,13 @@ Pass  Pass
 [Auction "S"]
 1D    Pass  1S    Pass
 1N    Pass  2H    Pass
-3H    Pass  4H    Pass
-Pass  Pass
+4H    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "340"]
+[Board "321"]
 % CA82A81D293750A32C1BC27AA036
 [North "EPBot"]
 [East "EPBot"]
@@ -8734,34 +8138,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "341"]
-% CBA493EADE60B9B6A377180F142A
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:5432.4.A863.K764 T6.KJ53.KT7.QJ82 AK987.AQT72.J4.9 QJ.986.Q952.AT53"]
-{Shape 4144 2434 5521 2344}
-{HCP 7 10 14 9}
-{Losers 8 8 5 9}
-[Declarer "S"]
-[Contract "3S"]
-[Result "11"]
-[Score "NS 200"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  2S    Pass
-3H =1=    Pass  3S    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "342"]
+[Board "322"]
 % C92ABF14947A6E3E0094C7FB8B29
 [North "EPBot"]
 [East "EPBot"]
@@ -8787,7 +8164,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "343"]
+[Board "323"]
 % D80CA2A63205715B8BB4903C7F16
 [North "EPBot"]
 [East "EPBot"]
@@ -8812,7 +8189,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "344"]
+[Board "324"]
 % DB3EA689D2777B20909A03AFF8A7
 [North "EPBot"]
 [East "EPBot"]
@@ -8831,16 +8208,13 @@ Pass  Pass
 [Scoring "MP"]
 [Auction "S"]
 1S    Pass  3S    Pass
-4C =1=    Pass  4D =2=    Pass
 4S    Pass  Pass  Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, a !D stopper"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "345"]
+[Board "325"]
 % DAC54962BC7378D722E92B0517C2
 [North "EPBot"]
 [East "EPBot"]
@@ -8867,7 +8241,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "346"]
+[Board "326"]
 % D9A79D3FCE60467B0688B4B31EE9
 [North "EPBot"]
 [East "EPBot"]
@@ -8892,7 +8266,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "347"]
+[Board "327"]
 % DBB329119AFC17772F54C238AEA0
 [North "EPBot"]
 [East "EPBot"]
@@ -8918,7 +8292,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "348"]
+[Board "328"]
 % D9BA3B24D7A250328A1C7F249DEB
 [North "EPBot"]
 [East "EPBot"]
@@ -8944,7 +8318,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "349"]
+[Board "329"]
 % D863E44D06E358E178AA942AFF0E
 [North "EPBot"]
 [East "EPBot"]
@@ -8970,34 +8344,7 @@ Pass  X     Pass  2S
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "350"]
-% DBAA208471A76B4C3F1893D2B6FF
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:K76.Q8.QT3.T9752 J98.654.KJ54.A43 AQT53.AKT9.872.J 42.J732.A96.KQ86"]
-{Shape 3235 3343 5431 2434}
-{HCP 7 9 14 10}
-{Losers 9 10 6 8}
-[Declarer "S"]
-[Contract "3S"]
-[Result "10"]
-[Score "NS 170"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  2S    Pass
-3H =1=    Pass  3S    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "351"]
+[Board "330"]
 % D89BA5F698B31E36F56C03429C09
 [North "EPBot"]
 [East "EPBot"]
@@ -9022,36 +8369,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "352"]
-% DAA10AE833695F6FCEE854BC91CD
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:KJ.K72.98742.J98 T985.953.KQT6.K7 A43.AQT86.5.AT32 Q762.J4.AJ3.Q654"]
-{Shape 2353 4342 3514 4234}
-{HCP 8 8 14 10}
-{Losers 9 8 6 8}
-[Declarer "S"]
-[Contract "3H"]
-[Result "11"]
-[Score "NS 200"]
-[Scoring "MP"]
-[Auction "S"]
-1H    Pass  2H    Pass
-2S =1=    Pass  2N =2=    Pass
-3D    Pass  3H    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[Note "2:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "353"]
+[Board "331"]
 % E882E6EB98EFCE24716C1F762783
 [North "EPBot"]
 [East "EPBot"]
@@ -9070,15 +8388,13 @@ Pass  Pass
 [Scoring "MP"]
 [Auction "S"]
 1H    Pass  3H    Pass
-3S =1=    Pass  4H    Pass
-Pass  Pass
-[Note "1:Cue bid, a !S stopper"]
+4H    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "354"]
+[Board "332"]
 % EBA6E0B466548A865B73C9A3E7EC
 [North "EPBot"]
 [East "EPBot"]
@@ -9103,7 +8419,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "355"]
+[Board "333"]
 % EAB61C863865339C83961847CAF1
 [North "EPBot"]
 [East "EPBot"]
@@ -9128,7 +8444,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "356"]
+[Board "334"]
 % E9909B88F6EF7706BA1E4C2B1BBD
 [North "EPBot"]
 [East "EPBot"]
@@ -9147,16 +8463,13 @@ Pass  Pass
 [Scoring "MP"]
 [Auction "S"]
 1S    Pass  3S    Pass
-4C =1=    Pass  4D =2=    Pass
 4S    Pass  Pass  Pass
-[Note "1:Cue bid, a !C stopper"]
-[Note "2:Cue bid, a !D stopper"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "357"]
+[Board "335"]
 % EB8AA100BABD7481DA340C56D597
 [North "EPBot"]
 [East "EPBot"]
@@ -9182,7 +8495,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "358"]
+[Board "336"]
 % E9395851237185FB16E0EA3C53F5
 [North "EPBot"]
 [East "EPBot"]
@@ -9208,7 +8521,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "359"]
+[Board "337"]
 % EBB48E902532A07BFEE3AA079A44
 [North "EPBot"]
 [East "EPBot"]
@@ -9221,23 +8534,19 @@ Pass  Pass
 {HCP 9 7 14 10}
 {Losers 10 8 5 8}
 [Declarer "S"]
-[Contract "4S"]
+[Contract "3S"]
 [Result "11"]
-[Score "NS 650"]
+[Score "NS 200"]
 [Scoring "MP"]
 [Auction "S"]
 1S    Pass  2S    Pass
-2N =1=    Pass  3C =2=    X
-3S    Pass  4S    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[Note "2:Two way game tries"]
+3S    Pass  Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "360"]
+[Board "338"]
 % E88D45E6EB942EC886EA7B69937C
 [North "EPBot"]
 [East "EPBot"]
@@ -9262,7 +8571,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "361"]
+[Board "339"]
 % EAE909F357440861463224A9DCCE
 [North "EPBot"]
 [East "EPBot"]
@@ -9288,90 +8597,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "362"]
-% EBA4A2C3D0CE4739E7B32A5F6998
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:85.QT9.A97.Q9764 943.J42.KQJ6.KT5 AK62.AK753.T4.83 QJT7.86.8532.AJ2"]
-{Shape 2335 3343 4522 4243}
-{HCP 8 10 14 8}
-{Losers 8 9 6 9}
-[Declarer "S"]
-[Contract "3H"]
-[Result "10"]
-[Score "NS 170"]
-[Scoring "MP"]
-[Auction "S"]
-1H    Pass  2H    Pass
-2N =1=    Pass  3H    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "363"]
-% E82062C44FFBAD57843AA71E62B8
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:A64.QJ7.T62.JT85 KJ83.84.J94.K643 9752.AK953.AK3.9 QT.T62.Q875.AQ72"]
-{Shape 3334 4234 4531 2344}
-{HCP 8 8 14 10}
-{Losers 10 9 6 8}
-[Declarer "S"]
-[Contract "3H"]
-[Result "10"]
-[Score "NS 170"]
-[Scoring "MP"]
-[Auction "S"]
-1H    Pass  2H    Pass
-2S =1=    Pass  2N =2=    Pass
-3C    Pass  3H    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[Note "2:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "364"]
-% EA1598B00DCFBA812882D65C714D
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:AJ7.JT862.JT42.T 432.AK54.K97.965 KQ986.7.A5.AJ832 T5.Q93.Q863.KQ74"]
-{Shape 3541 3433 5125 2344}
-{HCP 7 10 14 9}
-{Losers 9 9 5 7}
-[Declarer "S"]
-[Contract "3S"]
-[Result "10"]
-[Score "NS 170"]
-[Scoring "MP"]
-[Auction "S"]
-1S    Pass  2S    Pass
-3C =1=    Pass  3S    Pass
-Pass  Pass
-[Note "1:Two way game tries"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Play_Top_Tricks"]
-[Site ""]
-[Board "365"]
+[Board "340"]
 % E9A510BEFEC43255A380859F2278
 [North "EPBot"]
 [East "EPBot"]
@@ -9396,7 +8622,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "366"]
+[Board "341"]
 % F8AF24BA64429388BA9DF2DC073F
 [North "EPBot"]
 [East "EPBot"]
@@ -9409,22 +8635,20 @@ Pass  Pass
 {HCP 9 7 14 10}
 {Losers 9 9 6 8}
 [Declarer "S"]
-[Contract "3S"]
+[Contract "4S"]
 [Result "11"]
-[Score "NS 200"]
+[Score "NS 450"]
 [Scoring "MP"]
 [Auction "S"]
 1S    Pass  2S    Pass
-2N =1=    Pass  3C =2=    Pass
-3S    Pass  Pass  Pass
-[Note "1:Two way game tries"]
-[Note "2:Two way game tries"]
+3S    Pass  4S    Pass
+Pass  Pass
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "367"]
+[Board "342"]
 % FABD885157FAA59AD32E3C308F82
 [North "EPBot"]
 [East "EPBot"]
@@ -9449,7 +8673,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "368"]
+[Board "343"]
 % F90AAEA4F22658C8CB0DEB4794DF
 [North "EPBot"]
 [East "EPBot"]
@@ -9475,7 +8699,7 @@ Pass  Pass
 
 [Event "Play_Top_Tricks"]
 [Site ""]
-[Board "369"]
+[Board "344"]
 % FB898248D1C7AFE4326B5EC2B429
 [North "EPBot"]
 [East "EPBot"]
