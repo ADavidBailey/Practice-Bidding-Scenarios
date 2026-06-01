@@ -72,6 +72,16 @@ Pick the suit, then name the **specific card** and why:
 Ground it in the actual hand and auction (e.g. "lead the ♦K, top of your ♦KQJ" / "4th-best
 spade, the ♠5, your longest suit against their notrump").
 
+**The declarer coaching should USE that lead.** The `[ROLE declarer][STAGE post-lead]` chunk
+fires after the opening lead is on the table, so it should *start from the actual lead*, not
+ignore it: name what was led, the **trick-1 decision** (win / duck / which card), and what the
+lead reveals — a 4th-best lead gives a count (rule of 11); a top-of-sequence lead places the
+honors below it with the leader; a singleton warns of a coming ruff; a lead into your tenace
+may hand you a trick. *Then* proceed to the deal's technique. (Hold_Up_3N is the clearest case:
+the hold-up duck *is* the response to the lead.) Example: "West leads the ♦K — top of a
+sequence, so the ♦QJ sit with West and nothing's free for them. Win the ♦A, draw trumps, then
+run the spade finesse…"
+
 ## File structure
 
 Standard PBN. For each board you want coached, insert **one `{...}` block immediately
