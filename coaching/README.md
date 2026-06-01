@@ -82,6 +82,23 @@ the hold-up duck *is* the response to the lead.) Example: "West leads the ♦K �
 sequence, so the ♦QJ sit with West and nothing's free for them. Win the ♦A, draw trumps, then
 run the spade finesse…"
 
+**But hedge the *interpretation* — from declarer's seat it's an inference, not a fact.** The
+card led is certain; what it means is a read. Say the ♦2 **"looks like"** / **"appears to be"** a
+fourth-best (**"suggesting"** about four), the ♦K **"looks like"** the top of a sequence (West
+**"probably"** holds the QJ), a low card **"looks like"** a singleton (**"watch for"** a ruff).
+Avoid the flat "the ♦2 *is* fourth-best, *marking* four" — defenders can lead top-of-nothing, a
+short suit, or a safe exit. Hedge the read, then plan for the likely case.
+
+**Defensive signals — keep them nuanced and optional.** The audience is beginner/casual, and
+such players rarely give reliable attitude/count/suit-preference signals (ref:
+https://www.acblunit390.org/Simon/signals-and-discards.htm). So never assert a signal as fact —
+not as a defender obligation ("you *must* play the ♥9 to encourage") nor as a declarer inference
+("East's high heart shows an even count"). If a signal is worth mentioning at all, **hedge it**:
+"*if* your opponents are signaling, that high card *hints* at length — but don't count on it at
+this level." Declarer can read defenders' cards too, but should lean on counting and the opening
+lead, not on assumed signals. One light mention at most; prefer concrete card-reading (rule of
+11, who showed out) over signal theory.
+
 ## File structure
 
 Standard PBN. For each board you want coached, insert **one `{...}` block immediately
