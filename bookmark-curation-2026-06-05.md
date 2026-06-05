@@ -12,10 +12,12 @@ Session ended here. Current state and what's next.
   `py/annotate.py`, `py/select.py`, `py/auction_diff.py` (`--base <ref>`
   for diffing against a pre-change commit; run with `python3 -P` —
   select.py shadows stdlib select).
-- **Layer B pilot (Basic_NT):** all 500 boards graded; 22 re-graded after
-  the cc fix. Current: 306 textbook / 114 standard / 57 judgment / 23
-  reject (bidding). Annotated PBN: `bba-curated/Basic_NT.pbn`. Report with
-  10 spot-check boards: `bba-curated/Basic_NT-graded-report.md`.
+- **Layer B pilot (Basic_NT):** all 500 boards graded. **Re-graded
+  2026-06-05 after the `<20` cap regen** (see item 2): 493 deals unchanged
+  (deal_hash carry-over), 7 new 18-19 HCP / 6NT boards graded fresh.
+  Current: 304 textbook / 116 standard / 57 judgment / 23 reject (bidding).
+  Annotated PBN: `bba-curated/Basic_NT.pbn`. Report:
+  `bba-curated/Basic_NT-graded-report.md`.
 - **Basic-Bridge cc fixed** (Gerber-over-NT off etc.); all 21 dependent
   scenarios' bba/ regenerated and committed (eaa3abe9d by the Claude Code
   session). 83 boards changed; verdict reuse worked (only 22 re-graded).
@@ -29,11 +31,12 @@ Session ended here. Current state and what's next.
    `Basic_NT-graded-report.md` (board 430 already caught a grader error —
    wrong opening leader; rubric fixed: leader is now pre-computed in the
    grading packets). Each disagreement hardens the rubric.
-2. **David: decide the Basic_NT 6NT question.** The `.btn` caps responder
-   at `hcp(north) < 18`, so the brief's "6NT = 18+" row can never occur;
-   BBA bids 6N on 17s → 11 rejects. Option 1: raise cap to <20 and re-run
-   the full pipeline + re-grade Basic_NT (new deals). Option 2 (lean):
-   drop the 6NT row from this beginner brief; slam gets its own scenario.
+2. **DONE (2026-06-05) — Option 1 chosen.** Raised the responder cap to
+   `hcp(north) < 20` (`1c1cc7b7d`), re-ran the full pipeline, and re-graded
+   Layer B. The 6NT/18+ row now occurs (1.4% of deals; with Gerber off BBA
+   raises 1NT straight to 6NT, `1N P 6N`). 7 new boards: 4 textbook /
+   3 standard bidding, all `intended`. The 11 old 17-count→6N boards stay
+   `reject` (brief wants 17 = 4NT quantitative). All pushed.
 3. **Fan out Layer B** to the other 18 scenarios once the rubric is
    calibrated (5 parallel subagents per scenario, ~100 boards each; add
    the pre-computed `opening_leader` field as in the regrade packets).
