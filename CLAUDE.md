@@ -15,6 +15,20 @@ The Bridge Play Trainer is a **separate repo** (`~/AI-Bridge-Play-Trainer`, gith
 
 At runtime the trainer **reads** this repo's files via `BRIDGE_DATA_ROOT` (default this directory) → `coaching/*.pbn` + `btn/`. It never writes back, and this repo doesn't depend on the trainer. Rule of thumb: anything about a *particular hand or what it teaches* belongs here; anything about *how the app behaves for every hand* belongs in the trainer. The one shared seam is the coaching markers (`[show X]`, `[BID xxx]`, `\S\H\D\C`) — prose authored here, parser in the trainer's `server.py`. See [Bridge Play Trainer.md](Bridge Play Trainer.md) for the full trainer write-up.
 
+## Active work: deal curation (2026-06)
+
+A curation stage is being built between `filter` and coaching authoring.
+Before working on anything touching `bba/`, `bba-curated/`, `coaching/`, or
+`py/curate|annotate|select|auction_diff.py`, read:
+
+- the most recent `bookmark-curation-*.md` (current status + open items)
+- `pbn-curation-plan.md` (design) and `bba-curated/README.md` (the
+  `{Curate}` block format and the `py/select.py` filter)
+
+A Cowork session is co-working in this repo via the same files; coordinate
+through commits and the bookmark (update it at the end of a work session),
+and do not push unless David asks.
+
 ## Common Commands
 
 ### Development Environment Setup
