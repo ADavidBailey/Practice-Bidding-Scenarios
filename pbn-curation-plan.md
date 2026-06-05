@@ -148,7 +148,35 @@ count-declarers-tricks, cash-out`; bidding uses the scenario name plus
 
 ### Outputs
 
-All under `bba-curated/` (per the agreed Phase-1 scope):
+**Decided 2026-06-05: verdicts are embedded in the PBN itself** as one
+`{Curate ...}` comment block per board, placed before `[Auction]` — the
+same house style as the existing `{Shape}`/`{HCP}`/`{Losers}` blocks, and
+ignored by all PBN consumers (verified: `endplay` parses annotated files
+unchanged). The deal and its verdict can't get separated, the file is
+readable in any editor, and selection becomes a simple deterministic
+filter — the structured successor to the auction-filter regex. Implemented
+in `py/annotate.py` (writes the block) and `py/select.py` (filters on it):
+
+```
+{Curate
+class: intended
+difficulty: 2
+bidding: judgment
+also-ok: 3N
+bidding-note: S declined the invite with a chunky 16 — accepting was the winning call.
+declarer: reject
+declarer-note: 10 tricks in 2N, two overtricks — play is uninstructive.
+defense: reject
+defense-note: Overtricks regardless of defense.
+}
+
+python3 py/select.py Basic_NT "bidding=textbook" "diff<=2" -n 30 -o lesson.pbn
+```
+
+The notes are embedded in `bba-curated/<scenario>.pbn` (a derived,
+versioned artifact) — never in `bba/`, which the pipeline regenerates.
+The JSON below is now a derived convenience for tooling; the annotated
+PBN is the source of record. All under `bba-curated/`:
 
 - `bba-curated/<scenario>.pbn` (+ regenerated `.pdf`) — the selected best-N
   boards (N=30 default), deterministic sort key (tier, by-force/oracle
