@@ -51,3 +51,16 @@ Session ended here. Current state and what's next.
   -c user.email="adavidbailey@gmail.com" commit ...`. **No push from
   Cowork** (no credentials, by David's choice) — David pushes from
   Terminal/Claude Code.
+
+## Claude Code session note (2026-06-05, late)
+
+- Regrade lists for **all 21** Basic-Bridge scenarios are pre-generated in
+  `bba-curated/.progress/<scn>-regrade.json` (git-ignored), via
+  `python3 -P py/auction_diff.py --base 89a22f775 <scns>` (baseline
+  `89a22f775` = the pre-card-change parent). 83 boards changed total. The
+  Layer B fan-out (open item 3) can read these directly — no need to
+  re-diff. Details: `bba-curated/.progress/_README_baseline.md`.
+- Working tree clean. Local `main` is **ahead of origin/main by 3**
+  (`eaa3abe9d` is pushed; `fcc909014` + `77e499617` + this bookmark commit
+  are local-only). **Push held pending David** per CLAUDE.md ("do not push
+  unless David asks"). The Rick email's links need a push to resolve.
