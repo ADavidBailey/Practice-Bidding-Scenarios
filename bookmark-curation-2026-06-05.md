@@ -27,10 +27,13 @@ Session ended here. Current state and what's next.
 
 ## Open items (in order)
 
-1. **David: finish the spot-check** of the 10 boards in
-   `Basic_NT-graded-report.md` (board 430 already caught a grader error —
-   wrong opening leader; rubric fixed: leader is now pre-computed in the
-   grading packets). Each disagreement hardens the rubric.
+1. **DONE (2026-06-05) — spot-check complete, rubric calibrated.** David
+   reviewed 10 boards. One mechanical bug found+fixed (430 wrong leader →
+   leader now pre-computed). One calibration ruling: board 137 (South
+   passes a 2NT invite on a flat 16) is **judgment + also_ok, not reject** —
+   borderline-but-defensible bidding decisions are judgment; reserve reject
+   for indefensible calls. Recorded in pbn-curation-plan.md grading criteria.
+   The grader is trusted for the fan-out.
 2. **DONE (2026-06-05) — Option 1 chosen.** Raised the responder cap to
    `hcp(north) < 20` (`1c1cc7b7d`), re-ran the full pipeline, and re-graded
    Layer B. The 6NT/18+ row now occurs (1.4% of deals; with Gerber off BBA

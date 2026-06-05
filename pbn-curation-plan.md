@@ -115,6 +115,15 @@ defense):
 | `judgment` | Genuinely close; strong players could disagree. Coaching must present it as close and argue both sides. |
 | `reject` | Unusable for this discipline (reason required; may be fine for another). |
 
+**Calibration rule (David, 2026-06-05, Basic_NT board 137):** a borderline
+but defensible bidding decision — declining an invitation with a maximum, or
+any close accept/decline — is **`judgment` with an `also_ok`, not
+`reject`.** Reserve bidding `reject` for auctions a teacher genuinely cannot
+defend (a clear rule violation, an indefensible call), never for the losing
+side of a close call. Edge cases are teaching material. (Confirmed against
+the Basic_NT pilot: board 137, South passing a 2NT invite on a flat 16 →
+judgment.)
+
 Grading criteria:
 
 - **Bidding** — *auction soundness is load-bearing* (the trainer's quiz
