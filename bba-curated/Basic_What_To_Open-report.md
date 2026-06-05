@@ -9,7 +9,7 @@ kind: **bidding** · auction-filter: `Auction.....\n(1[CDHSN]|2N)`
 - dupes: 0
 
 ## pool (500 boards)
-- DD classes: {'ok': 344, 'down_both': 146, 'wrong_sided': 10}
+- DD classes: {'ok': 343, 'down_both': 147, 'wrong_sided': 10}
 - regex_matched: 500
 - in_bba_filtered: 500
 - regex_vs_filtered_disagree: 0

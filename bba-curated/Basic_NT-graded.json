@@ -3,46 +3,45 @@
  "graded": 500,
  "aggregates": {
   "bidding": {
-   "textbook": 302,
+   "textbook": 306,
    "judgment": 57,
-   "standard": 107,
-   "reject": 34
+   "standard": 114,
+   "reject": 23
   },
   "declarer": {
-   "reject": 214,
-   "standard": 270,
-   "judgment": 6,
+   "reject": 209,
+   "standard": 278,
+   "judgment": 3,
    "textbook": 10
   },
   "defense": {
-   "reject": 219,
-   "standard": 257,
+   "reject": 221,
+   "standard": 258,
    "textbook": 4,
-   "judgment": 20
+   "judgment": 17
   },
   "auction_class": {
-   "intended": 456,
+   "intended": 478,
    "interference": 21,
-   "bba-disagreed": 10,
-   "continuation": 13
+   "continuation": 1
   },
   "difficulty": {
-   "1": 82,
-   "2": 198,
+   "1": 88,
+   "2": 200,
    "3": 202,
-   "4": 18
+   "4": 10
   },
   "declarer_themes": {
-   "count-winners": 172,
-   "finesse-basic": 67,
+   "count-winners": 174,
+   "finesse-basic": 71,
    "establish-long-suit": 40,
-   "danger-hand": 3,
+   "danger-hand": 2,
    "timing": 2,
    "hold-up": 2
   },
   "defense_themes": {
    "opening-lead-nt": 247,
-   "passive-defense": 18,
+   "passive-defense": 16,
    "hold-up-ace": 5,
    "opening-lead-suit": 5,
    "count-declarers-tricks": 3,
@@ -55,14 +54,6 @@
    "interference": {
     "boards": 18,
     "bidding_usable": 13
-   },
-   "bba-disagreed": {
-    "boards": 10,
-    "bidding_usable": 0
-   },
-   "continuation": {
-    "boards": 12,
-    "bidding_usable": 0
    }
   },
   "regex_false_positives": 4
@@ -639,24 +630,26 @@
   {
    "board": "23",
    "deal_hash": "78ba2e92df1b3d6c",
-   "auction_class": "bba-disagreed",
+   "auction_class": "intended",
    "bidding": {
-    "tier": "reject",
-    "also_ok": [],
-    "note": "Robot used 4C Gerber relay; brief says N's 16-count bids a direct quantitative 4N \u2014 conventional auction unusable as a no-conventions answer key."
+    "tier": "standard",
+    "also_ok": [
+     "6N"
+    ],
+    "note": "N's 16 -> 4N is the table answer; S's pass with a middle 16 is mainstream, though 6N is cold (32 HCP, 12 tricks) so accepting is defensible."
    },
    "declarer": {
     "tier": "reject",
     "themes": [],
-    "note": "12 tricks in 4N \u2014 two overtricks, nothing to teach."
+    "note": "Needs 10, makes 12 double-dummy; two overtricks leave nothing to teach."
    },
    "defense": {
     "tier": "reject",
     "themes": [],
-    "note": "Overtricks regardless."
+    "note": "W has a 0-count yarborough; defenders take one trick and no decision matters."
    },
-   "difficulty": 2,
-   "matched_intended_auction": false,
+   "difficulty": 1,
+   "matched_intended_auction": true,
    "dd_class": "ok"
   },
   {
@@ -793,24 +786,26 @@
   {
    "board": "29",
    "deal_hash": "2f204f50b3a1ff1d",
-   "auction_class": "bba-disagreed",
+   "auction_class": "intended",
    "bidding": {
     "tier": "reject",
     "also_ok": [],
-    "note": "4C Gerber then 6N; brief says N's 17 bids a quantitative 4N \u2014 conventional, off-syllabus answer key (6N did make)."
+    "note": "N has 17: the lesson table says 4N quantitative on 16-17, so a direct 6N answer key would mark the student's correct 4N wrong, even though 33 combined makes 13."
    },
    "declarer": {
-    "tier": "reject",
-    "themes": [],
-    "note": "13 tricks in 6N \u2014 slam with an overtrick, far beyond Basic scope."
+    "tier": "standard",
+    "themes": [
+     "finesse-basic"
+    ],
+    "note": "13 tricks come home via the diamond finesse against W's Q; one trick to spare keeps it gentle."
    },
    "defense": {
     "tier": "reject",
     "themes": [],
-    "note": "All 13 tricks to declarer."
+    "note": "All 13 tricks are there double-dummy; defenders are spectators."
    },
-   "difficulty": 3,
-   "matched_intended_auction": false,
+   "difficulty": 2,
+   "matched_intended_auction": true,
    "dd_class": "ok"
   },
   {
@@ -889,24 +884,24 @@
   {
    "board": "33",
    "deal_hash": "571d7b550b7dbe5f",
-   "auction_class": "bba-disagreed",
+   "auction_class": "intended",
    "bidding": {
     "tier": "reject",
     "also_ok": [],
-    "note": "Gerber relay to 6N on 32 combined; off-syllabus convention and the slam is down one as played (wrong-sided)."
+    "note": "N's 17 calls for 4N per the table, the pair has only 32 HCP, and 6N is wrong-sided and down 1 from S -- unusable as an answer key."
    },
    "declarer": {
     "tier": "reject",
     "themes": [],
-    "note": "Contract fails from this side (dd 11 of 12)."
+    "note": "dd_class wrong_sided: 6N fails from S because E's KJ98xx of hearts sits over dummy's AQ."
    },
    "defense": {
     "tier": "reject",
     "themes": [],
-    "note": "Beating a wrong-sided 6N is not Basic material."
+    "note": "The setting tricks are E's hearts behind dummy on any sane sequence; no findable defender decision to coach."
    },
-   "difficulty": 4,
-   "matched_intended_auction": false,
+   "difficulty": 3,
+   "matched_intended_auction": true,
    "dd_class": "wrong_sided"
   },
   {
@@ -1176,24 +1171,26 @@
   {
    "board": "44",
    "deal_hash": "88a0349a60bdbb50",
-   "auction_class": "bba-disagreed",
+   "auction_class": "intended",
    "bidding": {
     "tier": "reject",
     "also_ok": [],
-    "note": "Gerber relay to 6N; off-syllabus convention and the slam is down one as played (wrong-sided, dd 11)."
+    "note": "N's 17 should bid 4N per the table, and 6N is wrong-sided and down 1 -- a failing slam on the answer auction is unusable."
    },
    "declarer": {
     "tier": "reject",
     "themes": [],
-    "note": "Contract fails from this side."
+    "note": "dd_class wrong_sided: only 11 tricks from S; the contract fails."
    },
    "defense": {
-    "tier": "reject",
-    "themes": [],
-    "note": "Slam defense beyond Basic scope."
+    "tier": "standard",
+    "themes": [
+     "opening-lead-nt"
+    ],
+    "note": "Opening leader W leads top of the long J98754x heart suit through dummy's Qx into E's KT, the natural lead that sets 6N."
    },
-   "difficulty": 4,
-   "matched_intended_auction": false,
+   "difficulty": 2,
+   "matched_intended_auction": true,
    "dd_class": "wrong_sided"
   },
   {
@@ -1536,24 +1533,26 @@
   {
    "board": "58",
    "deal_hash": "8896271da4fcc93a",
-   "auction_class": "bba-disagreed",
+   "auction_class": "intended",
    "bidding": {
     "tier": "reject",
     "also_ok": [],
-    "note": "Gerber relay to 6N on 32 combined; conventional and aggressive vs the brief's quantitative 4N \u2014 unusable as a no-conventions answer key (slam happened to make)."
+    "note": "N has 17 (table says 4N) and the pair holds only 32 HCP; 6N happens to make exactly but the answer key contradicts the lesson table."
    },
    "declarer": {
-    "tier": "reject",
-    "themes": [],
-    "note": "Tight 6N (exactly 12) is far beyond Basic scope."
+    "tier": "standard",
+    "themes": [
+     "count-winners"
+    ],
+    "note": "Exactly 12: declarer must count 3 spades, 5 diamonds (picking up W's T9x), and force out W's club ace -- a real counting exercise."
    },
    "defense": {
     "tier": "reject",
     "themes": [],
-    "note": "Slam defense beyond Basic scope."
+    "note": "W's club ace is the defense's only trick; holding it up changes nothing."
    },
-   "difficulty": 4,
-   "matched_intended_auction": false,
+   "difficulty": 3,
+   "matched_intended_auction": true,
    "dd_class": "ok"
   },
   {
@@ -1715,24 +1714,26 @@
   {
    "board": "65",
    "deal_hash": "ca527f90f234b3b5",
-   "auction_class": "bba-disagreed",
+   "auction_class": "intended",
    "bidding": {
     "tier": "reject",
     "also_ok": [],
-    "note": "Gerber relay to 6N on a 16-count the brief assigns to quantitative 4N \u2014 conventional and an overbid (32 combined; it made)."
+    "note": "N has only 16 -- the table answer is 4N quantitative; a direct 6N on 32 combined flatly contradicts the lesson even though it makes."
    },
    "declarer": {
-    "tier": "reject",
-    "themes": [],
-    "note": "Slam play beyond Basic scope."
+    "tier": "standard",
+    "themes": [
+     "establish-long-suit"
+    ],
+    "note": "Exactly 12 rests on running the 9-card diamond fit and squeezing out the extra spade/heart winners."
    },
    "defense": {
     "tier": "reject",
     "themes": [],
-    "note": "Slam defense beyond Basic scope."
+    "note": "Twelve tricks are there on any defense; no defender decision matters."
    },
-   "difficulty": 4,
-   "matched_intended_auction": false,
+   "difficulty": 3,
+   "matched_intended_auction": true,
    "dd_class": "ok"
   },
   {
@@ -2470,24 +2471,24 @@
   {
    "board": "94",
    "deal_hash": "555a9126c32d1c9d",
-   "auction_class": "bba-disagreed",
+   "auction_class": "intended",
    "bidding": {
-    "tier": "reject",
+    "tier": "standard",
     "also_ok": [],
-    "note": "4C Gerber relay before settling in 4N; brief says N's 16 bids a direct quantitative 4N \u2014 conventional answer key, and dd 13 means a slam was on anyway."
+    "note": "16 -> 4N and minimum 15 declines is exactly the table, but 13 tricks roll in -- declining gets punished, weak reinforcement."
    },
    "declarer": {
     "tier": "reject",
     "themes": [],
-    "note": "13 tricks in 4N \u2014 three overtricks."
+    "note": "Needs 10, makes 13; three overtricks leave nothing at stake."
    },
    "defense": {
     "tier": "reject",
     "themes": [],
-    "note": "All tricks to declarer."
+    "note": "All 13 tricks to declarer double-dummy; defenders never get in."
    },
-   "difficulty": 2,
-   "matched_intended_auction": false,
+   "difficulty": 1,
+   "matched_intended_auction": true,
    "dd_class": "ok"
   },
   {
@@ -3757,26 +3758,26 @@
   {
    "board": "144",
    "deal_hash": "7886b382dd6c961c",
-   "auction_class": "bba-disagreed",
+   "auction_class": "intended",
    "bidding": {
-    "tier": "reject",
+    "tier": "standard",
     "also_ok": [
-     "4N"
+     "6N"
     ],
-    "note": "N's 4C Gerber is a convention \u2014 brief says a 16-count bids a direct quantitative 4N; unusable in a no-conventions course."
+    "note": "N's 16 -> 4N is textbook; S passing with a middle 16 is the standard teach, though 6N is cold on this layout so accepting is defensible."
    },
    "declarer": {
     "tier": "reject",
     "themes": [],
-    "note": "12 dd in 4N \u2014 2 overtricks and an off-lesson contract."
+    "note": "Needs 10, makes 12; two overtricks, nothing to teach."
    },
    "defense": {
     "tier": "reject",
     "themes": [],
-    "note": "Big margin regardless."
+    "note": "Comfortable overtricks; no defender decision changes the result."
    },
-   "difficulty": 2,
-   "matched_intended_auction": false,
+   "difficulty": 1,
+   "matched_intended_auction": true,
    "dd_class": "ok"
   },
   {
@@ -3805,26 +3806,24 @@
   {
    "board": "146",
    "deal_hash": "af4a8b23ed6cac33",
-   "auction_class": "bba-disagreed",
+   "auction_class": "intended",
    "bidding": {
-    "tier": "reject",
-    "also_ok": [
-     "4N"
-    ],
-    "note": "4C Gerber again \u2014 brief's 16-count response is a direct quantitative 4N; conventional route unusable for this course."
+    "tier": "standard",
+    "also_ok": [],
+    "note": "16 -> 4N, minimum 15 declines -- clean table arithmetic, but 12 tricks make on 31 HCP (E's diamond void helps), so the decline looks unlucky."
    },
    "declarer": {
     "tier": "reject",
     "themes": [],
-    "note": "12 dd in 4N \u2014 2 overtricks, off-lesson contract."
+    "note": "Needs 10, makes 12; two overtricks remove any tension."
    },
    "defense": {
     "tier": "reject",
     "themes": [],
-    "note": "Big margin regardless."
+    "note": "Declarer cruises with two overtricks; defense is passive throughout."
    },
-   "difficulty": 2,
-   "matched_intended_auction": false,
+   "difficulty": 1,
+   "matched_intended_auction": true,
    "dd_class": "ok"
   },
   {
@@ -4290,26 +4289,26 @@
   {
    "board": "165",
    "deal_hash": "6b32576c1312fcac",
-   "auction_class": "bba-disagreed",
+   "auction_class": "intended",
    "bidding": {
     "tier": "reject",
-    "also_ok": [
-     "4N"
-    ],
-    "note": "4C Gerber then 6N \u2014 brief's 17-count responder bids a direct quantitative 4N; conventional route unusable, though 6N on 34 combined is the right spot."
+    "also_ok": [],
+    "note": "Right contract, wrong route: N's 17 calls for 4N (max S 17 would then accept); a direct 6N answer key teaches against the lesson's own table."
    },
    "declarer": {
-    "tier": "reject",
-    "themes": [],
-    "note": "13 dd \u2014 slam with an overtrick, far outside beginner scope."
+    "tier": "standard",
+    "themes": [
+     "count-winners"
+    ],
+    "note": "13 tricks with one to spare; a gentle exercise in counting winners across four balanced suits."
    },
    "defense": {
     "tier": "reject",
     "themes": [],
-    "note": "All thirteen tricks regardless."
+    "note": "Defenders never score a trick double-dummy."
    },
    "difficulty": 2,
-   "matched_intended_auction": false,
+   "matched_intended_auction": true,
    "dd_class": "ok"
   },
   {
@@ -5377,28 +5376,26 @@
   {
    "board": "208",
    "deal_hash": "996a28216dbbfb33",
-   "auction_class": "continuation",
+   "auction_class": "intended",
    "bidding": {
     "tier": "reject",
     "also_ok": [],
-    "note": "4C Gerber sequence \u2014 conventional, off-brief for a no-conventions course; table says N's 17 bids 4N."
+    "note": "N has 17, so the table answer is 4N (S's 16 would decline); direct 6N on 33 makes exactly but contradicts the lesson's response scheme."
    },
    "declarer": {
     "tier": "standard",
     "themes": [
      "count-winners"
     ],
-    "note": "6N needs all 12 \u2014 run diamonds and count carefully; off-scope slam for this lesson though."
+    "note": "Exactly 12: count 5 diamonds, 4 clubs, 2 spades and knock out E's heart ace for the twelfth -- conceding only that ace."
    },
    "defense": {
-    "tier": "standard",
-    "themes": [
-     "opening-lead-nt"
-    ],
-    "note": "DD exactly 12 \u2014 passive lead required to avoid giving the 13th... defense must not blow a trick."
+    "tier": "reject",
+    "themes": [],
+    "note": "E's heart ace is the lone defensive trick; ducking it gains nothing."
    },
-   "difficulty": 3,
-   "matched_intended_auction": false,
+   "difficulty": 2,
+   "matched_intended_auction": true,
    "dd_class": "ok"
   },
   {
@@ -6328,55 +6325,51 @@
   {
    "board": "245",
    "deal_hash": "e740ca01f16c3a2a",
-   "auction_class": "continuation",
+   "auction_class": "intended",
    "bidding": {
     "tier": "reject",
     "also_ok": [],
-    "note": "4C Gerber route to 6N \u2014 conventional, off-brief; table says N's 17 bids 4N quantitative."
+    "note": "N's 17 should invite with 4N and the pair has only 32 HCP; 6N makes exactly on friendly lies but the answer key is off the table and an overbid."
+   },
+   "declarer": {
+    "tier": "standard",
+    "themes": [
+     "finesse-basic"
+    ],
+    "note": "Exactly 12 needs the heart finesse against W's king plus picking up the club jack -- the play genuinely matters."
+   },
+   "defense": {
+    "tier": "reject",
+    "themes": [],
+    "note": "Best defense still concedes 12; the decisions are all declarer's finesses."
+   },
+   "difficulty": 3,
+   "matched_intended_auction": true,
+   "dd_class": "ok"
+  },
+  {
+   "board": "246",
+   "deal_hash": "8d44f735bc761b38",
+   "auction_class": "intended",
+   "bidding": {
+    "tier": "reject",
+    "also_ok": [],
+    "note": "N has 17 -- table says 4N (and S's 16 would decline); direct 6N on 33 makes exactly but the answer key contradicts the lesson scheme."
    },
    "declarer": {
     "tier": "standard",
     "themes": [
      "count-winners"
     ],
-    "note": "12 exact on 32 HCP \u2014 careful counting, but slam is off-scope for the lesson."
+    "note": "Exactly 12 around E's seven-card spade suit headed by AQJ: count clubs, hearts and diamonds and concede only the spade ace."
    },
    "defense": {
-    "tier": "standard",
-    "themes": [
-     "opening-lead-nt"
-    ],
-    "note": "DD exactly 12 \u2014 any defensive slip concedes the contract trivially; passive lead required."
+    "tier": "reject",
+    "themes": [],
+    "note": "E's spade ace is the defense's only trick; declarer's KT behind W's lead neutralizes the spade attack."
    },
    "difficulty": 3,
-   "matched_intended_auction": false,
-   "dd_class": "ok"
-  },
-  {
-   "board": "246",
-   "deal_hash": "8d44f735bc761b38",
-   "auction_class": "continuation",
-   "bidding": {
-    "tier": "reject",
-    "also_ok": [],
-    "note": "Gerber to 6N \u2014 conventional and off-brief; also E holds a 7-card spade suit silently."
-   },
-   "declarer": {
-    "tier": "judgment",
-    "themes": [
-     "danger-hand"
-    ],
-    "note": "12 exact with E's AQJ9432 of spades over KT \u2014 avoidance play well above beginner level."
-   },
-   "defense": {
-    "tier": "judgment",
-    "themes": [
-     "opening-lead-nt"
-    ],
-    "note": "W must find the spade through declarer's KT \u2014 non-obvious from 85."
-   },
-   "difficulty": 4,
-   "matched_intended_auction": false,
+   "matched_intended_auction": true,
    "dd_class": "ok"
   },
   {
@@ -6636,26 +6629,28 @@
   {
    "board": "257",
    "deal_hash": "79e63af73eb50196",
-   "auction_class": "continuation",
+   "auction_class": "intended",
    "bidding": {
-    "tier": "reject",
+    "tier": "textbook",
     "also_ok": [],
-    "note": "Gerber 4C/4H then 4N \u2014 conventional route; brief's answer is a direct quantitative 4N with N's 16."
+    "note": "16 -> 4N quantitative and minimum 15 declines: clean table arithmetic, 31 combined, and 4N+1 makes the decline look exactly right."
    },
    "declarer": {
     "tier": "standard",
     "themes": [
-     "count-winners"
+     "finesse-basic"
     ],
-    "note": "11 tricks in 4N \u2014 one spare; routine development."
+    "note": "Ten tricks need the spade finesse against E's king on top of four club tricks; one trick of breathing room."
    },
    "defense": {
-    "tier": "reject",
-    "themes": [],
-    "note": "Overtrick regardless."
+    "tier": "standard",
+    "themes": [
+     "opening-lead-nt"
+    ],
+    "note": "Opening leader W's DQ from QJT864 is the model top-of-sequence long-suit lead against notrump."
    },
-   "difficulty": 3,
-   "matched_intended_auction": false,
+   "difficulty": 2,
+   "matched_intended_auction": true,
    "dd_class": "ok"
   },
   {
@@ -8004,26 +7999,26 @@
   {
    "board": "311",
    "deal_hash": "7509a7d3884552a3",
-   "auction_class": "continuation",
+   "auction_class": "intended",
    "bidding": {
-    "tier": "reject",
+    "tier": "textbook",
     "also_ok": [],
-    "note": "Robot used a 4C Gerber relay before 4N \u2014 conventional sequence contradicts the no-conventions brief; the brief's answer is a direct quantitative 4N."
+    "note": "16 -> 4N and minimum 15 passes, 31 combined, makes 11 -- the table applies cleanly and is rewarded."
    },
    "declarer": {
     "tier": "standard",
     "themes": [
      "count-winners"
     ],
-    "note": "4N making 11 on 31 HCP \u2014 one-trick cushion, basic winner counting."
+    "note": "Eleven tricks come from four clubs, three diamonds and forcing out E's spade ace -- counting and developing winners with one to spare."
    },
    "defense": {
     "tier": "reject",
     "themes": [],
-    "note": "11 DD tricks vs a 10-trick contract \u2014 defense cannot affect the result."
+    "note": "Opening leader W has no attractive lead (singleton club, no sequence) and no defensive holding swings the result."
    },
-   "difficulty": 3,
-   "matched_intended_auction": false,
+   "difficulty": 2,
+   "matched_intended_auction": true,
    "dd_class": "ok"
   },
   {
@@ -8127,28 +8122,24 @@
   {
    "board": "316",
    "deal_hash": "ca189a2d18c11001",
-   "auction_class": "continuation",
+   "auction_class": "intended",
    "bidding": {
-    "tier": "reject",
+    "tier": "standard",
     "also_ok": [],
-    "note": "4C Gerber relay then 6N contradicts the no-conventions brief, and N's 17 belongs in the 4NT quantitative row, not a direct slam."
+    "note": "N's 17 -> 4N fits the 16-17 table and minimum 15 correctly declines, but 12 tricks make on 32 -- the decline gets punished slightly."
    },
    "declarer": {
-    "tier": "judgment",
-    "themes": [
-     "finesse-basic"
-    ],
-    "note": "Exactly 12 in 6N on 32 \u2014 needs precise development; too hard for the course but technically gradeable."
+    "tier": "reject",
+    "themes": [],
+    "note": "Needs 10, makes 12; two overtricks leave no instructive tension."
    },
    "defense": {
-    "tier": "judgment",
-    "themes": [
-     "passive-defense"
-    ],
-    "note": "Slam makes exactly; any defensive slip gives 13 \u2014 a close-play board, not beginner material."
+    "tier": "reject",
+    "themes": [],
+    "note": "Comfortable overtricks; nothing for the defense to find."
    },
-   "difficulty": 4,
-   "matched_intended_auction": false,
+   "difficulty": 1,
+   "matched_intended_auction": true,
    "dd_class": "ok"
   },
   {
@@ -8337,28 +8328,26 @@
   {
    "board": "324",
    "deal_hash": "8f515f5f323c1577",
-   "auction_class": "continuation",
+   "auction_class": "intended",
    "bidding": {
     "tier": "reject",
     "also_ok": [],
-    "note": "Gerber relay then 6N is off the no-conventions brief; per the table N's 17 bids 4NT quantitative, not slam."
+    "note": "N's 17 calls for 4N and S's minimum 15 would decline; direct 6N on 32 HCP is an overbid that survives only because the diamond finesse works."
    },
    "declarer": {
-    "tier": "judgment",
+    "tier": "standard",
     "themes": [
-     "establish-long-suit"
+     "finesse-basic"
     ],
-    "note": "Exactly 12 in 6N on 32 \u2014 diamonds must be brought in; expert-level precision."
+    "note": "Exactly 12 hinges on picking up E's diamond jack with the KQT/A98xx combination."
    },
    "defense": {
-    "tier": "judgment",
-    "themes": [
-     "passive-defense"
-    ],
-    "note": "Slam makes exactly; defense determines the overtrick only with perfect play \u2014 close but off-syllabus."
+    "tier": "reject",
+    "themes": [],
+    "note": "Best defense still yields 12; the critical guess is declarer's."
    },
-   "difficulty": 4,
-   "matched_intended_auction": false,
+   "difficulty": 3,
+   "matched_intended_auction": true,
    "dd_class": "ok"
   },
   {
@@ -9449,70 +9438,76 @@
   {
    "board": "367",
    "deal_hash": "e0fe8ab13cd52079",
-   "auction_class": "continuation",
+   "auction_class": "intended",
    "bidding": {
     "tier": "reject",
     "also_ok": [],
-    "note": "Gerber 4C relay then 6N contradicts the no-conventions brief; per the table N's 17 bids 4NT quantitative."
+    "note": "N has 17 -- the table answer is 4N (S's 16 would decline, missing the slam); direct 6N lands the right spot on 33 but teaches against the lesson table."
    },
    "declarer": {
-    "tier": "reject",
-    "themes": [],
-    "note": "13 tricks DD \u2014 everything is on top, nothing to play for."
+    "tier": "standard",
+    "themes": [
+     "count-winners"
+    ],
+    "note": "13 available with one to spare; a calm count-your-winners hand across all four suits."
    },
    "defense": {
     "tier": "reject",
     "themes": [],
-    "note": "All thirteen tricks regardless of defense."
+    "note": "Defenders score nothing double-dummy."
    },
    "difficulty": 2,
-   "matched_intended_auction": false,
+   "matched_intended_auction": true,
    "dd_class": "ok"
   },
   {
    "board": "368",
    "deal_hash": "78b8fd54966baf4d",
-   "auction_class": "continuation",
+   "auction_class": "intended",
    "bidding": {
-    "tier": "reject",
-    "also_ok": [],
-    "note": "Gerber relay before the 4N signoff is off the no-conventions brief; 33 combined also makes 12, so the conventional dance still missed the slam."
+    "tier": "standard",
+    "also_ok": [
+     "6N"
+    ],
+    "note": "N's 17 -> 4N fits the 16-17 table; S declining with 16 is the standard teach, but with 33 combined and 12 tricks cold, accepting with this prime 16 is defensible."
    },
    "declarer": {
     "tier": "reject",
     "themes": [],
-    "note": "12 DD tricks vs a 10-trick contract \u2014 two overtricks."
+    "note": "Needs 10, makes 12; two overtricks, nothing to coach."
    },
    "defense": {
     "tier": "reject",
     "themes": [],
-    "note": "Overtricks regardless of defense."
+    "note": "W has 1 HCP and declarer has comfortable overtricks; no defensive decision exists."
    },
    "difficulty": 2,
-   "matched_intended_auction": false,
+   "matched_intended_auction": true,
    "dd_class": "ok"
   },
   {
    "board": "369",
    "deal_hash": "03ddff9b28329d27",
-   "auction_class": "continuation",
+   "auction_class": "intended",
    "bidding": {
-    "tier": "reject",
-    "also_ok": [],
-    "note": "Gerber relay before 4N contradicts the no-conventions brief; quantitative route was available, and 12 DD tricks mean the pass of 4N with 16 also misjudged."
+    "tier": "standard",
+    "also_ok": [
+     "6N"
+    ],
+    "note": "16 -> 4N is the table answer and S's pass with a middle 16 is mainstream, though 6N makes on this layout so accepting was the winning view."
    },
    "declarer": {
     "tier": "reject",
     "themes": [],
-    "note": "12 DD tricks vs a 10-trick contract \u2014 two overtricks."
+    "note": "Needs 10, makes 12; two overtricks remove the teaching point."
    },
    "defense": {
     "tier": "reject",
     "themes": [],
-    "note": "Overtricks regardless of defense."
+    "note": "Comfortable overtricks; defense is irrelevant to the outcome."
    },
-   "difficulty": 2,
-   "matched_intended_auction": false,
+   "difficulty": 1,
+   "matched_intended_auction": true,
    "dd_class": "ok"
   },
   {
@@ -11423,26 +11418,26 @@
   {
    "board": "445",
    "deal_hash": "62d48b8d8311cbaa",
-   "auction_class": "continuation",
+   "auction_class": "intended",
    "bidding": {
-    "tier": "reject",
+    "tier": "textbook",
     "also_ok": [],
-    "note": "North (16) used 4C Gerber and signed off in 4NT \u2014 the brief mandates a direct quantitative 4NT with no conventions; unusable as the answer key."
+    "note": "16 -> 4N and minimum 15 declines on 31 combined; 4N+1 is exactly the reinforcement the lesson wants."
    },
    "declarer": {
     "tier": "standard",
     "themes": [
-     "count-winners"
+     "finesse-basic"
     ],
-    "note": "11 tricks in 4NT \u2014 one spare on a 31-count; advanced contract for the level."
+    "note": "Eleven tricks lean on picking up E's diamond queen and forcing out W's heart ace; one spare trick keeps it forgiving."
    },
    "defense": {
     "tier": "reject",
     "themes": [],
-    "note": "Overtrick available against best defense."
+    "note": "Opening leader W's 4-count offers no lead or holding that changes the result."
    },
-   "difficulty": 3,
-   "matched_intended_auction": false,
+   "difficulty": 2,
+   "matched_intended_auction": true,
    "dd_class": "ok"
   },
   {
@@ -11912,24 +11907,28 @@
   {
    "board": "464",
    "deal_hash": "84101e5be210acc4",
-   "auction_class": "continuation",
+   "auction_class": "intended",
    "bidding": {
-    "tier": "reject",
+    "tier": "textbook",
     "also_ok": [],
-    "note": "North (16) launched 4C Gerber, the 4S response got doubled and redoubled, ending in 5C \u2014 conventional chaos that violates the no-conventions brief; unusable."
+    "note": "16 -> 4N quantitative, minimum 15 declines, 31 combined, makes 11 -- the table applies with nothing competing for attention."
    },
    "declarer": {
-    "tier": "reject",
-    "themes": [],
-    "note": "Off-lesson 5C minor-suit game in an NT module; makes exactly but teaches the wrong thing here."
+    "tier": "standard",
+    "themes": [
+     "count-winners"
+    ],
+    "note": "Eleven tricks: four clubs, four hearts via the T9 pickup of E's jack, two diamonds, and one spade after W's ace -- a counting hand with margin one."
    },
    "defense": {
-    "tier": "reject",
-    "themes": [],
-    "note": "Off-lesson contract from a conventional accident."
+    "tier": "standard",
+    "themes": [
+     "opening-lead-nt"
+    ],
+    "note": "Opening leader W's fourth-best spade from AJ9875 is the classic long-suit lead at notrump and sets up the defense's second trick."
    },
-   "difficulty": 4,
-   "matched_intended_auction": false,
+   "difficulty": 2,
+   "matched_intended_auction": true,
    "dd_class": "ok"
   },
   {
@@ -12848,5 +12847,6 @@
    "matched_intended_auction": true,
    "dd_class": "ok"
   }
- ]
+ ],
+ "note": "22 boards re-graded 2026-06-05 after Basic-Bridge cc fix (Gerber removed)"
 }

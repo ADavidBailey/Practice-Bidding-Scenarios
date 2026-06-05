@@ -9,7 +9,7 @@ kind: **soundness** · auction-filter: `Auction.....\n1S`
 - dupes: 0
 
 ## pool (500 boards)
-- DD classes: {'ok': 422, 'down_both': 74, 'wrong_sided': 4}
+- DD classes: {'ok': 427, 'down_both': 69, 'wrong_sided': 4}
 - regex_matched: 335
 - in_bba_filtered: 335
 - regex_vs_filtered_disagree: 0

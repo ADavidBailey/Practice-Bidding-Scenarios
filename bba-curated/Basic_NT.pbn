@@ -785,21 +785,20 @@ defense-note: Overtricks regardless.
 [Score "NS 660"]
 [Scoring "MP"]
 {Curate
-class: bba-disagreed
-difficulty: 2
-bidding: reject
-bidding-note: Robot used 4C Gerber relay; brief says N's 16-count bids a direct quantitative 4N — conventional auction unusable as a no-conventions answer key.
+class: intended
+difficulty: 1
+bidding: standard
+also-ok: 6N
+bidding-note: N's 16 -> 4N is the table answer; S's pass with a middle 16 is mainstream, though 6N is cold (32 HCP, 12 tricks) so accepting is defensible.
 declarer: reject
-declarer-note: 12 tricks in 4N — two overtricks, nothing to teach.
+declarer-note: Needs 10, makes 12 double-dummy; two overtricks leave nothing to teach.
 defense: reject
-defense-note: Overtricks regardless.
+defense-note: W has a 0-count yarborough; defenders take one trick and no decision matters.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4H =2=    Pass  4N    Pass
+1N    Pass  4N =1=    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=1/4"]
+[Note "1:Quantitative 4NT"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -998,21 +997,18 @@ Pass  Pass
 [Score "NS 1440"]
 [Scoring "MP"]
 {Curate
-class: bba-disagreed
-difficulty: 3
+class: intended
+difficulty: 2
 bidding: reject
-bidding-note: 4C Gerber then 6N; brief says N's 17 bids a quantitative 4N — conventional, off-syllabus answer key (6N did make).
-declarer: reject
-declarer-note: 13 tricks in 6N — slam with an overtrick, far beyond Basic scope.
+bidding-note: N has 17: the lesson table says 4N quantitative on 16-17, so a direct 6N answer key would mark the student's correct 4N wrong, even though 33 combined makes 13.
+declarer: standard finesse-basic
+declarer-note: 13 tricks come home via the diamond finesse against W's Q; one trick to spare keeps it gentle.
 defense: reject
-defense-note: All 13 tricks to declarer.
+defense-note: All 13 tricks are there double-dummy; defenders are spectators.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4S =2=    Pass  6N    Pass
+1N    Pass  6N    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=2 out of 4"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -1141,21 +1137,18 @@ Pass  Pass
 [Score "NS 990"]
 [Scoring "MP"]
 {Curate
-class: bba-disagreed
-difficulty: 4
+class: intended
+difficulty: 3
 bidding: reject
-bidding-note: Gerber relay to 6N on 32 combined; off-syllabus convention and the slam is down one as played (wrong-sided).
+bidding-note: N's 17 calls for 4N per the table, the pair has only 32 HCP, and 6N is wrong-sided and down 1 from S -- unusable as an answer key.
 declarer: reject
-declarer-note: Contract fails from this side (dd 11 of 12).
+declarer-note: dd_class wrong_sided: 6N fails from S because E's KJ98xx of hearts sits over dummy's AQ.
 defense: reject
-defense-note: Beating a wrong-sided 6N is not Basic material.
+defense-note: The setting tricks are E's hearts behind dummy on any sane sequence; no findable defender decision to coach.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4H =2=    Pass  6N    Pass
+1N    Pass  6N    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=1/4"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -1527,21 +1520,18 @@ Pass  Pass
 [Score "NS -100"]
 [Scoring "MP"]
 {Curate
-class: bba-disagreed
-difficulty: 4
+class: intended
+difficulty: 2
 bidding: reject
-bidding-note: Gerber relay to 6N; off-syllabus convention and the slam is down one as played (wrong-sided, dd 11).
+bidding-note: N's 17 should bid 4N per the table, and 6N is wrong-sided and down 1 -- a failing slam on the answer auction is unusable.
 declarer: reject
-declarer-note: Contract fails from this side.
-defense: reject
-defense-note: Slam defense beyond Basic scope.
+declarer-note: dd_class wrong_sided: only 11 tricks from S; the contract fails.
+defense: standard opening-lead-nt
+defense-note: Opening leader W leads top of the long J98754x heart suit through dummy's Qx into E's KT, the natural lead that sets 6N.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4S =2=    Pass  6N    Pass
+1N    Pass  6N    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=2 out of 4"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -2021,21 +2011,18 @@ defense-note: W's 4th-best spade from A8653 plus the DAQ behind declarer set it 
 [Score "NS -100"]
 [Scoring "MP"]
 {Curate
-class: bba-disagreed
-difficulty: 4
+class: intended
+difficulty: 3
 bidding: reject
-bidding-note: Gerber relay to 6N on 32 combined; conventional and aggressive vs the brief's quantitative 4N — unusable as a no-conventions answer key (slam happened to make).
-declarer: reject
-declarer-note: Tight 6N (exactly 12) is far beyond Basic scope.
+bidding-note: N has 17 (table says 4N) and the pair holds only 32 HCP; 6N happens to make exactly but the answer key contradicts the lesson table.
+declarer: standard count-winners
+declarer-note: Exactly 12: declarer must count 3 spades, 5 diamonds (picking up W's T9x), and force out W's club ace -- a real counting exercise.
 defense: reject
-defense-note: Slam defense beyond Basic scope.
+defense-note: W's club ace is the defense's only trick; holding it up changes nothing.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4N =2=    Pass  6N    Pass
+1N    Pass  6N    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=3 out of 4"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -2269,21 +2256,18 @@ Pass  Pass
 [Score "NS -50"]
 [Scoring "MP"]
 {Curate
-class: bba-disagreed
-difficulty: 4
+class: intended
+difficulty: 3
 bidding: reject
-bidding-note: Gerber relay to 6N on a 16-count the brief assigns to quantitative 4N — conventional and an overbid (32 combined; it made).
-declarer: reject
-declarer-note: Slam play beyond Basic scope.
+bidding-note: N has only 16 -- the table answer is 4N quantitative; a direct 6N on 32 combined flatly contradicts the lesson even though it makes.
+declarer: standard establish-long-suit
+declarer-note: Exactly 12 rests on running the 9-card diamond fit and squeezing out the extra spade/heart winners.
 defense: reject
-defense-note: Slam defense beyond Basic scope.
+defense-note: Twelve tricks are there on any defense; no defender decision matters.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4N =2=    Pass  6N    Pass
+1N    Pass  6N    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=3 out of 4"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -3281,20 +3265,19 @@ Pass  Pass
 [Score "NS 460"]
 [Scoring "MP"]
 {Curate
-class: bba-disagreed
-difficulty: 2
-bidding: reject
-bidding-note: 4C Gerber relay before settling in 4N; brief says N's 16 bids a direct quantitative 4N — conventional answer key, and dd 13 means a slam was on anyway.
+class: intended
+difficulty: 1
+bidding: standard
+bidding-note: 16 -> 4N and minimum 15 declines is exactly the table, but 13 tricks roll in -- declining gets punished, weak reinforcement.
 declarer: reject
-declarer-note: 13 tricks in 4N — three overtricks.
+declarer-note: Needs 10, makes 13; three overtricks leave nothing at stake.
 defense: reject
-defense-note: All tricks to declarer.
+defense-note: All 13 tricks to declarer double-dummy; defenders never get in.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4N =2=    Pass  Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=3 out of 4"]
+1N    Pass  4N =1=    Pass
+Pass  Pass
+[Note "1:Quantitative 4NT"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -5035,22 +5018,20 @@ Pass  Pass
 [Score "NS 490"]
 [Scoring "MP"]
 {Curate
-class: bba-disagreed
-difficulty: 2
-bidding: reject
-also-ok: 4N
-bidding-note: N's 4C Gerber is a convention — brief says a 16-count bids a direct quantitative 4N; unusable in a no-conventions course.
+class: intended
+difficulty: 1
+bidding: standard
+also-ok: 6N
+bidding-note: N's 16 -> 4N is textbook; S passing with a middle 16 is the standard teach, though 6N is cold on this layout so accepting is defensible.
 declarer: reject
-declarer-note: 12 dd in 4N — 2 overtricks and an off-lesson contract.
+declarer-note: Needs 10, makes 12; two overtricks, nothing to teach.
 defense: reject
-defense-note: Big margin regardless.
+defense-note: Comfortable overtricks; no defender decision changes the result.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4S =2=    Pass  4N    Pass
+1N    Pass  4N =1=    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=2 out of 4"]
+[Note "1:Quantitative 4NT"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -5108,22 +5089,19 @@ defense-note: Huge margin regardless.
 [Score "NS 690"]
 [Scoring "MP"]
 {Curate
-class: bba-disagreed
-difficulty: 2
-bidding: reject
-also-ok: 4N
-bidding-note: 4C Gerber again — brief's 16-count response is a direct quantitative 4N; conventional route unusable for this course.
+class: intended
+difficulty: 1
+bidding: standard
+bidding-note: 16 -> 4N, minimum 15 declines -- clean table arithmetic, but 12 tricks make on 31 HCP (E's diamond void helps), so the decline looks unlucky.
 declarer: reject
-declarer-note: 12 dd in 4N — 2 overtricks, off-lesson contract.
+declarer-note: Needs 10, makes 12; two overtricks remove any tension.
 defense: reject
-defense-note: Big margin regardless.
+defense-note: Declarer cruises with two overtricks; defense is passive throughout.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4S =2=    Pass  4N    Pass
+1N    Pass  4N =1=    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=2 out of 4"]
+[Note "1:Quantitative 4NT"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -5778,22 +5756,18 @@ Pass  Pass
 [Score "NS 1470"]
 [Scoring "MP"]
 {Curate
-class: bba-disagreed
+class: intended
 difficulty: 2
 bidding: reject
-also-ok: 4N
-bidding-note: 4C Gerber then 6N — brief's 17-count responder bids a direct quantitative 4N; conventional route unusable, though 6N on 34 combined is the right spot.
-declarer: reject
-declarer-note: 13 dd — slam with an overtrick, far outside beginner scope.
+bidding-note: Right contract, wrong route: N's 17 calls for 4N (max S 17 would then accept); a direct 6N answer key teaches against the lesson's own table.
+declarer: standard count-winners
+declarer-note: 13 tricks with one to spare; a gentle exercise in counting winners across four balanced suits.
 defense: reject
-defense-note: All thirteen tricks regardless.
+defense-note: Defenders never score a trick double-dummy.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4N =2=    Pass  6N    Pass
+1N    Pass  6N    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=3 out of 4"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -7287,21 +7261,18 @@ Pass  Pass
 [Score "NS 990"]
 [Scoring "MP"]
 {Curate
-class: continuation
-difficulty: 3
+class: intended
+difficulty: 2
 bidding: reject
-bidding-note: 4C Gerber sequence — conventional, off-brief for a no-conventions course; table says N's 17 bids 4N.
+bidding-note: N has 17, so the table answer is 4N (S's 16 would decline); direct 6N on 33 makes exactly but contradicts the lesson's response scheme.
 declarer: standard count-winners
-declarer-note: 6N needs all 12 — run diamonds and count carefully; off-scope slam for this lesson though.
-defense: standard opening-lead-nt
-defense-note: DD exactly 12 — passive lead required to avoid giving the 13th... defense must not blow a trick.
+declarer-note: Exactly 12: count 5 diamonds, 4 clubs, 2 spades and knock out E's heart ace for the twelfth -- conceding only that ace.
+defense: reject
+defense-note: E's heart ace is the lone defensive trick; ducking it gains nothing.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4H =2=    Pass  6N    Pass
+1N    Pass  6N    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=1/4"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -8587,21 +8558,18 @@ Pass  Pass
 [Score "NS 1440"]
 [Scoring "MP"]
 {Curate
-class: continuation
+class: intended
 difficulty: 3
 bidding: reject
-bidding-note: 4C Gerber route to 6N — conventional, off-brief; table says N's 17 bids 4N quantitative.
-declarer: standard count-winners
-declarer-note: 12 exact on 32 HCP — careful counting, but slam is off-scope for the lesson.
-defense: standard opening-lead-nt
-defense-note: DD exactly 12 — any defensive slip concedes the contract trivially; passive lead required.
+bidding-note: N's 17 should invite with 4N and the pair has only 32 HCP; 6N makes exactly on friendly lies but the answer key is off the table and an overbid.
+declarer: standard finesse-basic
+declarer-note: Exactly 12 needs the heart finesse against W's king plus picking up the club jack -- the play genuinely matters.
+defense: reject
+defense-note: Best defense still concedes 12; the decisions are all declarer's finesses.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4S =2=    Pass  6N    Pass
+1N    Pass  6N    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=2 out of 4"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -8625,21 +8593,18 @@ Pass  Pass
 [Score "NS 990"]
 [Scoring "MP"]
 {Curate
-class: continuation
-difficulty: 4
+class: intended
+difficulty: 3
 bidding: reject
-bidding-note: Gerber to 6N — conventional and off-brief; also E holds a 7-card spade suit silently.
-declarer: judgment danger-hand
-declarer-note: 12 exact with E's AQJ9432 of spades over KT — avoidance play well above beginner level.
-defense: judgment opening-lead-nt
-defense-note: W must find the spade through declarer's KT — non-obvious from 85.
+bidding-note: N has 17 -- table says 4N (and S's 16 would decline); direct 6N on 33 makes exactly but the answer key contradicts the lesson scheme.
+declarer: standard count-winners
+declarer-note: Exactly 12 around E's seven-card spade suit headed by AQJ: count clubs, hearts and diamonds and concede only the spade ace.
+defense: reject
+defense-note: E's spade ace is the defense's only trick; declarer's KT behind W's lead neutralizes the spade attack.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4H =2=    Pass  6N    Pass
+1N    Pass  6N    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=1/4"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -9010,21 +8975,19 @@ Pass  Pass
 [Score "NS 460"]
 [Scoring "MP"]
 {Curate
-class: continuation
-difficulty: 3
-bidding: reject
-bidding-note: Gerber 4C/4H then 4N — conventional route; brief's answer is a direct quantitative 4N with N's 16.
-declarer: standard count-winners
-declarer-note: 11 tricks in 4N — one spare; routine development.
-defense: reject
-defense-note: Overtrick regardless.
+class: intended
+difficulty: 2
+bidding: textbook
+bidding-note: 16 -> 4N quantitative and minimum 15 declines: clean table arithmetic, 31 combined, and 4N+1 makes the decline look exactly right.
+declarer: standard finesse-basic
+declarer-note: Ten tricks need the spade finesse against E's king on top of four club tricks; one trick of breathing room.
+defense: standard opening-lead-nt
+defense-note: Opening leader W's DQ from QJT864 is the model top-of-sequence long-suit lead against notrump.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4H =2=    Pass  4N    Pass
+1N    Pass  4N =1=    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=1/4"]
+[Note "1:Quantitative 4NT"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -10899,21 +10862,19 @@ defense-note: Exactly making — defense must start correctly to hold declarer t
 [Score "NS 660"]
 [Scoring "MP"]
 {Curate
-class: continuation
-difficulty: 3
-bidding: reject
-bidding-note: Robot used a 4C Gerber relay before 4N — conventional sequence contradicts the no-conventions brief; the brief's answer is a direct quantitative 4N.
+class: intended
+difficulty: 2
+bidding: textbook
+bidding-note: 16 -> 4N and minimum 15 passes, 31 combined, makes 11 -- the table applies cleanly and is rewarded.
 declarer: standard count-winners
-declarer-note: 4N making 11 on 31 HCP — one-trick cushion, basic winner counting.
+declarer-note: Eleven tricks come from four clubs, three diamonds and forcing out E's spade ace -- counting and developing winners with one to spare.
 defense: reject
-defense-note: 11 DD tricks vs a 10-trick contract — defense cannot affect the result.
+defense-note: Opening leader W has no attractive lead (singleton club, no sequence) and no defensive holding swings the result.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4S =2=    Pass  4N    Pass
+1N    Pass  4N =1=    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=2 out of 4"]
+[Note "1:Quantitative 4NT"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -11070,26 +11031,24 @@ Pass  Pass
 {HCP 17 5 15 3}
 {Losers 7 8 8 10}
 [Declarer "S"]
-[Contract "6N"]
+[Contract "4N"]
 [Result "12"]
-[Score "NS 1440"]
+[Score "NS 690"]
 [Scoring "MP"]
 {Curate
-class: continuation
-difficulty: 4
-bidding: reject
-bidding-note: 4C Gerber relay then 6N contradicts the no-conventions brief, and N's 17 belongs in the 4NT quantitative row, not a direct slam.
-declarer: judgment finesse-basic
-declarer-note: Exactly 12 in 6N on 32 — needs precise development; too hard for the course but technically gradeable.
-defense: judgment passive-defense
-defense-note: Slam makes exactly; any defensive slip gives 13 — a close-play board, not beginner material.
+class: intended
+difficulty: 1
+bidding: standard
+bidding-note: N's 17 -> 4N fits the 16-17 table and minimum 15 correctly declines, but 12 tricks make on 32 -- the decline gets punished slightly.
+declarer: reject
+declarer-note: Needs 10, makes 12; two overtricks leave no instructive tension.
+defense: reject
+defense-note: Comfortable overtricks; nothing for the defense to find.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4S =2=    Pass  6N    Pass
+1N    Pass  4N =1=    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=2 out of 4"]
+[Note "1:Quantitative 4NT"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -11357,21 +11316,18 @@ defense-note: EW beat 1N by one — E's major-suit strength and a normal lead do
 [Score "NS 1440"]
 [Scoring "MP"]
 {Curate
-class: continuation
-difficulty: 4
+class: intended
+difficulty: 3
 bidding: reject
-bidding-note: Gerber relay then 6N is off the no-conventions brief; per the table N's 17 bids 4NT quantitative, not slam.
-declarer: judgment establish-long-suit
-declarer-note: Exactly 12 in 6N on 32 — diamonds must be brought in; expert-level precision.
-defense: judgment passive-defense
-defense-note: Slam makes exactly; defense determines the overtrick only with perfect play — close but off-syllabus.
+bidding-note: N's 17 calls for 4N and S's minimum 15 would decline; direct 6N on 32 HCP is an overbid that survives only because the diamond finesse works.
+declarer: standard finesse-basic
+declarer-note: Exactly 12 hinges on picking up E's diamond jack with the KQT/A98xx combination.
+defense: reject
+defense-note: Best defense still yields 12; the critical guess is declarer's.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4N =2=    Pass  6N    Pass
+1N    Pass  6N    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=3 out of 4"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -12865,21 +12821,18 @@ defense-note: Exactly making — W's heart attack from AJ874 is the standard sta
 [Score "NS 1440"]
 [Scoring "MP"]
 {Curate
-class: continuation
+class: intended
 difficulty: 2
 bidding: reject
-bidding-note: Gerber 4C relay then 6N contradicts the no-conventions brief; per the table N's 17 bids 4NT quantitative.
-declarer: reject
-declarer-note: 13 tricks DD — everything is on top, nothing to play for.
+bidding-note: N has 17 -- the table answer is 4N (S's 16 would decline, missing the slam); direct 6N lands the right spot on 33 but teaches against the lesson table.
+declarer: standard count-winners
+declarer-note: 13 available with one to spare; a calm count-your-winners hand across all four suits.
 defense: reject
-defense-note: All thirteen tricks regardless of defense.
+defense-note: Defenders score nothing double-dummy.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4H =2=    Pass  6N    Pass
+1N    Pass  6N    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=1/4"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -12899,25 +12852,24 @@ Pass  Pass
 {Losers 6 8 7 12}
 [Declarer "S"]
 [Contract "4N"]
-[Result "11"]
-[Score "NS 460"]
+[Result "12"]
+[Score "NS 490"]
 [Scoring "MP"]
 {Curate
-class: continuation
+class: intended
 difficulty: 2
-bidding: reject
-bidding-note: Gerber relay before the 4N signoff is off the no-conventions brief; 33 combined also makes 12, so the conventional dance still missed the slam.
+bidding: standard
+also-ok: 6N
+bidding-note: N's 17 -> 4N fits the 16-17 table; S declining with 16 is the standard teach, but with 33 combined and 12 tricks cold, accepting with this prime 16 is defensible.
 declarer: reject
-declarer-note: 12 DD tricks vs a 10-trick contract — two overtricks.
+declarer-note: Needs 10, makes 12; two overtricks, nothing to coach.
 defense: reject
-defense-note: Overtricks regardless of defense.
+defense-note: W has 1 HCP and declarer has comfortable overtricks; no defensive decision exists.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4H =2=    Pass  4N    Pass
+1N    Pass  4N =1=    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=1/4"]
+[Note "1:Quantitative 4NT"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -12941,21 +12893,20 @@ Pass  Pass
 [Score "NS 490"]
 [Scoring "MP"]
 {Curate
-class: continuation
-difficulty: 2
-bidding: reject
-bidding-note: Gerber relay before 4N contradicts the no-conventions brief; quantitative route was available, and 12 DD tricks mean the pass of 4N with 16 also misjudged.
+class: intended
+difficulty: 1
+bidding: standard
+also-ok: 6N
+bidding-note: 16 -> 4N is the table answer and S's pass with a middle 16 is mainstream, though 6N makes on this layout so accepting was the winning view.
 declarer: reject
-declarer-note: 12 DD tricks vs a 10-trick contract — two overtricks.
+declarer-note: Needs 10, makes 12; two overtricks remove the teaching point.
 defense: reject
-defense-note: Overtricks regardless of defense.
+defense-note: Comfortable overtricks; defense is irrelevant to the outcome.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4S =2=    Pass  4N    Pass
+1N    Pass  4N =1=    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=2 out of 4"]
+[Note "1:Quantitative 4NT"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -15603,21 +15554,19 @@ defense-note: dd exact — best defense holds the 25-point game to nine.
 [Score "NS 660"]
 [Scoring "MP"]
 {Curate
-class: continuation
-difficulty: 3
-bidding: reject
-bidding-note: North (16) used 4C Gerber and signed off in 4NT — the brief mandates a direct quantitative 4NT with no conventions; unusable as the answer key.
-declarer: standard count-winners
-declarer-note: 11 tricks in 4NT — one spare on a 31-count; advanced contract for the level.
+class: intended
+difficulty: 2
+bidding: textbook
+bidding-note: 16 -> 4N and minimum 15 declines on 31 combined; 4N+1 is exactly the reinforcement the lesson wants.
+declarer: standard finesse-basic
+declarer-note: Eleven tricks lean on picking up E's diamond queen and forcing out W's heart ace; one spare trick keeps it forgiving.
 defense: reject
-defense-note: Overtrick available against best defense.
+defense-note: Opening leader W's 4-count offers no lead or holding that changes the result.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4H =2=    Pass  4N    Pass
+1N    Pass  4N =1=    Pass
 Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=1/4"]
+[Note "1:Quantitative 4NT"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
@@ -16261,27 +16210,25 @@ Pass  Pass
 {Shape 3343 2344 2434 6322}
 {HCP 16 4 15 5}
 {Losers 6 10 7 9}
-[Declarer "N"]
-[Contract "5C"]
+[Declarer "S"]
+[Contract "4N"]
 [Result "11"]
-[Score "NS 400"]
+[Score "NS 460"]
 [Scoring "MP"]
 {Curate
-class: continuation
-difficulty: 4
-bidding: reject
-bidding-note: North (16) launched 4C Gerber, the 4S response got doubled and redoubled, ending in 5C — conventional chaos that violates the no-conventions brief; unusable.
-declarer: reject
-declarer-note: Off-lesson 5C minor-suit game in an NT module; makes exactly but teaches the wrong thing here.
-defense: reject
-defense-note: Off-lesson contract from a conventional accident.
+class: intended
+difficulty: 2
+bidding: textbook
+bidding-note: 16 -> 4N quantitative, minimum 15 declines, 31 combined, makes 11 -- the table applies with nothing competing for attention.
+declarer: standard count-winners
+declarer-note: Eleven tricks: four clubs, four hearts via the T9 pickup of E's jack, two diamonds, and one spade after W's ace -- a counting hand with margin one.
+defense: standard opening-lead-nt
+defense-note: Opening leader W's fourth-best spade from AJ9875 is the classic long-suit lead at notrump and sets up the defense's second trick.
 }
 [Auction "S"]
-1N    Pass  4C =1=    Pass
-4S =2=    X     XX    Pass
-5C    Pass  Pass  Pass
-[Note "1:Gerber"]
-[Note "2:A=2 out of 4"]
+1N    Pass  4N =1=    Pass
+Pass  Pass
+[Note "1:Quantitative 4NT"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
