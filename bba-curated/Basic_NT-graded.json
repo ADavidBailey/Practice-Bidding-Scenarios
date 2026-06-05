@@ -3,20 +3,20 @@
  "graded": 500,
  "aggregates": {
   "bidding": {
-   "textbook": 306,
+   "textbook": 304,
    "judgment": 57,
-   "standard": 114,
+   "standard": 116,
    "reject": 23
   },
   "declarer": {
-   "reject": 209,
-   "standard": 278,
+   "reject": 208,
+   "standard": 279,
    "judgment": 3,
    "textbook": 10
   },
   "defense": {
-   "reject": 221,
-   "standard": 258,
+   "reject": 225,
+   "standard": 254,
    "textbook": 4,
    "judgment": 17
   },
@@ -26,37 +26,30 @@
    "continuation": 1
   },
   "difficulty": {
-   "1": 88,
-   "2": 200,
-   "3": 202,
+   "1": 87,
+   "2": 204,
+   "3": 199,
    "4": 10
   },
   "declarer_themes": {
-   "count-winners": 174,
-   "finesse-basic": 71,
-   "establish-long-suit": 40,
+   "establish-long-suit": 39,
+   "count-winners": 177,
+   "finesse-basic": 70,
    "danger-hand": 2,
    "timing": 2,
    "hold-up": 2
   },
   "defense_themes": {
-   "opening-lead-nt": 247,
-   "passive-defense": 16,
+   "opening-lead-nt": 243,
    "hold-up-ace": 5,
-   "opening-lead-suit": 5,
    "count-declarers-tricks": 3,
+   "passive-defense": 16,
    "duck-to-keep-communication": 1,
    "lead-partners-suit": 1,
    "cash-out": 1,
+   "opening-lead-suit": 5,
    "return-partners-suit": 1
-  },
-  "regex_reject_yield": {
-   "interference": {
-    "boards": 18,
-    "bidding_usable": 13
-   }
-  },
-  "regex_false_positives": 4
+  }
  },
  "verdicts": [
   {
@@ -1738,6 +1731,31 @@
   },
   {
    "board": "66",
+   "deal_hash": "d1ed308363edd540",
+   "auction_class": "intended",
+   "bidding": {
+    "tier": "textbook",
+    "also_ok": [],
+    "note": "18 opposite a 15-17 1NT = 34+ combined \u2014 the brief's 6NT (18+) call; slam makes on the nose."
+   },
+   "declarer": {
+    "tier": "standard",
+    "themes": [
+     "count-winners"
+    ],
+    "note": "12 tricks in 6NT, zero cushion \u2014 count the winners and bring them all in."
+   },
+   "defense": {
+    "tier": "reject",
+    "themes": [],
+    "note": "6NT makes; no defensive decision."
+   },
+   "difficulty": 2,
+   "matched_intended_auction": true,
+   "dd_class": "ok"
+  },
+  {
+   "board": "67",
    "deal_hash": "a451e45660aeaaec",
    "auction_class": "intended",
    "bidding": {
@@ -1760,7 +1778,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "67",
+   "board": "68",
    "deal_hash": "d92a575c19de9bf5",
    "auction_class": "intended",
    "bidding": {
@@ -1787,7 +1805,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "68",
+   "board": "69",
    "deal_hash": "ba35285369be041c",
    "auction_class": "intended",
    "bidding": {
@@ -1812,7 +1830,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "69",
+   "board": "70",
    "deal_hash": "cdeab1f24cb4ac5f",
    "auction_class": "intended",
    "bidding": {
@@ -1839,7 +1857,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "70",
+   "board": "71",
    "deal_hash": "c89d2fd3a0f78b9f",
    "auction_class": "intended",
    "bidding": {
@@ -1866,7 +1884,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "71",
+   "board": "72",
    "deal_hash": "d1bc95483468998a",
    "auction_class": "intended",
    "bidding": {
@@ -1889,7 +1907,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "72",
+   "board": "73",
    "deal_hash": "67a2d9c634a10789",
    "auction_class": "intended",
    "bidding": {
@@ -1916,7 +1934,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "73",
+   "board": "74",
    "deal_hash": "918d0591caab0c82",
    "auction_class": "intended",
    "bidding": {
@@ -1943,7 +1961,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "74",
+   "board": "75",
    "deal_hash": "617dae95b607b788",
    "auction_class": "intended",
    "bidding": {
@@ -1968,7 +1986,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "75",
+   "board": "76",
    "deal_hash": "b5eb82c0498e9e84",
    "auction_class": "intended",
    "bidding": {
@@ -1997,7 +2015,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "76",
+   "board": "77",
    "deal_hash": "069a7b31d53c5884",
    "auction_class": "intended",
    "bidding": {
@@ -2022,7 +2040,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "77",
+   "board": "78",
    "deal_hash": "d2e5da40164bfbe5",
    "auction_class": "intended",
    "bidding": {
@@ -2047,7 +2065,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "78",
+   "board": "79",
    "deal_hash": "8469cc004155523e",
    "auction_class": "intended",
    "bidding": {
@@ -2072,7 +2090,32 @@
    "dd_class": "down_both"
   },
   {
-   "board": "79",
+   "board": "80",
+   "deal_hash": "2326eee21bc84ab8",
+   "auction_class": "intended",
+   "bidding": {
+    "tier": "textbook",
+    "also_ok": [],
+    "note": "18 facing 15 = 33, small-slam zone \u2014 6NT per the table; you would never reach grand on 33."
+   },
+   "declarer": {
+    "tier": "standard",
+    "themes": [
+     "count-winners"
+    ],
+    "note": "South's fifth club supplies a 13th trick; 6NT is safe but the counting exercise stands."
+   },
+   "defense": {
+    "tier": "reject",
+    "themes": [],
+    "note": "6NT makes with an overtrick; nothing to defend."
+   },
+   "difficulty": 2,
+   "matched_intended_auction": true,
+   "dd_class": "ok"
+  },
+  {
+   "board": "81",
    "deal_hash": "7ebb47b90a435557",
    "auction_class": "intended",
    "bidding": {
@@ -2099,7 +2142,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "80",
+   "board": "82",
    "deal_hash": "527241fd21f13d76",
    "auction_class": "intended",
    "bidding": {
@@ -2126,7 +2169,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "81",
+   "board": "83",
    "deal_hash": "92fd02447b155638",
    "auction_class": "interference",
    "bidding": {
@@ -2149,7 +2192,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "82",
+   "board": "84",
    "deal_hash": "bf3f22a448604231",
    "auction_class": "intended",
    "bidding": {
@@ -2176,7 +2219,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "83",
+   "board": "85",
    "deal_hash": "3607012c79f14ae2",
    "auction_class": "intended",
    "bidding": {
@@ -2203,7 +2246,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "84",
+   "board": "86",
    "deal_hash": "f9a53eae87697482",
    "auction_class": "intended",
    "bidding": {
@@ -2228,7 +2271,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "85",
+   "board": "87",
    "deal_hash": "bfcf4846d32263bb",
    "auction_class": "intended",
    "bidding": {
@@ -2253,7 +2296,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "86",
+   "board": "88",
    "deal_hash": "6457aca9e5a54e29",
    "auction_class": "intended",
    "bidding": {
@@ -2280,7 +2323,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "87",
+   "board": "89",
    "deal_hash": "c2fc86a072365323",
    "auction_class": "intended",
    "bidding": {
@@ -2307,7 +2350,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "88",
+   "board": "90",
    "deal_hash": "198a4a8bec2e28c2",
    "auction_class": "intended",
    "bidding": {
@@ -2334,7 +2377,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "89",
+   "board": "91",
    "deal_hash": "6956036303545f39",
    "auction_class": "intended",
    "bidding": {
@@ -2361,7 +2404,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "90",
+   "board": "92",
    "deal_hash": "d6206e694d877a18",
    "auction_class": "intended",
    "bidding": {
@@ -2388,7 +2431,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "91",
+   "board": "93",
    "deal_hash": "9be9b2186a026cb9",
    "auction_class": "intended",
    "bidding": {
@@ -2415,7 +2458,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "92",
+   "board": "94",
    "deal_hash": "527b56be9770b66d",
    "auction_class": "intended",
    "bidding": {
@@ -2442,7 +2485,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "93",
+   "board": "95",
    "deal_hash": "426f990d57e3e97d",
    "auction_class": "intended",
    "bidding": {
@@ -2469,7 +2512,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "94",
+   "board": "96",
    "deal_hash": "555a9126c32d1c9d",
    "auction_class": "intended",
    "bidding": {
@@ -2492,7 +2535,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "95",
+   "board": "97",
    "deal_hash": "ee24e5dab6507377",
    "auction_class": "intended",
    "bidding": {
@@ -2519,7 +2562,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "96",
+   "board": "98",
    "deal_hash": "986964e9424e68f4",
    "auction_class": "intended",
    "bidding": {
@@ -2546,7 +2589,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "97",
+   "board": "99",
    "deal_hash": "b94f7594fc72a566",
    "auction_class": "intended",
    "bidding": {
@@ -2571,7 +2614,7 @@
    "dd_class": "wrong_sided"
   },
   {
-   "board": "98",
+   "board": "100",
    "deal_hash": "feda578f4a2ca205",
    "auction_class": "intended",
    "bidding": {
@@ -2598,7 +2641,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "99",
+   "board": "101",
    "deal_hash": "d292c34ee9853a9b",
    "auction_class": "intended",
    "bidding": {
@@ -2625,7 +2668,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "100",
+   "board": "102",
    "deal_hash": "17669f22abc4926c",
    "auction_class": "intended",
    "bidding": {
@@ -2652,7 +2695,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "101",
+   "board": "103",
    "deal_hash": "d3eedfab70f7e272",
    "auction_class": "intended",
    "bidding": {
@@ -2681,7 +2724,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "102",
+   "board": "104",
    "deal_hash": "b9c3f13dfd910016",
    "auction_class": "intended",
    "bidding": {
@@ -2704,7 +2747,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "103",
+   "board": "105",
    "deal_hash": "c5fcb96c3e753ad1",
    "auction_class": "intended",
    "bidding": {
@@ -2729,7 +2772,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "104",
+   "board": "106",
    "deal_hash": "0592ca07927efb51",
    "auction_class": "intended",
    "bidding": {
@@ -2754,7 +2797,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "105",
+   "board": "107",
    "deal_hash": "4a038173fb208438",
    "auction_class": "intended",
    "bidding": {
@@ -2777,7 +2820,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "106",
+   "board": "108",
    "deal_hash": "ea7ee15608e5e66b",
    "auction_class": "intended",
    "bidding": {
@@ -2804,7 +2847,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "107",
+   "board": "109",
    "deal_hash": "411a87a3c77286d6",
    "auction_class": "intended",
    "bidding": {
@@ -2829,7 +2872,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "108",
+   "board": "110",
    "deal_hash": "dfb8634c29adff06",
    "auction_class": "intended",
    "bidding": {
@@ -2854,7 +2897,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "109",
+   "board": "111",
    "deal_hash": "1b803af62d22d39b",
    "auction_class": "intended",
    "bidding": {
@@ -2879,7 +2922,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "110",
+   "board": "112",
    "deal_hash": "59ef8834a7f1cf02",
    "auction_class": "intended",
    "bidding": {
@@ -2906,7 +2949,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "111",
+   "board": "113",
    "deal_hash": "27f9f59358fde842",
    "auction_class": "intended",
    "bidding": {
@@ -2933,7 +2976,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "112",
+   "board": "114",
    "deal_hash": "8a0352d476939aec",
    "auction_class": "intended",
    "bidding": {
@@ -2960,7 +3003,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "113",
+   "board": "115",
    "deal_hash": "ce3398f3a6d57cb4",
    "auction_class": "intended",
    "bidding": {
@@ -2985,7 +3028,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "114",
+   "board": "116",
    "deal_hash": "86b701ae61fe5542",
    "auction_class": "intended",
    "bidding": {
@@ -3012,7 +3055,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "115",
+   "board": "117",
    "deal_hash": "e646cea6c077a67c",
    "auction_class": "intended",
    "bidding": {
@@ -3037,7 +3080,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "116",
+   "board": "118",
    "deal_hash": "d1c25bb78434f23e",
    "auction_class": "intended",
    "bidding": {
@@ -3064,7 +3107,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "117",
+   "board": "119",
    "deal_hash": "7baddcf4501f5ae2",
    "auction_class": "intended",
    "bidding": {
@@ -3089,7 +3132,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "118",
+   "board": "120",
    "deal_hash": "cb3a3c241cc8bf05",
    "auction_class": "intended",
    "bidding": {
@@ -3116,7 +3159,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "119",
+   "board": "121",
    "deal_hash": "7fc4a434671cb122",
    "auction_class": "intended",
    "bidding": {
@@ -3139,7 +3182,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "120",
+   "board": "122",
    "deal_hash": "a3f8b02852f9ce27",
    "auction_class": "intended",
    "bidding": {
@@ -3164,7 +3207,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "121",
+   "board": "123",
    "deal_hash": "366490c9263ead65",
    "auction_class": "intended",
    "bidding": {
@@ -3187,7 +3230,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "122",
+   "board": "124",
    "deal_hash": "88f766a7c001d494",
    "auction_class": "intended",
    "bidding": {
@@ -3216,7 +3259,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "123",
+   "board": "125",
    "deal_hash": "6410eb5898ff5ba2",
    "auction_class": "intended",
    "bidding": {
@@ -3241,7 +3284,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "124",
+   "board": "126",
    "deal_hash": "c0c89666bfbd4869",
    "auction_class": "intended",
    "bidding": {
@@ -3266,7 +3309,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "125",
+   "board": "127",
    "deal_hash": "99dd6cd8c5264303",
    "auction_class": "intended",
    "bidding": {
@@ -3291,7 +3334,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "126",
+   "board": "128",
    "deal_hash": "1890b83197a8cdfa",
    "auction_class": "intended",
    "bidding": {
@@ -3314,7 +3357,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "127",
+   "board": "129",
    "deal_hash": "b4b2a4f97b1eb65e",
    "auction_class": "intended",
    "bidding": {
@@ -3341,7 +3384,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "128",
+   "board": "130",
    "deal_hash": "f97fe2e6efb6c09f",
    "auction_class": "intended",
    "bidding": {
@@ -3368,7 +3411,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "129",
+   "board": "131",
    "deal_hash": "ba07e633d09b9223",
    "auction_class": "intended",
    "bidding": {
@@ -3393,7 +3436,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "130",
+   "board": "132",
    "deal_hash": "e9159638aa165167",
    "auction_class": "intended",
    "bidding": {
@@ -3418,7 +3461,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "131",
+   "board": "133",
    "deal_hash": "f22433f8830da0b4",
    "auction_class": "intended",
    "bidding": {
@@ -3445,7 +3488,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "132",
+   "board": "134",
    "deal_hash": "59e66509676752fe",
    "auction_class": "intended",
    "bidding": {
@@ -3470,7 +3513,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "133",
+   "board": "135",
    "deal_hash": "f69cd4a95376a558",
    "auction_class": "intended",
    "bidding": {
@@ -3495,7 +3538,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "134",
+   "board": "136",
    "deal_hash": "acd661b85d6baa15",
    "auction_class": "intended",
    "bidding": {
@@ -3523,7 +3566,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "135",
+   "board": "137",
    "deal_hash": "4bb73e293090b149",
    "auction_class": "intended",
    "bidding": {
@@ -3548,7 +3591,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "136",
+   "board": "138",
    "deal_hash": "08e24d72675d0f5c",
    "auction_class": "intended",
    "bidding": {
@@ -3575,7 +3618,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "137",
+   "board": "139",
    "deal_hash": "e2a2c06e9237d14f",
    "auction_class": "intended",
    "bidding": {
@@ -3604,7 +3647,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "138",
+   "board": "140",
    "deal_hash": "9e89985e1263f030",
    "auction_class": "interference",
    "bidding": {
@@ -3627,7 +3670,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "139",
+   "board": "141",
    "deal_hash": "37e3a5dff86a5ff5",
    "auction_class": "intended",
    "bidding": {
@@ -3652,7 +3695,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "140",
+   "board": "142",
    "deal_hash": "f21e376bba6eb46f",
    "auction_class": "intended",
    "bidding": {
@@ -3677,7 +3720,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "141",
+   "board": "143",
    "deal_hash": "18d1e11c21ba2373",
    "auction_class": "intended",
    "bidding": {
@@ -3704,7 +3747,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "142",
+   "board": "144",
    "deal_hash": "93b0a5dfa66e8f6b",
    "auction_class": "intended",
    "bidding": {
@@ -3731,7 +3774,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "143",
+   "board": "145",
    "deal_hash": "d2c18ae85c4e8f87",
    "auction_class": "intended",
    "bidding": {
@@ -3756,7 +3799,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "144",
+   "board": "146",
    "deal_hash": "7886b382dd6c961c",
    "auction_class": "intended",
    "bidding": {
@@ -3781,7 +3824,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "145",
+   "board": "147",
    "deal_hash": "8334d15613663726",
    "auction_class": "intended",
    "bidding": {
@@ -3804,7 +3847,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "146",
+   "board": "148",
    "deal_hash": "af4a8b23ed6cac33",
    "auction_class": "intended",
    "bidding": {
@@ -3827,7 +3870,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "147",
+   "board": "149",
    "deal_hash": "b0c46022b90d316f",
    "auction_class": "intended",
    "bidding": {
@@ -3852,7 +3895,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "148",
+   "board": "150",
    "deal_hash": "864e3cbd11b652cd",
    "auction_class": "continuation",
    "bidding": {
@@ -3877,7 +3920,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "149",
+   "board": "151",
    "deal_hash": "e237f22a74fd6be7",
    "auction_class": "intended",
    "bidding": {
@@ -3902,7 +3945,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "150",
+   "board": "152",
    "deal_hash": "5337c82967610cbb",
    "auction_class": "intended",
    "bidding": {
@@ -3931,7 +3974,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "151",
+   "board": "153",
    "deal_hash": "2c34dbd82d9b4473",
    "auction_class": "intended",
    "bidding": {
@@ -3960,7 +4003,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "152",
+   "board": "154",
    "deal_hash": "a6f60893a141fa98",
    "auction_class": "intended",
    "bidding": {
@@ -3985,7 +4028,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "153",
+   "board": "155",
    "deal_hash": "5fcd1de0a22deab5",
    "auction_class": "intended",
    "bidding": {
@@ -4012,7 +4055,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "154",
+   "board": "156",
    "deal_hash": "fb82f3272bd7a479",
    "auction_class": "intended",
    "bidding": {
@@ -4039,7 +4082,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "155",
+   "board": "157",
    "deal_hash": "cfccc5731d96084c",
    "auction_class": "intended",
    "bidding": {
@@ -4064,7 +4107,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "156",
+   "board": "158",
    "deal_hash": "bb703a1248b28d29",
    "auction_class": "intended",
    "bidding": {
@@ -4091,7 +4134,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "157",
+   "board": "159",
    "deal_hash": "0a0e626433aca743",
    "auction_class": "intended",
    "bidding": {
@@ -4114,7 +4157,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "158",
+   "board": "160",
    "deal_hash": "192bbf209b0f0a5b",
    "auction_class": "intended",
    "bidding": {
@@ -4139,7 +4182,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "159",
+   "board": "161",
    "deal_hash": "2ec6cade000eac0a",
    "auction_class": "intended",
    "bidding": {
@@ -4162,7 +4205,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "160",
+   "board": "162",
    "deal_hash": "e32c8b815ee3529e",
    "auction_class": "intended",
    "bidding": {
@@ -4187,7 +4230,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "161",
+   "board": "163",
    "deal_hash": "35d9f86f15aca759",
    "auction_class": "intended",
    "bidding": {
@@ -4212,7 +4255,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "162",
+   "board": "164",
    "deal_hash": "56d20e6dea7fa2fc",
    "auction_class": "intended",
    "bidding": {
@@ -4237,7 +4280,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "163",
+   "board": "165",
    "deal_hash": "affc5ab40cc4aa52",
    "auction_class": "intended",
    "bidding": {
@@ -4262,7 +4305,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "164",
+   "board": "166",
    "deal_hash": "4c7caf96301e5027",
    "auction_class": "intended",
    "bidding": {
@@ -4287,7 +4330,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "165",
+   "board": "167",
    "deal_hash": "6b32576c1312fcac",
    "auction_class": "intended",
    "bidding": {
@@ -4312,7 +4355,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "166",
+   "board": "168",
    "deal_hash": "da4a080260862793",
    "auction_class": "intended",
    "bidding": {
@@ -4339,7 +4382,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "167",
+   "board": "169",
    "deal_hash": "536e1cbca7f9d27c",
    "auction_class": "intended",
    "bidding": {
@@ -4362,7 +4405,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "168",
+   "board": "170",
    "deal_hash": "32d83cc884915765",
    "auction_class": "intended",
    "bidding": {
@@ -4387,7 +4430,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "169",
+   "board": "171",
    "deal_hash": "f22f8c07e09ba160",
    "auction_class": "intended",
    "bidding": {
@@ -4414,7 +4457,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "170",
+   "board": "172",
    "deal_hash": "62b319581f328535",
    "auction_class": "intended",
    "bidding": {
@@ -4441,7 +4484,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "171",
+   "board": "173",
    "deal_hash": "b4626af13d5b2db9",
    "auction_class": "intended",
    "bidding": {
@@ -4470,7 +4513,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "172",
+   "board": "174",
    "deal_hash": "06c5999ea92ab217",
    "auction_class": "intended",
    "bidding": {
@@ -4493,7 +4536,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "173",
+   "board": "175",
    "deal_hash": "db5d9be68985320b",
    "auction_class": "intended",
    "bidding": {
@@ -4518,7 +4561,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "174",
+   "board": "176",
    "deal_hash": "5b1f46ff653e4600",
    "auction_class": "intended",
    "bidding": {
@@ -4543,7 +4586,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "175",
+   "board": "177",
    "deal_hash": "3cbca6e8bace3042",
    "auction_class": "intended",
    "bidding": {
@@ -4566,7 +4609,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "176",
+   "board": "178",
    "deal_hash": "cc72c436353de422",
    "auction_class": "intended",
    "bidding": {
@@ -4593,7 +4636,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "177",
+   "board": "179",
    "deal_hash": "f9d2221f691fcfab",
    "auction_class": "interference",
    "bidding": {
@@ -4618,7 +4661,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "178",
+   "board": "180",
    "deal_hash": "7c1196b27603ba1a",
    "auction_class": "intended",
    "bidding": {
@@ -4641,7 +4684,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "179",
+   "board": "181",
    "deal_hash": "0e6c4ca0196f758d",
    "auction_class": "intended",
    "bidding": {
@@ -4668,7 +4711,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "180",
+   "board": "182",
    "deal_hash": "762fec1b72399061",
    "auction_class": "intended",
    "bidding": {
@@ -4691,7 +4734,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "181",
+   "board": "183",
    "deal_hash": "2d64a17086d01959",
    "auction_class": "intended",
    "bidding": {
@@ -4716,7 +4759,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "182",
+   "board": "184",
    "deal_hash": "5aa9ed978336fc53",
    "auction_class": "intended",
    "bidding": {
@@ -4739,7 +4782,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "183",
+   "board": "185",
    "deal_hash": "e418e8a97d8dc1a4",
    "auction_class": "intended",
    "bidding": {
@@ -4762,7 +4805,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "184",
+   "board": "186",
    "deal_hash": "c2b7c385687a1e44",
    "auction_class": "intended",
    "bidding": {
@@ -4787,7 +4830,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "185",
+   "board": "187",
    "deal_hash": "a7fe790b21eb34e8",
    "auction_class": "intended",
    "bidding": {
@@ -4814,7 +4857,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "186",
+   "board": "188",
    "deal_hash": "b54a0f31f1847dd0",
    "auction_class": "intended",
    "bidding": {
@@ -4841,7 +4884,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "187",
+   "board": "189",
    "deal_hash": "d3c8bebcf2b3bbbe",
    "auction_class": "intended",
    "bidding": {
@@ -4866,7 +4909,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "188",
+   "board": "190",
    "deal_hash": "78ac482d13c64f87",
    "auction_class": "intended",
    "bidding": {
@@ -4891,7 +4934,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "189",
+   "board": "191",
    "deal_hash": "89111bc117cee5b4",
    "auction_class": "intended",
    "bidding": {
@@ -4918,7 +4961,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "190",
+   "board": "192",
    "deal_hash": "f6cde1227035f2a7",
    "auction_class": "interference",
    "bidding": {
@@ -4943,7 +4986,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "191",
+   "board": "193",
    "deal_hash": "d30fdca1f3adbd20",
    "auction_class": "interference",
    "bidding": {
@@ -4970,7 +5013,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "192",
+   "board": "194",
    "deal_hash": "f7c2d4d8a69d29e1",
    "auction_class": "intended",
    "bidding": {
@@ -4995,7 +5038,7 @@
    "dd_class": "wrong_sided"
   },
   {
-   "board": "193",
+   "board": "195",
    "deal_hash": "6c88caaf9855788f",
    "auction_class": "intended",
    "bidding": {
@@ -5020,7 +5063,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "194",
+   "board": "196",
    "deal_hash": "16c5b023896e5d46",
    "auction_class": "intended",
    "bidding": {
@@ -5045,7 +5088,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "195",
+   "board": "197",
    "deal_hash": "d0455a0f960708da",
    "auction_class": "intended",
    "bidding": {
@@ -5070,7 +5113,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "196",
+   "board": "198",
    "deal_hash": "fa4c305d30769cea",
    "auction_class": "intended",
    "bidding": {
@@ -5095,7 +5138,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "197",
+   "board": "199",
    "deal_hash": "8a54b096b8cf3143",
    "auction_class": "intended",
    "bidding": {
@@ -5122,7 +5165,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "198",
+   "board": "200",
    "deal_hash": "df72a7d3a594f675",
    "auction_class": "intended",
    "bidding": {
@@ -5147,7 +5190,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "199",
+   "board": "201",
    "deal_hash": "347c410d2a09b85b",
    "auction_class": "intended",
    "bidding": {
@@ -5170,7 +5213,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "200",
+   "board": "202",
    "deal_hash": "b775216d00da5993",
    "auction_class": "intended",
    "bidding": {
@@ -5193,7 +5236,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "201",
+   "board": "203",
    "deal_hash": "9b68ecfe72ac20d7",
    "auction_class": "intended",
    "bidding": {
@@ -5220,7 +5263,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "202",
+   "board": "204",
    "deal_hash": "7191a9f58d15390b",
    "auction_class": "intended",
    "bidding": {
@@ -5247,7 +5290,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "203",
+   "board": "205",
    "deal_hash": "0e182bdb57d3242e",
    "auction_class": "intended",
    "bidding": {
@@ -5270,7 +5313,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "204",
+   "board": "206",
    "deal_hash": "b874feb8488f6c74",
    "auction_class": "intended",
    "bidding": {
@@ -5295,7 +5338,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "205",
+   "board": "207",
    "deal_hash": "e45b8435282ced5d",
    "auction_class": "intended",
    "bidding": {
@@ -5324,7 +5367,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "206",
+   "board": "208",
    "deal_hash": "eeab36cac43cbe66",
    "auction_class": "intended",
    "bidding": {
@@ -5349,7 +5392,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "207",
+   "board": "209",
    "deal_hash": "6c494cc197ccbdda",
    "auction_class": "intended",
    "bidding": {
@@ -5374,7 +5417,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "208",
+   "board": "210",
    "deal_hash": "996a28216dbbfb33",
    "auction_class": "intended",
    "bidding": {
@@ -5399,7 +5442,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "209",
+   "board": "211",
    "deal_hash": "eb2b7e6c2c183337",
    "auction_class": "intended",
    "bidding": {
@@ -5426,7 +5469,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "210",
+   "board": "212",
    "deal_hash": "286faf9dc227d045",
    "auction_class": "interference",
    "bidding": {
@@ -5449,7 +5492,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "211",
+   "board": "213",
    "deal_hash": "fdd80a2abc14e813",
    "auction_class": "intended",
    "bidding": {
@@ -5474,7 +5517,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "212",
+   "board": "214",
    "deal_hash": "4f7cffef0aa3a676",
    "auction_class": "intended",
    "bidding": {
@@ -5501,7 +5544,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "213",
+   "board": "215",
    "deal_hash": "6a2246da02a41cce",
    "auction_class": "intended",
    "bidding": {
@@ -5528,7 +5571,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "214",
+   "board": "216",
    "deal_hash": "83f01f3858c996bf",
    "auction_class": "intended",
    "bidding": {
@@ -5555,7 +5598,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "215",
+   "board": "217",
    "deal_hash": "4c9ace83fef0e333",
    "auction_class": "intended",
    "bidding": {
@@ -5582,7 +5625,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "216",
+   "board": "218",
    "deal_hash": "f74e7404c012a756",
    "auction_class": "intended",
    "bidding": {
@@ -5607,7 +5650,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "217",
+   "board": "219",
    "deal_hash": "03c0cd66a6408be8",
    "auction_class": "intended",
    "bidding": {
@@ -5632,7 +5675,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "218",
+   "board": "220",
    "deal_hash": "533bbf74018fc2b6",
    "auction_class": "intended",
    "bidding": {
@@ -5657,7 +5700,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "219",
+   "board": "221",
    "deal_hash": "9ae42dafbc99b5e7",
    "auction_class": "intended",
    "bidding": {
@@ -5682,7 +5725,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "220",
+   "board": "222",
    "deal_hash": "5af2b6b56b2b4c6a",
    "auction_class": "intended",
    "bidding": {
@@ -5705,7 +5748,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "221",
+   "board": "223",
    "deal_hash": "c10a2e6875ff94f3",
    "auction_class": "intended",
    "bidding": {
@@ -5730,7 +5773,7 @@
    "dd_class": "wrong_sided"
   },
   {
-   "board": "222",
+   "board": "224",
    "deal_hash": "ce231aee7d04703f",
    "auction_class": "intended",
    "bidding": {
@@ -5759,7 +5802,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "223",
+   "board": "225",
    "deal_hash": "f4f02d6880ec4604",
    "auction_class": "intended",
    "bidding": {
@@ -5786,7 +5829,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "224",
+   "board": "226",
    "deal_hash": "35cdb566e4383b7f",
    "auction_class": "intended",
    "bidding": {
@@ -5811,7 +5854,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "225",
+   "board": "227",
    "deal_hash": "ef9324b0eb68d2e0",
    "auction_class": "intended",
    "bidding": {
@@ -5836,7 +5879,7 @@
    "dd_class": "wrong_sided"
   },
   {
-   "board": "226",
+   "board": "228",
    "deal_hash": "3c13f677e1832b17",
    "auction_class": "intended",
    "bidding": {
@@ -5863,7 +5906,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "227",
+   "board": "229",
    "deal_hash": "2a9bdd15c5791f93",
    "auction_class": "intended",
    "bidding": {
@@ -5888,7 +5931,7 @@
    "dd_class": "wrong_sided"
   },
   {
-   "board": "228",
+   "board": "230",
    "deal_hash": "8dbdcda717f9e5d3",
    "auction_class": "intended",
    "bidding": {
@@ -5911,7 +5954,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "229",
+   "board": "231",
    "deal_hash": "f75193485406024a",
    "auction_class": "intended",
    "bidding": {
@@ -5934,7 +5977,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "230",
+   "board": "232",
    "deal_hash": "24fb7b3d9155ac03",
    "auction_class": "intended",
    "bidding": {
@@ -5959,7 +6002,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "231",
+   "board": "233",
    "deal_hash": "95c4983f4582f1b7",
    "auction_class": "intended",
    "bidding": {
@@ -5986,7 +6029,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "232",
+   "board": "234",
    "deal_hash": "47a528ff249fd566",
    "auction_class": "intended",
    "bidding": {
@@ -6011,7 +6054,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "233",
+   "board": "235",
    "deal_hash": "e69f6f15c9b6db33",
    "auction_class": "intended",
    "bidding": {
@@ -6036,7 +6079,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "234",
+   "board": "236",
    "deal_hash": "dcb73f417f919fa0",
    "auction_class": "intended",
    "bidding": {
@@ -6061,7 +6104,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "235",
+   "board": "237",
    "deal_hash": "fcc48ab5053d7874",
    "auction_class": "intended",
    "bidding": {
@@ -6088,7 +6131,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "236",
+   "board": "238",
    "deal_hash": "1e004a775edeb84c",
    "auction_class": "intended",
    "bidding": {
@@ -6111,7 +6154,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "237",
+   "board": "239",
    "deal_hash": "f4a090542f4700e2",
    "auction_class": "intended",
    "bidding": {
@@ -6138,7 +6181,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "238",
+   "board": "240",
    "deal_hash": "553684173a113946",
    "auction_class": "intended",
    "bidding": {
@@ -6165,7 +6208,7 @@
    "dd_class": "wrong_sided"
   },
   {
-   "board": "239",
+   "board": "241",
    "deal_hash": "e75a2ea4cd835c41",
    "auction_class": "intended",
    "bidding": {
@@ -6190,7 +6233,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "240",
+   "board": "242",
    "deal_hash": "8da8b773fce473b3",
    "auction_class": "intended",
    "bidding": {
@@ -6215,7 +6258,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "241",
+   "board": "243",
    "deal_hash": "3297c52dcc2e12e0",
    "auction_class": "interference",
    "bidding": {
@@ -6242,7 +6285,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "242",
+   "board": "244",
    "deal_hash": "9672771cf997395b",
    "auction_class": "intended",
    "bidding": {
@@ -6269,7 +6312,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "243",
+   "board": "245",
    "deal_hash": "edea85e2ad0e0ad4",
    "auction_class": "intended",
    "bidding": {
@@ -6296,7 +6339,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "244",
+   "board": "246",
    "deal_hash": "1fc8c77bb6ea69ce",
    "auction_class": "intended",
    "bidding": {
@@ -6323,7 +6366,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "245",
+   "board": "247",
    "deal_hash": "e740ca01f16c3a2a",
    "auction_class": "intended",
    "bidding": {
@@ -6348,7 +6391,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "246",
+   "board": "248",
    "deal_hash": "8d44f735bc761b38",
    "auction_class": "intended",
    "bidding": {
@@ -6373,7 +6416,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "247",
+   "board": "249",
    "deal_hash": "b6e0dfbf2c6f06a0",
    "auction_class": "intended",
    "bidding": {
@@ -6398,7 +6441,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "248",
+   "board": "250",
    "deal_hash": "b7596c1bb6c3a00d",
    "auction_class": "intended",
    "bidding": {
@@ -6421,7 +6464,32 @@
    "dd_class": "ok"
   },
   {
-   "board": "249",
+   "board": "251",
+   "deal_hash": "8457ff2681a3353d",
+   "auction_class": "intended",
+   "bidding": {
+    "tier": "standard",
+    "also_ok": [],
+    "note": "35 combined and the grand is cold, but natural-only methods can't show it \u2014 6NT is the prescribed call (good board to note the method's ceiling)."
+   },
+   "declarer": {
+    "tier": "standard",
+    "themes": [
+     "count-winners"
+    ],
+    "note": "13 tricks available; count the top winners across the four suits."
+   },
+   "defense": {
+    "tier": "reject",
+    "themes": [],
+    "note": "Slam makes regardless; no defensive decision."
+   },
+   "difficulty": 2,
+   "matched_intended_auction": true,
+   "dd_class": "ok"
+  },
+  {
+   "board": "252",
    "deal_hash": "0688bc058b81d16d",
    "auction_class": "intended",
    "bidding": {
@@ -6446,7 +6514,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "250",
+   "board": "253",
    "deal_hash": "8d299e49c9fdb5e3",
    "auction_class": "intended",
    "bidding": {
@@ -6473,7 +6541,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "251",
+   "board": "254",
    "deal_hash": "7d60291b4fc66d3a",
    "auction_class": "intended",
    "bidding": {
@@ -6500,7 +6568,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "252",
+   "board": "255",
    "deal_hash": "ecd9f19ef2e76688",
    "auction_class": "intended",
    "bidding": {
@@ -6527,7 +6595,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "253",
+   "board": "256",
    "deal_hash": "540c51397ae4b7d8",
    "auction_class": "intended",
    "bidding": {
@@ -6552,7 +6620,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "254",
+   "board": "257",
    "deal_hash": "0f9910bac349d6d7",
    "auction_class": "intended",
    "bidding": {
@@ -6577,7 +6645,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "255",
+   "board": "258",
    "deal_hash": "f803465c1d8891ed",
    "auction_class": "intended",
    "bidding": {
@@ -6600,7 +6668,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "256",
+   "board": "259",
    "deal_hash": "7ddb7a7569ab2a1d",
    "auction_class": "intended",
    "bidding": {
@@ -6627,7 +6695,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "257",
+   "board": "260",
    "deal_hash": "79e63af73eb50196",
    "auction_class": "intended",
    "bidding": {
@@ -6654,7 +6722,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "258",
+   "board": "261",
    "deal_hash": "c73607d62dbab1df",
    "auction_class": "intended",
    "bidding": {
@@ -6681,7 +6749,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "259",
+   "board": "262",
    "deal_hash": "dcf0f1ce01a71335",
    "auction_class": "intended",
    "bidding": {
@@ -6710,7 +6778,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "260",
+   "board": "263",
    "deal_hash": "630b24911be60369",
    "auction_class": "intended",
    "bidding": {
@@ -6737,7 +6805,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "261",
+   "board": "264",
    "deal_hash": "b16257a3d0a6587f",
    "auction_class": "intended",
    "bidding": {
@@ -6760,7 +6828,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "262",
+   "board": "265",
    "deal_hash": "64540c2d5c26c3ed",
    "auction_class": "intended",
    "bidding": {
@@ -6785,7 +6853,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "263",
+   "board": "266",
    "deal_hash": "05880e96476e8f2e",
    "auction_class": "intended",
    "bidding": {
@@ -6808,7 +6876,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "264",
+   "board": "267",
    "deal_hash": "81ae602ec269f695",
    "auction_class": "intended",
    "bidding": {
@@ -6833,7 +6901,7 @@
    "dd_class": "wrong_sided"
   },
   {
-   "board": "265",
+   "board": "268",
    "deal_hash": "2d4520f5fe66b8a3",
    "auction_class": "intended",
    "bidding": {
@@ -6860,7 +6928,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "266",
+   "board": "269",
    "deal_hash": "aa4c69009ff6d29d",
    "auction_class": "intended",
    "bidding": {
@@ -6885,7 +6953,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "267",
+   "board": "270",
    "deal_hash": "b8ff42b98e06d958",
    "auction_class": "intended",
    "bidding": {
@@ -6908,7 +6976,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "268",
+   "board": "271",
    "deal_hash": "5de5f1b8f61ef33c",
    "auction_class": "intended",
    "bidding": {
@@ -6933,7 +7001,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "269",
+   "board": "272",
    "deal_hash": "b49564852a8a101a",
    "auction_class": "intended",
    "bidding": {
@@ -6958,7 +7026,32 @@
    "dd_class": "down_both"
   },
   {
-   "board": "270",
+   "board": "273",
+   "deal_hash": "08079a0141fcd136",
+   "auction_class": "intended",
+   "bidding": {
+    "tier": "standard",
+    "also_ok": [],
+    "note": "35 combined with a cold grand unreachable naturally \u2014 6NT is the by-the-table answer; illustrates the natural method's ceiling."
+   },
+   "declarer": {
+    "tier": "standard",
+    "themes": [
+     "count-winners"
+    ],
+    "note": "South's strong diamonds (AKJ64) run; count winners for all 13."
+   },
+   "defense": {
+    "tier": "reject",
+    "themes": [],
+    "note": "Slam makes; nothing for the defense to do."
+   },
+   "difficulty": 2,
+   "matched_intended_auction": true,
+   "dd_class": "ok"
+  },
+  {
+   "board": "274",
    "deal_hash": "24ff884a72f83c42",
    "auction_class": "intended",
    "bidding": {
@@ -6983,7 +7076,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "271",
+   "board": "275",
    "deal_hash": "14ef7bbe1bed7979",
    "auction_class": "intended",
    "bidding": {
@@ -7010,7 +7103,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "272",
+   "board": "276",
    "deal_hash": "656cdcfb16167ce8",
    "auction_class": "intended",
    "bidding": {
@@ -7039,7 +7132,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "273",
+   "board": "277",
    "deal_hash": "5416a5cf39b88f54",
    "auction_class": "intended",
    "bidding": {
@@ -7064,7 +7157,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "274",
+   "board": "278",
    "deal_hash": "657c060f90620ec5",
    "auction_class": "intended",
    "bidding": {
@@ -7087,7 +7180,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "275",
+   "board": "279",
    "deal_hash": "f62b1b120068e31b",
    "auction_class": "intended",
    "bidding": {
@@ -7112,7 +7205,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "276",
+   "board": "280",
    "deal_hash": "203dcebf9063b095",
    "auction_class": "intended",
    "bidding": {
@@ -7139,7 +7232,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "277",
+   "board": "281",
    "deal_hash": "5b59b8964032b595",
    "auction_class": "intended",
    "bidding": {
@@ -7164,7 +7257,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "278",
+   "board": "282",
    "deal_hash": "a8e6fc7b554b2497",
    "auction_class": "intended",
    "bidding": {
@@ -7191,7 +7284,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "279",
+   "board": "283",
    "deal_hash": "63247280067d2d4a",
    "auction_class": "intended",
    "bidding": {
@@ -7218,7 +7311,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "280",
+   "board": "284",
    "deal_hash": "f44c598c566f7c21",
    "auction_class": "intended",
    "bidding": {
@@ -7241,7 +7334,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "281",
+   "board": "285",
    "deal_hash": "c29c40d3f1bd6f62",
    "auction_class": "intended",
    "bidding": {
@@ -7266,7 +7359,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "282",
+   "board": "286",
    "deal_hash": "6293968c5a7ca14c",
    "auction_class": "intended",
    "bidding": {
@@ -7289,7 +7382,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "283",
+   "board": "287",
    "deal_hash": "15e83fd6048f9a65",
    "auction_class": "intended",
    "bidding": {
@@ -7316,7 +7409,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "284",
+   "board": "288",
    "deal_hash": "a1796a4c26b6f881",
    "auction_class": "intended",
    "bidding": {
@@ -7341,7 +7434,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "285",
+   "board": "289",
    "deal_hash": "f145fcabb2fc13e5",
    "auction_class": "intended",
    "bidding": {
@@ -7364,7 +7457,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "286",
+   "board": "290",
    "deal_hash": "a1ac7102d6a39eb4",
    "auction_class": "intended",
    "bidding": {
@@ -7391,7 +7484,32 @@
    "dd_class": "ok"
   },
   {
-   "board": "287",
+   "board": "291",
+   "deal_hash": "33624577b30ae422",
+   "auction_class": "intended",
+   "bidding": {
+    "tier": "textbook",
+    "also_ok": [],
+    "note": "33 combined, 18 over 15 \u2014 clean 6NT per the brief; makes exactly."
+   },
+   "declarer": {
+    "tier": "standard",
+    "themes": [
+     "count-winners"
+    ],
+    "note": "12 tricks on the nose; count winners, no margin for error."
+   },
+   "defense": {
+    "tier": "reject",
+    "themes": [],
+    "note": "6NT makes; no defensive decision."
+   },
+   "difficulty": 2,
+   "matched_intended_auction": true,
+   "dd_class": "ok"
+  },
+  {
+   "board": "292",
    "deal_hash": "a088325571b9668d",
    "auction_class": "intended",
    "bidding": {
@@ -7416,7 +7534,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "288",
+   "board": "293",
    "deal_hash": "c5b59fe4115d418d",
    "auction_class": "intended",
    "bidding": {
@@ -7441,7 +7559,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "289",
+   "board": "294",
    "deal_hash": "39cea851104c54da",
    "auction_class": "interference",
    "bidding": {
@@ -7468,7 +7586,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "290",
+   "board": "295",
    "deal_hash": "2a85eb462da41263",
    "auction_class": "intended",
    "bidding": {
@@ -7493,7 +7611,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "291",
+   "board": "296",
    "deal_hash": "55d0c147f5cbc51b",
    "auction_class": "intended",
    "bidding": {
@@ -7518,7 +7636,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "292",
+   "board": "297",
    "deal_hash": "6bcef69e1ef4554a",
    "auction_class": "intended",
    "bidding": {
@@ -7545,7 +7663,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "293",
+   "board": "298",
    "deal_hash": "9837e00dad8c8726",
    "auction_class": "intended",
    "bidding": {
@@ -7568,7 +7686,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "294",
+   "board": "299",
    "deal_hash": "6b21f51717d4f214",
    "auction_class": "intended",
    "bidding": {
@@ -7593,7 +7711,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "295",
+   "board": "300",
    "deal_hash": "8f94241d8f545d1d",
    "auction_class": "intended",
    "bidding": {
@@ -7618,7 +7736,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "296",
+   "board": "301",
    "deal_hash": "b30a2900a6f206fd",
    "auction_class": "intended",
    "bidding": {
@@ -7643,7 +7761,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "297",
+   "board": "302",
    "deal_hash": "bd92883477a5211e",
    "auction_class": "intended",
    "bidding": {
@@ -7668,7 +7786,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "298",
+   "board": "303",
    "deal_hash": "f6b6c710b6e1ae6a",
    "auction_class": "intended",
    "bidding": {
@@ -7691,7 +7809,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "299",
+   "board": "304",
    "deal_hash": "3881cff522df2601",
    "auction_class": "intended",
    "bidding": {
@@ -7716,7 +7834,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "300",
+   "board": "305",
    "deal_hash": "5547c5df0eeb0ed0",
    "auction_class": "intended",
    "bidding": {
@@ -7743,7 +7861,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "301",
+   "board": "306",
    "deal_hash": "bdbb81a70ae166c2",
    "auction_class": "intended",
    "bidding": {
@@ -7766,7 +7884,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "302",
+   "board": "307",
    "deal_hash": "410719b98758a6d1",
    "auction_class": "intended",
    "bidding": {
@@ -7789,7 +7907,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "303",
+   "board": "308",
    "deal_hash": "1246aeacb2bea55f",
    "auction_class": "intended",
    "bidding": {
@@ -7816,7 +7934,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "304",
+   "board": "309",
    "deal_hash": "292429e8a1d10cc1",
    "auction_class": "intended",
    "bidding": {
@@ -7841,7 +7959,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "305",
+   "board": "310",
    "deal_hash": "f6296f27fcd68e8c",
    "auction_class": "intended",
    "bidding": {
@@ -7868,7 +7986,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "306",
+   "board": "311",
    "deal_hash": "7aadb17fad5271b5",
    "auction_class": "interference",
    "bidding": {
@@ -7895,7 +8013,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "307",
+   "board": "312",
    "deal_hash": "f20004e2fb6d991a",
    "auction_class": "intended",
    "bidding": {
@@ -7922,7 +8040,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "308",
+   "board": "313",
    "deal_hash": "fb1fdbe44816bdae",
    "auction_class": "interference",
    "bidding": {
@@ -7947,7 +8065,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "309",
+   "board": "314",
    "deal_hash": "54973bd415da551e",
    "auction_class": "intended",
    "bidding": {
@@ -7970,7 +8088,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "310",
+   "board": "315",
    "deal_hash": "97c2f02b8aa0daa9",
    "auction_class": "intended",
    "bidding": {
@@ -7997,7 +8115,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "311",
+   "board": "316",
    "deal_hash": "7509a7d3884552a3",
    "auction_class": "intended",
    "bidding": {
@@ -8022,7 +8140,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "312",
+   "board": "317",
    "deal_hash": "c178c0c128ebaf67",
    "auction_class": "intended",
    "bidding": {
@@ -8045,7 +8163,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "313",
+   "board": "318",
    "deal_hash": "d76814685ca0d962",
    "auction_class": "intended",
    "bidding": {
@@ -8072,7 +8190,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "314",
+   "board": "319",
    "deal_hash": "a6522d0412105a39",
    "auction_class": "intended",
    "bidding": {
@@ -8095,7 +8213,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "315",
+   "board": "320",
    "deal_hash": "e5abd46ab233d1dc",
    "auction_class": "intended",
    "bidding": {
@@ -8120,7 +8238,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "316",
+   "board": "321",
    "deal_hash": "ca189a2d18c11001",
    "auction_class": "intended",
    "bidding": {
@@ -8143,7 +8261,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "317",
+   "board": "322",
    "deal_hash": "41c19a3efcc6947d",
    "auction_class": "intended",
    "bidding": {
@@ -8166,7 +8284,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "318",
+   "board": "323",
    "deal_hash": "7e1df8c6a060bb5a",
    "auction_class": "intended",
    "bidding": {
@@ -8193,7 +8311,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "319",
+   "board": "324",
    "deal_hash": "6c2403888a3c99ec",
    "auction_class": "intended",
    "bidding": {
@@ -8220,7 +8338,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "320",
+   "board": "325",
    "deal_hash": "6f4988b4e8e6fc76",
    "auction_class": "intended",
    "bidding": {
@@ -8247,7 +8365,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "321",
+   "board": "326",
    "deal_hash": "eccb3110cce5f93b",
    "auction_class": "intended",
    "bidding": {
@@ -8274,7 +8392,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "322",
+   "board": "327",
    "deal_hash": "44def18a3ab5830e",
    "auction_class": "intended",
    "bidding": {
@@ -8301,7 +8419,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "323",
+   "board": "328",
    "deal_hash": "3f8021203251f060",
    "auction_class": "intended",
    "bidding": {
@@ -8326,7 +8444,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "324",
+   "board": "329",
    "deal_hash": "8f515f5f323c1577",
    "auction_class": "intended",
    "bidding": {
@@ -8351,7 +8469,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "325",
+   "board": "330",
    "deal_hash": "e13c808278006466",
    "auction_class": "intended",
    "bidding": {
@@ -8378,7 +8496,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "326",
+   "board": "331",
    "deal_hash": "fb97babd7c48d771",
    "auction_class": "intended",
    "bidding": {
@@ -8403,7 +8521,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "327",
+   "board": "332",
    "deal_hash": "286d3904e96396d5",
    "auction_class": "intended",
    "bidding": {
@@ -8426,7 +8544,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "328",
+   "board": "333",
    "deal_hash": "377f3b7d8e070720",
    "auction_class": "intended",
    "bidding": {
@@ -8451,7 +8569,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "329",
+   "board": "334",
    "deal_hash": "3cf68c61dee7a081",
    "auction_class": "interference",
    "bidding": {
@@ -8476,7 +8594,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "330",
+   "board": "335",
    "deal_hash": "844c08d26c30d4f6",
    "auction_class": "intended",
    "bidding": {
@@ -8503,7 +8621,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "331",
+   "board": "336",
    "deal_hash": "c0e9676d50067b95",
    "auction_class": "intended",
    "bidding": {
@@ -8528,7 +8646,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "332",
+   "board": "337",
    "deal_hash": "3fe4a230943baef7",
    "auction_class": "intended",
    "bidding": {
@@ -8555,7 +8673,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "333",
+   "board": "338",
    "deal_hash": "ca82ddbff6255dcb",
    "auction_class": "intended",
    "bidding": {
@@ -8578,7 +8696,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "334",
+   "board": "339",
    "deal_hash": "f9a0e392d8703a36",
    "auction_class": "intended",
    "bidding": {
@@ -8603,7 +8721,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "335",
+   "board": "340",
    "deal_hash": "3f78dd6c4f2a60e0",
    "auction_class": "intended",
    "bidding": {
@@ -8630,7 +8748,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "336",
+   "board": "341",
    "deal_hash": "279de38e6596868f",
    "auction_class": "intended",
    "bidding": {
@@ -8657,7 +8775,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "337",
+   "board": "342",
    "deal_hash": "b12c1a08432ac016",
    "auction_class": "intended",
    "bidding": {
@@ -8684,7 +8802,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "338",
+   "board": "343",
    "deal_hash": "a8bfa07e19ffa1dd",
    "auction_class": "intended",
    "bidding": {
@@ -8707,7 +8825,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "339",
+   "board": "344",
    "deal_hash": "761ec0f337600b64",
    "auction_class": "intended",
    "bidding": {
@@ -8730,7 +8848,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "340",
+   "board": "345",
    "deal_hash": "08d2e03600b86cf9",
    "auction_class": "intended",
    "bidding": {
@@ -8757,7 +8875,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "341",
+   "board": "346",
    "deal_hash": "5706ead58b547ac1",
    "auction_class": "intended",
    "bidding": {
@@ -8780,7 +8898,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "342",
+   "board": "347",
    "deal_hash": "2e240b5f8e4c33ce",
    "auction_class": "intended",
    "bidding": {
@@ -8805,7 +8923,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "343",
+   "board": "348",
    "deal_hash": "af67a5b52b85a99d",
    "auction_class": "intended",
    "bidding": {
@@ -8832,7 +8950,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "344",
+   "board": "349",
    "deal_hash": "2d363df8094721a4",
    "auction_class": "intended",
    "bidding": {
@@ -8859,7 +8977,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "345",
+   "board": "350",
    "deal_hash": "31784e782d4e025f",
    "auction_class": "intended",
    "bidding": {
@@ -8886,7 +9004,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "346",
+   "board": "351",
    "deal_hash": "2fe8df5cdd49a1de",
    "auction_class": "intended",
    "bidding": {
@@ -8913,7 +9031,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "347",
+   "board": "352",
    "deal_hash": "568c486669132669",
    "auction_class": "intended",
    "bidding": {
@@ -8942,7 +9060,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "348",
+   "board": "353",
    "deal_hash": "9874369f45d0292d",
    "auction_class": "intended",
    "bidding": {
@@ -8969,7 +9087,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "349",
+   "board": "354",
    "deal_hash": "2de59efccdcb4ac1",
    "auction_class": "intended",
    "bidding": {
@@ -8996,7 +9114,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "350",
+   "board": "355",
    "deal_hash": "55b274a7925b5212",
    "auction_class": "intended",
    "bidding": {
@@ -9021,7 +9139,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "351",
+   "board": "356",
    "deal_hash": "32911c707ae37c14",
    "auction_class": "intended",
    "bidding": {
@@ -9044,7 +9162,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "352",
+   "board": "357",
    "deal_hash": "95573e3958f2f236",
    "auction_class": "intended",
    "bidding": {
@@ -9071,7 +9189,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "353",
+   "board": "358",
    "deal_hash": "f854654190724524",
    "auction_class": "intended",
    "bidding": {
@@ -9098,7 +9216,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "354",
+   "board": "359",
    "deal_hash": "173e9f61fd15cc98",
    "auction_class": "intended",
    "bidding": {
@@ -9125,7 +9243,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "355",
+   "board": "360",
    "deal_hash": "9fed19f90720c7e0",
    "auction_class": "intended",
    "bidding": {
@@ -9150,7 +9268,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "356",
+   "board": "361",
    "deal_hash": "6fc49f7d342b3486",
    "auction_class": "intended",
    "bidding": {
@@ -9173,7 +9291,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "357",
+   "board": "362",
    "deal_hash": "a47145abd1ce1cd4",
    "auction_class": "interference",
    "bidding": {
@@ -9203,7 +9321,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "358",
+   "board": "363",
    "deal_hash": "abd343c8010577d9",
    "auction_class": "interference",
    "bidding": {
@@ -9228,7 +9346,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "359",
+   "board": "364",
    "deal_hash": "1d0ad202d7c43314",
    "auction_class": "intended",
    "bidding": {
@@ -9253,7 +9371,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "360",
+   "board": "365",
    "deal_hash": "d6c75844c2508938",
    "auction_class": "intended",
    "bidding": {
@@ -9282,7 +9400,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "361",
+   "board": "366",
    "deal_hash": "eb097bc4b76b630d",
    "auction_class": "intended",
    "bidding": {
@@ -9307,7 +9425,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "362",
+   "board": "367",
    "deal_hash": "977ae56a978b079a",
    "auction_class": "intended",
    "bidding": {
@@ -9334,7 +9452,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "363",
+   "board": "368",
    "deal_hash": "11a98a0213190404",
    "auction_class": "interference",
    "bidding": {
@@ -9359,7 +9477,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "364",
+   "board": "369",
    "deal_hash": "182ae20e83998adc",
    "auction_class": "intended",
    "bidding": {
@@ -9382,7 +9500,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "365",
+   "board": "370",
    "deal_hash": "a5274eaf5c2d49c8",
    "auction_class": "intended",
    "bidding": {
@@ -9409,7 +9527,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "366",
+   "board": "371",
    "deal_hash": "77211f2a763d52a4",
    "auction_class": "intended",
    "bidding": {
@@ -9436,7 +9554,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "367",
+   "board": "372",
    "deal_hash": "e0fe8ab13cd52079",
    "auction_class": "intended",
    "bidding": {
@@ -9461,7 +9579,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "368",
+   "board": "373",
    "deal_hash": "78b8fd54966baf4d",
    "auction_class": "intended",
    "bidding": {
@@ -9486,7 +9604,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "369",
+   "board": "374",
    "deal_hash": "03ddff9b28329d27",
    "auction_class": "intended",
    "bidding": {
@@ -9511,7 +9629,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "370",
+   "board": "375",
    "deal_hash": "1c996c4833a24a7b",
    "auction_class": "intended",
    "bidding": {
@@ -9536,7 +9654,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "371",
+   "board": "376",
    "deal_hash": "ddb71133f967b2b8",
    "auction_class": "intended",
    "bidding": {
@@ -9561,7 +9679,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "372",
+   "board": "377",
    "deal_hash": "4839676da69538ad",
    "auction_class": "intended",
    "bidding": {
@@ -9586,7 +9704,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "373",
+   "board": "378",
    "deal_hash": "d731a26f3688d2bd",
    "auction_class": "intended",
    "bidding": {
@@ -9613,7 +9731,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "374",
+   "board": "379",
    "deal_hash": "aa7fa8c7733a78b1",
    "auction_class": "intended",
    "bidding": {
@@ -9640,7 +9758,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "375",
+   "board": "380",
    "deal_hash": "5b4745eb77f7c04a",
    "auction_class": "intended",
    "bidding": {
@@ -9663,7 +9781,30 @@
    "dd_class": "ok"
   },
   {
-   "board": "376",
+   "board": "381",
+   "deal_hash": "13c59a3f89fc7df0",
+   "auction_class": "intended",
+   "bidding": {
+    "tier": "standard",
+    "also_ok": [],
+    "note": "33 combined \u2014 6NT is the prescribed 18+ call and the right percentage action, but the flat layout yields only 11 tricks DD; correct bid, sour result."
+   },
+   "declarer": {
+    "tier": "reject",
+    "themes": [],
+    "note": "6NT is down one double-dummy (11 tricks); contract fails."
+   },
+   "defense": {
+    "tier": "reject",
+    "themes": [],
+    "note": "Slam drifts one off on the bad layout, but declarer simply lacks a 12th trick \u2014 no defensive decision."
+   },
+   "difficulty": 2,
+   "matched_intended_auction": true,
+   "dd_class": "down_both"
+  },
+  {
+   "board": "382",
    "deal_hash": "5406c1187800027d",
    "auction_class": "interference",
    "bidding": {
@@ -9688,7 +9829,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "377",
+   "board": "383",
    "deal_hash": "a46cc21c8e79d3a3",
    "auction_class": "intended",
    "bidding": {
@@ -9715,7 +9856,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "378",
+   "board": "384",
    "deal_hash": "cb7185d12c1e1748",
    "auction_class": "intended",
    "bidding": {
@@ -9740,7 +9881,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "379",
+   "board": "385",
    "deal_hash": "8092e877a130ef04",
    "auction_class": "intended",
    "bidding": {
@@ -9765,7 +9906,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "380",
+   "board": "386",
    "deal_hash": "3175f4a4a11529a8",
    "auction_class": "intended",
    "bidding": {
@@ -9790,7 +9931,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "381",
+   "board": "387",
    "deal_hash": "d5e7c871b7cb67c4",
    "auction_class": "intended",
    "bidding": {
@@ -9815,7 +9956,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "382",
+   "board": "388",
    "deal_hash": "f76a109438da82fe",
    "auction_class": "intended",
    "bidding": {
@@ -9842,7 +9983,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "383",
+   "board": "389",
    "deal_hash": "677d9a26db428991",
    "auction_class": "intended",
    "bidding": {
@@ -9865,7 +10006,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "384",
+   "board": "390",
    "deal_hash": "a1ce2915363c9878",
    "auction_class": "intended",
    "bidding": {
@@ -9892,7 +10033,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "385",
+   "board": "391",
    "deal_hash": "17400a864d6eb7a4",
    "auction_class": "interference",
    "bidding": {
@@ -9917,7 +10058,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "386",
+   "board": "392",
    "deal_hash": "1e1c572051ce3d65",
    "auction_class": "intended",
    "bidding": {
@@ -9942,7 +10083,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "387",
+   "board": "393",
    "deal_hash": "e653c074961490fa",
    "auction_class": "intended",
    "bidding": {
@@ -9969,7 +10110,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "388",
+   "board": "394",
    "deal_hash": "a6fee0abbc7ee6df",
    "auction_class": "intended",
    "bidding": {
@@ -9994,7 +10135,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "389",
+   "board": "395",
    "deal_hash": "02d4eb7f31a3daf1",
    "auction_class": "intended",
    "bidding": {
@@ -10019,7 +10160,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "390",
+   "board": "396",
    "deal_hash": "d79f6a767dba3f12",
    "auction_class": "intended",
    "bidding": {
@@ -10042,7 +10183,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "391",
+   "board": "397",
    "deal_hash": "6b1638763545d058",
    "auction_class": "intended",
    "bidding": {
@@ -10069,7 +10210,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "392",
+   "board": "398",
    "deal_hash": "7c87759766b7898f",
    "auction_class": "intended",
    "bidding": {
@@ -10094,7 +10235,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "393",
+   "board": "399",
    "deal_hash": "26e6e0ae3673589e",
    "auction_class": "intended",
    "bidding": {
@@ -10121,7 +10262,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "394",
+   "board": "400",
    "deal_hash": "004086cb5db81565",
    "auction_class": "intended",
    "bidding": {
@@ -10144,7 +10285,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "395",
+   "board": "401",
    "deal_hash": "96ff75520d555a03",
    "auction_class": "intended",
    "bidding": {
@@ -10169,7 +10310,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "396",
+   "board": "402",
    "deal_hash": "137832848ad61524",
    "auction_class": "intended",
    "bidding": {
@@ -10194,7 +10335,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "397",
+   "board": "403",
    "deal_hash": "7e804d6423e6c5fc",
    "auction_class": "intended",
    "bidding": {
@@ -10219,7 +10360,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "398",
+   "board": "404",
    "deal_hash": "a9c0a9168eb159ce",
    "auction_class": "intended",
    "bidding": {
@@ -10244,7 +10385,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "399",
+   "board": "405",
    "deal_hash": "233516b47ae88a89",
    "auction_class": "intended",
    "bidding": {
@@ -10269,7 +10410,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "400",
+   "board": "406",
    "deal_hash": "8cc6e8de5d4eb743",
    "auction_class": "interference",
    "bidding": {
@@ -10294,7 +10435,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "401",
+   "board": "407",
    "deal_hash": "6bb6baf08c56956d",
    "auction_class": "intended",
    "bidding": {
@@ -10321,7 +10462,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "402",
+   "board": "408",
    "deal_hash": "6d936993bb856b22",
    "auction_class": "intended",
    "bidding": {
@@ -10348,7 +10489,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "403",
+   "board": "409",
    "deal_hash": "801be31602de9a5c",
    "auction_class": "intended",
    "bidding": {
@@ -10373,7 +10514,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "404",
+   "board": "410",
    "deal_hash": "e81617d3284858c2",
    "auction_class": "intended",
    "bidding": {
@@ -10402,7 +10543,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "405",
+   "board": "411",
    "deal_hash": "3edd971da375b5bb",
    "auction_class": "intended",
    "bidding": {
@@ -10431,7 +10572,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "406",
+   "board": "412",
    "deal_hash": "f7624b375dc866a9",
    "auction_class": "intended",
    "bidding": {
@@ -10456,7 +10597,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "407",
+   "board": "413",
    "deal_hash": "6b2c0400b0f64427",
    "auction_class": "intended",
    "bidding": {
@@ -10479,7 +10620,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "408",
+   "board": "414",
    "deal_hash": "189434a3c979ac5d",
    "auction_class": "intended",
    "bidding": {
@@ -10506,7 +10647,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "409",
+   "board": "415",
    "deal_hash": "6eceb5a029d02269",
    "auction_class": "intended",
    "bidding": {
@@ -10531,7 +10672,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "410",
+   "board": "416",
    "deal_hash": "472c1586e55d120e",
    "auction_class": "intended",
    "bidding": {
@@ -10556,7 +10697,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "411",
+   "board": "417",
    "deal_hash": "2d12626ae50e6969",
    "auction_class": "intended",
    "bidding": {
@@ -10579,7 +10720,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "412",
+   "board": "418",
    "deal_hash": "7e62fe3256c440e8",
    "auction_class": "intended",
    "bidding": {
@@ -10604,7 +10745,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "413",
+   "board": "419",
    "deal_hash": "2e3027a8bba85bfe",
    "auction_class": "intended",
    "bidding": {
@@ -10629,7 +10770,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "414",
+   "board": "420",
    "deal_hash": "2de9ce4f75e3c351",
    "auction_class": "intended",
    "bidding": {
@@ -10654,7 +10795,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "415",
+   "board": "421",
    "deal_hash": "5c3945ca47e81de5",
    "auction_class": "intended",
    "bidding": {
@@ -10679,7 +10820,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "416",
+   "board": "422",
    "deal_hash": "313578bd71fa4e79",
    "auction_class": "intended",
    "bidding": {
@@ -10706,7 +10847,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "417",
+   "board": "423",
    "deal_hash": "611def332d1e86c4",
    "auction_class": "interference",
    "bidding": {
@@ -10733,7 +10874,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "418",
+   "board": "424",
    "deal_hash": "3c926128c0ec2c87",
    "auction_class": "intended",
    "bidding": {
@@ -10758,7 +10899,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "419",
+   "board": "425",
    "deal_hash": "8a968cc56aea3ac0",
    "auction_class": "intended",
    "bidding": {
@@ -10781,7 +10922,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "420",
+   "board": "426",
    "deal_hash": "e4196d5b5a283392",
    "auction_class": "intended",
    "bidding": {
@@ -10808,7 +10949,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "421",
+   "board": "427",
    "deal_hash": "e8708538206586f7",
    "auction_class": "intended",
    "bidding": {
@@ -10835,7 +10976,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "422",
+   "board": "428",
    "deal_hash": "75f20c65abfb38a2",
    "auction_class": "intended",
    "bidding": {
@@ -10860,7 +11001,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "423",
+   "board": "429",
    "deal_hash": "35e32d487147fedb",
    "auction_class": "intended",
    "bidding": {
@@ -10887,7 +11028,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "424",
+   "board": "430",
    "deal_hash": "d010675e734992b6",
    "auction_class": "intended",
    "bidding": {
@@ -10912,7 +11053,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "425",
+   "board": "431",
    "deal_hash": "c3e52039ad9d7ddb",
    "auction_class": "intended",
    "bidding": {
@@ -10937,7 +11078,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "426",
+   "board": "432",
    "deal_hash": "8d03192ff230e788",
    "auction_class": "intended",
    "bidding": {
@@ -10964,7 +11105,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "427",
+   "board": "433",
    "deal_hash": "ece0a4d56aeb850a",
    "auction_class": "intended",
    "bidding": {
@@ -10989,7 +11130,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "428",
+   "board": "434",
    "deal_hash": "7b7d4c9e073d1a03",
    "auction_class": "intended",
    "bidding": {
@@ -11014,7 +11155,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "429",
+   "board": "435",
    "deal_hash": "0bbbef5d86d50741",
    "auction_class": "intended",
    "bidding": {
@@ -11039,7 +11180,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "430",
+   "board": "436",
    "deal_hash": "c9768262e07c5720",
    "auction_class": "intended",
    "bidding": {
@@ -11064,7 +11205,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "431",
+   "board": "437",
    "deal_hash": "f7aad9dc7965d4ad",
    "auction_class": "intended",
    "bidding": {
@@ -11087,7 +11228,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "432",
+   "board": "438",
    "deal_hash": "b18129d8adac1410",
    "auction_class": "intended",
    "bidding": {
@@ -11110,7 +11251,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "433",
+   "board": "439",
    "deal_hash": "25908531fb9f401d",
    "auction_class": "intended",
    "bidding": {
@@ -11135,7 +11276,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "434",
+   "board": "440",
    "deal_hash": "70ee606fb9c49f0e",
    "auction_class": "intended",
    "bidding": {
@@ -11162,7 +11303,32 @@
    "dd_class": "ok"
   },
   {
-   "board": "435",
+   "board": "441",
+   "deal_hash": "d108461b7962aa38",
+   "auction_class": "intended",
+   "bidding": {
+    "tier": "textbook",
+    "also_ok": [],
+    "note": "19 opposite 16 = 35 \u2014 comfortably the brief's 6NT (18+) call; only 12 tricks are there, so no grand temptation."
+   },
+   "declarer": {
+    "tier": "standard",
+    "themes": [
+     "count-winners"
+    ],
+    "note": "Flat 35-count makes exactly 12; count winners and cash carefully."
+   },
+   "defense": {
+    "tier": "reject",
+    "themes": [],
+    "note": "6NT makes; no defensive decision."
+   },
+   "difficulty": 2,
+   "matched_intended_auction": true,
+   "dd_class": "ok"
+  },
+  {
+   "board": "442",
    "deal_hash": "e66bc3a80ac2d868",
    "auction_class": "intended",
    "bidding": {
@@ -11187,7 +11353,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "436",
+   "board": "443",
    "deal_hash": "ca0b58d5349f0b05",
    "auction_class": "intended",
    "bidding": {
@@ -11212,7 +11378,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "437",
+   "board": "444",
    "deal_hash": "3bff32ced8ca4d4c",
    "auction_class": "intended",
    "bidding": {
@@ -11239,7 +11405,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "438",
+   "board": "445",
    "deal_hash": "e04bb106274cfdd1",
    "auction_class": "intended",
    "bidding": {
@@ -11266,7 +11432,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "439",
+   "board": "446",
    "deal_hash": "2057150458c90907",
    "auction_class": "intended",
    "bidding": {
@@ -11291,7 +11457,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "440",
+   "board": "447",
    "deal_hash": "cf566b91f2d83eb6",
    "auction_class": "intended",
    "bidding": {
@@ -11316,7 +11482,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "441",
+   "board": "448",
    "deal_hash": "67e25ee064288824",
    "auction_class": "intended",
    "bidding": {
@@ -11339,7 +11505,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "442",
+   "board": "449",
    "deal_hash": "e4328750f420fb07",
    "auction_class": "intended",
    "bidding": {
@@ -11364,7 +11530,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "443",
+   "board": "450",
    "deal_hash": "20144d779e62f1b8",
    "auction_class": "intended",
    "bidding": {
@@ -11389,7 +11555,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "444",
+   "board": "451",
    "deal_hash": "3d1badb6dd8829e8",
    "auction_class": "intended",
    "bidding": {
@@ -11416,7 +11582,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "445",
+   "board": "452",
    "deal_hash": "62d48b8d8311cbaa",
    "auction_class": "intended",
    "bidding": {
@@ -11441,7 +11607,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "446",
+   "board": "453",
    "deal_hash": "d2b6845510a1282b",
    "auction_class": "intended",
    "bidding": {
@@ -11468,7 +11634,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "447",
+   "board": "454",
    "deal_hash": "1968c038cd712d9b",
    "auction_class": "intended",
    "bidding": {
@@ -11495,7 +11661,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "448",
+   "board": "455",
    "deal_hash": "79579da3ac667a24",
    "auction_class": "intended",
    "bidding": {
@@ -11520,7 +11686,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "449",
+   "board": "456",
    "deal_hash": "6565e2c5061caff2",
    "auction_class": "intended",
    "bidding": {
@@ -11545,7 +11711,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "450",
+   "board": "457",
    "deal_hash": "ebbade9a6ad7dc60",
    "auction_class": "intended",
    "bidding": {
@@ -11572,7 +11738,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "451",
+   "board": "458",
    "deal_hash": "aeaaf6a3b08dfa04",
    "auction_class": "intended",
    "bidding": {
@@ -11595,7 +11761,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "452",
+   "board": "459",
    "deal_hash": "b42d8cc967888fa0",
    "auction_class": "intended",
    "bidding": {
@@ -11622,7 +11788,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "453",
+   "board": "460",
    "deal_hash": "9403d7c438f034e0",
    "auction_class": "intended",
    "bidding": {
@@ -11649,7 +11815,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "454",
+   "board": "461",
    "deal_hash": "6a2c00eadc14e5a7",
    "auction_class": "intended",
    "bidding": {
@@ -11676,7 +11842,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "455",
+   "board": "462",
    "deal_hash": "acca3e00e9adca30",
    "auction_class": "intended",
    "bidding": {
@@ -11701,7 +11867,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "456",
+   "board": "463",
    "deal_hash": "171a84edb21b79bf",
    "auction_class": "intended",
    "bidding": {
@@ -11726,7 +11892,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "457",
+   "board": "464",
    "deal_hash": "20a783f15092930e",
    "auction_class": "intended",
    "bidding": {
@@ -11751,7 +11917,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "458",
+   "board": "465",
    "deal_hash": "0cb491b05ae13c64",
    "auction_class": "intended",
    "bidding": {
@@ -11774,7 +11940,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "459",
+   "board": "466",
    "deal_hash": "df44ce901eaec281",
    "auction_class": "intended",
    "bidding": {
@@ -11801,7 +11967,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "460",
+   "board": "467",
    "deal_hash": "97ae52ca9732c896",
    "auction_class": "intended",
    "bidding": {
@@ -11826,7 +11992,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "461",
+   "board": "468",
    "deal_hash": "69056d9371a492f2",
    "auction_class": "intended",
    "bidding": {
@@ -11853,7 +12019,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "462",
+   "board": "469",
    "deal_hash": "7f58d9c1eedfebae",
    "auction_class": "intended",
    "bidding": {
@@ -11878,7 +12044,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "463",
+   "board": "470",
    "deal_hash": "919962d563644c29",
    "auction_class": "intended",
    "bidding": {
@@ -11905,7 +12071,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "464",
+   "board": "471",
    "deal_hash": "84101e5be210acc4",
    "auction_class": "intended",
    "bidding": {
@@ -11932,7 +12098,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "465",
+   "board": "472",
    "deal_hash": "c71e93ca2a61f014",
    "auction_class": "intended",
    "bidding": {
@@ -11959,7 +12125,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "466",
+   "board": "473",
    "deal_hash": "0c4d162952fa32e9",
    "auction_class": "intended",
    "bidding": {
@@ -11986,7 +12152,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "467",
+   "board": "474",
    "deal_hash": "515c616796a99f47",
    "auction_class": "intended",
    "bidding": {
@@ -12009,7 +12175,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "468",
+   "board": "475",
    "deal_hash": "b11df385bf1c927b",
    "auction_class": "intended",
    "bidding": {
@@ -12036,7 +12202,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "469",
+   "board": "476",
    "deal_hash": "d385d3bbce5d0701",
    "auction_class": "intended",
    "bidding": {
@@ -12061,7 +12227,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "470",
+   "board": "477",
    "deal_hash": "b4262ad467f0be75",
    "auction_class": "intended",
    "bidding": {
@@ -12086,7 +12252,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "471",
+   "board": "478",
    "deal_hash": "2ee30ca7760a2949",
    "auction_class": "intended",
    "bidding": {
@@ -12109,7 +12275,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "472",
+   "board": "479",
    "deal_hash": "b95b2fcc7ec95348",
    "auction_class": "intended",
    "bidding": {
@@ -12138,7 +12304,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "473",
+   "board": "480",
    "deal_hash": "faf474db509bc335",
    "auction_class": "intended",
    "bidding": {
@@ -12163,7 +12329,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "474",
+   "board": "481",
    "deal_hash": "2870549a05f8cfe1",
    "auction_class": "intended",
    "bidding": {
@@ -12186,7 +12352,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "475",
+   "board": "482",
    "deal_hash": "52c3b1328d57bb51",
    "auction_class": "intended",
    "bidding": {
@@ -12213,7 +12379,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "476",
+   "board": "483",
    "deal_hash": "1ec114b79ef1e5c2",
    "auction_class": "intended",
    "bidding": {
@@ -12238,7 +12404,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "477",
+   "board": "484",
    "deal_hash": "ebd5c30580323a7b",
    "auction_class": "intended",
    "bidding": {
@@ -12261,7 +12427,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "478",
+   "board": "485",
    "deal_hash": "36d109c3830558a4",
    "auction_class": "intended",
    "bidding": {
@@ -12284,7 +12450,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "479",
+   "board": "486",
    "deal_hash": "95422b11a8dc6fc2",
    "auction_class": "intended",
    "bidding": {
@@ -12311,7 +12477,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "480",
+   "board": "487",
    "deal_hash": "10cca525bea9f73a",
    "auction_class": "intended",
    "bidding": {
@@ -12338,7 +12504,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "481",
+   "board": "488",
    "deal_hash": "8ef58c3d5283d3b3",
    "auction_class": "intended",
    "bidding": {
@@ -12365,7 +12531,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "482",
+   "board": "489",
    "deal_hash": "be973f02a2b70fb1",
    "auction_class": "intended",
    "bidding": {
@@ -12388,7 +12554,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "483",
+   "board": "490",
    "deal_hash": "0ec8f9a15bbd1dcc",
    "auction_class": "intended",
    "bidding": {
@@ -12411,7 +12577,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "484",
+   "board": "491",
    "deal_hash": "208ecc6bf2292edf",
    "auction_class": "intended",
    "bidding": {
@@ -12438,7 +12604,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "485",
+   "board": "492",
    "deal_hash": "4a9f663fea9528b4",
    "auction_class": "intended",
    "bidding": {
@@ -12465,7 +12631,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "486",
+   "board": "493",
    "deal_hash": "aae605891e6fcdaa",
    "auction_class": "intended",
    "bidding": {
@@ -12490,7 +12656,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "487",
+   "board": "494",
    "deal_hash": "2576cde3a7d5852c",
    "auction_class": "intended",
    "bidding": {
@@ -12513,7 +12679,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "488",
+   "board": "495",
    "deal_hash": "bb616a914f45a60e",
    "auction_class": "intended",
    "bidding": {
@@ -12540,7 +12706,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "489",
+   "board": "496",
    "deal_hash": "ffb09c10f486a646",
    "auction_class": "intended",
    "bidding": {
@@ -12565,7 +12731,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "490",
+   "board": "497",
    "deal_hash": "c5391213c2208c69",
    "auction_class": "intended",
    "bidding": {
@@ -12590,7 +12756,7 @@
    "dd_class": "down_both"
   },
   {
-   "board": "491",
+   "board": "498",
    "deal_hash": "49e53f48ef986661",
    "auction_class": "intended",
    "bidding": {
@@ -12617,7 +12783,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "492",
+   "board": "499",
    "deal_hash": "e5f1ce41c597f738",
    "auction_class": "intended",
    "bidding": {
@@ -12646,7 +12812,7 @@
    "dd_class": "ok"
   },
   {
-   "board": "493",
+   "board": "500",
    "deal_hash": "876ee4ec7ba1a15e",
    "auction_class": "intended",
    "bidding": {
@@ -12667,186 +12833,7 @@
    "difficulty": 1,
    "matched_intended_auction": true,
    "dd_class": "ok"
-  },
-  {
-   "board": "494",
-   "deal_hash": "4870cdf6d93fc5c1",
-   "auction_class": "intended",
-   "bidding": {
-    "tier": "textbook",
-    "also_ok": [],
-    "note": "Full invite sequence done right: 8-count invites, 17-count accepts, and 3NT makes exactly."
-   },
-   "declarer": {
-    "tier": "standard",
-    "themes": [
-     "establish-long-suit"
-    ],
-    "note": "Exactly 9 \u2014 the AKJ72 club suit opposite Q95 is the engine; East's singleton means the suit needs care."
-   },
-   "defense": {
-    "tier": "standard",
-    "themes": [
-     "opening-lead-nt"
-    ],
-    "note": "dd exact \u2014 West's KQT3 spade attack keeps declarer to the minimum."
-   },
-   "difficulty": 3,
-   "matched_intended_auction": true,
-   "dd_class": "ok"
-  },
-  {
-   "board": "495",
-   "deal_hash": "b6db65c25f0aba83",
-   "auction_class": "intended",
-   "bidding": {
-    "tier": "textbook",
-    "also_ok": [],
-    "note": "16 facing 10 \u2014 minimum table game, makes exactly."
-   },
-   "declarer": {
-    "tier": "standard",
-    "themes": [
-     "count-winners"
-    ],
-    "note": "Exactly 9 \u2014 clubs and diamonds must both contribute; order of play matters."
-   },
-   "defense": {
-    "tier": "standard",
-    "themes": [
-     "opening-lead-nt"
-    ],
-    "note": "dd exact \u2014 West's KQT94 spade suit is the textbook attack that holds declarer to nine."
-   },
-   "difficulty": 3,
-   "matched_intended_auction": true,
-   "dd_class": "ok"
-  },
-  {
-   "board": "496",
-   "deal_hash": "4e6ab720406f94ab",
-   "auction_class": "intended",
-   "bidding": {
-    "tier": "textbook",
-    "also_ok": [],
-    "note": "15 facing 11 \u2014 table 3NT, makes exactly."
-   },
-   "declarer": {
-    "tier": "standard",
-    "themes": [
-     "finesse-basic"
-    ],
-    "note": "Exactly 9 \u2014 the AQJ97 club suit needs the finesse against West's king to run."
-   },
-   "defense": {
-    "tier": "standard",
-    "themes": [
-     "opening-lead-nt"
-    ],
-    "note": "dd exact \u2014 West's entries behind declarer reward precise defense."
-   },
-   "difficulty": 3,
-   "matched_intended_auction": true,
-   "dd_class": "ok"
-  },
-  {
-   "board": "497",
-   "deal_hash": "4402f29ad822443a",
-   "auction_class": "intended",
-   "bidding": {
-    "tier": "textbook",
-    "also_ok": [],
-    "note": "16 facing 12 \u2014 routine 1NT-3NT."
-   },
-   "declarer": {
-    "tier": "standard",
-    "themes": [
-     "count-winners"
-    ],
-    "note": "10 tricks with one spare; hearts are solid, diamonds supply the rest."
-   },
-   "defense": {
-    "tier": "reject",
-    "themes": [],
-    "note": "Unbeatable with an overtrick."
-   },
-   "difficulty": 2,
-   "matched_intended_auction": true,
-   "dd_class": "ok"
-  },
-  {
-   "board": "498",
-   "deal_hash": "8a30ca48589da1ee",
-   "auction_class": "intended",
-   "bidding": {
-    "tier": "textbook",
-    "also_ok": [],
-    "note": "15 facing 15 \u2014 top of the 3NT band, still the table call."
-   },
-   "declarer": {
-    "tier": "reject",
-    "themes": [],
-    "note": "11 tricks \u2014 two overtricks on 30 combined."
-   },
-   "defense": {
-    "tier": "reject",
-    "themes": [],
-    "note": "Two overtricks regardless."
-   },
-   "difficulty": 1,
-   "matched_intended_auction": true,
-   "dd_class": "ok"
-  },
-  {
-   "board": "499",
-   "deal_hash": "a347e8bdd372217f",
-   "auction_class": "intended",
-   "bidding": {
-    "tier": "standard",
-    "also_ok": [],
-    "note": "9-count invites, minimum 15 declines \u2014 both table calls, but even 2NT is down one."
-   },
-   "declarer": {
-    "tier": "reject",
-    "themes": [],
-    "note": "down_both \u2014 7 tricks max."
-   },
-   "defense": {
-    "tier": "standard",
-    "themes": [
-     "opening-lead-nt"
-    ],
-    "note": "East's QJT43 heart suit with the club ace entry defeats 2NT \u2014 clean lead-and-entry story."
-   },
-   "difficulty": 2,
-   "matched_intended_auction": true,
-   "dd_class": "down_both"
-  },
-  {
-   "board": "500",
-   "deal_hash": "dd38a4a0a23f0c5a",
-   "auction_class": "intended",
-   "bidding": {
-    "tier": "textbook",
-    "also_ok": [],
-    "note": "North's 7-count pass is the table answer; 1NT comes home with an overtrick."
-   },
-   "declarer": {
-    "tier": "standard",
-    "themes": [
-     "count-winners"
-    ],
-    "note": "8 tricks \u2014 one spare; spades and diamonds carry the contract."
-   },
-   "defense": {
-    "tier": "reject",
-    "themes": [],
-    "note": "Overtrick available regardless."
-   },
-   "difficulty": 2,
-   "matched_intended_auction": true,
-   "dd_class": "ok"
   }
  ],
- "note": "22 boards re-graded 2026-06-05 after Basic-Bridge cc fix (Gerber removed)"
+ "note": "Regraded 2026-06-05 after raising responder cap to <20 (full pipeline regen). 493 verdicts carried over unchanged by deal_hash; 7 new 18-19 HCP / 6NT boards graded fresh."
 }
