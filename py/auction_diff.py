@@ -12,7 +12,10 @@ Usage: python3 py/auction_diff.py [--base <ref>] Basic_NT [...]
   parent) when the regenerated bba/ files are already committed to HEAD.
 """
 import sys, os, re, json, subprocess
-sys.path.insert(0, os.path.dirname(__file__))
+# Append (not insert(0,…)) so py/ sits at the END of sys.path and stdlib keeps
+# priority — otherwise py/select.py shadows stdlib `select` when endplay pulls
+# in subprocess. See reference_py_select_shadows_stdlib.
+sys.path.append(os.path.dirname(__file__))
 from curate import split_boards, tag, deal_hash
 
 

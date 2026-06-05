@@ -22,7 +22,11 @@ Without -o, prints the selected board numbers and a count. With -o, writes a
 plain lesson PBN (Curate tags kept; strip with --strip).
 """
 import sys, os, re
-sys.path.insert(0, os.path.dirname(__file__))
+# Append (not insert(0,…)) so py/ sits at the END of sys.path: `curate` still
+# resolves (it lives only here), but stdlib `select` keeps priority over this
+# very file when endplay lazily pulls in subprocess. See
+# reference_py_select_shadows_stdlib.
+sys.path.append(os.path.dirname(__file__))
 from curate import split_boards, tag
 
 KEYS = {'class', 'bidding', 'declarer', 'defense'}

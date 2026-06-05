@@ -24,7 +24,11 @@ Block written per board:
 Usage: python3 py/annotate.py Basic_NT [...]
 """
 import sys, os, re, json
-sys.path.insert(0, os.path.dirname(__file__))
+# Append (not insert(0,…)) so py/ sits at the END of sys.path: `curate` still
+# resolves (it lives only here), but stdlib modules keep priority — notably
+# `select`, which py/select.py would otherwise shadow when endplay lazily
+# pulls in subprocess. See reference_py_select_shadows_stdlib.
+sys.path.append(os.path.dirname(__file__))
 from curate import split_boards, tag, deal_hash
 
 
