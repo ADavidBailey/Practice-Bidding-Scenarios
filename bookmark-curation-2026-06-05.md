@@ -60,7 +60,6 @@ Session ended here. Current state and what's next.
   `89a22f775` = the pre-card-change parent). 83 boards changed total. The
   Layer B fan-out (open item 3) can read these directly — no need to
   re-diff. Details: `bba-curated/.progress/_README_baseline.md`.
-- Working tree clean. Local `main` is **ahead of origin/main by 3**
-  (`eaa3abe9d` is pushed; `fcc909014` + `77e499617` + this bookmark commit
-  are local-only). **Push held pending David** per CLAUDE.md ("do not push
-  unless David asks"). The Rick email's links need a push to resolve.
+- Working tree clean. **Pushed to `origin/main` (David approved)** —
+  `fcc909014` + `77e499617` + the bookmark commit are now on origin; local
+  and origin in sync. Rick-email links now resolve.
