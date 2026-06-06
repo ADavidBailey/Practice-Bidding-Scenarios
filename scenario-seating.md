@@ -87,10 +87,10 @@ scenario is about competition.)
 | Basic_Overcall | competitive | rotation, or seat student in overcalling side (review) |
 | Basic_Takeout_Double | competitive | rotation, or seat student in doubling side (review) |
 
-`Basic_Major_Both.btn` is a built pilot of the dealer-code alternation
-(mechanism 2); now that rotation covers the longer-auction case more cheaply,
-it's kept only as a comparison and may be retired in favor of
-`Basic_Major` + rotation.
+`Basic_Major_Both.btn` was a pilot of the dealer-code alternation
+(mechanism 2); **retired 2026-06-06** in favor of `Basic_Major` + rotation,
+since rotation covers the longer-auction case with no new content. The
+dealer-code disjunction recipe is kept above only as a documented fallback.
 
 `Basic_What_To_Open` is the exception that proves the rule: when the decision
 under test is the opening bid itself, the student belongs in the opener's seat
