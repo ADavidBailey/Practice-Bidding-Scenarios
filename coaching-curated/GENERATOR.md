@@ -54,10 +54,22 @@ or start a fresh sentence about the call itself, not the actor.
 
 - Coach EVERY non-pass call in the auction (both partners'), each
   `[BID]`-anchored, preceded by `[show S]`/`[show N]` for the acting seat.
-- NEVER recite a hand's cards — the student sees their own, and `[show]`
-  hands are on screen. Reason from HCP/shape/features ("16 balanced with a
-  five-card minor", "a soft, flat 10 — tens and jacks, no aces"). Name a
-  specific card only for a genuine teaching point.
+- NEVER recite a hand's cards, and NEVER state the acting seat's concrete
+  holding (exact HCP / suit lengths) in a `[BID]` chunk. During the auction
+  the student sees ONLY their own hand — partner's is hidden — so naming the
+  bidder's actual cards either recites what the student can already see or,
+  worse, LEAKS partner's hidden hand ("partner has six spades" tells the
+  student something they must not know). Instead, explain what the call SHOWS
+  by agreement — the legitimate inference — and the reasoning:
+  - BAD:  "you have 13 with five diamonds, so open 1\D"
+  - GOOD: "with an unbalanced hand and no five-card major, open the longest
+          suit — 1\D shows 5+ diamonds"
+  - BAD (partner): "your partner has six spades, so bids 1\S"
+  - GOOD: "1\S shows four or more spades and enough to respond — partner names
+          a major at the one level"
+  Point ranges tied to a call's meaning are fine ("1NT shows 15-17"); a
+  specific actual holding is not. The closing `[show NS]` reflection MAY
+  describe both hands concretely — the auction is over and partner is shown.
 - INTRO chunk and closing `[show NS]` reflection are **seat-neutral**: refer
   to players by compass ("North", "South") or role ("opener", "responder")
   and the side as "the partnership"; NO you/partner, NO tokens there. The
