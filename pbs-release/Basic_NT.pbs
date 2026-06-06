@@ -20,15 +20,23 @@ convention-card-ns: Basic-Bridge
 convention-card-ew: Basic-Bridge
 auction-filter: Auction.....\n1N +Pass +(Pass|2N|3N|4N|6N)
 */
+# curate: kind=bidding
+# convention-card-ns: Basic-Bridge
+# convention-card-ew: Basic-Bridge
+
+
+dealer south
+
 # Opener — standard 1NT: 15-17 HCP, balanced
 sShape = shape(south, any 4333 + any 4432 + any 5332 - 5xxx - x5xx)
 sHcp   = hcp(south) > 14 and hcp(south) < 18
 southHand = sShape and sHcp
 
 # Responder — balanced, NO 4-card major (so no Stayman temptation),
-# NO 5-card suit (so no transfer temptation). HCP 0-17 for full variety.
+# NO 5-card suit (so no transfer temptation). HCP 0-19 so the brief's
+# full response table (incl. 6NT = 18+) can occur.
 nShape    = shape(north, any 4333 + any 4432) and spades(north) < 4 and hearts(north) < 4
-nHcp      = hcp(north) >= 0 and hcp(north) < 18
+nHcp      = hcp(north) >= 0 and hcp(north) < 20
 northHand = nShape and nHcp
 
 eHcp = hcp(east) < 11
@@ -40,7 +48,8 @@ action printoneline,
 average "Pass-out (north 0-7)  " 100 * (hcp(north) < 8),
 average "2NT raise (north 8-9) " 100 * (hcp(north) > 7 and hcp(north) < 10),
 average "3NT (north 10-15)     " 100 * (hcp(north) > 9 and hcp(north) < 16),
-average "Slam-ish (north 16+)  " 100 * (hcp(north) > 15),
+average "4NT invite (north 16-17)" 100 * (hcp(north) > 15 and hcp(north) < 18),
+average "6NT (north 18-19)     " 100 * (hcp(north) > 17),
 `, "S", true)
 Script
 Button,Basic 1NT (Natural),\n\
@@ -59,5 +68,5 @@ Responder is constrained to have NO 4-card major and NO 5-card suit,\n\
 so the right answer is always a natural NT raise (or pass). Stayman and\n\
 transfers don't apply here.\n\
 \n\
-Reference: https://www.bridgebum.com/responses_to_one_no_trump.php\n\
+Reference: https://www.bridgebum.com/1nt_15_17.php\n\
 %BasicNT%
