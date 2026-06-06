@@ -58,9 +58,40 @@ Session ended here. Current state and what's next.
    the genuine-decision boards are a minority of each pool (still plenty for
    a 30-board lesson). These are constraint-tightening opportunities in the
    `.btn` masters when convenient.
-4. Then: theme index across scenarios, re-point the coaching generator at
-   curated selections, trainer `[also-ok]` support (see plan §Order of
-   changes 4-6).
+4. **DONE (2026-06-06) — Randomly Rotate + bidding coaching fan-out.**
+   - Trainer (AI-Bridge-Play-Trainer): added "Randomly Rotate" — seats the
+     student in either bidding seat per board; coaching uses pronoun tokens
+     (@S/@s/@Your/@your/@v(base|third), parens not braces) rendered per seat
+     by `fill_pronouns`. Only applies to rotation-ready (tokenized) coaching;
+     non-tokenized scenarios stay on their authored seat. "Play as" greys out
+     while rotation is on (mutually exclusive). Trainer now reads
+     `coaching-curated/` first, then `coaching/`, then `bba/`. Also fixed:
+     orphaned Continue button during play (post-auction reflection now
+     passive).
+   - Coaching generator productionized: `coaching-curated/GENERATOR.md` (spec
+     incl. the "use @S once per chunk" repetition rule) + `py/coach.py`
+     (`packets` / `splice`). Work files in `coaching-curated/.work/`
+     (gitignored).
+   - Fan-out: all 7 Beginners-Bidding scenarios now have tokenized both-seats
+     lessons in `coaching-curated/*.pbn` (Basic_NT + the 6 others), 30 boards
+     each, validated (no [BID Pass], no card recitation). The whole Beginners
+     Bidding section is curated+coached and live in the trainer.
+
+## Open items (in order)
+
+5. **Spot-check the fan-out in the trainer**, especially a competitive
+   scenario (Basic_Takeout_Double / Basic_Overcall) with Randomly Rotate on —
+   rotation + competitive auctions is the newest ground.
+6. **Play-stage coaching for the 12 play scenarios** (Finesses, Notrump Play,
+   Suit Contract Play). Needs the trainer's per-trick coaching markers
+   ([ROLE]/[STAGE]/per-trick anchors) — a real build. This is the next
+   frontier.
+7. **Trainer `[also-ok]` support**: judgment boards carry defensible
+   alternatives; make the quiz score them amber ("defensible") not red ✗.
+   Parser + quiz change in server.py/app.js.
+8. **Scenario-design follow-ups** (non-blocking): Rabbi's Rule Blackwood
+   dilution; finesse scenarios' favorable-honor placement. Constraint
+   tightening in the `.btn` masters when convenient.
 
 ## Session conventions
 
