@@ -86,9 +86,23 @@ Session ended here. Current state and what's next.
    Suit Contract Play). Needs the trainer's per-trick coaching markers
    ([ROLE]/[STAGE]/per-trick anchors) — a real build. This is the next
    frontier.
-7. **Trainer `[also-ok]` support**: judgment boards carry defensible
-   alternatives; make the quiz score them amber ("defensible") not red ✗.
-   Parser + quiz change in server.py/app.js.
+7. **`[ACCEPT]` / judgment-alternative support — PARTLY DONE (2026-06-06).**
+   Finding: the trainer ALREADY supports `[ACCEPT <call>]` (parser
+   `_extract_accept`, per-quizzed-call quiz scoring — picks the alternative →
+   green "either X or Y is fine"). No trainer work needed. The gap was the
+   generated coaching: (a) it didn't emit `[ACCEPT]`, and (b) ~45 boards
+   narrate one N/S call without its own `[BID]` anchor (Basic_NT responses,
+   Basic_Major openings), so rotation can't quiz that call and `[ACCEPT]`
+   can't attach. Pass-judgments (declines) can't anchor at all — prose only.
+   Done: `GENERATOR.md` now documents `[ACCEPT]` + the structure discipline
+   (one `[BID]` per N/S non-pass call, framing-only intro); `py/coach.py`
+   gained `validate` (gates `splice`); **Basic_NT regenerated clean** (0
+   structure issues, `[ACCEPT]` on b13/b38/b46, endplay-parses).
+   TODO: structure-tighten regen for the scenarios the validator still flags
+   — Basic_Major (15), Basic_Takeout_Double (17), Basic_What_To_Open (3);
+   add `[ACCEPT]` to Basic_Overcall/Basic_Weak_2 judgment boards (structure
+   already clean). Loop per scenario: `coach.py packets` → 2 subagents per
+   GENERATOR.md → `coach.py splice` (validator must report 0 issues).
 8. **Scenario-design follow-ups** (non-blocking): Rabbi's Rule Blackwood
    dilution; finesse scenarios' favorable-honor placement. Constraint
    tightening in the `.btn` masters when convenient.
