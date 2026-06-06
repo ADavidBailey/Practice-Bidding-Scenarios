@@ -63,9 +63,25 @@ or start a fresh sentence about the call itself, not the actor.
   and the side as "the partnership"; NO you/partner, NO tokens there. The
   reflection holds the warmth/PRAISE; never praise in a `[BID]` chunk (it
   fires after wrong answers too — the quiz's ✓/✗ handles that).
-- JUDGMENT-tier boards: present the call as genuinely close, naming the
-  defensible alternative in plain prose. Do NOT emit a literal `[also-ok]`
-  marker (the trainer doesn't parse it yet).
+- JUDGMENT-tier boards: present the call as genuinely close, name the
+  defensible alternative in plain prose, AND — when the judgment call is a
+  NON-PASS call — emit `[ACCEPT <call>]` inside that call's `[BID]` chunk so
+  the quiz scores the alternative as correct too. The trainer collects
+  `[ACCEPT]` **per quizzed call** (from the chunk anchored to that exact
+  call), so placement is load-bearing: `[ACCEPT 3N]` belongs on the `[BID 2N]`
+  chunk, NOT on the opening's chunk. `<call>` is PBN form (`3N`, `2N`).
+  Omit the marker when: the alternative isn't a single legal call, OR the
+  judgment call is a **Pass** (a decline) — you can't anchor `[BID Pass]`, so
+  coach the close decision in prose only, no `[ACCEPT]`.
+
+## Structure discipline (required for [ACCEPT] and rotation to work)
+
+- The INTRO chunk is ONLY seat-neutral framing (1–2 sentences). Do NOT explain
+  or anchor the opening bid there.
+- EVERY non-pass call gets EXACTLY ONE `[BID xxx]` chunk — including the
+  opening (`[BID 1N]`/`[BID 1S]`/…). No call's explanation lives only in the
+  intro; no duplicate `[BID]` for the same call. (The quiz anchors per call,
+  and rotation may quiz either seat, so each call needs its own clean chunk.)
 - Never anchor `[BID Pass]` — coach a decline as prose under a `[show]`
   reveal of the declining seat instead.
 - Each chunk: 2–4 short sentences, warm, second-person where tokenized.
