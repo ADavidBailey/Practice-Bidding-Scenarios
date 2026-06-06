@@ -54,7 +54,7 @@ One `key: value` per line. Fields:
 - **declarer:** `count-winners` `count-losers` `establish-long-suit`
   `hold-up` `finesse-basic` `finesse-safe-hand` `ruff-in-dummy`
   `draw-trumps-first` `delay-trumps` `entry-management` `safety-play`
-  `danger-hand` `crossruff` `discard-losers` `timing`
+  `danger-hand` `crossruff` `discard-losers` `timing` `endplay`
 - **defense:** `opening-lead-suit` `opening-lead-nt` `lead-partners-suit`
   `third-hand-high` `second-hand-low` `return-partners-suit`
   `duck-to-keep-communication` `hold-up-ace` `cover-an-honor`

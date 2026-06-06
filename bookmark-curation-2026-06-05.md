@@ -40,9 +40,24 @@ Session ended here. Current state and what's next.
    raises 1NT straight to 6NT, `1N P 6N`). 7 new boards: 4 textbook /
    3 standard bidding, all `intended`. The 11 old 17-count→6N boards stay
    `reject` (brief wants 17 = 4NT quantitative). All pushed.
-3. **Fan out Layer B** to the other 18 scenarios once the rubric is
-   calibrated (5 parallel subagents per scenario, ~100 boards each; add
-   the pre-computed `opening_leader` field as in the regrade packets).
+3. **DONE (2026-06-05) — fan-out complete: all 19 scenarios curated.**
+   Layer B graded every scenario's 500-board pool (5 subagents each,
+   leader pre-computed, board-137 calibration applied). Each has a
+   `{Curate}`-annotated `bba-curated/<scn>.pbn` + `<scn>-graded.json`.
+   `bba-curated/theme-index.json` aggregates declarer/defense themes across
+   all scenarios (e.g. count-winners 345 textbook boards, finesse-safe-hand
+   289, finesse-basic 157, establish-long-suit 133, hold-up 36, endplay 19)
+   — this is what cross-scenario play lessons draw from. Vocabulary extended:
+   added `endplay` to the declarer themes (README updated). A few boards per
+   scenario carried through unannotated due to genuine duplicate deal_hashes
+   in the pools (harmless).
+   Scenario-design notes surfaced for later (not blocking): Rabbi's Rule —
+   robots run Blackwood to slam on ~60% of boards, diluting the "you already
+   have 10 tricks" point; Choice_Of_Finesses / Two_Way / To_Finesse — the
+   constraints place the key honor favorably only ~20-35% of the time, so
+   the genuine-decision boards are a minority of each pool (still plenty for
+   a 30-board lesson). These are constraint-tightening opportunities in the
+   `.btn` masters when convenient.
 4. Then: theme index across scenarios, re-point the coaching generator at
    curated selections, trainer `[also-ok]` support (see plan §Order of
    changes 4-6).
