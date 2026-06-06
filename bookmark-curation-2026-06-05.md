@@ -98,11 +98,14 @@ Session ended here. Current state and what's next.
    (one `[BID]` per N/S non-pass call, framing-only intro); `py/coach.py`
    gained `validate` (gates `splice`); **Basic_NT regenerated clean** (0
    structure issues, `[ACCEPT]` on b13/b38/b46, endplay-parses).
-   TODO: structure-tighten regen for the scenarios the validator still flags
-   — Basic_Major (15), Basic_Takeout_Double (17), Basic_What_To_Open (3);
-   add `[ACCEPT]` to Basic_Overcall/Basic_Weak_2 judgment boards (structure
-   already clean). Loop per scenario: `coach.py packets` → 2 subagents per
-   GENERATOR.md → `coach.py splice` (validator must report 0 issues).
+   **DONE (2026-06-06):** all 7 bidding scenarios structure-tighten regen'd —
+   `coach.py validate` reports 0 issues for every one, all endplay-parse, and
+   `[ACCEPT]` markers are on the non-pass judgment boards (Basic_NT,
+   Basic_Major, Basic_Weak_2). Pass-judgment declines stay prose-only (can't
+   anchor `[BID Pass]`) — a known, acceptable limitation. Also removed a stray
+   `coaching-curated/Basic_NT-input.pbn` (pilot leftover that the menu would
+   have shown as a bogus scenario). The whole Beginners Bidding section is now
+   curated + coached + rotation-ready + judgment-aware.
 8. **Scenario-design follow-ups** (non-blocking): Rabbi's Rule Blackwood
    dilution; finesse scenarios' favorable-honor placement. Constraint
    tightening in the `.btn` masters when convenient.
