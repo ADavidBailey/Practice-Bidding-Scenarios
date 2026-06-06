@@ -34,6 +34,9 @@ There are two mechanisms for putting the student in both seats:
    North's hand on the rotated copy — i.e. opener on one copy, responder on
    the other. This is a checkbox/setting, not new content:
    - BBO Practice Table: **"Randomly Rotate"** checkbox.
+   - PBS VS Code extension: the **↕ (double-headed arrow) toggle** in the
+     button grid, next to Start Bidding Table / Start Teaching Table /
+     Auction Compare.
    - pbs-deal-archive-uploader: the rotation radio (**2** = 180°, 4 = 90°).
    - AI-Bridge-Play-Trainer: rotates internally; coaching is stored in real
      compass and mapped by `rotation_shift`, so coached prose follows the
@@ -77,7 +80,7 @@ scenario is about competition.)
 | Scenario | auction length | seating to use |
 |---|---|---|
 | Basic_NT | short | responder mirror → **Basic_NT_Response (done)** |
-| Basic_Weak_2 | short | responder-seat mirror (TODO) |
+| Basic_Weak_2 | short, but opening IS a judgment call | student = opener stays valid (like What_To_Open); a Response mirror is an *optional additional* lesson, not a fix |
 | Basic_What_To_Open | n/a — the *opening* IS the decision | student = opener (current, correct) |
 | Basic_Major | longer (rebids) | keep single scenario + **rotation** (mechanism 1) |
 | Basic_Minor | longer (rebids) | keep single scenario + **rotation** (mechanism 1) |
