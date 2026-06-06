@@ -76,6 +76,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 <h1>PBS Curation Summary</h1>
 <p class="subtitle">Teaching-value grades for every curated scenario &mdash; bidding, declarer, and defense</p>
 __NAV__
+<p style="text-align:center;color:#888;font-size:12px;margin:-8px 0 22px">Scope: the __SCOPE__ coaching scenarios curated for teaching (a subset of the full scenario library on the Scenario Summary page). Each board's full pool is graded; one row per scenario below.</p>
 <div class="stats" id="stats"></div>
 <h3>Bidding tiers by scenario <span class="hint">&mdash; click a header to sort</span></h3>
 <div class="legend"><span class="swatch tb"></span>textbook<span class="swatch st"></span>standard<span class="swatch ju"></span>judgment<span class="swatch rj"></span>reject</div>
@@ -118,7 +119,9 @@ document.getElementById('note').innerHTML='<b>Reading the themes:</b> a play les
 
 if __name__ == "__main__":
     data = collect()
-    out = HTML.replace("__NAV__", NAV).replace("__DATA__", json.dumps(data))
+    out = (HTML.replace("__NAV__", NAV)
+               .replace("__SCOPE__", str(data["totals"]["scenarios"]))
+               .replace("__DATA__", json.dumps(data)))
     path = os.path.join(DOCS, "Curation_Summary.html")
     open(path, "w").write(out)
     print(f"wrote {path}  ({data['totals']['scenarios']} scenarios, "
