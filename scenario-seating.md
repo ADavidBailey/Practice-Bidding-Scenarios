@@ -11,19 +11,25 @@ choice**, then alternates between the two partners, bouncing back and forth as
 the auction develops. For a 1NT auction it skips the (forced) opening and
 starts at the response.
 
-## The rule
+## The rule (simplified 2026-06-06)
 
-**Short auctions** — opener bids, partner responds, opener passes (e.g. 1NT
-openings, weak-two openings, simple single-raise sequences): place the student
-in the **choices seat** (the responder). One scenario, student = South =
-responder. This is the `Basic_NT_Response` pattern: North holds the fixed
-opener, South holds the variable hand that makes the real decision.
+**Use rotation, not new scenarios.** "Randomly Rotate" (the ↕ toggle in the
+PBS extension, BBO's checkbox, the uploader's R2) seats the student in both
+the opener and responder seats across the deals, and the quiz starts at the
+**first seat with a real choice** — so the student is quizzed on the
+interesting decision regardless of which way the deal rotated. This holds for
+both short auctions (1NT + a response) and longer ones (1-major/minor with
+rebids). No mirrored or alternating-opener scenarios are needed.
 
-**Longer auctions** — 2/1 sequences, new-suit responses with rebids, anything
-that bounces back and forth (e.g. opening 1 of a major/minor and continuing):
-**alternate the opener between North and South** so the student (always South)
-experiences both roles as the auction progresses — opening + rebidding on some
-boards, responding + inviting on others. One scenario, not two.
+This supersedes the earlier idea of building per-seat mirror scenarios
+(`Basic_NT_Response`) and dealer-code alternation (`Basic_Major_Both`) — both
+retired, because rotation does the job from the existing single scenario and
+reuses its curated deals.
+
+**The only opener-seated exceptions** are scenarios where the *opening itself*
+is the lesson and rotation would defeat the point:
+- `Basic_What_To_Open` — choosing the opening bid is the decision under test.
+- `Basic_Weak_2` — deciding whether/what to preempt is itself a judgment call.
 
 ## Two ways to get "both seats" — and which to use
 
@@ -49,11 +55,13 @@ There are two mechanisms for putting the student in both seats:
    must travel as one static file with mixed seats and you can't rely on the
    play environment's rotation. (Pilot: `Basic_Major_Both.btn`.)
 
-**Rule of thumb:** longer auctions → keep the single scenario and turn on
-rotation (mechanism 1). Short auctions → rotation is wrong (it seats the
-student in the no-decision opener seat half the time), so use the Response
-mirror instead. Dealer-code alternation (mechanism 2) is a fallback, rarely
-needed.
+**Rule of thumb:** keep the single scenario and turn on rotation
+(mechanism 1) for both short and longer auctions — the quiz starts at the
+first seat with a real choice, so the student always lands on the interesting
+decision. Dealer-code alternation (mechanism 2) is a rarely-needed fallback,
+only when deals must travel as one static file and you can't rely on the play
+environment's rotation. (Earlier worry that rotation wastes short-auction
+boards on the forced opening was wrong — the quiz skips the forced call.)
 
 ## Implementing "alternate opener" in dealer code (fallback)
 
@@ -79,17 +87,17 @@ scenario is about competition.)
 
 | Scenario | auction length | seating to use |
 |---|---|---|
-| Basic_NT | short | responder mirror → **Basic_NT_Response (done)** |
-| Basic_Weak_2 | short, but opening IS a judgment call | student = opener stays valid (like What_To_Open); a Response mirror is an *optional additional* lesson, not a fix |
-| Basic_What_To_Open | n/a — the *opening* IS the decision | student = opener (current, correct) |
-| Basic_Major | longer (rebids) | keep single scenario + **rotation** (mechanism 1) |
-| Basic_Minor | longer (rebids) | keep single scenario + **rotation** (mechanism 1) |
-| Basic_Overcall | competitive | rotation, or seat student in overcalling side (review) |
-| Basic_Takeout_Double | competitive | rotation, or seat student in doubling side (review) |
+| Basic_NT | short | single scenario + **rotation** (Basic_NT_Response retired) |
+| Basic_Weak_2 | opening IS a judgment call | student = opener (correct) |
+| Basic_What_To_Open | the *opening* IS the decision | student = opener (correct) |
+| Basic_Major | longer (rebids) | single scenario + **rotation** |
+| Basic_Minor | longer (rebids) | single scenario + **rotation** |
+| Basic_Overcall | competitive | single scenario + **rotation** |
+| Basic_Takeout_Double | competitive | single scenario + **rotation** |
 
-`Basic_Major_Both.btn` was a pilot of the dealer-code alternation
-(mechanism 2); **retired 2026-06-06** in favor of `Basic_Major` + rotation,
-since rotation covers the longer-auction case with no new content. The
+Both pilots retired 2026-06-06: `Basic_NT_Response.btn` (short-auction mirror)
+and `Basic_Major_Both.btn` (dealer-code alternation) — rotation covers both
+cases from the existing single scenarios and reuses their curated deals. The
 dealer-code disjunction recipe is kept above only as a documented fallback.
 
 `Basic_What_To_Open` is the exception that proves the rule: when the decision
