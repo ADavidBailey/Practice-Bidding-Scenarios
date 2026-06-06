@@ -122,12 +122,68 @@ def splice(scn):
         print(f"  WARNING: {bidpass} [BID Pass] anchors (should be 0)")
     if recites:
         print(f"  WARNING: {recites} possible card recitations (should be 0)")
+    validate(scn)  # structure gate: flags N/S calls missing a [BID] anchor
+
+
+def _norm_call(s):
+    s = s.strip().upper()
+    return s + "T" if re.fullmatch(r"\d+N", s) else s
+
+
+def validate(scn):
+    """Check coaching-curated/<scn>.pbn structure: every non-pass call has
+    exactly one anchored [BID] chunk, intro carries no [BID], [ACCEPT] sits
+    only on a non-pass [BID] chunk, and no [BID] fails to anchor. Reports
+    per-board issues; returns the count."""
+    path = os.path.join(OUT, f"{scn}.pbn")
+    SEATS = ['N', 'E', 'S', 'W']
+    CALL_RE = re.compile(r'(?i)^(pass|x|xx|ap|\d[cdhsn]t?)$')
+    issues = 0
+    for ch in split_boards(path):
+        b = tag(ch, 'Board')
+        m = re.search(r'\[Auction "(\w)"\]\s*\n((?:[^\[{][^\n]*\n?)*)', ch)
+        dealer = m.group(1) if m else 'N'
+        # keep only real calls (drop alert refs like =1=, !, etc.)
+        raw = [t for t in (m.group(2).split() if m else []) if CALL_RE.match(t)]
+        di = SEATS.index(dealer)
+        # coached side = N/S; collect their non-pass calls in order
+        coached = [_norm_call(c) for j, c in enumerate(raw)
+                   if SEATS[(di + j) % 4] in ('N', 'S') and _norm_call(c) != 'PASS']
+        a = ch.find('[Auction'); i = ch.find('{', a)
+        if i < 0:
+            print(f"  {scn} b{b}: no coaching block"); issues += 1; continue
+        body = ch[i:ch.find('}', i)]
+        bids = re.findall(r'\[BID\s+([^\]]+)\]', body)
+        nbids = [_norm_call(x) for x in bids]
+        probs = []
+        # Every coached-side (N/S) non-pass call must have a [BID] anchor (so
+        # rotation can quiz it and [ACCEPT] can attach). Extra [BID]s on
+        # opponents' calls are allowed (context narration, never quizzed).
+        import collections as _c
+        missing = _c.Counter(coached) - _c.Counter(nbids)
+        if missing:
+            probs.append(f"N/S calls with no [BID]: {sorted(missing.elements())}")
+        # [ACCEPT] must follow a [BID <non-pass>] and not be on a Pass/opening-only
+        for am in re.finditer(r'\[ACCEPT\s+([^\]]+)\]', body):
+            pre = body[:am.start()]
+            host = re.findall(r'\[BID\s+([^\]]+)\]', pre)
+            if not host:
+                probs.append(f"[ACCEPT {am.group(1)}] not inside any [BID] chunk")
+        if probs:
+            issues += 1
+            print(f"  {scn} b{b}: " + "; ".join(probs))
+    print(f"{scn}: {issues} board(s) with structure issues")
+    return issues
 
 
 if __name__ == "__main__":
     a = sys.argv[1:]
-    if len(a) < 2 or a[0] not in ("packets", "splice"):
+    if len(a) < 2 or a[0] not in ("packets", "splice", "validate"):
         sys.exit(__doc__)
+    if a[0] == "validate":
+        for scn in a[1:]:
+            validate(scn)
+        sys.exit(0)
     cmd, scn = a[0], a[1]
     if cmd == "splice":
         splice(scn)
