@@ -114,7 +114,9 @@ def splice(scn):
     bidpass = txt.count('[BID Pass]')
     recites = len(re.findall(r'\\[SHDC]\s?[AKQJT2-9]{2,}', txt))
     open(os.path.join(OUT, f"{scn}.pbn"), "w").write(txt)
-    print(f"{scn}: wrote {OUT}/{scn}.pbn — {txt.count('{[show')} coached boards, "
+    coached = sum(1 for ch in split_boards(os.path.join(OUT, f"{scn}.pbn"))
+                  if re.search(r'\[Auction[^\]]*\]\n(?:[^\[{][^\n]*\n)*\{', ch))
+    print(f"{scn}: wrote {OUT}/{scn}.pbn — {coached} coached boards, "
           f"{txt.count('[BID')} [BID anchors")
     if bidpass:
         print(f"  WARNING: {bidpass} [BID Pass] anchors (should be 0)")
