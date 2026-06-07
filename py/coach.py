@@ -130,6 +130,75 @@ def _norm_call(s):
     return s + "T" if re.fullmatch(r"\d+N", s) else s
 
 
+LHO = {'N': 'E', 'E': 'S', 'S': 'W', 'W': 'N'}
+
+
+def play_packets(scn, theme, n):
+    """Select curated boards graded declarer textbook/standard for THEME and
+    build play-coaching packets (deal + contract + declarer + leader + note)."""
+    src = os.path.join(CUR, f"{scn}.pbn")
+    graded = {v['deal_hash']: v for v in
+              json.load(open(os.path.join(CUR, f"{scn}-graded.json")))['verdicts']}
+    pkts = []
+    for ch in split_boards(src):
+        d = tag(ch, 'Deal'); v = graded.get(deal_hash(d)) if d else None
+        if not v:
+            continue
+        decl = v.get('declarer', {})  # declarer-play GRADING (tier/themes/note)
+        tier = decl.get('tier'); themes = decl.get('themes', []); note = decl.get('note', '')
+        if tier not in ('textbook', 'standard') or theme not in themes:
+            continue
+        h = hands(d); declarer = tag(ch, 'Declarer')  # the declaring SEAT
+        pkts.append({
+            "board": tag(ch, 'Board'), "contract": tag(ch, 'Contract'),
+            "declarer": declarer, "leader": LHO.get(declarer),
+            "dealer": tag(ch, 'Dealer'), "vul": tag(ch, 'Vulnerable'),
+            "theme": theme, "note": note,
+            "hands": {s: " ".join(f"{su}:{''.join(h[s][i]) or '-'}"
+                                  for i, su in enumerate("SHDC")) for s in "NESW"},
+        })
+        if len(pkts) >= n:
+            break
+    os.makedirs(WORK, exist_ok=True)
+    size = (len(pkts) + 1) // 2 or 1
+    for i in range(0, len(pkts), size):
+        json.dump(pkts[i:i+size], open(os.path.join(WORK, f"{scn}-play-pkt{i//size+1}.json"), "w"), indent=0)
+    json.dump([p['board'] for p in pkts],
+              open(os.path.join(WORK, f"{scn}-play-boards.json"), "w"))
+    print(f"{scn}: {len(pkts)} '{theme}' boards -> {(len(pkts)+size-1)//size} play packets")
+    print(f"  next: a subagent per packet writes tips per GENERATOR-PLAY.md -> {scn}-play-coach<k>.json")
+
+
+def play_splice(scn):
+    """Splice [ROLE]/[STAGE] play tips after each selected board's auction."""
+    tips = {}
+    for f in sorted(glob.glob(os.path.join(WORK, f"{scn}-play-coach*.json"))):
+        for o in json.load(open(f)):
+            tips[str(o['board'])] = o['coaching'].strip()
+    if not tips:
+        sys.exit(f"no {scn}-play-coach*.json in {WORK}")
+    boards = set(json.load(open(os.path.join(WORK, f"{scn}-play-boards.json"))))
+    out = []
+    for ch in split_boards(os.path.join(CUR, f"{scn}.pbn")):
+        b = tag(ch, 'Board')
+        if str(b) in boards and str(b) in tips:
+            m = re.search(r'(\[Auction "[^"]*"\]\n(?:[^\[{][^\n]*\n)*)', ch)
+            if m:
+                ch = ch[:m.end()] + "{" + tips[str(b)] + "}\n" + ch[m.end():]
+        out.append(ch)
+    txt = "".join(out)
+    open(os.path.join(OUT, f"{scn}.pbn"), "w").write(txt)
+    # validation: pre-lead card present + no space; role/stage markers
+    coached = [b for b in boards if b in tips]
+    nolead = [b for b in coached if not re.search(r'\[ROLE leader\]\[STAGE pre-lead\]\s*Lead the \\[SHDC][AKQJT2-9]', tips[b])]
+    spacelead = [b for b in coached if re.search(r'Lead the \\[SHDC]\s+[AKQJT2-9]', tips[b])]
+    print(f"{scn}: spliced play tips into {len(coached)} boards -> {OUT}/{scn}.pbn")
+    if nolead:
+        print(f"  WARNING: {len(nolead)} boards missing a load-bearing 'Lead the \\Xr' pre-lead: {sorted(nolead)}")
+    if spacelead:
+        print(f"  WARNING: space before lead rank (breaks auto-lead): {sorted(spacelead)}")
+
+
 def validate(scn):
     """Check coaching-curated/<scn>.pbn structure: every non-pass call has
     exactly one anchored [BID] chunk, intro carries no [BID], [ACCEPT] sits
@@ -185,11 +254,21 @@ def validate(scn):
 
 if __name__ == "__main__":
     a = sys.argv[1:]
-    if len(a) < 2 or a[0] not in ("packets", "splice", "validate"):
+    if len(a) < 2 or a[0] not in ("packets", "splice", "validate", "play-packets", "play-splice"):
         sys.exit(__doc__)
     if a[0] == "validate":
         for scn in a[1:]:
             validate(scn)
+        sys.exit(0)
+    if a[0] == "play-splice":
+        play_splice(a[1])
+        sys.exit(0)
+    if a[0] == "play-packets":
+        rest = a[2:]; n = 30
+        if "-n" in rest:
+            i = rest.index("-n"); n = int(rest[i+1]); del rest[i:i+2]
+        theme = rest[0] if rest else "hold-up"
+        play_packets(a[1], theme, n)
         sys.exit(0)
     cmd, scn = a[0], a[1]
     if cmd == "splice":

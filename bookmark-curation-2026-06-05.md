@@ -185,3 +185,55 @@ Second round (issues #15/#16, board 15 of Basic_What_To_Open — South
   replacing/dropping it over patching prose. A curation note for whoever
   reselects the 30 boards: avoid openings whose follow-up auction needs 2/1
   machinery to read correctly.
+
+---
+
+## 2026-06-07 — Hold_Up_3N scenario bug found via play-coaching pilot
+
+Starting the **play-stage coaching** pilot (Hold_Up_3N, theme=hold-up) surfaced
+a scenario-design bug, not a coaching bug.
+
+**Symptom.** Of 12 pilot boards, the play-coaching subagents found only 1 that
+was even arguably a hold-up on the *real* opening lead, and on inspection that
+one (board 17, ♠AK opposite ♠QJ doubleton) isn't a true hold-up either — you
+just cash both top spades.
+
+**Root cause.** The old `Hold_Up_3N.btn` put the long heart suit in **East**
+(`predeal east HKQ`, `hearts(east) > 4`). But South declares 3NT, so the
+opening leader is **West**, who was short in hearts and led their *own* long
+suit. The heart hold-up the scenario teaches almost never arose. Evidence: the
+corrected lead-driven oracle over the full 500-board `bba/Hold_Up_3N.pbn` pool
+found West leads a heart on only **22/500** boards and a DD-necessary hold-up on
+only **4/500 (0.8%)**.
+
+**Two fixes landed (PBS-side, uncommitted):**
+
+1. `py/curate.py` `holdup_required` rewritten to be **lead-driven**: it now
+   computes West's actual standard opening lead (4th-best of the longest,
+   strongest suit; top of a 3-honor sequence) and tests whether *winning the
+   first round of the led suit* costs the contract. Stopper-count agnostic
+   (catches two-stopper "duck once to strand the short hand" as well as classic
+   Axx). New helpers `opening_lead_vs_nt`, `_honor_sequence_top`.
+
+2. `btn/Hold_Up_3N.btn` rewritten so **WEST** holds the long suit and leads it:
+   `predeal west HKQ`, `hearts(west) > 4`, `hcp(west) < 8` (so no outside
+   entry); South keeps one stopper (`predeal south HA`, `hearts(south) < 4`);
+   East short hearts (`hearts(east) < 4`) and, as the stronger defender, holds
+   the side entry to knock out. @chat prose updated to the corrected geometry
+   (duck to exhaust **East**, the entry hand; West's length is stranded).
+
+**Verification.** Monte-Carlo over deals matching the new constraints: **13% of
+makeable boards are DD-necessary hold-ups** (vs 0.8% before, ~16x). A 500-board
+run should yield 50+ clean hold-up boards.
+
+**Open / next:**
+- The pilot play-coach JSONs in `coaching-curated/.work/Hold_Up_3N-play-*` were
+  generated off the BROKEN pool — discard; regenerate after the pipeline re-run.
+- **David to re-run the pipeline for Hold_Up_3N** (bba needs the Windows VM):
+  `dlr → pbn → rotate → bba → curate` (e.g. from build-scripts-mac:
+  `python3 pbs-pipeline-mac.py Hold_Up_3N "dlr+"`). Then grade + play-coach.
+- Same class of bug may affect the other **avoidance** play scenarios
+  (Choice_Of_Finesses, Two_Way_Finesse, To_Finesse_Or_Not_To_Finesse): confirm
+  the suit/entry that the lesson hinges on sits with the hand that the *real*
+  opening lead and play actually route through. Worth an oracle/lead pass on
+  each before generating their play coaching.

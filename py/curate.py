@@ -131,31 +131,64 @@ def lowest_overall(seat_suits):
                 best = (su, r)
     return best[0] + best[1]
 
+def _honor_sequence_top(cards):
+    """True if the top 3 cards are consecutive in rank and headed by an honor
+    (T or higher) — a leadable sequence like KQJ, QJT, JT9."""
+    if len(cards) < 3: return False
+    idx = [RANK.index(c) for c in cards[:3]]
+    return idx[1] == idx[0] + 1 and idx[2] == idx[1] + 1 and RANK.index(cards[0]) <= RANK.index('T')
+
+def opening_lead_vs_nt(west_suits):
+    """West's standard opening lead vs notrump: 4th-best from the longest,
+    strongest suit (top of a 3+ honor sequence if present). Returns (suit_idx,
+    rank) or None if West is void everywhere. west_suits is [S,H,D,C] rank strings."""
+    best = None  # (length, hcp, suit_idx)
+    for si, cards in enumerate(west_suits):
+        if not cards: continue
+        key = (len(cards), sum(HCP.get(c, 0) for c in cards))
+        if best is None or key > best[:2]:
+            best = (key[0], key[1], si)
+    if best is None: return None
+    si = best[2]; cards = west_suits[si]
+    if _honor_sequence_top(cards):
+        rank = cards[0]
+    elif len(cards) >= 4:
+        rank = cards[3]            # 4th-best
+    elif len(cards) == 3:
+        rank = cards[-1]           # low from three small
+    elif len(cards) == 2:
+        rank = cards[0]            # high from a doubleton
+    else:
+        rank = cards[0]            # singleton
+    return si, rank
+
 def holdup_required(deal_str):
-    """True if 3NT makes DD from South but fails when declarer wins round 1
-    of the danger suit. None = no hold-up theme / not testable."""
-    h = hands(deal_str)
-    cands = []
-    for si, su in enumerate(SUITS):
-        ns = h['N'][si] + h['S'][si]
-        ew = len(h['E'][si]) + len(h['W'][si])
-        if 'A' in ns and 'K' not in ns and ew >= 5:
-            cands.append((ew, su, si))
-    if not cands: return None
-    cands.sort(reverse=True)
-    _, su, si = cands[0]
+    """Lead-driven hold-up oracle. True iff 3NT by South makes double-dummy
+    (so ducking is available) BUT fails when declarer is denied the duck —
+    i.e. must WIN the first round of the suit West actually leads. This is
+    keyed to West's real opening lead (West's longest/strongest suit), not to
+    a guessed danger suit, and is independent of stopper count (it catches the
+    two-stopper 'duck once to strand the short hand' hold-up as well as the
+    classic Axx single-stopper one). None = not testable / not a hold-up here."""
     if dd(deal_str, Denom.nt, 'S') < 9: return False
-    if not h['W'][si]: return None
-    ace_holder = 'N' if 'A' in h['N'][si] else 'S'
+    h = hands(deal_str)
+    lead = opening_lead_vs_nt(h['W'])
+    if lead is None: return None
+    si, wrank = lead; su = SUITS[si]
+    # Trick 1: W leads; dummy (N) low; E low; S wins with cheapest winning card.
+    n_card = su + lowest(h['N'][si]) if h['N'][si] else lowest_overall(h['N'])
+    e_card = su + lowest(h['E'][si]) if h['E'][si] else lowest_overall(h['E'])
+    # Highest rank played by W/N/E in the led suit that S must beat to win.
+    in_suit = [wrank]
+    if h['N'][si]: in_suit.append(n_card[1])
+    if h['E'][si]: in_suit.append(e_card[1])
+    high = min(in_suit, key=lambda r: RANK.index(r))  # min index == highest rank
+    s_winners = [c for c in h['S'][si] if RANK.index(c) < RANK.index(high)]
+    if not s_winners: return None      # South cannot win trick 1 → not a hold-up
+    s_card = su + s_winners[-1]        # cheapest winning card
     d = Deal(deal_str); d.trump = Denom.nt; d.first = Player.west
     try:
-        for seat in ['W', 'N', 'E', 'S']:
-            if seat == ace_holder:
-                card = su + 'A'
-            elif h[seat][si]:
-                card = su + lowest(h[seat][si])
-            else:
-                card = lowest_overall(h[seat])
+        for card in (su + wrank, n_card, e_card, s_card):
             d.play(Card(card))
         decl_more = max(t for _, t in solve_board(d))
     except Exception:
