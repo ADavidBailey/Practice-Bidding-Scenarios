@@ -102,7 +102,7 @@ def _rule_of_eleven(hands, leader, opening_lead):
     }
 
 
-def _build(hands, declarer, dealer=None, auction=None, opening_lead=None):
+def _build(hands, declarer, dealer=None, auction=None, opening_lead=None, strain=None):
     dummy = PARTNER[declarer]
     leader = LHO[declarer]
     rho = PARTNER[leader]                           # leader's partner (the hidden defender)
@@ -123,13 +123,16 @@ def _build(hands, declarer, dealer=None, auction=None, opening_lead=None):
         'defender_hcp': defender_hcp,     # EXACT: 40 - ns_hcp (shared ceiling)
         'defenders': def_block,           # per-defender TRUE split -> hedge in prose
         'silent': _silent(dealer, auction, defenders),
+        # rule of 11 is a NOTRUMP tool (a length 4th-best lead); it is not used
+        # to read a suit-contract lead, so suppress it when strain is a suit.
         'rule_of_11': (_rule_of_eleven(hands, leader, opening_lead)
-                       if opening_lead else None),
+                       if opening_lead and strain in (None, 'N') else None),
     }
 
 
-def defender_budget(hands, declarer, dealer=None, auction=None, opening_lead=None):
-    return _build(hands, declarer, dealer, auction, opening_lead)
+def defender_budget(hands, declarer, dealer=None, auction=None, opening_lead=None,
+                    strain=None):
+    return _build(hands, declarer, dealer, auction, opening_lead, strain)
 
 
 if __name__ == "__main__":

@@ -166,6 +166,68 @@ def opening_lead_vs_nt(west_suits):
         rank = cards[0]            # singleton
     return si, rank
 
+def _lead_card_from_holding(cards):
+    """The standard card to lead from a chosen holding (suit-contract rules):
+    K from AK(x...); top of a 3+ touching/interior honour sequence; 4th-best
+    from four+; low from three small; top of a doubleton; the card from a
+    singleton."""
+    if len(cards) >= 2 and cards[0] == 'A' and cards[1] == 'K':
+        return 'K'                 # K from AK
+    if len(cards) >= 3 and _honor_sequence_top(cards):
+        return cards[0]            # top of a sequence
+    if len(cards) >= 4:
+        return cards[3]            # 4th-best
+    if len(cards) == 3:
+        return cards[-1]           # low from three
+    return cards[0]                # top of a doubleton / the singleton
+
+def opening_lead_vs_suit(leader_suits, trump_idx):
+    """West's standard opening lead vs a SUIT contract (opponents silent, so no
+    partner suit to lead). Priority, matching the authored lead rules in
+    GENERATOR-PLAY.md: (1) a side-suit singleton (ruff-seeking); (2) the top of
+    a side-suit touching-honour sequence (incl. K from AK); (3) 4th-best from
+    the longest side suit, AVOIDING underleading an ace (lead low only from a
+    suit not headed by a bare ace). Falls back to leading an ace-headed suit's
+    ace, then to a trump, only if nothing safer exists. Returns (suit_idx, rank)
+    or None if void everywhere. leader_suits is [S,H,D,C] rank strings;
+    trump_idx is 0..3."""
+    side = [i for i in range(4) if i != trump_idx]
+    # 1. side-suit singleton (prefer a non-ace singleton)
+    singles = [i for i in side if len(leader_suits[i]) == 1]
+    if singles:
+        non_ace = [i for i in singles if leader_suits[i][0] != 'A']
+        i = (non_ace or singles)[0]
+        return i, leader_suits[i][0]
+    # 2. top of a side-suit touching-honour sequence (longest such suit)
+    seqs = []
+    for i in side:
+        c = leader_suits[i]
+        if (len(c) >= 2 and c[0] == 'A' and c[1] == 'K') or \
+           (len(c) >= 3 and _honor_sequence_top(c)):
+            seqs.append((len(c), i))
+    if seqs:
+        i = max(seqs)[1]
+        return i, _lead_card_from_holding(leader_suits[i])
+    # 3. longest side suit (strongest as tiebreak), skipping bare-ace suits to
+    #    avoid underleading the ace into a trump contract.
+    order = sorted(side, key=lambda i: (len(leader_suits[i]),
+                   sum(HCP.get(c, 0) for c in leader_suits[i])), reverse=True)
+    for i in order:
+        c = leader_suits[i]
+        if not c:
+            continue
+        if c[0] == 'A' and not (len(c) >= 2 and c[1] == 'K'):
+            continue               # don't underlead a bare ace yet
+        return i, _lead_card_from_holding(c)
+    # 4. forced: a bare-ace side suit (lead the ace itself, never underlead it),
+    #    else a trump.
+    for i in order:
+        if leader_suits[i]:
+            return i, leader_suits[i][0]
+    if leader_suits[trump_idx]:
+        return trump_idx, _lead_card_from_holding(leader_suits[trump_idx])
+    return None
+
 def holdup_required(deal_str):
     """Lead-driven hold-up oracle. True iff 3NT by South makes double-dummy
     (so ducking is available) BUT fails when declarer is denied the duck —

@@ -20,9 +20,13 @@ this script only does the deterministic selection and splice.
 """
 import sys, os, re, json, glob
 sys.path.append(os.path.dirname(__file__))
-from curate import split_boards, tag, hands, deal_hash, opening_lead_vs_nt, SUITS
+from curate import (split_boards, tag, hands, deal_hash, opening_lead_vs_nt,
+                    opening_lead_vs_suit, SUITS)
 from suit_tricks import trick_map
+from trump_tricks import trump_trick_map
 from defender_budget import defender_budget
+
+STRAIN_IDX = {'S': 0, 'H': 1, 'D': 2, 'C': 3}
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CUR = os.path.join(ROOT, "bba-curated")
@@ -151,14 +155,25 @@ def play_packets(scn, theme, n):
         if tier not in ('textbook', 'standard') or theme not in themes:
             continue
         h = hands(d); declarer = tag(ch, 'Declarer')  # the declaring SEAT
-        # VERIFIED trick facts (exact double-dummy, known cards) so the
-        # subagent narrates numbers instead of counting them itself. 'top' =
-        # immediate cash-out winners NS hold in the suit; 'establishable' =
-        # tricks after forcing out opponents' higher honours; 'development_suit'
-        # = the suit that yields the most NEW tricks (the ninth-trick source).
-        tmap = trick_map(h)
+        contract = tag(ch, 'Contract')
+        strain = contract[1] if contract and len(contract) >= 2 else 'N'
         leadseat = LHO.get(declarer)
-        ol = opening_lead_vs_nt(h[leadseat])           # computed standard NT lead
+        # VERIFIED trick facts (exact double-dummy, known cards) so the subagent
+        # narrates numbers instead of counting them itself. NOTRUMP and SUIT
+        # contracts use different analysers (trumps + ruffing change everything)
+        # and different standard opening leads:
+        #   NT  -> suit_tricks.trick_map (per-suit top/establishable +
+        #          development_suit); lead = 4th-best / sequence top.
+        #   suit-> trump_trick_map (authoritative DD total + dd_losers, trump
+        #          length split, side-suit top/establishable, ruffs in the short
+        #          hand, sure_tricks/develop); lead = singleton / sequence /
+        #          4th-best, never underleading an ace.
+        if strain == 'N':
+            tmap = trick_map(h)
+            ol = opening_lead_vs_nt(h[leadseat])
+        else:
+            tmap = trump_trick_map(h, strain, declarer, deal_str=d)
+            ol = opening_lead_vs_suit(h[leadseat], STRAIN_IDX[strain])
         lead = f"\\{SUITS[ol[0]]}{ol[1]}" if ol else None
         am = re.search(r'\[Auction "\w"\]\s*\n((?:[^\[{][^\n]*\n?)*)', ch)
         auction = " ".join(am.group(1).split()) if am else None
@@ -175,7 +190,7 @@ def play_packets(scn, theme, n):
             # split + rule-of-11) about the hidden hands; see GENERATOR-PLAY.md.
             "defender_budget": defender_budget(
                 h, declarer, dealer=tag(ch, 'Dealer'),
-                auction=auction, opening_lead=ol),
+                auction=auction, opening_lead=ol, strain=strain),
         })
         if len(pkts) >= n:
             break
@@ -212,24 +227,24 @@ def play_splice(scn):
     coached = [b for b in boards if b in tips]
     nolead = [b for b in coached if not re.search(r'\[ROLE leader\]\[STAGE pre-lead\]\s*Lead the \\[SHDC][AKQJT2-9]', tips[b])]
     spacelead = [b for b in coached if re.search(r'Lead the \\[SHDC]\s+[AKQJT2-9]', tips[b])]
-    # cross-check the spliced lead card against the standard NT lead from the
-    # leader's hand (the card is auto-played, so it must be the right one).
+    # cross-check the spliced lead card against the standard opening lead from
+    # the leader's hand (the card is auto-played, so it must be the right one).
+    # Contract-aware: NT uses the 4th-best/sequence lead, suit contracts use the
+    # singleton/sequence/4th-best (no-underlead-ace) suit lead.
     wronglead = []
-    deals = {tag(ch, 'Board'): tag(ch, 'Deal') for ch in split_boards(os.path.join(CUR, f"{scn}.pbn"))}
+    info = {tag(ch, 'Board'): (tag(ch, 'Deal'), tag(ch, 'Declarer'), tag(ch, 'Contract'))
+            for ch in split_boards(os.path.join(CUR, f"{scn}.pbn"))}
     for b in coached:
-        d = deals.get(b)
-        if not d:
+        deal, decl, contract = info.get(b, (None, None, None))
+        if not (deal and decl):
             continue
         m = re.search(r'Lead the (\\[SHDC][AKQJT2-9])', tips[b])
-        h = hands(d); decl = None
-        dm = re.search(r'\[Declarer "(\w)"\]', "")  # declarer seat unused; recompute leader
-        # leader = LHO of declarer; declarer seat from PBN
-        for ch in split_boards(os.path.join(CUR, f"{scn}.pbn")):
-            if tag(ch, 'Board') == b:
-                decl = tag(ch, 'Declarer'); break
-        if not (m and decl):
+        if not m:
             continue
-        ol = opening_lead_vs_nt(h[LHO.get(decl)])
+        h = hands(deal); leadh = h[LHO.get(decl)]
+        strain = contract[1] if contract and len(contract) >= 2 else 'N'
+        ol = (opening_lead_vs_nt(leadh) if strain == 'N'
+              else opening_lead_vs_suit(leadh, STRAIN_IDX[strain]))
         want = f"\\{SUITS[ol[0]]}{ol[1]}" if ol else None
         if want and m.group(1) != want:
             wronglead.append(f"{b}:{m.group(1)}!={want}")

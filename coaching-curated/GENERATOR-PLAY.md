@@ -84,6 +84,50 @@ suit whose `establishable` exceeds its `top`); never tell declarer to develop
 a flat suit. Your running count must reconcile with the contract — if your
 narrative sums to fewer than the tricks needed, you have the wrong suit.
 
+### Suit contracts: the trump-aware trick_map (`py/trump_tricks.py`)
+
+For a **suit** contract the packet's `trick_map` is the trump-aware shape below
+(the NT `suits`/`development_suit` map is wrong once there are trumps — winners
+get ruffed and extra tricks come from ruffing, not only length):
+
+```
+"trick_map": {
+  "trumps": "S", "declarer": "S", "dummy": "N",
+  "total": 10, "dd_losers": 3,            // AUTHORITATIVE (exact DD) — reconcile to these
+  "trump_suit": { "ns_len": 9, "decl_len": 5, "dummy_len": 4,
+                  "long_hand": "S", "short_hand": "N", "short_len": 4,
+                  "isolated_tricks": 5,   // trump tricks if drawn (exact)
+                  "missing_honors": ["T"] },
+  "side_suits": { "H": {"top":0,"safe_top":0,"establishable":1,"length_winners":1,
+                        "decl_len":3,"dummy_len":1,"short_hand_ruffs":2,
+                        "missing_honors":["A","K","J","T"]}, ... },  // excludes trump
+  "side_top": 1,                 // side winners cashable before a defender can ruff
+  "ruffs_in_short_hand": 2,      // extra ruffing tricks the SHORT trump hand can make
+  "sure_tricks": 6, "develop": 4 // floor and the tricks still to find
+}
+```
+
+- **EXACT — state as fact:** `total` (declarer's double-dummy trick count —
+  your narrative must reconcile to it and NEVER claim more), `dd_losers`
+  (= 13 − total), each side suit's `top`/`establishable`, and the trump suit's
+  `isolated_tricks`. `missing_honors` are the outstanding honours — use them to
+  read finesse/drop positions, but HEDGE placement (you can't see the defenders'
+  cards).
+- **PLANNING AIDS — guide the plan, don't quote as a second trick source:**
+  `sure_tricks` (a floor), `develop` (= total − sure_tricks), and
+  `ruffs_in_short_hand`. For a **ruff-in-dummy** lesson, the headline is
+  `ruffs_in_short_hand` and the side suit whose `short_hand_ruffs` is the source
+  — tell declarer to ruff those losers in the SHORT trump hand BEFORE drawing
+  trumps. For **establish-long-suit** / suit-promotion, the source is the side
+  suit whose `length_winners` is largest. For finesse/drop lessons the verified
+  finesse value is already baked into `establishable`/`isolated_tricks` (the
+  analyser is seat-aware) — coach the technique, hedge the honour placement.
+- `safe_top` ≤ `top`: a top winner is at risk of a ruff when a defender is short
+  in the suit. Prefer `safe_top` when telling declarer what they can cash early.
+
+The discipline is the same as notrump: count from the verified numbers, and the
+running plan must reconcile to `total`.
+
 ## Use the verified defender_budget — do NOT count the defenders by eye
 
 Each packet also carries a `defender_budget` (`py/defender_budget.py`) — what

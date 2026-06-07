@@ -331,6 +331,13 @@ Picked up after the Cowork session above went idle (no repo writes for ~4.5h;
 David closed the hung window). Coordinated by not touching Cowork's in-flight
 files until confirmed idle. Everything below is committed + pushed to origin/main.
 
+**Repo state at handoff — BOTH repos (Cowork straddles the content/engine split):**
+- *Practice-Bidding-Scenarios* — working tree CLEAN, origin/main current; all of
+  today's work below is committed + pushed.
+- *AI-Bridge-Play-Trainer* — no uncommitted source work; last Cowork commit
+  `715bbb1` (06-07 07:06, header/feedback UI). Only stray file is a stale May-23
+  `activity-log.json` (harness session log, not work); no lock, no stranded work.
+
 **defender_budget — new play-coaching ground truth (commit `0b458fca8`).**
 - `py/defender_budget.py` — the HCP/shape counterpart of `suit_tricks.trick_map`:
   what declarer can KNOW (ns_hcp / defender_hcp = 40 − declarer+dummy) and INFER
@@ -375,3 +382,69 @@ never decoded → render ugly). play-splice should decode JSON \u escapes.
 2. The **4 re-curation flags** (#16/#22/#25/#26) — curation, watch the selection gap.
 3. Optional: re-splice Hold_Up_3N + Choice_Of_Finesses through the
    defender_budget-aware pipeline.
+
+---
+
+## Cowork session (2026-06-07, later still) — trump-aware trick analyzer BUILT
+
+Resumed after the restart, synced to `785addd88`. Picked up NEXT item 1 (the
+big build). Committed under David's identity, NOT pushed (David pushes).
+
+**`py/trump_tricks.py` (new) — the trump-aware counterpart of
+`suit_tricks.trick_map`.** For suit contracts the NT map is wrong (winners get
+ruffed; extra tricks come from ruffing, not only length). New
+`trump_trick_map(hands, trumps, declarer, deal_str=None)` returns:
+- **VERIFIED (exact DD):** `total` (declarer's double-dummy trick count in the
+  trump strain, from endplay `calc_dd_table` — the hard cap), `dd_losers`
+  (=13−total), per-side-suit `top`/`establishable` and the trump suit's
+  `isolated_tricks` (all exact single-suit DD via `suit_tricks`, seat-aware so
+  finesses are resolved), plus `missing_honors` per suit.
+- **DERIVED planning aids (clamped consistent with `total`):**
+  `ruffs_in_short_hand` (extra ruffs the short trump hand can make — the
+  ruff-in-dummy headline), `side_top`/`safe_top` (winners cashable before a
+  ruff), `sure_tricks` floor, `develop` (=total−sure_tricks).
+- Assumes declarer's side is N/S (same as the NT map; every curated play board is
+  seated South). `total` is still correct for an E/W declarer; only the
+  decomposition is skipped there (`decomposition: None`).
+
+**Verification.** Built-in `__main__` self-test over board 1 of all 9 suit
+scenarios + a fan-out test of **270 suit-contract boards**: `total` matches
+`calc_dd_table` on **every** board (0 mismatches), and invariants
+(`sure_tricks ≤ total`, `establishable ≥ top`, `trump_iso ≤ trump_len`) hold
+everywhere (0 breaches). NT and E/W-declared boards correctly route elsewhere.
+
+**`py/curate.py` — new `opening_lead_vs_suit(leader_suits, trump_idx)`** (+
+helper `_lead_card_from_holding`). The NT lead was being used for every contract;
+suit contracts need their own standard lead: singleton → top of a touching-honour
+sequence (incl. K from AK) → 4th-best from the longest side suit, **never
+underleading a bare ace** (falls back to leading the ace itself, then a trump).
+Tested on constructed holdings and real boards (e.g. Side_Suit_Ruff b1 leader
+correctly leads `\D3`, skipping the bare ♣A).
+
+**`py/coach.py` `play_packets` — now contract-aware.** Routes NT→`trick_map` +
+`opening_lead_vs_nt`, suit→`trump_trick_map` + `opening_lead_vs_suit`, keyed off
+the board's `[Contract]` strain. `play_splice`'s auto-lead cross-check is also
+contract-aware now (it previously assumed an NT lead, which would have falsely
+flagged every suit board). The packet field stays named `trick_map`; suit boards
+carry the trump-aware shape (has a `trumps` key).
+
+**`py/defender_budget.py`** — added an optional `strain` param; `rule_of_11` (an
+NT-only tool) is suppressed for suit contracts. Backward compatible (NT pilot
+self-tests unchanged, still pass).
+
+GENERATOR-PLAY.md documents the new suit-contract `trick_map` shape + the
+exact-vs-planning-aid discipline (ruff-in-dummy → `ruffs_in_short_hand`;
+establish → largest `length_winners`; reconcile every narrative to `total`).
+
+**NEXT (still for Cowork):**
+- The build is done and wired; what remains is the **coaching fan-out** for the 8
+  suit scenarios: run `coach.py play-packets <scn> <theme>`, subagent the prose
+  per GENERATOR-PLAY.md, `play-splice`. Per-scenario selection FILTERS still live
+  only in prose (the reproducibility gap) — decide each scenario's extra filter
+  (e.g. Side_Suit_Ruff = ruff-in-dummy + `ruffs_in_short_hand ≥ 1`;
+  Suit_Promotion = establish-long-suit + `length_winners ≥ 2`) and record it
+  before `play-splice` (restore `.work/<scn>-play-boards.json` first).
+- Then NEXT items 2 (the 4 re-curation flags) and 3 (re-splice Hold_Up/Choice).
+- Note: the Cowork sandbox `.work/` mount refused `rm` (Operation not permitted)
+  this session — stray test packets for Side_Suit_Ruff_Before_Trump remain in
+  `.work/` (gitignored, overwritten by the next real `play-packets` run).
