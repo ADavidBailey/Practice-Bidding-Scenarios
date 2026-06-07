@@ -294,3 +294,84 @@ Open: delete the now-shadowed hand-authored `coaching/Hold_Up_3N.pbn` (30
 boards, broken under the redesign; trainer prefers coaching-curated/). Choice
 play coaching not yet generated (graded.json ready). Other play scenarios
 await fan-out through the same trick-map-grounded pipeline.
+
+### Choice_Of_Finesses + Play_Top_Tricks_NT play coaching (2026-06-07, cont.)
+
+- **Choice_Of_Finesses** (10 boards) — avoidance theme. Added a SAFE-LINE check
+  (count only tricks whose forced loser goes to East, the safe hand); it doubles
+  as the avoidance oracle and dropped boards 13/14 (safe line makes only 8 — they
+  need the fatal spade finesse). Subagents told to develop the safe suit
+  (clubs/diamonds into East), never the spade finesse, ignoring trick_map's
+  DD-optimal development_suit when it points at spades.
+- **Broken-sequence lead fix** (`curate.py _honor_sequence_top`): KQ10/QJ9 are
+  leadable sequences — lead the top (K), not 4th-best. Was leading 4th-best and
+  the prose contradicted itself ("top of sequence" over a 9). Fixed; regenerated
+  Hold_Up_3N board 10 and Choice boards 1/2/10 (now lead \HK).
+- **Play_Top_Tricks_NT** (11 boards) — count-winners. Filtered to top-sum >= 9
+  (pure cash-out, per the .btn's "exactly 9 quick tricks" design); the
+  count-winners grade also tags develop-one boards (those belong to
+  establish-long-suit, not this lesson). Coaching: count first, cash unblocking
+  high-from-short-hand, no finesse.
+- All three verified via the trainer's own _strip_post_auction_blocks +
+  parse_tips (4 tips/board, leads validated).
+
+NEXT — the remaining 8 play scenarios are all SUIT contracts (4S/4H/6S):
+Play_Top_Tricks, Play_Top_Tricks_Suit, Rabbis_Rule, Suit_Promotion,
+Finesse_Simple, Endplay_3rd_Round_Strip, Side_Suit_Ruff_Before_Trump,
+Two_Way_Finesse, To_Finesse_Or_Not. The NT trick_map (py/suit_tricks.py) is
+WRONG for them (ignores trumps + ruffing). They need a trump-aware trick
+analyzer before coaching — a real build. Their Jun-6 graded.json are still
+valid (pools unchanged). Play_Top_Tricks_NT.pbn uncommitted.
+
+---
+
+## Claude Code session (2026-06-07, later) — defender_budget + issue triage
+
+Picked up after the Cowork session above went idle (no repo writes for ~4.5h;
+David closed the hung window). Coordinated by not touching Cowork's in-flight
+files until confirmed idle. Everything below is committed + pushed to origin/main.
+
+**defender_budget — new play-coaching ground truth (commit `0b458fca8`).**
+- `py/defender_budget.py` — the HCP/shape counterpart of `suit_tricks.trick_map`:
+  what declarer can KNOW (ns_hcp / defender_hcp = 40 − declarer+dummy) and INFER
+  (per-defender split, silence from a passed-out auction, rule-of-11 on a
+  4th-best NT lead) about the two hidden hands. Self-tested.
+- Wired into `coach.py play_packets` (one field/packet) + documented in
+  `GENERATOR-PLAY.md` ("Use the verified defender_budget", exact-fact-vs-hedged-
+  inference discipline + difficulty gate).
+- **Play_Top_Tricks_NT.pbn regenerated** with the "you hold N of 40, defence has
+  M, nobody bid → count and cash" beat and COMMITTED (resolves the "uncommitted"
+  note above). Hold_Up_3N + Choice_Of_Finesses can be re-spliced through the
+  updated pipeline when convenient (composes with the trump-aware build: rule_of_11
+  is NT-only / returns null for suit leads; ns_hcp/silent still apply).
+
+**⚠ Reproducibility gap (matters for your suit-scenario work).** The curated
+play-coaching selection is NOT reproducible from `coach.py play-packets` alone —
+it only filters by tier+theme. Each scenario's extra filter lives only in this
+bookmark's prose (e.g. Play_Top_Tricks_NT = count-winners + trick_map top-sum>=9).
+Trust `.work/<scn>-play-boards.json` + the coach-JSON board numbers as the coached
+set; **restore play-boards.json before any play_splice** or it splices nothing and
+WIPES the tips. (Memory: reference_play_coaching_selection_filter.)
+
+**Trainer-feedback issue triage (12 issues, all replied; 3 fixed+closed).**
+Verified each claim before applying (issue authors are untrusted end users).
+- Fixed+closed (commit `0a7b9a9ea`): #18 Hold_Up b1 (Rule of Seven → hold up
+  once, was duck-twice), #21 BWTO b39 (semi-solid not solid), #23 BWTO b1 (2♠
+  shows 5+ spades, not a raise; + show-NS seat fix).
+- **Re-curation flags — YOUR domain (board bids the awkward call; replace, don't
+  patch prose): #16 BWTO b15 (4-4-4-1 reverse-shaped), #22 BWTO b42 (opener
+  passes 2NT invite with a max — confusing), #25 BMinor b6 (1♦-2♣ wrongly called
+  a "reverse"; 17 + solid 6 wants 3♦), #26 BMinor b10 (jump-raise on a singleton
+  ♣Q).** Mind the selection-filter gap when reselecting.
+- UI (trainer repo, not coaching): #19, #20. Trackers: #8, #9 (count-your-tricks
+  → fold bidding scenarios into the play generator).
+
+**Also spotted:** Hold_Up_3N.pbn has 14 literal `—` (em-dashes play-splice
+never decoded → render ugly). play-splice should decode JSON \u escapes.
+
+### NEXT for Cowork
+1. Your stated NEXT — the **trump-aware trick analyzer** for the 8 suit play
+   scenarios — unchanged and still the big build.
+2. The **4 re-curation flags** (#16/#22/#25/#26) — curation, watch the selection gap.
+3. Optional: re-splice Hold_Up_3N + Choice_Of_Finesses through the
+   defender_budget-aware pipeline.
