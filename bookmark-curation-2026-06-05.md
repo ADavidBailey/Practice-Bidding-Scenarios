@@ -448,3 +448,35 @@ establish → largest `length_winners`; reconcile every narrative to `total`).
 - Note: the Cowork sandbox `.work/` mount refused `rm` (Operation not permitted)
   this session — stray test packets for Side_Suit_Ruff_Before_Trump remain in
   `.work/` (gitignored, overwritten by the next real `play-packets` run).
+
+### First suit-contract play-coaching pilot — Side_Suit_Ruff_Before_Trump (12 boards)
+
+Proved the trump-aware pipeline end-to-end through actual coached output (commit
+follows). `coach.py play-packets Side_Suit_Ruff_Before_Trump ruff-in-dummy -n 12`
+(boards 1,2,3,4,7,8,9,11,12,13,20,21 — all 4S by South, all make DD, all with
+2-3 dummy heart-ruffs in `ruffs_in_short_hand`). Two subagents (one per packet)
+authored the 4 `[ROLE]/[STAGE]` tips per GENERATOR-PLAY.md, grounded in the
+trump-aware `trick_map` (count LOSERS, ruff hearts in the short hand BEFORE
+drawing trumps) + `defender_budget` (exact HCP, hedged splits).
+- `play-splice` clean (no lead/space/wrong-lead warnings).
+- Verification: 12/12 coached, exactly 4 tips each, **0 em-dashes**, every
+  pre-lead card matches `opening_lead_vs_suit`, all 500 deals still parse via
+  endplay. The 9 multi-rank suit refs are all declarer's-own or leader's-own
+  holdings (no hidden hand revealed). Spot-checked b1 + b12 (the tightest,
+  exactly-making): principled ruff-in-dummy lines, correct singleton/4th-best
+  leads, warm tone.
+- **Selection filter (record for reproducibility):** declarer textbook/standard
+  `ruff-in-dummy` + (implicitly) `ruffs_in_short_hand >= 2`, first 12. Board
+  list in `.work/Side_Suit_Ruff_Before_Trump-play-boards.json` — restore it
+  before any re-`play-splice`.
+- Output is the 500-board pool with 12 coached (same convention as Hold_Up_3N /
+  Choice / Play_Top_Tricks_NT). The old hand-authored
+  `coaching/Side_Suit_Ruff_Before_Trump.pbn` (30 boards) is now SHADOWED by the
+  curated file (trainer prefers `coaching-curated/`) — left in place for David to
+  delete when convenient (same disposition as the Hold_Up shadow).
+
+**NEXT:** expand this pilot to the full 30 boards if David likes it, then fan out
+the same trump-aware pipeline to the other 7 suit scenarios (Play_Top_Tricks,
+Play_Top_Tricks_Suit, Rabbis_Rule, Suit_Promotion, Finesse_Simple,
+Endplay_3rd_Round_Strip, To_Finesse_Or_Not / Two_Way_Finesse), each with its own
+theme + selection filter. Then re-curation flags #16/#22/#25/#26.
