@@ -264,3 +264,33 @@ Checked the other `oracle=shape` play scenarios for the same leader-seat bug
 Net: two .btn redesigns (Hold_Up_3N, Choice_Of_Finesses) need David to re-run
 `dlr+` through the pipeline (bba on the Windows VM); To_Finesse + Two_Way are
 prose/curation-note only. All uncommitted.
+
+### Hold_Up_3N play-coaching pilot + trick-map verification (2026-06-07)
+
+Built the first play-stage coaching pilot on the redesigned Hold_Up_3N pool
+(12 boards) and, in doing so, added a verification layer that the play
+pipeline needs.
+
+- **Layer A re-run** on the corrected pools (had to clear stale Jun-5
+  `.progress` + JSON — resume is keyed by board ORDER, not deal hash): 63
+  DD-necessary hold-ups / 500 (Hold_Up_3N), 500/500 avoidance-shaped (Choice).
+- **Oracle-derived graded.json** for both (declarer discipline): holdup_required
+  -> textbook hold-up; ok+avoidance_shaped -> textbook avoidance. Re-annotated
+  bba-curated PBNs so deal_hashes match the new pool.
+- **NEW `py/suit_tricks.py`** — exact single-suit double-dummy with known cards
+  (seat-aware, positional finesses). `coach.py play-packets` now injects a
+  verified `trick_map` (top / establishable per suit + development_suit) and the
+  authoritative `opening_lead` into every packet, so the generating subagent
+  NARRATES counts and the lead instead of computing them — that was the failure
+  mode (board 1 first drafted "four spades" for a 3-trick suit and missed clubs
+  as the real source). Fixed a `top_tricks` overcount on long 5-5 fits.
+- **`play-splice` now cross-checks** the spliced pre-lead card against the
+  computed standard NT lead (caught a HK-from-KQxxx slip; correct is 4th-best).
+- Verified with the trainer's OWN `_strip_post_auction_blocks` + `parse_tips`
+  (endplay parses, 4 tips per board, suit symbols render). All 12 boards
+  reconcile to 9 tricks; all leads validated. `coaching-curated/Hold_Up_3N.pbn`.
+
+Open: delete the now-shadowed hand-authored `coaching/Hold_Up_3N.pbn` (30
+boards, broken under the redesign; trainer prefers coaching-curated/). Choice
+play coaching not yet generated (graded.json ready). Other play scenarios
+await fan-out through the same trick-map-grounded pipeline.

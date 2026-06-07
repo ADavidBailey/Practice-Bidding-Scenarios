@@ -20,7 +20,8 @@ this script only does the deterministic selection and splice.
 """
 import sys, os, re, json, glob
 sys.path.append(os.path.dirname(__file__))
-from curate import split_boards, tag, hands, deal_hash
+from curate import split_boards, tag, hands, deal_hash, opening_lead_vs_nt, SUITS
+from suit_tricks import trick_map
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CUR = os.path.join(ROOT, "bba-curated")
@@ -149,13 +150,24 @@ def play_packets(scn, theme, n):
         if tier not in ('textbook', 'standard') or theme not in themes:
             continue
         h = hands(d); declarer = tag(ch, 'Declarer')  # the declaring SEAT
+        # VERIFIED trick facts (exact double-dummy, known cards) so the
+        # subagent narrates numbers instead of counting them itself. 'top' =
+        # immediate cash-out winners NS hold in the suit; 'establishable' =
+        # tricks after forcing out opponents' higher honours; 'development_suit'
+        # = the suit that yields the most NEW tricks (the ninth-trick source).
+        tmap = trick_map(h)
+        leadseat = LHO.get(declarer)
+        ol = opening_lead_vs_nt(h[leadseat])           # computed standard NT lead
+        lead = f"\\{SUITS[ol[0]]}{ol[1]}" if ol else None
         pkts.append({
             "board": tag(ch, 'Board'), "contract": tag(ch, 'Contract'),
-            "declarer": declarer, "leader": LHO.get(declarer),
+            "declarer": declarer, "leader": leadseat,
             "dealer": tag(ch, 'Dealer'), "vul": tag(ch, 'Vulnerable'),
             "theme": theme, "note": note,
+            "opening_lead": lead,   # AUTHORITATIVE — use this card verbatim
             "hands": {s: " ".join(f"{su}:{''.join(h[s][i]) or '-'}"
                                   for i, su in enumerate("SHDC")) for s in "NESW"},
+            "trick_map": tmap,
         })
         if len(pkts) >= n:
             break
@@ -188,15 +200,38 @@ def play_splice(scn):
         out.append(ch)
     txt = "".join(out)
     open(os.path.join(OUT, f"{scn}.pbn"), "w").write(txt)
-    # validation: pre-lead card present + no space; role/stage markers
+    # validation: pre-lead card present + no space; matches the computed lead
     coached = [b for b in boards if b in tips]
     nolead = [b for b in coached if not re.search(r'\[ROLE leader\]\[STAGE pre-lead\]\s*Lead the \\[SHDC][AKQJT2-9]', tips[b])]
     spacelead = [b for b in coached if re.search(r'Lead the \\[SHDC]\s+[AKQJT2-9]', tips[b])]
+    # cross-check the spliced lead card against the standard NT lead from the
+    # leader's hand (the card is auto-played, so it must be the right one).
+    wronglead = []
+    deals = {tag(ch, 'Board'): tag(ch, 'Deal') for ch in split_boards(os.path.join(CUR, f"{scn}.pbn"))}
+    for b in coached:
+        d = deals.get(b)
+        if not d:
+            continue
+        m = re.search(r'Lead the (\\[SHDC][AKQJT2-9])', tips[b])
+        h = hands(d); decl = None
+        dm = re.search(r'\[Declarer "(\w)"\]', "")  # declarer seat unused; recompute leader
+        # leader = LHO of declarer; declarer seat from PBN
+        for ch in split_boards(os.path.join(CUR, f"{scn}.pbn")):
+            if tag(ch, 'Board') == b:
+                decl = tag(ch, 'Declarer'); break
+        if not (m and decl):
+            continue
+        ol = opening_lead_vs_nt(h[LHO.get(decl)])
+        want = f"\\{SUITS[ol[0]]}{ol[1]}" if ol else None
+        if want and m.group(1) != want:
+            wronglead.append(f"{b}:{m.group(1)}!={want}")
     print(f"{scn}: spliced play tips into {len(coached)} boards -> {OUT}/{scn}.pbn")
     if nolead:
         print(f"  WARNING: {len(nolead)} boards missing a load-bearing 'Lead the \\Xr' pre-lead: {sorted(nolead)}")
     if spacelead:
         print(f"  WARNING: space before lead rank (breaks auto-lead): {sorted(spacelead)}")
+    if wronglead:
+        print(f"  WARNING: pre-lead card != standard lead: {sorted(wronglead)}")
 
 
 def validate(scn):

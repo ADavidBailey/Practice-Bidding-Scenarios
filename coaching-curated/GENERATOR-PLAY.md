@@ -54,10 +54,43 @@ Emit these tips (declarer-focused; the UI centers on declarer):
 (For defense scenarios add `[ROLE defender][STAGE post-lead]` from the
 defender's vantage; same hedging rules.)
 
+## Use the verified trick_map — do NOT count tricks yourself
+
+Each packet board carries a `trick_map` computed by exact double-dummy from
+the known cards (`py/suit_tricks.py`). This exists because counting tricks by
+eye is where generated coaching slips (e.g. calling a KQJ-plus-length suit
+"four tricks" when it is three, and missing the real source). Treat it as
+ground truth:
+
+```
+"trick_map": {
+  "suits": { "S": {"top": 0, "establishable": 3, "ns_len": 7},
+             "H": {"top": 1, "establishable": 1, ...},
+             "D": {"top": 3, "establishable": 3, ...},
+             "C": {"top": 0, "establishable": 4, ...} },
+  "development_suit": "C"
+}
+```
+
+- `top` = tricks NS cash immediately (consecutive top honours from the ace).
+- `establishable` = tricks in that suit after forcing out the opponents'
+  higher honours (with entries) — the realistic count once set up.
+- `development_suit` = the suit yielding the most NEW tricks; this is normally
+  where the ninth trick comes from. NAME THIS SUIT as the one to develop.
+
+Rules: state trick counts ONLY from `establishable`/`top`. When you describe
+developing a suit for extra tricks, it must be the `development_suit` (or a
+suit whose `establishable` exceeds its `top`); never tell declarer to develop
+a flat suit. Your running count must reconcile with the contract — if your
+narrative sums to fewer than the tricks needed, you have the wrong suit.
+
 ## Hard rules
 
-- The pre-lead card is load-bearing and must be the leader's CORRECT standard
-  lead, written `\Xr` with no space. Get this right — the trainer auto-plays it.
+- The pre-lead card is load-bearing and the trainer AUTO-PLAYS it. Each packet
+  board provides the authoritative `opening_lead` (e.g. `\H6`) computed from
+  the leader's hand — use THAT card verbatim in the `Lead the \Xr` sentence.
+  Do not pick your own (a KQxxx without the J/T leads 4th-best, not the K).
+  Written `\Xr`, no space. `play-splice` cross-checks it and warns on mismatch.
 - Tips are written from ONE role's vantage and only mention what that role can
   see at that stage. The leader tip sees only the leader's hand; the declarer
   auction-end tip sees declarer + dummy (dummy is down after the lead for
