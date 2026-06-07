@@ -21,9 +21,15 @@ prefers `coaching-curated/` over the hand-authored `coaching/`.
 ## Output format
 
 Per board, emit the BODY of one `{...}` block (no braces, no code fences):
-- `[show X]` — reveal seat(s) (real compass N/E/S/W); reveals accumulate.
-- `[BID xxx]` — anchor the following prose to the next matching PBN-form call
-  (`1N`, `2D`, `3NT`, `X`). Prose before the first `[BID]` is the intro chunk.
+- `[BID xxx]` — write it BEFORE the prose it anchors; the prose attaches to
+  the next matching PBN-form call (`1N`, `2D`, `3NT`, `X`). Prose before the
+  first `[BID]` is the intro chunk.
+- `[show NS]` — used ONCE, to introduce the closing reflection (post-auction).
+  Do NOT use any other `[show]` marker. **Never put `[show S]`/`[show N]`
+  inside a `[BID]` chunk** — a partner/opponent reveal makes the trainer defer
+  that prose to the post-auction chunk, where it renders in the wrong person
+  ("You have 10 HCP" about partner). The trainer already shows the student
+  their own hand and hides partner's, so no mid-auction reveal is needed.
 - `\S \H \D \C` — render as the four suit symbols.
 
 Return ONLY a JSON array: `[{"board":"<n>","coaching":"<body>"}, ...]`, one
@@ -52,8 +58,9 @@ or start a fresh sentence about the call itself, not the actor.
 
 ## Authoring rules
 
-- Coach EVERY non-pass call in the auction (both partners'), each
-  `[BID]`-anchored, preceded by `[show S]`/`[show N]` for the acting seat.
+- Coach EVERY non-pass N/S call in the auction (both partners'), each its own
+  `[BID xxx]` chunk with the `[BID]` BEFORE the prose. NO `[show]` markers in
+  these chunks (see Output format). Opponents' (E/W) calls get no `[BID]`.
 - NEVER recite a hand's cards, and NEVER state the acting seat's concrete
   holding (exact HCP / suit lengths) in a `[BID]` chunk. During the auction
   the student sees ONLY their own hand — partner's is hidden — so naming the

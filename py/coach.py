@@ -163,6 +163,13 @@ def validate(scn):
         missing = _c.Counter(coached) - _c.Counter(nbids)
         if missing:
             probs.append(f"N/S calls with no [BID]: {sorted(missing.elements())}")
+        # Only [show NS] is allowed (it introduces the post-auction reflection).
+        # Any other [show X] inside a [BID] chunk makes the trainer DEFER that
+        # prose to post-auction, where it renders in the wrong person.
+        bad_show = [m.group(1) for m in re.finditer(r'\[show\s+([^\]]+)\]', body)
+                    if m.group(1).strip() != 'NS']
+        if bad_show:
+            probs.append(f"mid-auction [show {bad_show}] — defers/scrambles prose (only [show NS] allowed)")
         # [ACCEPT] must follow a [BID <non-pass>] and not be on a Pass/opening-only
         for am in re.finditer(r'\[ACCEPT\s+([^\]]+)\]', body):
             pre = body[:am.start()]
