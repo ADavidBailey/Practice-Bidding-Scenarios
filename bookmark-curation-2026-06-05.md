@@ -79,6 +79,22 @@ Session ended here. Current state and what's next.
 
 ## Open items (in order)
 
+0. **DONE (2026-06-06) — coaching architecture fix (Option A).** Two bugs
+   found while testing: (a) the prose leaked partner's concrete holding
+   during the auction ("partner has six spades"); (b) worse, on multi-round
+   auctions the trainer's `parse_coaching` DEFERS any prose after a partner
+   `[show N]` to the post-auction chunk, which renders first-person — so
+   "You have 10 HCP" described partner. Root cause: my both-seats coaching
+   used mid-auction `[show]`, which the trainer (built for single-student
+   Baker-Bridge coaching) defers. Fix (Option A, David's call): NO `[show]`
+   in `[BID]` chunks — only the closing `[show NS]`; describe what each call
+   SHOWS by agreement, never the actor's concrete holding. Proven via the
+   trainer's own `parse_coaching` (each call renders in the right person).
+   All 7 bidding scenarios regenerated, validator-clean, endplay-parse,
+   `[ACCEPT]` intact. `py/coach.py validate` now flags any mid-auction
+   `[show]` and missing N/S `[BID]` anchors. GENERATOR.md is the Option A
+   spec. (Trainer unchanged — no `server.py`/`app.js` edits needed.)
+
 5. **Spot-check the fan-out in the trainer**, especially a competitive
    scenario (Basic_Takeout_Double / Basic_Overcall) with Randomly Rotate on —
    rotation + competitive auctions is the newest ground.
