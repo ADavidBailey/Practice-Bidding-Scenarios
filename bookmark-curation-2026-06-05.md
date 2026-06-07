@@ -475,7 +475,13 @@ drawing trumps) + `defender_budget` (exact HCP, hedged splits).
   curated file (trainer prefers `coaching-curated/`) — left in place for David to
   delete when convenient (same disposition as the Hold_Up shadow).
 
-**NEXT:** expand this pilot to the full 30 boards if David likes it, then fan out
+**UPDATE (same session): expanded to the full 30 boards** (added boards
+24,25,29,32,33,35,38,40,41,42,43,51,54,56,62,64,65,66 via 2 more subagents).
+All 30 validate: 4 tips/board, 0 em-dashes, every lead matches
+`opening_lead_vs_suit`, no hidden-hand reveals, endplay parses. One board (40)
+had `silent:false` and the subagent correctly dropped the "nobody bid" clause.
+
+**NEXT:** fan out
 the same trump-aware pipeline to the other 7 suit scenarios (Play_Top_Tricks,
 Play_Top_Tricks_Suit, Rabbis_Rule, Suit_Promotion, Finesse_Simple,
 Endplay_3rd_Round_Strip, To_Finesse_Or_Not / Two_Way_Finesse), each with its own
