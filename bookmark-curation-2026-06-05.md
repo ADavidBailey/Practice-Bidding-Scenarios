@@ -148,3 +148,22 @@ Session ended here. Current state and what's next.
 - Working tree clean. **Pushed to `origin/main` (David approved)** —
   `fcc909014` + `77e499617` + the bookmark commit are now on origin; local
   and origin in sync. Rick-email links now resolve.
+
+## Claude Code session note (2026-06-07) — Play-Trainer feedback
+
+The trainer's new in-app feedback button (🚩 Report → GitHub issues in
+AI-Bridge-Play-Trainer) surfaced two coaching items for **Basic_What_To_Open**:
+
+- **Board 13 prose (issue #13) — DONE, committed + pushed (`2eb62ee19`).**
+  The 4S `[BID]` chunk called North's `AKT65432` "a strong fit for partner's
+  spades"; now "a self-sufficient spade suit" (a long, solid suit is its own
+  trump source, not support for partner). Worth confirming GENERATOR.md's
+  terminology rules keep this so a regen doesn't reintroduce "fit for partner".
+- **Count-your-tricks request (issues #8/#9 — left OPEN as a tracker).** When
+  a student plays a *bidding* scenario out as declarer, they want the
+  "count your sure winners" prompt. Decision (David): do NOT hand-author a
+  one-off tip — instead **fold Basic_What_To_Open (and likely the other
+  bidding scenarios) into the play-coaching generator's scope** (open item 6 /
+  `GENERATOR-PLAY.md`): run `play_splice` on it once the play generator lands,
+  so declarers get the same analyzed `[ROLE declarer][STAGE auction-end]`
+  count-the-winners directive as the 12 dedicated play scenarios.
