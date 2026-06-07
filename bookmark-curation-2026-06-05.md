@@ -237,3 +237,30 @@ run should yield 50+ clean hold-up boards.
   the suit/entry that the lesson hinges on sits with the hand that the *real*
   opening lead and play actually route through. Worth an oracle/lead pass on
   each before generating their play coaching.
+
+### Same-bug sweep of the avoidance/finesse play scenarios (2026-06-07)
+
+Checked the other `oracle=shape` play scenarios for the same leader-seat bug
+(danger suit in the wrong defender). West's opening-lead suit over each
+500-board `bba/` pool:
+
+- **Choice_Of_Finesses — SAME BUG, fixed.** West led a heart 0/500; East held
+  the 5+ hearts on all 500. Rewrote `btn/Choice_Of_Finesses.btn`: long hearts
+  + the SQ to **West** (so the SPADE finesse loses to the danger hand = fatal);
+  CQ falls to East by elimination (so the CLUB finesse is safe); South keeps
+  one heart stopper and ducks to exhaust East. Labels flipped vs the old prose
+  (now: take clubs, avoid spades). MC verify: West leads a heart 59/60, 3NT
+  makes DD 57/60. Needs the same pipeline re-run as Hold_Up_3N.
+- **To_Finesse_Or_Not_To_Finesse — no seat bug, prose softened.** Suit contract
+  (4S); the club finesse itself puts East on lead, so East-as-danger doesn't
+  depend on the lead. But in a trump contract East cashes ≤1 heart before a
+  ruff, so "East cashes a 5-card suit" oversold it. Reworded @chat to lead with
+  count-your-tricks / no-upside; kept the heart danger as a footnote. No regen.
+- **Two_Way_Finesse — structurally fine.** Pure two-way guess for the QD,
+  hearts split evenly (W60/E66). Added a `# curate-note:` to the .btn: TIER by
+  readability (prefer boards where an inference points one way), de-prioritise
+  true 50/50s. (Parser-safe: `curate_directive` matches only `# curate:`.)
+
+Net: two .btn redesigns (Hold_Up_3N, Choice_Of_Finesses) need David to re-run
+`dlr+` through the pipeline (bba on the Windows VM); To_Finesse + Two_Way are
+prose/curation-note only. All uncommitted.
