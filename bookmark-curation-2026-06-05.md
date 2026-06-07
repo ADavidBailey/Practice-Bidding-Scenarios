@@ -167,3 +167,21 @@ AI-Bridge-Play-Trainer) surfaced two coaching items for **Basic_What_To_Open**:
   `GENERATOR-PLAY.md`): run `play_splice` on it once the play generator lands,
   so declarers get the same analyzed `[ROLE declarer][STAGE auction-end]`
   count-the-winners directive as the 12 dedicated play scenarios.
+
+Second round (issues #15/#16, board 15 of Basic_What_To_Open — South
+`A762.QJT2.A965.A`, a 4-4-4-1 opening 1♦ into `1♦-2♣-2♥-2N-3N`):
+
+- **Board 15 prose (#15) — DONE, committed (`68cd947fd`).** The intro
+  mislabeled South's 4=4=4=1 as "a strong balanced opening, just shy of 1NT";
+  reworded to a three-suiter (a singleton rules out 1NT). **Generator guard
+  for GENERATOR.md:** never call a hand with a singleton/void "balanced"
+  (the prose also reaches for "balanced-looking" elsewhere) — same spirit as
+  the #13 terminology rule.
+- **Board 15 re-curation candidate (#16 — left OPEN as tracker).** The 2♥
+  rebid is reverse-*shaped* yet South has only 4 diamonds / 15 HCP. It's fine
+  in 2/1 GF (2♣ already forced game, so 2♥ isn't a true reverse), but for a
+  *Basic* "what to open" lesson the 2/1 sequence with a reverse-looking rebid
+  is confusing. Decision (David): **flag board 15 for re-curation** — prefer
+  replacing/dropping it over patching prose. A curation note for whoever
+  reselects the 30 boards: avoid openings whose follow-up auction needs 2/1
+  machinery to read correctly.
