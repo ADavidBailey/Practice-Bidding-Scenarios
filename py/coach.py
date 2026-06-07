@@ -22,6 +22,7 @@ import sys, os, re, json, glob
 sys.path.append(os.path.dirname(__file__))
 from curate import split_boards, tag, hands, deal_hash, opening_lead_vs_nt, SUITS
 from suit_tricks import trick_map
+from defender_budget import defender_budget
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CUR = os.path.join(ROOT, "bba-curated")
@@ -159,6 +160,8 @@ def play_packets(scn, theme, n):
         leadseat = LHO.get(declarer)
         ol = opening_lead_vs_nt(h[leadseat])           # computed standard NT lead
         lead = f"\\{SUITS[ol[0]]}{ol[1]}" if ol else None
+        am = re.search(r'\[Auction "\w"\]\s*\n((?:[^\[{][^\n]*\n?)*)', ch)
+        auction = " ".join(am.group(1).split()) if am else None
         pkts.append({
             "board": tag(ch, 'Board'), "contract": tag(ch, 'Contract'),
             "declarer": declarer, "leader": leadseat,
@@ -168,6 +171,11 @@ def play_packets(scn, theme, n):
             "hands": {s: " ".join(f"{su}:{''.join(h[s][i]) or '-'}"
                                   for i, su in enumerate("SHDC")) for s in "NESW"},
             "trick_map": tmap,
+            # what declarer can KNOW (ns_hcp/defender_hcp) and INFER (per-defender
+            # split + rule-of-11) about the hidden hands; see GENERATOR-PLAY.md.
+            "defender_budget": defender_budget(
+                h, declarer, dealer=tag(ch, 'Dealer'),
+                auction=auction, opening_lead=ol),
         })
         if len(pkts) >= n:
             break

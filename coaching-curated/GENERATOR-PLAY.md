@@ -84,6 +84,46 @@ suit whose `establishable` exceeds its `top`); never tell declarer to develop
 a flat suit. Your running count must reconcile with the contract — if your
 narrative sums to fewer than the tricks needed, you have the wrong suit.
 
+## Use the verified defender_budget — do NOT count the defenders by eye
+
+Each packet also carries a `defender_budget` (`py/defender_budget.py`) — what
+declarer can KNOW and INFER about the two HIDDEN hands. It is the HCP/shape
+counterpart of `trick_map`: reasoning about the defenders by eye slips the same
+way counting tricks does (over-stating a defender's hand, mis-placing the
+missing honours, botching the rule-of-11). Narrate these numbers; don't derive
+them.
+
+```
+"defender_budget": {
+  "ns_hcp": 24, "defender_hcp": 16,        // EXACT (declarer + dummy known)
+  "defenders": { "lho": {"seat":"W","hcp":6,"shape":[5,1,4,3],"longest":5},
+                 "rho": {"seat":"E","hcp":10,"shape":[2,5,3,3],"longest":5} },
+  "silent": true,                          // both defenders passed -> couldn't act
+  "rule_of_11": { "suit":"S","card":"4",   // only on a 4th-best length lead; else null
+                  "higher_outside":7, "higher_in_ns":5, "higher_in_hidden":2 }
+}
+```
+
+- `ns_hcp` / `defender_hcp` are **EXACT and known** once dummy is down (declarer
+  + dummy are a fixed count; the defence shares the rest of 40). State them as
+  fact. The natural beat in `[STAGE auction-end]`: *"NS hold 24 of the 40, so
+  the defence has only 16 between them — and since neither opponent bid, no one
+  is hiding a long suit or a big hand."* Drop the silence clause when `silent`
+  is false.
+- The **per-defender split** in `defenders` is an INFERENCE. You may use the
+  true `hcp`/`shape` to point the read the right way, but the prose MUST hedge
+  it (same rule as reading defenders' cards): *"the missing 16 are split, and
+  West led from length, so East rates to hold the outstanding aces."* Never name
+  which defender holds a specific honour as fact.
+- `rule_of_11` (present only on a 4th-best length lead vs NT) gives the exact
+  placement: `higher_in_hidden` = cards above the led card in the LEADER'S
+  PARTNER'S hand. Use it in `[STAGE post-lead]`: *"by the rule of eleven, two
+  cards higher than the four sit outside dummy and my hand — both with East."*
+
+Gate by `difficulty`: the bare HCP complement suits difficulty 1; hold the
+rule-of-eleven / honour-placement reads for difficulty >= 2 (past a true
+beginner). Keep every defender read hedged regardless.
+
 ## Hard rules
 
 - The pre-lead card is load-bearing and the trainer AUTO-PLAYS it. Each packet
