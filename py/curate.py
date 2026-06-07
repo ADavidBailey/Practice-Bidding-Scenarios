@@ -132,11 +132,15 @@ def lowest_overall(seat_suits):
     return best[0] + best[1]
 
 def _honor_sequence_top(cards):
-    """True if the top 3 cards are consecutive in rank and headed by an honor
-    (T or higher) — a leadable sequence like KQJ, QJT, JT9."""
+    """True if the top 3 cards form a leadable honour sequence headed by an
+    honour (T or higher) and you lead the top card. Covers solid sequences
+    (KQJ, QJT, JT9) AND broken/interior sequences with a single internal gap
+    (KQT, QJ9, JT8) — standard practice leads the top of KQ10 just as for KQJ."""
     if len(cards) < 3: return False
     idx = [RANK.index(c) for c in cards[:3]]
-    return idx[1] == idx[0] + 1 and idx[2] == idx[1] + 1 and RANK.index(cards[0]) <= RANK.index('T')
+    touching_top = idx[1] == idx[0] + 1          # top two adjacent
+    near_third = idx[2] <= idx[1] + 2            # third within one gap
+    return touching_top and near_third and RANK.index(cards[0]) <= RANK.index('T')
 
 def opening_lead_vs_nt(west_suits):
     """West's standard opening lead vs notrump: 4th-best from the longest,
