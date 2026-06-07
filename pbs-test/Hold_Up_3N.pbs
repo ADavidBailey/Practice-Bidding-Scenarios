@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: Basic-Bridge
 convention-card-ew: Basic-Bridge
-auction-filter: Auction.....\n1N
+auction-filter: Contract "3N"
 */
 # curate: kind=avoidance oracle=holdup contract=3N seat=S
 # convention-card-ns: Basic-Bridge
@@ -36,9 +36,12 @@ sHcp   = hcp(south) > 14 and hcp(south) < 18
 sStop  = hearts(south) < 4
 southHand = sShape and sHcp and sStop
 
-# North 10-12 raises to 3NT
-nHcp = hcp(north) > 9 and hcp(north) < 13
-northHand = nHcp
+# North 10-12, balanced, NO 4-card major — so it raises 1NT straight to 3NT.
+# (A 4-card major would invite Stayman and pull the contract into a major fit.)
+nHcp     = hcp(north) > 9 and hcp(north) < 13
+nShape   = shape(north, any 4333 + any 4432 + any 5332)
+nNoMajor = spades(north) < 4 and hearts(north) < 4
+northHand = nHcp and nShape and nNoMajor
 
 # West (the opening leader) holds the long heart threat and NO outside entry
 # (hcp < 8 with KQ = at most a stray jack outside — no side ace or king)
