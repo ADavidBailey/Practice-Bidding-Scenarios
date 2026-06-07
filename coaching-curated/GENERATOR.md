@@ -77,6 +77,15 @@ or start a fresh sentence about the call itself, not the actor.
   Point ranges tied to a call's meaning are fine ("1NT shows 15-17"); a
   specific actual holding is not. The closing `[show NS]` reflection MAY
   describe both hands concretely — the auction is over and partner is shown.
+- BRIDGE TERMINOLOGY (be precise):
+  - "two-suiter" / "two-suited" means TWO suits of 4+ cards (5-4, 5-5, 6-4,
+    6-5, …). A single long suit (6-3-2-2, 7-2-2-2) is a ONE-suiter — never
+    call it two-suited.
+  - A new-suit response at the 2-level (a 2/1) or any single new-suit bid
+    shows a 5+ CARD SUIT, not "a second suit" / "two suits". Say "a five-card
+    suit" or "a genuine suit". Only call a bid two-suited when the agreement
+    actually shows two suits (opener's reverse / new-suit rebid = 5-4+; a
+    takeout double; an overcall followed by a new suit).
 - INTRO chunk and closing `[show NS]` reflection are **seat-neutral**: refer
   to players by compass ("North", "South") or role ("opener", "responder")
   and the side as "the partnership"; NO you/partner, NO tokens there. The
