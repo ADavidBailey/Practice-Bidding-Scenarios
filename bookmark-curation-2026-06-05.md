@@ -556,3 +556,32 @@ textbook-graded board with a simple readable auction (David approved the picks):
 New coaching generated per GENERATOR.md (rotation tokens, [BID] per call,
 [show NS]); both files still 30 boards, `coach.py validate` = 0 issues, braces
 balanced. GitHub issues #16/#22/#25/#26 to be closed.
+
+---
+
+## Cowork session (2026-06-08) — Rabbis_Rule slam-dilution + shape fix
+
+Tackled open item 8 (Rabbi's Rule Blackwood dilution). Diagnosed from the
+old 500-board pool: contracts were 246 6S (49%) / 165 4S (33%) / 58 5S /
+20 3S — robots ran Blackwood on 343/500 and opened a strong 2C on 71.
+Root cause is structural: the predealt honors South *needs* for the lesson
+(♠AK + ♥A + ♦AQ) already total 17 HCP and three aces in a 6-card-suit hand,
+so BBA correctly drives toward slam; South literally can't go below 17.
+Slam rate scales with strength (S 17→38%, 18→44%, 19→59%; by combined:
+23-24≈26%, 26≈55%, 27≈74%, 28≈94%).
+
+Two edits to `btn/Rabbis_Rule.btn` (David's calls):
+1. **`combinedHcp = hcp(north) + hcp(south) < 27`** — caps partnership
+   strength to keep the auction in game.
+2. **Shape caps** to lessen extreme distributions: West side suits <6 (no
+   void / no 6+ suit with the stiff ♦K), East hearts 5-6 (not 7+) + no
+   black-suit void + diamonds <6, North hearts/clubs <6, South no club void.
+
+David ran the full pipe in VS Code and committed+pushed. **New distribution:
+227 6S (45%) / 211 4S (42%) / 62 5S** — shape caps worked (freak 3S boards
+gone, 4S pool grew 165→211), but `combined <27` only nudged slam 49%→45%
+(most slams sit at combined 25-26, which the cap keeps). **OPEN:** if the
+~45% slam rate still bugs David, tighten to `<26` (~36%) or `<25` (~26%) and
+re-pipe — one-line change. Note: hand generation (dealer3) and bidding
+analysis (bba-cli) are Mac-only and can't run in the Cowork sandbox; only
+dlr/pbs regenerate there — David runs pbn+ in VS Code.
