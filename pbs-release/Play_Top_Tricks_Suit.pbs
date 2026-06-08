@@ -18,8 +18,15 @@ setDealerCode(`
 /*
 convention-card-ns: Basic-Bridge
 convention-card-ew: Basic-Bridge
-auction-filter: \[Deal .* .* .* .*\..*\..*\.*[89]
+auction-filter: Auction.....\n((1C +Pass +2C|1D +Pass +2D|1H +Pass +2H|1S +Pass +2S|1C +Pass +3C|1D +Pass +3D|1H +Pass +3H|1S +Pass +3S) +Pass\nPass +Pass|(1H +Pass +3H +Pass\n4H|1S +Pass +3S +Pass\n4S) +Pass +Pass +Pass)
 */
+# curate: kind=byforce
+# convention-card-ns: Basic-Bridge
+# convention-card-ew: Basic-Bridge
+
+
+dealer south
+
 ##### Imported Script -- Predict Opening 1-Bid South #####
 # 01/19/2026 -- Changed to use TP and separate ranges for C, D, and majors
 # 03/30/2025 -- Changed to use gibNT
