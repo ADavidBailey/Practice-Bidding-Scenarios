@@ -20,6 +20,13 @@ convention-card-ns: Basic-Bridge
 convention-card-ew: Basic-Bridge
 auction-filter: Auction.....\n2[DHS]
 */
+# curate: kind=bidding
+# convention-card-ns: Basic-Bridge
+# convention-card-ew: Basic-Bridge
+
+
+dealer south
+
 # South: 6-card diamond, heart, or spade suit; 5-10 HCP; 2 of top 3 honors
 sDiamonds6 = diamonds(south) == 6 and top3(south, diamonds) > 1
 sHearts6   = hearts(south) == 6 and top3(south, hearts) > 1
