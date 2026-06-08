@@ -20,6 +20,13 @@ convention-card-ns: Basic-Bridge
 convention-card-ew: Basic-Bridge
 auction-filter: Auction.....\n1[NSH]
 */
+# curate: kind=soundness
+# convention-card-ns: Basic-Bridge
+# convention-card-ew: Basic-Bridge
+
+
+dealer south
+
 # ----- Path 1: South opens 1S (5+ spades, ≤4 hearts), finesse is in hearts -----
 p1Shape = spades(south) > 4 and hearts(south) < 5
 p1AQH   = hascard(south, AH) and hascard(south, QH) and not hascard(south, KH)
