@@ -20,6 +20,13 @@ convention-card-ns: Basic-Bridge
 convention-card-ew: Basic-Bridge
 auction-filter: Auction.....\n1[CD] +Pass +(1[DHSN]|2N|[2345][CD])
 */
+# curate: kind=bidding
+# convention-card-ns: Basic-Bridge
+# convention-card-ew: Basic-Bridge
+
+
+dealer south
+
 sHcp        = hcp(south) > 11 and hcp(south) < 22
 sMinor      = clubs(south) > 2 or diamonds(south) > 3
 # Exclude 1NT opener: balanced 15-17 HCP
