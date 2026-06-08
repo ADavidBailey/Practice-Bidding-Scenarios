@@ -20,6 +20,13 @@ convention-card-ns: Basic-Bridge
 convention-card-ew: Basic-Bridge
 auction-filter: Auction.....\n(1C +1[DHS]|1D +(1[HS]|2C)|1H +(1S|2[CD])|1S +2[CDH])
 */
+# curate: kind=bidding
+# convention-card-ns: Basic-Bridge
+# convention-card-ew: Basic-Bridge
+
+
+dealer east
+
 # East opens any 1-of-suit, but NOT 1NT. Basic-Bridge has 15-17 NT.
 # Exclude balanced 15-17 hands so the auction starts with 1m or 1M.
 eHcp     = hcp(east) > 11 and hcp(east) < 22
