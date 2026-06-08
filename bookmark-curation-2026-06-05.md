@@ -486,3 +486,34 @@ the same trump-aware pipeline to the other 7 suit scenarios (Play_Top_Tricks,
 Play_Top_Tricks_Suit, Rabbis_Rule, Suit_Promotion, Finesse_Simple,
 Endplay_3rd_Round_Strip, To_Finesse_Or_Not / Two_Way_Finesse), each with its own
 theme + selection filter. Then re-curation flags #16/#22/#25/#26.
+
+---
+
+## Claude Code session (2026-06-07, evening) — singleton-honor lead fix + Rabbis_Rule
+
+Cowork flagged (then hung on) a real bug in `opening_lead_vs_suit`: it led ANY
+non-ace singleton, INCLUDING a singleton honour — so e.g. all Rabbis_Rule boards
+auto-led West's bare ♦K, exposing it at trick 1 and killing the cash-the-ace-to-
+drop-the-K lesson. David confirmed the bridge call (you don't lead singleton
+honours). After David killed the hung Cowork session, Claude Code did:
+
+- **Fixed `opening_lead_vs_suit`** (`679e4dc26`): step 1 now leads only a SMALL
+  (spot-card) singleton; a lone honour singleton (A/K/Q/J) falls through to the
+  sequence / 4th-best logic. GENERATOR-PLAY.md lead rule updated to match.
+- **Generated Rabbis_Rule play coaching** (theme `safety-play`, 30 boards,
+  corrected leads) → NEW `coaching-curated/Rabbis_Rule.pbn` (supersedes the old
+  hand-authored `coaching/Rabbis_Rule.pbn`). play_splice clean; 4 tips/board;
+  every lead cross-checks; no singleton-honour leads (honour leads are all
+  sequences, e.g. ♣Q from QJ9xx).
+- **Re-coached + surgically spliced the 4 shipped stiff-honour boards** (only
+  those blocks changed): Side_Suit_Ruff_Before_Trump b40 (now ♥4) & b42 (♣Q),
+  Play_Top_Tricks_Suit b60 (♠J), Finesse_Simple b4 (♣5).
+- Cowork's hung session was killed; its uncommitted sandbox work (Side_Suit_Ruff
+  coach3/4 "18 boards", its Rabbis attempt) was discarded — regenerable, nothing
+  lost in git. All of the above committed + pushed.
+
+**Coached PLAY scenarios now (9):** Choice_Of_Finesses, Finesse_Simple,
+Hold_Up_3N, Play_Top_Tricks, Play_Top_Tricks_NT, Play_Top_Tricks_Suit,
+Rabbis_Rule, Side_Suit_Ruff_Before_Trump, Suit_Promotion.
+**Remaining play scenarios:** Two_Way_Finesse, To_Finesse_Or_Not_To_Finesse,
+Endplay_3rd_Round_Strip. Then re-curation flags #16/#22/#25/#26.
