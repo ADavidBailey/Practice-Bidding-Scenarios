@@ -539,3 +539,20 @@ play_splice clean for all three (every lead cross-checks), 4 tips/board. **ALL 1
 PLAY SCENARIOS are now coached in coaching-curated/** (9 prior + these 3).
 
 Remaining curation work: the re-curation flags #16/#22/#25/#26 (need David's ruling).
+
+---
+
+## Claude Code session (2026-06-08) — re-curation flags resolved (#16/#22/#25/#26)
+
+David ruled: replace the 4 awkward boards. Swapped each for a clean,
+textbook-graded board with a simple readable auction (David approved the picks):
+
+- **Basic_What_To_Open**: b15 (4=4=4=1 into a 2/1 reverse-looking auction) →
+  **b193** (open 1♥, six-card major); b42 (opener passes a 2NT invite with a
+  max) → **b220** (open 1NT, 15-17).
+- **Basic_Minor**: b6 (1♦-2♣ mislabeled a "reverse") → **b173** (1♦-1NT, open
+  the longer minor); b10 (jump-raise on a stiff ♣Q) → **b225** (1♣-1NT).
+
+New coaching generated per GENERATOR.md (rotation tokens, [BID] per call,
+[show NS]); both files still 30 boards, `coach.py validate` = 0 issues, braces
+balanced. GitHub issues #16/#22/#25/#26 to be closed.
