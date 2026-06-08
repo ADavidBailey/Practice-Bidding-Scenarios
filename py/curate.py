@@ -184,7 +184,8 @@ def _lead_card_from_holding(cards):
 def opening_lead_vs_suit(leader_suits, trump_idx):
     """West's standard opening lead vs a SUIT contract (opponents silent, so no
     partner suit to lead). Priority, matching the authored lead rules in
-    GENERATOR-PLAY.md: (1) a side-suit singleton (ruff-seeking); (2) the top of
+    GENERATOR-PLAY.md: (1) a small side-suit singleton, never a singleton honor
+    (a singleton K/Q/J costs the honor, not gains a ruff); (2) the top of
     a side-suit touching-honour sequence (incl. K from AK); (3) 4th-best from
     the longest side suit, AVOIDING underleading an ace (lead low only from a
     suit not headed by a bare ace). Falls back to leading an ace-headed suit's
@@ -192,11 +193,13 @@ def opening_lead_vs_suit(leader_suits, trump_idx):
     or None if void everywhere. leader_suits is [S,H,D,C] rank strings;
     trump_idx is 0..3."""
     side = [i for i in range(4) if i != trump_idx]
-    # 1. side-suit singleton (prefer a non-ace singleton)
-    singles = [i for i in side if len(leader_suits[i]) == 1]
-    if singles:
-        non_ace = [i for i in singles if leader_suits[i][0] != 'A']
-        i = (non_ace or singles)[0]
+    # 1. a SMALL side-suit singleton (ruff-seeking) — NOT a singleton honor
+    #    (A/K/Q/J): leading a stiff honor crashes it rather than winning a ruff,
+    #    and it destroys lessons like Rabbi's Rule (dropping a hidden singleton K).
+    small_singles = [i for i in side
+                     if len(leader_suits[i]) == 1 and leader_suits[i][0] not in 'AKQJ']
+    if small_singles:
+        i = small_singles[0]
         return i, leader_suits[i][0]
     # 2. top of a side-suit touching-honour sequence (longest such suit)
     seqs = []

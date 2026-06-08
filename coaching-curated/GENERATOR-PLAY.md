@@ -29,8 +29,9 @@ Emit these tips (declarer-focused; the UI centers on declarer):
    South declares):
    - vs notrump: 4th-best from the longest, strongest suit (or top of a 3+
      touching-honor sequence).
-   - vs a suit contract: a singleton, else partner's bid suit, else top of a
-     touching-honor sequence, else 4th-best from the longest suit.
+   - vs a suit contract: a SMALL singleton (a spot card — NEVER a singleton
+     honor A/K/Q/J), else partner's bid suit, else top of a touching-honor
+     sequence, else 4th-best from the longest suit.
    - card from a holding: top of a sequence/interior sequence; 4th-best from
      length; low from three small; top of a doubleton; K from AK.
    One or two sentences, assertive (the leader sees their own hand).
