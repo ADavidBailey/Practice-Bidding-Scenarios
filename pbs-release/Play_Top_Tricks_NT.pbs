@@ -20,6 +20,20 @@ convention-card-ns: Basic-Bridge
 convention-card-ew: Basic-Bridge
 auction-filter: \[Deal .* .* .* .*\..*\..*\.*[789]
 */
+# curate: kind=byforce
+# convention-card-ns: Basic-Bridge
+# convention-card-ew: Basic-Bridge
+
+
+dealer south
+
+// Predeal one ace to each hand to guarantee an entry to declarer and dummy
+// and to slash the all-aces rejection rate (the dominant yield killer). The
+// other two aces (HA, CA) are still required in NS by allSuitsStopped in
+// script/topTricksNS, but roam between the hands for variety.
+predeal south SA
+predeal north DA
+
 ### Imported script: topTricksNS (NS combined Top Tricks)
 //
 // Per-suit topTricks = min(consecutive top-honor chain held by NS,
