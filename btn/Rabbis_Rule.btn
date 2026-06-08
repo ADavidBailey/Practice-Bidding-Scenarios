@@ -50,25 +50,39 @@ dealer south
 sHcp     = hcp(south) > 16 and hcp(south) < 20
 sSpades  = spades(south) == 6                // 6-card suit for trump dominance
 sDiamonds = diamonds(south) > 3 and diamonds(south) < 6   // AQ + 2-3 small
-southHand = sHcp and sSpades and sDiamonds
+sShape   = clubs(south) > 0                   // no declarer club void
+southHand = sHcp and sSpades and sDiamonds and sShape
 
 // ----- Dummy (North) — game-raising response -----
 nHcp     = hcp(north) > 5 and hcp(north) < 10
 nSpades  = spades(north) > 2 and spades(north) < 5   // 3-card support
 nDiamonds = diamonds(north) > 1 and diamonds(north) < 5   // 2-4
-northHand = nHcp and nSpades and nDiamonds
+nShape   = hearts(north) < 6 and clubs(north) < 6    // no wild side suit
+northHand = nHcp and nSpades and nDiamonds and nShape
 
 // ----- West — STIFF K of diamonds -----
 wDiamonds = diamonds(west) == 1           // K alone
 wHcp      = hcp(west) < 11
-westHand = wDiamonds and wHcp
+// no void / no 6+ side suit: with a stiff diamond, capping the other
+// three suits at 5 forces a sane 5-4-1-3 / 4-4-1-4 type shape.
+wShape    = spades(west) < 6 and hearts(west) < 6 and clubs(west) < 6
+westHand = wDiamonds and wHcp and wShape
 
 // ----- East — long hearts headed by KQ -----
-eHearts   = hearts(east) > 4
+eHearts   = hearts(east) > 4 and hearts(east) < 7   // 5-6, not a 7-bagger
 eHcp      = hcp(east) < 11
-eastHand = eHearts and eHcp
+// keep East off voids and a runaway diamond suit
+eShape    = spades(east) > 0 and clubs(east) > 0 and diamonds(east) < 6
+eastHand = eHearts and eHcp and eShape
 
-southHand and northHand and westHand and eastHand
+// ----- Partnership ceiling — keep the robots out of slam -----
+// The predealt honors force South to >=17 HCP with three aces and a
+// 6-card suit, which tempts BBA into Blackwood. Cap the combined N/S
+// strength so the auction stays in game. (Diagnosed from the 500-board
+// pool: combined 27 slams ~74%, combined 28 ~94%; <27 keeps it in 4S.)
+combinedHcp = hcp(north) + hcp(south) < 27
+
+southHand and northHand and westHand and eastHand and combinedHcp
 
 action
 average "West stiff K (forced)  " 100 * (diamonds(west) == 1),
@@ -76,3 +90,4 @@ average "East 5+ hearts (forced)" 100 * (hearts(east) > 4),
 average "South 6 spades         " 100 * (spades(south) == 6),
 average "South HCP              "       hcp(south),
 average "North HCP              "       hcp(north),
+average "Combined N/S HCP       "       hcp(north) + hcp(south),
