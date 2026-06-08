@@ -517,3 +517,25 @@ Hold_Up_3N, Play_Top_Tricks, Play_Top_Tricks_NT, Play_Top_Tricks_Suit,
 Rabbis_Rule, Side_Suit_Ruff_Before_Trump, Suit_Promotion.
 **Remaining play scenarios:** Two_Way_Finesse, To_Finesse_Or_Not_To_Finesse,
 Endplay_3rd_Round_Strip. Then re-curation flags #16/#22/#25/#26.
+
+---
+
+## Claude Code session (2026-06-07, late) — play-coaching fan-out COMPLETE
+
+Generated the final 3 play scenarios with the corrected leads. Themes were read
+from each scenario's `.btn` @chat (the authored lesson) — review if a different
+lesson was intended:
+
+- **Two_Way_Finesse** (theme `finesse-safe-hand`, 30 boards) — coach the two-way
+  ♦Q-finesse DECISION via inferences (auction shape, opening lead, count, vacant
+  places); defender_budget is the tool. (Genuine-clue boards are a minority of
+  the pool per the earlier note, but the coaching teaches the reasoning either way.)
+- **To_Finesse_Or_Not_To_Finesse** (theme `count-winners`, 30) — count first;
+  the club finesse has no upside; decline it and claim.
+- **Endplay_3rd_Round_Strip** (theme `endplay`, 19 — the entire qualifying set) —
+  strip the side suits and throw East in instead of finessing.
+
+play_splice clean for all three (every lead cross-checks), 4 tips/board. **ALL 12
+PLAY SCENARIOS are now coached in coaching-curated/** (9 prior + these 3).
+
+Remaining curation work: the re-curation flags #16/#22/#25/#26 (need David's ruling).
