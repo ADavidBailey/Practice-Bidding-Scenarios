@@ -290,6 +290,29 @@ def validate(scn):
         missing = _c.Counter(coached) - _c.Counter(nbids)
         if missing:
             probs.append(f"N/S calls with no [BID]: {sorted(missing.elements())}")
+        # An [BID] on an opponent (E/W) call may exist for context, but its
+        # prose must NOT use the student's voice — narrating the opponents'
+        # bid as @S/@v(...) tells the student they made that call. Map each
+        # anchor to the seat that made it (matching call value in auction
+        # order), then flag E/W anchors whose chunk carries a student token.
+        seq = [(_norm_call(c), SEATS[(di + j) % 4])
+               for j, c in enumerate(raw) if _norm_call(c) != 'PASS']
+        parts = re.split(r'(\[BID\s+[^\]]+\])', body)
+        STU = re.compile(r'@[Ss]\b|@[Yy]our\b|@v\(')
+        si = 0
+        opp_voice = []
+        for k in range(1, len(parts), 2):
+            call = _norm_call(re.match(r'\[BID\s+([^\]]+)\]', parts[k]).group(1))
+            text = parts[k + 1] if k + 1 < len(parts) else ''
+            while si < len(seq) and seq[si][0] != call:
+                si += 1
+            seat = seq[si][1] if si < len(seq) else None
+            if si < len(seq):
+                si += 1
+            if seat in ('E', 'W') and STU.search(text):
+                opp_voice.append(call)
+        if opp_voice:
+            probs.append(f"opponent call(s) narrated in student voice: {opp_voice}")
         # Only [show NS] is allowed (it introduces the post-auction reflection).
         # Any other [show X] inside a [BID] chunk makes the trainer DEFER that
         # prose to post-auction, where it renders in the wrong person.

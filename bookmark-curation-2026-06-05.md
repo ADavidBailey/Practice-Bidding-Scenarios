@@ -585,3 +585,45 @@ gone, 4S pool grew 165→211), but `combined <27` only nudged slam 49%→45%
 re-pipe — one-line change. Note: hand generation (dealer3) and bidding
 analysis (bba-cli) are Mac-only and can't run in the Cowork sandbox; only
 dlr/pbs regenerate there — David runs pbn+ in VS Code.
+
+---
+
+## Cowork session (2026-06-08, cont.) — coaching QA: voice bugs + suit-quality standard
+
+Trainer spot-check of the competitive bidding scenarios surfaced a bug class
+and a terminology standard. Learnings to carry forward:
+
+- **Two coaching "voice" bug classes.** Coaching `[BID]` chunks use `@S` and
+  the trainer's `fill_pronouns` renders it per-call as "You" or "Your
+  partner" based on who actually made that call (server.py ~98-106, 1053-61).
+  - **Partner-voice = NOT a bug.** `@S` on the *partner's* (other N/S seat)
+    call renders correctly as "Your partner …" — e.g. Basic_Takeout_Double b46
+    (North's 3♥ jump with the six-card suit) reads fine.
+  - **Opponent-voice = REAL bug.** When the opponents (E/W) outbid and
+    *declare*, an `[BID]` on their call is narrated in the student's voice —
+    the trainer never remaps E/W, so it tells the student they made the
+    opponents' bid. Found in **Basic_Takeout_Double b1/b2/b39/b47** (double
+    got steamrolled, E/W declared). **OPEN:** replace those 4 boards (boards
+    where N/S's double stays coherent) or rewrite their prose — David's call,
+    same as the #16/#22/#25/#26 re-curation.
+- **New validator check** in `py/coach.py validate`: flags any `[BID]` on an
+  E/W call whose chunk carries a student token (`@S/@s/@Your/@your/@v(`).
+  Calibrated — flags exactly the 4 above, Basic_Overcall clean. NOTE: `validate`
+  is for BIDDING coaching only; running it on the 12 play scenarios prints
+  "500 board(s)" noise (play files keep the full pool, ~30 coached, different
+  format) — ignore that, or guard validate to skip play files (not yet done).
+- **SUIT-QUALITY TERMINOLOGY** — adopt GIB's definitions (now recorded in
+  `coaching-curated/GENERATOR.md`; source
+  doc.bridgebase.com/lobbynews/gib_descriptions.html). Key trap: **"solid"
+  requires AKQ** — solid 6-card = AKQTxx or AKQJxx. KQJxxx is "good"
+  (rebiddable); AKQ9xx is "strong" (has AKQ, lacks T/J), still not solid.
+  Fixed **Basic_Weak_2**: b9/b71 (♥KQJ) + b134 (♠KQJ943) "solid"→"good",
+  b87 (♠AKQ952) "solid"→"strong"; left b37 "solid values" (HCP, not a suit).
+- **Trainer feedback fix:** the "Report a problem" button needs `GITHUB_TOKEN`
+  (fine-grained PAT, repo `ADavidBailey/AI-Bridge-Play-Trainer`, Issues RW).
+  David had it in a gitignored `.env` but `server.py` never loaded `.env`;
+  added a tiny built-in `.env` loader near the top of server.py (no
+  python-dotenv dependency). Restart the server to pick it up.
+
+Uncommitted at session end (two repos): `coaching-curated/Basic_Weak_2.pbn`,
+`coaching-curated/GENERATOR.md`, `py/coach.py`, and trainer `server.py`.

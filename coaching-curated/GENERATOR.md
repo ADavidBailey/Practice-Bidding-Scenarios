@@ -86,6 +86,20 @@ or start a fresh sentence about the call itself, not the actor.
     suit" or "a genuine suit". Only call a bid two-suited when the agreement
     actually shows two suits (opener's reverse / new-suit rebid = 5-4+; a
     takeout double; an overcall followed by a new suit).
+  - SUIT QUALITY — use these terms by their GIB definitions (source:
+    https://doc.bridgebase.com/lobbynews/gib_descriptions.html). A suit gets
+    the HIGHEST quality that describes it:
+    - 3-card / 4-card: exactly that many cards.
+    - biddable: 5+ cards, OR 4 cards + 3 of the top 5 honors, OR 4+ in 8421 pts.
+    - rebiddable: biddable + 1 card.  twice rebiddable: rebiddable + 1 card.
+    - strong rebiddable: twice rebiddable WITH 4 of the top 5 honors or AKQ.
+    - solid 6-card: AKQTxx or AKQJxx.  solid 7-card: AKQxxxx.
+      solid 8-card: AKJxxxxx / AKxxxxxxx or better.
+    Do NOT call a suit "solid" unless it meets the solid definition above —
+    AKQ is required. KQJxxx is a GOOD (rebiddable) suit, not solid; AKQ9xx
+    is STRONG (has AKQ but not the T/J), still not "solid 6-card". "Solid
+    values" (about HCP) is a different, acceptable phrase — only the SUIT
+    label is constrained here.
 - INTRO chunk and closing `[show NS]` reflection are **seat-neutral**: refer
   to players by compass ("North", "South") or role ("opener", "responder")
   and the side as "the partnership"; NO you/partner, NO tokens there. The
