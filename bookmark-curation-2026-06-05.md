@@ -683,3 +683,38 @@ bids / silence and speculate on their HCP & shape** — and update trick-to-tric
 
 **Open (pending David):** UX idea — render each new Hint at the TOP of the hint
 window (newest-first) so changes are obvious; keep scroll-up for history.
+→ DONE: Hint panel now renders hints newest-first at top, freshest highlighted
+(trainer commit 7f0569a).
+
+---
+
+## Cowork session (2026-06-09, later) — trainer feedback issues #29–#32 processed
+
+The in-app "Report a problem" button now works (GITHUB_TOKEN wired up) and files
+issues into **ADavidBailey/AI-Bridge-Play-Trainer** (public repo, label
+`user-feedback`). Read them via the GitHub API (no connector auth needed for a
+public repo): `https://api.github.com/repos/ADavidBailey/AI-Bridge-Play-Trainer/issues?state=open&labels=user-feedback`.
+
+- **#32 Choice_Of_Finesses b1 "You and dummy hold 0 HCP???"** — LATENT TRAINER
+  BUG, now fixed (commit 622d86b). `handHcp` + `computeHintLines` read full-name
+  suit keys (`hand["spades"]`) but the server's `hand_to_dict` emits **letter
+  keys with arrays** (`{S:["A","K"],…}`). So HCP was ALWAYS 0 and the
+  outstanding/rule-of-11/placement reads misfired on every board. Fixed to
+  letter keys + array iteration; re-tested against the real format (28 HCP now).
+  LESSON: trainer hand objects are `{S/H/D/C: [rank,…]}`, NOT full-name strings.
+- **#29 Basic_Weak_2 "upgrade board shouldn't be board 1"** — fixed (a56301853):
+  the trainer serves boards in FILE ORDER (`boards[board_index]`, default 0), so
+  moved the 1♥-upgrade judgment board out of the first slot; a clean weak two
+  leads now.
+- **#30 Basic_Weak_2 b9 "not a solid suit"** — already fixed earlier (solid→good).
+- **#31 Finesse_Simple b2 was an uncoached, opponent-declared deal** — root cause:
+  play coaching-curated files kept all 500 pool boards (only ~30 coached), so the
+  trainer served uncoached junk. David's call: **TRIM**. All 12 play files now
+  contain ONLY their coached boards (commit 34ef8078f) — matches the bidding
+  convention; the pool still lives in `bba/`/`bba-curated/`. Coached counts:
+  Choice_Of_Finesses 10, Endplay 19, Hold_Up_3N 12, Play_Top_Tricks_NT 11, the
+  rest 30.
+
+Issues #29/#30/#32 are resolved and can be closed on GitHub (David closes, or
+authenticate the github connector to close with commit refs). **Still old-voice:**
+the 11 non-Finesse_Simple play scenarios need the inference-voice fan-out when ready.
