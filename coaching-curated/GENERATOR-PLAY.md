@@ -39,6 +39,13 @@ Emit these tips (declarer-focused; the UI centers on declarer):
 2. `[ROLE declarer][STAGE auction-end]` — the plan BEFORE the lead: state the
    contract, count the sure winners (or losers in a suit contract), name the
    problem the theme poses, and the line. 2-4 sentences.
+   **REQUIRED:** include one sentence reading the OPPONENTS from the auction —
+   the exact HCP complement and, when `silent`, what the silence rules out:
+   "NS hold 24 of the 40, so the defence has only 16 — and with neither
+   opponent bidding, no one is hiding a long suit or a big hand, so the points
+   and the missing honours rate to be split." When an opponent DID bid, read
+   that instead (length/strength shown). This sets up the placement read that
+   the post-lead tip then completes.
 
 3. `[ROLE declarer][STAGE post-lead]` — fires AFTER the opening lead, so START
    from the actual lead: name what was led, the trick-1 decision (win / duck /
@@ -47,6 +54,24 @@ Emit these tips (declarer-focused; the UI centers on declarer):
    suggesting about four" / "looks like top of a sequence, so West probably
    holds the QJ" / "looks like a singleton — watch for a ruff." Then walk the
    technique to the contract. 3-5 sentences.
+   **REQUIRED — state the inference, WITHHOLD the conclusion.** This tip must
+   turn the available evidence into a PLACEMENT read, not a bare "the missing
+   honours are split somewhere." Combine (a) the lead, (b) the auction/silence,
+   and (c) vacant spaces to say WHERE the key card the technique targets rates
+   to sit — then STOP. Do NOT append the resulting line. Give the read and let
+   the student draw the play conclusion:
+   - GOOD: "West led from club length and neither opponent could act, so the
+     long clubs — and the room for the missing \HK — probably sit with West."
+   - HEDGE THE LENGTH READ TOO: a fourth-best lead only *suggests* length
+     (it can be from four or five, and leads vary), so write "probably sits
+     with West" / "looks like West's length", never "the length sits with
+     West" as fact. Hedge both the length inference and the honour placement.
+   - BAD (hands the answer): "...so the \HK sits with West, so finesse through
+     West / lead low to the queen." Drop everything from "so finesse…" on.
+   This is the single most important opponent-inference beat; never skip it on
+   a finesse or placement board. Keep it hedged ("rates to", "more likely",
+   "looks like") — never state a defender's card as fact, and never tack on the
+   technique that follows from it.
 
 4. `[ROLE declarer][STAGE post-play]` — the review: what mattered, why the
    technique worked, and PRAISE (this is the safe place for warmth). 2-3
@@ -165,9 +190,16 @@ them.
   PARTNER'S hand. Use it in `[STAGE post-lead]`: *"by the rule of eleven, two
   cards higher than the four sit outside dummy and my hand — both with East."*
 
-Gate by `difficulty`: the bare HCP complement suits difficulty 1; hold the
-rule-of-eleven / honour-placement reads for difficulty >= 2 (past a true
-beginner). Keep every defender read hedged regardless.
+**Mandatory floor (every board, every difficulty):** the auction-end tip states
+the exact HCP complement and, when `silent`, the silence read; the post-lead tip
+turns the lead + auction + vacant spaces into a hedged PLACEMENT read for the
+card the technique targets. These are not optional colour — a play tip that
+names a finesse without saying which defender it rates to beat is incomplete.
+
+Gate the EXTRA depth by `difficulty`: the rule-of-eleven count and explicit
+vacant-spaces arithmetic ("East has more room, so the queen rates to be there")
+are for difficulty >= 2; at difficulty 1 keep the placement read to a plain
+hedged sentence. Keep every defender read hedged regardless.
 
 ## Hard rules
 
