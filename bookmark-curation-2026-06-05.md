@@ -631,3 +631,55 @@ and a terminology standard. Learnings to carry forward:
 
 Uncommitted at session end (two repos): `coaching-curated/Basic_Weak_2.pbn`,
 `coaching-curated/GENERATOR.md`, `py/coach.py`, and trainer `server.py`.
+(All committed + pushed by David shortly after.)
+
+---
+
+## Cowork session (2026-06-09) — play-coaching opponent inference: Hint engine + voice refit
+
+David's goal: play coaching should lean on **inferences from the opponents'
+bids / silence and speculate on their HCP & shape** — and update trick-to-trick.
+
+**Two layers, both addressed:**
+
+1. **Live Hint engine** (`AI-Bridge-Play-Trainer/static/app.js`, `computeHintLines`)
+   — this is the trick-to-trick layer; it recomputes from the play on every
+   Hint click. Enhanced it (commit 4fccf31) with, declarer-view, public-info-only,
+   hedged, NO play advice:
+   - per-defender **shape from show-outs** ("RHO void in ♥ → remaining cards lie
+     in the other suits, where length/honours concentrate"),
+   - **firm honour placement by void-deduction** ("♥K still out: RHO void in ♥,
+     so it's now marked with LHO"),
+   - **hedged vacant-spaces lean** once a void skews the shape ("…leans LHO's
+     way — a tendency, not pinned"); no lean while symmetric (no misleading
+     early reads). Rides on the existing HCP-complement / auction / rule-of-11
+     reads. Tested offline with synthetic states. David: "ok for now."
+
+2. **Static PBN play coaching** voice refit. Tightened `GENERATOR-PLAY.md`
+   (commit 46d086943): the opponent read is now **mandatory on every board** —
+   auction-end states the exact HCP complement + silence read; post-lead turns
+   lead+auction+vacant-spaces into a **placement INFERENCE**. **Two David voice
+   rules (load-bearing):** (a) STATE the inference, **WITHHOLD the conclusion** —
+   give "the ♥K probably sits with West" and STOP; never append "so finesse West";
+   (b) **HEDGE the length read** too ("the club length *probably* sits with
+   West" — a 4th-best can be from four or five).
+   - **Finesse_Simple pilot regenerated** to this voice (commit fe83381ac): 30
+     boards via subagent fan-out (2 packets), reconciled to trick_map, validated
+     — 0 banned-conclusion phrases in any tip, length hedged, HCP complement on
+     all 30, endplay-parses, lead cards verified by play-splice.
+   - **REMAINING:** the other 11 play scenarios are still in the old voice —
+     fan them out the same way when ready. Inconsistency was worst on Hold_Up_3N
+     / Choice_Of_Finesses / Finesse_Simple; Play_Top_Tricks_NT was already good.
+
+**Standing interaction preferences (David, this session):**
+- When a **push** is needed, DISPLAY the exact `git push` command(s) for copy/paste.
+- When the **server** needs (re)starting, DISPLAY the start command for copy/paste.
+- A **static-JS** change (app.js) needs only **Cmd-Shift-R** in the browser — no
+  server restart; only `server.py` changes need a restart. Trainer reads the
+  LOCAL `Practice-Bidding-Scenarios` folder (BRIDGE_DATA_ROOT), so testing needs
+  no push — push is only to back up / share.
+- Cowork commits, David pushes (no push from Cowork). Stale `.git/*.lock` files
+  accrue from the sandbox's filesystem quirk — clear with `find .git -name '*.lock' -delete`.
+
+**Open (pending David):** UX idea — render each new Hint at the TOP of the hint
+window (newest-first) so changes are obvious; keep scroll-up for history.
