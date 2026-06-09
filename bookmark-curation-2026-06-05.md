@@ -603,9 +603,13 @@ and a terminology standard. Learnings to carry forward:
     *declare*, an `[BID]` on their call is narrated in the student's voice —
     the trainer never remaps E/W, so it tells the student they made the
     opponents' bid. Found in **Basic_Takeout_Double b1/b2/b39/b47** (double
-    got steamrolled, E/W declared). **OPEN:** replace those 4 boards (boards
-    where N/S's double stays coherent) or rewrite their prose — David's call,
-    same as the #16/#22/#25/#26 re-curation.
+    got steamrolled, E/W declared). **RESOLVED (2026-06-09):** David chose
+    replace. Swapped b1/b2/b39/b47 → b115 (1C-X-2S) / b201 (1D-X-2H) /
+    b151 (1H-X-2S) / b378 (1S-X-2H) — textbook doubles, sound partner
+    advances, opener silent, N/S declares, sensible final contracts; one of
+    each opener. Fresh coaching authored per GENERATOR; `coach.py validate`
+    and the anchor cross-check both 0; rendered correct from both seats via
+    `fill_pronouns`. Committed c10faf523.
 - **New validator check** in `py/coach.py validate`: flags any `[BID]` on an
   E/W call whose chunk carries a student token (`@S/@s/@Your/@your/@v(`).
   Calibrated — flags exactly the 4 above, Basic_Overcall clean. NOTE: `validate`
