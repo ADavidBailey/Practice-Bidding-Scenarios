@@ -329,6 +329,16 @@ def validate(scn):
         if probs:
             issues += 1
             print(f"  {scn} b{b}: " + "; ".join(probs))
+    # Suit-quality gate: a suit may be called "solid" only when it really is
+    # (AKQ-headed, running). The GIB standard in GENERATOR.md is a prompt
+    # instruction the subagents can violate — this makes it enforceable in code
+    # (issues #29/#30: KQJ964 is a GOOD suit, not solid). Deterministic, and
+    # conservative enough not to fire on "solid sequence"/"solid trumps"/etc.
+    from suit_quality import solidity_violations
+    for v in solidity_violations(path):
+        issues += 1
+        print(f"  {scn} b{v['board']}: '{v['phrase']}' but {v['suit']} "
+              f"holdings are {v['holding']} — not solid (GIB: needs AKQ)")
     print(f"{scn}: {issues} board(s) with structure issues")
     return issues
 

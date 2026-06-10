@@ -99,7 +99,9 @@ or start a fresh sentence about the call itself, not the actor.
     AKQ is required. KQJxxx is a GOOD (rebiddable) suit, not solid; AKQ9xx
     is STRONG (has AKQ but not the T/J), still not "solid 6-card". "Solid
     values" (about HCP) is a different, acceptable phrase — only the SUIT
-    label is constrained here.
+    label is constrained here. ENFORCED in code: `py/suit_quality.py` is the
+    classifier and `coach.py validate` flags any "solid <suit>" that the
+    coached side doesn't actually hold (so a mislabel can't ship).
 - INTRO chunk and closing `[show NS]` reflection are **seat-neutral**: refer
   to players by compass ("North", "South") or role ("opener", "responder")
   and the side as "the partnership"; NO you/partner, NO tokens there. The
