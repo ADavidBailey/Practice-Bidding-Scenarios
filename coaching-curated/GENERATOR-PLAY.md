@@ -233,10 +233,47 @@ hedged sentence. Keep every defender read hedged regardless.
    auction; validate (pre-lead card present + no-space, [ROLE]/[STAGE] parse,
    endplay-parses).
 
-## Later (needs a trainer change — coordinate, do not collide)
+## Interactive play decisions — the `[PLAY]` marker (live)
 
-Per-trick coaching (`[STAGE trick N]` firing at the moment of the key play)
-is a future enhancement: today the post-lead tip is one whole-hand plan. The
-per-trick marker would let coaching fire exactly when the student is about to
-make the critical play. Out of scope here; the current four stages are what
-the trainer renders now.
+The trainer now supports an interactive per-decision play quiz that mirrors the
+bidding quiz: at an authored decision it presents coaching, lets the student
+click a card, praises a correct card, coaches + retries a wrong one, and after a
+second miss explains the right play and plays it. Between decisions the trainer
+auto-plays every seat (declarer, dummy, defenders) so the hand reaches each
+decision on its own — the student only acts at the meaningful moments.
+
+Author decisions with `[PLAY]`, placed AFTER the four `[ROLE]/[STAGE]` tips, in
+the same post-`[Auction]` `{ ... }` block:
+
+```
+[PLAY <trick> <seat> <card>]
+  ...PRESENT prose — set the scene and ask the question; WITHHOLD the answer
+  (same "don't state the conclusion" rule as the post-lead tip)...
+[ACCEPT <card> ...]            (optional — co-correct cards)
+[WHY]
+  ...WHY prose — names the card and explains; shown on a correct answer AND as
+  the explanation after the second miss, so it MAY state the conclusion...
+```
+
+- `<trick>` = 1-based trick number the decision fires on. `<seat>` = the student
+  seat that must be on play in REAL compass (`N`/`S` for a declarer lesson — it
+  disambiguates declarer vs. dummy). `<card>` = the correct card as `\HQ`.
+- Anchor on a decision the engine's auto-play line actually reaches; the trainer
+  drops (skips) a decision it can't reach, so verify the line. Quiz only the 1–3
+  genuinely meaningful decisions — never routine follows.
+
+Worked example (Finesse_Simple board 44 — the heart finesse):
+
+```
+[PLAY 6 S \HQ]
+Here is the heart position the whole hand has been about. Dummy leads the \H9
+toward your hand, East follows low, and you hold \HA Q 7 with the king still
+out. Which heart do you play?
+[WHY]
+Play the \HQ — the finesse. East followed low, so the king rates to sit under
+your A-Q just where you want it; the queen drives it out or wins outright, and
+the ace takes care of the rest. Banging down the \HA instead would crash an
+honour and hand the defence a trick with the king.
+```
+
+Boards with no `[PLAY]` markers play exactly as before (manual, no quiz).
