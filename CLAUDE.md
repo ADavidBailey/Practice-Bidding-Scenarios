@@ -15,6 +15,15 @@ The Bridge Play Trainer is a **separate repo** (`~/AI-Bridge-Play-Trainer`, gith
 
 At runtime the trainer **reads** this repo's files via `BRIDGE_DATA_ROOT` (default this directory) → `coaching/*.pbn` + `btn/`. It never writes back, and this repo doesn't depend on the trainer. Rule of thumb: anything about a *particular hand or what it teaches* belongs here; anything about *how the app behaves for every hand* belongs in the trainer. The one shared seam is the coaching markers (`[show X]`, `[BID xxx]`, `\S\H\D\C`) — prose authored here, parser in the trainer's `server.py`. See [Bridge Play Trainer.md](Bridge Play Trainer.md) for the full trainer write-up.
 
+### Coaching: staging vs. served (`coaching-curated/` → `coaching/`)
+
+Coaching prose has two directories with a one-way promotion between them:
+
+- **`coaching-curated/`** is the **working/staging** directory. All prose is authored and edited here, and all gates run here (`py/coach.py validate`, `py/suit_quality.py`).
+- **`coaching/`** is the **served** directory — the files the trainer actually loads. **Never hand-edit `coaching/`**; it is generated.
+
+Promote with `python3 -P py/promote.py` (run from the project root). It is **gated, not a blind copy**: each scenario is copied over its served counterpart only if it passes the full gate suite (`coach.py validate` structure + suit-quality prose, plus the issue-#29 ordering lint). A scenario that fails any gate is **blocked** (left un-promoted) and reported; the script prints what it promoted, what was already current, and what it blocked, and exits non-zero if anything was blocked. Use `--check` for a dry run, or pass scenario names to restrict the set. Edit prose in `coaching-curated/`, re-run the gate, then promote.
+
 ## Active work: deal curation (2026-06)
 
 A curation stage is being built between `filter` and coaching authoring.
