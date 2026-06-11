@@ -223,20 +223,59 @@ tpEW = tpEast + tpWest
 
 ### End of Imported Script: TP
 # Defines tpSouth
+### Imported Leveling Code ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep015 = keep06 and c3
+keep03 = keep06 and keep44
+keep045 = keep06 and not c3
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep955 = not keep045
+keep97 = not keep03
+keep985 = not keep015
+keep   = 1
+keep0  = 0
+### End of Imported Leveling Code ###
+# Defines keepNN throttles (keepNN ~= keep NN% of hands) for leveling
 
 # ============================================================
 # North response building blocks (Todd 1m-2x), all deny a 4-card major
 # ============================================================
 nNoMajor = spades(north)<4 and hearts(north)<4
 nSup     = (oneClub and clubs(north)>3)    or (oneDiamond and diamonds(north)>3)   // 4+ support for opener's minor
-nNoSup   = (oneClub and clubs(north)<4)    or (oneDiamond and diamonds(north)<4)   // < 4 support
 nBal     = shape(north, any 4333 + any 4432 + any 5332)
 
-# Each response is a self-contained hand type:
+# Each response is a self-contained hand type.
+# OUT OF SCOPE: unbalanced 15-17 hands have no bid here -- they match no
+# response below, so the final selection never generates them.
 n2S  = hcp(north)>6  and hcp(north)<10 and nNoMajor and nSup            // 2S  constructive raise 7-9
 n2H  = hcp(north)>9  and hcp(north)<13 and nNoMajor                     // 2H  invitational 10-12
-n3NT = hcp(north)>14 and hcp(north)<18 and nNoMajor and nBal and nNoSup // 3NT 15-17 balanced, no fit, to play
-n2NT = hcp(north)>12 and hcp(north)<20 and nNoMajor and not n3NT        // 2NT game force (everything else, mini-maxi)
+n3NT = hcp(north)>14 and hcp(north)<18 and nNoMajor and nBal           // 3NT 15-17 balanced, to play
+n2NT = nNoMajor and ((hcp(north)>12 and hcp(north)<15) or (hcp(north)>17 and hcp(north)<20))  // 2NT mini-maxi: 13-14 or 18-19
 
 # ============================================================
 # Opener (South) framing -- a standard 1m opener
@@ -253,7 +292,7 @@ sRange = tpSouth>11 and hcp(south)>10 and tpSouth<22 and hcp(south)<23
 #   Test 2NT only:  s1m and n2NT and sRange and sShape and calmWest
 #   Test 3NT only:  s1m and n3NT and sRange and sShape and calmWest
 # ============================================================
-s1m and (n2S or n2H or n2NT or n3NT) and sRange and sShape and calmWest
+s1m and (n2S or (n2H and keep44) or (n2NT and keep67) or n3NT) and sRange and sShape and calmWest
 
 action printoneline,
 
@@ -262,8 +301,8 @@ average "     2H inv  " 100 * n2H,
 average "     2NT GF  " 100 * n2NT,
 average "     3NT 1517" 100 * n3NT,
 
-average "  2NT mini   " 100 * (n2NT and hcp(north)<15),
-average "  2NT maxi   " 100 * (n2NT and hcp(north)>14),
+average "  2NT 13-14  " 100 * (n2NT and hcp(north)<15),
+average "  2NT 18-19  " 100 * (n2NT and hcp(north)>17),
 
 average "hcp South   " hcp(south),
 average "    North   " hcp(north),
