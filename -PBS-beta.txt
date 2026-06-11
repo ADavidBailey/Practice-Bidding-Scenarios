@@ -236,6 +236,17 @@ Script,onDataLoad
     var PBS_TEST_BASE = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/pbs-test';
     var PBS_RELEASE_BASE = 'https://raw.githubusercontent.com/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/main/pbs-release';
 
+    // Cache-buster: append a unique param to GitHub fetches so the browser/CDN
+    // never serve a stale copy after a push (fixes the "refresh doesn't update
+    // the menu" lag). Scoped to this IIFE only; the global fetch is untouched.
+    var _pbsOrigFetch = window.fetch.bind(window);
+    function fetch(u, opts) {
+        if (typeof u === 'string' && (u.indexOf('githubusercontent.com') !== -1 || u.indexOf('api.github.com') !== -1)) {
+            u += (u.indexOf('?') === -1 ? '?' : '&') + '_cb=' + Date.now();
+        }
+        return _pbsOrigFetch(u, opts);
+    }
+
     // Track referenced buttons and missing PBS files
     var referencedScenarios = [];
     var missingPbsFiles = [];
