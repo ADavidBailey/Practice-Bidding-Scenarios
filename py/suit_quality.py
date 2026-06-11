@@ -73,9 +73,33 @@ _SOLID_SUIT_RE = re.compile(
     r"(?:(?:six|seven|eight|6|7|8)[-\s]card\s+)?"   # optional length
     r"(?:(spade|heart|diamond|club)s?(?:\s+suit)?"  # group 1: suit word
     r"|\\([SHDC]))"                                  # group 2: suit symbol
-    r"(?!\s+sequence)",
+    r"(?![A-Za-z0-9]*\s*sequence)"                   # "solid \HKQJ sequence"
+    r"(?!\s+honou?rs?)"                              # "solid diamond honours"
+    r"(?!\s+winners?)",                              # "solid \C winners"
     re.IGNORECASE,
 )
+
+RANKS = "AKQJT98765432"
+
+
+def combined_solid(n_hold: str, s_hold: str) -> bool:
+    """True when the PARTNERSHIP suit runs with no loser against any break:
+    opponents' best card must lose to the card our side plays on the last
+    round they can still follow suit. Stricter than GIB is_solid (which is a
+    bidding label tolerating normal breaks); used only to validate prose that
+    calls the partnership's combined suit 'solid'."""
+    ours = sorted(set(n_hold.upper() + s_hold.upper()) & set(RANKS),
+                  key=RANKS.index)
+    if not ours:
+        return False
+    theirs = [r for r in RANKS if r not in ours][: 13 - len(ours)]
+    if not theirs:
+        return True
+    rounds = max(len(n_hold), len(s_hold))
+    k = min(len(theirs), rounds)
+    if k > len(ours):
+        return False
+    return RANKS.index(theirs[0]) > RANKS.index(ours[k - 1])
 
 
 def _hands_from_deal(deal_str):
@@ -104,9 +128,20 @@ def solidity_violations(pbn_path: str):
         for m in _SOLID_SUIT_RE.finditer(prose):
             word, sym = m.group(1), m.group(2)
             idx = _SUIT_IDX[(word or sym).lower() if word else sym]
+            # Claims attributed to the opponents ("East's solid club suit",
+            # "if East turns up with a long, solid club suit") are about E/W
+            # holdings — out of scope for this N/S check. Look back through
+            # the current sentence (bounded) for an E/W attribution word.
+            back = prose[max(0, m.start() - 80):m.start()]
+            for stop in ".;:!?":
+                if stop in back:
+                    back = back.rsplit(stop, 1)[1]
+            if re.search(r"\b(east|west|opponents?|defenders?)\b", back, re.I):
+                continue
             # The claim is about the coached side's suit; accept it if EITHER
-            # North or South actually holds a solid suit there.
-            if any(is_solid("".join(hands[s][idx])) for s in ("N", "S")):
+            # hand is GIB-solid OR the combined partnership suit runs.
+            n_h, s_h = "".join(hands["N"][idx]), "".join(hands["S"][idx])
+            if is_solid(n_h) or is_solid(s_h) or combined_solid(n_h, s_h):
                 continue
             ns_hold = " / ".join(f"{s}:{''.join(hands[s][idx]) or '-'}"
                                  for s in ("N", "S"))
@@ -162,20 +197,25 @@ if __name__ == "__main__":
         if not os.path.exists(path):
             print(f"{scn}: no coaching PBN found"); continue
         viol = solidity_violations(path)
-        total += len(viol)
         for v in viol:
             print(f"  {scn} b{v['board']}: '{v['phrase']}' but {v['suit']} "
                   f"holdings are {v['holding']} (not solid)")
         # Ordering lint: report solid-suit ('upgrade') boards and their served
         # position; flag any that lead the lesson (issue #29 policy: beyond #4).
+        # Scoped to BIDDING lessons: in play lessons (finesses, hold-ups, ...)
+        # a solid suit is part of the deal design, not an upgrade problem.
         early = []
+        if not scn.startswith("Basic_"):
+            print(f"{scn}: {len(viol)} suit-solidity issue(s) (play lesson — ordering lint skipped)")
+            total += len(viol)
+            continue
         for posn, board, seat, hold in solid_suit_positions(path):
             tag = " <-- in first 4!" if posn <= 4 else ""
             print(f"  {scn} b{board}: solid suit {seat}:{hold} served at "
                   f"position {posn}{tag}")
             if posn <= 4:
                 early.append(board)
-        total += len(early)
+        total += len(viol) + len(early)
         print(f"{scn}: {len(viol)} suit-solidity issue(s), "
               f"{len(early)} solid-suit board(s) in first 4")
     sys.exit(1 if total else 0)
