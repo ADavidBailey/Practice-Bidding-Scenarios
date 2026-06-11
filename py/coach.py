@@ -280,6 +280,12 @@ def validate(scn):
         if i < 0:
             print(f"  {scn} b{b}: no coaching block"); issues += 1; continue
         body = ch[i:ch.find('}', i)]
+        # Play lessons use the [ROLE]/[STAGE] marker dialect, not bid-by-bid
+        # [BID] chunks (a bidding-lesson convention). The [BID]-structure
+        # checks below would false-positive on every play board, so skip them
+        # here. The suit-quality gate (after this loop, file-level) still runs.
+        if '[ROLE' in body:
+            continue
         bids = re.findall(r'\[BID\s+([^\]]+)\]', body)
         nbids = [_norm_call(x) for x in bids]
         probs = []
