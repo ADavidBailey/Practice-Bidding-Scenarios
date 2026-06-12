@@ -36,7 +36,7 @@ minorOpening = hcp(south)>11 and hcp(south)<15 and noFiveCardMajor
 
 # North: invitational, a 4-card major, nothing longer.  Responds 1H
 # with 4 hearts (4-4 goes up the line), else 1S with 4 spades.
-northInvites = shape(north, 44xx+43xx+34xx -any 5xxx -any 6xxx) and hcp(north)>10 and hcp(north)<14
+northResponds = shape(north, 44xx+43xx+34xx -any 5xxx -any 6xxx) and hcp(north)>10 and hcp(north)<14
 northBidsHearts = hearts(north)==4
 northBidsSpades = spades(north)==4 and hearts(north)==3
 
@@ -73,7 +73,7 @@ calmOpps = calmEast and calmWest
 ##### End of Imported Script: Define Calm Opponents #####
 
 # Now do it...
-minorOpening and northInvites and openerRaises and calmOpps
+minorOpening and northResponds and openerRaises and calmOpps
 action printoneline,
 `, "S", true)
 Script
