@@ -18,7 +18,7 @@ setDealerCode(`
 /*
 convention-card-ns: 21GF-DEFAULT
 convention-card-ew: 21GF-GIB
-auction-filter: ((1[CD] +Pass +1H +Pass\n2H +Pass +[23])|(1[CD] +Pass +1S +Pass\n2S +Pass +[23]))
+auction-filter: .
 */
 produce 1000
 
@@ -40,10 +40,22 @@ northResponds = shape(north, 44xx+43xx+34xx -any 5xxx -any 6xxx) and hcp(north)>
 northBidsHearts = hearts(north)==4
 northBidsSpades = spades(north)==4 and hearts(north)==3
 
-# Opener raises North's actual major on 3- or 4-card support.
-raisesHearts = northBidsHearts and hearts(south)>2 and hearts(south)<5
-raisesSpades = northBidsSpades and spades(south)>2 and spades(south)<5
-openerRaises = raisesHearts or raisesSpades
+# Opener raises North's actual major.  Four-card support is the ordinary
+# simple raise.  Three-card support is raised only WITH a ruffing value -- an
+# "unguarded" short side suit: a void/singleton, or a doubleton with no card a
+# ten or higher (top5 counts A,K,Q,J,T, so ==0 means xx).  That is the
+# article's rule -- raise on xx, but rebid 1NT to decelerate on 10x -- and it
+# drops the flat 4-3-3-3 minimums while keeping the doubleton hands (2N/3N
+# answers) and the shortness hands (3D/3H answers) the spiral ladder needs.
+fourCardRaise = (northBidsHearts and hearts(south)==4) or (northBidsSpades and spades(south)==4)
+spadeUnguarded   = spades(south)<2   or (spades(south)==2   and top5(south,spades)==0)
+heartUnguarded   = hearts(south)<2   or (hearts(south)==2   and top5(south,hearts)==0)
+diamondUnguarded = diamonds(south)<2 or (diamonds(south)==2 and top5(south,diamonds)==0)
+clubUnguarded    = clubs(south)<2    or (clubs(south)==2    and top5(south,clubs)==0)
+heartShortSide = spadeUnguarded or diamondUnguarded or clubUnguarded
+spadeShortSide = heartUnguarded or diamondUnguarded or clubUnguarded
+threeCardSuitable   = (northBidsHearts and hearts(south)==3 and heartShortSide) or (northBidsSpades and spades(south)==3 and spadeShortSide)
+threeCardUnsuitable = (northBidsHearts and hearts(south)==3 and not heartShortSide) or (northBidsSpades and spades(south)==3 and not spadeShortSide)
 
 ##### Imported Script: Define Calm Opponents #####
 
@@ -71,10 +83,81 @@ calmWest = (unbalWest and noConWest and hcp(west)<8) or (balWest and hcp(west)<1
 calmOpps = calmEast and calmWest
 
 ##### End of Imported Script: Define Calm Opponents #####
+### Imported Leveling Code ###
+c1 = hascard(west,2C)
+c2 = hascard(east,2D)
+c3 = hascard(west,3C)
+c4 = hascard(east,3D)
+
+keep06 = c1 and c2          // this is used later w/c3 & c4 expressions
+keep44 = c3 or c4           // this is used later w/c1 & c2 expressions
+
+keep015 = keep06 and c3
+keep03 = keep06 and keep44
+keep045 = keep06 and not c3
+####06 = c1 and c2
+keep11 = c1 and keep44
+keep14 = c1 and not keep44
+keep19 = c1 and not c2
+keep25 = c1
+keep30 = keep06 or c3
+keep33 = c1 or (c2 and keep44)
+####44 = c3 or c4
+keep47 = keep44 or keep06
+
+keep53 = not keep47
+keep56 = not keep44
+keep67 = not keep33
+keep70 = not keep30
+keep75 = not keep25
+keep81 = not keep19
+keep86 = not keep14
+keep89 = not keep11
+keep94 = not keep06
+keep955 = not keep045
+keep97 = not keep03
+keep985 = not keep015
+keep   = 1
+keep0  = 0
+### End of Imported Leveling Code ###
+
+# Practice wants all three rebid problems in roughly equal measure: the
+# four-card raise, the suitable three-card raise, and the UNSUITABLE three-
+# card hand (opener should NOT raise -- instead rebid 1NT, bid an unbid 1S,
+# bid 2C, or rebid the opening minor).  Natural frequencies are lopsided
+# (172 : 66 : 262), so level the plentiful paths down to the rarest (the
+# suitable hands).  Retune the keepNN (keep = 100%, keep44 = 44%, keep25 = 25%).
+fourCardLeveled   = fourCardRaise       and keep33
+suitableLeveled   = threeCardSuitable
+unsuitableLeveled = threeCardUnsuitable and keep25
+teachingHand = fourCardLeveled or suitableLeveled or unsuitableLeveled
+
+# --- statistics breakdowns (over produced hands) ---
+# Suitable raises: balanced (doubleton -> 2N/3N) vs shortness (singleton/void -> 3D/3H).
+heartHasShortness = spades(south)<2 or diamonds(south)<2 or clubs(south)<2
+spadeHasShortness = hearts(south)<2 or diamonds(south)<2 or clubs(south)<2
+threeShortness = (northBidsHearts and hearts(south)==3 and heartHasShortness) or (northBidsSpades and spades(south)==3 and spadeHasShortness)
+threeBalanced = threeCardSuitable and not threeShortness
+# Unsuitable hands by opener's likely rebid: an unbid 1S (4 spades over 1H),
+# else a long minor to rebid (5+), else a balanced 1NT.
+unsuitable1S    = threeCardUnsuitable and northBidsHearts and spades(south)==4
+unsuitableMinor = threeCardUnsuitable and not unsuitable1S and (clubs(south)>4 or diamonds(south)>4)
+unsuitable1NT   = threeCardUnsuitable and not unsuitable1S and not unsuitableMinor
 
 # Now do it...
-minorOpening and northResponds and openerRaises and calmOpps
+minorOpening and northResponds and teachingHand and calmOpps
 action printoneline,
+average "South HCP                      " hcp(south),
+average "4-card raise pct               " 100 * fourCardRaise,
+average "3-card suitable raise pct      " 100 * threeCardSuitable,
+average "3-card unsuitable pct          " 100 * threeCardUnsuitable,
+average "  suitable: balanced 2N/3N pct " 100 * threeBalanced,
+average "  suitable: shortness 3D/3H pct" 100 * threeShortness,
+average "  unsuitable: rebid 1NT pct    " 100 * unsuitable1NT,
+average "  unsuitable: unbid 1S pct     " 100 * unsuitable1S,
+average "  unsuitable: rebid minor pct  " 100 * unsuitableMinor,
+average "North 1H response pct          " 100 * northBidsHearts,
+average "North 1S response pct          " 100 * northBidsSpades,
 `, "S", true)
 Script
 Button,Spiral Raise Revisited,\n\
