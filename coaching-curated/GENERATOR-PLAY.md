@@ -263,7 +263,10 @@ hedged sentence. Keep every defender read hedged regardless.
   signal as fact; hedge ("if they're signaling, that high card hints at…, but
   don't count on it"). Prefer concrete card-reading (rule of 11, who showed
   out) over signal theory.
-- Suit escapes `\S \H \D \C` render as ♠♥♦♣.
+- Suit escapes `\S \H \D \C` render as ♠♥♦♣. EVERY card/holding needs the suit
+  letter: write `\HAQ`, `\SKQ876`, `\DA` — NEVER a bare `\AQ` / `\KQ876` / `\A`.
+  The trainer only substitutes `\S\H\D\C`, so a bare `\<rank>` prints a literal
+  backslash. `coach.py validate` flags any bare-rank escape.
 - The winning line must be findable by PRINCIPLE (counting, the named
   technique), not double-dummy. The board was curated so the principled line
   succeeds and a careless line fails.

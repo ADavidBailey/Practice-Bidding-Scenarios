@@ -30,7 +30,10 @@ Per board, emit the BODY of one `{...}` block (no braces, no code fences):
   that prose to the post-auction chunk, where it renders in the wrong person
   ("You have 10 HCP" about partner). The trainer already shows the student
   their own hand and hides partner's, so no mid-auction reveal is needed.
-- `\S \H \D \C` — render as the four suit symbols.
+- `\S \H \D \C` — render as the four suit symbols. EVERY card/holding needs the
+  suit letter: `\HAQ`, `\SKQ876`, `\DA` — NEVER a bare `\AQ` / `\KQ876` / `\A`
+  (the trainer only substitutes `\S\H\D\C`, so a bare `\<rank>` prints a literal
+  backslash). `coach.py validate` flags any bare-rank escape.
 
 Return ONLY a JSON array: `[{"board":"<n>","coaching":"<body>"}, ...]`, one
 object per input board, every board present once.

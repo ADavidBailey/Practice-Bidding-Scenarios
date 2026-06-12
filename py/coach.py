@@ -89,6 +89,22 @@ def cash_out(h):
     return per
 
 
+def _escape_violations(path):
+    """A suit escape must name its suit: \\S/\\H/\\D/\\C then the ranks. A bare
+    \\<rank> ('\\AK', '\\KQ876') is missing the suit letter and renders as a
+    literal backslash in the trainer (which only substitutes \\S\\H\\D\\C).
+    Deterministic and unambiguous — every bare-rank escape is a bug."""
+    out = []
+    for ch in split_boards(path):
+        a = ch.find('[Auction'); i = ch.find('{', a)
+        if i < 0:
+            continue
+        body = ch[i:ch.find('}', i)]
+        for m in re.finditer(r'\\[AKQJT2-9]+', body):
+            out.append((tag(ch, 'Board'), m.group(0)))
+    return out
+
+
 def _curate_block(ch):
     m = re.search(r'\{Curate\n(.*?)\n\}', ch, flags=re.S)
     d = {}
@@ -517,6 +533,12 @@ def validate(scn):
         issues += 1
         print(f"  {scn} b{v['board']}: '{v['phrase']}' but {v['suit']} "
               f"holdings are {v['holding']} — not solid (GIB: needs AKQ)")
+    # Malformed suit escapes: a bare \<rank> is missing its \S/\H/\D/\C suit
+    # letter and renders a literal backslash to the student. Deterministic.
+    for b, esc in _escape_violations(path):
+        issues += 1
+        print(f"  {scn} b{b}: malformed suit escape '{esc}' — missing the "
+              f"\\S/\\H/\\D/\\C suit letter (renders a literal backslash)")
     print(f"{scn}: {issues} board(s) with structure issues")
     return issues
 
