@@ -1,0 +1,112 @@
+# alias: SpiralRaiseRevisited
+# button-text: Spiral Raise Revisited
+# gib-works: false
+# bba-works: true
+# auction-filter: .
+# convention-card-ns: 21GF-DEFAULT
+# convention-card-ew: 21GF-GIB
+
+/*@chat
+--- Spiral Raise Revisited
+Opener may raise responder's major to 2M on 3- OR 4-card support.
+Responder then asks with the cheapest step, and opener spirals out
+support length, strength, and shortness.
+(Weinstein: 1m 1M now what?  Wolpert: Spiral Raises.)
+
+After 1!D 1!H 2!H, responder asks with 2!S.  Opener answers:
+• 2N  3-card support, balanced, minimum
+• 3!C 4-card support, balanced
+• 3!D 3-card support, short in the other minor (!C)
+• 3!H 3-card support, short in the other major (!S)
+• 3!S 4-card support, splinter in !S
+• 3N  3-card support, balanced, maximum
+• 4!C 4-card support, splinter in the other minor (!C)
+• 4!D 5-4-2-2, maximum
+• 4!H 5-4-2-2, minimum
+(5-4-2-2 means five in the opened minor with four-card support.)
+
+After 1m 1!S 2!S the ask is 2N, the same scheme shifted up a step.
+A 1!C opening mirrors 1!D with the minors swapped.
+
+https://bridgewinners.com/article/view/spiral-raises/
+https://bridgewinners.com/article/view/1m-1m-now-what/
+@chat*/
+
+dealer south
+produce 1000
+
+# Spiral Raise Revisited --------------------------------------------
+# South opens a minor and raises North's major to 2M on 3- or 4-card
+# support.  North asks with the cheapest step (2!S over 1!H, 2N over
+# 1!S) and opener spirals out support length, strength, and shortness.
+# Unlike the two earlier Spiral Raise scenarios, opener may be short
+# in a major or hold a 5-4-2-2, so the whole step-response ladder
+# (the splinter and 5-4-2-2 answers included) can come up.
+
+# South: 12-14 with no 5-card major, so it opens a minor (not 1M/1NT).
+noFiveCardMajor = spades(south)<5 and hearts(south)<5
+minorOpening = hcp(south)>11 and hcp(south)<15 and noFiveCardMajor
+
+# North: invitational, a 4-card major, nothing longer.  Responds 1H
+# with 4 hearts (4-4 goes up the line), else 1S with 4 spades.
+northResponds = shape(north, 44xx+43xx+34xx -any 5xxx -any 6xxx) and hcp(north)>10 and hcp(north)<14
+northBidsHearts = hearts(north)==4
+northBidsSpades = spades(north)==4 and hearts(north)==3
+
+# Opener raises North's actual major.  Four-card support is the ordinary
+# simple raise.  Three-card support is raised only WITH a ruffing value -- an
+# "unguarded" short side suit: a void/singleton, or a doubleton with no card a
+# ten or higher (top5 counts A,K,Q,J,T, so ==0 means xx).  That is the
+# article's rule -- raise on xx, but rebid 1NT to decelerate on 10x -- and it
+# drops the flat 4-3-3-3 minimums while keeping the doubleton hands (2N/3N
+# answers) and the shortness hands (3D/3H answers) the spiral ladder needs.
+fourCardRaise = (northBidsHearts and hearts(south)==4) or (northBidsSpades and spades(south)==4)
+spadeUnguarded   = spades(south)<2   or (spades(south)==2   and top5(south,spades)==0)
+heartUnguarded   = hearts(south)<2   or (hearts(south)==2   and top5(south,hearts)==0)
+diamondUnguarded = diamonds(south)<2 or (diamonds(south)==2 and top5(south,diamonds)==0)
+clubUnguarded    = clubs(south)<2    or (clubs(south)==2    and top5(south,clubs)==0)
+heartShortSide = spadeUnguarded or diamondUnguarded or clubUnguarded
+spadeShortSide = heartUnguarded or diamondUnguarded or clubUnguarded
+threeCardSuitable   = (northBidsHearts and hearts(south)==3 and heartShortSide) or (northBidsSpades and spades(south)==3 and spadeShortSide)
+threeCardUnsuitable = (northBidsHearts and hearts(south)==3 and not heartShortSide) or (northBidsSpades and spades(south)==3 and not spadeShortSide)
+
+#include "script/Calm-Opponents"
+#include "script/Leveling"
+
+# Practice wants all three rebid problems in roughly equal measure: the
+# four-card raise, the suitable three-card raise, and the UNSUITABLE three-
+# card hand (opener should NOT raise -- instead rebid 1NT, bid an unbid 1S,
+# bid 2C, or rebid the opening minor).  Natural frequencies are lopsided
+# (172 : 66 : 262), so level the plentiful paths down to the rarest (the
+# suitable hands).  Retune the keepNN (keep = 100%, keep44 = 44%, keep25 = 25%).
+fourCardLeveled   = fourCardRaise       and keep33
+suitableLeveled   = threeCardSuitable
+unsuitableLeveled = threeCardUnsuitable and keep25
+teachingHand = fourCardLeveled or suitableLeveled or unsuitableLeveled
+
+# --- statistics breakdowns (over produced hands) ---
+# Suitable raises: balanced (doubleton -> 2N/3N) vs shortness (singleton/void -> 3D/3H).
+heartHasShortness = spades(south)<2 or diamonds(south)<2 or clubs(south)<2
+spadeHasShortness = hearts(south)<2 or diamonds(south)<2 or clubs(south)<2
+threeShortness = (northBidsHearts and hearts(south)==3 and heartHasShortness) or (northBidsSpades and spades(south)==3 and spadeHasShortness)
+threeBalanced = threeCardSuitable and not threeShortness
+# Unsuitable hands by opener's likely rebid: an unbid 1S (4 spades over 1H),
+# else a long minor to rebid (5+), else a balanced 1NT.
+unsuitable1S    = threeCardUnsuitable and northBidsHearts and spades(south)==4
+unsuitableMinor = threeCardUnsuitable and not unsuitable1S and (clubs(south)>4 or diamonds(south)>4)
+unsuitable1NT   = threeCardUnsuitable and not unsuitable1S and not unsuitableMinor
+
+# Now do it...
+minorOpening and northResponds and teachingHand and calmOpps
+action
+average "South HCP                      " hcp(south),
+average "4-card raise pct               " 100 * fourCardRaise,
+average "3-card suitable raise pct      " 100 * threeCardSuitable,
+average "3-card unsuitable pct          " 100 * threeCardUnsuitable,
+average "  suitable: balanced 2N/3N pct " 100 * threeBalanced,
+average "  suitable: shortness 3D/3H pct" 100 * threeShortness,
+average "  unsuitable: rebid 1NT pct    " 100 * unsuitable1NT,
+average "  unsuitable: unbid 1S pct     " 100 * unsuitable1S,
+average "  unsuitable: rebid minor pct  " 100 * unsuitableMinor,
+average "North 1H response pct          " 100 * northBidsHearts,
+average "North 1S response pct          " 100 * northBidsSpades,
