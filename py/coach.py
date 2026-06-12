@@ -15,6 +15,16 @@ Two steps bracket the Claude-subagent prose generation:
       coaching-curated/<scenario>.pbn. Validates pronoun tokens and that no
       [BID Pass] slipped in.
 
+  python3 py/coach.py packets|play-packets <scenario> ... --fill
+      Top-up mode: select only boards NOT already in coaching-curated/
+      <scenario>.pbn, up to (N - existing) of them, so an under-built file
+      can grow to N without recoaching what is already reviewed.
+
+  python3 py/coach.py fill-splice <scenario>
+      Non-destructive companion to --fill: keep the existing curated file
+      VERBATIM and APPEND the newly-coached boards (source slice + prose).
+      Works for both play and bidding coach JSON.
+
 The prose itself is written by Claude subagents following GENERATOR.md;
 this script only does the deterministic selection and splice.
 """
@@ -33,7 +43,50 @@ CUR = os.path.join(ROOT, "bba-curated")
 OUT = os.path.join(ROOT, "coaching-curated")
 WORK = os.path.join(OUT, ".work")
 HCP = {'A': 4, 'K': 3, 'Q': 2, 'J': 1}
+RANK = {r: i for i, r in enumerate('23456789TJQKA', start=2)}
 LHO = {'N': 'E', 'E': 'S', 'S': 'W', 'W': 'N'}
+
+
+def _running_suit(a, b, opp):
+    """Tricks NS cashes from the top in ONE notrump suit before losing the
+    lead, choosing which NS hand leads (unlimited entries) so a short-hand
+    unblock and blockage fall out naturally; opponents follow suit. This is
+    the count-winners number, and it is exactly where eye-counting slips: a
+    4-4 AKQJT runs only FOUR (the long hand's honours get used unblocking),
+    and a defender's length can leave the suit short of its honour count."""
+    best = 0
+    for first, second in ((a, b), (b, a)):
+        A = sorted(first); B = sorted(second); O = sorted(opp)
+        tricks = 0; h = [A, B]
+        while A and B:
+            lead = 0 if A[-1] >= B[-1] else 1
+            if h[lead][-1] < (O[-1] if O else -1):
+                break
+            tricks += 1; h[lead].pop(); h[1 - lead].pop(0)
+            for _ in range(2):
+                if O:
+                    O.pop(0)
+        rem = A if A else B; rem.sort()
+        while rem and rem[-1] >= (O[-1] if O else -1):
+            tricks += 1; rem.pop()
+            for _ in range(2):
+                if O:
+                    O.pop(0)
+        best = max(best, tricks)
+    return best
+
+
+def cash_out(h):
+    """Verified per-suit cash-and-out tricks for a NOTRUMP deal, plus the
+    total — the authoritative count-winners number. Authors narrate this
+    verbatim instead of eye-counting (GENERATOR-PLAY.md). Only meaningful
+    in notrump; suit play uses trump_trick_map."""
+    per = {su: _running_suit([RANK[c] for c in h['N'][i]],
+                             [RANK[c] for c in h['S'][i]],
+                             [RANK[c] for c in h['E'][i]] + [RANK[c] for c in h['W'][i]])
+           for i, su in enumerate('SHDC')}
+    per['total'] = sum(per[su] for su in 'SHDC')
+    return per
 
 
 def _curate_block(ch):
@@ -63,13 +116,19 @@ def _match(blk, term):
     return any(v.strip() in words for v in val.split(','))
 
 
-def packets(scn, terms, n):
+def packets(scn, terms, n, fill=False):
     src = os.path.join(CUR, f"{scn}.pbn")
     chunks = split_boards(src)
-    sel = [ch for ch in chunks if all(_match(_curate_block(ch), t) for t in terms)][:n]
+    matching = [ch for ch in chunks if all(_match(_curate_block(ch), t) for t in terms)]
+    if fill:
+        have = {tag(ch, 'Board') for ch in split_boards(os.path.join(OUT, f"{scn}.pbn"))}
+        sel = [ch for ch in matching if tag(ch, 'Board') not in have][:max(0, n - len(have))]
+    else:
+        sel = matching[:n]
     os.makedirs(WORK, exist_ok=True)
-    # selected input PBN, Curate blocks stripped (the generator doesn't need them)
-    inp = "".join(re.sub(r'\{Curate\n.*?\n\}\n', '', ch, flags=re.S) for ch in sel)
+    # selected input PBN — keep the {Curate} blocks so the file carries
+    # per-board tier (fill mode appends them, like play files already do).
+    inp = "".join(sel)
     open(os.path.join(WORK, f"{scn}-input.pbn"), "w").write(inp)
     # packets (split into chunks of 15 for parallel subagents)
     pkts = []
@@ -139,12 +198,18 @@ def _norm_call(s):
 LHO = {'N': 'E', 'E': 'S', 'S': 'W', 'W': 'N'}
 
 
-def play_packets(scn, theme, n):
+def play_packets(scn, theme, n, fill=False):
     """Select curated boards graded declarer textbook/standard for THEME and
-    build play-coaching packets (deal + contract + declarer + leader + note)."""
+    build play-coaching packets (deal + contract + declarer + leader + note).
+    fill=True tops up an existing coaching-curated/<scn>.pbn: skip boards it
+    already holds and select only up to (n - existing) new ones."""
     src = os.path.join(CUR, f"{scn}.pbn")
     graded = {v['deal_hash']: v for v in
               json.load(open(os.path.join(CUR, f"{scn}-graded.json")))['verdicts']}
+    have, target = set(), n
+    if fill:
+        have = {tag(ch, 'Board') for ch in split_boards(os.path.join(OUT, f"{scn}.pbn"))}
+        target = max(0, n - len(have))
     pkts = []
     for ch in split_boards(src):
         d = tag(ch, 'Deal'); v = graded.get(deal_hash(d)) if d else None
@@ -153,6 +218,8 @@ def play_packets(scn, theme, n):
         decl = v.get('declarer', {})  # declarer-play GRADING (tier/themes/note)
         tier = decl.get('tier'); themes = decl.get('themes', []); note = decl.get('note', '')
         if tier not in ('textbook', 'standard') or theme not in themes:
+            continue
+        if fill and tag(ch, 'Board') in have:
             continue
         h = hands(d); declarer = tag(ch, 'Declarer')  # the declaring SEAT
         contract = tag(ch, 'Contract')
@@ -186,13 +253,17 @@ def play_packets(scn, theme, n):
             "hands": {s: " ".join(f"{su}:{''.join(h[s][i]) or '-'}"
                                   for i, su in enumerate("SHDC")) for s in "NESW"},
             "trick_map": tmap,
+            # VERIFIED per-suit cash-and-out count (notrump only) — the
+            # count-winners number; reconciles to the contract. Authors quote
+            # this rather than eye-counting blockage-prone suits.
+            "cash_out": cash_out(h) if strain == 'N' else None,
             # what declarer can KNOW (ns_hcp/defender_hcp) and INFER (per-defender
             # split + rule-of-11) about the hidden hands; see GENERATOR-PLAY.md.
             "defender_budget": defender_budget(
                 h, declarer, dealer=tag(ch, 'Dealer'),
                 auction=auction, opening_lead=ol, strain=strain),
         })
-        if len(pkts) >= n:
+        if len(pkts) >= target:
             break
     os.makedirs(WORK, exist_ok=True)
     size = (len(pkts) + 1) // 2 or 1
@@ -255,6 +326,107 @@ def play_splice(scn):
         print(f"  WARNING: space before lead rank (breaks auto-lead): {sorted(spacelead)}")
     if wronglead:
         print(f"  WARNING: pre-lead card != standard lead: {sorted(wronglead)}")
+
+
+def fill_splice(scn):
+    """Non-destructive top-up: keep the existing coaching-curated/<scn>.pbn
+    VERBATIM and APPEND newly-coached boards. Works for both play tips
+    ([ROLE]/[STAGE]) and bidding ([BID]) prose — the source slice + prose are
+    spliced after the auction exactly as play_splice/splice do, so the same
+    coach JSON files feed it.
+
+    Two passes:
+      1. Existing boards are kept as-is, except a board that lacks a {Curate}
+         block gets the source block (matched by deal_hash) backfilled in,
+         immediately before [Auction], so the file carries per-board tier
+         uniformly. Play files already carry {Curate}, so this is a no-op and
+         the existing content stays byte-for-byte identical (prefix gate).
+      2. Each coached board not already present is appended: the source board
+         slice from bba-curated with its prose spliced after the auction.
+    Then validate(scn)."""
+    out_path = os.path.join(OUT, f"{scn}.pbn")
+    src_chunks = split_boards(os.path.join(CUR, f"{scn}.pbn"))
+    src_by_hash = {deal_hash(tag(ch, 'Deal')): ch for ch in src_chunks if tag(ch, 'Deal')}
+    # prose from whichever coach files the authoring step produced
+    coach = {}
+    for pat in (f"{scn}-play-coach*.json", f"{scn}-coach*.json"):
+        for f in sorted(glob.glob(os.path.join(WORK, pat))):
+            for o in json.load(open(f)):
+                coach[str(o['board'])] = o['coaching'].strip()
+    if not coach:
+        sys.exit(f"no {scn}-coach*.json / {scn}-play-coach*.json in {WORK}")
+
+    raw = open(out_path, encoding='utf-8', errors='replace').read()
+    existing = split_boards(out_path)
+    have = {tag(ch, 'Board') for ch in existing}
+    # pass 1 — backfill {Curate} only into boards missing it. If none are
+    # missing (play files), keep the raw prefix verbatim so it is a byte-exact
+    # prefix of the result.
+    if all('{Curate' in ch for ch in existing):
+        prefix = raw
+    else:
+        rebuilt = []
+        for ch in existing:
+            if '{Curate' not in ch:
+                d = tag(ch, 'Deal')
+                src = src_by_hash.get(deal_hash(d)) if d else None
+                cm = re.search(r'(\{Curate\n.*?\n\}\n)', src, flags=re.S) if src else None
+                am = re.search(r'\[Auction "', ch)
+                if cm and am:
+                    ch = ch[:am.start()] + cm.group(1) + ch[am.start():]
+            rebuilt.append(ch)
+        prefix = "".join(rebuilt)
+
+    # pass 2 — append source slice + spliced prose for each new coached board,
+    # in source order.
+    new_blocks = []
+    for ch in src_chunks:
+        b = tag(ch, 'Board')
+        if b in have or b not in coach:
+            continue
+        m = re.search(r'(\[Auction "[^"]*"\]\n(?:[^\[{][^\n]*\n)*)', ch)
+        if m:
+            ch = ch[:m.end()] + "{" + coach[b] + "}\n" + ch[m.end():]
+        new_blocks.append(ch)
+    open(out_path, "w").write(prefix + "".join(new_blocks))
+    appended = [tag(ch, 'Board') for ch in new_blocks]
+    print(f"{scn}: kept {len(existing)} existing boards, appended {len(appended)} "
+          f"-> {out_path} ({len(existing) + len(appended)} total)")
+    # any coached board we couldn't place (number not in source, or already had)
+    missing = sorted(b for b in coach if b not in have and b not in appended)
+    if missing:
+        print(f"  WARNING: {len(missing)} coached board(s) not found in source: {missing}")
+
+    # load-bearing pre-lead cross-check on appended PLAY boards (the card is
+    # auto-played, so it must equal the standard opening lead from the leader).
+    info = {tag(ch, 'Board'): (tag(ch, 'Deal'), tag(ch, 'Declarer'), tag(ch, 'Contract'))
+            for ch in src_chunks}
+    nolead, spacelead, wronglead = [], [], []
+    for ch in new_blocks:
+        b = tag(ch, 'Board'); body = ch[ch.find('{'):ch.find('}', ch.find('{')) + 1]
+        if '[ROLE' not in body:
+            continue  # bidding board — no pre-lead
+        if not re.search(r'\[ROLE leader\]\[STAGE pre-lead\]\s*Lead the \\[SHDC][AKQJT2-9]', body):
+            nolead.append(b)
+        if re.search(r'Lead the \\[SHDC]\s+[AKQJT2-9]', body):
+            spacelead.append(b)
+        m = re.search(r'Lead the (\\[SHDC][AKQJT2-9])', body)
+        deal, decl, contract = info.get(b, (None, None, None))
+        if m and deal and decl:
+            leadh = hands(deal)[LHO.get(decl)]
+            strain = contract[1] if contract and len(contract) >= 2 else 'N'
+            ol = (opening_lead_vs_nt(leadh) if strain == 'N'
+                  else opening_lead_vs_suit(leadh, STRAIN_IDX[strain]))
+            want = f"\\{SUITS[ol[0]]}{ol[1]}" if ol else None
+            if want and m.group(1) != want:
+                wronglead.append(f"{b}:{m.group(1)}!={want}")
+    if nolead:
+        print(f"  WARNING: {len(nolead)} appended play board(s) missing 'Lead the \\Xr' pre-lead: {sorted(nolead)}")
+    if spacelead:
+        print(f"  WARNING: space before lead rank (breaks auto-lead): {sorted(spacelead)}")
+    if wronglead:
+        print(f"  WARNING: pre-lead card != standard lead: {sorted(wronglead)}")
+    validate(scn)
 
 
 def validate(scn):
@@ -351,7 +523,8 @@ def validate(scn):
 
 if __name__ == "__main__":
     a = sys.argv[1:]
-    if len(a) < 2 or a[0] not in ("packets", "splice", "validate", "play-packets", "play-splice"):
+    if len(a) < 2 or a[0] not in ("packets", "splice", "validate", "play-packets",
+                                  "play-splice", "fill-splice"):
         sys.exit(__doc__)
     if a[0] == "validate":
         for scn in a[1:]:
@@ -360,12 +533,16 @@ if __name__ == "__main__":
     if a[0] == "play-splice":
         play_splice(a[1])
         sys.exit(0)
+    if a[0] == "fill-splice":
+        fill_splice(a[1])
+        sys.exit(0)
     if a[0] == "play-packets":
         rest = a[2:]; n = 30
+        fill = "--fill" in rest; rest = [x for x in rest if x != "--fill"]
         if "-n" in rest:
             i = rest.index("-n"); n = int(rest[i+1]); del rest[i:i+2]
         theme = rest[0] if rest else "hold-up"
-        play_packets(a[1], theme, n)
+        play_packets(a[1], theme, n, fill=fill)
         sys.exit(0)
     cmd, scn = a[0], a[1]
     if cmd == "splice":
@@ -373,7 +550,8 @@ if __name__ == "__main__":
     else:
         rest = a[2:]
         n = 30
+        fill = "--fill" in rest; rest = [x for x in rest if x != "--fill"]
         if "-n" in rest:
             i = rest.index("-n"); n = int(rest[i+1]); del rest[i:i+2]
         terms = rest or ["bidding=textbook,judgment", "diff<=3"]
-        packets(scn, terms, n)
+        packets(scn, terms, n, fill=fill)

@@ -110,6 +110,51 @@ suit whose `establishable` exceeds its `top`); never tell declarer to develop
 a flat suit. Your running count must reconcile with the contract — if your
 narrative sums to fewer than the tricks needed, you have the wrong suit.
 
+## Counting discipline — `cash_out`, tops, and the developed-tally trap
+
+Trick counting is THE place play coaching slips, because per-suit counts are
+entangled: blockage, hold-ups, finesses and entries mean the suits do NOT add
+up independently. Two failures recur, each with its own safe pattern.
+
+**Notrump cash-and-cash hands (count-winners): use `cash_out` verbatim.** A
+notrump packet carries a verified `cash_out`:
+
+```
+"cash_out": { "S": 1, "H": 1, "D": 5, "C": 1, "total": 8 }
+```
+
+These are the exact tricks NS cashes from the top by force (opponents follow
+suit, blockage and short-hand unblocks accounted for). Narrate THESE numbers —
+do not recount. This is precisely where the eye slips: a **4-4 AKQJT blocks to
+FOUR**, not five (the long hand's honours are spent unblocking), and a
+defender's length can leave a suit short of its honour count even after the
+ace is out. `cash_out.total` reconciles to the contract (1NT=7, 2NT=8, 3NT=9);
+when it exceeds the contract the extra are overtricks. Your per-suit breakdown
+must equal `cash_out`. If a board's `cash_out.total` is BELOW the contract it
+is not a pure cash-out hand (it needs a conceded trick) — flag it; it was
+probably mis-selected for the count-winners theme.
+
+**Hold-up / avoidance / any hand that develops a trick: enumerate only the
+TOPS, develop qualitatively, and write NO precise developed tally.** Here the
+contract is reached by conceding the lead (knock out a stopper, take a
+finesse), so the suits genuinely entangle and a "2♠ + 1♥ + 3♦ + 3♣ = 9"
+breakdown is both fragile and usually wrong. Follow the approved style:
+
+- Enumerate ONLY the immediately-cashable `top` tricks per suit (reliable):
+  *"two top \S, the \HA, two top \D and two top \C — seven on top, so you need
+  two more."*
+- Describe the source of the extra tricks QUALITATIVELY and name the
+  technique/suit: *"hold up the \HA to strip East, then establish the long
+  clubs"* / *"develop \D and \C, where the finesses lose safely to East."*
+- The `[STAGE post-play]` tip states the TOTAL ("nine tricks") and explains the
+  technique — it must NOT enumerate a developed per-suit breakdown.
+
+Do NOT try to give an exact developed per-suit tally on these hands — there is
+no reliable per-suit number to quote (standalone single-suit counts don't sum
+to the contract), so any precise "X♠+Y♥+Z♦+W♣ = nine" you invent will drift.
+Tops are exact; the total is exact (the board is curated to make); everything
+between them is qualitative.
+
 ### Suit contracts: the trump-aware trick_map (`py/trump_tricks.py`)
 
 For a **suit** contract the packet's `trick_map` is the trump-aware shape below
@@ -227,11 +272,14 @@ hedged sentence. Keep every defender read hedged regardless.
 
 1. `coach.py play-packets <scenario>` — select curated boards for the theme,
    build packets {board, deal (all four hands, for the AUTHOR to reason about
-   the play), contract, declarer, leader, theme, curate note, dd info}.
+   the play), contract, declarer, leader, theme, curate note, trick_map,
+   defender_budget, and (notrump) `cash_out` — the verified count-winners
+   number}. Add `--fill` to top up an under-built file (selects only boards
+   not already in `coaching-curated/<scenario>.pbn`).
 2. A subagent per packet writes the tips per this spec.
-3. `coach.py play-splice <scenario>` — splice the tips after each board's
-   auction; validate (pre-lead card present + no-space, [ROLE]/[STAGE] parse,
-   endplay-parses).
+3. `coach.py play-splice <scenario>` (or `fill-splice` after `--fill`) — splice
+   the tips after each board's auction; validate (pre-lead card present +
+   no-space, [ROLE]/[STAGE] parse, endplay-parses).
 
 ## Interactive play decisions — the `[PLAY]` marker (live)
 
