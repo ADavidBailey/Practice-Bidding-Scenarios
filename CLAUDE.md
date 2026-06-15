@@ -28,11 +28,17 @@ Promote with `python3 -P py/promote.py` (run from the project root). It is **gat
 
 A curation stage is being built between `filter` and coaching authoring.
 Before working on anything touching `bba/`, `bba-curated/`, `coaching/`, or
-`py/curate|annotate|select|auction_diff.py`, read:
+`py/curate|annotate|select|auction_diff|spiral_auction|coach.py`, read:
 
 - the most recent `bookmark-curation-*.md` (current status + open items)
 - `pbn-curation-plan.md` (design) and `bba-curated/README.md` (the
   `{Curate}` block format and the `py/select.py` filter)
+
+Convention/spiral scenarios (e.g. `Spiral_Raises_*`) take a different path and do
+**not** use `curate.py` (Layer A). They curate via `py/spiral_auction.py`
+(`report` → `generate` → `grade` → `substitute`) plus `py/annotate.py`, then coach via
+`py/coach.py` (`packets` → `augment` → `splice`). Note: `spiral_auction.py` currently
+hardcodes the scenario name, so it must be driven per-scenario until parameterized.
 
 A Cowork session is co-working in this repo via the same files; coordinate
 through commits and the bookmark (update it at the end of a work session),
