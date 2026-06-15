@@ -25,7 +25,7 @@ if _HERE not in sys.path:
 import curate
 from curate import hands, deal_hash, tag, split_boards, hcp_of, SUITS
 
-SCN = "Spiral_Raise_Revisited"
+SCN = os.environ.get('SPIRAL_SCN', 'Spiral_Raise_Revisited')
 SI = {'S': 0, 'H': 1, 'D': 2, 'C': 3}          # index into hands()'s [S,H,D,C] lists
 CALL_RE = re.compile(r'^(Pass|X|XX|AP|[1-7][CDHSN])$')
 
@@ -35,6 +35,13 @@ CALL_RE = re.compile(r'^(Pass|X|XX|AP|[1-7][CDHSN])$')
 _DIRECTIVE = curate.curate_directive(SCN) or {}
 MAX_CUTOFF = int(os.environ.get('SPIRAL_MAX_CUTOFF',
                                 _DIRECTIVE.get('spiral_max_cutoff', '14')))
+
+# Which convention overlay to generate. 'spiral' (default) = the Wolpert
+# cheapest-step ladder below. 'weinstein' = 2NT ask in both cases + a natural
+# fit-find for the other major + a simple 4-rung answer set. Selected by the
+# .btn '# curate:' directive (convention=weinstein), env-overridable for runs.
+SCHEME = (os.environ.get('SPIRAL_SCHEME')
+          or _DIRECTIVE.get('convention') or 'spiral').lower()
 
 # --- the spiral answer ladder -------------------------------------------------
 # One semantic ladder (ascending step order); rendered to concrete calls per
@@ -189,17 +196,23 @@ def board_spiral(chunk):
     rec['decision'] = opener_decision(south, responder_major)
     if rec['decision'] in ('four', 'suitable3'):
         rec['kind'] = 'raise'
-        fams = matching_families(south, opened_minor, responder_major)
-        rec['families'] = fams
-        if len(fams) == 0:
-            rec['flag'] = 'NO-RUNG'
-        elif len(fams) > 1:
-            rec['flag'] = 'AMBIGUOUS:' + ','.join(fams)
-        rung = classify_rung(south, opened_minor, responder_major)
-        rec['rung'] = rung
-        rec['answer'] = answer_call(rung, responder_major) if rung else None
         rec['raise_call'] = '2' + responder_major
-        rec['ask_call'] = '2S' if responder_major == 'H' else '2N'
+        if SCHEME == 'weinstein':
+            # Weinstein: 2NT ask in both cases. The ask-vs-natural choice, the
+            # rung, and the answer need North's hand, so they are filled in
+            # w_build_record_raise() at the build_record stage.
+            rec['ask_call'] = '2N'
+        else:
+            fams = matching_families(south, opened_minor, responder_major)
+            rec['families'] = fams
+            if len(fams) == 0:
+                rec['flag'] = 'NO-RUNG'
+            elif len(fams) > 1:
+                rec['flag'] = 'AMBIGUOUS:' + ','.join(fams)
+            rung = classify_rung(south, opened_minor, responder_major)
+            rec['rung'] = rung
+            rec['answer'] = answer_call(rung, responder_major) if rung else None
+            rec['ask_call'] = '2S' if responder_major == 'H' else '2N'
     else:   # unsuitable3 -> decline, keep BBA's natural auction
         rec['kind'] = 'decline'
         rec['natural_rebid'] = calls[4] if len(calls) > 4 else None
@@ -217,7 +230,7 @@ def report():
     declines = [r for r in recs if r.get('kind') == 'decline']
     flagged = [r for r in recs if r.get('flag')]
     import collections
-    print(f"=== Spiral_Raise_Revisited — Gate-1 self-verify (MAX_CUTOFF={MAX_CUTOFF}) ===")
+    print(f"=== {SCN} — Gate-1 self-verify (MAX_CUTOFF={MAX_CUTOFF}) ===")
     print(f"boards: {len(recs)}  raises: {len(raises)}  declines: {len(declines)}")
     print(f"flagged (anomaly/NO-RUNG/AMBIGUOUS): {len(flagged)}")
     by_case = collections.Counter(r['case'] for r in recs if r.get('case'))
@@ -348,6 +361,8 @@ def build_record(chunk):
         return rec
     if rec.get('kind') != 'raise':
         return rec
+    if SCHEME == 'weinstein':
+        return w_build_record_raise(rec, deal, chunk)
     h = hands(deal)
     rec['support'] = len(h['S'][SI[rec['responder_major']]])
     rec['final'] = placement(rec)
@@ -492,7 +507,7 @@ def grade():
         kind = rec.get('kind')
         if kind == 'raise':
             tier, also, note = grade_raise(rec)
-            diff = DIFFICULTY[rec['rung']]
+            diff = (W_DIFFICULTY if SCHEME == 'weinstein' else DIFFICULTY)[rec['rung']]
             themes = ['spiral', rec['rung'].replace('_', '-')]
             n_raise += 1
         elif kind == 'decline':
@@ -526,6 +541,8 @@ def board_decode(chunk):
     every N/S non-pass call, so prose states VERIFIED convention meanings."""
     rec = build_record(chunk)
     if rec.get('kind') == 'raise':
+        if SCHEME == 'weinstein':
+            return w_decode_raise(rec, chunk)
         om, oM = other_minor(rec['opened_minor']), other_major(rec['responder_major'])
         rm, opm = rec['responder_major'], rec['opened_minor']
         ANS = {
@@ -587,10 +604,213 @@ def augment():
     print(f"augmented {len(decode)} boards with spiral decode")
 
 
+# === Weinstein scheme =========================================================
+# Spiral_Raises_Weinstein (convention=weinstein / SPIRAL_SCHEME=weinstein).
+# Responder asks with 2NT in BOTH cases. UNDERNEATH the ask, a natural fit-find
+# shows the other major: 2S after a 1H response, 3H after a 1S response. Opener's
+# answers to the 2NT ask are a simple 4-rung ladder (no shortness shown):
+#   3C = min / 3-card    3D = max / 3-card    3H = min / 4-card    3S = max / 4-card
+# The raise-vs-decline split, board parsing, DD/scoring, the grading framework,
+# and the entire decline path are SHARED with the spiral scheme above; only the
+# raise auction (ask vs natural, answers, placement, decode) is new here.
+#
+# Bridge-judgment defaults flagged for Gate-1 review with David:
+#   * natural fit-find triggers when North holds 4+ of the OTHER major;
+#   * 4-4 found -> play the other major; otherwise revert to the agreed major;
+#   * placement is coarse (no shortness shown): combined >= 25 => game,
+#     8+ card fit plays the major, a 4-3 plays NT at game / the major partscore;
+#   * min/max uses the same MAX_CUTOFF (14) as the spiral scheme.
+W_ANSWER = {(False, False): '3C', (True, False): '3D',
+            (False, True): '3H', (True, True): '3S'}   # (is_max, support>=4) -> call
+W_RUNG = {'3C': 'ask_min3', '3D': 'ask_max3', '3H': 'ask_min4', '3S': 'ask_max4'}
+W_DIFFICULTY = {'ask_min4': 2, 'ask_max4': 2, 'ask_min3': 3, 'ask_max3': 3,
+                'natural_fit': 3, 'natural_revert': 3}
+W_ANS_MEANING = {
+    'ask_min3': "three-card support, minimum; coded answer to the 2NT ask",
+    'ask_max3': "three-card support, maximum; coded",
+    'ask_min4': "four-card support, minimum; coded",
+    'ask_max4': "four-card support, maximum; coded",
+}
+
+
+def w_placement(rec):
+    """Responder's final contract on the ASK path. Opener has shown support
+    length (3/4) and strength (min/max) but NOT shortness, so placement is
+    coarser than the spiral: combined >= 25 => game; an 8+ card fit plays the
+    major, a 4-3 plays notrump; then bump to be legal at/over opener's answer."""
+    major = rec['responder_major']
+    fit = rec['support'] + rec['north_major']
+    combined = rec['hcp_north'] + rec['hcp_south']
+    answer = rec['answer']
+    game = combined >= 25
+    strain_major = fit >= 8
+    if game:
+        final = '4' + major if strain_major else '3N'
+    else:
+        final = '3' + major            # major partscore (a 4-3 here is a Moysian)
+    if call_rank(final) < call_rank(answer):   # answer overshot -> land at/over it
+        final = '4' + major if strain_major else '3N'
+    return final
+
+
+def w_build_record_raise(rec, deal, chunk):
+    """Weinstein raise board: choose ASK (2NT) vs NATURAL fit-find from North's
+    other-major length, build the full auction, then contract/declarer/DD/score.
+    Returns the same rec shape the shared generate()/grade()/substitute() expect."""
+    h = hands(deal)
+    major = rec['responder_major']
+    oM = other_major(major)
+    rec['support'] = len(h['S'][SI[major]])            # opener's support (3 or 4)
+    rec['north_major'] = len(h['N'][SI[major]])
+    north_oM = len(h['N'][SI[oM]])
+    opener_oM = len(h['S'][SI[oM]])
+    is_max = hcp_of(h['S']) >= MAX_CUTOFF
+    combined = rec['hcp_north'] + rec['hcp_south']
+    game = combined >= 25
+
+    if north_oM >= 4:                                  # NATURAL fit-find branch
+        rec['path'] = 'natural'
+        fit_call = '2S' if major == 'H' else '3H'
+        rec['fit_call'] = fit_call
+        if opener_oM >= 4:                             # 4-4 fit found in the other major
+            rec['rung'] = 'natural_fit'
+            if major == 'H':                           # ...2S; opener raises spades
+                opener_rebid = '3S'
+                final = '4S' if game else '3S'
+            else:                                      # ...3H; no 3-level heart raise exists
+                opener_rebid = '4H' if game else '3H'
+                final = '4H' if game else '3H'
+        else:                                          # no 4-4; revert to the agreed major
+            rec['rung'] = 'natural_revert'
+            opener_rebid = '3' + major
+            final = '4' + major if game else '3' + major
+        rec['ask_call'] = None
+        rec['answer'] = opener_rebid                   # opener's descriptive rebid
+        seq = [rec['opening'], 'Pass', rec['response'], 'Pass',
+               rec['raise_call'], 'Pass', fit_call, 'Pass',
+               opener_rebid, 'Pass']
+    else:                                              # ASK branch (2NT)
+        rec['path'] = 'ask'
+        rec['ask_call'] = '2N'
+        answer = W_ANSWER[(is_max, rec['support'] >= 4)]
+        rec['answer'] = answer
+        rec['rung'] = W_RUNG[answer]
+        final = w_placement(rec)
+        seq = [rec['opening'], 'Pass', rec['response'], 'Pass',
+               rec['raise_call'], 'Pass', rec['ask_call'], 'Pass',
+               answer, 'Pass']
+
+    rec['final'] = final
+    if final == rec['answer']:
+        seq += ['Pass', 'Pass']                        # responder passes opener's rebid
+    else:
+        seq += [final, 'Pass', 'Pass', 'Pass']         # responder places, all pass
+
+    calls_seats = [(SEATS_FROM_S[i % 4], c) for i, c in enumerate(seq)]
+    rec['calls'] = [c for _, c in calls_seats]
+    contract = next(c for _, c in reversed(calls_seats) if c not in ('Pass', 'X', 'XX'))
+    strain = contract[1]
+    dec = compute_declarer(calls_seats, strain)
+    rec['contract'] = contract
+    rec['declarer'] = dec
+    tricks = curate.dd(deal, curate.DEN[strain], dec)
+    vul = (tag(chunk, 'Vulnerable') or 'None')
+    vul_ns = vul in ('NS', 'All', 'Both')
+    rec['result'] = tricks
+    rec['score'] = f"NS {score_ns(int(contract[0]), strain, tricks, vul_ns)}"
+    rec['dd_class'] = curate.classify(deal, contract, dec)[0]
+    return rec
+
+
+def w_decode_raise(rec, chunk):
+    """Per-call decode for the authoring subagent (Weinstein raise boards), so the
+    coaching prose states VERIFIED meanings rather than reinventing them."""
+    major = rec['responder_major']
+    oM = other_major(major)
+    opm = rec['opened_minor']
+    tier, also, _ = grade_raise(rec)
+    open_meaning = f"opening 12-14, no five-card major, the longer minor ({opm}); says nothing about the majors"
+    resp_meaning = f"four or more {major}, at least invitational values"
+    raise_meaning = f"agrees {major} on three- OR four-card support — minimum or better; opens the Weinstein structure, not a limit bid"
+    if rec.get('path') == 'natural':
+        if rec['rung'] == 'natural_fit':
+            rebid_meaning = f"raises the new suit — opener also holds four {oM}, so the 4-4 {oM} fit is found and is the better strain"
+        else:
+            rebid_meaning = f"no four-card {oM}; returns to the agreed {major}, the known fit"
+        calls = [
+            ('S', rec['opening'], 'open', open_meaning),
+            ('N', rec['response'], 'response', resp_meaning),
+            ('S', rec['raise_call'], 'raise', raise_meaning),
+            ('N', rec['fit_call'], 'fit-find', f"natural and forcing: four or more {oM}, hunting a 4-4 {oM} fit instead of asking with 2NT"),
+            ('S', rec['answer'], 'rebid', rebid_meaning),
+        ]
+    else:
+        calls = [
+            ('S', rec['opening'], 'open', open_meaning),
+            ('N', rec['response'], 'response', resp_meaning),
+            ('S', rec['raise_call'], 'raise', raise_meaning),
+            ('N', '2N', 'ask', "the 2NT ask: artificial and forcing, asking opener to show support length and strength (no shortness in this simple version)"),
+            ('S', rec['answer'], 'answer', W_ANS_MEANING[rec['rung']]),
+        ]
+    if rec['final'] != rec['answer']:
+        if tier == 'judgment':
+            pm = f"borderline: {rec['final']} or {' '.join(also)} — both defensible (quiz accepts {' '.join(also)})"
+        elif rec['final'] in GAMES:
+            pm = f"game values opposite the shown hand — bid game, {rec['final']}"
+        else:
+            pm = f"minimum opposite the shown hand — stop in {rec['final']}"
+        calls.append(('N', rec['final'], 'place', pm))
+    return {'kind': 'raise', 'tier': tier, 'also_ok': also, 'calls': calls}
+
+
+def w_report():
+    """Weinstein Gate-1 self-verify: path split, rung/contract/DD distribution,
+    the min/max HCP boundary, decline rebids, flags, and sample auctions."""
+    import collections
+    recs = [build_record(ch) for ch in split_boards(f"bba/{SCN}.pbn")]
+    raises = [r for r in recs if r.get('kind') == 'raise']
+    declines = [r for r in recs if r.get('kind') == 'decline']
+    flagged = [r for r in recs if r.get('flag')]
+    asks = [r for r in raises if r.get('path') == 'ask']
+    nats = [r for r in raises if r.get('path') == 'natural']
+    print(f"=== {SCN} — Weinstein Gate-1 self-verify (MAX_CUTOFF={MAX_CUTOFF}) ===")
+    print(f"boards: {len(recs)}  raises: {len(raises)}  declines: {len(declines)}  flagged: {len(flagged)}")
+    print("by case:", dict(collections.Counter(r['case'] for r in recs if r.get('case'))))
+    print(f"\nraise paths:  ask={len(asks)}  natural={len(nats)}")
+    print("  ask rungs    :", dict(collections.Counter(r['rung'] for r in asks)))
+    print("  natural rungs:", dict(collections.Counter(r['rung'] for r in nats)))
+    print("\nfinal contracts:", dict(collections.Counter(r.get('contract') for r in raises).most_common()))
+    print("DD class       :", dict(collections.Counter(r.get('dd_class') for r in raises)))
+    print("\n--- min/max HCP boundary (ask path) ---")
+    for lab, sub in (('ask 3-card', [r for r in asks if r['support'] == 3]),
+                     ('ask 4-card', [r for r in asks if r['support'] == 4])):
+        dist = dict(sorted(collections.Counter(r['hcp_south'] for r in sub).items()))
+        print(f"  {lab}: South HCP {dist}  (n={len(sub)})")
+    print("\n--- decline natural rebids (BBA auction kept) ---")
+    print("  ", dict(collections.Counter(r.get('natural_rebid') for r in declines)))
+    if flagged:
+        print("\n--- FLAGGED ---")
+        for r in flagged[:40]:
+            print(f"  board {r['board']}: {r.get('flag')}  case={r.get('case')}")
+        if len(flagged) > 40:
+            print(f"  ... and {len(flagged) - 40} more")
+    print("\n--- one sample auction per rung ---")
+    seen = set()
+    for r in raises:
+        if r.get('rung') in seen:
+            continue
+        seen.add(r['rung'])
+        print(f"  [{r['rung']}] board {r['board']} {r['case']} "
+              f"S={r['hcp_south']} N={r['hcp_north']} sup={r['support']} "
+              f"-> {r['contract']} ({r['dd_class']}, {r['result']} tricks)")
+        print("     ", ' '.join(r['calls']))
+    return recs
+
+
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "report"
     if cmd == "report":
-        report()
+        (w_report if SCHEME == 'weinstein' else report)()
     elif cmd == "generate":
         generate()
     elif cmd == "grade":
