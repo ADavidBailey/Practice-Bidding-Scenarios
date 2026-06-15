@@ -37,8 +37,12 @@ Before working on anything touching `bba/`, `bba-curated/`, `coaching/`, or
 Convention/spiral scenarios (e.g. `Spiral_Raises_*`) take a different path and do
 **not** use `curate.py` (Layer A). They curate via `py/spiral_auction.py`
 (`report` → `generate` → `grade` → `substitute`) plus `py/annotate.py`, then coach via
-`py/coach.py` (`packets` → `augment` → `splice`). Note: `spiral_auction.py` currently
-hardcodes the scenario name, so it must be driven per-scenario until parameterized.
+`py/coach.py` (`packets` → `augment` → `splice`). `spiral_auction.py` is parameterized
+via `SPIRAL_SCN` (scenario) and `SPIRAL_SCHEME` (`spiral` | `weinstein`) env vars, with
+`SCHEME` also honoring a `convention=weinstein` `.btn` directive; it generates both the
+spiral cheapest-step ladder (`Spiral_Raise_Revisited`, `Spiral_Raises_Wolpert`) and the
+Weinstein 2NT-ask + natural-fit-find scheme (`Spiral_Raises_Weinstein`). `annotate.py`
+and `select.py` take the scenario as a positional argument.
 
 A Cowork session is co-working in this repo via the same files; coordinate
 through commits and the bookmark (update it at the end of a work session),
