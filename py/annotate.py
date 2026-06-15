@@ -42,7 +42,7 @@ def board_tags(v):
              f'class: {v["auction_class"]}',
              f'difficulty: {v["difficulty"]}']
     b = v['bidding']
-    lines.append(f'bidding: {b["tier"]}')
+    lines.append(f'bidding: {" ".join([b["tier"]] + b.get("themes", []))}')
     if b.get('also_ok'):
         lines.append(f'also-ok: {" ".join(b["also_ok"])}')
     if b.get('note'):

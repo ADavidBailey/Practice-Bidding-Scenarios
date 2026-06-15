@@ -132,15 +132,22 @@ def _match(blk, term):
     return any(v.strip() in words for v in val.split(','))
 
 
-def packets(scn, terms, n, fill=False):
+def packets(scn, terms, n, fill=False, boards=None):
     src = os.path.join(CUR, f"{scn}.pbn")
     chunks = split_boards(src)
-    matching = [ch for ch in chunks if all(_match(_curate_block(ch), t) for t in terms)]
-    if fill:
-        have = {tag(ch, 'Board') for ch in split_boards(os.path.join(OUT, f"{scn}.pbn"))}
-        sel = [ch for ch in matching if tag(ch, 'Board') not in have][:max(0, n - len(have))]
+    if boards:
+        # explicit board list (reproducible selection; mirrors play-boards.json).
+        bymap = {tag(ch, 'Board'): ch for ch in chunks}
+        sel = [bymap[b] for b in boards if b in bymap]
+        os.makedirs(WORK, exist_ok=True)
+        json.dump(boards, open(os.path.join(WORK, f"{scn}-boards.json"), "w"))
     else:
-        sel = matching[:n]
+        matching = [ch for ch in chunks if all(_match(_curate_block(ch), t) for t in terms)]
+        if fill:
+            have = {tag(ch, 'Board') for ch in split_boards(os.path.join(OUT, f"{scn}.pbn"))}
+            sel = [ch for ch in matching if tag(ch, 'Board') not in have][:max(0, n - len(have))]
+        else:
+            sel = matching[:n]
     os.makedirs(WORK, exist_ok=True)
     # selected input PBN — keep the {Curate} blocks so the file carries
     # per-board tier (fill mode appends them, like play files already do).
@@ -573,7 +580,10 @@ if __name__ == "__main__":
         rest = a[2:]
         n = 30
         fill = "--fill" in rest; rest = [x for x in rest if x != "--fill"]
+        boards = None
+        if "--boards" in rest:
+            i = rest.index("--boards"); boards = rest[i+1].split(","); del rest[i:i+2]
         if "-n" in rest:
             i = rest.index("-n"); n = int(rest[i+1]); del rest[i:i+2]
         terms = rest or ["bidding=textbook,judgment", "diff<=3"]
-        packets(scn, terms, n, fill=fill)
+        packets(scn, terms, n, fill=fill, boards=boards)
