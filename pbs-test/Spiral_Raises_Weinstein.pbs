@@ -28,31 +28,33 @@ auction-filter: .
 dealer south
 produce 1000
 
-# Spiral Raise Revisited --------------------------------------------
+# Spiral Raise -- Weinstein style -----------------------------------
 # South opens a minor and raises North's major to 2M on 3- or 4-card
-# support.  North asks with the cheapest step (2!S over 1!H, 2N over
-# 1!S) and opener spirals out support length, strength, and shortness.
-# Unlike the two earlier Spiral Raise scenarios, opener may be short
-# in a major or hold a 5-4-2-2, so the whole step-response ladder
-# (the splinter and 5-4-2-2 answers included) can come up.
+# support (3-card support only with a ruffing value; see below).
+# Instead of relaying, North bids NATURALLY to find a 4-4 fit in the
+# OTHER major (2!S over 1!H; the rare 3!H over 1!S), or asks with 2N --
+# to which opener shows strength (min/max) and support length (3- vs
+# 4-card) with 3!C / 3!D / 3!H / 3!S.
 
 # South: 12-14 with no 5-card major, so it opens a minor (not 1M/1NT).
 noFiveCardMajor = spades(south)<5 and hearts(south)<5
 minorOpening = hcp(south)>11 and hcp(south)<15 and noFiveCardMajor
 
-# North: invitational, a 4-card major, nothing longer.  Responds 1H
-# with 4 hearts (4-4 goes up the line), else 1S with 4 spades.
+# North: invitational, a 4-card major, nothing longer.  4-4 normally
+# goes up the line (1H), but with a ratty 4-card heart suit (J-high or
+# worse) North skips it to bid 1S -- so the rare 1S response can still
+# hold 4 hearts, which is what powers the natural 3H 4-4 search.
 northResponds = shape(north, 44xx+43xx+34xx -any 5xxx -any 6xxx) and hcp(north)>10 and hcp(north)<14
-northBidsHearts = hearts(north)==4
-northBidsSpades = spades(north)==4 and hearts(north)==3
+weakHearts = top3(north,hearts)==0
+northBidsSpades = spades(north)==4 and (hearts(north)<4 or weakHearts)
+northBidsHearts = hearts(north)==4 and not northBidsSpades
 
 # Opener raises North's actual major.  Four-card support is the ordinary
 # simple raise.  Three-card support is raised only WITH a ruffing value -- an
 # "unguarded" short side suit: a void/singleton, or a doubleton with no card a
 # ten or higher (top5 counts A,K,Q,J,T, so ==0 means xx).  That is the
-# article's rule -- raise on xx, but rebid 1NT to decelerate on 10x -- and it
-# drops the flat 4-3-3-3 minimums while keeping the doubleton hands (2N/3N
-# answers) and the shortness hands (3D/3H answers) the spiral ladder needs.
+# article's rule -- raise on xx (e.g. Kxx KQx xx Axxxx), but rebid 1NT to
+# decelerate on 10x (Kxx KQx 10x Axxxx) where the ten pulls toward notrump.
 fourCardRaise = (northBidsHearts and hearts(south)==4) or (northBidsSpades and spades(south)==4)
 spadeUnguarded   = spades(south)<2   or (spades(south)==2   and top5(south,spades)==0)
 heartUnguarded   = hearts(south)<2   or (hearts(south)==2   and top5(south,hearts)==0)
@@ -147,11 +149,12 @@ minThreeCard = threeCardSuitable and openerMin   // answers 3C
 maxThreeCard = threeCardSuitable and openerMax   // answers 3D
 minFourCard  = fourCardRaise     and openerMin   // answers 3H
 maxFourCard  = fourCardRaise     and openerMax   // answers 3S
-# Weinstein's natural path: with 4-4 majors responder bids 1H up the line,
-# then 2S over opener's 2H to seek the 4-4 spade fit (real when opener also
-# has 4 spades).  No mirror on the 1S side -- a 1S responder is 4=3, never 4H.
-seeks44     = northBidsHearts and spades(north)==4
-fit44exists = seeks44 and spades(south)==4
+# Weinstein's natural fit search: a 4-4 responder bids the other major over
+# the raise (2S over 1H; the rare 3H over 1S when hearts were too weak to
+# show first).  The 4-4 fit is real only when opener raised on 3-card support
+# and holds 4 cards in that other major.
+responder44 = spades(north)==4 and hearts(north)==4
+fit44exists = (northBidsHearts and responder44 and hearts(south)==3 and spades(south)==4) or (northBidsSpades and responder44 and spades(south)==3 and hearts(south)==4)
 # Unsuitable hands by opener's likely rebid: an unbid 1S (4 spades over 1H),
 # else a long minor to rebid (5+), else a balanced 1NT.
 unsuitable1S    = threeCardUnsuitable and northBidsHearts and spades(south)==4
@@ -172,8 +175,8 @@ average "  2N ans 3S (max, 4-card) pct  " 100 * maxFourCard,
 average "  unsuitable: rebid 1NT pct    " 100 * unsuitable1NT,
 average "  unsuitable: unbid 1S pct     " 100 * unsuitable1S,
 average "  unsuitable: rebid minor pct  " 100 * unsuitableMinor,
-average "responder seeks 4-4 (2S) pct   " 100 * seeks44,
-average "  ...4-4 spade fit exists pct  " 100 * fit44exists,
+average "responder 4-4 majors pct       " 100 * responder44,
+average "  ...4-4 fit found pct          " 100 * fit44exists,
 average "North 1H response pct          " 100 * northBidsHearts,
 average "North 1S response pct          " 100 * northBidsSpades,
 `, "S", true)
