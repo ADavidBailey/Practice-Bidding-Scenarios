@@ -182,7 +182,12 @@ def candidates(scn, max_per_board=3):
     """Pre-screen: per board, the clean follow-suit [PLAY] candidates the gate
     should KEEP, ranked by margin, capped at max_per_board. Returns
     {board: [{trick,seat,card,margin,accepts}]}. card/accepts in suit-letter
-    form (e.g. 'SQ') to match the verdict/identity schema."""
+    form (e.g. 'SQ') to match the verdict/identity schema.
+
+    Trick-1 follow-in-led-suit decisions are excluded: declarer is 4th hand to
+    the opening lead, so the DD-max honour wins the trick outright, but on a
+    hold-up/avoidance board ducking is the sound single-dummy play — the DD-max
+    card is the anti-lesson card there (PBS-18 / TR-19)."""
     path = os.path.join(ROOT, "coaching-curated", f"{scn}.pbn")
     txt = open(path, encoding="utf-8", errors="replace").read()
     out = {}
@@ -202,6 +207,15 @@ def candidates(scn, max_per_board=3):
             r = _clean_candidate(vals)
             if r:
                 card, margin, accepts = r
+                # Exclude the trick-1 follow-in-led-suit class (e.g. Choice_Of_Finesses
+                # b7/b32): declarer plays 4th hand to the opening lead, so the DD-max
+                # honour wins the trick outright — but on a hold-up/avoidance board the
+                # sound single-dummy play is to DUCK, making that DD-max card the
+                # ANTI-lesson card. Geometric + crisp, so kill it at the source rather
+                # than quiz it (PBS-18 / TR-19 defense-in-depth; the gate QUARANTINEs
+                # any tip-vs-card contradiction that arrives another way).
+                if trick == 1 and lead and INV_GLYPH[card[0]] == lead[0]:
+                    continue
                 found.append({"board": bm.group(1), "trick": trick, "seat": dec.group(1),
                               "card": INV_GLYPH[card[0]] + card[1:], "margin": margin,
                               "accepts": [INV_GLYPH[a[0]] + a[1:] for a in accepts]})
