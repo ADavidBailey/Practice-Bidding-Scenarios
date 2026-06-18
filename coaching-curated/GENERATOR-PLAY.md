@@ -13,11 +13,25 @@ suit, ruff-in-dummy, …). Selection comes from the curation: pick boards graded
 
 ## What goes in the `{ ... }` block
 
-Per board, after the `[Auction]`, the block holds an optional brief bidding
-part (these auctions are short/fixed — keep it minimal or omit) followed by
-the PLAY TIPS, which are `[ROLE r][STAGE s]`-anchored chunks. The trainer
-fires each tip at its stage. Stages: `auction-end`, `pre-lead`, `post-lead`,
-`post-play`. Roles: `declarer`, `leader`, `defender`.
+Per board, after the `[Auction]`, the block opens with a `[show NS]` reveal,
+then holds an optional brief bidding part (these auctions are short/fixed —
+keep it minimal or omit) followed by the PLAY TIPS, which are
+`[ROLE r][STAGE s]`-anchored chunks. The trainer fires each tip at its stage.
+Stages: `auction-end`, `pre-lead`, `post-lead`, `post-play`. Roles:
+`declarer`, `leader`, `defender`.
+
+**REQUIRED — open the block with `[show NS]`.** The very first token inside
+`{ ... }` must be `[show NS]` (student declares South, so NS = declarer +
+dummy), matching Rick's play files (`Baker-Bridge/Package/*.pbn`). The trainer
+parses everything BEFORE the first `[ROLE ...]` marker as the reveal/bidding
+section, so `[show NS]` here surfaces the two hands for the student to plan the
+play; the `[ROLE]/[STAGE]` tips follow on the next line. The block thus starts:
+
+```
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \C5. ...
+```
 
 Emit these tips (declarer-focused; the UI centers on declarer):
 

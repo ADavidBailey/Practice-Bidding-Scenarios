@@ -1,157 +1,166 @@
 [Event "Suit_Promotion"]
 [Site ""]
 [Board "1"]
-% 088680AE858D4A0E4440F900FE64
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:84.AKJT98764.95. 9762..QT83.AQ983 AKQJT.Q2.K64.JT5 53.53.AJ72.K7642"]
-{Shape 2920 4045 5233 2245}
-{HCP 8 8 16 8}
-{Losers 5 6 7 8}
-[Declarer "S"]
-[Contract "4H"]
-[Result "12"]
-[Score "NS 480"]
-[Scoring "MP"]
-{Curate
-class: intended
-difficulty: 2
-bidding: standard
-bidding-note: 1N-2D-2H-4H Texas-style raise on a 9-card heart suit; sound but worth a word on the jump.
-declarer: standard establish-long-suit
-declarer-note: AKJT98764 heart suit runs by force; 12 DD tricks means the lesson is easy but the long-suit theme is clean.
-defense: reject
-defense-note: W leads with nothing useful; declarer has 12 tricks cold, no defensive decision.
-}
-[Auction "S"]
-1N    Pass  2D    Pass
-2H    Pass  4H    Pass
-Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \C4. With no clear honor sequence to lead from, fourth-best from your longest suit, the clubs, is the standard choice against this heart game.
-
-[ROLE declarer][STAGE auction-end]
-I am in 4\H. My long suit is the heart holding in dummy, headed by the ace and king and packed with the jack, ten, nine and a string of small cards, sitting opposite my doubleton. That suit is the engine of the hand: I pull trumps and the long hearts simply run, since there are no missing honors to drive out. Counting my five top spades alongside the running hearts there is no real problem here, so my plan is to draw trumps and cash the long suit, keeping an eye on entries to dummy.
-
-[ROLE declarer][STAGE post-lead]
-West led the \C4, which looks like a fourth-best, so the suit is likely splitting four-one or so around the table; with no club in dummy I can ruff it. From here the principle is clear: lead trumps to draw the opponents' hearts, and because dummy's heart suit has no gaps above my small cards, every round wins once the outstanding trumps fall. The long hearts in dummy account for the bulk of my tricks, my five top spades fill out the rest, and the count reconciles comfortably to the twelve tricks the hand is worth. I just make sure dummy stays reachable so I can enjoy the whole heart suit.
-
-[ROLE declarer][STAGE post-play]
-The heart suit was so solid it ran by force the moment the opponents' trumps were gone, and keeping dummy reachable let me cash every one. Reading the club lead and ruffing kept the line clean. Nicely counted and very well played.}
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Suit_Promotion"]
-[Site ""]
-[Board "2"]
-% 0A89B18BC4CE4E201725DAE86C50
+[OriginalBoard "21"]
+% 1A818AB4C28A4064E6036B62710F
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
 [Dealer "S"]
 [Vulnerable "NS"]
-[Deal "N:876.AQJT9.T93.Q7 932.752.AQ54.T95 AKQ.8643.J76.AK6 JT54.K.K82.J8432"]
-{Shape 3532 3343 3433 4135}
-{HCP 9 6 17 8}
-{Losers 9 10 7 9}
-[Declarer "S"]
+[Deal "N:62.AKJT962.2.652 98543..KT5.KJT74 AKQT.8754.Q87.A3 J7.Q3.AJ9643.Q98"]
+{Shape 2713 5035 4432 2263}
+{HCP 8 7 15 10}
+{Losers 7 7 6 8}
+[Declarer "N"]
 [Contract "4H"]
-[Result "10"]
-[Score "NS 620"]
+[Result "11"]
+[Score "NS 650"]
 [Scoring "MP"]
 {Curate
 class: intended
-difficulty: 3
-bidding: textbook
-bidding-note: 1N-2D transfer then 2N invite raised to 4H with a max and a fitting hand.
+difficulty: 2
+bidding: standard
+bidding-note: 1N-2D(interf)-3H-4D-4H with North declaring; the competitive auction is worth a sentence.
 declarer: standard establish-long-suit
-declarer-note: by_force false: AQJT9 needs the heart king onside, so this is a finesse rather than pure promotion.
+declarer-note: by_force AKJT962 runs from North; 12 DD tricks ease it but the long-suit force is clean.
 defense: reject
-defense-note: W leads against 4H making exactly; no clear defensive trick to find with the bare HK offside-singleton.
+defense-note: E on lead cannot stop the running heart suit; overtricks available.
 }
 [Auction "S"]
-1N    Pass  2D    Pass
-2H    Pass  2N    Pass
-4H    Pass  Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \C3. Without a strong sequence to attack, fourth-best from your longest suit, the clubs, is the textbook lead against four hearts.
+1N    2D    3H    Pass
+4D =1=    Pass  4H    Pass
+Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \C7. Holding KJT74 you lead fourth-best from your longest suit, hoping to set up club tricks while you still hold entries.
 
 [ROLE declarer][STAGE auction-end]
-I am in 4\H. Dummy's long heart suit is headed by the ace, queen, jack, ten and nine, opposite my four small ones, and that is where my extra tricks live. The catch is the missing heart king: this suit does not simply run by force, so I will need the king placed favorably and take a finesse through it. My plan is to use the long suit for length, leading toward dummy's honors and finessing for the king, while saving entries so I can repeat the lead if needed.
+From the North seat I am declaring 4\H and need ten tricks. My trumps are a powerhouse, AKJT962 facing four small, and away from trumps I have the \SA \SK \SQ and the \CA. The spades are a six-card fit where a fourth round can be forced into an extra winner if I need it. My plan is to draw trumps, cash my side winners, and promote the long spade by leading the suit until the outstanding honour is gone, keeping a way back to dummy.
 
 [ROLE declarer][STAGE post-lead]
-West led the \C3, which looks like a fourth-best from length rather than a sequence, so I can win my top clubs safely. The heart suit is the source of tricks, but with the king out I must lead toward dummy and finesse: if the king sits with West over dummy's honors the finesse works and the suit yields five tricks. I keep an entry to my hand in reserve in case I need to repeat the heart finesse, then add my top spades and clubs. Played this way the count reconciles to the ten tricks the hand is worth.
+West led the \C7, which looks like a fourth-best from length, suggesting about four cards in the suit and the missing honours likely split between the defenders. I can win the \CA and take stock. Trumps are solid with only the queen out, so I draw them, losing nothing of consequence, then run spades: AKQ from the top, and a further round clears the missing jack so the fourth spade in dummy becomes good. With trump entries available I cross to enjoy that promoted spade, comfortably reaching and passing my ten tricks.
 
 [ROLE declarer][STAGE post-play]
-This long suit needed the king onside, so the finesse, not brute force, was the key, and keeping an entry let me lead hearts more than once. Patience with the entries made all the difference. Well judged and smoothly played.}
+The lesson was that the long spade suit furnishes the extra trick once it is led enough times to remove the defenders' honour, and that you must keep an entry to the hand holding the length. Reading the lead, drawing trumps, then patiently establishing the suit is textbook technique. Well played.}
+[Note "1:limit raise or better in !H"]
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Suit_Promotion"]
 [Site ""]
-[Board "3"]
-% 0985BFBAC5454A507663CFFF2938
+[Board "2"]
+[OriginalBoard "22"]
+% 198DA483C807C49E51F92EEE5284
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
 [Dealer "S"]
 [Vulnerable "EW"]
-[Deal "N:32.AJT95.86.K654 T9876.8.AJT7.Q97 AKQ.63.Q932.AJT3 J54.KQ742.K54.82"]
-{Shape 2524 5143 3244 3532}
-{HCP 8 7 16 9}
-{Losers 8 8 6 8}
+[Deal "N:T5.AQJT92.Q73.QT 73.873.KT92.8543 AKQ82.K54.J6.A76 J964.6.A854.KJ92"]
+{Shape 2632 2344 5323 4144}
+{HCP 11 3 17 9}
+{Losers 7 10 6 8}
 [Declarer "S"]
-[Contract "2H"]
-[Result "9"]
-[Score "NS 140"]
+[Contract "4H"]
+[Result "11"]
+[Score "NS 450"]
 [Scoring "MP"]
 {Curate
 class: intended
 difficulty: 2
 bidding: textbook
-bidding-note: 1N-2D-2H passed; sign-off in the partscore is routine with a minimum responder hand.
-declarer: textbook establish-long-suit
-declarer-note: by_force AJT95 promoted by leading hearts; 2H making 9 leaves a clean partscore long-suit lesson.
+bidding-note: 1N-2D-2H-4H game raise, routine.
+declarer: standard establish-long-suit
+declarer-note: by_force AQJT92 runs; 11 DD tricks ease it but the promotion theme is clean.
 defense: reject
-defense-note: W cannot stop the heart establishment; declarer comfortably makes the partscore.
+defense-note: W cannot stop the heart suit; overtrick available.
 }
 [Auction "S"]
 1N    Pass  2D    Pass
-2H    Pass  Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \D4. With no honor sequence worth leading, fourth-best from your longest unbid suit, the diamonds, is the standard start against two hearts.
+2H    Pass  4H    Pass
+Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \C2. From KJ92 you lead fourth-best, attacking your longest suit before declarer can set up discards.
 
 [ROLE declarer][STAGE auction-end]
-I am in 2\H. Dummy's heart suit, the ace, jack, ten, nine and a small one opposite my doubleton, is my long suit, but the king and queen of trumps are missing, so it must be promoted by leading hearts and forcing those honors out. After the opponents' high trumps are gone my remaining hearts become winners. My plan is to knock out the trump honors, build the long suit, and use my side winners and entries to reach the promoted cards.
+I have reached 4\H and need ten tricks. My trumps are AQJT92 in dummy facing the king, an enormous suit, and outside I hold the \SA \SK \SQ and the \CA. The spades are a five-card source where the fifth card can be promoted into a further winner by force. NS hold 28 of the 40 points, so the defence has only 12 between them, and since neither opponent bid, no one is hiding a long suit. I will draw trumps, then build the spades by leading them until the missing honour falls out, minding my entries.
 
 [ROLE declarer][STAGE post-lead]
-West led the \D4, which looks like a fourth-best, suggesting roughly four diamonds and not a sequence. I turn straight to the long suit: lead hearts repeatedly to drive out the missing king and queen, conceding those early rounds, after which dummy's jack, ten and nine become winners. I keep my top spades and clubs as entries and as tricks so I can return to dummy and cash the established hearts. Adding those promoted length tricks to my side winners reconciles to the nine tricks the hand produces.
+West led the \C2, which looks like a fourth-best from length and lets me win the \CA cheaply. Trumps are practically solid, so I draw them in short order. Then I attack spades: the AKQ cash, and a fourth round forces out the outstanding jack, after which my fifth spade is a winner. Trumps give me a clean entry back to the long hand, so I can cash that promoted spade and roll to ten tricks and beyond.
 
 [ROLE declarer][STAGE post-play]
-Forcing out the king and queen of trumps early turned dummy's middling hearts into sure winners, and holding entries meant I could come back and cash them. Giving up those rounds to gain more was the whole idea. Patiently and well played.}
+What mattered was treating the spades as a suit to be developed, not just three cashing honours, and keeping a trump entry to reach the established length. That count-and-entries discipline is the heart of suit promotion. Lovely work.}
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Suit_Promotion"]
 [Site ""]
-[Board "4"]
-% 0B8C9A830D494EDFEB44A476F1D0
+[Board "3"]
+[OriginalBoard "26"]
+% 1BAB958288008369F2684B3E1DD4
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
 [Dealer "S"]
 [Vulnerable "All"]
-[Deal "N:J.AQJT96.654.Q87 T964.K82.Q32.K94 AKQ5.75.AJ98.JT3 8732.43.KT7.A652"]
-{Shape 1633 4333 4243 4234}
-{HCP 10 8 15 7}
-{Losers 7 9 7 9}
+[Deal "N:T43.QJT95.K2.A95 865.K32.QT97.Q74 AKQJ9.A86.43.K83 72.74.AJ865.JT62"]
+{Shape 3523 3343 5323 2254}
+{HCP 10 7 17 6}
+{Losers 8 9 6 9}
+[Declarer "S"]
+[Contract "4H"]
+[Result "11"]
+[Score "NS 650"]
+[Scoring "MP"]
+{Curate
+class: intended
+difficulty: 2
+bidding: standard
+bidding-note: 1N-2D-2H-3N-4H pulling to the major; routine but the 3N detour is worth a word.
+declarer: standard establish-long-suit
+declarer-note: by_force QJT95 promoted; 12 DD tricks ease it but the long-suit theme is clean.
+defense: reject
+defense-note: W has no trick; comfortable overtricks for declarer.
+}
+[Auction "S"]
+1N    Pass  2D    Pass
+2H    Pass  3N    Pass
+4H    Pass  Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \C2. From JT62 you lead fourth-best from your longest suit, since you have no obvious singleton or sequence to lead instead.
+
+[ROLE declarer][STAGE auction-end]
+I have reached 4\H and need ten tricks. My spades are headed by AKQJ9 and cash freely, and I also have the \HA and \CA \CK. The trump suit itself is the suit to establish: QJT95 facing my ace, missing only the king. I handle it by leading the honours from dummy — the queen, then the jack — through East, keeping my ace behind. Covering never helps East, since my ace would capture the king and leave dummy's spots high; and if East ducks, East holds only three trumps, so the king must fall under my ace by the third round. That finesse picks the king up for no trump loser here. Had the king been offside I would lose one trump but still have the suit established. The plan is to lead the trump honours from dummy, pick up the king, and let the long hearts run, using my spade and club entries as needed.
+
+[ROLE declarer][STAGE post-lead]
+West led the \C2, which looks like a fourth-best from length; I can win the \CK or \CA and begin. The heart suit is where the tricks live, QJT95 opposite my ace, with only the king out. I lead the honours from dummy through East: covering cannot help, and with East holding only three trumps the king falls under my ace by the third round, so I lose no trump and the rest of the suit is high. With my solid spades and the club honours providing entries and tricks, the established hearts plus my top winners carry me past ten comfortably.
+
+[ROLE declarer][STAGE post-play]
+The point was that even a trump suit can need establishing: lead the honours through the missing king and the long cards take over. Leading from the dummy side, with the ace sitting behind the king, let me pick it up for no loser. Counting the suit out — the king had to fall by the third round — is the discipline that mattered. Very well played.}
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Suit_Promotion"]
+[Site ""]
+[Board "4"]
+[OriginalBoard "12"]
+% 0A8BA8A6C6C343029DD8EEF689FE
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "NS"]
+[Deal "N:8.AJT983.752.AT9 9.76.AK63.QJ8542 AKQ73.KQ5.QJ4.73 JT6542.42.T98.K6"]
+{Shape 1633 1246 5332 6232}
+{HCP 9 10 17 4}
+{Losers 8 6 5 9}
 [Declarer "S"]
 [Contract "4H"]
 [Result "10"]
@@ -161,33 +170,279 @@ Forcing out the king and queen of trumps early turned dummy's middling hearts in
 class: intended
 difficulty: 2
 bidding: textbook
-bidding-note: 1N-2D-2H-4H direct game raise with a maximum and good hearts.
-declarer: textbook establish-long-suit
-declarer-note: by_force AQJT96 heart suit set up by force; 4H making exactly 10 is a clean promotion example.
+bidding-note: 1N-2D-2H-4H game raise, routine with 17 HCP and a heart fit.
+declarer: standard establish-long-suit
+declarer-note: by_force AJT983 runs; 11 DD tricks make it easy but the long-suit force is clean.
 defense: reject
-defense-note: W leads against 4H making exactly; no defensive trick available beyond the natural losers.
+defense-note: W cannot stop the heart establishment; an overtrick is available.
 }
 [Auction "S"]
 1N    Pass  2D    Pass
 2H    Pass  4H    Pass
 Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \S2. Holding no strong sequence, fourth-best from your longest suit, the spades, is the standard lead against this heart game.
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \DT. Top of your diamond sequence headed by the ten is the natural, safe lead against this heart game.
 
 [ROLE declarer][STAGE auction-end]
-I am in 4\H. My long suit is dummy's hearts, the ace, queen, jack, ten, nine and a small card opposite my doubleton, and it carries the hand. Only the trump king is missing, so the suit is set up by leading toward dummy and finessing or simply driving the king out. My plan is to establish the long hearts, lean on my top spades, and keep entries so I can reach and run the suit for ten tricks.
+I am in 4\H. Dummy's hearts, the ace, jack, ten, nine, eight and three opposite my king, queen and a small one, are a powerful long suit with no missing honors of consequence, so once trumps are drawn the suit runs. With the long hearts plus my top spades there are tricks to spare. My plan is to draw trumps, cash the long suit, and keep an entry to dummy so none of the length is wasted.
 
 [ROLE declarer][STAGE post-lead]
-West led the \S2, which looks like a fourth-best from length rather than a sequence, and I have the top spades to handle it. The heart suit is the engine: I lead hearts to force out or finesse the missing king, and once it is gone dummy's remaining hearts all win. I take care to keep an entry to dummy so I can return and cash the promoted cards rather than stranding them. Counting the long hearts with my spade and diamond winners reconciles exactly to the ten tricks the hand is worth.
+West led the \DT, which looks like top of a sequence, so West likely holds the ten and nine together. I win as convenient and draw the outstanding trumps; because dummy's heart suit has no gaps above my spots, every remaining heart is a winner. I keep dummy reachable so I can return and cash the long hearts, and counting them with my top spades the total reconciles to the eleven tricks the hand is worth.
 
 [ROLE declarer][STAGE post-play]
-Driving out the lone missing trump honor let dummy's long hearts run, and protecting the entry meant none of those winners went to waste. Setting up the long suit before cashing out was exactly right. A clean, well-counted ten tricks.}
+The heart suit ran by force once trumps were drawn, and keeping the entry to dummy let me enjoy every long card. Drawing trumps before cashing kept the suit safe. Smoothly counted and very well played.}
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Suit_Promotion"]
 [Site ""]
 [Board "5"]
+[OriginalBoard "31"]
+% 1AA3AC9C48C849E714474413F651
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "NS"]
+[Deal "N:74.JT965.KQ.A864 J9652.Q742.JT9.3 AKQ.AK8.87653.92 T83.3.A42.KQJT75"]
+{Shape 2524 5431 3352 3136}
+{HCP 10 4 16 10}
+{Losers 8 9 6 7}
+[Declarer "S"]
+[Contract "4H"]
+[Result "11"]
+[Score "NS 650"]
+[Scoring "MP"]
+{Curate
+class: intended
+difficulty: 2
+bidding: standard
+bidding-note: 1N-2C(interf)-2D-2H-2N-4H; a busy competitive auction worth a sentence.
+declarer: textbook establish-long-suit
+declarer-note: by_force JT965 promoted by force; 4H exactly 10 a clean by-force board.
+defense: reject
+defense-note: W cannot beat a cold 4H making exactly.
+}
+[Auction "S"]
+1N    2C    2D    Pass
+2H    Pass  2N    Pass
+4H    Pass  Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \CK. From KQJT75 you have a powerful sequence, so the king leads the suit and keeps the lead as you go after your tricks.
+
+[ROLE declarer][STAGE auction-end]
+I am in 4\H and need exactly ten tricks, so I cannot afford to drift. My trumps are JT965 in dummy facing my AK8, and I have the \SA \SK \SQ and the \CA. The extra tricks come from diamonds, 87653 facing KQ, a seven-card fit where leading the suit drives out the ace and promotes three long winners. NS hold 26 of the 40 points, leaving 14 for the defence. The plan is to establish the long diamonds by force while drawing trumps carefully and keeping an entry to cash the diamonds.
+
+[ROLE declarer][STAGE post-lead]
+West led the \CK, which looks like top of a sequence, so West holds the QJ behind it; I take the \CA. The diamond length is my source: I cash the KQ and lead the suit again to force out the missing ace, after which my remaining diamonds are winners. I must draw trumps but keep one in dummy as an entry, then return to the long diamonds. With the suit established and trumps under control, my top winners plus three diamonds add up to ten.
+
+[ROLE declarer][STAGE post-play]
+This tight contract depended on the long diamonds, set up by leading the suit until the ace was gone, and on saving the entry to reach them. Establishing length by force when top tricks fall short is exactly the skill on show. Excellent work.}
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Suit_Promotion"]
+[Site ""]
+[Board "6"]
+[OriginalBoard "18"]
+% 1A988586CFCA8FB41DEC60DA6238
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "NS"]
+[Deal "N:72.KQJT9.J976.J9 53.A74.AT42.QT43 AKQ98.653.KQ8.K7 JT64.82.53.A8652"]
+{Shape 2542 2344 5332 4225}
+{HCP 8 10 17 5}
+{Losers 8 8 5 9}
+[Declarer "S"]
+[Contract "2H"]
+[Result "10"]
+[Score "NS 170"]
+[Scoring "MP"]
+{Curate
+class: intended
+difficulty: 2
+bidding: textbook
+bidding-note: 1N-2D-2H passed in partscore; routine sign-off with minimum responder.
+declarer: textbook establish-long-suit
+declarer-note: by_force KQJT9 promoted; 2H making 9 a clean partscore long-suit lesson.
+defense: reject
+defense-note: W cannot prevent the heart establishment in 2H.
+}
+[Auction "S"]
+1N    Pass  2D    Pass
+2H    Pass  Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \S4. With no honor sequence to lead, fourth-best from your longest suit, the spades, is the standard choice against two hearts.
+
+[ROLE declarer][STAGE auction-end]
+I am in 2\H. Dummy's hearts, the king, queen, jack, ten and nine opposite my three small, are the long suit, with only the ace missing, so the suit is promoted by leading hearts and forcing the ace out. After it is gone dummy's remaining hearts are winners. My plan is to knock out the heart ace, establish the long suit, and keep entries so I can reach and cash the promoted cards along with my top spades and a diamond or two.
+
+[ROLE declarer][STAGE post-lead]
+West led the \S4, which looks like a fourth-best from length rather than a sequence, and I have the top spades to win it. I turn to the long suit: lead hearts to force out the missing ace, conceding that one round, after which dummy's king, queen, jack and remaining hearts all win. I keep an entry to dummy so I can return and run the established suit rather than leaving it stranded, and I can develop a diamond trick as well. Counting the promoted hearts with my side winners reconciles to the nine tricks the hand produces.
+
+[ROLE declarer][STAGE post-play]
+Forcing out the lone heart ace set dummy's strong suit running, and keeping an entry meant I could cash it all. Conceding one round to gain several was the principle at work. Patiently and well played.}
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Suit_Promotion"]
+[Site ""]
+[Board "7"]
+[OriginalBoard "25"]
+% 19AD968340CECA47B8E44C917508
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "EW"]
+[Deal "N:2.QJT9852.QJ4.Q8 J853.K4.K863.KT9 AKQ74.A6.972.A43 T96.73.AT5.J7652"]
+{Shape 1732 4243 5233 3235}
+{HCP 8 10 17 5}
+{Losers 7 8 6 10}
+[Declarer "S"]
+[Contract "4H"]
+[Result "10"]
+[Score "NS 420"]
+[Scoring "MP"]
+{Curate
+class: intended
+difficulty: 2
+bidding: textbook
+bidding-note: 1N-2D-2H-4H game raise, routine.
+declarer: standard establish-long-suit
+declarer-note: by_force QJT9852 runs; 11 DD tricks ease it but the promotion is clean.
+defense: reject
+defense-note: W cannot stop the heart suit; overtrick available.
+}
+[Auction "S"]
+1N    Pass  2D    Pass
+2H    Pass  4H    Pass
+Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \C5. From J7652 you lead fourth-best from your longest suit, a sound passive choice with no sequence or singleton to prefer.
+
+[ROLE declarer][STAGE auction-end]
+I am in 4\H and need ten tricks. Dummy's trumps are tremendous, QJT9852 facing my ace, and outside I hold the \SA \SK \SQ and the \CA. My spades are AKQ74, a five-card suit whose fifth card can be promoted into an additional winner by force. NS hold 25 of the 40 points, so the defence has 15, and with no bidding from either opponent there is no warning of a wild distribution. The plan is to draw trumps, then develop the long spade, keeping a trump entry to the hand with the spades.
+
+[ROLE declarer][STAGE post-lead]
+West led the \C5, which looks like a fourth-best from length, so I win the \CA and take charge. Trumps need only the king knocked out, so I drive it and draw the rest. Then I work the spades: AKQ cash, and a fourth round removes the outstanding J and T, leaving my fifth spade good. Trumps give me the entry back to cash that promoted spade, and my running count comfortably reaches and exceeds ten.
+
+[ROLE declarer][STAGE post-play]
+What carried the day was treating the spades as a length suit to establish, not merely three top honours, and saving the entry to reach the long card. That is suit promotion in its purest form. Splendid work.}
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Suit_Promotion"]
+[Site ""]
+[Board "8"]
+[OriginalBoard "7"]
+% 0BB58A8C0440C074D56EDA26AEC1
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "All"]
+[Deal "N:J4.KQJT92.AJ874. T86.75.T92.K6543 AKQ3.643.Q63.A72 9752.A8.K5.QJT98"]
+{Shape 2650 3235 4333 4225}
+{HCP 12 3 15 10}
+{Losers 5 10 7 7}
+[Declarer "S"]
+[Contract "4H"]
+[Result "11"]
+[Score "NS 650"]
+[Scoring "MP"]
+{Curate
+class: intended
+difficulty: 2
+bidding: standard
+bidding-note: 1N-2D-2H-3D-4H; slam-ish values (27 combined) but 4H is the practical spot to teach.
+declarer: standard establish-long-suit
+declarer-note: by_force KQJT92 runs; 12 DD tricks make it easy but the long-suit theme is intact.
+defense: reject
+defense-note: E on lead has nothing; declarer has comfortable overtricks.
+}
+[Auction "S"]
+1N    Pass  2D    Pass
+2H    Pass  3D    Pass
+4H    Pass  Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \CQ. Top of your solid club sequence headed by the queen, jack and ten is the natural lead against this heart game.
+
+[ROLE declarer][STAGE auction-end]
+I am in 4\H. Dummy's hearts, the king, queen, jack, ten, nine and a small card opposite my three small, are the long suit, with only the ace missing; once that is forced out the suit runs. The hand is rich, with the long hearts, my top spades and a strong diamond suit in dummy, so there is no shortage of tricks. My plan is to drive out the heart ace, establish the long suit, and keep entries so I can cash the length.
+
+[ROLE declarer][STAGE post-lead]
+West led the \CQ, which looks like top of a sequence, so West likely holds the queen, jack and ten together. With clubs void in dummy I can ruff. I lead hearts to force out the missing ace, conceding that one round, after which dummy's remaining hearts all win; the long diamonds add even more. Keeping dummy reachable lets me cash everything, and the count reconciles comfortably to the twelve tricks the hand is worth.
+
+[ROLE declarer][STAGE post-play]
+Forcing out the heart ace let dummy's long suit run, and with diamonds adding length there were tricks to spare. Conceding one round to set up many was the principle. Cleanly counted and very well played.}
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Suit_Promotion"]
+[Site ""]
+[Board "9"]
+[OriginalBoard "33"]
+% 28BBA6A04DCFCC49F2066E6507F2
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:63.JT9863.A8.AT3 J854..JT95.K7652 AKQ.KQ54.Q72.J84 T972.A72.K643.Q9"]
+{Shape 2623 4045 3433 4342}
+{HCP 9 5 17 9}
+{Losers 8 8 6 9}
+[Declarer "S"]
+[Contract "4H"]
+[Result "11"]
+[Score "NS 450"]
+[Scoring "MP"]
+{Curate
+class: intended
+difficulty: 2
+bidding: textbook
+bidding-note: 1N-2D-2H-4H game raise, routine.
+declarer: textbook establish-long-suit
+declarer-note: by_force JT9863 promoted; 4H exactly 10 a clean by-force board.
+defense: reject
+defense-note: W cannot beat a cold 4H making exactly.
+}
+[Auction "S"]
+1N    Pass  2D    Pass
+2H    Pass  4H    Pass
+Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \ST. From T972 you lead the ten, top of an interior sequence, attacking your longest suit against the trump contract.
+
+[ROLE declarer][STAGE auction-end]
+I am in 4\H and need exactly ten tricks. My trumps are JT9863 in dummy facing my KQ54, and I have the \SA \SK \SQ and the \DA and \CA. The trump suit is the one to establish: it is missing only the ace, and leading trumps to force that ace out leaves the rest of the long suit as winners. NS hold 26 of the 40 points, leaving 14 for the defence. The plan is to drive out the trump ace by force, after which the established trumps and my side winners deliver the ten.
+
+[ROLE declarer][STAGE post-lead]
+West led the \ST, which looks like top of an interior sequence in spades; I win a top spade. The heart trumps are where the work is, JT9863 opposite KQ54, with only the ace missing, which could sit either way. I lead a trump and force out the ace, conceding that one trick, and from then on the long trumps are all good. Counting carefully, I lose the trump ace and little else, so my established trumps together with the \SA \SK \SQ, the \DA, and the \CA reach exactly ten.
+
+[ROLE declarer][STAGE post-play]
+The board turned on recognising that even the trump suit needed one honour driven out before the long cards ran, and on counting that you lose only the ace. Forcing out the high card so your length takes over is suit promotion at its clearest. Well played.}
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Suit_Promotion"]
+[Site ""]
+[Board "10"]
+[OriginalBoard "5"]
 % 0A82A98C82C9C52A4362103EE67C
 [North "EPBot"]
 [East "EPBot"]
@@ -218,7 +473,8 @@ defense-note: W has no trick to develop against a cold 4H.
 1N    Pass  2D    Pass
 2H    Pass  4H    Pass
 Pass  Pass
-{[ROLE leader][STAGE pre-lead]
+{[show NS]
+[ROLE leader][STAGE pre-lead]
 Lead the \C2. With no sequence to lead and a singleton-style holding elsewhere, fourth-best from your longest suit, the clubs, is the standard choice against four hearts.
 
 [ROLE declarer][STAGE auction-end]
@@ -234,7 +490,402 @@ The heart suit was strong enough to run by force, and keeping an entry to dummy 
 
 [Event "Suit_Promotion"]
 [Site ""]
-[Board "6"]
+[Board "11"]
+[OriginalBoard "27"]
+% 18A7938A454D42C7AC147B64B0CE
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:6.QJT982.Q5.AK85 JT954.K6.T72.Q92 AKQ73.A74.K93.JT 82.53.AJ864.7643"]
+{Shape 1624 5233 5332 2254}
+{HCP 12 6 17 5}
+{Losers 6 9 6 9}
+[Declarer "S"]
+[Contract "4H"]
+[Result "11"]
+[Score "NS 450"]
+[Scoring "MP"]
+{Curate
+class: intended
+difficulty: 2
+bidding: textbook
+bidding-note: 1N-2D-2H-3C-4H; natural sequence to game.
+declarer: standard establish-long-suit
+declarer-note: by_force QJT982 runs; 12 DD tricks ease it but the promotion theme is intact.
+defense: reject
+defense-note: W cannot stop the heart suit; comfortable overtricks.
+}
+[Auction "S"]
+1N    Pass  2D    Pass
+2H    Pass  3C    Pass
+4H    Pass  Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \C3. From 7643 you lead fourth-best from your longest suit, a quiet choice that avoids opening up declarer's strong holdings.
+
+[ROLE declarer][STAGE auction-end]
+I am in 4\H and need ten tricks. My trumps are QJT982 in dummy facing my ace, and outside I have the \SA \SK \SQ and the \CA \CK. The clubs are a six-card source, AK85 facing JT, where the suit can be led to build a long-card winner once the missing queen is gone. NS hold 29 of the 40 points, leaving the defence only 11, and neither opponent bid. The plan is to draw trumps, develop the clubs by force, and keep an entry to the long club hand.
+
+[ROLE declarer][STAGE post-lead]
+West led the \C3, which looks like a fourth-best from length, so the missing queen may well be onside, but I will play to establish rather than guess. I can win in hand or dummy and draw trumps, which cost at most the king. Then I lead clubs from the top; once the outstanding queen appears, my remaining club is a winner, and I can ruff the suit good in dummy if needed. With trump and club entries I cash the established length, and my count rolls past ten with room to spare.
+
+[ROLE declarer][STAGE post-play]
+The extra trick came from the club length, won by leading the suit until the queen was gone and keeping a way back to the long hand. Establishing the suit by force, rather than hoping, is the reliable line. Nicely done.}
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Suit_Promotion"]
+[Site ""]
+[Board "12"]
+[OriginalBoard "28"]
+% 1AA88BAD40C484557E5FC47FFE62
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "NS"]
+[Deal "N:.KJT95.Q7643.K64 J87642.86.AK.732 AKQ9.AQ2.T985.Q8 T53.743.J2.AJT95"]
+{Shape 0553 6223 4342 3325}
+{HCP 9 8 17 6}
+{Losers 6 8 6 10}
+[Declarer "S"]
+[Contract "4H"]
+[Result "10"]
+[Score "NS 620"]
+[Scoring "MP"]
+{Curate
+class: intended
+difficulty: 2
+bidding: textbook
+bidding-note: 1N-2D-2H-3D-4H natural game sequence.
+declarer: textbook establish-long-suit
+declarer-note: by_force KJT95 promoted by force; 4H exactly 10 a clean by-force board.
+defense: reject
+defense-note: W cannot beat a cold 4H making exactly.
+}
+[Auction "S"]
+1N    Pass  2D    Pass
+2H    Pass  3D    Pass
+4H    Pass  Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \S3. With T53 and dummy's likely length, the spade is your natural shot; from three small you lead a low card to attack the suit before declarer organises discards.
+
+[ROLE declarer][STAGE auction-end]
+I am in 4\H and need exactly ten tricks, so there is no margin to waste. My trumps are KJT95 in dummy facing my AQ2, and I have the \SA \SK \SQ. The real engine is diamonds, Q7643 facing T985, a nine-card fit where leading the suit drives out the missing honours and promotes three long winners. NS hold 26 of the 40 points, leaving 14 for the defence with no bidding. The plan is to establish diamonds early by force, ruffing as needed, while keeping entries and drawing trumps carefully so my long diamonds can cash.
+
+[ROLE declarer][STAGE post-lead]
+West led the \S3, which looks like a low card from three or four small, suggesting the suit is fairly even and no immediate ruff threat. I win a top spade and focus on the diamond length, where the ace and king are out and I expect them split between the defenders. I lead diamonds, conceding the high honours, and a third round clears the suit so the rest are winners; I must keep a trump in dummy to ruff back and reach them. With trumps drawn just enough and diamonds established, my top cards plus three long diamonds bring me to ten.
+
+[ROLE declarer][STAGE post-play]
+This was a tight one where the long diamonds, not the top honours, supplied the contract, and timing the entries was everything. Forcing out the high diamonds early so your low ones take tricks is the lesson in action. Well judged.}
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Suit_Promotion"]
+[Site ""]
+[Board "13"]
+[OriginalBoard "29"]
+% 1BB3AF9A0CCD427970602077F587
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "All"]
+[Deal "N:J5.JT92.432.AK42 98764.Q.A9765.Q9 AKQ2.K65.KJT.T83 T3.A8743.Q8.J765"]
+{Shape 2434 5152 4333 2524}
+{HCP 9 8 16 7}
+{Losers 9 8 7 9}
+[Declarer "S"]
+[Contract "2N"]
+[Result "9"]
+[Score "NS 150"]
+[Scoring "MP"]
+{Curate
+class: intended
+difficulty: 3
+bidding: standard
+bidding-note: 1N-2C-2S-2N Stayman with no fit landing in 2N; the Stayman detour is worth a word.
+declarer: standard establish-long-suit
+declarer-note: by_force JT92 promoted in NT; 2N making 10 with 2 overtricks but the long-suit theme holds.
+defense: reject
+defense-note: W cannot stop the heart promotion; comfortable overtricks.
+}
+[Auction "S"]
+1N    Pass  2C =1=    Pass
+2S    Pass  2N    Pass
+Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \H4. From A8743 you lead fourth-best from your longest, strongest suit, the standard attacking lead against notrump.
+
+[ROLE declarer][STAGE auction-end]
+I am in 2\N and need eight tricks. Off the top I have the \SA \SK \SQ and the \CA \CK, five tricks, so I need three more. Hearts are my development suit, JT92 facing K65, where leading the suit to force out the ace and queen promotes three winners. NS hold 25 of the 40 points, leaving the defence 15, and neither opponent bid. The plan is to drive out the heart honours by force and use entries to cash the established hearts.
+
+[ROLE declarer][STAGE post-lead]
+West led the \H4, which looks like a fourth-best, suggesting about four hearts in that hand. By the rule of eleven, seven cards higher than the four sit outside West, and with six of them between my hand and dummy, only one card higher than the four is in East. That tells me the suit is fairly friendly: I play low from dummy, and after the heart honours are forced out across a couple of leads, my long hearts become winners. Using my spade and club entries to return to the hearts, I gather three heart tricks on top of my five winners to reach eight.
+
+[ROLE declarer][STAGE post-play]
+The contract came home because the heart length was developed by force rather than abandoned, and the rule of eleven confirmed the suit was safe to attack. Counting the high cards above the lead is a powerful tool. Very nicely played.}
+[Note "1:Stayman"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Suit_Promotion"]
+[Site ""]
+[Board "14"]
+[OriginalBoard "4"]
+% 0B8C9A830D494EDFEB44A476F1D0
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "All"]
+[Deal "N:J.AQJT96.654.Q87 T964.K82.Q32.K94 AKQ5.75.AJ98.JT3 8732.43.KT7.A652"]
+{Shape 1633 4333 4243 4234}
+{HCP 10 8 15 7}
+{Losers 7 9 7 9}
+[Declarer "S"]
+[Contract "4H"]
+[Result "10"]
+[Score "NS 620"]
+[Scoring "MP"]
+{Curate
+class: intended
+difficulty: 2
+bidding: textbook
+bidding-note: 1N-2D-2H-4H direct game raise with a maximum and good hearts.
+declarer: textbook establish-long-suit
+declarer-note: by_force AQJT96 heart suit set up by force; 4H making exactly 10 is a clean promotion example.
+defense: reject
+defense-note: W leads against 4H making exactly; no defensive trick available beyond the natural losers.
+}
+[Auction "S"]
+1N    Pass  2D    Pass
+2H    Pass  4H    Pass
+Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \S2. Holding no strong sequence, fourth-best from your longest suit, the spades, is the standard lead against this heart game.
+
+[ROLE declarer][STAGE auction-end]
+I am in 4\H. My long suit is dummy's hearts, the ace, queen, jack, ten, nine and a small card opposite my doubleton, and it carries the hand. Only the trump king is missing, so the suit is set up by leading toward dummy and finessing or simply driving the king out. My plan is to establish the long hearts, lean on my top spades, and keep entries so I can reach and run the suit for ten tricks.
+
+[ROLE declarer][STAGE post-lead]
+West led the \S2, which looks like a fourth-best from length rather than a sequence, and I have the top spades to handle it. The heart suit is the engine: I lead hearts to force out or finesse the missing king, and once it is gone dummy's remaining hearts all win. I take care to keep an entry to dummy so I can return and cash the promoted cards rather than stranding them. Counting the long hearts with my spade and diamond winners reconciles exactly to the ten tricks the hand is worth.
+
+[ROLE declarer][STAGE post-play]
+Driving out the lone missing trump honor let dummy's long hearts run, and protecting the entry meant none of those winners went to waste. Setting up the long suit before cashing out was exactly right. A clean, well-counted ten tricks.}
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Suit_Promotion"]
+[Site ""]
+[Board "15"]
+[OriginalBoard "20"]
+% 1BA4869940440CEAF9E03243951D
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "All"]
+[Deal "N:952.KJT94.AKT3.4 JT4.Q32.J654.K85 AKQ3.A86.92.Q732 876.75.Q87.AJT96"]
+{Shape 3541 3343 4324 3235}
+{HCP 11 7 15 7}
+{Losers 7 10 6 9}
+[Declarer "S"]
+[Contract "4H"]
+[Result "12"]
+[Score "NS 680"]
+[Scoring "MP"]
+{Curate
+class: intended
+difficulty: 2
+bidding: standard
+bidding-note: 1N-2D-2H-3D-4H; slammish values but 4H is the practical contract.
+declarer: standard establish-long-suit
+declarer-note: by_force KJT94 runs; 12 DD tricks ease it but the promotion theme is clean.
+defense: reject
+defense-note: W has no trick; comfortable overtricks.
+}
+[Auction "S"]
+1N    Pass  2D    Pass
+2H    Pass  3D    Pass
+4H    Pass  Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \D7. With no clear sequence to attack, the top of a doubleton is a safe, passive start that keeps your other holdings intact for later.
+
+[ROLE declarer][STAGE auction-end]
+I am in 4\H and need ten tricks. Counting from the top I see the \HA plus a strong trump suit, the \SA \SK \SQ, and the \DA \DK, which gets me into double figures but I want to be sure. My side spades are AKQ3 opposite three small, a five-card suit where a fourth round can be promoted into one more winner by force. The plan is to draw trumps, then play spades enough times that my fourth spade grows into a trick, keeping a trump entry to dummy in reserve.
+
+[ROLE declarer][STAGE post-lead]
+West led the \D7, which looks like top of a short holding rather than an attack, so I can win the \DA in dummy and get on with the hand. The trumps are headed by KJT94 facing the ace, so only the queen is out; I will lead trumps and lose at most one round, hedging on where that queen sits. Then I turn to spades: AKQ cash, and a fourth round drives out the outstanding J and T, after which my last spade is a winner. With trumps and the \DK as entries between the hands I can return to cash that promoted spade, bringing me to my ten tricks and more.
+
+[ROLE declarer][STAGE post-play]
+The key was seeing that the fifth spade was a free trick once the suit was led often enough to clear the missing honours, and saving an entry to reach it. Counting the suit out instead of stopping at the top three is exactly the habit that turns close contracts into comfortable ones. Very nicely done.}
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Suit_Promotion"]
+[Site ""]
+[Board "16"]
+[OriginalBoard "1"]
+% 088680AE858D4A0E4440F900FE64
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:84.AKJT98764.95. 9762..QT83.AQ983 AKQJT.Q2.K64.JT5 53.53.AJ72.K7642"]
+{Shape 2920 4045 5233 2245}
+{HCP 8 8 16 8}
+{Losers 5 6 7 8}
+[Declarer "S"]
+[Contract "4H"]
+[Result "12"]
+[Score "NS 480"]
+[Scoring "MP"]
+{Curate
+class: intended
+difficulty: 2
+bidding: standard
+bidding-note: 1N-2D-2H-4H Texas-style raise on a 9-card heart suit; sound but worth a word on the jump.
+declarer: standard establish-long-suit
+declarer-note: AKJT98764 heart suit runs by force; 12 DD tricks means the lesson is easy but the long-suit theme is clean.
+defense: reject
+defense-note: W leads with nothing useful; declarer has 12 tricks cold, no defensive decision.
+}
+[Auction "S"]
+1N    Pass  2D    Pass
+2H    Pass  4H    Pass
+Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \C4. With no clear honor sequence to lead from, fourth-best from your longest suit, the clubs, is the standard choice against this heart game.
+
+[ROLE declarer][STAGE auction-end]
+I am in 4\H. My long suit is the heart holding in dummy, headed by the ace and king and packed with the jack, ten, nine and a string of small cards, sitting opposite my doubleton. That suit is the engine of the hand: I pull trumps and the long hearts simply run, since there are no missing honors to drive out. Counting my five top spades alongside the running hearts there is no real problem here, so my plan is to draw trumps and cash the long suit, keeping an eye on entries to dummy.
+
+[ROLE declarer][STAGE post-lead]
+West led the \C4, which looks like a fourth-best, so the suit is likely splitting four-one or so around the table; with no club in dummy I can ruff it. From here the principle is clear: lead trumps to draw the opponents' hearts, and because dummy's heart suit has no gaps above my small cards, every round wins once the outstanding trumps fall. The long hearts in dummy account for the bulk of my tricks, my five top spades fill out the rest, and the count reconciles comfortably to the twelve tricks the hand is worth. I just make sure dummy stays reachable so I can enjoy the whole heart suit.
+
+[ROLE declarer][STAGE post-play]
+The heart suit was so solid it ran by force the moment the opponents' trumps were gone, and keeping dummy reachable let me cash every one. Reading the club lead and ruffing kept the line clean. Nicely counted and very well played.}
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Suit_Promotion"]
+[Site ""]
+[Board "17"]
+[OriginalBoard "30"]
+% 189AB187844506E45921F35C5E3B
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:962.QJT9.A72.Q52 T743.A743.43.A93 AKQJ.86.K65.KT76 85.K52.QJT98.J84"]
+{Shape 3433 4423 4234 2353}
+{HCP 9 8 16 7}
+{Losers 9 9 6 9}
+[Declarer "S"]
+[Contract "2N"]
+[Result "9"]
+[Score "NS 150"]
+[Scoring "MP"]
+{Curate
+class: intended
+difficulty: 3
+bidding: standard
+bidding-note: 1N-2C-2S-2N Stayman without a fit; routine but the detour merits a sentence.
+declarer: textbook establish-long-suit
+declarer-note: by_force QJT9 promoted in NT; 2N making 9 exactly a clean partscore long-suit lesson.
+defense: reject
+defense-note: W cannot stop the heart establishment in 2N making exactly.
+}
+[Auction "S"]
+1N    Pass  2C =1=    Pass
+2S    Pass  2N    Pass
+Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \DQ. From QJT98 you have a strong sequence, so the queen leads the suit and forces out declarer's stopper while keeping you on lead.
+
+[ROLE declarer][STAGE auction-end]
+I am in 2\N and need eight tricks. My sure winners are the \SA \SK \SQ \SJ, the \DA \DK, and one club, which is enough top tricks but thin on safety. Hearts are the development suit, QJT9 facing 86, where leading the suit twice to drive out the king and ace promotes two winners. NS hold 25 of the 40, leaving the defence 15, and no one bid. The plan is to establish hearts by force and keep the entries to cash them.
+
+[ROLE declarer][STAGE post-lead]
+West led the \DQ, which looks like top of a sequence, so West likely holds the jack and ten beneath it, and I have the king to guard the suit. I win and turn to hearts, the source of my extra tricks: leading the QJT9 twice forces out the missing ace and king, which I expect split between the defenders, after which my remaining hearts are good. Holding the \DA and my spade winners as entries, I return to cash the established hearts, and my count reaches the needed eight, with overtrick chances if the suits behave.
+
+[ROLE declarer][STAGE post-play]
+The key was developing the heart honours by force so the long cards became winners, rather than settling for the top tricks alone. Leading a sequence twice to clear the suit is the textbook route. Well done.}
+[Note "1:Stayman"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Suit_Promotion"]
+[Site ""]
+[Board "18"]
+[OriginalBoard "9"]
+% 09BA81B0864148482768F7D537FE
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "EW"]
+[Deal "N:73.KJT98.KQT.753 T986.4.J7543.AJ2 AKQJ.76.A986.KT4 542.AQ532.2.Q986"]
+{Shape 2533 4153 4243 3514}
+{HCP 9 6 17 8}
+{Losers 8 9 6 7}
+[Declarer "S"]
+[Contract "3N"]
+[Result "9"]
+[Score "NS 400"]
+[Scoring "MP"]
+{Curate
+class: intended
+difficulty: 3
+bidding: textbook
+bidding-note: 1N-2D-2H-2N-3N; choosing 3N with only a 5-card major and balanced is standard.
+declarer: standard establish-long-suit
+declarer-note: by_force false: KJT98 needs the HA/HQ placed, so a guess/finesse element rather than pure force.
+defense: reject
+defense-note: W leads in 3N making exactly; no clear killing defense with split heart honors.
+}
+[Auction "S"]
+1N    Pass  2D    Pass
+2H    Pass  2N    Pass
+3N    Pass  Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \H3. Fourth-best from your longest and strongest suit, the hearts, is the standard lead against three notrump.
+
+[ROLE declarer][STAGE auction-end]
+I am in 3\N. My sure tricks are four spades and three top diamonds, which leaves me short of nine. My long suit is dummy's hearts, the king, jack, ten, nine and eight opposite my two small, and that is the source of the extra tricks. Because the ace and queen are missing this suit needs leading toward dummy and a favorable honor placement rather than pure force. My plan is to develop the hearts with care, keeping entries so I can repeat the lead toward dummy's honors.
+
+[ROLE declarer][STAGE post-lead]
+West led the \H3, which looks like a fourth-best, suggesting about five hearts, and by the rule of eleven just one card higher than the three lies outside dummy and my hand, with East. With the ace and queen out, I play low from dummy and let the lead run to my hand if I can, then lead back toward dummy's king-jack to develop the suit, hoping the honors lie favorably over dummy. Once a heart honor is knocked out, dummy's remaining hearts win. Adding those to my four spades and three diamonds reconciles to the nine tricks I need.
+
+[ROLE declarer][STAGE post-play]
+The heart suit gave up its tricks only with the honors placed kindly and the entries kept to lead toward dummy twice. Reading the opening lead helped place the missing cards. Thoughtfully and well played.}
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Suit_Promotion"]
+[Site ""]
+[Board "19"]
+[OriginalBoard "6"]
 % 09A480938549CE04BC38D252ED67
 [North "EPBot"]
 [East "EPBot"]
@@ -266,7 +917,8 @@ defense-note: W cannot beat 4H making exactly; the heart honors fall to force.
 2H    Pass  3D    Pass
 3H    Pass  3N    Pass
 4H    Pass  Pass  Pass
-{[ROLE leader][STAGE pre-lead]
+{[show NS]
+[ROLE leader][STAGE pre-lead]
 Lead the \CK. Top of your strong club sequence headed by the ace and king is the natural, safe lead against four hearts.
 
 [ROLE declarer][STAGE auction-end]
@@ -282,54 +934,105 @@ Forcing out the trump queen turned dummy's heart spots into winners, and preserv
 
 [Event "Suit_Promotion"]
 [Site ""]
-[Board "7"]
-% 0BB58A8C0440C074D56EDA26AEC1
+[Board "20"]
+[OriginalBoard "3"]
+% 0985BFBAC5454A507663CFFF2938
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
 [Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:J4.KQJT92.AJ874. T86.75.T92.K6543 AKQ3.643.Q63.A72 9752.A8.K5.QJT98"]
-{Shape 2650 3235 4333 4225}
-{HCP 12 3 15 10}
-{Losers 5 10 7 7}
+[Vulnerable "EW"]
+[Deal "N:32.AJT95.86.K654 T9876.8.AJT7.Q97 AKQ.63.Q932.AJT3 J54.KQ742.K54.82"]
+{Shape 2524 5143 3244 3532}
+{HCP 8 7 16 9}
+{Losers 8 8 6 8}
 [Declarer "S"]
-[Contract "4H"]
-[Result "11"]
-[Score "NS 650"]
+[Contract "2H"]
+[Result "9"]
+[Score "NS 140"]
 [Scoring "MP"]
 {Curate
 class: intended
 difficulty: 2
-bidding: standard
-bidding-note: 1N-2D-2H-3D-4H; slam-ish values (27 combined) but 4H is the practical spot to teach.
-declarer: standard establish-long-suit
-declarer-note: by_force KQJT92 runs; 12 DD tricks make it easy but the long-suit theme is intact.
+bidding: textbook
+bidding-note: 1N-2D-2H passed; sign-off in the partscore is routine with a minimum responder hand.
+declarer: textbook establish-long-suit
+declarer-note: by_force AJT95 promoted by leading hearts; 2H making 9 leaves a clean partscore long-suit lesson.
 defense: reject
-defense-note: E on lead has nothing; declarer has comfortable overtricks.
+defense-note: W cannot stop the heart establishment; declarer comfortably makes the partscore.
 }
 [Auction "S"]
 1N    Pass  2D    Pass
-2H    Pass  3D    Pass
-4H    Pass  Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \CQ. Top of your solid club sequence headed by the queen, jack and ten is the natural lead against this heart game.
+2H    Pass  Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \D4. With no honor sequence worth leading, fourth-best from your longest unbid suit, the diamonds, is the standard start against two hearts.
 
 [ROLE declarer][STAGE auction-end]
-I am in 4\H. Dummy's hearts, the king, queen, jack, ten, nine and a small card opposite my three small, are the long suit, with only the ace missing; once that is forced out the suit runs. The hand is rich, with the long hearts, my top spades and a strong diamond suit in dummy, so there is no shortage of tricks. My plan is to drive out the heart ace, establish the long suit, and keep entries so I can cash the length.
+I am in 2\H. Dummy's heart suit, the ace, jack, ten, nine and a small one opposite my doubleton, is my long suit, but the king and queen of trumps are missing, so it must be promoted by leading hearts and forcing those honors out. After the opponents' high trumps are gone my remaining hearts become winners. My plan is to knock out the trump honors, build the long suit, and use my side winners and entries to reach the promoted cards.
 
 [ROLE declarer][STAGE post-lead]
-West led the \CQ, which looks like top of a sequence, so West likely holds the queen, jack and ten together. With clubs void in dummy I can ruff. I lead hearts to force out the missing ace, conceding that one round, after which dummy's remaining hearts all win; the long diamonds add even more. Keeping dummy reachable lets me cash everything, and the count reconciles comfortably to the twelve tricks the hand is worth.
+West led the \D4, which looks like a fourth-best, suggesting roughly four diamonds and not a sequence. I turn straight to the long suit: lead hearts repeatedly to drive out the missing king and queen, conceding those early rounds, after which dummy's jack, ten and nine become winners. I keep my top spades and clubs as entries and as tricks so I can return to dummy and cash the established hearts. Adding those promoted length tricks to my side winners reconciles to the nine tricks the hand produces.
 
 [ROLE declarer][STAGE post-play]
-Forcing out the heart ace let dummy's long suit run, and with diamonds adding length there were tricks to spare. Conceding one round to set up many was the principle. Cleanly counted and very well played.}
+Forcing out the king and queen of trumps early turned dummy's middling hearts into sure winners, and holding entries meant I could come back and cash them. Giving up those rounds to gain more was the whole idea. Patiently and well played.}
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Suit_Promotion"]
 [Site ""]
-[Board "8"]
+[Board "21"]
+[OriginalBoard "2"]
+% 0A89B18BC4CE4E201725DAE86C50
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "NS"]
+[Deal "N:876.AQJT9.T93.Q7 932.752.AQ54.T95 AKQ.8643.J76.AK6 JT54.K.K82.J8432"]
+{Shape 3532 3343 3433 4135}
+{HCP 9 6 17 8}
+{Losers 9 10 7 9}
+[Declarer "S"]
+[Contract "4H"]
+[Result "10"]
+[Score "NS 620"]
+[Scoring "MP"]
+{Curate
+class: intended
+difficulty: 3
+bidding: textbook
+bidding-note: 1N-2D transfer then 2N invite raised to 4H with a max and a fitting hand.
+declarer: standard establish-long-suit
+declarer-note: by_force false: AQJT9 needs the heart king onside, so this is a finesse rather than pure promotion.
+defense: reject
+defense-note: W leads against 4H making exactly; no clear defensive trick to find with the bare HK offside-singleton.
+}
+[Auction "S"]
+1N    Pass  2D    Pass
+2H    Pass  2N    Pass
+4H    Pass  Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \C3. Without a strong sequence to attack, fourth-best from your longest suit, the clubs, is the textbook lead against four hearts.
+
+[ROLE declarer][STAGE auction-end]
+I am in 4\H. Dummy's long heart suit is headed by the ace, queen, jack, ten and nine, opposite my four small ones, and that is where my extra tricks live. The catch is the missing heart king: this suit does not simply run by force, so I will need the king placed favorably and take a finesse through it. My plan is to use the long suit for length, leading toward dummy's honors and finessing for the king, while saving entries so I can repeat the lead if needed.
+
+[ROLE declarer][STAGE post-lead]
+West led the \C3, which looks like a fourth-best from length rather than a sequence, so I can win my top clubs safely. The heart suit is the source of tricks, but with the king out I must lead toward dummy and finesse: if the king sits with West over dummy's honors the finesse works and the suit yields five tricks. I keep an entry to my hand in reserve in case I need to repeat the heart finesse, then add my top spades and clubs. Played this way the count reconciles to the ten tricks the hand is worth.
+
+[ROLE declarer][STAGE post-play]
+This long suit needed the king onside, so the finesse, not brute force, was the key, and keeping an entry let me lead hearts more than once. Patience with the entries made all the difference. Well judged and smoothly played.}
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Suit_Promotion"]
+[Site ""]
+[Board "22"]
+[OriginalBoard "8"]
 % 0899B39C4087CCC3957FC6ED671F
 [North "EPBot"]
 [East "EPBot"]
@@ -362,7 +1065,8 @@ defense-note: W in 3N cannot prevent the heart suit from running; comfortable fo
 2H    Pass  3C    Pass
 3S    Pass  3N    Pass
 Pass  Pass
-{[ROLE leader][STAGE pre-lead]
+{[show NS]
+[ROLE leader][STAGE pre-lead]
 Lead the \S4. Fourth-best from your longest suit, the spades, is the standard opening lead against three notrump.
 
 [ROLE declarer][STAGE auction-end]
@@ -378,243 +1082,8 @@ The long club suit, once the high cards were forced out, supplied the tricks the
 
 [Event "Suit_Promotion"]
 [Site ""]
-[Board "9"]
-% 09BA81B0864148482768F7D537FE
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:73.KJT98.KQT.753 T986.4.J7543.AJ2 AKQJ.76.A986.KT4 542.AQ532.2.Q986"]
-{Shape 2533 4153 4243 3514}
-{HCP 9 6 17 8}
-{Losers 8 9 6 7}
-[Declarer "S"]
-[Contract "3N"]
-[Result "9"]
-[Score "NS 400"]
-[Scoring "MP"]
-{Curate
-class: intended
-difficulty: 3
-bidding: textbook
-bidding-note: 1N-2D-2H-2N-3N; choosing 3N with only a 5-card major and balanced is standard.
-declarer: standard establish-long-suit
-declarer-note: by_force false: KJT98 needs the HA/HQ placed, so a guess/finesse element rather than pure force.
-defense: reject
-defense-note: W leads in 3N making exactly; no clear killing defense with split heart honors.
-}
-[Auction "S"]
-1N    Pass  2D    Pass
-2H    Pass  2N    Pass
-3N    Pass  Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \H3. Fourth-best from your longest and strongest suit, the hearts, is the standard lead against three notrump.
-
-[ROLE declarer][STAGE auction-end]
-I am in 3\N. My sure tricks are four spades and three top diamonds, which leaves me short of nine. My long suit is dummy's hearts, the king, jack, ten, nine and eight opposite my two small, and that is the source of the extra tricks. Because the ace and queen are missing this suit needs leading toward dummy and a favorable honor placement rather than pure force. My plan is to develop the hearts with care, keeping entries so I can repeat the lead toward dummy's honors.
-
-[ROLE declarer][STAGE post-lead]
-West led the \H3, which looks like a fourth-best, suggesting about five hearts, and by the rule of eleven just one card higher than the three lies outside dummy and my hand, with East. With the ace and queen out, I play low from dummy and let the lead run to my hand if I can, then lead back toward dummy's king-jack to develop the suit, hoping the honors lie favorably over dummy. Once a heart honor is knocked out, dummy's remaining hearts win. Adding those to my four spades and three diamonds reconciles to the nine tricks I need.
-
-[ROLE declarer][STAGE post-play]
-The heart suit gave up its tricks only with the honors placed kindly and the entries kept to lead toward dummy twice. Reading the opening lead helped place the missing cards. Thoughtfully and well played.}
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Suit_Promotion"]
-[Site ""]
-[Board "12"]
-% 0A8BA8A6C6C343029DD8EEF689FE
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:8.AJT983.752.AT9 9.76.AK63.QJ8542 AKQ73.KQ5.QJ4.73 JT6542.42.T98.K6"]
-{Shape 1633 1246 5332 6232}
-{HCP 9 10 17 4}
-{Losers 8 6 5 9}
-[Declarer "S"]
-[Contract "4H"]
-[Result "10"]
-[Score "NS 620"]
-[Scoring "MP"]
-{Curate
-class: intended
-difficulty: 2
-bidding: textbook
-bidding-note: 1N-2D-2H-4H game raise, routine with 17 HCP and a heart fit.
-declarer: standard establish-long-suit
-declarer-note: by_force AJT983 runs; 11 DD tricks make it easy but the long-suit force is clean.
-defense: reject
-defense-note: W cannot stop the heart establishment; an overtrick is available.
-}
-[Auction "S"]
-1N    Pass  2D    Pass
-2H    Pass  4H    Pass
-Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \DT. Top of your diamond sequence headed by the ten is the natural, safe lead against this heart game.
-
-[ROLE declarer][STAGE auction-end]
-I am in 4\H. Dummy's hearts, the ace, jack, ten, nine, eight and three opposite my king, queen and a small one, are a powerful long suit with no missing honors of consequence, so once trumps are drawn the suit runs. With the long hearts plus my top spades there are tricks to spare. My plan is to draw trumps, cash the long suit, and keep an entry to dummy so none of the length is wasted.
-
-[ROLE declarer][STAGE post-lead]
-West led the \DT, which looks like top of a sequence, so West likely holds the ten and nine together. I win as convenient and draw the outstanding trumps; because dummy's heart suit has no gaps above my spots, every remaining heart is a winner. I keep dummy reachable so I can return and cash the long hearts, and counting them with my top spades the total reconciles to the eleven tricks the hand is worth.
-
-[ROLE declarer][STAGE post-play]
-The heart suit ran by force once trumps were drawn, and keeping the entry to dummy let me enjoy every long card. Drawing trumps before cashing kept the suit safe. Smoothly counted and very well played.}
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Suit_Promotion"]
-[Site ""]
-[Board "13"]
-% 0BB5A6B2C305CFEE5A20BCF00275
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:T63.JT93.AKT2.J9 72.7.QJ643.KQ873 AKQ5.K86.985.AT2 J984.AQ542.7.654"]
-{Shape 3442 2155 4333 4513}
-{HCP 9 8 16 7}
-{Losers 9 6 7 8}
-[Declarer "S"]
-[Contract "2N"]
-[Result "9"]
-[Score "NS 150"]
-[Scoring "MP"]
-{Curate
-class: intended
-difficulty: 3
-bidding: standard
-bidding-note: 1N-2C-X-2S-2N after a double; the interference makes the auction worth a sentence.
-declarer: standard establish-long-suit
-declarer-note: by_force JT93 promoted in NT; 2N making 9 with the long-suit theme intact.
-defense: reject
-defense-note: W cannot prevent the heart promotion in a comfortable 2N.
-}
-[Auction "S"]
-1N    Pass  2C =1=    X
-2S    Pass  2N    Pass
-Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \H4. Fourth-best from your longest and strongest suit, the hearts, is the standard lead against two notrump.
-
-[ROLE declarer][STAGE auction-end]
-I am in 2\N. My top tricks are three spades and two diamonds, short of the eight I need. My long suit is dummy's hearts, the jack, ten, nine and three opposite my king and small ones, and developing it by force supplies the extra tricks. The plan is to lead hearts and drive out the opponents' higher honors, then return to dummy to cash the promoted cards, while my diamonds also offer a little length.
-
-[ROLE declarer][STAGE post-lead]
-West led the \H4, which looks like a fourth-best, suggesting about five hearts, and by the rule of eleven just one card higher than the four lies outside dummy and my hand, with East. With the heart honors missing I take care with my king and turn to developing the suit: lead hearts to force out the higher cards, conceding what I must, after which dummy's jack, ten and nine become winners. I keep entries to dummy so I can come back and cash them, and adding those to my spades and diamonds reconciles to the nine tricks the hand makes.
-
-[ROLE declarer][STAGE post-play]
-Forcing out the high hearts turned dummy's middle cards into winners, and keeping an entry let me cash the established suit. Reading the lead placed the missing hearts and guided the timing. Carefully and well played.}
-[Note "1:Stayman"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Suit_Promotion"]
-[Site ""]
-[Board "14"]
-% 0886A9BE0246C127F0C304BC5D5F
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:J85.AJT965.K.862 T32.32.Q432.AQJT AKQ4.K8.J976.K93 976.Q74.AT85.754"]
-{Shape 3613 3244 4243 3343}
-{HCP 9 9 16 6}
-{Losers 9 8 6 10}
-[Declarer "S"]
-[Contract "4H"]
-[Result "10"]
-[Score "NS 420"]
-[Scoring "MP"]
-{Curate
-class: intended
-difficulty: 2
-bidding: textbook
-bidding-note: 1N-2D-2H-4H game raise, standard.
-declarer: standard establish-long-suit
-declarer-note: by_force AJT965 runs; 11 DD tricks ease it but the promotion theme is clean.
-defense: reject
-defense-note: W has no trick to develop; overtrick available.
-}
-[Auction "S"]
-1N    Pass  2D    Pass
-2H    Pass  4H    Pass
-Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \S6. With no honor sequence to lead, fourth-best from your longest suit, the spades, is the standard choice against four hearts.
-
-[ROLE declarer][STAGE auction-end]
-I am in 4\H. Dummy's hearts, the ace, jack, ten, nine, six and five opposite my king and a small one, are the long suit, and with only the queen missing the suit is nearly solid. Driving out or finessing the trump queen sets the suit running. My plan is to establish the long hearts, lean on my top spades, and keep an entry to dummy so I can cash the whole suit.
-
-[ROLE declarer][STAGE post-lead]
-West led the \S6, which looks like a fourth-best from length rather than a sequence, and I have the top spades to handle it. The heart suit is the engine: I lead trumps to force out or finesse the missing queen, and once it is gone dummy's remaining hearts all win. I keep dummy reachable so I can return and run the established suit rather than stranding it. Counting the long hearts with my spade winners reconciles to the eleven tricks the hand is worth.
-
-[ROLE declarer][STAGE post-play]
-Dealing with the one missing trump honor let dummy's long hearts run, and the saved entry meant none were wasted. Setting up the long suit and reaching it were the keys. A clean, well-counted result.}
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Suit_Promotion"]
-[Site ""]
-[Board "15"]
-% 0AAC86BC49C8C3066369A340D15B
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:8.KJT984.AQ.9752 J7642.32.JT62.K8 AKQ5.A765.K8.J63 T93.Q.97543.AQT4"]
-{Shape 1624 5242 4423 3154}
-{HCP 10 5 17 8}
-{Losers 7 9 6 8}
-[Declarer "S"]
-[Contract "4H"]
-[Result "10"]
-[Score "NS 620"]
-[Scoring "MP"]
-{Curate
-class: intended
-difficulty: 2
-bidding: textbook
-bidding-note: 1N-2D-2H-3C-4H; natural club-then-game sequence lands in 4H.
-declarer: textbook establish-long-suit
-declarer-note: by_force KJT984 driven out the AQ; 4H exactly 10 a clean by-force board.
-defense: reject
-defense-note: W cannot beat a cold 4H making exactly.
-}
-[Auction "S"]
-1N    Pass  2D    Pass
-2H    Pass  3C    Pass
-4H    Pass  Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \D4. With no strong sequence to attack, fourth-best from your longest suit, the diamonds, is the standard lead against four hearts.
-
-[ROLE declarer][STAGE auction-end]
-I am in 4\H. Dummy's hearts, the king, jack, ten, nine, eight and four opposite my ace and three small, are the long suit, with only the queen of trumps missing, so the suit is promoted by leading hearts and forcing that honor out. After the queen is gone dummy's remaining hearts are winners. My plan is to knock out the trump queen, build the long suit, and keep an entry so I can return to dummy and cash it, supported by my top spades.
-
-[ROLE declarer][STAGE post-lead]
-West led the \D4, which looks like a fourth-best, suggesting roughly five diamonds. I win as convenient and lead hearts to drive out the missing queen, conceding that round; once it falls dummy's jack, ten, nine and eight all become winners. I keep an entry to dummy so I can come back and run the established hearts. Adding those promoted length tricks to my top spades and diamonds reconciles to the ten tricks the hand makes.
-
-[ROLE declarer][STAGE post-play]
-Forcing out the trump queen turned dummy's heart spots into sure winners, and protecting the entry let me cash them. Conceding the one needed round to gain several was the whole point. Patiently and well played.}
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Suit_Promotion"]
-[Site ""]
-[Board "16"]
+[Board "23"]
+[OriginalBoard "16"]
 % 0981BA978EC4C4C21F6A1F91FDEA
 [North "EPBot"]
 [East "EPBot"]
@@ -646,7 +1115,8 @@ defense-note: W cannot stop the heart suit; comfortable overtricks for declarer.
 1N    Pass  2D    Pass
 2H    Pass  3N    Pass
 Pass  Pass
-{[ROLE leader][STAGE pre-lead]
+{[show NS]
+[ROLE leader][STAGE pre-lead]
 Lead the \ST. Top of your spade sequence headed by the ten is the natural lead against three notrump.
 
 [ROLE declarer][STAGE auction-end]
@@ -662,112 +1132,20 @@ The long heart suit, once the high cards were forced out, gave the tricks the to
 
 [Event "Suit_Promotion"]
 [Site ""]
-[Board "18"]
-% 1A988586CFCA8FB41DEC60DA6238
+[Board "24"]
+[OriginalBoard "34"]
+% 2A8DAABBC2C346381671D9C744ED
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
 [Dealer "S"]
 [Vulnerable "NS"]
-[Deal "N:72.KQJT9.J976.J9 53.A74.AT42.QT43 AKQ98.653.KQ8.K7 JT64.82.53.A8652"]
-{Shape 2542 2344 5332 4225}
-{HCP 8 10 17 5}
-{Losers 8 8 5 9}
+[Deal "N:87.AJT943.A2.QT4 963.75.KQ85.KJ97 AKQ.K2.9743.A652 JT542.Q86.JT6.83"]
+{Shape 2623 3244 3244 5332}
+{HCP 11 9 16 4}
+{Losers 7 8 6 10}
 [Declarer "S"]
-[Contract "2H"]
-[Result "10"]
-[Score "NS 170"]
-[Scoring "MP"]
-{Curate
-class: intended
-difficulty: 2
-bidding: textbook
-bidding-note: 1N-2D-2H passed in partscore; routine sign-off with minimum responder.
-declarer: textbook establish-long-suit
-declarer-note: by_force KQJT9 promoted; 2H making 9 a clean partscore long-suit lesson.
-defense: reject
-defense-note: W cannot prevent the heart establishment in 2H.
-}
-[Auction "S"]
-1N    Pass  2D    Pass
-2H    Pass  Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \S4. With no honor sequence to lead, fourth-best from your longest suit, the spades, is the standard choice against two hearts.
-
-[ROLE declarer][STAGE auction-end]
-I am in 2\H. Dummy's hearts, the king, queen, jack, ten and nine opposite my three small, are the long suit, with only the ace missing, so the suit is promoted by leading hearts and forcing the ace out. After it is gone dummy's remaining hearts are winners. My plan is to knock out the heart ace, establish the long suit, and keep entries so I can reach and cash the promoted cards along with my top spades and a diamond or two.
-
-[ROLE declarer][STAGE post-lead]
-West led the \S4, which looks like a fourth-best from length rather than a sequence, and I have the top spades to win it. I turn to the long suit: lead hearts to force out the missing ace, conceding that one round, after which dummy's king, queen, jack and remaining hearts all win. I keep an entry to dummy so I can return and run the established suit rather than leaving it stranded, and I can develop a diamond trick as well. Counting the promoted hearts with my side winners reconciles to the nine tricks the hand produces.
-
-[ROLE declarer][STAGE post-play]
-Forcing out the lone heart ace set dummy's strong suit running, and keeping an entry meant I could cash it all. Conceding one round to gain several was the principle at work. Patiently and well played.}
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Suit_Promotion"]
-[Site ""]
-[Board "20"]
-% 1BA4869940440CEAF9E03243951D
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:952.KJT94.AKT3.4 JT4.Q32.J654.K85 AKQ3.A86.92.Q732 876.75.Q87.AJT96"]
-{Shape 3541 3343 4324 3235}
-{HCP 11 7 15 7}
-{Losers 7 10 6 9}
-[Declarer "S"]
-[Contract "4H"]
-[Result "12"]
-[Score "NS 680"]
-[Scoring "MP"]
-{Curate
-class: intended
-difficulty: 2
-bidding: standard
-bidding-note: 1N-2D-2H-3D-4H; slammish values but 4H is the practical contract.
-declarer: standard establish-long-suit
-declarer-note: by_force KJT94 runs; 12 DD tricks ease it but the promotion theme is clean.
-defense: reject
-defense-note: W has no trick; comfortable overtricks.
-}
-[Auction "S"]
-1N    Pass  2D    Pass
-2H    Pass  3D    Pass
-4H    Pass  Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \D7. With no clear sequence to attack, the top of a doubleton is a safe, passive start that keeps your other holdings intact for later.
-
-[ROLE declarer][STAGE auction-end]
-I am in 4\H and need ten tricks. Counting from the top I see the \HA plus a strong trump suit, the \SA \SK \SQ, and the \DA \DK, which gets me into double figures but I want to be sure. My side spades are AKQ3 opposite three small, a five-card suit where a fourth round can be promoted into one more winner by force. The plan is to draw trumps, then play spades enough times that my fourth spade grows into a trick, keeping a trump entry to dummy in reserve.
-
-[ROLE declarer][STAGE post-lead]
-West led the \D7, which looks like top of a short holding rather than an attack, so I can win the \DA in dummy and get on with the hand. The trumps are headed by KJT94 facing the ace, so only the queen is out; I will lead trumps and lose at most one round, hedging on where that queen sits. Then I turn to spades: AKQ cash, and a fourth round drives out the outstanding J and T, after which my last spade is a winner. With trumps and the \DK as entries between the hands I can return to cash that promoted spade, bringing me to my ten tricks and more.
-
-[ROLE declarer][STAGE post-play]
-The key was seeing that the fifth spade was a free trick once the suit was led often enough to clear the missing honours, and saving an entry to reach it. Counting the suit out instead of stopping at the top three is exactly the habit that turns close contracts into comfortable ones. Very nicely done.}
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Suit_Promotion"]
-[Site ""]
-[Board "21"]
-% 1A818AB4C28A4064E6036B62710F
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:62.AKJT962.2.652 98543..KT5.KJT74 AKQT.8754.Q87.A3 J7.Q3.AJ9643.Q98"]
-{Shape 2713 5035 4432 2263}
-{HCP 8 7 15 10}
-{Losers 7 7 6 8}
-[Declarer "N"]
 [Contract "4H"]
 [Result "11"]
 [Score "NS 650"]
@@ -775,187 +1153,47 @@ The key was seeing that the fifth spade was a free trick once the suit was led o
 {Curate
 class: intended
 difficulty: 2
-bidding: standard
-bidding-note: 1N-2D(interf)-3H-4D-4H with North declaring; the competitive auction is worth a sentence.
-declarer: standard establish-long-suit
-declarer-note: by_force AKJT962 runs from North; 12 DD tricks ease it but the long-suit force is clean.
-defense: reject
-defense-note: E on lead cannot stop the running heart suit; overtricks available.
-}
-[Auction "S"]
-1N    2D    3H    Pass
-4D =1=    Pass  4H    Pass
-Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \C7. Holding KJT74 you lead fourth-best from your longest suit, hoping to set up club tricks while you still hold entries.
-
-[ROLE declarer][STAGE auction-end]
-From the North seat I am declaring 4\H and need ten tricks. My trumps are a powerhouse, AKJT962 facing four small, and away from trumps I have the \SA \SK \SQ and the \CA. The spades are a six-card fit where a fourth round can be forced into an extra winner if I need it. My plan is to draw trumps, cash my side winners, and promote the long spade by leading the suit until the outstanding honour is gone, keeping a way back to dummy.
-
-[ROLE declarer][STAGE post-lead]
-West led the \C7, which looks like a fourth-best from length, suggesting about four cards in the suit and the missing honours likely split between the defenders. I can win the \CA and take stock. Trumps are solid with only the queen out, so I draw them, losing nothing of consequence, then run spades: AKQ from the top, and a further round clears the missing jack so the fourth spade in dummy becomes good. With trump entries available I cross to enjoy that promoted spade, comfortably reaching and passing my ten tricks.
-
-[ROLE declarer][STAGE post-play]
-The lesson was that the long spade suit furnishes the extra trick once it is led enough times to remove the defenders' honour, and that you must keep an entry to the hand holding the length. Reading the lead, drawing trumps, then patiently establishing the suit is textbook technique. Well played.}
-[Note "1:limit raise or better in !H"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Suit_Promotion"]
-[Site ""]
-[Board "22"]
-% 198DA483C807C49E51F92EEE5284
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:T5.AQJT92.Q73.QT 73.873.KT92.8543 AKQ82.K54.J6.A76 J964.6.A854.KJ92"]
-{Shape 2632 2344 5323 4144}
-{HCP 11 3 17 9}
-{Losers 7 10 6 8}
-[Declarer "S"]
-[Contract "4H"]
-[Result "11"]
-[Score "NS 450"]
-[Scoring "MP"]
-{Curate
-class: intended
-difficulty: 2
 bidding: textbook
 bidding-note: 1N-2D-2H-4H game raise, routine.
 declarer: standard establish-long-suit
-declarer-note: by_force AQJT92 runs; 11 DD tricks ease it but the promotion theme is clean.
+declarer-note: by_force AJT943 runs; 12 DD tricks ease it but the promotion theme is clean.
 defense: reject
-defense-note: W cannot stop the heart suit; overtrick available.
+defense-note: W has no trick; comfortable overtricks for declarer.
 }
 [Auction "S"]
 1N    Pass  2D    Pass
 2H    Pass  4H    Pass
 Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \C2. From KJ92 you lead fourth-best, attacking your longest suit before declarer can set up discards.
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \S4. From JT542 you lead fourth-best from your longest suit, the natural choice with no singleton or partner's suit to attack.
 
 [ROLE declarer][STAGE auction-end]
-I have reached 4\H and need ten tricks. My trumps are AQJT92 in dummy facing the king, an enormous suit, and outside I hold the \SA \SK \SQ and the \CA. The spades are a five-card source where the fifth card can be promoted into a further winner by force. NS hold 28 of the 40 points, so the defence has only 12 between them, and since neither opponent bid, no one is hiding a long suit. I will draw trumps, then build the spades by leading them until the missing honour falls out, minding my entries.
+I am in 4\H and need ten tricks. My trumps are AJT943 in dummy facing my king, and outside I have the \SA \SK \SQ, the \DA, and the \CA. The trump suit itself is the suit to establish: it is missing only the queen, and leading trumps to remove that card leaves the long suit running. NS hold 27 of the 40 points, leaving the defence only 13, with no bidding to warn me. The plan is to draw trumps, losing at most to the queen, after which the established trumps and my aces and spade honours carry me past ten.
 
 [ROLE declarer][STAGE post-lead]
-West led the \C2, which looks like a fourth-best from length and lets me win the \CA cheaply. Trumps are practically solid, so I draw them in short order. Then I attack spades: the AKQ cash, and a fourth round forces out the outstanding jack, after which my fifth spade is a winner. Trumps give me a clean entry back to the long hand, so I can cash that promoted spade and roll to ten tricks and beyond.
+West led the \S4, which looks like a fourth-best from length and gives me nothing; I win a top spade. The hearts are the source, AJT943 facing my king, with only the queen out, which could lie either way. I lead trumps and force the queen out, conceding at most one trick, and the rest of the long suit is then good. With the trumps established and the \SA \SK \SQ, the \DA, and the \CA on top, my count comfortably reaches and exceeds ten.
 
 [ROLE declarer][STAGE post-play]
-What mattered was treating the spades as a suit to be developed, not just three cashing honours, and keeping a trump entry to reach the established length. That count-and-entries discipline is the heart of suit promotion. Lovely work.}
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Suit_Promotion"]
-[Site ""]
-[Board "23"]
-% 1B9F94A84BCB07EAD1D8D1114E8D
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:94.JT932.K9.AJT9 J3.AK7654.754.83 AKQ2.Q8.A32.7542 T8765..QJT86.KQ6"]
-{Shape 2524 2632 4234 5053}
-{HCP 9 8 15 8}
-{Losers 8 8 7 6}
-[Declarer "S"]
-[Contract "3N"]
-[Result "8"]
-[Score "NS -100"]
-[Scoring "MP"]
-{Curate
-class: intended
-difficulty: 3
-bidding: textbook
-bidding-note: 1N-2D-2H-3C-3N; choosing NT with the 5-card major is standard here.
-declarer: standard establish-long-suit
-declarer-note: by_force false: JT932 needs the AK placement, so this is closer to a guess than pure force.
-defense: reject
-defense-note: W leads in 3N making exactly; no clear killing defense available.
-}
-[Auction "S"]
-1N    Pass  2D    Pass
-2H    Pass  3C    Pass
-3N    Pass  Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \DQ. With QJT86 you have a strong sequence, so the queen leads the suit and keeps the lead while you knock out declarer's stopper.
-
-[ROLE declarer][STAGE auction-end]
-I am in 3\N and need nine tricks. Counting sure winners I have the \SA \SK \SQ, the \DA, and the \CA, which is only five off the top, so I must develop more. My best source is hearts, JT932 facing Q8, where leading the suit repeatedly to drive out the ace and king can promote three tricks once the honours are gone. The plan is to attack hearts early, force out the top honours, and keep entries to cash the long hearts.
-
-[ROLE declarer][STAGE post-lead]
-West led the \DQ, which looks like top of a sequence, so West probably holds the jack and ten behind it; I have the king and ace to control the suit. Hearts are where my extra tricks live: I will lead toward the JT932, conceding to the ace and king, which I expect to be split between the defenders, and the third lead establishes my remaining low hearts as winners. Because hearts need two surrenders before they cash, I must husband my side entries and use the heart length itself for the late tricks. Once the top honours are gone, three hearts plus my five top winners bring me to nine.
-
-[ROLE declarer][STAGE post-play]
-The contract hinged on developing the long heart suit by force rather than relying only on top cards, and on keeping the entries to enjoy it. Driving out the high honours so your small cards take tricks is the whole idea of suit establishment. Beautifully handled.}
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Suit_Promotion"]
-[Site ""]
-[Board "24"]
-% 1885808F40054A53567C36E535AA
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:T53.AKQJT9.92.Q8 J9876.87.Q6.9752 AKQ2.42.KJ8.AT43 4.653.AT7543.KJ6"]
-{Shape 3622 5224 4234 1363}
-{HCP 12 3 17 8}
-{Losers 7 10 6 8}
-[Declarer "N"]
-[Contract "4H"]
-[Result "11"]
-[Score "NS 450"]
-[Scoring "MP"]
-{Curate
-class: intended
-difficulty: 1
-bidding: standard
-bidding-note: 1N-2D(interf)-3H-3N-4H from North; the competitive sequence is worth a word.
-declarer: standard establish-long-suit
-declarer-note: by_force AKQJT9 solid suit; 11 DD tricks make it trivial but the long-suit theme is present.
-defense: reject
-defense-note: E on lead has no trick; overtrick available.
-}
-[Auction "S"]
-1N    2D    3H    Pass
-3N    Pass  4H    Pass
-Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \S7. Holding J9876 you lead fourth-best from your longest suit, the natural shot against a suit contract when you have no singleton or partner's suit to attack.
-
-[ROLE declarer][STAGE auction-end]
-From North I am declaring 4\H and need ten tricks. My trumps are solid, AKQJT9 facing two small, and outside I have the \SA \SK \SQ and the \CA. The extra tricks I need come from clubs, where leading the suit can build two long-card winners once the missing king is driven out. NS hold 29 of the 40 points, leaving the defence only 11. My plan is to draw trumps, then establish the clubs by forcing out the king, keeping an entry to the long club hand.
-
-[ROLE declarer][STAGE post-lead]
-East led the \S7, which looks like a fourth-best from length and gives me nothing; I win a top spade. Trumps are running, so I draw them. Then I turn to clubs: I lead the suit and concede to the outstanding king, expecting it could sit either way, and a further round clears the suit so my remaining clubs are winners. With trumps as entries I return to cash the established clubs, which together with my top tricks carries me past ten.
-
-[ROLE declarer][STAGE post-play]
-The key was finding the extra tricks in the club length rather than leaving them as small cards, and keeping the entry to reach them after the king was gone. Counting how many times the suit must be led, then guarding the entry, is exactly right. Excellent play.}
+The hand came home because the long trump suit only needed the queen driven out before it ran, and the rest were sure winners. Counting that a single trump honour is the only worry, then collecting the length, is exactly the right approach. Excellent work.}
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Suit_Promotion"]
 [Site ""]
 [Board "25"]
-% 19AD968340CECA47B8E44C917508
+[OriginalBoard "14"]
+% 0886A9BE0246C127F0C304BC5D5F
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
 [Dealer "S"]
-[Vulnerable "EW"]
-[Deal "N:2.QJT9852.QJ4.Q8 J853.K4.K863.KT9 AKQ74.A6.972.A43 T96.73.AT5.J7652"]
-{Shape 1732 4243 5233 3235}
-{HCP 8 10 17 5}
-{Losers 7 8 6 10}
+[Vulnerable "None"]
+[Deal "N:J85.AJT965.K.862 T32.32.Q432.AQJT AKQ4.K8.J976.K93 976.Q74.AT85.754"]
+{Shape 3613 3244 4243 3343}
+{HCP 9 9 16 6}
+{Losers 9 8 6 10}
 [Declarer "S"]
 [Contract "4H"]
 [Result "10"]
@@ -965,138 +1203,46 @@ The key was finding the extra tricks in the club length rather than leaving them
 class: intended
 difficulty: 2
 bidding: textbook
-bidding-note: 1N-2D-2H-4H game raise, routine.
+bidding-note: 1N-2D-2H-4H game raise, standard.
 declarer: standard establish-long-suit
-declarer-note: by_force QJT9852 runs; 11 DD tricks ease it but the promotion is clean.
+declarer-note: by_force AJT965 runs; 11 DD tricks ease it but the promotion theme is clean.
 defense: reject
-defense-note: W cannot stop the heart suit; overtrick available.
+defense-note: W has no trick to develop; overtrick available.
 }
 [Auction "S"]
 1N    Pass  2D    Pass
 2H    Pass  4H    Pass
 Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \C5. From J7652 you lead fourth-best from your longest suit, a sound passive choice with no sequence or singleton to prefer.
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \S6. With no honor sequence to lead, fourth-best from your longest suit, the spades, is the standard choice against four hearts.
 
 [ROLE declarer][STAGE auction-end]
-I am in 4\H and need ten tricks. Dummy's trumps are tremendous, QJT9852 facing my ace, and outside I hold the \SA \SK \SQ and the \CA. My spades are AKQ74, a five-card suit whose fifth card can be promoted into an additional winner by force. NS hold 25 of the 40 points, so the defence has 15, and with no bidding from either opponent there is no warning of a wild distribution. The plan is to draw trumps, then develop the long spade, keeping a trump entry to the hand with the spades.
+I am in 4\H. Dummy's hearts, the ace, jack, ten, nine, six and five opposite my king and a small one, are the long suit, and with only the queen missing the suit is nearly solid. Driving out or finessing the trump queen sets the suit running. My plan is to establish the long hearts, lean on my top spades, and keep an entry to dummy so I can cash the whole suit.
 
 [ROLE declarer][STAGE post-lead]
-West led the \C5, which looks like a fourth-best from length, so I win the \CA and take charge. Trumps need only the king knocked out, so I drive it and draw the rest. Then I work the spades: AKQ cash, and a fourth round removes the outstanding J and T, leaving my fifth spade good. Trumps give me the entry back to cash that promoted spade, and my running count comfortably reaches and exceeds ten.
+West led the \S6, which looks like a fourth-best from length rather than a sequence, and I have the top spades to handle it. The heart suit is the engine: I lead trumps to force out or finesse the missing queen, and once it is gone dummy's remaining hearts all win. I keep dummy reachable so I can return and run the established suit rather than stranding it. Counting the long hearts with my spade winners reconciles to the eleven tricks the hand is worth.
 
 [ROLE declarer][STAGE post-play]
-What carried the day was treating the spades as a length suit to establish, not merely three top honours, and saving the entry to reach the long card. That is suit promotion in its purest form. Splendid work.}
+Dealing with the one missing trump honor let dummy's long hearts run, and the saved entry meant none were wasted. Setting up the long suit and reaching it were the keys. A clean, well-counted result.}
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Suit_Promotion"]
 [Site ""]
 [Board "26"]
-% 1BAB958288008369F2684B3E1DD4
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:T43.QJT95.K2.A95 865.K32.QT97.Q74 AKQJ9.A86.43.K83 72.74.AJ865.JT62"]
-{Shape 3523 3343 5323 2254}
-{HCP 10 7 17 6}
-{Losers 8 9 6 9}
-[Declarer "S"]
-[Contract "4H"]
-[Result "11"]
-[Score "NS 650"]
-[Scoring "MP"]
-{Curate
-class: intended
-difficulty: 2
-bidding: standard
-bidding-note: 1N-2D-2H-3N-4H pulling to the major; routine but the 3N detour is worth a word.
-declarer: standard establish-long-suit
-declarer-note: by_force QJT95 promoted; 12 DD tricks ease it but the long-suit theme is clean.
-defense: reject
-defense-note: W has no trick; comfortable overtricks for declarer.
-}
-[Auction "S"]
-1N    Pass  2D    Pass
-2H    Pass  3N    Pass
-4H    Pass  Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \C2. From JT62 you lead fourth-best from your longest suit, since you have no obvious singleton or sequence to lead instead.
-
-[ROLE declarer][STAGE auction-end]
-I have reached 4\H and need ten tricks. My spades are headed by AKQJ9 and cash freely, and I also have the \HA and \CA \CK. The trump suit itself is the suit to establish: QJT95 facing my ace, missing only the king. I handle it by leading the honours from dummy — the queen, then the jack — through East, keeping my ace behind. Covering never helps East, since my ace would capture the king and leave dummy's spots high; and if East ducks, East holds only three trumps, so the king must fall under my ace by the third round. That finesse picks the king up for no trump loser here. Had the king been offside I would lose one trump but still have the suit established. The plan is to lead the trump honours from dummy, pick up the king, and let the long hearts run, using my spade and club entries as needed.
-
-[ROLE declarer][STAGE post-lead]
-West led the \C2, which looks like a fourth-best from length; I can win the \CK or \CA and begin. The heart suit is where the tricks live, QJT95 opposite my ace, with only the king out. I lead the honours from dummy through East: covering cannot help, and with East holding only three trumps the king falls under my ace by the third round, so I lose no trump and the rest of the suit is high. With my solid spades and the club honours providing entries and tricks, the established hearts plus my top winners carry me past ten comfortably.
-
-[ROLE declarer][STAGE post-play]
-The point was that even a trump suit can need establishing: lead the honours through the missing king and the long cards take over. Leading from the dummy side, with the ace sitting behind the king, let me pick it up for no loser. Counting the suit out — the king had to fall by the third round — is the discipline that mattered. Very well played.}
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Suit_Promotion"]
-[Site ""]
-[Board "27"]
-% 18A7938A454D42C7AC147B64B0CE
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:6.QJT982.Q5.AK85 JT954.K6.T72.Q92 AKQ73.A74.K93.JT 82.53.AJ864.7643"]
-{Shape 1624 5233 5332 2254}
-{HCP 12 6 17 5}
-{Losers 6 9 6 9}
-[Declarer "S"]
-[Contract "4H"]
-[Result "11"]
-[Score "NS 450"]
-[Scoring "MP"]
-{Curate
-class: intended
-difficulty: 2
-bidding: textbook
-bidding-note: 1N-2D-2H-3C-4H; natural sequence to game.
-declarer: standard establish-long-suit
-declarer-note: by_force QJT982 runs; 12 DD tricks ease it but the promotion theme is intact.
-defense: reject
-defense-note: W cannot stop the heart suit; comfortable overtricks.
-}
-[Auction "S"]
-1N    Pass  2D    Pass
-2H    Pass  3C    Pass
-4H    Pass  Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \C3. From 7643 you lead fourth-best from your longest suit, a quiet choice that avoids opening up declarer's strong holdings.
-
-[ROLE declarer][STAGE auction-end]
-I am in 4\H and need ten tricks. My trumps are QJT982 in dummy facing my ace, and outside I have the \SA \SK \SQ and the \CA \CK. The clubs are a six-card source, AK85 facing JT, where the suit can be led to build a long-card winner once the missing queen is gone. NS hold 29 of the 40 points, leaving the defence only 11, and neither opponent bid. The plan is to draw trumps, develop the clubs by force, and keep an entry to the long club hand.
-
-[ROLE declarer][STAGE post-lead]
-West led the \C3, which looks like a fourth-best from length, so the missing queen may well be onside, but I will play to establish rather than guess. I can win in hand or dummy and draw trumps, which cost at most the king. Then I lead clubs from the top; once the outstanding queen appears, my remaining club is a winner, and I can ruff the suit good in dummy if needed. With trump and club entries I cash the established length, and my count rolls past ten with room to spare.
-
-[ROLE declarer][STAGE post-play]
-The extra trick came from the club length, won by leading the suit until the queen was gone and keeping a way back to the long hand. Establishing the suit by force, rather than hoping, is the reliable line. Nicely done.}
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Suit_Promotion"]
-[Site ""]
-[Board "28"]
-% 1AA88BAD40C484557E5FC47FFE62
+[OriginalBoard "15"]
+% 0AAC86BC49C8C3066369A340D15B
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
 [Dealer "S"]
 [Vulnerable "NS"]
-[Deal "N:.KJT95.Q7643.K64 J87642.86.AK.732 AKQ9.AQ2.T985.Q8 T53.743.J2.AJT95"]
-{Shape 0553 6223 4342 3325}
-{HCP 9 8 17 6}
-{Losers 6 8 6 10}
+[Deal "N:8.KJT984.AQ.9752 J7642.32.JT62.K8 AKQ5.A765.K8.J63 T93.Q.97543.AQT4"]
+{Shape 1624 5242 4423 3154}
+{HCP 10 5 17 8}
+{Losers 7 9 6 8}
 [Declarer "S"]
 [Contract "4H"]
 [Result "10"]
@@ -1106,176 +1252,35 @@ The extra trick came from the club length, won by leading the suit until the que
 class: intended
 difficulty: 2
 bidding: textbook
-bidding-note: 1N-2D-2H-3D-4H natural game sequence.
+bidding-note: 1N-2D-2H-3C-4H; natural club-then-game sequence lands in 4H.
 declarer: textbook establish-long-suit
-declarer-note: by_force KJT95 promoted by force; 4H exactly 10 a clean by-force board.
+declarer-note: by_force KJT984 driven out the AQ; 4H exactly 10 a clean by-force board.
 defense: reject
 defense-note: W cannot beat a cold 4H making exactly.
 }
 [Auction "S"]
 1N    Pass  2D    Pass
-2H    Pass  3D    Pass
+2H    Pass  3C    Pass
 4H    Pass  Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \S3. With T53 and dummy's likely length, the spade is your natural shot; from three small you lead a low card to attack the suit before declarer organises discards.
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \D4. With no strong sequence to attack, fourth-best from your longest suit, the diamonds, is the standard lead against four hearts.
 
 [ROLE declarer][STAGE auction-end]
-I am in 4\H and need exactly ten tricks, so there is no margin to waste. My trumps are KJT95 in dummy facing my AQ2, and I have the \SA \SK \SQ. The real engine is diamonds, Q7643 facing T985, a nine-card fit where leading the suit drives out the missing honours and promotes three long winners. NS hold 26 of the 40 points, leaving 14 for the defence with no bidding. The plan is to establish diamonds early by force, ruffing as needed, while keeping entries and drawing trumps carefully so my long diamonds can cash.
+I am in 4\H. Dummy's hearts, the king, jack, ten, nine, eight and four opposite my ace and three small, are the long suit, with only the queen of trumps missing, so the suit is promoted by leading hearts and forcing that honor out. After the queen is gone dummy's remaining hearts are winners. My plan is to knock out the trump queen, build the long suit, and keep an entry so I can return to dummy and cash it, supported by my top spades.
 
 [ROLE declarer][STAGE post-lead]
-West led the \S3, which looks like a low card from three or four small, suggesting the suit is fairly even and no immediate ruff threat. I win a top spade and focus on the diamond length, where the ace and king are out and I expect them split between the defenders. I lead diamonds, conceding the high honours, and a third round clears the suit so the rest are winners; I must keep a trump in dummy to ruff back and reach them. With trumps drawn just enough and diamonds established, my top cards plus three long diamonds bring me to ten.
+West led the \D4, which looks like a fourth-best, suggesting roughly five diamonds. I win as convenient and lead hearts to drive out the missing queen, conceding that round; once it falls dummy's jack, ten, nine and eight all become winners. I keep an entry to dummy so I can come back and run the established hearts. Adding those promoted length tricks to my top spades and diamonds reconciles to the ten tricks the hand makes.
 
 [ROLE declarer][STAGE post-play]
-This was a tight one where the long diamonds, not the top honours, supplied the contract, and timing the entries was everything. Forcing out the high diamonds early so your low ones take tricks is the lesson in action. Well judged.}
+Forcing out the trump queen turned dummy's heart spots into sure winners, and protecting the entry let me cash them. Conceding the one needed round to gain several was the whole point. Patiently and well played.}
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Suit_Promotion"]
 [Site ""]
-[Board "29"]
-% 1BB3AF9A0CCD427970602077F587
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "All"]
-[Deal "N:J5.JT92.432.AK42 98764.Q.A9765.Q9 AKQ2.K65.KJT.T83 T3.A8743.Q8.J765"]
-{Shape 2434 5152 4333 2524}
-{HCP 9 8 16 7}
-{Losers 9 8 7 9}
-[Declarer "S"]
-[Contract "2N"]
-[Result "9"]
-[Score "NS 150"]
-[Scoring "MP"]
-{Curate
-class: intended
-difficulty: 3
-bidding: standard
-bidding-note: 1N-2C-2S-2N Stayman with no fit landing in 2N; the Stayman detour is worth a word.
-declarer: standard establish-long-suit
-declarer-note: by_force JT92 promoted in NT; 2N making 10 with 2 overtricks but the long-suit theme holds.
-defense: reject
-defense-note: W cannot stop the heart promotion; comfortable overtricks.
-}
-[Auction "S"]
-1N    Pass  2C =1=    Pass
-2S    Pass  2N    Pass
-Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \H4. From A8743 you lead fourth-best from your longest, strongest suit, the standard attacking lead against notrump.
-
-[ROLE declarer][STAGE auction-end]
-I am in 2\N and need eight tricks. Off the top I have the \SA \SK \SQ and the \CA \CK, five tricks, so I need three more. Hearts are my development suit, JT92 facing K65, where leading the suit to force out the ace and queen promotes three winners. NS hold 25 of the 40 points, leaving the defence 15, and neither opponent bid. The plan is to drive out the heart honours by force and use entries to cash the established hearts.
-
-[ROLE declarer][STAGE post-lead]
-West led the \H4, which looks like a fourth-best, suggesting about four hearts in that hand. By the rule of eleven, seven cards higher than the four sit outside West, and with six of them between my hand and dummy, only one card higher than the four is in East. That tells me the suit is fairly friendly: I play low from dummy, and after the heart honours are forced out across a couple of leads, my long hearts become winners. Using my spade and club entries to return to the hearts, I gather three heart tricks on top of my five winners to reach eight.
-
-[ROLE declarer][STAGE post-play]
-The contract came home because the heart length was developed by force rather than abandoned, and the rule of eleven confirmed the suit was safe to attack. Counting the high cards above the lead is a powerful tool. Very nicely played.}
-[Note "1:Stayman"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Suit_Promotion"]
-[Site ""]
-[Board "30"]
-% 189AB187844506E45921F35C5E3B
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "None"]
-[Deal "N:962.QJT9.A72.Q52 T743.A743.43.A93 AKQJ.86.K65.KT76 85.K52.QJT98.J84"]
-{Shape 3433 4423 4234 2353}
-{HCP 9 8 16 7}
-{Losers 9 9 6 9}
-[Declarer "S"]
-[Contract "2N"]
-[Result "9"]
-[Score "NS 150"]
-[Scoring "MP"]
-{Curate
-class: intended
-difficulty: 3
-bidding: standard
-bidding-note: 1N-2C-2S-2N Stayman without a fit; routine but the detour merits a sentence.
-declarer: textbook establish-long-suit
-declarer-note: by_force QJT9 promoted in NT; 2N making 9 exactly a clean partscore long-suit lesson.
-defense: reject
-defense-note: W cannot stop the heart establishment in 2N making exactly.
-}
-[Auction "S"]
-1N    Pass  2C =1=    Pass
-2S    Pass  2N    Pass
-Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \DQ. From QJT98 you have a strong sequence, so the queen leads the suit and forces out declarer's stopper while keeping you on lead.
-
-[ROLE declarer][STAGE auction-end]
-I am in 2\N and need eight tricks. My sure winners are the \SA \SK \SQ \SJ, the \DA \DK, and one club, which is enough top tricks but thin on safety. Hearts are the development suit, QJT9 facing 86, where leading the suit twice to drive out the king and ace promotes two winners. NS hold 25 of the 40, leaving the defence 15, and no one bid. The plan is to establish hearts by force and keep the entries to cash them.
-
-[ROLE declarer][STAGE post-lead]
-West led the \DQ, which looks like top of a sequence, so West likely holds the jack and ten beneath it, and I have the king to guard the suit. I win and turn to hearts, the source of my extra tricks: leading the QJT9 twice forces out the missing ace and king, which I expect split between the defenders, after which my remaining hearts are good. Holding the \DA and my spade winners as entries, I return to cash the established hearts, and my count reaches the needed eight, with overtrick chances if the suits behave.
-
-[ROLE declarer][STAGE post-play]
-The key was developing the heart honours by force so the long cards became winners, rather than settling for the top tricks alone. Leading a sequence twice to clear the suit is the textbook route. Well done.}
-[Note "1:Stayman"]
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Suit_Promotion"]
-[Site ""]
-[Board "31"]
-% 1AA3AC9C48C849E714474413F651
-[North "EPBot"]
-[East "EPBot"]
-[South "EPBot"]
-[West "EPBot"]
-[Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:74.JT965.KQ.A864 J9652.Q742.JT9.3 AKQ.AK8.87653.92 T83.3.A42.KQJT75"]
-{Shape 2524 5431 3352 3136}
-{HCP 10 4 16 10}
-{Losers 8 9 6 7}
-[Declarer "S"]
-[Contract "4H"]
-[Result "11"]
-[Score "NS 650"]
-[Scoring "MP"]
-{Curate
-class: intended
-difficulty: 2
-bidding: standard
-bidding-note: 1N-2C(interf)-2D-2H-2N-4H; a busy competitive auction worth a sentence.
-declarer: textbook establish-long-suit
-declarer-note: by_force JT965 promoted by force; 4H exactly 10 a clean by-force board.
-defense: reject
-defense-note: W cannot beat a cold 4H making exactly.
-}
-[Auction "S"]
-1N    2C    2D    Pass
-2H    Pass  2N    Pass
-4H    Pass  Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \CK. From KQJT75 you have a powerful sequence, so the king leads the suit and keeps the lead as you go after your tricks.
-
-[ROLE declarer][STAGE auction-end]
-I am in 4\H and need exactly ten tricks, so I cannot afford to drift. My trumps are JT965 in dummy facing my AK8, and I have the \SA \SK \SQ and the \CA. The extra tricks come from diamonds, 87653 facing KQ, a seven-card fit where leading the suit drives out the ace and promotes three long winners. NS hold 26 of the 40 points, leaving 14 for the defence. The plan is to establish the long diamonds by force while drawing trumps carefully and keeping an entry to cash the diamonds.
-
-[ROLE declarer][STAGE post-lead]
-West led the \CK, which looks like top of a sequence, so West holds the QJ behind it; I take the \CA. The diamond length is my source: I cash the KQ and lead the suit again to force out the missing ace, after which my remaining diamonds are winners. I must draw trumps but keep one in dummy as an entry, then return to the long diamonds. With the suit established and trumps under control, my top winners plus three diamonds add up to ten.
-
-[ROLE declarer][STAGE post-play]
-This tight contract depended on the long diamonds, set up by leading the suit until the ace was gone, and on saving the entry to reach them. Establishing length by force when top tricks fall short is exactly the skill on show. Excellent work.}
-[BidSystemEW "2/1GF - 2/1 Game Force"]
-[BidSystemNS "2/1GF - 2/1 Game Force"]
-
-[Event "Suit_Promotion"]
-[Site ""]
-[Board "32"]
+[Board "27"]
+[OriginalBoard "32"]
 % 19A098804589CC3ED7077530A6DA
 [North "EPBot"]
 [East "EPBot"]
@@ -1307,7 +1312,8 @@ defense-note: W cannot stop the heart side-suit establishment; overtrick availab
 2H    Pass  2N    Pass
 3S    Pass  4S    Pass
 Pass  Pass
-{[ROLE leader][STAGE pre-lead]
+{[show NS]
+[ROLE leader][STAGE pre-lead]
 Lead the \CK. From AKQ94 you lead the king from your strong holding, cashing a sure trick and keeping the lead to look at dummy.
 
 [ROLE declarer][STAGE auction-end]
@@ -1323,95 +1329,149 @@ The lesson was that the heart side suit, not just the trumps, provided the trick
 
 [Event "Suit_Promotion"]
 [Site ""]
-[Board "33"]
-% 28BBA6A04DCFCC49F2066E6507F2
+[Board "28"]
+[OriginalBoard "24"]
+% 1885808F40054A53567C36E535AA
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
 [Dealer "S"]
 [Vulnerable "None"]
-[Deal "N:63.JT9863.A8.AT3 J854..JT95.K7652 AKQ.KQ54.Q72.J84 T972.A72.K643.Q9"]
-{Shape 2623 4045 3433 4342}
-{HCP 9 5 17 9}
-{Losers 8 8 6 9}
-[Declarer "S"]
+[Deal "N:T53.AKQJT9.92.Q8 J9876.87.Q6.9752 AKQ2.42.KJ8.AT43 4.653.AT7543.KJ6"]
+{Shape 3622 5224 4234 1363}
+{HCP 12 3 17 8}
+{Losers 7 10 6 8}
+[Declarer "N"]
 [Contract "4H"]
 [Result "11"]
 [Score "NS 450"]
 [Scoring "MP"]
 {Curate
 class: intended
-difficulty: 2
-bidding: textbook
-bidding-note: 1N-2D-2H-4H game raise, routine.
-declarer: textbook establish-long-suit
-declarer-note: by_force JT9863 promoted; 4H exactly 10 a clean by-force board.
+difficulty: 1
+bidding: standard
+bidding-note: 1N-2D(interf)-3H-3N-4H from North; the competitive sequence is worth a word.
+declarer: standard establish-long-suit
+declarer-note: by_force AKQJT9 solid suit; 11 DD tricks make it trivial but the long-suit theme is present.
 defense: reject
-defense-note: W cannot beat a cold 4H making exactly.
+defense-note: E on lead has no trick; overtrick available.
 }
 [Auction "S"]
-1N    Pass  2D    Pass
-2H    Pass  4H    Pass
+1N    2D    3H    Pass
+3N    Pass  4H    Pass
 Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \ST. From T972 you lead the ten, top of an interior sequence, attacking your longest suit against the trump contract.
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \S7. Holding J9876 you lead fourth-best from your longest suit, the natural shot against a suit contract when you have no singleton or partner's suit to attack.
 
 [ROLE declarer][STAGE auction-end]
-I am in 4\H and need exactly ten tricks. My trumps are JT9863 in dummy facing my KQ54, and I have the \SA \SK \SQ and the \DA and \CA. The trump suit is the one to establish: it is missing only the ace, and leading trumps to force that ace out leaves the rest of the long suit as winners. NS hold 26 of the 40 points, leaving 14 for the defence. The plan is to drive out the trump ace by force, after which the established trumps and my side winners deliver the ten.
+From North I am declaring 4\H and need ten tricks. My trumps are solid, AKQJT9 facing two small, and outside I have the \SA \SK \SQ and the \CA. The extra tricks I need come from clubs, where leading the suit can build two long-card winners once the missing king is driven out. NS hold 29 of the 40 points, leaving the defence only 11. My plan is to draw trumps, then establish the clubs by forcing out the king, keeping an entry to the long club hand.
 
 [ROLE declarer][STAGE post-lead]
-West led the \ST, which looks like top of an interior sequence in spades; I win a top spade. The heart trumps are where the work is, JT9863 opposite KQ54, with only the ace missing, which could sit either way. I lead a trump and force out the ace, conceding that one trick, and from then on the long trumps are all good. Counting carefully, I lose the trump ace and little else, so my established trumps together with the \SA \SK \SQ, the \DA, and the \CA reach exactly ten.
+East led the \S7, which looks like a fourth-best from length and gives me nothing; I win a top spade. Trumps are running, so I draw them. Then I turn to clubs: I lead the suit and concede to the outstanding king, expecting it could sit either way, and a further round clears the suit so my remaining clubs are winners. With trumps as entries I return to cash the established clubs, which together with my top tricks carries me past ten.
 
 [ROLE declarer][STAGE post-play]
-The board turned on recognising that even the trump suit needed one honour driven out before the long cards ran, and on counting that you lose only the ace. Forcing out the high card so your length takes over is suit promotion at its clearest. Well played.}
+The key was finding the extra tricks in the club length rather than leaving them as small cards, and keeping the entry to reach them after the king was gone. Counting how many times the suit must be led, then guarding the entry, is exactly right. Excellent play.}
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
 [Event "Suit_Promotion"]
 [Site ""]
-[Board "34"]
-% 2A8DAABBC2C346381671D9C744ED
+[Board "29"]
+[OriginalBoard "13"]
+% 0BB5A6B2C305CFEE5A20BCF00275
 [North "EPBot"]
 [East "EPBot"]
 [South "EPBot"]
 [West "EPBot"]
 [Dealer "S"]
-[Vulnerable "NS"]
-[Deal "N:87.AJT943.A2.QT4 963.75.KQ85.KJ97 AKQ.K2.9743.A652 JT542.Q86.JT6.83"]
-{Shape 2623 3244 3244 5332}
-{HCP 11 9 16 4}
-{Losers 7 8 6 10}
+[Vulnerable "All"]
+[Deal "N:T63.JT93.AKT2.J9 72.7.QJ643.KQ873 AKQ5.K86.985.AT2 J984.AQ542.7.654"]
+{Shape 3442 2155 4333 4513}
+{HCP 9 8 16 7}
+{Losers 9 6 7 8}
 [Declarer "S"]
-[Contract "4H"]
-[Result "11"]
-[Score "NS 650"]
+[Contract "2N"]
+[Result "9"]
+[Score "NS 150"]
 [Scoring "MP"]
 {Curate
 class: intended
-difficulty: 2
-bidding: textbook
-bidding-note: 1N-2D-2H-4H game raise, routine.
+difficulty: 3
+bidding: standard
+bidding-note: 1N-2C-X-2S-2N after a double; the interference makes the auction worth a sentence.
 declarer: standard establish-long-suit
-declarer-note: by_force AJT943 runs; 12 DD tricks ease it but the promotion theme is clean.
+declarer-note: by_force JT93 promoted in NT; 2N making 9 with the long-suit theme intact.
 defense: reject
-defense-note: W has no trick; comfortable overtricks for declarer.
+defense-note: W cannot prevent the heart promotion in a comfortable 2N.
+}
+[Auction "S"]
+1N    Pass  2C =1=    X
+2S    Pass  2N    Pass
+Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \H4. Fourth-best from your longest and strongest suit, the hearts, is the standard lead against two notrump.
+
+[ROLE declarer][STAGE auction-end]
+I am in 2\N. My top tricks are three spades and two diamonds, short of the eight I need. My long suit is dummy's hearts, the jack, ten, nine and three opposite my king and small ones, and developing it by force supplies the extra tricks. The plan is to lead hearts and drive out the opponents' higher honors, then return to dummy to cash the promoted cards, while my diamonds also offer a little length.
+
+[ROLE declarer][STAGE post-lead]
+West led the \H4, which looks like a fourth-best, suggesting about five hearts, and by the rule of eleven just one card higher than the four lies outside dummy and my hand, with East. With the heart honors missing I take care with my king and turn to developing the suit: lead hearts to force out the higher cards, conceding what I must, after which dummy's jack, ten and nine become winners. I keep entries to dummy so I can come back and cash them, and adding those to my spades and diamonds reconciles to the nine tricks the hand makes.
+
+[ROLE declarer][STAGE post-play]
+Forcing out the high hearts turned dummy's middle cards into winners, and keeping an entry let me cash the established suit. Reading the lead placed the missing hearts and guided the timing. Carefully and well played.}
+[Note "1:Stayman"]
+[BidSystemEW "2/1GF - 2/1 Game Force"]
+[BidSystemNS "2/1GF - 2/1 Game Force"]
+
+[Event "Suit_Promotion"]
+[Site ""]
+[Board "30"]
+[OriginalBoard "23"]
+% 1B9F94A84BCB07EAD1D8D1114E8D
+[North "EPBot"]
+[East "EPBot"]
+[South "EPBot"]
+[West "EPBot"]
+[Dealer "S"]
+[Vulnerable "All"]
+[Deal "N:94.JT932.K9.AJT9 J3.AK7654.754.83 AKQ2.Q8.A32.7542 T8765..QJT86.KQ6"]
+{Shape 2524 2632 4234 5053}
+{HCP 9 8 15 8}
+{Losers 8 8 7 6}
+[Declarer "S"]
+[Contract "3N"]
+[Result "8"]
+[Score "NS -100"]
+[Scoring "MP"]
+{Curate
+class: intended
+difficulty: 3
+bidding: textbook
+bidding-note: 1N-2D-2H-3C-3N; choosing NT with the 5-card major is standard here.
+declarer: standard establish-long-suit
+declarer-note: by_force false: JT932 needs the AK placement, so this is closer to a guess than pure force.
+defense: reject
+defense-note: W leads in 3N making exactly; no clear killing defense available.
 }
 [Auction "S"]
 1N    Pass  2D    Pass
-2H    Pass  4H    Pass
-Pass  Pass
-{[ROLE leader][STAGE pre-lead]
-Lead the \S4. From JT542 you lead fourth-best from your longest suit, the natural choice with no singleton or partner's suit to attack.
+2H    Pass  3C    Pass
+3N    Pass  Pass  Pass
+{[show NS]
+[ROLE leader][STAGE pre-lead]
+Lead the \DQ. With QJT86 you have a strong sequence, so the queen leads the suit and keeps the lead while you knock out declarer's stopper.
 
 [ROLE declarer][STAGE auction-end]
-I am in 4\H and need ten tricks. My trumps are AJT943 in dummy facing my king, and outside I have the \SA \SK \SQ, the \DA, and the \CA. The trump suit itself is the suit to establish: it is missing only the queen, and leading trumps to remove that card leaves the long suit running. NS hold 27 of the 40 points, leaving the defence only 13, with no bidding to warn me. The plan is to draw trumps, losing at most to the queen, after which the established trumps and my aces and spade honours carry me past ten.
+I am in 3\N and need nine tricks. Counting sure winners I have the \SA \SK \SQ, the \DA, and the \CA, which is only five off the top, so I must develop more. My best source is hearts, JT932 facing Q8, where leading the suit repeatedly to drive out the ace and king can promote three tricks once the honours are gone. The plan is to attack hearts early, force out the top honours, and keep entries to cash the long hearts.
 
 [ROLE declarer][STAGE post-lead]
-West led the \S4, which looks like a fourth-best from length and gives me nothing; I win a top spade. The hearts are the source, AJT943 facing my king, with only the queen out, which could lie either way. I lead trumps and force the queen out, conceding at most one trick, and the rest of the long suit is then good. With the trumps established and the \SA \SK \SQ, the \DA, and the \CA on top, my count comfortably reaches and exceeds ten.
+West led the \DQ, which looks like top of a sequence, so West probably holds the jack and ten behind it; I have the king and ace to control the suit. Hearts are where my extra tricks live: I will lead toward the JT932, conceding to the ace and king, which I expect to be split between the defenders, and the third lead establishes my remaining low hearts as winners. Because hearts need two surrenders before they cash, I must husband my side entries and use the heart length itself for the late tricks. Once the top honours are gone, three hearts plus my five top winners bring me to nine.
 
 [ROLE declarer][STAGE post-play]
-The hand came home because the long trump suit only needed the queen driven out before it ran, and the rest were sure winners. Counting that a single trump honour is the only worry, then collecting the length, is exactly the right approach. Excellent work.}
+The contract hinged on developing the long heart suit by force rather than relying only on top cards, and on keeping the entries to enjoy it. Driving out the high honours so your small cards take tricks is the whole idea of suit establishment. Beautifully handled.}
 [BidSystemEW "2/1GF - 2/1 Game Force"]
 [BidSystemNS "2/1GF - 2/1 Game Force"]
 
