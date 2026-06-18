@@ -130,6 +130,40 @@ The block body has up to three sections, **in this order**:
 prose after it — is automatically held back and folded into the post-auction chunk, so a
 hand is only described once it's visible. Author naturally; the parser handles the timing.
 
+## Pronoun / verb tokens (`@S`, `@v(...)`, `@Your`)
+
+Deals are played **with rotation**, so the student may sit in *either* N/S seat. A `[BID]`
+chunk is authored once, in the **second person addressing its own actor**; at render time the
+trainer rewrites it to second person ("you") when the student actually made that call, and to
+third person ("your partner") when the *partner* made it. These inline tokens are what make
+that flip work — so one file reads correctly from either seat. The authoritative substitution
+is `fill_pronouns` in the trainer's `server.py`.
+
+| Token | When the student made the call | When partner made it |
+|---|---|---|
+| `@S` | `You` | `Your partner` |
+| `@s` | `you` | `your partner` |
+| `@Your` | `Your` | `Their` |
+| `@your` | `your` | `their` |
+| `@v(base\|third)` | `base` (e.g. `have`, `open`, `raise`) | `third` (e.g. `has`, `opens`, `raises`) |
+
+- **`@S`/`@s`** — the subject pronoun. `@v(base|third)` — **verb agreement**: the part before
+  the `|` is used in the student (second-person) rendering, the part after for the
+  partner (third-person) rendering. Common forms: `@v(have|has)`, `@v(open|opens)`,
+  `@v(show|shows)`, `@v(bid|bids)`, `@v(raise|raises)`, `@v(respond|responds)`.
+- **Parentheses, never braces.** Write `@v(open|opens)`, not `@v{open|opens}` — a `}` inside
+  the token would collide with the coaching block's own `}` delimiter and truncate the block.
+- **Use `@S` once per chunk** as the subject. Don't name the actor as the subject a second time
+  (`@S … @s …`) — in third person that reads "Your partner … your partner …". After the first
+  subject, continue with verbs joined by "and" (`@v(open|opens) … and @v(let|lets) …`) or start
+  a fresh sentence about the *call* rather than the actor.
+- Intro and reflective `[show NS]` chunks are authored **seat-neutral** (no tokens) and pass
+  through unchanged.
+
+Example — `[BID 1N] @S @v(have|has) 15-17 balanced, so @v(open|opens) 1NT.`
+renders as *"You have 15-17 balanced, so open 1NT."* for the student who bid it, or
+*"Your partner has 15-17 balanced, so opens 1NT."* when the partner bid it.
+
 ## Authoring rules
 
 - Write from the **student's perspective**: "you" (S), "partner" (N), "LHO" (W), "RHO" (E).
