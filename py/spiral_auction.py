@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """spiral_auction.py — generate Spiral Raises convention auctions for
-Spiral_Raise_Revisited (see convention-auction-curation-plan.md).
+the Spiral Raises scenarios (see convention-auction-curation-plan.md).
 
-BBA (21GF-DEFAULT) does not play Spiral Raises, so bba/Spiral_Raise_Revisited.pbn
+BBA (21GF-DEFAULT) does not play Spiral Raises, so bba/Spiral_Raises_Wolpert.pbn
 holds natural 2/1 auctions. The hands, however, are built so the spiral-raise
 decision arises. This script computes the CORRECT spiral auction for each board
 deterministically from the South/North hands, so it can be substituted into
@@ -25,7 +25,7 @@ if _HERE not in sys.path:
 import curate
 from curate import hands, deal_hash, tag, split_boards, hcp_of, SUITS
 
-SCN = os.environ.get('SPIRAL_SCN', 'Spiral_Raise_Revisited')
+SCN = os.environ.get('SPIRAL_SCN', 'Spiral_Raises_Wolpert')
 SI = {'S': 0, 'H': 1, 'D': 2, 'C': 3}          # index into hands()'s [S,H,D,C] lists
 CALL_RE = re.compile(r'^(Pass|X|XX|AP|[1-7][CDHSN])$')
 

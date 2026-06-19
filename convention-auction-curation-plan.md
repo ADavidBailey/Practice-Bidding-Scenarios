@@ -1,6 +1,6 @@
 # Plan: curating + coaching conventions BBA doesn't bid
 
-**Status:** proposed 2026-06-14. First instance: `Spiral_Raise_Revisited`.
+**Status:** proposed 2026-06-14. First instance: `Spiral_Raises_Wolpert`.
 Extends the `curate` stage (see [pbn-curation-plan.md](pbn-curation-plan.md)) to
 scenarios whose teaching auction BBA cannot produce.
 
@@ -10,7 +10,7 @@ Every coached scenario so far teaches a situation BBA bids natively (1NT opening
 weak twos, takeout doubles). For those, BBA's auction in `bba/<scn>.pbn` **is** the
 teaching auction, and the trainer uses the PBN `[Auction]` as its quiz answer key.
 
-`Spiral_Raise_Revisited` is the first scenario that teaches a **convention BBA does
+`Spiral_Raises_Wolpert` is the first scenario that teaches a **convention BBA does
 not play.** The deals are constructed (via Dealer constraints) so the spiral-raise
 decision arises, but BBA bids them with `21GF-DEFAULT`, which has no Spiral Raises —
 so its auctions are natural 2/1 (`1C 1H 1N 2N`, `1D 1S 2S P`, …) and the spiral
@@ -77,7 +77,7 @@ the grader is fed the **spiral** sidecar auctions (grade-only — it never re-pr
 calls). The substitution runs *after* `annotate.py`, because `annotate` rebuilds
 `bba-curated/` from `bba/` (the natural auction).
 
-## The convention (Spiral_Raise_Revisited)
+## The convention (Spiral_Raises_Wolpert)
 
 Opener (South) opens a minor and may raise responder's (North's) major to 2M on 3-
 or 4-card support; responder asks with the cheapest step, and opener "spirals" out

@@ -40,7 +40,7 @@ Convention/spiral scenarios (e.g. `Spiral_Raises_*`) take a different path and d
 `py/coach.py` (`packets` → `augment` → `splice`). `spiral_auction.py` is parameterized
 via `SPIRAL_SCN` (scenario) and `SPIRAL_SCHEME` (`spiral` | `weinstein`) env vars, with
 `SCHEME` also honoring a `convention=weinstein` `.btn` directive; it generates both the
-spiral cheapest-step ladder (`Spiral_Raise_Revisited`, `Spiral_Raises_Wolpert`) and the
+spiral cheapest-step ladder (`Spiral_Raises_Wolpert`) and the
 Weinstein 2NT-ask + natural-fit-find scheme (`Spiral_Raises_Weinstein`). `annotate.py`
 and `select.py` take the scenario as a positional argument.
 
