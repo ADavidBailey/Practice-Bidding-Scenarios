@@ -1,9 +1,37 @@
-# `coaching/` — embedded tutorial PBNs for the Bridge Play Trainer
+# `coaching-non-rotated/` — coached PBNs (South=student), bridge-classroom-compatible
 
-This directory holds the **coached** versions of scenario PBNs. Each file is a normal
-PBN whose boards carry a Baker-Bridge–style `{...}` tutorial block, written so the
-[Bridge Play Trainer](../Bridge%20Play%20Trainer.md) can teach the deal bid-by-bid and
-during the play.
+This directory holds **non-rotated** coached scenario PBNs: the same boards as
+[`coaching/`](../coaching/), but with the rotation pronoun tokens (`@S`, `@v(...)`, `@Your`)
+already resolved with **South as the student**, so each file reads correctly from a fixed
+seat. Each file is a normal PBN whose boards carry a Baker-Bridge–style `{...}` tutorial
+block, written so the [Bridge Play Trainer](../Bridge%20Play%20Trainer.md) can teach the
+deal bid-by-bid and during the play.
+
+## bridge-classroom compatibility (`py/bridge_classroom.py`)
+
+These files are also rendered on **[bridge-classroom.com](https://bridge-classroom.com)**
+(Rick Wilson's "dumb renderer" — it follows the PBN's coaching directives literally). To
+keep them compatible, run the build step from the project root after editing:
+
+```
+python3 -P py/bridge_classroom.py            # all files (in place)
+python3 -P py/bridge_classroom.py Basic_Major # one scenario
+python3 -P py/bridge_classroom.py --check     # dry run, report only
+```
+
+It is idempotent and enforces four invariants on every board:
+
+- **`[Board]` numbered 1..n** in file order; the source deck position is preserved in a
+  separate **`[OriginalBoard "N"]`** tag (added once, then left alone).
+- **No pre-auction `{...}` blocks** — the `{Shape}`/`{HCP}`/`{Losers}` stats and any
+  `{Curate ...}` metadata (authoring aids the Trainer ignores) are stripped.
+- **The coaching block opens with a `[show …]`** — `[show S]` is prepended unless the block
+  already leads with one (e.g. play boards open `[show NS]`).
+- **The coaching block is a single balanced `{...}`** — a stray trailing `}` is dropped
+  (one such defect, `}}`, exists in some `Negative_Double` boards and is also present
+  upstream in `coaching/` / `coaching-curated/`; fix it there too when convenient).
+
+The model board the transform mirrors is the first board of `Basic_Major.pbn`.
 
 ## How the trainer uses these files
 
