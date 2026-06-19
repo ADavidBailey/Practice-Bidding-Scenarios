@@ -118,13 +118,7 @@ def _anchor_ending_pass(text, stats, student="S"):
         return text
     order = _seat_order(am.group(1))
 
-    calls = []
-    for line in text[am.end():].splitlines():
-        s = line.strip()
-        if s.startswith("[") or s.startswith("{"):
-            break
-        calls.append(line)
-    tokens = " ".join(c.strip() for c in calls).split()
+    tokens = _auction_call_tokens(text, am.end())
     student_idxs = [i for i in range(len(tokens)) if order[i % 4] == student]
     if not student_idxs or tokens[student_idxs[-1]].lower() != "pass":
         return text  # student has no calls, or their last call isn't a Pass
@@ -203,6 +197,21 @@ def _break_block_anchors(text, stats):
 
 
 _BID_TAG = re.compile(r"\[BID\s+([^\]]+)\]", re.IGNORECASE)
+# A real auction call (everything else in an auction line — e.g. PBN note refs
+# like `=1=` — is an annotation that must NOT occupy a bidding position, or it
+# shifts seat parity for every later call).
+_CALL = re.compile(r"^(?:[1-7](?:NT|[CDHSN])|Pass|X|XX)$", re.IGNORECASE)
+
+
+def _auction_call_tokens(text, after_pos):
+    """Real calls in auction order, dropping PBN annotations (`=1=`, …)."""
+    raw = []
+    for line in text[after_pos:].splitlines():
+        s = line.strip()
+        if s.startswith("[") or s.startswith("{"):
+            break
+        raw.extend(line.split())
+    return [t for t in raw if _CALL.match(t)]
 
 
 def _seat_order(dealer):
@@ -241,13 +250,7 @@ def _fold_partner_bids(text, stats, student="S"):
         return text
     order = _seat_order(am.group(1))
 
-    calls = []
-    for line in text[am.end():].splitlines():
-        s = line.strip()
-        if s.startswith("[") or s.startswith("{"):
-            break
-        calls.append(line)
-    tokens = " ".join(c.strip() for c in calls).split()
+    tokens = _auction_call_tokens(text, am.end())
     callvals = [_norm_call(t) for t in tokens]
     callseats = [order[i % 4] for i in range(len(tokens))]
 
