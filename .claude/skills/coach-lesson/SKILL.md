@@ -74,32 +74,33 @@ block. **Only commit YOUR scenario's promoted file**; if promote.py syncs other
 eligible scenarios too, flag them, don't claim them.
 
 ## Phase 4 — Resolve to South=student (→ coaching-non-rotated/<scn>.pbn)
-There is **no committed automation** for this step yet — do it deterministically by
-hand/agent, then post-process. The non-rotated file differs from the tokenized one in
-TWO ways: tokens resolved for a fixed South seat, AND partner's anchors folded.
-1. **Resolve tokens** for South=student (the trainer's `fill_pronouns` logic):
-   - a call made by **South** renders 2nd person: `@S`→"You", `@s`→"you",
-     `@Your`→"Your", `@v(base|third)`→its **base** text;
-   - a call made by **North** renders 3rd person: `@S`→"Your partner",
-     `@Your`→"Your partner's", `@v(base|third)`→its **third** text.
-2. **Fold partner calls** (the bridge-classroom discipline): bridge-classroom renders
-   markers literally and only the student is quizzed, so:
-   - keep a `[BID <call>]` anchor on **every South call, and only South's calls**;
-   - **remove** partner's (North's) `[BID]` anchors and merge that explanation into the
-     adjacent South chunk, in 3rd person ("your partner opens 1\D …");
-   - anchor South's **auction-ending Pass** with `[BID Pass]` when South's final call
-     ends the auction;
-   - put **each `[BID …]` anchor on its own line**;
-   - open the block with `[show S]` + a one-line seat-neutral intro; keep `[show NS]`
-     at the close.
-   Model the exact shape on a CLEAN non-rotated file — `coaching-non-rotated/Basic_Minor.pbn`
-   or `coaching-non-rotated/Spiral_Raises_Wolpert.pbn`. **Do NOT model on
-   `coaching-non-rotated/New_Minor_Forcing.pbn`, `Basic_Overcall.pbn`, or
-   `Basic_Takeout_Double.pbn`** — those still carry un-folded partner anchors (a known
-   defect to be fixed, not copied).
-3. **Post-process:** `python3 -P py/bridge_classroom.py <scn>` — strips pre-auction
-   `{Shape}/{HCP}/{Curate}` blocks, renumbers `[Board]` 1..n, preserves `[OriginalBoard]`,
-   ensures the coaching block opens with `[show S]`. Idempotent.
+Two commands — `nonrotate.py` does the resolve+fold deterministically, then
+`bridge_classroom.py` makes it renderer-ready:
+
+    python3 -P py/nonrotate.py <scn>
+    python3 -P py/bridge_classroom.py <scn>
+
+`nonrotate.py` reads `coaching-curated/<scn>.pbn` and writes
+`coaching-non-rotated/<scn>.pbn`, doing both transforms the non-rotated file needs:
+1. **Resolves rotation tokens** for a fixed South seat (the trainer's `fill_pronouns`
+   rule, but position-aware so a mid-sentence `@S` reads "you", not "You"): South's
+   calls render 2nd person, partner's (North's) 3rd person.
+2. **Folds partner's calls**: keeps a `[BID <call>]` anchor on **every South call and
+   only South's calls** (each on its own line); merges each partner call into the
+   adjacent South chunk in 3rd person (prepended when South is the responder, appended
+   when South is the opener — it detects which from the auction); and anchors South's
+   **auction-ending Pass** as `[BID Pass] … you pass; <contract> is the final contract.`
+   `[ACCEPT]` markers ride along inside their South chunk.
+
+`bridge_classroom.py` then strips the pre-auction `{Shape}/{HCP}/{Curate}` blocks,
+renumbers `[Board]` 1..n, preserves `[OriginalBoard]`, and ensures the block opens with
+`[show S]`. Both scripts are idempotent; re-run `nonrotate.py` (it rebuilds from
+curated) whenever the curated prose changes, then `bridge_classroom.py`.
+
+(Reference clean output: `coaching-non-rotated/Fourth_Suit_Forcing.pbn` or
+`Spiral_Raises_Wolpert.pbn`. The old `New_Minor_Forcing.pbn`, `Basic_Overcall.pbn`,
+`Basic_Takeout_Double.pbn` predate the fold and still carry un-folded partner anchors —
+a defect to fix by re-running `nonrotate.py`, not a model to copy.)
 
 ## Phase 5 — Verify (all must pass before declaring done)
 - **Anchor check** (the load-bearing gate): parse each non-rotated board's auction by
