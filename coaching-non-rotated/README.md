@@ -27,6 +27,10 @@ It is idempotent and enforces four invariants on every board:
   `{Curate ...}` metadata (authoring aids the Trainer ignores) are stripped.
 - **The coaching block opens with a `[show …]`** — `[show S]` is prepended unless the block
   already leads with one (e.g. play boards open `[show NS]`).
+- **Each anchor sits on its own line.** A linebreak is inserted before every chunk anchor
+  (`[BID …]`, `[show …]`, `[POST-AUCTION]`, `[ROLE …][STAGE …]`) that is currently inline. The
+  opening anchor stays glued to `{`; `[ACCEPT …]` (a mid-chunk modifier, not an anchor) stays
+  inline; anchors already at line start keep their existing blank-line spacing untouched.
 - **`[BID]` anchors only the student's own calls.** bridge-classroom's renderer assumes every
   `[BID]` step is a student call and auto-plays until a student-seat call matches the *next*
   `[BID]`'s value — so a `[BID]` on a partner/opponent call makes it skip past (auto-play) the

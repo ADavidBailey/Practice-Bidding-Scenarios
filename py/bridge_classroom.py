@@ -60,7 +60,7 @@ def transform_board(text, seq):
     """Return (new_text, stats) for one board renumbered to ``seq``."""
     stats = {"stripped": 0, "show_added": False, "orig_added": False,
              "brace_fixed": False, "folded": 0, "fold_flagged": 0,
-             "fold_unmatched": 0}
+             "fold_unmatched": 0, "reflowed": False}
 
     m = re.search(r"(?m)^\[Auction\b.*$", text)
     if m is None:
@@ -89,7 +89,55 @@ def transform_board(text, seq):
         post = head + block + ("\n" + cleaned_tail if cleaned_tail else "")
 
     text = _renumber(pre + post, seq, stats)
-    return _fold_partner_bids(text, stats), stats
+    text = _fold_partner_bids(text, stats)
+    return _break_block_anchors(text, stats), stats
+
+
+# Chunk-start markers: each begins its own coaching chunk and should sit on its
+# own line. [ACCEPT ...] is a mid-chunk modifier, not an anchor — left inline.
+_ANCHOR = re.compile(
+    r"\[(?:BID|show|POST-AUCTION|ROLE)\b[^\]]*\](?:\[STAGE\b[^\]]*\])?",
+    re.IGNORECASE,
+)
+
+
+def _break_block_anchors(text, stats):
+    """Put each coaching anchor on its own line.
+
+    Inserts a newline before any anchor that is currently inline (text on the
+    same line before it). Anchors already at line start are left as-is, so
+    existing blank-line spacing (e.g. between play `[ROLE][STAGE]` chunks) is
+    preserved. The block-opening anchor stays glued to ``{``.
+    """
+    am = re.search(r"(?m)^\[Auction\b.*$", text)
+    if am is None:
+        return text
+    bm = _BLOCK.search(text, am.end())
+    if bm is None:
+        return text
+    inner = bm.group()[1:-1]
+
+    parts = re.split(f"({_ANCHOR.pattern})", inner, flags=re.IGNORECASE)
+    out = parts[0]
+    changed = False
+    i = 1
+    while i < len(parts):
+        marker = parts[i]
+        after = parts[i + 1] if i + 1 < len(parts) else ""
+        if i == 1 and not parts[0].strip():
+            out += marker                     # opening anchor — keep glued to {
+        elif re.search(r"\n[ \t]*$", out):
+            out += marker                     # already at line start — leave spacing
+        else:
+            out = out.rstrip(" \t") + "\n" + marker   # inline — break onto its own line
+            changed = True
+        out += after
+        i += 2
+
+    if not changed:
+        return text
+    stats["reflowed"] = True
+    return text[: bm.start()] + "{" + out + "}" + text[bm.end():]
 
 
 _BID_TAG = re.compile(r"\[BID\s+([^\]]+)\]", re.IGNORECASE)
@@ -203,7 +251,7 @@ def transform_file(path, check):
 
     new_boards = []
     totals = {"stripped": 0, "show_added": 0, "orig_added": 0, "brace_fixed": 0,
-              "folded": 0, "fold_flagged": 0, "fold_unmatched": 0}
+              "folded": 0, "fold_flagged": 0, "fold_unmatched": 0, "reflowed": 0}
     for seq, board in enumerate(boards, start=1):
         new_board, stats = transform_board(board, seq)
         new_boards.append(new_board)
@@ -253,6 +301,8 @@ def main():
             extra += f", {t['fold_flagged']} FLAGGED (non-student [BID], no preceding student chunk)"
         if t["fold_unmatched"]:
             extra += f", {t['fold_unmatched']} FLAGGED ([BID] matches no auction call)"
+        if t["reflowed"]:
+            extra += f", {t['reflowed']} boards reflowed"
         detail = (f"  ({t['stripped']} blocks stripped, "
                   f"{t['orig_added']} OriginalBoard added, "
                   f"{t['show_added']} show-S added{extra})") if changed else ""
