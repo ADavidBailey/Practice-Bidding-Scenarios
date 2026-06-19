@@ -59,7 +59,8 @@ _BLOCK = re.compile(r"\{.*?\}", re.DOTALL)
 def transform_board(text, seq):
     """Return (new_text, stats) for one board renumbered to ``seq``."""
     stats = {"stripped": 0, "show_added": False, "orig_added": False,
-             "brace_fixed": False}
+             "brace_fixed": False, "folded": 0, "fold_flagged": 0,
+             "fold_unmatched": 0}
 
     m = re.search(r"(?m)^\[Auction\b.*$", text)
     if m is None:
@@ -87,7 +88,90 @@ def transform_board(text, seq):
             stats["brace_fixed"] = True
         post = head + block + ("\n" + cleaned_tail if cleaned_tail else "")
 
-    return _renumber(pre + post, seq, stats), stats
+    text = _renumber(pre + post, seq, stats)
+    return _fold_partner_bids(text, stats), stats
+
+
+_BID_TAG = re.compile(r"\[BID\s+([^\]]+)\]", re.IGNORECASE)
+
+
+def _seat_order(dealer):
+    s = ["N", "E", "S", "W"]
+    i = s.index(dealer)
+    return s[i:] + s[:i]
+
+
+def _norm_call(c):
+    c = c.upper().strip()
+    for nt in ("1NT", "2NT", "3NT", "4NT", "5NT", "6NT", "7NT"):
+        c = c.replace(nt, nt[:-1])  # 1NT -> 1N
+    return c
+
+
+def _fold_partner_bids(text, stats, student="S"):
+    """Keep `[BID]` anchors only for the student's own calls.
+
+    bridge-classroom's renderer assumes every `[BID]` step is a student call:
+    it auto-plays the auction until a student-seat call matches the *next*
+    `[BID]`'s bid, so a `[BID]` on a partner/opponent call makes it skip past —
+    and auto-play — the student's own later calls. So for each `[BID]` whose
+    auction call belongs to a non-student seat, drop the marker and fold its
+    prose into the preceding student chunk (the Basic_Major board-1 model).
+
+    Each `[BID]` is mapped to a call the way the renderers anchor: walk the
+    auction left-to-right and consume the next call whose value matches the
+    `[BID]`'s bid. This handles boards where only some calls are anchored.
+
+    Guards (leave the `[BID]` in place, counted separately, rather than risk a
+    wrong edit): a value that matches no remaining call (`fold_unmatched`), or a
+    non-student `[BID]` with no preceding student `[BID]` yet (`fold_flagged`).
+    """
+    am = re.search(r'(?m)^\[Auction "([^"]*)"\]$', text)
+    if not am or am.group(1) not in "NESW":
+        return text
+    order = _seat_order(am.group(1))
+
+    calls = []
+    for line in text[am.end():].splitlines():
+        s = line.strip()
+        if s.startswith("[") or s.startswith("{"):
+            break
+        calls.append(line)
+    tokens = " ".join(c.strip() for c in calls).split()
+    callvals = [_norm_call(t) for t in tokens]
+    callseats = [order[i % 4] for i in range(len(tokens))]
+
+    bm = _BLOCK.search(text, am.end())
+    if not bm:
+        return text
+    parts = re.split(r"(\[BID\s+[^\]]+\])", bm.group()[1:-1])
+
+    out = parts[0]
+    kept_student = False
+    p = 0          # auction cursor for value-based matching
+    i = 1
+    while i < len(parts):
+        tag, txt = parts[i], parts[i + 1] if i + 1 < len(parts) else ""
+        val = _norm_call(_BID_TAG.match(tag).group(1))
+        j = p
+        while j < len(callvals) and callvals[j] != val:
+            j += 1
+        seat = callseats[j] if j < len(callvals) else None
+        if seat is not None:
+            p = j + 1
+        if seat == student:
+            out += tag + txt
+            kept_student = True
+        elif seat is not None and kept_student:
+            merged = txt.lstrip()
+            out = (out.rstrip() + " " + merged) if merged else out + txt
+            stats["folded"] += 1
+        else:
+            out += tag + txt          # unmatched, or no preceding student chunk
+            stats["fold_unmatched" if seat is None else "fold_flagged"] += 1
+        i += 2
+
+    return text[: bm.start()] + "{" + out + "}" + text[bm.end():]
 
 
 def _ensure_show_s(block):
@@ -118,7 +202,8 @@ def transform_file(path, check):
     boards = split_boards(text)
 
     new_boards = []
-    totals = {"stripped": 0, "show_added": 0, "orig_added": 0, "brace_fixed": 0}
+    totals = {"stripped": 0, "show_added": 0, "orig_added": 0, "brace_fixed": 0,
+              "folded": 0, "fold_flagged": 0, "fold_unmatched": 0}
     for seq, board in enumerate(boards, start=1):
         new_board, stats = transform_board(board, seq)
         new_boards.append(new_board)
@@ -159,10 +244,18 @@ def main():
         any_changed = any_changed or changed
         verb = "would update" if (changed and args.check) else \
                ("updated" if changed else "ok")
-        brace = f", {t['brace_fixed']} stray-brace fixed" if t["brace_fixed"] else ""
+        extra = ""
+        if t["brace_fixed"]:
+            extra += f", {t['brace_fixed']} stray-brace fixed"
+        if t["folded"]:
+            extra += f", {t['folded']} partner-[BID] folded"
+        if t["fold_flagged"]:
+            extra += f", {t['fold_flagged']} FLAGGED (non-student [BID], no preceding student chunk)"
+        if t["fold_unmatched"]:
+            extra += f", {t['fold_unmatched']} FLAGGED ([BID] matches no auction call)"
         detail = (f"  ({t['stripped']} blocks stripped, "
                   f"{t['orig_added']} OriginalBoard added, "
-                  f"{t['show_added']} show-S added{brace})") if changed else ""
+                  f"{t['show_added']} show-S added{extra})") if changed else ""
         print(f"{verb:>12}  {path.name}  [{n_boards} boards]{detail}")
 
     if args.check and any_changed:

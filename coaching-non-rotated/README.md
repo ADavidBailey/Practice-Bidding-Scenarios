@@ -27,6 +27,15 @@ It is idempotent and enforces four invariants on every board:
   `{Curate ...}` metadata (authoring aids the Trainer ignores) are stripped.
 - **The coaching block opens with a `[show …]`** — `[show S]` is prepended unless the block
   already leads with one (e.g. play boards open `[show NS]`).
+- **`[BID]` anchors only the student's own calls.** bridge-classroom's renderer assumes every
+  `[BID]` step is a student call and auto-plays until a student-seat call matches the *next*
+  `[BID]`'s value — so a `[BID]` on a partner/opponent call makes it skip past (auto-play) the
+  student's own later calls. The build drops each non-student `[BID]` and folds its prose into
+  the preceding student chunk (the Basic_Major board-1 model); partner/opponent calls are then
+  auto-played and explained inline. `[BID]`→call mapping is value-based (walk the auction,
+  consume the next matching call), so partially-anchored boards (e.g. an unanchored overcall)
+  fold correctly. Boards where a `[BID]` matches no call, or a non-student `[BID]` precedes any
+  student `[BID]`, are left untouched and FLAGGED for manual review.
 - **The coaching block is a single balanced `{...}`** — a stray trailing `}` is dropped
   (one such defect, `}}`, exists in some `Negative_Double` boards and is also present
   upstream in `coaching/` / `coaching-curated/`; fix it there too when convenient).
