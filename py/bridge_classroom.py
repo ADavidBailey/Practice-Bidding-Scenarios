@@ -60,7 +60,7 @@ def transform_board(text, seq):
     """Return (new_text, stats) for one board renumbered to ``seq``."""
     stats = {"stripped": 0, "show_added": False, "orig_added": False,
              "brace_fixed": False, "folded": 0, "fold_flagged": 0,
-             "fold_unmatched": 0, "reflowed": False}
+             "fold_unmatched": 0, "reflowed": False, "pass_added": False}
 
     m = re.search(r"(?m)^\[Auction\b.*$", text)
     if m is None:
@@ -90,7 +90,69 @@ def transform_board(text, seq):
 
     text = _renumber(pre + post, seq, stats)
     text = _fold_partner_bids(text, stats)
+    text = _anchor_ending_pass(text, stats)
     return _break_block_anchors(text, stats), stats
+
+
+def _contract_disp(call):
+    """Render an auction bid for prose: 6C -> 6\\C, 3N -> 3NT."""
+    c = call.upper()
+    strain = c[1:]
+    return c[0] + ("NT" if strain in ("N", "NT") else "\\" + strain)
+
+
+def _anchor_ending_pass(text, stats, student="S"):
+    """Anchor the student's auction-ending Pass so the renderer prompts it.
+
+    bridge-classroom auto-plays any unanchored call, so without this the student
+    never gets a turn to confirm the final contract — they just spectate after
+    their last bid. If the student's **last** call is a Pass, insert a
+    `[BID Pass]` chunk (before the reflective `[show …]`) naming the contract.
+
+    Only on boards that already quiz bidding (have a `[BID]`); play boards (no
+    `[BID]`) are left alone. Idempotent — skipped if a `[BID Pass]` already
+    exists. (The fold step never strips a `[BID Pass]`, so it survives re-runs.)
+    """
+    am = re.search(r'(?m)^\[Auction "([^"]*)"\]$', text)
+    if not am or am.group(1) not in "NESW":
+        return text
+    order = _seat_order(am.group(1))
+
+    calls = []
+    for line in text[am.end():].splitlines():
+        s = line.strip()
+        if s.startswith("[") or s.startswith("{"):
+            break
+        calls.append(line)
+    tokens = " ".join(c.strip() for c in calls).split()
+    student_idxs = [i for i in range(len(tokens)) if order[i % 4] == student]
+    if not student_idxs or tokens[student_idxs[-1]].lower() != "pass":
+        return text  # student has no calls, or their last call isn't a Pass
+
+    bm = _BLOCK.search(text, am.end())
+    if bm is None:
+        return text
+    inner = bm.group()[1:-1]
+    if not re.search(r"\[BID\b", inner, re.IGNORECASE):
+        return text  # not a bidding-quiz board (e.g. play board) — leave alone
+    if re.search(r"\[BID\s+pass\b", inner, re.IGNORECASE):
+        return text  # already anchored
+
+    contract = next((t for t in reversed(tokens)
+                     if t.upper() not in ("PASS", "X", "XX")), None)
+    if contract and re.fullmatch(r"[1-7][CDHSNcdhsn]+", contract):
+        prose = (f"You have nothing more to show, so pass — "
+                 f"{_contract_disp(contract)} is the final contract.")
+    else:
+        prose = "You have nothing more to show, so pass and let the auction end."
+
+    reveals = [m for m in re.finditer(r"\[show\b[^\]]*\]", inner, re.IGNORECASE)
+               if m.start() != 0]
+    pos = reveals[-1].start() if reveals else len(inner)
+    new_inner = (inner[:pos].rstrip() + "\n[BID Pass] " + prose + "\n"
+                 + inner[pos:].lstrip("\n"))
+    stats["pass_added"] = True
+    return text[: bm.start()] + "{" + new_inner + "}" + text[bm.end():]
 
 
 # Chunk-start markers: each begins its own coaching chunk and should sit on its
@@ -201,6 +263,13 @@ def _fold_partner_bids(text, stats, student="S"):
     while i < len(parts):
         tag, txt = parts[i], parts[i + 1] if i + 1 < len(parts) else ""
         val = _norm_call(_BID_TAG.match(tag).group(1))
+        if val == "PASS":
+            # The student's confirming end-of-auction pass — always keep it
+            # (partner/opponent passes are never anchored in the first place).
+            out += tag + txt
+            kept_student = True
+            i += 2
+            continue
         j = p
         while j < len(callvals) and callvals[j] != val:
             j += 1
@@ -251,7 +320,8 @@ def transform_file(path, check):
 
     new_boards = []
     totals = {"stripped": 0, "show_added": 0, "orig_added": 0, "brace_fixed": 0,
-              "folded": 0, "fold_flagged": 0, "fold_unmatched": 0, "reflowed": 0}
+              "folded": 0, "fold_flagged": 0, "fold_unmatched": 0, "reflowed": 0,
+              "pass_added": 0}
     for seq, board in enumerate(boards, start=1):
         new_board, stats = transform_board(board, seq)
         new_boards.append(new_board)
@@ -301,6 +371,8 @@ def main():
             extra += f", {t['fold_flagged']} FLAGGED (non-student [BID], no preceding student chunk)"
         if t["fold_unmatched"]:
             extra += f", {t['fold_unmatched']} FLAGGED ([BID] matches no auction call)"
+        if t["pass_added"]:
+            extra += f", {t['pass_added']} ending-pass anchored"
         if t["reflowed"]:
             extra += f", {t['reflowed']} boards reflowed"
         detail = (f"  ({t['stripped']} blocks stripped, "

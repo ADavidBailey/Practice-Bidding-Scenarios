@@ -27,6 +27,13 @@ It is idempotent and enforces four invariants on every board:
   `{Curate ...}` metadata (authoring aids the Trainer ignores) are stripped.
 - **The coaching block opens with a `[show …]`** — `[show S]` is prepended unless the block
   already leads with one (e.g. play boards open `[show NS]`).
+- **The student's auction-ending Pass is anchored.** bridge-classroom auto-plays any
+  unanchored call, so without this the student never gets a turn to confirm the final
+  contract — they just spectate after their last bid. When the student's *last* call is a
+  Pass, a `[BID Pass]` chunk is inserted before the reflective `[show …]`, naming the final
+  contract. Only on boards that already quiz bidding (have a `[BID]`) — play boards are left
+  alone — and only when the student's last call is a Pass (skipped when the student declares).
+  The fold step never strips a `[BID Pass]`, so this is idempotent.
 - **Each anchor sits on its own line.** A linebreak is inserted before every chunk anchor
   (`[BID …]`, `[show …]`, `[POST-AUCTION]`, `[ROLE …][STAGE …]`) that is currently inline. The
   opening anchor stays glued to `{`; `[ACCEPT …]` (a mid-chunk modifier, not an anchor) stays
