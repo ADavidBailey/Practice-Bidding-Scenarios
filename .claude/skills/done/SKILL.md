@@ -9,6 +9,13 @@ description: >
 
 # /done — close the session
 
+**0. Guard: don't close over an unfinished queue.** FIRST, check the working todo
+list for any `pending`/`in_progress` items (e.g. ones stacked with `/list`). If any
+exist, **STOP and fuss**: list the unfinished items and ask the user to confirm they
+really want to close with those still queued (suggest running `/go` first). Do NOT
+run any wrap-up steps below until the user explicitly confirms. If the queue is empty
+(or only completed items), proceed.
+
 Run the session wrap-up, briefly:
 
 1. **Save durable learnings to auto-memory.** Scan this session for things worth
