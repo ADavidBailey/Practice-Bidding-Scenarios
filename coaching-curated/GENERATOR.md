@@ -79,7 +79,14 @@ or start a fresh sentence about the call itself, not the actor.
           a major at the one level"
   Point ranges tied to a call's meaning are fine ("1NT shows 15-17"); a
   specific actual holding is not. The closing `[show NS]` reflection MAY
-  describe both hands concretely — the auction is over and partner is shown.
+  describe **South's (the student's) own** hand concretely and may state what
+  each bid SHOWED, but must **NOT recite partner's (North's) concrete hand** —
+  no specific cards/ranks, no exact HCP/point count, no suit length or quality
+  the bidding didn't itself reveal. Reframe partner's holding as bid-meaning:
+  not "North's three small spades" / "North's 13 HCP" but "the three-card
+  support opener showed" / "opener's maximum". Naming partner's *bids* ("North
+  raised", "North chose hearts") is fine. (Rule tightened 2026-06-20, David:
+  partner's hand stays hidden even in the reflection.)
 - BRIDGE TERMINOLOGY (be precise):
   - "two-suiter" / "two-suited" means TWO suits of 4+ cards (5-4, 5-5, 6-4,
     6-5, …). A single long suit (6-3-2-2, 7-2-2-2) is a ONE-suiter — never

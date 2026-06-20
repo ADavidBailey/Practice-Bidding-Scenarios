@@ -116,6 +116,9 @@ def fold_board(chunk):
     south_ends_pass = bool(south_all) and south_all[-1] == 'Pass'
 
     intro, chunks, reflection = parse_block(chunk)
+    # Old-format curated files bake a leading [show S] into the intro; strip any
+    # leading [show ...] so the [show S] we add below isn't doubled.
+    intro = re.sub(r'^\s*\[show [^\]]+\]\s*', '', intro)
     assert len(chunks) == len(ns_nonpass), \
         f"board {tag(chunk,'Board')}: {len(chunks)} BID chunks vs {len(ns_nonpass)} N/S calls"
     # attach seat to each chunk
