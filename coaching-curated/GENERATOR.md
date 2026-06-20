@@ -81,8 +81,11 @@ or start a fresh sentence about the call itself, not the actor.
   specific actual holding is not. The closing `[show NS]` reflection MAY
   describe **South's (the student's) own** hand concretely and may state what
   each bid SHOWED, but must **NOT recite partner's (North's) concrete hand** —
-  no specific cards/ranks, no exact HCP/point count, no suit length or quality
-  the bidding didn't itself reveal. Reframe partner's holding as bid-meaning:
+  no specific cards/ranks, no exact HCP/point count, and no suit length, suit
+  quality, or **distribution/shape** the bidding didn't itself reveal ("North's
+  4=3=3=3", "North's singleton club", "North's doubleton" are all out; "opener
+  showed a balanced hand" / "the splinter showed a singleton" are fine because a
+  bid revealed them). Reframe partner's holding as bid-meaning:
   not "North's three small spades" / "North's 13 HCP" but "the three-card
   support opener showed" / "opener's maximum". Naming partner's *bids* ("North
   raised", "North chose hearts") is fine. (Rule tightened 2026-06-20, David:
