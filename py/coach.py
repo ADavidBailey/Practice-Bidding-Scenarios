@@ -452,6 +452,77 @@ def fill_splice(scn):
     validate(scn)
 
 
+_PE_CARD = r"\\[SHDC][AKQJT2-9]+"
+_PE_HCP = r"\b\d{1,2}\s*(?:HCP|points?|point|count)\b"
+_PE_SHAPE = (r"\b(?:balanced|unbalanced|singleton|stiff|doubleton|void|flat|"
+             r"two-suit\w*|three-suit\w*|\d=\d=\d=\d)\b")
+_PE_LEN = r"\b(?:two|three|four|five|six|seven|eight)[-\s](?:card|spade|heart|diamond|club|trump)"
+_PE_FULL = re.compile(f"(?:{_PE_CARD}|{_PE_HCP}|{_PE_SHAPE}|{_PE_LEN})")
+_PE_HARD = re.compile(f"(?:{_PE_CARD}|{_PE_HCP})")
+_PE_BIDMEAN = re.compile(r"\b(show|shows|showed|showing|promis\w+|denie\w+|deny|denying|"
+                         r"reveal\w*|confirm\w*|by agreement)\b", re.I)
+_PE_BIDNOUN = re.compile(r"^['’s]*\s+(opening|open|double|raise|rais\w+|bid|call|"
+                         r"response|respond\w*|rebid|rebids|preference|cue\w*|jump\w*|"
+                         r"transfer\w*|probe|ask\w*|advance\w*|invitation|signoff|"
+                         r"signs?\s+off|step|reply)", re.I)
+
+
+def _partner_exposure_violations(path):
+    """Flag intro / [show NS] prose that exposes partner's (North's — the non-student
+    seat in a South=student lesson) concrete hand. The INTRO is pre-auction, so ANY
+    partner hand info (cards/HCP/shape/length) is out — even a feature a later bid
+    would show (the student isn't told it yet; David 2026-06-20: 'responder does not
+    know opener has a balanced hand'). The [show NS] reflection is post-auction, so
+    bid-meaning is fine there — only outright card/HCP recitation is flagged. See
+    GENERATOR.md. (Assumes South=student; rotation-aware South-exposure is not gated.)"""
+    SEATS = ['N', 'E', 'S', 'W']
+
+    def north_roles(chunk):
+        m = re.search(r'\[Auction "(\w)"\]\s*\n((?:[^\[{][^\n]*\n?)*)', chunk)
+        if not m:
+            return {'responder', 'advancer'}
+        di = SEATS.index(m.group(1))
+        calls = [t for t in m.group(2).split()
+                 if re.match(r'(?i)^(pass|x|xx|\d[cdhsn]t?)$', t)]
+        for j, c in enumerate(calls):
+            if c.lower() == 'pass':
+                continue
+            return {'opener'} if SEATS[(di + j) % 4] == 'N' else {'responder', 'advancer'}
+        return {'responder', 'advancer'}
+
+    def flags(text, roles, conc, allow_bidmean):
+        out = []
+        subs = [r"North'?’?s?"] + [w for r in roles for w in (r.capitalize(), r)]
+        subj = re.compile(r"\b(" + "|".join(subs) + r")\b")
+        for sm in subj.finditer(text):
+            if _PE_BIDNOUN.match(text[sm.end():sm.end() + 30]):
+                continue
+            cm = conc.search(text[sm.end():sm.end() + 45])
+            if not cm:
+                continue
+            if re.search(r"\bSouth\b", text[sm.end():sm.end() + cm.start()]):
+                continue
+            if allow_bidmean and _PE_BIDMEAN.search(text[max(0, sm.start() - 5):sm.end() + cm.end()]):
+                continue
+            out.append(text[sm.start():sm.end() + cm.end()].strip()[:60])
+        return out
+
+    for ch in split_boards(path):
+        b = tag(ch, 'Board')
+        if not b:
+            continue
+        blk = ch[ch.rfind('{'):]
+        if '[ROLE' in blk:          # play lessons use a different prose dialect
+            continue
+        nr = north_roles(ch)
+        intro = re.split(r'\[BID|\[show', blk[1:])[0]
+        rm = re.search(r'\[show NS\](.*?)\}', blk, re.S)
+        for s in flags(intro, nr, _PE_FULL, False):
+            yield b, 'intro', s
+        for s in flags(rm.group(1) if rm else '', nr, _PE_HARD, True):
+            yield b, 'reflection', s
+
+
 def validate(scn):
     """Check coaching-curated/<scn>.pbn structure: every non-pass call has
     exactly one anchored [BID] chunk, intro carries no [BID], [ACCEPT] sits
@@ -546,6 +617,11 @@ def validate(scn):
         issues += 1
         print(f"  {scn} b{b}: malformed suit escape '{esc}' — missing the "
               f"\\S/\\H/\\D/\\C suit letter (renders a literal backslash)")
+    # Partner-hand exposure: intro/reflection must not reveal North's (partner's)
+    # concrete hand (intro = no hand info at all; reflection = no card/HCP recitation).
+    for b, loc, snip in _partner_exposure_violations(path):
+        issues += 1
+        print(f"  {scn} b{b}: partner-hand exposure in {loc}: \"{snip}\"")
     print(f"{scn}: {issues} board(s) with structure issues")
     return issues
 

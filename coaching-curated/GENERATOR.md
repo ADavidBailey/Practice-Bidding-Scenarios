@@ -120,6 +120,19 @@ or start a fresh sentence about the call itself, not the actor.
   and the side as "the partnership"; NO you/partner, NO tokens there. The
   reflection holds the warmth/PRAISE; never praise in a `[BID]` chunk (it
   fires after wrong answers too — the quiz's ✓/✗ handles that).
+- **The INTRO is shown PRE-AUCTION, so it must reveal NOTHING about partner's
+  (the non-student seat's) hand — no cards, HCP, suit length, suit quality, or
+  shape, NOT EVEN a feature a later bid will show** (the student hasn't seen
+  that bid yet; David 2026-06-20: "responder does not know opener has a balanced
+  hand and should not be told that"). Describe the student's own side, the
+  convention's purpose, and the auction as it will unfold ("when opener rebids
+  1NT instead of raising") — never the partner's holding. BAD intro: "Opener has
+  a balanced minimum and responder has a five-card major." GOOD: "Responder has
+  a five-card major and game values; when opener rebids 1NT, an eight-card fit
+  may still be hiding — New Minor Forcing finds out." Enforced by
+  `coach.py validate` (`_partner_exposure_violations`), which blocks promote on
+  any partner-hand mention in the intro (and on card/HCP recitation in the
+  reflection).
 - JUDGMENT-tier boards: present the call as genuinely close, name the
   defensible alternative in plain prose, AND — when the judgment call is a
   NON-PASS call — emit `[ACCEPT <call>]` inside that call's `[BID]` chunk so
