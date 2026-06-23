@@ -60,7 +60,8 @@ def transform_board(text, seq):
     """Return (new_text, stats) for one board renumbered to ``seq``."""
     stats = {"stripped": 0, "show_added": False, "orig_added": False,
              "brace_fixed": False, "folded": 0, "fold_flagged": 0,
-             "fold_unmatched": 0, "reflowed": False, "pass_added": False}
+             "fold_unmatched": 0, "reflowed": False, "pass_added": False,
+             "accept_stripped": 0}
 
     m = re.search(r"(?m)^\[Auction\b.*$", text)
     if m is None:
@@ -91,7 +92,8 @@ def transform_board(text, seq):
     text = _renumber(pre + post, seq, stats)
     text = _fold_partner_bids(text, stats)
     text = _anchor_ending_pass(text, stats)
-    return _break_block_anchors(text, stats), stats
+    text = _break_block_anchors(text, stats)
+    return _strip_accept(text, stats), stats
 
 
 def _contract_disp(call):
@@ -155,6 +157,21 @@ _ANCHOR = re.compile(
     r"\[(?:BID|show|POST-AUCTION|ROLE)\b[^\]]*\](?:\[STAGE\b[^\]]*\])?",
     re.IGNORECASE,
 )
+
+_ACCEPT = re.compile(r"[ \t]*\[ACCEPT\b[^\]]*\]", re.IGNORECASE)
+
+
+def _strip_accept(text, stats):
+    """Remove trainer-only ``[ACCEPT ...]`` markers.
+
+    bridge-classroom's renderer doesn't consume ``[ACCEPT]`` (it grades against
+    the recorded auction call), so left in place it renders as raw text. Strip it
+    from the served copy; the curated/trainer source keeps it.
+    """
+    n = len(_ACCEPT.findall(text))
+    if n:
+        stats["accept_stripped"] += n
+    return _ACCEPT.sub("", text)
 
 
 def _break_block_anchors(text, stats):
@@ -324,7 +341,7 @@ def transform_file(path, check):
     new_boards = []
     totals = {"stripped": 0, "show_added": 0, "orig_added": 0, "brace_fixed": 0,
               "folded": 0, "fold_flagged": 0, "fold_unmatched": 0, "reflowed": 0,
-              "pass_added": 0}
+              "pass_added": 0, "accept_stripped": 0}
     for seq, board in enumerate(boards, start=1):
         new_board, stats = transform_board(board, seq)
         new_boards.append(new_board)
