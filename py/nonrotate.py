@@ -110,6 +110,10 @@ def parse_block(chunk):
 
 
 def fold_board(chunk):
+    # Bracket the student's OWN justification with ⟦ ⟧ so bridge-classroom can fade
+    # it to a brief affirmation on a correct call, while always keeping the folded-in
+    # partner/opponent text (which sits OUTSIDE the brackets). See coaching-feedback-fade.
+    JBEG, JEND = '⟦', '⟧'   # ⟦ ⟧
     seats = auction_seats(chunk)
     ns_nonpass = [(s, c) for s, c in seats if s in 'NS' and c != 'Pass']
     south_all = [c for s, c in seats if s == 'S']
@@ -133,22 +137,22 @@ def fold_board(chunk):
             if seat == 'N':
                 pending = text
             else:                          # South
-                merged = (pending + ' ' if pending else '') + text
+                merged = (pending + ' ' if pending else '') + JBEG + text + JEND
                 out.append((call, merged))
                 pending = None
         if south_ends_pass:                # partner's final bid + South's closing pass
             tail = (pending + ' ' if pending else '')
-            out.append(('Pass', f"{tail}You pass; {contract_display(chunk)} is the final contract."))
+            out.append(('Pass', f"{tail}{JBEG}You pass; {contract_display(chunk)} is the final contract.{JEND}"))
         elif pending:                      # safety: leftover partner call with no anchor
             out[-1] = (out[-1][0], out[-1][1] + ' ' + pending)
     else:                                  # South opens → append partner's following call
         for seat, call, text in seated:
             if seat == 'S':
-                out.append((call, text))
+                out.append((call, JBEG + text + JEND))
             else:
                 out[-1] = (out[-1][0], out[-1][1] + ' ' + text)
         if south_ends_pass:
-            out.append(('Pass', f"You pass; {contract_display(chunk)} is the final contract."))
+            out.append(('Pass', JBEG + f"You pass; {contract_display(chunk)} is the final contract." + JEND))
 
     body_lines = ['[show S]' + intro]
     for call, text in out:
