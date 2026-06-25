@@ -79,7 +79,10 @@ endplay, squeeze). Advanced decks want the opposite end — the hard hands are t
 
 ## Packaging
 
-Up to three files per scenario, one per role, pre-rotated, single track each. All
+Up to three files per **theme** (at a difficulty level), one per **seat**
+(LHO/RHO/Declarer), pre-rotated, single track each — **theme-based, NOT
+scenario-based**: a deal is *pulled* from a scenario, but the deck is keyed to its
+teaching theme + level, never to one scenario. All
 content-side; reuses the existing pipeline. (The "one file, three grades + three tracks"
 data model is prettier but deferred — it needs present-time rotation + track selection in
 the engine.)
@@ -117,24 +120,31 @@ the engine.)
 student = South **defends**. The defending mirror of the `Basic_*` (declaring)
 family.
 
-**Lesson identity.** Bidding lessons ≡ scenario names (1:1 with a `.btn`).
-Play/defense lessons do **not** — they're **theme-named** curated sets pulled
-from **many** natural-auction scenarios (1:many; and one scenario can feed
-several themes). Each deal carries source **provenance** (`[OriginalSource …]`);
-decoupled from `-PBS.txt`. So pull deals from *any* scenario with natural
-bidding, filtered by the auction, then by the contract type the set teaches.
+**Lesson identity — THEME-based + LEVEL-based + ROLE-based, NOT scenario-based.**
+Bidding lessons ≡ scenario names (1:1 with a `.btn`). Play lessons are the
+opposite: each is a **theme** (Leads, Signals, Trump threats, Counting,
+Inferences, …) at a **difficulty level** (beginner / intermediate / advanced),
+for one **role/seat** (LHO / RHO / Declarer — see Seat axis), curated from
+**many** scenarios. The level sets the **bidding complexity** — a *beginner* deck
+pulls deals with beginner-level (natural, no-convention) bidding. A deal is
+*pulled* from a scenario, but the deck is keyed to its theme + level + role,
+**never to one scenario** — decoupled from `-PBS.txt`; each deal carries source
+**provenance** (`[OriginalSource …]`). So source from *any* scenario whose
+bidding fits the level, then select by theme.
 
 **Seat axis.** Play lessons span three student seats: **LHO** (lead + defense),
 **RHO** (third-hand defense), **Declarer**. Dummy has no decisions → no deck.
-Taxonomy is 2-D: **contract-type × seat**; seat goes in the filename
+Taxonomy: **theme × difficulty-level × role/seat** (LHO/RHO/Declarer; contract type — NT/Major/Minor — is
+context within a theme); seat goes in the filename
 (`Scenario_LHO`/`_RHO`/`_Declarer`). Engine asymmetry: **LHO** needs a new
 *graded-lead* anchor (the student leads); **RHO** rides the existing
 `[ROLE leader]` auto-play (partner leads), then plays third-hand.
 
-**Level.** *Not* a basic-set axis — the core job (count declarer's tricks, set up
-+ cash yours, try to set it) is the same at any level, so keep 1N/2N/3N together.
-(The MP partscore-overtrick nuance — passive vs a partscore, all-out vs a game —
-is an advanced distinction, deferred.)
+**Contract level (game vs partscore — distinct from the *difficulty* level
+above).** *Not* a deck axis — the core job (count declarer's tricks, set up +
+cash yours, try to set it) is the same whether they're in game or a partscore, so
+a deck can mix 1N/2N/3N. (The MP partscore-overtrick nuance — passive vs a
+partscore, all-out vs a game — is advanced, deferred.)
 
 **Folders (target, from-scratch).** `bid/` and `play/`, **both non-rotated**. The
 current `coaching-curated → coaching → coaching-non-rotated` chain exists *only*
