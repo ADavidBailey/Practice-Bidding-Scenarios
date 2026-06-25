@@ -108,3 +108,90 @@ the engine.)
 - Role-file naming: `Scenario_Declarer` / `Scenario_LHO` / `Scenario_RHO` (underscores
   only — hyphens break the BBO/classroom regex).
 - *(Resolved)* Terminology: LHO/RHO used directly, beginners included; fade deferred unless Rick wants it.
+
+---
+
+## 2026-06-25 — Defense build plan (design-session decisions)
+
+**Scope.** Three "Basic" **DEFENSE** sets — **NT, Major, Minor** — 30 deals each,
+student = South **defends**. The defending mirror of the `Basic_*` (declaring)
+family.
+
+**Lesson identity.** Bidding lessons ≡ scenario names (1:1 with a `.btn`).
+Play/defense lessons do **not** — they're **theme-named** curated sets pulled
+from **many** natural-auction scenarios (1:many; and one scenario can feed
+several themes). Each deal carries source **provenance** (`[OriginalSource …]`);
+decoupled from `-PBS.txt`. So pull deals from *any* scenario with natural
+bidding, filtered by the auction, then by the contract type the set teaches.
+
+**Seat axis.** Play lessons span three student seats: **LHO** (lead + defense),
+**RHO** (third-hand defense), **Declarer**. Dummy has no decisions → no deck.
+Taxonomy is 2-D: **contract-type × seat**; seat goes in the filename
+(`Scenario_LHO`/`_RHO`/`_Declarer`). Engine asymmetry: **LHO** needs a new
+*graded-lead* anchor (the student leads); **RHO** rides the existing
+`[ROLE leader]` auto-play (partner leads), then plays third-hand.
+
+**Level.** *Not* a basic-set axis — the core job (count declarer's tricks, set up
++ cash yours, try to set it) is the same at any level, so keep 1N/2N/3N together.
+(The MP partscore-overtrick nuance — passive vs a partscore, all-out vs a game —
+is an advanced distinction, deferred.)
+
+**Folders (target, from-scratch).** `bid/` and `play/`, **both non-rotated**. The
+current `coaching-curated → coaching → coaching-non-rotated` chain exists *only*
+to feed the Play Trainer's **runtime** rotation (what the `@`-tokens serve); with
+Bridge Classroom (a non-rotated dumb renderer) as the home, that dimension
+collapses. Defense lives in `play/` (all seats), **not** a defense-specific
+folder. `play/` is greenfield → adopt the clean model now; existing **bid**
+lessons migrate later, on Rick's timeline. **Interim (now, per David):** leave the
+existing **bid** lessons — and the existing declarer-play lessons — in
+`coaching-non-rotated/`, untouched; only the **new** play/defense content goes in
+the new `play/` folder. The `bid/` folder and the migration are deferred.
+
+**Fork shortcut (David's idea).** To run the fork in the *target* `bid/` + `play/`
+shape *now* without waiting on migration, **mirror** `coaching-non-rotated/` into
+the fork's folders — bidding lessons → `bid/`, the existing declarer-play sets →
+`play/` (joining the new defense). Make it a **regeneratable copy** (gitignored;
+re-run a one-line copy whenever `coaching-non-rotated/` changes), so the single
+source of truth stays `coaching-non-rotated/` and the two never drift. Rick's
+production still reads `coaching-non-rotated/`, untouched. The fork then runs
+exactly like the eventual merged Classroom.
+
+**Anchors / fade.** No `@`-tokens (rotation-only; these sets are pre-rotated /
+fixed-South — write 2nd person). Reuse the `⟦ ⟧` fade (verbose-on-wrong,
+nod-on-right, partner always shown). **Missing:** a graded opening-**lead** anchor
+(the lead counterpart of `[BID]`/`[ACCEPT]`). Defender `[PLAY]` parked.
+
+**Don't break Rick's live BC.** Classroom reads the **existing** layout off raw
+GitHub main. All changes **additive + backward-compatible**; nothing reaches BC
+until commit + push (and no breaking pushes).
+
+**Build strategy — David's BC fork.** Build the **whole vertical** — PBS content
+*plus* the BC engine work (defender seating, reveals, graded-lead anchor,
+defender `[PLAY]`) — in **David's fork** of Bridge Classroom. Rick's production
+stays untouched **and** we stop waiting on his parser. **Downside-resilient:** the
+PBS content is renderer-agnostic and survives even if Rick passes; the
+proof+design de-risk his version; only the fork engine code is throwaway. Then
+offer Rick a working, tested merge.
+
+**Status.** Pilot board drafted: `Basic_NT` b13 rotated → an **NT-LHO** lesson in
+`coaching-curated/Basic_NT_Defense.pbn` (mis-homed — moves to `play/`). ⚠️ BC
+handling defense deals is **unverified** — test one deal in a local BC run before
+assuming it renders (every BC lesson so far has the student on the *declaring*
+side).
+
+**Play selection (menu).** BC's "Pick a Scenario" is built from
+`btn/-button-layout-release.txt` (`[Section]` + rows of **scenario** names →
+load a `.btn`). Theme-named play lessons have no `.btn`, so they can't be buttons
+there. Fix: a **parallel play menu** — a play-layout file (the play counterpart
+of `-button-layout`, *same* `[Section]`/rows format, **seat-aware**: e.g.
+`[Section] Notrump Defense` → `Basic_NT_LHO`, `Basic_NT_RHO`) read by a **play
+picker** in the fork ("Pick a Play Lesson" / a Play tab) that loads from `play/`.
+Reuses BC's existing menu renderer (new bits = which file it reads + a click that
+loads a play lesson, not a scenario). Additive — Rick's scenario selector
+untouched. The 12 existing declarer-play sets are currently scenario-buttons in
+`-button-layout`; in the fork-mirror world they graduate into the play menu with
+the defense (leave them in both for now, move at cutover).
+
+**Open.** Folder name; split "Basic NT Defense" into `_LHO`/`_RHO`; the
+provenance tag; the graded-lead anchor shape; play-menu layout-file location/name;
+heads-up note to Rick (drafted).
