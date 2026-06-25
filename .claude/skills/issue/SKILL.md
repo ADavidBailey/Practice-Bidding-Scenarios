@@ -28,8 +28,11 @@ restrict the run; with no args, process the whole open batch.
 - **Locate by the deal, never the number.** Deal N and `[Board]` tags drift when a
   scenario is re-curated. The **PBN deal string** is the stable key — `grep` it.
 - **A fix is global.** PBS is the single source for every classroom, so one bad
-  "correction" breaks them all. **Stop for David's OK before anything leaves the
-  machine** — every push, every issue filed in another repo, every Rick consult.
+  "correction" breaks them all. **Stop for David's OK before the outward, hard-to-undo
+  moves** — every push, every issue filed in *another* repo, every email or Rick consult.
+  But **don't over-gate the routine**: once an issue is resolved, closing it (with a short
+  reply) on our own `classroom-feedback` tracker IS the processing — do it in the run,
+  don't ask again. Gate the commits and cross-repo posts, not the housekeeping.
 - **Prefer the class fix.** A spoiler on one board is usually an authoring-template bug
   in hundreds. Fix the class, not the symptom, whenever the cluster says so.
 
@@ -64,9 +67,15 @@ restrict the run; with no args, process the whole open batch.
   report cleans the deals nobody has reported yet.
 - **Singleton content bug** → patch the one board in `coaching-curated/<scn>.pbn` (or drop
   it — bias to drop).
-- **Engine/UI bug** (renderer skips a turn, layout, a marker the renderer should strip) →
-  draft a forwarded issue for the Classroom repo, **show David**, file on his OK, cross-link,
-  close ours.
+- **Engine/UI bug** (renderer skips a turn, layout, a glyph too small, a marker the
+  renderer should strip) → forward it as an issue in the Classroom repo
+  (`Rick-Wilson/Bridge-Classroom`): draft it, **show David**, file on his OK, then
+  cross-link + close ours. First **dedupe against Rick's _open_ issues**
+  (`gh issue list -R Rick-Wilson/Bridge-Classroom --state open`) so a recurring class isn't
+  re-filed. **Auth prereq:** filing there needs `gh` on a **classic** token with
+  `repo, read:org, workflow` — a fine-grained PAT can't reach another account's repo, and
+  `gh auth login` rejects a `public_repo`-only token. Keep forwarded issues low-priority /
+  FYI; we don't push Rick to act.
 - **Bridge-judgment call** (which call is textbook; is this a good teaching board) → draft
   the question for **Rick**; the PBS issue **stays open** until he rules; then apply his call
   as content and close.
@@ -92,6 +101,11 @@ For any content change, in order:
   keep open for a pending Rick consult).
 - **Summarize for David:** clusters processed, root causes, any gate added + how many
   corpus instances it caught, what was pushed, what's awaiting Rick.
+- **A triage / FYI summary to share (with Rick or anyone) → a shared Google Doc + link, not
+  a GitHub issue.** Issues are for actionable tasks; an FYI left open in a tracker reads as a
+  phantom to-do. Build it via the Drive connector (`create_file`, `contentMimeType:
+  text/html` → a real Doc with a rendered table; verify with `read_file_content`). The
+  connector can't set sharing, so David flips it to "anyone with the link → viewer" himself.
 
 ## Related — filing reports (interim, until the button ships)
 Until David's copy of Bridge Classroom has the Report button, David reports problems in
