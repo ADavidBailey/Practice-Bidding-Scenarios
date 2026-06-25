@@ -129,7 +129,7 @@ const ARTIFACTS = [
     }
 ];
 
-type ArtifactStatus = 'fresh' | 'stale' | 'missing';
+type ArtifactStatus = 'fresh' | 'stale' | 'missing' | 'unchecked';
 
 // Tolerance for timestamp comparison (ms). Git checkout/commit resets file
 // timestamps to the same second with random sub-second ordering, which can
@@ -222,6 +222,11 @@ export class ScenarioTreeItem extends vscode.TreeItem {
                 case 'missing':
                     this.iconPath = new vscode.ThemeIcon('close', new vscode.ThemeColor('testing.iconFailed'));
                     break;
+                case 'unchecked':
+                    // Freshness checks muted — grey check: "not flagged", but NOT a
+                    // verified-fresh (green) claim
+                    this.iconPath = new vscode.ThemeIcon('check', new vscode.ThemeColor('descriptionForeground'));
+                    break;
             }
 
             // Set command to open the artifact file (if it exists)
@@ -235,7 +240,8 @@ export class ScenarioTreeItem extends vscode.TreeItem {
 
             // Tooltip with path and status
             const statusText = artifactInfo.status === 'fresh' ? 'Up to date' :
-                artifactInfo.status === 'stale' ? 'Needs rebuild' : 'Not yet built';
+                artifactInfo.status === 'stale' ? 'Needs rebuild' :
+                artifactInfo.status === 'unchecked' ? 'Stale warning muted' : 'Not yet built';
             const clickAction = artifactInfo.status === 'missing' ? '' : '\n\n*Click to open*';
             this.tooltip = new vscode.MarkdownString(`**${artifactInfo.name}**\n\n${statusText}\n\n\`${artifactInfo.artifactPath}\`${clickAction}`);
             this.contextValue = 'artifact';
@@ -253,6 +259,11 @@ export class CurrentScenarioProvider implements vscode.TreeDataProvider<Scenario
 
     private currentScenario: string | undefined;
     private disposables: vscode.Disposable[] = [];
+    // Per-scenario, session-scoped mute set for the panel's fresh/stale checks.
+    // Empties on extension reactivation (window reload), so mutes can't silently
+    // persist; rebuilding a scenario's outputs un-mutes that scenario. Purely a
+    // local view — never written to files or git.
+    private mutedScenarios = new Set<string>();
 
     constructor(private workspaceRoot: string | undefined) {
         // Update when active editor changes
@@ -305,6 +316,51 @@ export class CurrentScenarioProvider implements vscode.TreeDataProvider<Scenario
 
     refresh(): void {
         this._onDidChangeTreeData.fire();
+    }
+
+    /** True if the given scenario's freshness checks are currently muted. */
+    private isMuted(scenario: string | undefined): boolean {
+        return !!scenario && this.mutedScenarios.has(scenario);
+    }
+
+    /**
+     * Toggle the fresh/stale indicators for the CURRENTLY shown scenario only.
+     * Muting requires a modal confirm (it removes a safety hint); un-muting is
+     * immediate. Per-scenario and session-scoped — other scenarios are unaffected,
+     * nothing is written to files or git, and all mutes reset on window reload.
+     */
+    async toggleStalenessChecks(): Promise<void> {
+        const scenario = this.currentScenario;
+        if (!scenario) {
+            vscode.window.showInformationMessage('Open a scenario file first to mute its freshness checks.');
+            return;
+        }
+        if (!this.mutedScenarios.has(scenario)) {
+            const choice = await vscode.window.showWarningMessage(
+                `Mute stale (out-of-date) warnings for "${scenario}"?`,
+                {
+                    modal: true,
+                    detail: 'Only this scenario is affected. Its out-of-date warnings stop showing (fresh and missing still show normally) until you restore them, run the pipeline on this scenario, or reload the window. Local view only — nothing in the files or git.'
+                },
+                'Mute'
+            );
+            if (choice !== 'Mute') {
+                return;
+            }
+            this.mutedScenarios.add(scenario);
+        } else {
+            this.mutedScenarios.delete(scenario);
+        }
+        this.refresh();
+    }
+
+    /**
+     * Restore true freshness indicators for a scenario — called when its output
+     * artifacts are (re)built. No-op for scenarios that weren't muted.
+     */
+    unmuteScenario(scenario: string): void {
+        this.mutedScenarios.delete(scenario);
+        this.refresh();
     }
 
     dispose(): void {
@@ -382,7 +438,24 @@ export class CurrentScenarioProvider implements vscode.TreeDataProvider<Scenario
                 }
             }
 
-            return Promise.resolve([btnItem, ...items]);
+            // When this scenario's stale warnings are muted, lead with a loud,
+            // clickable banner so the muted state is never silent.
+            const leadIn: ScenarioTreeItem[] = [];
+            if (this.isMuted(this.currentScenario)) {
+                const banner = new ScenarioTreeItem(
+                    'Stale warnings muted — click to restore',
+                    vscode.TreeItemCollapsibleState.None,
+                    false,
+                    undefined
+                );
+                banner.iconPath = new vscode.ThemeIcon('warning', new vscode.ThemeColor('editorWarning.foreground'));
+                banner.command = { command: 'pbs.toggleStalenessChecks', title: 'Restore stale warnings' };
+                banner.tooltip = new vscode.MarkdownString('Out-of-date (stale) warnings for this scenario are muted — fresh and missing still show normally. Local view only; restored when you rebuild this scenario or reload the window.\n\n*Click to restore.*');
+                banner.contextValue = 'stalenessBanner';
+                leadIn.push(banner);
+            }
+
+            return Promise.resolve([...leadIn, btnItem, ...items]);
         }
 
         return Promise.resolve([]);
@@ -403,6 +476,10 @@ export class CurrentScenarioProvider implements vscode.TreeDataProvider<Scenario
             } else {
                 // No source to compare against - consider fresh
                 status = 'fresh';
+            }
+            // Muting silences only the STALE warnings — fresh stays green, missing stays flagged.
+            if (status === 'stale' && this.isMuted(scenario)) {
+                status = 'unchecked';
             }
         }
 
@@ -487,11 +564,16 @@ export class CurrentScenarioProvider implements vscode.TreeDataProvider<Scenario
         if (!fs.existsSync(filePath)) {
             return 'missing';
         }
+        let status: ArtifactStatus = 'fresh';
         if (fs.existsSync(sourcePath)) {
             const fileMtime = fs.statSync(filePath).mtimeMs;
             const sourceMtime = fs.statSync(sourcePath).mtimeMs;
-            return fileMtime >= sourceMtime - FRESHNESS_TOLERANCE_MS ? 'fresh' : 'stale';
+            status = fileMtime >= sourceMtime - FRESHNESS_TOLERANCE_MS ? 'fresh' : 'stale';
         }
-        return 'fresh';
+        // Muting silences only the STALE warnings.
+        if (status === 'stale' && this.isMuted(this.currentScenario)) {
+            return 'unchecked';
+        }
+        return status;
     }
 }

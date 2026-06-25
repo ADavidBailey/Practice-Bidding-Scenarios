@@ -116,6 +116,18 @@ export function activate(context: vscode.ExtensionContext) {
         showCollapseAll: false
     });
 
+    // When a scenario's OUTPUT artifacts are (re)built, restore its true freshness
+    // indicators. Running the pipe on one scenario un-mutes only that scenario;
+    // others keep whatever mute state they had.
+    const restoreFreshnessOnBuild = (uri: vscode.Uri) => {
+        const scenario = getScenarioFromPath(uri.fsPath);
+        if (scenario) {
+            currentScenarioProvider.unmuteScenario(scenario);
+        } else {
+            currentScenarioProvider.refresh();
+        }
+    };
+
     // Create the pending release provider (shows scenarios awaiting release)
     const pendingReleaseProvider = new PendingReleaseProvider(workspaceRoot);
 
@@ -194,6 +206,12 @@ export function activate(context: vscode.ExtensionContext) {
         }
     });
 
+    // Register toggle for the Current Scenario freshness (fresh/stale) indicators.
+    // Confirm-on-disable lives in the provider; the muted state auto-re-arms on reload.
+    const toggleStalenessCommand = vscode.commands.registerCommand('pbs.toggleStalenessChecks', async () => {
+        await currentScenarioProvider.toggleStalenessChecks();
+    });
+
     // Register open file command
     const openFileCommand = vscode.commands.registerCommand('pbs.openPbsFile', async (filePath: string, lineNumber?: number) => {
         if (!filePath) {
@@ -246,8 +264,8 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Watch artifact directories for current scenario status updates
     const artifactWatcher = vscode.workspace.createFileSystemWatcher('**/{dlr,pbn,pbn-rotated-for-4-players,bba,bba-filtered,bidding-sheets,quiz}/*');
-    artifactWatcher.onDidChange(() => currentScenarioProvider.refresh());
-    artifactWatcher.onDidCreate(() => currentScenarioProvider.refresh());
+    artifactWatcher.onDidChange(restoreFreshnessOnBuild);
+    artifactWatcher.onDidCreate(restoreFreshnessOnBuild);
     artifactWatcher.onDidDelete(() => currentScenarioProvider.refresh());
 
     // Watch Bidding Scenarios folder for package artifact status updates
@@ -258,15 +276,15 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Watch pbs-test directory for pending release updates
     const pbsTestWatcher = vscode.workspace.createFileSystemWatcher('**/pbs-test/*.pbs');
-    pbsTestWatcher.onDidChange(() => {
+    pbsTestWatcher.onDidChange((uri) => {
         pendingReleaseProvider.refresh();
         buttonPanelProvider.refresh();
-        currentScenarioProvider.refresh();
+        restoreFreshnessOnBuild(uri);
     });
-    pbsTestWatcher.onDidCreate(() => {
+    pbsTestWatcher.onDidCreate((uri) => {
         pendingReleaseProvider.refresh();
         buttonPanelProvider.refresh();
-        currentScenarioProvider.refresh();
+        restoreFreshnessOnBuild(uri);
     });
     pbsTestWatcher.onDidDelete(() => {
         pendingReleaseProvider.refresh();
@@ -283,6 +301,7 @@ export function activate(context: vscode.ExtensionContext) {
         refreshGridCommand,
         refreshPendingReleaseCommand,
         rebuildArtifactCommand,
+        toggleStalenessCommand,
         openFileCommand,
         pbsWatcher,
         configWatcher,

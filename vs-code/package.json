@@ -162,6 +162,11 @@
         "icon": "$(play)"
       },
       {
+        "command": "pbs.toggleStalenessChecks",
+        "title": "PBS: Mute / Restore Stale Warnings",
+        "icon": "$(eye-closed)"
+      },
+      {
         "command": "pbs.runRelease",
         "title": "PBS: Release to Production"
       },
@@ -178,6 +183,11 @@
     ],
     "menus": {
       "view/title": [
+        {
+          "command": "pbs.toggleStalenessChecks",
+          "when": "view == pbsCurrentScenario",
+          "group": "navigation"
+        },
         {
           "command": "pbs.refreshButtonPanel",
           "when": "view == pbsButtonPanel",
