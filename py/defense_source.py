@@ -20,7 +20,7 @@ from collections import Counter
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))  # end of path: don't shadow stdlib
 from defense_lead_select import (
     parse_boards, hand_suits, pretty, card_code, SEATS, IDX, SUITS,
-    deal_to_dict, dict_to_deal, classify_lead,
+    deal_to_dict, dict_to_deal, classify_lead, interleave,
 )
 
 ALERT = re.compile(r'^=\d+=?$')
@@ -323,18 +323,21 @@ def _compose_and_emit(boards, event, out_path, mix):
         tier, suit, card, _why = classify_suit_lead(hand_suits(r['south']), r['Contract'][1], r)
         r['_lead'] = (tier, suit, card)
         by.setdefault(tier, []).append(r)
-    chosen = []
+    picked = []
     for tier, cnt in mix.items():
         if tier == 'judgment':
             continue
-        chosen += by.get(tier, [])[:cnt]
+        picked.append(by.get(tier, [])[:cnt])
+    jlist = []
     for r in by.get('judgment', [])[:mix.get('judgment', 0)]:   # judgment: SD picks the card
         sc, _used = sd_lead.sd_scores(r['south'], r['Contract'], K=60)
         if not sc:
             continue
         top = max(sc, key=lambda k: sc[k][2])
         r['_lead'] = ('judgment', top[0], top)
-        chosen.append(r)
+        jlist.append(r)
+    picked.append(jlist)
+    chosen = interleave(picked)                                  # round-robin so types aren't clustered
     seen, blocks = {}, []
     for i, r in enumerate(chosen, start=1):
         tier, suit, card = r['_lead']
@@ -447,9 +450,8 @@ def build_third_hand_deck(out_path, event='Basic_NT_Defense_RHO', predicate=None
         tier, card, _why = th
         r['_th'] = (tier, led_card, card)
         by.setdefault(tier, []).append(r)
-    chosen = []
-    for tier, cnt in {'third_hand_high': 22, 'third_low_of_touching': 8}.items():
-        chosen += by.get(tier, [])[:cnt]
+    chosen = interleave([by.get(t, [])[:n] for t, n in
+                         {'third_hand_high': 22, 'third_low_of_touching': 8}.items()])
     seen, blocks = {}, []
     for i, r in enumerate(chosen[:30], start=1):
         tier, led_card, card = r['_th']

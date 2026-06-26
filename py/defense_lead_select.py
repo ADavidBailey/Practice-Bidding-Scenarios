@@ -328,24 +328,38 @@ DECK_MIX = {'sequence': 6, 'broken_sequence': 5, 'interior_sequence': 5,
             'fourth_best': 8, 'top_of_nothing': 6}
 
 
+def interleave(buckets):
+    """Round-robin a list of lists: 1st of each, then 2nd of each... so adjacent
+    items differ in kind (no clustering). Uneven lengths handled; tail may repeat."""
+    out, i = [], 0
+    while True:
+        added = False
+        for b in buckets:
+            if i < len(b):
+                out.append(b[i]); added = True
+        if not added:
+            return out
+        i += 1
+
+
 def select_deck(cands, mix=None):
-    """Balanced 30 across all lead types, pilot (#13) first, contract-blended,
-    in difficulty order (sequence -> broken -> interior -> fourth -> top-of-nothing)."""
+    """Balanced 30 across all lead types, pilot (#13) first, contract-blended, then
+    INTERLEAVED by type (round-robin) so the lead kinds aren't clustered."""
     mix = mix or DECK_MIX
     by = {t: [] for t in TIER_RANK}
     for c in cands:
         by[c['tier']].append(c)
-    deck = []
-    for tier in TIER_RANK:                       # TIER_RANK is already in difficulty order
+    picked = []
+    for tier in TIER_RANK:
         n = mix.get(tier, 0)
         pool = by[tier]
         if tier == 'sequence':
             pilot = next((c for c in pool if c['OriginalBoard'] == '13'), None)
             if pilot:
-                deck += [pilot] + _blend_by_contract([c for c in pool if c is not pilot], n - 1)
+                picked.append([pilot] + _blend_by_contract([c for c in pool if c is not pilot], n - 1))
                 continue
-        deck += _blend_by_contract(pool, n)
-    return deck
+        picked.append(_blend_by_contract(pool, n))
+    return interleave(picked)                     # pilot stays first (it's picked[0][0])
 
 
 def emit_deck(cands, out_path):
