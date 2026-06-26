@@ -11,6 +11,7 @@ Run from project root:  python3 -P py/defense_lead_select.py bba/Basic_NT.pbn
 """
 import re
 import sys
+import random
 import argparse
 
 SEATS = ['N', 'E', 'S', 'W']            # clockwise
@@ -328,23 +329,20 @@ DECK_MIX = {'sequence': 6, 'broken_sequence': 5, 'interior_sequence': 5,
             'fourth_best': 8, 'top_of_nothing': 6}
 
 
-def interleave(buckets):
-    """Round-robin a list of lists: 1st of each, then 2nd of each... so adjacent
-    items differ in kind (no clustering). Uneven lengths handled; tail may repeat."""
-    out, i = [], 0
-    while True:
-        added = False
-        for b in buckets:
-            if i < len(b):
-                out.append(b[i]); added = True
-        if not added:
-            return out
-        i += 1
+_ORDER_SEED = 17
+
+
+def mixed_order(buckets, seed=_ORDER_SEED):
+    """Flatten the per-tier buckets and SEEDED-shuffle, so board order is random —
+    not clustered, and not a predictable rotation. Deterministic (reproducible)."""
+    flat = [x for b in buckets for x in b]
+    random.Random(seed).shuffle(flat)
+    return flat
 
 
 def select_deck(cands, mix=None):
-    """Balanced 30 across all lead types, pilot (#13) first, contract-blended, then
-    INTERLEAVED by type (round-robin) so the lead kinds aren't clustered."""
+    """Balanced 30 across all lead types, contract-blended, then SEEDED-RANDOM order
+    so the lead kinds are neither clustered nor predictably rotated."""
     mix = mix or DECK_MIX
     by = {t: [] for t in TIER_RANK}
     for c in cands:
@@ -359,7 +357,7 @@ def select_deck(cands, mix=None):
                 picked.append([pilot] + _blend_by_contract([c for c in pool if c is not pilot], n - 1))
                 continue
         picked.append(_blend_by_contract(pool, n))
-    return interleave(picked)                     # pilot stays first (it's picked[0][0])
+    return mixed_order(picked)                    # seeded-random, not clustered, not rotated
 
 
 def emit_deck(cands, out_path):

@@ -20,7 +20,7 @@ from collections import Counter
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))  # end of path: don't shadow stdlib
 from defense_lead_select import (
     parse_boards, hand_suits, pretty, card_code, SEATS, IDX, SUITS,
-    deal_to_dict, dict_to_deal, classify_lead, interleave,
+    deal_to_dict, dict_to_deal, classify_lead, mixed_order,
 )
 
 ALERT = re.compile(r'^=\d+=?$')
@@ -337,7 +337,7 @@ def _compose_and_emit(boards, event, out_path, mix):
         r['_lead'] = ('judgment', top[0], top)
         jlist.append(r)
     picked.append(jlist)
-    chosen = interleave(picked)                                  # round-robin so types aren't clustered
+    chosen = mixed_order(picked)                                 # seeded-random, not clustered/rotated
     seen, blocks = {}, []
     for i, r in enumerate(chosen, start=1):
         tier, suit, card = r['_lead']
@@ -450,8 +450,8 @@ def build_third_hand_deck(out_path, event='Basic_NT_Defense_RHO', predicate=None
         tier, card, _why = th
         r['_th'] = (tier, led_card, card)
         by.setdefault(tier, []).append(r)
-    chosen = interleave([by.get(t, [])[:n] for t, n in
-                         {'third_hand_high': 22, 'third_low_of_touching': 8}.items()])
+    chosen = mixed_order([by.get(t, [])[:n] for t, n in
+                          {'third_hand_high': 22, 'third_low_of_touching': 8}.items()])[:30]
     seen, blocks = {}, []
     for i, r in enumerate(chosen[:30], start=1):
         tier, led_card, card = r['_th']
