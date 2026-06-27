@@ -187,6 +187,29 @@ def classify_lead(suits):
             'top of nothing in your long suit')
 
 
+def conventional_lead_card(cards):
+    """The conventional opening-lead card VALUE from ONE suit's holding (rankvals desc),
+    or None if void. Signal-correct: top of a 3-card/interior sequence; 4th-best from a
+    4+ suit with an honour; top-of-nothing (the TOP card) from a no-honour suit; top of a
+    doubleton; low from a 3-card honour holding. Used to pick the CARD on judgement boards
+    once SD has chosen the suit — so the spot-card never lies to partner."""
+    n = len(cards)
+    if n == 0:
+        return None
+    if n >= 3 and 11 <= cards[0] <= 13 and cards[0] - cards[1] == 1 and cards[1] - cards[2] in (1, 2):
+        return cards[0]                          # top of a 3-card sequence
+    for i in range(1, n - 1):                     # interior sequence (KJT, AJT, QT9...)
+        if cards[i] - cards[i + 1] == 1 and cards[i] >= 10 and cards[i - 1] - cards[i] >= 2:
+            return cards[i]
+    if cards[0] >= 11 and n >= 4:
+        return cards[3]                          # 4th best from an honour suit
+    if cards[0] < 11:
+        return cards[0]                          # no honour -> top of nothing (lead the top)
+    if n == 2:
+        return cards[0]                          # honour doubleton -> top
+    return cards[-1]                             # honour, 3 cards -> low from an honour
+
+
 NATURAL_NT = {'1N', '1NT', '2N', '2NT', '3N', '3NT', 'PASS', 'P'}
 TIER_RANK = {'sequence': 0, 'broken_sequence': 1, 'interior_sequence': 2,
              'fourth_best': 3, 'top_of_nothing': 4}

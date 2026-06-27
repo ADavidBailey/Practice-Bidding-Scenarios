@@ -21,6 +21,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))  # end of path: don'
 from defense_lead_select import (
     parse_boards, hand_suits, pretty, card_code, SEATS, IDX, SUITS,
     deal_to_dict, dict_to_deal, classify_lead, mixed_order, cc_token,
+    conventional_lead_card,
 )
 
 ALERT = re.compile(r'^=\d+=?$')
@@ -343,12 +344,15 @@ def _compose_and_emit(boards, event, out_path, mix):
             continue
         picked.append(by.get(tier, [])[:cnt])
     jlist = []
-    for r in by.get('judgment', [])[:mix.get('judgment', 0)]:   # judgment: SD picks the card
+    for r in by.get('judgment', [])[:mix.get('judgment', 0)]:   # judgment: SD picks the SUIT, convention the CARD
+        suits = hand_suits(r['south']); trump = r['Contract'][1]
+        cand = {s: card_code(s, conventional_lead_card(suits[s]))
+                for s in SUITS if s != trump and conventional_lead_card(suits[s]) is not None}
         sc, _used = sd_lead.sd_scores(r['south'], r['Contract'], K=60)
-        if not sc:
+        if not sc or not cand:
             continue
-        top = max(sc, key=lambda k: sc[k][2])
-        r['_lead'] = ('judgment', top[0], top)
+        best = max(cand, key=lambda s: sc.get(cand[s], (0, 0, 0))[2])  # best SUIT by SD...
+        r['_lead'] = ('judgment', best, cand[best])                    # ...conventional CARD in it
         jlist.append(r)
     picked.append(jlist)
     chosen = mixed_order(picked)                                 # seeded-random, not clustered/rotated
