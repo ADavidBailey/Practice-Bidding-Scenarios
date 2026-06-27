@@ -110,6 +110,8 @@ def partner_lead_card(suits, suit):
         return card_code(suit, c[0])              # top of a sequence
     if len(c) == 2:
         return card_code(suit, c[0])              # doubleton: top
+    if c[0] == 14:                                # ace in partner's suit: never underlead it
+        return card_code(suit, c[1] if c[1] == 13 else c[0])   # K from A-K, else cash the ace
     if c[0] >= 11:
         return card_code(suit, c[3] if len(c) >= 4 else c[-1])  # to an honour: low
     return card_code(suit, c[0])                  # 3+ small: top (of nothing)
@@ -291,6 +293,35 @@ def widen_suit(suits, principled, r, trump):
     return [principled]
 
 
+_RANKV = {'A': 14, 'K': 13, 'Q': 12, 'J': 11, 'T': 10,
+          '9': 9, '8': 8, '7': 7, '6': 6, '5': 5, '4': 4, '3': 3, '2': 2}
+
+
+def judgment_blind_ok(suits, trump, suit, card):
+    """A judgment board's SD-chosen lead is kept only if a good player could choose it
+    BLIND — from the bidding and their own hand, without seeing the other three. Rejects the
+    'DD chose blind' leads: underleading an ace, underleading a K/Q from a short suit, or
+    leading a short suit while a 5+ suit sits idle. DD then only tie-breaks AMONG
+    blind-defensible leads — it is no longer the chooser. (Not applied to Major_Defense_LHO,
+    whose judgment boards David has already reviewed.)"""
+    sides = [s for s in SUITS if s != trump]
+    c = suits[suit]
+    if not c:
+        return False
+    val = _RANKV[card[1]]
+    longest = max(len(suits[s]) for s in sides)
+    if c[0] == 14 and val != 14:                  # never underlead an ace
+        return False
+    if c[0] >= 11 and val < c[0] and (len(c) < 4 or len(c) < longest):
+        return False                              # underlead an honour only from your longest 4+ suit
+    safe_long = any(s != trump and len(suits[s]) >= 4 and suits[s][0] <= 10 for s in SUITS)
+    if len(c) < 4 and safe_long:                  # short lead while a safe 4+ top-of-nothing suit sits idle
+        return False
+    if longest >= 5 and len(c) < longest:         # prefer your own 5+ length
+        return False
+    return True
+
+
 def emit_board(n, event, r, card, prose, accepted=None):
     con = r['Contract']
     return (
@@ -342,8 +373,10 @@ def load_prose(event):
     return {}
 
 
-def _compose_and_emit(boards, event, out_path, mix):
-    """Classify (canon A), pick per `mix` (clear tiers mechanical, judgment via SD), emit."""
+def _compose_and_emit(boards, event, out_path, mix, blind_filter=False):
+    """Classify (canon A), pick per `mix` (clear tiers mechanical, judgment via SD), emit.
+    With blind_filter, judgment boards whose SD-chosen lead is not blind-defensible are
+    skipped and replaced by later candidates (see judgment_blind_ok)."""
     import sd_lead
     by = {}
     for r in boards:
@@ -355,8 +388,12 @@ def _compose_and_emit(boards, event, out_path, mix):
         if tier == 'judgment':
             continue
         picked.append(by.get(tier, [])[:cnt])
+    jcap = mix.get('judgment', 0)
+    jcands = by.get('judgment', []) if blind_filter else by.get('judgment', [])[:jcap]
     jlist = []
-    for r in by.get('judgment', [])[:mix.get('judgment', 0)]:   # judgment: SD picks the SUIT, convention the CARD
+    for r in jcands:                                # judgment: SD picks the SUIT, convention the CARD
+        if len(jlist) >= jcap:
+            break
         suits = hand_suits(r['south']); trump = r['Contract'][1]
         cand = {s: card_code(s, conventional_lead_card(suits[s]))
                 for s in SUITS if s != trump and conventional_lead_card(suits[s]) is not None}
@@ -364,6 +401,8 @@ def _compose_and_emit(boards, event, out_path, mix):
         if not sc or not cand:
             continue
         best = max(cand, key=lambda s: sc.get(cand[s], (0, 0, 0))[2])  # best SUIT by SD...
+        if blind_filter and not judgment_blind_ok(suits, trump, best, cand[best]):
+            continue                                # 'DD chose blind' -> drop, take a later board
         r['_lead'] = ('judgment', best, cand[best])                    # ...conventional CARD in it
         jlist.append(r)
     picked.append(jlist)
@@ -390,15 +429,19 @@ def build_major_deck(out_path):
 
 def build_minor_deck(out_path):
     pool = [r for r in load_pool(natural_only=True, dedup=True) if is_minor_raise(r)]
-    return _compose_and_emit(pool, 'Basic_Minor_Defense_LHO', out_path,   # few minor singletons -> more seq/judgment
-                             {'sequence': 10, 'interior_sequence': 4, 'singleton': 2, 'AK': 5, 'judgment': 9})
+    # Mostly clear textbook leads; only 4 blind-defensible judgment close-calls (DD-filtered).
+    return _compose_and_emit(pool, 'Basic_Minor_Defense_LHO', out_path,
+                             {'sequence': 12, 'interior_sequence': 6, 'singleton': 2, 'AK': 6, 'judgment': 4},
+                             blind_filter=True)
 
 
 def build_competitive_deck(out_path):
     pool = [r for r in load_pool(natural_only=True, dedup=True)
             if r['context'] == 'competitive' and r['strain'] == 'suit']
+    # Partner's-suit leads dominate (clear); only 3 blind-defensible judgment close-calls.
     return _compose_and_emit(pool, 'Competitive_Defense_LHO', out_path,
-                             {'partners_suit': 12, 'sequence': 6, 'interior_sequence': 3, 'AK': 3, 'singleton': 2, 'judgment': 4})
+                             {'partners_suit': 13, 'sequence': 6, 'interior_sequence': 3, 'AK': 3, 'singleton': 2, 'judgment': 3},
+                             blind_filter=True)
 
 
 # ---------- third-hand (RHO) play deck ----------

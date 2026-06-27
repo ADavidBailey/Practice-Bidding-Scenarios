@@ -10,7 +10,9 @@ candidates; with --emit writes a starter coaching-curated PBN (prose stubbed).
 Run from project root:  python3 -P py/defense_lead_select.py bba/Basic_NT.pbn
 """
 import re
+import os
 import sys
+import json
 import random
 import argparse
 
@@ -311,6 +313,17 @@ def gen_prose(tier, suit, code, variant):
     return PROSE[tier][variant % len(PROSE[tier])].format(C=card_escape(code), X=suit)
 
 
+def load_prose(event):
+    """Per-deck bespoke-prose sidecar: coaching-curated/prose/<event>.json, mapping each
+    board's OriginalSource key ('Basic_NT board <N>') to hand-authored prose. Missing -> {},
+    so boards without an entry fall back to the template. Survives regeneration."""
+    p = os.path.join('coaching-curated', 'prose', f'{event}.json')
+    if os.path.exists(p):
+        with open(p) as f:
+            return json.load(f)
+    return {}
+
+
 def cc_token(cards):
     """Render a [choose-card ...] argument: a single code, or 'any:a,b' (principled
     first) when the board is widened to accept a reasonable alternative SUIT."""
@@ -406,13 +419,17 @@ def select_deck(cands, mix=None):
 
 def emit_deck(cands, out_path):
     deck = select_deck(cands)
+    bespoke = load_prose('Basic_NT_Defense_LHO')   # hand-authored prose survives regeneration
     # per-tier variant counter for prose variety
     from collections import defaultdict
     seen = defaultdict(int)
     blocks = []
     for i, c in enumerate(deck, start=1):
         c['accepted'] = widen_nt(hand_suits(c['south']), c['lead_card'])
-        if c['OriginalBoard'] == '13':
+        key = f"Basic_NT board {c['OriginalBoard']}"   # stable per-board key (== OriginalSource)
+        if key in bespoke:
+            prose = bespoke[key]
+        elif c['OriginalBoard'] == '13':
             prose = PILOT_PROSE
         else:
             prose = gen_prose(c['tier'], c['lead_suit'], c['lead_card'], seen[c['tier']])
