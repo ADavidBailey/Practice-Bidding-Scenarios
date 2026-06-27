@@ -13,6 +13,7 @@ Run from project root:  python3 -P py/defense_source.py            (corpus repor
 import os
 import sys
 import re
+import json
 import glob
 import argparse
 from collections import Counter
@@ -330,6 +331,17 @@ def is_minor_raise(r):
     return is_suit_raise(r, 'CD')
 
 
+def load_prose(event):
+    """Per-deck bespoke-prose sidecar: coaching-curated/prose/<event>.json, mapping each
+    board's OriginalSource key ('<scn> board <N>') to hand-authored prose. Missing -> {},
+    so boards without an entry fall back to the template. Survives regeneration."""
+    p = os.path.join('coaching-curated', 'prose', f'{event}.json')
+    if os.path.exists(p):
+        with open(p) as f:
+            return json.load(f)
+    return {}
+
+
 def _compose_and_emit(boards, event, out_path, mix):
     """Classify (canon A), pick per `mix` (clear tiers mechanical, judgment via SD), emit."""
     import sd_lead
@@ -356,12 +368,15 @@ def _compose_and_emit(boards, event, out_path, mix):
         jlist.append(r)
     picked.append(jlist)
     chosen = mixed_order(picked)                                 # seeded-random, not clustered/rotated
+    bespoke = load_prose(event)                                  # hand-authored prose survives regeneration
     seen, blocks = {}, []
     for i, r in enumerate(chosen, start=1):
         tier, suit, card = r['_lead']
         accepted = widen_suit(hand_suits(r['south']), card, r, r['Contract'][1])
-        v = seen.get(tier, 0); seen[tier] = v + 1
-        blocks.append(emit_board(i, event, r, card, gen_prose_suit(tier, suit or card[0], card, v), accepted))
+        key = f"{r['scn']} board {r['OriginalBoard']}"           # stable per-board key (== OriginalSource)
+        prose = bespoke.get(key) or gen_prose_suit(tier, suit or card[0], card, seen.get(tier, 0))
+        seen[tier] = seen.get(tier, 0) + 1
+        blocks.append(emit_board(i, event, r, card, prose, accepted))
     with open(out_path, 'w') as f:
         f.write('\n'.join(blocks))
     return len(blocks), {t: len(v) for t, v in by.items()}
