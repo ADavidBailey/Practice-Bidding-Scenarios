@@ -20,7 +20,7 @@ from collections import Counter
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))  # end of path: don't shadow stdlib
 from defense_lead_select import (
     parse_boards, hand_suits, pretty, card_code, SEATS, IDX, SUITS,
-    deal_to_dict, dict_to_deal, classify_lead, mixed_order,
+    deal_to_dict, dict_to_deal, classify_lead, mixed_order, cc_token,
 )
 
 ALERT = re.compile(r'^=\d+=?$')
@@ -275,7 +275,21 @@ def gen_prose_suit(tier, suit, card, variant):
     return tmpl[variant % len(tmpl)].format(C=card_escape(card), X=suit)
 
 
-def emit_board(n, event, r, card, prose):
+def widen_suit(suits, principled, r, trump):
+    """TIGHT widening (suit contract): accept the principled card, plus a second card ONLY
+    when another suit is independently a STRONG standard lead — partner's real suit, a
+    sequence/interior sequence, or A-K. Found by re-running classify_suit_lead on the hand
+    minus the principled suit. Singleton-ruff and judgment seconds don't widen; never a
+    different card of the SAME suit (the equal-honour signal rule)."""
+    psuit = principled[0]
+    reduced = {s: (suits[s] if s != psuit else []) for s in SUITS}
+    tier, _suit, card, _why = classify_suit_lead(reduced, trump, r)
+    if card and tier in ('partners_suit', 'sequence', 'interior_sequence', 'AK'):
+        return [principled, card]
+    return [principled]
+
+
+def emit_board(n, event, r, card, prose, accepted=None):
     con = r['Contract']
     return (
         f'[Event "{event}"]\n[Site ""]\n[Board "{n}"]\n'
@@ -288,7 +302,7 @@ def emit_board(n, event, r, card, prose):
         f'[Auction "{r["AuctionSeat"]}"]\n{fmt_auction(r["auction"])}\n'
         '{[show S]\n\n'
         f'The opponents have bid to {con_words(con)} and it is your lead.\n\n'
-        f'When you have made your choice click NEXT. [choose-card {card}] [NEXT]\n\n'
+        f'When you have made your choice click NEXT. [choose-card {cc_token(accepted or [card])}] [NEXT]\n\n'
         '[show NESW]\n\n'
         f'{prose}}}\n'
         '[BidSystemEW "2/1GF - 2/1 Game Force"]\n[BidSystemNS "2/1GF - 2/1 Game Force"]\n'
@@ -341,8 +355,9 @@ def _compose_and_emit(boards, event, out_path, mix):
     seen, blocks = {}, []
     for i, r in enumerate(chosen, start=1):
         tier, suit, card = r['_lead']
+        accepted = widen_suit(hand_suits(r['south']), card, r, r['Contract'][1])
         v = seen.get(tier, 0); seen[tier] = v + 1
-        blocks.append(emit_board(i, event, r, card, gen_prose_suit(tier, suit or card[0], card, v)))
+        blocks.append(emit_board(i, event, r, card, gen_prose_suit(tier, suit or card[0], card, v), accepted))
     with open(out_path, 'w') as f:
         f.write('\n'.join(blocks))
     return len(blocks), {t: len(v) for t, v in by.items()}

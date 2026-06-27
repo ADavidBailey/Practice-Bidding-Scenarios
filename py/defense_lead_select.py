@@ -288,6 +288,27 @@ def gen_prose(tier, suit, code, variant):
     return PROSE[tier][variant % len(PROSE[tier])].format(C=card_escape(code), X=suit)
 
 
+def cc_token(cards):
+    """Render a [choose-card ...] argument: a single code, or 'any:a,b' (principled
+    first) when the board is widened to accept a reasonable alternative SUIT."""
+    seen = list(dict.fromkeys(c for c in cards if c))
+    return seen[0] if len(seen) <= 1 else 'any:' + ','.join(seen)
+
+
+def widen_nt(suits, principled):
+    """TIGHT widening (vs NT): accept the principled card, plus a second card ONLY when
+    another suit is independently a STRONG standard lead (a solid/broken/interior
+    SEQUENCE). Found by re-running the classifier on the hand minus the principled suit.
+    A 4th-best/top-of-nothing second is NOT coequal, so it does not widen — and never a
+    different card of the SAME suit (the equal-honour signal rule)."""
+    psuit = principled[0]
+    reduced = {s: (suits[s] if s != psuit else []) for s in SUITS}
+    second = classify_lead(reduced)
+    if second and second[0] in ('sequence', 'broken_sequence', 'interior_sequence'):
+        return [principled, second[2]]
+    return [principled]
+
+
 def emit_board(n, c, prose):
     con = c['Contract']
     bids = format_auction(['Pass' if b.upper() in ('P', 'PASS') else b for b in c['auction']])
@@ -302,7 +323,7 @@ def emit_board(n, c, prose):
         f'[Auction "{c["AuctionSeat"]}"]\n{bids}\n'
         '{[show S]\n\n'
         f'The opponents have bid to {CONWORDS[con]} and it is your lead.\n\n'
-        f'When you have made your choice click NEXT. [choose-card {c["lead_card"]}] [NEXT]\n\n'
+        f'When you have made your choice click NEXT. [choose-card {cc_token(c.get("accepted") or [c["lead_card"]])}] [NEXT]\n\n'
         '[show NESW]\n\n'
         f'{prose}}}\n'
         '[BidSystemEW "2/1GF - 2/1 Game Force"]\n[BidSystemNS "2/1GF - 2/1 Game Force"]\n'
@@ -367,6 +388,7 @@ def emit_deck(cands, out_path):
     seen = defaultdict(int)
     blocks = []
     for i, c in enumerate(deck, start=1):
+        c['accepted'] = widen_nt(hand_suits(c['south']), c['lead_card'])
         if c['OriginalBoard'] == '13':
             prose = PILOT_PROSE
         else:
