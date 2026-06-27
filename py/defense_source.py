@@ -373,6 +373,13 @@ def load_prose(event):
     return {}
 
 
+# Board-order difficulty bands: clearest textbook leads open the deck, judgment close-calls
+# land last; the seeded-random order is preserved WITHIN each band (so types stay mixed).
+_LHO_DIFFICULTY = {'sequence': 0, 'AK': 0,
+                   'interior_sequence': 1, 'singleton': 1, 'partners_suit': 1,
+                   'judgment': 2}
+
+
 def _compose_and_emit(boards, event, out_path, mix, blind_filter=False):
     """Classify (canon A), pick per `mix` (clear tiers mechanical, judgment via SD), emit.
     With blind_filter, judgment boards whose SD-chosen lead is not blind-defensible are
@@ -406,7 +413,8 @@ def _compose_and_emit(boards, event, out_path, mix, blind_filter=False):
         r['_lead'] = ('judgment', best, cand[best])                    # ...conventional CARD in it
         jlist.append(r)
     picked.append(jlist)
-    chosen = mixed_order(picked)                                 # seeded-random, not clustered/rotated
+    chosen = mixed_order(picked)                                 # seeded-random within each band
+    chosen = sorted(chosen, key=lambda r: _LHO_DIFFICULTY.get(r['_lead'][0], 1))  # textbook first, fade to judgment
     bespoke = load_prose(event)                                  # hand-authored prose survives regeneration
     seen, blocks = {}, []
     for i, r in enumerate(chosen, start=1):
@@ -532,6 +540,7 @@ def build_third_hand_deck(out_path, event='Basic_NT_Defense_RHO', predicate=None
         by.setdefault(tier, []).append(r)
     chosen = mixed_order([by.get(t, [])[:n] for t, n in
                           {'third_hand_high': 22, 'third_low_of_touching': 8}.items()])[:30]
+    chosen = sorted(chosen, key=lambda r: 0 if r['_th'][0] == 'third_hand_high' else 1)  # easy play first, touching last
     bespoke = load_prose(event)                                  # hand-authored prose survives regeneration
     seen, blocks = {}, []
     for i, r in enumerate(chosen[:30], start=1):

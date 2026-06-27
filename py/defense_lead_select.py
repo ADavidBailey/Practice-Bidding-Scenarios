@@ -397,6 +397,12 @@ def mixed_order(buckets, seed=_ORDER_SEED):
     return flat
 
 
+# Board-order difficulty bands (NT): lead a solid sequence is the clearest teach, the
+# no-sequence fourth-best / top-of-nothing the hardest; seeded order preserved within a band.
+_NT_DIFFICULTY = {'sequence': 0, 'broken_sequence': 0,
+                  'interior_sequence': 1, 'fourth_best': 2, 'top_of_nothing': 2}
+
+
 def select_deck(cands, mix=None):
     """Balanced 30 across all lead types, contract-blended, then SEEDED-RANDOM order
     so the lead kinds are neither clustered nor predictably rotated."""
@@ -414,7 +420,8 @@ def select_deck(cands, mix=None):
                 picked.append([pilot] + _blend_by_contract([c for c in pool if c is not pilot], n - 1))
                 continue
         picked.append(_blend_by_contract(pool, n))
-    return mixed_order(picked)                    # seeded-random, not clustered, not rotated
+    return sorted(mixed_order(picked),            # textbook first, fade to fourth-best/top-of-nothing
+                  key=lambda c: _NT_DIFFICULTY.get(c['tier'], 1))   # seeded order kept within each band
 
 
 def emit_deck(cands, out_path):
