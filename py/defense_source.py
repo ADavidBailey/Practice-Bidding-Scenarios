@@ -529,11 +529,14 @@ def build_third_hand_deck(out_path, event='Basic_NT_Defense_RHO', predicate=None
         by.setdefault(tier, []).append(r)
     chosen = mixed_order([by.get(t, [])[:n] for t, n in
                           {'third_hand_high': 22, 'third_low_of_touching': 8}.items()])[:30]
+    bespoke = load_prose(event)                                  # hand-authored prose survives regeneration
     seen, blocks = {}, []
     for i, r in enumerate(chosen[:30], start=1):
         tier, led_card, card = r['_th']
         v = seen.get(tier, 0); seen[tier] = v + 1
-        blocks.append(emit_third_board(i, event, r, led_card, card, gen_prose_third(tier, card, v)))
+        key = f"{r['scn']} board {r['OriginalBoard']}"           # stable per-board key (== OriginalSource)
+        prose = bespoke.get(key) or gen_prose_third(tier, card, v)
+        blocks.append(emit_third_board(i, event, r, led_card, card, prose))
     with open(out_path, 'w') as f:
         f.write('\n'.join(blocks))
     return len(blocks), {t: len(v) for t, v in by.items()}
