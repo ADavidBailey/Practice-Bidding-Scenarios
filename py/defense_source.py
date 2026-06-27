@@ -452,8 +452,8 @@ PROSE_THIRD = {
         "Play the {C}, third hand high. With dummy low, the third defender plays the high card — win the trick if you can, and at worst force a higher honour from declarer.",
     ],
     'third_low_of_touching': [
-        "Play the {C}. Third hand plays high — but with touching honours you play the LOWER one: it wins just as well, and it tells partner you also hold the card directly above it.",
-        "Play the {C}, the lower of touching honours. Equal cards win equally, so play the cheaper and let partner read that you hold the one above.",
+        "Play the {C}. Third hand plays high — but from a solid run you play the CHEAPEST: it wins just as well, and it tells partner you hold the touching cards above it.",
+        "Play the {C}, the cheapest of your solid run. Equal cards win equally, so play the lowest and let partner read that you hold the honours above.",
     ],
 }
 
@@ -474,8 +474,11 @@ def classify_third_hand(led_suit, dummy_suits, south_suits):
         return None                              # dummy has an honour -> cover/finesse case, defer
     if s[0] < 11:
         return None                              # no honour to contribute -> no clear lesson
-    if s[0] - s[1] == 1:                          # touching honours -> play the lower
-        return ('third_low_of_touching', card_code(led_suit, s[1]), 'lower of touching honours')
+    if s[0] - s[1] == 1:                          # solid run -> play the CHEAPEST of it
+        i = 0                                     # descend while consecutive (KQJ->J, J109->9, AKQ->Q)
+        while i + 1 < len(s) and s[i] - s[i + 1] == 1:
+            i += 1
+        return ('third_low_of_touching', card_code(led_suit, s[i]), 'cheapest of the solid run')
     if s[1] >= 11 and s[0] - s[1] >= 2:          # tenace (AQ/AJ/KJ) -> finesse judgement, drop
         return None
     return ('third_hand_high', card_code(led_suit, s[0]), 'third hand high')
