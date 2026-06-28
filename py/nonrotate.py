@@ -36,6 +36,12 @@ _VERB = re.compile(r'@v\(([^|]*)\|([^)]*)\)')
 
 _SUBJ = re.compile(r'@[Ss]')
 _POSS = re.compile(r'@(?:Your|your)')
+# [ACCEPT call ...] marks an extra defensible call for the bid quiz. bridge-classroom
+# scores it against the STUDENT's own call, so it is only meaningful on South's bid
+# chunks. Drop it elsewhere: on partner's (North) calls it would fold into the
+# absorbing South chunk and wrongly accept the alternate for the student's call, and
+# in play/reflection text (e.g. a [PLAY]/[WHY] card accept) it isn't a bid at all.
+_ACCEPT = re.compile(r'[ \t]*\[ACCEPT\b[^\]]*\]', re.IGNORECASE)
 
 
 def _cap_at(text, pos):
@@ -125,9 +131,21 @@ def fold_board(chunk):
     intro = re.sub(r'^\s*\[show [^\]]+\]\s*', '', intro)
     assert len(chunks) == len(ns_nonpass), \
         f"board {tag(chunk,'Board')}: {len(chunks)} BID chunks vs {len(ns_nonpass)} N/S calls"
+    # [ACCEPT] survives only on South's own bid chunks (the student's quiz calls).
+    # Strip it from intro/reflection (not bids) and from partner's calls (which fold
+    # into a South chunk and would otherwise mis-accept the student's call).
+    intro = _ACCEPT.sub('', intro)
+    reflection = _ACCEPT.sub('', reflection)
     # attach seat to each chunk
-    seated = [(ns_nonpass[i][0], call, fill_pronouns(text, ns_nonpass[i][0] == 'S'))
-              for i, (call, text) in enumerate(chunks)]
+    seated = []
+    for i, (call, text) in enumerate(chunks):
+        is_student = ns_nonpass[i][0] == 'S'
+        text = fill_pronouns(text, is_student)
+        if not is_student:
+            # Drop partner's [ACCEPT] and tidy the space it leaves, so folding this
+            # single-line bid prose into the South chunk doesn't double a space.
+            text = _ACCEPT.sub('', text).strip()
+        seated.append((ns_nonpass[i][0], call, text))
 
     opener = ns_nonpass[0][0] if ns_nonpass else 'S'
     out = []  # list of (anchor_call, text)
