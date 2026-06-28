@@ -78,6 +78,11 @@ description closes; cap coaching-text height to the window so the bid box stays 
 
 ## Part B — Requests to build / fix
 
+Each item ends with a **paste-ready Claude prompt**. If you use Claude Code, open it at
+the root of your `Bridge-Classroom` checkout and paste the block — it'll read the repo and
+propose the change as a diff for you to review. (Skip them if you'd rather do it by hand;
+they're just a shortcut.)
+
 ### B1. BUG — `[showcards]` multi-seat tag is mis-parsed  *(small; bug)*
 A `[showcards …]` tag that names **two seats** is parsed wrong.
 - **Where:** `src/utils/pbnParser.js`, the seat regex `/([NESW]):([^,\s]+(?:,[^,\s]+)*)/gi`
@@ -100,6 +105,23 @@ A `[showcards …]` tag that names **two seats** is parsed wrong.
   ```
 - **Acceptance:** `N:C4,E:CT` and `E:S7,S:S5` → two seats; `E:S7,H3,S:S5` → E has two cards,
   S one; `N:C4,C7` → one seat, two cards; spaced variants (`N:C4, E:CT`) still parse the same.
+- **Claude prompt:**
+  ```
+  In src/utils/pbnParser.js, fix the [showcards ...] parser so a tag naming two seats
+  parses correctly. The seat regex near line 342, /([NESW]):([^,\s]+(?:,[^,\s]+)*)/gi,
+  greedily swallows the next seat as a card, so [showcards N:C4,E:CT] becomes
+  { N: ['C4','E:CT'] } and East is lost. Replace the matching loop with a split on a
+  comma that precedes a seat token:
+    for (const part of showcardsValue.split(/,(?=\s*[NESW]:)/)) {
+      const i = part.indexOf(':'); if (i < 0) continue
+      const seat = part.slice(0, i).trim().toUpperCase()
+      const cards = part.slice(i + 1).split(',').map(c => c.trim().toUpperCase())
+      if (seat) showcards[seat] = cards
+    }
+  Then add a vitest case. It must pass: N:C4,E:CT and E:S7,S:S5 -> two seats;
+  E:S7,H3,S:S5 -> E has two cards and S one; N:C4,C7 -> one seat with two cards; and the
+  spaced form N:C4, E:CT still parses the same.
+  ```
 
 ### B2. BUG — header title overprints the greeting  *(small; cosmetic CSS)*
 On a long collection/lesson title (e.g. "…Bailey Scenarios - Third Hand vs Notrump"), the
@@ -113,12 +135,35 @@ On a long collection/lesson title (e.g. "…Bailey Scenarios - Third Hand vs Not
   it sit in the flex flow; (b) truncate the h1 with `min-width:0; overflow:hidden;
   text-overflow:ellipsis; white-space:nowrap` and a max-width that stops before center;
   (c) hide the centered greeting on lesson views.
+- **Claude prompt:**
+  ```
+  In src/views/MainLayout.vue, fix the app header so a long collection/lesson title never
+  overlaps the "Welcome back, ..." greeting. The greeting span (.welcome-greeting, ~line
+  1366) is position: absolute; left: 50%, drawn over the flex header, and the h1 title has
+  no max-width or ellipsis, so a long title collides with it. Pick the cleanest fix: either
+  move .welcome-greeting into the normal flex flow, or truncate the h1 (min-width:0;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap, plus a max-width that stops
+  before center), or hide the centered greeting on lesson views. Verify with a long title
+  like "David Bailey's Scenarios - Third Hand vs Notrump".
+  ```
 
 ### B3. ENHANCEMENT — per-card (lead/play) 3-tier feedback  *(medium)*
 The **bid** version is built (A3, on the fork). Requested: the same fade for **card**
 decisions (opening leads and third-hand play). Today a wrong card shows the same text regardless of which card
 was chosen. Respond to the *actual* choice — correct (terse nod) / reasonable ("good thought,
 but…") / wrong (full why) — with length fading by correctness.
+- **Claude prompt:**
+  ```
+  Extend Bridge Classroom's 3-tier feedback fade from bids to card plays. For bids it
+  already works: a correct call shows a brief affirmation, a wrong call the full
+  explanation, reading the brackets the content wraps around the student's own
+  justification (see src/composables/useDealPractice.js makeBid and the parsing in
+  src/utils/pbnParser.js). Do the same for card decisions (opening leads and third-hand
+  play): respond to the actual card chosen -- correct (terse nod) / reasonable ("good
+  thought, but...") / wrong (full why) -- with the explanation length fading by
+  correctness. Today a wrong card shows the same text no matter which card was chosen.
+  Propose the content markup and the engine changes before implementing.
+  ```
 
 ### B4. ENHANCEMENT — full defender play-out with revert-and-correct  *(large)*
 Let the student defend the **whole** hand card-by-card (not just the opening lead). A mis-play
@@ -127,14 +172,39 @@ applied to a defender (South).
 - **Status:** prototype + build-ready handoff spec already on our fork, branch
   `defender-playout-investigation` (commits `d753cab`, `23be662`, `aa9c9a5`). Ready to build
   when chosen.
+- **Claude prompt:**
+  ```
+  Build full defender play-out in Bridge Classroom: let the student (South) defend the whole
+  hand card by card, not just the opening lead. A mis-played card is reverted and the correct
+  card substituted, then play continues -- the declarer-play model applied to a defender. A
+  prototype and a build-ready handoff spec already exist on the branch
+  defender-playout-investigation (commits d753cab, 23be662, aa9c9a5). Check out that branch,
+  read the spec, and integrate it into the main play flow.
+  ```
 
 ### B5. NICETY — remember the previous attempt on revisit  *(small; optional)*
 Returning to a completed deal resets it to the start (a clean re-try) — fine as-is. Optional
 improvement: remember the previous lead/play + result instead of fully resetting.
+- **Claude prompt:**
+  ```
+  In Bridge Classroom, when a student revisits a completed deal it currently resets to the
+  start for a clean re-try. Add an option to instead remember the previous lead/play and
+  result and show it on revisit, while keeping the clean-retry behavior available. Find where
+  a deal is reset on load (the play / deal-practice composables) and add the
+  remembered-attempt path.
+  ```
 
 ### B6. FIX — affirmation verb on lead lessons  *(tiny)*
 On a lead/defense lesson the success cheer can read with bid wording ("Beautifully bid!").
 Use the verb that matches the lesson type ("Well led!").
+- **Claude prompt:**
+  ```
+  In Bridge Classroom, the success affirmation on a lead/defense lesson can use bid wording
+  ("Beautifully bid!"). Make the verb match the lesson type so a card-play lesson says "Well
+  led!" instead of "...bid!". Find where the affirmation/cheer text is chosen (search for the
+  bid affirmations / board-celebration logic, around src/views/MainLayout.vue) and branch on
+  whether the current step is a card play or a bid.
+  ```
 
 ---
 
