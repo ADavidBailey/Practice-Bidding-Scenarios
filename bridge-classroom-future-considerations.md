@@ -22,6 +22,17 @@ Rick's `origin/main`**, and pushed to David's `fork/main`. "Built" = committed/p
 **David's fork only** — not in Rick's upstream, not in any prod Rick runs. Fork-only
 until/unless PR'd to Rick.*
 
+- **`[ACCEPT]` judgment-call scoring.** *(Added 2026-06-28. On its own branch
+  `accept-and-lesson-sync` off `fork/main` — **local, NOT pushed**, 2 commits ahead:
+  `6259eb0` impl, `f0aee3c` test.)* A judgment board can mark a second defensible call
+  as also-correct with an inline `[ACCEPT <call>]`. Before, BC scored the alternate
+  wrong and leaked the tag as raw text. Now `pbnParser.js` extracts it into the bid
+  step's `acceptedBids` (and strips the marker) and `useDealPractice.js` `makeBid`
+  scores correct on the recorded call OR any accepted call; the auction still advances
+  on the recorded call. Additive — lessons without `[ACCEPT]` are byte-identical. 10
+  vitest cases (incl. a real folded board); full suite shows no new failures vs
+  `fork/main`. Pairs with the PBS-side change that lets the marker reach BC (PBS content,
+  tracked in PBS git — see `feedback_accept_marker_works_in_bc`).
 - **Report-a-Problem button.** `ReportProblemModal.vue` + `useReportProblem.js`; endpoint
   configurable via `VITE_REPORT_URL`. Has a real **Rust API route**
   (`bridge-classroom-api/src/routes/reports.rs`) *and* works against the local report-relay

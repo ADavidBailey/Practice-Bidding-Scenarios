@@ -10,8 +10,10 @@ read cold, without PBS-internal context.*
 Two parts: **Part A** — changes already built on David's fork, requesting review and
 upstream merge. **Part B** — changes we'd like Rick to build or fix.
 
-Fork: `https://github.com/ADavidBailey/Bridge-Classroom`, branch `main`
-(**18 commits ahead** of `Rick-Wilson/Bridge-Classroom@main`; range `origin/main..main`).
+Fork: `https://github.com/ADavidBailey/Bridge-Classroom`.
+- A1–A4 are on branch `main` (**18 commits ahead** of `Rick-Wilson/Bridge-Classroom@main`).
+- **A5 (`[ACCEPT]`) is on a separate branch `accept-and-lesson-sync`** (off `fork/main`,
+  +2 commits) — **not yet pushed**; merges cleanly on top of `main`.
 
 ---
 
@@ -19,6 +21,20 @@ Fork: `https://github.com/ADavidBailey/Bridge-Classroom`, branch `main`
 
 Listed newest-feature-first. "Frontend-only" = safe to merge independently; the report
 button also adds a **server (Rust) route**, so it needs coordination with the API.
+
+### A5. `[ACCEPT]` judgment-call scoring  *(frontend only)*
+A coaching board can mark a second defensible call as also-correct with an inline
+`[ACCEPT <call>]` marker, for judgment decisions with more than one sound call. Before,
+BC scored the alternate wrong and the unrecognized tag leaked into displayed text.
+- **Behavior:** parser pulls `[ACCEPT …]` into the bid step's `acceptedBids` and strips
+  the marker; `makeBid` scores correct on the recorded call **or** any accepted call. The
+  auction still advances on the recorded call. Purely additive — boards without `[ACCEPT]`
+  are byte-identical, so existing lessons (Baker Bridge, the 5 bundled) are unaffected.
+- **Files:** `src/utils/pbnParser.js`, `src/composables/useDealPractice.js`; tests in
+  `src/utils/__tests__/pbnParser.test.js`, `src/composables/__tests__/useDealPractice.test.js`.
+- **Branch/commits:** `accept-and-lesson-sync` — `6259eb0` (impl), `f0aee3c` (test).
+- **Note:** the marker is supplied by PBS coaching content (PBS side, separate repo); this
+  is just the engine that consumes it.
 
 ### A1. "Report a Problem" button  *(frontend + API)*
 Lets a student flag a problem on a coached lesson from inside the app. Button sits beside
