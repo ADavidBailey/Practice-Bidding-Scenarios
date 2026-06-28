@@ -44,10 +44,6 @@ spiral cheapest-step ladder (`Spiral_Raises_Wolpert`) and the
 Weinstein 2NT-ask + natural-fit-find scheme (`Spiral_Raises_Weinstein`). `annotate.py`
 and `select.py` take the scenario as a positional argument.
 
-A Cowork session is co-working in this repo via the same files; coordinate
-through commits and the bookmark (update it at the end of a work session),
-and do not push unless David asks.
-
 ## Common Commands
 
 ### Development Environment Setup
