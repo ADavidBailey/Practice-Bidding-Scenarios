@@ -45,6 +45,13 @@ the bidding box; popup is draggable; report endpoint is configurable.
 - **Commits:** `18b48a2`, `ee1fc79`, `07bd31e`, `4a3927f` (merge `54dc1f8`).
 - **Note:** endpoint set via `VITE_REPORT_URL`; our local setup points it at a small relay,
   but the Rust route is the real server path — this is the piece to align with Rick.
+- **Now opt-in per collection** (commit `07b618a`, on branch `accept-and-lesson-sync`):
+  a report files an issue in the *content* repo, so the button shows only for a collection
+  that sets `report: true` and points the endpoint at its own repo. **On for David Bailey
+  Scenarios, off for Baker Bridge** — a report on a Baker board is about your content, not
+  David's, so it shouldn't open an issue in his repo. **Rick: if you want it on Baker
+  Bridge, say so** — it's one flag (`report: true` on the collection) plus pointing
+  `VITE_REPORT_URL` at your repo; happy to wire it up or leave it to you.
 
 ### A2. Scenario @chat popup  *(frontend only)*
 Shows the scenario's chat/teaching blurb in a sizable, movable popup; appears in Bidding

@@ -38,6 +38,9 @@ until/unless PR'd to Rick.*
   (`bridge-classroom-api/src/routes/reports.rs`) *and* works against the local report-relay
   (the relay + `.env.local` are the gitignored, local-only pieces). Button sits beside the
   bidding box; popup is draggable. Issues land as `classroom-feedback` in PBS → `/issue` flow.
+  **Now opt-in per collection** (`07b618a`, branch `accept-and-lesson-sync`): shown only for a
+  collection with `report: true` (David Bailey on; Baker Bridge off), since a report files an
+  issue in that collection's content repo. Keeps Baker-Bridge problems out of David's repo.
 - **Scenario @chat popup.** `ScenarioChatPopup.vue` — sizable, movable popup showing the
   scenario's chat/teaching blurb; shown in Bidding Practice **and** coaching lessons; reopen
   button labeled "Description".
