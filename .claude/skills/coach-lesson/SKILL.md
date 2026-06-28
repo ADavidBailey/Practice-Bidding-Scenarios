@@ -14,6 +14,16 @@ description: >
 
 # coach-lesson — bootstrap a full coaching lesson for a BBA-native bidding scenario
 
+> **⚠️ ROTATION TOKENS ARE RETIRED (2026-06-28).** Bridge Classroom never supported
+> or used them. **Author every lesson token-free, directly from the fixed South =
+> student seat** — South's calls in second person ("you bid 4\C"), partner's in third
+> ("your partner answers 4\S"). NO `@S`/`@v(...)` tokens. Because the prose is already
+> South-fixed, the `nonrotate.py` resolve step below is OBSOLETE — the three layers
+> (`coaching-curated/`, `coaching/`, `coaching-non-rotated/`) are now the SAME
+> token-free file (like the defense sets: byte-identical). Where the steps below say
+> "tokenized" / "rotation pronoun tokens" / "resolve rotation tokens," ignore that and
+> author/keep plain South-fixed prose. See `coaching-curated/GENERATOR.md` (updated).
+
 `$ARGUMENTS` is the scenario name (a `btn/<Scenario>.btn` stem, e.g.
 `Fourth_Suit_Forcing`). Call it `<scn>` below. Run everything from the project root.
 

@@ -38,26 +38,26 @@ Per board, emit the BODY of one `{...}` block (no braces, no code fences):
 Return ONLY a JSON array: `[{"board":"<n>","coaching":"<body>"}, ...]`, one
 object per input board, every board present once.
 
-## Rotation pronoun tokens (REQUIRED in [BID] chunks)
+## NO rotation tokens — author token-free, South-fixed (RETIRED 2026-06-28)
 
-Deals are played with rotation, so the student may sit in EITHER seat. A
-`[BID]` chunk is authored for ITS OWN actor; the trainer renders second
-person when the student made that call, third person otherwise. Use:
+**Rotation tokens (`@S`/`@s`/`@Your`/`@your`/`@v(base|third)`) are RETIRED.**
+Bridge Classroom never supported them and never used them — the rotation is baked
+into the files instead, so BC only ever sees plain, resolved prose. Any file still
+carrying `@…` tokens is stale.
 
-- `@S` / `@s` — subject → "You" / "Your partner"  (you / your partner)
-- `@Your` / `@your` — possessive → "Your"/"Their" (your / their)
-- `@v(base|third)` — verb agreement → e.g. `@v(have|has)`, `@v(open|opens)`,
-  `@v(raise|raises)`. **Parentheses, never braces** — a `}` would collide
-  with the coaching block's `}` delimiter.
+Author every lesson **directly from the fixed South seat = the student**:
+- South's own calls → **second person** ("you open 1NT", "you bid 4\C").
+- Partner's (North's) calls → **third person** ("your partner opens 1NT", "partner
+  answers 4\S, showing two aces").
+- Opponents (E/W) → no `[BID]`, refer to them as "the opponents" / by compass.
 
-**Repetition rule (important):** use `@S` ONCE per chunk as the subject. Do
-NOT refer to the actor as the subject a second time (`@S … @s …`) — in third
-person it reads "Your partner … your partner …". After the first subject,
-continue with verbs joined by "and" (`@v(open|opens) … and @v(let|lets) …`)
-or start a fresh sentence about the call itself, not the actor.
-- Good: `@S @v(have|has) 15 balanced, so @v(open|opens) 1NT and @v(let|lets)
-  partner judge.`
-- Bad:  `@S @v(have|has) 15 balanced. @s @v(open|opens) 1NT.`  ← two subjects.
+So there is no `@v(...)` verb-agreement, no `@S` subject token, nothing to resolve.
+The file you author **is** the file BC reads. (The old curated→`nonrotate.py`→
+non-rotated token-resolution pipeline is obsolete; the three layers are now the same
+token-free, South-fixed file, exactly like the defense sets where
+`coaching-curated == coaching-non-rotated` byte-for-byte.)
+- Good: `You have 15 balanced, so open 1NT and let partner judge.`
+- Good (partner): `Your partner opens 1NT, a balanced 15 to 17.`
 
 ## Authoring rules
 
@@ -144,16 +144,17 @@ or start a fresh sentence about the call itself, not the actor.
   judgment call is a **Pass** (a decline) — you can't anchor `[BID Pass]`, so
   coach the close decision in prose only, no `[ACCEPT]`.
 
-## Structure discipline (required for [ACCEPT] and rotation to work)
+## Structure discipline (required for [ACCEPT] to work)
 
 - The INTRO chunk is ONLY seat-neutral framing (1–2 sentences). Do NOT explain
   or anchor the opening bid there.
 - EVERY non-pass call gets EXACTLY ONE `[BID xxx]` chunk — including the
   opening (`[BID 1N]`/`[BID 1S]`/…). No call's explanation lives only in the
   intro; no duplicate `[BID]` for the same call. (The quiz anchors per call,
-  and rotation may quiz either seat, so each call needs its own clean chunk.)
+  so each call needs its own clean chunk.)
 - Never anchor `[BID Pass]` — coach a decline as prose under a `[show]`
   reveal of the declining seat instead.
-- Each chunk: 2–4 short sentences, warm, second-person where tokenized.
+- Each chunk: 2–4 short sentences, warm; second person for South's calls,
+  third person for partner's.
 - Ground the prose in the scenario brief (the `/*@chat */` body of the
   `.btn`); walk the student through that scenario's decision for THIS hand.
