@@ -1,11 +1,9 @@
 # Bridge Classroom — Change requests for Rick
 
-> **STATUS: IN PROGRESS.** Draft on David's machine — **not yet sent to Rick.** We'll send
-> Rick an in-the-loop message at a stopping point. Nothing here has been merged into Rick's
-> upstream; "built" means committed/pushed to **David's fork only**.
+> **STATUS: SENT to Rick 2026-06-28** — awaiting his review/decision. Nothing here has been
+> merged into Rick's upstream yet; "built" means committed/pushed to **David's fork only**.
 
-*Draft for David to review before anything goes to Rick. Self-contained: written to be
-read cold, without PBS-internal context.*
+*Self-contained: written to be read cold, without PBS-internal context.*
 
 Two parts: **Part A** — changes already built on David's fork, requesting review and
 upstream merge. **Part B** — changes we'd like Rick to build or fix.
