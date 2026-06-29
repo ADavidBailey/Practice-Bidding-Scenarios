@@ -1,17 +1,68 @@
-# Bridge Classroom — Change requests for Rick
+# Bridge Classroom — Change plan for Rick
 
-> **STATUS: SENT to Rick 2026-06-28** — awaiting his review/decision. Nothing here has been
-> merged into Rick's upstream yet; "built" means committed/pushed to **David's fork only**.
+> **STATUS: UPDATED DRAFT 2026-06-29** — supersedes the version sent 2026-06-28. Pending
+> David's review, then delivery to Rick. Nothing here is merged into Rick's upstream yet;
+> "built" means committed/pushed to **David's fork only**.
 
 *Self-contained: written to be read cold, without PBS-internal context.*
 
-Two parts: **Part A** — changes already built on David's fork, requesting review and
-upstream merge. **Part B** — changes we'd like Rick to build or fix.
+**What's new in this update.** We're proposing to deliver everything as **pull requests
+from David's fork** (not a document of asks), and we've added a **folder migration** that
+collapses the two coaching folders into one. The plan now has three parts:
+
+- **Part M — Folder migration.** Collapse `coaching-non-rotated/` + `coaching/` (PBS repo)
+  into a single `coaching/`. One four-line change in BC; the rest is PBS-side. *(New.)*
+- **Part A — Built on David's fork.** Five features already implemented; we'll send these
+  as PRs for review + upstream merge.
+- **Part B — Fixes.** Small bugs we'll now **build ourselves and PR** (B1, B2, B5, B6);
+  two larger engine enhancements left as **requests for Rick** (B3, B4).
 
 Fork: `https://github.com/ADavidBailey/Bridge-Classroom`.
 - A1–A4 are on branch `main` (**18 commits ahead** of `Rick-Wilson/Bridge-Classroom@main`).
 - **A5 (`[ACCEPT]`) is on a separate branch `accept-and-lesson-sync`** (off `fork/main`,
   +2 commits) — **not yet pushed**; merges cleanly on top of `main`.
+
+---
+
+## Part M — Folder migration: collapse the two coaching folders into one
+
+**The problem.** PBS currently has two near-identical coaching folders. `coaching/` is the
+pipeline's served output; `coaching-non-rotated/` is what BC actually reads. They date from
+a now-retired "rotation" scheme — every lesson is authored South-fixed, so the
+"rotated/non-rotated" naming no longer means anything. Today `coaching-non-rotated/` is a
+**superset**: it holds all of `coaching/`'s files plus 8 defense-set lessons, and it is the
+**only** folder with `toc.json` (the index BC loads). The goal is one folder named
+`coaching/`, with no "rotated" naming left.
+
+**Why this approach (safe, no downtime).** BC reads PBS over the live internet from `main`.
+A straight rename would break BC until Rick merges the repoint. Instead we stand up the new
+folder *first* and delete the old one *last*, so the old path keeps serving BC the entire
+time — Rick can review on his own schedule and BC is never broken.
+
+**Phase 1 — PBS side (David), nothing breaks.** Bring `coaching/` to full parity with
+`coaching-non-rotated/`: copy in the 8 defense-set files and `toc.json`, and retarget the
+PBS maintenance scripts so `coaching/` stays current. Push to PBS `main`. Both folders now
+exist and are identical; BC still reads `coaching-non-rotated/`, unchanged.
+
+**Phase 2 — BC side (PR to Rick).** The entire BC footprint of the rename is four touch
+points, all just swapping the path `coaching-non-rotated` → `coaching`:
+
+| File | Line | Change |
+|---|---|---|
+| `src/composables/useAppConfig.js` | 134 | `tocUrl` → `…/main/coaching/toc.json` |
+| `src/composables/useAppConfig.js` | 135 | `baseUrl` → `…/main/coaching` |
+| `src/views/MainLayout.vue` | 1169 | regex `/\/coaching-non-rotated$/` → `/\/coaching$/` |
+| `src/utils/__tests__/pbnParser.test.js` | 330 | comment only — update the cited path *(cosmetic)* |
+
+During Rick's review BC works on **either** path, because both folders still exist on PBS
+`main`.
+
+**Phase 3 — cleanup (after merge).** Once Rick's repoint is merged and BC is confirmed
+loading from `coaching/`, delete `coaching-non-rotated/` from PBS. Final layout:
+`coaching-curated/` (staging) → `coaching/` (served + what BC reads). No "rotated" anywhere.
+
+> Out of scope: the legacy `pbn-rotated-for-4-players/` and `lin-rotated-for-4-players/`
+> dirs are a separate, older BBO-practice artifact, not read by BC — untouched here.
 
 ---
 
@@ -74,14 +125,19 @@ description closes; cap coaching-text height to the window so the bid box stays 
 
 ---
 
-## Part B — Requests to build / fix
+## Part B — Fixes
 
-Each item ends with a **paste-ready Claude prompt**. If you use Claude Code, open it at
-the root of your `Bridge-Classroom` checkout and paste the block — it'll read the repo and
-propose the change as a diff for you to review. (Skip them if you'd rather do it by hand;
-they're just a shortcut.)
+**B1, B2, B5, B6 — after Rick approves, we'll build these on the fork and send PRs** (small,
+low-risk; converting the old "please fix" asks into mergeable work so Rick just reviews).
+**B3 and B4 stay as requests for Rick** — they're medium/large engine work and are
+deliberately left for him to own. Per David: no new BC code until Rick signs off (see the
+Delivery plan).
 
-### B1. BUG — `[showcards]` multi-seat tag is mis-parsed  *(small; bug)*
+Each item still ends with a **paste-ready Claude prompt** for reference. If Rick prefers to
+do one himself, he can open Claude Code at the root of his `Bridge-Classroom` checkout and
+paste the block — it'll read the repo and propose the change as a diff.
+
+### B1. BUG — `[showcards]` multi-seat tag is mis-parsed  *(small; bug — **we'll PR**)*
 A `[showcards …]` tag that names **two seats** is parsed wrong.
 - **Where:** `src/utils/pbnParser.js`, the seat regex `/([NESW]):([^,\s]+(?:,[^,\s]+)*)/gi`
   (~line 342).
@@ -121,7 +177,7 @@ A `[showcards …]` tag that names **two seats** is parsed wrong.
   spaced form N:C4, E:CT still parses the same.
   ```
 
-### B2. BUG — header title overprints the greeting  *(small; cosmetic CSS)*
+### B2. BUG — header title overprints the greeting  *(small; cosmetic CSS — **we'll PR**)*
 On a long collection/lesson title (e.g. "…Bailey Scenarios - Third Hand vs Notrump"), the
 `<h1>` title and the "Welcome back, David" greeting render on top of each other.
 - **Where:** `src/views/MainLayout.vue` — `<header class="app-header">` (h1 ~line 18,
@@ -145,7 +201,7 @@ On a long collection/lesson title (e.g. "…Bailey Scenarios - Third Hand vs Not
   like "David Bailey's Scenarios - Third Hand vs Notrump".
   ```
 
-### B3. ENHANCEMENT — per-card (lead/play) 3-tier feedback  *(medium)*
+### B3. ENHANCEMENT — per-card (lead/play) 3-tier feedback  *(medium — **request for Rick**)*
 The **bid** version is built (A3, on the fork). Requested: the same fade for **card**
 decisions (opening leads and third-hand play). Today a wrong card shows the same text regardless of which card
 was chosen. Respond to the *actual* choice — correct (terse nod) / reasonable ("good thought,
@@ -163,7 +219,7 @@ but…") / wrong (full why) — with length fading by correctness.
   Propose the content markup and the engine changes before implementing.
   ```
 
-### B4. ENHANCEMENT — full defender play-out with revert-and-correct  *(large)*
+### B4. ENHANCEMENT — full defender play-out with revert-and-correct  *(large — **request for Rick**)*
 Let the student defend the **whole** hand card-by-card (not just the opening lead). A mis-play
 is reverted and the correct card substituted, then play continues — the declarer-play model
 applied to a defender (South).
@@ -180,7 +236,7 @@ applied to a defender (South).
   read the spec, and integrate it into the main play flow.
   ```
 
-### B5. NICETY — remember the previous attempt on revisit  *(small; optional)*
+### B5. NICETY — remember the previous attempt on revisit  *(small; optional — **we'll PR if David wants it**)*
 Returning to a completed deal resets it to the start (a clean re-try) — fine as-is. Optional
 improvement: remember the previous lead/play + result instead of fully resetting.
 - **Claude prompt:**
@@ -192,7 +248,7 @@ improvement: remember the previous lead/play + result instead of fully resetting
   remembered-attempt path.
   ```
 
-### B6. FIX — affirmation verb on lead lessons  *(tiny)*
+### B6. FIX — affirmation verb on lead lessons  *(tiny — **we'll PR**)*
 On a lead/defense lesson the success cheer can read with bid wording ("Beautifully bid!").
 Use the verb that matches the lesson type ("Well led!").
 - **Claude prompt:**
@@ -230,6 +286,35 @@ the served files the app reads. The spec files ARE the prompts — point Claude 
 
 ---
 
+## Delivery plan — approval first, then our changes, then Rick's pull
+
+**Nothing proceeds on Bridge Classroom without Rick's approval first.** No new BC code is
+written, and nothing is merged upstream, until Rick signs off on this plan. (Part A is
+already built on the fork from earlier work, but it stays unmerged behind this same gate.)
+
+The order is:
+
+**Step 1 — Rick approves the plan.** He reviews this document and approves the approach: the
+folder migration, the A-items to merge, the B-fixes we'll build, and the PR delivery.
+
+**Step 2 — We make the changes.** Only after approval:
+- PBS side: Phase 1 prep (bring `coaching/` to parity — `toc.json` + the 8 defense sets,
+  retarget scripts), pushed to PBS `main`.
+- BC side: open **PRs from `ADavidBailey/Bridge-Classroom`**, grouped by risk:
+  1. **Folder repoint (Part M, alone)** — the four-line path change; depends on PBS Phase 1.
+  2. **Part A built features** — promote A1–A5 to PRs (one per feature or sensible grouping).
+  3. **Small Part B fixes** — B1, B2, B6 (and B5 if David wants it).
+  4. **B3, B4** — requests only; no code from us.
+
+**Step 3 — Rick pulls.** He reviews and merges the PRs into his upstream.
+
+**Step 4 — Cleanup.** Once the repoint is merged and BC is confirmed loading from
+`coaching/`, delete `coaching-non-rotated/` from PBS.
+
+**Merge-order caution — `src/views/MainLayout.vue` is the hot file.** It is touched by the
+repoint and by B2, B6, A1, A2, A3, and A4. Separate PRs will conflict there, so they need a
+defined merge order (or some grouping). This is the main reason not to split too finely.
+
 ## How to use this draft
-David reviews; once approved, deliver to Rick (email / Google Doc / PRs from the fork — TBD).
-Part A items can also go as pull requests from `ADavidBailey/Bridge-Classroom`.
+David reviews; once approved, deliver to Rick for **his** approval (Step 1). Our BC changes
+(Step 2) begin only after Rick signs off.
