@@ -119,16 +119,22 @@ until/unless PR'd to Rick.*
    can't play it out. Same root as parking-lot **item 2** (full play-out). Known engine
    limitation — parked.
 
-10. **~~Can't accept a non-pass alternative when the textbook call is Pass.~~ RESOLVED —
-    triage was wrong; it's a content fix.** *(Report #140 Basic_Weak_2 D6.)* The board records
-    **Pass** as correct over the opponents' 4♥ and the reflection says "Passing and a further
-    push are both defensible… Well judged"; the reviewer bid **4♠** and was scored wrong. The
-    original note assumed `[ACCEPT]` only attaches to a **non-pass** `[BID]` chunk — **false.**
-    Verified in BC source (2026-06-29): `pbnParser.js` (~line 227) builds the step's
-    `acceptedBids` from the chunk with no condition on the host call, and `useDealPractice.js`
-    (`makeBid`, ~line 497) scores `expectedBid OR any acceptedBid` with no Pass special-casing.
-    So `[ACCEPT 4S]` on a `[BID Pass]` host works. **Fix applied:** added `[ACCEPT 4S]` to the
-    board's `[BID Pass]` chunk (curated + synced layers). No engine change, nothing for Rick.
+10. **`[ACCEPT]` over-credits the alternative — now a precise engine request (B7).** *(Report
+    #140 Basic_Weak_2 D6.)* The board records **Pass** as correct over the opponents' 4♥; the
+    reviewer bid **4♠** and was scored wrong. Two wrong turns before landing it:
+    (a) the original triage claimed `[ACCEPT]` can't attach to a `[BID Pass]` host — **false**
+    (`pbnParser.js` ~227 attaches `acceptedBids` with no host condition; `useDealPractice.js`
+    `makeBid` ~497 scores `expectedBid OR any acceptedBid`, no Pass casing). So `[ACCEPT 4S]`
+    *did* score 4♠ correct.
+    (b) but that exposed the real problem: `[ACCEPT]` is **binary** — it scores the alternative
+    fully correct, **hides** the student's actual call behind the recorded one, and fires the
+    "Beautifully bid!" cheer. David: that's wrong; a non-recorded call must be **reverted**
+    (you can't know it ends the auction — an opponent could bid over it), shown as an **orange**
+    strike-out "acceptable alternative" (red stays wrong), never standing in the auction.
+    **Resolution:** `[ACCEPT 4S]` was **reverted**, the board's reflection softened to commit to
+    Pass (so a wrong 4♠ isn't called "defensible" in the interim), and the orange-tier behavior
+    is filed as **B7** in `bridge-classroom-requests-for-rick.md` for Rick. #140 stays open until
+    B7 ships.
 
 ---
 

@@ -129,9 +129,9 @@ description closes; cap coaching-text height to the window so the bid box stays 
 
 **B1, B2, B5, B6 — after Rick approves, we'll build these on the fork and send PRs** (small,
 low-risk; converting the old "please fix" asks into mergeable work so Rick just reviews).
-**B3 and B4 stay as requests for Rick** — they're medium/large engine work and are
-deliberately left for him to own. Per David: no new BC code until Rick signs off (see the
-Delivery plan).
+**B3, B4, B7 stay as requests for Rick** — engine/behavior changes left for him to own (B7
+refines A5's `[ACCEPT]` and carries a precise spec). Per David: no new BC code until Rick
+signs off (see the Delivery plan).
 
 Each item still ends with a **paste-ready Claude prompt** for reference. If Rick prefers to
 do one himself, he can open Claude Code at the root of his `Bridge-Classroom` checkout and
@@ -263,6 +263,43 @@ randomly, same mechanism as the bid affirmations).
   "Well led!". Find where the affirmation/cheer text is chosen (search for the bid
   affirmations / board-celebration logic, around src/views/MainLayout.vue) and branch on
   whether the current step is a card play or a bid.
+  ```
+
+### B7. ENHANCEMENT — `[ACCEPT]` should revert + flag the alternative (orange), not score it as fully correct  *(small/medium — **request for Rick**, refines A5)*
+This is about the behavior of A5's `[ACCEPT]` marker, surfaced by report #140 (Basic_Weak_2
+D6). Today `[ACCEPT]` is purely binary: an accepted call is scored **fully correct**, the
+student's actual call is **hidden** behind the recorded call (`useDealPractice.js makeBid`
+pushes the recorded call into the displayed auction; the header reads `recorded-call —
+affirmation`), and the all-correct board cheer ("Beautifully bid!") fires. So a student who
+deliberately picks the accepted *alternative* sees it praised as if it were the textbook
+call, and never sees that they chose differently.
+
+Desired behavior (David's spec):
+- **Never let a non-recorded call stand** — there's no way to know a call ends the auction (an
+  opponent could bid over it), so an accepted call must be **struck out and reverted to the
+  recorded call**, exactly like a corrected wrong bid. The auction always advances on the
+  recorded call (both mid-auction and final).
+- **Distinguish by colour, not by faking correctness:**
+  - textbook call → green/normal (as today);
+  - **accepted alternative → ORANGE strike-out + the corrected call + an "acceptable
+    alternative" note** (not a failure, not penalised, and it should NOT trigger the
+    "Beautifully bid!" perfect-board cheer);
+  - wrong call → RED strike-out + corrected call (as today).
+- So `[ACCEPT]`'s only job becomes "don't penalise this call, revert it, and explain it as a
+  reasonable alternative" — a third tier between right and wrong.
+- **Claude prompt:**
+  ```
+  In Bridge Classroom, change how the [ACCEPT ...] marker behaves. Today an accepted call is
+  scored fully correct and the student's actual call is hidden: useDealPractice.js makeBid
+  pushes the recorded call into the auction and the header shows recorded-call + affirmation,
+  and the all-correct board cheer fires. Instead: a call that is in the step's acceptedBids
+  but is NOT the recorded call should be treated as a third tier between right and wrong --
+  struck out and reverted to the recorded call (exactly like a wrong bid is corrected; the
+  auction always advances on the recorded call), but drawn with an ORANGE strike-out (wrong
+  stays RED) and shown as "an acceptable alternative" with its explanation, not penalised in
+  the score and NOT counted toward the perfect-board "Beautifully bid!" cheer. acceptedBids
+  is already parsed in pbnParser.js; flag the accepted-alternative case in makeBid and render
+  the orange tier in the auction display + the feedback header in MainLayout.vue.
   ```
 
 ---
