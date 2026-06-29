@@ -119,14 +119,16 @@ until/unless PR'd to Rick.*
    can't play it out. Same root as parking-lot **item 2** (full play-out). Known engine
    limitation — parked.
 
-10. **Can't accept a non-pass alternative when the textbook call is Pass.** *(Report #140
-    Basic_Weak_2 D6.)* The board already records **Pass** as correct over the opponents' 4♥
-    and the reflection praises it ("Passing and a further push are both defensible… Well
-    judged"). The reviewer bid **4♠** instead and it was scored wrong. `[ACCEPT]` could mark
-    4♠ also-correct, but it only attaches to a **non-pass** `[BID]` chunk — there's no way to
-    say "the textbook call is Pass, but also accept this non-pass alternative." Either the
-    `[ACCEPT]` design needs a Pass host (or a board-level accepted-alts list), or these
-    leave-it-to-partner judgment boards can't grade both ways. Engine gap — parked.
+10. **~~Can't accept a non-pass alternative when the textbook call is Pass.~~ RESOLVED —
+    triage was wrong; it's a content fix.** *(Report #140 Basic_Weak_2 D6.)* The board records
+    **Pass** as correct over the opponents' 4♥ and the reflection says "Passing and a further
+    push are both defensible… Well judged"; the reviewer bid **4♠** and was scored wrong. The
+    original note assumed `[ACCEPT]` only attaches to a **non-pass** `[BID]` chunk — **false.**
+    Verified in BC source (2026-06-29): `pbnParser.js` (~line 227) builds the step's
+    `acceptedBids` from the chunk with no condition on the host call, and `useDealPractice.js`
+    (`makeBid`, ~line 497) scores `expectedBid OR any acceptedBid` with no Pass special-casing.
+    So `[ACCEPT 4S]` on a `[BID Pass]` host works. **Fix applied:** added `[ACCEPT 4S]` to the
+    board's `[BID Pass]` chunk (curated + synced layers). No engine change, nothing for Rick.
 
 ---
 
