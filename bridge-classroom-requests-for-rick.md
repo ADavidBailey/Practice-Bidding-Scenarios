@@ -248,21 +248,33 @@ improvement: remember the previous lead/play + result instead of fully resetting
   remembered-attempt path.
   ```
 
-### B6. FIX — lead-lesson affirmation: wording + variation  *(tiny — **we'll PR**)*
-On a lead/defense lesson the success cheer currently borrows bid wording ("Beautifully
-bid!"). It should use lead-appropriate wording and — like the bid affirmations already do
-(A3) — rotate through a small varied set rather than repeat one phrase. **Avoid "Well led!"**
-(too stiff). Preferred lead set: **"Good lead!", "Good", "Correct lead", "Nice lead"** (rotate
-randomly, same mechanism as the bid affirmations).
+### B6. FIX — lead-lesson affirmations + board cheer borrow bid wording  *(tiny — **we'll PR**)*
+On a lead/defense lesson, **both** success messages currently use bid wording. There are two
+separate sets in `src/views/MainLayout.vue`, and both need a card-play variant:
+1. **Per-call affirmation** (`AFFIRMATIONS`, ~line 372): the nod after a correct call. On a
+   lead lesson it should read like a lead, not a bid. **Avoid "Well led!"** (too stiff).
+   Preferred lead set: **"Good lead!", "Good", "Correct lead", "Nice lead".**
+2. **Board-level cheer** (`CELEBRATIONS`, ~line 406 — `'Bravo!', 'Perfect!', 'Beautifully
+   bid!', 'Flawless — every call!', 'Nailed the whole auction!'`): shown when every call on
+   the board was right. The bid-flavored ones ("Beautifully bid!", "Nailed the whole
+   auction!") read wrong on a card lesson. Needs a card-play set, e.g. **"Beautifully
+   played!", "Perfect — every card!", "Flawless defense!", "Nailed it!"** (wording Rick's/
+   ours to taste).
+
+Both already vary per board (index `% set.length`); keep that mechanism, just branch the set
+on lesson type (card-play vs bid).
 - **Claude prompt:**
   ```
-  In Bridge Classroom, the success affirmation on a lead/defense lesson currently borrows
-  bid wording ("Beautifully bid!"). On a card-play lesson, show a lead-appropriate
-  affirmation chosen at random from a small set -- "Good lead!", "Good", "Correct lead",
-  "Nice lead" -- the same varied-affirmation mechanism the bids already use; do NOT use
-  "Well led!". Find where the affirmation/cheer text is chosen (search for the bid
-  affirmations / board-celebration logic, around src/views/MainLayout.vue) and branch on
-  whether the current step is a card play or a bid.
+  In Bridge Classroom (src/views/MainLayout.vue), the success messages on a lead/defense
+  (card-play) lesson borrow bid wording. There are TWO sets to fix: AFFIRMATIONS (~line 372,
+  the per-call nod) and CELEBRATIONS (~line 406, the board-level cheer shown when every call
+  was right, e.g. "Beautifully bid!"). When the lesson/step is a card play rather than a bid,
+  use card-play variants instead: per-call from {"Good lead!", "Good", "Correct lead",
+  "Nice lead"} (do NOT use "Well led!"), and the board cheer from {"Beautifully played!",
+  "Perfect — every card!", "Flawless defense!", "Nailed it!"}. Keep the existing
+  vary-per-board selection (index % set.length); just branch the chosen set on whether the
+  current step / lesson is card-play or bidding. affirmationFor() and boardCelebration() are
+  the two functions to touch.
   ```
 
 ### B7. ENHANCEMENT — `[ACCEPT]` should revert + flag the alternative (orange), not score it as fully correct  *(small/medium — **request for Rick**, refines A5)*
