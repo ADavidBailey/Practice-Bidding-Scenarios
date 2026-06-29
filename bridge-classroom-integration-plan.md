@@ -1,5 +1,17 @@
 # Bridge Classroom Integration Plan
 
+> **STATUS — SHIPPED 2026-06-28 (header added 2026-06-29).** This doc is now a historical
+> record; the plan is executed and waiting on Rick.
+> - **Track A (deliverable): DONE.** `[ACCEPT]` parse+score+per-collection scoping implemented
+>   on the `fork` branch `accept-and-lesson-sync`; 46 lessons + full toc live on PBS main;
+>   email sent to Rick 2026-06-28. Awaiting his pull.
+> - **Track B (token sweep): DONE.** The "19 still tokenized" list below is **OBSOLETE** —
+>   verified 2026-06-29 that **zero** rotation tokens remain in `coaching-non-rotated/` (all 46)
+>   or `coaching-curated/`.
+> - **Still on Rick's side:** Drury reconcile, id→skillPath mapping, Baker Bridge non-disruption
+>   verify, the separate `[showcards]` parser bug. Optional possessive collection rename lives in
+>   `bridge-classroom-requests-for-rick.md`, not here.
+
 **Goal:** get our PBS coaching lessons (and the one engine change they need) working
 **on David's BC fork**, verify Rick's existing app is unaffected, then have Rick **pull
 everything** into his repo. Drafted 2026-06-28 to seed a clean implementation session +
