@@ -248,15 +248,20 @@ improvement: remember the previous lead/play + result instead of fully resetting
   remembered-attempt path.
   ```
 
-### B6. FIX — affirmation verb on lead lessons  *(tiny — **we'll PR**)*
-On a lead/defense lesson the success cheer can read with bid wording ("Beautifully bid!").
-Use the verb that matches the lesson type ("Well led!").
+### B6. FIX — lead-lesson affirmation: wording + variation  *(tiny — **we'll PR**)*
+On a lead/defense lesson the success cheer currently borrows bid wording ("Beautifully
+bid!"). It should use lead-appropriate wording and — like the bid affirmations already do
+(A3) — rotate through a small varied set rather than repeat one phrase. **Avoid "Well led!"**
+(too stiff). Preferred lead set: **"Good lead!", "Good", "Correct lead", "Nice lead"** (rotate
+randomly, same mechanism as the bid affirmations).
 - **Claude prompt:**
   ```
-  In Bridge Classroom, the success affirmation on a lead/defense lesson can use bid wording
-  ("Beautifully bid!"). Make the verb match the lesson type so a card-play lesson says "Well
-  led!" instead of "...bid!". Find where the affirmation/cheer text is chosen (search for the
-  bid affirmations / board-celebration logic, around src/views/MainLayout.vue) and branch on
+  In Bridge Classroom, the success affirmation on a lead/defense lesson currently borrows
+  bid wording ("Beautifully bid!"). On a card-play lesson, show a lead-appropriate
+  affirmation chosen at random from a small set -- "Good lead!", "Good", "Correct lead",
+  "Nice lead" -- the same varied-affirmation mechanism the bids already use; do NOT use
+  "Well led!". Find where the affirmation/cheer text is chosen (search for the bid
+  affirmations / board-celebration logic, around src/views/MainLayout.vue) and branch on
   whether the current step is a card play or a bid.
   ```
 
