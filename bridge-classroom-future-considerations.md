@@ -95,6 +95,39 @@ until/unless PR'd to Rick.*
    truncate or wrap before the greeting. Cosmetic only; fix with ellipsis-truncation or
    allowing the title to wrap. Affects any long title.
 
+### From the 2026-06-29 classroom-feedback batch (logged, NOT filed with Rick per David)
+
+7. **Multi-pass auctions surface only one student Pass.** *(Reports #142 Basic_Takeout_Double
+   D5, #133 Basic_What_To_Open D12.)* When the scripted auction has the student (South) pass
+   **more than once** — e.g. pass over an opponent's bid early, then pass again to end it —
+   BC surfaces only the one authored `[BID Pass]`, and the reviewer reports "no chance to bid
+   the 2nd pass." Content side: passes are deliberately not all anchored (the validate gate
+   requires `[BID]` anchors only on **non-pass** calls). So either BC should let the student
+   confirm every one of their turns in a scripted auction, or auto-completion should be
+   visibly clear. Engine behavior call — parked.
+
+8. **Bidding lessons don't reveal all four hands at the end.** *(Report #138 Basic_Overcall
+   D8: "why do the Overcalls not show all four hands at the conclusion?")* Bidding reflections
+   use `[show NS]` — bid-meaning only, no opponent/partner hands — **by design** (the
+   partner-hand-exposure gate forbids reciting partner's cards in a reflection). Showing all
+   four hands at auction-end would be a deliberate philosophy change for bidding lessons (play
+   lessons already use `[show NESW]`). Design call for David — parked, not a bug.
+
+9. **Declarer-play decks aren't playable card-by-card.** *(Report #141 Play_Top_Tricks D3:
+   "How does one play the hand?")* Play_Top_Tricks teaches the **play**, but BC supports
+   bidding + opening lead, not full declarer card-play, so the student sees the coaching but
+   can't play it out. Same root as parking-lot **item 2** (full play-out). Known engine
+   limitation — parked.
+
+10. **Can't accept a non-pass alternative when the textbook call is Pass.** *(Report #140
+    Basic_Weak_2 D6.)* The board already records **Pass** as correct over the opponents' 4♥
+    and the reflection praises it ("Passing and a further push are both defensible… Well
+    judged"). The reviewer bid **4♠** instead and it was scored wrong. `[ACCEPT]` could mark
+    4♠ also-correct, but it only attaches to a **non-pass** `[BID]` chunk — there's no way to
+    say "the textbook call is Pass, but also accept this non-pass alternative." Either the
+    `[ACCEPT]` design needs a Pass host (or a board-level accepted-alts list), or these
+    leave-it-to-partner judgment boards can't grade both ways. Engine gap — parked.
+
 ---
 
 ## How to use this file
