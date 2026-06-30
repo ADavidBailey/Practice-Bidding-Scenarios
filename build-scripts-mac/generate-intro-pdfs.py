@@ -121,7 +121,7 @@ def build(name, title, chat):
             story.append(Paragraph(inline(s), BODY))
     SimpleDocTemplate(
         os.path.join(COACH, f"{name}_Intro.pdf"), pagesize=LETTER,
-        leftMargin=inch, rightMargin=inch, topMargin=0.9 * inch, bottomMargin=inch,
+        leftMargin=0.5 * inch, rightMargin=0.5 * inch, topMargin=0.9 * inch, bottomMargin=inch,
         title=f"{title} — Introduction", author="David Bailey Scenarios",
     ).build(story)
 
