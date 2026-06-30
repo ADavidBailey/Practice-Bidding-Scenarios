@@ -52,16 +52,17 @@ BLUE = HexColor(0x1a1ab3)   # royal-blue title
 RED = "#d32f2f"
 LINK = "#1976d2"
 
-# Senior-readable sizes. The narrow page (below) is scaled to fill the viewer
-# width, so a comfortable on-screen size at the default ~550px viewer is reached
-# with ~15pt body; the viewer can be resized larger for bigger text.
-TITLE = ParagraphStyle("title", fontName="Arial-Bold", fontSize=22, leading=27,
-                       textColor=BLUE, spaceAfter=14)
-HEAD = ParagraphStyle("head", fontName="Arial-Bold", fontSize=17, leading=22,
-                      textColor=HexColor(0x000000), spaceBefore=12, spaceAfter=5)
-BODY = ParagraphStyle("body", fontName="Arial", fontSize=15, leading=21,
-                      textColor=HexColor(0x111111), spaceAfter=5)
-BULLET = ParagraphStyle("bullet", parent=BODY, leftIndent=22, firstLineIndent=-16)
+# The narrow page (below) is scaled to fill the viewer width. With a 5.5in
+# (396pt) page, body 11.5pt renders at ~16px on screen at the default ~550px
+# viewer — matching the app's coaching/scenario text. The viewer can be resized
+# wider for proportionally larger text.
+TITLE = ParagraphStyle("title", fontName="Arial-Bold", fontSize=17, leading=22,
+                       textColor=BLUE, spaceAfter=11)
+HEAD = ParagraphStyle("head", fontName="Arial-Bold", fontSize=13, leading=17,
+                      textColor=HexColor(0x000000), spaceBefore=10, spaceAfter=4)
+BODY = ParagraphStyle("body", fontName="Arial", fontSize=11.5, leading=16,
+                      textColor=HexColor(0x111111), spaceAfter=4)
+BULLET = ParagraphStyle("bullet", parent=BODY, leftIndent=17, firstLineIndent=-12)
 
 # !C/!S black, !D/!H red, !N -> "NT" — same convention as the app's chat renderer.
 SUIT = {"C": ("♣", None), "S": ("♠", None),
