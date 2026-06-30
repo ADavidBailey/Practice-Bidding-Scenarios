@@ -52,16 +52,16 @@ BLUE = HexColor(0x1a1ab3)   # royal-blue title
 RED = "#d32f2f"
 LINK = "#1976d2"
 
-# Large sizes for senior / super-senior readability. The narrow page (below) is
-# scaled up to fill the ~550px viewer, so on a typical screen these render at
-# roughly: body ~30px, headings ~36px, title ~45px.
-TITLE = ParagraphStyle("title", fontName="Arial-Bold", fontSize=30, leading=36,
-                       textColor=BLUE, spaceAfter=18)
-HEAD = ParagraphStyle("head", fontName="Arial-Bold", fontSize=24, leading=29,
-                      textColor=HexColor(0x000000), spaceBefore=14, spaceAfter=6)
-BODY = ParagraphStyle("body", fontName="Arial", fontSize=20, leading=27,
-                      textColor=HexColor(0x111111), spaceAfter=6)
-BULLET = ParagraphStyle("bullet", parent=BODY, leftIndent=26, firstLineIndent=-20)
+# Senior-readable sizes. The narrow page (below) is scaled to fill the viewer
+# width, so a comfortable on-screen size at the default ~550px viewer is reached
+# with ~15pt body; the viewer can be resized larger for bigger text.
+TITLE = ParagraphStyle("title", fontName="Arial-Bold", fontSize=22, leading=27,
+                       textColor=BLUE, spaceAfter=14)
+HEAD = ParagraphStyle("head", fontName="Arial-Bold", fontSize=17, leading=22,
+                      textColor=HexColor(0x000000), spaceBefore=12, spaceAfter=5)
+BODY = ParagraphStyle("body", fontName="Arial", fontSize=15, leading=21,
+                      textColor=HexColor(0x111111), spaceAfter=5)
+BULLET = ParagraphStyle("bullet", parent=BODY, leftIndent=22, firstLineIndent=-16)
 
 # !C/!S black, !D/!H red, !N -> "NT" — same convention as the app's chat renderer.
 SUIT = {"C": ("♣", None), "S": ("♠", None),
@@ -155,7 +155,7 @@ def load_names():
 # ~13px — too small for senior readers. Instead we render onto a NARROW page sized
 # in height to the content, so the viewer scales it *up*: bigger text, no empty
 # space. The viewer requests fit-width (#view=FitH) so height never shrinks it.
-PAGE_W = 5.0 * inch
+PAGE_W = 5.5 * inch
 LMAR = RMAR = 0.4 * inch
 TMAR = BMAR = 0.45 * inch
 TEXT_W = PAGE_W - LMAR - RMAR
