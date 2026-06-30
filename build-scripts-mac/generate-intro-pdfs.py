@@ -52,13 +52,14 @@ BLUE = HexColor(0x1a1ab3)   # royal-blue title
 RED = "#d32f2f"
 LINK = "#1976d2"
 
-TITLE = ParagraphStyle("title", fontName="Arial-Bold", fontSize=16, leading=20,
-                       textColor=BLUE, spaceAfter=14)
-HEAD = ParagraphStyle("head", fontName="Arial-Bold", fontSize=12.5, leading=16,
-                      textColor=HexColor(0x000000), spaceBefore=10, spaceAfter=4)
-BODY = ParagraphStyle("body", fontName="Arial", fontSize=11, leading=15.5,
-                      textColor=HexColor(0x111111), spaceAfter=2)
-BULLET = ParagraphStyle("bullet", parent=BODY, leftIndent=16, firstLineIndent=-12)
+# Sized up for senior / super-senior readability (was 16/12.5/11).
+TITLE = ParagraphStyle("title", fontName="Arial-Bold", fontSize=22, leading=27,
+                       textColor=BLUE, spaceAfter=16)
+HEAD = ParagraphStyle("head", fontName="Arial-Bold", fontSize=17, leading=22,
+                      textColor=HexColor(0x000000), spaceBefore=12, spaceAfter=5)
+BODY = ParagraphStyle("body", fontName="Arial", fontSize=15, leading=21,
+                      textColor=HexColor(0x111111), spaceAfter=4)
+BULLET = ParagraphStyle("bullet", parent=BODY, leftIndent=20, firstLineIndent=-15)
 
 # !C/!S black, !D/!H red, !N -> "NT" — same convention as the app's chat renderer.
 SUIT = {"C": ("♣", None), "S": ("♠", None),
@@ -85,6 +86,54 @@ def extract_chat(btn_text):
     return m.group(1).strip() if m else None
 
 
+# BBO's Practice Bidding Table does not wrap text, so the @chat is hard-wrapped
+# near BBO's ~65-char limit — every line ends with a return. reflow() rejoins
+# those forced wraps into flowing paragraphs (reportlab then wraps to the page),
+# while keeping the author's intended breaks. A break is INTENDED (kept) when the
+# line ends a thought (terminal punctuation) or is a deliberate short line; a
+# break is INCIDENTAL (joined) when a long prose line stops without punctuation.
+# The two cases sit in non-overlapping length clusters (<=26 vs >=62 displayed
+# chars across all lessons), so the split is unambiguous. The btn/ source is never
+# modified. To force a break, end the line with . ! ? : , keep it under ~50
+# displayed chars, or make it a bullet.
+_WRAP_THRESHOLD = 50
+
+
+def _displayed_len(s):
+    """Length as BBO shows it: !C/!D/!H/!S render as a single suit glyph."""
+    return len(re.sub(r"!([CDHSN])", "x", s))
+
+
+def _is_structural(s):
+    t = s.strip()
+    return (not t) or t.startswith("---") or t[:2] in ("• ", "- ", "* ") \
+        or bool(re.match(r"https?://", t))
+
+
+def reflow(text):
+    """Return logical lines: forced wraps joined, intended breaks preserved."""
+    out, buf = [], ""
+
+    def flush():
+        nonlocal buf
+        if buf:
+            out.append(buf)
+            buf = ""
+
+    for line in text.splitlines():
+        s = line.rstrip()
+        if _is_structural(s):
+            flush()
+            out.append(s.strip())
+            continue
+        t = s.strip()
+        buf = (buf + " " + t).strip() if buf else t
+        if t[-1:] in ".!?:" or _displayed_len(t) < _WRAP_THRESHOLD:
+            flush()
+    flush()
+    return out
+
+
 def load_names():
     """Map lesson id -> display name from coaching-non-rotated/toc.json (best effort)."""
     names = {}
@@ -107,16 +156,15 @@ def build(name, title, chat):
         lines = lines[1:]
         while lines and not lines[0].strip():
             lines = lines[1:]
-    for line in lines:
-        s = line.rstrip()
-        if not s.strip():
-            story.append(Spacer(1, 6))
+    for s in reflow("\n".join(lines)):
+        if not s:
+            story.append(Spacer(1, 8))
             continue
         heading = re.match(r"^---\s*(.+)$", s)
         if heading:
             story.append(Paragraph(inline(heading.group(1)), HEAD))
-        elif s.lstrip()[:2] in ("• ", "- ", "* "):
-            story.append(Paragraph(inline(s.strip()), BULLET))
+        elif s[:2] in ("• ", "- ", "* "):
+            story.append(Paragraph(inline(s), BULLET))
         else:
             story.append(Paragraph(inline(s), BODY))
     SimpleDocTemplate(
