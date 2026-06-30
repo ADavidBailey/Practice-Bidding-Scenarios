@@ -26,12 +26,12 @@ import reportlab.rl_config
 reportlab.rl_config.invariant = 1  # deterministic output: no embedded timestamp,
 #                                    so re-running churns git only when @chat changes.
 
-from reportlab.lib.pagesizes import LETTER
 from reportlab.lib.units import inch
 from reportlab.lib.colors import HexColor
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+from reportlab.platypus import BaseDocTemplate, PageTemplate, Paragraph, Spacer, Frame
+from reportlab.pdfgen.canvas import Canvas
 from reportlab.lib.styles import ParagraphStyle
 
 # Paths derived from this script's location (parent of build-scripts-mac).
@@ -52,14 +52,16 @@ BLUE = HexColor(0x1a1ab3)   # royal-blue title
 RED = "#d32f2f"
 LINK = "#1976d2"
 
-# Sized up for senior / super-senior readability (was 16/12.5/11).
-TITLE = ParagraphStyle("title", fontName="Arial-Bold", fontSize=22, leading=27,
-                       textColor=BLUE, spaceAfter=16)
-HEAD = ParagraphStyle("head", fontName="Arial-Bold", fontSize=17, leading=22,
-                      textColor=HexColor(0x000000), spaceBefore=12, spaceAfter=5)
-BODY = ParagraphStyle("body", fontName="Arial", fontSize=15, leading=21,
-                      textColor=HexColor(0x111111), spaceAfter=4)
-BULLET = ParagraphStyle("bullet", parent=BODY, leftIndent=20, firstLineIndent=-15)
+# Large sizes for senior / super-senior readability. The narrow page (below) is
+# scaled up to fill the ~550px viewer, so on a typical screen these render at
+# roughly: body ~30px, headings ~36px, title ~45px.
+TITLE = ParagraphStyle("title", fontName="Arial-Bold", fontSize=30, leading=36,
+                       textColor=BLUE, spaceAfter=18)
+HEAD = ParagraphStyle("head", fontName="Arial-Bold", fontSize=24, leading=29,
+                      textColor=HexColor(0x000000), spaceBefore=14, spaceAfter=6)
+BODY = ParagraphStyle("body", fontName="Arial", fontSize=20, leading=27,
+                      textColor=HexColor(0x111111), spaceAfter=6)
+BULLET = ParagraphStyle("bullet", parent=BODY, leftIndent=26, firstLineIndent=-20)
 
 # !C/!S black, !D/!H red, !N -> "NT" — same convention as the app's chat renderer.
 SUIT = {"C": ("♣", None), "S": ("♠", None),
@@ -148,7 +150,18 @@ def load_names():
     return names
 
 
-def build(name, title, chat):
+# The intro shows in the app's floating viewer (~550px wide), which scales the
+# whole page to fit that width. A full Letter page therefore shrinks the text to
+# ~13px — too small for senior readers. Instead we render onto a NARROW page sized
+# in height to the content, so the viewer scales it *up*: bigger text, no empty
+# space. The viewer requests fit-width (#view=FitH) so height never shrinks it.
+PAGE_W = 5.0 * inch
+LMAR = RMAR = 0.4 * inch
+TMAR = BMAR = 0.45 * inch
+TEXT_W = PAGE_W - LMAR - RMAR
+
+
+def make_story(title, chat):
     story = [Paragraph(title.upper(), TITLE)]
     lines = chat.splitlines()
     # Drop a leading "--- X" that just restates the scenario title.
@@ -159,19 +172,39 @@ def build(name, title, chat):
     for s in reflow("\n".join(lines)):
         if not s:
             story.append(Spacer(1, 8))
-            continue
-        heading = re.match(r"^---\s*(.+)$", s)
-        if heading:
-            story.append(Paragraph(inline(heading.group(1)), HEAD))
+        elif re.match(r"^---\s*(.+)$", s):
+            story.append(Paragraph(inline(re.match(r"^---\s*(.+)$", s).group(1)), HEAD))
         elif s[:2] in ("• ", "- ", "* "):
             story.append(Paragraph(inline(s), BULLET))
         else:
             story.append(Paragraph(inline(s), BODY))
-    SimpleDocTemplate(
-        os.path.join(COACH, f"{name}_Intro.pdf"), pagesize=LETTER,
-        leftMargin=0.5 * inch, rightMargin=0.5 * inch, topMargin=0.9 * inch, bottomMargin=inch,
+    return story
+
+
+def _frame(height):
+    """A zero-padding frame spanning TEXT_W — identical geometry for measure & build."""
+    return Frame(LMAR, BMAR, TEXT_W, height - TMAR - BMAR,
+                 leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
+
+
+def _content_height(story):
+    """Exact laid-out height of the flowables at TEXT_W, via a real Frame pass."""
+    big = 100_000
+    frame = _frame(big)
+    top = frame._y1 + frame._height          # cursor starts at frame top
+    frame.addFromList(story, Canvas(os.devnull, pagesize=(PAGE_W, big)))
+    return top - frame._y                     # top minus final cursor = used height
+
+
+def build(name, title, chat):
+    page_h = TMAR + BMAR + _content_height(make_story(title, chat)) + 8
+    doc = BaseDocTemplate(
+        os.path.join(COACH, f"{name}_Intro.pdf"), pagesize=(PAGE_W, page_h),
+        leftMargin=LMAR, rightMargin=RMAR, topMargin=TMAR, bottomMargin=BMAR,
         title=f"{title} — Introduction", author="David Bailey Scenarios",
-    ).build(story)
+    )
+    doc.addPageTemplates([PageTemplate(id="intro", frames=[_frame(page_h)])])
+    doc.build(make_story(title, chat))
 
 
 def main():
