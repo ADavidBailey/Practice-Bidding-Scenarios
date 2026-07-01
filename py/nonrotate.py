@@ -126,6 +126,13 @@ def fold_board(chunk):
     south_ends_pass = bool(south_all) and south_all[-1] == 'Pass'
 
     intro, chunks, reflection = parse_block(chunk)
+    # Play / choose-card boards carry no [BID] anchors: the student is South (the
+    # declarer), the prose is seat-fixed and token-free, and bridge-classroom reads
+    # the block verbatim. There is nothing to rotate or fold, so emit the coaching
+    # block unchanged. (The pre-auction {Shape}/{HCP}/{Losers}/{Curate} stat blocks
+    # are stripped afterward by bridge_classroom.py.)
+    if not chunks:
+        return chunk[chunk.rfind('{'): chunk.rfind('}') + 1]
     # Old-format curated files bake a leading [show S] into the intro; strip any
     # leading [show ...] so the [show S] we add below isn't doubled.
     intro = re.sub(r'^\s*\[show [^\]]+\]\s*', '', intro)
