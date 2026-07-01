@@ -49,7 +49,8 @@ compete = tpWest>=7  and not (force or invite)
 preempt = tpWest>=4  and not (force or invite or compete)  
 wRange  = force or invite or compete or preempt
 
-sMCB= shape(south,any 76xx +any 67xx +any 66xx +any 65xx +any 56xx +any 55xx) and hcp(south)>9 and tpSouth<19 // avoid strong TO X
+sRange = (hcp(south)>4 and hcp(south)<12) or hcp(south)>15  // weak (5-11) or strong (16+)
+sMCB= shape(south,any 76xx +any 67xx +any 66xx +any 65xx +any 56xx +any 55xx) and sRange
 
 levPreempt = preempt and hascard(north,2C) or hascard(north,2D) // keep only 44% of preempts
 
